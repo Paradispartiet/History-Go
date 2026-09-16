@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_psykologientusiast",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "psykologi",
+    "id": "psykologientusiast",
+    "label": "Psykologientusiast"
+  },
+  "title": "Psykologientusiast",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å lære psykologiske begreper og forskningsfunn uten å gjøre forenklede modeller, gruppedata, målinger eller kjent terminologi til sikker forklaring på enkeltmennesker",
+    "description": "Psykologientusiast-verdenen undersøker fagbegrep mot hverdagsord, korrelasjon mot årsak, gruppefunn mot individ, effektstørrelse mot overskrift, måling mot antatt essens, eksperiment mot hverdagskontekst, replisering, kildehierarki, populærpsykologiske snarveier, merkelapper, trekk og situasjon, biasbegreper, konkurrerende teorier og revisjon. Psykologientusiast er en knowledge_identity og selvvalgt kunnskapsinteresse. Rollen gir ingen automatisk myndighet som psykolog, behandler, diagnostiker, forsker eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "status_anxiety",
+    "care_vs_efficiency",
+    "public_attention",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "lesesirkler og private samtaler der fagbegreper møter hverdagsord og intuitive forklaringer",
+    "podkaster, populærartikler og sosiale medier der forskningsforbehold lett komprimeres til en tydelig historie",
+    "fagbøker og forskningssammendrag der definisjoner, målinger og metode må holdes fra hverandre",
+    "vennesamtaler der gruppefunn eller biasbegreper frister som forklaring på en bestemt person",
+    "diskusjoner om nye og eldre studier der replisering og alternative teorier kan endre hva som virker robust",
+    "private refleksjoner der det er mulig å oppdatere eget syn uten å gjøre kunnskapsinteresse til klinisk rolle"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "lesesirkelvennen",
+      "social_function": "gjør fagbegreper til samtaleemner og oppdager når hverdagsord og forskningsord glir sammen",
+      "class_position": "likestilt leser uten klinisk eller akademisk mandat",
+      "status": "troverdig gjennom nysgjerrighet og faktisk lesing, ikke tittel",
+      "power_over_player": "kan gjøre en enkel forklaring sosialt fristende fordi gruppen ønsker et klart språk",
+      "wants": "å forstå vanskelige begreper uten unødig sjargong",
+      "conceals": "at forenklingen noen ganger blir viktigere enn definisjonen",
+      "speech_style": "nysgjerrig, rask og glad i eksempler",
+      "teaches_player": "at presisjon og tilgjengelig språk må holdes sammen"
+    },
+    {
+      "id": "metodevennen",
+      "social_function": "spør hvordan et funn ble målt, sammenlignet og testet før konklusjonen blir større",
+      "class_position": "metodeinteressert privat deltaker uten forskerrolle",
+      "status": "høy i gruppen når spørsmål om design og årsak blir uklare",
+      "power_over_player": "kan stoppe en god historie med et enkelt spørsmål om data eller alternativ forklaring",
+      "wants": "at påstander skal passe med metoden som faktisk ble brukt",
+      "conceals": "at metodekritikk også kan bli en måte å utsette enhver konklusjon",
+      "speech_style": "kort, analytisk og opptatt av hva studien faktisk gjorde",
+      "teaches_player": "at forskningsdesign setter grenser for hvilke slutninger som er rimelige"
+    },
+    {
+      "id": "kildegranskeren",
+      "social_function": "sporer påstander fra overskrift og formidling tilbake til opprinnelig kilde og senere forskning",
+      "class_position": "engasjert leser uten profesjonell autoritet",
+      "status": "får tillit når kildesporing avdekker manglende forbehold",
+      "power_over_player": "kan endre hele diskusjonen ved å finne hva kilden faktisk sier",
+      "wants": "at sterke påstander skal kunne spores til et tydelig grunnlag",
+      "conceals": "at også gode kilder krever tolkning og kan være ufullstendige",
+      "speech_style": "rolig, dokumenterende og skeptisk til sitater uten lenke eller referanse",
+      "teaches_player": "at kildehierarki og replisering er del av psykologisk allmennkunnskap"
+    },
+    {
+      "id": "hverdagsvennen",
+      "social_function": "holder situasjon, relasjon og hverdagsvariasjon synlig når abstrakte funn blir brukt for bredt",
+      "class_position": "nær venn med kontekstkunnskap, uten fagrolle",
+      "status": "lav formell status men høy kunnskap om konkrete situasjoner",
+      "power_over_player": "kan vise at en pen teori ikke dekker det som faktisk varierer fra sted til sted",
+      "wants": "at mennesker ikke reduseres til en modell",
+      "conceals": "at nærhet også kan gjøre enkelthendelser for viktige",
+      "speech_style": "jordnær, konkret og opptatt av hva som skjedde akkurat da",
+      "teaches_player": "at ekstern validitet og individvariasjon får mening i konkrete liv"
+    },
+    {
+      "id": "personen_det_gjelder",
+      "social_function": "setter grensen mellom å diskutere forskning og å bruke begreper som ubedt tolkning av et annet menneske",
+      "class_position": "privat person med rett til å korrigere kontekst og avvise spillerens fortolkning",
+      "status": "avgjørende for egen situasjon, men ikke kilde til universelle årsaksforklaringer",
+      "power_over_player": "kan stoppe merkelapper og be om at kliniske spørsmål ikke behandles som hobbyanalyse",
+      "wants": "å bli møtt som person fremfor eksempel på et begrep",
+      "conceals": "at egen forståelse også kan være usikker og skiftende",
+      "speech_style": "direkte, personlig og tydelig på grenser",
+      "teaches_player": "at kunnskapsinteresse ikke gir samtykke til å analysere andre"
+    },
+    {
+      "id": "samtalepartneren",
+      "social_function": "tester om psykologiske begreper åpner gode spørsmål eller bare avslutter uenighet med en merkelapp",
+      "class_position": "likestilt samtalepartner uten behandler- eller ekspertstatus",
+      "status": "tillit gjennom å tåle usikkerhet og skifte mening",
+      "power_over_player": "kan gjøre det sosialt legitimt å si at en forklaring er foreløpig",
+      "wants": "at samtalen beholder flere mulige forklaringer når grunnlaget er tynt",
+      "conceals": "at et godt formulert motspørsmål kan få mer autoritet enn det fortjener",
+      "speech_style": "rolig, presis og opptatt av forskjellen mellom begrep, observasjon og antakelse",
+      "teaches_player": "at psykologi kan brukes til bedre spørsmål uten tankelesing"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "construct_vs_everyday_word",
+      "meaning": "fagbegrep mot hverdagsord",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correlation_vs_cause",
+      "meaning": "sammenheng mot årsaksforklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "group_vs_individual",
+      "meaning": "gruppefunn mot enkeltperson",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "effect_vs_headline",
+      "meaning": "effektstørrelse mot dramatisk overskrift",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_essence",
+      "meaning": "måling mot antatt essens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "experiment_vs_context",
+      "meaning": "kontrollert eksperiment mot hverdagskontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "replication_vs_novelty",
+      "meaning": "enkeltstudie mot samlet replikerbar evidens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_hierarchy",
+      "meaning": "sekundær formidling mot opprinnelig kilde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "popular_psychology_vs_definition",
+      "meaning": "populærpsykologisk snarvei mot faglig avgrensning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "label_vs_explanation",
+      "meaning": "merkelapp mot mekanisme og kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "trait_vs_situation",
+      "meaning": "trekkbegrep mot situasjonsbetingelser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "bias_concept_vs_mindreading",
+      "meaning": "biasbegrep mot tankelesing og anklage",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "theory_vs_single_story",
+      "meaning": "konkurrerende teorier mot én intuitiv historie",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "learning_vs_professional_authority",
+      "meaning": "psykologisk kunnskapsinteresse mot profesjonsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Ordet er kjent, men betyr det det samme?.",
+        "thread_ids": [
+          "construct_vs_everyday_word"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Ordet er kjent, men betyr det det samme?.",
+        "thread_ids": [
+          "construct_vs_everyday_word"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Ordet er kjent, men betyr det det samme?.",
+        "thread_ids": [
+          "construct_vs_everyday_word"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Ordet er kjent, men betyr det det samme?.",
+        "thread_ids": [
+          "construct_vs_everyday_word"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: De henger sammen — men hva følger av det?.",
+        "thread_ids": [
+          "correlation_vs_cause",
+          "construct_vs_everyday_word"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: De henger sammen — men hva følger av det?.",
+        "thread_ids": [
+          "correlation_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: De henger sammen — men hva følger av det?.",
+        "thread_ids": [
+          "correlation_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: De henger sammen — men hva følger av det?.",
+        "thread_ids": [
+          "correlation_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Gruppen hadde et mønster; betyr det at du kjenner personen?.",
+        "thread_ids": [
+          "group_vs_individual",
+          "correlation_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Gruppen hadde et mønster; betyr det at du kjenner personen?.",
+        "thread_ids": [
+          "group_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Gruppen hadde et mønster; betyr det at du kjenner personen?.",
+        "thread_ids": [
+          "group_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Gruppen hadde et mønster; betyr det at du kjenner personen?.",
+        "thread_ids": [
+          "group_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Signifikant er ikke det samme som stort.",
+        "thread_ids": [
+          "effect_vs_headline",
+          "group_vs_individual"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Signifikant er ikke det samme som stort.",
+        "thread_ids": [
+          "effect_vs_headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Signifikant er ikke det samme som stort.",
+        "thread_ids": [
+          "effect_vs_headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Signifikant er ikke det samme som stort.",
+        "thread_ids": [
+          "effect_vs_headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Hva målte testen egentlig?.",
+        "thread_ids": [
+          "measurement_vs_essence",
+          "effect_vs_headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Hva målte testen egentlig?.",
+        "thread_ids": [
+          "measurement_vs_essence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Hva målte testen egentlig?.",
+        "thread_ids": [
+          "measurement_vs_essence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Hva målte testen egentlig?.",
+        "thread_ids": [
+          "measurement_vs_essence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Fungerer laboratoriefunnet likt på en tirsdag hjemme?.",
+        "thread_ids": [
+          "experiment_vs_context",
+          "measurement_vs_essence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Fungerer laboratoriefunnet likt på en tirsdag hjemme?.",
+        "thread_ids": [
+          "experiment_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Fungerer laboratoriefunnet likt på en tirsdag hjemme?.",
+        "thread_ids": [
+          "experiment_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Fungerer laboratoriefunnet likt på en tirsdag hjemme?.",
+        "thread_ids": [
+          "experiment_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Den spennende studien fikk oppfølgere.",
+        "thread_ids": [
+          "replication_vs_novelty",
+          "experiment_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Den spennende studien fikk oppfølgere.",
+        "thread_ids": [
+          "replication_vs_novelty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Den spennende studien fikk oppfølgere.",
+        "thread_ids": [
+          "replication_vs_novelty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Den spennende studien fikk oppfølgere.",
+        "thread_ids": [
+          "replication_vs_novelty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Hvor kommer påstanden fra?.",
+        "thread_ids": [
+          "source_hierarchy",
+          "replication_vs_novelty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Hvor kommer påstanden fra?.",
+        "thread_ids": [
+          "source_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Hvor kommer påstanden fra?.",
+        "thread_ids": [
+          "source_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Hvor kommer påstanden fra?.",
+        "thread_ids": [
+          "source_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En ryddig modell passer nesten alle.",
+        "thread_ids": [
+          "popular_psychology_vs_definition",
+          "source_hierarchy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En ryddig modell passer nesten alle.",
+        "thread_ids": [
+          "popular_psychology_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En ryddig modell passer nesten alle.",
+        "thread_ids": [
+          "popular_psychology_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En ryddig modell passer nesten alle.",
+        "thread_ids": [
+          "popular_psychology_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du har gitt det et navn — har du forklart det?.",
+        "thread_ids": [
+          "label_vs_explanation",
+          "popular_psychology_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du har gitt det et navn — har du forklart det?.",
+        "thread_ids": [
+          "label_vs_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du har gitt det et navn — har du forklart det?.",
+        "thread_ids": [
+          "label_vs_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du har gitt det et navn — har du forklart det?.",
+        "thread_ids": [
+          "label_vs_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Samme person, annen situasjon.",
+        "thread_ids": [
+          "trait_vs_situation",
+          "label_vs_explanation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Samme person, annen situasjon.",
+        "thread_ids": [
+          "trait_vs_situation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Samme person, annen situasjon.",
+        "thread_ids": [
+          "trait_vs_situation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Samme person, annen situasjon.",
+        "thread_ids": [
+          "trait_vs_situation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Et biasbegrep er ikke adgang til andres hode.",
+        "thread_ids": [
+          "bias_concept_vs_mindreading",
+          "trait_vs_situation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Et biasbegrep er ikke adgang til andres hode.",
+        "thread_ids": [
+          "bias_concept_vs_mindreading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Et biasbegrep er ikke adgang til andres hode.",
+        "thread_ids": [
+          "bias_concept_vs_mindreading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Et biasbegrep er ikke adgang til andres hode.",
+        "thread_ids": [
+          "bias_concept_vs_mindreading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Begge teoriene kan fortelle en god historie.",
+        "thread_ids": [
+          "theory_vs_single_story",
+          "bias_concept_vs_mindreading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Begge teoriene kan fortelle en god historie.",
+        "thread_ids": [
+          "theory_vs_single_story"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Begge teoriene kan fortelle en god historie.",
+        "thread_ids": [
+          "theory_vs_single_story"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Begge teoriene kan fortelle en god historie.",
+        "thread_ids": [
+          "theory_vs_single_story",
+          "learning_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kan kunne mer uten å bli psykolog.",
+        "thread_ids": [
+          "learning_vs_professional_authority",
+          "theory_vs_single_story"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kan kunne mer uten å bli psykolog.",
+        "thread_ids": [
+          "learning_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kan kunne mer uten å bli psykolog.",
+        "thread_ids": [
+          "learning_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kan kunne mer uten å bli psykolog.",
+        "thread_ids": [
+          "learning_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "construct_vs_everyday_word",
+      "relationship": "fagbegrep mot hverdagsord",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "correlation_vs_cause",
+      "relationship": "sammenheng mot årsaksforklaring",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "group_vs_individual",
+      "relationship": "gruppefunn mot enkeltperson",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "effect_vs_headline",
+      "relationship": "effektstørrelse mot dramatisk overskrift",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "measurement_vs_essence",
+      "relationship": "måling mot antatt essens",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "experiment_vs_context",
+      "relationship": "kontrollert eksperiment mot hverdagskontekst",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "replication_vs_novelty",
+      "relationship": "enkeltstudie mot samlet replikerbar evidens",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "source_hierarchy",
+      "relationship": "sekundær formidling mot opprinnelig kilde",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "popular_psychology_vs_definition",
+      "relationship": "populærpsykologisk snarvei mot faglig avgrensning",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "label_vs_explanation",
+      "relationship": "merkelapp mot mekanisme og kontekst",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "trait_vs_situation",
+      "relationship": "trekkbegrep mot situasjonsbetingelser",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "bias_concept_vs_mindreading",
+      "relationship": "biasbegrep mot tankelesing og anklage",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "theory_vs_single_story",
+      "relationship": "konkurrerende teorier mot én intuitiv historie",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "learning_vs_professional_authority",
+      "relationship": "psykologisk kunnskapsinteresse mot profesjonsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "begreper_far_grenser",
+      "description": "Spilleren blir mer opptatt av definisjon, operasjonalisering og hva et psykologisk ord faktisk dekker.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype"
+      ]
+    },
+    {
+      "id": "funn_far_rekkevidde",
+      "description": "Sammenheng, gruppefunn, effektstørrelse og eksperimentbetingelser får tydeligere grenser før de brukes i hverdagen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen"
+      ]
+    },
+    {
+      "id": "kilder_far_historikk",
+      "description": "Originalkilder, formidlingsledd og repliseringer blir behandlet som en kjede der forståelsen kan revideres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel"
+      ]
+    },
+    {
+      "id": "mennesker_blir_mindre_modell",
+      "description": "Merkelapper, trekk og biasbegreper brukes mer varsomt når de møter situasjon, individvariasjon og andres grenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen"
+      ]
+    },
+    {
+      "id": "interesse_far_rollegrense",
+      "description": "Konkurrerende teorier og ny evidens kan endre forståelsen, mens kliniske spørsmål holdes tydelig utenfor hobbyrollen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse",
+        "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "begrep_moter_maling",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "korrelasjon_moter_eksperiment",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    },
+    {
+      "id": "gruppefunn_moter_hverdag",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "overskrift_moter_replikasjon",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kildekjede_moter_populaermodell",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "status"
+      ]
+    },
+    {
+      "id": "merkelapp_moter_rollegrense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#begrepet_som_betyr_to_ting",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#sammenhengen_som_ble_arsak",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#gjennomsnittet_som_ble_person",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#overskriften_uten_storrelse",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#testen_som_ble_egenskapen",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#laboratoriet_og_tirsdagen",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#studien_alle_snakket_om",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#podkasten_som_siterte_en_artikkel",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#tre_trinn_til_en_personlighetstype",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#etiketten_som_skulle_forklare_alt",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#trekket_som_forsvant_i_et_annet_rom",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#bias_ordet_i_krangelen",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#to_teorier_samme_hendelse",
+      "data/Civication/narratives/leisure/psykologi_psykologientusiast.json#fra_interesse_til_rollegrense"
+    ]
+  }
+}
