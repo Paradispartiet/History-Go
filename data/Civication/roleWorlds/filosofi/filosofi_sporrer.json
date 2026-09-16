@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_sporrer",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "sporrer",
+    "label": "Spørrer"
+  },
+  "title": "Spørrer",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle åpne, presise og ansvarlige spørsmål uten å gjøre spørsmålsferdighet til press, skjult råd eller formell intervju-, terapi-, forsknings- eller etterforskningsmyndighet",
+    "description": "Spørrer-verdenen undersøker ledende spørsmål, spørsmålsstabler, hvorfor-spørsmål, skjulte premisser, underliggende inquiry, privatliv, retoriske spørsmål, oppfølging, status, kategorier, stillhet, kontekstgjenbruk, indirekte råd og profesjonsgrenser. Spørrer er en inquiry_practice life position. Rollen gir ingen automatisk jobb, lønn, terapeutrolle, psykologrolle, journalistrolle, forskerrolle, etterforskerrolle, profesjonell intervjuerrolle eller institusjonell myndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "social_mask",
+    "status_anxiety",
+    "public_attention",
+    "shame_reputation",
+    "public_private_leakage",
+    "professional_culture",
+    "care_vs_efficiency",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "hverdagslige samtaler der spørsmålsform påvirker hva som kan sies",
+    "læringssituasjoner der status avgjør hvilke spørsmål som tør stilles",
+    "nære relasjoner der privatliv og selvavsløring setter grenser for utspørring",
+    "gruppesamtaler der spørsmål kan styre tema og makt uten at det er synlig",
+    "beslutningssituasjoner der spørsmål kan fungere som skjult råd",
+    "møter med terapi, forskning, journalistikk og etterforskning der samtykke, metode og mandat gjelder"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "sporsmalsvennen",
+      "social_function": "tester om spørsmål faktisk er åpne nok til å kunne få uventede svar",
+      "class_position": "likestilt deltaker uten formell intervjuerrolle",
+      "status": "middels uformell innflytelse gjennom språk og spørsmålsform",
+      "power_over_player": "kan styre hva som oppleves som relevant ved å definere hvilke spørsmål som regnes som gode",
+      "wants": "at spørsmål skal åpne fremfor å skjule svar",
+      "conceals": "at også åpne spørsmål alltid velger et perspektiv",
+      "speech_style": "kort, presis og undrende",
+      "teaches_player": "at spørsmålsform kan bære like mye styring som en påstand"
+    },
+    {
+      "id": "avklaringsvennen",
+      "social_function": "synliggjør skjulte premisser, uklare kategorier og hvorfor-spørsmål som skaper forsvar",
+      "class_position": "språkbevisst samtaledeltaker",
+      "status": "middels uformell begrepsautoritet",
+      "power_over_player": "kan gjøre presisjon til barriere hvis hvert spørsmål må perfeksjoneres før det stilles",
+      "wants": "at spørsmålet skal være forståelig og korrigerbart",
+      "conceals": "at egen preferanse for presisjon kan snevre inn spontan utforskning",
+      "speech_style": "rolig, analytisk og omformulerende",
+      "teaches_player": "at gode spørsmål ofte krever premisskontroll før svar"
+    },
+    {
+      "id": "rytmevennen",
+      "social_function": "holder tempo, én-ting-av-gangen og responsive oppfølgingsspørsmål levende",
+      "class_position": "likestilt samtaledeltaker med blikk for flyt",
+      "status": "middels sosial innflytelse",
+      "power_over_player": "kan avgjøre når et svar har fått nok tid før neste spørsmål",
+      "wants": "at spørsmål skal følge samtalen i stedet for et manus",
+      "conceals": "at fri flyt også kan gjøre viktige spørsmål uferdige",
+      "speech_style": "lett, responsiv og tempobevisst",
+      "teaches_player": "at spørrepraksis også handler om timing"
+    },
+    {
+      "id": "grensevennen",
+      "social_function": "markerer privatliv, samtykke og kontekst når spørsmål gjelder personlige forhold",
+      "class_position": "nær sosial deltaker uten profesjonelt mandat",
+      "status": "høy relasjonell sensitivitet og lav institusjonell makt",
+      "power_over_player": "kan stoppe spørsmål og gjenbruk av privat kontekst når tillit står på spill",
+      "wants": "at folk skal kunne avstå fra å svare uten å måtte forsvare grensen",
+      "conceals": "at egne komfortgrenser ikke er universelle",
+      "speech_style": "varm, tydelig og grensesettende",
+      "teaches_player": "at retten til å spørre ikke gir rett til svar"
+    },
+    {
+      "id": "nybegynnervennen",
+      "social_function": "gjør det sosialt mulig å stille grunnleggende spørsmål uten å spille ekspert",
+      "class_position": "lærende deltaker uten formell status",
+      "status": "lav formell autoritet og høy verdi som korrektiv til gruppens antakelser",
+      "power_over_player": "kan synliggjøre kunnskapshull som andre helst vil skjule",
+      "wants": "at uvitenhet skal kunne uttales presist",
+      "conceals": "at også nybegynnerspørsmål kan brukes performativt",
+      "speech_style": "direkte, enkel og konkret",
+      "teaches_player": "at et grunnleggende spørsmål kan være metodisk sterkere enn et avansert skinnspørsmål"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer når spørsmål går over i terapi, intervju, forskning, journalistikk, etterforskning eller annen mandatbærende praksis",
+      "class_position": "kvalifisert eller formelt ansvarlig fagrolle i eget område",
+      "status": "høy formell autoritet innen avgrenset praksis",
+      "power_over_player": "kan kreve samtykke, metode, taushetsplikt eller henvisning før videre utspørring",
+      "wants": "at god spørrepraksis ikke kamuflerer roller med sterkere ansvar og rettigheter",
+      "conceals": "at også profesjonelle intervjuformer kan ha skjulte premisser",
+      "speech_style": "presis, ansvarstydelig og rollebevisst",
+      "teaches_player": "at å kunne spørre godt ikke er det samme som å ha intervjumyndighet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "open_question_vs_leading_question",
+      "meaning": "åpne spørsmål mot ledende formuleringer som allerede peker mot ønsket svar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "single_question_vs_question_stack",
+      "meaning": "ett tydelig spørsmål mot flere spørsmål pakket inn i én formulering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "inquiry_vs_defensive_why",
+      "meaning": "utforskende begrunnelsesspørsmål mot hvorfor-spørsmål som oppleves som forsvarskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "question_premise_vs_hidden_assumption",
+      "meaning": "eksplisitt premisskontroll mot skjulte forutsetninger i selve spørsmålet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "surface_question_vs_underlying_inquiry",
+      "meaning": "overflatespørsmål mot det egentlige kunnskapsbehovet bak",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "inquiry_vs_privacy_entitlement",
+      "meaning": "nysgjerrighet mot forestillingen om at et spørsmål gir rett til personlig svar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "genuine_question_vs_rhetorical_question",
+      "meaning": "reell åpenhet for svar mot retoriske spørsmål som kamuflerte påstander",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "responsive_followup_vs_scripted_sequence",
+      "meaning": "oppfølging som formes av svaret mot ferdig spørsmålsmanus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "honest_question_vs_status_mask",
+      "meaning": "ærlige grunnspørsmål mot statuspress om å skjule uvitenhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "forced_choice_vs_open_category",
+      "meaning": "åpne kategorier mot falskt snevre svaralternativer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "question_silence_vs_rescue",
+      "meaning": "å tåle ubesvart stillhet mot rask omformulering som tar spørsmålet tilbake",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "question_reuse_vs_context_leakage",
+      "meaning": "gjenbruk av problemstilling mot lekkasje av privat kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "questioning_vs_indirect_advice",
+      "meaning": "spørsmål som utforskning mot spørsmål som skjult råd og styring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "inquiry_practice_vs_formal_interview_authority",
+      "meaning": "filosofisk spørrepraksis mot terapi, journalistikk, forskning, etterforskning og profesjonell intervjumyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Er dette et spørsmål — eller et svar med spørsmålstegn?.",
+        "thread_ids": [
+          "open_question_vs_leading_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Er dette et spørsmål — eller et svar med spørsmålstegn?.",
+        "thread_ids": [
+          "open_question_vs_leading_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Er dette et spørsmål — eller et svar med spørsmålstegn?.",
+        "thread_ids": [
+          "open_question_vs_leading_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Er dette et spørsmål — eller et svar med spørsmålstegn?.",
+        "thread_ids": [
+          "open_question_vs_leading_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hvilket spørsmål skal den andre egentlig svare på?.",
+        "thread_ids": [
+          "single_question_vs_question_stack",
+          "open_question_vs_leading_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hvilket spørsmål skal den andre egentlig svare på?.",
+        "thread_ids": [
+          "single_question_vs_question_stack"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Hvilket spørsmål skal den andre egentlig svare på?.",
+        "thread_ids": [
+          "single_question_vs_question_stack"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hvilket spørsmål skal den andre egentlig svare på?.",
+        "thread_ids": [
+          "single_question_vs_question_stack"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Når høres «hvorfor?» ut som en anklage?.",
+        "thread_ids": [
+          "inquiry_vs_defensive_why",
+          "single_question_vs_question_stack"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Når høres «hvorfor?» ut som en anklage?.",
+        "thread_ids": [
+          "inquiry_vs_defensive_why"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Når høres «hvorfor?» ut som en anklage?.",
+        "thread_ids": [
+          "inquiry_vs_defensive_why"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Når høres «hvorfor?» ut som en anklage?.",
+        "thread_ids": [
+          "inquiry_vs_defensive_why"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Hva hvis spørsmålet bygger på noe som ikke stemmer?.",
+        "thread_ids": [
+          "question_premise_vs_hidden_assumption",
+          "inquiry_vs_defensive_why"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Hva hvis spørsmålet bygger på noe som ikke stemmer?.",
+        "thread_ids": [
+          "question_premise_vs_hidden_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Hva hvis spørsmålet bygger på noe som ikke stemmer?.",
+        "thread_ids": [
+          "question_premise_vs_hidden_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Hva hvis spørsmålet bygger på noe som ikke stemmer?.",
+        "thread_ids": [
+          "question_premise_vs_hidden_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Hva prøver du egentlig å finne ut?.",
+        "thread_ids": [
+          "surface_question_vs_underlying_inquiry",
+          "question_premise_vs_hidden_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Hva prøver du egentlig å finne ut?.",
+        "thread_ids": [
+          "surface_question_vs_underlying_inquiry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Hva prøver du egentlig å finne ut?.",
+        "thread_ids": [
+          "surface_question_vs_underlying_inquiry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Hva prøver du egentlig å finne ut?.",
+        "thread_ids": [
+          "surface_question_vs_underlying_inquiry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Er spørsmålet ditt legitimt selv om den andre ikke vil svare?.",
+        "thread_ids": [
+          "inquiry_vs_privacy_entitlement",
+          "surface_question_vs_underlying_inquiry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Er spørsmålet ditt legitimt selv om den andre ikke vil svare?.",
+        "thread_ids": [
+          "inquiry_vs_privacy_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Er spørsmålet ditt legitimt selv om den andre ikke vil svare?.",
+        "thread_ids": [
+          "inquiry_vs_privacy_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Er spørsmålet ditt legitimt selv om den andre ikke vil svare?.",
+        "thread_ids": [
+          "inquiry_vs_privacy_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Forventer du faktisk et svar?.",
+        "thread_ids": [
+          "genuine_question_vs_rhetorical_question",
+          "inquiry_vs_privacy_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Forventer du faktisk et svar?.",
+        "thread_ids": [
+          "genuine_question_vs_rhetorical_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Forventer du faktisk et svar?.",
+        "thread_ids": [
+          "genuine_question_vs_rhetorical_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Forventer du faktisk et svar?.",
+        "thread_ids": [
+          "genuine_question_vs_rhetorical_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Følger du svaret — eller din egen plan?.",
+        "thread_ids": [
+          "responsive_followup_vs_scripted_sequence",
+          "genuine_question_vs_rhetorical_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Følger du svaret — eller din egen plan?.",
+        "thread_ids": [
+          "responsive_followup_vs_scripted_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Følger du svaret — eller din egen plan?.",
+        "thread_ids": [
+          "responsive_followup_vs_scripted_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Følger du svaret — eller din egen plan?.",
+        "thread_ids": [
+          "responsive_followup_vs_scripted_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Tør du spørre når svaret virker åpenbart for alle andre?.",
+        "thread_ids": [
+          "honest_question_vs_status_mask",
+          "responsive_followup_vs_scripted_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Tør du spørre når svaret virker åpenbart for alle andre?.",
+        "thread_ids": [
+          "honest_question_vs_status_mask"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Tør du spørre når svaret virker åpenbart for alle andre?.",
+        "thread_ids": [
+          "honest_question_vs_status_mask"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Tør du spørre når svaret virker åpenbart for alle andre?.",
+        "thread_ids": [
+          "honest_question_vs_status_mask"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Hva om svaralternativene dine er for smale?.",
+        "thread_ids": [
+          "forced_choice_vs_open_category",
+          "honest_question_vs_status_mask"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Hva om svaralternativene dine er for smale?.",
+        "thread_ids": [
+          "forced_choice_vs_open_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Hva om svaralternativene dine er for smale?.",
+        "thread_ids": [
+          "forced_choice_vs_open_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Hva om svaralternativene dine er for smale?.",
+        "thread_ids": [
+          "forced_choice_vs_open_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Hvor lenge tåler du at et spørsmål står ubesvart?.",
+        "thread_ids": [
+          "question_silence_vs_rescue",
+          "forced_choice_vs_open_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Hvor lenge tåler du at et spørsmål står ubesvart?.",
+        "thread_ids": [
+          "question_silence_vs_rescue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Hvor lenge tåler du at et spørsmål står ubesvart?.",
+        "thread_ids": [
+          "question_silence_vs_rescue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Hvor lenge tåler du at et spørsmål står ubesvart?.",
+        "thread_ids": [
+          "question_silence_vs_rescue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Kan et godt spørsmål gjenbrukes uten konteksten det kom fra?.",
+        "thread_ids": [
+          "question_reuse_vs_context_leakage",
+          "question_silence_vs_rescue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Kan et godt spørsmål gjenbrukes uten konteksten det kom fra?.",
+        "thread_ids": [
+          "question_reuse_vs_context_leakage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Kan et godt spørsmål gjenbrukes uten konteksten det kom fra?.",
+        "thread_ids": [
+          "question_reuse_vs_context_leakage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Kan et godt spørsmål gjenbrukes uten konteksten det kom fra?.",
+        "thread_ids": [
+          "question_reuse_vs_context_leakage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Når styrer spørsmålet valget mer enn du innrømmer?.",
+        "thread_ids": [
+          "questioning_vs_indirect_advice",
+          "question_reuse_vs_context_leakage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Når styrer spørsmålet valget mer enn du innrømmer?.",
+        "thread_ids": [
+          "questioning_vs_indirect_advice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Når styrer spørsmålet valget mer enn du innrømmer?.",
+        "thread_ids": [
+          "questioning_vs_indirect_advice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Når styrer spørsmålet valget mer enn du innrømmer?.",
+        "thread_ids": [
+          "questioning_vs_indirect_advice",
+          "inquiry_practice_vs_formal_interview_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: God spørrepraksis er ikke automatisk intervju-, terapi- eller undersøkelsesmyndighet.",
+        "thread_ids": [
+          "inquiry_practice_vs_formal_interview_authority",
+          "questioning_vs_indirect_advice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: God spørrepraksis er ikke automatisk intervju-, terapi- eller undersøkelsesmyndighet.",
+        "thread_ids": [
+          "inquiry_practice_vs_formal_interview_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: God spørrepraksis er ikke automatisk intervju-, terapi- eller undersøkelsesmyndighet.",
+        "thread_ids": [
+          "inquiry_practice_vs_formal_interview_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: God spørrepraksis er ikke automatisk intervju-, terapi- eller undersøkelsesmyndighet.",
+        "thread_ids": [
+          "inquiry_practice_vs_formal_interview_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "open_question_vs_leading_question",
+      "relationship": "åpne spørsmål mot ledende formuleringer som allerede peker mot ønsket svar",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "single_question_vs_question_stack",
+      "relationship": "ett tydelig spørsmål mot flere spørsmål pakket inn i én formulering",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "inquiry_vs_defensive_why",
+      "relationship": "utforskende begrunnelsesspørsmål mot hvorfor-spørsmål som oppleves som forsvarskrav",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "question_premise_vs_hidden_assumption",
+      "relationship": "eksplisitt premisskontroll mot skjulte forutsetninger i selve spørsmålet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "surface_question_vs_underlying_inquiry",
+      "relationship": "overflatespørsmål mot det egentlige kunnskapsbehovet bak",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "inquiry_vs_privacy_entitlement",
+      "relationship": "nysgjerrighet mot forestillingen om at et spørsmål gir rett til personlig svar",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "genuine_question_vs_rhetorical_question",
+      "relationship": "reell åpenhet for svar mot retoriske spørsmål som kamuflerte påstander",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "responsive_followup_vs_scripted_sequence",
+      "relationship": "oppfølging som formes av svaret mot ferdig spørsmålsmanus",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "honest_question_vs_status_mask",
+      "relationship": "ærlige grunnspørsmål mot statuspress om å skjule uvitenhet",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "forced_choice_vs_open_category",
+      "relationship": "åpne kategorier mot falskt snevre svaralternativer",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "question_silence_vs_rescue",
+      "relationship": "å tåle ubesvart stillhet mot rask omformulering som tar spørsmålet tilbake",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "question_reuse_vs_context_leakage",
+      "relationship": "gjenbruk av problemstilling mot lekkasje av privat kontekst",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "questioning_vs_indirect_advice",
+      "relationship": "spørsmål som utforskning mot spørsmål som skjult råd og styring",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "inquiry_practice_vs_formal_interview_authority",
+      "relationship": "filosofisk spørrepraksis mot terapi, journalistikk, forskning, etterforskning og profesjonell intervjumyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "apenhet_rytme_og_hvorfor",
+      "description": "Åpen spørsmålsform, ett spørsmål av gangen og situert begrunnelse reduserer skjult press.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar"
+      ]
+    },
+    {
+      "id": "premiss_dybde_og_privacy",
+      "description": "Premisser, underliggende behov og privatliv blir tydelige før spørsmålet drives videre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar"
+      ]
+    },
+    {
+      "id": "retorikk_oppfolging_og_status",
+      "description": "Retoriske spørsmål, oppfølging og statuspress skilles fra reell inquiry.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status"
+      ]
+    },
+    {
+      "id": "kategori_stillhet_og_kontekst",
+      "description": "Svaralternativer, stillhet og privat kontekst behandles som deler av spørsmålets ansvar.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre"
+      ]
+    },
+    {
+      "id": "rad_og_intervjugrense",
+      "description": "Spørsmål brukes ikke som skjult råd eller som erstatning for profesjonell intervjumyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad",
+        "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "apenhet_moter_sporsmalsstabel",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "hvorfor_moter_premiss",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "dybde_moter_privacy",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    },
+    {
+      "id": "retorikk_moter_status",
+      "setup_ref": "7/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "status"
+      ]
+    },
+    {
+      "id": "kategori_moter_kontekst",
+      "setup_ref": "10/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "indirekte_rad_moter_mandat",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_inneholdt_svaret",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#tre_sporsmal_i_en_setning",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#hvorfor_som_ble_forsvar",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#premisset_som_snek_seg_inn",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_bak_sporsmalet",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#nysgjerrigheten_som_krevde_privatsvar",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#det_retorske_sporsmalet",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#oppfolgingen_som_endret_tema",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_viste_status",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#svaret_som_ikke_passet_kategorien",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#stillheten_etter_sporsmalet",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_tatt_med_videre",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporsmalet_som_ble_rad",
+      "data/Civication/narratives/leisure/filosofi_sporrer.json#sporrer_ikke_intervjuer_eller_terapeut"
+    ]
+  }
+}
