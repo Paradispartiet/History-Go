@@ -46,3 +46,25 @@ test('strongest mode wins for mixed changes', () => {
   ]);
   assert.equal(plan.mode, 'full-matrix');
 });
+
+test('checklist prose is owned by lightweight V3 governance, not heavy workflows', () => {
+  const dataChecks = fs.readFileSync('.github/workflows/data-checks.yml', 'utf8');
+  const visual = fs.readFileSync('.github/workflows/place-rounds-governance.yml', 'utf8');
+  const v3 = fs.readFileSync('.github/workflows/place-production-v3.yml', 'utf8');
+  assert.equal(dataChecks.includes("- 'docs/PLACE_PRODUCTION_CHECKLIST.md'"), false);
+  assert.equal(visual.includes('- "docs/PLACE_PRODUCTION_CHECKLIST.md"'), false);
+  assert.equal(v3.includes("- 'docs/PLACE_PRODUCTION_CHECKLIST.md'"), true);
+});
+
+test('V2 registry is the only active full-matrix routing owner', () => {
+  assert.equal(registry.governanceOnlyPaths.includes('docs/PLACE_PRODUCTION_CHECKLIST.md'), true);
+  assert.equal(registry.fullMatrixPaths.includes('docs/PLACE_PRODUCTION_CHECKLIST.md'), false);
+  const v3Workflow = fs.readFileSync('.github/workflows/place-production-v3.yml', 'utf8');
+  for (const required of [
+    '.github/ci/place-production-routing-v2.json',
+    'scripts/place-production-routing-v2-lib.mjs',
+    'scripts/place-production-routing-v2.mjs',
+  ]) {
+    assert.equal(v3Workflow.includes(required), true, `missing V3 workflow trigger: ${required}`);
+  }
+});
