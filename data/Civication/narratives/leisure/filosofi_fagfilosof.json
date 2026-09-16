@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_fagfilosof",
+  "type": "leisure",
+  "title": "Fagfilosof — faglig praksis og teksttolkning uten akademisk stillingsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan utvikle en sterk employment-independent fagidentitet gjennom primærtekster, begrepshistorie, argumentrekonstruksjon, kildearbeid og faglig uenighet uten at praksisen automatisk blir grad, forskerstilling, foreleserrolle, professortittel eller institusjonelt mandat.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:fagfilosof"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "primaerteksten_som_ikke_var_sitatbanken",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lesepartneren",
+      "subject": "Hva argumenterer teksten faktisk for?",
+      "situation": [
+        "Du kjenner flere berømte sitater fra verket.",
+        "Når du leser avsnittene rundt dem, viser argumentets struktur seg å være mindre slagordvennlig.",
+        "Faglig lesning krever at utsagn forstås i argumentet de faktisk inngår i."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rekonstruer hovedpåstanden, premissene og avgrensningene fra teksten før du bruker sitatet som belegg.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk det kjente sitatet som oppsummering; formuleringen er jo forfatterens egen.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "quotation_vs_argument_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oversettelsen_som_valgte_begrepet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tekstvennen",
+      "subject": "Det norske ordet ser entydig ut — originalen gjør ikke det",
+      "situation": [
+        "Et sentralt begrep kommer til deg gjennom en oversettelse.",
+        "Originalordet har flere nyanser og en faglig oversettelsestradisjon.",
+        "Oversettelse kan være nødvendig og presis uten å være nøytral."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk originalbegrepet eller flere etablerte oversettelser og noter hvor tolkningen faktisk ligger.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til én autorisert oversettelse; språklig konsistens er viktigere enn alternative nyanser.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "translation_vs_concept_choice"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "begrepet_som_skiftet_mening",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "Samme ord, annen tid",
+      "situation": [
+        "Et begrep brukes både i en eldre tekst og i dagens debatt.",
+        "Ordformen er lik, men den historiske bruken ligger i et annet institusjonelt og intellektuelt landskap.",
+        "Begrepshistorie krever mer enn å finne samme ord i to perioder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva begrepet gjør i hver kontekst før du sammenligner betydningene.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk dagens definisjon som felles målestokk så sammenligningen blir ryddig.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "concept_history_vs_presentism"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "argumentet_som_fikk_den_svakeste_versjonen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Seminarvennen",
+      "subject": "Det er lett å vinne mot denne versjonen",
+      "situation": [
+        "Du finner en rask innvending mot et argument du er uenig i.",
+        "En sterkere tolkning av samme tekst tåler innvendingen bedre.",
+        "Faglig kritikk blir mer informativ når den retter seg mot den beste rimelige rekonstruksjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler den sterkeste tekstnære versjonen du kan forsvare før du tester innvendingen.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den enkleste ordlyden; det er forfatterens ansvar å unngå svak formulering.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "strong_reconstruction_vs_easy_target"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fotnoten_som_ble_autoritet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Alle viser til den samme referansen",
+      "situation": [
+        "Flere nyere tekster viser til én eldre sekundærkilde.",
+        "Påstanden virker derfor bredt etablert.",
+        "En lang sitatkjede kan i praksis føre tilbake til ett enkelt tolkningsvalg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg referansen tilbake til den tidligste kilden du faktisk trenger og se hva den dokumenterer.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Regn påstanden som robust fordi mange publikasjoner gjentar samme referanse.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "citation_chain_vs_independent_support"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanon_som_ble_selve_faget",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "Er pensumkartet det samme som fagfeltet?",
+      "situation": [
+        "En tradisjonell kanon gir et oversiktlig sett av tekster og navn.",
+        "Andre miljøer, språk og problemstillinger er svakere representert.",
+        "En kanon kan være nyttig som orientering uten å være en fullstendig beskrivelse av fagets historie."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk kanonen som ett kart og gjør eksplisitt hvilke tradisjoner og avgrensninger den ikke dekker.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg til standardkanonen; det er nettopp derfor den har blitt stående.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "canon_vs_field_breadth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_tradisjoner_med_ulike_sporsmal",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sammenligningsvennen",
+      "subject": "De svarer ikke nødvendigvis på samme problem",
+      "situation": [
+        "To filosofiske tradisjoner ser ut til å gi motsatte svar.",
+        "Nærmere lesning viser at de organiserer problemet med ulike begreper og formål.",
+        "Sammenligning krever at forskjeller i spørsmål ikke skjules av en felles etikett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign både spørsmål, begreper og svar før du beskriver dem som direkte uenige.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Oversett begge til samme moderne problemstilling så kontrasten blir tydelig.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cross_tradition_comparison_vs_forced_equivalence"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkningen_som_ble_psykologi",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tekstvennen",
+      "subject": "Hva mente forfatteren egentlig innerst inne?",
+      "situation": [
+        "Et vanskelig avsnitt frister fram forklaringer om forfatterens personlighet eller skjulte motiv.",
+        "Teksten gir begrenset grunnlag for slike slutninger.",
+        "Intellektuell kontekst kan være relevant uten at motivspekulasjon blir evidens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tekstlig argument, historisk kontekst og eventuell dokumentert biografi fra spekulasjon om indre motiv.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den mest plausible psykologiske forklaringen for å gjøre teksten forståelig.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "textual_interpretation_vs_motive_speculation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_trengte_definisjoner",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Seminarvennen",
+      "subject": "Dere bruker samme ord forskjellig",
+      "situation": [
+        "En diskusjon blir skarpere uten at partene kommer nærmere hverandre.",
+        "Et sentralt begrep brukes med to ulike avgrensninger.",
+        "Noen faglige konflikter er reelle, andre blir større fordi definisjonene glir."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp og skriv eksplisitt hva hver side mener med nøkkelbegrepet før dere fortsetter argumentet.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett til én side viser hvilken definisjon som fungerer best i praksis.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "terminology_alignment_vs_pseudo_disagreement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sekundaerkilden_som_ble_primaerkilde",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kildevennen",
+      "subject": "Jeg har lest om teksten — ikke teksten",
+      "situation": [
+        "En god innføringsbok forklarer et vanskelig verk klart.",
+        "Etter hvert begynner du å sitere innføringsbokens tolkning som om den var verkets egen formulering.",
+        "Sekundærlitteratur kan guide lesning uten å erstatte kildegrensen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom hva originalteksten sier og hva kommentatoren argumenterer for.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den etablerte kommentaren som representant for originalteksten når tolkningen er standard.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "secondary_source_vs_primary_claim"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenighet_med_ekspertkonsensus",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagvennen",
+      "subject": "Kan du avvike fra faglitteraturen?",
+      "situation": [
+        "Din lesning avviker fra en tydelig tolkningskonsensus.",
+        "Det kan bety at du har sett noe oversett, eller at du mangler viktig kontekst.",
+        "Uenighet med faglitteraturen krever mer dokumentasjon, ikke mindre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter avviket som en begrunnet tolkning og vis eksplisitt hvor du mener standardlesningen mister noe.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Stol på egen nærlesning; autoriteter kan ta feil og bør ikke få særbehandling.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "independent_reading_vs_scholarly_consensus"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "formidlingen_som_ble_for_ren",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formidlingsvennen",
+      "subject": "Kan vi si det enklere uten å gjøre det feil?",
+      "situation": [
+        "Du skal forklare en kompleks posisjon til folk uten forkunnskaper.",
+        "En kort versjon blir mye lettere å forstå, men kutter et viktig forbehold.",
+        "God formidling forenkler struktur uten å late som uenighet og usikkerhet ikke finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold hovedlinjen enkel, men marker hvilket forbehold som er nødvendig for at påstanden fortsatt er korrekt.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Ta bort forbeholdet i første omgang; detaljene kan komme hvis noen spør.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "public_clarity_vs_scholarly_qualification"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feltidentiteten_som_ble_tittel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagvennen",
+      "subject": "Du arbeider faglig med filosofi — hvilken tittel gir det?",
+      "situation": [
+        "Du har lest systematisk, deltatt i seminarer og utviklet et spesialisert faglig språk over tid.",
+        "Andre begynner å omtale deg med formelle akademiske titler du ikke nødvendigvis har.",
+        "En sterk fagidentitet kan være reell uten grad, stilling eller institusjonell tilknytning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv praksisen og kompetansen presist og bruk bare formelle titler du faktisk har grunnlag for.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter den brede tittelen; den beskriver nivået på arbeidet ditt selv om ansettelsen mangler.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "field_identity_vs_formal_title"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fagfilosof_ikke_formell_filosofstilling",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Faglig identitet er ikke automatisk en akademisk rolle",
+      "situation": [
+        "Du har bygget betydelig kunnskap om primærtekster, tradisjoner, argumentrekonstruksjon og faglitteratur.",
+        "Andre begynner å behandle deg som om du har forsker-, foreleser-, professor- eller institusjonsmandat.",
+        "Fagfilosof som life position er employment-independent og gir ikke automatisk grad, ansettelse, forskningsansvar, undervisningsmyndighet eller institusjonell talerett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stå for den faglige praksisen du faktisk kan dokumentere, men la grader, stillinger og formelle mandat følge sine egne kvalifikasjons- og ansettelsesløp.",
+          "effect": 1,
+          "tags": [
+            "philosophical_field_practice",
+            "source_discipline",
+            "role_clarity"
+          ],
+          "feedback": "Du holder tekst, tolkning, kildegrunnlag og formell akademisk rolle tydelig adskilt."
+        },
+        {
+          "id": "B",
+          "label": "Ta den akademiske rollen i praksis fordi kompetansen din allerede dekker det meste av innholdet.",
+          "effect": -1,
+          "tags": [
+            "interpretive_shortcut",
+            "status_overclaim",
+            "source_blur"
+          ],
+          "feedback": "Du lar en ryddig fortelling, etablert status eller egen faglig trygghet erstatte kildegrense og rollepresisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "field_practice_vs_academic_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
