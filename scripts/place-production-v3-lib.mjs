@@ -7,6 +7,11 @@ export const DECISION_STATUSES = new Set(['PASS', 'BEGRUNNET_NA', 'BLOCKED']);
 export const PRODUCTION_PROFILES = new Set(['major', 'standard', 'focused', 'micro']);
 export const PROFILE_STATUSES = new Set(['confirmed', 'provisional']);
 export const MANUAL_REVIEW_STATUSES = new Set(['PENDING', 'PASS']);
+export const V3_BUILD_STEPS = [
+  ['npm', ['run', 'places:index:build']],
+  ['npm', ['run', 'place-open:build']],
+  ['node', ['scripts/build-place-production-v3-projections.mjs']],
+];
 
 const REQUIRED_KEYS = [
   'schema',
