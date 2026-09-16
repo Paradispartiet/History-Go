@@ -133,6 +133,7 @@ export function buildOverlays(canon, contract) {
 }
 
 export function buildDomainPackages(overlays, production, evidenceGate = null) {
+  const runtimeReleased = evidenceGate?.runtime_release_gate_open === true;
   const materializedByDomain = new Map((production?.materialized ?? []).map((row) => [row.domain_id, row]));
   return overlays.map((overlay) => {
     const owner = materializedByDomain.get(overlay.domain_id);
@@ -152,12 +153,14 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
       id: `advanced-theory-${overlay.domain_id}`,
       title: `Avansert teori — ${overlay.domain_id.replaceAll('_', ' ')}`,
       maintenanceOverlay: true,
-      runtimeReady: false,
+      runtimeReady: runtimeReleased,
       sections: overlay.works.map((work) => ({
         id: work.id,
         title: `${work.author}: ${work.title}`,
         method_ids: [],
-        boundary: 'Teorien er materialisert for læring og analyse, men runtime-claimet forblir sperret til fulltekstverifisering er dokumentert.',
+        boundary: runtimeReleased
+          ? 'Teorien er materialisert for læring og analyse, og runtime-claimet er frigitt etter dokumentert 60/60 fulltekstverifisering.'
+          : 'Teorien er materialisert for læring og analyse, men runtime-claimet forblir sperret til fulltekstverifisering er dokumentert.',
         paragraphs: work.theory_units.map((unit) => `${unit.name} behandles her som en analyseenhet fra ${work.author}, ${work.title}. ${unit.summary} Analyseinngang: ${unit.analytic_question} Avgrensning: ${unit.misuse_guardrail}`),
         paragraphClaimIds: work.theory_units.map((unit) => [claimId(unit.id)]),
       })),
@@ -169,7 +172,7 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
       first_published: work.first_published,
       url: work.source_url,
       type: work.source_type,
-      retrieval_status: 'canonical_source_registered_fulltext_verification_pending',
+      retrieval_status: runtimeReleased ? 'canonical_source_fulltext_verified' : 'canonical_source_registered_fulltext_verification_pending',
     }));
     const claims = {
       schema: 'history_go_fagverk_claims_v1',
@@ -177,7 +180,7 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
       subject_id: overlay.subject_id,
       canonical_subcategory_id: overlay.canonical_subcategory_id,
       chapter_id: target.chapter_id,
-      status: 'fulltext_verification_pending',
+      status: runtimeReleased ? 'runtime_released' : 'fulltext_verification_pending',
       sources,
       claims: overlay.works.flatMap((work) => work.theory_units.map((unit) => {
         const evidence = evidenceGate?.rowsByUnitKey.get(evidenceKey(work.id, unit.id)) ?? null;
@@ -186,8 +189,8 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
           id: claimId(unit.id),
           claim: `${unit.name}: ${unit.summary}`,
           source_ids: [work.id],
-          classification: 'canonical_theory_summary_pending_fulltext_verification',
-          status: 'planned_requires_fulltext_verification',
+          classification: runtimeReleased ? 'canonical_theory_summary_fulltext_verified' : 'canonical_theory_summary_pending_fulltext_verification',
+          status: runtimeReleased ? 'verified_runtime_released' : 'planned_requires_fulltext_verification',
           source_evidence: evidence ? {
             verification_status: evidence.verification_status,
             locator: evidence.locator,
@@ -203,7 +206,7 @@ export function buildDomainPackages(overlays, production, evidenceGate = null) {
       subject_id: overlay.subject_id,
       canonical_subcategory_id: overlay.canonical_subcategory_id,
       chapter_id: target.chapter_id,
-      status: 'claim_verification_pending',
+      status: runtimeReleased ? 'runtime_ready' : 'claim_verification_pending',
       questions: overlay.works.flatMap((work) => work.theory_units.map((unit) => ({
         id: questionId(unit.id),
         type: 'multiple_choice',
@@ -243,6 +246,7 @@ export function materialize() {
   const evidence = read(P.evidence);
   const production = read(P.production);
   const evidenceGate = evaluateSourceEvidence(canon, evidence);
+  const runtimeReleased = evidenceGate.runtime_release_gate_open;
   const overlays = buildOverlays(canon, contract);
   const packages = buildDomainPackages(overlays, production, evidenceGate);
   const packageByDomain = new Map(packages.map((pkg) => [pkg.domain_id, pkg]));
@@ -255,14 +259,14 @@ export function materialize() {
     throw new Error(`Advanced theory count mismatch: ${workCount} works / ${theoryCount} theory units`);
   }
   if (paragraphCount !== theoryCount || claimCount !== theoryCount || assessmentCount !== theoryCount) {
-    throw new Error(`Advanced theory phase 3 trace mismatch: ${paragraphCount} paragraphs / ${claimCount} claims / ${assessmentCount} assessments`);
+    throw new Error(`Advanced theory phase 4 trace mismatch: ${paragraphCount} paragraphs / ${claimCount} claims / ${assessmentCount} assessments`);
   }
 
   for (const overlay of overlays) {
     const pkg = packageByDomain.get(overlay.domain_id);
     const materializedOverlay = {
       ...overlay,
-      status: 'advanced_theory_phase3_materialized_runtime_pending',
+      status: runtimeReleased ? 'advanced_theory_phase4_runtime_released' : 'advanced_theory_phase3_materialized_runtime_pending',
       target: pkg.target,
       moduleFile: pkg.paths.module,
       claimsFile: pkg.paths.claims,
@@ -278,13 +282,13 @@ export function materialize() {
   const allQuestions = packages.flatMap((pkg) => pkg.assessment.questions);
   const report = {
     schema: 'history_go_sosiologi_antropologi_advanced_theory_fulltext_refresh_audit_v1',
-    version: '1.1.0',
-    updated_at: '2026-09-15',
-    status: 'pass_phase3_runtime_pending',
+    version: '1.2.0',
+    updated_at: '2026-09-16',
+    status: runtimeReleased ? 'pass_phase4_runtime_released' : 'pass_phase3_runtime_pending',
     subject_id: contract.subject_id,
     canonical_subcategory_id: contract.canonical_subcategory_id,
-    runtime_ready: false,
-    next_gate: evidenceGate.runtime_release_gate_open ? 'phase4_runtime_release' : 'fulltext_source_verification_and_phase4_runtime_release',
+    runtime_ready: runtimeReleased,
+    next_gate: runtimeReleased ? null : 'fulltext_source_verification_and_phase4_runtime_release',
     source_evidence: {
       file: P.evidence,
       status: evidence.status,
@@ -312,22 +316,24 @@ export function materialize() {
       every_work_has_traceable_source: overlays.every((overlay) => overlay.works.every((work) => typeof work.source_url === 'string' && work.source_url.startsWith('https://'))),
       every_theory_has_explanation_question_and_guardrail: overlays.every((overlay) => overlay.works.every((work) => work.theory_units.every((unit) => unit.summary && unit.analytic_question && unit.misuse_guardrail))),
       every_primary_domain_has_materialized_owner: packages.every((pkg) => typeof pkg.target.chapter === 'string' && pkg.target.chapter.endsWith('.json')),
-      phase3_paragraph_claim_trace_complete: paragraphCount === theoryCount && claimCount === theoryCount && uniq(allClaims.map((claim) => claim.id)),
-      phase3_assessment_trace_complete: assessmentCount === theoryCount && allQuestions.every((question) => allClaims.some((claim) => claim.id === question.claim_id)),
+      phase4_paragraph_claim_trace_complete: paragraphCount === theoryCount && claimCount === theoryCount && uniq(allClaims.map((claim) => claim.id)),
+      phase4_assessment_trace_complete: assessmentCount === theoryCount && allQuestions.every((question) => allClaims.some((claim) => claim.id === question.claim_id)),
       source_evidence_census_complete: evidenceGate.counts.mapping_supported === theoryCount,
       source_evidence_claim_trace_complete: allClaims.every((claim) => claim.source_evidence?.locator && claim.source_evidence?.evidence_url?.startsWith('https://')),
-      runtime_release_gate_respects_60_of_60: evidenceGate.runtime_release_gate_open
+      runtime_release_gate_respects_60_of_60: runtimeReleased
         ? evidenceGate.counts.fulltext_verified === theoryCount && evidenceGate.counts.runtime_releasable === theoryCount
         : evidenceGate.counts.fulltext_verified < theoryCount && evidenceGate.counts.runtime_releasable === 0,
-      runtime_claims_remain_pending: allClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'),
+      runtime_claim_status_matches_release_gate: runtimeReleased
+        ? allClaims.every((claim) => claim.status === 'verified_runtime_released')
+        : allClaims.every((claim) => claim.status === 'planned_requires_fulltext_verification'),
     },
   };
-  if (overlays.length !== 7 || !Object.values(report.gates).every(Boolean)) throw new Error('Advanced theory phase 3 audit failed');
+  if (overlays.length !== 7 || !Object.values(report.gates).every(Boolean)) throw new Error('Advanced theory phase 4 audit failed');
   write(P.report, report);
   return report;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const report = materialize();
-  console.log(`Advanced theory phase 3: ${report.counts.domains} domains, ${report.counts.works} works, ${report.counts.theory_units} theory units, fulltext=${report.counts.fulltext_verified_units}/${report.counts.theory_units}, runtime=${report.runtime_ready}.`);
+  console.log(`Advanced theory phase 4: ${report.counts.domains} domains, ${report.counts.works} works, ${report.counts.theory_units} theory units, fulltext=${report.counts.fulltext_verified_units}/${report.counts.theory_units}, runtime=${report.runtime_ready}.`);
 }
