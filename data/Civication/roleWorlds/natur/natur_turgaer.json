@@ -1,0 +1,1143 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_turgaer",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "turgaer",
+    "label": "Turgåer"
+  },
+  "title": "Turgåer — ferdsel, fellesskap og situasjonsblikk",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke naturen som fri og meningsfull hverdagsarena uten at distansetall, utstyr, fart, sosiale mål eller ønsket om å fullføre gjør situerte forhold usynlige eller fritidserfaring til profesjonell myndighet",
+    "description": "Turgåer-verdenen undersøker ruteplanlegging, værendring, gruppetempo, utstyr og status, stislitasje, turmåling, lokale ild- og ferdselsrammer, fellesrom, stedstilhørighet, press om å fullføre, digitale ruter, tidsmarginer, fotopress og grensen mot profesjonell turkompetanse. Turgåer er en hobby_identity og selvvalgt friluftspraksis. Rollen gir ingen automatisk myndighet som profesjonell guide, redningspersonell, naturforvalter eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "care_vs_efficiency",
+    "body_discipline",
+    "consumption",
+    "status_anxiety",
+    "shame_reputation",
+    "public_attention",
+    "social_mask"
+  ],
+  "social_environments": [
+    "nærskog, mark og turveier der distanse, underlag, vær og dagslys gjør samme rute forskjellig fra dag til dag",
+    "turfølger der tempo, pauser og beslutningen om å snu fordeler sosial makt i gruppen",
+    "turapper og treningsflater der fart, høydemeter og segmenter kan bli både informasjon og rangering",
+    "rasteplasser og sårbare stipartier der komfort møter regler, erosjon og naturhensyn",
+    "populære utsiktspunkt og delte naturrom der tilhørighet, hunder, foto og andre brukere må få plass samtidig",
+    "private veier og lokale grenser der digitale spor ikke alltid beskriver faktisk adgang eller bruk"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "turvenn",
+      "social_function": "deler turer og gjør tempo, mål, lojalitet og beslutningen om å snu sosialt synlig",
+      "class_position": "likestilt fritidsutøver uten formell myndighet",
+      "status": "høy relasjonell betydning i planlegging og gjennomføring",
+      "power_over_player": "kan øke tempo, prestasjonspress eller tryggheten ved å gjøre vurderinger sammen",
+      "wants": "gode turer, delte mål og følelsen av framdrift",
+      "conceals": "at ønsket om å fullføre noen ganger påvirker vurderingen av forholdene",
+      "speech_style": "praktisk, oppmuntrende og opptatt av rute og tid",
+      "teaches_player": "at fellesskap både kan beskytte og presse"
+    },
+    {
+      "id": "erfaren_turgaer",
+      "social_function": "representerer uformell turkompetanse som kan åpne læring eller bli gatekeeping",
+      "class_position": "erfaren amatør uten automatisk profesjonelt mandat",
+      "status": "høy uformell autoritet i turmiljøet",
+      "power_over_player": "kan definere hva som anses lett, nødvendig utstyr og riktig turkultur",
+      "wants": "gode vurderinger og folk som tar forholdene på alvor",
+      "conceals": "at egen erfaring kan gjøre terskelen for nybegynnere usynlig",
+      "speech_style": "kortfattet, erfaringsbasert og full av rute- og værreferanser",
+      "teaches_player": "at erfaring bør oversettes til begrunnelse, ikke rang"
+    },
+    {
+      "id": "ny_turgaer",
+      "social_function": "gjør terskler, tempo, utstyr og språk synlige fra perspektivet til en som fortsatt lærer",
+      "class_position": "ny deltaker med lav uformell status og ingen myndighet",
+      "status": "avhengig av om turfølget tåler spørsmål og lavere tempo",
+      "power_over_player": "kan speile om spillerens erfaring brukes inkluderende eller som målestokk",
+      "wants": "å være med uten å måtte kjøpe identitet eller skjule usikkerhet",
+      "conceals": "at spørsmål ofte holdes tilbake når alle andre virker sikre",
+      "speech_style": "spørrende, konkret og forsiktig med å stoppe gruppen",
+      "teaches_player": "at en inkluderende tur krever mer enn en åpen invitasjon"
+    },
+    {
+      "id": "grunneier_eller_lokalbruker",
+      "social_function": "gjør adgang, drift og lokal bruk av stier og veier konkret",
+      "class_position": "lokal rettighetshaver eller bruker med situert kunnskap om området",
+      "status": "formell eller praktisk lokal posisjon rundt konkrete adgangsspørsmål",
+      "power_over_player": "kan avklare at kartspor, snarveier eller vaner ikke samsvarer med faktisk bruk eller adgang",
+      "wants": "respekt for drift, grenser og sameksistens mellom ulike brukere",
+      "conceals": "at lokale normer ikke alltid er synlige for besøkende",
+      "speech_style": "stedsorientert, direkte og praktisk",
+      "teaches_player": "at et digitalt spor aldri alene etablerer rett til ferdsel"
+    },
+    {
+      "id": "naturforvaltningskontakt",
+      "social_function": "representerer situert kunnskap om sårbar natur, ferdselsregler og belastning",
+      "class_position": "fagperson eller offentlig kontakt med relevant mandat innen eget ansvarsområde",
+      "status": "høy formell autoritet når lokale naturhensyn og regler skal avklares",
+      "power_over_player": "kan forklare hvorfor en praksis, trasé eller sesong krever andre hensyn enn vanlig",
+      "wants": "robust ferdsel, minst mulig unødig skade og tydelig regelgrunnlag",
+      "conceals": "at forvaltning også må balansere flere legitime brukerinteresser",
+      "speech_style": "presis, regelbevisst og stedsorientert",
+      "teaches_player": "at turerfaring ikke erstatter naturforvaltningsmyndighet"
+    },
+    {
+      "id": "guide_eller_redningskontakt",
+      "social_function": "gjør grensen mellom fritidserfaring og profesjonell tur-, rednings- eller sikkerhetsrolle tydelig",
+      "class_position": "fagperson med relevant opplæring eller mandat innen egen rolle",
+      "status": "høy situert autoritet når planlegging eller hendelser går utover vanlig fritidspraksis",
+      "power_over_player": "kan kreve andre marginer, avbryte planer eller korrigere falsk sikkerhet",
+      "wants": "at risiko, kompetanse og ansvar beskrives realistisk",
+      "conceals": "at også profesjonelle må arbeide med usikkerhet og endrede forhold",
+      "speech_style": "rolig, situasjonsorientert og tydelig på rollegrenser",
+      "teaches_player": "at mange turer ikke automatisk gir guide-, rednings- eller forvaltningsfullmakt"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "plan_vs_conditions",
+      "meaning": "om plan og mål forblir fleksible når vær, lys, underlag eller kapasitet endres",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pace_vs_belonging",
+      "meaning": "om gruppens tempo gjør deltakelse reell fremfor bare formelt mulig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "gear_vs_status",
+      "meaning": "om utstyr vurderes etter funksjon fremfor som adgangsbillett til turidentiteten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comfort_vs_impact",
+      "meaning": "om egen komfort balanseres mot erosjon, sårbarhet og lokale rammer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metrics_vs_attention",
+      "meaning": "om tall og deling støtter turen uten å overta oppmerksomhet og dømmekraft",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "familiarity_vs_entitlement",
+      "meaning": "om stedskjennskap skaper ansvar uten å bli sosial enerett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_professional_authority",
+      "meaning": "om omfattende turerfaring holdes tydelig adskilt fra guide-, rednings- og naturforvaltningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Det er bare noen kilometer.",
+        "thread_ids": [
+          "route_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Det er bare noen kilometer.",
+        "thread_ids": [
+          "route_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Det er bare noen kilometer.",
+        "thread_ids": [
+          "route_vs_context",
+          "metrics_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Det er bare noen kilometer.",
+        "thread_ids": [
+          "route_vs_context",
+          "loyalty_vs_turnaround"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Det skulle jo holde seg.",
+        "thread_ids": [
+          "plan_vs_weather"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Det skulle jo holde seg.",
+        "thread_ids": [
+          "plan_vs_weather"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Det skulle jo holde seg.",
+        "thread_ids": [
+          "plan_vs_weather",
+          "habit_vs_local_rules"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Det skulle jo holde seg.",
+        "thread_ids": [
+          "plan_vs_weather",
+          "digital_route_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Vi må jo holde litt fart.",
+        "thread_ids": [
+          "pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Vi må jo holde litt fart.",
+        "thread_ids": [
+          "pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Vi må jo holde litt fart.",
+        "thread_ids": [
+          "pace_vs_belonging",
+          "intent_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Vi må jo holde litt fart.",
+        "thread_ids": [
+          "pace_vs_belonging",
+          "plan_vs_margin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Er den jakka egentlig verdt det?.",
+        "thread_ids": [
+          "gear_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Er den jakka egentlig verdt det?.",
+        "thread_ids": [
+          "gear_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Er den jakka egentlig verdt det?.",
+        "thread_ids": [
+          "gear_vs_status",
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Er den jakka egentlig verdt det?.",
+        "thread_ids": [
+          "gear_vs_status",
+          "visibility_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Her går alle rundt.",
+        "thread_ids": [
+          "comfort_vs_trail_impact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Her går alle rundt.",
+        "thread_ids": [
+          "comfort_vs_trail_impact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Her går alle rundt.",
+        "thread_ids": [
+          "comfort_vs_trail_impact",
+          "loyalty_vs_turnaround"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Her går alle rundt.",
+        "thread_ids": [
+          "comfort_vs_trail_impact",
+          "practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Ny personlig rekord.",
+        "thread_ids": [
+          "metrics_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Ny personlig rekord.",
+        "thread_ids": [
+          "metrics_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Ny personlig rekord.",
+        "thread_ids": [
+          "metrics_vs_experience",
+          "digital_route_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Ny personlig rekord.",
+        "thread_ids": [
+          "metrics_vs_experience",
+          "route_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Det hadde vært perfekt med bål.",
+        "thread_ids": [
+          "habit_vs_local_rules"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Det hadde vært perfekt med bål.",
+        "thread_ids": [
+          "habit_vs_local_rules"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Det hadde vært perfekt med bål.",
+        "thread_ids": [
+          "habit_vs_local_rules",
+          "plan_vs_margin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Det hadde vært perfekt med bål.",
+        "thread_ids": [
+          "habit_vs_local_rules",
+          "plan_vs_weather"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Den er bare vennlig.",
+        "thread_ids": [
+          "intent_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Den er bare vennlig.",
+        "thread_ids": [
+          "intent_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Den er bare vennlig.",
+        "thread_ids": [
+          "intent_vs_shared_space",
+          "visibility_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Den er bare vennlig.",
+        "thread_ids": [
+          "intent_vs_shared_space",
+          "pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Det var bedre før alle kom.",
+        "thread_ids": [
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Det var bedre før alle kom.",
+        "thread_ids": [
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Det var bedre før alle kom.",
+        "thread_ids": [
+          "familiarity_vs_entitlement",
+          "practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Det var bedre før alle kom.",
+        "thread_ids": [
+          "familiarity_vs_entitlement",
+          "gear_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Vi er jo nesten framme.",
+        "thread_ids": [
+          "loyalty_vs_turnaround"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Vi er jo nesten framme.",
+        "thread_ids": [
+          "loyalty_vs_turnaround"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Vi er jo nesten framme.",
+        "thread_ids": [
+          "loyalty_vs_turnaround",
+          "route_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Vi er jo nesten framme.",
+        "thread_ids": [
+          "loyalty_vs_turnaround",
+          "comfort_vs_trail_impact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kartsporet går rett gjennom.",
+        "thread_ids": [
+          "digital_route_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kartsporet går rett gjennom.",
+        "thread_ids": [
+          "digital_route_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Kartsporet går rett gjennom.",
+        "thread_ids": [
+          "digital_route_vs_access",
+          "plan_vs_weather"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kartsporet går rett gjennom.",
+        "thread_ids": [
+          "digital_route_vs_access",
+          "metrics_vs_experience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det ble mørkt fort.",
+        "thread_ids": [
+          "plan_vs_margin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det ble mørkt fort.",
+        "thread_ids": [
+          "plan_vs_margin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det ble mørkt fort.",
+        "thread_ids": [
+          "plan_vs_margin",
+          "pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det ble mørkt fort.",
+        "thread_ids": [
+          "plan_vs_margin",
+          "habit_vs_local_rules"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Bare litt nærmere kanten.",
+        "thread_ids": [
+          "visibility_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Bare litt nærmere kanten.",
+        "thread_ids": [
+          "visibility_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Bare litt nærmere kanten.",
+        "thread_ids": [
+          "visibility_vs_judgment",
+          "gear_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Bare litt nærmere kanten.",
+        "thread_ids": [
+          "visibility_vs_judgment",
+          "intent_vs_shared_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva har alle turene gjort med blikket ditt?.",
+        "thread_ids": [
+          "practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva har alle turene gjort med blikket ditt?.",
+        "thread_ids": [
+          "practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva har alle turene gjort med blikket ditt?.",
+        "thread_ids": [
+          "practice_vs_professional_authority",
+          "comfort_vs_trail_impact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva har alle turene gjort med blikket ditt?.",
+        "thread_ids": [
+          "practice_vs_professional_authority",
+          "familiarity_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "route_vs_context",
+      "relationship": "distanse på kart mot faktisk terreng og forhold",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "plan_vs_weather",
+      "relationship": "plan mot vær og endrede omgivelser",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "pace_vs_belonging",
+      "relationship": "gruppetempo mot reell deltakelse",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "gear_vs_status",
+      "relationship": "utstyrsfunksjon mot forbruksstatus",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "comfort_vs_trail_impact",
+      "relationship": "egen komfort mot samlet stislitasje",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "metrics_vs_experience",
+      "relationship": "måling og rangering mot sted og opplevelse",
+      "beat_refs": [
+        "1/afternoon",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "habit_vs_local_rules",
+      "relationship": "friluftsvane mot situerte regler og forhold",
+      "beat_refs": [
+        "2/afternoon",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "intent_vs_shared_space",
+      "relationship": "egen intensjon mot andres grenser i fellesrom",
+      "beat_refs": [
+        "3/afternoon",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "familiarity_vs_entitlement",
+      "relationship": "stedstilhørighet mot sosial enerett",
+      "beat_refs": [
+        "4/afternoon",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "loyalty_vs_turnaround",
+      "relationship": "gruppelojalitet mot legitim beslutning om å snu",
+      "beat_refs": [
+        "1/evening",
+        "5/afternoon",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "digital_route_vs_access",
+      "relationship": "digitalt spor mot faktisk adgang",
+      "beat_refs": [
+        "2/evening",
+        "6/afternoon",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "plan_vs_margin",
+      "relationship": "opprinnelig plan mot tid, lys og margin",
+      "beat_refs": [
+        "3/evening",
+        "7/afternoon",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "visibility_vs_judgment",
+      "relationship": "sosial synlighet mot situert dømmekraft",
+      "beat_refs": [
+        "4/evening",
+        "8/afternoon",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "practice_vs_professional_authority",
+      "relationship": "turerfaring mot guide-, rednings- og forvaltningsmyndighet",
+      "beat_refs": [
+        "5/evening",
+        "9/afternoon",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "planen_blir_mer_fleksibel",
+      "description": "Spilleren vurderer rute, vær, lys og kapasitet som bevegelige forhold fremfor hindringer for et fast mål.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet",
+        "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg",
+        "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig"
+      ]
+    },
+    {
+      "id": "turen_blir_mer_felles",
+      "description": "Tempo og beslutninger om å snu blir tydeligere gruppevalg, ikke skjulte krav fra de raskeste eller mest målrettede.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget",
+        "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu"
+      ]
+    },
+    {
+      "id": "statusen_mister_litt_terreng",
+      "description": "Utstyr, app-tall og spektakulære bilder får mindre makt over hva som teller som en god tur.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet",
+        "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles",
+        "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til"
+      ]
+    },
+    {
+      "id": "stedet_blir_mer_situert",
+      "description": "Sti, regler, adgang og andre brukere blir del av turens faktiske betingelser fremfor bakgrunnsstøy.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet",
+        "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra",
+        "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like",
+        "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien"
+      ]
+    },
+    {
+      "id": "rollen_far_en_tydelig_faggrense",
+      "description": "Turerfaring kan være dyp uten å bli guide-, rednings- eller naturforvaltningsfullmakt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv",
+        "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kartplanen_moter_morket",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    },
+    {
+      "id": "vaerplanen_moter_snuvalget",
+      "setup_ref": "2/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "risk",
+        "relationship"
+      ]
+    },
+    {
+      "id": "gruppetempoet_moter_tilhørigheten",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "utstyrsstatus_moter_maletallene",
+      "setup_ref": "4/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "status",
+        "attention"
+      ]
+    },
+    {
+      "id": "stislitasjen_moter_lokale_rammesett",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "ecology",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "digitalruten_moter_rollegrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "access",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_turgaer.json#ruta_som_ser_enklere_ut_pa_kartet",
+      "data/Civication/narratives/leisure/natur_turgaer.json#vaeret_som_flytter_seg",
+      "data/Civication/narratives/leisure/natur_turgaer.json#tempoet_i_turfolget",
+      "data/Civication/narratives/leisure/natur_turgaer.json#utstyret_som_blir_identitet",
+      "data/Civication/narratives/leisure/natur_turgaer.json#snarveien_over_det_blote_partiet",
+      "data/Civication/narratives/leisure/natur_turgaer.json#sporet_som_ma_deles",
+      "data/Civication/narratives/leisure/natur_turgaer.json#bålet_som_passet_sa_bra",
+      "data/Civication/narratives/leisure/natur_turgaer.json#hunden_som_alle_skal_like",
+      "data/Civication/narratives/leisure/natur_turgaer.json#stedet_du_helst_vil_ha_for_deg_selv",
+      "data/Civication/narratives/leisure/natur_turgaer.json#turvennen_som_ikke_vil_snu",
+      "data/Civication/narratives/leisure/natur_turgaer.json#den_private_veien",
+      "data/Civication/narratives/leisure/natur_turgaer.json#morket_som_kom_for_tidlig",
+      "data/Civication/narratives/leisure/natur_turgaer.json#bildet_som_krever_et_skritt_til",
+      "data/Civication/narratives/leisure/natur_turgaer.json#hva_slags_turgaer"
+    ]
+  }
+}
