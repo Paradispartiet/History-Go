@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 70,
-  needs_authored_depth: 89,
+  ready: 71,
+  needs_authored_depth: 88,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 70);
+assert.equal(audit.summary.completed_life_position_role_worlds, 71);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 70);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 70);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 71);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 71);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -581,6 +581,17 @@ assert.equal(pilegrim.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(pilegrim.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_pilegrim.json']);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/pilegrim'));
 
+const trosstedsvandrer = audit.positions.find((row) => row.key === 'religion/trosstedsvandrer');
+assert.ok(trosstedsvandrer);
+assert.equal(trosstedsvandrer.classification, 'ready');
+assert.equal(trosstedsvandrer.role_world_status, 'role_world_complete');
+assert.equal(trosstedsvandrer.role_world_path, 'data/Civication/roleWorlds/religion/religion_trosstedsvandrer.json');
+assert.equal(trosstedsvandrer.priority_score, 405);
+assert.equal(trosstedsvandrer.authored_depth.exact_source_ref_count, 1);
+assert.equal(trosstedsvandrer.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(trosstedsvandrer.evidence.exact_source_refs, ['data/Civication/narratives/leisure/religion_trosstedsvandrer.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'religion/trosstedsvandrer'));
+
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
@@ -592,4 +603,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 70 ready / 89 authored-depth / 40 not-standalone; 70 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 71 ready / 88 authored-depth / 40 not-standalone; 71 complete / no pending-ready');
