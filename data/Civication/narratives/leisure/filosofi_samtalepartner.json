@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_samtalepartner",
+  "type": "leisure",
+  "title": "Samtalepartner — lytting, avklaring og uenighet uten profesjonsmyndighet",
+  "sociological_theme": "Hvordan mennesker kan utvikle en lyttende og avklarende samtalepraksis gjennom spørsmål, turtaking, stillhet, uenighet, nærhet og grenser uten å gjøre dialogpraksis til terapi, mekling, coaching eller profesjonell rådgivningsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:samtalepartner"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "svaret_som_ble_forberedt_for_tidlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lyttevennen",
+      "subject": "Hører du etter — eller venter du bare på tur?",
+      "situation": [
+        "Den andre forklarer noe viktig.",
+        "Du kjenner allerede svaret du vil gi.",
+        "Aktiv lytting krever at du lar utsagnet bli ferdig før du bygger motsvar eller løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vent med svaret, oppsummer først hva du faktisk hørte, og la den andre korrigere deg.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Forbered svaret mens den andre snakker; ellers mister du et godt poeng.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "listening_vs_reply_preparation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkningen_som_ble_tankeavlesning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Avklaringsvennen",
+      "subject": "Vet du hva den andre mener — eller antar du det?",
+      "situation": [
+        "Et utsagn kan tolkes på flere måter.",
+        "Du tror du forstår motivet bak det.",
+        "Samtaler blir fort skjeve når antatte motiver behandles som fakta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva personen mener med utsagnet før du tillegger dem motiv eller hensikt.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Si hvilken tolkning som virker mest sannsynlig; det kan hjelpe samtalen videre.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "clarification_vs_motive_assumption"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_ble_forhor",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Spørsmålsvennen",
+      "subject": "Hvor mange spørsmål tåler en samtale før den blir et avhør?",
+      "situation": [
+        "Du vil forstå mer.",
+        "Du stiller flere presise oppfølgingsspørsmål.",
+        "Spørsmål kan åpne samtalen, men også gjøre den andre til objekt for undersøkelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Veksle mellom spørsmål, egen respons og rom for at den andre kan velge retning.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett med spørsmål så lenge svarene gir mer informasjon.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inquiry_vs_interrogation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tiden_som_ble_taletid",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rytmevennen",
+      "subject": "Hvem har egentlig fått plass i samtalen?",
+      "situation": [
+        "Samtalen er livlig.",
+        "Én person tar mesteparten av taletiden.",
+        "Turtaking handler ikke bare om høflighet, men om hvem som får definere tema og tempo."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi aktivt plass til den som har kommet minst til orde, uten å gjøre dem til pliktinnslag.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "La samtalen flyte naturlig; de som vil si noe kan bryte inn.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "turn_taking_vs_conversational_dominance"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_ble_konkurranse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Uenighetsvennen",
+      "subject": "Prøver dere å forstå forskjellen — eller vinne?",
+      "situation": [
+        "Dere er tydelig uenige.",
+        "Begge har gode grunner for sitt syn.",
+        "Når samtalen blir konkurranse, kan poengseier erstatte reell avklaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn det mest presise punktet dere faktisk er uenige om, og la resten ligge.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Svar på alle svakhetene du ser; ellers blir ditt syn stående svakere.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "disagreement_vs_winning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "folelsen_som_ble_problem_som_ma_loses",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nærhetsvennen",
+      "subject": "Må en vanskelig følelse alltid fikses?",
+      "situation": [
+        "Den andre forteller om noe vondt.",
+        "Du får lyst til å foreslå løsninger.",
+        "Noen ganger er anerkjennelse og tilstedeværelse mer passende enn problemløsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Anerkjenn det som blir sagt og spør om personen ønsker råd, refleksjon eller bare å bli hørt.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Foreslå en konkret løsning; hjelpsomhet bør føre til handling.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "presence_vs_solution_pressure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_som_ble_fylt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lyttevennen",
+      "subject": "Stillhet betyr ikke nødvendigvis at samtalen har stoppet",
+      "situation": [
+        "Det blir stille etter et vanskelig spørsmål.",
+        "Du kjenner behov for å fylle rommet.",
+        "Stillhet kan være refleksjon, usikkerhet eller et ønske om å avslutte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La stillheten stå litt og gi den andre mulighet til å velge om de vil fortsette.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Still et nytt spørsmål med en gang for å unngå at samtalen mister energi.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reflection_silence_vs_filling"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppsummeringen_som_endret_meningen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Avklaringsvennen",
+      "subject": "Gjentar du det som ble sagt — eller skriver du det om?",
+      "situation": [
+        "Du prøver å oppsummere den andres poeng.",
+        "Din versjon blir litt ryddigere og skarpere.",
+        "Parafrasering kan avklare, men også flytte mening uten at noen merker det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter oppsummeringen som et forslag og spør om den faktisk treffer.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den ryddigste formuleringen; det hjelper begge å komme videre.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "paraphrase_vs_reframing"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fortroligheten_som_krevde_gjengjeld",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Hvis én deler noe privat, må den andre gjøre det samme?",
+      "situation": [
+        "En person deler noe sårbart.",
+        "Det skaper nærhet.",
+        "Gjensidighet kan bygge tillit, men blir problematisk hvis fortrolighet skaper press om tilsvarende avsløring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta imot det som deles uten å gjøre egen eller den andres videre selvavsløring til krav.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Del noe tilsvarende privat for å vise at tilliten er gjensidig.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "disclosure_vs_reciprocity_pressure"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_fikk_en_innside",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rytmevennen",
+      "subject": "Når blir en god samtale en liten allianse?",
+      "situation": [
+        "Flere deltar i samtalen.",
+        "To personer finner raskt tonen og bygger videre på hverandre.",
+        "En sterk dyade kan ubevisst gjøre resten til publikum."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Åpne temaet tilbake mot gruppen og inviter andre inn uten å kreve at alle mener noe.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "La de mest engasjerte føre samtalen; kvalitet er viktigere enn jevn deltakelse.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "connection_vs_group_exclusion"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_som_ble_sagt_i_fortrolighet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Kan en god historie gjenfortelles hvis navnene fjernes?",
+      "situation": [
+        "Du har hørt noe personlig i en privat samtale.",
+        "Historien illustrerer et interessant poeng.",
+        "Anonymisering er ikke alltid nok hvis personer eller hendelser fortsatt kan gjenkjennes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om samtykke før du bruker fortrolig materiale, eller la historien bli der den ble fortalt.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Gjenfortell i anonymisert form; poenget er viktigere enn detaljene.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "conversation_trust_vs_reuse"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "radet_som_tok_over_valget",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Beslutningsvennen",
+      "subject": "Når blir et råd til at du eier den andres beslutning?",
+      "situation": [
+        "Den andre ber deg si hva du ville gjort.",
+        "Du har et tydelig syn.",
+        "Et råd kan være nyttig, men også flytte ansvar og autoritet fra den som faktisk skal leve med valget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill egen vurdering fra den andres beslutning, og spør hvilke hensyn de selv vil prioritere.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Gi det tydeligste rådet du kan; personen spurte fordi de ønsker retning.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "advice_vs_decision_ownership"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_som_endte_uten_enighet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Uenighetsvennen",
+      "subject": "Kan en samtale være vellykket uten en felles konklusjon?",
+      "situation": [
+        "Dere har avklart mye.",
+        "Uenigheten består.",
+        "Samtaler kan ende med bedre forståelse selv når ingen skifter standpunkt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer hva dere forstår bedre og hva som fortsatt er reell uenighet, uten å presse fram kompromiss.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Finn minst ett felles standpunkt før dere avslutter; ellers har samtalen ikke ført langt nok.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "understanding_vs_forced_consensus"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalepartner_ikke_terapeut",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "God samtale er ikke automatisk terapi, mekling eller profesjonell rådgivning",
+      "situation": [
+        "Andre begynner å oppsøke deg fordi du er god å snakke med.",
+        "Noen temaer handler om alvorlig konflikt, helse, krise eller behov for behandling.",
+        "Samtalepartner som Badge-posisjon er dialogue_practice, ikke terapeut-, psykolog-, mekler-, coach- eller rådgiverstilling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold samtalepraksisen tydelig og vis videre når behovet krever behandling, formell mekling eller profesjonell rådgivning.",
+          "effect": 1,
+          "tags": [
+            "dialogue_practice",
+            "active_listening",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør samtalen mer gjensidig og tydelig uten å overta den andres mening eller valg."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å hjelpe innenfor egen erfaring så lenge du er åpen om at du ikke har formell tittel.",
+          "effect": -1,
+          "tags": [
+            "dialogue_shortcut",
+            "status_pressure",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar tempo, hjelpsomhet eller egen posisjon få mer makt over samtalen enn nødvendig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dialogue_practice_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
