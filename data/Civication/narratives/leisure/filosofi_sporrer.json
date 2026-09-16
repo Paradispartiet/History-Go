@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "filosofi_sporrer",
+  "type": "leisure",
+  "title": "Spørrer — åpne spørsmål, premisser og grenser uten intervjumyndighet",
+  "sociological_theme": "Hvordan mennesker kan utvikle filosofisk spørrepraksis gjennom åpne spørsmål, avklaring, oppfølging, premisskontroll, stillhet og respekt for grenser uten å gjøre spørsmålsferdighet til terapi, journalistikk, forskning, etterforskning eller profesjonell intervjumyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:sporrer"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_som_inneholdt_svaret",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Spørsmålsvennen",
+      "subject": "Er dette et spørsmål — eller et svar med spørsmålstegn?",
+      "situation": [
+        "Du vil undersøke et tema.",
+        "Spørsmålet ditt antyder tydelig hva det riktige svaret bør være.",
+        "Ledende spørsmål kan se åpne ut samtidig som de snevrer inn mulige svar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler spørsmålet slik at flere reelle svar fortsatt er mulige.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Behold formuleringen; tydelig retning gjør samtalen mer effektiv.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "open_question_vs_leading_question"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tre_sporsmal_i_en_setning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rytmevennen",
+      "subject": "Hvilket spørsmål skal den andre egentlig svare på?",
+      "situation": [
+        "Du vil forstå flere ting samtidig.",
+        "Du pakker tre spørsmål inn i én formulering.",
+        "Flerspørsmål gjør det lett at bare den enkleste delen blir besvart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del opp spørsmålene og ta ett av gangen.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "La dem stå samlet; den andre kan velge hva som er viktigst.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "single_question_vs_question_stack"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvorfor_som_ble_forsvar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Avklaringsvennen",
+      "subject": "Når høres «hvorfor?» ut som en anklage?",
+      "situation": [
+        "Du vil forstå begrunnelsen bak et valg.",
+        "Du spør gjentatte ganger hvorfor.",
+        "Hvorfor-spørsmål kan oppleves som krav om forsvar, særlig i personlige temaer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt til et mer situert spørsmål om hvilke hensyn eller erfaringer som lå bak valget.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å spørre hvorfor; gode begrunnelser tåler flere runder.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inquiry_vs_defensive_why"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "premisset_som_snek_seg_inn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Premissvennen",
+      "subject": "Hva hvis spørsmålet bygger på noe som ikke stemmer?",
+      "situation": [
+        "Spørsmålet ditt forutsetter at en bestemt hendelse eller årsak er reell.",
+        "Den forutsetningen er ikke avklart.",
+        "Spørsmål kan bære skjulte premisser like mye som påstander."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør premisset eksplisitt og avklar det før du spør videre.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Still spørsmålet som planlagt; eventuelle feil kan korrigeres i svaret.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "question_premise_vs_hidden_assumption"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_bak_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dybdevennen",
+      "subject": "Hva prøver du egentlig å finne ut?",
+      "situation": [
+        "Det konkrete spørsmålet er lett å svare på.",
+        "Svaret vil likevel ikke løse usikkerheten din.",
+        "Noen spørsmål fungerer bare som overflate for et annet problem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler hva du faktisk trenger å forstå før du ber om mer informasjon.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Samle flere konkrete svar først; mønsteret vil vise seg etter hvert.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "surface_question_vs_underlying_inquiry"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nysgjerrigheten_som_krevde_privatsvar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Er spørsmålet ditt legitimt selv om den andre ikke vil svare?",
+      "situation": [
+        "Du er oppriktig nysgjerrig på noe personlig.",
+        "Den andre virker ubekvem.",
+        "Retten til å spørre er ikke det samme som retten til svar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi en tydelig utvei og la et nei eller manglende svar stå uten oppfølging.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Forklar hvorfor du spør; da kan den andre lettere avgjøre om de vil svare.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inquiry_vs_privacy_entitlement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_retorske_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Språkvennen",
+      "subject": "Forventer du faktisk et svar?",
+      "situation": [
+        "Du formulerer kritikken din som et spørsmål.",
+        "Du har allerede bestemt hva du mener.",
+        "Retoriske spørsmål kan kamuflere påstander og gjøre det uklart om den andre faktisk inviteres til å svare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si kritikken som påstand hvis du ikke reelt er åpen for svar, eller åpne spørsmålet på ordentlig.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Bruk spørsmålsformen; den er mindre konfronterende enn en direkte påstand.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "genuine_question_vs_rhetorical_question"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppfolgingen_som_endret_tema",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rytmevennen",
+      "subject": "Følger du svaret — eller din egen plan?",
+      "situation": [
+        "Den andre gir et uventet svar.",
+        "Du har allerede neste spørsmål klart.",
+        "God spørrepraksis krever noen ganger at oppfølgingen endres av det som faktisk ble sagt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg oppfølgingen på svaret du fikk, selv om det fører samtalen et annet sted.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Still neste planlagte spørsmål for å beholde struktur og sammenlignbarhet.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "responsive_followup_vs_scripted_sequence"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_viste_status",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nybegynnervennen",
+      "subject": "Tør du spørre når svaret virker åpenbart for alle andre?",
+      "situation": [
+        "Du mangler en grunnleggende forståelse.",
+        "De andre snakker som om alle kjenner begrepet.",
+        "Statuspress kan gjøre spørsmål mindre ærlige og mer performative."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Still det grunnleggende spørsmålet presist og si hva du allerede forstår.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Vent og slå det opp senere; du bør ikke avsløre unødvendige kunnskapshull.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "honest_question_vs_status_mask"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "svaret_som_ikke_passet_kategorien",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Premissvennen",
+      "subject": "Hva om svaralternativene dine er for smale?",
+      "situation": [
+        "Du spør om valget var A eller B.",
+        "Den andre svarer at ingen av delene passer.",
+        "Lukkede kategorier kan gjøre et komplekst svar feil før det blir formulert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Åpne kategoriene igjen og spør hvordan personen selv ville beskrive situasjonen.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Be personen velge det nærmeste alternativet slik at dere har noe konkret å diskutere.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forced_choice_vs_open_category"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_etter_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tålmodighetsvennen",
+      "subject": "Hvor lenge tåler du at et spørsmål står ubesvart?",
+      "situation": [
+        "Du har stilt et vanskelig spørsmål.",
+        "Det blir stille.",
+        "Å fylle stillheten umiddelbart kan ta spørsmålet tilbake før den andre rekker å tenke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La stillheten få tid og gjør det tydelig at spørsmålet kan stå ubesvart.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Omformuler raskt; kanskje spørsmålet bare var uklart.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "question_silence_vs_rescue"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_ble_tatt_med_videre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevennen",
+      "subject": "Kan et godt spørsmål gjenbrukes uten konteksten det kom fra?",
+      "situation": [
+        "En privat samtale gir deg et skarpt spørsmål.",
+        "Du vil bruke det i en annen sammenheng.",
+        "Spørsmål kan bære spor av fortrolige erfaringer selv uten navn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill den generelle problemstillingen fra den private situasjonen før du bruker den videre.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Bruk spørsmålet anonymt; spørsmål tilhører ingen på samme måte som historier gjør.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "question_reuse_vs_context_leakage"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_ble_rad",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Beslutningsvennen",
+      "subject": "Når styrer spørsmålet valget mer enn du innrømmer?",
+      "situation": [
+        "En venn skal ta et viktig valg.",
+        "Du stiller spørsmål som fremhever bestemte risikoer og gevinster.",
+        "Spørsmål kan påvirke beslutninger like sterkt som direkte råd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør egen vinkling synlig og inviter den andre til å formulere hvilke hensyn du overser.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett med gode spørsmål; siden du ikke gir råd, beholder den andre fullt eierskap.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "questioning_vs_indirect_advice"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporrer_ikke_intervjuer_eller_terapeut",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "God spørrepraksis er ikke automatisk intervju-, terapi- eller undersøkelsesmyndighet",
+      "situation": [
+        "Folk opplever deg som god til å stille spørsmål.",
+        "Du blir invitert inn i alvorlige personlige eller konfliktfylte temaer.",
+        "Spørrer som Badge-posisjon er inquiry_practice, ikke terapeut-, psykolog-, journalist-, etterforsker-, forsker- eller profesjonell intervjuerrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk spørrepraksisen innen tydelige grenser og vis videre når situasjonen krever fagkompetanse, samtykkeregler eller formelt mandat.",
+          "effect": 1,
+          "tags": [
+            "inquiry_practice",
+            "question_clarity",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør spørsmålet mer åpent, presist og ansvarlig uten å overta den andres svar."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å spørre så lenge du er tydelig på at du bare prøver å forstå.",
+          "effect": -1,
+          "tags": [
+            "question_pressure",
+            "hidden_premise",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar spørsmålsformen skjule premisser, press eller mer autoritet enn rollen faktisk har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "inquiry_practice_vs_formal_interview_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
