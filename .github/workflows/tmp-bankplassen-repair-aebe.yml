@@ -1,0 +1,230 @@
+name: TEMP Bankplassen repair aebe
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-aebe-20260916
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.event.head_commit.message == 'ci: materialize Bankplassen repair on aebe baseline'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Materialize and verify exact repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='aebe52f43271d024a7de0764b71311f17a30dc90'
+          PR_SHA='4651d30b5784f08b5e00e7afee7a968ea8ba464c'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          git fetch origin pull/5945/head:refs/remotes/origin/pr5945
+          test "$(git rev-parse refs/remotes/origin/pr5945)" = "$PR_SHA"
+          PR=refs/remotes/origin/pr5945
+
+          # Exact Bankplassen binary assets from #5945.
+          git checkout "$PR" -- \
+            'bilder/QuizCards/Norges Bank – Bankplassen 4.webp' \
+            bilder/kort/brands/norges_bank.webp \
+            bilder/kort/objects/norges_bank_bankplassen_4_arbeid_og_fred.webp \
+            bilder/kort/people/karl_gether_bomhoff.webp \
+            bilder/kort/productions/norges_bank_bankplassen_4_seddeltrykking.webp \
+            bilder/places/norges_bank_bankplassen_4.webp \
+            bilder/places/norges_bank_bankplassen_4_front_portrait.webp
+
+          # Hand-maintained source files whose paths did not move on fresh main.
+          git checkout "$PR" -- \
+            data/brands/brands_by_place.json \
+            data/brands/brands_catalog.json \
+            data/brands/brands_catalog_v17.json \
+            data/brands/brands_master.json \
+            data/fag/fag_manifest.json \
+            data/i18n/content/places/en.json \
+            data/i18n/content/places/es.json \
+            data/i18n/content/places/pt.json \
+            data/leksikon/manifest.json \
+            data/lesespor/oslo/lesespor_oslo_naeringsliv.json \
+            data/people/manifest.json \
+            data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json \
+            data/leksikon/places/oslo/naeringsliv/leksikon_norges_bank_bankplassen_4.json \
+            data/leksikon/sprak/places/europe/norway/oslo/norges_bank_bankplassen_4.json \
+            data/people/claims/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.claims.json \
+            data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json \
+            data/places/naeringsliv-production/norges_bank_bankplassen_4.json \
+            data/places/production/norges_bank_bankplassen_4.json \
+            data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json \
+            data/quiz/production_briefs/naeringsliv/norges_bank_bankplassen_4.json \
+            reports/place-production/norges_bank_bankplassen_4-source-review-v1.md \
+            reports/place-production/norges_bank_bankplassen_4-workcard-current.json
+
+          # Narrow merges for shared files changed after the old PR base.
+          PR="$PR" node <<'NODE'
+          const fs = require('fs');
+          const cp = require('child_process');
+          const pr = process.env.PR;
+          const load = p => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const fromPr = p => JSON.parse(cp.execFileSync('git', ['show', `${pr}:${p}`], {encoding:'utf8'}));
+          const save = (p, o) => fs.writeFileSync(p, JSON.stringify(o, null, 2) + '\n');
+
+          {
+            const p='data/fagverk/fagverk_registry.json';
+            const cur=load(p), src=fromPr(p);
+            cur.placeLinks ||= {};
+            cur.placeLinks.norges_bank_bankplassen_4 = src.placeLinks.norges_bank_bankplassen_4;
+            save(p,cur);
+          }
+          {
+            const p='data/leksikon/sprak/manifest.json';
+            const cur=load(p), src=fromPr(p);
+            cur.place_files ||= {};
+            cur.place_files.norges_bank_bankplassen_4 = src.place_files.norges_bank_bankplassen_4;
+            save(p,cur);
+          }
+          {
+            const p='data/quiz/manifest.json';
+            const cur=load(p), src=fromPr(p);
+            const item=src.sets.find(x=>x.targetId==='norges_bank_bankplassen_4');
+            if (!item) throw new Error('missing Bankplassen quiz manifest entry in #5945');
+            cur.sets = cur.sets.filter(x=>x.targetId!==item.targetId);
+            cur.sets.push(item);
+            save(p,cur);
+          }
+          NODE
+
+          # Regenerate all builder-owned outputs from the fresh base.
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target norges_bank_bankplassen_4 --output data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json
+          node scripts/build-fagverk-release-manifest.mjs
+          node --experimental-strip-types scripts/build-civication-history-people-index.mts
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --write
+          node scripts/build-place-open-payloads.mjs
+          node scripts/build-epoke-place-index.mjs
+
+          node <<'NODE'
+          const fs=require('fs');
+          const idx=JSON.parse(fs.readFileSync('data/epoker/epoke-place-index.json','utf8'));
+          if (idx.stats.verified_place_production_milestone_count !== 574) {
+            throw new Error(`expected 574 verified production milestones, got ${idx.stats.verified_place_production_milestone_count}`);
+          }
+          const p='tests/epoke-place-index.test.mjs';
+          let s=fs.readFileSync(p,'utf8');
+          const old='assert.equal(index.stats.verified_place_production_milestone_count, 570);';
+          if (!s.includes(old)) throw new Error('fresh-main epoke assertion is not 570');
+          fs.writeFileSync(p,s.replace(old,'assert.equal(index.stats.verified_place_production_milestone_count, 574);'));
+          NODE
+
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json
+          node <<'NODE'
+          const fs=require('fs');
+          const p='data/places/place_image_backlog_summary.json';
+          const s=JSON.parse(fs.readFileSync(p,'utf8'));
+          const r=JSON.parse(fs.readFileSync('reports/place-image-audit.json','utf8'));
+          s.totalPlaces=r.totalPlaces;
+          s.summary.validLocal=r.summary.local;
+          s.summary.validRemote=r.summary.remote;
+          s.summary.optionalMissing=r.summary.optional;
+          s.summary.missing=r.summary.missing;
+          s.summary.invalidLocalPath=r.summary.invalid;
+          s.summary.remaining=r.summary.missing+r.summary.invalid;
+          const v=r.byCategory.naeringsliv;
+          s.byCategory.naeringsliv={total:v.total,valid:v.local+v.remote,optional:v.optional,missing:v.missing,invalid:v.invalid};
+          fs.writeFileSync(p,JSON.stringify(s,null,2)+'\n');
+          NODE
+          node scripts/audit-quiz-manifest-v2.mjs
+
+          # Fresh verification on final materialized state.
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --experimental-strip-types scripts/build-civication-history-people-index.mts --check
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-epoke-place-index.mjs --check
+          node --test tests/epoke-place-index.test.mjs
+          node --experimental-strip-types scripts/knowledge-canonical-data.mts --check
+          node scripts/audit-quiz-manifest-v2.mjs
+          tmp="$(mktemp)"
+          node scripts/build-quiz-production-context.mjs --category naeringsliv --target norges_bank_bankplassen_4 --output "$tmp" >/dev/null
+          cmp -s "$tmp" data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json
+          rm -f "$tmp"
+          node scripts/audit-quiz-production-context.mjs
+          node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json --verify-summary=data/places/place_image_backlog_summary.json
+          rm -f reports/knowledge-contract-audit.json
+
+          # Exact binary identity gate.
+          test "$(git hash-object -- 'bilder/QuizCards/Norges Bank – Bankplassen 4.webp')" = b698e176eebbecb974b15f04339f29adf121bb23
+          test "$(git hash-object -- bilder/kort/brands/norges_bank.webp)" = 6e4a99a6b277ad68a49f764ebad27c847cc63b8d
+          test "$(git hash-object -- bilder/kort/objects/norges_bank_bankplassen_4_arbeid_og_fred.webp)" = 34de01ea31c4eb256c2b6d0bce467e325cf892ca
+          test "$(git hash-object -- bilder/kort/people/karl_gether_bomhoff.webp)" = 4c3cdfb9f41ed6dc7b8517193fc08fc9bf2b92bf
+          test "$(git hash-object -- bilder/kort/productions/norges_bank_bankplassen_4_seddeltrykking.webp)" = da16f419b4cc38aa752823bde2c57aba5562e096
+          test "$(git hash-object -- bilder/places/norges_bank_bankplassen_4.webp)" = ac97f0f286514defa7bdc0b2e3889e6bb3b5c81f
+          test "$(git hash-object -- bilder/places/norges_bank_bankplassen_4_front_portrait.webp)" = 30152b9e7e6b332dbe067177f2f611b03c124b71
+
+          # Self-delete so final branch diff contains no temporary workflow.
+          rm -f .github/workflows/tmp-bankplassen-repair-aebe.yml
+          git add -A
+
+          cat > /tmp/bankplassen-allowlist.txt <<'EOF'
+          bilder/QuizCards/Norges Bank – Bankplassen 4.webp
+          bilder/kort/brands/norges_bank.webp
+          bilder/kort/objects/norges_bank_bankplassen_4_arbeid_og_fred.webp
+          bilder/kort/people/karl_gether_bomhoff.webp
+          bilder/kort/productions/norges_bank_bankplassen_4_seddeltrykking.webp
+          bilder/places/norges_bank_bankplassen_4.webp
+          bilder/places/norges_bank_bankplassen_4_front_portrait.webp
+          data/Civication/historyPeople_index.json
+          data/Civication/scenarioPeople/generated/naeringsliv.json
+          data/Civication/scenarioPeople_index.json
+          data/brands/brands_by_place.json
+          data/brands/brands_catalog.json
+          data/brands/brands_catalog_v17.json
+          data/brands/brands_master.json
+          data/epoker/epoke-place-index.json
+          data/fag/fag_manifest.json
+          data/fagverk/fagverk_registry.json
+          data/fagverk/fagverk_release.json
+          data/i18n/content/places/en.json
+          data/i18n/content/places/es.json
+          data/i18n/content/places/pt.json
+          data/knowledge/knowledge_units.generated.json
+          data/leksikon/manifest.json
+          data/leksikon/places/oslo/naeringsliv/leksikon_norges_bank_bankplassen_4.json
+          data/leksikon/sprak/manifest.json
+          data/leksikon/sprak/places/europe/norway/oslo/norges_bank_bankplassen_4.json
+          data/lesespor/oslo/lesespor_oslo_naeringsliv.json
+          data/people/claims/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.claims.json
+          data/people/manifest.json
+          data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json
+          data/places/naeringsliv-production/norges_bank_bankplassen_4.json
+          data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json
+          data/places/place_image_backlog_summary.json
+          data/places/production/norges_bank_bankplassen_4.json
+          data/quiz/manifest.json
+          data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json
+          data/quiz/production_briefs/naeringsliv/norges_bank_bankplassen_4.json
+          data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json
+          data/runtime/leksikon-all/part-008.json
+          data/runtime/lesespor-all.json
+          data/runtime/people-all/part-007.json
+          data/runtime/place-open/norges_bank_bankplassen_4.json
+          reports/knowledge-id-backfill.json
+          reports/place-image-audit.json
+          reports/place-production/norges_bank_bankplassen_4-source-review-v1.md
+          reports/place-production/norges_bank_bankplassen_4-workcard-current.json
+          reports/quiz_manifest_v2_audit_report.json
+          tests/epoke-place-index.test.mjs
+          EOF
+          sed -i 's/^          //' /tmp/bankplassen-allowlist.txt
+          LC_ALL=C sort /tmp/bankplassen-allowlist.txt > /tmp/expected.txt
+          git -c core.quotePath=false diff --cached --name-only "$BASE" | LC_ALL=C sort > /tmp/actual.txt
+          test "$(wc -l < /tmp/actual.txt)" -eq 48
+          diff -u /tmp/expected.txt /tmp/actual.txt
+
+          git config user.name 'Bankplassen Repair Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'repair: restore Bankplassen 4 production package'
+          git push origin HEAD:repair/bankplassen-4-aebe-20260916
