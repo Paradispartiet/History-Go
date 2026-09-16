@@ -20,8 +20,14 @@ assert.equal(row.authored_depth.exact_source_ref_count,1);
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.ok(!audit.queue.some(x=>x.key===row.key));
-assert.equal(audit.first_ready?.key,'religion/besokende');
-assert.equal(audit.summary.pending_ready_positions,1);
+const unrelated=['religion/besokende','scenekunst/publikum'].map(key=>audit.positions.find(x=>x.key===key));
+for(const candidate of unrelated){
+  assert.ok(candidate);
+  assert.equal(candidate.classification,'needs_authored_depth');
+  assert.ok(!candidate.evidence.exact_source_refs.includes(streamPath));
+}
+assert.equal(audit.first_ready,null);
+assert.equal(audit.summary.pending_ready_positions,0);
 const text=JSON.stringify(stream);
 assert.match(text,/program|provisjon|samler|proveniens|galleri/i);
 assert.match(text,/takst|juridisk|finansiell|arbeidsgiver|selskapsstatus|rådgiv/i);
