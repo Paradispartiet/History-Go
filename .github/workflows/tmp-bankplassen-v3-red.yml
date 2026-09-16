@@ -1,0 +1,20 @@
+name: TEMP Bankplassen v3 RED
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-v3-20260916
+
+permissions:
+  contents: read
+
+jobs:
+  red:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Run Bankplassen v3 completion contract
+        run: node --test tests/norges-bank-bankplassen-4-place-production-v3.test.mjs
