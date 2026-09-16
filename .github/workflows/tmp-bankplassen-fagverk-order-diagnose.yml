@@ -1,0 +1,108 @@
+name: TEMP Bankplassen Fagverk ordering diagnose
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-v3-20260916
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Find first Fagverk release invalidator
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=.github/workflows/tmp-bankplassen-v3-materialize.yml
+          awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen.sh
+          python <<'PY'
+          from pathlib import Path
+          p = Path('/tmp/bankplassen.sh')
+          s = p.read_text()
+          context = 'node scripts/build-quiz-production-context.mjs --category naeringsliv --target "$PLACE_ID" --output data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json\n'
+          if s.count(context) != 1:
+              raise SystemExit(f'expected one initial context build, found {s.count(context)}')
+          s = s.replace(context, '', 1)
+          place = 'npm run place:build -- "$PLACE_ID"\n'
+          if s.count(place) != 1:
+              raise SystemExit(f'expected one place build, found {s.count(place)}')
+          s = s.replace(place, place + context, 1)
+
+          helper = r'''check_fagverk() {
+  label="$1"
+  echo "FAGVERK_ORDER_CHECK: $label"
+  if node scripts/build-fagverk-release-manifest.mjs --check >/tmp/fagverk-check.log 2>&1; then
+    echo "FAGVERK_ORDER_PASS: $label"
+    return 0
+  fi
+  cat /tmp/fagverk-check.log
+  node scripts/build-fagverk-release-manifest.mjs --output /tmp/fagverk-current.json >/tmp/fagverk-rebuild.log 2>&1 || { cat /tmp/fagverk-rebuild.log; exit 96; }
+  python - "$label" <<'CMP'
+import json, sys
+from pathlib import Path
+label = sys.argv[1]
+a = json.loads(Path('data/fagverk/fagverk_release.json').read_text())
+b = json.loads(Path('/tmp/fagverk-current.json').read_text())
+print(f'FAGVERK_ORDER_FIRST_FAILURE: {label}')
+for key in ('registry','subject_inventory','fag_manifest'):
+    if a.get(key,{}).get('content_sha256') != b.get(key,{}).get('content_sha256'):
+        print('metadata_changed', key, a.get(key,{}).get('content_sha256'), b.get(key,{}).get('content_sha256'))
+for sid in sorted(set(a.get('subjects',{})) | set(b.get('subjects',{}))):
+    x=a.get('subjects',{}).get(sid,{})
+    y=b.get('subjects',{}).get(sid,{})
+    if x.get('content_sha256') == y.get('content_sha256') and x.get('structure_sha256') == y.get('structure_sha256'):
+        continue
+    print('subject_changed', sid)
+    xa={f.get('path'):f.get('content_sha256') for f in x.get('package_files',[])}
+    ya={f.get('path'):f.get('content_sha256') for f in y.get('package_files',[])}
+    for path in sorted(set(xa)|set(ya)):
+        if xa.get(path) != ya.get(path): print(' package_file_changed', path, xa.get(path), ya.get(path))
+    xc={c.get('file'):c.get('content_sha256') for c in x.get('chapters',[])}
+    yc={c.get('file'):c.get('content_sha256') for c in y.get('chapters',[])}
+    for path in sorted(set(xc)|set(yc)):
+        if xc.get(path) != yc.get(path): print(' chapter_changed', path, xc.get(path), yc.get(path))
+CMP
+  git status --short
+  exit 97
+}
+'''
+          anchor = 'set -euo pipefail\n'
+          if anchor not in s:
+              raise SystemExit('strict-mode anchor missing')
+          s = s.replace(anchor, anchor + helper, 1)
+
+          checks = [
+            ('node scripts/build-fagverk-release-manifest.mjs\n', 'initial release build'),
+            ('node scripts/build-civication-history-people-index.mjs\n', 'civication history people'),
+            ('node scripts/build-civication-scenario-people.mjs\n', 'civication scenario people'),
+            ('node scripts/build-knowledge-canonical.mjs --write\n', 'knowledge canonical write'),
+            ('node scripts/build-place-open-payloads.mjs\n', 'place-open payloads'),
+            ('node scripts/build-epoke-place-index.mjs\n', 'epoke place index'),
+            ('npm run epoke:check-milestones\n', 'epoke milestone check'),
+            ('node scripts/validate_place_images.mjs\n', 'place image audit'),
+            ('node scripts/quiz-manifest-v2-complete-audit.mjs\n', 'quiz manifest audit'),
+            ('npm run place:build -- "$PLACE_ID"\n', 'place build'),
+            (context, 'quiz production context after place build'),
+            ('node --test tests/ci-routing-bankplassen-v3.test.mjs\n', 'Bankplassen v3 routing test'),
+          ]
+          for line, label in checks:
+              if s.count(line) != 1:
+                  raise SystemExit(f'expected one command for {label}, found {s.count(line)}')
+              s = s.replace(line, line + f'check_fagverk "{label}"\n', 1)
+          # Diagnosis is read-only: prevent any eventual remote write even if all checks pass.
+          s = s.replace('git push origin HEAD:"$BRANCH"\n', 'echo "diagnostic complete; remote push suppressed"\n')
+          p.write_text(s)
+          PY
+          bash -n /tmp/bankplassen.sh
+          bash /tmp/bankplassen.sh
