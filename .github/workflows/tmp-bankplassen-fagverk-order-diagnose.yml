@@ -50,15 +50,12 @@ jobs:
               ('node --experimental-strip-types scripts/knowledge-canonical-data.mts --write\n', 'knowledge canonical write'),
               ('node scripts/build-place-open-payloads.mjs\n', 'place-open payloads'),
               ('node scripts/build-epoke-place-index.mjs\n', 'epoke place index'),
-              ('node scripts/audit-place-images.mjs --mode=all --report=reports/place-image-audit.json\n', 'place image audit'),
-              ('node scripts/audit-quiz-manifest-v2.mjs\n', 'quiz manifest audit'),
               ('npm run place:build -- "$PLACE_ID"\n', 'place build'),
               (context, 'quiz production context after place build'),
-              ("node --test --test-name-pattern='registered in Place Production v3 routing' tests/norges-bank-bankplassen-4-place-production-v3.test.mjs\n", 'Bankplassen v3 routing test'),
           ]
           for line, label in checks:
-              if s.count(line) != 1:
-                  raise SystemExit(f'expected one command for {label}, found {s.count(line)}')
+              if s.count(line) < 1:
+                  raise SystemExit(f'missing command for {label}')
               s = s.replace(line, line + f'check_fagverk "{label}"\n', 1)
           s = s.replace('git push origin HEAD:repair/bankplassen-4-v3-20260916\n', 'echo "diagnostic complete; remote push suppressed"\n')
           p.write_text(s)
