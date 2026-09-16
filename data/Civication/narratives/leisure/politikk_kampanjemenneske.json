@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_kampanjemenneske_stream",
+  "type": "leisure",
+  "title": "Kampanjemenneske",
+  "sociological_theme": "kampanjearbeid_data_frivillighet_faktagrunnlag_dokumentasjon_ressurser_offentlighet_og_grensen_mot_formelt_mandat",
+  "applies_when": {
+    "any_tags": [
+      "politikk:kampanjemenneske"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "kontaktlista_fra_sist",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontaktarket",
+      "subject": "Kan vi bruke den gamle lista igjen?",
+      "situation": [
+        "Gruppen har en kontaktliste fra et tidligere lokalt initiativ, og noen foreslår å bruke den direkte i en ny kampanje.",
+        "At noen tidligere ønsket informasjon om én aktivitet sier ikke automatisk hva de forventer i en annen.",
+        "Kampanjearbeid blir raskt enklere når gamle data kan gjenbrukes, men rolle- og formålsgrenser kan da bli uklare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar formålet og bruk bare kontaktdata på en måte deltakerne med rimelighet er informert om.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du behandler kontaktdata som et avgrenset ansvar, ikke som en permanent ressurs."
+        },
+        {
+          "id": "B",
+          "label": "Importer hele den gamle lista uten ny avklaring fordi folk allerede har vist samfunnsinteresse.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Tidligere deltakelse blir brukt som generell tillatelse til nye utsendelser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_contact_scope"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tidsplanen_som_ser_perfekt_ut",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Planleggingsarket",
+      "subject": "Alt får plass hvis alle leverer",
+      "situation": [
+        "En ambisiøs plan fyller hver kveld med produksjon, koordinering og arrangementer.",
+        "Planen ser effektiv ut fordi den forutsetter at frivillige har stabil tid, energi og samme prioritering gjennom hele perioden.",
+        "Når marginene forsvinner, blir fravær fort tolket som svikt i stedet for normal kapasitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg inn reelle marginer, eierskap til oppgaver og mulighet til å droppe arbeid som ikke er nødvendig.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør kapasitet til en del av planen."
+        },
+        {
+          "id": "B",
+          "label": "Behold maksimalplanen og regn med at engasjement gjør at folk finner tid.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Planen gjør frivillighet om til en skjult heltidsforventning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_capacity_planning"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "faktaarket_med_den_gode_setningen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Faktaarket",
+      "subject": "Den formuleringen sitter",
+      "situation": [
+        "En kort formulering oppsummerer saken godt, men kilden bak tallet eller påstanden er eldre eller mindre presis enn dere først trodde.",
+        "Offentlig materiell belønner enkelhet, mens faktagrunnlaget ofte trenger forbehold og oppdatering.",
+        "Det er mulig å miste en god formulering uten å miste selve saken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdater eller stryk påstanden og gjør kildegrunnlaget tydelig nok til å tåle kontroll.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du lar dokumentasjon begrense materialet."
+        },
+        {
+          "id": "B",
+          "label": "Behold setningen fordi den er kommunikativt sterk og sannsynligvis omtrent riktig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "En god formulering får høyere verdi enn et etterprøvbart grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_source_discipline"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_fra_arbeidsokta",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bildebanken",
+      "subject": "Dette viser jo hvor bra det gikk",
+      "situation": [
+        "Et bilde fra en frivillig arbeidsøkt fungerer godt visuelt, men flere personer er tydelig gjenkjennelige.",
+        "Intern deltakelse og offentlig eksponering er ikke nødvendigvis det samme.",
+        "Synlighet kan være nyttig uten at hver deltaker ønsker å bli en del av kampanjens offentlige ansikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar bruk med de gjenkjennelige deltakerne og velg et annet bilde hvis det er enklere.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du skiller fysisk deltakelse fra offentlig profilering."
+        },
+        {
+          "id": "B",
+          "label": "Publiser fordi alle visste at de deltok på et kampanjearrangement.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Deltakelse blir behandlet som automatisk samtykke til eksponering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_photo_consent"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_tar_telefonen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Frivilligchatten",
+      "subject": "Kan du bare ordne denne også?",
+      "situation": [
+        "Én frivillig svarer raskt, kjenner systemene og ender derfor med stadig flere oppgaver.",
+        "Effektivitet kan gjøre skjev arbeidsfordeling mindre synlig fordi den som bærer mest også løser mest.",
+        "Når én person blir uunnværlig, øker både sårbarhet og uformell makt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel kunnskap og oppgaver bredere, og gjør det legitimt å si nei eller levere mindre.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du reduserer personavhengighet og skjult belastning."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å legge oppgaver på den mest effektive fordi kampanjen ikke har tid til opplæring.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Kort effektivitet får styre over bærekraftig organisering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_volunteer_load"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "materiellet_med_offisiell_tone",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Utkastet",
+      "subject": "Det ser nesten kommunalt ut",
+      "situation": [
+        "Et informasjonsark får et visuelt uttrykk som ligner en offentlig eller formelt autorisert avsender.",
+        "Et ryddig design kan gjøre informasjon lettere å lese, men kan også skape et mandat innholdet ikke har.",
+        "Kampanjens troverdighet bør komme fra tydelig avsender og dokumentert grunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk avsender og rolle klart, og unngå uttrykk som kan forveksles med offentlig informasjon.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør avsenderen tydelig uten å låne autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Behold uttrykket fordi et mer offisielt preg gjør at flere tar materialet alvorlig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Visuell autoritet brukes som erstatning for faktisk mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_sender_clarity"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "journalisten_vil_ha_en_kort_kommentar",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Telefonen",
+      "subject": "Hva mener kampanjen om dette?",
+      "situation": [
+        "En journalist ber om en rask kommentar mens gruppens interne diskusjon fortsatt er uavklart.",
+        "Medietempo gjør det fristende å fylle tomrommet med en personlig formulering.",
+        "En talerolle blir mer krevende når det er forskjell mellom eget syn og det gruppen faktisk har besluttet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar innenfor det som er avklart, og marker tydelig hva som eventuelt er din egen vurdering.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du beskytter skillet mellom talerolle og personlig vurdering."
+        },
+        {
+          "id": "B",
+          "label": "Gi et tydelig helhetssvar på vegne av gruppen selv om saken ikke er avklart internt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Synlighet blir brukt til å utvide mandatet i øyeblikket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_spokesperson_scope"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stotten_fra_den_lokale_bedriften",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "E-posten",
+      "subject": "Vi kan betale trykkekostnaden",
+      "situation": [
+        "En lokal aktør tilbyr praktisk eller økonomisk støtte til kampanjens aktiviteter.",
+        "Støtte kan løse reelle behov, men giveren kan samtidig ha egne interesser knyttet til saken eller området.",
+        "Uavhengighet blir vanskeligere å vurdere når støtten først er blitt nødvendig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør støtte og eventuelle bindinger synlige før gruppen bestemmer om den skal ta imot.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ressurser og mulige bindinger til en åpen del av beslutningen."
+        },
+        {
+          "id": "B",
+          "label": "Ta imot først og diskuter avhengighet senere fordi tilbudet løser et akutt behov.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk nytte får skjule mulige interessekonflikter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_support_transparency"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referatet_som_glatter_ut",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Møtereferatet",
+      "subject": "Må all uenighet stå her?",
+      "situation": [
+        "Et møte ender med en praktisk beslutning, men flere deltakere hadde viktige innvendinger.",
+        "Et kort referat er enklere å lese, mens et for glatt referat kan gjøre senere beslutninger mindre forståelige.",
+        "Dokumentasjon handler ikke om å gjengi hvert ord, men om å bevare det som faktisk var omstridt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter beslutning, ansvar og sentrale innvendinger presist uten å gjøre referatet til debattinnlegg.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du lar dokumentasjonen bevare relevant uenighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta bare med konklusjonen for å vise at gruppen står samlet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Enighet blir produsert i teksten etter møtet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_disagreement_record"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arrangementet_med_for_mange_roller",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Arrangementplanen",
+      "subject": "Hvem har egentlig ansvar for hva?",
+      "situation": [
+        "Et åpent arrangement nærmer seg, men vertskap, praktiske oppgaver, sikkerhet og taleroller er blandet sammen.",
+        "Når alle hjelper til med alt, kan viktige oppgaver falle mellom uformelle antakelser.",
+        "Klare roller trenger ikke gjøre en frivillig aktivitet rigid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar ansvar, kontaktpunkt og hva kampanjen faktisk kan håndtere før arrangementet starter.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør ansvar synlig før presset oppstår."
+        },
+        {
+          "id": "B",
+          "label": "La alle improvisere og regn med at engasjerte folk automatisk fyller hullene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Fleksibilitet brukes som erstatning for avklart ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_event_roles"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kartet_med_prikker",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arbeidskartet",
+      "subject": "Her bor de som har meldt seg",
+      "situation": [
+        "Et internt kart gjør det lett å se hvor frivillige eller kontakter befinner seg.",
+        "Geografisk oversikt kan være praktisk, men kombinasjonen av sted og person kan bli mer sensitiv enn hver opplysning alene.",
+        "Dataverktøy gjør ofte nye analyser mulige før gruppen har bestemt at de bør gjøres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Begrens kartet til det som er nødvendig for konkret logistikk og unngå personkobling når det ikke trengs.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du lar behovet definere datamengden."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn alle personopplysninger dere har fordi kartet kan bli nyttig for senere planlegging.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Teknisk mulighet blir behandlet som tilstrekkelig grunn for å samle mer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_data_minimization"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilen_som_allerede_er_delt",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Oppdateringen",
+      "subject": "Vi skrev feil i går",
+      "situation": [
+        "En publisert oppdatering inneholder en faktisk feil som allerede er delt videre.",
+        "Det kan føles fristende å rette stille for å unngå at feilen får mer oppmerksomhet.",
+        "Men en synlig korreksjon kan være viktig når andre allerede har rukket å bruke opplysningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett feilen tydelig og proporsjonalt, og behold sporbarhet der den opprinnelige påstanden kan ha påvirket andre.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du prioriterer korrigerbarhet fremfor fasade."
+        },
+        {
+          "id": "B",
+          "label": "Endre teksten uten å markere noe og håp at færrest mulig legger merke til det.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Omdømmehensyn får bestemme hvordan en offentlig feil håndteres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_correction_norm"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_samarbeidspartneren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samarbeidsmøtet",
+      "subject": "Vi kan stå sammen om denne aktiviteten",
+      "situation": [
+        "En annen gruppe vil samarbeide om én konkret aktivitet, men har ellers andre mål, medlemmer og arbeidsmåter.",
+        "Felles arbeid kan være effektivt uten at organisasjonene blir politisk eller organisatorisk identiske.",
+        "Utydelige koalisjoner skaper lett forventninger som ingen faktisk har vedtatt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens samarbeidet til den konkrete aktiviteten og vær tydelig om hva det ikke innebærer.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du lar samarbeid være konkret uten å låne støtte til andre spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Bruk samarbeidet til å framstå som en bredere samlet front enn det finnes grunnlag for.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Et praktisk samarbeid blir gjort til generell tilslutning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_coalition_scope"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_kampanjemenneske",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Etter kampanjen",
+      "subject": "Hva var rollen din egentlig?",
+      "situation": [
+        "Etter mange arbeidsøkter kan du planlegge, koordinere, dokumentere og håndtere offentlig oppmerksomhet bedre enn før.",
+        "Du har også erfart at synlighet, tilgang, data og intern tillit kan gi uformell makt.",
+        "Kampanjemenneske er en practice_identity, ikke en automatisk formell politisk rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som kampanjedeltaker og organisator med tydelige grenser mot valgt mandat, profesjonell rådgivning og offentlig beslutningsmyndighet.",
+          "effect": 1,
+          "tags": [
+            "campaign_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du avslutter med mer organisasjonserfaring og tydeligere rollegrense."
+        },
+        {
+          "id": "B",
+          "label": "Gjør erfaringen og nettverket til grunnlag for å opptre som valgt representant, profesjonell politisk rådgiver eller offentlig beslutningstaker for andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praksiserfaring blir gjort om til formell myndighet den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kampanje_practice_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
