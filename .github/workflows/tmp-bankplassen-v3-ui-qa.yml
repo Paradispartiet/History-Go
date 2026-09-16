@@ -101,6 +101,58 @@ jobs:
               }
               await page.screenshot({ path: `${outDir}/${name}-placecard.png`, fullPage: true });
 
+              const blockerAudit = await page.evaluate(() => {
+                const button = document.querySelector('#pcInfo');
+                if (!button) return { error: 'pcInfo missing' };
+                const rect = button.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                const top = document.elementFromPoint(x, y);
+                const describe = el => {
+                  if (!el) return null;
+                  const chain = [];
+                  let cur = el;
+                  for (let i = 0; cur && i < 6; i += 1, cur = cur.parentElement) {
+                    chain.push({
+                      tag: cur.tagName,
+                      id: cur.id || '',
+                      className: typeof cur.className === 'string' ? cur.className : '',
+                      role: cur.getAttribute?.('role') || '',
+                      ariaModal: cur.getAttribute?.('aria-modal') || '',
+                      text: (cur.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 240),
+                    });
+                  }
+                  return chain;
+                };
+                const visibleCandidates = [...document.querySelectorAll('[role="dialog"], [aria-modal="true"], .modal, [class*="modal" i], [class*="overlay" i], [class*="welcome" i], [class*="consent" i]')]
+                  .filter(el => {
+                    const style = getComputedStyle(el);
+                    const r = el.getBoundingClientRect();
+                    return style.display !== 'none' && style.visibility !== 'hidden' && Number(style.opacity || 1) !== 0 && r.width > 0 && r.height > 0;
+                  })
+                  .slice(0, 20)
+                  .map(el => {
+                    const r = el.getBoundingClientRect();
+                    return {
+                      tag: el.tagName,
+                      id: el.id || '',
+                      className: typeof el.className === 'string' ? el.className : '',
+                      role: el.getAttribute('role') || '',
+                      ariaModal: el.getAttribute('aria-modal') || '',
+                      rect: [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)],
+                      text: (el.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 500),
+                    };
+                  });
+                return {
+                  buttonRect: [Math.round(rect.left), Math.round(rect.top), Math.round(rect.width), Math.round(rect.height)],
+                  center: [Math.round(x), Math.round(y)],
+                  topAtCenter: describe(top),
+                  buttonChain: describe(button),
+                  visibleCandidates,
+                };
+              });
+              console.log(`BLOCKER_DIAG ${name} ${JSON.stringify(blockerAudit)}`);
+
               await page.click('#pcInfo');
               await page.waitForSelector('.hg-place-popup-v2', { state: 'visible', timeout: 30000 });
               const popupTitle = (await page.locator('.hg-place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
