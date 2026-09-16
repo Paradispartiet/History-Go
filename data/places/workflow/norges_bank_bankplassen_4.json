@@ -1,0 +1,142 @@
+{
+  "schema": "history_go_place_production_workflow_v3",
+  "place_id": "norges_bank_bankplassen_4",
+  "category": "naeringsliv",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/norges_bank_bankplassen_4.json",
+    "evidence_refs": [
+      "reports/place-production/norges_bank_bankplassen_4-source-review-v1.md",
+      "data/places/naeringsliv-production/norges_bank_bankplassen_4.json"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-09-16T13:09:00Z",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/naeringsliv.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "The current canonical Place Production, collection, quiz, object, brand and Næringsliv badge rules were read in full before this V3 attestation was recorded; the migration preserves the verified Bankplassen factuality and production decisions from PR #5945."
+  },
+  "profile": {
+    "id": "standard",
+    "status": "confirmed",
+    "reason": "Bankplassen 4 has a source-backed institutional history, one canonical person, one physical signature object, one institutional brand and one documented place-specific production process without requiring a major-profile breadth expansion."
+  },
+  "source_review": {
+    "status": "complete",
+    "evidence": "reports/place-production/norges_bank_bankplassen_4-source-review-v1.md"
+  },
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "refs": [
+        "data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "data/brands/brands_by_place.json",
+        "data/brands/brands_master.json"
+      ]
+    },
+    "productions": {
+      "status": "PASS",
+      "refs": [
+        "data/places/naeringsliv-production/norges_bank_bankplassen_4.json"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "refs": [
+        "data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_naeringsliv.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "reason": "The documented Christiania Theater historical layer is reused without creating a duplicate place or story.",
+      "refs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json",
+        "reports/place-production/norges_bank_bankplassen_4-source-review-v1.md"
+      ]
+    },
+    "runtime": {
+      "status": "PASS",
+      "refs": [
+        "data/runtime/place-open/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "The 2026 management source is used only to bound current status; it does not justify an artificial news module."
+    },
+    "before_after": {
+      "status": "BEGRUNNET_NA",
+      "reason": "No licensed historical/current image pair with sufficiently documented viewpoint and subject match was established for an honest before/after comparison."
+    }
+  },
+  "blockers": [],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "PR #5945 static image review plus exact Git blob identity gate in the V3 repair materializer."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Interactive PlaceCard and popup screenshot QA will be recorded on the repaired exact head."
+    }
+  },
+  "state": "in_progress"
+}
