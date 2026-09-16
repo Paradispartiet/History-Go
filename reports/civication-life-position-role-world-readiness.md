@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 56 ready / 103 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 57 ready / 102 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 56
-**Multi-scene narrative foundations:** 56
-**Completed life-position Role Worlds:** 56
+**Exact governed-source matches:** 57
+**Multi-scene narrative foundations:** 57
+**Completed life-position Role Worlds:** 57
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `natur/sanker` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `natur/turgaer` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `politikk/grasrotbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `politikk/kampanjemenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `politikk/motesliter` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `politikk/organisasjonsmenneske` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `psykologi/monsterjeger` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `psykologi/psykologientusiast` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `psykologi/relasjonsbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `psykologi/selvgransker` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `psykologi/vaneeksperimentor` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `religion/dialogbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `religion/livssynsutforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `religion/pilegrim` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `religion/trosstedsvandrer` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `scenekunst/improentusiast` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `scenekunst/premieregjenger` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `scenekunst/teatergjenganger` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `sport/sondagsutover` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `sport/tribunesliter` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `utdanning/didaktisk_tenker` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `utdanning/klasseromsobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `utdanning/laeringsutforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `utdanning/utdanningskritiker` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `vitenskap/folkeforsker` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `vitenskap/labnerd` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `vitenskap/stjernekikker` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `vitenskap/teknologibygger` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `filosofi/argumentbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `filosofi/etiker` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `natur/turgaer` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `politikk/grasrotbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `politikk/kampanjemenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `politikk/motesliter` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `politikk/organisasjonsmenneske` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `psykologi/monsterjeger` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `psykologi/psykologientusiast` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `psykologi/relasjonsbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `psykologi/selvgransker` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `psykologi/vaneeksperimentor` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `religion/dialogbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `religion/livssynsutforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `religion/pilegrim` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `religion/trosstedsvandrer` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `scenekunst/improentusiast` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `scenekunst/premieregjenger` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `scenekunst/teatergjenganger` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `sport/sondagsutover` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `sport/tribunesliter` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `utdanning/didaktisk_tenker` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `utdanning/klasseromsobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `utdanning/laeringsutforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `utdanning/utdanningskritiker` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `vitenskap/folkeforsker` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `vitenskap/labnerd` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `vitenskap/stjernekikker` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `vitenskap/teknologibygger` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `filosofi/argumentbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `filosofi/etiker` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `filosofi/fagfilosof` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
@@ -55,6 +55,6 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 - This audit does not create a NonCareerRoleEngine or new scene format.
 - Circumstances, relationships and livelihood remain separate runtime layers.
 - Generic private-life scenes may support aftermath, but cannot prove a specific life-position world by themselves.
-- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent social world.
+- Achievement/fame/legacy/mandate statuses are not standalone worlds by default unless later governed evidence proves an independent authored social world.
 - Every actual Role World remains one subject per PR and must pass the normal Role World + Scene Pipeline gates.
 
