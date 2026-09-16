@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "sport_tribunesliter",
+  "type": "leisure",
+  "title": "Tribunesliter — ansiennitet, tribunekoder og fellesskap uten uformell myndighet",
+  "sociological_theme": "Hvordan langvarig tribunepraksis bygger kulturkunnskap, fellesskap og utholdenhet uten at ansiennitet, ståplass, reisehyppighet eller uformelle koder blir gatekeeping, sikkerhetsmyndighet eller rett til å styre andre publikummere.",
+  "applies_when": {
+    "any_tags": [
+      "sport:tribunesliter"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "den_faste_plassen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "Her står vi alltid",
+      "situation": [
+        "Du og de samme menneskene har stått på omtrent samme sted gjennom mange kamper.",
+        "Gjentakelsen skaper trygghet, oversikt og små sosiale rutiner.",
+        "Et fast mønster er likevel ikke en privat eiendomsrett i et åpent publikumsfelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen til å finne en god plass, men gi rom når andre også har gyldig adgang til feltet.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Flytt nye folk unna fordi plassen 'tilhører' de som har stått der lengst.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "standing_spot_vs_entitlement"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regnet_som_prove",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tribuneveteranen",
+      "subject": "Ekte folk står ute uansett",
+      "situation": [
+        "Været er surt, og mange er våte og kalde før kampen har begynt.",
+        "Å tåle mange slike kvelder kan bli en del av identiteten på tribunen.",
+        "Utholdenhet er erfaring, men trenger ikke bli en målestokk for hvem som hører til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Le av været sammen, men la folk kle seg, trekke inn eller gå hjem uten å gjøre det til lojalitetstest.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk regnet som bevis på at de som søker ly eller drar tidlig ikke er ordentlige tribuneslitere.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "weather_endurance_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sangen_du_ikke_kan",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nykommeren",
+      "subject": "Hva er teksten på den sangen?",
+      "situation": [
+        "En ny gjest prøver å følge en sang som resten av feltet kjenner utenat.",
+        "Sangkulturen kan gjøre et stort rom samstemt og gi en sterk følelse av tilhørighet.",
+        "Den samme koden kan bli en terskel hvis kunnskap brukes som medlemsprøve."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Syng videre og forklar kort når det passer, uten å gjøre feil til et nummer.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør narr av nykommeren og bruk manglende sangkunnskap som bevis på at personen ikke hører hjemme.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "song_culture_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bortekampen_som_regnestykke",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bortekampmakker",
+      "subject": "Det blir buss, billett og en hel dag",
+      "situation": [
+        "Neste bortekamp krever transport, billett, mat og mange timer.",
+        "For noen er slike turer selve kjernen i tribunelivet.",
+        "Reisehyppighet avhenger likevel av penger, arbeidstid, omsorgsansvar og kapasitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg turen med tydelige kostnader og aksepter at noen står over uten å måtte forsvare seg.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Mål lojalitet i hvor mange borteturer folk har råd eller tid til å ta.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "away_travel_vs_economy"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "derbyet_og_tonen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "I dag hater vi dem",
+      "situation": [
+        "Derbyet gjør språket skarpere lenge før avspark.",
+        "Rivalisering kan gi intensitet, humor og historisk nerve.",
+        "Den kan også gli fra klubbmotsetning til nedverdigelse av enkeltmennesker eller grupper."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold rivaliseringen hard på klubbnivå, men sett en grense når språk går over i personangrep eller diskriminering.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar all språkbruk med at derby alltid skal være grenseløst.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rivalry_vs_dehumanization"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vakta_ved_inngangen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sikkerhetsverten",
+      "subject": "Denne inngangen er stengt i kveld",
+      "situation": [
+        "Du kjenner stadion godt og vet hvordan publikum vanligvis slippes inn.",
+        "I kveld har sikkerhetsopplegget endret flyten.",
+        "Lang erfaring som gjest gir lokalkunnskap, men ikke operativ myndighet over adgang eller sikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg den konkrete beskjeden og hjelp andre med å finne riktig vei uten å overstyre vakten.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ignorer sperringen fordi du vet hvordan inngangen pleier å fungere og ber andre følge deg.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "informal_norm_vs_security_authority"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "flagget_som_stenger_sikten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medtilskueren",
+      "subject": "Jeg ser ingenting bak flagget",
+      "situation": [
+        "Et stort flagg gir feltet et tydelig visuelt uttrykk.",
+        "Samtidig står noen bak og mister store deler av utsynet.",
+        "Kollektiv stemning fungerer best når entusiasme også tar hensyn til at andre faktisk skal kunne følge kampen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster bruken når det er mulig og snakk konkret om både uttrykket og sikten.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avfei problemet fordi alle på feltet må tåle at tradisjonen kommer først.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "choreography_vs_shared_view"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nykommeren_pa_feltet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nykommeren",
+      "subject": "Er det greit at jeg står her?",
+      "situation": [
+        "En person som ikke kjenner feltets uformelle rytme spør hvor det er greit å stå.",
+        "Du vet hvor sangene starter, hvor folk beveger seg og hvilke deler som er mest intense.",
+        "Denne kunnskapen kan åpne rommet eller brukes som en usynlig adgangskontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar forskjellene mellom områdene og la personen velge uten å kreve forhåndsbevis på tilhørighet.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Send personen bort til 'de vanlige setene' fordi feltet bør være for dem som allerede kjenner kodene.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "veteranhood_vs_newcomer_access"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_alle_har_hort",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tribuneveteranen",
+      "subject": "Jeg var her før denne tribunen ble bygget",
+      "situation": [
+        "En veteran forteller om gamle borteturer, tidligere stadionløsninger og sanger som har forsvunnet.",
+        "Lang hukommelse gir reell kulturhistorisk kunnskap.",
+        "Historisk tilstedeværelse gjør likevel ikke én persons versjon til eneste legitime fortelling om miljøet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta vare på minnene og skill tydelig mellom egen erfaring, felles dokumentasjon og senere tolkninger.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ansiennitet til å avvise nyere supporteres minner og beskrivelser som mindre ekte.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "memory_vs_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kroppen_etter_nitti",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medtilskueren",
+      "subject": "Beina er ferdige",
+      "situation": [
+        "Etter lang ståtid, hopping og reise kjenner kroppen belastningen.",
+        "Tribunekultur kan gjøre det sosialt vanskelig å sette seg, trekke seg ut eller stå over neste kamp.",
+        "Å kjenne egne grenser er ikke det samme som å svikte fellesskapet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta den pausen du trenger og la andre gjøre det samme uten kommentarer om styrke eller lojalitet.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Press deg selv og andre videre fordi en tribunesliter ikke skal vise at kroppen trenger pause.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "endurance_vs_body_signal"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "royken_i_feltet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sikkerhetsverten",
+      "subject": "Det blir tett her nå",
+      "situation": [
+        "Plutselig blir sikten dårlig og noen rundt deg reagerer på røyk og trengsel.",
+        "Sterke visuelle øyeblikk kan oppleves som del av en kollektiv tribunekultur.",
+        "Når situasjonen påvirker sikkerhet, sikt eller andres mulighet til å trekke seg unna, gjelder ikke uformell tribuneautoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi plass til dem som vil ut og følg sikkerhetsbeskjeder uten å opptre som egen ordensmyndighet.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Blokker bevegelse og avfei bekymring fordi intensitet er en del av feltet.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "collective_intensity_vs_safety"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bortefolget_i_byen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bortekampmakker",
+      "subject": "Hele vogna hører oss",
+      "situation": [
+        "På vei til kampen fyller supporterfølget kollektivtransporten med sang og energi.",
+        "Gruppa er på vei til et felles ritual, men rommet deles med mennesker som ikke deltar.",
+        "Tribunens normer følger ikke automatisk med ut i alle offentlige rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold stemningen, men juster når gruppa tar over et rom andre må bruke.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle hele reisen som om den var en forlengelse av supporterfeltet og alle andre bare må tåle det.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "away_group_vs_public_space"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongen_som_sliter",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "Du har ikke gått glipp av en kamp på måneder",
+      "situation": [
+        "Kalenderen har vært tett med hjemme- og bortekamper.",
+        "Du merker at søvn, penger og andre relasjoner stadig må tilpasses kampene.",
+        "Stabilt oppmøte kan være meningsfullt uten at fravær blir identitetstap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg noen kamper bort og hold kontakten med miljøet uten å gjøre full tilstedeværelse til krav.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett på autopilot fordi et avbrekk ville ødelegge bildet av deg som den som alltid er der.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "attendance_vs_burnout"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tribunesliter_ikke_arrangementsansvarlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sikkerhetsverten",
+      "subject": "Du kjenner feltet godt — men du driver det ikke",
+      "situation": [
+        "Mange sesonger har gitt deg detaljkunnskap om flyt, sanger, konflikter og publikumsreaksjoner.",
+        "Erfaringen kan være nyttig når du hjelper andre orientere seg.",
+        "Den gjør deg ikke automatisk til supporterkoordinator, sikkerhetsansvarlig, arrangementsleder, klubbrepresentant eller talsperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen som publikums- og miljøkunnskap, og la formelle roller eie beslutninger som faktisk krever myndighet.",
+          "effect": 1,
+          "tags": [
+            "tribune_literacy",
+            "reflection",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker tribuneerfaring som orientering og fellesskap uten å gjøre ansiennitet til rang eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta styring over andre fordi mange år på tribunen føles som et uformelt mandat.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "overclaim",
+            "tribune_status"
+          ],
+          "feedback": "Tribuneerfaringen blir gjort om til rang, press eller større myndighet enn publikumsrollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hobby_vs_event_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
