@@ -728,7 +728,7 @@ assert.ok(argumentbygger);
 assert.equal(argumentbygger.classification, 'ready');
 assert.equal(argumentbygger.role_world_status, 'role_world_complete');
 assert.equal(argumentbygger.role_world_path, 'data/Civication/roleWorlds/filosofi/filosofi_argumentbygger.json');
-assert.equal(argumentbygger.priority_score, 405);
+assert.equal(argumentbygger.priority_score, 390);
 assert.equal(argumentbygger.authored_depth.exact_source_ref_count, 1);
 assert.equal(argumentbygger.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(argumentbygger.evidence.exact_source_refs, ['data/Civication/narratives/leisure/filosofi_argumentbygger.json']);
