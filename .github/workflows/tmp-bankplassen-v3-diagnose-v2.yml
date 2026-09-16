@@ -1,0 +1,49 @@
+name: TEMP Bankplassen v3 diagnose v2
+
+on:
+  push:
+    branches:
+      - repair/bankplassen-4-v3-20260916
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci
+      - name: Reproduce locked materializer without remote write
+        shell: bash
+        run: |
+          set -euo pipefail
+          src=.github/workflows/tmp-bankplassen-v3-materialize.yml
+          awk 'f{sub(/^          /,""); print} /^        run: \|$/{f=1}' "$src" > /tmp/bankplassen-v3-materialize.sh
+          sed -i 's#git push origin HEAD:repair/bankplassen-4-v3-20260916#echo DIAGNOSTIC_SKIP_PUSH#' /tmp/bankplassen-v3-materialize.sh
+          bash -n /tmp/bankplassen-v3-materialize.sh
+          set +e
+          bash -x /tmp/bankplassen-v3-materialize.sh > /tmp/materializer.log 2>&1
+          rc=$?
+          set -e
+          printf '%s\n' "$rc" > /tmp/materializer.rc
+          tail -n 220 /tmp/materializer.log > /tmp/materializer-tail.log
+      - name: Upload diagnostic tail
+        uses: actions/upload-artifact@v4
+        with:
+          name: bankplassen-materializer-diagnostic-v2
+          path: |
+            /tmp/materializer-tail.log
+            /tmp/materializer.rc
+          if-no-files-found: error
+          retention-days: 1
+      - name: Preserve materializer exit status
+        shell: bash
+        run: exit "$(cat /tmp/materializer.rc)"
