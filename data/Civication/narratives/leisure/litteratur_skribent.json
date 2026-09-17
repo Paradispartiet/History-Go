@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_skribent_stream",
+  "type": "leisure",
+  "title": "Skribent",
+  "sociological_theme": "formalsrettet_tekstpraksis_brief_leser_sjanger_kilde_struktur_revisjon_redigering_frist_publisering_og_oppdragsgrense",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:skribent"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "brief_for_setningen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Oppdragsnotatet",
+      "subject": "Hva skal teksten faktisk gjøre?",
+      "situation": [
+        "Du har begynt å formulere en tekst før formålet er tydelig.",
+        "En skribent kan skrive elegant og likevel bomme hvis mottaker, handling og ramme ikke er avklart.",
+        "Et godt brief trenger ikke være langt, men det må gjøre tekstens oppgave prøvbar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare mottaker, ønsket effekt, format og begrensninger før du finpusser formuleringene.",
+          "effect": 1,
+          "tags": [
+            "brief",
+            "purpose",
+            "scope"
+          ],
+          "feedback": "Valget gjør teksten ansvarlig for en konkret oppgave, ikke bare en pen overflate."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å skrive og håpe at formålet blir tydelig når teksten er ferdig.",
+          "effect": -1,
+          "tags": [
+            "scope_drift",
+            "surface",
+            "avoidance"
+          ],
+          "feedback": "Valget utsetter den viktigste avgrensningen og gjør senere omskriving dyrere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_brief_for_setningen"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "leseren_for_stilen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Leseren",
+      "subject": "Hvem må forstå dette?",
+      "situation": [
+        "Du liker tonen i utkastet, men den forutsetter mer forkunnskap enn leseren sannsynligvis har.",
+        "Register, forklaringstetthet og eksempler bør følge leserens situasjon, ikke skribentens behov for å vise kompetanse.",
+        "Tilpasning betyr ikke å snakke ned; det betyr å gjøre forutsetningene synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Teste teksten mot hva leseren faktisk vet, trenger og kan misforstå.",
+          "effect": 1,
+          "tags": [
+            "audience",
+            "register",
+            "accessibility"
+          ],
+          "feedback": "Valget lar mottakeren styre graden av forklaring uten å gjøre innholdet mindre presist."
+        },
+        {
+          "id": "B",
+          "label": "Beholde fagspråket fordi en mer tilgjengelig tekst kan virke mindre profesjonell.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "jargon",
+            "reader_distance"
+          ],
+          "feedback": "Valget bruker kompleksitet som statussignal i stedet for som nødvendig presisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_leseren_for_stilen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pastanden_med_kilde",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Faktanotatet",
+      "subject": "En formulering er fortsatt en påstand",
+      "situation": [
+        "En setning flyter godt, men inneholder et faktum du ikke har kontrollert.",
+        "Sikker syntaks gjør ikke et utsagn sant.",
+        "Kildeansvar innebærer å vite hvilke deler som er observasjon, sitat, dokumentert faktum, vurdering eller usikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne eller kontrollere kilden og svekke formuleringen hvis beviset er svakere enn påstanden.",
+          "effect": 1,
+          "tags": [
+            "source_check",
+            "claim",
+            "precision"
+          ],
+          "feedback": "Valget binder styrken i språket til styrken i dokumentasjonen."
+        },
+        {
+          "id": "B",
+          "label": "La setningen stå fordi den høres sannsynlig ut og passer godt i teksten.",
+          "effect": -1,
+          "tags": [
+            "unsupported_claim",
+            "fluency_bias",
+            "reputation_risk"
+          ],
+          "feedback": "Valget lar stil skjule at faktagrunnlaget ikke er kontrollert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_pastanden_med_kilde"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjangerens_kontrakt",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Formatet",
+      "subject": "Er dette en kommentar, presentasjon eller forklaring?",
+      "situation": [
+        "Samme materiale kan bli kronikk, nettsidetekst, presentasjon, omtale eller internnotat.",
+        "Hver sjanger skaper forventninger til lengde, argumentasjon, dokumentasjon og tone.",
+        "Å velge sjanger er å velge en kontrakt med leseren."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestemme sjanger og hvilke forventninger den faktisk pålegger teksten før strukturen låses.",
+          "effect": 1,
+          "tags": [
+            "genre",
+            "convention",
+            "scope"
+          ],
+          "feedback": "Valget gjør formatet til en bevisst del av oppgaven."
+        },
+        {
+          "id": "B",
+          "label": "Bruke samme struktur hver gang fordi en god tekst fungerer likt uansett kanal.",
+          "effect": -1,
+          "tags": [
+            "genre_blindness",
+            "template_overreach",
+            "habit"
+          ],
+          "feedback": "Valget overser at kanal og sjanger endrer hva leseren trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_sjangerens_kontrakt"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "strukturen_som_prioriterer",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Disposisjonen",
+      "subject": "Alt kan ikke komme først",
+      "situation": [
+        "Utkastet har alle poengene, men leseren må grave etter hovedsaken.",
+        "Struktur er prioritering: rekkefølge, avsnittsfunksjon og overgang forteller hva som er viktigst.",
+        "En disposisjon kan avsløre hull før setningene blir dyre å gi slipp på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi hvert avsnitt én tydelig funksjon og flytte hovedpoenget dit leseren trenger det.",
+          "effect": 1,
+          "tags": [
+            "structure",
+            "hierarchy",
+            "coherence"
+          ],
+          "feedback": "Valget bruker komposisjon til å redusere arbeid for leseren."
+        },
+        {
+          "id": "B",
+          "label": "Beholde rekkefølgen fordi alle opplysningene jo finnes et sted i teksten.",
+          "effect": -1,
+          "tags": [
+            "information_dump",
+            "reader_work",
+            "structure_drift"
+          ],
+          "feedback": "Valget gjør tilstedeværelse av informasjon til erstatning for organisering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_strukturen_som_prioriterer"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klart_uten_a_bli_flatt",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Omskrivingen",
+      "subject": "Klarhet er ikke bare korthet",
+      "situation": [
+        "En redigering har gjort teksten kortere, men også fjernet den presise forskjellen mellom to begreper.",
+        "Klar tekst reduserer unødvendig friksjon uten å viske ut reelle nyanser.",
+        "Noen ganger trenger en setning flere ord for å bli mindre misvisende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fjerne det overflødige, men beholde de skillet og forbeholdene som bærer betydningen.",
+          "effect": 1,
+          "tags": [
+            "clarity",
+            "precision",
+            "revision"
+          ],
+          "feedback": "Valget skiller mellom enkel formulering og forenklet innhold."
+        },
+        {
+          "id": "B",
+          "label": "Kutte alle forbehold fordi korte setninger alltid er klarere.",
+          "effect": -1,
+          "tags": [
+            "oversimplification",
+            "compression",
+            "meaning_loss"
+          ],
+          "feedback": "Valget gjør korthet til et mål løsrevet fra betydning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_klart_uten_a_bli_flatt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stemmen_uten_lant_autoritet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tonen",
+      "subject": "Hvem får du lov til å høres ut som?",
+      "situation": [
+        "Utkastet låner den bastante tonen til en fagperson selv om du selv bare formidler materialet.",
+        "En skribent kan være tydelig uten å late som teksten har mer ekspertise enn kildene og rollen gir.",
+        "Stemme handler også om hvilken autoritet teksten påstår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive tydelig fra den rollen du faktisk har og markere når ekspertise eller vurdering kommer fra andre.",
+          "effect": 1,
+          "tags": [
+            "voice",
+            "authority_boundary",
+            "attribution"
+          ],
+          "feedback": "Valget gjør stemmen troverdig fordi myndigheten ikke overdrives."
+        },
+        {
+          "id": "B",
+          "label": "Bruke sikker faglig tone uten markering fordi tvil svekker teksten.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "overclaim",
+            "social_mask"
+          ],
+          "feedback": "Valget låner autoritet teksten ikke selv kan dokumentere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_stemmen_uten_lant_autoritet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_og_parafrasen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Kildemappen",
+      "subject": "Hva er ditt språk, og hva kommer fra andre?",
+      "situation": [
+        "Notatene dine blander direkte formuleringer fra en kilde med egne sammendrag.",
+        "Når proveniens forsvinner i arbeidsprosessen, øker risikoen for feil sitat, umerket lån og feil attribusjon.",
+        "God skriving trenger sporbarhet også før sluttproduktet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merke sitat, parafrase og egen formulering tydelig i notatene og kontrollere dem mot originalen.",
+          "effect": 1,
+          "tags": [
+            "attribution",
+            "provenance",
+            "source_hygiene"
+          ],
+          "feedback": "Valget bevarer skillet mellom kilde og egen tekst gjennom revisjonen."
+        },
+        {
+          "id": "B",
+          "label": "Rydde kildene først helt til slutt når formuleringene allerede er blandet sammen.",
+          "effect": -1,
+          "tags": [
+            "provenance_loss",
+            "citation_risk",
+            "delay"
+          ],
+          "feedback": "Valget gjør kildekontroll vanskeligere jo mer teksten bearbeides."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_sitatet_og_parafrasen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utkastet_som_ikke_er_dom",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Andreutkastet",
+      "subject": "Første løsning er ikke identiteten din",
+      "situation": [
+        "Du har brukt tid på et avsnitt som fungerer, men resten av teksten blir bedre hvis det bygges om.",
+        "Profesjonell skrivepraksis innebærer at struktur og formulering kan forkastes uten at arbeidet dermed var bortkastet.",
+        "Utkast er arbeidsmateriale, ikke bevis på egen verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskrive fra tekstens behov og bruke det gamle avsnittet som råstoff i stedet for hellig tekst.",
+          "effect": 1,
+          "tags": [
+            "revision",
+            "detachment",
+            "craft"
+          ],
+          "feedback": "Valget gjør revisjon til metode fremfor nederlag."
+        },
+        {
+          "id": "B",
+          "label": "Beholde avsnittet fordi tidsbruken allerede gjør det for dyrt å endre.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost",
+            "attachment",
+            "stagnation"
+          ],
+          "feedback": "Valget lar tidligere innsats styre en tekst som har fått nye behov."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_utkastet_som_ikke_er_dom"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "redaktorens_problem_ikke_losning",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Redaktøren",
+      "subject": "Tilbakemeldingen peker på noe, men hva?",
+      "situation": [
+        "En redaktør foreslår en konkret omskriving du ikke synes passer.",
+        "Tilbakemeldingen kan likevel avsløre et reelt problem i tempo, forståelighet eller struktur.",
+        "Skribentens ansvar er å forstå problemet før løsningen velges."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om eller utlede hvilket problem redaktøren reagerer på, og finne den løsningen som best tjener teksten.",
+          "effect": 1,
+          "tags": [
+            "editorial_feedback",
+            "judgment",
+            "revision"
+          ],
+          "feedback": "Valget bruker redigering som diagnose uten å gi fra seg alt faglig skjønn."
+        },
+        {
+          "id": "B",
+          "label": "Avvise hele tilbakemeldingen fordi det konkrete løsningsforslaget var dårlig.",
+          "effect": -1,
+          "tags": [
+            "defensiveness",
+            "feedback_loss",
+            "ego"
+          ],
+          "feedback": "Valget kaster bort informasjonen om leserreaksjonen sammen med løsningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_redaktorens_problem_ikke_losning"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_og_sannheten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Klokken",
+      "subject": "Levering uten å dikte ferdig",
+      "situation": [
+        "Fristen nærmer seg, og én opplysning mangler bekreftelse.",
+        "Tidspress er reelt, men det gjør ikke en ubekreftet påstand mer sann.",
+        "Skribentarbeid krever valg mellom omfang, formulering og dokumentasjon når alt ikke rekker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Redusere omfanget eller markere usikkerheten i stedet for å fylle hullet med en antakelse.",
+          "effect": 1,
+          "tags": [
+            "deadline",
+            "scope_control",
+            "source_integrity"
+          ],
+          "feedback": "Valget beskytter troverdigheten ved å la omfanget bøye seg før sannhetskravet."
+        },
+        {
+          "id": "B",
+          "label": "Fylle inn den mest sannsynlige opplysningen for å levere en komplett tekst i tide.",
+          "effect": -1,
+          "tags": [
+            "deadline_pressure",
+            "fabrication_risk",
+            "completion_bias"
+          ],
+          "feedback": "Valget gjør komplett levering viktigere enn etterprøvbarhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_fristen_og_sannheten"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publisering_er_en_hendelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Publiseringen",
+      "subject": "Teksten kom ut, men hva betyr det?",
+      "situation": [
+        "En tekst blir publisert og får oppmerksomhet.",
+        "Publisering kan gi erfaring, lesere og omdømme, men er ikke i seg selv bevis på fast jobb, varig autoritet eller stabil inntekt.",
+        "Skribentidentiteten må tåle både publiserte og upubliserte perioder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle publiseringen som én dokumentert hendelse og vurdere hva du faktisk lærte av teksten og responsen.",
+          "effect": 1,
+          "tags": [
+            "publication",
+            "reputation",
+            "learning"
+          ],
+          "feedback": "Valget lar publisering få konsekvenser uten å gjøre den til hele identiteten."
+        },
+        {
+          "id": "B",
+          "label": "Tolke publisering som bevis på at du nå automatisk har profesjonell posisjon og nye oppdrag.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "career_drift",
+            "automatic_opportunity"
+          ],
+          "feedback": "Valget blander en publiseringshendelse med jobbstatus og framtidig marked."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_publisering_er_en_hendelse"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppdraget_er_en_avtale",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Oppdragsgiveren",
+      "subject": "Betaling må ha en egen kontrakt",
+      "situation": [
+        "Noen spør om du kan skrive en tekst til et arrangement eller en nettside.",
+        "At du er Skribent betyr ikke at oppdrag, pris, rettigheter, deadline eller betaling allerede finnes.",
+        "Et konkret oppdrag krever egne vilkår og aksept."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare leveranse, bruk, frist, honorar og ansvar som en separat avtale før arbeidet behandles som betalt oppdrag.",
+          "effect": 1,
+          "tags": [
+            "commission",
+            "terms",
+            "livelihood_boundary"
+          ],
+          "feedback": "Valget holder identitet, oppdrag og inntekt som tre forskjellige lag."
+        },
+        {
+          "id": "B",
+          "label": "Begynne å levere fordi forespørselen i seg selv må bety at betaling og vilkår ordner seg senere.",
+          "effect": -1,
+          "tags": [
+            "unpriced_work",
+            "contract_drift",
+            "income_assumption"
+          ],
+          "feedback": "Valget gjør en sosial forespørsel til økonomisk avtale uten bevis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_oppdraget_er_en_avtale"
+      ],
+      "risk_links": [
+        "finance_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "portefoljen_som_larer",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Arbeidsmappen",
+      "subject": "Hva viser arbeidene samlet?",
+      "situation": [
+        "Du har tekster fra ulike sjangre, målgrupper og grader av redigering.",
+        "En portefølje kan være mer enn utstillingsvindu: den kan vise hvilke problemer du løser godt og hvor du gjentar de samme svakhetene.",
+        "Læring krever at også middelmådige og avviste tekster kan gi data."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenligne brief, utkast, redigering og sluttresultat på tvers av tekster og velge ett konkret mønster å forbedre.",
+          "effect": 1,
+          "tags": [
+            "portfolio",
+            "reflection",
+            "practice"
+          ],
+          "feedback": "Valget gjør tidligere arbeid til systematisk læring fremfor bare statusbevis."
+        },
+        {
+          "id": "B",
+          "label": "Beholde bare de mest vellykkede tekstene og unngå resten fordi de svekker selvbildet.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "status_anxiety",
+            "learning_loss"
+          ],
+          "feedback": "Valget gjør porteføljen penere, men læringsgrunnlaget smalere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skribent_portefoljen_som_larer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

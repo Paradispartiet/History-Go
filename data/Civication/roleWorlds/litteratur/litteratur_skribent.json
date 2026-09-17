@@ -1,0 +1,1195 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_skribent",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "skribent",
+    "label": "Skribent"
+  },
+  "title": "Skribent — brief, leser, kilde, struktur, redigering og leveranse",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å produsere formålsrettet og etterprøvbar tekst for ulike lesere og sjangre uten at stil, tidspress, publisering, bestillermakt eller profesjonell status blir erstatning for kildeansvar og selvstendig redaksjonelt skjønn",
+    "description": "Skribent er en employment-independent professional_practice for formålsrettet tekstpraksis med brief, leser og register, kilde og påstand, sjanger, struktur, klarhet, stemme og autoritetsgrense, attribusjon, revisjon, redigering, frist, publisering, oppdrag og porteføljelæring. Skribent er tydelig forskjellig fra Forfatter som bredere litterær og skapende forfatterpraksis og fra Poet som lyrisk praksis med særlig arbeid i bilde, rytme, linje og diktkomposisjon. Skribentstatus gir ingen automatisk jobb, lønn, honorar, kontrakt, publiseringsplass eller oppdrag; slike livelihood- og arbeidsforhold krever separat proveniens og aksept. Rollen introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "arbeidsbord og notatmapper der brief, kilder, struktur og utkast må holdes adskilt nok til å kunne revideres",
+    "redaksjonelle samtaler der tekstens problem kan identifiseres uten at redaktørens første løsning blir automatisk fasit",
+    "oppdragsdialoger der formål, målgruppe, leveranse, rettigheter, frist og betaling må avklares eksplisitt",
+    "publiseringsflater der kanal, sjanger, leserforventning og omdømme påvirker teksten uten å skape automatisk jobbstatus",
+    "kilde- og faktasjekksituasjoner der sterke formuleringer må tåle dokumentasjon og attribusjon",
+    "skribentmiljøer der stil, profesjonalitet, portefølje og status kan komme i konflikt med leserens faktiske behov"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "oppdragsgiveren",
+      "social_function": "gjør brief, leveranse, bruk, frist og betaling til eksplisitte makt- og avtaleforhold",
+      "class_position": "kunde, organisasjon eller institusjon med et konkret tekstbehov",
+      "status": "situert bestiller- og budsjettmakt over ett mulig oppdrag",
+      "power_over_player": "kan definere behov, akseptere leveranse og tilby honorar, men kan ikke gjøre Skribent til fast jobb eller eie all faglig autoritet",
+      "wants": "en tekst som løser et tydelig formål innen avtalte rammer",
+      "conceals": "at ønsker om fart, profil og enkelhet kan presse mot overforenkling eller gratis merarbeid",
+      "speech_style": "målrettet, praktisk og leveranseorientert",
+      "teaches_player": "at identitet, oppdrag, kontrakt og inntekt er forskjellige lag"
+    },
+    {
+      "id": "redaktoren",
+      "social_function": "gjør lesbarhet, struktur, redigering og institusjonelle prioriteringer konkrete",
+      "class_position": "redaksjonell yrkesrolle med ansvar for kvalitet, format eller publisering",
+      "status": "institusjonell tekst- og publiseringsmakt i en konkret sammenheng",
+      "power_over_player": "kan kreve omarbeiding eller avvise en tekst, men kan ikke eie alle faglige løsninger",
+      "wants": "at teksten fungerer for leser, kanal og formål",
+      "conceals": "at redaksjonelle preferanser også kan være vane, profil eller knapphet forklart som universell kvalitet",
+      "speech_style": "kort, diagnostisk og prioriterende",
+      "teaches_player": "å skille problemet en tilbakemelding peker på fra løsningsforslaget som følger med"
+    },
+    {
+      "id": "fagkilden",
+      "social_function": "gjør skillet mellom skribentstemme, ekspertise, sitat og attribusjon synlig",
+      "class_position": "fagperson eller primærkilde med kunnskap skribenten trenger",
+      "status": "kunnskapsautoritet på et avgrenset felt, ikke redaksjonell eier av hele teksten",
+      "power_over_player": "kan korrigere fakta og nyanser og trekke tilbake støtte til feilaktig attribusjon",
+      "wants": "at egne utsagn og faglige forbehold gjengis presist",
+      "conceals": "at ekspertise på ett felt ikke nødvendigvis gir god vurdering av hele tekstens formål",
+      "speech_style": "presis, korrigerende og forbeholdsbevisst",
+      "teaches_player": "at tydelig tekst ikke krever at skribenten låner mer autoritet enn kilden gir"
+    },
+    {
+      "id": "faktasjekkeren",
+      "social_function": "gjør dokumentasjon, kildeproveniens og påstandsstyrke til konkret kvalitetsarbeid",
+      "class_position": "redaksjonell eller kollegial kontrollfunksjon",
+      "status": "prosessmakt over etterprøvbarhet, ikke over skribentidentiteten",
+      "power_over_player": "kan stoppe eller svekke en formulering som ikke kan dokumenteres",
+      "wants": "sporbare kilder og formuleringer som ikke er sterkere enn beviset",
+      "conceals": "at også faktasjekk kan bli mekanisk hvis kontekst og språknyanse ignoreres",
+      "speech_style": "spørrende, dokumenterende og konkret",
+      "teaches_player": "å behandle flyt og sannsynlighet som noe annet enn dokumentasjon"
+    },
+    {
+      "id": "den_faktiske_leseren",
+      "social_function": "representerer mottakerens forkunnskap, tid, spørsmål og mulige misforståelser",
+      "class_position": "leser uten formell makt over produksjonen",
+      "status": "erfarings- og forståelsesautoritet som mottaker",
+      "power_over_player": "kan avsløre at en teknisk korrekt tekst likevel er uklar, feilprioritert eller dårlig tilpasset",
+      "wants": "å forstå hva som er viktig og hvorfor teksten angår situasjonen",
+      "conceals": "at én leser ikke representerer hele målgruppen",
+      "speech_style": "direkte, konkret og uten redaksjonelt fagspråk",
+      "teaches_player": "at tilgjengelighet handler om å redusere unødvendig leserarbeid uten å flate ut innholdet"
+    },
+    {
+      "id": "medskribenten",
+      "social_function": "gjør håndverk, sammenligning, portefølje, status og kollegial støtte sosialt konkret",
+      "class_position": "annen selvstendig eller institusjonelt tilknyttet tekstprodusent",
+      "status": "situert profesjonsstatus med varierende publiserings- og oppdragserfaring",
+      "power_over_player": "kan gi motlesning, dele arbeidsmetoder og påvirke normer for hva som teller som profesjonelt",
+      "wants": "at teksten løser oppgaven uten å miste presisjon eller egen dømmekraft",
+      "conceals": "at egen karrierebane og stil lett kan bli presentert som normalmodell",
+      "speech_style": "kollegial, konkret og metodeorientert",
+      "teaches_player": "at profesjonell praksis kan utvikles uten at én publisering, kunde eller arbeidsgiver definerer identiteten"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "brief",
+      "meaning": "brief, formål og scope",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "audience",
+      "meaning": "leser, register og forkunnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_claim",
+      "meaning": "kilde, påstand og dokumentasjonsstyrke",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "genre",
+      "meaning": "sjanger, kanal og forventningskontrakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "structure",
+      "meaning": "struktur, prioritering og avsnittsfunksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "clarity",
+      "meaning": "klarhet, presisjon og nødvendig nyanse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "voice_authority",
+      "meaning": "stemme, rolle og autoritetsgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attribution",
+      "meaning": "sitat, parafrase og proveniens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision",
+      "meaning": "utkast, omskriving og faglig distanse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editorial_feedback",
+      "meaning": "redigering, problemforståelse og selvstendig løsning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "deadline",
+      "meaning": "frist, omfang og sannhetskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "publication",
+      "meaning": "publisering, omdømme og statusgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commission",
+      "meaning": "oppdrag, kontrakt og honorargrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "portfolio",
+      "meaning": "portefølje, refleksjon og praksislæring",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: brief, formål og scope. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "brief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: brief, formål og scope. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "brief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: brief, formål og scope. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "commission",
+          "portfolio",
+          "brief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: brief, formål og scope. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "commission",
+          "portfolio",
+          "brief"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: leser, register og forkunnskap. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "audience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: leser, register og forkunnskap. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "audience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: leser, register og forkunnskap. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "portfolio",
+          "brief",
+          "audience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: leser, register og forkunnskap. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "portfolio",
+          "brief",
+          "audience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: kilde, påstand og dokumentasjonsstyrke. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "source_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#pastanden_med_kilde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: kilde, påstand og dokumentasjonsstyrke. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "source_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#pastanden_med_kilde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: kilde, påstand og dokumentasjonsstyrke. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "brief",
+          "audience",
+          "source_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#pastanden_med_kilde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: kilde, påstand og dokumentasjonsstyrke. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "brief",
+          "audience",
+          "source_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#pastanden_med_kilde"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: sjanger, kanal og forventningskontrakt. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "genre"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sjangerens_kontrakt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: sjanger, kanal og forventningskontrakt. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "genre"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sjangerens_kontrakt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: sjanger, kanal og forventningskontrakt. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "audience",
+          "source_claim",
+          "genre"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sjangerens_kontrakt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: sjanger, kanal og forventningskontrakt. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "audience",
+          "source_claim",
+          "genre"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sjangerens_kontrakt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: struktur, prioritering og avsnittsfunksjon. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#strukturen_som_prioriterer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: struktur, prioritering og avsnittsfunksjon. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#strukturen_som_prioriterer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: struktur, prioritering og avsnittsfunksjon. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "source_claim",
+          "genre",
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#strukturen_som_prioriterer"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: struktur, prioritering og avsnittsfunksjon. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "source_claim",
+          "genre",
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#strukturen_som_prioriterer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: klarhet, presisjon og nødvendig nyanse. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#klart_uten_a_bli_flatt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: klarhet, presisjon og nødvendig nyanse. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#klart_uten_a_bli_flatt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: klarhet, presisjon og nødvendig nyanse. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "genre",
+          "structure",
+          "clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#klart_uten_a_bli_flatt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: klarhet, presisjon og nødvendig nyanse. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "genre",
+          "structure",
+          "clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#klart_uten_a_bli_flatt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: stemme, rolle og autoritetsgrense. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "voice_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#stemmen_uten_lant_autoritet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: stemme, rolle og autoritetsgrense. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "voice_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#stemmen_uten_lant_autoritet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: stemme, rolle og autoritetsgrense. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "structure",
+          "clarity",
+          "voice_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#stemmen_uten_lant_autoritet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: stemme, rolle og autoritetsgrense. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "structure",
+          "clarity",
+          "voice_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#stemmen_uten_lant_autoritet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: sitat, parafrase og proveniens. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: sitat, parafrase og proveniens. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: sitat, parafrase og proveniens. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "clarity",
+          "voice_authority",
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: sitat, parafrase og proveniens. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "clarity",
+          "voice_authority",
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: utkast, omskriving og faglig distanse. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: utkast, omskriving og faglig distanse. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: utkast, omskriving og faglig distanse. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "voice_authority",
+          "attribution",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: utkast, omskriving og faglig distanse. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "voice_authority",
+          "attribution",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: redigering, problemforståelse og selvstendig løsning. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "editorial_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#redaktorens_problem_ikke_losning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: redigering, problemforståelse og selvstendig løsning. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "editorial_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#redaktorens_problem_ikke_losning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: redigering, problemforståelse og selvstendig løsning. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "attribution",
+          "revision",
+          "editorial_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#redaktorens_problem_ikke_losning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: redigering, problemforståelse og selvstendig løsning. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "attribution",
+          "revision",
+          "editorial_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#redaktorens_problem_ikke_losning"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: frist, omfang og sannhetskrav. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "deadline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#fristen_og_sannheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: frist, omfang og sannhetskrav. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "deadline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#fristen_og_sannheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: frist, omfang og sannhetskrav. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "revision",
+          "editorial_feedback",
+          "deadline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#fristen_og_sannheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: frist, omfang og sannhetskrav. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "revision",
+          "editorial_feedback",
+          "deadline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#fristen_og_sannheten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: publisering, omdømme og statusgrense. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "publication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#publisering_er_en_hendelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: publisering, omdømme og statusgrense. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "publication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#publisering_er_en_hendelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: publisering, omdømme og statusgrense. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "editorial_feedback",
+          "deadline",
+          "publication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#publisering_er_en_hendelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: publisering, omdømme og statusgrense. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "editorial_feedback",
+          "deadline",
+          "publication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#publisering_er_en_hendelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: oppdrag, kontrakt og honorargrense. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "commission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: oppdrag, kontrakt og honorargrense. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "commission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: oppdrag, kontrakt og honorargrense. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "deadline",
+          "publication",
+          "commission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: oppdrag, kontrakt og honorargrense. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "deadline",
+          "publication",
+          "commission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: portefølje, refleksjon og praksislæring. Morgenen avgrenser tekstoppgaven og gjør formål, kilde eller mottakerbehov observerbart før et valg tas.",
+        "thread_ids": [
+          "portfolio"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#portefoljen_som_larer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: portefølje, refleksjon og praksislæring. Midt på dagen møter praksisen en leser, kilde, redaktør, bestiller eller kollega som gjør premisser og maktforhold synlige.",
+        "thread_ids": [
+          "portfolio"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#portefoljen_som_larer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: portefølje, refleksjon og praksislæring. Ettermiddagen krever et konkret valg om tekst, kilde, struktur, redigering, frist eller avtalegrense.",
+        "thread_ids": [
+          "publication",
+          "commission",
+          "portfolio"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#portefoljen_som_larer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: portefølje, refleksjon og praksislæring. Kvelden viser hvordan valget endrer teksten, tilliten, arbeidsmåten, omdømmet eller neste revisjon.",
+        "thread_ids": [
+          "publication",
+          "commission",
+          "portfolio"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skribent.json#portefoljen_som_larer"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "brief",
+      "relationship": "brief, formål og scope",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "audience",
+      "relationship": "leser, register og forkunnskap",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "source_claim",
+      "relationship": "kilde, påstand og dokumentasjonsstyrke",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "genre",
+      "relationship": "sjanger, kanal og forventningskontrakt",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "structure",
+      "relationship": "struktur, prioritering og avsnittsfunksjon",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "clarity",
+      "relationship": "klarhet, presisjon og nødvendig nyanse",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "voice_authority",
+      "relationship": "stemme, rolle og autoritetsgrense",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "attribution",
+      "relationship": "sitat, parafrase og proveniens",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "revision",
+      "relationship": "utkast, omskriving og faglig distanse",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "editorial_feedback",
+      "relationship": "redigering, problemforståelse og selvstendig løsning",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "deadline",
+      "relationship": "frist, omfang og sannhetskrav",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "publication",
+      "relationship": "publisering, omdømme og statusgrense",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "commission",
+      "relationship": "oppdrag, kontrakt og honorargrense",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "portfolio",
+      "relationship": "portefølje, refleksjon og praksislæring",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "briefet_sitter",
+      "description": "Tekster starter oftere med eksplisitt formål, mottaker og scope før formuleringen får dominere.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen"
+      ]
+    },
+    {
+      "id": "kildesporet_sitter",
+      "description": "Påstander, sitater, parafraser og egne formuleringer får tydeligere proveniens gjennom arbeidsprosessen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen"
+      ]
+    },
+    {
+      "id": "revisjon_uten_dom",
+      "description": "Omskriving blir behandlet som normalt håndverk fremfor dom over egen verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom"
+      ]
+    },
+    {
+      "id": "leseren_er_synlig",
+      "description": "Register, struktur og klarhet prøves oftere mot mottakerens faktiske behov og forkunnskap.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen"
+      ]
+    },
+    {
+      "id": "oppdraget_er_separat",
+      "description": "Skribentidentitet holdes separat fra publisering, kontrakt, honorar, jobb og andre livelihood-hendelser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "briefet_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kilden_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "stemmen_returnerer",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "revisjonen_returnerer",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "fristen_returnerer",
+      "setup_ref": "11/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "stress",
+        "reputation"
+      ]
+    },
+    {
+      "id": "oppdraget_returnerer",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "finance",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_skribent.json#brief_for_setningen",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#leseren_for_stilen",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#pastanden_med_kilde",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#sjangerens_kontrakt",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#strukturen_som_prioriterer",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#klart_uten_a_bli_flatt",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#stemmen_uten_lant_autoritet",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#sitatet_og_parafrasen",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#utkastet_som_ikke_er_dom",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#redaktorens_problem_ikke_losning",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#fristen_og_sannheten",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#publisering_er_en_hendelse",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#oppdraget_er_en_avtale",
+      "data/Civication/narratives/leisure/litteratur_skribent.json#portefoljen_som_larer"
+    ]
+  }
+}
