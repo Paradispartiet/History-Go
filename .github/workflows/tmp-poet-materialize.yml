@@ -20,6 +20,29 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Harden temporary policy binding
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('scripts/tmp-materialize-poet.mjs')
+          text = p.read_text()
+          old = "policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds = 102;"
+          new = """const findCompletedPolicy = (node) => {
+            if (!node || typeof node !== 'object') return null;
+            if (Object.prototype.hasOwnProperty.call(node, 'completed_life_position_role_worlds')) return node;
+            for (const value of Object.values(node)) {
+              const found = findCompletedPolicy(value);
+              if (found) return found;
+            }
+            return null;
+          };
+          const completedPolicy = findCompletedPolicy(policy);
+          if (!completedPolicy) throw new Error('Could not locate completed_life_position_role_worlds in roleWorldPolicy');
+          completedPolicy.completed_life_position_role_worlds = 102;"""
+          if old not in text:
+              raise SystemExit('Expected policy assignment not found')
+          p.write_text(text.replace(old, new))
+          PY
       - name: Materialize Poet and synchronize governance
         run: |
           node scripts/tmp-materialize-poet.mjs
