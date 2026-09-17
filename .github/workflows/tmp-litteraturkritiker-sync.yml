@@ -1,0 +1,32 @@
+name: Temporary Litteraturkritiker canonical sync
+on:
+  push:
+    branches:
+      - civication/litteratur-litteraturkritiker-role-world
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/litteratur-litteraturkritiker-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Generate and verify canonical Litteraturkritiker package
+        run: node scripts/audit-civication-litteraturkritiker-sync.mjs
+      - name: Remove temporary sync machinery and commit canonical state
+        run: |
+          rm -f scripts/audit-civication-litteraturkritiker-sync.mjs .github/workflows/tmp-litteraturkritiker-sync.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "Civication: materialize Litteraturkritiker Role World"
+          git push origin HEAD:civication/litteratur-litteraturkritiker-role-world
