@@ -47,6 +47,18 @@ jobs:
         run: |
           node scripts/tmp-materialize-poet.mjs
           node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Synchronize taxonomy summary expectation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/civication-noncareer-role-taxonomy.test.js')
+          text = p.read_text()
+          old = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 186, career_role_worlds: 85, life_position_role_worlds: 101 });"
+          new = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 187, career_role_worlds: 85, life_position_role_worlds: 102 });"
+          if old not in text:
+              raise SystemExit('Expected stale roleWorldIndex.summary assertion not found')
+          p.write_text(text.replace(old, new))
+          PY
       - name: Verify targeted Poet contracts
         run: |
           node tests/civication-poet-life-position-readiness.test.js
