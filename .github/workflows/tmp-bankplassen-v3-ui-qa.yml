@@ -86,11 +86,10 @@ jobs:
                   const pos = window.HGPos?.getPos?.();
                   return Boolean(pos && Number.isFinite(pos.lat) && Number.isFinite(pos.lon));
                 }, null, { timeout: 30000 });
-                await page.waitForFunction(() => {
-                  const discoveredId = String(window.HG_LAST_DISCOVERED_PLACE_ID || '').trim();
+                await page.waitForFunction((targetPlaceId) => {
                   const currentId = String(document.querySelector('#placeCard')?.dataset?.currentPlaceId || '').trim();
-                  return Boolean(discoveredId) && currentId === discoveredId;
-                }, null, { timeout: 30000 });
+                  return Boolean(currentId) && currentId !== targetPlaceId;
+                }, placeId, { timeout: 30000 });
 
                 await page.evaluate(() => window.HGAppRouter?.render?.());
                 await page.waitForSelector('#placeCard[aria-hidden="false"]', { state: 'visible', timeout: 60000 });
