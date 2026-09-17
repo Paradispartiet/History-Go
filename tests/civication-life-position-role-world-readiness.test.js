@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 102,
-  needs_authored_depth: 57,
+  ready: 103,
+  needs_authored_depth: 56,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 102);
+assert.equal(audit.summary.completed_life_position_role_worlds, 103);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 102);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 102);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 103);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 103);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -895,4 +895,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 102 ready / 57 authored-depth / 40 not-standalone; 102 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 103 ready / 56 authored-depth / 40 not-standalone; 103 complete / no pending-ready');

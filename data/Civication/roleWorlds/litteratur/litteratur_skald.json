@@ -1,0 +1,1197 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_skald",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "skald",
+    "label": "Skald"
+  },
+  "title": "Skald — muntlighet, metrum, kenning, kilde og historisk rekonstruksjon",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke en krevende historisk poetisk tradisjon som moderne praksis uten å gjøre teknisk vanskelighet, arkaisk språk, lovprisning eller selvvalgt identitet til falsk historisk autoritet",
+    "description": "Skald er en employment-independent historical_stylistic_identity for moderne arbeid med skaldisk og norrønt inspirert form. Rollen undersøker muntlighet og hukommelse, allitterasjon, metrum og skandering, kenning og spesialisert diksjon, lovprisning og patronasje, genealogi og historisk minne, framføring, manuskripttransmisjon, gammelnorsk språkgrense, rekonstruksjon, ære/vold i kontekst og publikums medhukommelse. Skald er tydelig forskjellig fra Poet: Poet dekker bred moderne lyrisk praksis, mens Skald krever eksplisitt forhold til historiske former, kilder og rekonstruksjonsgrenser. Betegnelsen gir ingen middelaldersk rolle, historisk autentisitetsstempel, faglig kildeautoritet, ansettelse, oppdrag, inntekt, jobb eller lønn. Eventuell betaling eller bestilling må komme gjennom eksisterende livelihood-/økonomikjeder. Rollen introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "social_mask",
+    "alienation",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "arbeidsbord og høytlesningsøkter der lyd, metrum, kenninger og diksjon prøves konkret",
+    "bibliotek, arkiv og digitale tekstutgaver der manuskript, datering, språk og proveniens kan kontrolleres",
+    "litterære og historiske miljøer der moderne rekonstruksjon møter ulike krav til autentisitet",
+    "opplesninger og arrangementer der kompleks form må fungere for et faktisk publikum",
+    "samtaler med filologer, historikere og lesere som skiller kildebevis fra kunstnerisk frihet",
+    "bestillingssituasjoner der lovprisning, betaling, omdømme og sannhetskrav kan trekke i ulike retninger"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "norrønfilologen",
+      "social_function": "gjør språk, metrum og kildeusikkerhet etterprøvbart",
+      "class_position": "fagperson med kompetanse i norrønt språk og middelaldertekster",
+      "status": "kilde- og språkfaglig autoritet, ikke kunstnerisk fasit",
+      "power_over_player": "kan avdekke feil i språkbruk, datering og formpåstander, men kan ikke tildele skaldidentitet",
+      "wants": "at historiske påstander er mindre enn eller lik kildegrunnlaget",
+      "conceals": "at faglig presisjon også kan bli et statusspråk som skremmer bort nye utøvere",
+      "speech_style": "presis, kildebevisst og tydelig om usikkerhet",
+      "teaches_player": "å skille dokumentert form, sannsynlig rekonstruksjon og moderne oppfinnelse"
+    },
+    {
+      "id": "medskalden",
+      "social_function": "gjør håndverk, konkurranse og moderne tradisjonsbruk sosialt konkret",
+      "class_position": "moderne utøver som arbeider med skaldisk eller norrønt inspirert form",
+      "status": "situert miljøstatus uten historisk embete",
+      "power_over_player": "kan gi motlesning og påvirke miljøets normer for form og autentisitet",
+      "wants": "at teknisk vanskelighet brukes til å skape mening, ikke bare status",
+      "conceals": "at egen foretrukne rekonstruksjon lett kan presenteres som den eneste legitime",
+      "speech_style": "teknisk, muntlig og konkurransepreget",
+      "teaches_player": "at tradisjonspraksis krever både disiplin og eksplisitte grenser"
+    },
+    {
+      "id": "arkivaren",
+      "social_function": "holder manuskript, katalog, datering og tekstvitne adskilt fra forestillingen om en original framføring",
+      "class_position": "arkiv- eller bibliotekfaglig forvalter",
+      "status": "institusjonell tilgangs- og provenienskunnskap",
+      "power_over_player": "kan gi tilgang til kilder og korrigere påstander om overlevering",
+      "wants": "at sitat, tekstvitne og kildehistorie beskrives korrekt",
+      "conceals": "at institusjonelle kataloger også er historiske produkter med egne begrensninger",
+      "speech_style": "kort, dokumenterende og forbeholden",
+      "teaches_player": "at et bevart manuskript er et vitne, ikke et lydopptak av opprinnelsen"
+    },
+    {
+      "id": "opplesningsverten",
+      "social_function": "gjør framføring, tid, publikum og praktiske vilkår konkrete",
+      "class_position": "arrangør i litteratur- eller historiearena",
+      "status": "lokal program- og scenemakt",
+      "power_over_player": "kan invitere og sette rammer for framføring, men ikke gjøre moderne praksis historisk autentisk",
+      "wants": "en framføring publikum kan følge og en tydelig presentasjon av hva som er historisk og moderne",
+      "conceals": "at arrangementets behov for tydelig profil kan presse fram enklere autentisitetsfortellinger",
+      "speech_style": "praktisk, tidsbevisst og publikumsorientert",
+      "teaches_player": "at sceneformat og sannhetskrav må forhandles separat"
+    },
+    {
+      "id": "historieleseren",
+      "social_function": "representerer et interessert publikum som spør hva som faktisk er bevart",
+      "class_position": "engasjert leser uten formell institusjonell myndighet",
+      "status": "uformell tillit og nysgjerrighet",
+      "power_over_player": "kan avsløre når teksten blander historie, myte og moderne rekonstruksjon",
+      "wants": "å kunne nyte formen uten å bli villedet om kildestatus",
+      "conceals": "at også publikum kan foretrekke den mest dramatiske versjonen",
+      "speech_style": "direkte, konkret og spørsmålsdrevet",
+      "teaches_player": "at forståelig kildegrense styrker snarere enn svekker fortellingen"
+    },
+    {
+      "id": "bestilleren",
+      "social_function": "gjør lovprisning, patronasje, omdømme og betaling til eksplisitte maktforhold",
+      "class_position": "moderne oppdragsgiver eller institusjon som ønsker en historiserende tekst",
+      "status": "økonomisk eller organisatorisk makt over et konkret oppdrag",
+      "power_over_player": "kan tilby betaling og synlighet, men ikke eie den historiske sannheten eller skaldidentiteten",
+      "wants": "en tekst som fungerer for anledning og publikum",
+      "conceals": "at ønsket om glans kan skape press mot overdrivelse og falsk autentisitet",
+      "speech_style": "målrettet, omdømmebevisst og resultatorientert",
+      "teaches_player": "at betaling, lovprisning og kildeansvar er tre forskjellige spørsmål"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "oral_memory",
+      "meaning": "muntlighet, lyd og hukommelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "alliteration",
+      "meaning": "allitterasjon og trykk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "meter",
+      "meaning": "metrisk kontroll og eksplisitt formvalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "kenning",
+      "meaning": "kenning, billedledd og semantisk presisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "diction",
+      "meaning": "historisk diksjon uten språklig kostyme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "praise_truth",
+      "meaning": "lovprisning, patronasje og maktgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "genealogy_memory",
+      "meaning": "genealogi, minne og kildekritikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "performance",
+      "meaning": "framføring, syntaks og lytterorientering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "manuscript_transmission",
+      "meaning": "manuskript, overlevering og proveniens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "historical_language",
+      "meaning": "gammelnorsk språkgrense og autentisitetskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reconstruction",
+      "meaning": "rekonstruksjon, usikkerhet og kildegrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_ethics",
+      "meaning": "ære, vold og historisk kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "audience_memory",
+      "meaning": "publikum, formular og medhukommelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "modern_boundary",
+      "meaning": "moderne skaldisk identitet uten historisk embete eller automatisk inntekt",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: muntlighet, lyd og hukommelse. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "oral_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: muntlighet, lyd og hukommelse. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "oral_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: muntlighet, lyd og hukommelse. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "audience_memory",
+          "modern_boundary",
+          "oral_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: muntlighet, lyd og hukommelse. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "audience_memory",
+          "modern_boundary",
+          "oral_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: allitterasjon og trykk. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "alliteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#allitterasjonen_som_baerer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: allitterasjon og trykk. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "alliteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#allitterasjonen_som_baerer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: allitterasjon og trykk. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "modern_boundary",
+          "oral_memory",
+          "alliteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#allitterasjonen_som_baerer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: allitterasjon og trykk. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "modern_boundary",
+          "oral_memory",
+          "alliteration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#allitterasjonen_som_baerer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: metrisk kontroll og eksplisitt formvalg. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "meter"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: metrisk kontroll og eksplisitt formvalg. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "meter"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: metrisk kontroll og eksplisitt formvalg. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "oral_memory",
+          "alliteration",
+          "meter"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: metrisk kontroll og eksplisitt formvalg. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "oral_memory",
+          "alliteration",
+          "meter"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: kenning, billedledd og semantisk presisjon. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "kenning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#kenningen_med_to_ledd"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: kenning, billedledd og semantisk presisjon. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "kenning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#kenningen_med_to_ledd"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: kenning, billedledd og semantisk presisjon. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "alliteration",
+          "meter",
+          "kenning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#kenningen_med_to_ledd"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: kenning, billedledd og semantisk presisjon. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "alliteration",
+          "meter",
+          "kenning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#kenningen_med_to_ledd"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: historisk diksjon uten språklig kostyme. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "diction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#ordvalget_uten_kostyme"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: historisk diksjon uten språklig kostyme. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "diction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#ordvalget_uten_kostyme"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: historisk diksjon uten språklig kostyme. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "meter",
+          "kenning",
+          "diction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#ordvalget_uten_kostyme"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: historisk diksjon uten språklig kostyme. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "meter",
+          "kenning",
+          "diction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#ordvalget_uten_kostyme"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: lovprisning, patronasje og maktgrense. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "praise_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: lovprisning, patronasje og maktgrense. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "praise_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: lovprisning, patronasje og maktgrense. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "kenning",
+          "diction",
+          "praise_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: lovprisning, patronasje og maktgrense. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "kenning",
+          "diction",
+          "praise_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: genealogi, minne og kildekritikk. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "genealogy_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#minnet_og_slektsrekken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: genealogi, minne og kildekritikk. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "genealogy_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#minnet_og_slektsrekken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: genealogi, minne og kildekritikk. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "diction",
+          "praise_truth",
+          "genealogy_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#minnet_og_slektsrekken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: genealogi, minne og kildekritikk. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "diction",
+          "praise_truth",
+          "genealogy_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#minnet_og_slektsrekken"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: framføring, syntaks og lytterorientering. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#framforingen_som_hukommelse"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: framføring, syntaks og lytterorientering. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#framforingen_som_hukommelse"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: framføring, syntaks og lytterorientering. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "praise_truth",
+          "genealogy_memory",
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#framforingen_som_hukommelse"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: framføring, syntaks og lytterorientering. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "praise_truth",
+          "genealogy_memory",
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#framforingen_som_hukommelse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: manuskript, overlevering og proveniens. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "manuscript_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#handskriftet_er_et_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: manuskript, overlevering og proveniens. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "manuscript_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#handskriftet_er_et_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: manuskript, overlevering og proveniens. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "genealogy_memory",
+          "performance",
+          "manuscript_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#handskriftet_er_et_spor"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: manuskript, overlevering og proveniens. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "genealogy_memory",
+          "performance",
+          "manuscript_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#handskriftet_er_et_spor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: gammelnorsk språkgrense og autentisitetskrav. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "historical_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#gammelnorsk_er_ikke_dekor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: gammelnorsk språkgrense og autentisitetskrav. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "historical_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#gammelnorsk_er_ikke_dekor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: gammelnorsk språkgrense og autentisitetskrav. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "performance",
+          "manuscript_transmission",
+          "historical_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#gammelnorsk_er_ikke_dekor"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: gammelnorsk språkgrense og autentisitetskrav. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "performance",
+          "manuscript_transmission",
+          "historical_language"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#gammelnorsk_er_ikke_dekor"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: rekonstruksjon, usikkerhet og kildegrense. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: rekonstruksjon, usikkerhet og kildegrense. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: rekonstruksjon, usikkerhet og kildegrense. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "manuscript_transmission",
+          "historical_language",
+          "reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: rekonstruksjon, usikkerhet og kildegrense. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "manuscript_transmission",
+          "historical_language",
+          "reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: ære, vold og historisk kontekst. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "context_ethics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#aeren_uten_romantisering"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: ære, vold og historisk kontekst. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "context_ethics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#aeren_uten_romantisering"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: ære, vold og historisk kontekst. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "historical_language",
+          "reconstruction",
+          "context_ethics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#aeren_uten_romantisering"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: ære, vold og historisk kontekst. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "historical_language",
+          "reconstruction",
+          "context_ethics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#aeren_uten_romantisering"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: publikum, formular og medhukommelse. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "audience_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#publikum_som_medhukommelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: publikum, formular og medhukommelse. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "audience_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#publikum_som_medhukommelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: publikum, formular og medhukommelse. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "reconstruction",
+          "context_ethics",
+          "audience_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#publikum_som_medhukommelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: publikum, formular og medhukommelse. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "reconstruction",
+          "context_ethics",
+          "audience_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#publikum_som_medhukommelse"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: moderne skaldisk identitet uten historisk embete eller automatisk inntekt. Morgenen avgrenser det historiske eller formelle problemet og skiller kilde, teknikk og moderne etterligning.",
+        "thread_ids": [
+          "modern_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: moderne skaldisk identitet uten historisk embete eller automatisk inntekt. Midt på dagen møter praksisen en leser, fagperson eller arrangør som gjør premissene og maktforholdet synlig.",
+        "thread_ids": [
+          "modern_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: moderne skaldisk identitet uten historisk embete eller automatisk inntekt. Ettermiddagen krever et konkret valg om form, kildebruk, framføring eller historisk påstand.",
+        "thread_ids": [
+          "context_ethics",
+          "audience_memory",
+          "modern_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: moderne skaldisk identitet uten historisk embete eller automatisk inntekt. Kvelden viser hvordan valget endrer teksten, tilliten til kildene, relasjonen til publikum eller neste revisjon.",
+        "thread_ids": [
+          "context_ethics",
+          "audience_memory",
+          "modern_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "oral_memory",
+      "relationship": "muntlighet, lyd og hukommelse",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "alliteration",
+      "relationship": "allitterasjon og trykk",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "meter",
+      "relationship": "metrisk kontroll og eksplisitt formvalg",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "kenning",
+      "relationship": "kenning, billedledd og semantisk presisjon",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "diction",
+      "relationship": "historisk diksjon uten språklig kostyme",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "praise_truth",
+      "relationship": "lovprisning, patronasje og maktgrense",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "genealogy_memory",
+      "relationship": "genealogi, minne og kildekritikk",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "performance",
+      "relationship": "framføring, syntaks og lytterorientering",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "manuscript_transmission",
+      "relationship": "manuskript, overlevering og proveniens",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "historical_language",
+      "relationship": "gammelnorsk språkgrense og autentisitetskrav",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "reconstruction",
+      "relationship": "rekonstruksjon, usikkerhet og kildegrense",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "context_ethics",
+      "relationship": "ære, vold og historisk kontekst",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "audience_memory",
+      "relationship": "publikum, formular og medhukommelse",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "modern_boundary",
+      "relationship": "moderne skaldisk identitet uten historisk embete eller automatisk inntekt",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "stemmen_sitter",
+      "description": "Teksten blir oftere prøvd muntlig før den behandles som ferdig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden"
+      ]
+    },
+    {
+      "id": "formen_kan_forklares",
+      "description": "Metriske og allitterative valg kan beskrives konkret i stedet for å forsvares med historisk aura.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde"
+      ]
+    },
+    {
+      "id": "kilden_er_synlig",
+      "description": "Genealogi, manuskript og rekonstruksjon merkes med tydeligere proveniens og usikkerhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse"
+      ]
+    },
+    {
+      "id": "makt_i_lovstrofen",
+      "description": "Lovprisning og heroisk materiale leses sammen med patronasje, makt og menneskelige kostnader.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger"
+      ]
+    },
+    {
+      "id": "moderne_grense",
+      "description": "Skaldidentiteten forblir en moderne valgt historisk-stilistisk praksis og gir ingen automatisk jobb, lønn eller kildeautoritet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "muntligheten_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "metret_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "narrative",
+        "psyche"
+      ]
+    },
+    {
+      "id": "lovprisningen_returnerer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kilden_returnerer",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "manuskriptet_returnerer",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    },
+    {
+      "id": "bestillingen_returnerer",
+      "setup_ref": "14/afternoon",
+      "return_ref": "1/evening",
+      "domains": [
+        "finance",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_skald.json#muntligheten_for_siden",
+      "data/Civication/narratives/leisure/litteratur_skald.json#allitterasjonen_som_baerer",
+      "data/Civication/narratives/leisure/litteratur_skald.json#metret_som_ma_holde",
+      "data/Civication/narratives/leisure/litteratur_skald.json#kenningen_med_to_ledd",
+      "data/Civication/narratives/leisure/litteratur_skald.json#ordvalget_uten_kostyme",
+      "data/Civication/narratives/leisure/litteratur_skald.json#lovprisning_uten_smiger",
+      "data/Civication/narratives/leisure/litteratur_skald.json#minnet_og_slektsrekken",
+      "data/Civication/narratives/leisure/litteratur_skald.json#framforingen_som_hukommelse",
+      "data/Civication/narratives/leisure/litteratur_skald.json#handskriftet_er_et_spor",
+      "data/Civication/narratives/leisure/litteratur_skald.json#gammelnorsk_er_ikke_dekor",
+      "data/Civication/narratives/leisure/litteratur_skald.json#rekonstruksjon_eller_oppfinnelse",
+      "data/Civication/narratives/leisure/litteratur_skald.json#aeren_uten_romantisering",
+      "data/Civication/narratives/leisure/litteratur_skald.json#publikum_som_medhukommelse",
+      "data/Civication/narratives/leisure/litteratur_skald.json#skald_i_natid"
+    ]
+  }
+}
