@@ -12,6 +12,7 @@ const badge = read('data/badges/litteratur.json');
 const audit = read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index = read('data/Civication/roleWorlds/index.json');
 const streamPath = 'data/Civication/narratives/leisure/litteratur_poet.json';
+const worldPath = 'data/Civication/roleWorlds/litteratur/litteratur_poet.json';
 const stream = read(streamPath);
 
 const tier = badge.tiers.find((entry) => entry.life_position?.id === 'poet');
@@ -33,20 +34,17 @@ for (const storylet of stream.storylets) {
 const row = audit.positions.find((entry) => entry.key === 'litteratur/poet');
 assert.ok(row);
 assert.equal(row.classification, 'ready');
-assert.equal(row.role_world_status, 'role_world_not_started');
-assert.equal(row.role_world_path, null);
+assert.equal(row.role_world_status, 'role_world_complete');
+assert.equal(row.role_world_path, worldPath);
 assert.equal(row.authored_depth.exact_source_ref_count, 1);
 assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
+assert.ok(!audit.queue.some((entry) => entry.key === row.key));
 
-const queueRow = audit.queue.find((entry) => entry.key === 'litteratur/poet');
-assert.ok(queueRow);
-assert.equal(queueRow.rank, 1);
-assert.equal(queueRow.classification, 'ready');
-assert.equal(queueRow.exact_source_ref_count, 1);
-assert.equal(queueRow.max_narrative_depth, 14);
-assert.equal(audit.first_ready?.key, 'litteratur/poet');
-assert.equal(audit.summary.pending_ready_positions, 1);
-assert.equal(index.roles.some((entry) => entry.life_position_key === 'litteratur/poet'), false);
+const indexed = index.roles.find((entry) => entry.life_position_key === 'litteratur/poet');
+assert.ok(indexed);
+assert.equal(indexed.role_scope, 'litteratur_poet');
+assert.equal(audit.first_ready, null);
+assert.equal(audit.summary.pending_ready_positions, 0);
 
-console.log('Poet authored-depth readiness gate ok: ready for 14x4 Role World materialization');
+console.log('Poet readiness gate ok: ready + role_world_complete');
