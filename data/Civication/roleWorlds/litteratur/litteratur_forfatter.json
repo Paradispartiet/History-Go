@@ -1,0 +1,1199 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_forfatter",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "forfatter",
+    "label": "Forfatter"
+  },
+  "title": "Forfatter",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bære et langt manus fra usikker idé gjennom arbeidsrytme, ferdigstillelse, revisjon, respons og publiseringsvalg uten å gjøre synlig status, avslag eller institusjonell bekreftelse til definisjonen av forfatterpraksisen",
+    "description": "Forfatter-verdenen undersøker prosjektkjerne, arbeidsrytme, fortellerperspektiv, personvern, scene og forklaring, struktur, førsteutkast, helhetsrevisjon, testlesing, stilvaner, avslag, redaksjonelt samarbeid, rettigheter og overgangen til neste prosjekt. Rollen er en employment-independent professional_practice og gir ingen automatisk jobb eller lønn, ingen redaktør-, forlags-, agent-, lærer-, kritiker- eller institusjonell fullmakt, ingen automatisk publisering eller etablert-forfatterstatus, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "arbeidsmappen",
+    "skrivebordet",
+    "manuset",
+    "samtalen",
+    "strukturveggen",
+    "skriveuken",
+    "redaksjonen",
+    "kontrakten",
+    "innboksen",
+    "tomt_dokument"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "redaktoren",
+      "social_function": "gjør redaksjonell motstand og samarbeid konkret",
+      "class_position": "forlags- eller redaksjonsrolle",
+      "status": "institusjonell situert status",
+      "power_over_player": "kan foreslå store endringer og påvirke publiseringsløp, men ikke overføre egen myndighet til spillerens livsposisjon",
+      "wants": "et mer sammenhengende og lesbart manus",
+      "conceals": "at redaksjonelle mål også påvirkes av format og marked",
+      "speech_style": "presis og strukturorientert",
+      "teaches_player": "redaksjonelt samarbeid krever fortsatt selvstendig forfatteransvar"
+    },
+    {
+      "id": "testleseren",
+      "social_function": "gjør mottakelse synlig før publisering",
+      "class_position": "uformell eller invitert leser",
+      "status": "ingen institusjonell myndighet",
+      "power_over_player": "kan avdekke mønstre i hvor teksten mister leseren",
+      "wants": "å forstå og bli berørt av manus på egne premisser",
+      "conceals": "at egne preferanser ikke alltid er manusets problem",
+      "speech_style": "konkret og erfaringsnær",
+      "teaches_player": "respons er data, ikke ordre"
+    },
+    {
+      "id": "medforfatteren",
+      "social_function": "gjør sammenligning, håndverk og feltstatus konkret",
+      "class_position": "selvstendig skrivepraksis",
+      "status": "varierende feltstatus",
+      "power_over_player": "kan påvirke normer og ambisjonsnivå uten formell kontroll",
+      "wants": "gjensidig faglig sparring",
+      "conceals": "egen usikkerhet bak rutine eller selvsikkerhet",
+      "speech_style": "praktisk og tekstnær",
+      "teaches_player": "forfatterpraksis er mer enn synlig suksess"
+    },
+    {
+      "id": "agenten_eller_radgiveren",
+      "social_function": "gjør kontrakt, rettigheter og representasjon konkret",
+      "class_position": "profesjonell mellomrolle",
+      "status": "markeds- og kontraktsnær status",
+      "power_over_player": "kan åpne forhandling og råd, men kan ikke gjøre spillerens livsposisjon til ansettelse",
+      "wants": "en avgrenset og forståelig avtale",
+      "conceals": "at interesser ikke alltid er identiske",
+      "speech_style": "kort og avtaleorientert",
+      "teaches_player": "publisering krever konkrete rettighetsvalg"
+    },
+    {
+      "id": "den_gjenkjennelige",
+      "social_function": "representerer mennesket som kan bli materiale i tekst",
+      "class_position": "privat relasjon eller bekjent",
+      "status": "ingen institusjonell status",
+      "power_over_player": "kan sette grenser rundt egen historie og reagere på gjenkjennelig fremstilling",
+      "wants": "å beholde kontroll over sårbare private forhold",
+      "conceals": "at små detaljer kan gjøre anonymisering svak",
+      "speech_style": "personlig og direkte",
+      "teaches_player": "fiksjon opphever ikke automatisk privatliv og maktforhold"
+    },
+    {
+      "id": "leseren",
+      "social_function": "representerer den framtidige mottakeren som møter helheten",
+      "class_position": "publikum",
+      "status": "ingen formell fagstatus",
+      "power_over_player": "kan avsløre brudd i perspektiv, struktur og forventning gjennom faktisk lesning",
+      "wants": "en tekst som holder sine egne løfter",
+      "conceals": "at ulike lesere vil ønske forskjellige bøker",
+      "speech_style": "spørrende og reaksjonsdrevet",
+      "teaches_player": "forfatteren må velge hvilken bok teksten faktisk skal være"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "project_core",
+      "meaning": "holde prosjektets kjerne tydelig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "routine",
+      "meaning": "bære skrivingen med arbeidsrytme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "point_of_view",
+      "meaning": "holde fortellerblikket konsekvent",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy",
+      "meaning": "skille litterær figur fra utlevering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scene",
+      "meaning": "balansere scene og forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "structure",
+      "meaning": "bygge konsekvens gjennom helheten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "draft",
+      "meaning": "ferdigstille førsteutkastet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision",
+      "meaning": "revidere på helhetsnivå",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "feedback",
+      "meaning": "bruke testlesing uten å delegere forfatterskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "style",
+      "meaning": "utfordre egne språklige vaner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rejection",
+      "meaning": "håndtere avslag uten identitetsdom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editorial",
+      "meaning": "samarbeide redaksjonelt uten å miste eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rights",
+      "meaning": "forstå publiserings- og rettighetsvalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "continuity",
+      "meaning": "starte nytt prosjekt etter ferdigstillelse",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1 morgen: holde prosjektets kjerne tydelig.",
+        "thread_ids": [
+          "project_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#prosjektkernen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1 lunsj: holde prosjektets kjerne tydelig.",
+        "thread_ids": [
+          "project_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#prosjektkernen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1 ettermiddag: holde prosjektets kjerne tydelig.",
+        "thread_ids": [
+          "rights",
+          "continuity",
+          "project_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#prosjektkernen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1 kveld: holde prosjektets kjerne tydelig.",
+        "thread_ids": [
+          "rights",
+          "continuity",
+          "project_core"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#prosjektkernen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2 morgen: bære skrivingen med arbeidsrytme.",
+        "thread_ids": [
+          "routine"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2 lunsj: bære skrivingen med arbeidsrytme.",
+        "thread_ids": [
+          "routine"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2 ettermiddag: bære skrivingen med arbeidsrytme.",
+        "thread_ids": [
+          "continuity",
+          "project_core",
+          "routine"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2 kveld: bære skrivingen med arbeidsrytme.",
+        "thread_ids": [
+          "continuity",
+          "project_core",
+          "routine"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3 morgen: holde fortellerblikket konsekvent.",
+        "thread_ids": [
+          "point_of_view"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#fortellerblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3 lunsj: holde fortellerblikket konsekvent.",
+        "thread_ids": [
+          "point_of_view"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#fortellerblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3 ettermiddag: holde fortellerblikket konsekvent.",
+        "thread_ids": [
+          "project_core",
+          "routine",
+          "point_of_view"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#fortellerblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3 kveld: holde fortellerblikket konsekvent.",
+        "thread_ids": [
+          "project_core",
+          "routine",
+          "point_of_view"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#fortellerblikket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4 morgen: skille litterær figur fra utlevering.",
+        "thread_ids": [
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#personen_som_ligner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4 lunsj: skille litterær figur fra utlevering.",
+        "thread_ids": [
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#personen_som_ligner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4 ettermiddag: skille litterær figur fra utlevering.",
+        "thread_ids": [
+          "routine",
+          "point_of_view",
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#personen_som_ligner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4 kveld: skille litterær figur fra utlevering.",
+        "thread_ids": [
+          "routine",
+          "point_of_view",
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#personen_som_ligner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5 morgen: balansere scene og forklaring.",
+        "thread_ids": [
+          "scene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#scenen_og_forklaringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5 lunsj: balansere scene og forklaring.",
+        "thread_ids": [
+          "scene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#scenen_og_forklaringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5 ettermiddag: balansere scene og forklaring.",
+        "thread_ids": [
+          "point_of_view",
+          "privacy",
+          "scene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#scenen_og_forklaringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5 kveld: balansere scene og forklaring.",
+        "thread_ids": [
+          "point_of_view",
+          "privacy",
+          "scene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#scenen_og_forklaringen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6 morgen: bygge konsekvens gjennom helheten.",
+        "thread_ids": [
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#midtpartiet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6 lunsj: bygge konsekvens gjennom helheten.",
+        "thread_ids": [
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#midtpartiet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6 ettermiddag: bygge konsekvens gjennom helheten.",
+        "thread_ids": [
+          "privacy",
+          "scene",
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#midtpartiet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6 kveld: bygge konsekvens gjennom helheten.",
+        "thread_ids": [
+          "privacy",
+          "scene",
+          "structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#midtpartiet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7 morgen: ferdigstille førsteutkastet.",
+        "thread_ids": [
+          "draft"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#forsteutkastet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7 lunsj: ferdigstille førsteutkastet.",
+        "thread_ids": [
+          "draft"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#forsteutkastet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7 ettermiddag: ferdigstille førsteutkastet.",
+        "thread_ids": [
+          "scene",
+          "structure",
+          "draft"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#forsteutkastet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7 kveld: ferdigstille førsteutkastet.",
+        "thread_ids": [
+          "scene",
+          "structure",
+          "draft"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#forsteutkastet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8 morgen: revidere på helhetsnivå.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8 lunsj: revidere på helhetsnivå.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8 ettermiddag: revidere på helhetsnivå.",
+        "thread_ids": [
+          "structure",
+          "draft",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8 kveld: revidere på helhetsnivå.",
+        "thread_ids": [
+          "structure",
+          "draft",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9 morgen: bruke testlesing uten å delegere forfatterskap.",
+        "thread_ids": [
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9 lunsj: bruke testlesing uten å delegere forfatterskap.",
+        "thread_ids": [
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9 ettermiddag: bruke testlesing uten å delegere forfatterskap.",
+        "thread_ids": [
+          "draft",
+          "revision",
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9 kveld: bruke testlesing uten å delegere forfatterskap.",
+        "thread_ids": [
+          "draft",
+          "revision",
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10 morgen: utfordre egne språklige vaner.",
+        "thread_ids": [
+          "style"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#spraket_som_vane"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10 lunsj: utfordre egne språklige vaner.",
+        "thread_ids": [
+          "style"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#spraket_som_vane"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10 ettermiddag: utfordre egne språklige vaner.",
+        "thread_ids": [
+          "revision",
+          "feedback",
+          "style"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#spraket_som_vane"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10 kveld: utfordre egne språklige vaner.",
+        "thread_ids": [
+          "revision",
+          "feedback",
+          "style"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#spraket_som_vane"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11 morgen: håndtere avslag uten identitetsdom.",
+        "thread_ids": [
+          "rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11 lunsj: håndtere avslag uten identitetsdom.",
+        "thread_ids": [
+          "rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11 ettermiddag: håndtere avslag uten identitetsdom.",
+        "thread_ids": [
+          "feedback",
+          "style",
+          "rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11 kveld: håndtere avslag uten identitetsdom.",
+        "thread_ids": [
+          "feedback",
+          "style",
+          "rejection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12 morgen: samarbeide redaksjonelt uten å miste eierskap.",
+        "thread_ids": [
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#redaktorbrevet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12 lunsj: samarbeide redaksjonelt uten å miste eierskap.",
+        "thread_ids": [
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#redaktorbrevet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12 ettermiddag: samarbeide redaksjonelt uten å miste eierskap.",
+        "thread_ids": [
+          "style",
+          "rejection",
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#redaktorbrevet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12 kveld: samarbeide redaksjonelt uten å miste eierskap.",
+        "thread_ids": [
+          "style",
+          "rejection",
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#redaktorbrevet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13 morgen: forstå publiserings- og rettighetsvalg.",
+        "thread_ids": [
+          "rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13 lunsj: forstå publiserings- og rettighetsvalg.",
+        "thread_ids": [
+          "rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13 ettermiddag: forstå publiserings- og rettighetsvalg.",
+        "thread_ids": [
+          "rejection",
+          "editorial",
+          "rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13 kveld: forstå publiserings- og rettighetsvalg.",
+        "thread_ids": [
+          "rejection",
+          "editorial",
+          "rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14 morgen: starte nytt prosjekt etter ferdigstillelse.",
+        "thread_ids": [
+          "continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#neste_bok"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14 lunsj: starte nytt prosjekt etter ferdigstillelse.",
+        "thread_ids": [
+          "continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#neste_bok"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14 ettermiddag: starte nytt prosjekt etter ferdigstillelse.",
+        "thread_ids": [
+          "editorial",
+          "rights",
+          "continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#neste_bok"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14 kveld: starte nytt prosjekt etter ferdigstillelse.",
+        "thread_ids": [
+          "editorial",
+          "rights",
+          "continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_forfatter.json#neste_bok"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "project_core",
+      "relationship": "holde prosjektets kjerne tydelig",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "routine",
+      "relationship": "bære skrivingen med arbeidsrytme",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "point_of_view",
+      "relationship": "holde fortellerblikket konsekvent",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "privacy",
+      "relationship": "skille litterær figur fra utlevering",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "scene",
+      "relationship": "balansere scene og forklaring",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "structure",
+      "relationship": "bygge konsekvens gjennom helheten",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "draft",
+      "relationship": "ferdigstille førsteutkastet",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "revision",
+      "relationship": "revidere på helhetsnivå",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "feedback",
+      "relationship": "bruke testlesing uten å delegere forfatterskap",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "style",
+      "relationship": "utfordre egne språklige vaner",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "rejection",
+      "relationship": "håndtere avslag uten identitetsdom",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "editorial",
+      "relationship": "samarbeide redaksjonelt uten å miste eierskap",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "rights",
+      "relationship": "forstå publiserings- og rettighetsvalg",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "continuity",
+      "relationship": "starte nytt prosjekt etter ferdigstillelse",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "arbeidsrytme_sitter",
+      "description": "Prosjektet får en mer stabil arbeidsrytme som ikke er avhengig av inspirasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen"
+      ]
+    },
+    {
+      "id": "helheten_blir_tydeligere",
+      "description": "Struktur- og revisjonsarbeidet gjør manusets helhet lettere å se og endre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen"
+      ]
+    },
+    {
+      "id": "respons_blir_verktøy",
+      "description": "Testlesing brukes mer presist uten at andre overtar løsningsansvaret.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren"
+      ]
+    },
+    {
+      "id": "avslag_blir_hendelse",
+      "description": "Avslag skilles tydeligere fra identitetsdom og omsettes i neste konkrete handling.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen"
+      ]
+    },
+    {
+      "id": "rettighetsgrensen",
+      "description": "Publiseringsvalg og rettigheter vurderes som konkrete avtaler, ikke som automatisk statusbekreftelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "perspektiv_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "personvern_returnerer",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "struktur_returnerer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "narrative",
+        "psyche"
+      ]
+    },
+    {
+      "id": "testlesing_returnerer",
+      "setup_ref": "9/afternoon",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "avslag_returnerer",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "reputation"
+      ]
+    },
+    {
+      "id": "rettigheter_returnerer",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#prosjektkernen",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#arbeidsrytmen",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#fortellerblikket",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#personen_som_ligner",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#scenen_og_forklaringen",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#midtpartiet",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#forsteutkastet",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#helhetsrevisjonen",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#testleseren",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#spraket_som_vane",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#innsendingen",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#redaktorbrevet",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#rettighetene",
+      "data/Civication/narratives/leisure/litteratur_forfatter.json#neste_bok"
+    ]
+  }
+}
