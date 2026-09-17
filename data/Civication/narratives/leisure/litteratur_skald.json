@@ -1,0 +1,300 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_skald_stream",
+  "type": "leisure",
+  "title": "Skald",
+  "sociological_theme": "skaldisk_form_muntlighet_allitterasjon_metrum_kenning_historisk_sprak_kildekritikk_framforing_makt_og_modern_rekonstruksjon",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:skald"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "muntligheten_for_siden",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Stemmen",
+      "subject": "Muntlighet før skrift",
+      "situation": [
+        "Du har skrevet en strofe som bare fungerer når øyet kan gå tilbake i teksten.",
+        "Skaldisk diktning er tett knyttet til framføring, hukommelse og lydlige mønstre selv om mye av materialet er bevart i manuskripter.",
+        "En moderne skaldisk øvelse bør derfor tåle stemmen og hukommelsen, ikke bare siden."
+      ],
+      "choices": [
+        {"id":"A","label":"Teste strofen høyt uten manus og stramme inn der rytme eller bilde ikke bærer alene.","effect":1,"tags":["oral","memory","performance"],"feedback":"Valget lar stemmen og hukommelsen prøve teksten som komposisjon."},
+        {"id":"B","label":"Beholde alle visuelle markører og anta at muntlighet bare er historisk staffasje.","effect":-1,"tags":["page_dependence","surface","historical_flatness"],"feedback":"Valget gjør muntlighet til dekor i stedet for en faktisk poetisk begrensning."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_muntligheten_for_siden"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "allitterasjonen_som_baerer",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Versfoten",
+      "subject": "Allitterasjonen må gjøre arbeid",
+      "situation": [
+        "Tre linjer begynner med samme lyd, men forbindelsen er tilfeldig og gir ingen tydelig rytmisk struktur.",
+        "Allitterasjon er et bærende organiseringsprinsipp i norrøn poesi, men den virker gjennom mønster og trykk — ikke bare bokstavlikhet.",
+        "Et historiserende uttrykk blir svakere når teknikken brukes som overflateeffekt."
+      ],
+      "choices": [
+        {"id":"A","label":"Flytte ordene til allitterasjonen følger trykk og meningsbærende ledd i linjen.","effect":1,"tags":["alliteration","stress","craft"],"feedback":"Valget gjør lydmønsteret strukturelt i stedet for pynt."},
+        {"id":"B","label":"Legge inn flere ord med samme forbokstav uten å kontrollere trykk eller syntaks.","effect":-1,"tags":["ornament","mechanical_alliteration","surface"],"feedback":"Valget øker mengden lydlikhet uten å bygge et tydelig versmønster."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_allitterasjonen_som_baerer"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "metret_som_ma_holde",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Arbeidsarket",
+      "subject": "Metrum før mystikk",
+      "situation": [
+        "Du forsøker et skaldisk metrum, men antall stavelser, trykk og rimkrav varierer fra linje til linje.",
+        "Skaldiske versemål er formelt krevende og kan ikke reduseres til «gammel klang».",
+        "Historisk stil krever at den valgte formen faktisk kontrolleres, eller at teksten tydelig omtales som fri etterligning."
+      ],
+      "choices": [
+        {"id":"A","label":"Velge ett definert mønster, skanne strofen og markere bevisst hvor du eventuelt avviker.","effect":1,"tags":["meter","scansion","constraint"],"feedback":"Valget gjør formkravet etterprøvbart og skiller rekonstruksjon fra fri pastisj."},
+        {"id":"B","label":"Kalle strofen dróttkvætt fordi den høres gammel ut, uten å kontrollere mønsteret.","effect":-1,"tags":["false_label","authenticity_claim","form_gap"],"feedback":"Valget bruker et historisk navn som autoritet uten å oppfylle formkravet."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_metret_som_ma_holde"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "kenningen_med_to_ledd",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Billedspråket",
+      "subject": "Kenningen må kunne løses",
+      "situation": [
+        "Du har laget et sammensatt bilde som virker gåtefullt, men ingen av leddene har en tydelig relasjon til det som omtales.",
+        "Kenninger bygger betydning gjennom etablerte eller forståelige billedlige forbindelser, ofte i flere ledd.",
+        "Kompleksitet er ikke det samme som tilfeldighet."
+      ],
+      "choices": [
+        {"id":"A","label":"Skrive ut grunnbetydningen og kontrollere at hvert billedledd faktisk leder tilbake til referenten.","effect":1,"tags":["kenning","semantic_chain","precision"],"feedback":"Valget gjør kenningen kompleks uten å gjøre den vilkårlig."},
+        {"id":"B","label":"Legge til enda et mytologisk ledd fordi større uklarhet virker mer autentisk.","effect":-1,"tags":["obscurity","mythic_surface","semantic_drift"],"feedback":"Valget forveksler tetthet med uleselighet."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_kenningen_med_to_ledd"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "ordvalget_uten_kostyme",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Ordlista",
+      "subject": "Arkaisk ordvalg uten kostyme",
+      "situation": [
+        "Et utkast er fullt av arkaiske ord som du ikke ellers bruker, og flere er valgt bare fordi de ser norrøne ut.",
+        "Skaldisk stil har spesialisert poetisk språk, men historisk dikterisk diksjon var et system, ikke en samling tilfeldige gamle ord.",
+        "Moderne etterligning må skille funksjonelt ordvalg fra kostyme."
+      ],
+      "choices": [
+        {"id":"A","label":"Beholde bare ord som gjør metrisk, semantisk eller intertekstuell nytte og dokumentere resten som moderne valg.","effect":1,"tags":["diction","historical_language","precision"],"feedback":"Valget bruker arkaisering som et kontrollert virkemiddel."},
+        {"id":"B","label":"Bytte moderne ord med eldre synonymer systematisk, uansett betydning og register.","effect":-1,"tags":["archaizing","costume","register_drift"],"feedback":"Valget gjør språkdrakten viktigere enn tekstens faktiske struktur."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_ordvalget_uten_kostyme"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "lovprisning_uten_smiger",
+      "message_type": "decision",
+      "time_slot": ["people", "leisure"],
+      "from": "Lovstrofen",
+      "subject": "Lovprisning og makt",
+      "situation": [
+        "Du får lyst til å skrive en lovstrofe om en mektig person og merker at teksten begynner å overdrive både mot og storhet.",
+        "Historisk hoffpoesi kunne være knyttet til herskere, patronasje og offentlig omdømme.",
+        "En moderne skaldisk praksis bør gjøre maktforholdet synlig i stedet for å late som lovprisning er nøytral."
+      ],
+      "choices": [
+        {"id":"A","label":"Skille dokumenterbare handlinger fra poetisk overdrivelse og la maktforholdet være en del av tolkningen.","effect":1,"tags":["praise","power","source_boundary"],"feedback":"Valget beholder lovprisning som sjanger uten å gjøre den til ukritisk sannhetsrapport."},
+        {"id":"B","label":"La sterke superlativer stå fordi skaldisk lovprisning ikke trenger noen grense mot faktapåstander.","effect":-1,"tags":["flattery","power_blindness","overclaim"],"feedback":"Valget gjør sjangeren til skjold for udokumenterte påstander."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_lovprisning_uten_smiger"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "minnet_og_slektsrekken",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Kilden",
+      "subject": "Genealogi er også kildearbeid",
+      "situation": [
+        "Du vil flette en slektsrekke inn i et dikt, men har bare én sen gjengivelse av navnene.",
+        "Genealogisk og historisk stoff kan inngå i skaldisk diktning, men poetisk form gjør ikke opplysningene automatisk sikre.",
+        "Minne, tradisjon og kildekritikk må holdes fra hverandre."
+      ],
+      "choices": [
+        {"id":"A","label":"Markere hva som er dokumentert, hva som kommer fra senere tradisjon, og hva du selv komponerer.","effect":1,"tags":["genealogy","memory","source_criticism"],"feedback":"Valget lar diktet arbeide med minne uten å late som all tradisjon er samtidig dokumentasjon."},
+        {"id":"B","label":"Presentere hele rekken som sikker fordi den står i en tradisjonell fortelling.","effect":-1,"tags":["source_collapse","genealogy","certainty"],"feedback":"Valget gjør overlevering til garanti for historisk sikkerhet."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_minnet_og_slektsrekken"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "framforingen_som_hukommelse",
+      "message_type": "task",
+      "time_slot": ["people", "leisure"],
+      "from": "Opplesningen",
+      "subject": "Framføring som komposisjon",
+      "situation": [
+        "Strofen sitter på papiret, men under framføring mister publikum tråden i de innskutte setningsleddene.",
+        "Skaldisk syntaks kan være kompleks, men en framført tekst må fortsatt gi lytteren holdepunkter.",
+        "Pust, betoning og repetisjon kan gjøre kompleksitet hørbar uten å forenkle den bort."
+      ],
+      "choices": [
+        {"id":"A","label":"Øve framføringen og justere pauser, trykk eller rekkefølge der lytteren ellers mister strukturen.","effect":1,"tags":["performance","syntax","audience"],"feedback":"Valget behandler framføring som del av komposisjonen."},
+        {"id":"B","label":"Lese raskere for å bevare alle ordene uendret selv om publikum mister forbindelsene.","effect":-1,"tags":["performance_failure","speed","audience_loss"],"feedback":"Valget beskytter teksten på siden på bekostning av den muntlige situasjonen."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_framforingen_som_hukommelse"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "handskriftet_er_et_spor",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Manuskriptet",
+      "subject": "Manuskriptet er ikke øyeblikket",
+      "situation": [
+        "Du finner en skaldestrofe i en middelaldertekst og fristes til å behandle manuskriptformen som en direkte lydopptak av første framføring.",
+        "Skaldisk poesi er bevart gjennom skriftlig overlevering som kan ligge langt fra den opprinnelige komposisjonssituasjonen.",
+        "Tekstvitne, datering, redaksjon og muntlig forhistorie er forskjellige spørsmål."
+      ],
+      "choices": [
+        {"id":"A","label":"Beskrive manuskriptet som et vitne og skille bevart tekstform fra påstander om opprinnelig framføring.","effect":1,"tags":["manuscript","transmission","provenance"],"feedback":"Valget holder overleveringshistorien synlig."},
+        {"id":"B","label":"Kalle manuskriptteksten ordrett original fordi den er den eldste versjonen du har sett.","effect":-1,"tags":["manuscript_literalism","provenance_gap","certainty"],"feedback":"Valget gjør bevaring til bevis for en ubrutt originalform."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_handskriftet_er_et_spor"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "gammelnorsk_er_ikke_dekor",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Språknotatene",
+      "subject": "Språkhistorie uten falsk autentisitet",
+      "situation": [
+        "Du vurderer å legge inn gammelnorske ord du ikke kan bøye eller plassere sikkert.",
+        "Historisk språk er grammatikk, lydhistorie og kontekst — ikke bare et visuelt signal om middelalder.",
+        "En moderne tekst kan være inspirert av skaldisk poesi uten å late som den er skrevet på korrekt norrønt."
+      ],
+      "choices": [
+        {"id":"A","label":"Bruke norsk der du har kontroll, og bare bruke gammelnorsk når form, betydning og kilde kan kontrolleres.","effect":1,"tags":["old_norse","language_boundary","accuracy"],"feedback":"Valget skiller inspirasjon fra språkkompetanse og gjør påstanden mindre enn beviset."},
+        {"id":"B","label":"Legge inn enkeltord med spesialtegn for å få teksten til å se autentisk ut.","effect":-1,"tags":["pseudo_authenticity","visual_signal","language_gap"],"feedback":"Valget bruker ortografi som kostyme."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_gammelnorsk_er_ikke_dekor"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "rekonstruksjon_eller_oppfinnelse",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Kildeapparatet",
+      "subject": "Hva vet vi, og hva bygger vi?",
+      "situation": [
+        "Du vil rekonstruere en tapt sammenheng rundt en strofe, men kilden gir bare fragmenter.",
+        "Moderne rekonstruksjon kan være faglig nyttig og kunstnerisk fruktbar når skillet mellom kilde og utfylling er synlig.",
+        "Problemet oppstår når egne mellomledd presenteres som bevart historie."
+      ],
+      "choices": [
+        {"id":"A","label":"Merke de rekonstruerte delene tydelig og la alternative tolkninger stå åpne der kilden ikke avgjør.","effect":1,"tags":["reconstruction","uncertainty","source_boundary"],"feedback":"Valget gjør usikkerheten til en del av arbeidet."},
+        {"id":"B","label":"Fylle hullene sømløst og fjerne markører fordi en hel fortelling virker mer overbevisende.","effect":-1,"tags":["fabrication","certainty","source_erasure"],"feedback":"Valget gjør egen komposisjon vanskelig å skille fra kildegrunnlaget."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_rekonstruksjon_eller_oppfinnelse"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "aeren_uten_romantisering",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Historien",
+      "subject": "Ære, vold og avstand",
+      "situation": [
+        "Et historisk motiv om ære og vold gir sterke bilder, men utkastet begynner å behandle sosial tvang og brutalitet som ren estetikk.",
+        "Skaldisk stoff kan være tett på krig, herskermakt og æreskultur.",
+        "Historisk interesse krever ikke at teksten romantiserer maktforholdene den beskriver."
+      ],
+      "choices": [
+        {"id":"A","label":"Beholde motivet, men vise hvem som bærer kostnaden og hvilke sosiale normer som gjør handlingene mulige.","effect":1,"tags":["violence","honour","context"],"feedback":"Valget lar historisk materiale være dramatisk uten å gjøre det ukritisk heroisk."},
+        {"id":"B","label":"Fjerne konsekvensene fordi heroisk tone fungerer best uten sosial motvekt.","effect":-1,"tags":["romanticization","violence","power_blindness"],"feedback":"Valget gjør stil til filter som skjuler menneskelige kostnader."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_aeren_uten_romantisering"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "publikum_som_medhukommelse",
+      "message_type": "task",
+      "time_slot": ["people", "leisure"],
+      "from": "Publikum",
+      "subject": "Publikum husker mønsteret",
+      "situation": [
+        "På en opplesning merker du at en gjentatt formulering gjør det lettere å følge en kompleks strofe.",
+        "Muntlig poesi kan bruke repetisjon, formularer og lydlige forventninger som støtte for hukommelse og gjenkjennelse.",
+        "Publikums respons er derfor ikke bare applaus, men informasjon om hva strukturen faktisk gjør."
+      ],
+      "choices": [
+        {"id":"A","label":"Bruke responsen til å teste hvilke mønstre som hjelper orientering uten å gjøre publikum til fasit.","effect":1,"tags":["audience","memory","feedback"],"feedback":"Valget gjør lytteren til observasjonsflate, ikke redaktør med vetorett."},
+        {"id":"B","label":"Fjerne alle gjentakelser fordi et sofistikert dikt ikke bør gi lytteren slike holdepunkter.","effect":-1,"tags":["status_anxiety","audience_distance","complexity_display"],"feedback":"Valget bruker vanskelighet som statussignal."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_publikum_som_medhukommelse"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "skald_i_natid",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Profilen",
+      "subject": "Skald er en moderne valgt identitet",
+      "situation": [
+        "Du har arbeidet lenge med skaldisk form og blir omtalt som «skald» i et miljø.",
+        "I Civication er dette en historical_stylistic_identity: en moderne, selvvalgt praksis knyttet til historiske former og tradisjoner.",
+        "Identiteten gir ikke et middelaldersk embete, autentisitetsstempel, ansettelse, oppdrag, inntekt eller særskilt historisk myndighet."
+      ],
+      "choices": [
+        {"id":"A","label":"Bruke betegnelsen om den dokumenterte praksisen og være eksplisitt på hva som er moderne rekonstruksjon, tolkning og eget arbeid.","effect":1,"tags":["identity_boundary","modern_practice","provenance"],"feedback":"Valget holder identiteten presis og kompatibel med historisk kildekritikk."},
+        {"id":"B","label":"La tittelen fungere som bevis for at egne tekster representerer historisk autentisk skaldediktning.","effect":-1,"tags":["status_claim","pseudo_authenticity","authority_drift"],"feedback":"Valget gjør en selvvalgt identitet til en kildeautoritet den ikke har."}
+      ],
+      "opens_streams": [],
+      "adds_flags": ["skald_skald_i_natid"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    }
+  ]
+}
