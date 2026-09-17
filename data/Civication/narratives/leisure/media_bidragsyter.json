@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "media_bidragsyter_stream",
+  "type": "leisure",
+  "title": "Bidragsyter",
+  "sociological_theme": "mediebidrag_pitch_kilde_samtykke_redigering_kreditering_interessekonflikt_frist_avslag_retting_rettigheter_samarbeid_og_grensen_mot_journalistisk_eller_redaksjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "media:bidragsyter"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "invitasjonen_uten_stilling",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Invitasjonen",
+      "subject": "Vil du bidra?",
+      "situation": [
+        "Et lite medium eller en kanal spør om du vil sende inn noe til en kommende publisering.",
+        "Invitasjonen beskriver et tema, men sier ingenting om ansettelse, fast rolle eller redaksjonell myndighet.",
+        "Som bidragsyter må du avklare hva du faktisk lover å levere, og hva du ikke får mandat til å bestemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare format, omfang, frist og hvem som tar den redaksjonelle beslutningen før du sier ja.",
+          "effect": 1,
+          "tags": [
+            "scope",
+            "role_clarity",
+            "editorial_boundary"
+          ],
+          "feedback": "Du gjør bidraget konkret uten å gjøre deltakelsen til en stilling."
+        },
+        {
+          "id": "B",
+          "label": "Tolke invitasjonen som at du nå er en del av redaksjonen og kan opptre på dens vegne.",
+          "effect": -1,
+          "tags": [
+            "role_inflation",
+            "authority_confusion",
+            "status_pressure"
+          ],
+          "feedback": "Du låner institusjonell myndighet som invitasjonen ikke ga."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_invitasjon_avklart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pitchen_for_arbeidet",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Idénotatet",
+      "subject": "Hva er bidraget før du lager alt?",
+      "situation": [
+        "Du har en idé til tekst, foto, lyd eller annet materiale, men vet ikke om mottakeren trenger akkurat dette.",
+        "Et kort forslag kan avklare tema, vinkel, format og hvorfor bidraget passer før du bruker mye tid.",
+        "Bidragspraksis handler også om å tåle at en god idé ikke passer i den aktuelle publiseringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sende en kort pitch med tema, format, omfang og hva du faktisk kan dokumentere eller levere.",
+          "effect": 1,
+          "tags": [
+            "pitch",
+            "scope",
+            "fit"
+          ],
+          "feedback": "Du gjør ideen vurderbar før produksjonen blir en forventning."
+        },
+        {
+          "id": "B",
+          "label": "Produsere hele bidraget først og behandle publisering som en naturlig rettighet etterpå.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "scope_drift",
+            "status_pressure"
+          ],
+          "feedback": "Du gjør egen innsats til et krav redaksjonen aldri har akseptert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_pitch_avklart"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_bak_detaljen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Notatene",
+      "subject": "Hvor vet du dette fra?",
+      "situation": [
+        "Et konkret faktapunkt gjør bidraget bedre, men du husker ikke lenger om det kom fra et dokument, en samtale eller egen antakelse.",
+        "Å bidra betyr ikke at redaksjonen skal rydde opp i alle uklare premisser etter deg.",
+        "Du trenger sporbarhet nok til å skille dokumentert opplysning, egen erfaring og tolkning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne igjen kilden eller markere opplysningen som usikker før materialet sendes videre.",
+          "effect": 1,
+          "tags": [
+            "source_check",
+            "provenance",
+            "precision"
+          ],
+          "feedback": "Du gjør det mulig å kontrollere hva bidraget bygger på."
+        },
+        {
+          "id": "B",
+          "label": "La detaljen stå fordi den virker sannsynlig og kan fjernes senere hvis noen reagerer.",
+          "effect": -1,
+          "tags": [
+            "unsupported_claim",
+            "fluency_bias",
+            "reputation_risk"
+          ],
+          "feedback": "Du skyver kildeansvaret over på andre uten å synliggjøre usikkerheten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_kilde_sporet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personen_i_materialet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Materialet",
+      "subject": "Kan dette deles slik?",
+      "situation": [
+        "Et bilde, lydklipp eller sitat inkluderer en person som ikke nødvendigvis forventer offentlig bruk.",
+        "At du selv har laget opptaket eller kjenner personen avgjør ikke alene hva som er forsvarlig å publisere.",
+        "En bidragsyter må skille mellom tilgang til materiale og rett eller samtykke til den aktuelle bruken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare samtykke, brukskontekst og eventuelle begrensninger før du sender materialet inn.",
+          "effect": 1,
+          "tags": [
+            "consent",
+            "rights",
+            "privacy"
+          ],
+          "feedback": "Du behandler personen i materialet som mer enn råstoff."
+        },
+        {
+          "id": "B",
+          "label": "Sende materialet uten avklaring fordi redaksjonen får ta ansvaret hvis det blir et problem.",
+          "effect": -1,
+          "tags": [
+            "consent_gap",
+            "responsibility_shift",
+            "privacy_risk"
+          ],
+          "feedback": "Du gjør manglende avklaring til noen andres oppryddingsjobb."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_bruksrett_avklart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "redigeringen_av_ditt_bidrag",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Redigeringen",
+      "subject": "Teksten kom tilbake med endringer",
+      "situation": [
+        "En redaktør eller ansvarlig mottaker foreslår kutt, omstrukturering og en tydeligere åpning.",
+        "Bidraget er ditt arbeid, men publisering innebærer også en redaksjonell prosess med egne krav.",
+        "Du må kunne skille mellom saklig uenighet, nødvendig redigering og endringer som faktisk forvrenger det du står for."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå gjennom endringene punkt for punkt, godta det som forbedrer bidraget og markere konkrete steder der meningen endres.",
+          "effect": 1,
+          "tags": [
+            "revision",
+            "editorial_feedback",
+            "negotiation"
+          ],
+          "feedback": "Du samarbeider uten å gi fra deg ansvaret for innholdet du står inne for."
+        },
+        {
+          "id": "B",
+          "label": "Avvise all redigering fordi et bidrag bare er ekte hvis ingen andre rører formuleringene.",
+          "effect": -1,
+          "tags": [
+            "rigidity",
+            "authorship_confusion",
+            "collaboration_failure"
+          ],
+          "feedback": "Du gjør personlig eierskap til et hinder for redaksjonelt samarbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_redigering_forhandlet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kreditten_som_mangler",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Publiseringen",
+      "subject": "Navnet ditt står ikke der du forventet",
+      "situation": [
+        "Bidraget er publisert, men krediteringen er uklar eller mangler.",
+        "Kreditt kan være viktig for ansvar, synlighet og senere dokumentasjon av arbeidet.",
+        "Problemet bør håndteres konkret uten å gjøre kreditering til et krav på redaksjonell status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en konkret avklaring av avtalt kreditering og foreslå en presis rettelse hvis den er glemt.",
+          "effect": 1,
+          "tags": [
+            "credit",
+            "documentation",
+            "professional_boundary"
+          ],
+          "feedback": "Du ivaretar attribusjon uten å oppgradere rollen."
+        },
+        {
+          "id": "B",
+          "label": "Presentere deg offentlig som redaksjonsmedlem for å kompensere for at krediteringen mangler.",
+          "effect": -1,
+          "tags": [
+            "status_claim",
+            "role_inflation",
+            "public_confusion"
+          ],
+          "feedback": "Du erstatter en avgrenset kredittfeil med en større rollefeil."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_kreditt_avklart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "interessekonflikten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Bakgrunnen",
+      "subject": "Du kjenner saken fra innsiden",
+      "situation": [
+        "Du blir bedt om å bidra om et tema der du selv, en venn eller en organisasjon du er knyttet til har en tydelig interesse.",
+        "Nærhet kan gi relevant erfaring, men den kan også påvirke utvalg, språk og hva du lar være å nevne.",
+        "Et bidrag blir mer etterprøvbart når relevant tilknytning er synlig for den som vurderer det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Opplyse om den relevante tilknytningen før bidraget vurderes og la mottakeren avgjøre hvordan den skal håndteres.",
+          "effect": 1,
+          "tags": [
+            "disclosure",
+            "conflict_of_interest",
+            "trust"
+          ],
+          "feedback": "Du gjør nærheten synlig i stedet for å late som den ikke finnes."
+        },
+        {
+          "id": "B",
+          "label": "Holde tilknytningen skjult fordi du selv mener at du klarer å være objektiv.",
+          "effect": -1,
+          "tags": [
+            "hidden_interest",
+            "self_certification",
+            "trust_risk"
+          ],
+          "feedback": "Du gjør egen vurdering til eneste kontroll på en interessekonflikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_interesse_opplyst"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_og_omfanget",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Fristen",
+      "subject": "Bidraget vokser mens tiden krymper",
+      "situation": [
+        "Du har lovet et avgrenset bidrag, men finner stadig flere ting som kunne vært med.",
+        "Mer materiale er ikke automatisk et bedre bidrag hvis frist, format og kvalitet begynner å ryke.",
+        "Å levere som avtalt krever at du kan prioritere og varsle tidlig når rammen ikke holder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Låse kjerneleveransen og varsle mottakeren tidlig hvis en nødvendig endring påvirker frist eller omfang.",
+          "effect": 1,
+          "tags": [
+            "deadline",
+            "scope",
+            "reliability"
+          ],
+          "feedback": "Du gjør begrensningen håndterbar før den blir en overraskelse."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å utvide og håpe at mottakeren godtar forsinkelsen fordi resultatet blir mer omfattende.",
+          "effect": -1,
+          "tags": [
+            "scope_creep",
+            "deadline_risk",
+            "avoidance"
+          ],
+          "feedback": "Du lar ambisjon erstatte en avtalt leveranse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_omfang_låst"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avslaget_uten_dom",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Svaret",
+      "subject": "Ikke denne gangen",
+      "situation": [
+        "Et bidrag du har arbeidet med blir avslått eller lagt bort.",
+        "Et avslag kan handle om plass, timing, format, kvalitet, prioritering eller redaksjonell retning uten at du kjenner hele begrunnelsen.",
+        "Bidragsyterrollen må tåle at innsending ikke gir krav på publisering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkret tilbakemelding hvis det passer, lagre materialet ryddig og vurdere om det kan omarbeides eller brukes et annet sted.",
+          "effect": 1,
+          "tags": [
+            "rejection",
+            "learning",
+            "archive"
+          ],
+          "feedback": "Du beholder handlingsrom uten å gjøre avslaget til en dom over hele rollen."
+        },
+        {
+          "id": "B",
+          "label": "Tolke avslaget som bevis på at redaksjonen skylder deg en ny sjanse eller publisering senere.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "resentment",
+            "status_pressure"
+          ],
+          "feedback": "Du gjør redaksjonell vurdering om til personlig gjeld."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_avslag_handtert"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reaksjonene_etter_publisering",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Responsen",
+      "subject": "Kommentarene kommer raskere enn du rekker å svare",
+      "situation": [
+        "Et publisert bidrag får ros, kritikk og spørsmål fra mennesker du ikke kjenner.",
+        "Synlighet kan trekke deg inn i en ny rolle som forsvarer av hele publiseringen, selv om du bare eier ditt eget bidrag.",
+        "Det er nyttig å skille mellom spørsmål du kan svare på, feil du bør rette og redaksjonelle beslutninger du ikke kontrollerer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svare på det du faktisk kan stå for, notere mulige feil og henvise redaksjonelle spørsmål til ansvarlig mottaker.",
+          "effect": 1,
+          "tags": [
+            "audience_response",
+            "role_clarity",
+            "correction"
+          ],
+          "feedback": "Du tar ansvar for eget bidrag uten å bli talsperson for hele kanalen."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare alle valg rundt publiseringen som om du selv hadde tatt dem.",
+          "effect": -1,
+          "tags": [
+            "authority_confusion",
+            "defensiveness",
+            "role_inflation"
+          ],
+          "feedback": "Du tar eierskap til beslutninger som ligger utenfor bidragsyterrollen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_respons_avgrenset"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilen_du_finner_selv",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ettersjekken",
+      "subject": "En detalj er feil etter publisering",
+      "situation": [
+        "Du oppdager at en opplysning i ditt publiserte bidrag er feil eller misvisende.",
+        "Å håpe at ingen ser det gjør korreksjonen vanskeligere hvis feilen senere blir oppdaget av andre.",
+        "Bidragsansvar inkluderer å melde fra raskt nok til at ansvarlig redaksjon eller kanal kan vurdere retting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumentere feilen, sende korrekt informasjon til ansvarlig mottaker og være tydelig på hva som bør vurderes rettet.",
+          "effect": 1,
+          "tags": [
+            "correction",
+            "accountability",
+            "documentation"
+          ],
+          "feedback": "Du gjør korrigering mulig uten å late som du selv kontrollerer publiseringssystemet."
+        },
+        {
+          "id": "B",
+          "label": "Rette din egen kopi og la den publiserte versjonen stå fordi endringsmyndigheten ligger hos andre.",
+          "effect": -1,
+          "tags": [
+            "avoidance",
+            "public_error",
+            "responsibility_gap"
+          ],
+          "feedback": "Du bruker manglende publiseringsmyndighet som grunn til å la være å varsle."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_feil_meldt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjenbruk_av_materialet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arkivet",
+      "subject": "Kan du bruke det samme et annet sted?",
+      "situation": [
+        "Et tidligere bidrag passer også i en ny sammenheng, men du husker ikke hva som ble avtalt om videre bruk.",
+        "Eierskap, kreditering og bruksrett kan være forskjellige spørsmål, særlig når andre har redigert, fotografert eller produsert sammen med deg.",
+        "Før gjenbruk trenger du å vite hva du faktisk har rett til å publisere på nytt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke avtale, kreditering og eventuelle medvirkende før du gjenbruker materialet.",
+          "effect": 1,
+          "tags": [
+            "reuse",
+            "rights",
+            "archive"
+          ],
+          "feedback": "Du skiller praktisk gjenbruk fra antakelser om rettigheter."
+        },
+        {
+          "id": "B",
+          "label": "Publisere alt på nytt fordi du opprinnelig leverte hovedbidraget.",
+          "effect": -1,
+          "tags": [
+            "rights_assumption",
+            "credit_risk",
+            "scope_confusion"
+          ],
+          "feedback": "Du antar at ett bidrag gir kontroll over hele den ferdige publiseringen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_gjenbruk_avklart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samarbeidet_med_en_annen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samarbeidet",
+      "subject": "To bidragsytere, én leveranse",
+      "situation": [
+        "Du og en annen bidragsyter lager noe sammen, men dere har ulike bilder av hvem som gjør hva.",
+        "Uklare roller kan bli til konflikter om kreditt, frister og hvem som kan godkjenne siste versjon.",
+        "En enkel arbeidsdeling tidlig kan beskytte både relasjonen og leveransen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare ansvar, kreditering, versjonsflyt og hvem som sender inn den endelige leveransen.",
+          "effect": 1,
+          "tags": [
+            "collaboration",
+            "credit",
+            "workflow"
+          ],
+          "feedback": "Du gjør samarbeidet etterprøvbart uten å lage et kunstig hierarki."
+        },
+        {
+          "id": "B",
+          "label": "La arbeidsdelingen være flytende fordi gode samarbeidspartnere ikke trenger eksplisitte avtaler.",
+          "effect": -1,
+          "tags": [
+            "ambiguity",
+            "credit_conflict",
+            "workflow_risk"
+          ],
+          "feedback": "Du gjør vennskap eller entusiasme til erstatning for praktisk koordinering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_samarbeid_avklart"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "neste_bidrag_uten_automatikk",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Oppfølgingen",
+      "subject": "De likte bidraget — hva betyr det?",
+      "situation": [
+        "Etter en vellykket publisering får du en hyggelig melding om at de gjerne hører fra deg igjen.",
+        "Positive erfaringer kan skape relasjon og nye muligheter, men de er ikke det samme som fast oppdrag, ansettelse eller redaksjonell posisjon.",
+        "Bidragsyterrollen blir tydeligere når neste samarbeid avtales på nytt i stedet for å antas."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle neste idé som en ny avklaring av behov, omfang, kreditering og eventuelle vilkår.",
+          "effect": 1,
+          "tags": [
+            "continuity",
+            "scope",
+            "employment_boundary"
+          ],
+          "feedback": "Du lar tillit bygge relasjon uten å dikte fram en stilling."
+        },
+        {
+          "id": "B",
+          "label": "Presentere den gode erfaringen som om du nå har en fast rolle i mediet.",
+          "effect": -1,
+          "tags": [
+            "role_inflation",
+            "employment_assumption",
+            "status_claim"
+          ],
+          "feedback": "Du gjør gjentatt deltakelse til en ansettelsesfortelling uten grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bidragsyter_oppfolging_avklart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
