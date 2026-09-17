@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 95 ready / 64 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 96 ready / 63 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 95
-**Multi-scene narrative foundations:** 95
-**Completed life-position Role Worlds:** 95
+**Exact governed-source matches:** 96
+**Multi-scene narrative foundations:** 96
+**Completed life-position Role Worlds:** 96
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `litteratur/dramatiker` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `litteratur/essayist` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `litteratur/forfatter` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `litteratur/leser` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `litteratur/litteraturinteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `litteratur/litteraturkritiker` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `litteratur/poet` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `litteratur/skald` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `litteratur/skribent` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `media/bidragsyter` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `media/folger` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `media/frilansjournalist` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `media/kommentator_felt` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `media/leser` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `musikk/plateartist` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `natur/naturinteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `politikk/aktivist` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `politikk/demokratianalytiker` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `litteratur/essayist` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `litteratur/forfatter` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `litteratur/leser` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `litteratur/litteraturinteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `litteratur/litteraturkritiker` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `litteratur/poet` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `litteratur/skald` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `litteratur/skribent` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `media/bidragsyter` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `media/folger` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `media/frilansjournalist` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `media/kommentator_felt` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `media/leser` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `musikk/plateartist` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `natur/naturinteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `politikk/aktivist` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `politikk/demokratianalytiker` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `religion/symboltolker` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
