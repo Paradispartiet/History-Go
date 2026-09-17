@@ -1,0 +1,1196 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_folger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "media",
+    "id": "folger",
+    "label": "Følger"
+  },
+  "title": "Følger — kuratering, kontinuitet, algoritmer, tillit og parasosiale grenser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å leve med vedvarende medieoppmerksomhet der følgerlister, varsler, algoritmer, kjenthet og sosial identitet former hva som blir sett og trodd, uten at langvarig eksponering blir forvekslet med journalistisk myndighet, personlig nærhet eller automatisk sannhet",
+    "description": "Følger er en employment-independent audience_practice for gjentatt publikumsrelasjon over tid. Rollen dekker bevisst kuratering, varsler, langtidskontekst, parasosial familiaritet, algoritmisk seleksjon, kildeendring, rettelser, parallelle strømmer, publikumsidentitet, arkivbruk, feed-rangering, delingsansvar, avfølging og sponsing. Den er tydelig forskjellig fra Nyhetsjunkie som primært handler om tempo og overmetning, Kommentarfeltveteran som handler om offentlig deltakelse og konflikt, Medievaktbikkje som handler om framing og mediekritikk, og Bidragsyter som produserer materiale for publisering. Følgerstatus gir ingen jobb, lønn, journalistisk rolle, redaksjonell myndighet eller personlig relasjon til den man følger. Rollen introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "public_attention",
+    "status_anxiety",
+    "social_mask",
+    "shame_reputation",
+    "alienation",
+    "consumption"
+  ],
+  "social_environments": [
+    "personlige følgerlister og feeds der gjentatt eksponering formes av både eksplisitte valg og plattformens rangering",
+    "nyhets-, podkast-, video- og sosiale strømmer der kontinuitet kan gi kontekst samtidig som tempo og varsler konkurrerer om oppmerksomheten",
+    "venne- og samtalemiljøer der det å følge bestemte kilder eller personer blir en synlig sosial identitet",
+    "arkiver og eldre dekning der langtidsfølging kan kontrolleres mot dokumenterte tidligere versjoner fremfor bare hukommelse",
+    "plattformflater der anbefaling, sponsing og distribusjon påvirker hva som oppleves som relevant eller troverdig",
+    "publikumsrelasjoner til kjente stemmer der familiaritet, avfølging og parasosial nærhet må holdes adskilt fra faktisk personlig relasjon"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "den_faste_verten",
+      "social_function": "gjør kontinuitet, familiaritet og parasosial nærhet konkret over tid",
+      "class_position": "offentlig stemme eller programleder som publikum møter gjentatte ganger gjennom mediekanaler",
+      "status": "synlig offentlig figur uten personlig relasjon til spilleren",
+      "power_over_player": "kan få gjentatt tilgang til spillerens oppmerksomhet og tillit gjennom format, frekvens og familiaritet",
+      "wants": "at publikum fortsetter å følge, forstå formatet og komme tilbake til nytt innhold",
+      "conceals": "at publikums kjennskap til den offentlige stemmen ikke er gjensidig privat kjennskap",
+      "speech_style": "gjenkjennelig, trygg og formatbevisst",
+      "teaches_player": "å skille kjent offentlig stil fra faktisk personlig nærhet"
+    },
+    {
+      "id": "den_kritiske_vennen",
+      "social_function": "gjør sosial identitet og lojalitetspress synlig når spillerens følgerpraksis blir kommentert av andre",
+      "class_position": "nær relasjon uten institusjonell rolle i mediet eller plattformen",
+      "status": "sosial motstemme som kjenner spillerens vaner bedre enn innholdets produksjonsprosess",
+      "power_over_player": "kan gjøre følgeridentitet pinlig, defensiv eller refleksiv i en sosial situasjon",
+      "wants": "at spilleren begrunner hvorfor en kilde eller kanal fortsatt fortjener oppmerksomhet",
+      "conceals": "at egen skepsis også kan bygge på smak, gruppeidentitet eller begrenset kjennskap",
+      "speech_style": "direkte, ertende og utfordrende",
+      "teaches_player": "å holde publikumsinteresse adskilt fra automatisk lojalitet"
+    },
+    {
+      "id": "den_erfarne_folgeren",
+      "social_function": "viser hvordan langtidsoppmerksomhet kan gi kontekst uten å bli privat ekspertmyndighet",
+      "class_position": "annen publikummer med lang historikk i samme tema eller kanal",
+      "status": "uformell erfaringsstatus uten journalistisk, redaksjonell eller personlig autoritet",
+      "power_over_player": "kan sammenligne eldre hendelser, peker på arkiv og korrigere forenklede tidslinjer",
+      "wants": "at tidligere dekning brukes presist og ikke bare som nostalgisk mønstergjenkjenning",
+      "conceals": "at lang eksponering også kan gjøre gamle fortolkninger vanskelige å oppdatere",
+      "speech_style": "refererende, tidslinjeorientert og detaljert",
+      "teaches_player": "å gjøre langtidsminne etterprøvbart"
+    },
+    {
+      "id": "plattformstemmen",
+      "social_function": "gjør algoritmisk seleksjon, feed-rangering og varsler til en synlig strukturell aktør",
+      "class_position": "plattform- eller distribusjonsmekanisme som former synlighet uten å være personlig relasjon",
+      "status": "infrastrukturell kontroll over rekkefølge, anbefaling og avbrudd",
+      "power_over_player": "kan øke eller redusere eksponering uten at følgerlisten formelt endres",
+      "wants": "mest mulig fortsatt engasjement gjennom rangering, anbefaling og varsling",
+      "conceals": "hvor mye synligheten skyldes rankinglogikk fremfor spillerens egne følgervalg",
+      "speech_style": "kort, metrisk og anbefalingsdrevet",
+      "teaches_player": "å skille eksplisitt abonnement fra faktisk distribusjon"
+    },
+    {
+      "id": "den_kjente_kilden",
+      "social_function": "gjør tillitskalibrering og delingsansvar konkret når en kjent kilde publiserer en ny påstand",
+      "class_position": "medium, skribent eller kanal som spilleren har fulgt lenge",
+      "status": "opparbeidet publikumsfamiliaritet uten garanti for at hver ny påstand er korrekt",
+      "power_over_player": "kan få lavere terskel for tro og deling fordi historikken oppleves trygg",
+      "wants": "fortsatt oppmerksomhet og tillit til nye publiseringer",
+      "conceals": "at kvalitet og dokumentasjon kan variere fra sak til sak selv i en kjent kanal",
+      "speech_style": "gjenkjennelig, selvsikker og konsistent med tidligere profil",
+      "teaches_player": "å bruke tillit som startpunkt for vurdering, ikke som erstatning for den"
+    },
+    {
+      "id": "sponsoren_i_strommen",
+      "social_function": "gjør kommersiell påvirkning synlig inne i en ellers kjent og tillitsfull publikumsrelasjon",
+      "class_position": "kommersiell aktør som kjøper tilgang til oppmerksomhet gjennom en kjent kanal eller vert",
+      "status": "betalende avsender uten automatisk redaksjonell eller personlig troverdighet",
+      "power_over_player": "kan låne familiaritet og tillit fra formatet rundt budskapet",
+      "wants": "at publikums tillit til kanalen overføres til produkt, tjeneste eller påstand",
+      "conceals": "hvor sterkt budskapets overbevisningskraft avhenger av den etablerte følgerrelasjonen",
+      "speech_style": "glatt, anbefalende og integrert i vertens språk",
+      "teaches_player": "å skille publikumsnærhet fra kommersiell evidens"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "curation",
+      "meaning": "bevisst følgerliste, oppmerksomhet og valgbar kuratering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "notification_boundary",
+      "meaning": "varsler, tilgjengelighet og oppmerksomhetsgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "continuity_context",
+      "meaning": "langtidsfølging, tidslinje og kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "parasocial_boundary",
+      "meaning": "offentlig familiaritet, antatt nærhet og privat grense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "algorithmic_selection",
+      "meaning": "eksplisitt følging, anbefaling og algoritmisk seleksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_drift",
+      "meaning": "kildeendring, gammel tillit og ny vurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_memory",
+      "meaning": "rettelser, førsteinntrykk og oppdatert kunnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "plural_streams",
+      "meaning": "parallelle strømmer, utvalg og falsk balanse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_loyalty",
+      "meaning": "publikumsidentitet, lojalitet og sosialt press",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "archive_comparison",
+      "meaning": "arkiv, mønstergjenkjenning og historisk sammenligning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "distribution_visibility",
+      "meaning": "feed-rangering, synlighet og distribusjonsmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "trust_sharing",
+      "meaning": "generell tillit, konkret påstand og delingsansvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_autonomy",
+      "meaning": "avfølging, skyld og frivillig publikumsrelasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sponsorship_trust",
+      "meaning": "sponsing, familiaritet og kommersiell tillit",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: bevisst følgerliste, oppmerksomhet og valgbar kuratering. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "curation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: bevisst følgerliste, oppmerksomhet og valgbar kuratering. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "curation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: bevisst følgerliste, oppmerksomhet og valgbar kuratering. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "exit_autonomy",
+          "sponsorship_trust",
+          "curation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: bevisst følgerliste, oppmerksomhet og valgbar kuratering. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "exit_autonomy",
+          "sponsorship_trust",
+          "curation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: varsler, tilgjengelighet og oppmerksomhetsgrense. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "notification_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#varslet_som_blir_en_plikt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: varsler, tilgjengelighet og oppmerksomhetsgrense. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "notification_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#varslet_som_blir_en_plikt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: varsler, tilgjengelighet og oppmerksomhetsgrense. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "sponsorship_trust",
+          "curation",
+          "notification_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#varslet_som_blir_en_plikt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: varsler, tilgjengelighet og oppmerksomhetsgrense. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "sponsorship_trust",
+          "curation",
+          "notification_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#varslet_som_blir_en_plikt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: langtidsfølging, tidslinje og kontekst. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "continuity_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#den_lange_historien"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: langtidsfølging, tidslinje og kontekst. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "continuity_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#den_lange_historien"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: langtidsfølging, tidslinje og kontekst. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "curation",
+          "notification_boundary",
+          "continuity_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#den_lange_historien"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: langtidsfølging, tidslinje og kontekst. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "curation",
+          "notification_boundary",
+          "continuity_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#den_lange_historien"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: offentlig familiaritet, antatt nærhet og privat grense. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "parasocial_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: offentlig familiaritet, antatt nærhet og privat grense. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "parasocial_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: offentlig familiaritet, antatt nærhet og privat grense. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "notification_boundary",
+          "continuity_context",
+          "parasocial_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: offentlig familiaritet, antatt nærhet og privat grense. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "notification_boundary",
+          "continuity_context",
+          "parasocial_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: eksplisitt følging, anbefaling og algoritmisk seleksjon. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "algorithmic_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: eksplisitt følging, anbefaling og algoritmisk seleksjon. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "algorithmic_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: eksplisitt følging, anbefaling og algoritmisk seleksjon. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "continuity_context",
+          "parasocial_boundary",
+          "algorithmic_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: eksplisitt følging, anbefaling og algoritmisk seleksjon. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "continuity_context",
+          "parasocial_boundary",
+          "algorithmic_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: kildeendring, gammel tillit og ny vurdering. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "source_drift"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: kildeendring, gammel tillit og ny vurdering. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "source_drift"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: kildeendring, gammel tillit og ny vurdering. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "parasocial_boundary",
+          "algorithmic_selection",
+          "source_drift"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: kildeendring, gammel tillit og ny vurdering. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "parasocial_boundary",
+          "algorithmic_selection",
+          "source_drift"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: rettelser, førsteinntrykk og oppdatert kunnskap. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "correction_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: rettelser, førsteinntrykk og oppdatert kunnskap. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "correction_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: rettelser, førsteinntrykk og oppdatert kunnskap. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "algorithmic_selection",
+          "source_drift",
+          "correction_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: rettelser, førsteinntrykk og oppdatert kunnskap. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "algorithmic_selection",
+          "source_drift",
+          "correction_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: parallelle strømmer, utvalg og falsk balanse. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "plural_streams"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#to_strommer_samme_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: parallelle strømmer, utvalg og falsk balanse. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "plural_streams"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#to_strommer_samme_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: parallelle strømmer, utvalg og falsk balanse. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "source_drift",
+          "correction_memory",
+          "plural_streams"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#to_strommer_samme_tema"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: parallelle strømmer, utvalg og falsk balanse. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "source_drift",
+          "correction_memory",
+          "plural_streams"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#to_strommer_samme_tema"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: publikumsidentitet, lojalitet og sosialt press. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "identity_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_folging_blir_identitet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: publikumsidentitet, lojalitet og sosialt press. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "identity_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_folging_blir_identitet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: publikumsidentitet, lojalitet og sosialt press. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "correction_memory",
+          "plural_streams",
+          "identity_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_folging_blir_identitet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: publikumsidentitet, lojalitet og sosialt press. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "correction_memory",
+          "plural_streams",
+          "identity_loyalty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_folging_blir_identitet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: arkiv, mønstergjenkjenning og historisk sammenligning. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "archive_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#arkivet_bak_feedens_nyhet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: arkiv, mønstergjenkjenning og historisk sammenligning. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "archive_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#arkivet_bak_feedens_nyhet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: arkiv, mønstergjenkjenning og historisk sammenligning. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "plural_streams",
+          "identity_loyalty",
+          "archive_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#arkivet_bak_feedens_nyhet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: arkiv, mønstergjenkjenning og historisk sammenligning. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "plural_streams",
+          "identity_loyalty",
+          "archive_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#arkivet_bak_feedens_nyhet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: feed-rangering, synlighet og distribusjonsmakt. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "distribution_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#plattformen_endrer_rekkefolgen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: feed-rangering, synlighet og distribusjonsmakt. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "distribution_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#plattformen_endrer_rekkefolgen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: feed-rangering, synlighet og distribusjonsmakt. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "identity_loyalty",
+          "archive_comparison",
+          "distribution_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#plattformen_endrer_rekkefolgen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: feed-rangering, synlighet og distribusjonsmakt. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "identity_loyalty",
+          "archive_comparison",
+          "distribution_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#plattformen_endrer_rekkefolgen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: generell tillit, konkret påstand og delingsansvar. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "trust_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_du_deler_fra_noen_du_folger"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: generell tillit, konkret påstand og delingsansvar. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "trust_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_du_deler_fra_noen_du_folger"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: generell tillit, konkret påstand og delingsansvar. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "archive_comparison",
+          "distribution_visibility",
+          "trust_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_du_deler_fra_noen_du_folger"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: generell tillit, konkret påstand og delingsansvar. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "archive_comparison",
+          "distribution_visibility",
+          "trust_sharing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#nar_du_deler_fra_noen_du_folger"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: avfølging, skyld og frivillig publikumsrelasjon. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "exit_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: avfølging, skyld og frivillig publikumsrelasjon. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "exit_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: avfølging, skyld og frivillig publikumsrelasjon. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "distribution_visibility",
+          "trust_sharing",
+          "exit_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: avfølging, skyld og frivillig publikumsrelasjon. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "distribution_visibility",
+          "trust_sharing",
+          "exit_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: sponsing, familiaritet og kommersiell tillit. Morgenen viser hva som faktisk kommer inn gjennom følgerlisten, varslene eller feeden før spilleren tolker betydningen.",
+        "thread_ids": [
+          "sponsorship_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#sponsingen_i_den_faste_strommen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: sponsing, familiaritet og kommersiell tillit. Midt på dagen møter følgerpraksisen en venn, offentlig stemme, annen følger eller plattformmekanisme som gjør den sosiale relasjonen synlig.",
+        "thread_ids": [
+          "sponsorship_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#sponsingen_i_den_faste_strommen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: sponsing, familiaritet og kommersiell tillit. Ettermiddagen krever et konkret valg om kuratering, kontekst, tillit, deling, synlighet, avfølging eller kommersiell påvirkning.",
+        "thread_ids": [
+          "trust_sharing",
+          "exit_autonomy",
+          "sponsorship_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#sponsingen_i_den_faste_strommen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: sponsing, familiaritet og kommersiell tillit. Kvelden viser hvordan valget påvirker oppmerksomhet, identitet, tillit, relasjoner og hva spilleren tar med seg videre.",
+        "thread_ids": [
+          "trust_sharing",
+          "exit_autonomy",
+          "sponsorship_trust"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_folger.json#sponsingen_i_den_faste_strommen"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "curation",
+      "relationship": "bevisst følgerliste, oppmerksomhet og valgbar kuratering",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "notification_boundary",
+      "relationship": "varsler, tilgjengelighet og oppmerksomhetsgrense",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "continuity_context",
+      "relationship": "langtidsfølging, tidslinje og kontekst",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "parasocial_boundary",
+      "relationship": "offentlig familiaritet, antatt nærhet og privat grense",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "algorithmic_selection",
+      "relationship": "eksplisitt følging, anbefaling og algoritmisk seleksjon",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "source_drift",
+      "relationship": "kildeendring, gammel tillit og ny vurdering",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "correction_memory",
+      "relationship": "rettelser, førsteinntrykk og oppdatert kunnskap",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "plural_streams",
+      "relationship": "parallelle strømmer, utvalg og falsk balanse",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "identity_loyalty",
+      "relationship": "publikumsidentitet, lojalitet og sosialt press",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "archive_comparison",
+      "relationship": "arkiv, mønstergjenkjenning og historisk sammenligning",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "distribution_visibility",
+      "relationship": "feed-rangering, synlighet og distribusjonsmakt",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "trust_sharing",
+      "relationship": "generell tillit, konkret påstand og delingsansvar",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "exit_autonomy",
+      "relationship": "avfølging, skyld og frivillig publikumsrelasjon",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "sponsorship_trust",
+      "relationship": "sponsing, familiaritet og kommersiell tillit",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "folgerlisten_blir_bevisst",
+      "description": "Spilleren rydder oftere i hvilke kilder, personer og temaer som faktisk fortjener gjentatt oppmerksomhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge"
+      ]
+    },
+    {
+      "id": "familiaritet_blir_ikke_narhet",
+      "description": "Kjennskap til en offentlig stemme holdes tydeligere adskilt fra antatt privat relasjon eller motivkunnskap.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge"
+      ]
+    },
+    {
+      "id": "feed_er_ikke_feltet",
+      "description": "Spilleren skiller oftere mellom egne følgervalg, algoritmisk distribusjon og hva som faktisk finnes i offentligheten.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med"
+      ]
+    },
+    {
+      "id": "tillit_oppdateres",
+      "description": "Gamle kilder, rettelser og nye påstander vurderes på nytt i stedet for å arve permanent tillit fra historikken.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg",
+        "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser"
+      ]
+    },
+    {
+      "id": "avfolging_er_tillatt",
+      "description": "Publikumsrelasjonen behandles som frivillig: spilleren kan dempe eller avfølge uten å gjøre det til svik eller offentlig dom.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "varselet_returnerer",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "stress",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tidslinjen_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "parasosialiteten_returnerer",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "algoritmen_returnerer",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tilliten_returnerer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "sponsingen_returnerer",
+      "setup_ref": "14/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "financial",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/media_folger.json#hvem_du_velger_a_folge",
+      "data/Civication/narratives/leisure/media_folger.json#varslet_som_blir_en_plikt",
+      "data/Civication/narratives/leisure/media_folger.json#den_lange_historien",
+      "data/Civication/narratives/leisure/media_folger.json#personen_du_har_fulgt_lenge",
+      "data/Civication/narratives/leisure/media_folger.json#algoritmen_som_folger_med",
+      "data/Civication/narratives/leisure/media_folger.json#nar_en_kilde_endrer_seg",
+      "data/Civication/narratives/leisure/media_folger.json#rettelsen_du_nesten_ikke_ser",
+      "data/Civication/narratives/leisure/media_folger.json#to_strommer_samme_tema",
+      "data/Civication/narratives/leisure/media_folger.json#nar_folging_blir_identitet",
+      "data/Civication/narratives/leisure/media_folger.json#arkivet_bak_feedens_nyhet",
+      "data/Civication/narratives/leisure/media_folger.json#plattformen_endrer_rekkefolgen",
+      "data/Civication/narratives/leisure/media_folger.json#nar_du_deler_fra_noen_du_folger",
+      "data/Civication/narratives/leisure/media_folger.json#avfolgingen_som_kjennes_personlig",
+      "data/Civication/narratives/leisure/media_folger.json#sponsingen_i_den_faste_strommen"
+    ]
+  }
+}
