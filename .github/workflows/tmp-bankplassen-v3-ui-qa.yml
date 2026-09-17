@@ -186,10 +186,26 @@ jobs:
                 console.error(`::notice title=BLOCKER_DIAG ${name}::${gha(JSON.stringify(blockerAudit))}`);
 
                 await page.click('#pcInfo');
-                await page.waitForSelector('.hg-popup.place-popup-v2', { state: 'visible', timeout: 30000 });
-                const popupTitle = (await page.locator('.hg-popup.place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
+                await page.waitForFunction((targetPlaceId) => {
+                  const card = document.querySelector('#placeCard');
+                  const shell = card?.querySelector('[data-hg-place-sheet-shell="1"]');
+                  const about = card?.querySelector('[data-hg-place-sheet-section="about"]');
+                  if (!card || !shell || !about) return false;
+                  const cardRect = card.getBoundingClientRect();
+                  const aboutRect = about.getBoundingClientRect();
+                  const aboutNearTop = aboutRect.top >= cardRect.top - 32
+                    && aboutRect.top <= cardRect.top + Math.min(260, cardRect.height * 0.4);
+                  return String(card.dataset.currentPlaceId || '').trim() === targetPlaceId
+                    && String(card.dataset.hgUnifiedPlaceId || '').trim() === targetPlaceId
+                    && String(shell.dataset.placeId || '').trim() === targetPlaceId
+                    && card.classList.contains('is-unified-place')
+                    && card.dataset.hgPlaceSheetRenderState === 'full-ready'
+                    && about.dataset.hgPlaceSheetRenderState === 'rendered'
+                    && aboutNearTop;
+                }, placeId, { timeout: 30000 });
+                const popupTitle = (await page.locator('#pcTitle').textContent() || '').trim();
                 if (popupTitle !== expectedTitle) {
-                  throw new Error(`${name}: unexpected popup title ${JSON.stringify(popupTitle)}`);
+                  throw new Error(`${name}: unexpected info-surface title ${JSON.stringify(popupTitle)}`);
                 }
                 await page.screenshot({ path: `${outDir}/${name}-popup.png`, fullPage: true });
 
