@@ -186,8 +186,8 @@ jobs:
                 console.error(`::notice title=BLOCKER_DIAG ${name}::${gha(JSON.stringify(blockerAudit))}`);
 
                 await page.click('#pcInfo');
-                await page.waitForSelector('.hg-place-popup-v2', { state: 'visible', timeout: 30000 });
-                const popupTitle = (await page.locator('.hg-place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
+                await page.waitForSelector('.hg-popup.place-popup-v2', { state: 'visible', timeout: 30000 });
+                const popupTitle = (await page.locator('.hg-popup.place-popup-v2 .hg-popup-title').first().textContent() || '').trim();
                 if (popupTitle !== expectedTitle) {
                   throw new Error(`${name}: unexpected popup title ${JSON.stringify(popupTitle)}`);
                 }
