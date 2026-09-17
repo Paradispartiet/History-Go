@@ -47,17 +47,37 @@ jobs:
         run: |
           node scripts/tmp-materialize-poet.mjs
           node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-      - name: Synchronize taxonomy summary expectation
+      - name: Synchronize taxonomy summary expectations
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('tests/civication-noncareer-role-taxonomy.test.js')
           text = p.read_text()
-          old = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 186, career_role_worlds: 85, life_position_role_worlds: 101 });"
-          new = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 187, career_role_worlds: 85, life_position_role_worlds: 102 });"
-          if old not in text:
-              raise SystemExit('Expected stale roleWorldIndex.summary assertion not found')
-          p.write_text(text.replace(old, new))
+
+          replacements = [
+              (
+                  "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 186, career_role_worlds: 85, life_position_role_worlds: 101 });",
+                  "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 187, career_role_worlds: 85, life_position_role_worlds: 102 });",
+                  'roleWorldIndex.summary',
+              ),
+              (
+                  "  life_position_role_worlds: 101,\n  total_role_worlds: 186,\n  role_model_manifest_files: 293,",
+                  "  life_position_role_worlds: 102,\n  total_role_worlds: 187,\n  role_model_manifest_files: 293,",
+                  'taxonomy canonical_counts summary',
+              ),
+              (
+                  "85 career Role Worlds + 101 life-position worlds",
+                  "85 career Role Worlds + 102 life-position worlds",
+                  'taxonomy console summary',
+              ),
+          ]
+
+          for old, new, label in replacements:
+              if old not in text:
+                  raise SystemExit(f'Expected stale {label} text not found')
+              text = text.replace(old, new, 1)
+
+          p.write_text(text)
           PY
       - name: Verify targeted Poet contracts
         run: |
