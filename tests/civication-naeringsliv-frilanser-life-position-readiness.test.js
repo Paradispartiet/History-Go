@@ -28,6 +28,7 @@ assert.deepEqual(row.evidence.thematic_source_refs, [
   'data/Civication/narratives/leisure/historievandrer.json',
   'data/Civication/narratives/leisure/kunst_ateliermenneske.json',
   'data/Civication/narratives/leisure/litteratur_poet.json',
+  'data/Civication/narratives/leisure/litteratur_skald.json',
   'data/Civication/narratives/leisure/subkultur_gangster.json'
 ]);
 assert.deepEqual(row.evidence.livelihood_templates, ['frilanser_kortoppdrag']);
