@@ -43,6 +43,26 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Generate Leser governance diagnostic
+        run: node scripts/audit-civication-leser-governance-diagnostic.mjs
+
+      - name: Upload Leser governance diagnostic
+        uses: actions/upload-artifact@v4
+        with:
+          name: leser-governance-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            data/Civication/lifePositionRoleWorldReadiness.json
+            data/Civication/nonCareerRoleTaxonomy.json
+            data/Civication/roleWorldAuthoringChecklist.json
+            data/Civication/roleWorldPolicy.json
+            data/Civication/roleWorldThemeBank.json
+            data/Civication/roleWorlds/index.json
+            reports/civication-life-position-role-world-readiness.md
+            tests/civication-life-position-role-world-readiness.test.js
+            tests/civication-noncareer-role-taxonomy.test.js
+            tests/civication-role-world-contract.test.js
+
       - name: Verify compiled scene registry is synchronized
         run: node scripts/build-civication-scene-registry.mjs --check
 
