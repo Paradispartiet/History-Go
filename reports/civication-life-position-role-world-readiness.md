@@ -1,16 +1,16 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 105 ready / 54 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 106 ready / 53 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 14
-**Exact governed-source matches:** 105
-**Multi-scene narrative foundations:** 105
+**Exact governed-source matches:** 106
+**Multi-scene narrative foundations:** 106
 **Completed life-position Role Worlds:** 105
-**Pending ready positions:** 0
+**Pending ready positions:** 1
 
 ## Decision
 
-No unfinished life position is currently ready for Role World production. Source-ready positions that are already role_world_complete remain visible in the 199-position audit but are excluded from the pending queue; remaining standalone-capable positions require authored depth first.
+First pending ready Role World position: **media/folger — Følger**.
 
 Livelihood templates count as provenance for an economic opportunity, but never as sufficient Role World depth on their own.
 
@@ -18,7 +18,7 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `media/folger` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `media/folger` | ready | 1 | 0 | 14 |
 | 2 | `media/frilansjournalist` | needs_authored_depth | 0 | 0 | 0 |
 | 3 | `media/kommentator_felt` | needs_authored_depth | 0 | 0 | 0 |
 | 4 | `media/leser` | needs_authored_depth | 0 | 0 | 0 |
