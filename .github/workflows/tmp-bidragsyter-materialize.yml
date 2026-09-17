@@ -22,6 +22,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Materialize Bidragsyter canonical Role World
         run: node scripts/tmp-materialize-media-bidragsyter.mjs
+      - name: Restore unrelated Frilanser source inventory
+        run: git checkout -- tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
       - name: Regenerate life-position readiness
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
       - name: Verify Bidragsyter readiness
