@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_pilegrim",
+  "type": "leisure",
+  "title": "Pilegrim — reise, praksis og mening",
+  "sociological_theme": "Hvordan en selvvalgt pilegrimsreise kan romme sted, kropp, ritual, fellesskap og personlig mening uten å gjøre reisen til prestasjon, status eller religiøs autoritet.",
+  "applies_when": {
+    "any_tags": [
+      "religion:pilegrim"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "ruten_som_ble_maaltet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Rutevennen",
+      "subject": "Er reisen bare tiden før du kommer fram?",
+      "situation": [
+        "En pilegrimsreise har et tydelig mål, men mye av praksisen skjer underveis.",
+        "Tempo, pauser, møter og steder langs ruten kan være del av meningen, ikke bare logistikk.",
+        "Når alt optimaliseres mot ankomst, kan selve reisepraksisen forsvinne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle ruten som del av praksisen og planlegg tid til pauser, steder og møter underveis.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Optimaliser hele reisen mot raskest mulig ankomst; resten er transport.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_route_vs_destination"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skoene_og_planen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Turkameraten",
+      "subject": "Planen sier videre, kroppen sier stopp",
+      "situation": [
+        "Etappen er planlagt på forhånd, men kroppen reagerer med smerte og utmattelse.",
+        "Pilegrimspraksis kan innebære utholdenhet uten at skade blir et mål i seg selv.",
+        "Å justere ruten kan bevare reisen bedre enn å presse gjennom planen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster etappen etter kroppens signaler og skill utholdenhet fra unødvendig skade.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Følg planen uansett; ekte pilegrimsreise krever at man tåler alt.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_body_vs_plan"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualet_du_ikke_eier",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Verten",
+      "subject": "Du er invitert inn, men ritualet er ikke ditt",
+      "situation": [
+        "Spilleren får delta i en praksis som har dyp betydning for vertsmiljøet.",
+        "Å være gjest kan gi nærhet uten at man automatisk får tolknings- eller eierskap over ritualet.",
+        "Respekt handler både om deltakelse og om å vite hva man ikke kan ta med seg som egen merkevare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg vertens rammer, spør når du er usikker og la ritualet beholde sin egen kontekst.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør ritualet om til din egen signaturpraksis med en gang fordi opplevelsen betydde mye.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_participation_vs_appropriation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bilde_foran_det_hellige",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Medreisende",
+      "subject": "Må dette fotograferes?",
+      "situation": [
+        "Et sterkt øyeblikk frister til å ta fram kameraet, men andre mennesker er også del av situasjonen.",
+        "Dokumentasjon kan bevare minner og samtidig endre stemningen eller bryte lokale normer.",
+        "Noen øyeblikk kan være mer verdifulle når de ikke gjøres offentlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk stedets normer og andres samtykke før du dokumenterer, og la noen øyeblikk forbli private.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Ta bilde først; en viktig reise bør dokumenteres mens øyeblikket varer.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_documentation_vs_presence"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pilegrim_eller_turist",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Hvem bestemmer om du er pilegrim?",
+      "situation": [
+        "Noen på ruten kaller spilleren turist fordi reisen ikke følger deres forventede form.",
+        "Pilegrim er en selvvalgt identitet, men ordet får ulik mening i ulike tradisjoner og miljøer.",
+        "Rollen blir mindre presis hvis den brukes som statuskamp i stedet for beskrivelse av praksis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva reisen betyr for deg uten å kreve at andre bruker samme merkelapp.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar pilegrim-identiteten som en rangering over vanlige reisende.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_identity_vs_label"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "betal_for_ektheten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Vertshusverten",
+      "subject": "Autentisk opplevelse — mot tillegg",
+      "situation": [
+        "Langs ruten tilbys sertifikater, pakker og produkter som lover en mer ekte pilegrimsopplevelse.",
+        "Kommersielle tjenester kan være nyttige uten å være mål på mening eller legitimitet.",
+        "Når kjøp blir bevis på alvor, flyttes praksisen fra erfaring til status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tjenester når de faktisk hjelper reisen, men ikke gjør kjøp til mål på hvor ekte den er.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp premium-pakken; høyere pris betyr at opplevelsen blir mer autentisk.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_commerce_vs_meaning"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "andres_tempo",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Turkameraten",
+      "subject": "Gruppen går ikke i samme fart",
+      "situation": [
+        "Reisefølget har ulike fysiske forutsetninger, ønsker og behov for pauser.",
+        "Fellesskap kan innebære å vente, dele seg midlertidig eller endre plan uten at alle gjør alt likt.",
+        "Et felles mål trenger ikke bety identisk tempo."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal tydelige møtepunkter og juster fellesskapet etter reelle forskjeller i kapasitet.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Krev samme tempo av alle; ellers mister reisen fellesskapet sitt.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_pace_vs_group"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_ble_fakta",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kildevennen",
+      "subject": "En god historie er ikke automatisk dokumentasjon",
+      "situation": [
+        "En lokal fortelling om ruten blir gjentatt som sikker historie av reisende.",
+        "Fortellinger kan bære identitet og mening også når historisk dokumentasjon er svak eller omstridt.",
+        "Det er mulig å respektere tradisjonen uten å gjøre alle detaljer til faktapåstand."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell historien som tradisjon og skill tydelig mellom det som er dokumentert og det som er overlevert.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gjengi alt som historisk fakta fordi fortellingen har vært med lenge.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_tradition_vs_claim"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vertens_husregler",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Verten",
+      "subject": "Gjestehuset er ikke et hotell",
+      "situation": [
+        "Spilleren overnatter et sted som bygger på frivillig vertskap og enkle fellesregler.",
+        "Gjestfrihet kan være raus uten å være en tjeneste man har krav på.",
+        "Forventninger fra kommersiell reise passer ikke alltid i et fellesskapsdrevet sted."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les reglene, bidra der det forventes og skill gjestfrihet fra kjøpt service.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Krev samme standard som på hotell fordi du tross alt er gjest.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_hospitality_vs_entitlement"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tro_og_ikke_tro",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Medreisende",
+      "subject": "Dere går samme vei av ulike grunner",
+      "situation": [
+        "Reisefølget består av mennesker med ulike religiøse, sekulære og personlige begrunnelser.",
+        "En felles praksis kan romme ulik mening uten at forskjellene må oppløses.",
+        "Samtalen blir fattigere hvis én begrunnelse gjøres til den eneste legitime."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La ulike motiver stå side om side og spør hvordan reisen virker for den enkelte.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bestem én riktig begrunnelse for reisen og mål de andre opp mot den.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_shared_route_vs_belief"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "merket_i_passet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Rutevennen",
+      "subject": "Samlingen av stempler begynner å styre dagen",
+      "situation": [
+        "Et pilegrimspass eller annen dokumentasjon gir struktur og kan markere progresjon.",
+        "Når jakten på bevis blir hovedmålet, kan steder uten stempel miste verdi selv om de betyr mye.",
+        "Dokumentasjon er ett spor av reisen, ikke hele reisen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk stempler som minne og logistikk, men la erfaringen styre hvilke steder du faktisk oppsøker.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter bare steder som gir dokumenterbare bevis på at reisen teller.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_credential_vs_experience"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_som_ble_plikt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Må en pilegrim være stille, alvorlig og enkel?",
+      "situation": [
+        "Spilleren begynner å kopiere en forestilling om hvordan en ekte pilegrim skal oppføre seg.",
+        "Praksiser kan ha tradisjoner og normer uten at én sosial stil passer alle.",
+        "Når rollen blir forestilling, kan reisen handle mer om å se riktig ut enn om faktisk erfaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg nødvendige normer, men la egen praksis være ærlig uten å spille en stereotyp pilegrim.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass deg stereotypen fullt ut; synlig alvor viser at reisen er ekte.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_practice_vs_performance"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reisen_som_ble_innhold",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kildevennen",
+      "subject": "Historien din inneholder også andre mennesker",
+      "situation": [
+        "Spilleren vil dele reisen offentlig og bruker samtaler med medreisende som del av fortellingen.",
+        "Egen erfaring kan formidles uten at andres private historier automatisk blir publiserbare.",
+        "Pilegrimsfellesskap kan skape fortrolighet som ikke bør omgjøres til innhold uten samtykke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell fra eget perspektiv og anonymiser eller avklar andres historier før de deles.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Del alle møtene slik du husker dem; de skjedde på din reise.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_sharing_vs_exposure"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hjemkomsten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Hjemmevennen",
+      "subject": "Hva betyr reisen når hverdagen begynner igjen?",
+      "situation": [
+        "Etter reisen føles hverdagen flat sammenlignet med den tydelige rytmen underveis.",
+        "Sterke erfaringer kan gi mening uten at hele livet må reorganiseres umiddelbart.",
+        "Det kan være mer robust å prøve små endringer enn å gjøre store løfter i ettergløden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én konkret praksis eller prioritering du vil prøve i hverdagen og se hvordan den faktisk fungerer over tid.",
+          "effect": 1,
+          "tags": [
+            "practice",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du holder reisen konkret, respektfull og åpen for flere meninger uten å gjøre erfaringen til autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Ta store livsvalg med en gang mens følelsen fra reisen fortsatt er sterk.",
+          "effect": -1,
+          "tags": [
+            "performance",
+            "overclaim",
+            "entitlement"
+          ],
+          "feedback": "Reisen blir mer statuspreget, kategorisk eller rettighetsorientert enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pilegrim_journey_vs_integration"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

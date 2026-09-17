@@ -1,0 +1,1115 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_monsterjeger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "psykologi",
+    "id": "monsterjeger",
+    "label": "Mønsterjeger"
+  },
+  "title": "Mønsterjeger — observasjon, kontekst og usikkerhet",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å legge merke til gjentakelser uten å gjøre få hendelser, pene kurver, minner eller sosiale merkelapper om til sikre forklaringer på mennesker",
+    "description": "Mønsterjeger-verdenen undersøker gjentakelse, moteksempler, uvanlige perioder, handling versus motiv, identitetsmerkelapper, tidsrekkefølge, telling, minne, kontekst, konkurrerende mønstre, alternative forklaringer, deling av observasjoner, revisjon og rollegrenser. Mønsterjeger er en practice_identity og selvvalgt observasjonspraksis. Rollen gir ingen automatisk myndighet som psykolog, behandler, diagnostiker, forsker eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "status_anxiety",
+    "care_vs_efficiency",
+    "alienation",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "hverdagsnotater der små gjentakelser kan sammenlignes med dager og situasjoner der de uteblir",
+    "vennesamtaler der en foreløpig forklaring kan bli utfordret uten at observasjonen må forkastes",
+    "digitale oversikter og tellinger der det målbare lett får mer oppmerksomhet enn sammenhengen rundt",
+    "situasjoner der en vane hos en annen person risikerer å bli en bred identitetsmerkelapp",
+    "skiftende steder, grupper og tidspunkter som gjør grensene for et mønster synlige",
+    "private refleksjoner der gamle konklusjoner må kunne revideres når nye observasjoner peker en annen vei"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "notatvennen",
+      "social_function": "deler hverdagsnotater og gjør det mulig å sammenligne minner med det som faktisk ble skrevet ned",
+      "class_position": "likestilt privat deltaker uten faglig eller klinisk mandat",
+      "status": "troverdig gjennom konsistent notatpraksis, ikke gjennom profesjonstittel",
+      "power_over_player": "kan styrke eller utfordre spillerens fortelling ved å vise samtidige eksempler og moteksempler",
+      "wants": "at mønstre beskrives konkret nok til å kunne endres når nye hendelser kommer",
+      "conceals": "at også systematiske notater velger hva som får oppmerksomhet",
+      "speech_style": "konkret, lavmælt og opptatt av datoer og situasjoner",
+      "teaches_player": "at samtidige notater kan korrigere et senere, ryddigere minne"
+    },
+    {
+      "id": "skeptisk_venn",
+      "social_function": "ber om moteksempler og alternative forklaringer når én historie blir for sikker",
+      "class_position": "venn eller bekjent uten behandler- eller ekspertrolle",
+      "status": "uformell troverdighet fordi vedkommende tåler å være den som spør en gang til",
+      "power_over_player": "kan bremse raske konklusjoner og gjøre usikkerhet sosialt akseptabel",
+      "wants": "at spilleren skiller godt spørsmål fra ferdig forklaring",
+      "conceals": "at skepsis også kan bli en vane som undervurderer reelle gjentakelser",
+      "speech_style": "kort, spørrende og lite imponert av pene historier",
+      "teaches_player": "at et mønster blir mer nyttig når det overlever gode motspørsmål"
+    },
+    {
+      "id": "personen_det_gjelder",
+      "social_function": "viser forskjellen mellom å observere en handling og å definere personen som bærer den",
+      "class_position": "privat person med førstehåndskunnskap om egen situasjon, uten plikt til å godta spillerens tolkning",
+      "status": "høy relevans for kontekst, men ikke automatisk fasit på alle årsaksforhold",
+      "power_over_player": "kan korrigere feil kontekst og sette grenser for hvordan private observasjoner deles",
+      "wants": "å bli møtt som mer enn et mønster eller en merkelapp",
+      "conceals": "at også egen forklaring kan endre seg med tid og situasjon",
+      "speech_style": "direkte, personlig og opptatt av hva som faktisk ble sagt eller gjort",
+      "teaches_player": "at mønstre om andre krever både avgrensning og respekt"
+    },
+    {
+      "id": "tallentusiasten",
+      "social_function": "gjør telling, kurver og grupperinger attraktive og synliggjør både styrken og begrensningen ved kvantifisering",
+      "class_position": "interessert deltaker uten forsknings- eller analysemandat",
+      "status": "høy når mønsteret kan vises i en ryddig oversikt",
+      "power_over_player": "kan flytte oppmerksomheten mot det som kan telles og sammenlignes",
+      "wants": "et tydelig bilde som gjør endringer lettere å se",
+      "conceals": "at valg av mål og gruppering påvirker hvilket mønster som kommer fram",
+      "speech_style": "entusiastisk, konkret og glad i sammenligninger",
+      "teaches_player": "at tall kan skjerpe observasjon uten å forklare alt rundt den"
+    },
+    {
+      "id": "kontekstminneren",
+      "social_function": "holder sted, tidspunkt, gruppe og uvanlige omstendigheter synlige når et mønster blir gjort for generelt",
+      "class_position": "nær deltaker med situasjonskunnskap, ikke diagnostisk eller profesjonell autoritet",
+      "status": "lav formell status, høy praktisk verdi når detaljer rundt hendelser glemmes",
+      "power_over_player": "kan vise at samme handling opptrer annerledes når betingelsene endres",
+      "wants": "at sammenligninger faktisk sammenligner lignende situasjoner",
+      "conceals": "at kontekst kan bli så detaljert at ingen generalisering våges",
+      "speech_style": "jordnær, detaljorientert og opptatt av hva som var annerledes akkurat da",
+      "teaches_player": "at grensene for et mønster ofte er like viktige som selve gjentakelsen"
+    },
+    {
+      "id": "samtalepartneren",
+      "social_function": "hjelper spilleren å formulere observasjoner og alternative hypoteser uten å opptre som behandler",
+      "class_position": "likestilt samtalepartner uten klinisk, terapeutisk eller profesjonell rolle",
+      "status": "tillit gjennom lytting og presise spørsmål, ikke gjennom fagmyndighet",
+      "power_over_player": "kan gjøre språk mindre kategorisk og få skjulte antakelser fram i lyset",
+      "wants": "at usikkerhet kan sies høyt uten at hele observasjonen må forkastes",
+      "conceals": "at gode spørsmål også kan få større tyngde enn de fortjener når relasjonen er nær",
+      "speech_style": "rolig, avklarende og opptatt av forskjellen mellom sett, tenkt og antatt",
+      "teaches_player": "at mønsterjakt fungerer bedre som spørsmål enn som diagnose"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "evidence_vs_pattern_hunger",
+      "meaning": "om spilleren samler både treff og moteksempler fremfor å gjøre de første gjentakelsene til en regel",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_vs_generalization",
+      "meaning": "om sted, tidspunkt og situasjon følger med når et mønster beskrives bredere",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_identity",
+      "meaning": "om en gjentatt handling forblir en avgrenset observasjon i stedet for å bli en total merkelapp på personen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sequence_vs_causality",
+      "meaning": "om tidsrekkefølge behandles som et spor fremfor ferdig årsaksforklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_meaning",
+      "meaning": "om telling og visualisering brukes som støtte uten å erstatte situert forståelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "memory_vs_revision",
+      "meaning": "om sterke minner og gamle konklusjoner kan korrigeres av samtidige notater og nye moteksempler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_clinical_authority",
+      "meaning": "om mønstererfaring holdes tydelig adskilt fra klinisk, diagnostisk, terapeutisk og forskningsmessig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Det har skjedd tre ganger nå.",
+        "thread_ids": [
+          "repetition_vs_rule"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Det har skjedd tre ganger nå.",
+        "thread_ids": [
+          "repetition_vs_rule"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Det har skjedd tre ganger nå.",
+        "thread_ids": [
+          "repetition_vs_rule"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Det har skjedd tre ganger nå.",
+        "thread_ids": [
+          "repetition_vs_rule"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hva med dagene det ikke skjedde?.",
+        "thread_ids": [
+          "hits_vs_misses",
+          "repetition_vs_rule"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hva med dagene det ikke skjedde?.",
+        "thread_ids": [
+          "hits_vs_misses"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Hva med dagene det ikke skjedde?.",
+        "thread_ids": [
+          "hits_vs_misses"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hva med dagene det ikke skjedde?.",
+        "thread_ids": [
+          "hits_vs_misses"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Denne uka var jo helt spesiell.",
+        "thread_ids": [
+          "ordinary_vs_exception",
+          "hits_vs_misses"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Denne uka var jo helt spesiell.",
+        "thread_ids": [
+          "ordinary_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Denne uka var jo helt spesiell.",
+        "thread_ids": [
+          "ordinary_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Denne uka var jo helt spesiell.",
+        "thread_ids": [
+          "ordinary_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Det ser likt ut, men skjer av ulike grunner.",
+        "thread_ids": [
+          "behavior_vs_motive",
+          "ordinary_vs_exception"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Det ser likt ut, men skjer av ulike grunner.",
+        "thread_ids": [
+          "behavior_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Det ser likt ut, men skjer av ulike grunner.",
+        "thread_ids": [
+          "behavior_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Det ser likt ut, men skjer av ulike grunner.",
+        "thread_ids": [
+          "behavior_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Det der er én ting jeg gjør, ikke hvem jeg er.",
+        "thread_ids": [
+          "pattern_vs_identity",
+          "behavior_vs_motive"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Det der er én ting jeg gjør, ikke hvem jeg er.",
+        "thread_ids": [
+          "pattern_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Det der er én ting jeg gjør, ikke hvem jeg er.",
+        "thread_ids": [
+          "pattern_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Det der er én ting jeg gjør, ikke hvem jeg er.",
+        "thread_ids": [
+          "pattern_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Rekkefølgen er tydelig, men er årsaken det?.",
+        "thread_ids": [
+          "sequence_vs_cause",
+          "pattern_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Rekkefølgen er tydelig, men er årsaken det?.",
+        "thread_ids": [
+          "sequence_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Rekkefølgen er tydelig, men er årsaken det?.",
+        "thread_ids": [
+          "sequence_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Rekkefølgen er tydelig, men er årsaken det?.",
+        "thread_ids": [
+          "sequence_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Nå har vi en graf for hver dag.",
+        "thread_ids": [
+          "measurement_vs_meaning",
+          "sequence_vs_cause"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Nå har vi en graf for hver dag.",
+        "thread_ids": [
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Nå har vi en graf for hver dag.",
+        "thread_ids": [
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Nå har vi en graf for hver dag.",
+        "thread_ids": [
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Jeg husker det annerledes.",
+        "thread_ids": [
+          "memory_vs_record",
+          "measurement_vs_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Jeg husker det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Jeg husker det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Jeg husker det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Det skjer bare her.",
+        "thread_ids": [
+          "context_vs_trait",
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Det skjer bare her.",
+        "thread_ids": [
+          "context_vs_trait"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Det skjer bare her.",
+        "thread_ids": [
+          "context_vs_trait"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Det skjer bare her.",
+        "thread_ids": [
+          "context_vs_trait"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Begge ser ekte ut.",
+        "thread_ids": [
+          "competing_patterns",
+          "context_vs_trait"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Begge ser ekte ut.",
+        "thread_ids": [
+          "competing_patterns"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Begge ser ekte ut.",
+        "thread_ids": [
+          "competing_patterns"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Begge ser ekte ut.",
+        "thread_ids": [
+          "competing_patterns"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Hva annet kunne gitt samme spor?.",
+        "thread_ids": [
+          "one_story_vs_alternatives",
+          "competing_patterns"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Hva annet kunne gitt samme spor?.",
+        "thread_ids": [
+          "one_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Hva annet kunne gitt samme spor?.",
+        "thread_ids": [
+          "one_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Hva annet kunne gitt samme spor?.",
+        "thread_ids": [
+          "one_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du sa det som om du visste det.",
+        "thread_ids": [
+          "observation_vs_claim",
+          "one_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du sa det som om du visste det.",
+        "thread_ids": [
+          "observation_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du sa det som om du visste det.",
+        "thread_ids": [
+          "observation_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du sa det som om du visste det.",
+        "thread_ids": [
+          "observation_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Nå har det vært stille lenge.",
+        "thread_ids": [
+          "revision_vs_attachment",
+          "observation_vs_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Nå har det vært stille lenge.",
+        "thread_ids": [
+          "revision_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Nå har det vært stille lenge.",
+        "thread_ids": [
+          "revision_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Nå har det vært stille lenge.",
+        "thread_ids": [
+          "revision_vs_attachment",
+          "practice_vs_clinical_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du ser mønstre overalt nå.",
+        "thread_ids": [
+          "practice_vs_clinical_authority",
+          "revision_vs_attachment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du ser mønstre overalt nå.",
+        "thread_ids": [
+          "practice_vs_clinical_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du ser mønstre overalt nå.",
+        "thread_ids": [
+          "practice_vs_clinical_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du ser mønstre overalt nå.",
+        "thread_ids": [
+          "practice_vs_clinical_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "repetition_vs_rule",
+      "relationship": "gjentakelse mot for tidlig regel",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "hits_vs_misses",
+      "relationship": "treff mot oversette moteksempler",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "ordinary_vs_exception",
+      "relationship": "vanlig situasjon mot uvanlig periode",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "behavior_vs_motive",
+      "relationship": "synlig handling mot antatt motiv",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "pattern_vs_identity",
+      "relationship": "avgrenset vane mot identitetsmerkelapp",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "sequence_vs_cause",
+      "relationship": "tidsrekkefølge mot årsak",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "measurement_vs_meaning",
+      "relationship": "telling mot situert mening",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "memory_vs_record",
+      "relationship": "levende minne mot samtidige notater",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "context_vs_trait",
+      "relationship": "situasjonsbundet mønster mot bred egenskap",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "competing_patterns",
+      "relationship": "alternative grupperinger av samme observasjoner",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "one_story_vs_alternatives",
+      "relationship": "første forklaring mot konkurrerende hypoteser",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "observation_vs_claim",
+      "relationship": "foreløpig observasjon mot sikker påstand",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "revision_vs_attachment",
+      "relationship": "nye moteksempler mot gammel konklusjon",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "practice_vs_clinical_authority",
+      "relationship": "mønstererfaring mot klinisk eller diagnostisk myndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "motenster_far_usikkerhet",
+      "description": "Spilleren blir mer oppmerksom på hvor mange eksempler og moteksempler som faktisk ligger bak en antatt regel.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake"
+      ]
+    },
+    {
+      "id": "kontekst_blir_en_del_av_observasjonen",
+      "description": "Uvanlige perioder, steder og grupper blir behandlet som del av mønsterets grenser fremfor støy som kan fjernes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted"
+      ]
+    },
+    {
+      "id": "merkelapper_blir_smalere",
+      "description": "Observasjoner om andre formuleres mer konkret og med mindre sprang fra handling til identitet eller motiv.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit"
+      ]
+    },
+    {
+      "id": "forklaringer_far_konkurranse",
+      "description": "Tidsrekkefølge, telling, minner og alternative grupperinger blir spor som kan sammenlignes i stedet for én automatisk historie.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei",
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand"
+      ]
+    },
+    {
+      "id": "rollen_far_en_klinisk_grense",
+      "description": "Mønsterblikk brukes til bedre spørsmål og revisjon uten å bli diagnose-, behandler- eller ekspertmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "tre_treff_moter_fravaer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "selektiv_logg_moter_minne",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "uvanlig_uke_moter_ny_kontekst",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "handling_moter_merkelapp",
+      "setup_ref": "4/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "rekkefolge_moter_alternativer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    },
+    {
+      "id": "telling_moter_konkurrerende_monstre",
+      "setup_ref": "7/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "status"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#tre_ganger_blir_en_regel",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#loggen_som_bare_tar_med_det_som_passer",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#uka_som_ikke_ligner_de_andre",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#samme_handling_ulike_situasjoner",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#personen_som_blir_en_etikett",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#forst_kom_dette_sa_det_andre",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#appen_som_teller_alt",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#minnet_som_er_tydeligere_enn_notatene",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#moensteret_som_forsvinner_et_annet_sted",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#to_moennstre_som_peker_hver_sin_vei",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#den_forste_forklaringen_faar_motstand",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#observasjonen_som_ble_delt_som_fasit",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#naar_moennsteret_ikke_kommer_tilbake",
+      "data/Civication/narratives/leisure/psykologi_monsterjeger.json#hva_slags_moensterjeger"
+    ]
+  }
+}

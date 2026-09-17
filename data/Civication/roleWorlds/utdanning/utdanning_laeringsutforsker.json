@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "utdanning",
+  "role_scope": "utdanning_laeringsutforsker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "utdanning",
+    "id": "laeringsutforsker",
+    "label": "Læringsutforsker"
+  },
+  "title": "Læringsutforsker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å undersøke hvordan mennesker lærer på tvers av forkunnskap, forklaringsform, øving, tid, miljø, språk, motivasjon, alder og situasjon uten at nysgjerrighet blir lærer-, diagnose- eller behandlingsmyndighet",
+    "description": "Læringsutforsker-verdenen undersøker forklaringsvariasjon, skjulte forkunnskaper, gjenkjenning og gjenhenting, spacing, transfer, egenforklaring, tidspunkt for tilbakemelding, feilklima, motivasjon, språk og terminologi, kognitiv kapasitet, selvsikkerhet, aldersantakelser og profesjonsgrenser. Læringsutforsker er en knowledge_identity life position. Rollen gir ingen automatisk lærerrolle, psykologrolle, behandlingsansvar, diagnosemyndighet eller spesialpedagogisk kvalifikasjon, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "care_vs_efficiency",
+    "status_anxiety",
+    "social_mask",
+    "shame_reputation",
+    "local_knowledge_vs_system",
+    "professional_culture",
+    "invisible_work",
+    "numerical_control"
+  ],
+  "social_environments": [
+    "studie- og hobbyfellesskap der mennesker prøver ulike måter å forstå og huske på",
+    "verksted og praksissituasjoner der transfer og læring gjennom handling blir synlig",
+    "samtaler mellom nybegynnere og mer erfarne der skjulte forkunnskaper kommer fram",
+    "situasjoner med repetisjon, pauser og tidsfrister der innsats og faktisk læring ikke alltid følger hverandre",
+    "grupper der feil, sammenligning og sosialt press påvirker hva folk tør å prøve",
+    "møter med fagpersoner der læringsobservasjon må skilles fra profesjonell utredning og behandling"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "laeringsvennen",
+      "social_function": "undersøker forklaringer, øving og selvsikkerhet sammen med spilleren uten å bli lærer",
+      "class_position": "likestilt lærende med sterk nysgjerrighet på egen prosess",
+      "status": "middels uformell kunnskapsstatus, ingen profesjonsmyndighet",
+      "power_over_player": "kan gjøre egen læringsstrategi til norm for andre",
+      "wants": "å finne ut hva som faktisk gjør at kunnskap sitter",
+      "conceals": "at egne favorittmetoder også er situasjonsavhengige",
+      "speech_style": "nysgjerrig, konkret og hypotesedrevet",
+      "teaches_player": "at læringsmetoder må undersøkes mot faktiske resultater"
+    },
+    {
+      "id": "nybegynneren",
+      "social_function": "gjør skjulte forkunnskaper og terskler synlige",
+      "class_position": "person med lav erfaring i det konkrete temaet, ikke lav generell evne",
+      "status": "lav situert fagstatus, full rett til å stille grunnleggende spørsmål",
+      "power_over_player": "kan avsløre hvilke mellomledd eksperter har sluttet å legge merke til",
+      "wants": "å forstå startpunktet og bygge videre uten skam",
+      "conceals": "at usikkerhet gjør det vanskelig å vite hvilket spørsmål som er riktig",
+      "speech_style": "direkte, søkende og konkret",
+      "teaches_player": "at nybegynnerproblemer ofte viser skjulte forutsetninger"
+    },
+    {
+      "id": "studievennen",
+      "social_function": "gjør repetisjon, tidsbruk, pauser og læringsplaner konkrete",
+      "class_position": "likestilt deltaker med varierende kapasitet og tidsressurser",
+      "status": "sosialt nær, uten særskilt fagmyndighet",
+      "power_over_player": "kan normalisere maratonøkter og telle tid som mål på læring",
+      "wants": "å få stoffet til å sitte uten at hele livet blir studieplan",
+      "conceals": "hvor ofte trygghet under lesing forveksles med faktisk gjenhenting",
+      "speech_style": "hverdagslig, tidsbevisst og selvironisk",
+      "teaches_player": "at læring over tid må skilles fra ren innsatsmåling"
+    },
+    {
+      "id": "verkstedvennen",
+      "social_function": "viser hvordan praktisk øving, variasjon og overføring fungerer utenfor tekstbasert læring",
+      "class_position": "hobbyutøver eller praktikant uten instruktørmandat",
+      "status": "høy praktisk troverdighet i kjente oppgaver",
+      "power_over_player": "kan gjøre sikker utførelse i én situasjon til bevis på generell mestring",
+      "wants": "at kunnskap skal kunne brukes når oppgaven faktisk endrer seg",
+      "conceals": "at faste rutiner noen ganger skjuler svak forståelse av prinsippet",
+      "speech_style": "handlingsorientert, kort og problemløsende",
+      "teaches_player": "at transfer må prøves, ikke antas"
+    },
+    {
+      "id": "gruppemedlemmet",
+      "social_function": "gjør feilklima, motivasjon og sosial sammenligning synlig",
+      "class_position": "likestilt medlem i studie-, hobby- eller læringsfellesskap",
+      "status": "varierer med trygghet og erfaring",
+      "power_over_player": "kan forsterke prestasjonspress eller gjøre uferdige forsøk trygge",
+      "wants": "at gruppa både lærer og beholder lysten til å delta",
+      "conceals": "at høy aktivitet ikke alltid betyr høy interesse",
+      "speech_style": "sosial, reaksjonsnær og praktisk",
+      "teaches_player": "at miljøet rundt læringen endrer hva folk tør å vise"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer grensen mellom læringsnysgjerrighet og profesjonell pedagogisk, psykologisk eller spesialpedagogisk vurdering",
+      "class_position": "kvalifisert fagperson med avgrenset profesjonsansvar",
+      "status": "høy situert myndighet når formelle vurderinger kreves",
+      "power_over_player": "kan korrigere overtolkning av læringsmønstre og avklare mandat",
+      "wants": "at observasjoner brukes presist uten å bli amatørdiagnoser",
+      "conceals": "at faglig vurdering også krever kontekst, metode og usikkerhet",
+      "speech_style": "presis, rolig og tydelig om rollegrenser",
+      "teaches_player": "at læringsmønstre kan beskrives uten å diagnostisere mennesker"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "explanation_fit_vs_projection",
+      "meaning": "egen læringserfaring mot antakelsen om at samme forklaring passer alle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "prerequisite_gap_vs_ability_judgment",
+      "meaning": "manglende forkunnskap mot rask vurdering av evne eller innsats",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "recognition_vs_retrieval",
+      "meaning": "gjenkjennelse og flyt mot faktisk evne til å hente fram kunnskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cramming_vs_spacing",
+      "meaning": "intens øving på ett tidspunkt mot læring fordelt over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_specificity_vs_transfer",
+      "meaning": "sikkerhet i kjent oppgave mot bruk av prinsippet i ny sammenheng",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "explanation_as_test_vs_performance",
+      "meaning": "egen forklaring som undersøkelse av forståelse mot prestasjon i korrekt språk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "feedback_timing_vs_entrenched_error",
+      "meaning": "tidlig respons mot feil som får feste seg gjennom gjentakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "error_cost_vs_exploration",
+      "meaning": "sosial kostnad ved feil mot synlige forsøk og utforskning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "motivation_vs_social_pressure",
+      "meaning": "indre mening og nysgjerrighet mot aktivitet drevet av sosialt press",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "terminology_vs_existing_understanding",
+      "meaning": "fagterminologi mot forståelse som allerede finnes i andre ord",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "effort_time_vs_cognitive_capacity",
+      "meaning": "målt innsatsstid mot faktisk kognitiv kapasitet, pause og søvn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "confidence_vs_demonstrated_competence",
+      "meaning": "opplevd sikkerhet mot kunnskap som kan brukes uten støtte",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "age_assumption_vs_learning_context",
+      "meaning": "alder som forklaring mot konkrete erfaringer, kontekst og forkunnskaper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "learning_curiosity_vs_professional_authority",
+      "meaning": "læringsnysgjerrighet mot lærer-, diagnose-, behandlings- og spesialpedagogmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Jeg skjønner fortsatt ikke hvorfor.",
+        "thread_ids": [
+          "explanation_fit_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Jeg skjønner fortsatt ikke hvorfor.",
+        "thread_ids": [
+          "explanation_fit_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Jeg skjønner fortsatt ikke hvorfor.",
+        "thread_ids": [
+          "explanation_fit_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Jeg skjønner fortsatt ikke hvorfor.",
+        "thread_ids": [
+          "explanation_fit_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Jeg visste ikke at det var noe man måtte kunne først.",
+        "thread_ids": [
+          "prerequisite_gap_vs_ability_judgment",
+          "explanation_fit_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Jeg visste ikke at det var noe man måtte kunne først.",
+        "thread_ids": [
+          "prerequisite_gap_vs_ability_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Jeg visste ikke at det var noe man måtte kunne først.",
+        "thread_ids": [
+          "prerequisite_gap_vs_ability_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Jeg visste ikke at det var noe man måtte kunne først.",
+        "thread_ids": [
+          "prerequisite_gap_vs_ability_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Det ser kjent ut når jeg leser — men jeg får det ikke fram selv.",
+        "thread_ids": [
+          "recognition_vs_retrieval",
+          "prerequisite_gap_vs_ability_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Det ser kjent ut når jeg leser — men jeg får det ikke fram selv.",
+        "thread_ids": [
+          "recognition_vs_retrieval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Det ser kjent ut når jeg leser — men jeg får det ikke fram selv.",
+        "thread_ids": [
+          "recognition_vs_retrieval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Det ser kjent ut når jeg leser — men jeg får det ikke fram selv.",
+        "thread_ids": [
+          "recognition_vs_retrieval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Jeg tar hele pensum i kveld.",
+        "thread_ids": [
+          "cramming_vs_spacing",
+          "recognition_vs_retrieval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Jeg tar hele pensum i kveld.",
+        "thread_ids": [
+          "cramming_vs_spacing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Jeg tar hele pensum i kveld.",
+        "thread_ids": [
+          "cramming_vs_spacing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Jeg tar hele pensum i kveld.",
+        "thread_ids": [
+          "cramming_vs_spacing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Det gikk i går, men ikke når oppgaven ser annerledes ut.",
+        "thread_ids": [
+          "practice_specificity_vs_transfer",
+          "cramming_vs_spacing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Det gikk i går, men ikke når oppgaven ser annerledes ut.",
+        "thread_ids": [
+          "practice_specificity_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Det gikk i går, men ikke når oppgaven ser annerledes ut.",
+        "thread_ids": [
+          "practice_specificity_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Det gikk i går, men ikke når oppgaven ser annerledes ut.",
+        "thread_ids": [
+          "practice_specificity_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kan du si det uten fagord?.",
+        "thread_ids": [
+          "explanation_as_test_vs_performance",
+          "practice_specificity_vs_transfer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kan du si det uten fagord?.",
+        "thread_ids": [
+          "explanation_as_test_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Kan du si det uten fagord?.",
+        "thread_ids": [
+          "explanation_as_test_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kan du si det uten fagord?.",
+        "thread_ids": [
+          "explanation_as_test_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Jeg har øvd på denne feilen i flere dager.",
+        "thread_ids": [
+          "feedback_timing_vs_entrenched_error",
+          "explanation_as_test_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Jeg har øvd på denne feilen i flere dager.",
+        "thread_ids": [
+          "feedback_timing_vs_entrenched_error"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Jeg har øvd på denne feilen i flere dager.",
+        "thread_ids": [
+          "feedback_timing_vs_entrenched_error"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Jeg har øvd på denne feilen i flere dager.",
+        "thread_ids": [
+          "feedback_timing_vs_entrenched_error"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Ingen tør å svare før de er helt sikre.",
+        "thread_ids": [
+          "error_cost_vs_exploration",
+          "feedback_timing_vs_entrenched_error"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Ingen tør å svare før de er helt sikre.",
+        "thread_ids": [
+          "error_cost_vs_exploration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Ingen tør å svare før de er helt sikre.",
+        "thread_ids": [
+          "error_cost_vs_exploration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Ingen tør å svare før de er helt sikre.",
+        "thread_ids": [
+          "error_cost_vs_exploration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Du lærer fortere når du vet at noen følger med.",
+        "thread_ids": [
+          "motivation_vs_social_pressure",
+          "error_cost_vs_exploration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Du lærer fortere når du vet at noen følger med.",
+        "thread_ids": [
+          "motivation_vs_social_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Du lærer fortere når du vet at noen følger med.",
+        "thread_ids": [
+          "motivation_vs_social_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Du lærer fortere når du vet at noen følger med.",
+        "thread_ids": [
+          "motivation_vs_social_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Jeg kjenner ideen, men ikke dette ordet.",
+        "thread_ids": [
+          "terminology_vs_existing_understanding",
+          "motivation_vs_social_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Jeg kjenner ideen, men ikke dette ordet.",
+        "thread_ids": [
+          "terminology_vs_existing_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Jeg kjenner ideen, men ikke dette ordet.",
+        "thread_ids": [
+          "terminology_vs_existing_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Jeg kjenner ideen, men ikke dette ordet.",
+        "thread_ids": [
+          "terminology_vs_existing_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Jeg leser samme linje for fjerde gang.",
+        "thread_ids": [
+          "effort_time_vs_cognitive_capacity",
+          "terminology_vs_existing_understanding"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Jeg leser samme linje for fjerde gang.",
+        "thread_ids": [
+          "effort_time_vs_cognitive_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Jeg leser samme linje for fjerde gang.",
+        "thread_ids": [
+          "effort_time_vs_cognitive_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Jeg leser samme linje for fjerde gang.",
+        "thread_ids": [
+          "effort_time_vs_cognitive_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Dette kan jeg.",
+        "thread_ids": [
+          "confidence_vs_demonstrated_competence",
+          "effort_time_vs_cognitive_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Dette kan jeg.",
+        "thread_ids": [
+          "confidence_vs_demonstrated_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Dette kan jeg.",
+        "thread_ids": [
+          "confidence_vs_demonstrated_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Dette kan jeg.",
+        "thread_ids": [
+          "confidence_vs_demonstrated_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Sånn lærer man vel når man blir eldre.",
+        "thread_ids": [
+          "age_assumption_vs_learning_context",
+          "confidence_vs_demonstrated_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Sånn lærer man vel når man blir eldre.",
+        "thread_ids": [
+          "age_assumption_vs_learning_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Sånn lærer man vel når man blir eldre.",
+        "thread_ids": [
+          "age_assumption_vs_learning_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Sånn lærer man vel når man blir eldre.",
+        "thread_ids": [
+          "age_assumption_vs_learning_context",
+          "learning_curiosity_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Å se læringsmønstre er ikke en diagnose.",
+        "thread_ids": [
+          "learning_curiosity_vs_professional_authority",
+          "age_assumption_vs_learning_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Å se læringsmønstre er ikke en diagnose.",
+        "thread_ids": [
+          "learning_curiosity_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Å se læringsmønstre er ikke en diagnose.",
+        "thread_ids": [
+          "learning_curiosity_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Å se læringsmønstre er ikke en diagnose.",
+        "thread_ids": [
+          "learning_curiosity_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "explanation_fit_vs_projection",
+      "relationship": "egen læringserfaring mot antakelsen om at samme forklaring passer alle",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "prerequisite_gap_vs_ability_judgment",
+      "relationship": "manglende forkunnskap mot rask vurdering av evne eller innsats",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "recognition_vs_retrieval",
+      "relationship": "gjenkjennelse og flyt mot faktisk evne til å hente fram kunnskap",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "cramming_vs_spacing",
+      "relationship": "intens øving på ett tidspunkt mot læring fordelt over tid",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "practice_specificity_vs_transfer",
+      "relationship": "sikkerhet i kjent oppgave mot bruk av prinsippet i ny sammenheng",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "explanation_as_test_vs_performance",
+      "relationship": "egen forklaring som undersøkelse av forståelse mot prestasjon i korrekt språk",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "feedback_timing_vs_entrenched_error",
+      "relationship": "tidlig respons mot feil som får feste seg gjennom gjentakelse",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "error_cost_vs_exploration",
+      "relationship": "sosial kostnad ved feil mot synlige forsøk og utforskning",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "motivation_vs_social_pressure",
+      "relationship": "indre mening og nysgjerrighet mot aktivitet drevet av sosialt press",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "terminology_vs_existing_understanding",
+      "relationship": "fagterminologi mot forståelse som allerede finnes i andre ord",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "effort_time_vs_cognitive_capacity",
+      "relationship": "målt innsatsstid mot faktisk kognitiv kapasitet, pause og søvn",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "confidence_vs_demonstrated_competence",
+      "relationship": "opplevd sikkerhet mot kunnskap som kan brukes uten støtte",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "age_assumption_vs_learning_context",
+      "relationship": "alder som forklaring mot konkrete erfaringer, kontekst og forkunnskaper",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "learning_curiosity_vs_professional_authority",
+      "relationship": "læringsnysgjerrighet mot lærer-, diagnose-, behandlings- og spesialpedagogmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "forklaring_med_startpunkt",
+      "description": "Ulike forklaringer og skjulte forkunnskaper blir undersøkt før evne eller innsats vurderes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet"
+      ]
+    },
+    {
+      "id": "ovelse_som_faktisk_tester",
+      "description": "Gjenhenting, spacing og transfer skilles fra ren fortrolighet med kjent materiale.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven"
+      ]
+    },
+    {
+      "id": "synlige_forsok_med_respons",
+      "description": "Egenforklaring, feedback og feilklima brukes til å vise læringsprosessen uten skam.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig"
+      ]
+    },
+    {
+      "id": "motivasjon_sprak_og_kapasitet",
+      "description": "Sosialt press, terminologi og mental kapasitet behandles som ulike betingelser rundt læring.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen"
+      ]
+    },
+    {
+      "id": "usikkerhet_med_rollegrense",
+      "description": "Selvsikkerhet og aldersantakelser testes uten at læringsnysgjerrighet blir profesjonell diagnose.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring",
+        "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forklaring_moter_forkunnskap",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "learning",
+        "relationship"
+      ]
+    },
+    {
+      "id": "gjenhenting_moter_spacing",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "learning",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "transfer_moter_egenforklaring",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "learning",
+        "identity"
+      ]
+    },
+    {
+      "id": "feedback_moter_feilklima",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "learning",
+        "relationship"
+      ]
+    },
+    {
+      "id": "motivasjon_moter_kapasitet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "status",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "selvsikkerhet_moter_profesjonsgrense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklaringen_som_virket_for_deg",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forkunnskapen_som_manglet",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#lese_igjen_eller_hente_frem",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alt_kvelden_for",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#kan_det_bare_i_den_oppgaven",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#forklar_det_til_meg",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#responsen_som_kom_for_sent",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#feilen_som_ble_farlig",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#presset_som_ser_ut_som_motivasjon",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#ordet_som_stengte_dora",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#hjernen_som_var_ferdig_for_dagen",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#selvsikkerheten_som_lop_foran",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#alderen_som_ble_forklaring",
+      "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json#laeringsutforsker_ikke_behandler"
+    ]
+  }
+}

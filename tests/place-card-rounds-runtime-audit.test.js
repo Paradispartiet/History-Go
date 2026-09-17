@@ -46,13 +46,17 @@ for (const count of ['1', '2', '3', '4']) {
 assert(layout.includes('data-collection-position="2"'));
 
 for (const document of [contract, workflow, profiles]) {
-  assert.match(document, /nøyaktig fire/i);
-  assert.match(document, /2\s*[×x]\s*2/);
+  assert.match(document, /én til fire|1\s*[–-]\s*4/i);
   assert.match(document, /related.*aldri.*samling|related.*ikke.*samling/i);
   assert.match(document, /ingen tomme|tomt samlingskort|et tomt kort/i);
   assert.match(document, /filler/i);
+  assert.match(document, /BEGRUNNET N\/A/i);
   assert.doesNotMatch(document, /tomt kort.*sluttstatus/i);
 }
+
+assert.doesNotMatch(contract, /fullprodusert ordinært Place har alltid nøyaktig fire/i);
+assert.doesNotMatch(profiles, /Alle fulle ordinære Places viser fire ferdige samlinger/i);
+assert.match(workflow, /ingen universell firefeltskvote/i);
 
 assert.match(contract, /`images` er ikke en samling eller reserve/);
 assert.match(contract, /`people`, `flora` og `fauna` vises som sirkler/);
@@ -60,4 +64,4 @@ assert(contract.includes('Generisk') || contract.includes('generisk'));
 assert(contract.includes('Details') || contract.includes('details'));
 assert(contract.includes('Spots') || contract.includes('spots'));
 
-console.log('Canonical four-collection documentation and compatibility runtime audit OK');
+console.log('Canonical adaptive one-to-four collection documentation and compatibility runtime audit OK');

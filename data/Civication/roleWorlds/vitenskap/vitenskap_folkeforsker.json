@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_folkeforsker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "vitenskap",
+    "id": "folkeforsker",
+    "label": "Folkeforsker"
+  },
+  "title": "Folkeforsker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bidra med observasjoner, registreringer og datainnsamling som er etterprøvbar og nyttig uten at frivillig praksis blir forskerstilling, godkjenningsmyndighet eller institusjonell representasjon",
+    "description": "Folkeforsker-verdenen undersøker protokoll, nullobservasjoner, metadata, duplikater, instrumentdrift, identifikasjonsusikkerhet, dokumentasjon og personvern, tilgjengelighetsbias, manglende data, rådata og bearbeiding, outliers, replikasjon, usikkerhetskommunikasjon og institusjonsgrenser. Folkeforsker er en practice_identity life position. Rollen gir ingen automatisk forskerstilling, etisk godkjenningsmyndighet, prosjektledermandat, faglig garantistrolle eller institusjonell talerett, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "professional_culture",
+    "status_anxiety",
+    "invisible_work",
+    "care_vs_efficiency",
+    "public_attention",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "frivillige observasjonsprosjekter der mange små bidrag må følge en felles protokoll",
+    "feltarbeid der sted, innsats og tilgjengelighet påvirker hva som blir sett og registrert",
+    "databearbeiding der rådata, metadata, duplikater og manglende verdier må håndteres sporbar",
+    "enkle målesituasjoner der instrument, kalibrering og kontrollmålinger former resultatet",
+    "analyse og deling der outliers, replikasjon og usikkerhet utfordrer ønsket om et tydelig funn",
+    "møter med formelle forskningsroller der etikk, godkjenning og institusjonell representasjon har eget mandat"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "registreringsvennen",
+      "social_function": "holder observasjonsprotokoll, nullfunn og usikkerhet synlig i frivillig datainnsamling",
+      "class_position": "likestilt frivillig med høy rutine i registrering, uten formell forskerstilling",
+      "status": "middels uformell metodeautoritet",
+      "power_over_player": "kan gjøre rutine og skjema til større sikkerhet enn dataene tåler",
+      "wants": "at bidragene kan kontrolleres og brukes av andre",
+      "conceals": "at egen erfaring kan gjøre avvik fra protokollen fristende når noe spennende skjer",
+      "speech_style": "nøktern, detaljert og prosedyreorientert",
+      "teaches_player": "at dokumentert metode og nuller er del av funnet"
+    },
+    {
+      "id": "feltvennen",
+      "social_function": "gjør sted, innsats, tilgjengelighet og praktiske observasjonsvilkår konkrete",
+      "class_position": "frivillig feltobservatør med lokal erfaring",
+      "status": "høy lokalkunnskap, ingen institusjonell myndighet",
+      "power_over_player": "kan normalisere bekvemmelighetsutvalg og uformelle snarveier",
+      "wants": "at feltarbeidet er mulig å gjennomføre over tid",
+      "conceals": "at de enkleste rutene også former datasettet",
+      "speech_style": "praktisk, stedssensitiv og uformell",
+      "teaches_player": "at innsats og tilgjengelighet må registreres sammen med funn"
+    },
+    {
+      "id": "datavennen",
+      "social_function": "arbeider med metadata, manglende data, duplikater og skille mellom rå og bearbeidet datasett",
+      "class_position": "teknisk interessert bidragsyter uten dataforvaltermandat",
+      "status": "middels teknisk status",
+      "power_over_player": "kan gjøre ryddighet til viktigere mål enn sporbarhet",
+      "wants": "at datasettet er brukbart uten å miste opprinnelig informasjon",
+      "conceals": "at opprydding også innebærer tolkning og valg",
+      "speech_style": "systematisk, fil- og feltnær",
+      "teaches_player": "at bearbeiding må kunne spores tilbake til rådata"
+    },
+    {
+      "id": "utstyrsvennen",
+      "social_function": "gjør måleutstyr, kalibrering og kontrollmålinger synlige",
+      "class_position": "hobbyutøver med praktisk instrumenterfaring",
+      "status": "høy situert utstyrskompetanse",
+      "power_over_player": "kan skape overdreven tillit til instrumentet fordi det gir tall",
+      "wants": "at målingene er stabile nok til å sammenlignes",
+      "conceals": "at selv konsekvent bruk av samme instrument kan gi systematisk drift",
+      "speech_style": "teknisk, hands-on og feilsøkende",
+      "teaches_player": "at instrumentet også er en del av målesystemet"
+    },
+    {
+      "id": "analysevennen",
+      "social_function": "tester outliers, replikasjon og hvor langt et mønster kan generaliseres",
+      "class_position": "kunnskapsinteressert bidragsyter uten forsker- eller statistikerstilling",
+      "status": "middels analytisk troverdighet",
+      "power_over_player": "kan belønne pene mønstre og raske konklusjoner",
+      "wants": "at interessante funn skal tåle en ny runde",
+      "conceals": "at forventninger påvirker hvilke avvik som oppleves som feil",
+      "speech_style": "hypotesedrevet, kritisk og tallbevisst",
+      "teaches_player": "at robusthet krever regler som ikke avhenger av ønsket resultat"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer grensen mellom frivillig datainnsamling og formell forskning, etikk, prosjektledelse og institusjonell representasjon",
+      "class_position": "kvalifisert forsker eller mandatbærende prosjektrolle",
+      "status": "høy situert fag- og godkjenningsmyndighet",
+      "power_over_player": "kan kreve formelle protokoller og stoppe overclaim av institusjonell rolle",
+      "wants": "at frivillige bidrag brukes godt uten falsk autoritet",
+      "conceals": "at profesjonelle prosjekter også er avhengige av kvaliteten på frivillige bidrag",
+      "speech_style": "presis, metodebevisst og tydelig om ansvar",
+      "teaches_player": "at verdifull folkeforskning og formell forskermyndighet er ulike roller"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "protocol_vs_result_chasing",
+      "meaning": "forhåndsdefinert protokoll mot metodeendringer styrt av interessante funn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "null_observation_vs_selection",
+      "meaning": "nullobservasjoner mot selektiv registrering av bare treff",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_vs_metadata",
+      "meaning": "måleverdi mot sted-, tids- og metodekontekst som gjør den tolkbar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "duplicate_vs_independent_observation",
+      "meaning": "duplikater mot uavhengige observasjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "instrument_drift_vs_trend",
+      "meaning": "instrumentdrift og kalibrering mot tolkning av tilsynelatende trend",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identification_vs_uncertainty",
+      "meaning": "bestemmelse og klassifikasjon mot bevart usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_vs_privacy",
+      "meaning": "etterprøvbar dokumentasjon mot unødvendig deling av person- og stedsinformasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "convenience_sample_vs_coverage",
+      "meaning": "praktisk utvalg mot representativ dekning og tilgjengelighetsbias",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "missing_data_vs_imputation",
+      "meaning": "manglende data mot estimater som gjøres usynlige",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "raw_data_vs_cleaned_data",
+      "meaning": "rådata mot bearbeiding og sporbare transformasjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "outlier_vs_convenient_exclusion",
+      "meaning": "avvikende observasjoner mot eksklusjon fordi de passer dårlig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "single_result_vs_replication",
+      "meaning": "enkeltfunn mot gjentakelse og uavhengig kontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "communication_vs_uncertainty",
+      "meaning": "tydelig kommunikasjon mot skjult eller overdreven sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "citizen_science_vs_institutional_authority",
+      "meaning": "folkeforskning mot forskerstilling, godkjennings- og institusjonsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Bestem metoden før du vet svaret.",
+        "thread_ids": [
+          "protocol_vs_result_chasing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Bestem metoden før du vet svaret.",
+        "thread_ids": [
+          "protocol_vs_result_chasing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Bestem metoden før du vet svaret.",
+        "thread_ids": [
+          "protocol_vs_result_chasing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Bestem metoden før du vet svaret.",
+        "thread_ids": [
+          "protocol_vs_result_chasing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Skal vi virkelig registrere null?.",
+        "thread_ids": [
+          "null_observation_vs_selection",
+          "protocol_vs_result_chasing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Skal vi virkelig registrere null?.",
+        "thread_ids": [
+          "null_observation_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Skal vi virkelig registrere null?.",
+        "thread_ids": [
+          "null_observation_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Skal vi virkelig registrere null?.",
+        "thread_ids": [
+          "null_observation_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Vi har tallet — men ikke konteksten.",
+        "thread_ids": [
+          "measurement_vs_metadata",
+          "null_observation_vs_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Vi har tallet — men ikke konteksten.",
+        "thread_ids": [
+          "measurement_vs_metadata"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Vi har tallet — men ikke konteksten.",
+        "thread_ids": [
+          "measurement_vs_metadata"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Vi har tallet — men ikke konteksten.",
+        "thread_ids": [
+          "measurement_vs_metadata"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Er dette to observasjoner eller én?.",
+        "thread_ids": [
+          "duplicate_vs_independent_observation",
+          "measurement_vs_metadata"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Er dette to observasjoner eller én?.",
+        "thread_ids": [
+          "duplicate_vs_independent_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Er dette to observasjoner eller én?.",
+        "thread_ids": [
+          "duplicate_vs_independent_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Er dette to observasjoner eller én?.",
+        "thread_ids": [
+          "duplicate_vs_independent_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Måleren viser litt mer hver uke.",
+        "thread_ids": [
+          "instrument_drift_vs_trend",
+          "duplicate_vs_independent_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Måleren viser litt mer hver uke.",
+        "thread_ids": [
+          "instrument_drift_vs_trend"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Måleren viser litt mer hver uke.",
+        "thread_ids": [
+          "instrument_drift_vs_trend"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Måleren viser litt mer hver uke.",
+        "thread_ids": [
+          "instrument_drift_vs_trend"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Jeg tror det er riktig — men er ikke sikker.",
+        "thread_ids": [
+          "identification_vs_uncertainty",
+          "instrument_drift_vs_trend"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Jeg tror det er riktig — men er ikke sikker.",
+        "thread_ids": [
+          "identification_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Jeg tror det er riktig — men er ikke sikker.",
+        "thread_ids": [
+          "identification_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Jeg tror det er riktig — men er ikke sikker.",
+        "thread_ids": [
+          "identification_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Dokumentasjonen viser også mer enn funnet.",
+        "thread_ids": [
+          "documentation_vs_privacy",
+          "identification_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Dokumentasjonen viser også mer enn funnet.",
+        "thread_ids": [
+          "documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Dokumentasjonen viser også mer enn funnet.",
+        "thread_ids": [
+          "documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Dokumentasjonen viser også mer enn funnet.",
+        "thread_ids": [
+          "documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Vi måler alltid der det er lettest å komme til.",
+        "thread_ids": [
+          "convenience_sample_vs_coverage",
+          "documentation_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Vi måler alltid der det er lettest å komme til.",
+        "thread_ids": [
+          "convenience_sample_vs_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Vi måler alltid der det er lettest å komme til.",
+        "thread_ids": [
+          "convenience_sample_vs_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Vi måler alltid der det er lettest å komme til.",
+        "thread_ids": [
+          "convenience_sample_vs_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Den uka mangler helt.",
+        "thread_ids": [
+          "missing_data_vs_imputation",
+          "convenience_sample_vs_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Den uka mangler helt.",
+        "thread_ids": [
+          "missing_data_vs_imputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Den uka mangler helt.",
+        "thread_ids": [
+          "missing_data_vs_imputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Den uka mangler helt.",
+        "thread_ids": [
+          "missing_data_vs_imputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Jeg bare normaliserte arket litt.",
+        "thread_ids": [
+          "raw_data_vs_cleaned_data",
+          "missing_data_vs_imputation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Jeg bare normaliserte arket litt.",
+        "thread_ids": [
+          "raw_data_vs_cleaned_data"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Jeg bare normaliserte arket litt.",
+        "thread_ids": [
+          "raw_data_vs_cleaned_data"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Jeg bare normaliserte arket litt.",
+        "thread_ids": [
+          "raw_data_vs_cleaned_data"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Dette punktet ødelegger grafen.",
+        "thread_ids": [
+          "outlier_vs_convenient_exclusion",
+          "raw_data_vs_cleaned_data"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Dette punktet ødelegger grafen.",
+        "thread_ids": [
+          "outlier_vs_convenient_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Dette punktet ødelegger grafen.",
+        "thread_ids": [
+          "outlier_vs_convenient_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Dette punktet ødelegger grafen.",
+        "thread_ids": [
+          "outlier_vs_convenient_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det skjedde én gang — skjer det igjen?.",
+        "thread_ids": [
+          "single_result_vs_replication",
+          "outlier_vs_convenient_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det skjedde én gang — skjer det igjen?.",
+        "thread_ids": [
+          "single_result_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det skjedde én gang — skjer det igjen?.",
+        "thread_ids": [
+          "single_result_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det skjedde én gang — skjer det igjen?.",
+        "thread_ids": [
+          "single_result_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Hvordan skriver vi dette uten å høres usikre ut?.",
+        "thread_ids": [
+          "communication_vs_uncertainty",
+          "single_result_vs_replication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Hvordan skriver vi dette uten å høres usikre ut?.",
+        "thread_ids": [
+          "communication_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Hvordan skriver vi dette uten å høres usikre ut?.",
+        "thread_ids": [
+          "communication_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Hvordan skriver vi dette uten å høres usikre ut?.",
+        "thread_ids": [
+          "communication_vs_uncertainty",
+          "citizen_science_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: God datainnsamling gir ikke institusjonelt mandat.",
+        "thread_ids": [
+          "citizen_science_vs_institutional_authority",
+          "communication_vs_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: God datainnsamling gir ikke institusjonelt mandat.",
+        "thread_ids": [
+          "citizen_science_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: God datainnsamling gir ikke institusjonelt mandat.",
+        "thread_ids": [
+          "citizen_science_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: God datainnsamling gir ikke institusjonelt mandat.",
+        "thread_ids": [
+          "citizen_science_vs_institutional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "protocol_vs_result_chasing",
+      "relationship": "forhåndsdefinert protokoll mot metodeendringer styrt av interessante funn",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "null_observation_vs_selection",
+      "relationship": "nullobservasjoner mot selektiv registrering av bare treff",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "measurement_vs_metadata",
+      "relationship": "måleverdi mot sted-, tids- og metodekontekst som gjør den tolkbar",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "duplicate_vs_independent_observation",
+      "relationship": "duplikater mot uavhengige observasjoner",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "instrument_drift_vs_trend",
+      "relationship": "instrumentdrift og kalibrering mot tolkning av tilsynelatende trend",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "identification_vs_uncertainty",
+      "relationship": "bestemmelse og klassifikasjon mot bevart usikkerhet",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "documentation_vs_privacy",
+      "relationship": "etterprøvbar dokumentasjon mot unødvendig deling av person- og stedsinformasjon",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "convenience_sample_vs_coverage",
+      "relationship": "praktisk utvalg mot representativ dekning og tilgjengelighetsbias",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "missing_data_vs_imputation",
+      "relationship": "manglende data mot estimater som gjøres usynlige",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "raw_data_vs_cleaned_data",
+      "relationship": "rådata mot bearbeiding og sporbare transformasjoner",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "outlier_vs_convenient_exclusion",
+      "relationship": "avvikende observasjoner mot eksklusjon fordi de passer dårlig",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "single_result_vs_replication",
+      "relationship": "enkeltfunn mot gjentakelse og uavhengig kontroll",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "communication_vs_uncertainty",
+      "relationship": "tydelig kommunikasjon mot skjult eller overdreven sikkerhet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "citizen_science_vs_institutional_authority",
+      "relationship": "folkeforskning mot forskerstilling, godkjennings- og institusjonsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "protokoll_med_nuller",
+      "description": "Protokoll og nullobservasjoner blir bevart selv når de ikke gir spennende funn.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde"
+      ]
+    },
+    {
+      "id": "maaling_med_kontekst",
+      "description": "Metadata, duplikater og instrumentkontroll gjør målinger tolkbare og kontrollerbare.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev"
+      ]
+    },
+    {
+      "id": "funn_med_usikkerhet_og_hensyn",
+      "description": "Identifikasjon og dokumentasjon bevarer usikkerhet uten unødvendig person- eller stedsdeling.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon"
+      ]
+    },
+    {
+      "id": "datasett_med_sporbarhet",
+      "description": "Utvalg, manglende data og rengjøring dokumenteres slik at rågrunnlaget ikke forsvinner.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata"
+      ]
+    },
+    {
+      "id": "funn_med_replikasjon_og_rollegrense",
+      "description": "Outliers, replikasjon og usikkerhetskommunikasjon håndteres uten å gjøre folkeforskeren til institusjonell garantist.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet",
+        "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "protokoll_moter_null",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "method",
+        "reputation"
+      ]
+    },
+    {
+      "id": "metadata_moter_duplikat",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "data",
+        "method"
+      ]
+    },
+    {
+      "id": "instrument_moter_usikker_bestemmelse",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "method",
+        "status"
+      ]
+    },
+    {
+      "id": "privacy_moter_dekning",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "data"
+      ]
+    },
+    {
+      "id": "manglende_data_moter_outlier",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "data",
+        "reputation"
+      ]
+    },
+    {
+      "id": "replikasjon_moter_institusjonsgrense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#protokollen_for_funnet",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#dagen_da_ingenting_skjedde",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#sted_og_tid_som_forsvant",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#samme_funn_to_ganger",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#instrumentet_som_drev",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bestemmelsen_med_sporsmalstegn",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#bildet_med_for_mye_informasjon",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#den_enkle_ruten_hver_gang",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#hullet_i_dataserien",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#ryddingen_som_endret_radata",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#uteliggen_som_var_for_pen",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#gjenta_for_du_forteller",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#konklusjonen_med_usikkerhet",
+      "data/Civication/narratives/leisure/vitenskap_folkeforsker.json#folkeforsker_ikke_forskningsleder"
+    ]
+  }
+}

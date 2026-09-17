@@ -1,0 +1,1115 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_organisasjonsmenneske",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "organisasjonsmenneske",
+    "label": "Organisasjonsmenneske"
+  },
+  "title": "Organisasjonsmenneske — struktur, medlemskap og rollegrenser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å kjenne organisasjonens mennesker, rutiner og maskineri godt uten at fartstid, frivillig arbeid, dokumenttilgang eller uformell innflytelse blir forvekslet med valgt eller profesjonell myndighet",
+    "description": "Organisasjonsmenneske-verdenen undersøker vedtekter, medlemsdata, midlertidige grupper, større medlemsmøter, økonomispor, frivillig kapasitet, intern kommunikasjon, samarbeid, taus praksis, intern uenighet, rollefordeling, frister, prosjektansvar og mandatgrenser. Organisasjonsmenneske er en community_identity og levd organisasjonspraksis. Rollen gir ingen automatisk myndighet som valgt representant, valgt styremedlem, profesjonell organisasjonsmedarbeider eller offentlig beslutningstaker, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "bureaucratic_power",
+    "loyalty_up_down",
+    "care_vs_efficiency",
+    "invisible_work",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "medlemsmøter og større samlinger der dokumenter, frister og roller avgjør hvor reell deltakelsen blir",
+    "arbeidsgrupper og prosjekter der midlertidige mandater kan bli varige uten at strukturen oppdateres",
+    "medlems- og kontaktarbeid der praktiske behov må avgrenses mot unødvendig datainnsamling",
+    "økonomi- og dokumentasjonsarbeid der små unntak kan bli til faste, usynlige rutiner",
+    "interne samtaler og konflikter der sak, person, avsender og offentlighet må holdes fra hverandre",
+    "samarbeid med andre aktører der godt forhold ikke opphever behovet for avklart ansvar"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "styresekretaeren",
+      "social_function": "gjør vedtekter, referater og tidligere beslutninger tilgjengelige når organisasjonen må skille regel fra vane",
+      "class_position": "frivillig eller valgt dokumentasjonsrolle med avgrenset ansvar, ikke generell beslutningsmyndighet",
+      "status": "høy praktisk betydning fordi institusjonelt minne ofte går gjennom dokumentene",
+      "power_over_player": "kan gjøre en rutine sporbar eller la taus praksis fortsette som om den var vedtatt",
+      "wants": "at beslutninger, ansvar og versjoner skal kunne finnes igjen",
+      "conceals": "at dokumentasjon alltid er et utvalg av det som faktisk skjedde",
+      "speech_style": "presis, rolig og opptatt av formuleringer og datoer",
+      "teaches_player": "at organisasjonshukommelse bør kunne deles og etterprøves"
+    },
+    {
+      "id": "erfaren_frivillig",
+      "social_function": "bærer taus kunnskap om mennesker, rutiner og hva som pleier å fungere",
+      "class_position": "langvarig frivillig uten automatisk valgt eller profesjonelt mandat",
+      "status": "høy uformell autoritet gjennom fartstid og pålitelighet",
+      "power_over_player": "kan sette norm for arbeidsmengde, språk og hva som regnes som realistisk",
+      "wants": "at organisasjonen leverer uten å bruke all tid på prosedyre",
+      "conceals": "at egen kapasitet lett blir gjort til målestokk for andre",
+      "speech_style": "praktisk, erfaringsbasert og lite imponert av unødvendig omvei",
+      "teaches_player": "at erfaring bør bli delbar kunnskap fremfor usynlig makt"
+    },
+    {
+      "id": "nytt_medlem",
+      "social_function": "viser om organisasjonens innganger, språk og prosesser faktisk er forståelige uten gammel historikk",
+      "class_position": "nytt medlem med lav uformell status og samme grunnleggende behov for forståelig prosess",
+      "status": "avhengig av hvor mye organisasjonen forklarer eksplisitt",
+      "power_over_player": "kan avdekke hvilke rutiner som bare fungerer for de innvidde",
+      "wants": "å forstå hvordan man deltar uten å måtte gjette kodene",
+      "conceals": "at usikkerhet ofte skjules når andre virker samkjørte",
+      "speech_style": "konkret, spørrende og forsiktig med å anta",
+      "teaches_player": "at medlemskap blir reelt først når inngangen til deltakelse er lesbar"
+    },
+    {
+      "id": "kassereren",
+      "social_function": "gjør økonomiske rutiner, utlegg og ressursgrenser konkrete",
+      "class_position": "avgrenset økonomiansvar innen organisasjonen, uten å eie organisasjonens penger personlig",
+      "status": "situert autoritet over dokumentasjon og økonomiflyt",
+      "power_over_player": "kan be om grunnlag, stoppe ufullstendige utlegg og synliggjøre hva ressursene faktisk tåler",
+      "wants": "at penger kan spores uten at små oppgaver blir unødvendig tunge",
+      "conceals": "at forenkling av små beløp kan bygge opp store blindsoner over tid",
+      "speech_style": "nøktern, tallnær og opptatt av bilag og ansvar",
+      "teaches_player": "at økonomisk tillit blir sterkere når den kan etterprøves"
+    },
+    {
+      "id": "prosjektansvarlig",
+      "social_function": "representerer midlertidige satsinger som trenger tydelig mandat, leveranse og sluttdato",
+      "class_position": "oppgaveansvarlig innen et konkret prosjekt, ikke permanent organisasjonsledelse",
+      "status": "høy handlingskraft så lenge prosjektmandatet er aktivt",
+      "power_over_player": "kan definere tempo, arbeidsdeling og hva prosjektet mener det trenger",
+      "wants": "å få prosjektet ferdig uten å miste retning i intern koordinering",
+      "conceals": "at et vellykket prosjekt lett begynner å behandle egen fortsettelse som selvsagt",
+      "speech_style": "målrettet, løsningsorientert og leveransefokusert",
+      "teaches_player": "at prosjektmakt trenger tydelig start, slutt og mottaker"
+    },
+    {
+      "id": "ekstern_samarbeidspartner",
+      "social_function": "viser hvordan samarbeid kan gi ressurser og rekkevidde samtidig som ansvar må forbli avgrenset",
+      "class_position": "selvstendig aktør med eget mandat og egne interesser",
+      "status": "kan være viktig for gjennomføring uten å være del av organisasjonens interne styring",
+      "power_over_player": "kan utvide eller begrense hva som praktisk lar seg gjøre",
+      "wants": "et samarbeid der oppgaver og forventninger er forståelige",
+      "conceals": "at gode relasjoner også kan gjøre nye forpliktelser vanskeligere å si nei til",
+      "speech_style": "konkret, vennlig og opptatt av hvem som gjør hva",
+      "teaches_player": "at samarbeid fungerer bedre når partene ikke later som de er samme organisasjon"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "rule_vs_memory",
+      "meaning": "om organisasjonen skiller gjeldende regel fra det folk husker at man pleier å gjøre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "structure_vs_informal_power",
+      "meaning": "om arbeidsgrupper, fartstid og relasjoner får tydelige grenser mot formell rollefordeling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "trust_vs_traceability",
+      "meaning": "om tillit i økonomi, dokumentasjon og medlemsarbeid styrkes av et enkelt etterprøvbart spor",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commitment_vs_capacity",
+      "meaning": "om organisasjonen planlegger etter faktisk frivillig kapasitet fremfor å bruke de mest tilgjengelige som permanent reserve",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "internal_vs_public",
+      "meaning": "om interne arbeidsrom og personlige ytringer holdes adskilt fra organisasjonens formelle avsender",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cooperation_vs_scope",
+      "meaning": "om samarbeid og prosjekter beholder synlige ansvars- og beslutningsgrenser når aktiviteten vokser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_formal_authority",
+      "meaning": "om omfattende organisasjonserfaring holdes tydelig adskilt fra valgt, ansatt og offentlig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Det står ikke helt slik i vedtektene.",
+        "thread_ids": [
+          "rule_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Det står ikke helt slik i vedtektene.",
+        "thread_ids": [
+          "rule_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Det står ikke helt slik i vedtektene.",
+        "thread_ids": [
+          "rule_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Det står ikke helt slik i vedtektene.",
+        "thread_ids": [
+          "rule_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Skal vi bare legge inn dette også?.",
+        "thread_ids": [
+          "data_vs_scope",
+          "rule_vs_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Skal vi bare legge inn dette også?.",
+        "thread_ids": [
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Skal vi bare legge inn dette også?.",
+        "thread_ids": [
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Skal vi bare legge inn dette også?.",
+        "thread_ids": [
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Vi har jo gjort dette i et halvt år allerede.",
+        "thread_ids": [
+          "temporary_vs_permanent",
+          "data_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Vi har jo gjort dette i et halvt år allerede.",
+        "thread_ids": [
+          "temporary_vs_permanent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Vi har jo gjort dette i et halvt år allerede.",
+        "thread_ids": [
+          "temporary_vs_permanent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Vi har jo gjort dette i et halvt år allerede.",
+        "thread_ids": [
+          "temporary_vs_permanent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Når skulle vi egentlig lese dette?.",
+        "thread_ids": [
+          "prep_vs_access",
+          "temporary_vs_permanent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Når skulle vi egentlig lese dette?.",
+        "thread_ids": [
+          "prep_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Når skulle vi egentlig lese dette?.",
+        "thread_ids": [
+          "prep_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Når skulle vi egentlig lese dette?.",
+        "thread_ids": [
+          "prep_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Det er bare et lite beløp.",
+        "thread_ids": [
+          "money_vs_trace",
+          "prep_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Det er bare et lite beløp.",
+        "thread_ids": [
+          "money_vs_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Det er bare et lite beløp.",
+        "thread_ids": [
+          "money_vs_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Det er bare et lite beløp.",
+        "thread_ids": [
+          "money_vs_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Jeg kan ta den også.",
+        "thread_ids": [
+          "capacity_vs_dependence",
+          "money_vs_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Jeg kan ta den også.",
+        "thread_ids": [
+          "capacity_vs_dependence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Jeg kan ta den også.",
+        "thread_ids": [
+          "capacity_vs_dependence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Jeg kan ta den også.",
+        "thread_ids": [
+          "capacity_vs_dependence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Dette er allerede sendt videre.",
+        "thread_ids": [
+          "internal_vs_public",
+          "capacity_vs_dependence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Dette er allerede sendt videre.",
+        "thread_ids": [
+          "internal_vs_public"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Dette er allerede sendt videre.",
+        "thread_ids": [
+          "internal_vs_public"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Dette er allerede sendt videre.",
+        "thread_ids": [
+          "internal_vs_public"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Vi tenkte at dette også kunne ligge hos dere.",
+        "thread_ids": [
+          "cooperation_vs_scope",
+          "internal_vs_public"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Vi tenkte at dette også kunne ligge hos dere.",
+        "thread_ids": [
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Vi tenkte at dette også kunne ligge hos dere.",
+        "thread_ids": [
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Vi tenkte at dette også kunne ligge hos dere.",
+        "thread_ids": [
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Vi pleier å gjøre det slik.",
+        "thread_ids": [
+          "practice_vs_record",
+          "cooperation_vs_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Vi pleier å gjøre det slik.",
+        "thread_ids": [
+          "practice_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Vi pleier å gjøre det slik.",
+        "thread_ids": [
+          "practice_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Vi pleier å gjøre det slik.",
+        "thread_ids": [
+          "practice_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Nå handler alt om hvem som sa det.",
+        "thread_ids": [
+          "issue_vs_person",
+          "practice_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Nå handler alt om hvem som sa det.",
+        "thread_ids": [
+          "issue_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Nå handler alt om hvem som sa det.",
+        "thread_ids": [
+          "issue_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Nå handler alt om hvem som sa det.",
+        "thread_ids": [
+          "issue_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Vi vet jo omtrent hvem som bør gjøre hva.",
+        "thread_ids": [
+          "informal_vs_formal_roles",
+          "issue_vs_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Vi vet jo omtrent hvem som bør gjøre hva.",
+        "thread_ids": [
+          "informal_vs_formal_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Vi vet jo omtrent hvem som bør gjøre hva.",
+        "thread_ids": [
+          "informal_vs_formal_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Vi vet jo omtrent hvem som bør gjøre hva.",
+        "thread_ids": [
+          "informal_vs_formal_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Fristen går om ti minutter.",
+        "thread_ids": [
+          "deadline_vs_consistency",
+          "informal_vs_formal_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Fristen går om ti minutter.",
+        "thread_ids": [
+          "deadline_vs_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Fristen går om ti minutter.",
+        "thread_ids": [
+          "deadline_vs_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Fristen går om ti minutter.",
+        "thread_ids": [
+          "deadline_vs_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vi kan godkjenne rapporten i gruppa.",
+        "thread_ids": [
+          "delivery_vs_oversight",
+          "deadline_vs_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vi kan godkjenne rapporten i gruppa.",
+        "thread_ids": [
+          "delivery_vs_oversight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Vi kan godkjenne rapporten i gruppa.",
+        "thread_ids": [
+          "delivery_vs_oversight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vi kan godkjenne rapporten i gruppa.",
+        "thread_ids": [
+          "delivery_vs_oversight",
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kjenner jo hele maskineriet nå.",
+        "thread_ids": [
+          "practice_vs_authority",
+          "delivery_vs_oversight"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kjenner jo hele maskineriet nå.",
+        "thread_ids": [
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kjenner jo hele maskineriet nå.",
+        "thread_ids": [
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kjenner jo hele maskineriet nå.",
+        "thread_ids": [
+          "practice_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "rule_vs_memory",
+      "relationship": "formell regel mot husket praksis",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "data_vs_scope",
+      "relationship": "medlemsdata mot avgrenset behov",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "temporary_vs_permanent",
+      "relationship": "midlertidig arbeidsform mot varig struktur",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "prep_vs_access",
+      "relationship": "dokumenttilgang mot reell forberedelse",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "money_vs_trace",
+      "relationship": "små utgifter mot sporbar økonomi",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "capacity_vs_dependence",
+      "relationship": "pålitelighet mot systemavhengighet",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "internal_vs_public",
+      "relationship": "internt arbeidsrom mot offentlig avsender",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "cooperation_vs_scope",
+      "relationship": "godt samarbeid mot avgrenset ansvar",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "practice_vs_record",
+      "relationship": "taus rutine mot dokumentert begrunnelse",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "issue_vs_person",
+      "relationship": "saklig uenighet mot personkonflikt",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "informal_vs_formal_roles",
+      "relationship": "uformelle forventninger mot åpen rollefordeling",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "deadline_vs_consistency",
+      "relationship": "fleksibilitet mot forutsigbar fristpraksis",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "delivery_vs_oversight",
+      "relationship": "prosjekteierskap mot separat godkjenning",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "practice_vs_authority",
+      "relationship": "organisasjonserfaring mot formell myndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "regler_og_praksis_blir_skilt",
+      "description": "Spilleren blir mer oppmerksom på forskjellen mellom vedtatt struktur, gammel vane og praktisk nødløsning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner"
+      ]
+    },
+    {
+      "id": "medlemskap_far_tydeligere_grenser",
+      "description": "Personopplysninger, forberedelse og medlemsforslag behandles med tydeligere formål, frister og innganger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800"
+      ]
+    },
+    {
+      "id": "ressurser_blir_mer_sporbare",
+      "description": "Utlegg, frivillig kapasitet og prosjektansvar blir mindre avhengig av personlige nødløsninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv"
+      ]
+    },
+    {
+      "id": "samarbeid_og_uenighet_far_form",
+      "description": "Interne samtaler, samarbeid og konflikter får tydeligere grenser mellom sak, person, avsender og ansvar.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak"
+      ]
+    },
+    {
+      "id": "rollen_far_en_tydelig_mandatgrense",
+      "description": "Lang fartstid og bred organisasjonskunnskap kan være verdifull uten å bli valgt, ansatt eller offentlig beslutningsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode",
+        "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "vedtekten_moter_den_gamle_praksisen",
+      "setup_ref": "1/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "bureaucracy",
+        "authority"
+      ]
+    },
+    {
+      "id": "medlemsdata_moter_internchatten",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "privacy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "arbeidsgruppen_moter_rollefordelingen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "authority",
+        "loyalty"
+      ]
+    },
+    {
+      "id": "sent_underlag_moter_senfrist",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "knowledge",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "utlegget_moter_prosjektrapporten",
+      "setup_ref": "5/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "resources",
+        "authority"
+      ]
+    },
+    {
+      "id": "siste_vakt_moter_samarbeidet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "care",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#vedtektene_som_huskes_forskjellig",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#medlemslista_faar_et_ekstra_felt",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arbeidsgruppen_som_ble_fast",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#arsmoteunderlaget_som_kom_sent",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#utlegget_uten_spor",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_som_alltid_tar_siste_vakt",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#skjermbildet_fra_internchatten",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#samarbeidet_som_ble_storre",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#den_gamle_praksisen_ingen_finner",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#uenigheten_som_blir_personsak",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#rollefordelingen_for_neste_periode",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#forslaget_som_kom_rett_for_fr1800",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#prosjektet_som_rapporterer_til_seg_selv",
+      "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json#hva_slags_organisasjonsmenneske"
+    ]
+  }
+}

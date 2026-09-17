@@ -1,0 +1,54 @@
+#!/usr/bin/env node
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const ROOT=path.resolve(__dirname,'..'),read=p=>JSON.parse(fs.readFileSync(path.join(ROOT,p),'utf8'));
+const worldPath='data/Civication/roleWorlds/kunst/kunst_gallerist.json';
+const narrativePath='data/Civication/narratives/leisure/kunst_gallerist.json';
+const world=read(worldPath),stream=read(narrativePath),index=read('data/Civication/roleWorlds/index.json');
+const themeBank=read('data/Civication/roleWorldThemeBank.json');
+assert.equal(world.schema,'civication_role_world_v1');
+assert.equal(world.version,1);
+assert.equal(world.category,'kunst');
+assert.equal(world.role_scope,'kunst_gallerist');
+assert.equal(world.subject_type,'life_position');
+assert.deepEqual(world.life_position_ref,{badge_id:'kunst',id:'gallerist',label:'Gallerist'});
+assert.equal(world.status,'role_world_complete');
+assert.equal(world.materialization?.no_new_runtime,true);
+assert.match(world.sociological_core.description,/gallery_operator_practice_or_business_role/i);
+assert.match(world.sociological_core.description,/ingen automatisk jobb|ingen automatisk.*lønn/i);
+assert.match(world.sociological_core.description,/selskapsstatus|arbeidsgiveransvar|kontraktsfullmakt|takstrolle|juridisk rådgivning|finansiell rådgivningsmyndighet/i);
+assert.match(world.sociological_core.description,/ingen ny runtime/i);
+assert.equal(stream.storylets.length,14);
+assert.equal(world.season.days,14);
+assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
+assert.equal(world.season.coverage.length,56);
+assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
+assert.equal(world.primary_threads.length,14);
+assert.equal(world.recurring_people_archetypes.length,6);
+assert.equal(world.private_aftermath.length,5);
+assert.equal(world.delayed_consequences.length,6);
+const storyIds=new Set(stream.storylets.map(x=>x.id)),prefix=narrativePath+'#';
+for(const beat of world.season.coverage){
+  assert.ok(Array.isArray(beat.materialization_refs)&&beat.materialization_refs.length>=1);
+  for(const ref of beat.materialization_refs){
+    assert.ok(ref.startsWith(prefix),ref);
+    assert.ok(storyIds.has(ref.slice(prefix.length)),ref);
+  }
+}
+for(const t of world.primary_threads){
+  assert.ok(t.beat_refs.length>=5&&t.beat_refs.length<=10,t.id+' beat span');
+  for(const ref of t.beat_refs){
+    const b=world.season.coverage.find(x=>x.day+'/'+x.phase===ref);
+    assert.ok(b&&b.thread_ids.includes(t.id),t.id+' missing on '+ref);
+  }
+}
+const required=['id','social_function','class_position','status','power_over_player','wants','conceals','speech_style','teaches_player'];
+for(const person of world.recurring_people_archetypes) for(const field of required) assert.ok(person[field],person.id+' missing '+field);
+assert.deepEqual(themeBank.reference_profiles['kunst/kunst_gallerist'],world.theme_ids);
+const entry=index.roles.find(x=>x.life_position_key==='kunst/gallerist');
+assert.ok(entry);
+assert.equal(entry.role_scope,'kunst_gallerist');
+assert.equal(entry.path,worldPath);
+assert.equal(index.roles.filter((row)=>row.subject_type==='life_position').length,index.life_position_role_world_count);
+assert.equal(index.roles.length,index.career_role_world_count+index.life_position_role_world_count);
+console.log('Gallerist Role World gate ok: 14 storylets / 56 beats / 14 threads / 6 people / 5 aftermath / 6 delayed');

@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "utdanning",
+  "role_scope": "utdanning_klasseromsobservator",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "utdanning",
+    "id": "klasseromsobservator",
+    "label": "Klasseromsobservatør"
+  },
+  "title": "Klasseromsobservatør",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å se hvordan rom, relasjoner, oppgaver, forventninger og rytmer former deltakelse uten at observasjon blir personmerking, overvåking eller profesjonell vurderingsmyndighet",
+    "description": "Klasseromsobservatør-verdenen undersøker romorganisering, synlig og usynlig deltakelse, oppgavers startforutsetninger, uformelt samspill, ventetid, grupperoller, forventningssignaler, hjelpefordeling, endring over tid, uttrykksformer, tidsrytmer, personvern, skillet mellom beskrivelse og fortolkning og profesjonsgrenser. Klasseromsobservatør er en observation_identity life position. Rollen gir ingen automatisk lærer-, inspektør-, sensor-, diagnose- eller spesialpedagogmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "status_anxiety",
+    "shame_reputation",
+    "invisible_work",
+    "care_vs_efficiency",
+    "professional_culture",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "undervisningsrom der møblering, siktlinjer og bevegelse påvirker hvem som blir synlige",
+    "plenumsamtaler der taletid, ventetid og forventningssignaler fordeler deltakelse",
+    "gruppearbeid der oppgaver og uformelle roller gir ulik tilgang til aktivitet",
+    "arbeidsøkter der hjelp, uttrykksformer og tempo skifter hva som blir mulig å observere",
+    "observasjonsnotater der personvern og dataminimering avgrenser nyttige detaljer",
+    "møter med kvalifiserte fagroller der observasjon må skilles fra personvurdering og tiltak"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "observasjonsvennen",
+      "social_function": "deler blikket på situasjoner og gjør forskjellen mellom registrering og fortolkning synlig",
+      "class_position": "likestilt observatør uten formell vurderingsmyndighet",
+      "status": "middels uformell troverdighet gjennom oppmerksomhet og sammenligning over tid",
+      "power_over_player": "kan bekrefte eller utfordre spillerens tolkning av det samme som ble sett",
+      "wants": "at observasjonene blir konkrete nok til å være nyttige uten å bli persondommer",
+      "conceals": "at egne forventninger også styrer hva som blir lagt merke til",
+      "speech_style": "presis, spørrende og opptatt av hva som faktisk ble sett",
+      "teaches_player": "at flere observatører kan dele beskrivelse og likevel være uenige om forklaring"
+    },
+    {
+      "id": "medeleven",
+      "social_function": "viser hvordan deltakelse, forventninger og rytme oppleves fra innsiden av undervisningssituasjonen",
+      "class_position": "deltaker uten ansvar for å representere hele gruppa",
+      "status": "varierende situert trygghet og synlighet",
+      "power_over_player": "kan korrigere et utenfrablikk som overser hva situasjonen føles som for deltakere",
+      "wants": "å kunne delta uten at synlighet blir eneste mål på innsats eller forståelse",
+      "conceals": "at noen spørsmål eller usikkerheter holdes tilbake når forventningspresset er høyt",
+      "speech_style": "hverdagslig, konkret og situasjonsnær",
+      "teaches_player": "at lav synlighet ikke automatisk betyr lav deltakelse"
+    },
+    {
+      "id": "gruppemedlemmet",
+      "social_function": "gjør arbeidsdeling, oppgavestart og uttrykksformer synlige i gruppearbeid",
+      "class_position": "likestilt deltaker med ulike forkunnskaper og måter å bidra på",
+      "status": "skifter med oppgaven og gruppedynamikken",
+      "power_over_player": "kan synliggjøre hvem som faktisk får øve på hvilke deler av arbeidet",
+      "wants": "at oppgaver fordeles slik at flere får reell deltakelse",
+      "conceals": "at effektivitet ofte gjør det behagelig å la den erfarne ta styringen",
+      "speech_style": "praktisk, samarbeidsorientert og noen ganger tilbakeholden",
+      "teaches_player": "at sluttproduktet alene ikke viser hvordan deltakelsen var fordelt"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer metode-, personvern- og profesjonsgrensen for observasjon",
+      "class_position": "kvalifisert profesjonsutøver med ansvar som observatøren ikke automatisk har",
+      "status": "høy situert myndighet når personvurdering, tiltak eller formelle beslutninger berøres",
+      "power_over_player": "kan kreve at observasjoner skilles fra diagnoser, persondommer og myndighetsavgjørelser",
+      "wants": "at situasjonsobservasjon brukes nøkternt og etisk",
+      "conceals": "at profesjonelle vurderinger også kan påvirkes av forventninger og institusjonelle rutiner",
+      "speech_style": "rolig, presis og eksplisitt om grunnlag, ansvar og usikkerhet",
+      "teaches_player": "at godt observasjonsarbeid ikke er det samme som mandat til å vurdere personer"
+    },
+    {
+      "id": "veilederen",
+      "social_function": "gjør fordeling av hjelp, kontakt og oppmerksomhet synlig uten å være objekt for motivspekulasjon",
+      "class_position": "undervisende eller veiledende rolle med situert ansvar",
+      "status": "høy funksjonell status i læringssituasjonen",
+      "power_over_player": "kan forme hvem som får hjelp og hvordan rommet beveger seg, men observatøren kjenner ikke automatisk begrunnelsene",
+      "wants": "å hjelpe flere innen begrenset tid og informasjon",
+      "conceals": "at respons ofte styres av hvem som spør tydeligst eller befinner seg nærmest",
+      "speech_style": "kort, responsiv og oppgaveorientert",
+      "teaches_player": "at observerbar ulikhet i kontakt ikke alene beviser årsaken til den"
+    },
+    {
+      "id": "personvernvennen",
+      "social_function": "representerer grensen mellom situasjonsdata og unødvendig identifiserende informasjon",
+      "class_position": "likestilt deltaker med særlig oppmerksomhet på hva som faktisk trenger å registreres",
+      "status": "ingen formell myndighet, men høy normativ relevans når notater blir personlige",
+      "power_over_player": "kan utfordre antakelsen om at mer detalj alltid betyr bedre observasjon",
+      "wants": "at nyttige mønstre kan beskrives uten å samle private detaljer uten behov",
+      "conceals": "at også anonymiserte beskrivelser noen ganger kan være gjenkjennelige i små miljøer",
+      "speech_style": "nøktern, konkret og dataminimerende",
+      "teaches_player": "at observasjon blir bedre når formålet styrer hva som faktisk noteres"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "room_layout_vs_participation",
+      "meaning": "rommets organisering mot hvem som faktisk får se, bevege seg og delta",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visible_activity_vs_participation",
+      "meaning": "synlig aktivitet mot bredere former for faktisk deltakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "task_entry_vs_assumed_ability",
+      "meaning": "oppgavens startforutsetninger mot antakelser om evne",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informal_interaction_vs_privacy",
+      "meaning": "uformelt samspill mot unødvendig registrering av privat sosialt liv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "wait_time_vs_access",
+      "meaning": "ventetid og samtalerytme mot hvem som rekker å komme inn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "group_roles_vs_learning_access",
+      "meaning": "uformelle grupperoller mot tilgang til å prøve ulike faglige handlinger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expectation_signal_vs_silence",
+      "meaning": "små forventningssignaler mot spørsmål, taushet og selvpresentasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "help_distribution_vs_inference",
+      "meaning": "fordeling av hjelp mot for raske slutninger om årsak og rettferdighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "snapshot_vs_change_over_time",
+      "meaning": "øyeblikksobservasjon mot endring i relasjoner og plassering over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "modality_vs_fixed_label",
+      "meaning": "endret uttrykksform mot faste merkelapper om mennesker",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "time_rhythm_vs_diagnosis",
+      "meaning": "tidsrytme og atferdsendring mot psykologiserende diagnose",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_detail_vs_privacy",
+      "meaning": "detaljrikdom i notater mot nødvendig personvern og dataminimering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "description_vs_interpretation",
+      "meaning": "registrert hendelse mot fortolkning og alternative forklaringer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_professional_authority",
+      "meaning": "observasjonskompetanse mot lærer-, inspektør-, sensor- og spesialpedagogmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Alle ser samme vei — men ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "room_layout_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Alle ser samme vei — men ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "room_layout_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Alle ser samme vei — men ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "room_layout_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Alle ser samme vei — men ikke nødvendigvis det samme.",
+        "thread_ids": [
+          "room_layout_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: De samme svarer først hver gang.",
+        "thread_ids": [
+          "visible_activity_vs_participation",
+          "room_layout_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: De samme svarer først hver gang.",
+        "thread_ids": [
+          "visible_activity_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: De samme svarer først hver gang.",
+        "thread_ids": [
+          "visible_activity_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: De samme svarer først hver gang.",
+        "thread_ids": [
+          "visible_activity_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Noen skjønte oppgaven før den ble forklart ferdig.",
+        "thread_ids": [
+          "task_entry_vs_assumed_ability",
+          "visible_activity_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Noen skjønte oppgaven før den ble forklart ferdig.",
+        "thread_ids": [
+          "task_entry_vs_assumed_ability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Noen skjønte oppgaven før den ble forklart ferdig.",
+        "thread_ids": [
+          "task_entry_vs_assumed_ability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Noen skjønte oppgaven før den ble forklart ferdig.",
+        "thread_ids": [
+          "task_entry_vs_assumed_ability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Det skjer mer i sideblikkene enn i plenum.",
+        "thread_ids": [
+          "informal_interaction_vs_privacy",
+          "task_entry_vs_assumed_ability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Det skjer mer i sideblikkene enn i plenum.",
+        "thread_ids": [
+          "informal_interaction_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Det skjer mer i sideblikkene enn i plenum.",
+        "thread_ids": [
+          "informal_interaction_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Det skjer mer i sideblikkene enn i plenum.",
+        "thread_ids": [
+          "informal_interaction_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Hvor lenge går det før noen får svare?.",
+        "thread_ids": [
+          "wait_time_vs_access",
+          "informal_interaction_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Hvor lenge går det før noen får svare?.",
+        "thread_ids": [
+          "wait_time_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Hvor lenge går det før noen får svare?.",
+        "thread_ids": [
+          "wait_time_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Hvor lenge går det før noen får svare?.",
+        "thread_ids": [
+          "wait_time_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Én skriver, én snakker, resten følger.",
+        "thread_ids": [
+          "group_roles_vs_learning_access",
+          "wait_time_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Én skriver, én snakker, resten følger.",
+        "thread_ids": [
+          "group_roles_vs_learning_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Én skriver, én snakker, resten følger.",
+        "thread_ids": [
+          "group_roles_vs_learning_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Én skriver, én snakker, resten følger.",
+        "thread_ids": [
+          "group_roles_vs_learning_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: «Dette kan dere jo allerede».",
+        "thread_ids": [
+          "expectation_signal_vs_silence",
+          "group_roles_vs_learning_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: «Dette kan dere jo allerede».",
+        "thread_ids": [
+          "expectation_signal_vs_silence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: «Dette kan dere jo allerede».",
+        "thread_ids": [
+          "expectation_signal_vs_silence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: «Dette kan dere jo allerede».",
+        "thread_ids": [
+          "expectation_signal_vs_silence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Hvem får oppfølging mens alle jobber?.",
+        "thread_ids": [
+          "help_distribution_vs_inference",
+          "expectation_signal_vs_silence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Hvem får oppfølging mens alle jobber?.",
+        "thread_ids": [
+          "help_distribution_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Hvem får oppfølging mens alle jobber?.",
+        "thread_ids": [
+          "help_distribution_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Hvem får oppfølging mens alle jobber?.",
+        "thread_ids": [
+          "help_distribution_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Etter pausen sitter folk helt annerledes.",
+        "thread_ids": [
+          "snapshot_vs_change_over_time",
+          "help_distribution_vs_inference"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Etter pausen sitter folk helt annerledes.",
+        "thread_ids": [
+          "snapshot_vs_change_over_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Etter pausen sitter folk helt annerledes.",
+        "thread_ids": [
+          "snapshot_vs_change_over_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Etter pausen sitter folk helt annerledes.",
+        "thread_ids": [
+          "snapshot_vs_change_over_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Da vi fikk tegne, kom flere inn.",
+        "thread_ids": [
+          "modality_vs_fixed_label",
+          "snapshot_vs_change_over_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Da vi fikk tegne, kom flere inn.",
+        "thread_ids": [
+          "modality_vs_fixed_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Da vi fikk tegne, kom flere inn.",
+        "thread_ids": [
+          "modality_vs_fixed_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Da vi fikk tegne, kom flere inn.",
+        "thread_ids": [
+          "modality_vs_fixed_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: De siste ti minuttene skjer noe med konsentrasjonen.",
+        "thread_ids": [
+          "time_rhythm_vs_diagnosis",
+          "modality_vs_fixed_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: De siste ti minuttene skjer noe med konsentrasjonen.",
+        "thread_ids": [
+          "time_rhythm_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: De siste ti minuttene skjer noe med konsentrasjonen.",
+        "thread_ids": [
+          "time_rhythm_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: De siste ti minuttene skjer noe med konsentrasjonen.",
+        "thread_ids": [
+          "time_rhythm_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Trenger du egentlig navnene her?.",
+        "thread_ids": [
+          "observation_detail_vs_privacy",
+          "time_rhythm_vs_diagnosis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Trenger du egentlig navnene her?.",
+        "thread_ids": [
+          "observation_detail_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Trenger du egentlig navnene her?.",
+        "thread_ids": [
+          "observation_detail_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Trenger du egentlig navnene her?.",
+        "thread_ids": [
+          "observation_detail_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Vi så det samme, men forklarer det forskjellig.",
+        "thread_ids": [
+          "description_vs_interpretation",
+          "observation_detail_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Vi så det samme, men forklarer det forskjellig.",
+        "thread_ids": [
+          "description_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Vi så det samme, men forklarer det forskjellig.",
+        "thread_ids": [
+          "description_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Vi så det samme, men forklarer det forskjellig.",
+        "thread_ids": [
+          "description_vs_interpretation",
+          "observation_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Å se mønstre gir ikke mandat til å vurdere personer.",
+        "thread_ids": [
+          "observation_vs_professional_authority",
+          "description_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Å se mønstre gir ikke mandat til å vurdere personer.",
+        "thread_ids": [
+          "observation_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Å se mønstre gir ikke mandat til å vurdere personer.",
+        "thread_ids": [
+          "observation_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Å se mønstre gir ikke mandat til å vurdere personer.",
+        "thread_ids": [
+          "observation_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "room_layout_vs_participation",
+      "relationship": "rommets organisering mot hvem som faktisk får se, bevege seg og delta",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "visible_activity_vs_participation",
+      "relationship": "synlig aktivitet mot bredere former for faktisk deltakelse",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "task_entry_vs_assumed_ability",
+      "relationship": "oppgavens startforutsetninger mot antakelser om evne",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "informal_interaction_vs_privacy",
+      "relationship": "uformelt samspill mot unødvendig registrering av privat sosialt liv",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "wait_time_vs_access",
+      "relationship": "ventetid og samtalerytme mot hvem som rekker å komme inn",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "group_roles_vs_learning_access",
+      "relationship": "uformelle grupperoller mot tilgang til å prøve ulike faglige handlinger",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "expectation_signal_vs_silence",
+      "relationship": "små forventningssignaler mot spørsmål, taushet og selvpresentasjon",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "help_distribution_vs_inference",
+      "relationship": "fordeling av hjelp mot for raske slutninger om årsak og rettferdighet",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "snapshot_vs_change_over_time",
+      "relationship": "øyeblikksobservasjon mot endring i relasjoner og plassering over tid",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "modality_vs_fixed_label",
+      "relationship": "endret uttrykksform mot faste merkelapper om mennesker",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "time_rhythm_vs_diagnosis",
+      "relationship": "tidsrytme og atferdsendring mot psykologiserende diagnose",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "observation_detail_vs_privacy",
+      "relationship": "detaljrikdom i notater mot nødvendig personvern og dataminimering",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "description_vs_interpretation",
+      "relationship": "registrert hendelse mot fortolkning og alternative forklaringer",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "observation_vs_professional_authority",
+      "relationship": "observasjonskompetanse mot lærer-, inspektør-, sensor- og spesialpedagogmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "rom_og_synlighet",
+      "description": "Rom, taletid og oppgavestart blir lest som situasjonsbetingelser fremfor stabile egenskaper ved personer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek"
+      ]
+    },
+    {
+      "id": "samspill_med_grenser",
+      "description": "Uformelt samspill, ventetid og grupperoller observeres uten å bli privat kartlegging eller personrangering.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang"
+      ]
+    },
+    {
+      "id": "forventning_og_hjelp",
+      "description": "Forventningssignaler og hjelpefordeling blir dokumentert som mønstre med åpne årsaksforklaringer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme"
+      ]
+    },
+    {
+      "id": "endring_fremfor_merkelapp",
+      "description": "Endring over tid, uttrykksform og tidsrytme reduserer fristelsen til faste personetiketter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka"
+      ]
+    },
+    {
+      "id": "observasjon_med_metodegrense",
+      "description": "Personvern, beskrivelse versus fortolkning og profesjonsgrense holder observasjonen situert og nøktern.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker",
+        "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "rom_moter_uttrykksform",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "participation",
+        "identity"
+      ]
+    },
+    {
+      "id": "synlighet_moter_ventetid",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "status",
+        "participation"
+      ]
+    },
+    {
+      "id": "oppgavestart_moter_grupperolle",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "participation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "forventning_moter_tidsrytme",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "status",
+        "identity"
+      ]
+    },
+    {
+      "id": "hjelpefordeling_moter_tolkning",
+      "setup_ref": "8/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "method"
+      ]
+    },
+    {
+      "id": "personvern_moter_profesjonsgrense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "privacy",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#rommet_som_styrer_blikket",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#handen_som_alltid_er_oppe",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_med_skjult_startstrek",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#den_stille_samtalen",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#ventetiden_etter_sporsmalet",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#gruppen_som_fikk_rollene_med_en_gang",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#forventningen_i_en_liten_setning",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#hjelpen_som_gar_til_de_samme",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#pausen_som_endrer_rommet",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#oppgaven_som_skifter_mediet",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#blikket_mot_klokka",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#notatene_som_ble_for_personlige",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#tolkningen_som_ble_sikker",
+      "data/Civication/narratives/leisure/utdanning_klasseromsobservator.json#klasseromsobservator_ikke_inspektor"
+    ]
+  }
+}

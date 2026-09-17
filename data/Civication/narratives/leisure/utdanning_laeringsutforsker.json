@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "utdanning_laeringsutforsker",
+  "type": "leisure",
+  "title": "Læringsutforsker — hvordan mennesker lærer uten lærer- eller behandlerautoritet",
+  "sociological_theme": "Hvordan mennesker kan undersøke variasjon i læring på tvers av forkunnskap, forklaringsform, øving, tid, miljø, språk, motivasjon, alder og situasjon uten å gjøre nysgjerrighet til lærer-, diagnose- eller behandlingsmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "utdanning:laeringsutforsker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "forklaringen_som_virket_for_deg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Laeringsvennen",
+      "subject": "Jeg skjønner fortsatt ikke hvorfor",
+      "situation": [
+        "Du forklarer noe på den måten som selv gjorde at du forsto det.",
+        "Den andre personen følger ordene, men sammenhengen sitter fortsatt ikke.",
+        "At en forklaring var et vendepunkt for én person betyr ikke at den er universell."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv en annen inngang og spør hvilket ledd som er uklart før du legger til mer informasjon.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta den samme forklaringen tydeligere fordi den fungerte for deg.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "explanation_fit_vs_projection"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forkunnskapen_som_manglet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Jeg visste ikke at det var noe man måtte kunne først",
+      "situation": [
+        "En oppgave ser enkel ut hvis man allerede kjenner flere små begreper rundt den.",
+        "Nybegynneren mangler ett av disse mellomleddene og stopper tidlig.",
+        "Læringsvansken kan ligge i en skjult forutsetning, ikke i manglende evne eller innsats."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn hvilket forkunnskapsledd som mangler og bygg akkurat det før dere prøver hovedoppgaven igjen.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Gi flere oppgaver på samme nivå slik at nybegynneren får trent seg gjennom problemet.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "prerequisite_gap_vs_ability_judgment"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lese_igjen_eller_hente_frem",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Det ser kjent ut når jeg leser — men jeg får det ikke fram selv",
+      "situation": [
+        "Teksten føles stadig mer kjent for hver gjennomlesning.",
+        "Når boka lukkes er det vanskeligere å hente fram hovedpoengene uten støtte.",
+        "Følelse av gjenkjennelse og evne til å hente fram kunnskap er ikke helt det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test hva du kan hente fram uten teksten, og bruk hullene til å styre neste gjennomgang.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Les samme del en gang til fordi økt fortrolighet viser at stoffet begynner å sitte.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "recognition_vs_retrieval"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alt_kvelden_for",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Jeg tar hele pensum i kveld",
+      "situation": [
+        "Tidsfristen nærmer seg, og én lang økt virker mer effektiv enn mange korte.",
+        "Konsentrert innsats kan gi rask framgang, men sier lite om hva som er tilgjengelig senere.",
+        "Fordeling over tid kan være en del av læringsprosessen, ikke bare kalenderstyring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del stoffet i mindre henteforsøk over flere tidspunkt og bruk kvelden på de største hullene.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Press inn alt i én maratonøkt fordi maksimal samlet tid nå er det sikreste målet.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "cramming_vs_spacing"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kan_det_bare_i_den_oppgaven",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verkstedvennen",
+      "subject": "Det gikk i går, men ikke når oppgaven ser annerledes ut",
+      "situation": [
+        "En ferdighet fungerer godt i den formen den ble øvd inn.",
+        "Når materialet, spørsmålet eller situasjonen endres, forsvinner sikkerheten.",
+        "Å kunne gjenta en kjent prosedyre er ikke alltid det samme som å kunne bruke prinsippet i en ny sammenheng."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en ny variant som krever samme prinsipp, men andre overflatetrekk, og se hva som faktisk overføres.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Gå tilbake til originaloppgaven til utførelsen blir enda sikrere.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_specificity_vs_transfer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forklar_det_til_meg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Kan du si det uten fagord?",
+      "situation": [
+        "Du merker at du kan følge en forklaring, men strever med å formulere den selv.",
+        "Når du prøver å forklare til en nybegynner blir flere uklare mellomledd synlige.",
+        "Å sette kunnskap i egne ord kan avsløre både forståelse og hull."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar steg for steg med egne ord, og marker ærlig hvor du selv blir uklar.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den mest presise fagformuleringen du husker slik at forklaringen i hvert fall blir korrekt.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "explanation_as_test_vs_performance"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "responsen_som_kom_for_sent",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Laeringsvennen",
+      "subject": "Jeg har øvd på denne feilen i flere dager",
+      "situation": [
+        "En misforståelse har rukket å bli gjentatt mange ganger før noen oppdager den.",
+        "Tilbakemelding kan være nyttig selv sent, men tidspunktet påvirker hvor mye som må bygges om.",
+        "Læringsutforskeren ser derfor ikke bare på innholdet i responsen, men også når den blir tilgjengelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett det sentrale mønsteret nå og legg inn en tidlig kontroll neste gang, før samme vane rekker å feste seg.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett som før og legg inn en stor evaluering til slutt, siden mer vurdering underveis kan forstyrre flyten.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feedback_timing_vs_entrenched_error"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilen_som_ble_farlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Ingen tør å svare før de er helt sikre",
+      "situation": [
+        "Gruppa har begynt å behandle feil svar som små sosiale nederlag.",
+        "Resultatet er roligere samtaler, men også færre synlige forsøk og færre spor av hva folk faktisk tenker.",
+        "Et læringsmiljø kan miste informasjon når feil blir for kostbare å vise."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør uferdige forsøk normale og bruk feil til å undersøke hvilket resonnement som førte dit.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Be folk tenke ferdig før de svarer, slik at nivået i samtalen holder seg høyt.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "error_cost_vs_exploration"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "presset_som_ser_ut_som_motivasjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Du lærer fortere når du vet at noen følger med",
+      "situation": [
+        "Sosialt press øker innsatsen hos noen og gjør andre mer forsiktige.",
+        "Kortvarig aktivitet kan derfor se ut som høyere motivasjon selv når nysgjerrigheten synker.",
+        "Læringsutforskeren må skille mellom energi, etterlevelse og faktisk interesse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva som gjør oppgaven meningsfull og behold bare det presset som ikke gjør deltakelse til prestasjonsangst.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Øk synligheten og sammenligningen fordi høyere aktivitet viser at presset virker.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motivation_vs_social_pressure"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_stengte_dora",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sprakvennen",
+      "subject": "Jeg kjenner ideen, men ikke dette ordet",
+      "situation": [
+        "Et nytt fagord får det til å se ut som om hele temaet er ukjent.",
+        "Når begrepet forklares, viser det seg at personen allerede kjenner mye av fenomenet fra en annen sammenheng.",
+        "Språk kan både presisere kunnskap og skjule eksisterende forståelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble fagordet til et kjent fenomen først, og bygg presisjonen derfra.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Start med definisjonen og krev at terminologien sitter før dere går videre til eksemplene.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "terminology_vs_existing_understanding"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hjernen_som_var_ferdig_for_dagen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Jeg leser samme linje for fjerde gang",
+      "situation": [
+        "Du har fortsatt tid igjen, men oppmerksomheten har falt kraftig.",
+        "Det er fristende å telle minutter som om alle læringsminutter har samme verdi.",
+        "Søvn, pauser og belastning påvirker hva som faktisk kan bearbeides og hentes fram."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avslutt eller ta en reell pause, og test hva som sitter når kapasiteten er tilbake.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Hold ut til planlagt sluttid fordi disiplin er viktigere enn dagsform.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "effort_time_vs_cognitive_capacity"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "selvsikkerheten_som_lop_foran",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Laeringsvennen",
+      "subject": "Dette kan jeg",
+      "situation": [
+        "Et tema føles enkelt når du følger andres forklaring.",
+        "I en ny oppgave kommer flere av detaljene likevel ikke på plass.",
+        "Selvsikkerhet kan være nyttig, men er ikke et presist mål på hva som kan gjøres uten støtte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en liten oppgave uten fasit eller hint og bruk resultatet som korrigering av egen trygghetsfølelse.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Stol på følelsen av flyt; ekstra testing vil bare bruke tid på noe du allerede kan.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "confidence_vs_demonstrated_competence"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alderen_som_ble_forklaring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Eldre_laerer",
+      "subject": "Sånn lærer man vel når man blir eldre",
+      "situation": [
+        "En voksen bruker lengre tid på en ny digital prosedyre enn en yngre deltaker.",
+        "Forskjellen blir raskt forklart med alder.",
+        "Tempo kan like gjerne henge sammen med erfaring, språk, tidligere verktøy, stress eller hvor kjent oppgavetypen er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk hvilke konkrete erfaringer og forutsetninger som skiller situasjonene før alder får forklare resten.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass forventningen ned med en gang fordi aldersforskjellen allerede gir den mest sannsynlige forklaringen.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "age_assumption_vs_learning_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "laeringsutforsker_ikke_behandler",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Å se læringsmønstre er ikke en diagnose",
+      "situation": [
+        "Du har blitt god til å legge merke til hvordan forklaringer, øving, miljø og forkunnskaper påvirker læring.",
+        "Noen begynner å spørre deg om hvorfor en bestemt person ikke lærer som forventet, og hva som bør gjøres profesjonelt.",
+        "Nysgjerrig observasjon av læring gir ikke lærer-, psykolog-, behandlings-, diagnose- eller spesialpedagogmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv mønstrene du faktisk har sett, og la kvalifiserte fagroller eie vurderinger som krever profesjonsansvar.",
+          "effect": 1,
+          "tags": [
+            "learning_curiosity",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Du undersøker hva som faktisk påvirker læringen og holder forklaringen åpen nok til å lære mer."
+        },
+        {
+          "id": "B",
+          "label": "Gi en sannsynlig forklaring og anbefalt tiltak fordi du har sett mange læringsmønstre før.",
+          "effect": -1,
+          "tags": [
+            "learning_assumption",
+            "overclaim",
+            "premature_explanation"
+          ],
+          "feedback": "Du gjør ett synlig tegn til hele forklaringen eller gir læringsnysgjerrighet større myndighet enn rollen har."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "learning_curiosity_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,1191 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_smaforlagsnerd",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "smaforlagsnerd",
+    "label": "Småforlagsnerd"
+  },
+  "title": "Småforlagsnerd",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å følge småforlag, tidsskrifter, opplesninger og nye stemmer tett uten at knapp synlighet, scenestatus, økonomisk støtte eller miljøkunnskap blir romantisering, statushierarki eller lånt forlagsmyndighet",
+    "description": "Småforlagsnerd-verdenen undersøker nisjedistribusjon, tidsskriftkunnskap, små opplesningsrom, direktekjøp og frakt, prekært og usynlig forlagsarbeid, ønsket om å oppdage først, forhåndssalg og lojalitet, sosial nærhet til forfattere, ulik anmeldelsesoppmerksomhet, messer og akkumulering, innsiderfantasier, små opplag, kritikk i tette miljøer og grensen mellom leser-/miljøkompetanse og profesjonell makt. Rollen gir ingen redaktør-, forlegger-, innkjøper-, agent-, rettighets-, jury-, kritiker- eller publiseringsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "invisible_work",
+    "consumption",
+    "public_private_leakage",
+    "public_attention",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "bokhandelen med begrenset hylleplass",
+    "småforlagets nettbutikk",
+    "litterært tidsskrift og abonnement",
+    "opplesning i et lite rom",
+    "småforlagsmesse med mange bord",
+    "lansering og samtale etterpå",
+    "bibliotekets bestillings- og utlånsmuligheter",
+    "nyhetsbrev og forhåndssalg",
+    "sosiale medier rundt nye utgivelser",
+    "sekundærmarkedet for små opplag",
+    "vennesamtaler om hva som er verdt å lese",
+    "lokal bokhandel som bestiller på forespørsel",
+    "midlertidige kulturrom og kjellerlokaler",
+    "kafébordet etter arrangementet",
+    "hjemmets stadig voksende småforlagshylle",
+    "offentligheten der noen bøker nesten ikke omtales"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "smaforlagsredaktoren",
+      "social_function": "gjør utvalg, redigering, økonomi og liten forlagsdrift konkret",
+      "class_position": "profesjonell redaktør/forlegger med faktisk publiseringsansvar som spilleren ikke deler",
+      "status": "høy situert myndighet over egen katalog, ingen myndighet over spillerens identitet",
+      "power_over_player": "kan invitere til arrangementer og samtaler, men ikke overføre redaksjonell fullmakt",
+      "wants": "å få ut gode bøker innen knappe tids- og økonomirammer",
+      "conceals": "hvor mye usynlig arbeid og økonomisk risiko som ligger bak entusiasmen",
+      "speech_style": "presis, entusiastisk og tidsbevisst",
+      "teaches_player": "at forlagsarbeid er arbeid og myndighet, ikke en livsstilsdekorasjon"
+    },
+    {
+      "id": "tidsskriftredaktoren",
+      "social_function": "gjør tidsskriftkultur, utvalg og begrenset kapasitet synlig",
+      "class_position": "profesjonell eller semiprofesjonell redaktør med mandat over eget tidsskrift",
+      "status": "høy kulturell status i et lite felt, varierende økonomisk trygghet",
+      "power_over_player": "kan forklare offentlig praksis, men skylder ikke spilleren innsiderinformasjon eller vurderinger",
+      "wants": "å bygge et nummer eller en profil uten å late som kapasiteten er ubegrenset",
+      "conceals": "hvor ofte prestisje og sårbar økonomi eksisterer samtidig",
+      "speech_style": "reflektert, selektiv og knapp",
+      "teaches_player": "at kjennskap til et tidsskrift ikke er det samme som redaksjonell adgang"
+    },
+    {
+      "id": "opplesningsverten",
+      "social_function": "holder små arrangementer praktisk og sosialt sammen",
+      "class_position": "arrangør eller vert med lokalt ansvar, ikke generell portvokter for litteraturfeltet",
+      "status": "synlig i rommet, men med begrenset institusjonell makt",
+      "power_over_player": "kan sette lokale rammer og invitere til samtale",
+      "wants": "at arrangementet både skal være godt og faktisk fungere for publikum og medvirkende",
+      "conceals": "hvor mye planlegging og etterarbeid som forsvinner når kvelden virker uformell",
+      "speech_style": "varm, effektiv og situasjonsorientert",
+      "teaches_player": "at intime kulturrom også bæres av arbeid og grenser"
+    },
+    {
+      "id": "bokhandleren",
+      "social_function": "gjør distribusjon, lagerplass og salg konkret",
+      "class_position": "profesjonell selger/kurator i bokhandel, uten mandat til å definere litterær verdi alene",
+      "status": "situert kunnskapsstatus i butikk og distribusjon",
+      "power_over_player": "kan anbefale, bestille og forklare lagerlogikk",
+      "wants": "å koble lesere og bøker innen reelle hylle-, retur- og økonomirammer",
+      "conceals": "at synlighet i butikk påvirkes av mer enn smak",
+      "speech_style": "kunnskapsrik, pragmatisk og salgsbevisst",
+      "teaches_player": "at manglende frontplass ikke automatisk betyr verken lav eller høy kvalitet"
+    },
+    {
+      "id": "den_nye_forfatteren",
+      "social_function": "gjør asymmetrien mellom leseroppmerksomhet, nærhet og forfatterens personvern synlig",
+      "class_position": "forfatter med fersk eller liten utgivelse, uten plikt til å være sosialt tilgjengelig",
+      "status": "sårbar offentlig status i et lite miljø",
+      "power_over_player": "kan velge hva som deles i samtale, men har ingen plikt til å gi privat tilgang",
+      "wants": "at teksten skal møtes seriøst uten at hele personen blir offentlig ressurs",
+      "conceals": "hvor krevende den korte avstanden mellom publikum og privatliv kan være",
+      "speech_style": "vennlig, varsom og tekstnær",
+      "teaches_player": "at fysisk nærhet ikke er det samme som relasjonell eller profesjonell tilgang"
+    },
+    {
+      "id": "medleseren",
+      "social_function": "gjør smak, anbefalinger og scenestatus til en horisontal relasjon",
+      "class_position": "annen interessert leser uten redaksjonelt mandat",
+      "status": "kan ha høy miljøkunnskap, men lav formell myndighet",
+      "power_over_player": "kan påvirke hva spilleren oppdager og hvordan feltet snakkes om",
+      "wants": "å dele funn og orientere seg uten å bli redusert til konkurranse om å være først",
+      "conceals": "at også entusiaster kan bli opptatt av rang, sjeldenhet og insiderstatus",
+      "speech_style": "rask, assosiativ og referanserik",
+      "teaches_player": "at kunnskapsfellesskap fungerer bedre når førsthet og eierskap tones ned"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "distribution_visibility",
+      "meaning": "om svak distribusjon behandles som vilkår i stedet for automatisk kvalitetsbevis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "firsthand_reading",
+      "meaning": "om miljørykte holdes adskilt fra det spilleren faktisk har lest",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "room_scale",
+      "meaning": "om små publikumsrom gir nærhet uten å bli eksklusivitetsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "economic_support",
+      "meaning": "om støtte til små aktører holdes innen faktisk privat økonomisk kapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "publishing_labor",
+      "meaning": "om usynlig og prekært forlagsarbeid sees uten romantisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "discovery_status",
+      "meaning": "om det å oppdage tidlig forblir nysgjerrighet fremfor sosialt eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "loyalty_boundary",
+      "meaning": "om miljølojalitet ikke gjøres om til kjøps- eller betalingsplikt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "proximity_boundary",
+      "meaning": "om sosial nærhet holdes adskilt fra profesjonell og privat tilgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attention_inequality",
+      "meaning": "om ulik offentlig oppmerksomhet kan kritiseres uten å erstatte kritikerrollen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curation_capacity",
+      "meaning": "om begrenset oppmerksomhet brukes til kuratering fremfor akkumulering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_boundary",
+      "meaning": "om scenekunnskap holdes adskilt fra redaktør-, forlegger- og innkjøpsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scarcity_status",
+      "meaning": "om små opplag og utsolgt-status håndteres uten statusjakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "critique_care",
+      "meaning": "om kritisk respons kan være presis uten ukritisk lojalitet eller sosial hardhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_profession",
+      "meaning": "om Småforlagsnerd-identiteten forblir leser- og miljøpraksis uten profesjonell rolleinflasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du finner en ny utgivelse fra et lite forlag, men den står nederst i en sidehylle mens de store lanseringene fyller bordene ved inngangen. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "distribution_vs_cultural_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du finner en ny utgivelse fra et lite forlag, men den står nederst i en sidehylle mens de store lanseringene fyller bordene ved inngangen. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "distribution_vs_cultural_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du finner en ny utgivelse fra et lite forlag, men den står nederst i en sidehylle mens de store lanseringene fyller bordene ved inngangen. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "distribution_vs_cultural_value",
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du finner en ny utgivelse fra et lite forlag, men den står nederst i en sidehylle mens de store lanseringene fyller bordene ved inngangen. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "distribution_vs_cultural_value",
+          "discovery_vs_status_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Et litterært tidsskrift dukker opp i samtalen, og du merker at du kjenner navnet, miljøet og ryktet bedre enn du kjenner de faktiske tekstene. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Et litterært tidsskrift dukker opp i samtalen, og du merker at du kjenner navnet, miljøet og ryktet bedre enn du kjenner de faktiske tekstene. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Et litterært tidsskrift dukker opp i samtalen, og du merker at du kjenner navnet, miljøet og ryktet bedre enn du kjenner de faktiske tekstene. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading",
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Et litterært tidsskrift dukker opp i samtalen, og du merker at du kjenner navnet, miljøet og ryktet bedre enn du kjenner de faktiske tekstene. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading",
+          "loyalty_vs_budget_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du er på en opplesning der det sitter tolv personer i rommet, inkludert flere som kjenner hverandre fra før. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du er på en opplesning der det sitter tolv personer i rommet, inkludert flere som kjenner hverandre fra før. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du er på en opplesning der det sitter tolv personer i rommet, inkludert flere som kjenner hverandre fra før. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status",
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du er på en opplesning der det sitter tolv personer i rommet, inkludert flere som kjenner hverandre fra før. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status",
+          "proximity_vs_professional_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du vil bestille en bok direkte fra et lite forlag, men frakten gjør at totalprisen blir langt høyere enn du hadde tenkt. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "support_vs_economic_room"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du vil bestille en bok direkte fra et lite forlag, men frakten gjør at totalprisen blir langt høyere enn du hadde tenkt. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "support_vs_economic_room"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du vil bestille en bok direkte fra et lite forlag, men frakten gjør at totalprisen blir langt høyere enn du hadde tenkt. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "support_vs_economic_room",
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du vil bestille en bok direkte fra et lite forlag, men frakten gjør at totalprisen blir langt høyere enn du hadde tenkt. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "support_vs_economic_room",
+          "attention_inequality_vs_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En forlagsredaktør forteller at mye av arbeidet skjer på kvelder og helger ved siden av annen inntekt. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "invisible_labor_vs_romanticization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En forlagsredaktør forteller at mye av arbeidet skjer på kvelder og helger ved siden av annen inntekt. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "invisible_labor_vs_romanticization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En forlagsredaktør forteller at mye av arbeidet skjer på kvelder og helger ved siden av annen inntekt. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "distribution_vs_cultural_value",
+          "invisible_labor_vs_romanticization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En forlagsredaktør forteller at mye av arbeidet skjer på kvelder og helger ved siden av annen inntekt. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "invisible_labor_vs_romanticization",
+          "curation_vs_accumulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Du får tips om en debutant fra et lite forlag og kjenner den umiddelbare lysten til å oppdage stemmen før den blir bredt kjent. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "discovery_vs_status_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Du får tips om en debutant fra et lite forlag og kjenner den umiddelbare lysten til å oppdage stemmen før den blir bredt kjent. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "discovery_vs_status_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Du får tips om en debutant fra et lite forlag og kjenner den umiddelbare lysten til å oppdage stemmen før den blir bredt kjent. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading",
+          "discovery_vs_status_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Du får tips om en debutant fra et lite forlag og kjenner den umiddelbare lysten til å oppdage stemmen før den blir bredt kjent. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "discovery_vs_status_capture",
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Et lite forlag åpner forhåndssalg for en bok som skal finansiere deler av trykkingen, og du kjenner flere i miljøet som deler lenken. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "loyalty_vs_budget_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Et lite forlag åpner forhåndssalg for en bok som skal finansiere deler av trykkingen, og du kjenner flere i miljøet som deler lenken. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "loyalty_vs_budget_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Et lite forlag åpner forhåndssalg for en bok som skal finansiere deler av trykkingen, og du kjenner flere i miljøet som deler lenken. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status",
+          "loyalty_vs_budget_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Et lite forlag åpner forhåndssalg for en bok som skal finansiere deler av trykkingen, og du kjenner flere i miljøet som deler lenken. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "loyalty_vs_budget_boundary",
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Etter en opplesning står forfatteren ved siden av deg mens publikum snakker sammen, og samtalen blir uformell. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "proximity_vs_professional_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Etter en opplesning står forfatteren ved siden av deg mens publikum snakker sammen, og samtalen blir uformell. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "proximity_vs_professional_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Etter en opplesning står forfatteren ved siden av deg mens publikum snakker sammen, og samtalen blir uformell. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "support_vs_economic_room",
+          "proximity_vs_professional_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Etter en opplesning står forfatteren ved siden av deg mens publikum snakker sammen, og samtalen blir uformell. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "proximity_vs_professional_access",
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En utgivelse du likte får nesten ingen omtale, mens større bøker fra større forlag fyller kulturflatene. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "attention_inequality_vs_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En utgivelse du likte får nesten ingen omtale, mens større bøker fra større forlag fyller kulturflatene. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "attention_inequality_vs_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En utgivelse du likte får nesten ingen omtale, mens større bøker fra større forlag fyller kulturflatene. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "invisible_labor_vs_romanticization",
+          "attention_inequality_vs_value"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En utgivelse du likte får nesten ingen omtale, mens større bøker fra større forlag fyller kulturflatene. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "attention_inequality_vs_value",
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: På en småforlagsmesse står det flere bord enn du rekker å undersøke, med tidsskrifter, chapbooks, oversettelser og små opplag. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "curation_vs_accumulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: På en småforlagsmesse står det flere bord enn du rekker å undersøke, med tidsskrifter, chapbooks, oversettelser og små opplag. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "curation_vs_accumulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: På en småforlagsmesse står det flere bord enn du rekker å undersøke, med tidsskrifter, chapbooks, oversettelser og små opplag. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "discovery_vs_status_capture",
+          "curation_vs_accumulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: På en småforlagsmesse står det flere bord enn du rekker å undersøke, med tidsskrifter, chapbooks, oversettelser og små opplag. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "distribution_vs_cultural_value",
+          "curation_vs_accumulation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En venn spør hvilke småforlag som kommer til å bli viktige neste år, hvem som vurderer manus, og hvilke redaktører man bør kjenne. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En venn spør hvilke småforlag som kommer til å bli viktige neste år, hvem som vurderer manus, og hvilke redaktører man bør kjenne. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En venn spør hvilke småforlag som kommer til å bli viktige neste år, hvem som vurderer manus, og hvilke redaktører man bør kjenne. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "loyalty_vs_budget_boundary",
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En venn spør hvilke småforlag som kommer til å bli viktige neste år, hvem som vurderer manus, og hvilke redaktører man bør kjenne. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "reputation_vs_firsthand_reading",
+          "scene_knowledge_vs_editorial_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: En liten utgivelse blir utsolgt raskt fordi opplaget var beskjedent, og sekundærmarkedet begynner nesten med en gang. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#det_utsolgte_lille_opplaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: En liten utgivelse blir utsolgt raskt fordi opplaget var beskjedent, og sekundærmarkedet begynner nesten med en gang. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#det_utsolgte_lille_opplaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: En liten utgivelse blir utsolgt raskt fordi opplaget var beskjedent, og sekundærmarkedet begynner nesten med en gang. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "proximity_vs_professional_access",
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#det_utsolgte_lille_opplaget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: En liten utgivelse blir utsolgt raskt fordi opplaget var beskjedent, og sekundærmarkedet begynner nesten med en gang. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "intimacy_vs_attendance_status",
+          "scarcity_vs_status_anxiety"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#det_utsolgte_lille_opplaget"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du har vært på en opplesning eller lest en utgivelse fra et miljø du vanligvis støtter, og denne gangen fungerte det ikke for deg. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du har vært på en opplesning eller lest en utgivelse fra et miljø du vanligvis støtter, og denne gangen fungerte det ikke for deg. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du har vært på en opplesning eller lest en utgivelse fra et miljø du vanligvis støtter, og denne gangen fungerte det ikke for deg. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "attention_inequality_vs_value",
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du har vært på en opplesning eller lest en utgivelse fra et miljø du vanligvis støtter, og denne gangen fungerte det ikke for deg. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "support_vs_economic_room",
+          "critique_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Etter mange lanseringer, tidsskrifter, små messer og samtaler kjenner du både kataloger, personer og vanlige mønstre bedre enn de fleste rundt deg. Dagens ramme og oppmerksomhetsproblem etableres.",
+        "thread_ids": [
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Etter mange lanseringer, tidsskrifter, små messer og samtaler kjenner du både kataloger, personer og vanlige mønstre bedre enn de fleste rundt deg. Andre mennesker, institusjoner eller materielle grenser gjør miljøkunnskapen sosialt konkret.",
+        "thread_ids": [
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Etter mange lanseringer, tidsskrifter, små messer og samtaler kjenner du både kataloger, personer og vanlige mønstre bedre enn de fleste rundt deg. Spilleren må velge hvordan Småforlagsnerd-identiteten skal praktiseres uten å låne profesjonell myndighet.",
+        "thread_ids": [
+          "curation_vs_accumulation",
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Etter mange lanseringer, tidsskrifter, små messer og samtaler kjenner du både kataloger, personer og vanlige mønstre bedre enn de fleste rundt deg. Valget får privat, relasjonell, økonomisk eller statusmessig etterklang.",
+        "thread_ids": [
+          "invisible_labor_vs_romanticization",
+          "small_press_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "distribution_vs_cultural_value",
+      "relationship": "distribusjon og synlighet mot automatisk kvalitetslesning",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "reputation_vs_firsthand_reading",
+      "relationship": "miljørykte mot faktisk førstelesning",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "intimacy_vs_attendance_status",
+      "relationship": "nærhet i små rom mot eksklusivitetsstatus",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "support_vs_economic_room",
+      "relationship": "støtte til små aktører mot privat økonomisk rom",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "invisible_labor_vs_romanticization",
+      "relationship": "usynlig forlagsarbeid mot romantisering av sårbar drift",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "discovery_vs_status_capture",
+      "relationship": "oppdagelsesglede mot eierskap til å ha vært først",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "loyalty_vs_budget_boundary",
+      "relationship": "miljølojalitet mot privat budsjettgrense",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "proximity_vs_professional_access",
+      "relationship": "sosial nærhet mot påstått profesjonell tilgang",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "attention_inequality_vs_value",
+      "relationship": "ulik offentlig oppmerksomhet mot automatisk kvalitetsdom",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "curation_vs_accumulation",
+      "relationship": "kuratert oppmerksomhet mot akkumulering",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "scene_knowledge_vs_editorial_authority",
+      "relationship": "miljøkunnskap mot redaksjonell myndighet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "scarcity_vs_status_anxiety",
+      "relationship": "små opplag og knapphet mot statusangst",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "critique_vs_care",
+      "relationship": "kritisk respons mot relasjonell omsorg",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "small_press_practice_vs_professional_authority",
+      "relationship": "Småforlagsnerd-praksis mot profesjonell forlagsmyndighet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "synlighet_blir_mindre_lik_verdi",
+      "description": "Distribusjon, publikumstall og anmeldelsesdekning blir behandlet som strukturelle vilkår i stedet for direkte mål på litterær verdi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer"
+      ]
+    },
+    {
+      "id": "stotte_faar_okonomiske_grenser",
+      "description": "Direktekjøp og forhåndssalg kan være støtte uten at miljøtilhørighet får disposisjonsrett over privatøkonomien.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord"
+      ]
+    },
+    {
+      "id": "sceneinnsikt_mister_insiderstatus",
+      "description": "Kjennskap til tidsskrift, forlag og personer kan være reell miljøkunnskap uten å bli påstått innsider- eller redaksjonsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+      ]
+    },
+    {
+      "id": "kritikk_faar_omsorg_uten_lojalitetsplikt",
+      "description": "Små miljøer tåler presis respons bedre når spilleren skiller omtanke fra både taus lojalitet og demonstrativ hardhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av"
+      ]
+    },
+    {
+      "id": "rollen_blir_avgrenset_fra_forlagsmyndighet",
+      "description": "Småforlagsnerd blir en kunnskapsidentitet for lesing og miljøorientering, ikke en snarvei til redaktør-, forlegger-, innkjøper-, agent- eller juryrolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo",
+        "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "hylla_moter_opplaget",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "status",
+        "identity"
+      ]
+    },
+    {
+      "id": "frakten_moter_forhandsbestillingen",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "economy",
+        "identity"
+      ]
+    },
+    {
+      "id": "fritidsarbeidet_moter_messen",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "economy",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "ny_stemme_moter_anmeldelsesfravaer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "status",
+        "public_attention"
+      ]
+    },
+    {
+      "id": "naerhet_moter_innsidergrensen",
+      "setup_ref": "8/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    },
+    {
+      "id": "kritikken_moter_rollegrensen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "responsibility"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#utgivelsen_som_ingen_har_stilt_ut",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#tidsskriftet_du_bare_kjenner_pa_navnet",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#opplesningen_med_tolvt_tilhorere",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#frakten_som_koster_nesten_som_boka",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forlaget_som_driver_pa_fritiden",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#den_nye_stemmen_du_vil_oppdage_forst",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forhandsbestillingen_som_blir_lojalitetstest",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#forfatteren_som_star_rett_ved_siden_av",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#anmeldelsen_som_aldri_kommer",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#messen_med_for_mange_bord",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#vennen_som_ber_om_innsiderinfo",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#det_utsolgte_lille_opplaget",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#kritikken_av_den_lille_scenen",
+      "data/Civication/narratives/leisure/litteratur_smaforlagsnerd.json#hva_slags_smaforlagsnerd"
+    ]
+  }
+}

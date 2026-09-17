@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_argumentbygger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "argumentbygger",
+    "label": "Argumentbygger"
+  },
+  "title": "Argumentbygger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge, teste og revidere argumenter med tydelige premisser, evidens, begreper og motargumenter uten at argumentasjonsferdighet blir ekspertise eller formell beslutningsmyndighet",
+    "description": "Argumentbygger-verdenen undersøker premisser, steelmanning, begrepsavklaring, bevisbyrde, korrelasjon og årsak, moteksempler, fakta og verdier, ekspertise, falske dilemmaer, evidensutvalg, revisjon, publikumsadaptasjon, skjulte premisser og formell myndighet. Argumentbygger er en argumentation_practice life position. Rollen gir ingen automatisk ekspertstatus, fagdommerrolle, forskermandat, juridisk autoritet eller beslutningsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "social_mask",
+    "public_attention",
+    "shame_reputation",
+    "professional_culture",
+    "local_knowledge_vs_system",
+    "bureaucratic_power",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "hverdagslige diskusjoner der raske retoriske poeng konkurrerer med tydelige premisser",
+    "studie- og samtalefellesskap der begreper, evidens og motargument blir testet",
+    "analyse-situasjoner der korrelasjon, årsak og utvalg av eksempler må skilles",
+    "formidlingssituasjoner der språk forenkles uten at premisser eller usikkerhet bør forsvinne",
+    "uenigheter der felles fakta skjuler ulike normative eller metodiske premisser",
+    "møter med formelle fagroller der argumentanalyse må skilles fra domeneekspertise og beslutningsmandat"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "diskusjonsvennen",
+      "social_function": "gjør påstander, motargumenter og todelinger konkrete i hverdagslige samtaler",
+      "class_position": "likestilt samtalepartner uten formell fag- eller beslutningsmyndighet",
+      "status": "middels uformell argumentasjonsstatus",
+      "power_over_player": "kan belønne raske retoriske poeng framfor presise premisser",
+      "wants": "at uenighet skal bli tydelig nok til å diskuteres uten å miste relasjonen",
+      "conceals": "at egen formulering av motpartens syn også er et maktgrep",
+      "speech_style": "direkte, utfordrende og samtaleorientert",
+      "teaches_player": "at et argument bør tåle motpartens sterkeste versjon"
+    },
+    {
+      "id": "begrepsvennen",
+      "social_function": "avdekker definisjoner, tvetydigheter og skjulte verdi-premisser",
+      "class_position": "språk- og begrepsinteressert deltaker uten fagdommerrolle",
+      "status": "middels uformell presisjon",
+      "power_over_player": "kan gjøre orddefinisjoner til en måte å dominere samtalen på",
+      "wants": "at uenighet skal ligge i faktiske premisser og ikke i uklare ord",
+      "conceals": "at definisjoner også kan velges strategisk",
+      "speech_style": "rolig, presis og definisjonssøkende",
+      "teaches_player": "at samme ord kan bære ulike premisser"
+    },
+    {
+      "id": "skeptikeren",
+      "social_function": "tester bevisbyrde, moteksempler og revisjon når argumentet møter motstand",
+      "class_position": "likestilt kritisk deltaker uten plikt til å motbevise alle påstander",
+      "status": "varierende, ofte lav sosial popularitet men høy kontrollverdi",
+      "power_over_player": "kan gjøre usikkerhet og svakheter synlige før de blir offentlig prestisje",
+      "wants": "at påstander skal kunne feile på tydelige kriterier",
+      "conceals": "at skepsis også kan bli en identitet som aldri risikerer egne påstander",
+      "speech_style": "kort, presis og moteksempel-orientert",
+      "teaches_player": "at revisjon er sterkere enn å late som argumentet aldri endret seg"
+    },
+    {
+      "id": "analysevennen",
+      "social_function": "gjør årsak, evidensutvalg og datatolkning eksplisitt i argumentasjonen",
+      "class_position": "analyseinteressert deltaker uten forsker- eller utredningsmandat",
+      "status": "middels uformell metodeautoritet",
+      "power_over_player": "kan gjøre metodisk språk til en falsk garanti for riktig konklusjon",
+      "wants": "at sammenheng, årsak og evidensomfang ikke blandes",
+      "conceals": "at metodiske valg også påvirker hvilke spørsmål som blir synlige",
+      "speech_style": "nøktern, hypotesedrevet og evidensbevisst",
+      "teaches_player": "at kausale argumenter trenger mer enn samvariasjon"
+    },
+    {
+      "id": "formidlingsvennen",
+      "social_function": "tester om argumentets struktur overlever når språk og eksempler tilpasses et nytt publikum",
+      "class_position": "kommunikasjonssterk deltaker uten mandat til å endre fakta eller premisser",
+      "status": "høy uformell formidlingsevne",
+      "power_over_player": "kan gjøre forbehold til et hinder som lett kuttes bort",
+      "wants": "at argumentet skal være forståelig uten å bli misvisende",
+      "conceals": "at tydelighet ofte belønnes mer enn presis usikkerhet",
+      "speech_style": "konkret, publikumsorientert og komprimerende",
+      "teaches_player": "at forenkling ikke må endre logikken"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer grensen mellom argumentanalyse og spesialisert fagkunnskap eller formell beslutningsmyndighet",
+      "class_position": "kvalifisert eller mandatbærende rolle i relevant fagfelt",
+      "status": "høy situert fagmyndighet",
+      "power_over_player": "kan korrigere når logisk analyse brukes til å overkjøre manglende domeneevidens",
+      "wants": "at gode argumenter styrker faglige vurderinger uten å erstatte dem",
+      "conceals": "at ekspertise også trenger tydelige premisser og kan argumentere svakt",
+      "speech_style": "presis, rollebevisst og evidensorientert",
+      "teaches_player": "at logisk styrke og faglig sannhet ikke er identiske størrelser"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "claim_vs_explicit_premise",
+      "meaning": "konklusjon mot premisset som faktisk må bære den",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "strawman_vs_steelman",
+      "meaning": "svak parafrase mot en motparts gjenkjennelige sterkeste versjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ambiguity_vs_definition",
+      "meaning": "språklig tvetydighet mot presis begrepsavklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "burden_of_proof_vs_reversal",
+      "meaning": "egen bevisbyrde mot å skyve dokumentasjonskravet over på skeptikeren",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correlation_vs_causal_argument",
+      "meaning": "statistisk sammenheng mot eksplisitt årsakshypotese og alternativ forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "counterexample_vs_overbroad_claim",
+      "meaning": "moteksempel mot for bred universell påstand",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "fact_vs_value_premise",
+      "meaning": "beskrivende fakta mot normative verdipremisser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise_vs_authority_shortcut",
+      "meaning": "relevant ekspertise mot autoritet brukt som erstatning for begrunnelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "false_dilemma_vs_option_space",
+      "meaning": "kunstig todeling mot et realistisk alternativrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cherry_picking_vs_evidence_scope",
+      "meaning": "utvalgte støtteksempler mot synlig evidensutvalg og motstridende materiale",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision_vs_moving_goalposts",
+      "meaning": "åpen revisjon av påstand mot skjult flytting av målstolper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "audience_adaptation_vs_argument_distortion",
+      "meaning": "tilpasset språk mot endring av argumentets premisser eller usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_facts_vs_hidden_premise",
+      "meaning": "felles faktagrunnlag mot skjult normativt eller metodisk premiss",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "argument_skill_vs_formal_authority",
+      "meaning": "argumentasjonsferdighet mot ekspertise og formell beslutningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Hva bygger du egentlig dette på?.",
+        "thread_ids": [
+          "claim_vs_explicit_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Hva bygger du egentlig dette på?.",
+        "thread_ids": [
+          "claim_vs_explicit_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Hva bygger du egentlig dette på?.",
+        "thread_ids": [
+          "claim_vs_explicit_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Hva bygger du egentlig dette på?.",
+        "thread_ids": [
+          "claim_vs_explicit_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Det er lett å vinne mot en dårlig versjon.",
+        "thread_ids": [
+          "strawman_vs_steelman",
+          "claim_vs_explicit_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Det er lett å vinne mot en dårlig versjon.",
+        "thread_ids": [
+          "strawman_vs_steelman"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Det er lett å vinne mot en dårlig versjon.",
+        "thread_ids": [
+          "strawman_vs_steelman"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Det er lett å vinne mot en dårlig versjon.",
+        "thread_ids": [
+          "strawman_vs_steelman"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Dere bruker samme ord på to forskjellige måter.",
+        "thread_ids": [
+          "ambiguity_vs_definition",
+          "strawman_vs_steelman"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Dere bruker samme ord på to forskjellige måter.",
+        "thread_ids": [
+          "ambiguity_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Dere bruker samme ord på to forskjellige måter.",
+        "thread_ids": [
+          "ambiguity_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Dere bruker samme ord på to forskjellige måter.",
+        "thread_ids": [
+          "ambiguity_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du sier jeg må bevise at du tar feil.",
+        "thread_ids": [
+          "burden_of_proof_vs_reversal",
+          "ambiguity_vs_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du sier jeg må bevise at du tar feil.",
+        "thread_ids": [
+          "burden_of_proof_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du sier jeg må bevise at du tar feil.",
+        "thread_ids": [
+          "burden_of_proof_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du sier jeg må bevise at du tar feil.",
+        "thread_ids": [
+          "burden_of_proof_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: De følger hverandre — men betyr det årsak?.",
+        "thread_ids": [
+          "correlation_vs_causal_argument",
+          "burden_of_proof_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: De følger hverandre — men betyr det årsak?.",
+        "thread_ids": [
+          "correlation_vs_causal_argument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: De følger hverandre — men betyr det årsak?.",
+        "thread_ids": [
+          "correlation_vs_causal_argument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: De følger hverandre — men betyr det årsak?.",
+        "thread_ids": [
+          "correlation_vs_causal_argument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Dette ene tilfellet passer ikke regelen din.",
+        "thread_ids": [
+          "counterexample_vs_overbroad_claim",
+          "correlation_vs_causal_argument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Dette ene tilfellet passer ikke regelen din.",
+        "thread_ids": [
+          "counterexample_vs_overbroad_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Dette ene tilfellet passer ikke regelen din.",
+        "thread_ids": [
+          "counterexample_vs_overbroad_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Dette ene tilfellet passer ikke regelen din.",
+        "thread_ids": [
+          "counterexample_vs_overbroad_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Er dette sant — eller ønskelig?.",
+        "thread_ids": [
+          "fact_vs_value_premise",
+          "counterexample_vs_overbroad_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Er dette sant — eller ønskelig?.",
+        "thread_ids": [
+          "fact_vs_value_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Er dette sant — eller ønskelig?.",
+        "thread_ids": [
+          "fact_vs_value_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Er dette sant — eller ønskelig?.",
+        "thread_ids": [
+          "fact_vs_value_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Eksperten sier det — men hva støtter vurderingen?.",
+        "thread_ids": [
+          "expertise_vs_authority_shortcut",
+          "fact_vs_value_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Eksperten sier det — men hva støtter vurderingen?.",
+        "thread_ids": [
+          "expertise_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Eksperten sier det — men hva støtter vurderingen?.",
+        "thread_ids": [
+          "expertise_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Eksperten sier det — men hva støtter vurderingen?.",
+        "thread_ids": [
+          "expertise_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Er dette virkelig de eneste to alternativene?.",
+        "thread_ids": [
+          "false_dilemma_vs_option_space",
+          "expertise_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Er dette virkelig de eneste to alternativene?.",
+        "thread_ids": [
+          "false_dilemma_vs_option_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Er dette virkelig de eneste to alternativene?.",
+        "thread_ids": [
+          "false_dilemma_vs_option_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Er dette virkelig de eneste to alternativene?.",
+        "thread_ids": [
+          "false_dilemma_vs_option_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Hvorfor er det akkurat disse tilfellene du viser?.",
+        "thread_ids": [
+          "cherry_picking_vs_evidence_scope",
+          "false_dilemma_vs_option_space"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Hvorfor er det akkurat disse tilfellene du viser?.",
+        "thread_ids": [
+          "cherry_picking_vs_evidence_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Hvorfor er det akkurat disse tilfellene du viser?.",
+        "thread_ids": [
+          "cherry_picking_vs_evidence_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Hvorfor er det akkurat disse tilfellene du viser?.",
+        "thread_ids": [
+          "cherry_picking_vs_evidence_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Nå sier du noe litt annet enn først.",
+        "thread_ids": [
+          "revision_vs_moving_goalposts",
+          "cherry_picking_vs_evidence_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Nå sier du noe litt annet enn først.",
+        "thread_ids": [
+          "revision_vs_moving_goalposts"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Nå sier du noe litt annet enn først.",
+        "thread_ids": [
+          "revision_vs_moving_goalposts"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Nå sier du noe litt annet enn først.",
+        "thread_ids": [
+          "revision_vs_moving_goalposts"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Samme argument, annen forklaring.",
+        "thread_ids": [
+          "audience_adaptation_vs_argument_distortion",
+          "revision_vs_moving_goalposts"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Samme argument, annen forklaring.",
+        "thread_ids": [
+          "audience_adaptation_vs_argument_distortion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Samme argument, annen forklaring.",
+        "thread_ids": [
+          "audience_adaptation_vs_argument_distortion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Samme argument, annen forklaring.",
+        "thread_ids": [
+          "audience_adaptation_vs_argument_distortion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Dere er enige om fakta, men ikke om hva de betyr.",
+        "thread_ids": [
+          "shared_facts_vs_hidden_premise",
+          "audience_adaptation_vs_argument_distortion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Dere er enige om fakta, men ikke om hva de betyr.",
+        "thread_ids": [
+          "shared_facts_vs_hidden_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Dere er enige om fakta, men ikke om hva de betyr.",
+        "thread_ids": [
+          "shared_facts_vs_hidden_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Dere er enige om fakta, men ikke om hva de betyr.",
+        "thread_ids": [
+          "shared_facts_vs_hidden_premise",
+          "argument_skill_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Et godt argument gir ikke automatisk faglig mandat.",
+        "thread_ids": [
+          "argument_skill_vs_formal_authority",
+          "shared_facts_vs_hidden_premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Et godt argument gir ikke automatisk faglig mandat.",
+        "thread_ids": [
+          "argument_skill_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Et godt argument gir ikke automatisk faglig mandat.",
+        "thread_ids": [
+          "argument_skill_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Et godt argument gir ikke automatisk faglig mandat.",
+        "thread_ids": [
+          "argument_skill_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "claim_vs_explicit_premise",
+      "relationship": "konklusjon mot premisset som faktisk må bære den",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "strawman_vs_steelman",
+      "relationship": "svak parafrase mot en motparts gjenkjennelige sterkeste versjon",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "ambiguity_vs_definition",
+      "relationship": "språklig tvetydighet mot presis begrepsavklaring",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "burden_of_proof_vs_reversal",
+      "relationship": "egen bevisbyrde mot å skyve dokumentasjonskravet over på skeptikeren",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "correlation_vs_causal_argument",
+      "relationship": "statistisk sammenheng mot eksplisitt årsakshypotese og alternativ forklaring",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "counterexample_vs_overbroad_claim",
+      "relationship": "moteksempel mot for bred universell påstand",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "fact_vs_value_premise",
+      "relationship": "beskrivende fakta mot normative verdipremisser",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "expertise_vs_authority_shortcut",
+      "relationship": "relevant ekspertise mot autoritet brukt som erstatning for begrunnelse",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "false_dilemma_vs_option_space",
+      "relationship": "kunstig todeling mot et realistisk alternativrom",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "cherry_picking_vs_evidence_scope",
+      "relationship": "utvalgte støtteksempler mot synlig evidensutvalg og motstridende materiale",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "revision_vs_moving_goalposts",
+      "relationship": "åpen revisjon av påstand mot skjult flytting av målstolper",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "audience_adaptation_vs_argument_distortion",
+      "relationship": "tilpasset språk mot endring av argumentets premisser eller usikkerhet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "shared_facts_vs_hidden_premise",
+      "relationship": "felles faktagrunnlag mot skjult normativt eller metodisk premiss",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "argument_skill_vs_formal_authority",
+      "relationship": "argumentasjonsferdighet mot ekspertise og formell beslutningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "premiss_for_retorikk",
+      "description": "Påstand og premiss gjøres eksplisitt før eksempler eller retoriske poeng får bære konklusjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon"
+      ]
+    },
+    {
+      "id": "begrep_og_bevisbyrde",
+      "description": "Definisjoner og bevisbyrde holdes synlige slik at uenigheten ikke flyttes skjult.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg"
+      ]
+    },
+    {
+      "id": "arsak_moteksempel_og_verdi",
+      "description": "Årsakspåstander, moteksempler og verdipremisser testes separat.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta"
+      ]
+    },
+    {
+      "id": "autoritet_alternativer_og_evidens",
+      "description": "Ekspertise, alternativrom og evidensutvalg brukes uten å stenge argumentet kunstig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg"
+      ]
+    },
+    {
+      "id": "revisjon_formidling_og_mandat",
+      "description": "Argumentet kan revideres og formidles enklere uten å skjule premisser eller bli faglig dommerrolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss",
+        "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "premiss_moter_steelman",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "begrep_moter_bevisbyrde",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "status",
+        "reputation"
+      ]
+    },
+    {
+      "id": "arsak_moter_moteksempel",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "analysis",
+        "reputation"
+      ]
+    },
+    {
+      "id": "verdi_moter_ekspertise",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "status",
+        "authority"
+      ]
+    },
+    {
+      "id": "alternativrom_moter_evidensutvalg",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "revisjon_moter_faggrense",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#paastanden_uten_premiss",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#motpartens_svake_versjon",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#ordet_som_betydde_to_ting",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#bevisbyrden_som_flyttet_seg",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#korrelasjonen_som_ble_forklaring",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#moteksemplet_som_faktisk_betydde_noe",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#verdi_som_ble_presentert_som_fakta",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#autoriteten_som_ble_siste_ord",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#den_falske_todelingen",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#eksemplet_som_ble_utvalg",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentet_som_endret_seg_etter_innvendingen",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#publikummet_som_endret_spraket",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#uenigheten_som_egentlig_var_premiss",
+      "data/Civication/narratives/leisure/filosofi_argumentbygger.json#argumentbygger_ikke_fagdommer"
+    ]
+  }
+}

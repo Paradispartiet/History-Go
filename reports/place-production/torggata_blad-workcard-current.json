@@ -1,0 +1,162 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "torggata_blad",
+  "category": "subkultur",
+  "status": "complete",
+  "production_profile": "standard",
+  "profile_status": "confirmed",
+  "profile_reason": "Kildebåret oppstart, historisk redaksjonssted, papir/nett-transformasjon, kollektiv publiseringspraksis, offentlig ekstern dokumentasjon og aktiv nåtidsstatus bærer standard fullproduksjon.",
+  "underbadge_ids": [
+    "diy_og_selvorganisering",
+    "fanziner_og_smaforlag",
+    "motkulturhistorie"
+  ],
+  "collection_ids": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "content_plan": {
+    "people": "PRODUSERT — Bror Wyller som grunnlegger med dokumentert portrett.",
+    "objects": "PRODUSERT — fysisk papireksemplar som signaturobjekt.",
+    "brands": "PRODUSERT — canonical Torggata Blad med autentisk masthead; ingen rekonstruert logo.",
+    "category_expression": "PRODUSERT — papir/nett-prosjekt og dokumentert 2024-installasjon.",
+    "stories": "REVIDERT — feil bokhandel-/distribusjonsframstilling fjernet.",
+    "for_na": "RESEARCHED / HOLD — ingen falsk optisk før–nå-paritet.",
+    "lesespor": "PRODUSERT — fire link-only lesespor.",
+    "language": "PRODUSERT — tre stedsspesifikke oppføringer; dialekt N/A.",
+    "fagverk": "PRODUSERT — full curated place-owned Fagverk v2.",
+    "quiz": "PRODUSERT — normal 4×7, 28 spørsmål.",
+    "quizcard": "PRODUSERT — dedikert Torggata Blad QuizCard."
+  },
+  "object_category_boundary": "People eier grunnleggeren; Objects eier konkret papireksemplar; Brands eier visuell/medial identitet; Productions eier publikasjonen som verk/praksis og dokumenterte kunstproduksjoner.",
+  "active_phase": "CI_AND_FINAL_QA",
+  "active_file_scope": "Canonical Place + People/Brand + Objects/Productions + Fagverk + quiz/QuizCard + språk/leksikon/lesespor + Story + Subkultur A–H + v4.2 description packet + runtime/release drift.",
+  "null_measurement": {
+    "measured_at_commit": "bba8d71fce2d59f93775b71692c045b08208bb44",
+    "existing_place": true,
+    "existing_quiz": false,
+    "existing_story": true,
+    "existing_fagverk": false,
+    "existing_language": false,
+    "existing_lesespor": 0,
+    "existing_collections": "legacy people+brand, no v2 place_card_profile",
+    "collision_check": "No competing active Torggata Blad full-production PR or branch found before branch creation."
+  },
+  "source_review": {
+    "reviewed": [
+      "https://torggatablad.no/bror-en-helt-unik-skrifttype/",
+      "https://torggatablad.no/wp-content/uploads/2020/04/torggatablad_nr02_07_web.pdf",
+      "https://www.torggatablad.no/torggatablad_nr01_08_web.pdf",
+      "https://bradyogvadstein.no/",
+      "https://www.oslo.kommune.no/get-file/1126231/0de193bea6cc858d37b88441beb1abedcae567f4dc4a8c2f33a4085ce7794457"
+    ],
+    "rejected_inferences": [
+      "dagens fasadefoto som bevis på fortsatt redaksjonsdrift",
+      "aktiv publikasjon som identisk med historisk Place",
+      "alle bidragsytere som homogent miljø",
+      "bokhandel som canonical identitet"
+    ]
+  },
+  "quiz_profile": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "existing_revised": false
+  },
+  "quizcard_status": {
+    "status": "READY",
+    "asset": "bilder/QuizCards/Torggata_Blad.svg",
+    "manual_flip_qa": "passed"
+  },
+  "fagverk_status": {
+    "level": "full",
+    "status": "curated"
+  },
+  "language_status": "PASS",
+  "chronology_status": "PASS",
+  "stories_status": "PASS_REVISED",
+  "lesespor_status": "PASS_4",
+  "collection_status": "PASS_4_OF_4_CONTENT_READY",
+  "production_verified_at": "2026-09-16",
+  "quality_gate": "exact_head_ci_passed",
+  "branch_status": "ready_to_merge",
+  "live_status": "pending_merge",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "torggata_blad",
+    "category": "subkultur",
+    "recorded_at": "2026-09-15T20:15:00+02:00",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "0ae766b2808115bbdff45fcf18056cc96e0058cae1f37c6ed9ce3d8ae1679091"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "0cfdc52b458645d8c22396c6d4adacb1a0661d9eab1f0d2baaab27b9cfa21490"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "0d61d07992306ca5a694a5cd7b010bd1466430c937787d0e2fcb61ff168f765b"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/subkultur.json",
+        "sha256": "c7b6fd230927441211f0a6830d163982f46ce805577772345c1b2d967060c9e5"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "final_gate_evidence": {
+    "head_sha": "bf9238ad1096418617a3d331f1f66ac61a13593e",
+    "verified_at": "2026-09-16",
+    "workflow_count": 21,
+    "result": "21_of_21_green"
+  }
+}

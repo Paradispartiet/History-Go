@@ -1,0 +1,1197 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_essayist",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "essayist",
+    "label": "Essayist"
+  },
+  "title": "Essayist",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å undersøke et spørsmål med personlig og litterær stemme uten å gjøre erfaring, stil, sitater eller publiseringsflate til erstatning for kilder, motargument og presisjon",
+    "description": "Essayist-verdenen undersøker premiss, eksempel og evidens, kilder som forstyrrer, sitatbruk, personlig stemme, motargument, digresjon, privat materiale, redigering, overskrift, attribusjon, redaksjonelle kutt, respons og revisjon. Rollen er en employment-independent professional_practice og gir ingen automatisk jobb eller lønn, ingen redaktør-, forsker-, lærer-, kritiker- eller institusjonell fullmakt, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "arbeidsbordet",
+    "kildemappen",
+    "samtalen",
+    "redaksjonen",
+    "publiseringsflaten",
+    "lesningen",
+    "notene",
+    "etter_publisering"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "redaktoren",
+      "social_function": "gjør publiseringsramme og redigering konkret",
+      "class_position": "redaksjonell yrkesrolle",
+      "status": "institusjonell situert status",
+      "power_over_player": "kan foreslå kutt og publiseringsform, men ikke overføre egen myndighet automatisk",
+      "wants": "en lesbar og presis tekst",
+      "conceals": "at formatpress kan endre tankens presisjon",
+      "speech_style": "kort og strukturorientert",
+      "teaches_player": "redigering er samarbeid, ikke overtakelse av forfatteransvar"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer grensen mellom essayistisk undersøkelse og faglig ekspertise",
+      "class_position": "spesialisert fagrolle",
+      "status": "feltavgrenset ekspertstatus",
+      "power_over_player": "kan korrigere faglige feil, men ikke eie essayets personlige resonnement",
+      "wants": "presise påstander",
+      "conceals": "at ekspertise heller ikke dekker hele essayets verdi",
+      "speech_style": "nøktern og forbeholden",
+      "teaches_player": "stemme og ekspertmandat er ulike ting"
+    },
+    {
+      "id": "vennen",
+      "social_function": "gjør privat materiale og samtykke konkret",
+      "class_position": "privat relasjon",
+      "status": "ingen institusjonell status",
+      "power_over_player": "kan trekke samtykke og sette grenser for egen historie",
+      "wants": "ikke å bli gjort til råmateriale uten kontroll",
+      "conceals": "hvor gjenkjennelig en anonymisert historie fortsatt kan være",
+      "speech_style": "personlig og konkret",
+      "teaches_player": "tekstbehov opphever ikke andres privatliv"
+    },
+    {
+      "id": "medessayisten",
+      "social_function": "gjør stil, status og faglig uenighet synlig",
+      "class_position": "selvstendig skrivepraksis",
+      "status": "feltstatus",
+      "power_over_player": "kan påvirke normer og sammenligning",
+      "wants": "en levende offentlig tankeutveksling",
+      "conceals": "egen usikkerhet bak sikker stil",
+      "speech_style": "assosiativ og argumenterende",
+      "teaches_player": "essayistisk selvsikkerhet må fortsatt tåle motargument"
+    },
+    {
+      "id": "leseren",
+      "social_function": "representerer mottakeren som etterprøver resonnementet",
+      "class_position": "publikum",
+      "status": "ingen formell fagstatus",
+      "power_over_player": "kan avdekke uklar overgang, feil eller overdrivelse",
+      "wants": "å forstå hvordan teksten kom fram til det den sier",
+      "conceals": "at en sterk stemme lett oppfattes som større sikkerhet enn den er",
+      "speech_style": "spørsmålsdrevet",
+      "teaches_player": "lesbarhet og etterprøvbarhet kan sameksistere"
+    },
+    {
+      "id": "kilden",
+      "social_function": "personifiserer møte med eksisterende kunnskap og kreditering",
+      "class_position": "forfatter eller kunnskapsprodusent",
+      "status": "varierende offentlig status",
+      "power_over_player": "kan gjøre lånte ideer og feilrepresentasjon synlig",
+      "wants": "at egne resonnementer ikke brukes løsrevet eller usynlig",
+      "conceals": "at kreditering også kan være konfliktfylt når ideer er allmenne",
+      "speech_style": "tekstnær",
+      "teaches_player": "egen formulering fjerner ikke alltid behovet for attribusjon"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "premise",
+      "meaning": "holde et arbeids-premiss tydelig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "example",
+      "meaning": "skille eksempel fra bevis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source",
+      "meaning": "la kilder få reell motstandskraft",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "quotation",
+      "meaning": "bruke sitater som argumentarbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "voice",
+      "meaning": "skille stemme fra lånt autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "counterargument",
+      "meaning": "gi motargumentet full styrke",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "digression",
+      "meaning": "styre produktive digresjoner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy",
+      "meaning": "håndtere andres historier redelig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editing",
+      "meaning": "redigere uten å tømme resonnering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "headline",
+      "meaning": "holde tittel og tekst i samme sannhetsnivå",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "attribution",
+      "meaning": "kreditere lånte ideer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editorial",
+      "meaning": "forhandle redaksjonelle kutt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "response",
+      "meaning": "rette reelle hull etter respons",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision",
+      "meaning": "la undersøkelsen endre konklusjonen",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1 morgen: holde et arbeids-premiss tydelig.",
+        "thread_ids": [
+          "premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1 lunsj: holde et arbeids-premiss tydelig.",
+        "thread_ids": [
+          "premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1 ettermiddag: holde et arbeids-premiss tydelig.",
+        "thread_ids": [
+          "response",
+          "revision",
+          "premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1 kveld: holde et arbeids-premiss tydelig.",
+        "thread_ids": [
+          "response",
+          "revision",
+          "premise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2 morgen: skille eksempel fra bevis.",
+        "thread_ids": [
+          "example"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#eksempelet_og_paastanden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2 lunsj: skille eksempel fra bevis.",
+        "thread_ids": [
+          "example"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#eksempelet_og_paastanden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2 ettermiddag: skille eksempel fra bevis.",
+        "thread_ids": [
+          "revision",
+          "premise",
+          "example"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#eksempelet_og_paastanden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2 kveld: skille eksempel fra bevis.",
+        "thread_ids": [
+          "revision",
+          "premise",
+          "example"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#eksempelet_og_paastanden"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3 morgen: la kilder få reell motstandskraft.",
+        "thread_ids": [
+          "source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3 lunsj: la kilder få reell motstandskraft.",
+        "thread_ids": [
+          "source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3 ettermiddag: la kilder få reell motstandskraft.",
+        "thread_ids": [
+          "premise",
+          "example",
+          "source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3 kveld: la kilder få reell motstandskraft.",
+        "thread_ids": [
+          "premise",
+          "example",
+          "source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4 morgen: bruke sitater som argumentarbeid.",
+        "thread_ids": [
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#sitatet_som_dekor"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4 lunsj: bruke sitater som argumentarbeid.",
+        "thread_ids": [
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#sitatet_som_dekor"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4 ettermiddag: bruke sitater som argumentarbeid.",
+        "thread_ids": [
+          "example",
+          "source",
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#sitatet_som_dekor"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4 kveld: bruke sitater som argumentarbeid.",
+        "thread_ids": [
+          "example",
+          "source",
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#sitatet_som_dekor"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5 morgen: skille stemme fra lånt autoritet.",
+        "thread_ids": [
+          "voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5 lunsj: skille stemme fra lånt autoritet.",
+        "thread_ids": [
+          "voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5 ettermiddag: skille stemme fra lånt autoritet.",
+        "thread_ids": [
+          "source",
+          "quotation",
+          "voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5 kveld: skille stemme fra lånt autoritet.",
+        "thread_ids": [
+          "source",
+          "quotation",
+          "voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6 morgen: gi motargumentet full styrke.",
+        "thread_ids": [
+          "counterargument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6 lunsj: gi motargumentet full styrke.",
+        "thread_ids": [
+          "counterargument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6 ettermiddag: gi motargumentet full styrke.",
+        "thread_ids": [
+          "quotation",
+          "voice",
+          "counterargument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6 kveld: gi motargumentet full styrke.",
+        "thread_ids": [
+          "quotation",
+          "voice",
+          "counterargument"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7 morgen: styre produktive digresjoner.",
+        "thread_ids": [
+          "digression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#digresjonen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7 lunsj: styre produktive digresjoner.",
+        "thread_ids": [
+          "digression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#digresjonen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7 ettermiddag: styre produktive digresjoner.",
+        "thread_ids": [
+          "voice",
+          "counterargument",
+          "digression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#digresjonen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7 kveld: styre produktive digresjoner.",
+        "thread_ids": [
+          "voice",
+          "counterargument",
+          "digression"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#digresjonen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8 morgen: håndtere andres historier redelig.",
+        "thread_ids": [
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8 lunsj: håndtere andres historier redelig.",
+        "thread_ids": [
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8 ettermiddag: håndtere andres historier redelig.",
+        "thread_ids": [
+          "counterargument",
+          "digression",
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8 kveld: håndtere andres historier redelig.",
+        "thread_ids": [
+          "counterargument",
+          "digression",
+          "privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9 morgen: redigere uten å tømme resonnering.",
+        "thread_ids": [
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redigeringen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9 lunsj: redigere uten å tømme resonnering.",
+        "thread_ids": [
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redigeringen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9 ettermiddag: redigere uten å tømme resonnering.",
+        "thread_ids": [
+          "digression",
+          "privacy",
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redigeringen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9 kveld: redigere uten å tømme resonnering.",
+        "thread_ids": [
+          "digression",
+          "privacy",
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redigeringen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10 morgen: holde tittel og tekst i samme sannhetsnivå.",
+        "thread_ids": [
+          "headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#overskriften"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10 lunsj: holde tittel og tekst i samme sannhetsnivå.",
+        "thread_ids": [
+          "headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#overskriften"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10 ettermiddag: holde tittel og tekst i samme sannhetsnivå.",
+        "thread_ids": [
+          "privacy",
+          "editing",
+          "headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#overskriften"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10 kveld: holde tittel og tekst i samme sannhetsnivå.",
+        "thread_ids": [
+          "privacy",
+          "editing",
+          "headline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#overskriften"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11 morgen: kreditere lånte ideer.",
+        "thread_ids": [
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#referansen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11 lunsj: kreditere lånte ideer.",
+        "thread_ids": [
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#referansen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11 ettermiddag: kreditere lånte ideer.",
+        "thread_ids": [
+          "editing",
+          "headline",
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#referansen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11 kveld: kreditere lånte ideer.",
+        "thread_ids": [
+          "editing",
+          "headline",
+          "attribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#referansen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12 morgen: forhandle redaksjonelle kutt.",
+        "thread_ids": [
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redaksjonens_kutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12 lunsj: forhandle redaksjonelle kutt.",
+        "thread_ids": [
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redaksjonens_kutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12 ettermiddag: forhandle redaksjonelle kutt.",
+        "thread_ids": [
+          "headline",
+          "attribution",
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redaksjonens_kutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12 kveld: forhandle redaksjonelle kutt.",
+        "thread_ids": [
+          "headline",
+          "attribution",
+          "editorial"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#redaksjonens_kutt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13 morgen: rette reelle hull etter respons.",
+        "thread_ids": [
+          "response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#responsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13 lunsj: rette reelle hull etter respons.",
+        "thread_ids": [
+          "response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#responsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13 ettermiddag: rette reelle hull etter respons.",
+        "thread_ids": [
+          "attribution",
+          "editorial",
+          "response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#responsen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13 kveld: rette reelle hull etter respons.",
+        "thread_ids": [
+          "attribution",
+          "editorial",
+          "response"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#responsen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14 morgen: la undersøkelsen endre konklusjonen.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#ny_versjon"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14 lunsj: la undersøkelsen endre konklusjonen.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#ny_versjon"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14 ettermiddag: la undersøkelsen endre konklusjonen.",
+        "thread_ids": [
+          "editorial",
+          "response",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#ny_versjon"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14 kveld: la undersøkelsen endre konklusjonen.",
+        "thread_ids": [
+          "editorial",
+          "response",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_essayist.json#ny_versjon"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "premise",
+      "relationship": "holde et arbeids-premiss tydelig",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "example",
+      "relationship": "skille eksempel fra bevis",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "source",
+      "relationship": "la kilder få reell motstandskraft",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "quotation",
+      "relationship": "bruke sitater som argumentarbeid",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "voice",
+      "relationship": "skille stemme fra lånt autoritet",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "counterargument",
+      "relationship": "gi motargumentet full styrke",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "digression",
+      "relationship": "styre produktive digresjoner",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "privacy",
+      "relationship": "håndtere andres historier redelig",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "editing",
+      "relationship": "redigere uten å tømme resonnering",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "headline",
+      "relationship": "holde tittel og tekst i samme sannhetsnivå",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "attribution",
+      "relationship": "kreditere lånte ideer",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "editorial",
+      "relationship": "forhandle redaksjonelle kutt",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "response",
+      "relationship": "rette reelle hull etter respons",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "revision",
+      "relationship": "la undersøkelsen endre konklusjonen",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "klarere_premiss",
+      "description": "Arbeids-premisset blir tydeligere uten at essayet låses til en ferdig konklusjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder"
+      ]
+    },
+    {
+      "id": "bedre_kildebruk",
+      "description": "Eksempler, kilder og sitater skilles tydeligere fra hverandre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer"
+      ]
+    },
+    {
+      "id": "sterkere_motstand",
+      "description": "Motargument og leserinnvending får reell plass i resonnementet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet"
+      ]
+    },
+    {
+      "id": "personvernsrutine",
+      "description": "Private historier behandles mer eksplisitt med samtykke og anonymisering.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie"
+      ]
+    },
+    {
+      "id": "myndighetsgrense",
+      "description": "Essayistisk stemme skilles klarere fra faglig og redaksjonell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kilde_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "stemme_returnerer",
+      "setup_ref": "5/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "psyche"
+      ]
+    },
+    {
+      "id": "privatliv_returnerer",
+      "setup_ref": "8/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "overskrift_returnerer",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "redigering_returnerer",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "respons_returnerer",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_essayist.json#premisset_som_holder",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#eksempelet_og_paastanden",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#kilden_som_forstyrrer",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#sitatet_som_dekor",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#stemmen_og_rollen",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#motargumentet",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#digresjonen",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#den_andres_historie",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#redigeringen",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#overskriften",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#referansen",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#redaksjonens_kutt",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#responsen",
+      "data/Civication/narratives/leisure/litteratur_essayist.json#ny_versjon"
+    ]
+  }
+}

@@ -16,8 +16,8 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.canonical_source_count, 256);
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
-  assert.equal(index.stats.canonical_story_milestone_count, 239);
-  assert.equal(index.stats.verified_place_production_milestone_count, 566);
+  assert.equal(index.stats.canonical_story_milestone_count, 240);
+  assert.equal(index.stats.verified_place_production_milestone_count, 578);
 });
 
 test("Hausmannsbrua contributes exactly three verified production milestones", () => {
@@ -136,10 +136,10 @@ test("Oslo coverage classifies every canonical place exactly once without overst
 
   // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 586);
-  assert.equal(coverage.dated_evidence_place_count, 245);
+  assert.equal(coverage.dated_evidence_place_count, 247);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 339);
-  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset"]) {
+  assert.equal(coverage.awaiting_source_backed_history_count, 337);
+  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",

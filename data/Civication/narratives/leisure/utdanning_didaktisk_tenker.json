@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "utdanning_didaktisk_tenker",
+  "type": "leisure",
+  "title": "Didaktisk tenker — mål, innhold, arbeidsmåte og vurdering uten lærerautoritet",
+  "sociological_theme": "Hvordan mennesker i studier, frivillighet, formidling, verksted og hverdagslæring kan tenke systematisk om mål, innhold, arbeidsmåter og vurdering uten at refleksjonen blir lærer-, sensor- eller spesialpedagogmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "utdanning:didaktisk_tenker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "maalet_som_ble_for_stort",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Hva er det egentlig vi skal lære her?",
+      "situation": [
+        "Gruppa har samlet mange gode temaer, men alt er blitt like viktig.",
+        "Når målet er uklart blir både innhold, aktivitet og vurdering tilfeldige.",
+        "Didaktisk refleksjon begynner med å gjøre hensikten tydelig nok til at man faktisk kan velge bort noe."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler ett konkret læringsmål og bruk det til å prioritere hva som må med og hva som kan vente.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold alle temaene og håp at bredden i seg selv gjør opplegget lærerikt.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "goal_scope_vs_overload"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innholdet_som_ikke_faar_plass",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formidlingsvennen",
+      "subject": "Vi har tjue minutter og femti minutter stoff",
+      "situation": [
+        "Du har mer interessant materiale enn tiden tillater.",
+        "Å kutte kan føles som å forflate et tema, men manglende prioritering kan gjøre alt utydelig.",
+        "Valg av innhold er en del av didaktikken, ikke bare et logistikkproblem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg de delene som best bærer målet og lag tydelige spor for dem som vil gå dypere senere.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Press inn alt i høyere tempo fordi hvert enkelt poeng isolert sett er relevant.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "content_selection_vs_completeness"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_forklaring_til_alle",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Deltakeren",
+      "subject": "Jeg skjønner ordene, men ikke poenget",
+      "situation": [
+        "En forklaring som fungerte godt for én person treffer ikke en annen.",
+        "Forskjellen kan handle om forkunnskaper, språk, eksempler eller tempo.",
+        "Å variere forklaringsmåte er ikke det samme som å senke faglig ambisjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv et annet eksempel og sjekk hvilket mellomledd som faktisk mangler før du forklarer mer.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta den samme forklaringen saktere og anta at problemet bare er oppmerksomhet.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "explanation_vs_prerequisites"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aktiviteten_som_tok_over",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verkstedvennen",
+      "subject": "Det var gøy — men hva lærte vi?",
+      "situation": [
+        "Aktiviteten skapte energi, latter og høy deltakelse.",
+        "Etterpå er det uklart hva deltakerne skulle sitte igjen med utover selve opplevelsen.",
+        "Arbeidsmåten må kunne begrunnes i målet, ikke bare i at den fungerer sosialt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Koble aktiviteten tilbake til målet og endre neste runde slik at oppgaven faktisk trener det dere vil lære.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold aktiviteten uendret fordi høy aktivitet viser at opplegget fungerer.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "activity_vs_learning_goal"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kriteriene_som_kom_etterpaa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Det var visst dette vi ble vurdert på",
+      "situation": [
+        "Et arbeid blir vurdert etter kriterier gruppa ikke kjente på forhånd.",
+        "Resultatet kan være faglig begrunnet, men prosessen gjør det vanskelig å styre eget arbeid.",
+        "Vurdering påvirker læring lenge før selve vurderingsøyeblikket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kriteriene synlige før neste oppgave og bruk dem som arbeidsverktøy underveis, ikke bare som fasit etterpå.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar etterpå-kriteriene fordi de som kan stoffet burde forstå hva som teller.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "criteria_vs_hidden_expectations"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilbakemeldingen_som_ble_dom",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Deltakeren",
+      "subject": "Jeg vet fortsatt ikke hva jeg skal gjøre annerledes",
+      "situation": [
+        "Tilbakemeldingen sier at resultatet er svakt, men peker ikke på neste håndterbare steg.",
+        "En vurdering kan være korrekt og samtidig ha lav læringsverdi.",
+        "Didaktisk tenkning skiller mellom å beskrive kvalitet og å hjelpe videre arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør responsen konkret: hva fungerer, hva er neste forbedring, og hvordan kan den prøves ut?",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legg til sterkere kvalitetsord slik at mottakeren forstår alvoret.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feedback_vs_verdict"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tempoet_som_ble_norm",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Kan vi stoppe litt før neste del?",
+      "situation": [
+        "Noen følger rytmen lett, mens andre trenger mer tid mellom nye ledd.",
+        "Gruppa begynner å bruke tempo som et uformelt tegn på hvem som er flink.",
+        "Fremdrift og tilgjengelighet må balanseres uten å gjøre saktere arbeid til lavere verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg inn et kort stopp med en konkret oppsummeringsoppgave før dere går videre.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold tempoet fordi de raskeste ellers kan kjede seg, og la resten hente inn senere.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pace_vs_access"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppearbeidet_uten_roller",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "To personer gjorde egentlig alt",
+      "situation": [
+        "Oppgaven var ment å skape samarbeid, men arbeidsdelingen gjorde noen til produsenter og andre til publikum.",
+        "Gruppearbeid er ikke automatisk læring bare fordi flere navn står på samme resultat.",
+        "Arbeidsmåten må også vurderes etter hvem som faktisk får øve på hva."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel neste oppgave slik at alle må bidra med en synlig faglig del og kan forklare helheten etterpå.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La de mest effektive fortsette å gjøre hovedarbeidet fordi gruppa da får best sluttprodukt.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "group_work_vs_participation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tallet_som_ble_laering",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Maalingsvennen",
+      "subject": "Scoren gikk opp — betyr det at vi lærte mer?",
+      "situation": [
+        "En enkel testscore forbedres etter flere repetisjoner.",
+        "Det er fristende å lese tallet som et fullstendig mål på forståelse.",
+        "Måling kan gi nyttig informasjon uten å være identisk med det fenomenet man prøver å måle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk scoren som ett signal og legg til en oppgave som tester om kunnskapen kan forklares eller brukes i en ny situasjon.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at læringen er dokumentert fordi gjennomsnittet steg.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "measurement_vs_understanding"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eksempelet_som_forutsatte_for_mye",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Deltakeren",
+      "subject": "Det eksempelet kjenner jeg ikke",
+      "situation": [
+        "Et eksempel skulle gjøre et vanskelig poeng konkret, men bygger på erfaringer ikke alle deler.",
+        "Gode eksempler kan åpne forståelse; dårlige forutsetninger kan bare flytte problemet.",
+        "Innhold og arbeidsmåte bærer alltid med seg antakelser om hvem mottakeren er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt eller suppler eksempelet og spør hva slags erfaring som faktisk kan fungere som felles startpunkt.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forklar referansen først og bruk resten av tiden på å redde det opprinnelige eksempelet.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "example_vs_assumed_background"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hjelpemiddelet_som_gjorde_jobben",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Studievennen",
+      "subject": "Vi fikk svar med en gang — men kan vi gjøre det selv?",
+      "situation": [
+        "Et digitalt hjelpemiddel gjør oppgaven rask og korrekt.",
+        "Det er uklart om målet var å produsere svaret eller å mestre prosessen som verktøyet nå skjuler.",
+        "Valg av hjelpemiddel må vurderes opp mot hva som faktisk skal læres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar om målet er produkt eller prosess, og legg inn en del der gruppa må vise den forståelsen verktøyet ellers overtar.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold samme oppgave og anta at riktig sluttresultat er tilstrekkelig dokumentasjon.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tool_use_vs_learning_process"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feilen_som_data",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verkstedvennen",
+      "subject": "Alle gjorde samme feil",
+      "situation": [
+        "Flere deltakere misforstår nøyaktig samme ledd.",
+        "Det kan være fristende å forklare feilen som manglende innsats hos enkeltpersoner.",
+        "Et systematisk mønster kan like gjerne være informasjon om oppgave, forklaring eller rekkefølge."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle den gjentatte feilen som data om opplegget og test en annen forklaring eller progresjon.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi hver deltaker samme beskjed om å være mer nøye neste gang.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "error_pattern_vs_blame"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "opplegget_som_maatte_bygges_om",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Formidlingsvennen",
+      "subject": "Vi må endre mer enn siste slide",
+      "situation": [
+        "Etter flere runder ser dere at målet, innholdet, arbeidsmåten og vurderingen ikke peker i samme retning.",
+        "Små kosmetiske justeringer vil ikke løse selve konstruksjonen.",
+        "Didaktisk refleksjon innebærer også å tåle at et opplegg må bygges om når delene ikke henger sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til målet og redesign rekkefølgen, aktivitetene og vurderingen som ett samlet system.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold strukturen og legg til flere forklaringer der deltakerne vanligvis faller av.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "redesign_vs_patchwork"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "didaktisk_tenker_ikke_laerer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "God refleksjon er ikke det samme som profesjonsmyndighet",
+      "situation": [
+        "Du har etter hvert blitt god til å se mønstre mellom mål, innhold, arbeidsmåter og vurdering.",
+        "Andre begynner å spørre deg om lærerfaglige, sensoriske eller spesialpedagogiske avgjørelser.",
+        "Didaktisk innsikt kan være reell uten å gi yrkesrolle, autorisasjon, elevansvar eller mandat til å fatte profesjonelle vurderinger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk refleksjonen til å stille gode spørsmål og forbedre egne opplegg, men la kvalifiserte roller eie beslutninger som krever profesjonsansvar.",
+          "effect": 1,
+          "tags": [
+            "didactic_reflection",
+            "learning_design",
+            "role_clarity"
+          ],
+          "feedback": "Du kobler mål, innhold, arbeidsmåte og vurdering uten å gjøre refleksjon til profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta avgjørelsene selv fordi du allerede tenker didaktisk og kjenner prinsippene.",
+          "effect": -1,
+          "tags": [
+            "didactic_misalignment",
+            "overclaim",
+            "hidden_assumption"
+          ],
+          "feedback": "En del av opplegget får styre alene, eller didaktisk innsikt blir gjort om til større autoritet enn rollen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reflection_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "kunst_ateliermenneske_stream",
+  "type": "leisure",
+  "title": "Ateliermenneske",
+  "sociological_theme": "delt_atelierpraksis_materialer_samarbeid_status_tilgang_og_grenser_mot_profesjonell_kunstautoritet",
+  "applies_when": {
+    "any_tags": [
+      "kunst:ateliermenneske"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "plassen_ved_vinduet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Det delte atelieret",
+      "subject": "Plass er også status",
+      "situation": [
+        "Du kommer tidlig og ser at arbeidsplassen ved vinduet er ledig, selv om flere i atelierfellesskapet pleier å bytte på de beste flatene.",
+        "Det finnes ingen skrevet regel, men lys, lagringsplass og nærhet til vask gjør enkelte plasser langt mer attraktive enn andre.",
+        "Atelierliv blir sosialt når knappe ressurser må fordeles uten at den mest etablerte eller mest pågående automatisk får mest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hvordan plassen vanligvis fordeles og foreslå en tydelig rotasjon når behov kolliderer.",
+          "effect": 1,
+          "tags": [
+            "shared_space",
+            "fairness",
+            "atelier_practice"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Legge tingene dine utover med en gang fordi den som møter først bør få den beste plassen.",
+          "effect": -1,
+          "tags": [
+            "status_claim",
+            "resource_capture",
+            "atelier_practice"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_shared_space"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "materialene_pa_hyllen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Materialhyllen",
+      "subject": "Felles betyr ikke eierløst",
+      "situation": [
+        "På en hylle står papir, pigmenter og verktøy som brukes av flere, men det er uklart hva som er felleseie og hva noen bare har satt fra seg.",
+        "Du trenger akkurat et materiale som ser ubrukt ut, og eieren er ikke til stede.",
+        "Et atelierfellesskap fungerer bare når deling har grenser som kan forstås og etterprøves."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke merking eller spørre i fellesskapet før du bruker materialet, og erstatte det hvis det faktisk er felles forbruk.",
+          "effect": 1,
+          "tags": [
+            "material_boundary",
+            "consent",
+            "shared_resources"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke litt nå og regne med at ingen merker forskjellen siden materialet står i fellesrommet.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "material_drift",
+            "shared_resources"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_material_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_etter_lunsj",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Arbeidsbordet",
+      "subject": "Tilbakemelding er ikke dom",
+      "situation": [
+        "En ateliernabo ber om blikk på et halvferdig arbeid og sier uttrykkelig at hen vil vite hva som er uklart, ikke om verket er «godt».",
+        "Flere begynner likevel å snakke som om de sitter i en jury og rangerer hvem som har mest moden praksis.",
+        "Uformell kritikk kan skjerpe blikket, men den gir ingen kuratorisk eller profesjonell myndighet over andres arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva du faktisk ser og spørre hva slags tilbakemelding personen ønsker før du vurderer mer.",
+          "effect": 1,
+          "tags": [
+            "peer_critique",
+            "epistemic_humility",
+            "care"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en samlet dom over hva som bør beholdes og fjernes fordi tydelighet er det mest nyttige du kan bidra med.",
+          "effect": -1,
+          "tags": [
+            "critique_overreach",
+            "status",
+            "authority_overreach"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_critique_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ikke_er_ferdig",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Nabobordet",
+      "subject": "Uferdig arbeid er ikke offentlig materiale",
+      "situation": [
+        "Et sterkt, halvferdig arbeid står synlig på nabobordet mens personen som lager det er ute.",
+        "En venn du har med inn vil ta bilde og sende det til noen som «burde se dette».",
+        "Nærhet til prosessen gir innsikt, men ikke rett til å publisere, forklare eller sirkulere andres uferdige arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be vennen vente og la personen som lager verket bestemme om, når og hvordan det skal deles.",
+          "effect": 1,
+          "tags": [
+            "unfinished_work",
+            "consent",
+            "privacy"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "La bildet tas uten navn fordi det bare er en privat melding og kan hjelpe verket å bli oppdaget.",
+          "effect": -1,
+          "tags": [
+            "premature_exposure",
+            "entitlement",
+            "reputation_risk"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_unfinished_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryddingen_etter_alle",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Fellesvasken",
+      "subject": "Noen gjør alltid det usynlige arbeidet",
+      "situation": [
+        "Mot slutten av kvelden er vasken full, gulvet støvete og fellesbordet dekket av avkapp etter flere personers arbeid.",
+        "De samme to menneskene pleier å rydde fordi de ikke klarer å gå fra rommet slik.",
+        "Atelierfellesskapets kreative frihet bæres av praktisk arbeid som lett blir usynlig når ansvaret er uformelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ansvar for din del og foreslå en enkel, synlig fordeling av felles rydding og vedlikehold.",
+          "effect": 1,
+          "tags": [
+            "invisible_work",
+            "shared_care",
+            "maintenance"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gå når ditt eget arbeid er ferdig fordi fellesrenhold bør løses av dem som er mest opptatt av orden.",
+          "effect": -1,
+          "tags": [
+            "care_offloading",
+            "invisible_work",
+            "status_hierarchy"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_invisible_work"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verktoyet_som_framer",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Verkstedsonen",
+      "subject": "Tilgang er ikke det samme som kompetanse",
+      "situation": [
+        "Et elektrisk verktøy står ledig, og du har sett andre bruke det mange ganger uten problemer.",
+        "Verkstedansvarlig er opptatt et annet sted, mens du bare trenger ett raskt kutt før du kan fortsette.",
+        "Et atelier kan være uformelt uten at sikkerhet, materialkunnskap eller opplæring blir valgfritt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vente på avklaring eller bruke et verktøy du faktisk er instruert i, selv om det forsinker arbeidet.",
+          "effect": 1,
+          "tags": [
+            "tool_boundary",
+            "safety",
+            "competence"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Prøve forsiktig selv fordi du har sett prosessen ofte nok til å forstå hva som skal gjøres.",
+          "effect": -1,
+          "tags": [
+            "tool_overreach",
+            "safety_risk",
+            "shortcut"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_tool_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "studiobesoket",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Atelierdøra",
+      "subject": "Et besøk gjør privat praksis offentlig for en stund",
+      "situation": [
+        "En bekjent kommer innom og blir raskt mer interessert i hvem som arbeider hvor enn i selve arbeidene.",
+        "Du merker presset til å forklare andres prosjekter og relasjoner for å vise at du kjenner miljøet.",
+        "Et studiobesøk kan åpne et rom uten å gjøre medbrukernes arbeid, privatliv eller nettverk til sosial valuta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde deg til eget arbeid og det andre eksplisitt har sagt er greit å dele.",
+          "effect": 1,
+          "tags": [
+            "studio_visit",
+            "privacy",
+            "network_boundary"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle litt om hvem som jobber med hva fordi konteksten gjør besøket mer interessant.",
+          "effect": -1,
+          "tags": [
+            "name_dropping",
+            "private_public_leakage",
+            "status"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_studio_visit"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "apen_atelier_kvelden",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Åpent atelier",
+      "subject": "Åpen dør fjerner ikke alle terskler",
+      "situation": [
+        "På åpent atelier kommer en førstegangsbesøkende inn og spør om det er lov å se uten å kunne noe om kunstmiljøet.",
+        "Noen av de erfarne svarer med interne navn og referanser som gjør personen mer usikker enn før.",
+        "Tilgang handler også om språk, kroppsspråk og uskrevne koder, ikke bare om at døra står åpen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare rommet enkelt, invitere til å se og la spørsmål være nok uten krav om riktig vokabular.",
+          "effect": 1,
+          "tags": [
+            "access",
+            "cultural_capital",
+            "welcoming"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en rask innføring i hvilke referanser personen bør kjenne for å forstå arbeidene ordentlig.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "status_anxiety",
+            "social_code"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_open_access"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "husleien_og_kvadratmeterne",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ateliermøtet",
+      "subject": "Kreativ frihet har en husleie",
+      "situation": [
+        "Atelierforvalteren varsler høyere husleie og foreslår at de som kan betale mer får beholde større arbeidsflater.",
+        "Noen har stabile inntekter utenfor kunsten, andre vurderer å gi opp plassen selv om atelieret er sosialt viktig.",
+        "Atelierpraksis formes av klasse, eiendom og økonomisk sikkerhet også når ingen snakker om det som kunstfaglige spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjøre kostnadene og fordelingsvirkningene eksplisitte før gruppen fordeler plass på nytt.",
+          "effect": 1,
+          "tags": [
+            "precarity",
+            "class_power",
+            "shared_space"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Akseptere at større betaling naturlig bør gi større plass siden det er den enkleste måten å få budsjettet til å gå opp.",
+          "effect": -1,
+          "tags": [
+            "market_logic",
+            "class_power",
+            "exclusion"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_rent_pressure"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_til_portefoljen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Dokumentasjonsveggen",
+      "subject": "Dokumentasjon trenger samtykke",
+      "situation": [
+        "Du tar bilder av eget arbeid og oppdager at en ateliernabos prosjekt og personlige notater kommer tydelig med i bakgrunnen.",
+        "Bildet fungerer godt som dokumentasjon av miljøet og du vurderer å poste det i en åpen portefølje.",
+        "Atelierets nærhet gjør andres prosess lett synlig, men ikke automatisk publiserbar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskjære eller spørre før publisering, og skille dokumentasjon av eget arbeid fra andres prosess.",
+          "effect": 1,
+          "tags": [
+            "documentation",
+            "consent",
+            "authorship_boundary"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Poste bildet siden bakgrunnen bare viser arbeidsmiljøet og ingen vil tro at naboens verk er ditt.",
+          "effect": -1,
+          "tags": [
+            "privacy_drift",
+            "context_loss",
+            "public_private_leakage"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_documentation_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_hender_ett_arbeid",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Samarbeidsbordet",
+      "subject": "Samarbeid må ha et språk for eierskap",
+      "situation": [
+        "Et arbeid som begynte som din idé har gradvis blitt formet av en annen atelierbrukers tekniske og visuelle valg.",
+        "Når noen spør hvem som har laget det, merker du at det enkleste svaret er å bruke bare ditt eget navn.",
+        "Uformelle samarbeid trenger eksplisitt kreditering nettopp fordi rollene ofte aldri ble skrevet ned."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke sammen om bidrag, kreditering og videre bruk før verket presenteres eller deles.",
+          "effect": 1,
+          "tags": [
+            "collaboration",
+            "credit",
+            "authorship"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Presentere arbeidet under ditt navn og takke den andre muntlig hvis noen spør om prosessen.",
+          "effect": -1,
+          "tags": [
+            "credit_capture",
+            "status",
+            "collaboration_drift"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_collaboration_credit"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennens_bestilling",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kaffebordet",
+      "subject": "Et oppdrag gjør ikke automatisk identiteten til et yrke",
+      "situation": [
+        "En venn spør om du kan lage noe mot betaling etter å ha sett det du gjør i atelieret.",
+        "Du kan ta stilling til ett konkret oppdrag, men ateliermenneske er fortsatt en livsposisjon og ikke automatisk profesjonell kunstnerstatus.",
+        "Pris, levering og forventninger blir tydeligere når et vennskap plutselig også rommer en avtale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklare scope, pris og forventninger konkret uten å presentere deg som om ett oppdrag etablerer en profesjonell kunstnerrolle.",
+          "effect": 1,
+          "tags": [
+            "bounded_commission",
+            "role_clarity",
+            "relationship_boundary"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Si ja løst og bruke oppdraget som tegn på at du nå kan omtale atelierpraksisen som profesjonell.",
+          "effect": -1,
+          "tags": [
+            "career_confusion",
+            "status_claim",
+            "scope_drift"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_commission_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "materialet_som_blir_avfall",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Sorteringshjørnet",
+      "subject": "Eksperimenter har materielle konsekvenser",
+      "situation": [
+        "Et prosjekt har gitt en stor haug kapp, emballasje og rester som er vanskelige å lagre og sortere.",
+        "Det er fristende å se avfallet som et praktisk problem etter at den kreative delen er ferdig.",
+        "Atelierpraksis omfatter også hvordan materialer kjøpes inn, deles, lagres og håndteres når eksperimentet er over."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegge gjenbruk, sortering og felles lagring som en del av arbeidsprosessen, selv om det tar mer tid.",
+          "effect": 1,
+          "tags": [
+            "material_care",
+            "care_vs_efficiency",
+            "shared_resources"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Kaste restene raskt for å frigjøre plass og la materialvalget være et rent kunstnerisk spørsmål.",
+          "effect": -1,
+          "tags": [
+            "waste_externalization",
+            "efficiency",
+            "material_drift"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_material_care"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_ateliermenneske",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Det siste kveldsskiftet",
+      "subject": "Praksis er ikke det samme som profesjonell autoritet",
+      "situation": [
+        "Etter mange dager i atelieret kjenner du rommets rytmer, menneskene, materialene og de små konfliktene langt bedre enn før.",
+        "Erfaringen kan gjøre deg tryggere og mer skapende, men den gir ikke automatisk kunstner-, kurator-, konservator-, verkstedfaglig eller institusjonell myndighet.",
+        "Spørsmålet er om du bruker tilhørigheten til å bære et delt rom bedre eller til å gjøre nærheten om til rang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta med deg en tydelig praksis videre: krediter samarbeid, respekter grenser, del ansvar og skill erfaring fra profesjonell myndighet.",
+          "effect": 1,
+          "tags": [
+            "reflection",
+            "role_clarity",
+            "shared_care"
+          ],
+          "feedback": "Du gjør atelierpraksisen mer etterprøvbar, gjensidig og bærekraftig uten å låne profesjonell kunstnerautoritet."
+        },
+        {
+          "id": "B",
+          "label": "Konkludere med at lang tid i ateliermiljøet i seg selv gjør vurderingene dine mer autoritative enn andres.",
+          "effect": -1,
+          "tags": [
+            "status_identity",
+            "authority_overreach",
+            "professional_confusion"
+          ],
+          "feedback": "Du gjør tilgang, erfaring eller selvsikkerhet om til mer eierskap og autoritet enn situasjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "atelier_practice_reflection"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

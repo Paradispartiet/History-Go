@@ -44,6 +44,31 @@ test("fresh rule evidence validates and a stale hash is rejected", () => {
   assert.ok(validateWorkcard(stale, "fixture.json").some(error => error.includes("stale preflight")));
 });
 
+test("generated V3 workcard delegates READ-FIRST validation to canonical workflow state", () => {
+  const workcard = {
+    schema: "history_go_place_workcard_projection_v3",
+    generated: true,
+    source: "data/places/workflow/akershus_slott.json",
+    place_id: "akershus_slott",
+    category: "historie",
+    state: "complete"
+  };
+  assert.deepEqual(validateWorkcard(workcard, "reports/place-production/akershus-slott-workcard-current.json"), []);
+});
+
+test("generated V3 workcard cannot bypass READ-FIRST with an arbitrary source", () => {
+  const workcard = {
+    schema: "history_go_place_workcard_projection_v3",
+    generated: true,
+    source: "data/places/workflow/not-a-real-place.json",
+    place_id: "akershus_slott",
+    category: "historie",
+    state: "complete"
+  };
+  const errors = validateWorkcard(workcard, "fixture.json");
+  assert.ok(errors.some(error => error.includes("V3 workflow source")));
+});
+
 test("status-only workcard cleanup does not pretend to be a new rule-read", () => {
   const previous = {
     schema: "history_go_place_workcard_v2",

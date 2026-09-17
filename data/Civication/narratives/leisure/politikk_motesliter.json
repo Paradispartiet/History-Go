@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_motesliter",
+  "type": "leisure",
+  "title": "Møtesliter — møtekultur, ansvar og mandatgrenser",
+  "sociological_theme": "Hvordan gjentatt møtedeltakelse skaper praktisk kunnskap og uformell innflytelse, og hvordan saksliste, taletid, referat, habilitet, ansvar og oppfølging kan holdes adskilt fra formelt mandat.",
+  "applies_when": {
+    "any_tags": [
+      "politikk:motesliter"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "saklista_som_vokser",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Møtelederen",
+      "subject": "Sakslista har fått fem nye punkter",
+      "situation": [
+        "Saklista var allerede tett, men flere saker blir lagt inn rett før møtet.",
+        "Hver ny sak kan være legitim, men samlet omfang påvirker hvor mye tid og oppmerksomhet hvert punkt faktisk får.",
+        "Møtepraksis blir fort uklar når alt behandles som like presserende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilke saker som må behandles nå, og hvilke som kan settes opp med egen tid senere.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Ta inn alle sakene og regn med at møtet finner en måte å komme gjennom dem på.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_agenda_scope"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "papirene_kommer_sent",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Sakseieren",
+      "subject": "Her er underlaget – beklager tidspunktet",
+      "situation": [
+        "Sakspapirene kommer kort tid før møtet, og flere har ikke rukket å lese dem.",
+        "Et formelt punkt på agendaen betyr ikke at deltakerne har hatt reell mulighet til å forberede seg.",
+        "Tidspress kan flytte makt til dem som allerede kjenner saken best."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Synliggjør at underlaget kom sent og vurder om beslutning bør utsettes eller avgrenses.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Behandle saken fullt ut fordi dokumentene teknisk sett ble sendt før møtestart.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_prep_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_samme_forer_ordet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Erfaren deltaker",
+      "subject": "Jeg kan bare ta denne også",
+      "situation": [
+        "Den samme erfarne deltakeren åpner, oppsummerer og svarer på nesten alle punkter.",
+        "Rutine gjør møtet effektivt, men kan samtidig gjøre andre mindre synlige.",
+        "Uformell taletid kan bli til reell innflytelse uten at noen har vedtatt det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel ordet og be om bidrag fra flere før konklusjoner trekkes.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La den erfarne fortsette fordi vedkommende kjenner prosessen best.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_participation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "habilitet_i_liten_krets",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Referenten",
+      "subject": "Dette gjelder jo noen vi kjenner",
+      "situation": [
+        "En sak berører en person eller aktør flere rundt bordet har nære relasjoner til.",
+        "I små miljøer er nærhet vanlig, men den kan påvirke hvordan vurderinger oppfattes og dokumenteres.",
+        "Det avgjørende er ikke å mistenkeliggjøre noen, men å gjøre relevante bindinger synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar bindingene og la møtet vurdere en tydelig rollefordeling før saken behandles.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La saken gå som vanlig fordi alle i miljøet kjenner hverandre uansett.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_habilitet"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referatet_mangler_uenigheten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Referenten",
+      "subject": "Skal vi skrive at det var enighet?",
+      "situation": [
+        "Møtet ender med en beslutning, men diskusjonen hadde tydelig uenighet og flere forbehold.",
+        "Et kort referat kan være nyttig, men for glatt språk kan viske ut hva som faktisk ble sagt.",
+        "Senere oppfølging blir vanskeligere når beslutning og begrunnelse blandes sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv beslutningen presist og noter relevante dissens- eller forbeholdspunkter.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at møtet var samlet om løsningen for å gjøre referatet enklere.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_record"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vedtaket_uten_ansvarlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Møtelederen",
+      "subject": "Hvem følger egentlig opp dette?",
+      "situation": [
+        "Møtet vedtar et tiltak, men ingen blir tydelig ansvarlig for neste steg.",
+        "Et vedtak uten eier kan se ferdig ut i referatet og likevel stoppe i praksis.",
+        "Møter produserer ikke oppfølging av seg selv; ansvar og frist må kunne finnes igjen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Knytt vedtaket til en konkret ansvarlig og en realistisk oppfølgingsfrist.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La ansvaret være kollektivt og anta at noen tar det når det blir aktuelt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_ownership"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skjermen_som_ikke_slipper_alle_inn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Digital vert",
+      "subject": "Lenken virker hos meg",
+      "situation": [
+        "Et digitalt møte starter, men noen kommer ikke inn eller får ikke brukt lyd og dokumenter.",
+        "Digital effektivitet kan senke terskelen for noen og heve den for andre.",
+        "Når tekniske problemer behandles som individuelle feil, kan deltakelse bli skjevt fordelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en enkel alternativ tilgang og sørg for at viktige beslutninger ikke tas mens noen er utestengt.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett møtet fordi flertallet allerede er inne og tiden er knapp.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_digital_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_som_ikke_sier_noe",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ny deltaker",
+      "subject": "Jeg prøver fortsatt å forstå hvordan dette fungerer",
+      "situation": [
+        "En ny deltaker sier lite mens de erfarne bruker forkortelser, tidligere vedtak og interne referanser.",
+        "Stillhet kan bety enighet, men kan også bety at inngangen til samtalen er utydelig.",
+        "Møtekultur blir først synlig når noen ikke kjenner kodene fra før."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar nødvendig kontekst og inviter til spørsmål uten å kreve at den nye må ta ordet først.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Tolk stillheten som at den nye deltakeren ikke har noe å legge til.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_new_voice"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_moter_samme_kveld",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Koordineringsvenn",
+      "subject": "Kan du bli med på ett møte til?",
+      "situation": [
+        "En travel uke har allerede flere møter, og enda en invitasjon kommer samme kveld.",
+        "Sterkt engasjement kan gjøre høy tilgjengelighet til en usynlig norm.",
+        "Når fravær får sosial kostnad, blir møteaktivitet en belastning snarere enn bare deltakelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær tydelig på kapasitet og be om prioritering eller skriftlig oppsummering.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Si ja automatisk for å unngå å virke lite engasjert.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_capacity"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsutvalget_tar_forskudd",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arbeidsutvalget",
+      "subject": "Vi kan vel bare lande dette mellom møtene",
+      "situation": [
+        "En mindre gruppe vil avklare en sak før neste ordinære møte for å spare tid.",
+        "Delegasjon kan være legitim, men bare innenfor det mandatet gruppen faktisk har.",
+        "Effektivitet blir et styringsspørsmål når forberedelse glir over i endelig beslutning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom forberedelse og beslutning, og dokumenter hva den mindre gruppen faktisk kan avgjøre.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La gruppen fatte beslutningen og informer resten etterpå fordi utfallet uansett virker opplagt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_delegation"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innspillet_fra_utsiden",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ekstern innspiller",
+      "subject": "Kan dere ta med dette i kveld?",
+      "situation": [
+        "En person utenfor møtet sender et konkret innspill og ber om at det behandles straks.",
+        "Åpenhet for innspill er viktig, men det betyr ikke at agenda, ansvar og beslutningsmåte kan bli usynlig.",
+        "Møtet må kunne vise hvordan nye innspill kommer inn i prosessen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer innspillet og avklar om det skal behandles nå, sendes til saksforberedelse eller settes på senere agenda.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Ta det direkte inn som nytt vedtakspunkt uten å avklare prosess fordi innspillet virker godt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_external_input"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hastesaken_fem_minutter_for_slutt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Sakseieren",
+      "subject": "Dette må avgjøres før vi går",
+      "situation": [
+        "En omfattende sak presenteres fem minutter før planlagt møteslutt med beskjed om at den haster.",
+        "Reell hast kan forekomme, men knapp tid reduserer muligheten til spørsmål, dokumentasjon og alternativvurdering.",
+        "Et møte bør skille mellom faktisk frist og sosialt press om å bli ferdig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar den konkrete fristen og begrens eller utsett beslutningen hvis forsvarlig behandling ikke er mulig.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Ta en full beslutning med en gang fordi alle allerede er samlet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_urgency"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppfolgingen_som_forsvant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Referenten",
+      "subject": "Dette sto også i forrige referat",
+      "situation": [
+        "Et gammelt vedtak dukker opp igjen fordi oppfølgingen aldri ble lukket eller rapportert tilbake.",
+        "Møter kan produsere mange beslutninger uten at læring skjer mellom dem.",
+        "Når tidligere saker forsvinner fra oversikten, blir ansvar vanskelig å skille fra glemsel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til ansvar, frist og status, og lukk eller revider oppfølgingen eksplisitt.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "Før saken opp som ny uten å undersøke hva som skjedde med det forrige vedtaket.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_followup"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_motesliter",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Erfaren deltaker",
+      "subject": "Du kjenner jo alle møtene nå",
+      "situation": [
+        "Etter mange møter kjenner spilleren språk, rutiner, personer og uformelle snarveier godt.",
+        "Dyp møteerfaring kan gi praktisk innflytelse, men er ikke det samme som valgt, delegert eller profesjonelt mandat.",
+        "Rollen blir mest presis når praksiskunnskap og formell myndighet holdes fra hverandre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen til å gjøre prosessen tydeligere, samtidig som formelle beslutningsgrenser beholdes synlige.",
+          "effect": 1,
+          "tags": [
+            "meeting_practice",
+            "role_clarity",
+            "process_integrity"
+          ],
+          "feedback": "Du gjør prosess, ansvar og mandat mer synlig uten å ta stilling til sakens politiske innhold."
+        },
+        {
+          "id": "B",
+          "label": "La lang møtedeltakelse i seg selv begrunne at du kan avgjøre på vegne av gruppen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "weak_process",
+            "role_inflation"
+          ],
+          "feedback": "Praktisk tempo eller vane får erstatte en tydelig prosessgrense."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "motesliter_role_boundary"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    }
+  ]
+}

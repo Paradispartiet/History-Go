@@ -1,0 +1,1230 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_livsgrubler",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "livsgrubler",
+    "label": "Livsgrubler"
+  },
+  "title": "Livsgrubler",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke refleksjon, tvil og åpne spørsmål som orientering uten at behovet for sikkerhet gjør tenkning til handlingsstopp eller identitetsdom",
+    "description": "Livsgrubler-verdenen er den private og hverdagslige siden av filosofi: spørsmål om mening, valg, ansvar, verdier og tvil følger spilleren gjennom vanlige dager. Den skiller seg fra Sofafilosof ved at sosial argumentasjon ikke er kjernen, og fra Lesesirkelmenneske ved at praksisen ikke er organisert rundt avtalte tekster og møter. Ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "alienation",
+    "emotional_labor",
+    "body_discipline"
+  ],
+  "social_environments": [
+    "morgener der et åpent spørsmål følger inn i en vanlig dag",
+    "private valg der mer analyse ikke fjerner usikkerhet",
+    "notater og tidligere formuleringer som viser endring over tid",
+    "vennesamtaler der perspektiver må holdes adskilt fra beslutningsmyndighet",
+    "lesing og tankeeksperimenter som gir ideer uten automatisk fasit",
+    "rolige kvelder der stillhet og mindre input gjør egne tanker tydeligere"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "praktisk_venn",
+      "social_function": "minner om at et spørsmål også må leve sammen med hverdagslige forpliktelser",
+      "class_position": "nær venn uten filosofisk status",
+      "status": "likestilt privat relasjon",
+      "power_over_player": "kan utfordre overanalyse og be om konkret handling",
+      "wants": "at refleksjon skal gjøre livet klarere uten å spise opp alt annet",
+      "conceals": "egen usikkerhet når store spørsmål blir abstrakte",
+      "speech_style": "kort, varm og konkret",
+      "teaches_player": "at handling kan være legitim før total sikkerhet"
+    },
+    {
+      "id": "sporsmalsvenn",
+      "social_function": "liker åpne spørsmål og holder dem levende uten å kreve konklusjon",
+      "class_position": "jevnaldrende venn med høy nysgjerrighet",
+      "status": "likestilt",
+      "power_over_player": "kan normalisere usikkerhet og reell revisjon",
+      "wants": "samtaler som tåler å ende åpent",
+      "conceals": "at åpenhet også kan brukes til å unngå valg",
+      "speech_style": "spørrende og langsom",
+      "teaches_player": "at et godt spørsmål ikke alltid trenger lukking"
+    },
+    {
+      "id": "besluttsom_venn",
+      "social_function": "representerer motsatsen som heller velger og justerer underveis",
+      "class_position": "jevnaldrende med lav toleranse for analyseforsinkelse",
+      "status": "likestilt",
+      "power_over_player": "kan gjøre handlingskostnaden ved videre grubling synlig",
+      "wants": "at valg skal bli testet i virkeligheten",
+      "conceals": "at raske valg også kan skjule ubehag ved tvil",
+      "speech_style": "direkte og løsningsorientert",
+      "teaches_player": "at revisjon etter handling også er en måte å tenke på"
+    },
+    {
+      "id": "gammel_notatbok",
+      "social_function": "fungerer som historisk motstemme gjennom tidligere formuleringer og prioriteringer",
+      "class_position": "eget tidligere perspektiv materialisert i notater",
+      "status": "ingen sosial myndighet",
+      "power_over_player": "kan synliggjøre endring eller trigge falsk kontinuitet",
+      "wants": "ingen egen vilje; brukes som dokumentasjon",
+      "conceals": "at skrift lett virker mer endelig enn den var da den ble skrevet",
+      "speech_style": "fragmentert og datert",
+      "teaches_player": "at selvfortolkning har en historie"
+    },
+    {
+      "id": "venn_som_ber_om_rad",
+      "social_function": "tester grensen mellom refleksjon og myndighet over andres liv",
+      "class_position": "nær relasjon i en konkret valgsituasjon",
+      "status": "personlig viktig, faglig likestilt",
+      "power_over_player": "kan trekke tillit hvis råd blir overtakelse",
+      "wants": "perspektiv uten å miste eierskap til beslutningen",
+      "conceals": "hvor mye bekreftelse som egentlig ønskes",
+      "speech_style": "personlig og søkende",
+      "teaches_player": "at gode spørsmål ikke gir beslutningsrett"
+    },
+    {
+      "id": "kildebevisst_leser",
+      "social_function": "skiller resonans, sitater og tankeeksperiment fra dokumentert grunnlag",
+      "class_position": "jevnaldrende leser med kildebevissthet",
+      "status": "respektert for presisjon",
+      "power_over_player": "kan avgrense hva et sitat eller eksempel faktisk beviser",
+      "wants": "at ideer skal tåle kontekst og usikkerhet",
+      "conceals": "at kildekontroll også kan bli en ny statusform",
+      "speech_style": "rolig og avgrensende",
+      "teaches_player": "at det som føles sant fortsatt trenger riktig kilde- og kontekststatus"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "open_question_vs_urgency",
+      "meaning": "åpent spørsmål mot krav om umiddelbar løsning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection_vs_delay",
+      "meaning": "refleksjon mot beslutningsutsettelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_projection",
+      "meaning": "observasjon mot projeksjon i ettertolkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "journal_vs_fixed_identity",
+      "meaning": "notatspor mot fastlåst selvbilde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "doubt_vs_reversal",
+      "meaning": "tvil mot automatisk omvalg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "support_vs_authority",
+      "meaning": "perspektivstøtte mot fasit for andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "values_vs_abstraction",
+      "meaning": "verdier i praksis mot ren abstraksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "meaning_vs_measurement",
+      "meaning": "mening mot prestasjonsmåling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "value_conflict_vs_false_consistency",
+      "meaning": "reell verdikonflikt mot falsk konsistens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resonance_vs_source_care",
+      "meaning": "gjenkjennelse mot kildeomsorg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "abstraction_vs_context",
+      "meaning": "tankeeksperiment mot virkelig kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_input_pressure",
+      "meaning": "nysgjerrighet mot kontinuerlig input",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision_vs_identity_defense",
+      "meaning": "revisjon mot identitetsforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection_vs_total_certainty",
+      "meaning": "refleksjon mot krav om total sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: åpent spørsmål.",
+        "thread_ids": [
+          "open_question_vs_urgency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: åpent spørsmål.",
+        "thread_ids": [
+          "open_question_vs_urgency",
+          "reflection_vs_total_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: åpent spørsmål.",
+        "thread_ids": [
+          "open_question_vs_urgency",
+          "reflection_vs_delay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: åpent spørsmål.",
+        "thread_ids": [
+          "open_question_vs_urgency",
+          "reflection_vs_total_certainty",
+          "reflection_vs_delay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: analyse og handlingsgrense.",
+        "thread_ids": [
+          "reflection_vs_delay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: analyse og handlingsgrense.",
+        "thread_ids": [
+          "reflection_vs_delay",
+          "open_question_vs_urgency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: analyse og handlingsgrense.",
+        "thread_ids": [
+          "reflection_vs_delay",
+          "observation_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: analyse og handlingsgrense.",
+        "thread_ids": [
+          "reflection_vs_delay",
+          "open_question_vs_urgency",
+          "observation_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: ettertolkning av samtaler.",
+        "thread_ids": [
+          "observation_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#samtalen_du_spiller_om_igjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: ettertolkning av samtaler.",
+        "thread_ids": [
+          "observation_vs_projection",
+          "reflection_vs_delay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#samtalen_du_spiller_om_igjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: ettertolkning av samtaler.",
+        "thread_ids": [
+          "observation_vs_projection",
+          "journal_vs_fixed_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#samtalen_du_spiller_om_igjen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: ettertolkning av samtaler.",
+        "thread_ids": [
+          "observation_vs_projection",
+          "reflection_vs_delay",
+          "journal_vs_fixed_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#samtalen_du_spiller_om_igjen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: notater og selvbilde.",
+        "thread_ids": [
+          "journal_vs_fixed_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: notater og selvbilde.",
+        "thread_ids": [
+          "journal_vs_fixed_identity",
+          "observation_vs_projection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: notater og selvbilde.",
+        "thread_ids": [
+          "journal_vs_fixed_identity",
+          "doubt_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: notater og selvbilde.",
+        "thread_ids": [
+          "journal_vs_fixed_identity",
+          "observation_vs_projection",
+          "doubt_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: tvil etter valg.",
+        "thread_ids": [
+          "doubt_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: tvil etter valg.",
+        "thread_ids": [
+          "doubt_vs_reversal",
+          "journal_vs_fixed_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: tvil etter valg.",
+        "thread_ids": [
+          "doubt_vs_reversal",
+          "support_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: tvil etter valg.",
+        "thread_ids": [
+          "doubt_vs_reversal",
+          "journal_vs_fixed_identity",
+          "support_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: råd til venner.",
+        "thread_ids": [
+          "support_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: råd til venner.",
+        "thread_ids": [
+          "support_vs_authority",
+          "doubt_vs_reversal"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: råd til venner.",
+        "thread_ids": [
+          "support_vs_authority",
+          "values_vs_abstraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: råd til venner.",
+        "thread_ids": [
+          "support_vs_authority",
+          "doubt_vs_reversal",
+          "values_vs_abstraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: verdier i hverdagen.",
+        "thread_ids": [
+          "values_vs_abstraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: verdier i hverdagen.",
+        "thread_ids": [
+          "values_vs_abstraction",
+          "support_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: verdier i hverdagen.",
+        "thread_ids": [
+          "values_vs_abstraction",
+          "meaning_vs_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: verdier i hverdagen.",
+        "thread_ids": [
+          "values_vs_abstraction",
+          "support_vs_authority",
+          "meaning_vs_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: mening uten måling.",
+        "thread_ids": [
+          "meaning_vs_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: mening uten måling.",
+        "thread_ids": [
+          "meaning_vs_measurement",
+          "values_vs_abstraction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: mening uten måling.",
+        "thread_ids": [
+          "meaning_vs_measurement",
+          "value_conflict_vs_false_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: mening uten måling.",
+        "thread_ids": [
+          "meaning_vs_measurement",
+          "values_vs_abstraction",
+          "value_conflict_vs_false_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: verdikonflikt.",
+        "thread_ids": [
+          "value_conflict_vs_false_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#motsetningen_i_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: verdikonflikt.",
+        "thread_ids": [
+          "value_conflict_vs_false_consistency",
+          "meaning_vs_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#motsetningen_i_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: verdikonflikt.",
+        "thread_ids": [
+          "value_conflict_vs_false_consistency",
+          "resonance_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#motsetningen_i_deg_selv"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: verdikonflikt.",
+        "thread_ids": [
+          "value_conflict_vs_false_consistency",
+          "meaning_vs_measurement",
+          "resonance_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#motsetningen_i_deg_selv"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: sitat og kildeomsorg.",
+        "thread_ids": [
+          "resonance_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sitatet_som_foltes_sant"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: sitat og kildeomsorg.",
+        "thread_ids": [
+          "resonance_vs_source_care",
+          "value_conflict_vs_false_consistency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sitatet_som_foltes_sant"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: sitat og kildeomsorg.",
+        "thread_ids": [
+          "resonance_vs_source_care",
+          "abstraction_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sitatet_som_foltes_sant"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: sitat og kildeomsorg.",
+        "thread_ids": [
+          "resonance_vs_source_care",
+          "value_conflict_vs_false_consistency",
+          "abstraction_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sitatet_som_foltes_sant"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: abstraksjon og virkelighet.",
+        "thread_ids": [
+          "abstraction_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: abstraksjon og virkelighet.",
+        "thread_ids": [
+          "abstraction_vs_context",
+          "resonance_vs_source_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: abstraksjon og virkelighet.",
+        "thread_ids": [
+          "abstraction_vs_context",
+          "curiosity_vs_input_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: abstraksjon og virkelighet.",
+        "thread_ids": [
+          "abstraction_vs_context",
+          "resonance_vs_source_care",
+          "curiosity_vs_input_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: input og stillhet.",
+        "thread_ids": [
+          "curiosity_vs_input_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#stillheten_uten_input"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: input og stillhet.",
+        "thread_ids": [
+          "curiosity_vs_input_pressure",
+          "abstraction_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#stillheten_uten_input"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: input og stillhet.",
+        "thread_ids": [
+          "curiosity_vs_input_pressure",
+          "revision_vs_identity_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#stillheten_uten_input"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: input og stillhet.",
+        "thread_ids": [
+          "curiosity_vs_input_pressure",
+          "abstraction_vs_context",
+          "revision_vs_identity_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#stillheten_uten_input"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: revisjon over tid.",
+        "thread_ids": [
+          "revision_vs_identity_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: revisjon over tid.",
+        "thread_ids": [
+          "revision_vs_identity_defense",
+          "curiosity_vs_input_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: revisjon over tid.",
+        "thread_ids": [
+          "revision_vs_identity_defense",
+          "reflection_vs_total_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: revisjon over tid.",
+        "thread_ids": [
+          "revision_vs_identity_defense",
+          "curiosity_vs_input_pressure",
+          "reflection_vs_total_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: refleksjon som praksis.",
+        "thread_ids": [
+          "reflection_vs_total_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: refleksjon som praksis.",
+        "thread_ids": [
+          "reflection_vs_total_certainty",
+          "revision_vs_identity_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: refleksjon som praksis.",
+        "thread_ids": [
+          "reflection_vs_total_certainty",
+          "open_question_vs_urgency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: refleksjon som praksis.",
+        "thread_ids": [
+          "reflection_vs_total_certainty",
+          "revision_vs_identity_defense",
+          "open_question_vs_urgency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "open_question_vs_urgency",
+      "relationship": "åpent spørsmål mot krav om umiddelbar løsning",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "14/lunch",
+        "14/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "reflection_vs_delay",
+      "relationship": "refleksjon mot beslutningsutsettelse",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "1/lunch",
+        "1/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "observation_vs_projection",
+      "relationship": "observasjon mot projeksjon i ettertolkning",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "2/lunch",
+        "2/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "journal_vs_fixed_identity",
+      "relationship": "notatspor mot fastlåst selvbilde",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "3/lunch",
+        "3/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "doubt_vs_reversal",
+      "relationship": "tvil mot automatisk omvalg",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "4/lunch",
+        "4/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "support_vs_authority",
+      "relationship": "perspektivstøtte mot fasit for andre",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "5/lunch",
+        "5/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "values_vs_abstraction",
+      "relationship": "verdier i praksis mot ren abstraksjon",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "6/lunch",
+        "6/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "meaning_vs_measurement",
+      "relationship": "mening mot prestasjonsmåling",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "7/lunch",
+        "7/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "value_conflict_vs_false_consistency",
+      "relationship": "reell verdikonflikt mot falsk konsistens",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "8/lunch",
+        "8/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "resonance_vs_source_care",
+      "relationship": "gjenkjennelse mot kildeomsorg",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "9/lunch",
+        "9/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "abstraction_vs_context",
+      "relationship": "tankeeksperiment mot virkelig kontekst",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "10/lunch",
+        "10/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "curiosity_vs_input_pressure",
+      "relationship": "nysgjerrighet mot kontinuerlig input",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "11/lunch",
+        "11/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "revision_vs_identity_defense",
+      "relationship": "revisjon mot identitetsforsvar",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "12/lunch",
+        "12/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "reflection_vs_total_certainty",
+      "relationship": "refleksjon mot krav om total sikkerhet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "13/lunch",
+        "13/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "sporsmal_ble_til_praksis",
+      "description": "Åpne spørsmål kan eksistere uten å blokkere dagen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten",
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+      ]
+    },
+    {
+      "id": "analyse_ble_til_valg",
+      "description": "Refleksjon får en tydelig handlingsgrense.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge",
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget"
+      ]
+    },
+    {
+      "id": "notater_ble_til_historie",
+      "description": "Tidligere formuleringer leses som historiske perspektiver, ikke identitetsdommer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil",
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening"
+      ]
+    },
+    {
+      "id": "rad_ble_til_stotte",
+      "description": "Spørsmål brukes til å støtte venner uten å overta beslutninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar",
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten"
+      ]
+    },
+    {
+      "id": "mening_ble_til_hverdag",
+      "description": "Store verdier kobles til små prioriteringer uten nytt prestasjonsregime.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke",
+        "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "apent_sporsmal_blir_handling",
+      "setup_ref": "1/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "psyche",
+        "routine"
+      ]
+    },
+    {
+      "id": "valg_blir_akseptert_usikkerhet",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "psyche",
+        "reputation"
+      ]
+    },
+    {
+      "id": "samtaletolkning_blir_avklaring",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "notater_blir_revisjon",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "psyche",
+        "identity"
+      ]
+    },
+    {
+      "id": "mening_blir_praksis",
+      "setup_ref": "7/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "routine",
+        "identity"
+      ]
+    },
+    {
+      "id": "mindre_input_blir_klarere_prioritering",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "routine"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sporsmalet_ved_frokosten",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#valget_du_analyserer_for_lenge",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#samtalen_du_spiller_om_igjen",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#notatboken_som_speil",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tvilen_etter_valget",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#vennen_vil_ha_et_svar",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#det_gode_livet_i_en_travel_uke",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#mening_uten_prestasjon",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#motsetningen_i_deg_selv",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#sitatet_som_foltes_sant",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#tankeeksperimentet_moter_virkeligheten",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#stillheten_uten_input",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#du_endret_mening",
+      "data/Civication/narratives/leisure/filosofi_livsgrubler.json#livsgrubler_som_praksis"
+    ]
+  }
+}

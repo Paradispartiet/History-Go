@@ -1,0 +1,89 @@
+{
+  "schema": "history_go_sosiologi_antropologi_advanced_theory_domain_overlay_v1",
+  "version": "1.0.0",
+  "subject_id": "politikk",
+  "canonical_subcategory_id": "sosiologi_antropologi",
+  "domain_id": "normer_identitet_hverdagsliv",
+  "status": "advanced_theory_phase4_runtime_released",
+  "source_canon": "data/fag/politikk/sosiologi_antropologi/advanced_theory_reading_canon_v1.json",
+  "refresh_contract": "data/fag/politikk/sosiologi_antropologi/advanced_theory_fulltext_refresh_v1.json",
+  "source_evidence": "data/fag/politikk/sosiologi_antropologi/advanced_theory_source_evidence_v1.json",
+  "works": [
+    {
+      "id": "adv19-kahneman-thinking-fast-slow",
+      "author": "Daniel Kahneman",
+      "title": "Thinking, Fast and Slow",
+      "first_published": 2011,
+      "source_url": "https://us.macmillan.com/books/9780374275631/thinkingfastandslow/",
+      "source_type": "research-synthesis-popular-monograph",
+      "existing_coverage": "gap",
+      "theory_units": [
+        {
+          "id": "adv19-system1-system2",
+          "name": "System 1 og System 2",
+          "summary": "To-system-språket modellerer raske automatiske og mer anstrengende kontrollerte prosesser.",
+          "analytic_question": "Hva skjer raskt og automatisk, og når mobiliseres kontrollert refleksjon?",
+          "misuse_guardrail": "Systemene er modeller, ikke to anatomiske hjerner eller persontyper."
+        },
+        {
+          "id": "adv19-heuristics-biases",
+          "name": "Heuristikker og skjevheter",
+          "summary": "Tilgjengelighet, representativitet og forankring kan gi systematiske vurderingsfeil.",
+          "analytic_question": "Hvilken informasjon er lett tilgjengelig, og hvilket anker brukes?",
+          "misuse_guardrail": "Ikke diagnostiser enkeltpersoner; effekter varierer med kontekst."
+        },
+        {
+          "id": "adv19-prospect-theory",
+          "name": "Prospektteori",
+          "summary": "Valg under risiko påvirkes av referansepunkt, tapsaversjon og asymmetrisk følsomhet.",
+          "analytic_question": "Hva er referansepunktet, og hvordan presenteres gevinst og tap?",
+          "misuse_guardrail": "Eldre priming-eksempler i boka skal ikke materialiseres uten moderne evidenskontroll."
+        }
+      ]
+    },
+    {
+      "id": "adv20-haidt-righteous-mind",
+      "author": "Jonathan Haidt",
+      "title": "The Righteous Mind: Why Good People Are Divided by Politics and Religion",
+      "first_published": 2012,
+      "source_url": "https://www.penguinrandomhouse.com/books/73535/the-righteous-mind-by-jonathan-haidt/",
+      "source_type": "research-synthesis-popular-monograph",
+      "existing_coverage": "gap",
+      "theory_units": [
+        {
+          "id": "adv20-social-intuitionist",
+          "name": "Sosial-intuisjonistisk moralmodell",
+          "summary": "Raske moralske intuisjoner og sosial påvirkning fremheves, mens eksplisitt resonnering ofte kommer senere.",
+          "analytic_question": "Hva utløser første moralske reaksjon, og hvordan endres den sosialt?",
+          "misuse_guardrail": "Intuisjon utelukker ikke refleksjon eller læring."
+        },
+        {
+          "id": "adv20-moral-foundations",
+          "name": "Moral Foundations Theory",
+          "summary": "Teorien modellerer flere moralske hensyn som omsorg, rettferdighet, lojalitet, autoritet, renhet og frihet.",
+          "analytic_question": "Hvilke moralske hensyn aktiveres i argumentasjonen?",
+          "misuse_guardrail": "Fundamentene er forskningshypoteser med kultur- og måledebatt, ikke personbokser."
+        },
+        {
+          "id": "adv20-groupishness",
+          "name": "Kooperasjon og gruppetilhørighet",
+          "summary": "Moralpsykologi kan støtte både samarbeid innad og konflikt mellom grupper.",
+          "analytic_question": "Når styrker felles normer samarbeid, og når øker de grensedragning?",
+          "misuse_guardrail": "Ikke utled politisk ideologi eller moralsk verdi fra gruppetilhørighet alene."
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "works": 2,
+    "theory_units": 6
+  },
+  "target": {
+    "chapter": "data/fagverk/politikk/normer-identitet-hverdagsliv.json",
+    "reuse_overlay": "data/fagverk/politikk/sosiologi_antropologi/normer-identitet-hverdagsliv-strict-upgrade.json",
+    "chapter_id": "normer-identitet-hverdagsliv"
+  },
+  "moduleFile": "data/fagverk/politikk/sosiologi_antropologi/advanced_theory/normer_identitet_hverdagsliv/module.json",
+  "claimsFile": "data/fagverk/politikk/sosiologi_antropologi/advanced_theory/normer_identitet_hverdagsliv/claims.json",
+  "assessmentFile": "data/fagverk/politikk/sosiologi_antropologi/advanced_theory/normer_identitet_hverdagsliv/assessment.json"
+}

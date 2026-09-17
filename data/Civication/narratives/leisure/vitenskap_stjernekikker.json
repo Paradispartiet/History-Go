@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "vitenskap_stjernekikker",
+  "type": "leisure",
+  "title": "Stjernekikker — nattehimmel, observasjon og usikkerhet uten astronommyndighet",
+  "sociological_theme": "Hvordan mennesker kan bygge sterk observasjonskompetanse om nattehimmel, vær, utstyr, logging og sjeldne fenomener uten at hobbykunnskap blir astronomstilling, observatorieansvar eller institusjonell bekreftelsesmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "vitenskap:stjernekikker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "skydekket_som_vant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Kartet var klart — himmelen var det ikke",
+      "situation": [
+        "Værmeldingen lovet klarere forhold enn det som faktisk møtte deg ute.",
+        "Noen skyer driver sakte, andre bygger seg opp og dekker området du ville observere.",
+        "Stjernekikking begynner ofte med å lese forholdene, ikke bare kalenderen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster planen etter det som faktisk er synlig og noter forholdene i stedet for å tvinge fram den opprinnelige planen.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved målet fordi prognosen sa at det skulle klarne.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forecast_vs_actual_sky"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "manelyset_som_tok_kontrasten",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Det er klart vær — men himmelen er lys",
+      "situation": [
+        "Skyene er borte, men Månen gjør bakgrunnen lysere.",
+        "Objekter med lav kontrast blir vanskeligere å se selv om sikten ellers er god.",
+        "Observasjonsforhold handler derfor om mer enn bare om det er overskyet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytt til mål som tåler lysere himmel eller planlegg det svakere objektet til en mørkere natt.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett med samme mål og anta at mer tid ved okularet løser problemet.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "moonlight_vs_target_choice"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oynene_som_trengte_tid",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nattvennen",
+      "subject": "Jeg ser mindre enn for ti minutter siden",
+      "situation": [
+        "Du går fra sterkt innelys til et mørkt observasjonssted.",
+        "De første minuttene virker himmelen flat og fattig på detaljer.",
+        "Synet trenger tid til å tilpasse seg mørket, og sterkt lys underveis kan sette prosessen tilbake."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi øynene tid og bruk så lite sterkt lys som praktisk mulig mens du orienterer deg.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skru opp skjermen for å finne fram raskere og kompensér med lengre observasjon etterpå.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dark_adaptation_vs_screen_light"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "objektet_som_flyttet_seg",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kartvennen",
+      "subject": "Det står ikke helt der jeg trodde",
+      "situation": [
+        "Et objekt ser ut til å ligge litt annerledes enn minnet ditt tilsier.",
+        "Stjernehimmelen, planeter og lokale horisonter endrer seg med tid og sted.",
+        "Et oppdatert kart og tidspunkt er bedre kontroll enn hukommelse alene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk retning, tidspunkt og kart før du bestemmer hva du ser.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Stol på hukommelsen fordi formen ligner det du lette etter.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "memory_vs_sky_position"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "satellitten_som_ble_ufo",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kartvennen",
+      "subject": "Det lyset beveger seg jevnt",
+      "situation": [
+        "Et lys beveger seg over himmelen uten å blinke slik du forventet.",
+        "Det er fristende å gi observasjonen en spektakulær forklaring.",
+        "Vanlige kandidater som satellitter, fly og atmosfæriske effekter bør sjekkes før konklusjonen blir større enn dataene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter retning og tidspunkt og sammenlign med plausible kjente forklaringer før du kaller fenomenet uidentifisert.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beskriv det som uforklarlig fordi du ikke umiddelbart kjenner igjen mønsteret.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "unusual_light_vs_known_explanations"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "okularet_som_ikke_var_magisk",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utstyrsvennen",
+      "subject": "Mer forstørrelse er ikke alltid mer detalj",
+      "situation": [
+        "Du bytter til sterkere forstørrelse og forventer et tydeligere bilde.",
+        "Bildet blir mørkere og mer ustabilt fordi forhold, optikk og objekt ikke støtter like mye forstørrelse.",
+        "Utstyr må matche både mål og forhold, ikke bare spesifikasjonen på esken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til den forstørrelsen som gir best samlet kontrast og stabilitet.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold maksimal forstørrelse fordi flere ganger betyr mer informasjon.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "magnification_vs_useful_detail"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "horisonten_som_spiste_objektet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lokalkjenneren",
+      "subject": "Det er ikke himmelen som er problemet — det er bygget",
+      "situation": [
+        "Objektet ligger lavt, og den lokale horisonten består av tak, trær og lys.",
+        "Et ellers godt tidspunkt kan være dårlig fra akkurat dette stedet.",
+        "Observasjonsstedets geometri er en del av planleggingen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytt tidspunkt eller sted slik at objektet kommer friere over den lokale horisonten.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Vent på samme sted fordi objektet teknisk sett er over horisonten allerede.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "local_horizon_vs_nominal_visibility"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatet_som_manglet_tid",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Når så du dette egentlig?",
+      "situation": [
+        "Du husker observasjonen godt, men notatet mangler klokkeslett og forhold.",
+        "Uten tidspunkt blir det vanskeligere å sammenligne med kart, vær og andre observasjoner.",
+        "En enkel logg gjør hobbyminner mer etterprøvbare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter tidspunkt, sted, forhold og hva du faktisk så mens detaljene fortsatt er ferske.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv bare objektnavnet; resten kan rekonstrueres senere.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observation_log_vs_memory_only"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjeldent_fenomen_og_forventningspress",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nattvennen",
+      "subject": "Alle andre sier de så det",
+      "situation": [
+        "Et sjeldent fenomen er varslet, og mange deler entusiastiske observasjoner.",
+        "Du er usikker på om det svake du så faktisk var fenomenet.",
+        "Sosial forventning kan gjøre et tvetydig signal lettere å tolke som treff."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv observasjonen som usikker og skill det du så fra det du håpet å se.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Registrer det som bekreftet fordi tidspunktet og andres observasjoner passer.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rare_event_vs_expectation_bias"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_sa_bedre_ut_etter_redigering",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bildefotografen",
+      "subject": "Nå kommer detaljene fram",
+      "situation": [
+        "Et bilde av nattehimmelen blir tydeligere etter kontrast og støyreduksjon.",
+        "Bearbeiding kan synliggjøre svake signaler, men kan også endre hva som ser sikkert ut.",
+        "Det bør være mulig å skille råopptak fra bearbeidet presentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold råfilen og dokumenter hvilke justeringer som er gjort før bildet brukes som evidens.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den bearbeidede versjonen som hovedfil fordi den viser fenomenet tydeligst.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "raw_image_vs_processed_claim"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kulden_som_ble_en_del_av_planen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nattvennen",
+      "subject": "Du ser fortsatt opp, men kroppen er ferdig",
+      "situation": [
+        "En lang natt ute gjør hender, konsentrasjon og dømmekraft dårligere.",
+        "Det er lett å bli sittende fordi det neste gode øyeblikket kanskje kommer snart.",
+        "Observasjonstid har også en fysisk kostnad."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avslutt eller ta en ordentlig pause når kulde og tretthet begynner å påvirke vurderingene.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold ut litt til; sjeldne netter bør utnyttes maksimalt.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observation_time_vs_body_limit"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "morket_som_ikke_var_privatomrade",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lokalkjenneren",
+      "subject": "Det ser tomt ut, men noen bruker stedet",
+      "situation": [
+        "Du har funnet et mørkt område med god utsikt.",
+        "Stedet er samtidig nær boliger, privat grunn eller arealer med egne regler.",
+        "Mørk himmel gir ikke automatisk rett til å bruke enhver plass hele natta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et lovlig og hensynsfullt observasjonssted og respekter adgang, støy og lokalt bruksmønster.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bli fordi du ikke forstyrrer selve himmelen og området ser ubrukt ut.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dark_site_vs_access_rights"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "varslingen_som_ble_for_sikker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Skal vi si at det kommer til å skje?",
+      "situation": [
+        "Et mulig fenomen avhenger av vær, timing og forhold som fortsatt kan endre seg.",
+        "Andre spør deg om det er verdt å dra ut.",
+        "God hobbykunnskap kan hjelpe planlegging uten å gjøre prognosen sikker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi sannsynlige forhold og usikkerhet, og skill mellom beregnet tidspunkt og faktisk synlighet.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi et klart ja eller nei så folk slipper å forholde seg til forbehold.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forecast_help_vs_false_certainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stjernekikker_ikke_astronom",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Mye himmelkunnskap er fortsatt ikke en forskerstilling",
+      "situation": [
+        "Du kjenner himmelretninger, sesonger, utstyr og observasjonsforhold godt.",
+        "Andre begynner å spørre deg om faglige konklusjoner, offisielle bekreftelser og hva et observatorium bør uttale.",
+        "Stjernekikker-erfaring kan være omfattende uten å gi astronomstilling, observatorieansvar, forskermandat eller institusjonell talerett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk hobbykunnskapen til å observere og forklare hva du faktisk vet, men la formelle fagroller eie offisielle konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "sky_observation",
+            "uncertainty",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller faktiske observasjonsforhold fra forventning, minne og formell fagmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som faglig bekrefter fordi du har mer praktisk himmelerfaring enn de fleste rundt deg.",
+          "effect": -1,
+          "tags": [
+            "observation_overclaim",
+            "expectation_bias",
+            "false_certainty"
+          ],
+          "feedback": "Du lar håp, utstyr eller sosial forventning gjøre observasjonen sikrere enn den er."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hobby_astronomy_vs_formal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

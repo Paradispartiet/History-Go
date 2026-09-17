@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_smasparer_stream",
+  "type": "leisure",
+  "title": "Småsparer",
+  "sociological_theme": "små_overforinger_buffer_budsjett_uforutsette_utgifter_sosial_sammenligning_og_grensen_mot_profesjonell_finansradgivning",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:smasparer"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "den_forste_automatiske_overforingen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Nettbanken",
+      "subject": "Litt før resten av måneden begynner",
+      "situation": [
+        "Du vurderer å flytte et lite beløp til sparing tidlig i måneden i stedet for å håpe at noe er igjen til slutt.",
+        "Småsparing handler ofte mer om gjentakelse enn om store enkeltbeløp.",
+        "Et lite automatisk valg kan skape struktur, men bør fortsatt tåle at inntekter og nødvendige utgifter varierer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sette et lite beløp du faktisk kan justere når måneden blir annerledes.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Låse et ambisiøst beløp for å bevise disiplin, selv når nødvendige utgifter blir presset.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "habit_vs_leftovers"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bufferen_som_ikke_ser_imponerende_ut",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kontoen",
+      "subject": "Penger uten applaus",
+      "situation": [
+        "Du ser at bufferen vokser sakte, men beløpet virker lite sammenlignet med historier om store gevinster eller avanserte porteføljer.",
+        "En buffer gir handlingsrom uten nødvendigvis å være synlig eller spennende.",
+        "Småsparing kan være sosialt lite imponerende og samtidig praktisk viktig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurdere bufferen etter hva den faktisk gjør for hverdagen din.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Måle egen økonomi mot de mest spektakulære tallene andre viser fram.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "buffer_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_uforutsette_regningen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Innboksen",
+      "subject": "Noe måtte betales nå",
+      "situation": [
+        "En uventet regning eller nødvendig reparasjon dukker opp midt i måneden.",
+        "Uforutsette utgifter er nettopp den typen friksjon en liten buffer kan dempe.",
+        "At sparing brukes til et reelt behov betyr ikke at prosjektet har mislyktes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke bufferen til formålet og bygge den opp igjen i roligere perioder.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Behandle uttaket som nederlag og prøve å kompensere med urealistisk stramhet resten av måneden.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "buffer_vs_shock"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "abonnementet_du_ikke_tenker_pa",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kontoutskriften",
+      "subject": "Lite hver måned er fortsatt noe",
+      "situation": [
+        "Et abonnement du sjelden bruker trekkes automatisk hver måned.",
+        "Små faste beløp blir ofte usynlige fordi de ikke føles store hver for seg.",
+        "Oppmerksomhet på gjentatte kostnader kan være mer relevant enn å jage tilfeldige engangskutt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på om abonnementet faktisk brukes og behold eller avslutt ut fra det.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre alle små utgifter til moralske feil og miste blikket for hva som faktisk betyr noe.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "small_recurring_costs_vs_attention"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_har_et_hot_tips",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Chatten",
+      "subject": "Dette skal visst eksplodere",
+      "situation": [
+        "En venn sender et tips om en aksje, krypto eller annen investering de mener vil stige raskt.",
+        "Småsparing og spekulasjon er ulike praksiser med ulik risiko og usikkerhet.",
+        "Småsparer-identiteten gir ingen investeringsrådgiver-, megler- eller porteføljeforvaltermyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille egen sparing fra andres spekulative tips og undersøke risiko før eventuelle valg.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Behandle tipset som tryggere fordi det kommer fra noen du kjenner.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_speculation"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisene_har_flyttet_seg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Butikken",
+      "subject": "Samme handlekurv koster mer",
+      "situation": [
+        "Vanlige varer har blitt dyrere, og det er mindre igjen enn du forventet.",
+        "Når priser endrer seg, kan et tidligere realistisk sparebeløp bli mindre realistisk uten at vanene dine er blitt dårligere.",
+        "Småsparing må forholde seg til faktisk kjøpekraft og faktiske behov."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Justere spareplanen til den nye hverdagen uten å late som prisendringen ikke finnes.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Holde fast på det gamle beløpet ved å kutte nødvendige ting for å beskytte et symbolsk mål.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_inflation"
+      ],
+      "risk_links": [
+        "economic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjeld_eller_buffer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Regnearket",
+      "subject": "To behov trekker i hver sin retning",
+      "situation": [
+        "Du har både gjeld og et ønske om en liten buffer, og begge bruker samme begrensede overskudd.",
+        "Renter, likviditet og trygghet trekker i ulike retninger, og riktig prioritering avhenger av faktiske vilkår.",
+        "Småsparerrollen gir ingen automatisk gjelds-, bank- eller finansrådgivningsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Samle faktiske tall og søke relevant faglig hjelp hvis valget får store konsekvenser.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre én enkel regel til universelt svar for alle typer gjeld og livssituasjoner.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "debt_vs_buffer"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "familien_som_spor_om_lan",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Meldingen",
+      "subject": "Bufferen er synlig for flere enn deg",
+      "situation": [
+        "En nær person vet at du har spart litt og spør om et lån eller hjelp til en utgift.",
+        "Private penger er også relasjoner, forventninger og grenser.",
+        "At du har en buffer betyr ikke automatisk at den er felles tilgjengelig, men et nei kan også ha relasjonelle konsekvenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Være tydelig på hva du kan og ikke kan bidra med uten å late som økonomi er følelsesløst.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Si ja av skyld og gjøre egen buffer til en skjult forpliktelse du ikke har valgt.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_obligation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sparingen_som_blir_konkurranse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Lunsjen",
+      "subject": "Hvor mye har du på konto?",
+      "situation": [
+        "Samtalen går over i hvor mye folk sparer, eier eller har oppnådd økonomisk.",
+        "Tall kan virke objektive, men utgangspunkt, inntekt, arv, boligkostnader og ansvar er svært ulike.",
+        "Småsparing mister verdi hvis den blir brukt som moralsk rangering av mennesker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde fokus på egne mål og unngå å gjøre beløp til menneskeverd.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Bruke spareprosent eller saldo som bevis på hvem som er mest ansvarlig.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_comparison"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "måneden_med_lavere_inntekt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kalenderen",
+      "subject": "Planen møter en svak måned",
+      "situation": [
+        "Denne måneden er inntekten lavere eller mer uforutsigbar enn vanlig.",
+        "En sparevane som fungerer i stabile måneder kan måtte endres når inntekten svinger.",
+        "Fleksibilitet kan beskytte både nødvendige utgifter og langsiktig kontinuitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Redusere eller pause sparingen uten å gjøre det til identitetskrise.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Låne eller utsette nødvendige regninger for å holde en symbolsk sparestreak.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_income_variability"
+      ],
+      "risk_links": [
+        "precarity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "malet_som_er_langt_unna",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Notatet",
+      "subject": "Hvorfor sparer du egentlig?",
+      "situation": [
+        "Du har spart en stund, men målet føles fortsatt langt unna og litt uklart.",
+        "Et mål kan gi retning, men abstrakte tall blir lettere å opprettholde når de er koblet til faktisk handlingsrom eller et konkret behov.",
+        "Sparing er et middel, ikke nødvendigvis et livsprosjekt i seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva pengene skal gjøre mulig og justere målet hvis livet endrer seg.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette mot samme tall bare fordi du allerede har investert identitet i det.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "goal_vs_abstraction"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "renten_som_endret_seg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Bankappen",
+      "subject": "Tallene flytter seg uten at du gjorde noe",
+      "situation": [
+        "Renten eller vilkårene på en konto endrer seg.",
+        "Bankprodukter har regler, betingelser og priser som kan endre nytten av hvor pengene står.",
+        "Å sammenligne vilkår er hverdagsøkonomi, men Småsparer er ikke bankrådgiver eller garantist for framtidig avkastning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les de faktiske vilkårene og vurder om kontoen fortsatt passer formålet.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre et lite renteforskjell til sikker prognose om hva som alltid vil lønne seg.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "saving_vs_rate_change"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "når_sparingen_tar_all_oppmerksomhet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Hverdagen",
+      "subject": "Hver krone får et regneark",
+      "situation": [
+        "Du merker at økonomioppfølgingen begynner å spise mye tid og oppmerksomhet.",
+        "Oversikt kan gi ro, men ekstrem kontroll kan gjøre små avvik følelsesmessig større enn de er.",
+        "Et bærekraftig system skal støtte livet, ikke gjøre hver hverdagsbeslutning til eksamen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge et nivå av oppfølging som gir kontroll uten å fylle hele hverdagen.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "Øke detaljnivået hver gang du føler usikkerhet, til økonomien tar all mental plass.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "control_vs_life"
+      ],
+      "risk_links": [
+        "psyche_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_smasparer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Speilet",
+      "subject": "Handlingsrom uten finansfullmakt",
+      "situation": [
+        "Du har bygget rutiner for budsjett, små overføringer, buffer og å håndtere enkelte uforutsette utgifter.",
+        "Det er reell hverdagskompetanse i egen økonomi, men gjør deg ikke automatisk til investeringsrådgiver, bankrådgiver, megler, porteføljeforvalter, gjeldsrådgiver eller økonomisk ekspert for andre.",
+        "Småsparerrollen handler om å bygge litt handlingsrom gjennom gjentatte valg, ikke om å ha profesjonell finansmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde Småsparer som privat økonomisk praksis med tydelige grenser mot profesjonelle råd.",
+          "effect": 1,
+          "tags": [
+            "saving_practice",
+            "role_clarity",
+            "financial_awareness"
+          ],
+          "feedback": "Du bruker sparing som privat hverdagspraksis uten å gjøre egne vaner til profesjonelle finansråd."
+        },
+        {
+          "id": "B",
+          "label": "La egne sparevaner fungere som fullmakt til å gi sikre råd om andres investeringer, gjeld eller bankvalg.",
+          "effect": -1,
+          "tags": [
+            "saving_pressure",
+            "status_comparison",
+            "role_inflation"
+          ],
+          "feedback": "Småsparing glir over i statuspress, rigid kontroll eller lånt finansmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_finance_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

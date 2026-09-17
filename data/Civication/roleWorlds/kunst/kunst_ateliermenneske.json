@@ -1,0 +1,1179 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_ateliermenneske",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "ateliermenneske",
+    "label": "Ateliermenneske"
+  },
+  "title": "Ateliermenneske",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å holde en delt skapende atelierpraksis åpen, gjensidig og materiell bærekraftig når plass, verktøy, kritikk, samarbeid, økonomi og sosial status hele tiden frister til uformelt eierskap eller lånt autoritet",
+    "description": "Ateliermenneske-verdenen følger en livsposisjon der spilleren henger i og rundt atelierer, materialer og halvferdige verk uten at kunst nødvendigvis er jobben. Spilleren møter delte rom, materialgrenser, kollegial kritikk, uferdig arbeid, verktøysikkerhet, åpne atelierer, husleie, dokumentasjon, samarbeid, kreditering og usynlig vedlikeholdsarbeid. Rollen gir ingen profesjonell kunstnerstatus, ingen kurator-, gallerist-, konservator-, verkstedfaglig eller institusjonell myndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "invisible_work",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "det delte atelieret der lys, flater, lagring og ro er knappe ressurser som må fordeles sosialt",
+    "materialhyllen der felleseie, lån, forbruk og privat eierskap må skilles uten formelle kontrakter",
+    "arbeidsbordet der kollegial kritikk kan utvikle arbeid uten å bli en uoppnevnt jury",
+    "verkstedsonen der tilgang til utstyr må holdes adskilt fra faktisk opplæring og sikkerhetskompetanse",
+    "studiobesøket der privat skapende praksis blir midlertidig offentlig uten at medbrukernes arbeid blir sosial valuta",
+    "åpent atelier der kulturelle koder, språk og nettverk avgjør hvor åpen en åpen dør faktisk oppleves",
+    "ateliermøtet der husleie, kvadratmeter og ulik betalingsevne former hvem som kan opprettholde praksisen",
+    "kveldens rydding der den kreative identiteten møter vedlikehold, avfall og annet usynlig arbeid"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ateliernaboen",
+      "social_function": "deler rom, rytmer og uformell kritikk med spilleren",
+      "class_position": "medbruker med varierende økonomisk og kunstfaglig bakgrunn uten myndighet over fellesskapet",
+      "status": "situert status gjennom erfaring og tilstedeværelse, men ikke formell autoritet",
+      "power_over_player": "kan åpne samarbeid, kritikk og hverdagsinformasjon eller gjøre plassen sosialt vanskelig å bruke",
+      "wants": "et rom der egen praksis får tid samtidig som fellesskapet fungerer",
+      "conceals": "hvor ofte egne vaner også legger arbeid og plasskostnader over på andre",
+      "speech_style": "direkte, prosessorientert og full av små praktiske observasjoner",
+      "teaches_player": "at deling av rom krever eksplisitte grenser selv mellom mennesker som liker hverandre"
+    },
+    {
+      "id": "verkstedansvarlig",
+      "social_function": "holder sikkerhet, opplæring og vedlikehold rundt felles utstyr samlet",
+      "class_position": "funksjonell kunnskapsbærer med situert ansvar for verkstedsbruk, uten kuratorisk eller kunstnerisk myndighet",
+      "status": "høy når sikkerhet og verktøybruk står på spill",
+      "power_over_player": "kan stoppe bruk, kreve opplæring og prioritere vedlikehold foran tempo",
+      "wants": "at utstyr og mennesker skal tåle at mange eksperimenterer i samme rom",
+      "conceals": "hvor mye rutinearbeid som kreves for at verkstedet skal oppleves spontant",
+      "speech_style": "kort, konkret og opptatt av rekkefølge, vern og hva som faktisk er avtalt",
+      "teaches_player": "at tilgang aldri er det samme som kompetanse"
+    },
+    {
+      "id": "den_nye_medbrukeren",
+      "social_function": "gjør uskrevne atelierkoder synlige ved å ikke kjenne dem ennå",
+      "class_position": "ny deltaker med lav intern status, men samme grunnleggende rett til plass og informasjon",
+      "status": "lav eller uavklart i nettverket",
+      "power_over_player": "avslører om spillerens erfaring brukes til vertskap eller gatekeeping",
+      "wants": "å finne en måte å delta på uten å måtte gjette alle sosiale regler",
+      "conceals": "hvor kostbart det føles å spørre om ting alle andre later som er selvsagte",
+      "speech_style": "forsiktig, praktisk og spørsmålsdrevet",
+      "teaches_player": "at inkluderende praksis krever mer enn en fysisk åpen dør"
+    },
+    {
+      "id": "atelierforvalteren",
+      "social_function": "forvalter kontrakt, husleie, nøkler og arealfordeling rundt atelieret",
+      "class_position": "institusjonell eller eiendomsnær aktør med materiell makt over hvem som får bli",
+      "status": "høy i spørsmål om kostnad, adgang og areal",
+      "power_over_player": "kan endre pris, plass og tilgang uten å definere verdien av arbeidet som skjer der",
+      "wants": "at lokalet skal være økonomisk og praktisk bærekraftig",
+      "conceals": "hvordan nøytrale kostnadsmodeller kan favorisere dem med mest kapital",
+      "speech_style": "saklig, budsjettorientert og opptatt av kvadratmeter, drift og frister",
+      "teaches_player": "at kreativ autonomi alltid er forankret i materielle vilkår"
+    },
+    {
+      "id": "den_kritiske_vennen",
+      "social_function": "tester hvordan spilleren forklarer, dokumenterer og verdsetter atelierpraksisen utenfra",
+      "class_position": "nær relasjon uten intern atelierrolle",
+      "status": "høy privat betydning, lav formell innflytelse i atelieret",
+      "power_over_player": "kan trigge behov for å virke mer profesjonell, nettverkssterk eller sikker enn spilleren er",
+      "wants": "å forstå hva spilleren faktisk gjør og om det kan bli noe mer",
+      "conceals": "at spørsmål om verdi og karriere også kan være omsorg blandet med statusforventning",
+      "speech_style": "nysgjerrig, direkte og rask til å spørre om hvem som har laget hva og om noen vil kjøpe",
+      "teaches_player": "at privat anerkjennelse ikke bør presses om til profesjonell status"
+    },
+    {
+      "id": "samarbeidspartneren",
+      "social_function": "gjør bidrag, kreditering og opphav konkrete når et arbeid ikke lenger er entydig individuelt",
+      "class_position": "jevnaldrende med reelt bidrag til ett eller flere arbeider",
+      "status": "forhandles gjennom bidrag og synlighet snarere enn tittel",
+      "power_over_player": "kan kreve tydelig kreditering, trekke samtykke eller endre hvordan et felles arbeid kan deles",
+      "wants": "at samarbeidets faktiske bidrag skal være synlige og forståelige",
+      "conceals": "hvor ulikt partene kan huske når et råd ble til et medskapende valg",
+      "speech_style": "prosessnær, konkret og opptatt av hvem som gjorde hvilke valg",
+      "teaches_player": "at kreditering må avklares før offentligheten tvinger fram et enkelt navn"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "space_vs_status",
+      "meaning": "delt arbeidsrom mot statusbasert plasskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_material_vs_entitlement",
+      "meaning": "deling av materialer mot uavklart eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "critique_vs_authority",
+      "meaning": "kollegial kritikk mot uoppnevnt faglig dom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "unfinished_work_vs_exposure",
+      "meaning": "uferdig arbeid mot sosial eksponering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cleanup_vs_invisible_work",
+      "meaning": "kreativ frihet mot usynlig vedlikeholdsarbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tool_access_vs_competence",
+      "meaning": "tilgang til verktøy mot faktisk opplæring og sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "studio_visit_vs_self_presentation",
+      "meaning": "studiobesøk mot bruk av andres praksis som sosial kapital",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "open_studio_vs_gatekeeping",
+      "meaning": "åpen dør mot kulturelle adgangskoder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rent_vs_creative_autonomy",
+      "meaning": "husleie og klasse mot kreativ kontinuitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_vs_consent",
+      "meaning": "dokumentasjon mot samtykke og kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "collaboration_vs_authorship",
+      "meaning": "samarbeid mot kreditering og opphav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informal_commission_vs_professional_claim",
+      "meaning": "enkelt oppdrag mot påstand om profesjonell kunstnerstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "material_experiment_vs_care",
+      "meaning": "materialeksperiment mot ressurs- og avfallsomsorg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "atelier_practice_vs_artist_authority",
+      "meaning": "atelierpraksis mot profesjonell kunstautoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: plass er også status.",
+        "thread_ids": [
+          "space_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: plass er også status.",
+        "thread_ids": [
+          "space_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: plass er også status.",
+        "thread_ids": [
+          "space_vs_status",
+          "collaboration_vs_authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: plass er også status.",
+        "thread_ids": [
+          "space_vs_status",
+          "tool_access_vs_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 2, morning: felles betyr ikke eierløst.",
+        "thread_ids": [
+          "shared_material_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialene_pa_hyllen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: felles betyr ikke eierløst.",
+        "thread_ids": [
+          "shared_material_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialene_pa_hyllen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: felles betyr ikke eierløst.",
+        "thread_ids": [
+          "shared_material_vs_entitlement",
+          "informal_commission_vs_professional_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialene_pa_hyllen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: felles betyr ikke eierløst.",
+        "thread_ids": [
+          "shared_material_vs_entitlement",
+          "studio_visit_vs_self_presentation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialene_pa_hyllen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: tilbakemelding er ikke dom.",
+        "thread_ids": [
+          "critique_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: tilbakemelding er ikke dom.",
+        "thread_ids": [
+          "critique_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: tilbakemelding er ikke dom.",
+        "thread_ids": [
+          "critique_vs_authority",
+          "material_experiment_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: tilbakemelding er ikke dom.",
+        "thread_ids": [
+          "critique_vs_authority",
+          "open_studio_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 4, morning: uferdig arbeid er ikke offentlig materiale.",
+        "thread_ids": [
+          "unfinished_work_vs_exposure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: uferdig arbeid er ikke offentlig materiale.",
+        "thread_ids": [
+          "unfinished_work_vs_exposure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: uferdig arbeid er ikke offentlig materiale.",
+        "thread_ids": [
+          "unfinished_work_vs_exposure",
+          "atelier_practice_vs_artist_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: uferdig arbeid er ikke offentlig materiale.",
+        "thread_ids": [
+          "unfinished_work_vs_exposure",
+          "rent_vs_creative_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: noen gjør alltid det usynlige arbeidet.",
+        "thread_ids": [
+          "cleanup_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 5, lunch: noen gjør alltid det usynlige arbeidet.",
+        "thread_ids": [
+          "cleanup_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: noen gjør alltid det usynlige arbeidet.",
+        "thread_ids": [
+          "cleanup_vs_invisible_work",
+          "space_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: noen gjør alltid det usynlige arbeidet.",
+        "thread_ids": [
+          "cleanup_vs_invisible_work",
+          "documentation_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 6, morning: tilgang er ikke det samme som kompetanse.",
+        "thread_ids": [
+          "tool_access_vs_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: tilgang er ikke det samme som kompetanse.",
+        "thread_ids": [
+          "tool_access_vs_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: tilgang er ikke det samme som kompetanse.",
+        "thread_ids": [
+          "tool_access_vs_competence",
+          "shared_material_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: tilgang er ikke det samme som kompetanse.",
+        "thread_ids": [
+          "tool_access_vs_competence",
+          "collaboration_vs_authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: et besøk gjør privat praksis offentlig for en stund.",
+        "thread_ids": [
+          "studio_visit_vs_self_presentation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 7, lunch: et besøk gjør privat praksis offentlig for en stund.",
+        "thread_ids": [
+          "studio_visit_vs_self_presentation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: et besøk gjør privat praksis offentlig for en stund.",
+        "thread_ids": [
+          "studio_visit_vs_self_presentation",
+          "critique_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: et besøk gjør privat praksis offentlig for en stund.",
+        "thread_ids": [
+          "studio_visit_vs_self_presentation",
+          "informal_commission_vs_professional_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 8, morning: åpen dør fjerner ikke alle terskler.",
+        "thread_ids": [
+          "open_studio_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#apen_atelier_kvelden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 8, lunch: åpen dør fjerner ikke alle terskler.",
+        "thread_ids": [
+          "open_studio_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#apen_atelier_kvelden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: åpen dør fjerner ikke alle terskler.",
+        "thread_ids": [
+          "open_studio_vs_gatekeeping",
+          "unfinished_work_vs_exposure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#apen_atelier_kvelden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: åpen dør fjerner ikke alle terskler.",
+        "thread_ids": [
+          "open_studio_vs_gatekeeping",
+          "material_experiment_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#apen_atelier_kvelden"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: kreativ frihet har en husleie.",
+        "thread_ids": [
+          "rent_vs_creative_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: kreativ frihet har en husleie.",
+        "thread_ids": [
+          "rent_vs_creative_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: kreativ frihet har en husleie.",
+        "thread_ids": [
+          "rent_vs_creative_autonomy",
+          "cleanup_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: kreativ frihet har en husleie.",
+        "thread_ids": [
+          "rent_vs_creative_autonomy",
+          "atelier_practice_vs_artist_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 10, morning: dokumentasjon trenger samtykke.",
+        "thread_ids": [
+          "documentation_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: dokumentasjon trenger samtykke.",
+        "thread_ids": [
+          "documentation_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: dokumentasjon trenger samtykke.",
+        "thread_ids": [
+          "documentation_vs_consent",
+          "tool_access_vs_competence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: dokumentasjon trenger samtykke.",
+        "thread_ids": [
+          "documentation_vs_consent",
+          "space_vs_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: samarbeid må ha et språk for eierskap.",
+        "thread_ids": [
+          "collaboration_vs_authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 11, lunch: samarbeid må ha et språk for eierskap.",
+        "thread_ids": [
+          "collaboration_vs_authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: samarbeid må ha et språk for eierskap.",
+        "thread_ids": [
+          "collaboration_vs_authorship",
+          "studio_visit_vs_self_presentation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: samarbeid må ha et språk for eierskap.",
+        "thread_ids": [
+          "collaboration_vs_authorship",
+          "shared_material_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 12, morning: et oppdrag gjør ikke automatisk identiteten til et yrke.",
+        "thread_ids": [
+          "informal_commission_vs_professional_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: et oppdrag gjør ikke automatisk identiteten til et yrke.",
+        "thread_ids": [
+          "informal_commission_vs_professional_claim"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: et oppdrag gjør ikke automatisk identiteten til et yrke.",
+        "thread_ids": [
+          "informal_commission_vs_professional_claim",
+          "open_studio_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: et oppdrag gjør ikke automatisk identiteten til et yrke.",
+        "thread_ids": [
+          "informal_commission_vs_professional_claim",
+          "critique_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: eksperimenter har materielle konsekvenser.",
+        "thread_ids": [
+          "material_experiment_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 13, lunch: eksperimenter har materielle konsekvenser.",
+        "thread_ids": [
+          "material_experiment_vs_care"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: eksperimenter har materielle konsekvenser.",
+        "thread_ids": [
+          "material_experiment_vs_care",
+          "rent_vs_creative_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: eksperimenter har materielle konsekvenser.",
+        "thread_ids": [
+          "material_experiment_vs_care",
+          "unfinished_work_vs_exposure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 14, morning: praksis er ikke det samme som profesjonell autoritet.",
+        "thread_ids": [
+          "atelier_practice_vs_artist_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: praksis er ikke det samme som profesjonell autoritet.",
+        "thread_ids": [
+          "atelier_practice_vs_artist_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: praksis er ikke det samme som profesjonell autoritet.",
+        "thread_ids": [
+          "atelier_practice_vs_artist_authority",
+          "documentation_vs_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: praksis er ikke det samme som profesjonell autoritet.",
+        "thread_ids": [
+          "atelier_practice_vs_artist_authority",
+          "cleanup_vs_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "space_vs_status",
+      "relationship": "delt arbeidsrom mot statusbasert plasskrav",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "shared_material_vs_entitlement",
+      "relationship": "deling av materialer mot uavklart eierskap",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "critique_vs_authority",
+      "relationship": "kollegial kritikk mot uoppnevnt faglig dom",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "unfinished_work_vs_exposure",
+      "relationship": "uferdig arbeid mot sosial eksponering",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "cleanup_vs_invisible_work",
+      "relationship": "kreativ frihet mot usynlig vedlikeholdsarbeid",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "tool_access_vs_competence",
+      "relationship": "tilgang til verktøy mot faktisk opplæring og sikkerhet",
+      "beat_refs": [
+        "1/evening",
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "studio_visit_vs_self_presentation",
+      "relationship": "studiobesøk mot bruk av andres praksis som sosial kapital",
+      "beat_refs": [
+        "2/evening",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "open_studio_vs_gatekeeping",
+      "relationship": "åpen dør mot kulturelle adgangskoder",
+      "beat_refs": [
+        "3/evening",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "rent_vs_creative_autonomy",
+      "relationship": "husleie og klasse mot kreativ kontinuitet",
+      "beat_refs": [
+        "4/evening",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "documentation_vs_consent",
+      "relationship": "dokumentasjon mot samtykke og kontekst",
+      "beat_refs": [
+        "5/evening",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "collaboration_vs_authorship",
+      "relationship": "samarbeid mot kreditering og opphav",
+      "beat_refs": [
+        "1/afternoon",
+        "6/evening",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "informal_commission_vs_professional_claim",
+      "relationship": "enkelt oppdrag mot påstand om profesjonell kunstnerstatus",
+      "beat_refs": [
+        "2/afternoon",
+        "7/evening",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "material_experiment_vs_care",
+      "relationship": "materialeksperiment mot ressurs- og avfallsomsorg",
+      "beat_refs": [
+        "3/afternoon",
+        "8/evening",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "atelier_practice_vs_artist_authority",
+      "relationship": "atelierpraksis mot profesjonell kunstautoritet",
+      "beat_refs": [
+        "4/afternoon",
+        "9/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "plassen_blir_forhandlet",
+      "description": "Arbeidsrommet blir mindre preget av først-til-mølla-status og mer av eksplisitte avtaler om lys, lagring og rotasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne"
+      ]
+    },
+    {
+      "id": "kritikken_faar_grenser",
+      "description": "Tilbakemelding blir mer presis når du spør hva slags blikk som er ønsket og skiller observasjon fra dom.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+      ]
+    },
+    {
+      "id": "det_uferdige_forblir_eid",
+      "description": "Bilder, studiobesøk og dokumentasjon blir håndtert med samtykke i stedet for at nærhet til prosessen blir publiseringsrett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen"
+      ]
+    },
+    {
+      "id": "fellesskapet_ser_vedlikeholdet",
+      "description": "Rydding, verktøysikkerhet og materialhåndtering blir en del av atelierpraksisen i stedet for bakgrunnsarbeid for noen få.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall"
+      ]
+    },
+    {
+      "id": "samarbeidet_blir_sporbart",
+      "description": "Kreditering, enkeltoppdrag og profesjonelle grenser blir tydeligere før status og penger gjør dem vanskeligere å forhandle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling",
+        "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "plassavtalen_moter_husleien",
+      "setup_ref": "1/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "economy",
+        "relationship"
+      ]
+    },
+    {
+      "id": "materiallaanet_blir_husket",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kritikken_moter_aapenheten",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "psyche",
+        "relationship"
+      ]
+    },
+    {
+      "id": "bildet_moter_offentligheten",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "samarbeidet_moter_signaturen",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "oppdraget_moter_rollegrensen",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "economy"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#plassen_ved_vinduet",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialene_pa_hyllen",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#kritikken_etter_lunsj",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verket_som_ikke_er_ferdig",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#ryddingen_etter_alle",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#verktoyet_som_framer",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#studiobesoket",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#apen_atelier_kvelden",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#husleien_og_kvadratmeterne",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#bildet_til_portefoljen",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#to_hender_ett_arbeid",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#vennens_bestilling",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#materialet_som_blir_avfall",
+      "data/Civication/narratives/leisure/kunst_ateliermenneske.json#hva_slags_ateliermenneske"
+    ]
+  }
+}

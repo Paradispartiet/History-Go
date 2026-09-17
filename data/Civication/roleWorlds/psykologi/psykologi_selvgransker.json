@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "psykologi",
+  "role_scope": "psykologi_selvgransker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "psykologi",
+    "id": "selvgransker",
+    "label": "Selvgransker"
+  },
+  "title": "Selvgransker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å undersøke egne valg, reaksjoner og mønstre uten å gjøre én hendelse, ett minne eller én selvfortelling til en total dom over hvem man er",
+    "description": "Selvgransker-verdenen undersøker første forklaring mot alternativer, minne mot samtidige spor, intensjon mot effekt, midlertidig tilstand mot identitet, global selvdom mot konkret handling, blindsoner og tilbakemelding, verdier mot faktiske valg, mønster mot kontekst, kontroll mot betingelser, selvfortelling mot moteksempler, sosial sammenligning, refleksjon mot repetitiv gjenfortelling, personvern og rollegrenser. Selvgransker er en practice_identity og selvvalgt refleksjonspraksis. Rollen gir ingen automatisk myndighet som psykolog, terapeut, behandler, diagnostiker eller annen fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "social_mask",
+    "shame_reputation",
+    "local_knowledge_vs_system",
+    "care_vs_efficiency",
+    "status_anxiety",
+    "public_private_leakage",
+    "alienation",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "private notater og ettertanker der minner kan sammenlignes med samtidige spor",
+    "vennesamtaler der intensjon, virkning og tilbakemelding ikke alltid peker samme vei",
+    "hverdagssituasjoner der samme reaksjon endrer seg med sted, relasjon eller krav",
+    "prioriteringer der uttalte verdier møter kalender, tid og faktiske valg",
+    "sosiale sammenligninger der andres synlige resultater blir målestokk for eget liv",
+    "situasjoner der egenrefleksjon berører andres personvern eller frister til å bli uformell fagrolle"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "refleksjonsvennen",
+      "social_function": "hjelper spilleren å formulere flere mulige forklaringer og stoppe globale selvdommer",
+      "class_position": "likestilt venn uten behandler- eller ekspertrolle",
+      "status": "tillit gjennom ro og evne til å stille konkrete spørsmål",
+      "power_over_player": "kan gjøre det vanskeligere å skjule en bred selvfortelling bak abstrakte ord",
+      "wants": "at refleksjon skal føre til tydeligere spørsmål og mindre skråsikkerhet",
+      "conceals": "at vedkommende også kan overanalysere egne valg",
+      "speech_style": "rolig, konkret og spørrende",
+      "teaches_player": "at selvinnsikt ofte blir bedre når konklusjonen får konkurranse"
+    },
+    {
+      "id": "notatvennen",
+      "social_function": "holder samtidige notater og moteksempler tilgjengelige når minnet blir ryddigere enn hendelsen var",
+      "class_position": "privat deltaker uten fagmyndighet",
+      "status": "troverdig gjennom konsekvent dokumentasjon av egne observasjoner",
+      "power_over_player": "kan utfordre sterke minner og etablerte selvfortellinger",
+      "wants": "at endring over tid skal kunne ses i konkrete spor",
+      "conceals": "at notater også velger hva som får plass",
+      "speech_style": "kort, detaljorientert og opptatt av tid og situasjon",
+      "teaches_player": "at samtidige spor kan korrigere etterpåforklaringer"
+    },
+    {
+      "id": "personen_det_gjaldt",
+      "social_function": "viser forskjellen mellom spillerens intensjon og hvordan handlingen faktisk virket for andre",
+      "class_position": "privat person med førstehåndskunnskap om egen opplevelse",
+      "status": "høy relevans for virkningen av handlingen uten å eie spillerens motiv",
+      "power_over_player": "kan korrigere antakelser og sette grenser for deling av private detaljer",
+      "wants": "at egen erfaring ikke forklares bort av spillerens gode intensjon",
+      "conceals": "at også egen tolkning kan være begrenset",
+      "speech_style": "direkte, konkret og opptatt av hva som faktisk skjedde",
+      "teaches_player": "at selvgransking må tåle informasjon utenfra"
+    },
+    {
+      "id": "aerlig_venn",
+      "social_function": "gir konkrete tilbakemeldinger om gjentakelser spilleren selv ikke ser",
+      "class_position": "nær venn uten terapeutisk mandat",
+      "status": "tillit gjennom langvarig relasjon og vilje til å være tydelig",
+      "power_over_player": "kan utløse forsvar fordi observasjonen kolliderer med selvbildet",
+      "wants": "at tilbakemeldinger undersøkes før de enten godtas eller avvises",
+      "conceals": "at nærhet kan farge hvilke mønstre vedkommende legger merke til",
+      "speech_style": "rett fram, varm og konkret",
+      "teaches_player": "at blindsoner krever eksempler, ikke bare enighet"
+    },
+    {
+      "id": "hverdagsvennen",
+      "social_function": "holder situasjon, begrensninger og ytre forhold synlige når spilleren tar alt ansvar eller gjør alt personlig",
+      "class_position": "likestilt deltaker med kunnskap om praktiske omstendigheter",
+      "status": "lav formell status men høy kontekstkunnskap",
+      "power_over_player": "kan vise hvilke betingelser som faktisk var utenfor spillerens kontroll",
+      "wants": "en rettferdigere fordeling mellom ansvar og omstendigheter",
+      "conceals": "at kontekst noen ganger kan brukes til å slippe unna ansvar",
+      "speech_style": "jordnær, konkret og lite glad i totale forklaringer",
+      "teaches_player": "at ansvar blir mer presist når kontrollgrensene er tydelige"
+    },
+    {
+      "id": "prioriteringsvennen",
+      "social_function": "sammenligner uttalte verdier med kalender, ressurser og faktiske valg uten å gjøre gapet til moralsk dom",
+      "class_position": "venn eller samarbeidspartner uten psykologrolle",
+      "status": "troverdig fordi vedkommende kjenner spillerens faktiske prioriteringer over tid",
+      "power_over_player": "kan gjøre avstanden mellom ord og valg synlig",
+      "wants": "at viktige verdier får praktisk plass eller ærlig revideres",
+      "conceals": "at egne prioriteringer også konkurrerer",
+      "speech_style": "praktisk, nøktern og opptatt av hva som faktisk fikk tid",
+      "teaches_player": "at verdier blir tydeligere når de møter reelle valg"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "first_story_vs_alternatives",
+      "meaning": "første selvforklaring mot alternative forklaringer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "memory_vs_record",
+      "meaning": "etterpåminne mot samtidige notater",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "intention_vs_effect",
+      "meaning": "egen intensjon mot faktisk effekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "state_vs_identity",
+      "meaning": "midlertidig tilstand mot fast selvbeskrivelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "judgment_vs_behavior",
+      "meaning": "global selvdom mot observerbar handling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "feedback_vs_defense",
+      "meaning": "ubehagelig tilbakemelding mot automatisk forsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "values_vs_choices",
+      "meaning": "uttalte verdier mot gjentatte valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pattern_vs_context",
+      "meaning": "gjentatt reaksjon mot skiftende kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "control_vs_conditions",
+      "meaning": "opplevd kontroll mot ytre betingelser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "self_story_vs_counterevidence",
+      "meaning": "fast selvfortelling mot motstridende erfaringer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparison_vs_baseline",
+      "meaning": "sosial sammenligning mot egen utviklingslinje",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection_vs_replay",
+      "meaning": "undersøkende refleksjon mot repetitiv gjenfortelling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy_vs_self_analysis",
+      "meaning": "selvrefleksjon mot andres personvern",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "self_knowledge_vs_authority",
+      "meaning": "egen refleksjonspraksis mot psykologisk fagmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Den første forklaringen føles riktig.",
+        "thread_ids": [
+          "first_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Den første forklaringen føles riktig.",
+        "thread_ids": [
+          "first_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Den første forklaringen føles riktig.",
+        "thread_ids": [
+          "first_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Den første forklaringen føles riktig.",
+        "thread_ids": [
+          "first_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Jeg husket det annerledes.",
+        "thread_ids": [
+          "memory_vs_record",
+          "first_story_vs_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Jeg husket det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Jeg husket det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Jeg husket det annerledes.",
+        "thread_ids": [
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Intensjonen var god, men virkningen ble en annen.",
+        "thread_ids": [
+          "intention_vs_effect",
+          "memory_vs_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Intensjonen var god, men virkningen ble en annen.",
+        "thread_ids": [
+          "intention_vs_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Intensjonen var god, men virkningen ble en annen.",
+        "thread_ids": [
+          "intention_vs_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Intensjonen var god, men virkningen ble en annen.",
+        "thread_ids": [
+          "intention_vs_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Én dårlig dag ble til en identitet.",
+        "thread_ids": [
+          "state_vs_identity",
+          "intention_vs_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Én dårlig dag ble til en identitet.",
+        "thread_ids": [
+          "state_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Én dårlig dag ble til en identitet.",
+        "thread_ids": [
+          "state_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Én dårlig dag ble til en identitet.",
+        "thread_ids": [
+          "state_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Hva gjorde du egentlig?.",
+        "thread_ids": [
+          "judgment_vs_behavior",
+          "state_vs_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Hva gjorde du egentlig?.",
+        "thread_ids": [
+          "judgment_vs_behavior"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Hva gjorde du egentlig?.",
+        "thread_ids": [
+          "judgment_vs_behavior"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Hva gjorde du egentlig?.",
+        "thread_ids": [
+          "judgment_vs_behavior"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Det var ikke slik jeg så meg selv.",
+        "thread_ids": [
+          "feedback_vs_defense",
+          "judgment_vs_behavior"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Det var ikke slik jeg så meg selv.",
+        "thread_ids": [
+          "feedback_vs_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Det var ikke slik jeg så meg selv.",
+        "thread_ids": [
+          "feedback_vs_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Det var ikke slik jeg så meg selv.",
+        "thread_ids": [
+          "feedback_vs_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Det du sier er viktig, fikk ingen tid.",
+        "thread_ids": [
+          "values_vs_choices",
+          "feedback_vs_defense"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Det du sier er viktig, fikk ingen tid.",
+        "thread_ids": [
+          "values_vs_choices"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Det du sier er viktig, fikk ingen tid.",
+        "thread_ids": [
+          "values_vs_choices"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Det du sier er viktig, fikk ingen tid.",
+        "thread_ids": [
+          "values_vs_choices"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Det skjer her, men ikke der.",
+        "thread_ids": [
+          "pattern_vs_context",
+          "values_vs_choices"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Det skjer her, men ikke der.",
+        "thread_ids": [
+          "pattern_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Det skjer her, men ikke der.",
+        "thread_ids": [
+          "pattern_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Det skjer her, men ikke der.",
+        "thread_ids": [
+          "pattern_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Hvor mye kunne du faktisk styre?.",
+        "thread_ids": [
+          "control_vs_conditions",
+          "pattern_vs_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Hvor mye kunne du faktisk styre?.",
+        "thread_ids": [
+          "control_vs_conditions"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Hvor mye kunne du faktisk styre?.",
+        "thread_ids": [
+          "control_vs_conditions"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Hvor mye kunne du faktisk styre?.",
+        "thread_ids": [
+          "control_vs_conditions"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Passer alle eksemplene inn i samme historie?.",
+        "thread_ids": [
+          "self_story_vs_counterevidence",
+          "control_vs_conditions"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Passer alle eksemplene inn i samme historie?.",
+        "thread_ids": [
+          "self_story_vs_counterevidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Passer alle eksemplene inn i samme historie?.",
+        "thread_ids": [
+          "self_story_vs_counterevidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Passer alle eksemplene inn i samme historie?.",
+        "thread_ids": [
+          "self_story_vs_counterevidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Alle andre ser ut til å få dette til.",
+        "thread_ids": [
+          "comparison_vs_baseline",
+          "self_story_vs_counterevidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Alle andre ser ut til å få dette til.",
+        "thread_ids": [
+          "comparison_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Alle andre ser ut til å få dette til.",
+        "thread_ids": [
+          "comparison_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Alle andre ser ut til å få dette til.",
+        "thread_ids": [
+          "comparison_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du tenker fortsatt på det samme.",
+        "thread_ids": [
+          "reflection_vs_replay",
+          "comparison_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du tenker fortsatt på det samme.",
+        "thread_ids": [
+          "reflection_vs_replay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du tenker fortsatt på det samme.",
+        "thread_ids": [
+          "reflection_vs_replay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du tenker fortsatt på det samme.",
+        "thread_ids": [
+          "reflection_vs_replay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Din refleksjon handlet også om meg.",
+        "thread_ids": [
+          "privacy_vs_self_analysis",
+          "reflection_vs_replay"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Din refleksjon handlet også om meg.",
+        "thread_ids": [
+          "privacy_vs_self_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Din refleksjon handlet også om meg.",
+        "thread_ids": [
+          "privacy_vs_self_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Din refleksjon handlet også om meg.",
+        "thread_ids": [
+          "privacy_vs_self_analysis",
+          "self_knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Å kjenne egne mønstre gjør deg ikke til behandler.",
+        "thread_ids": [
+          "self_knowledge_vs_authority",
+          "privacy_vs_self_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Å kjenne egne mønstre gjør deg ikke til behandler.",
+        "thread_ids": [
+          "self_knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Å kjenne egne mønstre gjør deg ikke til behandler.",
+        "thread_ids": [
+          "self_knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Å kjenne egne mønstre gjør deg ikke til behandler.",
+        "thread_ids": [
+          "self_knowledge_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "first_story_vs_alternatives",
+      "relationship": "første selvforklaring mot alternative forklaringer",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "memory_vs_record",
+      "relationship": "etterpåminne mot samtidige notater",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "intention_vs_effect",
+      "relationship": "egen intensjon mot faktisk effekt",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "state_vs_identity",
+      "relationship": "midlertidig tilstand mot fast selvbeskrivelse",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "judgment_vs_behavior",
+      "relationship": "global selvdom mot observerbar handling",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "feedback_vs_defense",
+      "relationship": "ubehagelig tilbakemelding mot automatisk forsvar",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "values_vs_choices",
+      "relationship": "uttalte verdier mot gjentatte valg",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "pattern_vs_context",
+      "relationship": "gjentatt reaksjon mot skiftende kontekst",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "control_vs_conditions",
+      "relationship": "opplevd kontroll mot ytre betingelser",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "self_story_vs_counterevidence",
+      "relationship": "fast selvfortelling mot motstridende erfaringer",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "comparison_vs_baseline",
+      "relationship": "sosial sammenligning mot egen utviklingslinje",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "reflection_vs_replay",
+      "relationship": "undersøkende refleksjon mot repetitiv gjenfortelling",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "privacy_vs_self_analysis",
+      "relationship": "selvrefleksjon mot andres personvern",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "self_knowledge_vs_authority",
+      "relationship": "egen refleksjonspraksis mot psykologisk fagmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "forklaringer_far_konkurranse",
+      "description": "Egne forklaringer blir behandlet som hypoteser som kan møte alternativer og nye observasjoner.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er"
+      ]
+    },
+    {
+      "id": "minne_og_effekt_blir_konkret",
+      "description": "Samtidige spor og andres erfaring får plass ved siden av spillerens minne og intensjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir"
+      ]
+    },
+    {
+      "id": "selvdom_blir_handling",
+      "description": "Brede merkelapper erstattes oftere av konkrete handlinger, situasjoner og justerbare valg.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom"
+      ]
+    },
+    {
+      "id": "verdier_far_praktisk_motstand",
+      "description": "Uttalte verdier, opplevd kontroll og sosial sammenligning vurderes mot faktiske betingelser og utvikling over tid.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk"
+      ]
+    },
+    {
+      "id": "refleksjon_far_grenser",
+      "description": "Refleksjon kan stoppe, revideres og holdes innenfor personvern og en tydelig ikke-klinisk rolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt",
+        "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forste_forklaring_moter_moteksempel",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "minne_moter_virkning",
+      "setup_ref": "2/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    },
+    {
+      "id": "selvdom_moter_tilbakemelding",
+      "setup_ref": "4/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "identity",
+        "relationship"
+      ]
+    },
+    {
+      "id": "verdi_moter_kontekst",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "identity",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "kontroll_moter_sammenligning",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "identity",
+        "status"
+      ]
+    },
+    {
+      "id": "refleksjon_moter_rollegrense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#forklaringen_som_kom_forst",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#minnet_og_notatet",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#jeg_mente_det_bra",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#darlig_dag_fast_egenskap",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#dommen_uten_handling",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#tilbakemeldingen_som_svir",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#verdien_og_valget",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#samme_reaksjon_ulike_rom",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#alt_var_mitt_valg",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#historien_om_hvem_jeg_er",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#sammenligningen_som_ble_maalestokk",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#refleksjonen_som_gar_i_ring",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#det_private_som_ble_analysert_hoyt",
+      "data/Civication/narratives/leisure/psykologi_selvgransker.json#selvinnsikt_uten_fagrolle"
+    ]
+  }
+}

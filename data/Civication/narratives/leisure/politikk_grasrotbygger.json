@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_grasrotbygger_stream",
+  "type": "leisure",
+  "title": "Grasrotbygger",
+  "sociological_theme": "lokal_deltakelse_representasjon_motepraksis_frivilligkapasitet_data_ressurser_og_grensen_mot_formelt_mandat",
+  "applies_when": {
+    "any_tags": [
+      "politikk:grasrotbygger"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "den_forste_lista_med_navn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nabolagsrommet",
+      "subject": "Hvem skal vi egentlig kontakte?",
+      "situation": [
+        "Et lokalt initiativ trenger folk å kontakte, og flere foreslår å samle navn, telefonnumre og e-postadresser i ett delt dokument.",
+        "Kontaktarbeid gjør en løs gruppe mer handlekraftig, men opplysninger om mennesker er ikke bare logistikk.",
+        "Grasrotarbeid blir mer robust når formål, tilgang og forventninger er tydelige fra starten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Samle bare det som trengs, forklar formålet og avklar hvem som faktisk skal ha tilgang.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du gjør kontaktlisten til et avgrenset arbeidsverktøy, ikke et uformelt register uten grenser."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn alle opplysninger dere finner fordi mer data alltid gjør organiseringen enklere.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Effektivitet får overstyre tydelig formål og tilgang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_contact_boundary"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "saken_som_alle_visstnok_er_enige_om",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppechatten",
+      "subject": "Alle her vil jo det samme",
+      "situation": [
+        "En sak samler mye engasjement, og stemningen i chatten gjør det lett å anta at hele området mener det samme.",
+        "Synlige og aktive deltakere er ikke nødvendigvis representative for alle som berøres.",
+        "Et grasrotinitiativ kan være legitimt uten å late som det taler for flere enn det faktisk gjør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvem som faktisk har deltatt og skill tydelig mellom gruppens standpunkt og hele områdets mening.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du lar oppslutning være konkret og etterprøvbar."
+        },
+        {
+          "id": "B",
+          "label": "Presenter gruppens syn som nabolagets syn fordi motforestillinger ikke har vært synlige i chatten.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Fravær av motstemmer blir behandlet som universell støtte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_representation_scope"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motet_med_de_samme_fem",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Møterommet",
+      "subject": "De samme ansiktene igjen",
+      "situation": [
+        "De samme fem personene møter hver gang, mens flere som tidligere viste interesse sjelden kommer.",
+        "Tidspunkt, språk, omsorgsansvar, arbeid og møtekultur påvirker hvem som faktisk kan delta.",
+        "Åpen dør er ikke alltid det samme som reell tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk praktiske terskler og varier format, tidspunkt eller oppfølging uten å anta hvorfor folk er borte.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du behandler deltakelse som noe som må bygges, ikke bare inviteres til."
+        },
+        {
+          "id": "B",
+          "label": "Tolk fravær som manglende interesse og la de faste deltakerne definere hele initiativet.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "De som allerede har tid og vane får automatisk mest definisjonsmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_participation_access"
+      ],
+      "risk_links": [
+        "class_power_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lokale_eksperten",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kaffebordet",
+      "subject": "Jeg kjenner dette området bedre enn noen",
+      "situation": [
+        "En erfaren lokal deltaker kjenner historien, nettverkene og tidligere konflikter svært godt.",
+        "Situert kunnskap kan være avgjørende for å forstå en sak, men lang fartstid er ikke det samme som formelt mandat.",
+        "Sterke lokale stemmer kan både åpne dører og gjøre det vanskeligere for nye perspektiver å komme fram."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk erfaringen som kilde og kontekst, men la påstander og representasjon begrunnes åpent.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du bruker lokal kunnskap uten å gjøre personen til uformell beslutningsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den mest erfarne definere både fakta og hvem gruppen egentlig representerer.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Erfaring blir omgjort til fullmakt uten tydelig grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_informal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_og_logoen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arbeidsgruppa",
+      "subject": "Nå ser vi ut som en organisasjon",
+      "situation": [
+        "Gruppen får navn, logo og en enkel nettside, og uttrykket virker plutselig mer formelt enn før.",
+        "Et profesjonelt uttrykk kan gjøre kommunikasjonen tydeligere, men også få utenforstående til å anta at gruppen har vedtekter, medlemmer eller mandat den ikke har.",
+        "Identitet og formell representasjon bør ikke flyte sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar hva gruppen er, hvordan den arbeider og hvilket mandat den faktisk har.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du lar presentasjonen være tydelig uten å låne institusjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk det profesjonelle uttrykket til å framstå som offisiell representant for området.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Visuell profesjonalitet blir brukt som erstatning for demokratisk mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_identity_mandate"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innspillet_som_blir_til_forslag",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dokumentet",
+      "subject": "Hva ber vi faktisk om?",
+      "situation": [
+        "Et møte har produsert mange bekymringer, ønsker og historier, men mottakeren trenger et konkret og forståelig innspill.",
+        "Å formulere et forslag innebærer valg: noe prioriteres, noe slås sammen og noe faller utenfor.",
+        "Den som skriver får derfor mer makt enn det kan se ut som."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom innspill, uenighet og selve forslaget, og la gruppen se hvordan oppsummeringen ble gjort.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du gjør redigering og prioritering synlig."
+        },
+        {
+          "id": "B",
+          "label": "Skriv den mest slagkraftige versjonen og kall den automatisk gruppens felles krav.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Skrivearbeidet blir skjult beslutningsmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_agenda_translation"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "journalisten_ringer",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Telefonen",
+      "subject": "Kan du uttale deg på vegne av gruppa?",
+      "situation": [
+        "En lokal journalist vil ha en rask kommentar og spør om du kan snakke for initiativet.",
+        "Medieoppmerksomhet kan gjøre saken mer synlig samtidig som én persons formuleringer får stor rekkevidde.",
+        "Spørsmålet er ikke bare hva du mener, men hvem du faktisk kan representere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar talerollen og skill dine egne vurderinger fra det gruppen faktisk har vedtatt eller samlet seg om.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du beholder synlighet uten å utvide mandatet i øyeblikket."
+        },
+        {
+          "id": "B",
+          "label": "Uttal deg som om hele gruppen står bak alt du sier fordi det er viktig å få saken fram.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Offentlig oppmerksomhet blir brukt til å låne kollektiv autoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_spokesperson_boundary"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gaven_med_en_forventning",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Innboksen",
+      "subject": "Jeg kan dekke kostnadene",
+      "situation": [
+        "En lokal aktør tilbyr å betale trykksaker, lokalleie eller annet initiativet trenger.",
+        "Støtten kan løse et reelt kapasitetsproblem, men giveren har også tydelige interesser i saken.",
+        "Finansiering påvirker tillit når forventninger og bindinger er uklare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør støtte, vilkår og eventuell interesse synlig før gruppen bestemmer om den skal ta imot.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du gjør ressursen og bindingene vurderbare for flere."
+        },
+        {
+          "id": "B",
+          "label": "Ta imot uten diskusjon og unngå å nevne giverens interesse fordi bidraget er nyttig.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Praktisk hjelp får skjule mulig innflytelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_funding_transparency"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_som_ma_inn_i_referatet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Møtereferatet",
+      "subject": "Skal vi virkelig ta med alt dette?",
+      "situation": [
+        "Et møte ender med et flertall for én retning, men en mindre gruppe har tydelige innvendinger.",
+        "Et kort referat kan gjøre prosessen ryddig, men kan også få uenighet til å forsvinne.",
+        "Organisatorisk hukommelse blir mer troverdig når den viser både beslutning og relevante motforestillinger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter beslutningen, grunnlaget og sentrale uenigheter uten å gjøre referatet til kamptekst.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du lar beslutningen stå uten å omskrive historien om hvordan den ble til."
+        },
+        {
+          "id": "B",
+          "label": "Skriv bare flertallets syn fordi uenighet vil få gruppen til å framstå svak.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Enighet blir produsert i etterkant gjennom selektiv dokumentasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_dissent_record"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "koalisjonen_med_ulikt_mal",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fellesmøtet",
+      "subject": "Vi kan samarbeide om denne delen",
+      "situation": [
+        "To lokale grupper ønsker samarbeid, men motivasjonene og de langsiktige målene deres er ulike.",
+        "Koalisjoner kan gjøre en konkret innsats sterkere uten at deltakerne blir enige om alt.",
+        "Problemet oppstår når midlertidig samarbeid framstilles som full politisk eller organisatorisk enighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens samarbeidet til det dere faktisk er enige om og gjør forskjellene eksplisitte.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du gjør samarbeid mulig uten å viske ut uenighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk fellesaksjonen til å antyde at gruppene støtter hele hverandres agenda.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "En konkret allianse blir gjort til bredere støtte enn den bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_coalition_scope"
+      ],
+      "risk_links": [
+        "loyalty_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "listen_over_naboer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regnearket",
+      "subject": "Hvem har signert hva?",
+      "situation": [
+        "Etter flere møter finnes det lister over deltakere, signaturer, e-poster og interesser som kan brukes til ny mobilisering.",
+        "Det som først ble samlet inn for én aktivitet kan være fristende å bruke videre i nye sammenhenger.",
+        "Formålsglidning er lett når arbeidsgruppen er liten og alt føles internt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold videre bruk innenfor tydelig avtalt formål eller innhent nytt samtykke/avklaring der det trengs.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du lar tidligere deltakelse ha grenser."
+        },
+        {
+          "id": "B",
+          "label": "Bruk alle listene fritt til nye utsendelser fordi folk en gang viste interesse.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Én kontaktflate blir gjort til varig generell mobiliseringsfullmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_data_reuse"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_slitne_frivillige",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Etter møtet",
+      "subject": "Jeg kan bare ta det også",
+      "situation": [
+        "Den samme frivillige ender stadig med referat, booking, utsendinger og oppfølging.",
+        "Uformelle grupper kan se flate ut samtidig som praktisk arbeid samler seg hos noen få.",
+        "Når kapasitet skjules, blir både makt og utbrenthet vanskeligere å oppdage."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel oppgaver synlig, avklar hva som kan droppes og gjør kapasitet til en legitim del av planleggingen.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du gjør belastning og ansvar synlig."
+        },
+        {
+          "id": "B",
+          "label": "La den som alltid sier ja fortsette fordi effektivitet er viktigere enn hvordan arbeidet fordeles.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Frivillighet brukes som om tilgjengelig kapasitet er ubegrenset."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_volunteer_capacity"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "invitasjonen_fra_kommunen",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Møtekalenderen",
+      "subject": "Kan dere komme med innspill?",
+      "situation": [
+        "Initiativet blir invitert til et møte med kommunen for å presentere erfaringer og forslag.",
+        "Tilgang til en beslutningsprosess kan gi status, men et innspillsmøte er ikke det samme som beslutningsmyndighet.",
+        "Det er viktig å skille påvirkningskanal, rådgivning og faktisk formell kompetanse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter dokumenterte erfaringer og tydelig mandat, og vær presis om at gruppen gir innspill.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du bruker kanalen uten å overdrive hvilken myndighet den gir."
+        },
+        {
+          "id": "B",
+          "label": "Fortell andre at gruppen nå er med på å bestemme fordi dere fikk møte kommunen.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Tilgang blir framstilt som formell beslutningsmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_institutional_access"
+      ],
+      "risk_links": [
+        "bureaucratic_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_grasrotbygger",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "personal"
+      ],
+      "from": "Etter sesongen",
+      "subject": "Hva har du egentlig bygget?",
+      "situation": [
+        "Etter mange møter og små arbeidsøkter kjenner du flere mennesker, prosesser og lokale konflikter enn før.",
+        "Du har også sett hvordan representasjon, data, finansiering, medieoppmerksomhet, frivilligkapasitet og tilgang til institusjoner påvirker hvem som får gjennomslag.",
+        "Grasrotbygger er en practice_identity, ikke et automatisk valgt eller offentlig mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som lokal deltaker og organisator med tydelig representasjonsgrense og åpen prosess.",
+          "effect": 1,
+          "tags": [
+            "grassroots_practice",
+            "role_clarity",
+            "participation_attention"
+          ],
+          "feedback": "Du avslutter sesongen med mer organisasjonskunnskap og klarere mandatgrense."
+        },
+        {
+          "id": "B",
+          "label": "Gjør erfaring og nettverk til grunnlag for å opptre som valgt representant, politisk rådgiver eller offentlig beslutningstaker for andre.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "status_pressure",
+            "weak_inference"
+          ],
+          "feedback": "Deltakelse blir omgjort til formell fullmakt den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grasrot_practice_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

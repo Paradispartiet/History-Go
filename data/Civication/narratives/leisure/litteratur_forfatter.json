@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_forfatter_stream",
+  "type": "leisure",
+  "title": "Forfatter",
+  "sociological_theme": "forfatterpraksis_manus_arbeidsrytme_fortellerperspektiv_personvern_scene_struktur_ferdigstillelse_revisjon_testlesing_avslag_redaksjon_rettigheter_og_nytt_prosjekt",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:forfatter"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "prosjektkernen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Arbeidsmappen",
+      "subject": "Hva er det du faktisk skriver?",
+      "situation": [
+        "Du har mange gode scener og ideer, men manusprosjektet mangler en tydelig kjerne.",
+        "Et langt manus tåler omveier, men trenger en retning som gjør at du kan velge hva som hører hjemme.",
+        "Forfatterarbeidet begynner ofte med å avgrense hva teksten prøver å bli."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere en arbeidstanke for prosjektet og bruke den som redigeringskompass, ikke som fasit.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La alle ideene bli værende like viktige fordi prosjektet ellers kan miste spontanitet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_prosjektkernen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsrytmen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Skrivebordet",
+      "subject": "Når teksten må eksistere uten inspirasjon",
+      "situation": [
+        "Du har ikke lyst til å skrive denne dagen, men prosjektet stopper hvis hver økt krever den riktige følelsen.",
+        "Langform skriving består også av rutine, avgrensede mål og kjedelige mellompartier.",
+        "Forfatteridentiteten må kunne bæres av praksis, ikke bare av inspirasjonsøyeblikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjøre en avgrenset arbeidsøkt med konkret mål og stoppe når målet er nådd.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Vente til inspirasjonen kommer tilbake og kalle pausen en nødvendig kunstnerisk prosess.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_arbeidsrytmen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fortellerblikket",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Manuset",
+      "subject": "Hvem kan fortelle dette?",
+      "situation": [
+        "En scene fungerer følelsesmessig, men fortelleren vet plutselig ting perspektivet ikke burde ha tilgang til.",
+        "Fortellerperspektiv skaper både frihet og begrensninger.",
+        "Konsekvent blikk gjør leseren trygg på tekstens premisser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestemme hva fortelleren faktisk kan vite og omskrive scenen innenfor den regelen.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde perspektivbruddet fordi leseren sannsynligvis ikke merker det.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_fortellerblikket"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personen_som_ligner",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Når en karakter blir for gjenkjennelig",
+      "situation": [
+        "En biperson i manus ligner sterkt på en virkelig person du kjenner, også i sårbare detaljer.",
+        "Fiksjon kan omforme virkelighet, men gjenkjennelighet, privatliv og maktforhold forsvinner ikke automatisk.",
+        "Forfatteren må vurdere hva teksten trenger og hva andre mennesker risikerer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Endre kombinasjonen av kjennetegn og private hendelser slik at figuren blir selvstendig litterær konstruksjon.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde alt fordi du har gitt personen et annet navn.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_personen_som_ligner"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "scenen_og_forklaringen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Utkastet",
+      "subject": "La scenen gjøre arbeid",
+      "situation": [
+        "Du har skrevet to sider som forklarer en konflikt før karakterene faktisk møtes.",
+        "Noe informasjon må fortelles direkte, men for mye forklaring kan ta arbeidet fra scenen.",
+        "Forfatteren må velge hvor leseren skal erfare og hvor leseren skal orienteres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kutte forklaringen ned og la en konkret handling eller replikk bære mer av konflikten.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde forklaringen og legge scenen etterpå slik at leseren får begge versjoner.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_scenen_og_forklaringen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "midtpartiet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Strukturveggen",
+      "subject": "Manuset mister trykk i midten",
+      "situation": [
+        "Begynnelsen og slutten er tydelige, men midtpartiet består av hendelser som ikke endrer prosjektets retning.",
+        "Et langt manus trenger ikke konstant dramatikk, men hver større del bør flytte relasjoner, kunnskap eller valg.",
+        "Struktur handler om konsekvens, ikke bare rekkefølge."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegge hva som faktisk endres i hver del og slå sammen eller fjerne ledd uten funksjon.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legge inn flere hendelser for å øke tempoet uten å endre årsakssammenhengene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_midtpartiet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forsteutkastet",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Skriveuken",
+      "subject": "Når perfeksjon hindrer ferdigstillelse",
+      "situation": [
+        "Du omskriver de første kapitlene igjen og igjen mens resten av manuset fortsatt ikke finnes.",
+        "Tidlig perfeksjonering kan være en måte å unngå den usikre helheten på.",
+        "Et komplett ujevnt utkast gir mer informasjon enn en perfekt åpning uten bok."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sette en midlertidig kvalitetsgrense og skrive fram til et komplett førsteutkast.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å polere åpningen til den føles publiserbar før du går videre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_forsteutkastet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "helhetsrevisjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Gulvet med utskrifter",
+      "subject": "Når gode kapitler må flyttes",
+      "situation": [
+        "Etter førsteutkastet ser du at et godt kapittel ligger på feil sted og skaper feil rytme.",
+        "Revisjon handler ikke bare om språk; hele sekvenser kan måtte flyttes, deles eller forsvinne.",
+        "Forfatteren må kunne ofre lokalt sterke partier for en sterkere helhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytte kapitlet og omskrive overgangene selv om det skaper mer arbeid.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La det stå fordi kapitlet er for godt til å røres.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_helhetsrevisjonen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "testleseren",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kaffebordet",
+      "subject": "Respons som data, ikke ordre",
+      "situation": [
+        "To testlesere reagerer på samme uklare motiv, men foreslår helt forskjellige løsninger.",
+        "Respons viser hvor teksten skaper problemer; leseren eier ikke nødvendigvis løsningen.",
+        "Forfatteren må skille symptom fra foreslått behandling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta den gjentatte reaksjonen alvorlig og finne en løsning som passer manusets egen logikk.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velge løsningen fra den leseren du liker best og følge den direkte.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_testleseren"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "spraket_som_vane",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Andreutkastet",
+      "subject": "Når stemmen blir manér",
+      "situation": [
+        "Du oppdager at samme type bilde, setningsrytme og vending går igjen så ofte at det blir forutsigbart.",
+        "En tydelig stil kan tippe over i automatikk.",
+        "Revisjon må også utfordre forfatterens egne favorittgrep."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Markere gjentakelsene og beholde bare dem som faktisk tilfører presisjon eller rytme.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde dem fordi gjentakelsen beviser at du har en gjenkjennelig stil.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_spraket_som_vane"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innsendingen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Innboksen",
+      "subject": "Avslag uten identitetsdom",
+      "situation": [
+        "Et manus blir avslått med en kort standardmelding etter lang tids arbeid.",
+        "Et avslag sier noe om denne innsendingen og denne mottakeren, ikke nødvendigvis om hele forfatterpraksisen.",
+        "Profesjonell praksis krever både sårbarhet og evne til ny vurdering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Loggføre avslaget, vurdere manus og mottaker på nytt, og bestemme neste konkrete handling.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tolke avslaget som endelig dom over om du er forfatter og legge bort all skriving.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_innsendingen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "redaktorbrevet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Redaksjonen",
+      "subject": "Store forslag uten å miste eierskap",
+      "situation": [
+        "En redaktør foreslår omfattende endringer i motivasjon og slutt.",
+        "Et godt redaksjonelt forslag kan forbedre boken uten at redaktøren overtar forfatterskapet.",
+        "Forfatteren må kunne forstå problemet, diskutere løsningen og eie den ferdige teksten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om begrunnelse, teste konsekvensene og omskrive der forslaget faktisk styrker manus.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjennomføre alle endringene ordrett fordi redaktøren representerer forlaget.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_redaktorbrevet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rettighetene",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kontrakten",
+      "subject": "Når avtalen er mer enn et ja",
+      "situation": [
+        "Du får et konkret tilbud, men avtalen regulerer flere formater og rettigheter enn du hadde oversikt over.",
+        "Publisering og rettighetsoverdragelse er ikke det samme som å få anerkjennelse.",
+        "Forfatterpraksis inkluderer å forstå hva man faktisk sier ja til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå gjennom rettighetsomfang, varighet og tilbakefall før du aksepterer eller forhandler.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Signere raskt fordi selve tilbudet betyr at detaljene neppe er viktige.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_rettighetene"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "neste_bok",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Tomt dokument",
+      "subject": "Etter at prosjektet er ferdig",
+      "situation": [
+        "Det forrige manusprosjektet er avsluttet, og den tomme siden føles som tap av identitet og struktur.",
+        "En forfatterpraksis kan ikke bare være knyttet til ett verk eller én mottakelse.",
+        "Neste prosjekt krever ny uvisshet, ikke bare gjentakelse av det som nettopp fungerte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skissere et nytt spørsmål eller materiale uten å kreve at det ligner forrige prosjekt.",
+          "effect": 1,
+          "tags": [
+            "craft",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget styrker langsiktig forfatterpraksis og holder håndverk, ansvar og publiseringsvalg adskilt fra status eller lånt institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Kopiere formen og konflikten fra forrige manus fordi den allerede er bevist.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "craft_drift"
+          ],
+          "feedback": "Valget lar status, frykt eller kortsiktig bekreftelse styre mer enn manusets faktiske behov og forfatterens ansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "forfatter_neste_bok"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

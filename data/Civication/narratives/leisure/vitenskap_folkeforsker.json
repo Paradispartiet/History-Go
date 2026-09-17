@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "vitenskap_folkeforsker",
+  "type": "leisure",
+  "title": "Folkeforsker — observasjon og datakvalitet uten institusjonell forskermyndighet",
+  "sociological_theme": "Hvordan frivillige og interesserte kan bidra med observasjon, registrering og datainnsamling gjennom protokoll, metadata, usikkerhet og etterprøvbarhet uten at bidraget blir forskerstilling eller institusjonell myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "vitenskap:folkeforsker"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "protokollen_for_funnet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Registreringsvennen",
+      "subject": "Bestem metoden før du vet svaret",
+      "situation": [
+        "Du har fått øye på et mønster som virker interessant.",
+        "Det er fristende å justere hva som registreres slik at akkurat dette mønsteret blir tydeligere.",
+        "En enkel protokoll før neste runde gjør det lettere å skille observasjon fra etterpåtilpasning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned hva, hvor, når og hvordan du skal registrere før neste runde, og hold deg til det med mindre du dokumenterer en endring.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass registreringen underveis; fleksibilitet er viktigere enn en stiv metode når du allerede ser hva som er interessant.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "protocol_vs_result_chasing"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagen_da_ingenting_skjedde",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "Skal vi virkelig registrere null?",
+      "situation": [
+        "En hel observasjonsøkt gir ingen treff på det dere leter etter.",
+        "Nullen føles mindre interessant enn dager med funn.",
+        "Fravær kan likevel være informasjon hvis innsatsen og betingelsene er registrert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer nullobservasjonen sammen med innsats, tid og forhold slik at den kan tolkes senere.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Hopp over dagen; databasen blir ryddigere hvis den bare inneholder faktiske funn.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "null_observation_vs_selection"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sted_og_tid_som_forsvant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Datavennen",
+      "subject": "Vi har tallet — men ikke konteksten",
+      "situation": [
+        "En registrering har en verdi, men mangler presist tidspunkt eller sted.",
+        "Verdien kan fortsatt se plausibel ut isolert.",
+        "Uten metadata blir det vanskeligere å sammenligne, kontrollere og gjenbruke observasjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker posten som ufullstendig og hent bare inn metadata du faktisk kan dokumentere.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fyll inn omtrentlige metadata fra hukommelsen slik at posten kan brukes sammen med resten.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "measurement_vs_metadata"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_funn_to_ganger",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Registreringsvennen",
+      "subject": "Er dette to observasjoner eller én?",
+      "situation": [
+        "To personer registrerer noe på nesten samme sted og tidspunkt.",
+        "Det kan være to uavhengige observasjoner, eller samme hendelse telt to ganger.",
+        "Duplikater må undersøkes før de enten beholdes eller fjernes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign tid, sted, kjennetegn og dokumentasjon og merk usikkerheten hvis uavhengigheten ikke kan avgjøres.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Behold begge; flere observasjoner gir uansett mer data.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "duplicate_vs_independent_observation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "instrumentet_som_drev",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Utstyrsvennen",
+      "subject": "Måleren viser litt mer hver uke",
+      "situation": [
+        "Et enkelt instrument gir gradvis høyere verdier enn et annet referansepunkt.",
+        "Forskjellen kan være et reelt fenomen eller drift i utstyret.",
+        "Kalibrering og kontrollmålinger er en del av datakvaliteten, ikke bare teknisk vedlikehold."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør en kontrollmåling mot kjent referanse og dokumenter eventuell justering før du tolker trenden.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Bruk måleren videre; samme instrument hver gang gjør serien konsistent selv om absoluttverdien flytter seg.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "instrument_drift_vs_trend"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bestemmelsen_med_sporsmalstegn",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Artsvennen",
+      "subject": "Jeg tror det er riktig — men er ikke sikker",
+      "situation": [
+        "Et funn ligner sterkt på det du forventet å se.",
+        "Ett kjennetegn er likevel uklart i bilde eller notat.",
+        "Usikker identifikasjon er mer informativ når usikkerheten bevares enn når den skjules bak et sikkert navn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer bestemmelsen med usikkerhetsgrad og be om kontroll hvis prosjektet har en verifikasjonsrutine.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest sannsynlige identifikasjonen; databasen trenger ett entydig svar.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "identification_vs_uncertainty"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_med_for_mye_informasjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "Dokumentasjonen viser også mer enn funnet",
+      "situation": [
+        "Et bilde dokumenterer observasjonen godt.",
+        "Det viser samtidig personer, privat område eller en sensitiv lokasjon som ikke trengs for selve registreringen.",
+        "Dokumentasjon må være etterprøvbar uten å samle eller dele mer informasjon enn nødvendig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskjær eller begrens metadata og del bare den dokumentasjonen prosjektets formål faktisk trenger.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Last opp originalen; mest mulig rå dokumentasjon gjør observasjonen lettere å kontrollere.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "documentation_vs_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_enkle_ruten_hver_gang",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Feltvennen",
+      "subject": "Vi måler alltid der det er lettest å komme til",
+      "situation": [
+        "De fleste registreringene kommer fra steder nær vei, sti eller hjem.",
+        "Det gjør datainnsamlingen effektiv og stabil.",
+        "Et slikt tilgjengelighetsmønster kan samtidig forme hva datasettet ser ut til å fortelle om hele området."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv tilgjengelighetsbiaset og legg inn noen planlagte punkter som tester om mønsteret endrer seg utenfor de enkleste stedene.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett samme rute; mange målinger fra ett praktisk område er bedre enn få fra vanskeligere steder.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "convenience_sample_vs_coverage"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hullet_i_dataserien",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Datavennen",
+      "subject": "Den uka mangler helt",
+      "situation": [
+        "En uke i serien mangler fordi ingen kunne registrere.",
+        "Det er fristende å interpolere en verdi for å få en jevn graf.",
+        "Manglende data og en estimert verdi er ikke det samme og bør ikke bli usynlig blandet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La hullet være eksplisitt eller bruk en tydelig merket estimatmetode dersom analysen faktisk krever det.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fyll inn gjennomsnittet av ukene før og etter; det er sannsynligvis nær nok og gjør serien enklere å lese.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "missing_data_vs_imputation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryddingen_som_endret_radata",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Datavennen",
+      "subject": "Jeg bare normaliserte arket litt",
+      "situation": [
+        "Stavevarianter, tomme felt og formater gjør datasettet tungt å arbeide med.",
+        "Opprydding er nødvendig, men kan også endre informasjon hvis råverdiene overskrives.",
+        "Et skille mellom rådata og bearbeidet datasett gjør transformasjonene etterprøvbare."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold råfilen urørt og dokumenter transformasjonene i en egen bearbeidet versjon.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Rett råarket direkte; det er unødvendig å bevare feil og inkonsistente formater.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "raw_data_vs_cleaned_data"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uteliggen_som_var_for_pen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Dette punktet ødelegger grafen",
+      "situation": [
+        "Én måling ligger langt fra resten og gjør mønsteret mindre pent.",
+        "Punktet kan være feil, men det kan også være den mest interessante observasjonen.",
+        "Avvik bør undersøkes med en regel som ikke avhenger av om resultatet passer hypotesen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kontroller måling, metadata og forhåndsdefinerte kriterier før du avgjør om punktet skal beholdes eller ekskluderes.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fjern punktet fordi resten av datasettet er konsistent og derfor sannsynligvis mer riktig.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "outlier_vs_convenient_exclusion"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjenta_for_du_forteller",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Analysevennen",
+      "subject": "Det skjedde én gang — skjer det igjen?",
+      "situation": [
+        "En liten analyse gir et tydelig og overraskende mønster.",
+        "Resultatet er fristende å dele med en gang.",
+        "En ny runde under samme protokoll kan vise om funnet er robust eller bundet til én serie."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjenta eller søk uavhengig kontroll før du omtaler mønsteret som mer enn et foreløpig funn.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Del resultatet nå; åpenhet gjør at andre kan replikere det senere hvis de tviler.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "single_result_vs_replication"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konklusjonen_med_usikkerhet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Registreringsvennen",
+      "subject": "Hvordan skriver vi dette uten å høres usikre ut?",
+      "situation": [
+        "Datasettet støtter et mønster, men dekningen og måleusikkerheten setter klare grenser.",
+        "Det er fristende å gjøre konklusjonen enklere og fastere for å bli forstått.",
+        "Usikkerhet kan kommuniseres konkret uten å gjøre hele observasjonen verdiløs."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva dataene støtter, hva de ikke kan avgjøre, og hvilke usikkerheter som faktisk betyr mest.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Skriv bare hovedkonklusjonen og legg metodiske forbehold i en fotnote så budskapet ikke svekkes.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "communication_vs_uncertainty"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "folkeforsker_ikke_forskningsleder",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "God datainnsamling gir ikke institusjonelt mandat",
+      "situation": [
+        "Du har blitt erfaren i observasjon, registrering, protokoller og datakvalitet.",
+        "Andre begynner å behandle deg som om du kan godkjenne forskning, gi faglige garantier eller representere en institusjon.",
+        "Folkeforskning kan være verdifull uten å gi forskerstilling, etisk godkjenningsmyndighet, prosjektledermandat eller institusjonell talerett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv bidraget og kompetansen presist, og la kvalifiserte og mandatbærende roller eie formelle godkjenninger og institusjonelle konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "citizen_science",
+            "data_quality",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør observasjonen mer etterprøvbar og bevarer usikkerhet og metodeinformasjon."
+        },
+        {
+          "id": "B",
+          "label": "Ta rollen som faglig garantist fordi du kjenner datasettet bedre enn de fleste andre.",
+          "effect": -1,
+          "tags": [
+            "selection_bias",
+            "data_overclaim",
+            "authority_overclaim"
+          ],
+          "feedback": "Datainnsamlingen blir ryddigere på overflaten, men svakere å kontrollere eller tolke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "citizen_science_vs_institutional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_plategraver_stream",
+  "type": "leisure",
+  "title": "Plategraver",
+  "sociological_theme": "brukthyller_pressinger_priser_gradering_proveniens_samlerstatus_knapphet_og_grensen_mot_profesjonell_platehandel_og_autentisering",
+  "applies_when": {
+    "any_tags": [
+      "musikk:plategraver"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "kassen_ingen_andre_stoppa_ved",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Bruktbutikken",
+      "subject": "Kassen ingen andre stoppa ved",
+      "situation": [
+        "Du finner en anonym plate i en billigkasse fordi omslaget, labelen eller krediteringene virker lovende.",
+        "Plategraving bygger på nysgjerrighet og toleranse for usikkerhet, men funnverdi er ikke det samme som markedsverdi eller objektiv kvalitet.",
+        "Et tilfeldig spor kan bli en god lytteopplevelse uten at du må gjøre oppdagelsen til et bevis på bedre smak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta den med som et rimelig eksperiment og høre før du lager en stor fortelling.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe den som trofé fordi ingen andre i rommet så verdien.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "discovery_vs_condition"
+      ],
+      "risk_links": [
+        "attention_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "matrisenummeret_i_utlopet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Plata",
+      "subject": "Tallene i utløpet",
+      "situation": [
+        "Du ser et matrisenummer og noen håndskrevne tegn i runout-feltet.",
+        "Slike markører kan hjelpe med å skille pressinger, men krever katalogkilder og kontekst for å tolkes riktig.",
+        "Detaljen er et spor, ikke automatisk dokumentasjon på førsteutgave, fabrikk eller lydkvalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere markørene og sammenligne med flere katalogkilder.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Erklære at du har en førsteutgave fordi tallrekken ser gammel ut.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "matrix_vs_certainty"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prismerket_som_ser_sjeldent_ut",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Hyllen",
+      "subject": "Prismerket som ser sjeldent ut",
+      "situation": [
+        "En plate er priset langt høyere enn nabotitlene, og etiketten antyder at den er sjelden.",
+        "Pris kan reflektere knapphet, etterspørsel, tilstand, butikkens kostnader eller ren optimisme.",
+        "Høy pris er informasjon om et tilbud, ikke en fasit på historisk betydning eller varig samlerverdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekke sammenlignbare salg og tilstand før du bestemmer deg.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Anta at høy pris i seg selv beviser sjeldenhet og kvalitet.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "price_vs_rarity"
+      ],
+      "risk_links": [
+        "numerical_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nyutgivelsen_som_ligner_originalen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Butikken",
+      "subject": "Nesten samme omslag",
+      "situation": [
+        "En nyere reissue bruker nesten identisk artwork som en eldre pressing.",
+        "Reissues kan være godt dokumenterte, godt mastret og gode lytteeksemplarer selv når de ikke er originale.",
+        "Originalitet er én egenskap blant flere, og bør ikke gjøres til moralsk rangering av eiere eller lyttere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Identifisere utgaven presist og vurdere den på egne premisser.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Avvise den som mindre ekte bare fordi den ikke er første pressing.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "reissue_vs_originalism"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "graderingen_som_glir_mellom_hender",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Selgeren",
+      "subject": "VG+, EX eller bare brukt?",
+      "situation": [
+        "Du og selgeren vurderer samme plate forskjellig når det gjelder hairlines, støy og omslagsslitasje.",
+        "Graderingssystemer gir et felles språk, men synsinntrykk, avspilling og forventninger kan variere.",
+        "Presisjon krever at graden behandles som en vurdering med konkrete observasjoner, ikke som en naturkonstant."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive hva du faktisk ser og høre på relevante partier hvis det er mulig.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre uenigheten personlig og hevde at bare din grad er korrekt.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grading_vs_subjectivity"
+      ],
+      "risk_links": [
+        "responsibility_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "butikkansatte_som_kjenner_kassen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Platebutikken",
+      "subject": "Spør den som fyller hylla",
+      "situation": [
+        "En ansatt peker deg mot en boks med lokale utgivelser og små opplag du aldri ville søkt etter på nettet.",
+        "Butikkunnskap kan være situert, relasjonell og vanskelig å oversette til globale rankinglister.",
+        "Lokalkunnskap blir svakere hvis den brukes som medlemskapstest i stedet for inngang til mer lytting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hva den ansatte hører i platene og følge ett konkret spor.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Bruke anbefalingen som ny insiderkode du kan teste andre med.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "local_knowledge_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "auksjonen_som_loper_fra_deg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Markedsplassen",
+      "subject": "Fem minutter igjen",
+      "situation": [
+        "En nettauksjon på en ønsket plate får flere bud enn du forventet.",
+        "Tidsfrister og synlig konkurranse kan gjøre knapphet følelsesmessig sterkere enn selve behovet for platen.",
+        "Plategraving tåler at enkelte objekter passerer uten at samlingen eller identiteten blir ufullstendig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde deg til maksprisen du bestemte før budrunden.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Fortsette å by fordi det føles som et personlig nederlag å tape.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scarcity_vs_fomo"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bootlegen_med_den_gode_historien",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Messen",
+      "subject": "Utgivelsen ingen kan dokumentere",
+      "situation": [
+        "En uoffisiell pressing har et fascinerende omslag og en historie selgeren gjengir med stor sikkerhet.",
+        "Bootlegs, piratutgaver og uautoriserte pressinger kan ha uklare kilder, varierende lyd og komplisert rettighetsstatus.",
+        "Samlerinteresse er ikke det samme som å kunne fastslå opprinnelse eller lovlighet uten dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle historien som ubekreftet og undersøke hva som faktisk kan dokumenteres.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta selgerens historie som sikker proveniens fordi den gjør objektet mer spennende.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bootleg_vs_provenance"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hylla_som_blir_cv",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Stua",
+      "subject": "Når hylla blir CV",
+      "situation": [
+        "En gjest legger merke til noen sjeldne titler, og samtalen begynner å handle mer om samlingen enn om musikken.",
+        "Fysiske samlinger gjør smak synlig og kan skape både stolthet, fellesskap og sosial rangering.",
+        "Plategraving mister noe når eierskap blir et hierarki over mennesker som lytter på andre måter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke hylla til å dele musikk og historier uten å rangere lyttere.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "La de sjeldneste objektene fungere som bevis på høyere musikalsk status.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "collection_vs_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "messa_for_dorene_apner",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Platemessa",
+      "subject": "Alle så den samme kassen",
+      "situation": [
+        "Flere gravere beveger seg mot den samme nyåpnede kassen samtidig.",
+        "Messer blander fellesskap, konkurranse, knapp tid og uformelle normer for kø, plass og gjennomgang.",
+        "Et godt funn trenger ikke komme på bekostning av andres grunnleggende rom eller respekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Holde plassen din uten å blokkere og la kassen sirkulere rimelig.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Brei deg fysisk fordi den raskeste alltid fortjener de beste platene.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "competition_vs_courtesy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hullet_i_katalogen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Samlingen",
+      "subject": "Bare én katalogkode mangler",
+      "situation": [
+        "Du oppdager at du mangler én utgivelse for å fullføre en serie, labelrekke eller artistdiskografi.",
+        "Systematiske samlinger kan gi retning, men komplette rekker kan bli et mål løsrevet fra lytting, økonomi og plass.",
+        "Et hull i katalogen er ikke nødvendigvis et problem som må løses nå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La hullet stå til platen faktisk dukker opp på rimelige vilkår.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Gjøre fullføringen til et hastemål selv om pris og interesse ikke lenger gir mening.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "completionism_vs_attention"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lytteeksemplaret_og_trofeet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Spilleren",
+      "subject": "Hvilken plate er egentlig best for deg?",
+      "situation": [
+        "Du kan velge mellom en dyr samlerutgave og en rimelig repress du vet at du faktisk vil spille ofte.",
+        "Samlerverdi, materialitet, mastering og praktisk bruk kan trekke i ulike retninger.",
+        "Plategraving kan være både objektglede og lyttepraksis uten at den dyreste utgaven alltid er den riktige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge utgaven som passer bruken og økonomien din.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Kjøpe troféutgaven fordi samlingen ellers føles mindre legitim.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "ownership_vs_listening"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_folger_med_plata",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Selgeren",
+      "subject": "Den skal visst ha tilhørt...",
+      "situation": [
+        "En brukt plate kommer med en historie om tidligere eier, konsertbruk eller lokal forbindelse.",
+        "Proveniens kan gi objekter rikere kontekst, men muntlige historier endres og trenger støtte hvis de skal behandles som fakta.",
+        "En god fortelling kan beholdes som fortelling uten å oppgraderes til dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bevare historien med tydelig markering av hva som er ubekreftet.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Fortelle den videre som sikkert faktum fordi den øker platens aura.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "provenance_vs_rumor"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_slags_plategraver",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Samlingen",
+      "subject": "Funn uten handelsfullmakt",
+      "situation": [
+        "Du kjenner butikker, pressinger, bruktmarkeder, gradering, katalogspor og samlerkultur bedre enn mange rundt deg.",
+        "Det er reell praksis- og gjenstandskompetanse, men gir ingen automatisk fullmakt som platehandler, arkivar, label, takstmann, rettighetshaver eller autentiseringsinstans.",
+        "Spørsmålet er om gravingen gjør lyttingen og forbindelsene større, eller bare knappheten og statusen skarpere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde rollen som nysgjerrig plategraver med tydelige grenser mot handel og profesjonell autentisering.",
+          "effect": 1,
+          "tags": [
+            "record_knowledge",
+            "role_clarity",
+            "curiosity"
+          ],
+          "feedback": "Du lar funn, objekter og katalogkunnskap berike lytting og fellesskap uten å gjøre samlingen til profesjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "La samlerkunnskapen fungere som fullmakt til å fastsette verdi, ekthet og korrekt smak for andre.",
+          "effect": -1,
+          "tags": [
+            "collector_status",
+            "gatekeeping",
+            "role_inflation"
+          ],
+          "feedback": "Samlerpraksisen glir over i statuspress, portvakt eller lånt handels- og autentiseringsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_trade_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

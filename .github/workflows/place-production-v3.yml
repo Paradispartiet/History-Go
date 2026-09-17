@@ -1,0 +1,66 @@
+name: Place production v3
+
+on:
+  pull_request:
+    paths:
+      - 'docs/PLACE_PRODUCTION_CHECKLIST.md'
+      - 'docs/PLACE_PRODUCTION_PROFILES.md'
+      - 'docs/PLACE_PRODUCTION_V3.md'
+      - 'data/places/workflow/**'
+      - 'data/places/regler/place_production_workflow_v3.schema.json'
+      - '.github/ci/place-production-routing-v2.json'
+      - 'scripts/place-production-v3-lib.mjs'
+      - 'scripts/place-production-v3.mjs'
+      - 'scripts/build-place-production-v3-projections.mjs'
+      - 'scripts/place-production-routing-v2-lib.mjs'
+      - 'scripts/place-production-routing-v2.mjs'
+      - 'scripts/run-place-regressions-v1.mjs'
+      - 'scripts/audit-ci-workflow-routing.mjs'
+      - 'tests/place-production-v3-*.test.mjs'
+      - 'tests/place-production-routing-v2.test.mjs'
+      - 'tests/run-place-regressions-v2-routing.test.mjs'
+      - 'tests/akershus-slott-place-production-v3.test.mjs'
+      - 'reports/place-production/*-workcard-current.json'
+      - 'reports/place-production/*-quality-gate-current.json'
+      - '.github/workflows/place-production-v3.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: place-production-v3-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    name: V3 workflow and routing
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
+
+      - name: Test V3 workflow, projections, routing, and pilot
+        run: |
+          node --test \
+            tests/place-production-v3-workflow.test.mjs \
+            tests/place-production-v3-projections.test.mjs \
+            tests/akershus-slott-place-production-v3.test.mjs \
+            tests/place-production-routing-v2.test.mjs \
+            tests/run-place-regressions-v2-routing.test.mjs \
+            tests/place-production-v3-cli.test.mjs
+
+      - name: Check generated Akershus slott projections
+        run: node scripts/build-place-production-v3-projections.mjs akershus_slott --check
+
+      - name: Audit CI routing ownership
+        run: node scripts/audit-ci-workflow-routing.mjs
+
+      - name: Show exact Place production impact plan
+        if: github.event_name == 'pull_request'
+        run: node scripts/place-production-routing-v2.mjs --base "${{ github.event.pull_request.base.sha }}" --head "${{ github.event.pull_request.head.sha }}" --json

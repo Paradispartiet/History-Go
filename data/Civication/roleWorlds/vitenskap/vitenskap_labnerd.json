@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "vitenskap",
+  "role_scope": "vitenskap_labnerd",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "vitenskap",
+    "id": "labnerd",
+    "label": "Labnerd"
+  },
+  "title": "Labnerd",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å dyrke presis måle- og eksperimentpraksis med kontroll, sporbarhet, replikasjon og sikkerhetsbevissthet uten at hobbykompetanse blir laboratorie-, HMS-, forsker- eller godkjenningsmyndighet",
+    "description": "Labnerd-verdenen undersøker instrumentkontroll, kontrollbetingelser, sporbarhet, blinding, kontaminasjonsrisiko, miljøvariabler, outliers, replikasjon, måleusikkerhet, rålogg, sikkerhetsgrenser, data lineage, usikkerhetskommunikasjon og formell myndighet. Labnerd er en alternative_life_status. Rollen gir ingen automatisk laboratorielederrolle, HMS-ansvar, forskerstilling, ingeniørmyndighet eller faglig godkjenningsmandat, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "numerical_control",
+    "professional_culture",
+    "local_knowledge_vs_system",
+    "status_anxiety",
+    "invisible_work",
+    "care_vs_efficiency",
+    "bureaucratic_power",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "hobby- og verkstedmiljøer der små måleoppsett bygges og sammenlignes over tid",
+    "måleserier der instrument, nullpunkt, miljø og dokumentasjon kan flytte resultatet",
+    "dataarbeid der rådata, transformasjoner, outliers og presisjon må kunne spores",
+    "samarbeid der blinding, kontroll og replikasjon utfordrer forventninger og prestisje",
+    "situasjoner der rengjøring, separasjon og romkrav setter praktiske sikkerhetsgrenser",
+    "møter med formelle laboratorie- og forskningsroller som eier HMS, godkjenning og faglig ansvar"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "utstyrsvennen",
+      "social_function": "gjør måleutstyr, nullpunkt, kalibrering og miljøbetingelser konkrete",
+      "class_position": "erfaren hobbybruker uten laboratorie- eller ingeniørmandat",
+      "status": "høy praktisk utstyrskunnskap, ingen formell godkjenningsmyndighet",
+      "power_over_player": "kan få instrumentdisplay og teknisk fortrolighet til å se mer presist ut enn metoden er",
+      "wants": "at oppsettet skal være stabilt nok til å gi sammenlignbare målinger",
+      "conceals": "at eget favorittutstyr også har begrensninger og drift",
+      "speech_style": "teknisk, kort og praktisk",
+      "teaches_player": "at instrumentet selv er en del av målekjeden"
+    },
+    {
+      "id": "forsoksvennen",
+      "social_function": "tester kontroll, blinding og replikasjon i små eksperimentelle oppsett",
+      "class_position": "likestilt eksperimententusiast uten forskerstilling",
+      "status": "middels uformell metodeautoritet",
+      "power_over_player": "kan gjøre første tydelige forskjell til et funn før oppsettet er kontrollert",
+      "wants": "at resultater skal tåle en ny runde",
+      "conceals": "at forventninger påvirker hvilke mønstre som føles overbevisende",
+      "speech_style": "hypotesedrevet, energisk og konkret",
+      "teaches_player": "at kontroll og replikasjon utfordrer både funn og ego"
+    },
+    {
+      "id": "loggvennen",
+      "social_function": "holder orden på etiketter, rånotater og sporbarhet over tid",
+      "class_position": "hobbyutøver med sterk dokumentasjonsdisiplin",
+      "status": "lav symbolsk status men høy praktisk betydning",
+      "power_over_player": "kan bremse framdrift når dokumentasjonen ikke holder",
+      "wants": "at hver måling skal kunne spores tilbake til hva som faktisk skjedde",
+      "conceals": "at ryddige systemer kan bli tidkrevende og fristende å hoppe over",
+      "speech_style": "detaljorientert, rolig og kronologisk",
+      "teaches_player": "at dokumentasjon er en del av resultatet"
+    },
+    {
+      "id": "dataanalytikeren",
+      "social_function": "gjør outliers, presisjon, rådata og bearbeiding etterprøvbare",
+      "class_position": "dataorientert deltaker uten formell analyse- eller forskerrolle",
+      "status": "middels uformell tallautoritet",
+      "power_over_player": "kan gjøre pene datasett og mange desimaler til mål i seg selv",
+      "wants": "at data skal være rene nok til å analyseres uten å miste historikken",
+      "conceals": "at bearbeiding alltid innebærer valg",
+      "speech_style": "presis, skeptisk og tabellorientert",
+      "teaches_player": "at data lineage og begrunnede valg er viktigere enn kosmetisk ryddighet"
+    },
+    {
+      "id": "hmsvennen",
+      "social_function": "markerer sikkerhets-, rom- og håndteringsgrenser uten å gi spilleren risikable prosedyrer",
+      "class_position": "person med ansvar eller kompetanse for avgrenset sikkerhetspraksis",
+      "status": "høy situert myndighet når sikkerhetsrammer berøres",
+      "power_over_player": "kan stoppe oppsett som går utenfor hobby- eller romgrensen",
+      "wants": "at nysgjerrighet ikke omgår sikkerhetskrav",
+      "conceals": "at sikkerhet ofte oppleves som treghet helt til grensen faktisk blir viktig",
+      "speech_style": "kort, tydelig og regelbevisst",
+      "teaches_player": "at teknisk mulighet ikke er det samme som tillatt eller forsvarlig praksis"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "skiller hobbykompetanse fra formelt laboratorie-, forsknings-, HMS- og godkjenningsansvar",
+      "class_position": "kvalifisert fagrolle med avgrenset institusjonelt mandat",
+      "status": "høy formell myndighet i eget ansvarsområde",
+      "power_over_player": "kan avklare hvor hobbypraksis må stoppe eller overleveres",
+      "wants": "at gode målevaner brukes uten rolleforvirring",
+      "conceals": "at profesjonelle systemer også er avhengige av nøyaktig hverdagsdokumentasjon",
+      "speech_style": "presis, ansvarstydelig og nøktern",
+      "teaches_player": "at metodekompetanse og institusjonell myndighet er ulike ting"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "instrument_check_vs_premature_interpretation",
+      "meaning": "instrumentkontroll mot for tidlig tolkning av små måleforskjeller",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "control_vs_confounded_change",
+      "meaning": "kontrollbetingelser mot endringer der flere variabler flytter seg samtidig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "traceability_vs_guessing",
+      "meaning": "sporbar merking og logg mot gjetting om hvilken prøve eller serie som er hvilken",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "blinding_vs_expectation_bias",
+      "meaning": "blinding og forhåndskriterier mot forventningsstyrt observasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cleanliness_vs_cross_contamination",
+      "meaning": "renhetsrutiner og separasjon mot skjult overføring mellom runder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "environmental_condition_vs_hidden_variable",
+      "meaning": "miljøbetingelser mot skjulte variabler i ellers like oppsett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "outlier_review_vs_cleanup",
+      "meaning": "undersøkelse av avvik mot kosmetisk fjerning av irriterende målinger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "replication_vs_original_authority",
+      "meaning": "replikasjon mot automatisk autoritet til første resultat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "display_precision_vs_measurement_uncertainty",
+      "meaning": "displayets mange sifre mot reell usikkerhet i hele målekjeden",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "raw_log_vs_reconstructed_record",
+      "meaning": "original logg mot etterredigert dokumentasjon som skjuler beslutningstidspunkt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_safety_boundary",
+      "meaning": "eksperimentnysgjerrighet mot sikkerhets- og institusjonsgrenser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "data_lineage_vs_orphaned_output",
+      "meaning": "rådata og transformasjonsspor mot bearbeidede filer uten opphav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "clarity_vs_uncertainty_communication",
+      "meaning": "tydelig formidling mot å skjule usikkerhet for å få et renere budskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "lab_practice_vs_formal_authority",
+      "meaning": "måle- og labpraksis mot laboratorie-, HMS-, forsker- og godkjenningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Før vi måler mer: stemmer måleren?.",
+        "thread_ids": [
+          "instrument_check_vs_premature_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Før vi måler mer: stemmer måleren?.",
+        "thread_ids": [
+          "instrument_check_vs_premature_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Før vi måler mer: stemmer måleren?.",
+        "thread_ids": [
+          "instrument_check_vs_premature_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Før vi måler mer: stemmer måleren?.",
+        "thread_ids": [
+          "instrument_check_vs_premature_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hvordan vet vi at endringen kom fra akkurat dette?.",
+        "thread_ids": [
+          "control_vs_confounded_change",
+          "instrument_check_vs_premature_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hvordan vet vi at endringen kom fra akkurat dette?.",
+        "thread_ids": [
+          "control_vs_confounded_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Hvordan vet vi at endringen kom fra akkurat dette?.",
+        "thread_ids": [
+          "control_vs_confounded_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hvordan vet vi at endringen kom fra akkurat dette?.",
+        "thread_ids": [
+          "control_vs_confounded_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Hvilken prøve var dette igjen?.",
+        "thread_ids": [
+          "traceability_vs_guessing",
+          "control_vs_confounded_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Hvilken prøve var dette igjen?.",
+        "thread_ids": [
+          "traceability_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Hvilken prøve var dette igjen?.",
+        "thread_ids": [
+          "traceability_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Hvilken prøve var dette igjen?.",
+        "thread_ids": [
+          "traceability_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du traff bare når du visste hvilken som var hvilken.",
+        "thread_ids": [
+          "blinding_vs_expectation_bias",
+          "traceability_vs_guessing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du traff bare når du visste hvilken som var hvilken.",
+        "thread_ids": [
+          "blinding_vs_expectation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du traff bare når du visste hvilken som var hvilken.",
+        "thread_ids": [
+          "blinding_vs_expectation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du traff bare når du visste hvilken som var hvilken.",
+        "thread_ids": [
+          "blinding_vs_expectation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Det ser rent ut — men det betyr ikke at historikken er borte.",
+        "thread_ids": [
+          "cleanliness_vs_cross_contamination",
+          "blinding_vs_expectation_bias"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Det ser rent ut — men det betyr ikke at historikken er borte.",
+        "thread_ids": [
+          "cleanliness_vs_cross_contamination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Det ser rent ut — men det betyr ikke at historikken er borte.",
+        "thread_ids": [
+          "cleanliness_vs_cross_contamination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Det ser rent ut — men det betyr ikke at historikken er borte.",
+        "thread_ids": [
+          "cleanliness_vs_cross_contamination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Samme oppsett, annen dag, annet rom.",
+        "thread_ids": [
+          "environmental_condition_vs_hidden_variable",
+          "cleanliness_vs_cross_contamination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Samme oppsett, annen dag, annet rom.",
+        "thread_ids": [
+          "environmental_condition_vs_hidden_variable"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Samme oppsett, annen dag, annet rom.",
+        "thread_ids": [
+          "environmental_condition_vs_hidden_variable"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Samme oppsett, annen dag, annet rom.",
+        "thread_ids": [
+          "environmental_condition_vs_hidden_variable"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Den ene målingen ødelegger hele serien.",
+        "thread_ids": [
+          "outlier_review_vs_cleanup",
+          "environmental_condition_vs_hidden_variable"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Den ene målingen ødelegger hele serien.",
+        "thread_ids": [
+          "outlier_review_vs_cleanup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Den ene målingen ødelegger hele serien.",
+        "thread_ids": [
+          "outlier_review_vs_cleanup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Den ene målingen ødelegger hele serien.",
+        "thread_ids": [
+          "outlier_review_vs_cleanup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Vi gjorde det samme — hvorfor ble det annerledes?.",
+        "thread_ids": [
+          "replication_vs_original_authority",
+          "outlier_review_vs_cleanup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Vi gjorde det samme — hvorfor ble det annerledes?.",
+        "thread_ids": [
+          "replication_vs_original_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Vi gjorde det samme — hvorfor ble det annerledes?.",
+        "thread_ids": [
+          "replication_vs_original_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Vi gjorde det samme — hvorfor ble det annerledes?.",
+        "thread_ids": [
+          "replication_vs_original_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Displayet viser seks desimaler.",
+        "thread_ids": [
+          "display_precision_vs_measurement_uncertainty",
+          "replication_vs_original_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Displayet viser seks desimaler.",
+        "thread_ids": [
+          "display_precision_vs_measurement_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Displayet viser seks desimaler.",
+        "thread_ids": [
+          "display_precision_vs_measurement_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Displayet viser seks desimaler.",
+        "thread_ids": [
+          "display_precision_vs_measurement_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Det blir ryddigere hvis jeg skriver alt rent nå.",
+        "thread_ids": [
+          "raw_log_vs_reconstructed_record",
+          "display_precision_vs_measurement_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Det blir ryddigere hvis jeg skriver alt rent nå.",
+        "thread_ids": [
+          "raw_log_vs_reconstructed_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Det blir ryddigere hvis jeg skriver alt rent nå.",
+        "thread_ids": [
+          "raw_log_vs_reconstructed_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Det blir ryddigere hvis jeg skriver alt rent nå.",
+        "thread_ids": [
+          "raw_log_vs_reconstructed_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Dette oppsettet trenger faktisk riktig rom og godkjenning.",
+        "thread_ids": [
+          "curiosity_vs_safety_boundary",
+          "raw_log_vs_reconstructed_record"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Dette oppsettet trenger faktisk riktig rom og godkjenning.",
+        "thread_ids": [
+          "curiosity_vs_safety_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Dette oppsettet trenger faktisk riktig rom og godkjenning.",
+        "thread_ids": [
+          "curiosity_vs_safety_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Dette oppsettet trenger faktisk riktig rom og godkjenning.",
+        "thread_ids": [
+          "curiosity_vs_safety_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Hvor kom denne bearbeidede filen fra?.",
+        "thread_ids": [
+          "data_lineage_vs_orphaned_output",
+          "curiosity_vs_safety_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Hvor kom denne bearbeidede filen fra?.",
+        "thread_ids": [
+          "data_lineage_vs_orphaned_output"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Hvor kom denne bearbeidede filen fra?.",
+        "thread_ids": [
+          "data_lineage_vs_orphaned_output"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Hvor kom denne bearbeidede filen fra?.",
+        "thread_ids": [
+          "data_lineage_vs_orphaned_output"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Det høres tydeligere ut uten alle forbeholdene.",
+        "thread_ids": [
+          "clarity_vs_uncertainty_communication",
+          "data_lineage_vs_orphaned_output"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Det høres tydeligere ut uten alle forbeholdene.",
+        "thread_ids": [
+          "clarity_vs_uncertainty_communication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Det høres tydeligere ut uten alle forbeholdene.",
+        "thread_ids": [
+          "clarity_vs_uncertainty_communication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Det høres tydeligere ut uten alle forbeholdene.",
+        "thread_ids": [
+          "clarity_vs_uncertainty_communication",
+          "lab_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Godt oppsett gir ikke laboratorieansvar.",
+        "thread_ids": [
+          "lab_practice_vs_formal_authority",
+          "clarity_vs_uncertainty_communication"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Godt oppsett gir ikke laboratorieansvar.",
+        "thread_ids": [
+          "lab_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Godt oppsett gir ikke laboratorieansvar.",
+        "thread_ids": [
+          "lab_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Godt oppsett gir ikke laboratorieansvar.",
+        "thread_ids": [
+          "lab_practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "instrument_check_vs_premature_interpretation",
+      "relationship": "instrumentkontroll mot for tidlig tolkning av små måleforskjeller",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "control_vs_confounded_change",
+      "relationship": "kontrollbetingelser mot endringer der flere variabler flytter seg samtidig",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "traceability_vs_guessing",
+      "relationship": "sporbar merking og logg mot gjetting om hvilken prøve eller serie som er hvilken",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "blinding_vs_expectation_bias",
+      "relationship": "blinding og forhåndskriterier mot forventningsstyrt observasjon",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "cleanliness_vs_cross_contamination",
+      "relationship": "renhetsrutiner og separasjon mot skjult overføring mellom runder",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "environmental_condition_vs_hidden_variable",
+      "relationship": "miljøbetingelser mot skjulte variabler i ellers like oppsett",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "outlier_review_vs_cleanup",
+      "relationship": "undersøkelse av avvik mot kosmetisk fjerning av irriterende målinger",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "replication_vs_original_authority",
+      "relationship": "replikasjon mot automatisk autoritet til første resultat",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "display_precision_vs_measurement_uncertainty",
+      "relationship": "displayets mange sifre mot reell usikkerhet i hele målekjeden",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "raw_log_vs_reconstructed_record",
+      "relationship": "original logg mot etterredigert dokumentasjon som skjuler beslutningstidspunkt",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "curiosity_vs_safety_boundary",
+      "relationship": "eksperimentnysgjerrighet mot sikkerhets- og institusjonsgrenser",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "data_lineage_vs_orphaned_output",
+      "relationship": "rådata og transformasjonsspor mot bearbeidede filer uten opphav",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "clarity_vs_uncertainty_communication",
+      "relationship": "tydelig formidling mot å skjule usikkerhet for å få et renere budskap",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "lab_practice_vs_formal_authority",
+      "relationship": "måle- og labpraksis mot laboratorie-, HMS-, forsker- og godkjenningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "instrument_og_kontroll_forst",
+      "description": "Instrument, nullpunkt og kontrollbetingelser undersøkes før små forskjeller blir tolket.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet"
+      ]
+    },
+    {
+      "id": "sporbarhet_og_forventning",
+      "description": "Merking, logg og blinding holder identitet og forventning adskilt fra observasjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen"
+      ]
+    },
+    {
+      "id": "skjulte_feilkilder_blir_synlige",
+      "description": "Kontaminasjon, miljøforhold og outliers behandles som sporbare spørsmål fremfor kosmetisk støy.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende"
+      ]
+    },
+    {
+      "id": "replikasjon_med_realistisk_presisjon",
+      "description": "Replikasjon og måleusikkerhet får styre hvor sikkert et resultat kan uttrykkes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte"
+      ]
+    },
+    {
+      "id": "dokumentasjon_med_sikkerhetsgrense",
+      "description": "Original logg, data lineage, usikkerhetskommunikasjon og formelle sikkerhetsgrenser holdes intakte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert",
+        "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "instrument_moter_kontroll",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "measurement",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sporbarhet_moter_blinding",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "measurement",
+        "status"
+      ]
+    },
+    {
+      "id": "renhet_moter_miljo",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "safety",
+        "measurement"
+      ]
+    },
+    {
+      "id": "outlier_moter_replikasjon",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "measurement"
+      ]
+    },
+    {
+      "id": "presisjon_moter_logg",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "status",
+        "documentation"
+      ]
+    },
+    {
+      "id": "sikkerhet_moter_formell_myndighet",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "safety",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#maaleapparatet_som_maatte_sjekkes",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontrollen_som_manglet",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#proven_som_var_blitt_borte_i_etikettene",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#blindproven_som_avslorte_forventningen",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#kontaminasjonen_som_ikke_syntes",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#temperaturen_som_flyttet_resultatet",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#outlieren_som_var_irriterende",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#replikasjonen_som_ikke_ble_lik",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#flere_desimaler_enn_metoden_taalte",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#notatboka_som_ble_redigert_i_ettertid",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#sikkerhetsgrensen_som_ikke_var_forhandlingsbar",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#filnavnet_som_ble_metoden",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#resultatet_som_ble_presentert_for_sikkert",
+      "data/Civication/narratives/leisure/vitenskap_labnerd.json#labnerd_ikke_labansvarlig"
+    ]
+  }
+}

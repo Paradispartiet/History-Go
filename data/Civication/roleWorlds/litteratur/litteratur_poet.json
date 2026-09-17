@@ -1,0 +1,1197 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_poet",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "poet",
+    "label": "Poet"
+  },
+  "title": "Poet — bilde, rytme, form, revisjon og framføring",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle en vedvarende poetisk praksis der bilde, presisjon, rytme, linjebrudd, metafor, stemme, form, tradisjon, komposisjon og revisjon kan prøves konkret uten at mystikk, status, publisering eller inntekt blir erstatning for håndverket",
+    "description": "Poet er en employment-independent professional_practice for poetisk arbeid med bilde, konkret sansning, presisjon, rytme, linjebrudd, metafor, lyrisk jeg og persona, formbegrensning, tradisjon og allusjon, sekvens, revisjon, respons og framføring. Rollen er tydelig forskjellig fra Forfatter som bredere skrivepraksis og fra Skribent som sak-/tekstproduksjon: Poet avgrenser en lyrisk praksis og dens særlige arbeid med kondensert språk, lyd, linje og diktkomposisjon. Poetstatus gir ingen automatisk publisering, forlagsavtale, redaksjonell myndighet, royalty, honorar, stipend, direkte salg, jobb eller lønn; slike livelihood-hendelser krever separat proveniens og aksept. Rollen introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "social_mask",
+    "alienation",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "skrivebord, notatbok og revisjonsøkter der språkvalg prøves over tid",
+    "skrivegrupper der utkast møter motstridende lesererfaringer",
+    "poesiopplesninger der side, stemme, publikum og praktiske vilkår møtes",
+    "tidsskrift og forlag der manus kan vurderes uten at publisering definerer hele identiteten",
+    "bibliotek, arkiv og bokhyller der tradisjon, form og allusjon kan etterspores",
+    "poetiske offentligheter der estetikk, feltstatus, synlighet og økonomi lett blandes"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "medpoeten",
+      "social_function": "gjør poetisk håndverk, kollegial uenighet og feltstatus konkret",
+      "class_position": "skrivende poet med varierende publiseringshistorikk",
+      "status": "situert litterær feltstatus",
+      "power_over_player": "kan gi motlesning, påvirke omdømme og normalisere bestemte estetiske vaner",
+      "wants": "at dikt diskuteres på konkret språklig grunnlag",
+      "conceals": "at egen estetikk også kan bli en statusnorm",
+      "speech_style": "presis, billedbevisst og direkte",
+      "teaches_player": "at kollegial respons er informasjon, ikke fasit"
+    },
+    {
+      "id": "redaktoren",
+      "social_function": "representerer utvalg, manusarbeid og publiseringsport uten å eie poetidentiteten",
+      "class_position": "redaksjonell yrkesrolle i tidsskrift eller forlag",
+      "status": "institusjonell publiseringsmakt",
+      "power_over_player": "kan velge, foreslå endringer og tilby publisering, men ikke skape poetisk autoritet automatisk",
+      "wants": "et konsistent manus med tydelige valg",
+      "conceals": "at format og profil påvirker hva som får plass",
+      "speech_style": "kort, konkret og kompositorisk",
+      "teaches_player": "at publisering er en separat institusjonell hendelse"
+    },
+    {
+      "id": "opplesningsverten",
+      "social_function": "gjør scenen, publikum og honorargrensen konkret",
+      "class_position": "arrangør eller programansvarlig",
+      "status": "lokal kuratorisk og organisatorisk makt",
+      "power_over_player": "kan invitere, tidsavgrense og avtale vilkår, men ikke definere poetens verdi",
+      "wants": "en tydelig framføring og klare praktiske vilkår",
+      "conceals": "at synlighet og økonomi ofte blandes i forventningene",
+      "speech_style": "praktisk, tidsbevisst og publikumsorientert",
+      "teaches_player": "at framføring og betaling er egne avtaler"
+    },
+    {
+      "id": "den_noye_leseren",
+      "social_function": "representerer lesererfaring uten profesjonelt embete",
+      "class_position": "engasjert leser",
+      "status": "ingen formell institusjonell myndighet",
+      "power_over_player": "kan avsløre uklarhet, rytmebrudd og utilsiktede betydninger",
+      "wants": "å møte et dikt som tåler oppmerksom lesning",
+      "conceals": "at også leseren bringer egne forventninger",
+      "speech_style": "konkret, nysgjerrig og uten fagspråk som skjold",
+      "teaches_player": "at leserrespons viser virkninger, ikke dikterer løsninger"
+    },
+    {
+      "id": "tradisjonsleseren",
+      "social_function": "holder eldre poesi, former og intertekstuelle forbindelser synlige",
+      "class_position": "bibliotekar, forsker eller erfaren litteraturleser",
+      "status": "kilde- og tradisjonskunnskap",
+      "power_over_player": "kan identifisere allusjoner, likheter og historiske former uten å eie dagens estetikk",
+      "wants": "bevisst forhold til tradisjon og proveniens",
+      "conceals": "at også kanon og tradisjon er selektive",
+      "speech_style": "kildebevisst, historisk og forbeholden",
+      "teaches_player": "at påvirkning blir sterkere når den er kjent og bearbeidet"
+    },
+    {
+      "id": "skrivegruppevennen",
+      "social_function": "gjør tillit, respons og privat-offentlig lekkasje konkret",
+      "class_position": "peer i skrivegruppe eller nær litterær krets",
+      "status": "relasjonell tillit uten formell myndighet",
+      "power_over_player": "kan se tidlige utkast og påvirke revisjon gjennom nærhet",
+      "wants": "at respons blir brukt med selvstendig dømmekraft",
+      "conceals": "at omsorg kan gli over i people-pleasing",
+      "speech_style": "åpen, konkret og utforskende",
+      "teaches_player": "å skille registrert problem fra foreslått løsning"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "image",
+      "meaning": "bilde og konkret sansning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "precision",
+      "meaning": "presisjon og skala",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rhythm",
+      "meaning": "rytme, trykk og lyd",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "line_break",
+      "meaning": "linjebrudd og visuell form",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metaphor",
+      "meaning": "metaforisk sammenheng",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "speaker",
+      "meaning": "lyrisk jeg, persona og privatlivsgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "constraint",
+      "meaning": "formbegrensning som arbeidsmetode",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tradition",
+      "meaning": "tradisjon, allusjon og kildebevissthet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sequence",
+      "meaning": "sekvens og samlingskomposisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cutting",
+      "meaning": "revisjon og helhet framfor favorittlinjen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "feedback",
+      "meaning": "respons, dømmekraft og egen løsning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "performance",
+      "meaning": "side, stemme og framføring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "livelihood",
+      "meaning": "skillet mellom poetisk praksis og økonomisk avtale",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revision",
+      "meaning": "reviserbarhet og utvikling over tid",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: bilde og konkret sansning. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "image"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: bilde og konkret sansning. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "image"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: bilde og konkret sansning. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "livelihood",
+          "revision",
+          "image"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: bilde og konkret sansning. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "livelihood",
+          "revision",
+          "image"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: presisjon og skala. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "precision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#ordet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: presisjon og skala. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "precision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#ordet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: presisjon og skala. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "revision",
+          "image",
+          "precision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#ordet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: presisjon og skala. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "revision",
+          "image",
+          "precision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#ordet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: rytme, trykk og lyd. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "rhythm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: rytme, trykk og lyd. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "rhythm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: rytme, trykk og lyd. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "image",
+          "precision",
+          "rhythm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: rytme, trykk og lyd. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "image",
+          "precision",
+          "rhythm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: linjebrudd og visuell form. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "line_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#linjebruddet_som_gjor_noe"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: linjebrudd og visuell form. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "line_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#linjebruddet_som_gjor_noe"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: linjebrudd og visuell form. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "precision",
+          "rhythm",
+          "line_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#linjebruddet_som_gjor_noe"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: linjebrudd og visuell form. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "precision",
+          "rhythm",
+          "line_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#linjebruddet_som_gjor_noe"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: metaforisk sammenheng. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "metaphor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#metaforen_som_ma_holde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: metaforisk sammenheng. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "metaphor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#metaforen_som_ma_holde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: metaforisk sammenheng. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "rhythm",
+          "line_break",
+          "metaphor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#metaforen_som_ma_holde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: metaforisk sammenheng. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "rhythm",
+          "line_break",
+          "metaphor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#metaforen_som_ma_holde"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: lyrisk jeg, persona og privatlivsgrense. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "speaker"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#jeg_er_ikke_alltid_forfatteren"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: lyrisk jeg, persona og privatlivsgrense. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "speaker"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#jeg_er_ikke_alltid_forfatteren"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: lyrisk jeg, persona og privatlivsgrense. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "line_break",
+          "metaphor",
+          "speaker"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#jeg_er_ikke_alltid_forfatteren"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: lyrisk jeg, persona og privatlivsgrense. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "line_break",
+          "metaphor",
+          "speaker"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#jeg_er_ikke_alltid_forfatteren"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: formbegrensning som arbeidsmetode. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#formen_som_motstand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: formbegrensning som arbeidsmetode. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#formen_som_motstand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: formbegrensning som arbeidsmetode. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "metaphor",
+          "speaker",
+          "constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#formen_som_motstand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: formbegrensning som arbeidsmetode. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "metaphor",
+          "speaker",
+          "constraint"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#formen_som_motstand"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: tradisjon, allusjon og kildebevissthet. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "tradition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: tradisjon, allusjon og kildebevissthet. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "tradition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: tradisjon, allusjon og kildebevissthet. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "speaker",
+          "constraint",
+          "tradition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: tradisjon, allusjon og kildebevissthet. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "speaker",
+          "constraint",
+          "tradition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: sekvens og samlingskomposisjon. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_blant_diktene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: sekvens og samlingskomposisjon. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_blant_diktene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: sekvens og samlingskomposisjon. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "constraint",
+          "tradition",
+          "sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_blant_diktene"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: sekvens og samlingskomposisjon. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "constraint",
+          "tradition",
+          "sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_blant_diktene"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: revisjon og helhet framfor favorittlinjen. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "cutting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#kuttet_som_gjor_plass"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: revisjon og helhet framfor favorittlinjen. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "cutting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#kuttet_som_gjor_plass"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: revisjon og helhet framfor favorittlinjen. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "tradition",
+          "sequence",
+          "cutting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#kuttet_som_gjor_plass"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: revisjon og helhet framfor favorittlinjen. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "tradition",
+          "sequence",
+          "cutting"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#kuttet_som_gjor_plass"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: respons, dømmekraft og egen løsning. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: respons, dømmekraft og egen løsning. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: respons, dømmekraft og egen løsning. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "sequence",
+          "cutting",
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: respons, dømmekraft og egen løsning. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "sequence",
+          "cutting",
+          "feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: side, stemme og framføring. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#siden_og_scenen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: side, stemme og framføring. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#siden_og_scenen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: side, stemme og framføring. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "cutting",
+          "feedback",
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#siden_og_scenen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: side, stemme og framføring. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "cutting",
+          "feedback",
+          "performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#siden_og_scenen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: skillet mellom poetisk praksis og økonomisk avtale. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "livelihood"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: skillet mellom poetisk praksis og økonomisk avtale. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "livelihood"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: skillet mellom poetisk praksis og økonomisk avtale. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "feedback",
+          "performance",
+          "livelihood"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: skillet mellom poetisk praksis og økonomisk avtale. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "feedback",
+          "performance",
+          "livelihood"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: reviserbarhet og utvikling over tid. Morgenen avgrenser håndverksproblemet og gjør det observerbart før et valg tas.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_som_kan_endres"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: reviserbarhet og utvikling over tid. Midt på dagen møter praksisen en leser, kollega eller institusjonell stemme som gjør premissene synlige.",
+        "thread_ids": [
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_som_kan_endres"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: reviserbarhet og utvikling over tid. Ettermiddagen krever et konkret poetisk valg om språk, form, relasjon eller myndighetsgrense.",
+        "thread_ids": [
+          "performance",
+          "livelihood",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_som_kan_endres"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: reviserbarhet og utvikling over tid. Kvelden viser hvordan valget endrer teksten, praksisen, relasjonen eller neste revisjon.",
+        "thread_ids": [
+          "performance",
+          "livelihood",
+          "revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_poet.json#diktet_som_kan_endres"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "image",
+      "relationship": "bilde og konkret sansning",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "precision",
+      "relationship": "presisjon og skala",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "rhythm",
+      "relationship": "rytme, trykk og lyd",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "line_break",
+      "relationship": "linjebrudd og visuell form",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "metaphor",
+      "relationship": "metaforisk sammenheng",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "speaker",
+      "relationship": "lyrisk jeg, persona og privatlivsgrense",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "constraint",
+      "relationship": "formbegrensning som arbeidsmetode",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "tradition",
+      "relationship": "tradisjon, allusjon og kildebevissthet",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "sequence",
+      "relationship": "sekvens og samlingskomposisjon",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "cutting",
+      "relationship": "revisjon og helhet framfor favorittlinjen",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "feedback",
+      "relationship": "respons, dømmekraft og egen løsning",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "performance",
+      "relationship": "side, stemme og framføring",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "livelihood",
+      "relationship": "skillet mellom poetisk praksis og økonomisk avtale",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "revision",
+      "relationship": "reviserbarhet og utvikling over tid",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "konkret_bilde",
+      "description": "Abstrakte følelser blir oftere prøvd mot konkrete, sansbare detaljer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen"
+      ]
+    },
+    {
+      "id": "lyttende_revisjon",
+      "description": "Rytme og linjebrudd blir testet både med øyet og høytlesning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen"
+      ]
+    },
+    {
+      "id": "bevisst_tradisjon",
+      "description": "Allusjon og påvirkning blir behandlet som forhold som kan etterspores og bearbeides.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja"
+      ]
+    },
+    {
+      "id": "selvstendig_respons",
+      "description": "Tilbakemeldinger blir sortert som lesererfaring før poeten velger egen løsning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres"
+      ]
+    },
+    {
+      "id": "skilt_livelihood",
+      "description": "Poetisk praksis holdes separat fra publisering, honorar, støtte og andre økonomiske hendelser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "bildet_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "stemmen_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    },
+    {
+      "id": "formen_returnerer",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "tradisjonen_returnerer",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "responsen_returnerer",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "avtalen_returnerer",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "finance",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_poet.json#bildet_for_forklaringen",
+      "data/Civication/narratives/leisure/litteratur_poet.json#ordet_som_er_for_stort",
+      "data/Civication/narratives/leisure/litteratur_poet.json#rytmen_i_munnen",
+      "data/Civication/narratives/leisure/litteratur_poet.json#linjebruddet_som_gjor_noe",
+      "data/Civication/narratives/leisure/litteratur_poet.json#metaforen_som_ma_holde",
+      "data/Civication/narratives/leisure/litteratur_poet.json#jeg_er_ikke_alltid_forfatteren",
+      "data/Civication/narratives/leisure/litteratur_poet.json#formen_som_motstand",
+      "data/Civication/narratives/leisure/litteratur_poet.json#tradisjonen_i_linja",
+      "data/Civication/narratives/leisure/litteratur_poet.json#diktet_blant_diktene",
+      "data/Civication/narratives/leisure/litteratur_poet.json#kuttet_som_gjor_plass",
+      "data/Civication/narratives/leisure/litteratur_poet.json#tilbakemeldingen_som_ma_sorteres",
+      "data/Civication/narratives/leisure/litteratur_poet.json#siden_og_scenen",
+      "data/Civication/narratives/leisure/litteratur_poet.json#honoraret_er_ikke_identiteten",
+      "data/Civication/narratives/leisure/litteratur_poet.json#diktet_som_kan_endres"
+    ]
+  }
+}

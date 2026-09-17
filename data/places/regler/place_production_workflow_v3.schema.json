@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "history_go_place_production_workflow_v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "place_id",
+    "category",
+    "contracts",
+    "sources",
+    "read_first",
+    "profile",
+    "source_review",
+    "collections",
+    "modules",
+    "blockers",
+    "manual_reviews",
+    "state"
+  ],
+  "properties": {
+    "schema": { "const": "history_go_place_production_workflow_v3" },
+    "place_id": { "type": "string", "minLength": 1 },
+    "category": { "type": "string", "minLength": 1 },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["place_production", "place_card_collections", "quiz_production"],
+      "properties": {
+        "place_production": { "const": "v3" },
+        "place_card_collections": { "type": "string", "minLength": 1 },
+        "quiz_production": { "type": "string", "minLength": 1 }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["factuality_record"],
+      "properties": {
+        "factuality_record": { "type": "string", "minLength": 1 },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "read_first": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "status", "recorded_at", "rule_files", "contracts", "attestation"],
+      "properties": {
+        "schema": { "const": "history_go_place_read_first_v3" },
+        "status": { "const": "PASS" },
+        "recorded_at": { "type": "string", "minLength": 1 },
+        "rule_files": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true,
+          "minItems": 1
+        },
+        "contracts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["place_production", "place_card_collections", "quiz_production"],
+          "properties": {
+            "place_production": { "const": "v3" },
+            "place_card_collections": { "type": "string", "minLength": 1 },
+            "quiz_production": { "type": "string", "minLength": 1 }
+          }
+        },
+        "attestation": { "type": "string", "minLength": 1 }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "reason"],
+      "properties": {
+        "id": { "enum": ["major", "standard", "focused", "micro"] },
+        "status": { "enum": ["confirmed", "provisional"] },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "source_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "in_progress", "complete"] },
+        "evidence": { "type": "string", "minLength": 1 }
+      }
+    },
+    "collections": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/decision" }
+    },
+    "modules": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/decision" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "manual_reviews": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["images", "final_ui"],
+      "properties": {
+        "images": { "$ref": "#/$defs/manualReview" },
+        "final_ui": { "$ref": "#/$defs/manualReview" }
+      }
+    },
+    "state": { "enum": ["in_progress", "blocked", "complete"] }
+  },
+  "$defs": {
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["PASS", "BEGRUNNET_NA", "BLOCKED"] },
+        "reason": { "type": "string", "minLength": 1 },
+        "refs": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "manualReview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["PENDING", "PASS"] },
+        "evidence": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

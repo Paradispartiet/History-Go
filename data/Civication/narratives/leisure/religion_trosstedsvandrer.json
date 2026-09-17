@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_trosstedsvandrer",
+  "type": "leisure",
+  "title": "Trosstedsvandrer — sted, etikette og gjesterolle",
+  "sociological_theme": "Hvordan nysgjerrige besøk til tros- og livssynssteder kan bygge stedskunnskap og respekt uten å gjøre åpne dører til fri adgang, enkeltpersoner til representanter eller gjentatte besøk til innsiderstatus.",
+  "applies_when": {
+    "any_tags": [
+      "religion:trosstedsvandrer"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "doren_og_reglene",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Åpen dør betyr ikke regeløst rom",
+      "situation": [
+        "Et tros- eller livssynssted er åpent for besøk, men har egne regler for inngang, sko, mat eller hvor man kan gå.",
+        "Offentlig tilgjengelighet betyr ikke at alle rom og handlinger er frie for enhver bruk.",
+        "Trosstedsvandreren må lese situasjonen før nysgjerrighet blir til selvtatt adgang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp ved inngangen, les informasjonen og spør verten om hvilke områder og regler som gjelder.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Gå inn overalt som er ulåst; et åpent sted er i praksis offentlig.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_entry_vs_assumption"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klaer_uten_folklore",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medbesøkeren",
+      "subject": "Hva er faktisk forventet her?",
+      "situation": [
+        "Spilleren har hørt generelle råd om klær, men stedet kommuniserer noe mer konkret og mindre dramatisk.",
+        "Klesnormer varierer mellom tradisjoner, situasjoner, rom og lokale miljøer.",
+        "Respekt blir mer presis når den bygger på stedet man faktisk besøker fremfor en forestilling om hele tradisjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg stedets konkrete veiledning og spør hvis noe er uklart.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den strengeste stereotypen du kjenner; da kan du ikke gjøre feil.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_dress_vs_stereotype"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kameraet_i_rommet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Praktikeren",
+      "subject": "Rommet er vakkert — men hvem er med på bildet?",
+      "situation": [
+        "Arkitektur og symboler frister til fotografering mens mennesker ber, samles eller arbeider i samme rom.",
+        "Et sted kan tillate bilder av bygningen og samtidig ha andre normer for mennesker og ritualer.",
+        "Synlighet er ikke det samme som samtykke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk fotoreglene og unngå identifiserbare mennesker uten tydelig samtykke.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Ta bildet raskt; folk som oppholder seg i et besøksmål må regne med å bli fotografert.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_photo_vs_privacy"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "se_eller_delta",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Du er velkommen til å se — hva med å gjøre?",
+      "situation": [
+        "Et ritual foregår mens besøkende får være til stede.",
+        "Noen deler kan være åpne for gjester, andre forutsetter medlemskap, tro, forberedelse eller invitasjon.",
+        "Å kopiere en handling er ikke automatisk det samme som respektfull deltakelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva gjester kan gjøre, og observer resten uten å late som du har samme rolle som deltakerne.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Gjør det de andre gjør; etterligning er den sikreste måten å vise respekt på.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_observation_vs_participation"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_ble_krav",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Praktikeren",
+      "subject": "Må den du møter forklare hele tradisjonen?",
+      "situation": [
+        "Spilleren har mange spørsmål og møter en person som egentlig er der for sin egen praksis.",
+        "Nysgjerrighet er legitim, men enkeltpersoner har ingen plikt til å undervise besøkende eller representere alle.",
+        "Et godt spørsmål trenger også et godt tidspunkt og et frivillig svar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om personen har tid og lyst til å svare, og aksepter et nei uten å presse.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Still alle spørsmålene nå; besøket er jo en læringsmulighet.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_curiosity_vs_duty"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rommet_som_ogsa_er_hverdag",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Frivilligverten",
+      "subject": "Det skjer mer her enn seremonier",
+      "situation": [
+        "Spilleren forventer et høytidelig rom, men finner matservering, barneaktivitet, møter og praktisk arbeid.",
+        "Tros- og livssynssteder kan være både symbolske rom og hverdagslige sosiale infrastrukturer.",
+        "Hverdagsaktivitet gjør ikke stedet mindre meningsbærende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til både ritualet og hverdagsarbeidet som holder fellesskapet i gang.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra hverdagsaktiviteten; den egentlige betydningen finnes bare i seremoniene.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_sacred_vs_everyday"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kalenderen_og_tomrommet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Du kom utenom arrangementet",
+      "situation": [
+        "Et sted er stille på tidspunktet spilleren besøker det, selv om nettsiden viser store høytider og samlinger.",
+        "Et trossted har rytmer som ikke alltid er synlige for en tilfeldig gjest.",
+        "Et tomt rom er ikke bevis på at stedet er lite brukt eller betydningsløst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill ditt besøkstidspunkt fra stedets samlede aktivitet og se etter kalender eller annen kontekst.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med at stedet sjelden brukes fordi det var stille da du kom.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_event_vs_ordinary"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gaven_ved_utgangen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medbesøkeren",
+      "subject": "Er dette inngangsbillett?",
+      "situation": [
+        "Ved utgangen finnes en donasjonsmulighet, og besøkende tolker den ulikt.",
+        "Frivillige bidrag kan støtte drift uten å være betaling for retten til å være til stede.",
+        "Samtidig kan besøkende ønske å bidra når de faktisk har brukt ressurser og vertskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn ut om bidraget er frivillig og gi bare dersom du ønsker og kan, uten å gjøre beløpet til mål på respekt.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Betal mye for å bevise at du tok besøket på alvor.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_donation_vs_access"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_som_var_lokal",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Frivilligverten",
+      "subject": "Her snakker folk faktisk sammen",
+      "situation": [
+        "Spilleren antar at respekt krever absolutt stillhet, men lokal praksis er sosial og samtalepreget i deler av bygget.",
+        "Etikette er situasjonsbundet og kan endre seg mellom rom og aktiviteter.",
+        "Overdrevet høytidelighet kan også skape avstand eller gjøre andre til eksotiske objekter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg den sosiale tonen i akkurat dette rommet og aktiviteten, uten å overdøve dem som bruker stedet.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Vær demonstrativt taus overalt; trossteder skal behandles likt.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_silence_vs_code"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilgjengelighet_i_gammel_bygning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Tilgjengelighetsgjesten",
+      "subject": "Den vakre trappen er også en barriere",
+      "situation": [
+        "En eldre bygning har arkitektoniske kvaliteter, men skaper vansker for enkelte besøkende.",
+        "Bevaring, økonomi og fysisk tilgjengelighet kan stå i reell spenning.",
+        "Å beskrive et sted respektfullt innebærer også å se hvem som faktisk kan bruke det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta tilgjengeligheten med i vurderingen og se etter alternative innganger, hjelp eller begrensninger som bør kommuniseres.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Hold tilgjengelighet utenfor besøksbeskrivelsen; det handler ikke om stedets åndelige betydning.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_access_vs_architecture"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "en_person_hele_tradisjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Praktikeren",
+      "subject": "Dette er mitt svar, ikke alles",
+      "situation": [
+        "En person deler hvordan vedkommende selv forstår en praksis.",
+        "Spilleren fristes til å bruke svaret som forklaring på hva hele religionen eller livssynet mener.",
+        "Levd praksis varierer mellom personer, miljøer, retninger og tider."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjengi svaret som personens eller miljøets perspektiv og let etter flere kilder før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Bruk svaret som representativt for hele tradisjonen; personen er jo medlem.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_person_vs_representative"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rangeringen_av_rom",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medbesøkeren",
+      "subject": "Hvilket sted var best?",
+      "situation": [
+        "Etter flere besøk begynner gruppen å rangere steder etter skjønnhet, varme, fremmedhet og hvor sterke opplevelsene var.",
+        "Sammenligning kan gjøre forskjeller synlige, men rangering kan redusere levende miljøer til forbrukeropplevelser.",
+        "Steder kan vurderes etter praktiske forhold uten at deres verdi for brukerne blir en konkurranse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign konkrete trekk og erfaringer uten å gjøre tradisjonene eller fellesskapene til en vinnerliste.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Lag en samlet rangering; gode besøksmål bør kunne konkurrere på samme skala.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_comparison_vs_ranking"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "posten_som_mistet_kontekst",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildevennen",
+      "subject": "Bildet trenger mer enn en smart bildetekst",
+      "situation": [
+        "Spilleren vil dele et bilde og en kort forklaring etter besøket.",
+        "En enkel formulering kan gjøre lokal praksis til universell regel eller blande arkitektur, historie og tro.",
+        "Kort formidling trenger ikke bety at viktige forbehold forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva du faktisk så, hvor og når, og unngå å gjøre én observasjon til regel for hele tradisjonen.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Skriv den mest slående generaliseringen; korte poster må være tydelige.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_sharing_vs_context"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjenganger_uten_innsiderstatus",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Du kjenner stedet godt nå — men hvilken rolle har du?",
+      "situation": [
+        "Etter mange besøk kjenner spilleren navn, rom, rutiner og flere mennesker på stedet.",
+        "Gjentatt nærvær kan gi lokal kunnskap og tillit uten å gjøre en besøkende til medlem eller representant.",
+        "Familiaritet blir mest robust når rollegrensen fortsatt er tydelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk kunnskapen til å være en bedre gjest, men la medlemmer og ansvarlige definere stedets praksis og representasjon.",
+          "effect": 1,
+          "tags": [
+            "local_etiquette",
+            "respect",
+            "role_clarity"
+          ],
+          "feedback": "Du behandler stedet som et levende miljø med lokale regler, mennesker og tydelige gjesteroller."
+        },
+        {
+          "id": "B",
+          "label": "Ta en mer autoritativ rolle overfor nye besøkende; du kjenner jo stedet nesten som en innsider.",
+          "effect": -1,
+          "tags": [
+            "assumption",
+            "generalization",
+            "false_authority"
+          ],
+          "feedback": "Besøket bygger mer på antakelser, forbrukerblikk eller selvtatt representasjonsrett enn situasjonen gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "trosstedsvandrer_familiarity_vs_membership"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

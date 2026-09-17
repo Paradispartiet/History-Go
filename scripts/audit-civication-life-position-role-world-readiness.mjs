@@ -210,7 +210,16 @@ function narrativeMetadataMatch(record, position) {
     applies_when: record.json.applies_when
   }));
   const rel = normalizeText(record.rel);
-  const scoped = badgeScopedTokens(position).some((token) => containsCanonicalNeedle(meta, token));
+  const scopedTokens = badgeScopedTokens(position);
+  const scoped = scopedTokens.some((token) => containsCanonicalNeedle(meta, token));
+  const explicitCanonicalScopes = new Set(
+    collectStrings(record.json.applies_when || {})
+      .map(normalizeText)
+      .filter((token) => positions.some((candidate) => badgeScopedTokens(candidate).includes(token)))
+  );
+  if (explicitCanonicalScopes.size > 0 && !scopedTokens.some((token) => explicitCanonicalScopes.has(token))) {
+    return false;
+  }
   return canonicalNeedles(position).some((needle) => {
     const matched = containsCanonicalNeedle(meta, needle) || containsCanonicalNeedle(rel, needle);
     if (!matched) return false;

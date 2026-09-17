@@ -10,8 +10,8 @@
     "path": "data/fagverk/fagverk_registry.json",
     "schema": "history_go_fagverk_registry_v1",
     "version": "3.16.0",
-    "updated_at": "2026-09-14",
-    "content_sha256": "4e6b1c986cf08bed13e90ef2bc448a3bcae0982646fe7f70d4ec2f9f3d222d53"
+    "updated_at": "2026-09-16",
+    "content_sha256": "ad3cb62944ebec6607fb59419ffb6e380a1bcd55d8e1301074f204dcd55a3421"
   },
   "subject_inventory": {
     "path": "data/fagverk/subject_inventory.json",
@@ -27,7 +27,7 @@
     "schema": null,
     "version": null,
     "updated_at": null,
-    "content_sha256": "2829587c90732a9aafd5112c0275cdccb72dd407a9c0c7c3d2993d0153c93852"
+    "content_sha256": "0570c69515a943ab9934fa8535500dd3e8cf37ca1956023e8960810f6ebcbc37"
   },
   "summary": {
     "subject_count": 20,
@@ -36,9 +36,9 @@
     "chapter_subject_count": 18,
     "chapter_count": 190,
     "module_file_count": 497,
-    "package_file_count": 444,
+    "package_file_count": 450,
     "chapter_referenced_file_count": 934,
-    "referenced_file_count": 1307,
+    "referenced_file_count": 1313,
     "missing_file_count": 0,
     "optional_gap_count": 1
   },
@@ -76,9 +76,9 @@
         "supersetQuizMal"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 96,
+      "package_file_count": 99,
       "required_package_file_count": 4,
-      "optional_package_file_count": 92,
+      "optional_package_file_count": 95,
       "package_files": [
         {
           "path": "data/fag/by/emner_by.json",
@@ -271,6 +271,18 @@
           ],
           "exists": true,
           "content_sha256": "8bce3082cd29f6d8d739ce22251ec7e9526cac6a10c33d5b482609d16e8e64df"
+        },
+        {
+          "path": "data/quiz/by/nydalen_sets_merged.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "b223a43979e9476a80ab251115468b837c4c19090fd5d5aa7be3c70e131cd1e4"
         },
         {
           "path": "data/quiz/by/olaf_ryes_plass_sets.json",
@@ -621,6 +633,18 @@
           "content_sha256": "d595c650483dfba61e6a9a728454def73f8d41bfc1ce4b831df0445d8ee28e9a"
         },
         {
+          "path": "data/quiz/production_briefs/by/nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "e135b68f5cae82843b058a31c8933b33ccef33dc36218d3f92f566bf1b34a12d"
+        },
+        {
           "path": "data/quiz/production_briefs/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -969,6 +993,18 @@
           "content_sha256": "a85fbd438691c98a047f5dc30c74fa88274bfe66b455269d012e88fb30895522"
         },
         {
+          "path": "data/quiz/production_context/by/nydalen.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.nydalen.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "5dd0a81ebebaea6d1b4210fa9d9e33211be732785fd720456f65986e67da45da"
+        },
+        {
           "path": "data/quiz/production_context/by/olaf_ryes_plass.json",
           "required": false,
           "fields": [
@@ -1233,20 +1269,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "3e26cf3113e430238c89e2a927219eed33860885e97b3dac9baf121e63bb3bfd",
+      "package_content_sha256": "1043050c8b2120a92657d02f9be69c0e47aed8803aabd1cebb36409ff789fe34",
       "chapter_count": 17,
       "module_file_count": 51,
       "brief_file_count": 17,
       "claims_file_count": 17,
       "chapter_referenced_file_count": 102,
       "chapter_content_sha256": "38e5be5259e0aa3d733f4ddeeb46df87769c935ad9dd76cd175f8bb645ee79fa",
-      "referenced_file_count": 198,
+      "referenced_file_count": 201,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "097981e32c40054f3fd8aac7d110d42898b3dfa4c7f4de0424d28d5b171453f5",
-      "content_sha256": "be9ed448964cb78cadcfee9cb4757d92677eea0f570673aa0f5cb54ae3ca68bb",
+      "structure_sha256": "bfd684b6573b59bac1cbdac5a8ffdccd04616db578068bc60c70da42fbed7e27",
+      "content_sha256": "6edd1b12741d8d1971d967b55886048fec13f73a3f1fe3ceade5a280291d740a",
       "chapters": [
         {
           "chapter_id": "byliv-offentlige-rom",
@@ -4197,7 +4233,7 @@
             "subjectPathwayPackage"
           ],
           "exists": true,
-          "content_sha256": "fbb605becb5659676b9e1b7b1ce50f479aef0cf2831f4d4021db2ee1168acc03"
+          "content_sha256": "b76eddc08dff8c3b6f84c85b1d3470eb373ce14038b200140d697c1025652b16"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -4236,7 +4272,7 @@
           "content_sha256": "f19ed931d5a47c3969551cf58d9895049a399aff71dc397a3ea63ac76e31d2c5"
         }
       ],
-      "package_content_sha256": "84a1b17bdaed0a86fbd884a4c6050df49c5728520c1221a1b76b75424f4c3c40",
+      "package_content_sha256": "90eddb50f2fc511ffd43d588e7aa75c9f53f7c4cbf56df443774836b18c28284",
       "chapter_count": 1,
       "module_file_count": 0,
       "brief_file_count": 0,
@@ -4249,7 +4285,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "ec24aaf3be5c1dc7c7d48c397759450338513624c105a3e1779c53c545d445e7",
-      "content_sha256": "f783954b17e8af28cd5c262b32fa2f4e871b5101ca42ab8a0f9b8e31af776fca",
+      "content_sha256": "6c9ef1b60848138fff08efc9fdc129aef54fa6dd7fb1d94c23ee7c3fd36e53c2",
       "chapters": [
         {
           "chapter_id": "lesekultur_bokdeling_offentlighet",
@@ -4752,9 +4788,9 @@
         "universityFramework"
       ],
       "missing_manifest_fields": [],
-      "package_file_count": 58,
+      "package_file_count": 61,
       "required_package_file_count": 4,
-      "optional_package_file_count": 54,
+      "optional_package_file_count": 57,
       "package_files": [
         {
           "path": "data/fag/naeringsliv/emner_naeringsliv_canonical_v4_5.json",
@@ -5009,6 +5045,18 @@
           "content_sha256": "757e59ec0acad2fafc55e0bf8c8c604d9ce47e066ccebebd4530fcb101307656"
         },
         {
+          "path": "data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.quiz_file"
+          ],
+          "exists": true,
+          "content_sha256": "f0a0601a8f067a52d0635ba3e834c92e6c3776dab443f7769b03e3c58a798bdc"
+        },
+        {
           "path": "data/quiz/naeringsliv/oslo_posthus_sets_merged.json",
           "required": false,
           "fields": [
@@ -5163,6 +5211,18 @@
           ],
           "exists": true,
           "content_sha256": "fdd387cb996720ecf46f71f813cec9732773a7248a81a60f97567d17076013ad"
+        },
+        {
+          "path": "data/quiz/production_briefs/naeringsliv/norges_bank_bankplassen_4.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.source_brief"
+          ],
+          "exists": true,
+          "content_sha256": "cf1dd59f42684b116ec99934a868fb294399ba31a8c75876da2952b9902d65a2"
         },
         {
           "path": "data/quiz/production_briefs/naeringsliv/oslo_posthus.json",
@@ -5321,6 +5381,18 @@
           "content_sha256": "23e0d06ae571d6d1433d865321619b15f850d3318a94a9ec546c52992ba5baf7"
         },
         {
+          "path": "data/quiz/production_context/naeringsliv/norges_bank_bankplassen_4.json",
+          "required": false,
+          "fields": [
+            "quizProduction"
+          ],
+          "key_paths": [
+            "quizProduction.targets.norges_bank_bankplassen_4.context_artifact"
+          ],
+          "exists": true,
+          "content_sha256": "77d2872fb90b1fc66308de66cd31f0c0103039182701fb178f296e8eb547dde8"
+        },
+        {
           "path": "data/quiz/production_context/naeringsliv/oslo_posthus.json",
           "required": false,
           "fields": [
@@ -5390,7 +5462,7 @@
             "quizProduction.targets.tollboden_oslo.context_artifact"
           ],
           "exists": true,
-          "content_sha256": "d10596cbb228a6c0e38dc2f33b7081c30156e679f4b33ca3ad1c9ca249486343"
+          "content_sha256": "b292a930189a541b226ef787b368f25f8665ff5dbd83e59e6f2f2943f69b7424"
         },
         {
           "path": "data/quiz/production_context/naeringsliv/tollpakkhuset.json",
@@ -5453,20 +5525,20 @@
           "content_sha256": "636265081b34aef4899fb33a8dd8ad7b03233480abdbfb812edced0d6a1a14d5"
         }
       ],
-      "package_content_sha256": "ef50c93a9f8af75e9a3f0bdf3a134280bcdcd37d3d6f2c81f71b7d48da74775d",
+      "package_content_sha256": "9a163349ae110587cce19e63754df1956d5c23e7c05ee002142db4868718dccb",
       "chapter_count": 12,
       "module_file_count": 36,
       "brief_file_count": 12,
       "claims_file_count": 12,
       "chapter_referenced_file_count": 72,
       "chapter_content_sha256": "06d3f52d2c3e2ff12545cbbc2fc0c1a783071c46a79f1e46ae368e44562143d1",
-      "referenced_file_count": 130,
+      "referenced_file_count": 133,
       "missing_required_files": [],
       "missing_optional_files": [],
       "missing_chapter_files": [],
       "missing_files": [],
-      "structure_sha256": "f0d9430a6efa99990821377aab6cf36fbd3963c9fad0b76e59cc3782bc902342",
-      "content_sha256": "f5a162dae48b1ce974486ab5069ddd9b2ae7c0dc8558f57800142fe59ed2662b",
+      "structure_sha256": "67d1d3962328fe80812c45ca7891c8097825c7b9fc5c598eafa771ff3ebe0db9",
+      "content_sha256": "3e19258f501c52ebc481f23dfa5ef15100c41ddd5f8b247c5bf3dd067987df4f",
       "chapters": [
         {
           "chapter_id": "arbeid-produksjon-verdiskaping",
@@ -6504,7 +6576,7 @@
             "supersetQuizMal"
           ],
           "exists": true,
-          "content_sha256": "ba284e2ec33a84619ceabccd21531bd3481ab9892a9521087dd2f3acc9e11dff"
+          "content_sha256": "38ec823e0204abd056733cac342502fbbf20dbb10871723823110914e38d8378"
         },
         {
           "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
@@ -6531,7 +6603,7 @@
           "content_sha256": "f16c375238d416b175a744c9f0e36b621cd3b0a92686f30a111a15b72c836c46"
         }
       ],
-      "package_content_sha256": "924991c2bc1f3098645a18036ef3164c32d27fc080a0b73992c8df361c49c2e7",
+      "package_content_sha256": "9a80bd137a0bf2c6a43157ae8d8e17ad4e1a6d7e332d5c8fa5a1a1ea8fdd855a",
       "chapter_count": 4,
       "module_file_count": 4,
       "brief_file_count": 4,
@@ -6544,7 +6616,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "0c63d356d2f9bfa7def826d6e8c649974cb9fa8020b5335be50d221ac0ad917a",
-      "content_sha256": "2818de0a49ab21d0aa6de2daa7b0fce8ea27e833fc8559790374f13239601b9f",
+      "content_sha256": "de0e114acbb4be8bd89dc5bb2c43030c0c9ae4898be2ee523b6ef406bd3664ca",
       "chapters": [
         {
           "chapter_id": "institusjon-historie-produksjonsfelt",
@@ -6910,7 +6982,7 @@
             "runtimeManifest"
           ],
           "exists": true,
-          "content_sha256": "b029a17e1946217516728a98534e8239e9843077588f3b51a912f164e976b31b"
+          "content_sha256": "5480d0353502f8b6405cbad2bf87ab460450df00fe9a8d8049d84a95a0aef971"
         },
         {
           "path": "data/fag/subkultur/subkulturpensum_canonical_v4_5.json",
@@ -6997,7 +7069,7 @@
           "content_sha256": "433545b9735dd873d7fd8842d9c8053bbf5830a72c48114a2d0e93d753b95093"
         }
       ],
-      "package_content_sha256": "bfc807c0c39932d6bd50a6d54933b40d6e1bf8a60fbe5b47efce15f3b71c56b4",
+      "package_content_sha256": "b607b61b08dd29ff306d847bcb0e4d3809f8b21864da608d8fbeb738bd928c11",
       "chapter_count": 8,
       "module_file_count": 24,
       "brief_file_count": 0,
@@ -7010,7 +7082,7 @@
       "missing_chapter_files": [],
       "missing_files": [],
       "structure_sha256": "2ff5c4da930a4c39886d57a63cc6430e291978e5679f7f97811f5231f426e564",
-      "content_sha256": "afbbd552a0d4abce1d98940b627b7bae213722d6eb155ebeba9d21964ba3f171",
+      "content_sha256": "ac4ea55c8f1a924d73355f4b246a7e0e1b59830559a77181a98e718da5cfc487",
       "chapters": [
         {
           "chapter_id": "subkulturteori_feltgrenser",
@@ -8041,5 +8113,5 @@
       ]
     }
   },
-  "release_sha256": "1231baf563c98f4fe361d82c712bead036f58f6c32109ed14fd52059f8a92fea"
+  "release_sha256": "e723fdf226cf5fecefdaf513e973cf0ee93343a87bb6fa23b83076cf8ec7c473"
 }

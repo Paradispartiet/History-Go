@@ -2,7 +2,7 @@
 
 Status: **canonical scope-kontrakt for stedsproduksjon**  
 Eier: `place_by_place_production_workflow`  
-Sist kontrollert: **2026-08-31**
+Sist kontrollert: **2026-09-16**
 
 Denne kontrakten bestemmer **hvor omfattende et sted skal produseres**. Hva slags innhold stedet skal få bestemmes primært av Badge-systemet og stedets kilder, ikke av en universell sjekkliste.
 
@@ -35,7 +35,7 @@ Universal canonical core
 → produksjon
 ```
 
-Badge/underbadge bestemmer hvilke medlemmer og faglige spor som må undersøkes; kildene bestemmer hva som faktisk kvalifiserer. Dette endrer ikke PlaceCard-geometrien: et fullprodusert ordinært Place har alltid fire ferdige samlinger etter `data/places/README_place_rounds.md`.
+Badge/underbadge bestemmer hvilke medlemmer og faglige spor som må undersøkes; kildene bestemmer hva som faktisk kvalifiserer. For ordinære Places er PlaceCard-samlingene adaptive: `place_card_profile.collection_ids` inneholder **én til fire** ferdige, relevante samlinger. People, Objects, Brands og kategoriuttrykk er kandidatsamlinger, ikke en universell fyllkvote.
 
 ## 2. Universal canonical core
 
@@ -64,7 +64,7 @@ Preflight skal alltid:
 4. lese `data/badges/place_production_routing_v1.json`;
 5. bruke hovedbadge + aktive underbadges til å lage kandidatlisten for research;
 6. teste kandidatene mot faktiske kilder og subsystemkontrakter;
-7. lage endelig `INNHOLDSPLAN` med `PRODUSER` eller `BEGRUNNET N/A` per modul.
+7. lage endelig `INNHOLDSPLAN` med `PRODUSER`, `BEGRUNNET N/A` eller `BLOCKED` per relevant samling/modul.
 
 Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes som canonical semantiske hint i research-/quizplanleggingen. De er ikke faktakilder og kan aldri erstatte stedsspesifikk evidens.
 
@@ -81,7 +81,7 @@ Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes s
 - `sport + stadion` prioriterer anlegg, konkurranser, utøvere/klubber og publikumskultur;
 - `sport + supporterkultur` flytter tyngde mot mennesker, uttrykk, objekter og scene-/identitetskultur;
 - `natur + vann_og_vassdrag` bruker Badge-filens vann-/økologi-hints og dokumenterte arter/landform;
-- `natur + fugler` prioriterer Fauna-research, men alle fire faste naturflater krever stedsspesifikk dokumentasjon; manglende artsbelegg blokkerer fullproduksjonen og erstattes aldri av generiske arter;
+- `natur + fugler` prioriterer Fauna-research; Nature følger sitt eksplisitte samlingssett når naturkontrakten krever det, og generiske arter brukes aldri som filler;
 - `religion + trossteder_og_hellige_rom` prioriterer ritualer/tradisjoner, People, Objects og Brands; Structures velges bare når et reelt bygnings-/anleggsmiljø er et selvstendig hovedspor;
 - `kunst + offentlig_kunst` prioriterer Productions, kunstnere, materialer og commissioning/offentlig resepsjon;
 - `litteratur + forfattere_og_litteratursteder` prioriterer People, tekster/verk, Objects og relaterte steder;
@@ -89,28 +89,38 @@ Når Badge-filen har `groups`, `children` eller `quizFocus`, skal disse brukes s
 - `utdanning + utdanningshistorie` prioriterer institusjonshistorie, lærere/elever, skolebygg og læremidler;
 - `helse + helsetjenester_helseokonomi` prioriterer institusjon, system, profesjoner og historiske tjenester fremfor individuell klinikk.
 
-Dette er kandidatstyring for medlemmene, aldri tillatelse til å redusere det faste samlingsantallet. Objects-kandidater følger i tillegg `docs/PLACE_OBJECTS_CANONICAL.md`: stedets hovedfunksjon styrer utvalget, og på industristeder prioriteres produksjonsverktøy, former, maskiner, emballasje og fysiske produkter før sekundære kulturspor.
+Dette er kandidatstyring, ikke en pålagt samlingskvote. Objects-kandidater følger i tillegg `docs/PLACE_OBJECTS_CANONICAL.md`: stedets hovedfunksjon styrer utvalget, og på industristeder prioriteres produksjonsverktøy, former, maskiner, emballasje og fysiske produkter før sekundære kulturspor.
 
-### Fast PlaceCard-modell
+### Stedsavhengig PlaceCard-modell
 
-Alle ordinære fullprofiler bruker:
+Ordinære fullprofiler vurderer som utgangspunkt:
 
 ```text
 People · Objects · Brands · kategoriuttrykk
 ```
 
-Nature og canonicale spesialprofiler følger sine faste firersett. Kategoriuttrykket og brukerrettet navn følger 19-kategorimatrisen i `data/places/README_place_rounds.md`. `related` er aldri en PlaceCard-samling. Structures er bare standard for By og ellers en uttrykkelig begrunnet stedsspesifikk variant.
+Hver kandidatsamling får etter source review status `PASS`, `BEGRUNNET N/A` eller `BLOCKED`. Bare `PASS`-samlinger legges i `place_card_profile.collection_ids`. Et ordinært PlaceCard har **én til fire** ferdige samlinger; det finnes ingen tomme reservefelt og ingen filler. Nature og canonicale spesialprofiler følger sine egne eksplisitte samlingssett. Kategoriuttrykket og brukerrettet navn følger kategorimatrisen i `data/places/README_place_rounds.md`. `related` er aldri en PlaceCard-samling. Structures er bare standard for By og ellers en uttrykkelig begrunnet stedsspesifikk variant.
 
-## 4. Obligatoriske samlingsmedlemmer og betingede moduler
+## 4. Kandidatsamlinger og betingede moduler
 
-For en ordinær fullprofil er følgende obligatoriske produksjonsspor:
+For en ordinær fullprofil skal disse fire kandidatsamlingene vurderes når Badge-/underbadge-/source-grunnlaget gjør dem plausible:
 
-- People-medlemmer;
-- Objects-medlemmer;
-- Brands-medlemmer;
-- kategoriuttrykkets medlemmer (`historical_events`, `productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten);
+- People;
+- Objects;
+- Brands;
+- kategoriuttrykket (`historical_events`, `productions`, `structures`, `competitions` eller `destinations` etter samlingskontrakten).
 
-Badge-router, underbadges og kilder bestemmer hvilke medlemmer som kvalifiserer, ikke om en av de fire flatene kan utelates.
+Sluttstatus per samling:
+
+```text
+PASS
+BEGRUNNET N/A
+BLOCKED
+```
+
+- `PASS`: minst ett ekte canonical medlem kvalifiserer og nødvendig evidens/preview er ferdig.
+- `BEGRUNNET N/A`: dokumentert kandidataudit finner ingen naturlig kvalifisert kandidat. Dette er en legitim ferdigstatus.
+- `BLOCKED`: en reell kvalifisert kandidat finnes, men evidens, asset, proveniens eller materialisering mangler.
 
 For Historie er standarduttrykket `historical_events`. Det er en egen historisk entity-familie, ikke en alias for `productions` og ikke kalender-/nåtidssystemet `events`. `Structures` kan fortsatt velges som en eksplisitt stedsspesifikk variant når et reelt bygnings- eller anleggsmiljø er sterkere enn hendelsessporet.
 
@@ -124,9 +134,9 @@ Følgende øvrige moduler er betingede og produseres når de er reelt relevante 
 - ekstra Fagverk-spor;
 - ekstra medier.
 
-`BEGRUNNET N/A` kan brukes for de øvrige betingede modulene etter ordentlig kandidataudit. Det kan ikke brukes for People, Objects, Brands eller kategoriuttrykket i en ordinær fullprofil. Manglende kvalifiserte medlemmer der er `BLOCKED`, ikke N/A.
+`BEGRUNNET N/A` brukes når korrekt research viser at en samling/modul ikke hører naturlig til stedet. Det betyr ikke «gjør senere». `BLOCKED` brukes bare for reelt kvalifisert, men uferdig innhold.
 
-**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** Hvis en av de fire samlingene ikke har et ekte canonical medlem med riktig bilde, kan stedet ikke ferdigmeldes.
+**Ingen tomme PlaceCard-samlinger ved fullført ny/full produksjon. Ingen filler.** En samling uten kvalifisert medlem utelates som `BEGRUNNET N/A`; en kvalifisert, men uferdig samling blokkerer til den er ferdig eller evidensen viser at den ikke kvalifiserer.
 
 ## 5. Produksjonsprofiler
 
@@ -134,19 +144,19 @@ Følgende øvrige moduler er betingede og produseres når de er reelt relevante 
 
 Sted med stor betydning og bredt kildebåret stoff som bærer flere selvstendige lærings-, material- eller narrative spor.
 
-Forventning: dypest research, `fagverk.level: full` med utfyllende fagartikkel og flere selvstendige læringsspor, og fire sterke PlaceCard-samlinger etter den faste kategoriprofilen.
+Forventning: dypest research, `fagverk.level: full` med utfyllende fagartikkel og flere selvstendige læringsspor, og alle sterke, kvalifiserte PlaceCard-samlinger som stedet faktisk bærer.
 
 ### `standard`
 
 Default for et betydelig canonical Place med komplett stedsopplevelse, flere reelle innholdsvinkler og nok materiale til solid Fagverk/quiz uten Major-bredde.
 
-Forventning: full universal core, minst `fagverk.level: standard` med egen læringsinngang, minst tre linser, fire spørsmål, observerbart spor og kilder, og fire sterke PlaceCard-samlinger valgt etter den faste kategoriprofilen.
+Forventning: full universal core, minst `fagverk.level: standard` med egen læringsinngang, minst tre linser, fire spørsmål, observerbart spor og kilder, og et kildebåret utvalg på én til fire ferdige PlaceCard-samlinger.
 
 ### `focused`
 
 Canonical Place med historisk/kulturell verdi konsentrert i én hovedfunksjon, hendelse, struktur, spor eller snevert tema.
 
-Forventning: full universal core og fire ferdige PlaceCard-samlinger, men mindre dybde og færre medlemmer per samling enn et bredere sted. `focused` bruker fortsatt minst Fagverk-nivå `standard`; nivå `micro` er bare for canonicale Micro Places. `focused` reduserer aldri antallet samlingsflater.
+Forventning: full universal core og de PlaceCard-samlingene stedet faktisk bærer, ofte færre og smalere enn et bredere sted. `focused` bruker fortsatt minst Fagverk-nivå `standard`; nivå `micro` er bare for canonicale Micro Places. `focused` reduserer aldri kvaliteten på samlingene som faktisk produseres.
 
 `focused` kan aldri velges bare fordi oppgaven ønskes billigere eller raskere.
 
@@ -214,22 +224,23 @@ Canonical Quiz-kontrakt velger adaptivt:
 
 Badge, underbadges og eventuell `quizFocus` brukes til å planlegge hvilke kunnskapsområder som undersøkes; påstandsbank og faktisk læringsbredde bestemmer quizprofil og eksakt lengde.
 
-## 9. PlaceCard: fire ferdige samlinger, aldri tomme kort
+## 9. PlaceCard: én til fire ferdige samlinger, aldri tomme kort
 
-For nye/fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste med **nøyaktig fire ferdige, relevante samlinger**.
+For nye/fullproduserte ordinære Places er `place_card_profile.collection_ids` en eksplisitt kuratert liste med **én til fire ferdige, relevante samlinger**.
 
-- nøyaktig fire samlinger er gyldig for ordinære fullprofiler;
-- vanlig profil bruker People, Objects, Brands og kategoriuttrykket;
-- Nature og canonicale spesialprofiler følger sine faste firersett;
+- bare samlinger med `PASS` inngår;
+- People, Objects, Brands og kategoriuttrykk er kandidater, ikke obligatoriske slots;
+- Nature og canonicale spesialprofiler følger sine eksplisitte samlingssett;
 - `related` er aldri samling eller reserve;
 - hver valgt samling har minst ett ekte canonical medlem og validert, lastbart previewbilde;
-- manglende kvalifisert innhold blokkerer fullproduksjonen;
-- runtime viser fire samlinger i en balansert 2×2-komposisjon;
+- en kvalifisert kandidat med manglende evidens/asset er `BLOCKED`;
+- fravær av kvalifisert kandidat etter dokumentert audit er `BEGRUNNET N/A`;
+- runtime bruker den adaptive 1–4-layouten uten tomme reservefelter;
 - People/Flora/Fauna er sirkler; øvrige er avrundede rektangler;
 - `frontImage` forblir stående hovedflate;
-- gamle Places uten ny eksplisitt profil beholder kompatibilitetsvisningen til revisjon.
+- gamle Places beholder kompatibilitetsvisningen til revisjon.
 
-Designregel: **Alle fire flater skal oppleves som nødvendige, tydelig forskjellige og stedsegne.** Ingen flate fylles med en perifer entity bare for å bestå geometrien.
+Designregel: **Alle viste flater skal oppleves som nødvendige, tydelig forskjellige og stedsegne.** Ingen flate fylles med en perifer entity bare for å fylle geometri.
 
 ## 10. Arbeidskort
 
@@ -244,15 +255,15 @@ PRODUKSJONSPROFIL: major | standard | focused
 PROFILSTATUS: provisional | confirmed
 PROFILBEGRUNNELSE:
 INNHOLDSPLAN:
-  People: PRODUSER | BLOCKED + grunn
-  Objects: PRODUSER | BLOCKED + grunn
-  Brands: PRODUSER | BLOCKED + grunn
-  Category expression: PRODUSER | BLOCKED + grunn
+  People: PRODUSER | N/A + grunn | BLOCKED + grunn
+  Objects: PRODUSER | N/A + grunn | BLOCKED + grunn
+  Brands: PRODUSER | N/A + grunn | BLOCKED + grunn
+  Category expression: PRODUSER | N/A + grunn | BLOCKED + grunn
   Stories: PRODUSER | N/A + grunn
   Før/etter: PRODUSER | N/A + grunn
   Nyheter: PRODUSER | N/A + grunn
   Lesespor: PRODUSER | N/A + grunn
-PLACECARD-SAMLINGER: <nøyaktig fire ferdige IDs, ingen tomme>
+PLACECARD-SAMLINGER: <én til fire ferdige PASS-IDs, ingen tomme>
 KATEGORIUTTRYKK + BRUKERRETTET NAVN:
 OBJECTS ↔ KATEGORIUTTRYKK-EIERGRENSE:
 UNIVERSAL CORE STATUS:
@@ -263,10 +274,11 @@ UNIVERSAL CORE STATUS:
 - eksisterende korrekt innhold beholdes;
 - relevant source-backed innhold kan ikke hoppes over fordi stedet er `focused`;
 - Badge/underbadge kan ikke brukes til å dikte innhold som kildene ikke bærer;
-- N/A gjelder ikke de fire obligatoriske fullprofil-samlingene;
+- `BEGRUNNET N/A` krever dokumentert kandidataudit og kan ikke brukes som kostnadssnarvei;
+- en reell kvalifisert, men uferdig samling er `BLOCKED`, ikke N/A;
 - `focused` betyr smalt komplett, ikke halvferdig;
 - grønn CI kan ikke overstyre svak redaksjonell eller visuell sluttflate.
 
 ## Kort regel
 
-**La innholdet følge Badges: hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hvilke medlemmer som er sanne og relevante, og produksjonsprofilen avgjør hvor dypt vi går. Alle fulle ordinære Places viser fire ferdige samlinger: People, Objects, Brands og kategoriens eget uttrykk.**
+**La innholdet følge Badges og kildene: hovedbadge åpner researchuniverset, underbadges former kandidatene, kildene avgjør hvilke samlinger og medlemmer som er sanne og relevante, og produksjonsprofilen avgjør hvor dypt vi går. Ordinære Places viser én til fire ferdige PASS-samlinger. People, Objects, Brands og kategoriuttrykk produseres bare når stedet faktisk bærer dem.**

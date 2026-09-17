@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_litteraturinteressert_stream",
+  "type": "leisure",
+  "title": "Litteraturinteressert",
+  "sociological_theme": "litteraer_offentlighet_institusjoner_marked_kanon_oversettelse_kritikk_tilgang_og_grensen_mot_leserpraksis_og_profesjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:litteraturinteressert"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "inngangen_som_faktisk_trekker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Bokhylla",
+      "subject": "Hva er det du egentlig vil nærme deg?",
+      "situation": [
+        "Du merker at interessen for litteratur vokser, men én forfatter, sjanger, epoke eller idé trekker mer enn resten.",
+        "Litteraturinteresse trenger ikke begynne med oversikt; én konkret fascinasjon kan være en legitim inngang til feltet.",
+        "Å være Litteraturinteressert betyr å følge feltet med nysgjerrighet, ikke å kunne bevise bredde eller ekspertise."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følge den konkrete interessen og bruke den som inngang til flere sammenhenger.",
+          "effect": 1,
+          "tags": [
+            "curiosity",
+            "field_entry",
+            "role_clarity"
+          ],
+          "feedback": "Valget lar interesse bli en vei inn i feltet uten å gjøre oversikt til adgangskrav."
+        },
+        {
+          "id": "B",
+          "label": "Legge bort det som trekker fordi du først bør ta en mer «riktig» inngang.",
+          "effect": -1,
+          "tags": [
+            "canon_pressure",
+            "status_anxiety",
+            "identity_drift"
+          ],
+          "feedback": "Valget gjør feltets symbolske hierarki viktigere enn faktisk nysgjerrighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_inngangen_som_faktisk_trekker"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arrangementet_der_alle_kan_mer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Litteraturhuset",
+      "subject": "Når rommet virker fullt av innvidde",
+      "situation": [
+        "Du kommer til et forfattermøte der andre snakker som om alle kjenner forfatterskapet, forlaget og de tidligere bøkene.",
+        "Kulturarenaer kan åpne litteraturen, men de kan også produsere små adgangstester gjennom språk, referanser og selvsikkerhet.",
+        "Litteraturinteresse gir full rett til å være til stede uten at du må skjule hva du ikke vet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bli, lytte og stille ett konkret spørsmål hvis du faktisk lurer på noe.",
+          "effect": 1,
+          "tags": [
+            "public_culture",
+            "knowledge_gap",
+            "role_clarity"
+          ],
+          "feedback": "Valget behandler offentlig litteraturkultur som et rom for deltakelse, ikke en eksamen."
+        },
+        {
+          "id": "B",
+          "label": "Late som du kjenner referansene for å unngå å virke uinnvidd.",
+          "effect": -1,
+          "tags": [
+            "social_mask",
+            "status_anxiety",
+            "belonging_pressure"
+          ],
+          "feedback": "Valget gjør tilhørighet avhengig av å skjule kunnskapshull."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_arrangementet_der_alle_kan_mer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanonlisten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Leselisten",
+      "subject": "Kanon som kart eller portvakt",
+      "situation": [
+        "En liste over «bøker alle bør ha lest» dukker opp og er både nyttig og demotiverende.",
+        "Kanon kan vise historiske forbindelser, men blir et problem når den brukes som medlemskort til litterær offentlighet.",
+        "Litteraturinteressert handler om å kunne orientere seg uten å gjøre kanon til et personlig verdihierarki."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke lista som kart og velge én tittel fordi sammenhengen faktisk virker interessant.",
+          "effect": 1,
+          "tags": [
+            "canon",
+            "orientation",
+            "role_clarity"
+          ],
+          "feedback": "Valget beholder historisk orientering uten å gjøre lista til adgangsprøve."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme at interessen ikke teller før hele lista er unnagjort.",
+          "effect": -1,
+          "tags": [
+            "canon_pressure",
+            "quota_pressure",
+            "identity_shame"
+          ],
+          "feedback": "Valget gjør en orienteringsressurs om til en legitimitetsprøve."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_kanonlisten"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oversetteren_i_skyggen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kolofonsiden",
+      "subject": "Hvem gjorde boka tilgjengelig?",
+      "situation": [
+        "Du oppdager at en roman du liker er oversatt, men at oversetteren nesten ikke ble nevnt i samtalen rundt boka.",
+        "Oversettelse er en del av litteraturens infrastruktur: språk, stil og tilgang går gjennom et faktisk arbeid.",
+        "Litteraturinteresse blir bredere når oppmerksomheten også omfatter formidlingen mellom språk, ikke bare forfatternavnet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legge merke til oversetteren og undersøke kort hvordan oversettelsen er presentert.",
+          "effect": 1,
+          "tags": [
+            "translation",
+            "infrastructure",
+            "field_attention"
+          ],
+          "feedback": "Valget gjør en ofte usynlig del av litteraturfeltet synlig uten å kreve språkfaglig ekspertise."
+        },
+        {
+          "id": "B",
+          "label": "Avvise oversetterrollen som uviktig fordi «det er jo forfatterens bok».",
+          "effect": -1,
+          "tags": [
+            "invisibility",
+            "authority_drift",
+            "field_narrowing"
+          ],
+          "feedback": "Valget gjør litteraturens mellomledd usynlige og snevrer inn forståelsen av feltet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_oversetteren_i_skyggen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisuka",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kulturdekningen",
+      "subject": "Når prisen blir hele samtalen",
+      "situation": [
+        "En stor litteraturpris gjør én bok og ett forfatterskap svært synlig på få dager.",
+        "Priser kan løfte fram kvalitet, historie og oppmerksomhet, men de fungerer også som institusjonell seleksjon og markedssignal.",
+        "Litteraturinteresse kan følge prisene uten å gjøre dem til fasit for egen oppmerksomhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke prisen som grunn til å undersøke boka og samtidig se hvem og hva som ikke ble synlig.",
+          "effect": 1,
+          "tags": [
+            "prizes",
+            "institutions",
+            "field_attention"
+          ],
+          "feedback": "Valget bruker prisen som informasjon om feltet, ikke som endelig kvalitetsdom."
+        },
+        {
+          "id": "B",
+          "label": "Anta at vinneren automatisk er årets viktigste bok og at resten er mindre relevant.",
+          "effect": -1,
+          "tags": [
+            "prestige_capture",
+            "ranking",
+            "field_narrowing"
+          ],
+          "feedback": "Valget lar en institusjonell utmerkelse lukke nysgjerrigheten i stedet for å åpne den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_prisuka"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forlagsnavnet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Bokhandelen",
+      "subject": "Når logoen får status",
+      "situation": [
+        "Du begynner å kjenne igjen forlag og ser at enkelte navn gir bøker ekstra tyngde i samtaler.",
+        "Forlag redigerer, finansierer, posisjonerer og distribuerer bøker; de er både kulturinstitusjoner og markedsaktører.",
+        "Å følge forlagslandskapet kan gi orientering uten at forlagsnavnet blir en erstatning for egen nysgjerrighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke forlagsnavnet som kontekst og fortsatt vurdere om boka faktisk interesserer deg.",
+          "effect": 1,
+          "tags": [
+            "publishing",
+            "market",
+            "orientation"
+          ],
+          "feedback": "Valget holder institusjonskunnskap og personlig interesse fra hverandre."
+        },
+        {
+          "id": "B",
+          "label": "La et prestisjeforlag avgjøre at boka må være verdt oppmerksomheten.",
+          "effect": -1,
+          "tags": [
+            "prestige_capture",
+            "brand_status",
+            "identity_drift"
+          ],
+          "feedback": "Valget flytter vurderingen fra nysgjerrighet til institusjonell status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_forlagsnavnet"
+      ],
+      "risk_links": [
+        "money_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bordet_foran_i_bokhandelen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Bokhandelen",
+      "subject": "Synlighet er også distribusjon",
+      "situation": [
+        "Bordet ved inngangen er fullt av nye titler, mens mange andre bøker står usynlig lenger inne.",
+        "Hva som oppleves som «det alle leser» formes av innkjøp, kampanjer, plassering, medieoppmerksomhet og tilgjengelighet.",
+        "Litteraturinteresse kan være oppmerksom på markedet uten å gjøre all synlighet mistenkelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se på frontbordet, men også lete etter én bok utenfor den mest synlige strømmen.",
+          "effect": 1,
+          "tags": [
+            "visibility",
+            "market",
+            "discovery"
+          ],
+          "feedback": "Valget gjør markedets synlighetsmekanismer synlige uten å avvise populære bøker."
+        },
+        {
+          "id": "B",
+          "label": "Anta at det som står fremst også er det feltet objektivt vurderer som viktigst.",
+          "effect": -1,
+          "tags": [
+            "market_capture",
+            "visibility_bias",
+            "field_narrowing"
+          ],
+          "feedback": "Valget forveksler distribusjon og plassering med en samlet kulturell dom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_bordet_foran_i_bokhandelen"
+      ],
+      "risk_links": [
+        "money_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_i_tiden",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Litteraturhistorien",
+      "subject": "Boka kom ikke ut i et vakuum",
+      "situation": [
+        "Du møter en eldre tekst der språk, normer og konflikter virker fremmede.",
+        "Litteraturhistorisk kontekst kan forklare hva et verk svarte på, hvilke former det brøt med og hvilke lesere det opprinnelig møtte.",
+        "Interesse for kontekst er noe annet enn å gjøre hver lesning til en skoleoppgave eller hevde historikerkompetanse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne ett pålitelig holdepunkt om tiden eller litteraturmiljøet og lese videre med det i bakhodet.",
+          "effect": 1,
+          "tags": [
+            "history",
+            "context",
+            "orientation"
+          ],
+          "feedback": "Valget bruker kontekst for å åpne teksten uten å gjøre interessen til en faglig eksamen."
+        },
+        {
+          "id": "B",
+          "label": "Avvise teksten som uforståelig fordi den ikke passer dagens språk og forventninger.",
+          "effect": -1,
+          "tags": [
+            "presentism",
+            "context_loss",
+            "field_narrowing"
+          ],
+          "feedback": "Valget stenger en historisk sammenheng før den får bli synlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_verket_i_tiden"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sjangergrensen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Boksamtalen",
+      "subject": "«Det der er vel ikke ordentlig litteratur?»",
+      "situation": [
+        "En samtale glir over i spørsmål om hva som egentlig teller som litteratur: krim, fantasy, tegneserier, sakprosa, lydbok eller hybridformer.",
+        "Sjangre og feltgrenser har historie, institusjoner og status knyttet til seg, men de er ikke naturlover.",
+        "Litteraturinteresse kan undersøke grensene uten å late som alle verk er like eller at én smak avgjør kategorien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hva grensen bygger på og holde samtalen åpen for historie, form og institusjonell praksis.",
+          "effect": 1,
+          "tags": [
+            "genre_boundary",
+            "status",
+            "field_attention"
+          ],
+          "feedback": "Valget gjør kategorisering til et undersøkelsespunkt i stedet for et våpen."
+        },
+        {
+          "id": "B",
+          "label": "Bruke egen smak som bevis på hva som bør regnes som «ordentlig» litteratur.",
+          "effect": -1,
+          "tags": [
+            "gatekeeping",
+            "taste_status",
+            "authority_drift"
+          ],
+          "feedback": "Valget gjør personlig preferanse til uformell portvakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_sjangergrensen"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forfatteren_og_verket",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Biografien tar over boka",
+      "situation": [
+        "En forfatters livshistorie blir så dominerende i omtalen at teksten nesten forsvinner.",
+        "Biografi kan være relevant kontekst, men forfatterrolle, offentlig person og verk er ikke identiske størrelser.",
+        "Litteraturinteresse kan holde flere nivåer i hodet samtidig uten å late som ett av dem automatisk forklarer de andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom det som faktisk er dokumentert om forfatteren og det du finner i teksten.",
+          "effect": 1,
+          "tags": [
+            "authorship",
+            "biography",
+            "role_clarity"
+          ],
+          "feedback": "Valget holder biografisk kontekst og tekstlig observasjon fra hverandre."
+        },
+        {
+          "id": "B",
+          "label": "Bruke en kjent biografisk detalj som forklaring på nesten alt i verket.",
+          "effect": -1,
+          "tags": [
+            "biographical_reduction",
+            "certainty",
+            "field_narrowing"
+          ],
+          "feedback": "Valget gjør en kompleks forbindelse til en enkel fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_forfatteren_og_verket"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anmeldelsen_for_du_mener_noe",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kulturseksjonen",
+      "subject": "Andres dom før din egen",
+      "situation": [
+        "Du leser flere anmeldelser av en bok du nettopp har begynt på og merker at formuleringene deres fester seg.",
+        "Kritikk er en egen praksis med argumenter, redaksjonelle rammer og faglige normer; den kan gi språk og perspektiv uten å overta egen respons.",
+        "Litteraturinteressert kan følge kritikken uten å bli kritiker eller låne en dom som identitetsmarkør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hva kritikerne faktisk argumenterer for og vente med å gjøre dommen til din egen.",
+          "effect": 1,
+          "tags": [
+            "criticism",
+            "borrowed_language",
+            "role_clarity"
+          ],
+          "feedback": "Valget bruker kritikk som kilde til perspektiv, ikke som ferdig mening."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta den skarpeste anmeldelsen som om den allerede var din egen vurdering.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "social_mask",
+            "identity_drift"
+          ],
+          "feedback": "Valget låner kritikerrollen i stedet for å følge samtalen som interessert leser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_anmeldelsen_for_du_mener_noe"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "biblioteket_som_litteraer_infrastruktur",
+      "message_type": "task",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Biblioteket",
+      "subject": "Mer enn hyller",
+      "situation": [
+        "Du oppdager en utstilling, et arrangement og en bestillingsmulighet på biblioteket som gjør et smalt forfatterskap tilgjengelig.",
+        "Biblioteket former litterær tilgang gjennom samlinger, formidling, kompetanse og offentlig finansiering.",
+        "Litteraturinteresse kan se institusjonen som del av feltet uten å gjøre bibliotekbrukeren til bibliotekar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke tilbudet og legge merke til hvordan biblioteket gjør litteratur tilgjengelig utover det kommersielle utvalget.",
+          "effect": 1,
+          "tags": [
+            "library",
+            "public_infrastructure",
+            "access"
+          ],
+          "feedback": "Valget kobler interesse til den offentlige infrastrukturen som gjør bredde mulig."
+        },
+        {
+          "id": "B",
+          "label": "Se biblioteket som en passiv lagerplass og anta at litteraturfeltet først og fremst finnes i bokhandelen.",
+          "effect": -1,
+          "tags": [
+            "institution_blindness",
+            "market_capture",
+            "field_narrowing"
+          ],
+          "feedback": "Valget gjør en sentral offentlig del av litteraturfeltet usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_biblioteket_som_litteraer_infrastruktur"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bokbadet_uten_prestasjon",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bokbadet",
+      "subject": "Å delta uten å demonstrere",
+      "situation": [
+        "Etter et bokbad fortsetter samtalen i foajeen, og flere prøver å vise hvor mye de kjenner til forfatterskapet.",
+        "Litterære miljøer skaper fellesskap, men også kulturell kapital: navn, sitater og referanser kan brukes til å markere posisjon.",
+        "Litteraturinteresse tåler både kunnskap og kunnskapshull når formålet er faktisk deltagelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakke om det du faktisk ble nysgjerrig på og la resten være åpent.",
+          "effect": 1,
+          "tags": [
+            "belonging",
+            "cultural_capital",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør miljøet til et sted for videre interesse fremfor statusdemonstrasjon."
+        },
+        {
+          "id": "B",
+          "label": "Fylle samtalen med navn og referanser du bare kjenner overflatisk for å virke mer etablert.",
+          "effect": -1,
+          "tags": [
+            "social_mask",
+            "cultural_capital",
+            "status_anxiety"
+          ],
+          "feedback": "Valget gjør tilhørighet avhengig av performativ kunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_bokbadet_uten_prestasjon"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "interesse_uten_embete",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Litteraturfeltet",
+      "subject": "Hvor slutter interessen?",
+      "situation": [
+        "Du følger nå forfattere, forlag, priser, arrangementer, oversettelser og debatter tettere enn før.",
+        "Det gir orientering og kulturell trygghet, men ikke automatisk kritikerstatus, redaksjonell myndighet, forfatterrolle eller faglig mandat.",
+        "Litteraturinteressert er en bred kulturell interesseposisjon mellom ren hverdagslesing og mer spesialiserte praksiser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stå for at du følger feltet og samtidig være presis om hvor egen kunnskap og rolle stopper.",
+          "effect": 1,
+          "tags": [
+            "identity",
+            "authority_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør interessen tydelig uten å konvertere den til profesjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke bredden du har fått som grunn til å opptre som kritiker eller redaktør i enhver samtale.",
+          "effect": -1,
+          "tags": [
+            "authority_drift",
+            "status_capture",
+            "identity_drift"
+          ],
+          "feedback": "Valget gjør kulturell orientering om til et mandat den ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litint_interesse_uten_embete"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_v1",
+  "id": "utdanning_klasseromsobservator",
+  "type": "leisure",
+  "title": "Klasseromsobservatør — rom, relasjoner og deltakelse uten vurderingsmyndighet",
+  "sociological_theme": "Hvordan observasjon av rom, relasjoner, oppgaver, forventninger, rytmer og deltakelse kan gi situasjonskunnskap uten å bli persondiagnose, overvåking eller lærer-, inspektør-, sensor- og spesialpedagogmyndighet.",
+  "applies_when": {
+    "any_tags": [
+      "utdanning:klasseromsobservator"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "rommet_som_styrer_blikket",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Alle ser samme vei — men ikke nødvendigvis det samme",
+      "situation": [
+        "Møbleringen gjør fronten tydelig og gjør sideprat og samarbeid mer krevende.",
+        "Noen deltakere ser tavla godt, mens andre stadig må vri seg eller flytte ting.",
+        "Rommet er ikke bare bakgrunn; det fordeler oppmerksomhet og muligheter før noen sier et ord."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter konkret hvordan plassering, siktlinjer og bevegelsesmuligheter påvirker deltakelsen uten å tolke intensjoner du ikke kan vite.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder med hvem som er motiverte eller umotiverte ut fra hvor i rommet de sitter.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "room_layout_vs_participation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "handen_som_alltid_er_oppe",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medeleven",
+      "subject": "De samme svarer først hver gang",
+      "situation": [
+        "Noen få rekker opp hånden raskt og ofte.",
+        "Andre virker oppmerksomme, men kommer sjelden inn før samtalen har flyttet seg videre.",
+        "Synlig aktivitet og faktisk deltakelse er ikke alltid det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg mønsteret over flere situasjoner og skill mellom taletid, ventetid, responsform og faktisk oppgavearbeid.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk antall håndsopprekninger som direkte mål på hvem som deltar mest i læringen.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "visible_activity_vs_participation"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppgaven_med_skjult_startstrek",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Noen skjønte oppgaven før den ble forklart ferdig",
+      "situation": [
+        "Oppgaven bygger på ord, referanser eller arbeidsmåter noen kjenner fra før.",
+        "Forskjellen ser først ut som tempo, men kan handle om ulik tilgang til startpunktet.",
+        "En observatør kan beskrive dette uten å diagnostisere evner eller bakgrunn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvilke forkunnskaper oppgaven ser ut til å forutsette og hvilke konkrete tegn som viser hvor folk kommer inn i arbeidet.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at de som starter raskt er sterkere elever og de andre svakere.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "task_entry_vs_assumed_ability"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_stille_samtalen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Det skjer mer i sideblikkene enn i plenum",
+      "situation": [
+        "Mens én person snakker, utveksler andre små tegn, lapper eller korte hviskinger.",
+        "Noe av dette hjelper oppgaven videre; noe handler om helt andre ting.",
+        "Det uformelle samspillet kan være relevant uten at observasjon blir overvåking av privat sosialt liv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv bare det som er relevant for situasjonen og unngå å registrere private detaljer som ikke trengs for å forstå deltakelsen.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Noter navn, private kommentarer og relasjonsdetaljer fordi alt som skjer i rommet kan bli nyttig senere.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "informal_interaction_vs_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ventetiden_etter_sporsmalet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Hvor lenge går det før noen får svare?",
+      "situation": [
+        "Et spørsmål blir stilt, og det går bare et øyeblikk før ordet gis til den første raske stemmen.",
+        "Korte pauser kan favorisere dem som formulerer seg raskt eller allerede kjenner svaret.",
+        "Observasjon av timing kan si noe om strukturen uten å bedømme enkeltpersoners kapasitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Mål eller beskriv ventetiden og se om andre stemmer kommer inn når rytmen endres.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at stillheten betyr at ingen andre kan svare.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "wait_time_vs_access"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_fikk_rollene_med_en_gang",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Én skriver, én snakker, resten følger",
+      "situation": [
+        "I gruppearbeidet oppstår roller uten at de er avtalt.",
+        "Den samme personen fører pennen, en annen presenterer, og noen får nesten ingen synlig oppgave.",
+        "Fordelingen kan være effektiv og samtidig begrense hvem som får prøve bestemte ferdigheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvem som faktisk gjør hvilke typer oppgaver og hvordan rollene endrer seg eller låser seg gjennom økten.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Registrer bare om gruppa leverer et godt sluttprodukt.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "group_roles_vs_learning_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forventningen_i_en_liten_setning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medeleven",
+      "subject": "«Dette kan dere jo allerede»",
+      "situation": [
+        "En liten kommentar signaliserer at stoffet burde være kjent.",
+        "Noen nikker, mens andre slutter å spørre.",
+        "Forventninger kan påvirke deltakelse uten at de står i en plan eller regel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvordan utsagnet etterfølges av endringer i spørsmål, tempo eller deltakelse, uten å tillegge noen motiv.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at kommentaren beviser at den som sa den ikke bryr seg om de som strever.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "expectation_signal_vs_silence"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hjelpen_som_gar_til_de_samme",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Hvem får oppfølging mens alle jobber?",
+      "situation": [
+        "Under individuelt arbeid beveger en voksen eller veileder seg rundt i rommet.",
+        "Noen får flere stopp og lengre samtaler enn andre.",
+        "Forskjellen kan være faglig begrunnet, tilfeldig eller et resultat av hvem som ber tydeligst om hjelp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer mønsteret i tid og kontaktform og hold flere mulige forklaringer åpne til du har mer grunnlag.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder etter én økt med at hjelpen fordeles urettferdig.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "help_distribution_vs_inference"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pausen_som_endrer_rommet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medeleven",
+      "subject": "Etter pausen sitter folk helt annerledes",
+      "situation": [
+        "Når pausen er over har noen byttet plass, små grupper er endret og energien i rommet er annerledes.",
+        "Det minner om at relasjoner og fysisk plassering er bevegelige, ikke faste egenskaper.",
+        "En observasjon over tid må tåle at mønstre skifter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign før og etter og noter hva som faktisk endret seg, uten å gjøre første mønster til personlighetstrekk.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved den første tolkningen fordi den var enklere å kategorisere.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "snapshot_vs_change_over_time"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "oppgaven_som_skifter_mediet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Gruppemedlemmet",
+      "subject": "Da vi fikk tegne, kom flere inn",
+      "situation": [
+        "En oppgave som først var muntlig blir gjort visuelt eller praktisk.",
+        "Personer som var lite synlige i plenum bidrar mer når uttrykksformen endres.",
+        "Endringen sier noe om situasjonen, ikke nødvendigvis om en stabil type menneske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvordan deltakelsen endres med uttrykksformen og unngå å rangere formene som naturlig bedre for bestemte personer.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi deltakerne faste merkelapper som «visuelle» eller «muntlige» typer etter én observasjon.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "modality_vs_fixed_label"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blikket_mot_klokka",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "De siste ti minuttene skjer noe med konsentrasjonen",
+      "situation": [
+        "Mot slutten av økten blir flere rastløse, samtaler glir ut og oppgaver avsluttes raskere.",
+        "Tidsplassering, pausebehov og oppgavetype kan alle spille inn.",
+        "Observasjon kan vise rytmer uten å gjøre dem til medisinske eller psykologiske diagnoser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv når endringen skjer og hvilke handlinger som faktisk endres, og hold årsaksforklaringen åpen.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv at gruppa har dårlig konsentrasjonsevne.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "time_rhythm_vs_diagnosis"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatene_som_ble_for_personlige",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Trenger du egentlig navnene her?",
+      "situation": [
+        "Notatene dine inneholder detaljer om enkeltpersoner som ikke er nødvendige for å beskrive mønsteret.",
+        "Mer detalj kan føles mer presist, men gjør også observasjonen mer personidentifiserende.",
+        "Klasseromsobservasjon må ha en grense mellom nyttig situasjonsdata og unødvendig personkartlegging."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fjern identifiserende detaljer som ikke er nødvendige og behold mønsteret på situasjonsnivå.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold alt fordi rånotater alltid kan være nyttige senere.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observation_detail_vs_privacy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkningen_som_ble_sikker",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Observasjonsvennen",
+      "subject": "Vi så det samme, men forklarer det forskjellig",
+      "situation": [
+        "To observatører beskriver samme hendelse likt, men gir den ulike forklaringer.",
+        "Det viser forskjellen mellom registrering og fortolkning.",
+        "God observasjon blir sterkere når usikkerhet og alternative forklaringer er synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill i notatet mellom hva som ble sett, hva du tolker, og hvilke andre forklaringer som fortsatt er mulige.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velg den forklaringen som passer best med det du allerede trodde om situasjonen.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "description_vs_interpretation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klasseromsobservator_ikke_inspektor",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Å se mønstre gir ikke mandat til å vurdere personer",
+      "situation": [
+        "Du har blitt god til å legge merke til rom, relasjoner, oppgaver, forventninger og deltakelse.",
+        "Andre begynner å spørre om du kan avgjøre hvem som er gode lærere, svake elever eller hvem som trenger særskilte tiltak.",
+        "Observasjonskompetanse kan være reell uten å gi lærer-, inspektør-, sensor-, diagnose- eller spesialpedagogmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk observasjonene til å beskrive situasjoner og spørsmål, men la kvalifiserte roller eie personvurderinger og formelle beslutninger.",
+          "effect": 1,
+          "tags": [
+            "observation",
+            "participation",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller observasjon fra tolkning og bruker situasjonskunnskap uten å gjøre den til persondom eller profesjonsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi personkonklusjoner fordi du har sett nok timer til å stole på eget blikk.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "labeling",
+            "authority_overreach"
+          ],
+          "feedback": "Observasjonen glir over i rangering, personkartlegging eller sikrere konklusjoner enn situasjonen bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observation_vs_professional_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

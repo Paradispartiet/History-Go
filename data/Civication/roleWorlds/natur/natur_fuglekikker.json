@@ -1,0 +1,1141 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_fuglekikker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "fuglekikker",
+    "label": "Fuglekikker"
+  },
+  "title": "Fuglekikker — oppmerksomhet, sjeldenhet og feltansvar",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å lære fugler gjennom lyd, blikk, sted og gjentakelse uten at sjeldenhetsjakt, utstyr, digitale forslag, gruppehierarki eller ønsket om dokumentasjon gjør usikker observasjon til sikkerhet eller fritidskompetanse til profesjonell myndighet",
+    "description": "Fuglekikker-verdenen undersøker lydgjenkjenning, sjeldenhetsvarsler, hekkefred, optikk og status, artsapper, trekk og sesong, deling av sensitive lokaliteter, uformell ekspertise, avspilling av fuglelyd, fellesturens tempo, privat grunn, skadde fugler, artslister og grensen mot profesjonell ornitologi. Fuglekikker er en practice_identity og selvvalgt feltpraksis. Rollen gir ingen automatisk myndighet som ornitolog, biolog, naturforvalter, viltbehandler, veterinær eller offentlig fagperson, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "status_anxiety",
+    "public_attention",
+    "social_mask",
+    "numerical_control"
+  ],
+  "social_environments": [
+    "morgenstien der lyd, korte glimt og forventning gjør usikker identifikasjon til et sosialt og kunnskapsmessig spørsmål",
+    "fuglechatten der varsler om sjeldenheter sprer seg raskere enn alle detaljer kan verifiseres",
+    "hekke- og rasteområder der ønsket om bedre observasjon møter behovet for avstand og ro",
+    "utsiktspunktet og fellesturen der optikk, erfaring, tempo og språk skaper uformelle statusforskjeller",
+    "digitale artsapper og registreringsflater der forslag, kryss og kart kan se sikrere ut enn feltgrunnlaget er",
+    "private og sensitive lokaliteter der adgang, lokal kunnskap og deling av koordinater må veies mot interessen for å se mer"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "turkamerat",
+      "social_function": "deler feltøkter og gjør forventning, tempo og sjeldenhetsjakt sosialt synlig",
+      "class_position": "likestilt fritidsutøver uten formell myndighet",
+      "status": "høy relasjonell betydning når turer planlegges sammen",
+      "power_over_player": "kan øke tempoet, forsterke jakten på sjeldenheter eller gjøre en bomtur sosialt lettere å tåle",
+      "wants": "gode turer, delte observasjoner og følelsen av at det skjer noe",
+      "conceals": "at eget ønske om nye kryss ofte påvirker hvor sikkert et funn føles",
+      "speech_style": "ivrig, kortfattet og full av steds- og lydreferanser",
+      "teaches_player": "at fellesskap kan skjerpe både oppmerksomhet og prestasjonspress"
+    },
+    {
+      "id": "erfaren_fuglekikker",
+      "social_function": "representerer uformell feltkompetanse som kan åpne læring eller bli gatekeeping",
+      "class_position": "erfaren amatør eller frivillig med høy kunnskapsstatus, men uten automatisk profesjonelt mandat",
+      "status": "høy uformell autoritet i fuglemiljøet",
+      "power_over_player": "kan bekrefte eller utfordre identifikasjoner og påvirke hvem som føler seg kompetent i gruppa",
+      "wants": "presise observasjoner og et miljø som tar feltkunnskap på alvor",
+      "conceals": "at rask sikkerhet også kan bygge på vane, hierarki og forventning",
+      "speech_style": "artsrik, detaljorientert og vant til å peke ut kjennetegn raskt",
+      "teaches_player": "at ekspertise blir bedre når begrunnelsen kan deles og etterprøves"
+    },
+    {
+      "id": "ny_fuglekikker",
+      "social_function": "gjør terskler, tempo, utstyr og språk synlige fra perspektivet til en som fortsatt lærer",
+      "class_position": "ny deltaker med lav uformell status og ingen myndighet",
+      "status": "avhengig av om miljøet gir plass til spørsmål og langsommere observasjon",
+      "power_over_player": "kan speile om spillerens egen erfaring brukes inkluderende eller som rang",
+      "wants": "å lære arter uten å føle at hvert spørsmål avslører manglende verdi",
+      "conceals": "at usikkerhet ofte skjules når gruppa beveger seg fort",
+      "speech_style": "spørrende, konkret og forsiktig med bastante artsnavn",
+      "teaches_player": "at et åpent fuglemiljø krever mer enn at alle formelt får være med"
+    },
+    {
+      "id": "lokal_grunneier",
+      "social_function": "gjør ferdsel, eiendomsgrenser og lokal kunnskap synlig rundt attraktive observasjonssteder",
+      "class_position": "lokal rettighetshaver med situert kontroll over egen eiendom",
+      "status": "formell lokal posisjon i spørsmål om adgang på privat område",
+      "power_over_player": "kan tillate eller avvise adgang selv når fuglen er sjelden",
+      "wants": "respekt for eiendom, drift, dyr og steder som ikke tåler stor trafikk",
+      "conceals": "at lokalkunnskapen om fugleliv kan være større enn besøkende antar",
+      "speech_style": "jordnær, stedsorientert og tydelig på praktiske grenser",
+      "teaches_player": "at interesse og sjeldenhet aldri i seg selv gir adgang"
+    },
+    {
+      "id": "ornitologkontakt",
+      "social_function": "gjør grensen mellom amatørens feltpraksis og profesjonell ornitologisk eller biologisk vurdering tydelig",
+      "class_position": "fagperson med relevant kompetanse innen eget profesjonelt mandat",
+      "status": "høy faglig autoritet når observasjoner skal tolkes utover selve feltfunnet",
+      "power_over_player": "kan kreve bedre dokumentasjon, korrigere overtolkning og avgrense hva observasjonen faktisk viser",
+      "wants": "etterprøvbare data, tydelig usikkerhet og minst mulig forstyrrelse",
+      "conceals": "at også fagfolk må arbeide med ufullstendig informasjon",
+      "speech_style": "presis, sannsynlighetsorientert og tydelig på forskjellen mellom observasjon og konklusjon",
+      "teaches_player": "at mange feltår ikke automatisk gir profesjonell ornitolog-, biolog- eller naturforvaltningsmyndighet"
+    },
+    {
+      "id": "dyrevelferdskontakt",
+      "social_function": "representerer riktig videre håndtering når en skadet fugl krever mer enn trygg observasjon",
+      "class_position": "person eller tjeneste med situert ansvar eller relevant kompetanse for vilt eller dyrevelferd",
+      "status": "operativ autoritet i konkrete hjelpesituasjoner",
+      "power_over_player": "kan instruere om avstand, sikring, transport eller at fuglen bør få være i fred",
+      "wants": "minst mulig feil håndtering og rask tilgang til riktig hjelp",
+      "conceals": "at ikke alle skadde fugler kan eller bør håndteres på samme måte",
+      "speech_style": "rolig, handlingsrettet og tydelig på sikkerhet",
+      "teaches_player": "at omsorg også innebærer å stoppe der egen kompetanse og rolle stopper"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "certainty_vs_listening",
+      "meaning": "om Fuglekikker-identiteten tåler lydspor og delvise observasjoner uten å gjøre dem sikrere enn grunnlaget",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rarity_vs_patience",
+      "meaning": "om sjeldenhet skjerper oppmerksomheten uten å gjøre hastverk og status til hovedmålet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "proximity_vs_welfare",
+      "meaning": "om ønsket om foto og identifikasjon begrenses av hekkefred, avstand og minst mulig forstyrrelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tools_vs_status",
+      "meaning": "om kikkerter, kameraer og apper forblir hjelpemidler fremfor sosial eller epistemisk autorisasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sharing_vs_sensitivity",
+      "meaning": "om fellesskapets behov for stedskunnskap balanseres mot sårbare arter og lokaliteter",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise_vs_gatekeeping",
+      "meaning": "om erfaring brukes til å lære bort kjennetegn og usikkerhet fremfor å lukke samtalen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_professional_authority",
+      "meaning": "om omfattende fritidskunnskap holdes tydelig adskilt fra ornitologisk, biologisk, naturforvaltnings- og viltbehandlingsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du hører den før du ser den.",
+        "thread_ids": [
+          "hearing_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du hører den før du ser den.",
+        "thread_ids": [
+          "hearing_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du hører den før du ser den.",
+        "thread_ids": [
+          "hearing_vs_certainty",
+          "location_sharing_vs_protection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du hører den før du ser den.",
+        "thread_ids": [
+          "hearing_vs_certainty",
+          "group_pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: En sjelden gjest er meldt.",
+        "thread_ids": [
+          "rarity_vs_patience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: En sjelden gjest er meldt.",
+        "thread_ids": [
+          "rarity_vs_patience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: En sjelden gjest er meldt.",
+        "thread_ids": [
+          "rarity_vs_patience",
+          "learning_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: En sjelden gjest er meldt.",
+        "thread_ids": [
+          "rarity_vs_patience",
+          "access_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Du ser mer enn du burde nærme deg.",
+        "thread_ids": [
+          "nesting_vs_proximity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Du ser mer enn du burde nærme deg.",
+        "thread_ids": [
+          "nesting_vs_proximity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Du ser mer enn du burde nærme deg.",
+        "thread_ids": [
+          "nesting_vs_proximity",
+          "playback_vs_disturbance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Du ser mer enn du burde nærme deg.",
+        "thread_ids": [
+          "nesting_vs_proximity",
+          "care_vs_wildlife_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Hvem har best optikk?.",
+        "thread_ids": [
+          "gear_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Hvem har best optikk?.",
+        "thread_ids": [
+          "gear_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Hvem har best optikk?.",
+        "thread_ids": [
+          "gear_vs_attention",
+          "group_pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Hvem har best optikk?.",
+        "thread_ids": [
+          "gear_vs_attention",
+          "list_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Appen foreslår et navn.",
+        "thread_ids": [
+          "app_vs_field_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Appen foreslår et navn.",
+        "thread_ids": [
+          "app_vs_field_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Appen foreslår et navn.",
+        "thread_ids": [
+          "app_vs_field_evidence",
+          "access_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Appen foreslår et navn.",
+        "thread_ids": [
+          "app_vs_field_evidence",
+          "practice_vs_ornithology_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kalenderen og fuglene er uenige.",
+        "thread_ids": [
+          "migration_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#trekket_som_ikke_kommer_nar_det_skal"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kalenderen og fuglene er uenige.",
+        "thread_ids": [
+          "migration_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#trekket_som_ikke_kommer_nar_det_skal"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Kalenderen og fuglene er uenige.",
+        "thread_ids": [
+          "migration_vs_expectation",
+          "care_vs_wildlife_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#trekket_som_ikke_kommer_nar_det_skal"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kalenderen og fuglene er uenige.",
+        "thread_ids": [
+          "migration_vs_expectation",
+          "hearing_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#trekket_som_ikke_kommer_nar_det_skal"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Noen ber om nøyaktig posisjon.",
+        "thread_ids": [
+          "location_sharing_vs_protection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Noen ber om nøyaktig posisjon.",
+        "thread_ids": [
+          "location_sharing_vs_protection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Noen ber om nøyaktig posisjon.",
+        "thread_ids": [
+          "location_sharing_vs_protection",
+          "list_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Noen ber om nøyaktig posisjon.",
+        "thread_ids": [
+          "location_sharing_vs_protection",
+          "rarity_vs_patience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Den erfarne stemmen fyller rommet.",
+        "thread_ids": [
+          "learning_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Den erfarne stemmen fyller rommet.",
+        "thread_ids": [
+          "learning_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Den erfarne stemmen fyller rommet.",
+        "thread_ids": [
+          "learning_vs_gatekeeping",
+          "practice_vs_ornithology_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Den erfarne stemmen fyller rommet.",
+        "thread_ids": [
+          "learning_vs_gatekeeping",
+          "nesting_vs_proximity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et lydklipp kan få svar.",
+        "thread_ids": [
+          "playback_vs_disturbance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et lydklipp kan få svar.",
+        "thread_ids": [
+          "playback_vs_disturbance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et lydklipp kan få svar.",
+        "thread_ids": [
+          "playback_vs_disturbance",
+          "hearing_vs_certainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et lydklipp kan få svar.",
+        "thread_ids": [
+          "playback_vs_disturbance",
+          "gear_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Tempoet bestemmer hvem som får være med.",
+        "thread_ids": [
+          "group_pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Tempoet bestemmer hvem som får være med.",
+        "thread_ids": [
+          "group_pace_vs_belonging"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Tempoet bestemmer hvem som får være med.",
+        "thread_ids": [
+          "group_pace_vs_belonging",
+          "rarity_vs_patience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Tempoet bestemmer hvem som får være med.",
+        "thread_ids": [
+          "group_pace_vs_belonging",
+          "app_vs_field_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Den beste vinkelen ligger på den andre siden.",
+        "thread_ids": [
+          "access_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#fuglen_pa_privatomradet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Den beste vinkelen ligger på den andre siden.",
+        "thread_ids": [
+          "access_vs_respect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#fuglen_pa_privatomradet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Den beste vinkelen ligger på den andre siden.",
+        "thread_ids": [
+          "access_vs_respect",
+          "nesting_vs_proximity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#fuglen_pa_privatomradet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Den beste vinkelen ligger på den andre siden.",
+        "thread_ids": [
+          "access_vs_respect",
+          "migration_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#fuglen_pa_privatomradet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Omsorg krever også rolleforståelse.",
+        "thread_ids": [
+          "care_vs_wildlife_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Omsorg krever også rolleforståelse.",
+        "thread_ids": [
+          "care_vs_wildlife_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Omsorg krever også rolleforståelse.",
+        "thread_ids": [
+          "care_vs_wildlife_authority",
+          "gear_vs_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Omsorg krever også rolleforståelse.",
+        "thread_ids": [
+          "care_vs_wildlife_authority",
+          "location_sharing_vs_protection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Alt blir et nytt kryss.",
+        "thread_ids": [
+          "list_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Alt blir et nytt kryss.",
+        "thread_ids": [
+          "list_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Alt blir et nytt kryss.",
+        "thread_ids": [
+          "list_vs_presence",
+          "app_vs_field_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Alt blir et nytt kryss.",
+        "thread_ids": [
+          "list_vs_presence",
+          "learning_vs_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva har du egentlig lært å se?.",
+        "thread_ids": [
+          "practice_vs_ornithology_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva har du egentlig lært å se?.",
+        "thread_ids": [
+          "practice_vs_ornithology_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva har du egentlig lært å se?.",
+        "thread_ids": [
+          "practice_vs_ornithology_authority",
+          "migration_vs_expectation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva har du egentlig lært å se?.",
+        "thread_ids": [
+          "practice_vs_ornithology_authority",
+          "playback_vs_disturbance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "hearing_vs_certainty",
+      "relationship": "lydgjenkjenning mot sikker artsbestemmelse",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "6/evening",
+        "9/afternoon"
+      ]
+    },
+    {
+      "id": "rarity_vs_patience",
+      "relationship": "sjeldenhetsjakt mot tålmodig observasjon",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "7/evening",
+        "10/afternoon"
+      ]
+    },
+    {
+      "id": "nesting_vs_proximity",
+      "relationship": "dokumentasjon mot hekkefred og nødvendig avstand",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "8/evening",
+        "11/afternoon"
+      ]
+    },
+    {
+      "id": "gear_vs_attention",
+      "relationship": "utstyr som hjelpemiddel mot utstyr som status",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "9/evening",
+        "12/afternoon"
+      ]
+    },
+    {
+      "id": "app_vs_field_evidence",
+      "relationship": "artsappens forslag mot etterprøvbart feltgrunnlag",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "10/evening",
+        "13/afternoon"
+      ]
+    },
+    {
+      "id": "migration_vs_expectation",
+      "relationship": "trekkmønster mot naturens faktiske variasjon",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "11/evening",
+        "14/afternoon"
+      ]
+    },
+    {
+      "id": "location_sharing_vs_protection",
+      "relationship": "deling av lokalitet mot vern av sårbare steder",
+      "beat_refs": [
+        "1/afternoon",
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "learning_vs_gatekeeping",
+      "relationship": "erfaring som læring mot erfaring som gatekeeping",
+      "beat_refs": [
+        "2/afternoon",
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "playback_vs_disturbance",
+      "relationship": "effektiv lokking mot unødvendig forstyrrelse",
+      "beat_refs": [
+        "3/afternoon",
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "group_pace_vs_belonging",
+      "relationship": "gruppens tempo mot reell sosial tilhørighet",
+      "beat_refs": [
+        "1/evening",
+        "4/afternoon",
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "access_vs_respect",
+      "relationship": "bedre observasjon mot adgang og lokal respekt",
+      "beat_refs": [
+        "2/evening",
+        "5/afternoon",
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "care_vs_wildlife_authority",
+      "relationship": "omsorg for fugl mot profesjonell behandlings- og viltmyndighet",
+      "beat_refs": [
+        "3/evening",
+        "6/afternoon",
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "list_vs_presence",
+      "relationship": "artslisten som læringsspor mot artslisten som prestasjonsmål",
+      "beat_refs": [
+        "4/evening",
+        "7/afternoon",
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "practice_vs_ornithology_authority",
+      "relationship": "fuglekikkerpraksis mot profesjonell ornitologi- og naturforvaltningsmyndighet",
+      "beat_refs": [
+        "5/evening",
+        "8/afternoon",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "lyden_far_lov_til_a_vaere_usikker",
+      "description": "Spilleren blir mer komfortabel med at en lyd kan være et godt spor uten å bli et sikkert artsnavn.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg"
+      ]
+    },
+    {
+      "id": "sjeldenheten_mister_litt_statusmakt",
+      "description": "Varsler og kryss vurderes i større grad etter feltgrunnlag, belastning og egen nysgjerrighet enn etter sosial prestisje.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen"
+      ]
+    },
+    {
+      "id": "avstand_blir_en_del_av_observasjonen",
+      "description": "Hekkefred, lokking og presis lokasjonsdeling blir konkrete grenser for hvor langt et ønsket funn bør forfølges.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd"
+      ]
+    },
+    {
+      "id": "fellesskapet_blir_mer_etterprovbart",
+      "description": "Erfaring, utstyr og gruppetempo blir synlige som sosiale forhold, ikke som automatiske mål på hvem som har rett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg"
+      ]
+    },
+    {
+      "id": "rollen_far_en_tydelig_profesjonsgrense",
+      "description": "Feltkunnskap kan være dyp uten å bli veterinær-, vilt-, biolog-, ornitolog- eller naturforvaltningsfullmakt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen",
+        "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "lydglimtet_moter_appforslaget",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sjeldenhetsvarselet_moter_sensitiv_lokalitet",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "status",
+        "ecology"
+      ]
+    },
+    {
+      "id": "reiret_moter_lokkelyden",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "ecology",
+        "ethics"
+      ]
+    },
+    {
+      "id": "utstyrsstatus_moter_gruppens_tempo",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "status",
+        "relationship"
+      ]
+    },
+    {
+      "id": "erfaringshierarkiet_moter_rollegrensen",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "authority",
+        "reputation"
+      ]
+    },
+    {
+      "id": "privatgrensen_moter_omsorgsgrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "access",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#lyden_for_du_ser_fuglen",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#varselet_om_den_sjeldne_gjesten",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#reiret_som_ligger_for_naert",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#kikkerten_som_blir_status",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#appen_som_er_mer_sikker_enn_deg",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#trekket_som_ikke_kommer_nar_det_skal",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#stedet_som_ikke_bor_deles_presist",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#turen_med_den_erfarne_kikkeren",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#lokking_med_lyd",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#gruppen_som_gar_fortere_enn_deg",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#fuglen_pa_privatomradet",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#den_skadde_fuglen",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#listen_som_tar_over_turen",
+      "data/Civication/narratives/leisure/natur_fuglekikker.json#hva_slags_fuglekikker"
+    ]
+  }
+}

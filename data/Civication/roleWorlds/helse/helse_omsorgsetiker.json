@@ -1,0 +1,1174 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "helse",
+  "role_scope": "helse_omsorgsetiker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "helse",
+    "id": "omsorgsetiker",
+    "label": "Omsorgsetiker"
+  },
+  "title": "Omsorgsetiker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å undersøke autonomi, omsorg, skade, rettferdighet og makt i vanskelige avveiinger uten å gjøre etisk refleksjon til klinisk beslutningsmyndighet over andre",
+    "description": "Omsorgsetiker-verdenen handler om etisk refleksjon i hverdagslige og institusjonelle dilemmaer: samtykke, verdighet, personvern, risiko, fordeling, pårørendestemmer og makt. Spilleren lærer å synliggjøre legitime hensyn og vanskelige avveiinger, men får ingen klinisk behandlerrolle, ingen myndighet til å avgjøre behandling og ingen ny runtime."
+  },
+  "theme_ids": [
+    "care_vs_efficiency",
+    "professional_culture",
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "status_anxiety",
+    "public_attention",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "vennesamtalen der gode intensjoner lett glir over i å bestemme på andres vegne",
+    "refleksjonsgruppen der flere legitime hensyn må holdes samtidig uten en enkel fasit",
+    "institusjonssamtalen der effektivitet, regler og ressursbruk møter verdighet og selvbestemmelse",
+    "pårørendesamtalen der nærhet gir viktig kunnskap, men ikke automatisk eierskap til en annens stemme",
+    "den offentlige debatten der rettferdighet og omsorg ofte reduseres til slagord om likhet eller trygghet",
+    "etterkantssituasjonen der moralsk ubehag må undersøkes uten å gjøres til personlig autoritet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "handlekraftig_hjelper",
+      "social_function": "vil løse problemer raskt og oppfatter ofte handling som den mest omsorgsfulle responsen",
+      "class_position": "ressurssterk nærperson uten formell beslutningsmyndighet",
+      "status": "høy fordi initiativ og ansvarlighet verdsettes sosialt",
+      "power_over_player": "kan gjøre grensesetting og autonomihensyn til tegn på passivitet",
+      "wants": "å sikre at noen blir hjulpet før situasjonen blir verre",
+      "conceals": "hvor ofte behovet for kontroll også gjør egen hverdag enklere",
+      "speech_style": "praktisk, rask og orientert mot hva vi må gjøre nå",
+      "teaches_player": "at gode intensjoner fortsatt må undersøkes for makt og overstyring"
+    },
+    {
+      "id": "egenstemme",
+      "social_function": "insisterer på at personen det gjelder må høres som subjekt, ikke bare omtales som mottaker av omsorg",
+      "class_position": "person med direkte erfaring av å bli vurdert av andre",
+      "status": "varierende og ofte avhengig av hvor mye andre anerkjenner egen beslutningsevne",
+      "power_over_player": "kan utfordre spilleren når etiske argumenter blir abstrakte og mister personens perspektiv",
+      "wants": "å bli tatt på alvor også når egne valg gjør andre urolige",
+      "conceals": "at det kan være vanskelig å formulere egne ønsker under press",
+      "speech_style": "konkret, personlig og oppmerksom på hvem som faktisk får bestemme",
+      "teaches_player": "at autonomi ikke bare er et prinsipp, men en sosial praksis"
+    },
+    {
+      "id": "systemforvalter",
+      "social_function": "representerer regler, kapasitet og krav om lik behandling i en organisasjon",
+      "class_position": "institusjonell mellomposisjon med ansvar for både ressurser og prosedyrer",
+      "status": "høy i formelle prosesser fordi personen kjenner systemets kriterier",
+      "power_over_player": "kan gjøre eksisterende rutiner til standard for hva som fremstår mulig eller rimelig",
+      "wants": "forutsigbare regler som kan forsvares på tvers av enkeltsaker",
+      "conceals": "at standardisering også fordeler byrder og fordeler ulikt",
+      "speech_style": "saklig, regelorientert og opptatt av konsekvens og presedens",
+      "teaches_player": "at prosedyrer aldri er helt uten verdier"
+    },
+    {
+      "id": "parorendestemme",
+      "social_function": "bringer lang relasjonserfaring, omsorgsansvar og bekymring inn i etiske diskusjoner",
+      "class_position": "nærperson med mye uformelt omsorgsarbeid og begrenset formell myndighet",
+      "status": "høy når relasjonell kunnskap verdsettes, men kan også bli overhørt av systemet",
+      "power_over_player": "kan presse spilleren til å likestille nærhet med rett til å bestemme",
+      "wants": "at erfaring, belastning og bekymring ikke skal ignoreres",
+      "conceals": "hvor vanskelig det er å skille egne behov fra den andres ønsker",
+      "speech_style": "engasjert, detaljert og preget av lang historie",
+      "teaches_player": "å verdsette relasjonell kunnskap uten å erstatte personens egen stemme"
+    },
+    {
+      "id": "prinsippdebattant",
+      "social_function": "løfter ett etisk prinsipp frem som løsningen på nesten alle situasjoner",
+      "class_position": "kunnskapssterk deltaker med høy verbal og kulturell kapital",
+      "status": "høy i diskusjoner fordi prinsippfasthet oppleves konsistent",
+      "power_over_player": "kan få komplekse avveiinger til å se svake ut sammenlignet med en ren regel",
+      "wants": "en konsistent norm som reduserer tvil og skjønn",
+      "conceals": "hvilke konsekvenser som forsvinner når ett prinsipp får absolutt prioritet",
+      "speech_style": "konsekvent, begrepsstyrt og glad i klare grenser",
+      "teaches_player": "at prinsipper trenger anvendelse, kontekst og avveiing"
+    },
+    {
+      "id": "grensebevisst_fagperson",
+      "social_function": "skiller etisk refleksjon fra formell profesjons- og behandlingsmyndighet",
+      "class_position": "kvalifisert profesjonell med ansvar i relevante institusjonelle rammer",
+      "status": "høy, men eksplisitt bundet av rolle, kompetanse og prosedyre",
+      "power_over_player": "kan korrigere når spilleren bruker etisk språk som om det gir rett til å avgjøre andres behandling",
+      "wants": "at etiske spørsmål tas på alvor uten at ansvarslinjer og personens rettigheter forsvinner",
+      "conceals": "hvor ofte profesjonell praksis også innebærer uløselig moralsk ubehag",
+      "speech_style": "rolig, avgrenset og tydelig på hvem som har hvilket ansvar",
+      "teaches_player": "at etisk innsikt ikke automatisk gir klinisk myndighet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "care_vs_autonomy",
+      "meaning": "omsorg mot autonomi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "consent_vs_pressure",
+      "meaning": "samtykke mot press",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "equality_vs_justice",
+      "meaning": "likhet mot rettferdighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "dignity_vs_efficiency",
+      "meaning": "verdighet mot effektivitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "privacy_vs_support",
+      "meaning": "personvern mot støtte",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "protection_vs_self_determination",
+      "meaning": "beskyttelse mot selvbestemmelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "relative_voice_vs_person_voice",
+      "meaning": "pårørendestemme mot personens egen stemme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scarcity_vs_fair_criteria",
+      "meaning": "knapphet mot rettferdige kriterier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "care_vs_control",
+      "meaning": "omsorg mot kontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "culture_vs_stereotype",
+      "meaning": "kulturell kontekst mot stereotypi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "action_vs_inaction_harm",
+      "meaning": "handling mot passivitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "facts_vs_value_conflict",
+      "meaning": "fakta mot verdikonflikt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "moral_discomfort_vs_judgment",
+      "meaning": "moralsk ubehag mot dom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "care_ethics_vs_authority",
+      "meaning": "etisk refleksjon mot beslutningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: omsorg kan bli overstyring hvis stemmen til den det gjelder forsvinner.",
+        "thread_ids": [
+          "care_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: omsorg kan bli overstyring hvis stemmen til den det gjelder forsvinner.",
+        "thread_ids": [
+          "care_vs_autonomy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: omsorg kan bli overstyring hvis stemmen til den det gjelder forsvinner.",
+        "thread_ids": [
+          "care_vs_autonomy",
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: omsorg kan bli overstyring hvis stemmen til den det gjelder forsvinner.",
+        "thread_ids": [
+          "care_vs_autonomy",
+          "protection_vs_self_determination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: et ja kan være mindre fritt når presset rundt er stort.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#samtykke_under_press"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 2, lunch: et ja kan være mindre fritt når presset rundt er stort.",
+        "thread_ids": [
+          "consent_vs_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#samtykke_under_press"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: et ja kan være mindre fritt når presset rundt er stort.",
+        "thread_ids": [
+          "consent_vs_pressure",
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#samtykke_under_press"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 2, evening: et ja kan være mindre fritt når presset rundt er stort.",
+        "thread_ids": [
+          "consent_vs_pressure",
+          "relative_voice_vs_person_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#samtykke_under_press"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 3, morning: lik behandling er ikke alltid det samme som rettferdighet.",
+        "thread_ids": [
+          "equality_vs_justice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: lik behandling er ikke alltid det samme som rettferdighet.",
+        "thread_ids": [
+          "equality_vs_justice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: lik behandling er ikke alltid det samme som rettferdighet.",
+        "thread_ids": [
+          "equality_vs_justice",
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: lik behandling er ikke alltid det samme som rettferdighet.",
+        "thread_ids": [
+          "equality_vs_justice",
+          "scarcity_vs_fair_criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: effektivitet kan skjule hva mennesker opplever som verdig.",
+        "thread_ids": [
+          "dignity_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#verdighet_og_effektivitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 4, lunch: effektivitet kan skjule hva mennesker opplever som verdig.",
+        "thread_ids": [
+          "dignity_vs_efficiency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#verdighet_og_effektivitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: effektivitet kan skjule hva mennesker opplever som verdig.",
+        "thread_ids": [
+          "dignity_vs_efficiency",
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#verdighet_og_effektivitet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 4, evening: effektivitet kan skjule hva mennesker opplever som verdig.",
+        "thread_ids": [
+          "dignity_vs_efficiency",
+          "care_vs_control"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#verdighet_og_effektivitet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: god støtte gir ikke automatisk rett til all informasjon.",
+        "thread_ids": [
+          "privacy_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: god støtte gir ikke automatisk rett til all informasjon.",
+        "thread_ids": [
+          "privacy_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: god støtte gir ikke automatisk rett til all informasjon.",
+        "thread_ids": [
+          "care_vs_autonomy",
+          "privacy_vs_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: god støtte gir ikke automatisk rett til all informasjon.",
+        "thread_ids": [
+          "privacy_vs_support",
+          "culture_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: beskyttelse kan bli paternalistisk hvis all risiko fjernes på andres vegne.",
+        "thread_ids": [
+          "protection_vs_self_determination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#risiko_og_beskyttelse"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 6, lunch: beskyttelse kan bli paternalistisk hvis all risiko fjernes på andres vegne.",
+        "thread_ids": [
+          "protection_vs_self_determination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#risiko_og_beskyttelse"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: beskyttelse kan bli paternalistisk hvis all risiko fjernes på andres vegne.",
+        "thread_ids": [
+          "consent_vs_pressure",
+          "protection_vs_self_determination"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#risiko_og_beskyttelse"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 6, evening: beskyttelse kan bli paternalistisk hvis all risiko fjernes på andres vegne.",
+        "thread_ids": [
+          "protection_vs_self_determination",
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#risiko_og_beskyttelse"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 7, morning: pårørende kan vite mye uten å eie personens perspektiv.",
+        "thread_ids": [
+          "relative_voice_vs_person_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: pårørende kan vite mye uten å eie personens perspektiv.",
+        "thread_ids": [
+          "relative_voice_vs_person_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: pårørende kan vite mye uten å eie personens perspektiv.",
+        "thread_ids": [
+          "equality_vs_justice",
+          "relative_voice_vs_person_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: pårørende kan vite mye uten å eie personens perspektiv.",
+        "thread_ids": [
+          "relative_voice_vs_person_voice",
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: ressursknapphet gjør kriterier til etiske valg.",
+        "thread_ids": [
+          "scarcity_vs_fair_criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 8, lunch: ressursknapphet gjør kriterier til etiske valg.",
+        "thread_ids": [
+          "scarcity_vs_fair_criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: ressursknapphet gjør kriterier til etiske valg.",
+        "thread_ids": [
+          "dignity_vs_efficiency",
+          "scarcity_vs_fair_criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 8, evening: ressursknapphet gjør kriterier til etiske valg.",
+        "thread_ids": [
+          "scarcity_vs_fair_criteria",
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: omsorg kan brukes som språk for kontroll.",
+        "thread_ids": [
+          "care_vs_control"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: omsorg kan brukes som språk for kontroll.",
+        "thread_ids": [
+          "care_vs_control"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: omsorg kan brukes som språk for kontroll.",
+        "thread_ids": [
+          "privacy_vs_support",
+          "care_vs_control"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: omsorg kan brukes som språk for kontroll.",
+        "thread_ids": [
+          "care_vs_control",
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: kulturell hensynsfullhet krever mer enn antakelser om grupper.",
+        "thread_ids": [
+          "culture_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#kultur_uten_stereotypi"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 10, lunch: kulturell hensynsfullhet krever mer enn antakelser om grupper.",
+        "thread_ids": [
+          "culture_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#kultur_uten_stereotypi"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: kulturell hensynsfullhet krever mer enn antakelser om grupper.",
+        "thread_ids": [
+          "protection_vs_self_determination",
+          "culture_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#kultur_uten_stereotypi"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 10, evening: kulturell hensynsfullhet krever mer enn antakelser om grupper.",
+        "thread_ids": [
+          "care_vs_autonomy",
+          "culture_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#kultur_uten_stereotypi"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "task",
+        "summary": "Dag 11, morning: både handling og passivitet kan ha kostnader.",
+        "thread_ids": [
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: både handling og passivitet kan ha kostnader.",
+        "thread_ids": [
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: både handling og passivitet kan ha kostnader.",
+        "thread_ids": [
+          "relative_voice_vs_person_voice",
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: både handling og passivitet kan ha kostnader.",
+        "thread_ids": [
+          "consent_vs_pressure",
+          "action_vs_inaction_harm"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: vanskelige avveiinger kan være reelle selv når alle kjenner fakta.",
+        "thread_ids": [
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "social",
+        "summary": "Dag 12, lunch: vanskelige avveiinger kan være reelle selv når alle kjenner fakta.",
+        "thread_ids": [
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: vanskelige avveiinger kan være reelle selv når alle kjenner fakta.",
+        "thread_ids": [
+          "scarcity_vs_fair_criteria",
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 12, evening: vanskelige avveiinger kan være reelle selv når alle kjenner fakta.",
+        "thread_ids": [
+          "equality_vs_justice",
+          "facts_vs_value_conflict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: etisk ubehag kan være informasjon uten å være fasit.",
+        "thread_ids": [
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: etisk ubehag kan være informasjon uten å være fasit.",
+        "thread_ids": [
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: etisk ubehag kan være informasjon uten å være fasit.",
+        "thread_ids": [
+          "care_vs_control",
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: etisk ubehag kan være informasjon uten å være fasit.",
+        "thread_ids": [
+          "dignity_vs_efficiency",
+          "moral_discomfort_vs_judgment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: etisk refleksjon er å synliggjøre hensyn, makt og grenser.",
+        "thread_ids": [
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "relationship",
+        "summary": "Dag 14, lunch: etisk refleksjon er å synliggjøre hensyn, makt og grenser.",
+        "thread_ids": [
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: etisk refleksjon er å synliggjøre hensyn, makt og grenser.",
+        "thread_ids": [
+          "culture_vs_stereotype",
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "consequence",
+        "summary": "Dag 14, evening: etisk refleksjon er å synliggjøre hensyn, makt og grenser.",
+        "thread_ids": [
+          "privacy_vs_support",
+          "care_ethics_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "care_vs_autonomy",
+      "relationship": "omsorg mot autonomi",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "5/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "consent_vs_pressure",
+      "relationship": "samtykke mot press",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "6/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "equality_vs_justice",
+      "relationship": "likhet mot rettferdighet",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "7/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "dignity_vs_efficiency",
+      "relationship": "verdighet mot effektivitet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "8/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "privacy_vs_support",
+      "relationship": "personvern mot støtte",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "9/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "protection_vs_self_determination",
+      "relationship": "beskyttelse mot selvbestemmelse",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "10/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "relative_voice_vs_person_voice",
+      "relationship": "pårørendestemme mot personens egen stemme",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "11/afternoon",
+        "2/evening"
+      ]
+    },
+    {
+      "id": "scarcity_vs_fair_criteria",
+      "relationship": "knapphet mot rettferdige kriterier",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "12/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "care_vs_control",
+      "relationship": "omsorg mot kontroll",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "13/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "culture_vs_stereotype",
+      "relationship": "kulturell kontekst mot stereotypi",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "14/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "action_vs_inaction_harm",
+      "relationship": "handling mot passivitet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "1/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "facts_vs_value_conflict",
+      "relationship": "fakta mot verdikonflikt",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "2/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "moral_discomfort_vs_judgment",
+      "relationship": "moralsk ubehag mot dom",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "3/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "care_ethics_vs_authority",
+      "relationship": "etisk refleksjon mot beslutningsmyndighet",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening",
+        "4/afternoon",
+        "9/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "hjelp_med_grenser",
+      "description": "Du blir mer oppmerksom på når gode intensjoner begynner å erstatte personens egen stemme.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre",
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll"
+      ]
+    },
+    {
+      "id": "rettferdighet_blir_konkret",
+      "description": "Du spør hvem som faktisk får fordeler og byrder når likhet presenteres som rettferdighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig",
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser"
+      ]
+    },
+    {
+      "id": "personvern_som_omsorg",
+      "description": "Du ser at respekt for privatliv kan være en del av omsorgen, ikke et hinder for den.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte",
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme"
+      ]
+    },
+    {
+      "id": "uenighet_uten_enkel_fasit",
+      "description": "Du tåler bedre at reelle etiske konflikter kan bestå selv når fakta er felles.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle",
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit"
+      ]
+    },
+    {
+      "id": "moralsk_ubehag_med_rollegrense",
+      "description": "Moralsk ubehag blir grunn til refleksjon uten å bli et mandat til å overta andres beslutninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag",
+        "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "autonomi_returnerer",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationships",
+        "identity"
+      ]
+    },
+    {
+      "id": "samtykke_faar_kontekst",
+      "setup_ref": "2/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationships",
+        "judgment"
+      ]
+    },
+    {
+      "id": "rettferdighet_moter_knapphet",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "judgment"
+      ]
+    },
+    {
+      "id": "verdighet_moter_system",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "identity",
+        "relationships"
+      ]
+    },
+    {
+      "id": "verdikonflikten_returnerer",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/lunch",
+      "domains": [
+        "judgment",
+        "identity"
+      ]
+    },
+    {
+      "id": "rollegrensen_blir_praksis",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationships"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#hjelp_uten_a_overstyre",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#samtykke_under_press",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#likt_eller_rettferdig",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#verdighet_og_effektivitet",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#personvern_og_stotte",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#risiko_og_beskyttelse",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#parorende_og_egen_stemme",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#knappe_ressurser",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorg_eller_kontroll",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#kultur_uten_stereotypi",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#skade_ved_a_handle_og_ikke_handle",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#uenighet_uten_fasit",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#moralsk_ubehag",
+      "data/Civication/narratives/leisure/helse_omsorgsetiker.json#omsorgsetiker_som_praksis"
+    ]
+  }
+}

@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "psykologi_psykologientusiast",
+  "type": "leisure",
+  "title": "Psykologientusiast — begreper, evidens og rollegrenser",
+  "sociological_theme": "Hvordan interesse for psykologi kan bli til presis begrepsforståelse og kildekritikk uten at populære forenklinger, gruppefunn, målinger eller forskningsspråk blir gjort om til sikker kunnskap om enkeltmennesker eller klinisk myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "psykologi:psykologientusiast"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "begrepet_som_betyr_to_ting",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lesesirkelvennen",
+      "subject": "Ordet er kjent, men betyr det det samme?",
+      "situation": [
+        "Et psykologisk begrep dukker opp i en bok og i en vanlig samtale, men brukes med ulik presisjon.",
+        "Hverdagsord kan overlappe med fagbegreper uten å ha samme definisjon, avgrensning eller målemåte.",
+        "For Psykologientusiasten er første oppgave å finne ut hva begrepet betyr i kilden før det brukes på mennesker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Slå opp hvordan kilden definerer begrepet og skill den definisjonen fra vanlig språk.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den vanlige betydningen; et kjent ord trenger ingen egen faglig avgrensning.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_construct_vs_everyday_word"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenhengen_som_ble_arsak",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Metodevennen",
+      "subject": "De henger sammen — men hva følger av det?",
+      "situation": [
+        "En artikkel viser at to forhold varierer sammen, og diskusjonen hopper raskt til at det ene skaper det andre.",
+        "Sammenheng kan passe med flere årsaksretninger eller med tredje forhold som påvirker begge.",
+        "Korrelasjon er informasjon, men ikke i seg selv en ferdig årsaksmodell."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv sammenhengen og spør hvilke alternative årsaksforløp dataene fortsatt tillater.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter sammenhengen som bevis på at det første forholdet forårsaker det andre.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_correlation_vs_cause"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjennomsnittet_som_ble_person",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Gruppen hadde et mønster; betyr det at du kjenner personen?",
+      "situation": [
+        "Et studie beskriver en gjennomsnittlig forskjell mellom grupper, og noen vil bruke funnet til å forklare én bestemt person.",
+        "Gruppefunn sier noe om fordelinger og sannsynligheter, men variasjonen innen gruppene kan være stor.",
+        "Et gjennomsnitt kan ikke uten videre brukes som individuell profil."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold funnet på gruppenivå og unngå å tilskrive enkeltpersonen egenskaper studien ikke har målt hos dem.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk gruppens gjennomsnitt som den mest sannsynlige forklaringen på akkurat denne personen.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_group_vs_individual"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overskriften_uten_storrelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Signifikant er ikke det samme som stort",
+      "situation": [
+        "En overskrift lover en kraftig psykologisk effekt, mens sammendraget bare sier at forskjellen var statistisk påvisbar.",
+        "Hvor stor en effekt er, hvor usikker den er og hvor mye den betyr i praksis er andre spørsmål enn om testen krysset en terskel.",
+        "Psykologientusiasten trenger størrelsen og usikkerheten, ikke bare et ja/nei-ord."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se etter effektstørrelse, usikkerhet og praktisk betydning før du gjentar overskriften.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ordet signifikant som bevis på at effekten er sterk og viktig i hverdagen.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_effect_vs_headline"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "testen_som_ble_egenskapen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Metodevennen",
+      "subject": "Hva målte testen egentlig?",
+      "situation": [
+        "Et spørreskjema gir et tall, og tallet begynner å bli omtalt som om det var selve egenskapen.",
+        "Måleinstrumenter operasjonaliserer et begrep gjennom bestemte spørsmål, skalaer og feilkilder.",
+        "En skår er et måleresultat innen en metode, ikke en fullstendig beskrivelse av et menneske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk hva instrumentet faktisk måler, hvordan det er validert og hvilke begrensninger skåren har.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle skåren som direkte tilgang til personens egentlige egenskap.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_measurement_vs_essence"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "laboratoriet_og_tirsdagen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Fungerer laboratoriefunnet likt på en tirsdag hjemme?",
+      "situation": [
+        "Et kontrollert eksperiment isolerer en mekanisme under bestemte betingelser.",
+        "Kontroll styrker noen slutninger, men hverdagen inneholder flere samtidige krav, relasjoner og situasjoner.",
+        "Overføring fra eksperiment til dagligliv er et spørsmål som må undersøkes, ikke antas."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill hva eksperimentet viser under sine betingelser fra hva som fortsatt må testes i andre situasjoner.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at effekten blir den samme i alle hverdagsmiljøer fordi forsøket var kontrollert.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_experiment_vs_context"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "studien_alle_snakket_om",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Den spennende studien fikk oppfølgere",
+      "situation": [
+        "En kjent studie har en elegant historie, men senere forsøk gir svakere eller mer varierende resultater.",
+        "Vitenskapelig kunnskap endres når metoder gjentas, prøver blir større og betingelser sammenlignes.",
+        "At et funn revideres er en del av kunnskapsarbeidet, ikke et tegn på at ingenting kan læres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdater forståelsen med repliseringene og beskriv hva som fortsatt ser robust ut.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved originalstudien fordi den er mest kjent og forklarer historien best.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_replication_vs_novelty"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "podkasten_som_siterte_en_artikkel",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Podkastlytteren",
+      "subject": "Hvor kommer påstanden fra?",
+      "situation": [
+        "En podkast gjengir en populær artikkel som igjen viser til forskning uten å forklare metode eller utvalg.",
+        "Hvert formidlingsledd kan forenkle, velge vinkling og miste forbehold.",
+        "Kildehierarki handler ikke om å avvise formidling, men om å vite når man må gå nærmere originalgrunnlaget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spor påstanden tilbake så langt du kan og sammenlign den opprinnelige formuleringen med formidlingen.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Regn podkastens gjengivelse som tilstrekkelig fordi flere ledd allerede har vurdert forskningen.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_source_hierarchy"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tre_trinn_til_en_personlighetstype",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lesesirkelvennen",
+      "subject": "En ryddig modell passer nesten alle",
+      "situation": [
+        "En enkel modell deler mennesker inn i få typer og er lett å huske og bruke i samtaler.",
+        "Pedagogiske modeller kan være nyttige, men enkelhet kan skjule kontinuerlige trekk, overlapp og svak dokumentasjon.",
+        "En god forklaring må vurderes etter mer enn hvor intuitiv og gjenkjennelig den føles."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva modellen bygger på, hva den utelater og om kategoriene faktisk støttes av målinger.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk typene videre fordi folk raskt kjenner seg igjen i dem.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_popular_vs_definition"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiketten_som_skulle_forklare_alt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Personen det gjelder",
+      "subject": "Du har gitt det et navn — har du forklart det?",
+      "situation": [
+        "Et kjent psykologisk ord blir brukt om en handling, og ordet begynner å fungere som hele forklaringen.",
+        "En merkelapp kan organisere observasjoner uten å vise mekanisme, årsak eller hva som ville endret utfallet.",
+        "Når begrepet gjelder andre mennesker, øker også risikoen for at språket blir en ufortjent dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk begrepet bare hvis det avklarer noe konkret, og behold mekanisme, kontekst og usikkerhet som egne spørsmål.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La merkelappen stå som forklaring; når fenomenet har et navn er årsaken i praksis kjent.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_label_vs_explanation"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "trekket_som_forsvant_i_et_annet_rom",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Samme person, annen situasjon",
+      "situation": [
+        "En person opptrer svært forskjellig i to miljøer, selv om samtalen tidligere beskrev atferden som et stabilt trekk.",
+        "Trekkbegreper kan beskrive tendenser, mens situasjoner samtidig påvirker hvilke handlinger som blir mulige eller sannsynlige.",
+        "Person og situasjon trenger ikke være konkurrerende forklaringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk både den mulige tendensen og hva som skiller situasjonene før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra situasjonen; et ekte personlighetstrekk bør forklare atferden alene.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_trait_vs_situation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bias_ordet_i_krangelen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Et biasbegrep er ikke adgang til andres hode",
+      "situation": [
+        "I en uenighet brukes et biasbegrep for å forklare hvorfor den andre parten ikke er enig.",
+        "Forskning på kognitive skjevheter beskriver mønstre under bestemte oppgaver og betingelser; den gir ikke sikker innsikt i motivet bak hvert utsagn.",
+        "Begrepet kan brukes til å undersøke egne og felles beslutningsprosesser uten å bli et retorisk våpen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk biasbegrepet som et spørsmål om prosessen og inkluder muligheten for at du selv påvirkes av samme mekanisme.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk begrepet som bevis på at motparten tenker irrasjonelt og derfor kan avskrives.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_bias_vs_mindreading"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_teorier_samme_hendelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Metodevennen",
+      "subject": "Begge teoriene kan fortelle en god historie",
+      "situation": [
+        "To psykologiske teorier kan begge tolke den samme hendelsen på en måte som virker plausibel i etterkant.",
+        "Når flere teorier passer en historie, blir det viktig å spørre hvilke observasjoner som faktisk ville skilt dem.",
+        "En teori er mer nyttig når den gjør presise forventninger og kan møte data som taler imot."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hvilke ulike forventninger teoriene gir og hva slags data som kunne skilt dem.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velg teorien som gir den mest gjenkjennelige fortellingen om hendelsen.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_theory_vs_story"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fra_interesse_til_rollegrense",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildegranskeren",
+      "subject": "Du kan kunne mer uten å bli psykolog",
+      "situation": [
+        "Etter mye lesing begynner andre å spørre spilleren om å tolke symptomer, stille diagnoser eller anbefale behandling.",
+        "Psykologisk kunnskap kan skjerpe spørsmål og begreper, men psykologrollen og kliniske vurderinger krever kvalifikasjoner, ansvar og profesjonell kontekst.",
+        "Psykologientusiast er en selvvalgt kunnskapsidentitet, ikke en snarvei til behandler- eller diagnostikkmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar hva du har lest, men avgrens tydelig det du ikke kan vurdere og henvis kliniske spørsmål til kvalifisert fagperson.",
+          "effect": 1,
+          "tags": [
+            "concept_literacy",
+            "source_criticism",
+            "role_clarity"
+          ],
+          "feedback": "Du bruker psykologisk kunnskap mer presist, med tydeligere skille mellom funn, tolkning og myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en uformell diagnose eller behandlingsanbefaling fordi du kjenner begrepene og forskningen godt.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "concept_drift",
+            "false_authority"
+          ],
+          "feedback": "Begrepet eller funnet får større sikkerhet, rekkevidde eller myndighet enn kilden gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "psykologientusiast_learning_vs_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

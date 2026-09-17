@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "psykologi_relasjonsbygger",
+  "type": "leisure",
+  "title": "Relasjonsbygger — lytting, tillit og reparasjon",
+  "sociological_theme": "Hvordan nære og sosiale relasjoner vedlikeholdes gjennom lytting, avklaring, grenser, fortrolighet, gjensidighet, direkte samtale og reparasjon, uten at sosial tillit blir gjort om til kontroll eller terapeutisk myndighet.",
+  "applies_when": {
+    "any_tags": [
+      "psykologi:relasjonsbygger"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "lytte_uten_a_fikse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den nære vennen",
+      "subject": "Kan du høre ferdig før du løser det?",
+      "situation": [
+        "En venn forteller om en vanskelig situasjon, og spilleren ser raskt flere mulige løsninger.",
+        "Å tilby råd kan være omsorg, men det kan også avbryte det den andre prøver å formulere.",
+        "Relasjonsbygging begynner ofte med å finne ut om personen ønsker lytting, spørsmål eller konkrete forslag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva vennen trenger nå, og lytt ferdig før du eventuelt tilbyr råd.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Gå rett til løsningen du mener er best; problemet blir lettere hvis samtalen blir effektiv.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_listening_vs_fixing"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "setningen_du_tolket",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Det var ikke det jeg mente",
+      "situation": [
+        "En kort melding virker avvisende, og spilleren fyller raskt inn motiv og tone.",
+        "Tekst, stress og tidligere erfaringer kan påvirke hvordan en formulering leses.",
+        "En tolkning kan være rimelig uten å være det samme som bekreftet mening."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvordan du leste meldingen og spør hva den andre faktisk mente.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Svar på motivet du antar ligger bak; du kjenner personen godt nok til å vite.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_interpretation_vs_checking"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etter_krangelen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Konfliktparten",
+      "subject": "Skal dette repareres eller avgjøres?",
+      "situation": [
+        "Etter en krangel kan begge gjenfortelle hendelsen slik at den andre blir hovedproblemet.",
+        "En relasjon kan trenge ansvar og tydelig uenighet uten at hele personen må reduseres til én konflikt.",
+        "Reparasjon handler om hva som skjedde, hva som må endres og om begge vil fortsette kontakten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold samtalen på konkrete handlinger, konsekvenser og hva som må være annerledes videre.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Oppsummer konflikten som bevis på hvordan den andre egentlig er som menneske.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_repair_vs_verdict"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "unnskyldningen_som_skal_nullstille_alt",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Grensesetteren",
+      "subject": "Jeg har sagt unnskyld — er vi ferdige nå?",
+      "situation": [
+        "En oppriktig unnskyldning blir gitt, men tilliten er ikke automatisk tilbake på samme nivå.",
+        "Ansvar kan innebære å tåle at den andre trenger tid og å vise endring over flere situasjoner.",
+        "Tilgivelse, videre kontakt og tempo er ikke noe én part kan bestemme alene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La unnskyldningen stå uten å kreve rask normalisering, og vis endringen i praksis over tid.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Forvent at saken avsluttes straks fordi unnskyldningen allerede er levert.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_apology_vs_erasure"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nei_som_ble_tatt_personlig",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Grensesetteren",
+      "subject": "Et nei er ikke hele relasjonen",
+      "situation": [
+        "En venn sier nei til en forespørsel om tid eller hjelp, og spilleren kjenner seg avvist.",
+        "Grenser kan beskytte kapasitet og gjøre relasjoner mer bærekraftige uten å bety mindre omsorg.",
+        "Når hvert nei blir lest som avstand, kan tillit bli erstattet av press."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta grensen bokstavelig og spør bare om alternativ hvis det faktisk er nødvendig.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Press videre for å finne den egentlige grunnen; nære relasjoner bør tåle mer.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_boundary_vs_rejection"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_som_ble_ventilert_videre",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Taushetsbæreren",
+      "subject": "Var det din historie å dele?",
+      "situation": [
+        "Et fortrolig tema blir tungt å bære, og spilleren vil snakke med en tredje person om det.",
+        "Behov for støtte er reelt, men detaljer kan gjøre den andre gjenkjennelig eller flytte en privat konflikt inn i et større sosialt rom.",
+        "Fortrolighet krever vurdering av hva som kan deles, med hvem og hvorfor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Søk støtte uten identifiserende detaljer, eller spør om samtykke før du deler mer.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Fortell hele historien til en felles venn; du trenger å få det ut av systemet.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_confidentiality_vs_venting"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tillit_er_ikke_full_innsynsrett",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den nære vennen",
+      "subject": "Må jeg fortelle alt for at du skal stole på meg?",
+      "situation": [
+        "En nær relasjon gjør at spilleren forventer å få vite alt som skjer.",
+        "Tillit kan innebære å dele mye, men mennesker beholder også privatliv, andre relasjoner og egne prosesser.",
+        "Krav om full tilgang kan gjøre nærhet til kontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom nødvendig ærlighet og retten til et eget privat rom.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Be om full forklaring på alt; hemmelighold og privatliv er i praksis det samme.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_trust_vs_disclosure"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_gjorde_mest",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Relasjonen har fått et regneark",
+      "situation": [
+        "Spilleren legger merke til at initiativ, hjelp og invitasjoner ikke alltid fordeler seg likt.",
+        "Langvarig ubalanse kan være viktig å snakke om, men et løpende regnskap over hver handling kan gjøre all omsorg transaksjonell.",
+        "Gjensidighet vurderes bedre som mønster og kapasitet enn som identiske bytter hver uke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta opp den vedvarende ubalansen konkret uten å bokføre hver enkelt tjeneste.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å matche innsatsen nøyaktig; gi aldri mer enn du fikk sist.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_reciprocity_vs_scorekeeping"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "snakke_med_alle_unntatt_den_det_gjelder",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den tredje vennen",
+      "subject": "Alle vet det, bortsett fra personen selv",
+      "situation": [
+        "En irritasjon blir diskutert med flere venner før den tas opp med den det gjelder.",
+        "Tredjeparter kan gi støtte og perspektiv, men de kan også skape allianser og gjøre konflikten større enn den opprinnelig var.",
+        "Direkte samtale er vanskeligere når et helt sosialt rom allerede har valgt versjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tredjepart bare til perspektiv, og ta selve saken direkte med personen så langt det er trygt og rimelig.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Bygg støtte i gruppa først; det er lettere å konfrontere når flere står på din side.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_directness_vs_triangulation"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pausen_som_kan_bli_unngaelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Konfliktparten",
+      "subject": "Vi tar det senere — men når?",
+      "situation": [
+        "En opphetet samtale trenger pause, men temaet har allerede blitt utsatt flere ganger.",
+        "Å vente kan gjøre det mulig å regulere tempo og tenke klarere, mens uendelig utsettelse kan bli en måte å slippe reparasjon.",
+        "En pause fungerer bedre når det finnes en avtale om når saken tas opp igjen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta pause og avtal et konkret tidspunkt eller tegn for å gjenoppta samtalen.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "La saken ligge uten avtale; hvis den er viktig kommer den sikkert opp av seg selv.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_timing_vs_avoidance"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "radet_som_tok_over_valget",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den nære vennen",
+      "subject": "Du ba om råd, ikke om en beslutning",
+      "situation": [
+        "En venn spør hva spilleren ville gjort i en vanskelig situasjon.",
+        "Nære mennesker kan ha nyttig erfaring, men kjenner ikke alle hensyn og må ikke overta ansvaret for et annet livsvalg.",
+        "Et råd blir lett til press når relasjonen gjør det kostbart å velge annerledes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi perspektivet ditt tydelig som råd, og la den andre eie beslutningen og konsekvensene.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Fortell hva personen bør gjøre og bli skuffet hvis rådet ikke følges.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_advice_vs_autonomy"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_store_gestet_uten_hverdagsendring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Konfliktparten",
+      "subject": "Det var fint — men skjer det samme igjen?",
+      "situation": [
+        "Etter en konflikt kommer en stor gest, men det daglige mønsteret som skapte problemet er uendret.",
+        "Symboler kan bety mye, men tillit bygges også gjennom små forutsigbare handlinger over tid.",
+        "Reparasjon vurderes både på intensjon, konkret endring og om den holder når situasjonen blir vanskelig igjen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta imot gesten, men avtal hvilken konkret hverdagsendring som faktisk skal følges opp.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "La gesten telle som full reparasjon; det er urimelig å fortsette å se på gamle mønstre.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_gesture_vs_followthrough"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "naerhet_som_tilgangskrav",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Grensesetteren",
+      "subject": "Nær betyr ikke alltid tilgjengelig",
+      "situation": [
+        "Spilleren forventer raskt svar fordi relasjonen er nær, mens den andre har perioder med lite kapasitet.",
+        "Nærhet gir ofte prioritet og ansvar, men ikke ubegrenset tilgang til tid, telefon eller oppmerksomhet.",
+        "Forutsigbarhet kan bygges med tydelige forventninger i stedet for konstant tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk om forventninger til kontakt og aksepter at kapasitet kan variere uten at relasjonen forsvinner.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Mål nærheten etter svartid; viktige mennesker bør alltid prioritere deg raskt.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_closeness_vs_access"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gode_samtalen_blir_en_rolle",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Du er god å snakke med — men du er ikke behandler",
+      "situation": [
+        "Folk begynner å oppsøke spilleren fordi hen lytter godt og ofte får konflikter til å roe seg.",
+        "Tillitsfulle samtaler og sosial reparasjon er verdifulle ferdigheter, men de gir ikke klinisk, terapeutisk eller profesjonell myndighet.",
+        "Relasjonsbygger er en community_identity, ikke en snarvei til å diagnostisere, behandle eller ta ansvar for andres psykiske helse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollen som venn og medmenneske, og marker tydelig når spørsmål krever kvalifisert profesjonell hjelp.",
+          "effect": 1,
+          "tags": [
+            "relational_care",
+            "repair",
+            "boundary_clarity"
+          ],
+          "feedback": "Du styrker relasjonen gjennom tydelighet, gjensidighet og respekt for den andres grenser og autonomi."
+        },
+        {
+          "id": "B",
+          "label": "Ta mer ansvar for å tolke og behandle andres problemer fordi du har blitt den folk betror seg til.",
+          "effect": -1,
+          "tags": [
+            "relational_pressure",
+            "boundary_drift",
+            "false_authority"
+          ],
+          "feedback": "Omsorg eller nærhet glir over i press, tolkning eller ansvar som relasjonen ikke gir deg rett til å ta."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "relasjonsbygger_care_vs_authority"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

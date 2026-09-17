@@ -1,0 +1,111 @@
+{
+  "schema": "history_go_place_workcard_projection_v3",
+  "generated": true,
+  "source": "data/places/workflow/norges_bank_bankplassen_4.json",
+  "place_id": "norges_bank_bankplassen_4",
+  "category": "naeringsliv",
+  "state": "complete",
+  "profile": {
+    "id": "standard",
+    "status": "confirmed",
+    "reason": "Bankplassen 4 has a source-backed institutional history, one canonical person, one physical signature object, one institutional brand and one documented place-specific production process without requiring a major-profile breadth expansion."
+  },
+  "selected_collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "refs": [
+        "data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "data/brands/brands_by_place.json",
+        "data/brands/brands_master.json"
+      ]
+    },
+    "productions": {
+      "status": "PASS",
+      "refs": [
+        "data/places/naeringsliv-production/norges_bank_bankplassen_4.json"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "refs": [
+        "data/quiz/naeringsliv/norges_bank_bankplassen_4_sets.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_naeringsliv.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "reason": "The documented Christiania Theater historical layer is reused without creating a duplicate place or story.",
+      "refs": [
+        "data/places/naeringsliv/oslo/places_naeringsliv_oslo_oppdag_kvadraturen_batch_04/norges_bank_bankplassen_4.json",
+        "reports/place-production/norges_bank_bankplassen_4-source-review-v1.md"
+      ]
+    },
+    "runtime": {
+      "status": "PASS",
+      "refs": [
+        "data/runtime/place-open/norges_bank_bankplassen_4.json"
+      ]
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "The 2026 management source is used only to bound current status; it does not justify an artificial news module."
+    },
+    "before_after": {
+      "status": "BEGRUNNET_NA",
+      "reason": "No licensed historical/current image pair with sufficiently documented viewpoint and subject match was established for an honest before/after comparison."
+    }
+  },
+  "blockers": [],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "PR #5945 static image review plus exact Git blob identity gate in the V3 repair materializer."
+    },
+    "final_ui": {
+      "status": "PASS",
+      "evidence": "QA run 35182483058 passed desktop and mobile PlaceCard plus unified info-surface capture for norges_bank_bankplassen_4 after discovery stabilization."
+    }
+  }
+}

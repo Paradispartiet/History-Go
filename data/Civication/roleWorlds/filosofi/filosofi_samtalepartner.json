@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_samtalepartner",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "samtalepartner",
+    "label": "Samtalepartner"
+  },
+  "title": "Samtalepartner",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle lytting, avklaring, turtaking, uenighet og fortrolighet som hverdagslig dialogpraksis uten å overta andres valg eller gjøre samtalerollen til terapi, mekling, coaching eller profesjonell rådgivning",
+    "description": "Samtalepartner-verdenen undersøker lytting, motivtolkning, spørsmål, turtaking, uenighet, følelser, stillhet, parafrasering, selvavsløring, gruppedynamikk, fortrolighet, råd, konsensus og profesjonsgrenser. Samtalepartner er en dialogue_practice life position. Rollen gir ingen automatisk jobb, lønn, terapeutrolle, psykologrolle, meklerrolle, coachrolle, behandlingsmandat eller profesjonell rådgivningsmyndighet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "emotional_labor",
+    "social_mask",
+    "status_anxiety",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "shame_reputation",
+    "professional_culture",
+    "public_attention"
+  ],
+  "social_environments": [
+    "én-til-én-samtaler der lytting og avklaring betyr mer enn å levere et raskt svar",
+    "vennskap og nære relasjoner der selvavsløring, råd og fortrolighet påvirker maktbalansen",
+    "gruppesamtaler der taletid, allianser og status former hvem som faktisk får delta",
+    "uenighetssituasjoner der forståelse og relasjon må kunne bestå uten tvungen enighet",
+    "samtaler om vanskelige følelser der tilstedeværelse ikke automatisk skal bli behandling",
+    "møter med terapi, mekling, coaching og rådgivning der formell kompetanse og ansvar faktisk gjelder"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "lyttevennen",
+      "social_function": "holder oppmerksomheten på hva den andre faktisk sier før svar, råd eller tolkning bygges",
+      "class_position": "likestilt deltaker uten formell hjelperrolle",
+      "status": "middels relasjonell tillit og lav formell makt",
+      "power_over_player": "kan definere god lytting på en måte som gjør samtalen for langsom eller selvbevisst",
+      "wants": "at folk skal føle seg hørt uten at samtalen stopper opp",
+      "conceals": "at også lytting kan bli en teknikk som brukes mekanisk",
+      "speech_style": "rolig, kort og oppsummerende",
+      "teaches_player": "at lytting krever kontroll av egen responsimpuls"
+    },
+    {
+      "id": "avklaringsvennen",
+      "social_function": "tester tolkninger, parafraser og antatte motiver før de blir stående som fakta",
+      "class_position": "språkbevisst samtaledeltaker uten profesjonelt mandat",
+      "status": "middels uformell begrepsautoritet",
+      "power_over_player": "kan gjøre presisjon til et krav som tapper samtalen for spontanitet",
+      "wants": "at uenighet skal handle om det folk faktisk mener",
+      "conceals": "at egne formuleringer også kan styre den andres selvforståelse",
+      "speech_style": "presis, spørsmålsdrevet og korrigerbar",
+      "teaches_player": "at en god parafrase alltid må kunne avvises av den som ble parafrasert"
+    },
+    {
+      "id": "rytmevennen",
+      "social_function": "gjør taletid, turtaking og gruppeinkludering synlig uten å gjøre samtalen mekanisk",
+      "class_position": "gruppedeltaker med blikk for sosial dynamikk",
+      "status": "middels sosial innflytelse",
+      "power_over_player": "kan gripe inn i flyten og indirekte bestemme hvem som bør snakke",
+      "wants": "at flere skal kunne delta uten å kjempe om ordet",
+      "conceals": "at lik taletid ikke alltid er riktig mål",
+      "speech_style": "lett, inviterende og tempobevisst",
+      "teaches_player": "at samtalerytme også fordeler sosial makt"
+    },
+    {
+      "id": "uenighetsvennen",
+      "social_function": "holder konflikt på sak, premiss og perspektiv fremfor poengseier og personvurdering",
+      "class_position": "likestilt deltaker i reell uenighet",
+      "status": "middels faglig eller sosial selvsikkerhet",
+      "power_over_player": "kan eskalere statuskamp hvis uenighet gjøres til prestasjon",
+      "wants": "at forskjeller skal bli tydelige uten at relasjonen må brytes",
+      "conceals": "at også saklig uenighet kan inneholde behov for å vinne",
+      "speech_style": "direkte, konkret og kontrasterende",
+      "teaches_player": "at forståelse ikke krever konsensus"
+    },
+    {
+      "id": "grensevennen",
+      "social_function": "holder fortrolighet, selvavsløring og gjenbruk av private historier innenfor tydelige relasjonelle grenser",
+      "class_position": "nær sosial deltaker uten behandlingsansvar",
+      "status": "høy relasjonell sensitivitet og lav institusjonell makt",
+      "power_over_player": "kan stoppe deling eller gjenfortelling når tillit står på spill",
+      "wants": "at nærhet ikke skal bli press om mer åpenhet enn folk ønsker",
+      "conceals": "at egne grenser ikke nødvendigvis er andres",
+      "speech_style": "tydelig, varm og grensesettende",
+      "teaches_player": "at tillit også består av det man velger å ikke bruke videre"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer når samtalen går over i behandling, krisehåndtering, formell mekling eller profesjonell rådgivning",
+      "class_position": "kvalifisert eller mandatbærende fagrolle i eget område",
+      "status": "høy formell autoritet innen avgrenset praksis",
+      "power_over_player": "kan kreve henvisning eller stoppe rolleoverskridelse når behovet går utover vanlig samtale",
+      "wants": "at god dialog ikke brukes som erstatning for nødvendig faglig hjelp",
+      "conceals": "at profesjonelle grenser også må kommuniseres menneskelig og situert",
+      "speech_style": "rolig, ansvarstydelig og presis",
+      "teaches_player": "at samtalekompetanse og profesjonsmyndighet er forskjellige ting"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "listening_vs_reply_preparation",
+      "meaning": "å lytte ferdig mot å forberede eget svar mens den andre fortsatt snakker",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "clarification_vs_motive_assumption",
+      "meaning": "avklaring av mening mot å behandle antatte motiver som fakta",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "inquiry_vs_interrogation",
+      "meaning": "åpne spørsmål mot en spørsmålsrekke som gjør den andre til objekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "turn_taking_vs_conversational_dominance",
+      "meaning": "turtaking og rom mot at én deltaker eier tema og tempo",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disagreement_vs_winning",
+      "meaning": "uenighet som avklaring mot samtale som konkurranse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "presence_vs_solution_pressure",
+      "meaning": "tilstedeværelse og anerkjennelse mot press om å fikse følelser og problemer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection_silence_vs_filling",
+      "meaning": "refleksjonsstillhet mot behovet for å fylle hvert tomrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "paraphrase_vs_reframing",
+      "meaning": "oppsummering som avklaring mot umerkelig omskriving av den andres mening",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disclosure_vs_reciprocity_pressure",
+      "meaning": "fortrolighet mot forventning om tilsvarende selvavsløring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "connection_vs_group_exclusion",
+      "meaning": "sterk kontakt mellom noen mot at resten av gruppen skyves ut",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conversation_trust_vs_reuse",
+      "meaning": "fortrolig materiale mot gjenbruk av andres historier uten reelt samtykke",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "advice_vs_decision_ownership",
+      "meaning": "råd som perspektiv mot at samtalepartneren overtar den andres valg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "understanding_vs_forced_consensus",
+      "meaning": "bedre forståelse mot kravet om at samtalen må ende i enighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "dialogue_practice_vs_professional_authority",
+      "meaning": "dialogpraksis mot terapi, mekling, coaching og profesjonell rådgivningsmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Hører du etter — eller venter du bare på tur?.",
+        "thread_ids": [
+          "listening_vs_reply_preparation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Hører du etter — eller venter du bare på tur?.",
+        "thread_ids": [
+          "listening_vs_reply_preparation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Hører du etter — eller venter du bare på tur?.",
+        "thread_ids": [
+          "listening_vs_reply_preparation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Hører du etter — eller venter du bare på tur?.",
+        "thread_ids": [
+          "listening_vs_reply_preparation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Vet du hva den andre mener — eller antar du det?.",
+        "thread_ids": [
+          "clarification_vs_motive_assumption",
+          "listening_vs_reply_preparation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Vet du hva den andre mener — eller antar du det?.",
+        "thread_ids": [
+          "clarification_vs_motive_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Vet du hva den andre mener — eller antar du det?.",
+        "thread_ids": [
+          "clarification_vs_motive_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Vet du hva den andre mener — eller antar du det?.",
+        "thread_ids": [
+          "clarification_vs_motive_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Hvor mange spørsmål tåler en samtale før den blir et avhør?.",
+        "thread_ids": [
+          "inquiry_vs_interrogation",
+          "clarification_vs_motive_assumption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Hvor mange spørsmål tåler en samtale før den blir et avhør?.",
+        "thread_ids": [
+          "inquiry_vs_interrogation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Hvor mange spørsmål tåler en samtale før den blir et avhør?.",
+        "thread_ids": [
+          "inquiry_vs_interrogation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Hvor mange spørsmål tåler en samtale før den blir et avhør?.",
+        "thread_ids": [
+          "inquiry_vs_interrogation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Hvem har egentlig fått plass i samtalen?.",
+        "thread_ids": [
+          "turn_taking_vs_conversational_dominance",
+          "inquiry_vs_interrogation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Hvem har egentlig fått plass i samtalen?.",
+        "thread_ids": [
+          "turn_taking_vs_conversational_dominance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Hvem har egentlig fått plass i samtalen?.",
+        "thread_ids": [
+          "turn_taking_vs_conversational_dominance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Hvem har egentlig fått plass i samtalen?.",
+        "thread_ids": [
+          "turn_taking_vs_conversational_dominance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Prøver dere å forstå forskjellen — eller vinne?.",
+        "thread_ids": [
+          "disagreement_vs_winning",
+          "turn_taking_vs_conversational_dominance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Prøver dere å forstå forskjellen — eller vinne?.",
+        "thread_ids": [
+          "disagreement_vs_winning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Prøver dere å forstå forskjellen — eller vinne?.",
+        "thread_ids": [
+          "disagreement_vs_winning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Prøver dere å forstå forskjellen — eller vinne?.",
+        "thread_ids": [
+          "disagreement_vs_winning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Må en vanskelig følelse alltid fikses?.",
+        "thread_ids": [
+          "presence_vs_solution_pressure",
+          "disagreement_vs_winning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Må en vanskelig følelse alltid fikses?.",
+        "thread_ids": [
+          "presence_vs_solution_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Må en vanskelig følelse alltid fikses?.",
+        "thread_ids": [
+          "presence_vs_solution_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Må en vanskelig følelse alltid fikses?.",
+        "thread_ids": [
+          "presence_vs_solution_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Stillhet betyr ikke nødvendigvis at samtalen har stoppet.",
+        "thread_ids": [
+          "reflection_silence_vs_filling",
+          "presence_vs_solution_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Stillhet betyr ikke nødvendigvis at samtalen har stoppet.",
+        "thread_ids": [
+          "reflection_silence_vs_filling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Stillhet betyr ikke nødvendigvis at samtalen har stoppet.",
+        "thread_ids": [
+          "reflection_silence_vs_filling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Stillhet betyr ikke nødvendigvis at samtalen har stoppet.",
+        "thread_ids": [
+          "reflection_silence_vs_filling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Gjentar du det som ble sagt — eller skriver du det om?.",
+        "thread_ids": [
+          "paraphrase_vs_reframing",
+          "reflection_silence_vs_filling"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Gjentar du det som ble sagt — eller skriver du det om?.",
+        "thread_ids": [
+          "paraphrase_vs_reframing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Gjentar du det som ble sagt — eller skriver du det om?.",
+        "thread_ids": [
+          "paraphrase_vs_reframing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Gjentar du det som ble sagt — eller skriver du det om?.",
+        "thread_ids": [
+          "paraphrase_vs_reframing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Hvis én deler noe privat, må den andre gjøre det samme?.",
+        "thread_ids": [
+          "disclosure_vs_reciprocity_pressure",
+          "paraphrase_vs_reframing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Hvis én deler noe privat, må den andre gjøre det samme?.",
+        "thread_ids": [
+          "disclosure_vs_reciprocity_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Hvis én deler noe privat, må den andre gjøre det samme?.",
+        "thread_ids": [
+          "disclosure_vs_reciprocity_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Hvis én deler noe privat, må den andre gjøre det samme?.",
+        "thread_ids": [
+          "disclosure_vs_reciprocity_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Når blir en god samtale en liten allianse?.",
+        "thread_ids": [
+          "connection_vs_group_exclusion",
+          "disclosure_vs_reciprocity_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Når blir en god samtale en liten allianse?.",
+        "thread_ids": [
+          "connection_vs_group_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Når blir en god samtale en liten allianse?.",
+        "thread_ids": [
+          "connection_vs_group_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Når blir en god samtale en liten allianse?.",
+        "thread_ids": [
+          "connection_vs_group_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kan en god historie gjenfortelles hvis navnene fjernes?.",
+        "thread_ids": [
+          "conversation_trust_vs_reuse",
+          "connection_vs_group_exclusion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kan en god historie gjenfortelles hvis navnene fjernes?.",
+        "thread_ids": [
+          "conversation_trust_vs_reuse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Kan en god historie gjenfortelles hvis navnene fjernes?.",
+        "thread_ids": [
+          "conversation_trust_vs_reuse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kan en god historie gjenfortelles hvis navnene fjernes?.",
+        "thread_ids": [
+          "conversation_trust_vs_reuse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Når blir et råd til at du eier den andres beslutning?.",
+        "thread_ids": [
+          "advice_vs_decision_ownership",
+          "conversation_trust_vs_reuse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Når blir et råd til at du eier den andres beslutning?.",
+        "thread_ids": [
+          "advice_vs_decision_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Når blir et råd til at du eier den andres beslutning?.",
+        "thread_ids": [
+          "advice_vs_decision_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Når blir et råd til at du eier den andres beslutning?.",
+        "thread_ids": [
+          "advice_vs_decision_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Kan en samtale være vellykket uten en felles konklusjon?.",
+        "thread_ids": [
+          "understanding_vs_forced_consensus",
+          "advice_vs_decision_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Kan en samtale være vellykket uten en felles konklusjon?.",
+        "thread_ids": [
+          "understanding_vs_forced_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Kan en samtale være vellykket uten en felles konklusjon?.",
+        "thread_ids": [
+          "understanding_vs_forced_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Kan en samtale være vellykket uten en felles konklusjon?.",
+        "thread_ids": [
+          "understanding_vs_forced_consensus",
+          "dialogue_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: God samtale er ikke automatisk terapi, mekling eller profesjonell rådgivning.",
+        "thread_ids": [
+          "dialogue_practice_vs_professional_authority",
+          "understanding_vs_forced_consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: God samtale er ikke automatisk terapi, mekling eller profesjonell rådgivning.",
+        "thread_ids": [
+          "dialogue_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: God samtale er ikke automatisk terapi, mekling eller profesjonell rådgivning.",
+        "thread_ids": [
+          "dialogue_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: God samtale er ikke automatisk terapi, mekling eller profesjonell rådgivning.",
+        "thread_ids": [
+          "dialogue_practice_vs_professional_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "listening_vs_reply_preparation",
+      "relationship": "å lytte ferdig mot å forberede eget svar mens den andre fortsatt snakker",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "clarification_vs_motive_assumption",
+      "relationship": "avklaring av mening mot å behandle antatte motiver som fakta",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "inquiry_vs_interrogation",
+      "relationship": "åpne spørsmål mot en spørsmålsrekke som gjør den andre til objekt",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "turn_taking_vs_conversational_dominance",
+      "relationship": "turtaking og rom mot at én deltaker eier tema og tempo",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "disagreement_vs_winning",
+      "relationship": "uenighet som avklaring mot samtale som konkurranse",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "presence_vs_solution_pressure",
+      "relationship": "tilstedeværelse og anerkjennelse mot press om å fikse følelser og problemer",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "reflection_silence_vs_filling",
+      "relationship": "refleksjonsstillhet mot behovet for å fylle hvert tomrom",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "paraphrase_vs_reframing",
+      "relationship": "oppsummering som avklaring mot umerkelig omskriving av den andres mening",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "disclosure_vs_reciprocity_pressure",
+      "relationship": "fortrolighet mot forventning om tilsvarende selvavsløring",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "connection_vs_group_exclusion",
+      "relationship": "sterk kontakt mellom noen mot at resten av gruppen skyves ut",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "conversation_trust_vs_reuse",
+      "relationship": "fortrolig materiale mot gjenbruk av andres historier uten reelt samtykke",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "advice_vs_decision_ownership",
+      "relationship": "råd som perspektiv mot at samtalepartneren overtar den andres valg",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "understanding_vs_forced_consensus",
+      "relationship": "bedre forståelse mot kravet om at samtalen må ende i enighet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "dialogue_practice_vs_professional_authority",
+      "relationship": "dialogpraksis mot terapi, mekling, coaching og profesjonell rådgivningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "lytting_avklaring_og_sporsmal",
+      "description": "Lytting, tolkning og spørsmål blir mer gjensidige uten å gjøre samtalen til avhør.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor"
+      ]
+    },
+    {
+      "id": "turtaking_uenighet_og_naervaer",
+      "description": "Taletid, uenighet og vanskelige følelser håndteres uten poengkamp eller løsningspress.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses"
+      ]
+    },
+    {
+      "id": "stillhet_parafrase_og_fortrolighet",
+      "description": "Stillhet, oppsummering og selvavsløring får rom uten at mening eller nærhet presses fram.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld"
+      ]
+    },
+    {
+      "id": "gruppe_tillit_og_rad",
+      "description": "Gruppedynamikk, fortrolig materiale og råd holdes innenfor tydelige eierskapsgrenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget"
+      ]
+    },
+    {
+      "id": "uenighet_og_profesjonsgrense",
+      "description": "Samtalen kan avsluttes uten enighet og uten at samtalepartneren blir terapeut, mekler eller rådgiver.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet",
+        "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "lytting_moter_tolkning",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sporsmal_moter_taletid",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "uenighet_moter_naervaer",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    },
+    {
+      "id": "stillhet_moter_fortrolighet",
+      "setup_ref": "7/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "gruppe_moter_rad",
+      "setup_ref": "10/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "status",
+        "authority"
+      ]
+    },
+    {
+      "id": "fortrolighet_moter_profesjonsgrense",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#svaret_som_ble_forberedt_for_tidlig",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tolkningen_som_ble_tankeavlesning",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#sporsmalet_som_ble_forhor",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#tiden_som_ble_taletid",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#uenigheten_som_ble_konkurranse",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#folelsen_som_ble_problem_som_ma_loses",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#stillheten_som_ble_fylt",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#oppsummeringen_som_endret_meningen",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#fortroligheten_som_krevde_gjengjeld",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#gruppen_som_fikk_en_innside",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#det_som_ble_sagt_i_fortrolighet",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#radet_som_tok_over_valget",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalen_som_endte_uten_enighet",
+      "data/Civication/narratives/leisure/filosofi_samtalepartner.json#samtalepartner_ikke_terapeut"
+    ]
+  }
+}

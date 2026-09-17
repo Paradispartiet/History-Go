@@ -1,0 +1,705 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "filosofi_livsgrubler_stream",
+  "type": "leisure",
+  "title": "Livsgrubler",
+  "sociological_theme": "hverdagsrefleksjon_tvil_valg_mening_og_epistemisk_ydmykhet",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:livsgrubler"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "leisure",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_ved_frokosten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Morgenen",
+      "subject": "Et spørsmål kan følge deg uten å kreve et svar",
+      "situation": [
+        "En vanlig morgen begynner med et spørsmål om hva du faktisk bruker tiden din på.",
+        "Du merker at spørsmålet er viktig, men også at hverdagen må fortsette mens du tenker.",
+        "Livsgrubling blir bærekraftig når et åpent spørsmål ikke automatisk blir en krise som må løses."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned spørsmålet og la det være åpent mens du gjør det dagen krever.",
+          "effect": 1,
+          "tags": [
+            "sporsmalet_ved_frokosten_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gir refleksjonen plass uten å gi den hele dagen."
+        },
+        {
+          "id": "B",
+          "label": "Utsett resten av morgenen til du har formulert et tilfredsstillende svar.",
+          "effect": -1,
+          "tags": [
+            "sporsmalet_ved_frokosten_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Spørsmålet blir en adgangsbillett til å komme videre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_open_question"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "valget_du_analyserer_for_lenge",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Ettermiddagen",
+      "subject": "Mer analyse gir ikke alltid mer sikkerhet",
+      "situation": [
+        "Du står mellom to helt vanlige valg og har allerede listet fordeler, ulemper og mulige konsekvenser.",
+        "Ingen av valgene er perfekte, og mer informasjon vil neppe fjerne usikkerheten.",
+        "Refleksjon må ha et punkt der den overleverer til handling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bestem hvilke hensyn som faktisk betyr mest, velg og aksepter resten som usikkerhet.",
+          "effect": 1,
+          "tags": [
+            "valget_du_analyserer_for_lenge_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bruker tenkning til å handle, ikke til å utsette handling."
+        },
+        {
+          "id": "B",
+          "label": "Lag enda en liste fordi et riktig valg burde føles helt sikkert.",
+          "effect": -1,
+          "tags": [
+            "valget_du_analyserer_for_lenge_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Usikkerheten får definere når du har lov til å velge."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_decision_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtalen_du_spiller_om_igjen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Etterpå",
+      "subject": "En samtale kan granskes uten å omskrives hundre ganger",
+      "situation": [
+        "En kommentar fra en venn sitter igjen etter at dere skiltes.",
+        "Du kan se flere mulige betydninger, men vet ikke hva personen faktisk mente.",
+        "Livsgrubleren må skille mellom nyttig ettertanke og å bygge stadig nye versjoner av en samtale som allerede er over."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva du vet, hva du antar, og hva du eventuelt vil spørre vennen om neste gang.",
+          "effect": 1,
+          "tags": [
+            "samtalen_du_spiller_om_igjen_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du skiller observasjon fra fortolkning."
+        },
+        {
+          "id": "B",
+          "label": "Gå gjennom hvert ord til du finner den mest sannsynlige skjulte betydningen.",
+          "effect": -1,
+          "tags": [
+            "samtalen_du_spiller_om_igjen_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Antakelsen blir mer virkelig jo lenger du arbeider med den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_replay_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatboken_som_speil",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Notatboken",
+      "subject": "Skrift kan klargjøre uten å bli domstol",
+      "situation": [
+        "Du har skrevet om samme tema flere ganger og oppdager at formuleringene dine har endret seg.",
+        "Notatene viser ikke en perfekt sannhet om deg, men spor etter ulike dager og perspektiver.",
+        "Selvrefleksjon blir rikere når gamle notater får være historiske dokumenter, ikke bindende dommer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les dem som tidligere perspektiver og marker hva du ser annerledes nå.",
+          "effect": 1,
+          "tags": [
+            "notatboken_som_speil_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør endring til en del av materialet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk gamle formuleringer som bevis på hvem du egentlig er.",
+          "effect": -1,
+          "tags": [
+            "notatboken_som_speil_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Tidligere tvil får status som endelig identitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_journal_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tvilen_etter_valget",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kvelden",
+      "subject": "Et valgt liv inneholder fortsatt tvil",
+      "situation": [
+        "Du har tatt et valg du kan begrunne, men kjenner fortsatt dragningen mot alternativet.",
+        "Det betyr ikke automatisk at valget var feil.",
+        "Tvil kan være informasjon om kostnader og savn uten å fungere som en dom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva du savner ved alternativet, uten å omgjøre hele beslutningen på følelsen alene.",
+          "effect": 1,
+          "tags": [
+            "tvilen_etter_valget_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar tvilen informere uten å styre alt."
+        },
+        {
+          "id": "B",
+          "label": "Tolk tvilen som bevis på at du må ha valgt feil.",
+          "effect": -1,
+          "tags": [
+            "tvilen_etter_valget_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Ethvert savn blir et krav om å begynne på nytt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_post_choice_doubt"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_vil_ha_et_svar",
+      "message_type": "people",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "Dine spørsmål er ikke andres fasit",
+      "situation": [
+        "En venn forteller om et vanskelig valg og spør hva du mener de bør gjøre.",
+        "Du er vant til å se mange sider av et problem, men kjenner ikke hele livet deres.",
+        "Livsgrublerens styrke er perspektiver, ikke myndighet over andres beslutninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp vennen å formulere hensynene og la beslutningen bli deres.",
+          "effect": 1,
+          "tags": [
+            "vennen_vil_ha_et_svar_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bruker refleksjon som støtte."
+        },
+        {
+          "id": "B",
+          "label": "Gi den mest konsistente løsningen og argumenter til vennen følger den.",
+          "effect": -1,
+          "tags": [
+            "vennen_vil_ha_et_svar_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Et annet menneskes liv blir en test av din tankemodell."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_advice_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_gode_livet_i_en_travel_uke",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Hverdagen",
+      "subject": "Store spørsmål må møte små tidsbudsjetter",
+      "situation": [
+        "Du spør deg hva et godt liv er midt i en uke full av logistikk, arbeid og avtaler.",
+        "Det abstrakte spørsmålet føles større enn de små valgene som faktisk fyller dagene.",
+        "Refleksjon blir konkret når den kan oversettes til noe man faktisk gjør og prioriterer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én liten praksis som stemmer med det du sier er viktig, og prøv den denne uka.",
+          "effect": 1,
+          "tags": [
+            "det_gode_livet_i_en_travel_uke_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar idé og hverdag møtes."
+        },
+        {
+          "id": "B",
+          "label": "Vent med endring til du har en fullstendig teori om hva et godt liv er.",
+          "effect": -1,
+          "tags": [
+            "det_gode_livet_i_en_travel_uke_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Det store spørsmålet blir en grunn til å ikke teste noe lite."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_everyday_values"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mening_uten_prestasjon",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Fridagen",
+      "subject": "Ikke alt meningsfullt må kunne måles",
+      "situation": [
+        "En fridag går uten tydelig resultat, men inneholder ro, nærhet og ting du liker.",
+        "En del av deg vil likevel gjøre dagen om til et regnskap over hva du fikk gjort.",
+        "Livsgrubling kan utfordre prestasjonsmål uten å erstatte dem med et nytt ideal om perfekt balanse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til hva som faktisk gjorde dagen verdifull uten å rangere det som produktivitet.",
+          "effect": 1,
+          "tags": [
+            "mening_uten_prestasjon_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar mening ha flere målestokker."
+        },
+        {
+          "id": "B",
+          "label": "Lag et system for å bevise at fridagen var riktig brukt.",
+          "effect": -1,
+          "tags": [
+            "mening_uten_prestasjon_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Selv hvile blir et prestasjonsprosjekt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_meaning_measure"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motsetningen_i_deg_selv",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Speilet",
+      "subject": "Du kan mene to ting som trekker ulikt",
+      "situation": [
+        "Du oppdager at to verdier du begge forsvarer peker i hver sin retning i en konkret situasjon.",
+        "Det er fristende å lete etter én regel som fjerner spenningen.",
+        "Noen konflikter handler ikke om inkonsistens, men om reelle hensyn som må veies."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi begge hensynene og si hva du prioriterer akkurat her.",
+          "effect": 1,
+          "tags": [
+            "motsetningen_i_deg_selv_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør avveiingen synlig."
+        },
+        {
+          "id": "B",
+          "label": "Omskriv den ene verdien til den ikke lenger kolliderer med den andre.",
+          "effect": -1,
+          "tags": [
+            "motsetningen_i_deg_selv_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Konsistens kjøpes ved å skjule kostnaden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_value_conflict"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_som_foltes_sant",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Lesingen",
+      "subject": "En formulering er ikke et bevis fordi den treffer",
+      "situation": [
+        "Du møter et sitat som virker som om det forklarer akkurat det du har tenkt på.",
+        "Formuleringen er elegant og enkel å gjøre til personlig leveregel.",
+        "Livsgrubleren trenger samme kildeomsorg for ideer som passer som for ideer som provoserer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn sammenhengen sitatet står i før du bygger mer på det.",
+          "effect": 1,
+          "tags": [
+            "sitatet_som_foltes_sant_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar resonans og kilde være to forskjellige spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Behold sitatet som fasit fordi det endelig setter ord på følelsen.",
+          "effect": -1,
+          "tags": [
+            "sitatet_som_foltes_sant_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Gjenkjennelse får rollen som dokumentasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_quote_context"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tankeeksperimentet_moter_virkeligheten",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Kjøkkenbordet",
+      "subject": "Et tankeeksperiment forenkler med vilje",
+      "situation": [
+        "Du prøver å forstå et vanskelig moralsk spørsmål ved å lage et rent hypotetisk eksempel.",
+        "Eksemplet gjør konflikten tydeligere, men fjerner også tid, relasjoner og ujevne konsekvenser.",
+        "Abstraksjon hjelper bare hvis du husker hva som ble abstrahert bort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk eksemplet til å klargjøre prinsippet og legg deretter de virkelige komplikasjonene tilbake.",
+          "effect": 1,
+          "tags": [
+            "tankeeksperimentet_moter_virkeligheten_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bruker forenkling som verktøy, ikke som virkelighet."
+        },
+        {
+          "id": "B",
+          "label": "La det rene eksemplet avgjøre saken fordi virkeligheten bare gjør alt rotete.",
+          "effect": -1,
+          "tags": [
+            "tankeeksperimentet_moter_virkeligheten_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Metoden får større autoritet enn situasjonen tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_abstraction_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_uten_input",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En rolig kveld",
+      "subject": "Du trenger ikke fylle hvert tomrom med nye ideer",
+      "situation": [
+        "Du har en kveld uten planer og merker impulsen til å fylle den med artikler, podkaster og nye spørsmål.",
+        "Mer input kan være inspirerende, men gjør det også vanskeligere å høre hva du allerede tenker.",
+        "Livsgrubling trenger noen ganger et tomrom der ingenting nytt skal konsumeres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La en del av kvelden være uten nytt stoff og se hvilke tanker som faktisk blir igjen.",
+          "effect": 1,
+          "tags": [
+            "stillheten_uten_input_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du skiller nysgjerrighet fra kontinuerlig input."
+        },
+        {
+          "id": "B",
+          "label": "Start tre nye spor fordi et åpent sinn alltid burde lære mer.",
+          "effect": -1,
+          "tags": [
+            "stillheten_uten_input_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Nysgjerrighet blir en strøm uten stoppunkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_input_boundary"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "du_endret_mening",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "En gammel diskusjon",
+      "subject": "Revisjon trenger ikke være et identitetstap",
+      "situation": [
+        "Et spørsmål du var sikker på for et år siden ser annerledes ut nå.",
+        "Du husker hvor tydelig du argumenterte den gangen og kjenner motstand mot å innrømme endringen.",
+        "Refleksjon mister verdi hvis konsistens over tid blir viktigere enn bedre grunner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva som fikk deg til å endre syn og la den gamle posisjonen være en del av historien.",
+          "effect": 1,
+          "tags": [
+            "du_endret_mening_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør revisjon til et tegn på læring."
+        },
+        {
+          "id": "B",
+          "label": "Finn en måte å forklare at du egentlig alltid mente omtrent det samme.",
+          "effect": -1,
+          "tags": [
+            "du_endret_mening_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Ansikt reddes ved å omskrive fortiden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_revision"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "livsgrubler_som_praksis",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure",
+        "people"
+      ],
+      "from": "Din egen rytme",
+      "subject": "Et åpent spørsmål er ikke et uferdig menneske",
+      "situation": [
+        "Du har fortsatt spørsmål om mening, ansvar, valg og hva som er verd å bruke tid på.",
+        "Noen av dem har fulgt deg lenge og kommer trolig ikke til å få endelig løsning.",
+        "Livsgrubler-identiteten blir bærekraftig når tenkning kan endre handling uten å kreve total sikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold spørsmålene som praksis: undersøk, avgrens, handle og revider når nye grunner kommer.",
+          "effect": 1,
+          "tags": [
+            "livsgrubler_som_praksis_deliberate",
+            "reflection",
+            "epistemic_humility"
+          ],
+          "feedback": "Du lar tvil og handling eksistere samtidig."
+        },
+        {
+          "id": "B",
+          "label": "Gjør det til mål å bli ferdig med de store spørsmålene før du kan stole på egne valg.",
+          "effect": -1,
+          "tags": [
+            "livsgrubler_som_praksis_drift",
+            "rumination_pressure",
+            "false_certainty"
+          ],
+          "feedback": "Åpenhet blir tolket som mangel som må lukkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "livsgrubler_identity"
+      ],
+      "risk_links": [
+        "psyche_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}

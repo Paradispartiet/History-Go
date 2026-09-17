@@ -1,0 +1,1114 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_motesliter",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "motesliter",
+    "label": "Møtesliter"
+  },
+  "title": "Møtesliter — møtekultur, ansvar og mandatgrenser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å delta mye og kjenne møtemaskineriet godt uten at rutine, taletid, dokumentasjon, tidsnød eller uformell innflytelse blir forvekslet med formelt mandat",
+    "description": "Møtesliter-verdenen undersøker sakslister, sent underlag, taletid, habilitet, referater, ansvar, digital tilgang, nye stemmer, tidsbelastning, delegasjon, eksterne innspill, hastesaker, oppfølging og grensen mot formelt mandat. Møtesliter er en community_identity og levd møtepraksis. Rollen gir ingen automatisk myndighet som valgt representant, delegert beslutningstaker, profesjonell politisk rådgiver eller offentlig saksbehandler, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "bureaucratic_power",
+    "professional_culture",
+    "loyalty_up_down",
+    "care_vs_efficiency",
+    "social_mask",
+    "shame_reputation",
+    "local_knowledge_vs_system",
+    "public_attention"
+  ],
+  "social_environments": [
+    "ordinære møter der agenda, tid og taleliste fordeler oppmerksomhet mellom saker og deltakere",
+    "saksforberedelse der dokumenter, frister og tidligere vedtak avgjør hvem som rekker å forstå hva før møtet",
+    "små organisasjonsmiljøer der nære relasjoner og lang historikk gjør habilitet og rolleavklaring konkret",
+    "referat- og oppfølgingsarbeid der formuleringer, ansvar og frister avgjør hva som faktisk overlever etter møtet",
+    "digitale og hybride møter der teknisk tilgang blir en del av deltakelsesbetingelsene",
+    "arbeidsutvalg og uformelle mellomrom der forberedelse kan gli over i beslutning dersom mandatet ikke er synlig"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "motelederen",
+      "social_function": "holder agenda, taleliste og prosedyre synlig når møtet presses av tid eller vane",
+      "class_position": "valgt eller utpekt møteleder innen et avgrenset møte, ikke generell politisk myndighet",
+      "status": "situert prosessautoritet mens møtet pågår",
+      "power_over_player": "kan gi og avgrense taletid, tolke agenda og foreslå prosessuelle grep innen mandatet",
+      "wants": "et møte som kommer gjennom sakene uten at prosedyren blir usynlig",
+      "conceals": "at effektivitet lett kan bli likestilt med få innvendinger",
+      "speech_style": "strukturert, tidsbevisst og opptatt av neste punkt",
+      "teaches_player": "at møteledelse er prosessmakt og derfor må være avgrenset"
+    },
+    {
+      "id": "referenten",
+      "social_function": "gjør beslutninger, uenighet, ansvar og oppfølging etterprøvbart i ettertid",
+      "class_position": "dokumentasjonsrolle med ansvar for referat, ikke beslutningsmyndighet",
+      "status": "lav synlighet i rommet, høy betydning for institusjonelt minne",
+      "power_over_player": "kan forme hva som blir stående som møtehistorikk dersom formuleringene ikke kontrolleres",
+      "wants": "et kort referat som fortsatt er presist nok til å brukes senere",
+      "conceals": "at forenkling ofte flytter makt fra samtalen til teksten",
+      "speech_style": "presis, oppsummerende og opptatt av formuleringer",
+      "teaches_player": "at referatet er en del av styringen, ikke bare et etterarbeid"
+    },
+    {
+      "id": "erfaren_deltaker",
+      "social_function": "bærer taus kunnskap om tidligere saker, rutiner og uformelle arbeidsmåter",
+      "class_position": "langvarig deltaker uten automatisk valgt eller delegert mandat",
+      "status": "høy uformell autoritet fordi vedkommende kjenner historikken",
+      "power_over_player": "kan definere hva som oppfattes som vanlig, realistisk eller allerede avklart",
+      "wants": "at møtet ikke bruker tid på å gjenoppfinne gamle avklaringer",
+      "conceals": "at egen rutine kan gjøre nye stemmer mindre synlige",
+      "speech_style": "rask, refererende og trygg på historikken",
+      "teaches_player": "at erfaring bør oversettes til delbar kontekst fremfor å bli skjult beslutningsmakt"
+    },
+    {
+      "id": "ny_deltaker",
+      "social_function": "viser om språk, dokumenter og taleregler faktisk er forståelige uten tidligere medlemskap",
+      "class_position": "ny deltaker med lav uformell status og samme grunnleggende rett til forståelig prosess",
+      "status": "avhengig av om andre gjør møtekoden eksplisitt",
+      "power_over_player": "kan avdekke hvilke deler av møtekulturen som bare fungerer for de innvidde",
+      "wants": "å forstå saken godt nok til å kunne delta uten å late som",
+      "conceals": "at usikkerhet ofte skjules når møtet går fort",
+      "speech_style": "spørrende, konkret og tilbakeholden med å avbryte",
+      "teaches_player": "at inkludering må designes i selve møteformen"
+    },
+    {
+      "id": "sakseier",
+      "social_function": "bringer inn underlag, frister og ønsket beslutning for én konkret sak",
+      "class_position": "ansvarlig for saksforberedelse innen et avgrenset område",
+      "status": "høy informasjonsmakt i egen sak, men ikke enerett til konklusjonen",
+      "power_over_player": "kan styre oppmerksomhet gjennom hvilket underlag som kommer når og hvordan alternativer presenteres",
+      "wants": "en avklaring som gjør at saken kan gå videre",
+      "conceals": "at egen tidsplan kan oppleves som hele gruppens frist",
+      "speech_style": "saklig, målrettet og ofte tidspresset",
+      "teaches_player": "at god saksbehandling krever mer enn at et dokument finnes"
+    },
+    {
+      "id": "ekstern_innspiller",
+      "social_function": "representerer personer eller miljøer som ber møtet ta inn informasjon uten å være del av den interne beslutningsprosessen",
+      "class_position": "utenfor møtets formelle rollefordeling, med legitim mulighet til å gi innspill der prosessen åpner for det",
+      "status": "kan ha viktig lokal kunnskap uten intern beslutningsmyndighet",
+      "power_over_player": "kan endre hva deltakerne vet og hvilke hensyn som blir synlige",
+      "wants": "at innspillet faktisk blir lest og behandlet på en forståelig måte",
+      "conceals": "at også gode innspill kan presse agenda og tidsbruk",
+      "speech_style": "konkret, erfaringsbasert og opptatt av respons",
+      "teaches_player": "at åpenhet krever en sporbar vei fra innspill til behandling"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "agenda_vs_focus",
+      "meaning": "om saksmengde og tid gir rom for reell behandling fremfor bare gjennomgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "routine_vs_participation",
+      "meaning": "om erfaring brukes til å åpne møtet for flere eller gjør taletid og kontekst mer lukket",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "record_vs_harmony",
+      "meaning": "om referatet bevarer relevante uenigheter og begrunnelser uten å dramatisere dem",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "decision_vs_ownership",
+      "meaning": "om beslutninger får tydelig ansvar, frist og oppfølging",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "efficiency_vs_access",
+      "meaning": "om raske møteformer fortsatt gir faktisk tilgang til dokumenter, teknologi og kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commitment_vs_capacity",
+      "meaning": "om høy møteaktivitet kan avgrenses uten at fravær automatisk tolkes som lavt engasjement",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "practice_vs_formal_authority",
+      "meaning": "om omfattende møteerfaring holdes tydelig adskilt fra valgt, delegert, profesjonell rådgivende og offentlig myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Sakslista har fått fem nye punkter.",
+        "thread_ids": [
+          "agenda_vs_focus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Sakslista har fått fem nye punkter.",
+        "thread_ids": [
+          "agenda_vs_focus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Sakslista har fått fem nye punkter.",
+        "thread_ids": [
+          "agenda_vs_focus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Sakslista har fått fem nye punkter.",
+        "thread_ids": [
+          "agenda_vs_focus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Her er underlaget – beklager tidspunktet.",
+        "thread_ids": [
+          "preparation_vs_access",
+          "agenda_vs_focus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Her er underlaget – beklager tidspunktet.",
+        "thread_ids": [
+          "preparation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Her er underlaget – beklager tidspunktet.",
+        "thread_ids": [
+          "preparation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Her er underlaget – beklager tidspunktet.",
+        "thread_ids": [
+          "preparation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Jeg kan bare ta denne også.",
+        "thread_ids": [
+          "routine_vs_participation",
+          "preparation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_samme_forer_ordet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Jeg kan bare ta denne også.",
+        "thread_ids": [
+          "routine_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_samme_forer_ordet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Jeg kan bare ta denne også.",
+        "thread_ids": [
+          "routine_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_samme_forer_ordet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Jeg kan bare ta denne også.",
+        "thread_ids": [
+          "routine_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_samme_forer_ordet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Dette gjelder jo noen vi kjenner.",
+        "thread_ids": [
+          "proximity_vs_habilitet",
+          "routine_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Dette gjelder jo noen vi kjenner.",
+        "thread_ids": [
+          "proximity_vs_habilitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Dette gjelder jo noen vi kjenner.",
+        "thread_ids": [
+          "proximity_vs_habilitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Dette gjelder jo noen vi kjenner.",
+        "thread_ids": [
+          "proximity_vs_habilitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Skal vi skrive at det var enighet?.",
+        "thread_ids": [
+          "record_vs_harmony",
+          "proximity_vs_habilitet"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Skal vi skrive at det var enighet?.",
+        "thread_ids": [
+          "record_vs_harmony"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Skal vi skrive at det var enighet?.",
+        "thread_ids": [
+          "record_vs_harmony"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Skal vi skrive at det var enighet?.",
+        "thread_ids": [
+          "record_vs_harmony"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Hvem følger egentlig opp dette?.",
+        "thread_ids": [
+          "decision_vs_ownership",
+          "record_vs_harmony"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Hvem følger egentlig opp dette?.",
+        "thread_ids": [
+          "decision_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Hvem følger egentlig opp dette?.",
+        "thread_ids": [
+          "decision_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Hvem følger egentlig opp dette?.",
+        "thread_ids": [
+          "decision_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Lenken virker hos meg.",
+        "thread_ids": [
+          "digital_efficiency_vs_access",
+          "decision_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Lenken virker hos meg.",
+        "thread_ids": [
+          "digital_efficiency_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Lenken virker hos meg.",
+        "thread_ids": [
+          "digital_efficiency_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Lenken virker hos meg.",
+        "thread_ids": [
+          "digital_efficiency_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Jeg prøver fortsatt å forstå hvordan dette fungerer.",
+        "thread_ids": [
+          "experience_vs_new_voice",
+          "digital_efficiency_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Jeg prøver fortsatt å forstå hvordan dette fungerer.",
+        "thread_ids": [
+          "experience_vs_new_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Jeg prøver fortsatt å forstå hvordan dette fungerer.",
+        "thread_ids": [
+          "experience_vs_new_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Jeg prøver fortsatt å forstå hvordan dette fungerer.",
+        "thread_ids": [
+          "experience_vs_new_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Kan du bli med på ett møte til?.",
+        "thread_ids": [
+          "commitment_vs_capacity",
+          "experience_vs_new_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Kan du bli med på ett møte til?.",
+        "thread_ids": [
+          "commitment_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Kan du bli med på ett møte til?.",
+        "thread_ids": [
+          "commitment_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Kan du bli med på ett møte til?.",
+        "thread_ids": [
+          "commitment_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Vi kan vel bare lande dette mellom møtene.",
+        "thread_ids": [
+          "delegation_vs_mandate",
+          "commitment_vs_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Vi kan vel bare lande dette mellom møtene.",
+        "thread_ids": [
+          "delegation_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Vi kan vel bare lande dette mellom møtene.",
+        "thread_ids": [
+          "delegation_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Vi kan vel bare lande dette mellom møtene.",
+        "thread_ids": [
+          "delegation_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Kan dere ta med dette i kveld?.",
+        "thread_ids": [
+          "input_vs_process",
+          "delegation_vs_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Kan dere ta med dette i kveld?.",
+        "thread_ids": [
+          "input_vs_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Kan dere ta med dette i kveld?.",
+        "thread_ids": [
+          "input_vs_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Kan dere ta med dette i kveld?.",
+        "thread_ids": [
+          "input_vs_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Dette må avgjøres før vi går.",
+        "thread_ids": [
+          "urgency_vs_due_process",
+          "input_vs_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Dette må avgjøres før vi går.",
+        "thread_ids": [
+          "urgency_vs_due_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Dette må avgjøres før vi går.",
+        "thread_ids": [
+          "urgency_vs_due_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Dette må avgjøres før vi går.",
+        "thread_ids": [
+          "urgency_vs_due_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Dette sto også i forrige referat.",
+        "thread_ids": [
+          "meeting_vs_followup",
+          "urgency_vs_due_process"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Dette sto også i forrige referat.",
+        "thread_ids": [
+          "meeting_vs_followup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Dette sto også i forrige referat.",
+        "thread_ids": [
+          "meeting_vs_followup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Dette sto også i forrige referat.",
+        "thread_ids": [
+          "meeting_vs_followup",
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Du kjenner jo alle møtene nå.",
+        "thread_ids": [
+          "practice_vs_formal_authority",
+          "meeting_vs_followup"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Du kjenner jo alle møtene nå.",
+        "thread_ids": [
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Du kjenner jo alle møtene nå.",
+        "thread_ids": [
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Du kjenner jo alle møtene nå.",
+        "thread_ids": [
+          "practice_vs_formal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "agenda_vs_focus",
+      "relationship": "saksbredde mot reell behandlingstid",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "preparation_vs_access",
+      "relationship": "sent underlag mot reell forberedelsesmulighet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "routine_vs_participation",
+      "relationship": "rutine og effektivitet mot fordelt taletid",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "proximity_vs_habilitet",
+      "relationship": "nærhet i små miljøer mot synlige bindinger",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "record_vs_harmony",
+      "relationship": "presist referat mot ønsket om friksjonsfri enighet",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "decision_vs_ownership",
+      "relationship": "vedtak mot konkret ansvar og frist",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "digital_efficiency_vs_access",
+      "relationship": "digital effektivitet mot faktisk tilgang",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "experience_vs_new_voice",
+      "relationship": "taus møtekode mot ny deltakers inngang",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "commitment_vs_capacity",
+      "relationship": "engasjement mot bærekraftig tidsbruk",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "delegation_vs_mandate",
+      "relationship": "forberedende utvalg mot avgrenset mandat",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "input_vs_process",
+      "relationship": "åpent innspill mot sporbar saksflyt",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "urgency_vs_due_process",
+      "relationship": "hast mot tilstrekkelig behandling",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "meeting_vs_followup",
+      "relationship": "møtevedtak mot læring og lukket oppfølging",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "practice_vs_formal_authority",
+      "relationship": "møteerfaring mot formell beslutningsmyndighet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "agendaen_far_grenser",
+      "description": "Spilleren blir mer oppmerksom på at møteagenda og tidsbruk også fordeler makt og oppmerksomhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt"
+      ]
+    },
+    {
+      "id": "forberedelse_blir_en_deltakelsesbetingelse",
+      "description": "Sent underlag, teknisk tilgang og taus kontekst vurderes som konkrete terskler for deltakelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe"
+      ]
+    },
+    {
+      "id": "referatet_blir_styringsminne",
+      "description": "Beslutning, uenighet, ansvar og status blir tydeligere skilt i dokumentasjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant"
+      ]
+    },
+    {
+      "id": "kapasitet_og_delegasjon_far_synlige_grenser",
+      "description": "Møtebelastning og arbeid mellom møtene vurderes mot faktisk kapasitet og eksplisitt delegasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd"
+      ]
+    },
+    {
+      "id": "rollen_far_en_tydelig_mandatgrense",
+      "description": "Lang møteerfaring kan gi praktisk kunnskap og uformell innflytelse uten å bli valgt, delegert, profesjonell rådgivende eller offentlig beslutningsmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden",
+        "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "saklista_moter_hastesaken",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "bureaucracy",
+        "authority"
+      ]
+    },
+    {
+      "id": "sent_underlag_moter_ny_deltaker",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "taletiden_moter_delegasjonen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "authority",
+        "loyalty"
+      ]
+    },
+    {
+      "id": "habiliteten_moter_innspillet",
+      "setup_ref": "4/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "authority"
+      ]
+    },
+    {
+      "id": "referatet_moter_oppfolgingen",
+      "setup_ref": "5/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "bureaucracy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "ansvaret_moter_kapasiteten",
+      "setup_ref": "6/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "care",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_motesliter.json#saklista_som_vokser",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#papirene_kommer_sent",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#den_samme_forer_ordet",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#habilitet_i_liten_krets",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#referatet_mangler_uenigheten",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#vedtaket_uten_ansvarlig",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#skjermen_som_ikke_slipper_alle_inn",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#den_nye_som_ikke_sier_noe",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#to_moter_samme_kveld",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#arbeidsutvalget_tar_forskudd",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#innspillet_fra_utsiden",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#hastesaken_fem_minutter_for_slutt",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#oppfolgingen_som_forsvant",
+      "data/Civication/narratives/leisure/politikk_motesliter.json#hva_slags_motesliter"
+    ]
+  }
+}

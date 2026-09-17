@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "psykologi_vaneeksperimentor",
+  "type": "leisure",
+  "title": "Vaneeksperimentør — små endringer, måling og revisjon",
+  "sociological_theme": "Hvordan små hverdagsendringer kan prøves på en systematisk, praktisk og revisjonsåpen måte uten at korte oppturer, pene målinger eller egne erfaringer blir gjort om til universelle regler eller behandling.",
+  "applies_when": {
+    "any_tags": [
+      "psykologi:vaneeksperimentor"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "forst_en_baseline",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Hvordan var det før du endret noe?",
+      "situation": [
+        "Spilleren vil teste en ny rutine, men har bare et løst inntrykk av hvordan hverdagen pleier å være.",
+        "Uten et enkelt før-bilde blir enhver endring lett sammenlignet med et minne som flytter seg.",
+        "En liten baseline trenger ikke være perfekt; den skal bare gjøre før og etter litt mer sammenlignbart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer noen få relevante observasjoner før du endrer rutinen.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Start med en gang; du husker godt nok hvordan det pleide å være.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_baseline"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tre_endringer_samme_mandag",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Prøvevennen",
+      "subject": "Alt nytt på én gang",
+      "situation": [
+        "Mandag starter med ny leggetid, ny frokost, ny treningsrutine og ny skjermregel samtidig.",
+        "Flere endringer kan være motiverende, men gjør det vanskeligere å vite hva som faktisk påvirket utfallet.",
+        "Et selveksperiment blir mer informativt når endringen er liten nok til å kunne spores."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én hovedendring først og hold de andre forholdene så stabile som praktisk mulig.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Endre alt samtidig; hvis uka blir bedre vet du at pakken virket.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_one_change"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "maalet_som_var_lettest_a_telle",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Tallvennen",
+      "subject": "Du teller det som er enkelt",
+      "situation": [
+        "En app gir et pent tall hver dag, men tallet er bare indirekte knyttet til det spilleren egentlig ønsker å forbedre.",
+        "Det målbare kan ta over fordi det er lett å følge, selv når det ikke er målet.",
+        "God vaneprøving skiller selve målet fra indikatorene som bare hjelper til å se utvikling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned hva du faktisk prøver å forbedre, og bruk bare mål som gir relevant informasjon om det.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "La appens standardtall bli målet fordi det allerede finnes en graf.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_metric_vs_goal"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_gode_uka",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Fire gode dager på rad",
+      "situation": [
+        "Den nye rutinen ser lovende ut etter noen få dager.",
+        "Tidlige forbedringer kan være reelle, men kan også henge sammen med motivasjon, tilfeldigheter eller en uvanlig uke.",
+        "Et mønster trenger tid og flere typer dager før det blir rimelig å kalle det stabilt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold forsøket litt lenger og se hvordan rutinen fungerer på både lette og vanskelige dager.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Konkluder nå med at rutinen virker permanent.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_short_run"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rutinen_som_krevde_riktig_rom",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kontekstvennen",
+      "subject": "Det fungerte hjemme, ikke på reise",
+      "situation": [
+        "En vane som gikk lett i én setting forsvinner når sted, tidsplan eller mennesker endres.",
+        "Vaner er ofte knyttet til signaler og praktiske betingelser, ikke bare viljestyrke.",
+        "Når konteksten skifter, kan samme person trenge en annen løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvilke betingelser som gjorde vanen lett og bygg en enklere variant for den nye situasjonen.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Tolk bruddet som bevis på at du mangler disiplin.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_habit_vs_context"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "friksjonen_i_veien",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Prøvevennen",
+      "subject": "Det tar bare to minutter ekstra",
+      "situation": [
+        "En ønsket vane krever flere små steg før den kan begynne, og disse stegene blir ofte nok til at den utsettes.",
+        "Motivasjon varierer, mens fysisk og praktisk friksjon virker hver gang situasjonen oppstår.",
+        "Små endringer i tilgjengelighet kan derfor være like viktige som store løfter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fjern ett konkret hinder eller gjør første steg lettere å starte.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold oppsettet og krev mer motivasjon av deg selv.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_motivation_vs_friction"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagen_det_ryok",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Streaken er brutt",
+      "situation": [
+        "En dag går rutinen i stykker, og spilleren vurderer å avslutte hele forsøket.",
+        "Et brudd gir informasjon om belastning, situasjon og hvor robust opplegget er.",
+        "Å skille ett avvik fra full oppgivelse gjør det mulig å justere uten å late som alt gikk perfekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer hva som skjedde og fortsett med en justert neste anledning.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Avslutt forsøket; når rekken er brutt er effekten borte.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_lapse_vs_abandonment"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nyhetseffekten",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kontekstvennen",
+      "subject": "Det var morsommere den første uka",
+      "situation": [
+        "En ny rutine får mye oppmerksomhet i starten, men føles gradvis mer ordinær.",
+        "Nyhet kan gjøre oppstart lettere uten å si hvor bærekraftig praksisen er.",
+        "Det som fortsatt fungerer når entusiasmen faller, forteller mer om hverdagsdesignen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder rutinen på nytt når nyheten har lagt seg, og forenkle det som krever unødvendig energi.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Legg til mer intensitet for å gjenskape følelsen fra første uke.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_novelty_vs_sustainability"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "belonningen_som_tok_over",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Tallvennen",
+      "subject": "Premien ble viktigere enn praksisen",
+      "situation": [
+        "Spilleren bruker en belønning for å komme i gang, men begynner etter hvert å optimalisere for belønningen fremfor selve rutinen.",
+        "Belønninger kan støtte oppstart, men kan også endre hva som oppleves som målet.",
+        "Et godt opplegg undersøker om støtten fortsatt hjelper når praksisen blir mer etablert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sjekk om belønningen fortsatt støtter målet, og trapp den ned eller endre den hvis den tar over.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Øk belønningen hver gang motivasjonen synker.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_reward_vs_target"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "signalene_for_start",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Hverdagsvennen",
+      "subject": "Hva minner deg på å begynne?",
+      "situation": [
+        "Vanen skjer noen dager og glemmes andre, selv om motivasjonen virker omtrent lik.",
+        "Et tydelig tidspunkt, sted eller forutgående handling kan fungere som startsignal.",
+        "Når startsignalet er uklart, må beslutningen tas på nytt hver gang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Knytt rutinen til ett konkret signal som allerede finnes i hverdagen.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Hold oppstarten fleksibel og stol på at du husker den når motivasjonen er riktig.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_cue_vs_willpower"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "resultatet_som_flyttet_seg",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Loggvennen",
+      "subject": "Det gikk ikke på det første målet, men se på dette tallet",
+      "situation": [
+        "Det opprinnelige målet endrer seg lite, mens et annet mål ser bedre ut etter forsøket.",
+        "Nye funn kan være interessante, men de blir vanskeligere å tolke hvis suksesskriteriet flyttes etter resultatet.",
+        "Å skille planlagte mål fra nye observasjoner gjør læringen mer ærlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold det opprinnelige målet som hovedvurdering og noter det nye funnet som en egen hypotese.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bytt suksesskriterium til tallet som forbedret seg.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_outcome_switching"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alt_annet_endret_seg_ogsa",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kontekstvennen",
+      "subject": "Samtidig ble arbeidsuka helt annerledes",
+      "situation": [
+        "Mens rutinen testes, endres også søvn, arbeidspress, reise eller sosial kalender.",
+        "Et bedre eller dårligere utfall kan derfor ha flere samtidige forklaringer.",
+        "Selveksperimentet blir mer nyttig når slike endringer registreres fremfor å ignoreres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter de store samtidige endringene og vær forsiktig med å tilskrive hele utfallet til rutinen.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra andre endringer; forsøket handler bare om vanen du valgte.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_routine_vs_cochange"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "andres_resultat_din_oppskrift",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Dette virket for meg, så du bør gjøre det samme",
+      "situation": [
+        "Spilleren får et godt resultat av en liten rutine og vil anbefale nøyaktig samme opplegg til andre.",
+        "Egen erfaring kan gi ideer, men andre har andre mål, betingelser og belastninger.",
+        "Et personlig forsøk er først og fremst kunnskap om én situasjon, ikke en generell behandlingsoppskrift."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del hva du prøvde og hva du observerte, men la andre tilpasse eller avstå uten å gjøre det til en regel.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Presenter rutinen som noe andre bør følge fordi den fungerte for deg.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_personal_vs_general"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fra_rutine_til_behandling",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Et selveksperiment er ikke behandling",
+      "situation": [
+        "Etter flere vellykkede vaneprøver begynner noen å spørre spilleren om å bruke samme metode på problemer som krever faglig vurdering.",
+        "Små hverdagsendringer kan utforskes uten at spilleren dermed kan vurdere sykdom, behandling eller klinisk risiko.",
+        "Vaneeksperimentør er en praksisidentitet, ikke en terapeutisk eller diagnostisk rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold forsøket på hverdagsnivå og overlat kliniske vurderinger og behandling til kvalifiserte fagpersoner.",
+          "effect": 1,
+          "tags": [
+            "habit_experiment",
+            "measurement",
+            "role_clarity"
+          ],
+          "feedback": "Du gjør forsøket mer sammenlignbart og læringsorientert uten å gjøre ett resultat større enn grunnlaget tåler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk samme selveksperiment-logikk som behandlingsråd fordi metoden har virket i dine egne rutiner.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "confounding",
+            "false_authority"
+          ],
+          "feedback": "Forsøket blir vanskeligere å tolke eller får større rekkevidde enn egne observasjoner gir grunnlag for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "vaneeksperimentor_habit_vs_treatment"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
