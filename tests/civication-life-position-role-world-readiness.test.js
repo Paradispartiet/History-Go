@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 99,
-  needs_authored_depth: 60,
+  ready: 100,
+  needs_authored_depth: 59,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 99);
+assert.equal(audit.summary.completed_life_position_role_worlds, 100);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 14);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 99);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 99);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 100);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 100);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -865,6 +865,15 @@ assert.equal(reader.role_world_path, 'data/Civication/roleWorlds/litteratur/litt
 assert.equal(reader.authored_depth.exact_source_ref_count, 1);
 assert.equal(reader.authored_depth.max_narrative_depth, 14);
 assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/leser'));
+const litteraturinteressert = audit.positions.find((row) => row.key === 'litteratur/litteraturinteressert');
+assert.ok(litteraturinteressert);
+assert.equal(litteraturinteressert.classification, 'ready');
+assert.equal(litteraturinteressert.role_world_status, 'role_world_complete');
+assert.equal(litteraturinteressert.role_world_path, 'data/Civication/roleWorlds/litteratur/litteratur_litteraturinteressert.json');
+assert.equal(litteraturinteressert.authored_depth.exact_source_ref_count, 1);
+assert.equal(litteraturinteressert.authored_depth.max_narrative_depth, 14);
+assert.deepEqual(litteraturinteressert.evidence.exact_source_refs, ['data/Civication/narratives/leisure/litteratur_litteraturinteressert.json']);
+assert.ok(!(audit.queue || []).some((row) => row.key === 'litteratur/litteraturinteressert'));
 
 assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjenner','film_tv/filmklubbmenneske'].includes(row.key)),
   'completed life-position worlds must leave the readiness queue');
@@ -877,4 +886,4 @@ assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 99 ready / 60 authored-depth / 40 not-standalone; 99 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 100 ready / 59 authored-depth / 40 not-standalone; 100 complete / no pending-ready');
