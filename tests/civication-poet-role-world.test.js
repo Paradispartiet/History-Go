@@ -51,12 +51,13 @@ for (const person of world.recurring_people_archetypes) {
 }
 
 const description = world.sociological_core.description;
+const normalizedDescription = description.toLowerCase();
 assert.match(description, /employment-independent professional_practice/i);
 for (const term of ['bilde', 'rytme', 'linjebrudd', 'metafor', 'persona', 'tradisjon', 'revisjon', 'framføring']) {
-  assert.ok(description.includes(term), `Poet description missing craft marker: ${term}`);
+  assert.ok(normalizedDescription.includes(term), `Poet description missing craft marker: ${term}`);
 }
 for (const boundary of ['publisering', 'royalty', 'honorar', 'stipend', 'jobb', 'lønn']) {
-  assert.ok(description.includes(boundary), `Poet description missing boundary marker: ${boundary}`);
+  assert.ok(normalizedDescription.includes(boundary), `Poet description missing boundary marker: ${boundary}`);
 }
 assert.match(description, /tydelig forskjellig fra Forfatter/i);
 assert.match(description, /ingen ny runtime/i);
