@@ -1,0 +1,57 @@
+name: Temporary Skald materialization
+on:
+  push:
+    branches:
+      - civication/litteratur-skald-role-world
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/litteratur-skald-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Skald canonical Role World
+        run: node scripts/tmp-materialize-skald.mjs
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify targeted Skald and global contracts
+        run: |
+          node tests/civication-skald-life-position-readiness.test.js
+          node tests/civication-skald-role-world.test.js
+          node tests/civication-life-position-role-world-readiness.test.js
+          node tests/civication-noncareer-role-taxonomy.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-poet-life-position-readiness.test.js
+          node tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
+      - name: Commit canonical Skald state
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            data/Civication/nonCareerRoleTaxonomy.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldPolicy.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorlds/litteratur/litteratur_skald.json \
+            reports/civication-life-position-role-world-readiness.md \
+            tests/civication-life-position-role-world-readiness.test.js \
+            tests/civication-noncareer-role-taxonomy.test.js \
+            tests/civication-role-world-contract.test.js
+          if git diff --cached --quiet; then
+            echo 'Skald canonical state already synchronized.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Synchronize Skald canonical Role World state'
+          git push origin HEAD:civication/litteratur-skald-role-world
