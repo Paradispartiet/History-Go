@@ -24,15 +24,20 @@ jobs:
         run: node scripts/tmp-materialize-skald.mjs
       - name: Regenerate life-position readiness
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-      - name: Verify targeted Skald and global contracts
-        run: |
-          node tests/civication-skald-life-position-readiness.test.js
-          node tests/civication-skald-role-world.test.js
-          node tests/civication-life-position-role-world-readiness.test.js
-          node tests/civication-noncareer-role-taxonomy.test.js
-          node tests/civication-role-world-contract.test.js
-          node tests/civication-poet-life-position-readiness.test.js
-          node tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
+      - name: Verify Skald readiness
+        run: node tests/civication-skald-life-position-readiness.test.js
+      - name: Verify Skald Role World
+        run: node tests/civication-skald-role-world.test.js
+      - name: Verify global life-position readiness
+        run: node tests/civication-life-position-role-world-readiness.test.js
+      - name: Verify noncareer taxonomy
+        run: node tests/civication-noncareer-role-taxonomy.test.js
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify Poet regression
+        run: node tests/civication-poet-life-position-readiness.test.js
+      - name: Verify Frilanser source inventory regression
+        run: node tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
       - name: Commit canonical Skald state
         run: |
           git add \
