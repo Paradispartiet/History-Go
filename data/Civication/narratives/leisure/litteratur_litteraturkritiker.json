@@ -1,0 +1,678 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_litteraturkritiker_stream",
+  "type": "leisure",
+  "title": "Litteraturkritiker",
+  "sociological_theme": "langsom_offentlig_litteraturkritikk_narlesing_historie_teori_kanon_ideologi_form_argumentasjon_og_myndighetsgrense",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:litteraturkritiker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_for_dom",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Notatblokken",
+      "subject": "Hva er egentlig spørsmålet?",
+      "situation": [
+        "Du kjenner en sterk reaksjon på et verk og merker hvor lett det er å hoppe rett til en dom.",
+        "Litteraturkritikk blir mer enn smak når den formulerer et undersøkbart spørsmål om tekst, form, historie eller virkning.",
+        "Kritikerrollen begynner derfor med å gjøre problemet tydelig før konklusjonen låses."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere ett presist spørsmål og la dommen vente til teksten er undersøkt.",
+          "effect": 1,
+          "tags": [
+            "question",
+            "inquiry",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør kritikken undersøkende før den blir dømmende."
+        },
+        {
+          "id": "B",
+          "label": "Bestemme konklusjonen først og lete etter formuleringer som bekrefter den.",
+          "effect": -1,
+          "tags": [
+            "confirmation_bias",
+            "status_pressure",
+            "authority_drift"
+          ],
+          "feedback": "Valget gjør teksten til bevismateriale for en dom som allerede er bestemt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_sporsmalet_for_dom"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "linjen_som_ikke_slipper",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Teksten",
+      "subject": "Påstanden må tilbake til teksten",
+      "situation": [
+        "Et avsnitt eller bilde virker avgjørende for argumentet ditt, men førsteinntrykket er vanskelig å skille fra det som faktisk står der.",
+        "Nærlesing krever at påstander kan føres tilbake til konkrete språklige, formelle eller strukturelle trekk.",
+        "Litteraturkritikk kan tolke vidt, men må kunne vise hvor tolkningen får motstand og støtte i verket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til passasjen, beskrive hva teksten faktisk gjør og skille observasjon fra slutning.",
+          "effect": 1,
+          "tags": [
+            "close_reading",
+            "evidence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør tekstlig belegg synlig og etterprøvbart."
+        },
+        {
+          "id": "B",
+          "label": "Beholde tolkningen fordi den høres plausibel ut, uten å kontrollere hva teksten gjør.",
+          "effect": -1,
+          "tags": [
+            "overclaim",
+            "borrowed_authority",
+            "evidence_gap"
+          ],
+          "feedback": "Valget lar en elegant tolkning flyte fri fra verket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_linjen_som_ikke_slipper"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_i_sin_tid",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arkivet",
+      "subject": "Et verk svarer på noe",
+      "situation": [
+        "En eldre tekst blir lest som om den var skrevet direkte inn i dagens debatt.",
+        "Litteraturhistorisk plassering kan vise hvilke sjangre, institusjoner, konflikter og forventninger et verk faktisk møtte.",
+        "Kontekst forklarer ikke alt, men den kan hindre at nåtiden blir eneste målestokk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne et dokumentert historisk holdepunkt som endrer eller presiserer spørsmålet du stiller teksten.",
+          "effect": 1,
+          "tags": [
+            "history",
+            "context",
+            "evidence"
+          ],
+          "feedback": "Valget lar historisk kontekst komplisere kritikken uten å erstatte teksten."
+        },
+        {
+          "id": "B",
+          "label": "Bruke dagens kategorier som hele forklaringen og behandle historisk avstand som støy.",
+          "effect": -1,
+          "tags": [
+            "presentism",
+            "context_loss",
+            "overclaim"
+          ],
+          "feedback": "Valget gjør nåtidens språk til en usynlig universell norm."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_verket_i_sin_tid"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenligningen_som_ma_baere",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Boksamtalen",
+      "subject": "«Det minner om ...» er ikke nok",
+      "situation": [
+        "Du vil sammenligne verket med en eldre roman, en sjangertradisjon eller et annet forfatterskap.",
+        "Sammenligning kan gjøre form og historiske forskjeller tydelige, men bare hvis det forklares hva som faktisk sammenlignes.",
+        "Navnedropping er ikke det samme som komparativ argumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrense sammenligningen til et konkret trekk og forklare både likhet og forskjell.",
+          "effect": 1,
+          "tags": [
+            "comparison",
+            "tradition",
+            "evidence"
+          ],
+          "feedback": "Valget gjør tradisjon til analytisk relasjon fremfor kulturell pynt."
+        },
+        {
+          "id": "B",
+          "label": "Nevne flere prestisjetunge referanser uten å vise hva de gjør i argumentet.",
+          "effect": -1,
+          "tags": [
+            "name_dropping",
+            "status_display",
+            "argument_gap"
+          ],
+          "feedback": "Valget bruker referanser som statusmarkører i stedet for belegg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_sammenligningen_som_ma_baere"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "begrepet_som_ma_defineres",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Utkastet",
+      "subject": "Når ett ord gjør for mye arbeid",
+      "situation": [
+        "Du bruker et kritisk begrep som «realisme», «modernisme», «ironi» eller «polyfoni», men merker at argumentet avhenger av hva ordet betyr.",
+        "Fagbegreper kan komprimere analyse, men de blir tomme autoritetsmarkører hvis definisjonen og anvendelsen forblir skjult.",
+        "Presisjon krever ikke maksimal sjargong; det krever at leseren kan følge bruken."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definere begrepet slik du bruker det og vise ett konkret sted der det faktisk klargjør teksten.",
+          "effect": 1,
+          "tags": [
+            "concepts",
+            "definition",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør begrepet til et verktøy leseren kan etterprøve."
+        },
+        {
+          "id": "B",
+          "label": "La begrepet stå udefinert fordi faglig språk i seg selv gir argumentet tyngde.",
+          "effect": -1,
+          "tags": [
+            "jargon_shield",
+            "status_display",
+            "argument_gap"
+          ],
+          "feedback": "Valget bruker fagterminologi som skjold mot spørsmål."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_begrepet_som_ma_defineres"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teorien_som_brille",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Lesningen",
+      "subject": "Når teorien ser alt",
+      "situation": [
+        "En teoretisk ramme åpner interessante mønstre i verket, og fristelsen er å la den forklare resten også.",
+        "Teori velger ut fenomener og spørsmål; derfor kan samme tekst belyses annerledes fra andre rammer.",
+        "Litteraturkritikeren må vise hva teorien gjør mulig å se, og hva den ikke avgjør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruke teorien eksplisitt som ett perspektiv og teste hvor den møter motstand i teksten.",
+          "effect": 1,
+          "tags": [
+            "theory",
+            "method",
+            "limits"
+          ],
+          "feedback": "Valget gjør teori til metode med synlige begrensninger."
+        },
+        {
+          "id": "B",
+          "label": "Behandle teorien som en nøkkel som på forhånd avgjør hva teksten egentlig betyr.",
+          "effect": -1,
+          "tags": [
+            "theory_capture",
+            "certainty",
+            "authority_drift"
+          ],
+          "feedback": "Valget gjør metode til en på forhånd gitt fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_teorien_som_brille"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_som_ble_kanon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Litteraturhistorien",
+      "subject": "Listen har også en historie",
+      "situation": [
+        "En etablert kanon presenteres som om den alltid har vært den naturlige oversikten over periodens viktigste litteratur.",
+        "Kanoner formes gjennom skole, kritikk, forlag, arkiv, priser, språk, klasse, kjønn, oversettelse og institusjonell makt.",
+        "Å analysere kanondannelse betyr ikke at alle verk må vurderes likt; det betyr å undersøke hvordan utvalg blir varige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spørre hvilke institusjoner og kriterier som gjorde enkelte verk synlige og andre mindre tilgjengelige.",
+          "effect": 1,
+          "tags": [
+            "canon",
+            "institutions",
+            "selection"
+          ],
+          "feedback": "Valget gjør kanon til et historisk og institusjonelt fenomen som kan undersøkes."
+        },
+        {
+          "id": "B",
+          "label": "Forklare kanon bare med at de beste verkene naturlig overlevde.",
+          "effect": -1,
+          "tags": [
+            "naturalization",
+            "exclusion_blindness",
+            "authority_drift"
+          ],
+          "feedback": "Valget skjuler seleksjonsmekanismer bak en selvbekreftende kvalitetsforklaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_hvem_som_ble_kanon"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "normen_i_fortellingen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Analysen",
+      "subject": "Hva tas for gitt?",
+      "situation": [
+        "Fortellingen framstiller noen roller, verdier eller samfunnsordninger som selvsagte, mens andre blir markert som avvik.",
+        "Kritikk kan undersøke slike premisser uten å redusere verket til et politisk slagord eller dikte opp forfatterens motiv.",
+        "Det relevante er hva teksten organiserer, synliggjør og naturaliserer — ikke å lese tanker hos personen bak den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskrive det tekstlige mønsteret og skille mellom verkets struktur, historisk kontekst og påstander om forfatteren.",
+          "effect": 1,
+          "tags": [
+            "ideology",
+            "norms",
+            "work_person_boundary"
+          ],
+          "feedback": "Valget gjør ideologikritikken tekstlig og historisk forankret."
+        },
+        {
+          "id": "B",
+          "label": "Tilskrive forfatteren et bestemt motiv fordi teksten inneholder et problematisk mønster.",
+          "effect": -1,
+          "tags": [
+            "motive_speculation",
+            "reduction",
+            "overclaim"
+          ],
+          "feedback": "Valget erstatter analyse med spekulasjon om personlige motiver."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_normen_i_fortellingen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "formen_er_ikke_emballasje",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Utkastet",
+      "subject": "Hvordan teksten gjør det den gjør",
+      "situation": [
+        "Argumentet ditt handler mest om tema, men du merker at rytme, perspektiv, struktur og sjanger påvirker hva verket faktisk kan si.",
+        "I litterær kritikk er form ikke pynt rundt et innhold; form organiserer tid, oppmerksomhet, stemme og forholdet mellom leser og stoff.",
+        "En sterk kritikk må derfor kunne vise hvordan form og betydning virker sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Revidere argumentet slik at minst ett formelt grep blir en del av forklaringen.",
+          "effect": 1,
+          "tags": [
+            "form",
+            "style",
+            "evidence"
+          ],
+          "feedback": "Valget lar selve måten verket er skrevet på inngå i argumentet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle formen som stilistisk overflate og la tema alene bære hele tolkningen.",
+          "effect": -1,
+          "tags": [
+            "content_reduction",
+            "formal_blindness",
+            "argument_gap"
+          ],
+          "feedback": "Valget gjør kritikken blind for hvordan betydningen faktisk produseres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_formen_er_ikke_emballasje"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motargumentet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Arbeidsbordet",
+      "subject": "Den sterkeste innvendingen",
+      "situation": [
+        "Du ser en tolkning som utfordrer din egen og som ikke enkelt kan avvises som misforståelse.",
+        "Kritisk argumentasjon blir sterkere når motargumentet gjengis i sin beste form før forskjellen begrunnes.",
+        "Uenighet er ikke svakhet i kritikken; den viser hvor belegg, premisser eller vektlegging skiller lag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere motargumentet rettferdig og vise nøyaktig hvor ditt resonnement tar en annen vei.",
+          "effect": 1,
+          "tags": [
+            "argument",
+            "counterargument",
+            "evidence"
+          ],
+          "feedback": "Valget gjør uenighet etterprøvbar i stedet for teatralsk."
+        },
+        {
+          "id": "B",
+          "label": "Karikere motposisjonen slik at din egen lesning framstår uimotsagt.",
+          "effect": -1,
+          "tags": [
+            "strawman",
+            "status_defense",
+            "argument_gap"
+          ],
+          "feedback": "Valget vinner retorisk ved å svekke argumentet som faktisk må møtes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_motargumentet"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikken_av_kritikken",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kritikersamtalen",
+      "subject": "Når kollegaen leser annerledes",
+      "situation": [
+        "En annen kritiker peker på et hull i resonnementet ditt og gjør det offentlig uten å avvise hele prosjektet.",
+        "Kritikk er også en samtale mellom lesninger, metoder og institusjonelle tradisjoner.",
+        "Faglig uenighet kan avklare premisser uten at enhver forskjell blir en kamp om status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøke innvendingen og svare på premisset eller belegget den faktisk gjelder.",
+          "effect": 1,
+          "tags": [
+            "metacriticism",
+            "peer_disagreement",
+            "revision"
+          ],
+          "feedback": "Valget gjør kritikk av kritikk til en del av den intellektuelle praksisen."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare posisjonen først og fremst fordi en offentlig korreksjon føles som statustap.",
+          "effect": -1,
+          "tags": [
+            "status_defense",
+            "shame_reputation",
+            "social_mask"
+          ],
+          "feedback": "Valget gjør offentlig status viktigere enn om argumentet holder."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_kritikken_av_kritikken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikerens_stol",
+      "message_type": "task",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Offentligheten",
+      "subject": "Hvem får definere samtalen?",
+      "situation": [
+        "Du blir invitert inn i en samtale der kritikeren får mer taletid og definisjonsmakt enn vanlige lesere.",
+        "Kritikere kan ha faglig og institusjonell posisjon, men den posisjonen er situert: redaksjon, publikum, språk og tilgang former hvem som blir hørt.",
+        "Å erkjenne makt betyr ikke å late som argumenter ikke kan være bedre eller dårligere begrunnet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjøre rolle og premisser tydelige og skille mellom institusjonell plass og styrken i argumentet.",
+          "effect": 1,
+          "tags": [
+            "position",
+            "institution",
+            "power"
+          ],
+          "feedback": "Valget gjør kritikerens posisjon synlig uten å avskaffe argumentets krav."
+        },
+        {
+          "id": "B",
+          "label": "Bruke plattformen som bevis på at egen tolkning har høyere verdi uavhengig av belegg.",
+          "effect": -1,
+          "tags": [
+            "platform_authority",
+            "class_power",
+            "authority_drift"
+          ],
+          "feedback": "Valget forveksler tilgang til offentligheten med sannhet eller kvalitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_kritikerens_stol"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "essayet_som_ma_holde",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Langteksten",
+      "subject": "Fra enkel dom til sammenhengende argument",
+      "situation": [
+        "Du skal skrive en lengre kritisk tekst der flere observasjoner må henge sammen over tid, ikke bare munne ut i en kort vurdering.",
+        "Langformet kritikk trenger en problemstilling, disposisjon, forbindelser mellom avsnitt og en konklusjon som faktisk følger av analysen.",
+        "Dette skiller kritikerpraksisen fra Anmelder-verdenens enkeltanmeldelse, score, spoilerhensyn og oppdragslogikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygge en tydelig argumentkjede der hver del gjør nødvendig arbeid for hovedpåstanden.",
+          "effect": 1,
+          "tags": [
+            "longform",
+            "structure",
+            "argument"
+          ],
+          "feedback": "Valget gjør kritikken til et sammenhengende resonnement fremfor en serie treffende kommentarer."
+        },
+        {
+          "id": "B",
+          "label": "Stable gode enkeltobservasjoner uten å vise hvordan de henger sammen i ett resonnement.",
+          "effect": -1,
+          "tags": [
+            "fragmentation",
+            "rhetorical_display",
+            "argument_gap"
+          ],
+          "feedback": "Valget lar stil og enkeltpoenger skjule at hovedargumentet mangler struktur."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_essayet_som_ma_holde"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kritikk_som_kan_revideres",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Arkivet",
+      "subject": "En gammel tekst møter nytt belegg",
+      "situation": [
+        "Du leser en kritikk du publiserte tidligere og ser at ny forskning, en ny utgave eller en bedre motlesning endrer premissene.",
+        "Kritisk autoritet blir ikke sterkere av å late som tidligere dommer er ufeilbarlige; den krever sporbar begrunnelse og mulighet for revisjon.",
+        "Litteraturkritiker er en employment-independent professional_practice, men gir ingen automatisk jobb, lønn, redaktør-, forsknings-, akademisk eller institusjonell myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korrigere eller nyansere den tidligere posisjonen og forklare hva som faktisk endret seg.",
+          "effect": 1,
+          "tags": [
+            "revision",
+            "authority_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør revisjon til styrke i en etterprøvbar kritisk praksis."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare den gamle teksten fordi revisjon kan se ut som svakhet eller tap av autoritet.",
+          "effect": -1,
+          "tags": [
+            "status_defense",
+            "fixed_authority",
+            "identity_drift"
+          ],
+          "feedback": "Valget gjør omdømmevern viktigere enn argumentets holdbarhet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "litcrit_kritikk_som_kan_revideres"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
