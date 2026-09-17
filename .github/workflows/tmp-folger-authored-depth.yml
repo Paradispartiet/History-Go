@@ -1,0 +1,41 @@
+name: Temporary Følger authored depth
+on:
+  push:
+    branches:
+      - civication/media-folger-role-world
+permissions:
+  contents: write
+jobs:
+  author:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/media-folger-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify Følger readiness
+        run: node tests/civication-folger-life-position-readiness.test.js
+      - name: Verify noncareer taxonomy
+        run: node tests/civication-noncareer-role-taxonomy.test.js
+      - name: Commit authored Følger state
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            reports/civication-life-position-role-world-readiness.md
+          if git diff --cached --quiet; then
+            echo 'Følger authored-depth state already synchronized.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Synchronize Følger authored-depth state'
+          git push origin HEAD:civication/media-folger-role-world
