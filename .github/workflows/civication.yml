@@ -20,7 +20,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -33,6 +33,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -45,6 +47,29 @@ jobs:
 
       - name: Generate Leser governance diagnostic
         run: node scripts/audit-civication-leser-governance-diagnostic.mjs
+
+      - name: Commit generated Leser governance
+        if: github.event_name == 'pull_request' && github.event.pull_request.number == 6038
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            data/Civication/nonCareerRoleTaxonomy.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldPolicy.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            reports/civication-life-position-role-world-readiness.md \
+            tests/civication-life-position-role-world-readiness.test.js \
+            tests/civication-noncareer-role-taxonomy.test.js \
+            tests/civication-role-world-contract.test.js
+          if git diff --cached --quiet; then
+            echo "Generated governance is already synchronized."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Civication: sync Leser governance contracts"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
 
       - name: Upload Leser governance diagnostic
         uses: actions/upload-artifact@v4
