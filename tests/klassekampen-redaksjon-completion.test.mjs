@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 
+// RED sync trigger: completion contract remains intentionally unmet before Phase 2 implementation.
 const readJson = path => JSON.parse(fs.readFileSync(path, "utf8"));
 const exists = path => fs.existsSync(path);
 const readOptionalJson = path => exists(path) ? readJson(path) : null;
