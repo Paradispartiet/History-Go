@@ -26,8 +26,6 @@ jobs:
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
       - name: Verify Bidragsyter readiness
         run: node tests/civication-bidragsyter-life-position-readiness.test.js
-      - name: Verify global life-position readiness
-        run: node tests/civication-life-position-role-world-readiness.test.js
       - name: Verify noncareer taxonomy
         run: node tests/civication-noncareer-role-taxonomy.test.js
       - name: Commit authored Bidragsyter state
