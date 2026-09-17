@@ -1,0 +1,1197 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_litteraturinteressert",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "litteraturinteressert",
+    "label": "Litteraturinteressert"
+  },
+  "title": "Litteraturinteressert — offentlighet, institusjoner, historie og kulturell orientering",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utvikle bred orientering i litteraturens offentlighet, historie, institusjoner og marked uten at kunnskapshull, kanon, prestisje eller lånt kritikerspråk blir adgangskrav eller profesjonell myndighet",
+    "description": "Litteraturinteressert er en employment-independent cultural_interest_status for spilleren som følger litteraturfeltet utover selve lesehandlingen: forfattere, forlag, oversettelse, priser, arrangementer, litteraturhistorie, kritikk, bibliotek, marked og kulturelle miljøer. Rollen er bredere feltorientering enn Leser, men overtar ikke Aktiv lesers notater, gjenlesing som metode, kildekontroll, lesemål, markering eller studieteknikk. Den er heller ikke Anmelder, Litteraturkritiker, Redaktør eller Forfatter og gir ingen automatisk jobb, lønn, publiseringsmakt, redaksjonell myndighet eller ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "social_mask",
+    "class_power",
+    "consumption",
+    "public_private_leakage",
+    "alienation"
+  ],
+  "social_environments": [
+    "litteraturhus, bokbad og festivalprogrammer der offentlig kultur blir konkret",
+    "bibliotek og offentlige samlinger der tilgang og formidling organiseres",
+    "bokhandler, forlagskataloger og lanseringer der marked og kultur møtes",
+    "kulturseksjoner, anmeldelser og prisdekning som former oppmerksomhet",
+    "oversatt litteratur og kolofonsider der språklige mellomledd blir synlige",
+    "venne- og nettmiljøer der kanon, sjanger og kulturell kapital forhandles"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "arrangementsverten",
+      "social_function": "gjør den litterære offentligheten konkret og inviterer inn i rommet",
+      "class_position": "programvert eller kulturhusansatt",
+      "status": "situert institusjonell rolle",
+      "power_over_player": "kan definere format og taletid, ikke spillerens legitimitet som interessert",
+      "wants": "at publikum deltar og forstår rammen",
+      "conceals": "at institusjonsspråk kan virke mer lukket enn intensjonen",
+      "speech_style": "informerende og inviterende",
+      "teaches_player": "at offentlige kulturrom kan brukes uten ekspertstatus"
+    },
+    {
+      "id": "forlagsfoljeren",
+      "social_function": "gjør forlag, katalog og utgivelsesstrategi synlig",
+      "class_position": "engasjert leser med oversikt over forlag",
+      "status": "uformell kulturell kapital",
+      "power_over_player": "kan gjøre forlagsnavn til statussignal",
+      "wants": "å dele orientering i utgivelsesfeltet",
+      "conceals": "at merkevare lett blandes med kvalitetsdom",
+      "speech_style": "referanserik og entusiastisk",
+      "teaches_player": "at forlag er kontekst, ikke fasit"
+    },
+    {
+      "id": "oversettelsesnerden",
+      "social_function": "synliggjør oversettelse og språklige mellomledd",
+      "class_position": "leser med særinteresse for oversatt litteratur",
+      "status": "uformell kunnskapsfordel",
+      "power_over_player": "kan åpne nye sammenhenger eller gjøre språkkunnskap til rang",
+      "wants": "at oversetterarbeid blir sett",
+      "conceals": "at entusiasme kan bli en ny adgangstest",
+      "speech_style": "presis og språkbevisst",
+      "teaches_player": "at litterær sirkulasjon har arbeidere og valg mellom språk"
+    },
+    {
+      "id": "kanonvennen",
+      "social_function": "representerer historisk orientering og etablerte verk",
+      "class_position": "kulturinteressert venn med sterk kanonbevissthet",
+      "status": "uformell kulturell kapital",
+      "power_over_player": "kan gjøre historisk orientering til pensumpress",
+      "wants": "å vise forbindelser mellom verk og perioder",
+      "conceals": "at kartet også kan fungere som portvakt",
+      "speech_style": "systematisk og referanserik",
+      "teaches_player": "at kanon kan gi sammenheng uten å legitimere personen"
+    },
+    {
+      "id": "bibliotekaren",
+      "social_function": "gjør offentlig tilgang, samlinger og formidling konkret",
+      "class_position": "bibliotekansatt",
+      "status": "profesjonell situert fagrolle",
+      "power_over_player": "kan hjelpe med søk og tilgang, ikke gi spilleren bibliotekmyndighet",
+      "wants": "å koble mennesker til relevante ressurser",
+      "conceals": "hvor mye kuratering og systemarbeid som ligger bak gratis tilgang",
+      "speech_style": "rolig og presis",
+      "teaches_player": "at litterær bredde også bygges av offentlig infrastruktur"
+    },
+    {
+      "id": "samtalepartneren",
+      "social_function": "tester om kulturell interesse tåler uenighet og kunnskapshull",
+      "class_position": "venn eller kollega med annen litterær orientering",
+      "status": "uformell",
+      "power_over_player": "kan trigge statusforsvar eller lånt autoritet",
+      "wants": "en faktisk samtale fremfor posisjonering",
+      "conceals": "at egne favoritter også kan bli identitetsmarkører",
+      "speech_style": "direkte og nysgjerrig",
+      "teaches_player": "at orientering ikke krever tolkningsmonopol"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "field_entry",
+      "meaning": "inngang i feltet uten oversiktskrav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_culture",
+      "meaning": "deltakelse i litterære offentligheter uten innviddhetsprøve",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "canon",
+      "meaning": "kanon som orientering uten medlemskort",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "translation",
+      "meaning": "oversettelse og mellomledd som synlig kulturarbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "prizes",
+      "meaning": "priser som institusjonell seleksjon uten fasit",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "publishing",
+      "meaning": "forlag som kultur- og markedsaktør uten prestisjefetisj",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visibility",
+      "meaning": "synlighet og distribusjon uten å forveksles med verdi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "historical_context",
+      "meaning": "litteraturhistorisk kontekst uten skoleprestasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "genre_boundary",
+      "meaning": "sjangergrenser som historiske og institusjonelle forhandlinger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authorship",
+      "meaning": "forfatter, biografi og verk som relaterte men ulike nivåer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "criticism",
+      "meaning": "kritikk som perspektiv uten lånt dom eller kritikerrolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_infrastructure",
+      "meaning": "bibliotek og offentlig formidling som litterær infrastruktur",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cultural_capital",
+      "meaning": "miljøtilhørighet uten performativ kunnskapsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_boundary",
+      "meaning": "bred kulturell interesse uten profesjonelt mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: inngang i feltet uten oversiktskrav. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "field_entry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#inngangen_som_faktisk_trekker"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: inngang i feltet uten oversiktskrav. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "field_entry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#inngangen_som_faktisk_trekker"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: inngang i feltet uten oversiktskrav. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "cultural_capital",
+          "authority_boundary",
+          "field_entry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#inngangen_som_faktisk_trekker"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: inngang i feltet uten oversiktskrav. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "cultural_capital",
+          "authority_boundary",
+          "field_entry"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#inngangen_som_faktisk_trekker"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: deltakelse i litterære offentligheter uten innviddhetsprøve. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "public_culture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: deltakelse i litterære offentligheter uten innviddhetsprøve. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "public_culture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: deltakelse i litterære offentligheter uten innviddhetsprøve. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "authority_boundary",
+          "field_entry",
+          "public_culture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: deltakelse i litterære offentligheter uten innviddhetsprøve. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "authority_boundary",
+          "field_entry",
+          "public_culture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: kanon som orientering uten medlemskort. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#kanonlisten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: kanon som orientering uten medlemskort. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#kanonlisten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: kanon som orientering uten medlemskort. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "field_entry",
+          "public_culture",
+          "canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#kanonlisten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: kanon som orientering uten medlemskort. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "field_entry",
+          "public_culture",
+          "canon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#kanonlisten"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: oversettelse og mellomledd som synlig kulturarbeid. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "translation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: oversettelse og mellomledd som synlig kulturarbeid. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "translation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: oversettelse og mellomledd som synlig kulturarbeid. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "public_culture",
+          "canon",
+          "translation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: oversettelse og mellomledd som synlig kulturarbeid. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "public_culture",
+          "canon",
+          "translation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: priser som institusjonell seleksjon uten fasit. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "prizes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: priser som institusjonell seleksjon uten fasit. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "prizes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: priser som institusjonell seleksjon uten fasit. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "canon",
+          "translation",
+          "prizes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: priser som institusjonell seleksjon uten fasit. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "canon",
+          "translation",
+          "prizes"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: forlag som kultur- og markedsaktør uten prestisjefetisj. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "publishing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forlagsnavnet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: forlag som kultur- og markedsaktør uten prestisjefetisj. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "publishing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forlagsnavnet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: forlag som kultur- og markedsaktør uten prestisjefetisj. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "translation",
+          "prizes",
+          "publishing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forlagsnavnet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: forlag som kultur- og markedsaktør uten prestisjefetisj. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "translation",
+          "prizes",
+          "publishing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forlagsnavnet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: synlighet og distribusjon uten å forveksles med verdi. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bordet_foran_i_bokhandelen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: synlighet og distribusjon uten å forveksles med verdi. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bordet_foran_i_bokhandelen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: synlighet og distribusjon uten å forveksles med verdi. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "prizes",
+          "publishing",
+          "visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bordet_foran_i_bokhandelen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: synlighet og distribusjon uten å forveksles med verdi. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "prizes",
+          "publishing",
+          "visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bordet_foran_i_bokhandelen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: litteraturhistorisk kontekst uten skoleprestasjon. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "historical_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: litteraturhistorisk kontekst uten skoleprestasjon. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "historical_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: litteraturhistorisk kontekst uten skoleprestasjon. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "publishing",
+          "visibility",
+          "historical_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: litteraturhistorisk kontekst uten skoleprestasjon. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "publishing",
+          "visibility",
+          "historical_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: sjangergrenser som historiske og institusjonelle forhandlinger. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "genre_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#sjangergrensen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: sjangergrenser som historiske og institusjonelle forhandlinger. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "genre_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#sjangergrensen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: sjangergrenser som historiske og institusjonelle forhandlinger. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "visibility",
+          "historical_context",
+          "genre_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#sjangergrensen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: sjangergrenser som historiske og institusjonelle forhandlinger. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "visibility",
+          "historical_context",
+          "genre_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#sjangergrensen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: forfatter, biografi og verk som relaterte men ulike nivåer. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forfatteren_og_verket"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: forfatter, biografi og verk som relaterte men ulike nivåer. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forfatteren_og_verket"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: forfatter, biografi og verk som relaterte men ulike nivåer. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "historical_context",
+          "genre_boundary",
+          "authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forfatteren_og_verket"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: forfatter, biografi og verk som relaterte men ulike nivåer. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "historical_context",
+          "genre_boundary",
+          "authorship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forfatteren_og_verket"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: kritikk som perspektiv uten lånt dom eller kritikerrolle. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#anmeldelsen_for_du_mener_noe"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: kritikk som perspektiv uten lånt dom eller kritikerrolle. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#anmeldelsen_for_du_mener_noe"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: kritikk som perspektiv uten lånt dom eller kritikerrolle. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "genre_boundary",
+          "authorship",
+          "criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#anmeldelsen_for_du_mener_noe"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: kritikk som perspektiv uten lånt dom eller kritikerrolle. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "genre_boundary",
+          "authorship",
+          "criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#anmeldelsen_for_du_mener_noe"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: bibliotek og offentlig formidling som litterær infrastruktur. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "public_infrastructure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#biblioteket_som_litteraer_infrastruktur"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: bibliotek og offentlig formidling som litterær infrastruktur. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "public_infrastructure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#biblioteket_som_litteraer_infrastruktur"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: bibliotek og offentlig formidling som litterær infrastruktur. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "authorship",
+          "criticism",
+          "public_infrastructure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#biblioteket_som_litteraer_infrastruktur"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: bibliotek og offentlig formidling som litterær infrastruktur. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "authorship",
+          "criticism",
+          "public_infrastructure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#biblioteket_som_litteraer_infrastruktur"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: miljøtilhørighet uten performativ kunnskapsstatus. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "cultural_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bokbadet_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: miljøtilhørighet uten performativ kunnskapsstatus. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "cultural_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bokbadet_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: miljøtilhørighet uten performativ kunnskapsstatus. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "criticism",
+          "public_infrastructure",
+          "cultural_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bokbadet_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: miljøtilhørighet uten performativ kunnskapsstatus. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "criticism",
+          "public_infrastructure",
+          "cultural_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bokbadet_uten_prestasjon"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: bred kulturell interesse uten profesjonelt mandat. Morgenen gjør dagens felt, institusjon eller historiske sammenheng synlig.",
+        "thread_ids": [
+          "authority_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: bred kulturell interesse uten profesjonelt mandat. Midt på dagen møter interessen andre menneskers språk, status eller erfaring.",
+        "thread_ids": [
+          "authority_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: bred kulturell interesse uten profesjonelt mandat. Ettermiddagen krever et konkret valg om orientering, tilhørighet eller grense.",
+        "thread_ids": [
+          "public_infrastructure",
+          "cultural_capital",
+          "authority_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: bred kulturell interesse uten profesjonelt mandat. Kvelden viser hvordan valget påvirker trygghet, oppmerksomhet eller neste møte med litteraturfeltet.",
+        "thread_ids": [
+          "public_infrastructure",
+          "cultural_capital",
+          "authority_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "field_entry",
+      "relationship": "inngang i feltet uten oversiktskrav",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "public_culture",
+      "relationship": "deltakelse i litterære offentligheter uten innviddhetsprøve",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "canon",
+      "relationship": "kanon som orientering uten medlemskort",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "translation",
+      "relationship": "oversettelse og mellomledd som synlig kulturarbeid",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "prizes",
+      "relationship": "priser som institusjonell seleksjon uten fasit",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "publishing",
+      "relationship": "forlag som kultur- og markedsaktør uten prestisjefetisj",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "visibility",
+      "relationship": "synlighet og distribusjon uten å forveksles med verdi",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "historical_context",
+      "relationship": "litteraturhistorisk kontekst uten skoleprestasjon",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "genre_boundary",
+      "relationship": "sjangergrenser som historiske og institusjonelle forhandlinger",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "authorship",
+      "relationship": "forfatter, biografi og verk som relaterte men ulike nivåer",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "criticism",
+      "relationship": "kritikk som perspektiv uten lånt dom eller kritikerrolle",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "public_infrastructure",
+      "relationship": "bibliotek og offentlig formidling som litterær infrastruktur",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "cultural_capital",
+      "relationship": "miljøtilhørighet uten performativ kunnskapsstatus",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "authority_boundary",
+      "relationship": "bred kulturell interesse uten profesjonelt mandat",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "tryggere_i_kunnskapshull",
+      "description": "Kunnskapshull blir lettere å innrømme i litterære rom.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer"
+      ]
+    },
+    {
+      "id": "bredere_feltblikk",
+      "description": "Oversettere, bibliotek og forlag blir synlige som deler av litteraturfeltet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen"
+      ]
+    },
+    {
+      "id": "mindre_prestisjefangst",
+      "description": "Priser, forlagsnavn og synlighet blir informasjon uten å bli fasit.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka"
+      ]
+    },
+    {
+      "id": "historisk_orientering",
+      "description": "Verk kan plasseres i historiske og institusjonelle sammenhenger uten skoleprestasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden"
+      ]
+    },
+    {
+      "id": "klarere_rollegrense",
+      "description": "Bred kulturell interesse kan uttrykkes uten å låne kritiker- eller redaktørmyndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kanonpress_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "psyche",
+        "reputation"
+      ]
+    },
+    {
+      "id": "oversetterblikk_returnerer",
+      "setup_ref": "4/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "prislogikken_returnerer",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "economy"
+      ]
+    },
+    {
+      "id": "markedsblikk_returnerer",
+      "setup_ref": "6/afternoon",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kritikerspraket_returnerer",
+      "setup_ref": "11/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "rollegrensen_returnerer",
+      "setup_ref": "2/lunch",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "psyche",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#inngangen_som_faktisk_trekker",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#arrangementet_der_alle_kan_mer",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#kanonlisten",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#oversetteren_i_skyggen",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#prisuka",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forlagsnavnet",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bordet_foran_i_bokhandelen",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#verket_i_tiden",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#sjangergrensen",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#forfatteren_og_verket",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#anmeldelsen_for_du_mener_noe",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#biblioteket_som_litteraer_infrastruktur",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#bokbadet_uten_prestasjon",
+      "data/Civication/narratives/leisure/litteratur_litteraturinteressert.json#interesse_uten_embete"
+    ]
+  }
+}
