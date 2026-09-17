@@ -1,0 +1,1197 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "litteratur",
+  "role_scope": "litteratur_anmelder",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "litteratur",
+    "id": "anmelder",
+    "label": "Anmelder"
+  },
+  "title": "Anmelder",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gi offentlige eller delte vurderinger med tydelige kriterier og belegg uten at tilgang, status, tidspress eller publiseringsflate blir lånt redaksjonell eller faglig myndighet",
+    "description": "Anmelder-verdenen undersøker oppdragsavklaring, vurderingskriterier, frieksemplar og habilitet, skillet mellom verk og person, sitatbruk, spoilers, ufullført lesegrunnlag, konsensuspress, korreksjon, score, invitasjoner, kompetansegrenser, redigering og læring etter publisering. Rollen er en employment-independent professional_practice og gir ingen automatisk jobb eller lønn, ingen redaktør-, kritiker-, presse-, forsknings- eller institusjonell fullmakt, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "shame_reputation",
+    "class_power",
+    "public_private_leakage",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "redaksjonsbordet",
+    "lesestedet",
+    "forlagskontakten",
+    "publiseringsflaten",
+    "kommentarfeltet",
+    "lanseringen",
+    "kritikersamtalen",
+    "faggrensen"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "redaktoren",
+      "social_function": "gjør publiseringsrammer og redigering konkrete",
+      "class_position": "redaksjonell yrkesrolle",
+      "status": "institusjonell situert status",
+      "power_over_player": "kan bestille, redigere eller avvise tekst, men ikke overføre egen myndighet automatisk",
+      "wants": "en tydelig og lesbar anmeldelse",
+      "conceals": "at formatpress kan endre meningsinnhold",
+      "speech_style": "kort, deadline-orientert og presis",
+      "teaches_player": "anmelderpraksis er ikke det samme som redaktørmandat"
+    },
+    {
+      "id": "forfatteren",
+      "social_function": "personifiserer den som blir vurdert",
+      "class_position": "skapende praksis",
+      "status": "varierende offentlig status",
+      "power_over_player": "kan svare offentlig og utfordre fakta",
+      "wants": "rettferdig behandling av verket",
+      "conceals": "hvor personlig offentlig kritikk kan oppleves",
+      "speech_style": "direkte og tekstnær",
+      "teaches_player": "verket kan kritiseres uten å spekulere om personen"
+    },
+    {
+      "id": "forlagskontakten",
+      "social_function": "gjør frieksemplar og lansering synlig",
+      "class_position": "kommersiell kulturformidler",
+      "status": "profesjonell nettverksstatus",
+      "power_over_player": "kan tilby tilgang og informasjon",
+      "wants": "oppmerksomhet rundt utgivelsen",
+      "conceals": "at normal relasjonsbygging også kan skape binding",
+      "speech_style": "vennlig og effektiv",
+      "teaches_player": "tilgang og uavhengighet må holdes adskilt"
+    },
+    {
+      "id": "medanmelderen",
+      "social_function": "gjør kritisk konsensus og uenighet synlig",
+      "class_position": "selvstendig eller tilknyttet anmelder",
+      "status": "feltstatus",
+      "power_over_player": "kan påvirke norm og sammenligning",
+      "wants": "begrunnet offentlig samtale",
+      "conceals": "egen statusangst ved avvik",
+      "speech_style": "argumenterende",
+      "teaches_player": "uenighet må forankres i belegg, ikke posering"
+    },
+    {
+      "id": "leseren",
+      "social_function": "representerer mottakeren av vurderingen",
+      "class_position": "publikum",
+      "status": "ingen formell fagstatus",
+      "power_over_player": "kan etterprøve argument og reagere på spoilers eller feil",
+      "wants": "å forstå hva vurderingen bygger på",
+      "conceals": "at score ofte overskygger tekst",
+      "speech_style": "konkret og spørsmålsdrevet",
+      "teaches_player": "anmeldelsen skylder leseren sporbar begrunnelse"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "markerer kunnskapsgrense ved faglige påstander",
+      "class_position": "spesialisert fagrolle",
+      "status": "feltavgrenset ekspertstatus",
+      "power_over_player": "kan korrigere faglige feil, men ikke bestemme litterær vurdering",
+      "wants": "presise påstander",
+      "conceals": "at ekspertise heller ikke dekker alle sider ved verket",
+      "speech_style": "nøktern og forbeholden",
+      "teaches_player": "kritisk praksis og faglig ekspertise er ulike mandat"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "mandate",
+      "meaning": "avklare oppdrag og mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "criteria",
+      "meaning": "gjøre vurderingskriterier synlige",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "independence",
+      "meaning": "håndtere bindinger og habilitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "work_person",
+      "meaning": "skille verk fra person",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "quotation",
+      "meaning": "bruke sitater redelig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "spoilers",
+      "meaning": "balansere analyse og spoilerhensyn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "completion",
+      "meaning": "være presis om hva som er lest",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "consensus",
+      "meaning": "stå selvstendig mot konsensus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction",
+      "meaning": "kunne korrigere faktagrunnlag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scoring",
+      "meaning": "la begrunnelse bære score",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "hospitality",
+      "meaning": "håndtere invitasjoner og nærhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise",
+      "meaning": "holde faglig kompetansegrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "editing",
+      "meaning": "skille egen vurdering fra redigering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reflection",
+      "meaning": "lære av publisert kritikk",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1 morgen: avklare oppdrag og mandat.",
+        "thread_ids": [
+          "mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1 lunsj: avklare oppdrag og mandat.",
+        "thread_ids": [
+          "mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1 ettermiddag: avklare oppdrag og mandat.",
+        "thread_ids": [
+          "editing",
+          "reflection",
+          "mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1 kveld: avklare oppdrag og mandat.",
+        "thread_ids": [
+          "editing",
+          "reflection",
+          "mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2 morgen: gjøre vurderingskriterier synlige.",
+        "thread_ids": [
+          "criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2 lunsj: gjøre vurderingskriterier synlige.",
+        "thread_ids": [
+          "criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2 ettermiddag: gjøre vurderingskriterier synlige.",
+        "thread_ids": [
+          "reflection",
+          "mandate",
+          "criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2 kveld: gjøre vurderingskriterier synlige.",
+        "thread_ids": [
+          "reflection",
+          "mandate",
+          "criteria"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3 morgen: håndtere bindinger og habilitet.",
+        "thread_ids": [
+          "independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3 lunsj: håndtere bindinger og habilitet.",
+        "thread_ids": [
+          "independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3 ettermiddag: håndtere bindinger og habilitet.",
+        "thread_ids": [
+          "mandate",
+          "criteria",
+          "independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3 kveld: håndtere bindinger og habilitet.",
+        "thread_ids": [
+          "mandate",
+          "criteria",
+          "independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4 morgen: skille verk fra person.",
+        "thread_ids": [
+          "work_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#verket_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4 lunsj: skille verk fra person.",
+        "thread_ids": [
+          "work_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#verket_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4 ettermiddag: skille verk fra person.",
+        "thread_ids": [
+          "criteria",
+          "independence",
+          "work_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#verket_og_personen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4 kveld: skille verk fra person.",
+        "thread_ids": [
+          "criteria",
+          "independence",
+          "work_person"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#verket_og_personen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5 morgen: bruke sitater redelig.",
+        "thread_ids": [
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#sitatet_som_bevis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5 lunsj: bruke sitater redelig.",
+        "thread_ids": [
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#sitatet_som_bevis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5 ettermiddag: bruke sitater redelig.",
+        "thread_ids": [
+          "independence",
+          "work_person",
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#sitatet_som_bevis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5 kveld: bruke sitater redelig.",
+        "thread_ids": [
+          "independence",
+          "work_person",
+          "quotation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#sitatet_som_bevis"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6 morgen: balansere analyse og spoilerhensyn.",
+        "thread_ids": [
+          "spoilers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#spoilergrensen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6 lunsj: balansere analyse og spoilerhensyn.",
+        "thread_ids": [
+          "spoilers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#spoilergrensen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6 ettermiddag: balansere analyse og spoilerhensyn.",
+        "thread_ids": [
+          "work_person",
+          "quotation",
+          "spoilers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#spoilergrensen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6 kveld: balansere analyse og spoilerhensyn.",
+        "thread_ids": [
+          "work_person",
+          "quotation",
+          "spoilers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#spoilergrensen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7 morgen: være presis om hva som er lest.",
+        "thread_ids": [
+          "completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#halvlest_og_tidsfrist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7 lunsj: være presis om hva som er lest.",
+        "thread_ids": [
+          "completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#halvlest_og_tidsfrist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7 ettermiddag: være presis om hva som er lest.",
+        "thread_ids": [
+          "quotation",
+          "spoilers",
+          "completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#halvlest_og_tidsfrist"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7 kveld: være presis om hva som er lest.",
+        "thread_ids": [
+          "quotation",
+          "spoilers",
+          "completion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#halvlest_og_tidsfrist"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8 morgen: stå selvstendig mot konsensus.",
+        "thread_ids": [
+          "consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#uenighet_med_konsensus"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8 lunsj: stå selvstendig mot konsensus.",
+        "thread_ids": [
+          "consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#uenighet_med_konsensus"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8 ettermiddag: stå selvstendig mot konsensus.",
+        "thread_ids": [
+          "spoilers",
+          "completion",
+          "consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#uenighet_med_konsensus"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8 kveld: stå selvstendig mot konsensus.",
+        "thread_ids": [
+          "spoilers",
+          "completion",
+          "consensus"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#uenighet_med_konsensus"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9 morgen: kunne korrigere faktagrunnlag.",
+        "thread_ids": [
+          "correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9 lunsj: kunne korrigere faktagrunnlag.",
+        "thread_ids": [
+          "correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9 ettermiddag: kunne korrigere faktagrunnlag.",
+        "thread_ids": [
+          "completion",
+          "consensus",
+          "correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9 kveld: kunne korrigere faktagrunnlag.",
+        "thread_ids": [
+          "completion",
+          "consensus",
+          "correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10 morgen: la begrunnelse bære score.",
+        "thread_ids": [
+          "scoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#stjerner_og_tekst"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10 lunsj: la begrunnelse bære score.",
+        "thread_ids": [
+          "scoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#stjerner_og_tekst"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10 ettermiddag: la begrunnelse bære score.",
+        "thread_ids": [
+          "consensus",
+          "correction",
+          "scoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#stjerner_og_tekst"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10 kveld: la begrunnelse bære score.",
+        "thread_ids": [
+          "consensus",
+          "correction",
+          "scoring"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#stjerner_og_tekst"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11 morgen: håndtere invitasjoner og nærhet.",
+        "thread_ids": [
+          "hospitality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#gratis_invitasjonen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11 lunsj: håndtere invitasjoner og nærhet.",
+        "thread_ids": [
+          "hospitality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#gratis_invitasjonen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11 ettermiddag: håndtere invitasjoner og nærhet.",
+        "thread_ids": [
+          "correction",
+          "scoring",
+          "hospitality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#gratis_invitasjonen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11 kveld: håndtere invitasjoner og nærhet.",
+        "thread_ids": [
+          "correction",
+          "scoring",
+          "hospitality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#gratis_invitasjonen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12 morgen: holde faglig kompetansegrense.",
+        "thread_ids": [
+          "expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12 lunsj: holde faglig kompetansegrense.",
+        "thread_ids": [
+          "expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12 ettermiddag: holde faglig kompetansegrense.",
+        "thread_ids": [
+          "scoring",
+          "hospitality",
+          "expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12 kveld: holde faglig kompetansegrense.",
+        "thread_ids": [
+          "scoring",
+          "hospitality",
+          "expertise"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13 morgen: skille egen vurdering fra redigering.",
+        "thread_ids": [
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#redigeringen_etterpå"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13 lunsj: skille egen vurdering fra redigering.",
+        "thread_ids": [
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#redigeringen_etterpå"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13 ettermiddag: skille egen vurdering fra redigering.",
+        "thread_ids": [
+          "hospitality",
+          "expertise",
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#redigeringen_etterpå"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13 kveld: skille egen vurdering fra redigering.",
+        "thread_ids": [
+          "hospitality",
+          "expertise",
+          "editing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#redigeringen_etterpå"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14 morgen: lære av publisert kritikk.",
+        "thread_ids": [
+          "reflection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#etterkritikken"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14 lunsj: lære av publisert kritikk.",
+        "thread_ids": [
+          "reflection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#etterkritikken"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14 ettermiddag: lære av publisert kritikk.",
+        "thread_ids": [
+          "expertise",
+          "editing",
+          "reflection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#etterkritikken"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14 kveld: lære av publisert kritikk.",
+        "thread_ids": [
+          "expertise",
+          "editing",
+          "reflection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/litteratur_anmelder.json#etterkritikken"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "mandate",
+      "relationship": "avklare oppdrag og mandat",
+      "beat_refs": [
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening"
+      ]
+    },
+    {
+      "id": "criteria",
+      "relationship": "gjøre vurderingskriterier synlige",
+      "beat_refs": [
+        "2/afternoon",
+        "2/evening",
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening"
+      ]
+    },
+    {
+      "id": "independence",
+      "relationship": "håndtere bindinger og habilitet",
+      "beat_refs": [
+        "3/afternoon",
+        "3/evening",
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening"
+      ]
+    },
+    {
+      "id": "work_person",
+      "relationship": "skille verk fra person",
+      "beat_refs": [
+        "4/afternoon",
+        "4/evening",
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening"
+      ]
+    },
+    {
+      "id": "quotation",
+      "relationship": "bruke sitater redelig",
+      "beat_refs": [
+        "5/afternoon",
+        "5/evening",
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening"
+      ]
+    },
+    {
+      "id": "spoilers",
+      "relationship": "balansere analyse og spoilerhensyn",
+      "beat_refs": [
+        "6/afternoon",
+        "6/evening",
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening"
+      ]
+    },
+    {
+      "id": "completion",
+      "relationship": "være presis om hva som er lest",
+      "beat_refs": [
+        "7/afternoon",
+        "7/evening",
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening"
+      ]
+    },
+    {
+      "id": "consensus",
+      "relationship": "stå selvstendig mot konsensus",
+      "beat_refs": [
+        "8/afternoon",
+        "8/evening",
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening"
+      ]
+    },
+    {
+      "id": "correction",
+      "relationship": "kunne korrigere faktagrunnlag",
+      "beat_refs": [
+        "9/afternoon",
+        "9/evening",
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening"
+      ]
+    },
+    {
+      "id": "scoring",
+      "relationship": "la begrunnelse bære score",
+      "beat_refs": [
+        "10/afternoon",
+        "10/evening",
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening"
+      ]
+    },
+    {
+      "id": "hospitality",
+      "relationship": "håndtere invitasjoner og nærhet",
+      "beat_refs": [
+        "11/afternoon",
+        "11/evening",
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening"
+      ]
+    },
+    {
+      "id": "expertise",
+      "relationship": "holde faglig kompetansegrense",
+      "beat_refs": [
+        "12/afternoon",
+        "12/evening",
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening"
+      ]
+    },
+    {
+      "id": "editing",
+      "relationship": "skille egen vurdering fra redigering",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening"
+      ]
+    },
+    {
+      "id": "reflection",
+      "relationship": "lære av publisert kritikk",
+      "beat_refs": [
+        "14/afternoon",
+        "14/evening",
+        "1/afternoon",
+        "1/evening",
+        "2/afternoon",
+        "2/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "klarere_mandat",
+      "description": "Oppdrag og publiseringsramme skilles tydeligere fra egen anmelderidentitet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon"
+      ]
+    },
+    {
+      "id": "sporbare_kriterier",
+      "description": "Vurderinger får tydeligere kriterier og tekstbelegg.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer"
+      ]
+    },
+    {
+      "id": "habilitetsrutine",
+      "description": "Frieksemplar, relasjon og invitasjon vurderes mer eksplisitt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret"
+      ]
+    },
+    {
+      "id": "bedre_korreksjon",
+      "description": "Faktafeil kan rettes uten at legitim vurderingsuenighet må oppheves.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer"
+      ]
+    },
+    {
+      "id": "myndighetsgrense",
+      "description": "Anmeldelsespraksis skilles klarere fra redaksjonelt, faglig og institusjonelt mandat.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "frieksemplar_returnerer",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "personkritikk_returnerer",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sitat_returnerer",
+      "setup_ref": "5/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tidsfrist_returnerer",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "psyche",
+        "narrative"
+      ]
+    },
+    {
+      "id": "konsensus_returnerer",
+      "setup_ref": "8/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "psyche"
+      ]
+    },
+    {
+      "id": "faggrense_returnerer",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#oppdrag_uten_redaksjon",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#kriteriene_for_du_dommer",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#frieksemplaret",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#verket_og_personen",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#sitatet_som_bevis",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#spoilergrensen",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#halvlest_og_tidsfrist",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#uenighet_med_konsensus",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#forfatteren_svarer",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#stjerner_og_tekst",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#gratis_invitasjonen",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#kompetansegrensen",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#redigeringen_etterpå",
+      "data/Civication/narratives/leisure/litteratur_anmelder.json#etterkritikken"
+    ]
+  }
+}
