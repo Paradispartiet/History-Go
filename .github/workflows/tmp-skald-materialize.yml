@@ -24,6 +24,28 @@ jobs:
         run: node scripts/tmp-materialize-skald.mjs
       - name: Regenerate life-position readiness
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Synchronize direct taxonomy count expectations
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('tests/civication-noncareer-role-taxonomy.test.js')
+          text = p.read_text()
+          pairs = [
+            (
+              "assert.equal(roleWorldIndex.roles.length, 187, 'Role World-indeksen skal ha 85 karriereverdener + 102 life-position worlds');",
+              "assert.equal(roleWorldIndex.roles.length, 188, 'Role World-indeksen skal ha 85 karriereverdener + 103 life-position worlds');"
+            ),
+            (
+              "assert.equal(lifePositionWorlds.length, 102, '102 canonical life-position worlds skal være materialisert, inkludert Poet');",
+              "assert.equal(lifePositionWorlds.length, 103, '103 canonical life-position worlds skal være materialisert, inkludert Poet og Skald');"
+            )
+          ]
+          for old, new in pairs:
+            if old not in text:
+              raise SystemExit(f'Expected stale taxonomy assertion not found: {old}')
+            text = text.replace(old, new)
+          p.write_text(text)
+          PY
       - name: Verify Skald readiness
         run: node tests/civication-skald-life-position-readiness.test.js
       - name: Verify Skald Role World
