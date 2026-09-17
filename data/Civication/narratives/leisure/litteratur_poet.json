@@ -1,0 +1,468 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_poet_stream",
+  "type": "leisure",
+  "title": "Poet",
+  "sociological_theme": "poetisk_praksis_bilde_rytme_linjebrudd_stemme_form_tradisjon_revisjon_framforing_og_profesjonell_grense",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:poet"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "bildet_for_forklaringen",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Notatboken",
+      "subject": "Et bilde før en forklaring",
+      "situation": [
+        "Du vil skrive om sorg, men de første linjene forklarer følelsen direkte.",
+        "Poesi kan gjøre erfaring sansbar gjennom konkrete bilder før teksten forteller leseren hva den skal bety.",
+        "Et presist bilde trenger ikke være entydig, men det må bære mer enn pynt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne én konkret detalj som kan bære følelsen uten å forklare den ferdig.",
+          "effect": 1,
+          "tags": ["image", "concreteness", "compression"],
+          "feedback": "Valget lar bildet gjøre poetisk arbeid i stedet for å illustrere en ferdig forklaring."
+        },
+        {
+          "id": "B",
+          "label": "Legge til flere abstrakte følelsesord slik at leseren ikke kan misforstå temaet.",
+          "effect": -1,
+          "tags": ["abstraction", "overexplanation", "flatness"],
+          "feedback": "Valget forklarer følelsen, men gir språket mindre rom til å skape den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_bildet_for_forklaringen"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "ordet_som_er_for_stort",
+      "message_type": "task",
+      "time_slot": ["personal", "home"],
+      "from": "Utkastet",
+      "subject": "Når et ord sier mer enn diktet kan bevise",
+      "situation": [
+        "Et ord som «alltid», «alle» eller «verden» gir strofen tyngde, men påstanden er større enn erfaringen teksten faktisk viser.",
+        "Poetisk intensitet trenger ikke komme fra maksimal generalisering.",
+        "Presisjon kan gjøre et lite utsnitt sterkere enn et stort utsagn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bytte den store påstanden med en mer presis observasjon som diktet faktisk kan bære.",
+          "effect": 1,
+          "tags": ["precision", "scale", "revision"],
+          "feedback": "Valget gjør diktets utsagn mindre pompøst og mer etterprøvbart i språket."
+        },
+        {
+          "id": "B",
+          "label": "Beholde det store ordet fordi høyt register i seg selv gjør diktet viktigere.",
+          "effect": -1,
+          "tags": ["grandiosity", "status_display", "overclaim"],
+          "feedback": "Valget bruker register som erstatning for presisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_ordet_som_er_for_stort"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "rytmen_i_munnen",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Stemmen",
+      "subject": "Les linjen høyt",
+      "situation": [
+        "En strofe ser balansert ut på siden, men faller flatt når du leser den høyt.",
+        "Rytme oppstår gjennom trykk, pauser, gjentakelser, setningsbevegelse og lyd — ikke bare gjennom fast metrum.",
+        "Høytlesning kan avsløre hvor språket mister energi eller blir mekanisk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lese strofen høyt flere ganger og justere ordstilling, pauser eller gjentakelser etter faktisk lyd.",
+          "effect": 1,
+          "tags": ["rhythm", "sound", "revision"],
+          "feedback": "Valget lar øret kontrollere rytmen i stedet for bare øyet."
+        },
+        {
+          "id": "B",
+          "label": "Ignorere lyd fordi diktet først og fremst skal fungere visuelt på siden.",
+          "effect": -1,
+          "tags": ["sound_blindness", "surface", "rigidity"],
+          "feedback": "Valget overser en av poesiens grunnleggende materielle dimensjoner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_rytmen_i_munnen"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "linjebruddet_som_gjor_noe",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Siden",
+      "subject": "Hvorfor stopper linjen her?",
+      "situation": [
+        "Du har delt en setning over tre linjer, men kan ikke forklare hva bruddene gjør med rytme, vekt eller betydning.",
+        "Linjebrudd kan forsinke, forskyve, dobbeltbelyse eller markere et ord.",
+        "Når bruddet er tilfeldig, blir formen lett dekorativ."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Teste hvert brudd mot rytme og betydning og flytte det som ikke gjør konkret arbeid.",
+          "effect": 1,
+          "tags": ["line_break", "form", "precision"],
+          "feedback": "Valget gjør linjebruddet til en funksjonell del av diktets komposisjon."
+        },
+        {
+          "id": "B",
+          "label": "Beholde bruddene fordi korte linjer ser mer poetiske ut.",
+          "effect": -1,
+          "tags": ["decorative_form", "surface", "habit"],
+          "feedback": "Valget gjør typografi til stilmarkør uten tydelig funksjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_linjebruddet_som_gjor_noe"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "metaforen_som_ma_holde",
+      "message_type": "task",
+      "time_slot": ["personal", "home"],
+      "from": "Bildet",
+      "subject": "Metaforen tåler en ekstra linje",
+      "situation": [
+        "En metafor virker slående i første linje, men kollapser når diktet bygger videre på den.",
+        "Et billedlig forhold trenger ikke være logisk bokstavelig, men det bør ha indre konsekvens.",
+        "Sterke metaforer åpner betydning uten å bli tilfeldige likheter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøke hvilke egenskaper bildet faktisk overfører og kutte det som ikke henger sammen.",
+          "effect": 1,
+          "tags": ["metaphor", "coherence", "revision"],
+          "feedback": "Valget gjør metaforen rikere ved å gi den tydeligere indre logikk."
+        },
+        {
+          "id": "B",
+          "label": "Legge til flere bilder raskt slik at svakheten drukner i intensitet.",
+          "effect": -1,
+          "tags": ["image_pileup", "excess", "coherence_loss"],
+          "feedback": "Valget øker mengden billedspråk uten å styrke forbindelsen mellom bildene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_metaforen_som_ma_holde"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "jeg_er_ikke_alltid_forfatteren",
+      "message_type": "decision",
+      "time_slot": ["people", "leisure"],
+      "from": "Lesesirkelen",
+      "subject": "Hvem snakker i diktet?",
+      "situation": [
+        "En leser antar at diktets jeg er identisk med deg og spør om hendelsen virkelig skjedde.",
+        "Lyriske ytringer kan bruke persona, maske, rolle, komposisjon og fiksjon selv når materialet er personlig.",
+        "Å skille tekstens stemme fra biografisk person beskytter både analyse og privatliv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare at diktets jeg er en tekstlig stemme og bare koble det til biografi når teksten eller kildene faktisk gir grunnlag.",
+          "effect": 1,
+          "tags": ["speaker", "persona", "work_person_boundary"],
+          "feedback": "Valget holder teksten åpen uten å gjøre forfatterbiografi til automatisk fasit."
+        },
+        {
+          "id": "B",
+          "label": "Bekrefte at alle jeg-former må leses som direkte selvbiografi fordi det gjør diktet mer autentisk.",
+          "effect": -1,
+          "tags": ["biographical_reduction", "privacy_drift", "overclaim"],
+          "feedback": "Valget reduserer tekstlig stemme til biografisk dokument uten tilstrekkelig grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_jeg_er_ikke_alltid_forfatteren"],
+      "risk_links": ["relationship_risk"],
+      "links": []
+    },
+    {
+      "id": "formen_som_motstand",
+      "message_type": "task",
+      "time_slot": ["personal", "leisure"],
+      "from": "Arbeidsbordet",
+      "subject": "En begrensning kan åpne teksten",
+      "situation": [
+        "Du står fast i et fritt vers og alle nye linjer ligner de gamle.",
+        "En valgt formbegrensning — rytmisk mønster, gjentakelse, stavelsestall eller fast komposisjon — kan skape produktiv motstand.",
+        "Form er ikke bare tradisjon; den kan være en metode for å finne språk du ellers ikke ville valgt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøve en tydelig begrensning i ett utkast og se hvilke uventede språklige løsninger den frambringer.",
+          "effect": 1,
+          "tags": ["constraint", "form", "craft"],
+          "feedback": "Valget bruker form som arbeidsmetode, ikke som pynt eller regel for regelens skyld."
+        },
+        {
+          "id": "B",
+          "label": "Avvise alle formkrav som uforenlige med ekte spontanitet.",
+          "effect": -1,
+          "tags": ["romanticism", "habit", "craft_avoidance"],
+          "feedback": "Valget gjør spontanitet til et prinsipp som kan skjule vaner i eget språk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_formen_som_motstand"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "tradisjonen_i_linja",
+      "message_type": "story",
+      "time_slot": ["personal", "leisure"],
+      "from": "Bokhyllen",
+      "subject": "En lånt klang har en historie",
+      "situation": [
+        "En formulering du liker viser seg å ligge tett på et eldre dikt du har lest mange ganger.",
+        "Poesi lever av tradisjon, allusjon, omskriving og svar, men forbindelsen bør være bevisst når den er bærende.",
+        "Å kjenne slektskapet gjør det mulig å forvandle påvirkning til et tydelig forhold mellom tekster."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne den eldre teksten igjen og avgjøre om forbindelsen skal markeres, omskrives eller brytes tydeligere.",
+          "effect": 1,
+          "tags": ["tradition", "allusion", "source_awareness"],
+          "feedback": "Valget gjør påvirkning til bevisst intertekstualitet i stedet for ureflektert lån."
+        },
+        {
+          "id": "B",
+          "label": "Unngå å sjekke fordi likheten kan ødelegge følelsen av at linjen er helt original.",
+          "effect": -1,
+          "tags": ["source_avoidance", "originality_myth", "provenance_gap"],
+          "feedback": "Valget beskytter selvbildet på bekostning av tekstens faktiske litterære relasjoner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_tradisjonen_i_linja"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "diktet_blant_diktene",
+      "message_type": "decision",
+      "time_slot": ["personal", "home"],
+      "from": "Manuset",
+      "subject": "Rekkefølgen skriver også",
+      "situation": [
+        "Du har mange enkeltstående dikt som fungerer hver for seg, men et manus oppleves tilfeldig når de settes sammen.",
+        "Sekvens, kontrast, gjentakelse og motivutvikling kan skape betydning mellom diktene.",
+        "En samling er derfor mer enn summen av de sterkeste enkeltekstene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøve flere rekkefølger og undersøke hvordan åpning, overgang og avslutning endrer lesningen.",
+          "effect": 1,
+          "tags": ["sequence", "collection", "composition"],
+          "feedback": "Valget gjør samlingen til en komposisjon med egen dramaturgi."
+        },
+        {
+          "id": "B",
+          "label": "Sortere diktene etter når de ble skrevet og anta at kronologien automatisk gir helhet.",
+          "effect": -1,
+          "tags": ["default_order", "composition_gap", "habit"],
+          "feedback": "Valget lar produksjonsrekkefølgen erstatte et bevisst kompositorisk valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_diktet_blant_diktene"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "kuttet_som_gjor_plass",
+      "message_type": "task",
+      "time_slot": ["personal", "home"],
+      "from": "Revisjonen",
+      "subject": "Den beste linjen kan stå i veien",
+      "situation": [
+        "Du har en linje du er stolt av, men den trekker diktet mot et annet register og får resten til å virke svakere.",
+        "Revisjon handler ikke bare om å forbedre enkeltlinjer, men om å velge hva helheten faktisk trenger.",
+        "En sterk formulering kan være feil i akkurat dette diktet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta linjen ut midlertidig og lese diktet på nytt uten den før du bestemmer deg.",
+          "effect": 1,
+          "tags": ["cutting", "revision", "whole_over_part"],
+          "feedback": "Valget prioriterer diktets helhet framfor eierskap til en favorittlinje."
+        },
+        {
+          "id": "B",
+          "label": "Beholde linjen uansett fordi mye arbeid og identitet allerede er investert i den.",
+          "effect": -1,
+          "tags": ["sunk_cost", "attachment", "revision_resistance"],
+          "feedback": "Valget lar investert stolthet styre komposisjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_kuttet_som_gjor_plass"],
+      "risk_links": ["stress_risk"],
+      "links": []
+    },
+    {
+      "id": "tilbakemeldingen_som_ma_sorteres",
+      "message_type": "decision",
+      "time_slot": ["people", "leisure"],
+      "from": "Skrivegruppen",
+      "subject": "Tre lesere vil ha tre ulike dikt",
+      "situation": [
+        "En skrivegruppe gir motstridende råd: én vil ha mer forklaring, én mindre, og én vil endre hele tonen.",
+        "Respons er data om lesererfaring, ikke en avstemning der flertallet automatisk eier teksten.",
+        "Poetisk revisjon krever å skille mellom problemet en leser registrerer og løsningen leseren foreslår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se etter mønster i hva leserne strever med og velge egen løsning på det reelle problemet.",
+          "effect": 1,
+          "tags": ["feedback", "judgment", "revision"],
+          "feedback": "Valget bruker respons som informasjon uten å gi fra seg kompositorisk ansvar."
+        },
+        {
+          "id": "B",
+          "label": "Gjennomføre alle forslagene samtidig for å unngå at noen føler seg oversett.",
+          "effect": -1,
+          "tags": ["people_pleasing", "voice_loss", "revision_drift"],
+          "feedback": "Valget gjør teksten til et kompromiss mellom løsninger som peker i ulike retninger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_tilbakemeldingen_som_ma_sorteres"],
+      "risk_links": ["relationship_risk"],
+      "links": []
+    },
+    {
+      "id": "siden_og_scenen",
+      "message_type": "story",
+      "time_slot": ["people", "leisure"],
+      "from": "Opplesningen",
+      "subject": "Diktet får en kropp",
+      "situation": [
+        "Et dikt som virker lavmælt på siden får en helt annen kraft når det framføres.",
+        "Tempo, pust, blikk og stemme kan tydeliggjøre eller overstyre tekstens rytme.",
+        "Framføring er en egen fortolkningssituasjon, ikke bevis på at sideversjonen er mindre virkelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøve framføringen som en tolkning av teksten og justere tempo eller pauser uten å late som dette er eneste riktige lesning.",
+          "effect": 1,
+          "tags": ["performance", "voice", "interpretation"],
+          "feedback": "Valget lar side og scene være to beslektede, men ulike uttrykksformer."
+        },
+        {
+          "id": "B",
+          "label": "Overdrive framføringen for å kompensere for steder der språket ikke bærer alene.",
+          "effect": -1,
+          "tags": ["performance_mask", "overdelivery", "craft_gap"],
+          "feedback": "Valget bruker framføring til å skjule problemer i teksten."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_siden_og_scenen"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    },
+    {
+      "id": "honoraret_er_ikke_identiteten",
+      "message_type": "decision",
+      "time_slot": ["personal", "people"],
+      "from": "Invitasjonen",
+      "subject": "Et oppdrag er en egen avtale",
+      "situation": [
+        "Du får spørsmål om opplesning mot honorar og merker hvor lett rolleidentitet, publisering og betaling glir sammen.",
+        "Poet er en employment-independent professional_practice, mens royalty, honorar, prosjektstøtte og direkte salg er separate livelihood-strømmer som krever egen proveniens og aksept.",
+        "Badge-status alene oppretter verken kontrakt, utgivelse, lønn, publikum eller inntekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille mellom poetisk praksis og den konkrete avtalen og avklare vilkår før du behandler inntekten som reell.",
+          "effect": 1,
+          "tags": ["livelihood_boundary", "contract", "role_clarity"],
+          "feedback": "Valget holder identitet og økonomisk hendelse i separate canonical-lag."
+        },
+        {
+          "id": "B",
+          "label": "Regne med at poetstatus i seg selv betyr at honorar og publiseringsmuligheter automatisk følger med.",
+          "effect": -1,
+          "tags": ["income_assumption", "authority_drift", "identity_drift"],
+          "feedback": "Valget gjør en livsposisjon om til en økonomisk garanti systemet ikke har gitt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_honoraret_er_ikke_identiteten"],
+      "risk_links": ["finance_risk"],
+      "links": []
+    },
+    {
+      "id": "diktet_som_kan_endres",
+      "message_type": "decision",
+      "time_slot": ["personal", "leisure"],
+      "from": "Arkivet",
+      "subject": "Et gammelt dikt møter et nytt blikk",
+      "situation": [
+        "Du leser et eldre dikt og ser at en formulering nå virker enklere, hardere eller mer forutsigbar enn du husket.",
+        "Poetisk identitet blir ikke mer troverdig av å behandle tidligere tekst som urørlig bevis på egen stemme.",
+        "En praksis kan ha kontinuitet samtidig som metode, estetikk og vurderinger forandres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Notere hva som har endret seg i blikket ditt og avgjøre om teksten skal stå historisk, revideres eller legges bort.",
+          "effect": 1,
+          "tags": ["revision", "development", "role_clarity"],
+          "feedback": "Valget gjør forandring til en dokumentert del av praksisen i stedet for et tap av identitet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare alle gamle valg fordi en ekte poetisk stemme bør være stabil over tid.",
+          "effect": -1,
+          "tags": ["fixed_identity", "status_defense", "revision_resistance"],
+          "feedback": "Valget gjør kontinuitet til et krav om stilistisk stillstand."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": ["poet_diktet_som_kan_endres"],
+      "risk_links": ["reputation_risk"],
+      "links": []
+    }
+  ]
+}
