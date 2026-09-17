@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "litteratur_essayist_stream",
+  "type": "leisure",
+  "title": "Essayist",
+  "sociological_theme": "essayistisk_praksis_premiss_kilder_eksempler_stemme_motargument_digresjon_personvern_redigering_referanser_og_grensen_mot_faglig_eller_redaksjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "litteratur:essayist"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "premisset_som_holder",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Notatblokken",
+      "subject": "Premisset må bære",
+      "situation": [
+        "Du har en interessant tanke, men essayutkastet spriker mellom flere mulige hovedpåstander.",
+        "Et essay kan være åpent og undersøkende uten å være retningsløst; leseren trenger å forstå hvilket spørsmål teksten faktisk arbeider med.",
+        "Essayisten må kunne skille fruktbar åpenhet fra uklart premiss."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere et arbeids-premiss som er tydelig nok til å testes og åpent nok til å kunne endres.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde alle spor like viktige fordi et essay helst ikke skal forplikte seg til noe spørsmål.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_premisset_som_holder"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eksempelet_og_paastanden",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Arbeidsbordet",
+      "subject": "Når eksemplet ikke er bevis",
+      "situation": [
+        "Et personlig eksempel passer godt til argumentet, men du merker at du bruker én erfaring som om den dokumenterer et generelt mønster.",
+        "Essayet kan bruke erfaring som inngang, men må markere når det går fra opplevelse til påstand om verden.",
+        "Sjangeren fritar ikke for å skille illustrasjon fra evidens."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Markere hva eksemplet viser, og hva som krever annen dokumentasjon.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den personlige erfaringen stå som tilstrekkelig bevis fordi den er ærlig fortalt.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_eksempelet_og_paastanden"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_forstyrrer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Kildemappen",
+      "subject": "En kilde ødelegger den fine linjen",
+      "situation": [
+        "Du finner en kilde som motsier en elegant formulering du allerede liker.",
+        "Fristelsen er å beholde setningen og bruke kilden selektivt.",
+        "Essayistisk frihet innebærer også plikt til å tåle at research gjør teksten vanskeligere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskrive poenget slik at motargumentet faktisk får konsekvenser for teksten.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Plukke den delen av kilden som passer og ignorere resten fordi essayet ikke er forskning.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_kilden_som_forstyrrer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_som_dekor",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Tekstutkastet",
+      "subject": "Sitatet må gjøre arbeid",
+      "situation": [
+        "Et kjent sitat gir teksten tyngde, men bidrar lite til resonnementet.",
+        "Autoritetsnavn kan fungere som pynt og statusmarkør i stedet for faktisk tanke.",
+        "Essayisten bør kunne forklare hvorfor et sitat er nødvendig akkurat der."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kutte eller forklare sitatet slik at det får en presis funksjon i argumentasjonen.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde sitatet fordi et kjent navn i seg selv gjør teksten mer overbevisende.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_sitatet_som_dekor"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stemmen_og_rollen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Lesningen",
+      "subject": "Personlig stemme uten lånt autoritet",
+      "situation": [
+        "Du skriver i en sikker og essayistisk tone og merker at språket begynner å høres mer autoritativt ut enn grunnlaget ditt tilsier.",
+        "En tydelig stemme er ikke det samme som faglig mandat.",
+        "Essayisten kan være personlig, litterær og overbevisende uten å late som teksten er et ekspertvedtak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beholde stemmen, men presisere usikkerhet, ståsted og hva du faktisk vet.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skru opp sikkerheten fordi en overbevisende essaystemme bør høres uanfektet ut.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_stemmen_og_rollen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motargumentet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Marginen",
+      "subject": "Motargumentet som ikke får være stråmann",
+      "situation": [
+        "Du møter en innvending som er sterkere enn versjonen du først hadde planlagt å svare på.",
+        "Det er lettere å argumentere mot en svak karikatur enn mot den beste versjonen av motposisjonen.",
+        "Et godt essay kan bli skarpere av å gi motargumentet reell kraft."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formulere motargumentet så godt du kan før du svarer på det.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forenkle motposisjonen slik at egen tekst får en tydeligere seier.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_motargumentet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "digresjonen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Strukturen",
+      "subject": "Digresjon eller blindvei?",
+      "situation": [
+        "En digresjon er morsom og språklig god, men du vet ikke om den hjelper hovedbevegelsen.",
+        "Essayformen tåler sidespor, men ikke alle sidespor er produktive.",
+        "Struktur handler også om å vite når noe godt må bort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Teste om digresjonen endrer leserens forståelse; hvis ikke, flytte eller kutte den.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde den fordi enhver god formulering fortjener plass i et essay.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_digresjonen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_andres_historie",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalen",
+      "subject": "Når andres liv blir materiale",
+      "situation": [
+        "En venns erfaring ville være et sterkt eksempel, men historien er privat og lett gjenkjennelig.",
+        "Essayistisk materiale kan berøre andre menneskers omdømme og privatliv.",
+        "Tekstens behov gir ikke automatisk rett til å bruke alt man kjenner til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om samtykke eller anonymisere og endre nok til at personen ikke utleveres.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruke historien uendret fordi litterær bearbeiding i seg selv gjør den offentlig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_den_andres_historie"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "redigeringen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Redigeringen",
+      "subject": "Når teksten blir kortere og bedre",
+      "situation": [
+        "Førsteutkastet inneholder tre versjoner av samme poeng.",
+        "Gjenta kan være en stilistisk effekt, men kan også skjule at teksten ikke har valgt.",
+        "Essayistisk rytme krever redigering, ikke bare inspirasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velge den sterkeste formuleringen og la resten av teksten gjøre nytt arbeid.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Beholde alle tre fordi gjentakelse alltid gir mer dybde.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_redigeringen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overskriften",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Publiseringsflaten",
+      "subject": "Tittel uten lokkemat",
+      "situation": [
+        "Du blir foreslått en tittel som lover en klarere og mer dramatisk konklusjon enn teksten faktisk har.",
+        "En overskrift kan invitere leseren inn uten å forfalske tekstens resultat.",
+        "Essayet bør ikke låne sikkerhet fra klikklogikk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finne en tittel som er tydelig og interessant uten å love mer enn teksten bærer.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velge den mest bastante tittelen og håpe nyansene inne i teksten rydder opp.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_overskriften"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referansen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Notene",
+      "subject": "Når du låner en idé",
+      "situation": [
+        "Et poeng i utkastet bygger tydelig på noe du nylig leste, men formuleringen er din egen.",
+        "Plagiat handler ikke bare om ordrett kopiering; også lånte ideer og særpregede resonnementer kan kreve kreditering.",
+        "Essayisten må kunne vise hvor egen tanke møter andres arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kreditere kilden på en måte som passer sjangeren uten å gjøre teksten til en fotnotemaskin.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La være å nevne kilden fordi ordene ikke er kopiert ordrett.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_referansen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "redaksjonens_kutt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Redaksjonen",
+      "subject": "Et kutt som endrer meningen",
+      "situation": [
+        "En redaktør foreslår å fjerne et forbehold for å gjøre teksten strammere.",
+        "Kuttet forbedrer tempoet, men gjør samtidig påstanden mer absolutt.",
+        "Redigering er samarbeid, men forfatteransvaret for meningsinnholdet forsvinner ikke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklare hva forbeholdet gjør og finne en kortere formulering som bevarer presisjonen.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Godta kuttet uten videre fordi redaktøren har institusjonell myndighet over teksten.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_redaksjonens_kutt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "responsen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Etter publisering",
+      "subject": "Når leseren finner et hull",
+      "situation": [
+        "En leser peker på en logisk overgang som ikke holder helt.",
+        "Du kan forsvare tonen, men innvendingen treffer faktisk resonnementet.",
+        "Essayet er publisert, men tenkningen trenger ikke fryses."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kontrollere innvendingen og rette eller presisere hvis argumentet faktisk har et hull.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvare formuleringen automatisk fordi en publisert essaytekst må fremstå konsekvent.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_responsen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ny_versjon",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people",
+        "leisure"
+      ],
+      "from": "Arbeidsmappen",
+      "subject": "Hva lærte teksten deg?",
+      "situation": [
+        "Når du leser essayet på nytt, oppdager du at konklusjonen er mindre interessant enn spørsmålet du endte med å åpne.",
+        "Et essay kan lykkes ved å endre forfatterens forståelse, ikke bare ved å bevise et tidlig standpunkt.",
+        "Neste versjon bør bygge på det teksten faktisk fant ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skrive om avslutningen slik at den viser hva undersøkelsen endret og hva som fortsatt står åpent.",
+          "effect": 1,
+          "tags": [
+            "evidence",
+            "independence",
+            "role_clarity"
+          ],
+          "feedback": "Valget gjør essayarbeidet mer etterprøvbart og holder personlig stemme adskilt fra lånt faglig eller redaksjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Tvinge teksten tilbake til den opprinnelige konklusjonen fordi planen bør styre resultatet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "authority_drift",
+            "evidence_drift"
+          ],
+          "feedback": "Valget lar stil, status eller sikkerhet veie tyngre enn det teksten og kildene faktisk bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "essayist_ny_versjon"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
