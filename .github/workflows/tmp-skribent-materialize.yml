@@ -22,6 +22,18 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Materialize Skribent canonical Role World
         run: node scripts/tmp-materialize-skribent.mjs
+      - name: Synchronize taxonomy summary expectation
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const file = 'tests/civication-noncareer-role-taxonomy.test.js';
+          const before = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 188, career_role_worlds: 85, life_position_role_worlds: 103 });";
+          const after = "assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 189, career_role_worlds: 85, life_position_role_worlds: 104 });";
+          let text = fs.readFileSync(file, 'utf8');
+          if (!text.includes(before)) throw new Error('Expected stale Role World summary assertion not found');
+          text = text.replace(before, after);
+          fs.writeFileSync(file, text);
+          NODE
       - name: Regenerate life-position readiness
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
       - name: Verify Skribent readiness
