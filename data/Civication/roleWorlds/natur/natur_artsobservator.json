@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_artsobservator",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "artsobservator",
+    "label": "Artsobservatør"
+  },
+  "title": "Artsobservatør",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å følge et artsfokus over tid med repeterbare og korrigerbare observasjoner uten at artsnavn, tidsserier eller Badge-status blir gjort sikrere enn det som faktisk er sett, eller omgjort til profesjonell biolog-, forsknings- eller forvaltningsautoritet",
+    "description": "Artsobservatør er en employment-independent species_observation_practice for observerte kjennetegn, gjentatte møter, enkel metode, manglende møte, livsstadium, atferd kontra tolkning, ærlig tid/sted-kontekst, observatøreffekt, sensitiv lokasjon, sammenligning under ulike forhold, navneendringer, uenighet og hull i observasjonsserier. Rollen er forskjellig fra Artsjeger, som har funnjakt, liste- og registreringsprestisje som egen sosial dynamikk; fra Feltobservatør, som gjelder bredere sted-, habitat- og feltpraksis; og fra Naturinteressert, som er generell naturinteresse. Artsobservatør gir ingen jobb, lønn, forskningsstatus, Biolog- eller Økolog-tittel, artsforvaltningsmandat, rådgiverrolle eller offentlig myndighet. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "care_vs_efficiency",
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "faste observasjonspunkter der gjentatte møter kan sammenlignes uten å anta at individ eller forhold er identiske",
+    "hjemmeflaten der notater, tidspunkt, navnebruk og usikkerhet ryddes uten å fylle hull med hukommelse",
+    "små observatørfellesskap der ulike erfaringer kan gi ulike identifikasjoner uten at uenighet blir statushierarki",
+    "sårbare steder der bedre dokumentasjon må balanseres mot avstand, ferdsel og stedspresisjon",
+    "kilde- og loggflater der taksonomi og navn kan endres mens den opprinnelige observasjonen bevares",
+    "møter med fagpersoner der gode fritidsobservasjoner holdes tydelig adskilt fra profesjonell analyse, forskning og forvaltning"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "metodevennen",
+      "social_function": "gjør gjentatte observasjoner og enkle metodevalg sosialt synlige uten å gjøre praksisen til forskning",
+      "class_position": "likestilt fritidsobservatør",
+      "status": "har lokal tillit gjennom ryddige notater, ikke formell myndighet",
+      "power_over_player": "kan utfordre inkonsistente notater og foreslå bedre sammenligning, men kan ikke godkjenne faglige konklusjoner",
+      "wants": "observasjoner som kan sammenlignes uten at de blir mer sikre enn grunnlaget",
+      "conceals": "at egen rutine lett kan bli oppfattet som den eneste riktige metoden",
+      "speech_style": "rolig, konkret og opptatt av hva som faktisk ble sett",
+      "teaches_player": "at enkel metode kan øke læring uten å skape profesjonell status"
+    },
+    {
+      "id": "erfaren_identifikator",
+      "social_function": "viser variasjon i kjennetegn, livsstadium og navnebruk uten å bli spillerens sjef",
+      "class_position": "erfaren amatør med høy identifikasjonskompetanse",
+      "status": "høy kunnskapsstatus i miljøet, ingen automatisk offentlig rolle",
+      "power_over_player": "kan utfordre en identifikasjon og be om bedre observasjonsgrunnlag",
+      "wants": "korrigerbare vurderinger og tydelig skille mellom kjennetegn og navn",
+      "conceals": "at lang erfaring også kan skape overdreven sikkerhet",
+      "speech_style": "kjennetegnsorientert, spørsmålsdrevet og eksplisitt om alternativer",
+      "teaches_player": "at erfaring er mest nyttig når den gjør usikkerhet mer presis"
+    },
+    {
+      "id": "lokal_stedskjenner",
+      "social_function": "gjør stedets bruk, sårbarhet og lokale mønstre synlige",
+      "class_position": "lokalkjent bruker eller nabo uten faglig godkjenningsrolle",
+      "status": "høy situert lokalkunnskap",
+      "power_over_player": "kan gjøre observatøren oppmerksom på ferdsel, tilgang og endringer på stedet",
+      "wants": "at artsfokus ikke overskygger stedets øvrige bruk og sårbarhet",
+      "conceals": "at lokal vane kan tolkes som universell naturkunnskap",
+      "speech_style": "praktisk, stedsspesifikk og tidsorientert",
+      "teaches_player": "at stedskontekst er viktig uten å bli forvaltningsmyndighet"
+    },
+    {
+      "id": "faglig_artskontakt",
+      "social_function": "gjør grensen mellom fritidsobservasjon og profesjonell biologisk vurdering tydelig",
+      "class_position": "biolog eller annen relevant fagperson innen eget faktiske mandat",
+      "status": "formell faglig autoritet i avgrensede vurderinger",
+      "power_over_player": "kan kreve bedre dokumentasjon og avvise overtolkning, men overtar ikke spillerens identitet",
+      "wants": "at observasjoner brukes med riktig evidensstyrke og kontekst",
+      "conceals": "at også profesjonell vurdering kan endres når datagrunnlaget blir bedre",
+      "speech_style": "presis, kildebevisst og tydelig på hva data ikke viser",
+      "teaches_player": "at gode fritidsobservasjoner ikke automatisk er forskning, rådgivning eller forvaltningsgrunnlag"
+    },
+    {
+      "id": "loggforvalteren",
+      "social_function": "gjør historikk, navneendringer og korrigeringer synlige i en felles observasjonsflate",
+      "class_position": "frivillig moderator eller datavert",
+      "status": "har prosessansvar for datakvalitet på flaten, ikke biologisk myndighet",
+      "power_over_player": "kan be om kilde, kontekst eller retting av åpenbart inkonsistente felt",
+      "wants": "sporbar historikk og minst mulig falsk presisjon",
+      "conceals": "at ryddige skjemaer kan få usikre data til å se mer sikre ut",
+      "speech_style": "kort, feltorientert og opptatt av historikk",
+      "teaches_player": "at dataryddighet ikke er det samme som biologisk sikkerhet"
+    },
+    {
+      "id": "naer_relasjon",
+      "social_function": "gjør tidsbruk, identitet og prestasjonspress rundt hobbypraksisen synlig",
+      "class_position": "venn eller nær relasjon uten faglig myndighet",
+      "status": "høy emosjonell betydning",
+      "power_over_player": "kan støtte pauser og utfordre når observasjonsserien blir viktigere enn resten av livet",
+      "wants": "at praksisen gir oppmerksomhet og glede uten å bli tvangspreget prestasjon",
+      "conceals": "at støtte lett kan bli til forventning om stadig mer kunnskap",
+      "speech_style": "varm, direkte og hverdagslig",
+      "teaches_player": "at en observasjonspraksis kan være seriøs uten å måtte bli jobb eller ekspertidentitet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "observed_traits",
+      "meaning": "observerte kjennetegn før artsnavn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "repeat_observation",
+      "meaning": "gjentatte møter uten ubegrunnet individkontinuitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_protocol",
+      "meaning": "enkel repeterbar metode uten forskningsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "non_detection",
+      "meaning": "manglende møte uten å påstå sikkert fravær",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "life_stage",
+      "meaning": "livsstadium og variasjon innen samme artsfokus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "behavior_vs_interpretation",
+      "meaning": "atferdsbeskrivelse skilt fra motiv og hensikt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "metadata_honesty",
+      "meaning": "tid og kontekst uten falsk presisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observer_effect",
+      "meaning": "egen påvirkning og skånsom avstandsgrense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "location_sensitivity",
+      "meaning": "stedskontekst uten unødvendig eksponering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_comparison",
+      "meaning": "lys, avstand og omgivelser i sammenligning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "taxonomy_update",
+      "meaning": "navneendring med bevart observasjonshistorikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "peer_corroboration",
+      "meaning": "uenighet og korrigerbar sammenligning mellom observatører",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "missing_interval",
+      "meaning": "hull i tidsserie uten oppdiktet kontinuitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "species_observer_identity",
+      "meaning": "artsfokus uten funnjakt eller profesjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva så du — før du setter navn på det?. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "observed_traits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva så du — før du setter navn på det?. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "observed_traits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva så du — før du setter navn på det?. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "observed_traits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva så du — før du setter navn på det?. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "observed_traits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Likner gårsdagen, men er det samme individ?. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "repeat_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Likner gårsdagen, men er det samme individ?. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "repeat_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Likner gårsdagen, men er det samme individ?. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "repeat_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Likner gårsdagen, men er det samme individ?. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "repeat_observation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Hva skal du faktisk legge merke til i dag?. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "observation_protocol"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Hva skal du faktisk legge merke til i dag?. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "observation_protocol"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Hva skal du faktisk legge merke til i dag?. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "observation_protocol"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Hva skal du faktisk legge merke til i dag?. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "observation_protocol"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Ingen observasjon i dag. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "non_detection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Ingen observasjon i dag. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "non_detection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Ingen observasjon i dag. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "non_detection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Ingen observasjon i dag. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "non_detection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Det ser ikke ut som i oversikten. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "life_stage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Det ser ikke ut som i oversikten. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "life_stage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Det ser ikke ut som i oversikten. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "life_stage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Det ser ikke ut som i oversikten. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "life_stage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Den følger etter den andre — men hvorfor?. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "behavior_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Den følger etter den andre — men hvorfor?. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "behavior_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Den følger etter den andre — men hvorfor?. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "behavior_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Den følger etter den andre — men hvorfor?. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "behavior_vs_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Du husker hendelsen, men ikke klokkeslettet. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "metadata_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Du husker hendelsen, men ikke klokkeslettet. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "metadata_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Du husker hendelsen, men ikke klokkeslettet. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "metadata_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Du husker hendelsen, men ikke klokkeslettet. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "metadata_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Du får bedre sikt, men atferden skifter. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "observer_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Du får bedre sikt, men atferden skifter. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "observer_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Du får bedre sikt, men atferden skifter. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "observer_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Du får bedre sikt, men atferden skifter. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "observer_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Hvor presist bør stedet beskrives?. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "location_sensitivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Hvor presist bør stedet beskrives?. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "location_sensitivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Hvor presist bør stedet beskrives?. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "location_sensitivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Hvor presist bør stedet beskrives?. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "location_sensitivity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Fargen stemmer ikke mellom to besøk. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "context_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Fargen stemmer ikke mellom to besøk. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "context_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Fargen stemmer ikke mellom to besøk. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "context_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Fargen stemmer ikke mellom to besøk. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "context_comparison"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Det gamle navnet finnes fortsatt i notatene. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "taxonomy_update"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Det gamle navnet finnes fortsatt i notatene. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "taxonomy_update"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Det gamle navnet finnes fortsatt i notatene. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "taxonomy_update"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Det gamle navnet finnes fortsatt i notatene. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "taxonomy_update"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Dere er uenige om samme møte. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "peer_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Dere er uenige om samme møte. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "peer_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Dere er uenige om samme møte. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "peer_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Dere er uenige om samme møte. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "peer_corroboration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Du mangler én planlagt økt. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "missing_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Du mangler én planlagt økt. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "missing_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Du mangler én planlagt økt. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "missing_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Du mangler én planlagt økt. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "missing_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Å følge et artsfokus uten å eie konklusjonen. Morgenen gjør kjennetegn, metode eller kontekst synlig før dagens artsfokus tolkes.",
+        "thread_ids": [
+          "species_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Å følge et artsfokus uten å eie konklusjonen. Midt på dagen møter observatøren en person eller kilde som gjør usikkerhet og perspektivforskjell konkret.",
+        "thread_ids": [
+          "species_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Å følge et artsfokus uten å eie konklusjonen. Ettermiddagen krever et valg om dokumentasjon, sammenligning, avstand eller tolkingsgrense.",
+        "thread_ids": [
+          "species_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Å følge et artsfokus uten å eie konklusjonen. Kvelden viser hva valget gjør med observasjonsloggen, tillit, læring eller naturhensyn.",
+        "thread_ids": [
+          "species_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "observed_traits",
+      "relationship": "observerte kjennetegn før artsnavn",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "repeat_observation",
+      "relationship": "gjentatte møter uten ubegrunnet individkontinuitet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "observation_protocol",
+      "relationship": "enkel repeterbar metode uten forskningsstatus",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "non_detection",
+      "relationship": "manglende møte uten å påstå sikkert fravær",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "life_stage",
+      "relationship": "livsstadium og variasjon innen samme artsfokus",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "behavior_vs_interpretation",
+      "relationship": "atferdsbeskrivelse skilt fra motiv og hensikt",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "metadata_honesty",
+      "relationship": "tid og kontekst uten falsk presisjon",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "observer_effect",
+      "relationship": "egen påvirkning og skånsom avstandsgrense",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "location_sensitivity",
+      "relationship": "stedskontekst uten unødvendig eksponering",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "context_comparison",
+      "relationship": "lys, avstand og omgivelser i sammenligning",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "taxonomy_update",
+      "relationship": "navneendring med bevart observasjonshistorikk",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "peer_corroboration",
+      "relationship": "uenighet og korrigerbar sammenligning mellom observatører",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "missing_interval",
+      "relationship": "hull i tidsserie uten oppdiktet kontinuitet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "species_observer_identity",
+      "relationship": "artsfokus uten funnjakt eller profesjonell myndighet",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "kjennetegn_blir_for_identitet",
+      "description": "Notatene skiller tydeligere mellom det som faktisk ble sett og artsnavnet som foreløpig forklaring.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket"
+      ]
+    },
+    {
+      "id": "gjentakelse_blir_metode_ikke_bevis",
+      "description": "Gjentatte besøk kan sammenlignes uten å gjøre likt sted til sikkert individ eller manglende møte til sikkert fravær.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant"
+      ]
+    },
+    {
+      "id": "tolkning_blir_egen_lag",
+      "description": "Atferd, kontekst og metadata kan bevares som observasjon selv når forklaringen er åpen eller notatet ufullstendig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn"
+      ]
+    },
+    {
+      "id": "observatoren_blir_synlig_i_dataene",
+      "description": "Avstand, stedspresisjon og uenighet behandles som deler av observasjonssituasjonen fremfor støy som skal skjules.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt"
+      ]
+    },
+    {
+      "id": "artsfokus_blir_korrigerbart_uten_profesjonskrav",
+      "description": "Navneendringer, hull og identitetsgrensen kan håndteres uten å gjøre fritidspraksisen til forskning eller forvaltningsrolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull",
+        "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forste_kjennetegn_moter_livsstadiet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "gjentakelsen_moter_det_tomme_besoket",
+      "setup_ref": "2/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "stress"
+      ]
+    },
+    {
+      "id": "metoden_moter_metadatahullet",
+      "setup_ref": "3/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "observatorvirkningen_moter_stedsdelingen",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "konteksten_moter_navnendringen",
+      "setup_ref": "10/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "uenigheten_moter_identitetsgrensen",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_artsobservator.json#kjennetegnet_du_faktisk_sa",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#samme_sted_ny_dag",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#metoden_for_du_gar_ut",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#det_du_ikke_fant",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#livsstadiet_endrer_uttrykket",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#atferd_er_ikke_hensikt",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#notatet_som_mangler_tid",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#individet_endrer_seg_nar_du_naermer_deg",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#lokasjonen_som_bor_vaere_grov",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#lys_og_forhold_endrer_kjennetegn",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#artsnavnet_som_ble_endret",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#to_observatorer_ser_ulikt",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#serien_med_et_hull",
+      "data/Civication/narratives/leisure/natur_artsobservator.json#hva_som_gjor_deg_til_artsobservator"
+    ]
+  }
+}
