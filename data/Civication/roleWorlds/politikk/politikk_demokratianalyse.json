@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_demokratianalyse",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "demokratianalytiker",
+    "label": "Demokratianalytiker"
+  },
+  "title": "Demokratianalytiker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å analysere demokratiske institusjoner og prosesser med eksplisitte begreper, indikatorer, datakilder, sammenligningsvalg og usikkerhet uten at én score, én metode eller Badge-status blir gjort til en politisk fasit eller profesjonell autoritet",
+    "description": "Demokratianalytiker er en employment-independent democracy_analysis_expertise for konseptualisering, operasjonalisering, ulike datatyper, kildeproveniens, teller/nevner, manglende data, metodebrudd, komparativ kontekst, korrelasjon kontra kausalitet, aggregering, måleusikkerhet og skillet mellom empiriske og normative påstander. Rollen behandler demokrati som et flerdimensjonalt analysefelt og skal gjøre metodevalgene etterprøvbare. Den er smalere enn Statsvitenskapelig ekspert, annerledes enn Samfunnsengasjert borgers deltakelsesidentitet og gir ingen valgt, utnevnt, offentlig eller institusjonell myndighet. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "public_attention",
+    "status_anxiety",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "analyseflater der abstrakte demokratibegreper må oversettes til målbare indikatorer uten at operasjonaliseringen skjules",
+    "datasett og kodebøker der observerte, konstruerte og vurderingsbaserte variabler må holdes metodisk adskilt",
+    "tidsserier der manglende verdier og metodeendringer kan ligne samfunnsendring dersom dokumentasjonen ikke følges",
+    "komparative case-samtaler der felles mål må kombineres med relevant institusjonell og historisk kontekst",
+    "formidlingssituasjoner der usikre og flerdimensjonale funn presses mot én rangering eller enkel overskrift",
+    "møter med fagpersoner der avansert selvstendig analyse holdes tydelig adskilt fra bred profesjonell statsvitenskapelig kompetanse"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "metodepartneren",
+      "social_function": "utfordrer begrepsbruk, operasjonalisering og sammenlignbarhet uten å bestemme konklusjonen",
+      "class_position": "likestilt analysepartner",
+      "status": "høy metodisk tillit gjennom eksplisitte begrunnelser",
+      "power_over_player": "kan kreve tydeligere metode og dokumentasjon, men har ingen politisk beslutningsmyndighet",
+      "wants": "at analysen kan etterprøves og repliseres i hovedtrekk",
+      "conceals": "at egen metodepreferanse også kan styre hvilke problemer som blir mest synlige",
+      "speech_style": "presis, spørsmålsdrevet og opptatt av definisjoner",
+      "teaches_player": "at metodevalg alltid bør kunne forklares"
+    },
+    {
+      "id": "dataforvalteren",
+      "social_function": "gjør kodebok, revisjoner, datatyper og manglende verdier konkrete",
+      "class_position": "person med ansvar for et datasett eller en statistisk flate",
+      "status": "situert autoritet over datadokumentasjon, ikke over politisk fortolkning",
+      "power_over_player": "kan avklare variabler, revisjoner og tekniske begrensninger",
+      "wants": "at data brukes i tråd med dokumentert definisjon og dekning",
+      "conceals": "at datasettets ryddige struktur kan skjule vanskelige målevalg",
+      "speech_style": "teknisk, kort og dokumentorientert",
+      "teaches_player": "at et tall alltid har en produksjonshistorie"
+    },
+    {
+      "id": "landeksperten",
+      "social_function": "gjør institusjonell og historisk kontekst synlig i komparativ analyse",
+      "class_position": "kunnskapsrik case-ekspert uten kontroll over sammenligningsrammen",
+      "status": "høy situert case-kunnskap",
+      "power_over_player": "kan utfordre tolkninger som overser lokale institusjoner eller metodebrudd",
+      "wants": "at sammenligning ikke gjør kontekst til støy",
+      "conceals": "at sterk case-nærhet også kan gjøre brede sammenligninger vanskeligere å akseptere",
+      "speech_style": "konteksttung, konkret og kildeorientert",
+      "teaches_player": "at like tall ikke nødvendigvis betyr like mekanismer"
+    },
+    {
+      "id": "kildekritikeren",
+      "social_function": "prøver å følge påstander tilbake til primærdata, kodebok og metode",
+      "class_position": "uavhengig kritisk leser",
+      "status": "troverdighet gjennom dokumentkontroll snarere enn formell rang",
+      "power_over_player": "kan avdekke manglende proveniens, definisjonsendringer og overtolkning",
+      "wants": "at sterke påstander har tilsvarende sterkt dokumentasjonsgrunnlag",
+      "conceals": "at streng kildekritikk også kan bli så defensiv at rimelige slutninger aldri tillates",
+      "speech_style": "skeptisk, konkret og opptatt av sporbarhet",
+      "teaches_player": "at kritikk bør treffe den faktiske påstanden og datakjeden"
+    },
+    {
+      "id": "redaktoren",
+      "social_function": "gjør presset mot enkel rangering, tydelig overskrift og korte konklusjoner konkret",
+      "class_position": "publiserings- eller formidlingsrolle uten eierskap til analysemetoden",
+      "status": "har makt over presentasjonsformat, ikke over hva data kan bære",
+      "power_over_player": "kan presse fram komprimering, vinnerlogikk og sterkere språk",
+      "wants": "en forståelig analyse som publikum faktisk kan lese",
+      "conceals": "at forenkling kan flytte konklusjonen mer enn forventet",
+      "speech_style": "kort, resultatfokusert og opptatt av lesbarhet",
+      "teaches_player": "at god formidling ikke krever falsk sikkerhet"
+    },
+    {
+      "id": "fagkontakten",
+      "social_function": "gjør grensen mellom selvstendig demokratianalyse og bredere profesjonell statsvitenskapelig ekspertise tydelig",
+      "class_position": "statsviter, metodeforsker eller annen relevant fagperson innen eget mandat",
+      "status": "formell faglig kompetanse innen avgrensede områder",
+      "power_over_player": "kan utfordre design, kausalitetskrav og litteraturbruk, men gir ikke Badge-status profesjonell akkreditering",
+      "wants": "at analysen skiller beskrivelse, inferens og normativ vurdering",
+      "conceals": "at også faglige standarder utvikler seg og kan være omstridt",
+      "speech_style": "nyansert, metodebevisst og eksplisitt om usikkerhet",
+      "teaches_player": "at høy analysekompetanse ikke er det samme som bred profesjonskompetanse"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "concept_before_measure",
+      "meaning": "begrepsavklaring før måling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "indicator_scope",
+      "meaning": "indikatorens avgrensning mot hele begrepet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "measurement_type",
+      "meaning": "direkte observerte og vurderingsbaserte data holdt synlige",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_provenance",
+      "meaning": "proveniens fra sluttverdi tilbake til metode og underkilde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "denominator_check",
+      "meaning": "teller, nevner og analyseenhet før prosentsammenligning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "missing_data_honesty",
+      "meaning": "manglende data uten stille interpolasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "method_break",
+      "meaning": "metodeendringer og tidsmessig sammenlignbarhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparative_context",
+      "meaning": "sammenligning med relevant institusjonell kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correlation_vs_causality",
+      "meaning": "sammenheng adskilt fra kausal forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "aggregation_transparency",
+      "meaning": "aggregering og vekting uten svart boks",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "uncertainty_visible",
+      "meaning": "måleusikkerhet som del av resultatet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "empirical_normative_boundary",
+      "meaning": "empiriske funn adskilt fra normative kriterier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "communication_without_ranking",
+      "meaning": "flerdimensjonal kommunikasjon uten ubegrunnet vinner",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "democracy_analyst_identity",
+      "meaning": "metodekompetanse uten profesjons- eller myndighetsoverreach",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva mener du med demokrati i akkurat denne analysen?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "concept_before_measure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva mener du med demokrati i akkurat denne analysen?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "concept_before_measure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva mener du med demokrati i akkurat denne analysen?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "concept_before_measure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva mener du med demokrati i akkurat denne analysen?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "concept_before_measure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: En variabel ser presis ut. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "indicator_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: En variabel ser presis ut. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "indicator_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: En variabel ser presis ut. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "indicator_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: En variabel ser presis ut. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "indicator_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Noe kan telles, annet må vurderes. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "measurement_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Noe kan telles, annet må vurderes. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "measurement_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Noe kan telles, annet må vurderes. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "measurement_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Noe kan telles, annet må vurderes. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "measurement_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Hvor kommer tallet fra?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "source_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Hvor kommer tallet fra?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "source_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Hvor kommer tallet fra?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "source_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Hvor kommer tallet fra?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "source_provenance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Hvem er egentlig med i beregningen?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "denominator_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Hvem er egentlig med i beregningen?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "denominator_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Hvem er egentlig med i beregningen?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "denominator_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Hvem er egentlig med i beregningen?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "denominator_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Et år mangler midt i serien. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "missing_data_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Et år mangler midt i serien. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "missing_data_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Et år mangler midt i serien. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "missing_data_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Et år mangler midt i serien. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "missing_data_honesty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Samme indikatornavn, ny konstruksjon. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "method_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Samme indikatornavn, ny konstruksjon. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "method_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Samme indikatornavn, ny konstruksjon. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "method_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Samme indikatornavn, ny konstruksjon. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "method_break"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Lik verdi, ulik institusjonell sammenheng. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "comparative_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Lik verdi, ulik institusjonell sammenheng. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "comparative_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Lik verdi, ulik institusjonell sammenheng. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "comparative_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Lik verdi, ulik institusjonell sammenheng. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "comparative_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: To utviklingstrekk følger hverandre. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "correlation_vs_causality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: To utviklingstrekk følger hverandre. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "correlation_vs_causality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: To utviklingstrekk følger hverandre. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "correlation_vs_causality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: To utviklingstrekk følger hverandre. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "correlation_vs_causality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Hva skjer når mange indikatorer blir ett tall?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "aggregation_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Hva skjer når mange indikatorer blir ett tall?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "aggregation_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Hva skjer når mange indikatorer blir ett tall?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "aggregation_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Hva skjer når mange indikatorer blir ett tall?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "aggregation_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Forskjellen er liten, men overskriften frister. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "uncertainty_visible"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Forskjellen er liten, men overskriften frister. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "uncertainty_visible"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Forskjellen er liten, men overskriften frister. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "uncertainty_visible"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Forskjellen er liten, men overskriften frister. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "uncertainty_visible"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Er dette en beskrivelse eller en vurdering?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Er dette en beskrivelse eller en vurdering?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Er dette en beskrivelse eller en vurdering?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Er dette en beskrivelse eller en vurdering?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Kan du si hvem som er best?. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "communication_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Kan du si hvem som er best?. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "communication_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Kan du si hvem som er best?. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "communication_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Kan du si hvem som er best?. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "communication_without_ranking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Metode før merkelapp. Morgenen avklarer analyseenhet, begrep, metode eller datagrunnlag før resultatet tolkes.",
+        "thread_ids": [
+          "democracy_analyst_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Metode før merkelapp. Midt på dagen gjør en metodepartner, kilde, ekspert eller redaktør begrensningene i analysen sosialt synlige.",
+        "thread_ids": [
+          "democracy_analyst_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Metode før merkelapp. Ettermiddagen krever et valg om sammenligning, usikkerhet, aggregering, årsak eller kildebruk.",
+        "thread_ids": [
+          "democracy_analyst_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Metode før merkelapp. Kvelden viser hva valget gjør med etterprøvbarhet, troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "democracy_analyst_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "concept_before_measure",
+      "relationship": "begrepsavklaring før måling",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "indicator_scope",
+      "relationship": "indikatorens avgrensning mot hele begrepet",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "measurement_type",
+      "relationship": "direkte observerte og vurderingsbaserte data holdt synlige",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "source_provenance",
+      "relationship": "proveniens fra sluttverdi tilbake til metode og underkilde",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "denominator_check",
+      "relationship": "teller, nevner og analyseenhet før prosentsammenligning",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "missing_data_honesty",
+      "relationship": "manglende data uten stille interpolasjon",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "method_break",
+      "relationship": "metodeendringer og tidsmessig sammenlignbarhet",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "comparative_context",
+      "relationship": "sammenligning med relevant institusjonell kontekst",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "correlation_vs_causality",
+      "relationship": "sammenheng adskilt fra kausal forklaring",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "aggregation_transparency",
+      "relationship": "aggregering og vekting uten svart boks",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "uncertainty_visible",
+      "relationship": "måleusikkerhet som del av resultatet",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "empirical_normative_boundary",
+      "relationship": "empiriske funn adskilt fra normative kriterier",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "communication_without_ranking",
+      "relationship": "flerdimensjonal kommunikasjon uten ubegrunnet vinner",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "democracy_analyst_identity",
+      "relationship": "metodekompetanse uten profesjons- eller myndighetsoverreach",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "begrep_og_indikator_skilles",
+      "description": "Demokratibegrep, indikator og datatype blir separate ledd i analysen fremfor én usynlig kjede.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert"
+      ]
+    },
+    {
+      "id": "data_far_produksjonshistorie",
+      "description": "Proveniens, populasjon og manglende data følger resultatet i stedet for å forsvinne bak sluttverdien.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret"
+      ]
+    },
+    {
+      "id": "sammenligning_blir_betinget",
+      "description": "Metodebrudd og case-kontekst blir del av sammenligningen uten å gjøre sammenligning umulig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall"
+      ]
+    },
+    {
+      "id": "slutning_blir_smalere_enn_monsteret",
+      "description": "Korrelasjon, aggregering og måleusikkerhet begrenser hvor sterke påstander analysen kan bære.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet"
+      ]
+    },
+    {
+      "id": "analyse_blir_tydelig_uten_falsk_fasit",
+      "description": "Empiriske og normative påstander skilles, og funn kan formidles uten ubegrunnet rangering eller profesjonsstatus.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner",
+        "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "begrepet_moter_indeksen",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "indikatoren_moter_usikkerheten",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "datatypen_moter_kildekjeden",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tidsserien_moter_metodebruddet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "narrative",
+        "stress"
+      ]
+    },
+    {
+      "id": "sammenligningen_moter_kausaliteten",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "normen_moter_formidlingen",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#begrepet_for_tallet",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#indikatoren_er_ikke_begrepet",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#observerbart_og_vurdert",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#kilden_bak_datasettet",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#nevneren_som_flytter_resultatet",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#det_manglende_aret",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#metoden_ble_endret",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#to_land_ett_tall",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#sammenheng_uten_arsak",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#vekten_i_indeksen",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#usikkerheten_rundt_estimatet",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#empirisk_og_normativt",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#overskriften_vil_ha_en_vinner",
+      "data/Civication/narratives/leisure/politikk_demokratianalyse.json#hva_som_gjor_deg_til_demokratianalytiker"
+    ]
+  }
+}

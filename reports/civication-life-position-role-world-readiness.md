@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 117 ready / 42 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 118 ready / 41 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 117
-**Multi-scene narrative foundations:** 117
-**Completed life-position Role Worlds:** 117
+**Exact governed-source matches:** 118
+**Multi-scene narrative foundations:** 118
+**Completed life-position Role Worlds:** 118
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `politikk/demokratianalytiker` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `religion/symboltolker` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `religion/tradisjonskjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `religion/troslivskjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `scenekunst/publikum` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `religion/symboltolker` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `religion/tradisjonskjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `religion/troslivskjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `scenekunst/publikum` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
