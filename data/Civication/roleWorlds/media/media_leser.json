@@ -1,0 +1,1149 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "media",
+  "role_scope": "media_leser",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "media",
+    "id": "leser",
+    "label": "Leser"
+  },
+  "title": "Leser",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å forstå enkeltstående mediepubliseringer presist nok til at overskrift, sjanger, avsender, lenker, bilder, tilgangsgrenser og rettelser ikke blir forvekslet med hele innholdet eller med profesjonell redaksjonell myndighet",
+    "description": "Media/Leser er en employment-independent audience_practice for selve møtet med enkeltstående medieinnhold. Rollen dekker overskrift mot brødtekst, sakstype, byline og avsender, primærgrunnlag, sitatkontekst, bilde og bildetekst, publisert/oppdatert-versjoner, mottatte lenker, kommersiell merking, utdrag og betalingsmur, rettelser, lenket dokumentasjon, presis deling og leserrollens myndighetsgrense. Den er tydelig forskjellig fra Litteratur/Leser som handler om bøker og leseridentitet, Media/Følger som handler om vedvarende publikumsrelasjon over tid, og Media/Nyhetsjunkie som handler om intensiv oppdateringsstrøm og tempo. Media/Leser gir ingen jobb, lønn, journalist-, redaktør-, moderator-, ekspert- eller faktasjekkermyndighet og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "public_attention",
+    "professional_culture",
+    "consumption",
+    "class_power",
+    "shame_reputation",
+    "public_private_leakage",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "forsider og artikkelsider der overskrift, ingress, brødtekst, byline og sakstype gir ulike lag av samme publisering",
+    "lenkede dokumenter, rapporter og andre primærgrunnlag som gjør sentrale påstander etterprøvbare når detaljen betyr noe",
+    "visuelle publiseringsflater der foto, arkivbilde, illustrasjon og bildetekst påvirker hvordan leseren forstår hendelsen",
+    "delingssamtaler med venner og nettverk der en kort egen formulering kan bli mottakerens første møte med innholdet",
+    "betalingsmurer, innlogging og utdrag der tilgangsgrensen bestemmer hvor mye leseren faktisk kan vite om hele publiseringen",
+    "kommersielle og redaksjonelle flater i samme design der merking av avsender og finansiering må holdes synlig"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "journalisten_i_bylinen",
+      "social_function": "gjør avsender, ansvar og forskjellen mellom enkelttekst og hele mediet konkret",
+      "class_position": "profesjonell innholdsprodusent i en redaksjonell kontekst",
+      "status": "navngitt avsender med ansvar for egen publisering, uten automatisk personlig relasjon til leseren",
+      "power_over_player": "kan forme hvilke opplysninger, sitater og forklaringer leseren møter i teksten",
+      "wants": "at publiseringen blir lest som den faktisk er skrevet og merket",
+      "conceals": "at bylinen alene ikke viser alle redaksjonelle valg eller arbeidsprosesser bak teksten",
+      "speech_style": "presis, tekstnær og publiseringsorientert",
+      "teaches_player": "å skille navngitt avsender fra antakelser om hele institusjonen"
+    },
+    {
+      "id": "den_hurtige_deleren",
+      "social_function": "gjør forskjellen mellom andres sammendrag og egen lesing synlig",
+      "class_position": "venn eller kontakt som sprer lenker raskt",
+      "status": "sosial avsender uten redaksjonell myndighet",
+      "power_over_player": "kan etablere et sterkt førsteinntrykk før spilleren åpner publiseringen",
+      "wants": "at spilleren raskt ser det samme poenget og reagerer",
+      "conceals": "at egen delingstekst kan være bredere eller sikrere enn teksten som lenkes",
+      "speech_style": "kort, konkluderende og delingsvennlig",
+      "teaches_player": "å skille lenken fra påstanden som følger med lenken"
+    },
+    {
+      "id": "primarkilden",
+      "social_function": "gjør forholdet mellom publisering og underliggende dokumentasjon konkret",
+      "class_position": "rapport, studie, dom, offentlig dokument eller annen originalkilde representert som dokumentarisk aktør",
+      "status": "førstehåndsgrunnlag for enkelte påstander, men ikke automatisk tolkning av egen betydning",
+      "power_over_player": "kan bekrefte, avgrense eller motsi hvordan et konkret poeng er gjengitt",
+      "wants": "å bli lest med riktig ordlyd, periode og avgrensing",
+      "conceals": "at teknisk eller institusjonelt språk kan kreve forklaring for å forstå betydningen",
+      "speech_style": "formell, dokumentarisk og avgrenset",
+      "teaches_player": "å bruke primærgrunnlag når den konkrete påstanden avhenger av det"
+    },
+    {
+      "id": "bildeteksten",
+      "social_function": "gjør visuell proveniens, sted, dato og illustrasjonsstatus synlig",
+      "class_position": "publiseringsmetadata under eller ved et bilde",
+      "status": "lavmælt kontekst med høy betydning for hva bildet faktisk dokumenterer",
+      "power_over_player": "kan endre førsteinntrykket av et sterkt visuelt element med få ord",
+      "wants": "at bildet forstås med korrekt tid, sted, fotograf og funksjon",
+      "conceals": "at mange lesere ser bildet før de ser metadataen",
+      "speech_style": "kort, konkret og metadataorientert",
+      "teaches_player": "at visuell evidens også har kilde- og kontekstgrenser"
+    },
+    {
+      "id": "den_kommersielle_avsenderen",
+      "social_function": "gjør finansiering og avsendergrense synlig i innhold som ligner redaksjonell publisering",
+      "class_position": "annonsør, partner eller oppdragsgiver for merket kommersielt innhold",
+      "status": "betalende avsender uten automatisk redaksjonell troverdighet",
+      "power_over_player": "kan låne design, format og distribusjon fra publiseringsflaten",
+      "wants": "at budskapet leses og oppleves relevant i samme miljø som annet innhold",
+      "conceals": "hvor mye valg av tema og framstilling styres av kommersielt formål",
+      "speech_style": "polert, forklarende og nytteorientert",
+      "teaches_player": "å ta merking og finansiering med i vurderingen av innholdets formål"
+    },
+    {
+      "id": "den_kritiske_lesevennen",
+      "social_function": "gjør presis deling, rettelser og begrenset tilgang til sosial praksis",
+      "class_position": "annen publikummer uten profesjonell rolle i mediet",
+      "status": "likestilt leser som kan spørre hva teksten faktisk sier",
+      "power_over_player": "kan avdekke at spilleren har delt overskrift, utdrag eller gammel versjon som om det var hele publiseringen",
+      "wants": "at samtalen bygger på det begge faktisk har lest",
+      "conceals": "at egen forståelse også kan være selektiv eller begrenset",
+      "speech_style": "spørrende, vennlig og konkret",
+      "teaches_player": "å gjøre lesebegrensninger eksplisitte uten å gjøre dem skamfulle"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "headline_body",
+      "meaning": "overskrift mot brødtekst og faktisk konklusjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "content_type",
+      "meaning": "sakstype, sjanger og hvilket utsagn leseren møter",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sender_byline",
+      "meaning": "byline, avsender og hvem som faktisk står for innholdet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "primary_material",
+      "meaning": "primærgrunnlag, dokumentlenke og tilgjengelig proveniens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "quote_context",
+      "meaning": "sitat, omkringliggende tekst og nødvendig kontekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "image_caption",
+      "meaning": "bilde, bildetekst, dato, sted og illustrasjonsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "version_time",
+      "meaning": "publisert, oppdatert og hvilken versjon som brukes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "link_opening",
+      "meaning": "mottatt lenke mot innhold leseren faktisk har åpnet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "commercial_label",
+      "meaning": "redaksjonell flate mot annonse, partnerinnhold og kommersiell avsender",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "partial_access",
+      "meaning": "utdrag, betalingsmur og grensen for hva leseren faktisk har tilgang til",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "correction_note",
+      "meaning": "rettelsesmerknad, egen hukommelse og oppdatert forståelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "link_support",
+      "meaning": "lenket referanse og om den støtter den konkrete formuleringen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sharing_summary",
+      "meaning": "egen delingstekst mot det publiseringen faktisk dokumenterer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reader_role_boundary",
+      "meaning": "medielesekompetanse mot journalistisk, ekspertmessig eller redaksjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Overskriften er ikke hele saken. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "headline_body"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Overskriften er ikke hele saken. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "headline_body"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Overskriften er ikke hele saken. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "headline_body"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Overskriften er ikke hele saken. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "headline_body"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Rapportering, analyse eller mening?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "content_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Rapportering, analyse eller mening?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "content_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Rapportering, analyse eller mening?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "content_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Rapportering, analyse eller mening?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "content_type"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Hvem står bak teksten?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "sender_byline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Hvem står bak teksten?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "sender_byline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Hvem står bak teksten?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "sender_byline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Hvem står bak teksten?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "sender_byline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Det finnes et dokument bak. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "primary_material"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Det finnes et dokument bak. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "primary_material"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Det finnes et dokument bak. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "primary_material"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Det finnes et dokument bak. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "primary_material"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Hva kom før og etter?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "quote_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Hva kom før og etter?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "quote_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Hva kom før og etter?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "quote_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Hva kom før og etter?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "quote_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Bildet viser noe — men når og hvor?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "image_caption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Bildet viser noe — men når og hvor?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "image_caption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Bildet viser noe — men når og hvor?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "image_caption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Bildet viser noe — men når og hvor?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "image_caption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Teksten har endret seg. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "version_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Teksten har endret seg. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "version_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Teksten har endret seg. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "version_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Teksten har endret seg. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "version_time"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Noen sender deg en lenke. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "link_opening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Noen sender deg en lenke. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "link_opening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Noen sender deg en lenke. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "link_opening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Noen sender deg en lenke. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "link_opening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Det ser ut som resten av siden. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "commercial_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Det ser ut som resten av siden. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "commercial_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Det ser ut som resten av siden. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "commercial_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Det ser ut som resten av siden. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "commercial_label"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Du ser bare starten. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "partial_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Du ser bare starten. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "partial_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Du ser bare starten. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "partial_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Du ser bare starten. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "partial_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: En detalj ble korrigert. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "correction_note"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: En detalj ble korrigert. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "correction_note"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: En detalj ble korrigert. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "correction_note"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: En detalj ble korrigert. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "correction_note"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Hva støtter egentlig lenken?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "link_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Hva støtter egentlig lenken?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "link_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Hva støtter egentlig lenken?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "link_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Hva støtter egentlig lenken?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "link_support"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Hva sier du at lenken viser?. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "sharing_summary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Hva sier du at lenken viser?. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "sharing_summary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Hva sier du at lenken viser?. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "sharing_summary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Hva sier du at lenken viser?. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "sharing_summary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Å lese godt uten å bli redaksjon. Morgenen gjør publiseringens form, metadata eller tilgangsgrense synlig før førsteinntrykket blir en konklusjon.",
+        "thread_ids": [
+          "reader_role_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Å lese godt uten å bli redaksjon. Midt på dagen møter lesingen en avsender, venn, referanse eller publiseringsdetalj som gjør konteksten konkret.",
+        "thread_ids": [
+          "reader_role_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Å lese godt uten å bli redaksjon. Ettermiddagen krever et valg om å åpne, avgrense, kontrollere eller gjengi innholdet presist.",
+        "thread_ids": [
+          "reader_role_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Å lese godt uten å bli redaksjon. Kvelden viser hva lesemåten gjør med forståelse, deling, tillit, omdømme eller egen rollegrense.",
+        "thread_ids": [
+          "reader_role_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "headline_body",
+      "relationship": "overskrift mot brødtekst og faktisk konklusjon",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "content_type",
+      "relationship": "sakstype, sjanger og hvilket utsagn leseren møter",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "sender_byline",
+      "relationship": "byline, avsender og hvem som faktisk står for innholdet",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "primary_material",
+      "relationship": "primærgrunnlag, dokumentlenke og tilgjengelig proveniens",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "quote_context",
+      "relationship": "sitat, omkringliggende tekst og nødvendig kontekst",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "image_caption",
+      "relationship": "bilde, bildetekst, dato, sted og illustrasjonsstatus",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "version_time",
+      "relationship": "publisert, oppdatert og hvilken versjon som brukes",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "link_opening",
+      "relationship": "mottatt lenke mot innhold leseren faktisk har åpnet",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "commercial_label",
+      "relationship": "redaksjonell flate mot annonse, partnerinnhold og kommersiell avsender",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "partial_access",
+      "relationship": "utdrag, betalingsmur og grensen for hva leseren faktisk har tilgang til",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "correction_note",
+      "relationship": "rettelsesmerknad, egen hukommelse og oppdatert forståelse",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "link_support",
+      "relationship": "lenket referanse og om den støtter den konkrete formuleringen",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "sharing_summary",
+      "relationship": "egen delingstekst mot det publiseringen faktisk dokumenterer",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "reader_role_boundary",
+      "relationship": "medielesekompetanse mot journalistisk, ekspertmessig eller redaksjonell myndighet",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "overskriften_blir_inngang_ikke_fasit",
+      "description": "Spilleren lærer å åpne og avgrense publiseringen før overskriften blir behandlet som hele konklusjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten",
+        "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette"
+      ]
+    },
+    {
+      "id": "avsender_og_grunnlag_blir_synlige",
+      "description": "Byline, avsender, dokumentlenker og sitatkontekst blir konkrete deler av hva leseren faktisk bygger forståelsen på.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen",
+        "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget",
+        "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen"
+      ]
+    },
+    {
+      "id": "det_visuelle_far_metadata",
+      "description": "Bilde, bildetekst og versjonstidspunkt hindrer at et sterkt førsteinntrykk løsriver seg fra tid og sted.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten",
+        "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert"
+      ]
+    },
+    {
+      "id": "tilgangsgrensen_blir_erkjent",
+      "description": "Lenker, utdrag, betalingsmur og kommersiell merking gjør det tydelig hvor mye spilleren faktisk har lest og hvem som står bak.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet",
+        "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design",
+        "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren"
+      ]
+    },
+    {
+      "id": "deling_blir_leseransvar_ikke_redaksjon",
+      "description": "Rettelser og egen delingstekst blir del av ansvarlig publikumspraksis uten å gjøre spilleren til profesjonell portvokter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden",
+        "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert",
+        "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest",
+        "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "overskrift_moter_sakstype",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "byline_moter_grunnlag",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "sitat_moter_bildekontekst",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "versjon_moter_mottatt_lenke",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "merking_moter_tilgangsgrense",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "rettelse_moter_deling",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/media_leser.json#overskriften_for_brødteksten",
+      "data/Civication/narratives/leisure/media_leser.json#hva_slags_tekst_er_dette",
+      "data/Civication/narratives/leisure/media_leser.json#bylinen_og_avsenderen",
+      "data/Civication/narratives/leisure/media_leser.json#lenken_til_grunnlaget",
+      "data/Civication/narratives/leisure/media_leser.json#sitatet_rundt_setningen",
+      "data/Civication/narratives/leisure/media_leser.json#bildet_og_bildeteksten",
+      "data/Civication/narratives/leisure/media_leser.json#publisert_og_oppdatert",
+      "data/Civication/narratives/leisure/media_leser.json#lenken_du_ikke_har_apnet",
+      "data/Civication/narratives/leisure/media_leser.json#kommersielt_innhold_i_samme_design",
+      "data/Civication/narratives/leisure/media_leser.json#utdraget_bak_betalingsmuren",
+      "data/Civication/narratives/leisure/media_leser.json#rettelsen_nederst_pa_siden",
+      "data/Civication/narratives/leisure/media_leser.json#det_som_er_lenket_men_ikke_sitert",
+      "data/Civication/narratives/leisure/media_leser.json#dele_etter_a_ha_lest",
+      "data/Civication/narratives/leisure/media_leser.json#hva_slags_medieleser"
+    ]
+  }
+}
