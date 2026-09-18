@@ -15,22 +15,31 @@ execFileSync(process.execPath, [
   '--write'
 ], { cwd: ROOT, encoding: 'utf8' });
 const diagnosticAfter = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
+const beforeQueue = diagnosticBefore.queue || [];
+const afterQueue = diagnosticAfter.queue || [];
+const queueDiffs = [];
+const maxQueue = Math.max(beforeQueue.length, afterQueue.length);
+for (let i = 0; i < maxQueue; i += 1) {
+  if (JSON.stringify(beforeQueue[i]) !== JSON.stringify(afterQueue[i])) {
+    queueDiffs.push({ index: i, before: beforeQueue[i] || null, after: afterQueue[i] || null });
+  }
+}
 const beforeByKey = new Map(diagnosticBefore.positions.map((row) => [row.key, row]));
-const changedPositions = diagnosticAfter.positions
+const changedPositionKeys = diagnosticAfter.positions
   .filter((row) => JSON.stringify(row) !== JSON.stringify(beforeByKey.get(row.key)))
-  .map((row) => ({ key: row.key, before: beforeByKey.get(row.key), after: row }));
-const diagnostic = {
+  .map((row) => row.key);
+console.error('READINESS_TOPLEVEL_DIAGNOSTIC_START');
+console.error(JSON.stringify({
   before_summary: diagnosticBefore.summary,
   after_summary: diagnosticAfter.summary,
   before_first_ready: diagnosticBefore.first_ready,
   after_first_ready: diagnosticAfter.first_ready,
-  before_queue: diagnosticBefore.queue,
-  after_queue: diagnosticAfter.queue,
-  changed_positions: changedPositions
-};
-console.error('READINESS_GENERATOR_DIAGNOSTIC_START');
-console.error(JSON.stringify(diagnostic, null, 2));
-console.error('READINESS_GENERATOR_DIAGNOSTIC_END');
+  queue_before_length: beforeQueue.length,
+  queue_after_length: afterQueue.length,
+  queue_diffs: queueDiffs,
+  changed_position_keys: changedPositionKeys
+}, null, 2));
+console.error('READINESS_TOPLEVEL_DIAGNOSTIC_END');
 throw new Error('diagnostic only; do not merge this head');
 
 const output = execFileSync(process.execPath, [
