@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_statsvitenskapelig_ekspertise",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "statsvitenskapelig_ekspert",
+    "label": "Statsvitenskapelig ekspert"
+  },
+  "title": "Statsvitenskapelig ekspert",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bruke bred statsvitenskapelig teori, forskningsdesign, institusjonsanalyse, aktørmodeller, implementeringsanalyse, politisk atferd, komparasjon og kausal resonnering uten at én metode, én forklaring eller Badge-status blir gjort til partipolitisk fasit, profesjonell akkreditering eller beslutningsmyndighet",
+    "description": "Statsvitenskapelig ekspert er en employment-independent political_science_expertise for presise forskningsspørsmål, analysenivå, teori og mekanismer, caseutvalg, formelle og uformelle institusjoner, aktører og insentiver, forvaltning og implementasjon, opinionsmåling, komparativt design, kausal inferens, integrasjon av kvalitative og kvantitative metoder, tidssekvens og skillet mellom empirisk forklaring og normativ vurdering. Rollen er bredere enn Demokratianalytikers særskilte demokrati- og målemetodefokus, forskjellig fra Samfunnsengasjert borgers deltakelsesidentitet og gir ikke Tillitsvalgts representative mandat, Politisk rådgivers ansettelsesforhold eller offentlig beslutningsmyndighet. Badge-status er ikke profesjonell akkreditering. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "public_attention",
+    "status_anxiety",
+    "care_vs_efficiency",
+    "public_private_leakage",
+    "shame_reputation"
+  ],
+  "social_environments": [
+    "forsknings- og analyseflater der et politisk spørsmål må kobles eksplisitt til analyseenhet, teori, evidens og slutningstype",
+    "institusjonsstudier der formelle regler, uformell praksis og faktisk beslutningsprosess ikke uten videre er identiske",
+    "forvaltnings- og implementeringscase der vedtak, kapasitet, skjønn, output og outcome må holdes analytisk adskilt",
+    "komparative undersøkelser der caseutvalg, nivå og kontekst bestemmer hvor langt en slutning kan generaliseres",
+    "metodesituasjoner der kvalitativ og kvantitativ evidens må integreres rundt samme spørsmål og kausalpåstand",
+    "formidlingssituasjoner der bred fagkompetanse må holdes tydelig adskilt fra partipolitisk fasit, profesjonell akkreditering og representativ myndighet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "forskningspartneren",
+      "social_function": "utfordrer problemformulering, teori og design uten å bestemme konklusjonen",
+      "class_position": "likestilt analysepartner",
+      "status": "høy faglig tillit gjennom eksplisitte begrunnelser",
+      "power_over_player": "kan kreve tydeligere spørsmål, mekanismer og alternative forklaringer, men har ingen politisk beslutningsmyndighet",
+      "wants": "at spørsmålet, designet og slutningen passer sammen",
+      "conceals": "at egen teoripreferanse også kan styre hvilke mekanismer som får mest oppmerksomhet",
+      "speech_style": "presis, spørsmålsdrevet og designorientert",
+      "teaches_player": "at et godt svar begynner med et presist spørsmål"
+    },
+    {
+      "id": "institusjonskjenneren",
+      "social_function": "gjør avstanden mellom formelle regler og faktisk praksis konkret",
+      "class_position": "person med situert kunnskap om en institusjon eller politisk prosess",
+      "status": "høy kontekstkunnskap uten eierskap til hele forklaringen",
+      "power_over_player": "kan korrigere hvordan regler, rutiner og uformelle normer faktisk virker i caset",
+      "wants": "at institusjonen beskrives slik den fungerer, ikke bare slik regelverket ser ut",
+      "conceals": "at nærhet til praksis også kan gjøre enkelte rutiner selvfølgelige og lite synlige",
+      "speech_style": "konkret, prosessorientert og skeptisk til forenklede organisasjonskart",
+      "teaches_player": "at institusjoner har både formelle og uformelle sider"
+    },
+    {
+      "id": "forvaltningskontakten",
+      "social_function": "viser implementeringskjeden mellom politisk vedtak og samfunnsutfall",
+      "class_position": "ansatt eller fagkontakt med innsikt i gjennomføring innen eget mandat",
+      "status": "situert prosesskompetanse, ikke politisk støtte eller forskningsfasit",
+      "power_over_player": "kan forklare kapasitet, skjønn, samordning og flaskehalser i gjennomføringen",
+      "wants": "at vedtak og faktisk implementasjon ikke blandes sammen",
+      "conceals": "at administrative kategorier kan framstå mer entydige enn de er i praksis",
+      "speech_style": "saklig, avgrenset og implementeringsorientert",
+      "teaches_player": "at et vedtak ikke er det samme som et utfall"
+    },
+    {
+      "id": "metodekritikeren",
+      "social_function": "tester caseutvalg, måling, metodeintegrasjon og kausal styrke",
+      "class_position": "uavhengig kritisk leser",
+      "status": "troverdighet gjennom metodisk etterprøving fremfor rang",
+      "power_over_player": "kan avdekke nivåskift, seleksjon, ubegrunnede årsakspåstander og metodisk parallellføring",
+      "wants": "at styrken i påstanden følger styrken i designet",
+      "conceals": "at streng metodekritikk også kan undervurdere relevant kontekst eller fortolkende evidens",
+      "speech_style": "skeptisk, strukturert og opptatt av alternative forklaringer",
+      "teaches_player": "at metode er en begrunnelse for slutning, ikke et statusmerke"
+    },
+    {
+      "id": "redaktoren",
+      "social_function": "gjør presset mot korte konklusjoner, tydelige årsaker og ekspertuttalelser konkret",
+      "class_position": "publiserings- eller formidlingsrolle uten eierskap til forskningsdesignet",
+      "status": "har makt over format, ikke over hva evidensen kan bære",
+      "power_over_player": "kan presse fram forenkling, sterkere språk og større autoritetskrav",
+      "wants": "en forståelig analyse med tydelig poeng",
+      "conceals": "at komprimering kan fjerne avgrensninger som er avgjørende for hva konklusjonen betyr",
+      "speech_style": "kort, resultatfokusert og opptatt av lesbarhet",
+      "teaches_player": "at klar formidling kan bevare usikkerhet og avgrensning"
+    },
+    {
+      "id": "fagpersonen",
+      "social_function": "gjør grensen mellom selvstendig høy kompetanse og institusjonell profesjonsstatus eksplisitt",
+      "class_position": "forsker, underviser eller annen relevant fagperson innen eget arbeids- eller kunnskapsmandat",
+      "status": "formell fagkompetanse innen avgrensede områder",
+      "power_over_player": "kan utfordre litteraturbruk, design og faglig språk, men kan ikke gjøre Badge-status til akkreditering, ansettelse eller offentlig mandat",
+      "wants": "at kompetanse dokumenteres gjennom metode, kunnskapsgrunnlag og tydelige grenser",
+      "conceals": "at faglige standarder og teorier også utvikler seg og kan være omstridt",
+      "speech_style": "nyansert, kildebevisst og eksplisitt om faglig rekkevidde",
+      "teaches_player": "at ekspertise er sterkest når den viser både hva den kan og hva den ikke kan avgjøre"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "research_question_scope",
+      "meaning": "forskningsspørsmål, evidensbehov og slutningstype koblet før analysen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "level_of_analysis",
+      "meaning": "individ, gruppe, organisasjon, institusjon og system holdt analytisk adskilt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "theory_mechanism",
+      "meaning": "teori uttrykt som mekanisme og observerbare implikasjoner fremfor etikett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "case_selection_boundary",
+      "meaning": "caseutvalg og generaliseringsgrense gjort eksplisitt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "institution_practice_gap",
+      "meaning": "formelle regler analysert sammen med uformell praksis og faktisk prosess",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "actor_incentive_uncertainty",
+      "meaning": "aktørstrategi analysert uten å gjøre uobserverte motiver til fakta",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "implementation_chain",
+      "meaning": "vedtak, implementasjon, output og outcome holdt som separate ledd",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "opinion_measurement",
+      "meaning": "opinion behandlet som måling med populasjon, design og usikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparative_design",
+      "meaning": "komparasjon brukt som designlogikk fremfor katalog over forskjeller",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "causal_alternatives",
+      "meaning": "kausal slutning avgrenset av identifikasjon og alternative forklaringer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "method_integration",
+      "meaning": "kvalitativ og kvantitativ evidens integrert rundt samme spørsmål",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "temporal_sequence",
+      "meaning": "tid, sekvens og tidligere bindinger som del av forklaringen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "empirical_normative_boundary",
+      "meaning": "empiriske funn adskilt fra normative kriterier og vurderinger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "expertise_without_mandate",
+      "meaning": "faglig kompetanse uten krav om jobb, rådgivermandat eller politisk myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva er det du faktisk prøver å finne ut?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "research_question_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva er det du faktisk prøver å finne ut?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "research_question_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva er det du faktisk prøver å finne ut?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "research_question_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva er det du faktisk prøver å finne ut?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "research_question_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Hvilket nivå gjelder påstanden din?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "level_of_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Hvilket nivå gjelder påstanden din?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "level_of_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Hvilket nivå gjelder påstanden din?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "level_of_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Hvilket nivå gjelder påstanden din?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "level_of_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Teorien må gjøre mer enn å navngi fenomenet. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "theory_mechanism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Teorien må gjøre mer enn å navngi fenomenet. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "theory_mechanism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Teorien må gjøre mer enn å navngi fenomenet. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "theory_mechanism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Teorien må gjøre mer enn å navngi fenomenet. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "theory_mechanism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Hvorfor er akkurat disse casene med?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "case_selection_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Hvorfor er akkurat disse casene med?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "case_selection_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Hvorfor er akkurat disse casene med?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "case_selection_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Hvorfor er akkurat disse casene med?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "case_selection_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Regelen på papiret er ikke hele institusjonen. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "institution_practice_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Regelen på papiret er ikke hele institusjonen. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "institution_practice_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Regelen på papiret er ikke hele institusjonen. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "institution_practice_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Regelen på papiret er ikke hele institusjonen. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "institution_practice_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Du ser handlingen, men vet du motivet?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "actor_incentive_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Du ser handlingen, men vet du motivet?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "actor_incentive_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Du ser handlingen, men vet du motivet?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "actor_incentive_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Du ser handlingen, men vet du motivet?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "actor_incentive_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Et vedtak er ikke det samme som et utfall. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "implementation_chain"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Et vedtak er ikke det samme som et utfall. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "implementation_chain"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Et vedtak er ikke det samme som et utfall. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "implementation_chain"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Et vedtak er ikke det samme som et utfall. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "implementation_chain"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Hva representerer denne målingen av opinion?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "opinion_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Hva representerer denne målingen av opinion?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "opinion_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Hva representerer denne målingen av opinion?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "opinion_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Hva representerer denne målingen av opinion?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "opinion_measurement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Likhet og forskjell må ha en analytisk funksjon. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "comparative_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Likhet og forskjell må ha en analytisk funksjon. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "comparative_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Likhet og forskjell må ha en analytisk funksjon. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "comparative_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Likhet og forskjell må ha en analytisk funksjon. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "comparative_design"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Kan mønsteret skilles fra alternative forklaringer?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "causal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Kan mønsteret skilles fra alternative forklaringer?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "causal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Kan mønsteret skilles fra alternative forklaringer?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "causal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Kan mønsteret skilles fra alternative forklaringer?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "causal_alternatives"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Kvalitativt og kvantitativt er ikke to konkurrerende fasitsvar. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "method_integration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Kvalitativt og kvantitativt er ikke to konkurrerende fasitsvar. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "method_integration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Kvalitativt og kvantitativt er ikke to konkurrerende fasitsvar. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "method_integration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Kvalitativt og kvantitativt er ikke to konkurrerende fasitsvar. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "method_integration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Hva kom først, og hva endret handlingsrommet?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "temporal_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Hva kom først, og hva endret handlingsrommet?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "temporal_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Hva kom først, og hva endret handlingsrommet?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "temporal_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Hva kom først, og hva endret handlingsrommet?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "temporal_sequence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Hva viser analysen, og hvilke kriterier vurderer du etter?. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Hva viser analysen, og hvilke kriterier vurderer du etter?. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Hva viser analysen, og hvilke kriterier vurderer du etter?. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Hva viser analysen, og hvilke kriterier vurderer du etter?. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "empirical_normative_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Ekspertise er ikke et offentlig eller politisk mandat. Morgenen avklarer spørsmål, analyseenhet, teori, case eller datagrunnlag før slutningen formuleres.",
+        "thread_ids": [
+          "expertise_without_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Ekspertise er ikke et offentlig eller politisk mandat. Midt på dagen gjør en forskningspartner, institusjonskjenner, forvaltningskontakt eller kritisk leser antakelser og begrensninger sosialt synlige.",
+        "thread_ids": [
+          "expertise_without_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Ekspertise er ikke et offentlig eller politisk mandat. Ettermiddagen krever et valg om design, mekanisme, sammenligning, implementasjon, kausalitet eller metode.",
+        "thread_ids": [
+          "expertise_without_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Ekspertise er ikke et offentlig eller politisk mandat. Kvelden viser hva valget gjør med etterprøvbarhet, faglig troverdighet og grensen mellom analyse og autoritet.",
+        "thread_ids": [
+          "expertise_without_mandate"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "research_question_scope",
+      "relationship": "forskningsspørsmål, evidensbehov og slutningstype koblet før analysen",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "level_of_analysis",
+      "relationship": "individ, gruppe, organisasjon, institusjon og system holdt analytisk adskilt",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "theory_mechanism",
+      "relationship": "teori uttrykt som mekanisme og observerbare implikasjoner fremfor etikett",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "case_selection_boundary",
+      "relationship": "caseutvalg og generaliseringsgrense gjort eksplisitt",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "institution_practice_gap",
+      "relationship": "formelle regler analysert sammen med uformell praksis og faktisk prosess",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "actor_incentive_uncertainty",
+      "relationship": "aktørstrategi analysert uten å gjøre uobserverte motiver til fakta",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "implementation_chain",
+      "relationship": "vedtak, implementasjon, output og outcome holdt som separate ledd",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "opinion_measurement",
+      "relationship": "opinion behandlet som måling med populasjon, design og usikkerhet",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "comparative_design",
+      "relationship": "komparasjon brukt som designlogikk fremfor katalog over forskjeller",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "causal_alternatives",
+      "relationship": "kausal slutning avgrenset av identifikasjon og alternative forklaringer",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "method_integration",
+      "relationship": "kvalitativ og kvantitativ evidens integrert rundt samme spørsmål",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "temporal_sequence",
+      "relationship": "tid, sekvens og tidligere bindinger som del av forklaringen",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "empirical_normative_boundary",
+      "relationship": "empiriske funn adskilt fra normative kriterier og vurderinger",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "expertise_without_mandate",
+      "relationship": "faglig kompetanse uten krav om jobb, rådgivermandat eller politisk myndighet",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "sporsmal_teori_og_nivaa_henger_sammen",
+      "description": "Forskningsspørsmål, analyseenhet og teori blir en sammenhengende designkjede før materiale tolkes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme"
+      ]
+    },
+    {
+      "id": "case_institusjon_og_aktor_far_grenser",
+      "description": "Caseutvalg, institusjonell praksis og aktørmodeller får eksplisitte grenser mot overgeneralisering og motivlesing.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing"
+      ]
+    },
+    {
+      "id": "vedtak_opinion_og_sammenligning_blir_betinget",
+      "description": "Implementering, opinionsmåling og komparasjon behandles som designproblemer med konkrete populasjoner og kontekster.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design"
+      ]
+    },
+    {
+      "id": "kausalitet_metode_og_tid_blir_eksplisitt",
+      "description": "Alternative forklaringer, metodeintegrasjon og tidssekvens begrenser hvor sterkt en årsakspåstand kan formuleres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen"
+      ]
+    },
+    {
+      "id": "forklaring_blir_skilt_fra_mandat",
+      "description": "Empirisk forklaring og normativ vurdering skilles, mens ekspertrollen forankres i etterprøvbar kompetanse uten politisk eller institusjonell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering",
+        "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "sporsmalet_moter_kausaliteten",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "nivaaet_moter_sammenligningen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "teorien_moter_aktorene",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "caseutvalget_moter_metodeintegrasjonen",
+      "setup_ref": "4/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "implementeringen_moter_tidslinjen",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "narrative",
+        "stress"
+      ]
+    },
+    {
+      "id": "normen_moter_ekspertgrensen",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sporsmalet_for_materialet",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#nivaaet_for_slutningen",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#teorien_som_mekanisme",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#caseutvalget_som_grense",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#institusjon_pa_papiret_og_i_praksis",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#aktorene_uten_motivlesing",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#vedtaket_som_skal_iverksettes",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#opinionen_som_maling",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#sammenligningen_som_design",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#arsak_og_alternativer",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#metodene_som_svarer_pa_samme_sporsmal",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#rekkefolgen_som_endrer_forklaringen",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#empiri_og_normativ_vurdering",
+      "data/Civication/narratives/leisure/politikk_statsvitenskapelig_ekspertise.json#hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+    ]
+  }
+}

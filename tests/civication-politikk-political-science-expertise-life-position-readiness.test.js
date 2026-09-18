@@ -8,17 +8,16 @@ const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 const badge=read('data/badges/politikk.json');
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
-const lifeId=['samfunnsengasjert','borger'].join('_');
+const lifeId=['statsvitenskapelig','ekspert'].join('_');
 const lifeKey=['politikk',lifeId].join('/');
-const lifeScope=['politikk','samfunnsdeltakelse'].join('_');
+const lifeScope=['politikk','statsvitenskapelig','ekspertise'].join('_');
 const streamPath=['data','Civication','narratives','leisure',lifeScope+'.json'].join('/');
 const worldPath=['data','Civication','roleWorlds','politikk',lifeScope+'.json'].join('/');
-const legacyPath=['data','Civication','roleModels','politikk',lifeId+'.json'].join('/');
 const stream=read(streamPath);
-const legacy=read(legacyPath);
 const tier=badge.tiers.find(x=>x.life_position?.id===lifeId);
 assert.ok(tier);
-assert.equal(tier.life_position.kind,'civic_engagement');
+assert.equal(tier.life_position.label,'Statsvitenskapelig ekspert');
+assert.equal(tier.life_position.kind,'political_science_expertise');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
 assert.equal(tier.career_unlock,undefined);
@@ -36,23 +35,13 @@ assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
-const expertiseNeighbor=audit.positions.find(x=>x.key==='politikk/statsvitenskapelig_ekspert');
-assert.ok(expertiseNeighbor);
-assert.equal(expertiseNeighbor.classification,'ready');
-assert.ok(!(expertiseNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/statsvitenskapelig_ekspert');
-const mandatePending=audit.positions.find(x=>x.key==='politikk/tillitsvalgt');
-assert.ok(mandatePending);
-assert.equal(mandatePending.classification,'needs_authored_depth');
-assert.ok(!(mandatePending.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/tillitsvalgt');
-for(const key of ['politikk/demokratianalytiker','politikk/aktivist','politikk/grasrotbygger','politikk/kampanjemenneske','politikk/motesliter','politikk/organisasjonsmenneske']){
- const ready=audit.positions.find(x=>x.key===key);assert.ok(ready);assert.equal(ready.classification,'ready');
- assert.ok(!(ready.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
+const mandate=audit.positions.find(x=>x.key==='politikk/tillitsvalgt');
+assert.ok(mandate);assert.equal(mandate.classification,'needs_authored_depth');
+assert.ok(!(mandate.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/tillitsvalgt');
+for(const key of ['politikk/demokratianalytiker','politikk/samfunnsengasjert_borger','politikk/aktivist','politikk/grasrotbygger','politikk/kampanjemenneske','politikk/motesliter','politikk/organisasjonsmenneske']){
+ const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.equal(neighbor.classification,'ready');
+ assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
-const legacyRoleId=['politikk',lifeId].join('_');
-assert.equal(legacy.role_id,legacyRoleId);
-assert.equal(legacy.role_scope,lifeId);
-assert.notEqual(lifeScope,legacy.role_id);
-assert.notEqual(lifeScope,legacy.role_scope);
 const careerWorlds=index.roles.filter(x=>x.category==='politikk'&&x.subject_type!=='life_position');
 assert.equal(careerWorlds.length,5,'Politikk career worlds must remain separate and unchanged in count');
 if(fs.existsSync(path.join(ROOT,worldPath))){
@@ -62,7 +51,7 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  const world=read(worldPath);
  assert.equal(world.subject_type,'life_position');
  assert.equal(world.status,'role_world_complete');
- assert.deepEqual(world.life_position_ref,{badge_id:'politikk',id:lifeId,label:'Samfunnsengasjert borger'});
+ assert.deepEqual(world.life_position_ref,{badge_id:'politikk',id:lifeId,label:'Statsvitenskapelig ekspert'});
  assert.equal(world.materialization.no_new_runtime,true);
  assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
  assert.equal(world.season.coverage.length,56);
@@ -72,12 +61,13 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  assert.equal(world.recurring_people_archetypes.length,6);
  assert.equal(world.private_aftermath.length,5);
  assert.equal(world.delayed_consequences.length,6);
- assert.match(world.sociological_core.description,/Aktivist/);
- assert.match(world.sociological_core.description,/Grasrotbygger/);
+ assert.match(world.sociological_core.description,/Demokratianalytiker/);
+ assert.match(world.sociological_core.description,/Samfunnsengasjert borger/);
  assert.match(world.sociological_core.description,/Tillitsvalgt/);
+ assert.match(world.sociological_core.description,/Politisk rådgiver/);
 }else{
  assert.equal(row.role_world_status,'role_world_not_started');
  assert.equal(row.role_world_path,null);
  assert.equal(audit.first_ready?.key,lifeKey);
 }
-console.log('Samfunnsengasjert borger readiness gate ok: civic engagement remains separate from legacy role, activism and representative mandate');
+console.log('Statsvitenskapelig ekspert readiness gate ok: broad political-science expertise remains method-bounded and separate from democracy analysis, civic participation and representative or employed authority');

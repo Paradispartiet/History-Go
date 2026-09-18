@@ -1,0 +1,650 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_statsvitenskapelig_ekspertise_stream",
+  "type": "leisure",
+  "title": "Statsvitenskapelig ekspert",
+  "sociological_theme": "statsvitenskapelig_problemformulering_analyseenhet_teori_mekanisme_caseutvalg_institusjoner_aktorer_implementering_opinion_komparasjon_kausalitet_metode_tid_og_empirisk_normativ_grense",
+  "applies_when": {
+    "any_tags": [
+      "politikk:statsvitenskapelig_ekspert"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_for_materialet",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Forskningsnotatet",
+      "subject": "Hva er det du faktisk prøver å finne ut?",
+      "situation": [
+        "Du har samlet flere kilder om et politisk fenomen, men materialet peker mot både beskrivelse, forklaring og vurdering.",
+        "Et statsvitenskapelig forskningsspørsmål blir mer presist når det er tydelig om du spør hva som skjer, hvorfor det skjer eller etter hvilke eksplisitte kriterier noe vurderes.",
+        "Spørsmålet bør avgrense hvilket svar datagrunnlaget faktisk kan bære før analysen begynner å produsere konklusjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler om spørsmålet slik at analyseenhet, type slutning og nødvendig evidens er eksplisitt før du går videre.",
+          "effect": 1,
+          "tags": [
+            "research_question_scope",
+            "question_before_evidence"
+          ],
+          "feedback": "Du binder problem, evidens og slutning sammen før resultatet er kjent."
+        },
+        {
+          "id": "B",
+          "label": "La materialet vokse først og bestem etterpå hvilket spørsmål resultatene ser ut til å besvare.",
+          "effect": -1,
+          "tags": [
+            "question_after_result",
+            "political_science_pressure"
+          ],
+          "feedback": "Du øker faren for at spørsmålet tilpasses funnet i stedet for å styre undersøkelsen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_sporsmalet_for_materialet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nivaaet_for_slutningen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Analyseoppsettet",
+      "subject": "Hvilket nivå gjelder påstanden din?",
+      "situation": [
+        "Et mønster finnes i kommuner, institusjoner eller land, mens påstanden du vurderer å skrive handler om enkeltpersoner.",
+        "Data på ett analysenivå gir ikke automatisk grunnlag for slutninger på et annet nivå.",
+        "Statsvitenskapelig analyse trenger derfor et eksplisitt skille mellom individ, gruppe, organisasjon, institusjon og politisk system."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold påstanden på nivået dataene dekker, eller skaff evidens som faktisk forbinder nivåene.",
+          "effect": 1,
+          "tags": [
+            "level_of_analysis",
+            "analysis_level_fit"
+          ],
+          "feedback": "Du gjør slutningsrommet synlig og unngår å la aggregater bære individpåstander de ikke dokumenterer."
+        },
+        {
+          "id": "B",
+          "label": "Overfør mønsteret direkte til individer fordi aggregatet ser tydelig ut.",
+          "effect": -1,
+          "tags": [
+            "cross_level_overreach",
+            "political_science_pressure"
+          ],
+          "feedback": "Du lar nivåskiftet skape en sterkere påstand enn datagrunnlaget støtter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_nivaaet_for_slutningen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teorien_som_mekanisme",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Teoriskissen",
+      "subject": "Teorien må gjøre mer enn å navngi fenomenet",
+      "situation": [
+        "Du har et kjent teoretisk begrep som passer språklig til caset, men det er uklart hva teorien faktisk forventer å observere.",
+        "Teori er mest nyttig når den kobler betingelser, aktører og mekanismer til testbare eller etterprøvbare implikasjoner.",
+        "Et etikettord alene forklarer ikke hvorfor et politisk utfall oppstår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ut mekanismen og hvilke observasjoner som ville støtte eller svekke forklaringen.",
+          "effect": 1,
+          "tags": [
+            "theory_mechanism",
+            "theory_as_mechanism"
+          ],
+          "feedback": "Du gjør teorien til en forklaringsmodell som kan undersøkes i stedet for en dekorativ merkelapp."
+        },
+        {
+          "id": "B",
+          "label": "Bruk teorinavnet som forklaring uten å spesifisere hvordan mekanismen skal virke i caset.",
+          "effect": -1,
+          "tags": [
+            "theory_as_label",
+            "political_science_pressure"
+          ],
+          "feedback": "Du lar et fagbegrep erstatte den kausale eller fortolkende forbindelsen som egentlig må begrunnes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_teorien_som_mekanisme"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "caseutvalget_som_grense",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Casekartet",
+      "subject": "Hvorfor er akkurat disse casene med?",
+      "situation": [
+        "To caser illustrerer argumentet ditt svært godt, men de ble valgt etter at du kjente utfallet.",
+        "Caseutvalg påvirker hvilke variasjoner, kontraster og alternative forklaringer analysen kan observere.",
+        "Et godt begrunnet utvalg gjør også grensene for generalisering tydeligere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar utvalgslogikken og hvilke typer case konklusjonen ikke uten videre kan generaliseres til.",
+          "effect": 1,
+          "tags": [
+            "case_selection_boundary",
+            "case_selection_logic"
+          ],
+          "feedback": "Du gjør både utvalget og generaliseringsgrensen etterprøvbar."
+        },
+        {
+          "id": "B",
+          "label": "Presenter casene som representative fordi de illustrerer argumentet klart.",
+          "effect": -1,
+          "tags": [
+            "illustrative_generalization",
+            "political_science_pressure"
+          ],
+          "feedback": "Du lar illustrasjonskraft bli behandlet som om den alene dokumenterte representativitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_caseutvalget_som_grense"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "institusjon_pa_papiret_og_i_praksis",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "home"
+      ],
+      "from": "Institusjonskjenneren",
+      "subject": "Regelen på papiret er ikke hele institusjonen",
+      "situation": [
+        "En formell regel beskriver hvem som har myndighet, men praksis viser rutiner, normer og uformelle begrensninger som påvirker hva aktørene faktisk gjør.",
+        "Politiske institusjoner består ikke bare av juridisk tekst; implementasjon og uformell praksis kan endre hvordan samme regel virker.",
+        "Analysen blir svak dersom det formelle kartet behandles som en full beskrivelse av faktisk politisk prosess."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom formell regel og observert praksis, og dokumenter hvordan de henger sammen i dette caset.",
+          "effect": 1,
+          "tags": [
+            "institution_practice_gap",
+            "formal_informal_institutions"
+          ],
+          "feedback": "Du kan nå analysere både institusjonell design og praksisen som former virkningen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den formelle regelen som tilstrekkelig bevis for hvordan beslutninger faktisk tas.",
+          "effect": -1,
+          "tags": [
+            "formal_rule_totalization",
+            "political_science_pressure"
+          ],
+          "feedback": "Du gjør institusjonen enklere enn evidensen tilsier ved å likestille regelverk med faktisk prosess."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_institusjon_pa_papiret_og_i_praksis"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aktorene_uten_motivlesing",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "home"
+      ],
+      "from": "Forskningspartneren",
+      "subject": "Du ser handlingen, men vet du motivet?",
+      "situation": [
+        "En aktør velger en strategi som passer godt med én mulig interesse, men andre forklaringer er også forenlige med handlingen.",
+        "Statsvitenskap kan analysere preferanser, insentiver, informasjon og begrensninger uten å late som indre motiver er direkte observerbare.",
+        "Mekanismen blir sterkere når observerbar evidens skilles fra antakelser om hensikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den observerte handlingen og vurder konkurrerende forklaringer før du tilskriver motiv.",
+          "effect": 1,
+          "tags": [
+            "actor_incentive_uncertainty",
+            "actor_motive_uncertainty"
+          ],
+          "feedback": "Du beholder aktørmodellen analytisk uten å gjøre en uobserverbar hensikt til etablert faktum."
+        },
+        {
+          "id": "B",
+          "label": "Skriv motivet som faktum fordi handlingen passer med den forklaringen du forventet.",
+          "effect": -1,
+          "tags": [
+            "motive_as_fact",
+            "political_science_pressure"
+          ],
+          "feedback": "Du overser at flere motiver eller begrensninger kan produsere samme observerte handling."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_aktorene_uten_motivlesing"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vedtaket_som_skal_iverksettes",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Forvaltningskontakten",
+      "subject": "Et vedtak er ikke det samme som et utfall",
+      "situation": [
+        "En reform er formelt vedtatt, men effekten avhenger av ressurser, kapasitet, skjønn, samordning og hvordan tiltaket faktisk gjennomføres.",
+        "Mellom politisk beslutning og samfunnsutfall finnes en implementasjonskjede som kan variere mellom steder og over tid.",
+        "Statsvitenskapelig analyse må derfor skille beslutning, implementasjon, output og outcome."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg leddene mellom vedtak og utfall og identifiser hvor implementasjonen kan endre virkningen.",
+          "effect": 1,
+          "tags": [
+            "implementation_chain",
+            "implementation_chain"
+          ],
+          "feedback": "Du gjør forvaltning og implementasjon til en del av forklaringen i stedet for en usynlig mellomfase."
+        },
+        {
+          "id": "B",
+          "label": "Behandle vedtakstidspunktet som bevis for at politikken allerede er gjennomført og har produsert forventet effekt.",
+          "effect": -1,
+          "tags": [
+            "decision_equals_outcome",
+            "political_science_pressure"
+          ],
+          "feedback": "Du hopper over mekanismene som ligger mellom formell beslutning og observert samfunnsutfall."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_vedtaket_som_skal_iverksettes"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "opinionen_som_maling",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Surveyarket",
+      "subject": "Hva representerer denne målingen av opinion?",
+      "situation": [
+        "En meningsmåling gir et tydelig prosenttall, men resultatet avhenger av utvalg, tidspunkt, spørsmålsformulering og usikkerhet.",
+        "Politisk opinion er ikke direkte observerbar som én stabil størrelse; den måles gjennom konkrete designvalg.",
+        "Et enkelt estimat bør derfor ikke omtales som om det var hele befolkningens permanente mening."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les utvalg, formulering, tidspunkt og usikkerhet før du beskriver hva målingen sier om den definerte populasjonen.",
+          "effect": 1,
+          "tags": [
+            "opinion_measurement",
+            "opinion_measurement_scope"
+          ],
+          "feedback": "Du behandler opinion som et måleproblem med eksplisitt populasjon og usikkerhet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk prosenttallet som direkte uttrykk for hva befolkningen mener uavhengig av design og tidspunkt.",
+          "effect": -1,
+          "tags": [
+            "poll_as_population_fact",
+            "political_science_pressure"
+          ],
+          "feedback": "Du gir ett estimat mer representativ og tidsmessig rekkevidde enn designet dokumenterer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_opinionen_som_maling"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenligningen_som_design",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Sammenligningstabellen",
+      "subject": "Likhet og forskjell må ha en analytisk funksjon",
+      "situation": [
+        "Du sammenligner politiske systemer som deler noen trekk og skiller seg på andre, men alle forskjellene kan ikke brukes som forklaring samtidig.",
+        "Komparativ analyse blir sterkere når casekontrast, kontrollert variasjon og relevant kontekst kobles til et bestemt spørsmål.",
+        "Sammenligning er et designvalg, ikke bare en liste over land eller institusjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Begrunn hvilke likheter og forskjeller som er analytisk relevante for spørsmålet, og hold konteksten synlig.",
+          "effect": 1,
+          "tags": [
+            "comparative_design",
+            "comparative_design_logic"
+          ],
+          "feedback": "Du gjør sammenligningen til et verktøy for slutning fremfor en katalog over forskjeller."
+        },
+        {
+          "id": "B",
+          "label": "Ta med alle observerte forskjeller som mulige forklaringer uten å prioritere eller knytte dem til designet.",
+          "effect": -1,
+          "tags": [
+            "comparison_as_inventory",
+            "political_science_pressure"
+          ],
+          "feedback": "Du får mange kontraster, men ingen klar logikk for hvilke av dem som faktisk bærer forklaringen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_sammenligningen_som_design"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arsak_og_alternativer",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Kausalnotatet",
+      "subject": "Kan mønsteret skilles fra alternative forklaringer?",
+      "situation": [
+        "To forhold beveger seg sammen, og teorien din gir en plausibel mekanisme mellom dem.",
+        "En kausal påstand krever likevel mer enn samvariasjon: tidsrekkefølge, sammenligningsgrunnlag og rivaliserende forklaringer må vurderes.",
+        "Research design bestemmer hvor sterkt du kan uttale deg om årsak, ikke bare hvor interessant mønsteret ser ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler hvilke alternative forklaringer designet kan håndtere, hvilke det ikke kan, og hvor sterk kausal slutning som derfor er forsvarlig.",
+          "effect": 1,
+          "tags": [
+            "causal_alternatives",
+            "causal_inference_boundary"
+          ],
+          "feedback": "Du lar styrken i kausalpåstanden følge identifikasjonen og de alternative forklaringene designet faktisk håndterer."
+        },
+        {
+          "id": "B",
+          "label": "Kall sammenhengen kausal fordi teorien gjør mekanismen plausibel og variablene samvarierer.",
+          "effect": -1,
+          "tags": [
+            "correlation_to_cause",
+            "political_science_pressure"
+          ],
+          "feedback": "Du lar plausibilitet og samvariasjon bære mer kausal sikkerhet enn designet dokumenterer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_arsak_og_alternativer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metodene_som_svarer_pa_samme_sporsmal",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "home"
+      ],
+      "from": "Metodekritikeren",
+      "subject": "Kvalitativt og kvantitativt er ikke to konkurrerende fasitsvar",
+      "situation": [
+        "Du har statistiske mønstre på tvers av mange enheter og prosessnær evidens fra noen få case.",
+        "Metodene kan belyse ulike deler av samme problem dersom det er tydelig hvordan de kobles til spørsmålet og til hverandre.",
+        "Å kombinere metoder hjelper bare når evidensen faktisk integreres i slutningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilken del av spørsmålet hver metode belyser, og hvordan funnene sammen endrer eller avgrenser konklusjonen.",
+          "effect": 1,
+          "tags": [
+            "method_integration",
+            "method_integration"
+          ],
+          "feedback": "Du bruker metodemangfold til felles læring i stedet for som et kvalitetsstempel uten integrasjon."
+        },
+        {
+          "id": "B",
+          "label": "Presenter to metodekapitler side om side og anta at kombinasjonen i seg selv gjør konklusjonen sikrere.",
+          "effect": -1,
+          "tags": [
+            "method_parallelism",
+            "political_science_pressure"
+          ],
+          "feedback": "Du får flere datatyper, men ikke nødvendigvis en sterkere slutning fordi koblingen mellom dem mangler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_metodene_som_svarer_pa_samme_sporsmal"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rekkefolgen_som_endrer_forklaringen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Tidslinjen",
+      "subject": "Hva kom først, og hva endret handlingsrommet?",
+      "situation": [
+        "De samme institusjonene og aktørene finnes over flere år, men tidligere valg har endret hvilke alternativer som senere er realistiske.",
+        "Sekvens, tidspunkt og kumulative beslutninger kan være del av forklaringen i politiske prosesser.",
+        "En tverrsnittssammenligning kan skjule at like sluttbilder er produsert av ulike historiske forløp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg en tidslinje som skiller kritiske hendelser, tidligere bindinger og senere tilpasninger før du forklarer sluttutfallet.",
+          "effect": 1,
+          "tags": [
+            "temporal_sequence",
+            "temporal_sequence"
+          ],
+          "feedback": "Du gjør tid og sekvens til en eksplisitt del av forklaringen."
+        },
+        {
+          "id": "B",
+          "label": "Sammenlign bare sluttpunktene og anta at like institusjoner har hatt samme utviklingsbane.",
+          "effect": -1,
+          "tags": [
+            "history_flattening",
+            "political_science_pressure"
+          ],
+          "feedback": "Du risikerer å lese forskjellige prosesser som like fordi historien mellom start og slutt forsvinner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_rekkefolgen_som_endrer_forklaringen"
+      ],
+      "risk_links": [
+        "stress_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "empiri_og_normativ_vurdering",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Fagnotatet",
+      "subject": "Hva viser analysen, og hvilke kriterier vurderer du etter?",
+      "situation": [
+        "En analyse kan beskrive konsekvenser, maktfordeling eller implementering, mens spørsmålet om hva som bør prioriteres krever normative kriterier.",
+        "Empirisk kunnskap kan informere en vurdering uten å alene bestemme hvilket politisk valg som er riktig.",
+        "Tydelige kriterier gjør det mulig å skille dokumenterte virkninger fra verdibaserte vurderinger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter empiriske funn og normative kriterier som separate ledd, og vis hvor vurderingen går utover det data alene kan avgjøre.",
+          "effect": 1,
+          "tags": [
+            "empirical_normative_boundary",
+            "empirical_normative_boundary"
+          ],
+          "feedback": "Du lar empirien informere vurderingen uten å gjøre den til en skjult politisk fasit."
+        },
+        {
+          "id": "B",
+          "label": "Presenter den foretrukne normative konklusjonen som om den følger direkte og entydig av de empiriske funnene.",
+          "effect": -1,
+          "tags": [
+            "norm_from_fact",
+            "political_science_pressure"
+          ],
+          "feedback": "Du visker ut skillet mellom hva analysen dokumenterer og hvilke verdikriterier vurderingen bygger på."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_empiri_og_normativ_vurdering"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_som_gjor_deg_til_statsvitenskapelig_ekspert",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Fagpersonen",
+      "subject": "Ekspertise er ikke et offentlig eller politisk mandat",
+      "situation": [
+        "Du kan arbeide avansert med statsvitenskapelige konsepter, teorier og metoder uten å være ansatt som forsker, rådgiver eller offentlig beslutningstaker.",
+        "Kompetanse kan gi bedre analyser, men den gir ikke automatisk profesjonell akkreditering, representativ myndighet eller rett til å bestemme for andre.",
+        "En robust ekspertrolle viser derfor både hva analysen kan bære og hvor egen autoritet slutter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv kompetansen konkret, dokumenter metoden og vær eksplisitt om at rollen ikke gir jobb, rådgivermandat eller beslutningsmyndighet.",
+          "effect": 1,
+          "tags": [
+            "expertise_without_mandate",
+            "expertise_without_mandate"
+          ],
+          "feedback": "Du lar ekspertisen ligge i etterprøvbar analyse fremfor i krav om politisk eller institusjonell autoritet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ekspertetiketten som grunnlag for at andre bør godta konklusjonen uten å etterprøve metode, evidens eller mandat.",
+          "effect": -1,
+          "tags": [
+            "expertise_as_authority",
+            "political_science_pressure"
+          ],
+          "feedback": "Du flytter begrunnelsen fra metode og evidens til status, selv om rollen ikke gir et slikt mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "statsvitenskap_hva_som_gjor_deg_til_statsvitenskapelig_ekspert"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

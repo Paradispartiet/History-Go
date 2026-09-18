@@ -50,9 +50,13 @@ const civicNeighbor=audit.positions.find(x=>x.key==='politikk/samfunnsengasjert_
 assert.ok(civicNeighbor);
 assert.equal(civicNeighbor.classification,'ready');
 assert.ok(!(civicNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/samfunnsengasjert_borger');
-for(const key of ['politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
- const pending=audit.positions.find(x=>x.key===key);assert.ok(pending);assert.equal(pending.classification,'needs_authored_depth');
-}
+const expertiseNeighbor=audit.positions.find(x=>x.key==='politikk/statsvitenskapelig_ekspert');
+assert.ok(expertiseNeighbor);
+assert.equal(expertiseNeighbor.classification,'ready');
+assert.ok(!(expertiseNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/statsvitenskapelig_ekspert');
+const mandatePending=audit.positions.find(x=>x.key==='politikk/tillitsvalgt');
+assert.ok(mandatePending);
+assert.equal(mandatePending.classification,'needs_authored_depth');
 const legacyRoleId=['politikk',lifeId].join('_');
 assert.equal(legacy.role_id,legacyRoleId);
 assert.equal(legacy.role_scope,lifeId);
