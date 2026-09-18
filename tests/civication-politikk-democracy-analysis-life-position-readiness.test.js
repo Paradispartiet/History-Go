@@ -45,7 +45,8 @@ assert.equal(expertiseNeighbor.classification,'ready');
 assert.ok(!(expertiseNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/statsvitenskapelig_ekspert');
 const mandatePending=audit.positions.find(x=>x.key==='politikk/tillitsvalgt');
 assert.ok(mandatePending);
-assert.equal(mandatePending.classification,'needs_authored_depth');
+assert.equal(mandatePending.classification,'ready');
+assert.equal(mandatePending.role_world_status,'role_world_complete');
 assert.ok(!(mandatePending.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/tillitsvalgt');
 for(const key of ['politikk/aktivist','politikk/grasrotbygger','politikk/kampanjemenneske','politikk/motesliter','politikk/organisasjonsmenneske']){
  const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.equal(neighbor.classification,'ready');
