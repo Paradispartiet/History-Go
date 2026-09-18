@@ -1,0 +1,71 @@
+name: Temporary Media Leser materialization
+on:
+  push:
+    branches:
+      - civication/media-leser-role-world
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: civication/media-leser-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Media Leser Role World
+        run: node scripts/tmp-materialize-media-leser.cjs
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify Media Leser Role World
+        run: node tests/civication-media-leser-life-position-readiness.test.js
+      - name: Verify global readiness
+        run: node tests/civication-life-position-role-world-readiness.test.js
+      - name: Verify noncareer taxonomy
+        run: node tests/civication-noncareer-role-taxonomy.test.js
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify neighboring reader evidence remains isolated
+        run: |
+          node - <<'NODE'
+          const a=require('./data/Civication/lifePositionRoleWorldReadiness.json');
+          const src='data/Civication/narratives/leisure/media_leser.json';
+          for(const key of ['litteratur/leser','media/nyhetsjunkie','media/folger']){
+            const row=a.positions.find(x=>x.key===key);
+            if(!row) throw new Error(key+' missing');
+            if((row.evidence.exact_source_refs||[]).includes(src)) throw new Error(src+' leaked as exact evidence into '+key);
+            if((row.evidence.thematic_source_refs||[]).includes(src)) throw new Error(src+' leaked as thematic evidence into '+key);
+          }
+          console.log('Neighboring reader evidence remains isolated');
+          NODE
+      - name: Verify materializer syntax
+        run: node --check scripts/tmp-materialize-media-leser.cjs
+      - name: Commit materialized Media Leser state
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            data/Civication/nonCareerRoleTaxonomy.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldPolicy.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorlds/media/media_leser.json \
+            reports/civication-life-position-role-world-readiness.md \
+            tests/civication-life-position-role-world-readiness.test.js \
+            tests/civication-noncareer-role-taxonomy.test.js \
+            tests/civication-role-world-contract.test.js
+          if git diff --cached --quiet; then
+            echo 'Media Leser materialized state already synchronized.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Materialize Media Leser canonical Role World state'
+          git push origin HEAD:civication/media-leser-role-world
