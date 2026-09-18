@@ -43,6 +43,22 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  const indexed=index.roles.find(x=>x.life_position_key==='media/kommentator_felt');
  assert.ok(indexed);
  assert.equal(indexed.role_scope,'media_kommentator_felt');
+ const world=read(worldPath);
+ assert.equal(world.subject_type,'life_position');
+ assert.equal(world.status,'role_world_complete');
+ assert.deepEqual(world.life_position_ref,{badge_id:'media',id:'kommentator_felt',label:'Kommentator (felt)'});
+ assert.equal(world.materialization.no_new_runtime,true);
+ assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
+ assert.equal(world.season.coverage.length,56);
+ assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
+ assert.equal(world.materialization.source_refs.length,14);
+ assert.equal(world.primary_threads.length,14);
+ assert.equal(world.recurring_people_archetypes.length,6);
+ assert.equal(world.private_aftermath.length,5);
+ assert.equal(world.delayed_consequences.length,6);
+ assert.match(world.sociological_core.description,/Kommentarfeltveteran/);
+ assert.match(world.sociological_core.description,/Bidragsyter/);
+ assert.match(world.sociological_core.description,/Debattant/);
 } else {
  assert.equal(row.role_world_status,'role_world_not_started');
  assert.equal(audit.first_ready?.key,'media/kommentator_felt');
