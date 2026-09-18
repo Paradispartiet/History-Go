@@ -6,7 +6,7 @@ const {execFileSync}=require('node:child_process');
 const ROOT=path.resolve(__dirname,'..');
 const files=[
   'data/Civication/careerGameplayMatrix.json',
-  'reports/civication-career-gameplay.md',
+  'reports/civication-career-gameplay-matrix.md',
   'data/Civication/lifePositionRoleWorldReadiness.json',
   'reports/civication-life-position-role-world-readiness.md'
 ];
