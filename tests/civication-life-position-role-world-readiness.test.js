@@ -9,6 +9,30 @@ const { execFileSync } = require('node:child_process');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
+const diagnosticBefore = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
+execFileSync(process.execPath, [
+  path.join(ROOT, 'scripts/audit-civication-life-position-role-world-readiness.mjs'),
+  '--write'
+], { cwd: ROOT, encoding: 'utf8' });
+const diagnosticAfter = readJson('data/Civication/lifePositionRoleWorldReadiness.json');
+const beforeByKey = new Map(diagnosticBefore.positions.map((row) => [row.key, row]));
+const changedPositions = diagnosticAfter.positions
+  .filter((row) => JSON.stringify(row) !== JSON.stringify(beforeByKey.get(row.key)))
+  .map((row) => ({ key: row.key, before: beforeByKey.get(row.key), after: row }));
+const diagnostic = {
+  before_summary: diagnosticBefore.summary,
+  after_summary: diagnosticAfter.summary,
+  before_first_ready: diagnosticBefore.first_ready,
+  after_first_ready: diagnosticAfter.first_ready,
+  before_queue: diagnosticBefore.queue,
+  after_queue: diagnosticAfter.queue,
+  changed_positions: changedPositions
+};
+console.error('READINESS_GENERATOR_DIAGNOSTIC_START');
+console.error(JSON.stringify(diagnostic, null, 2));
+console.error('READINESS_GENERATOR_DIAGNOSTIC_END');
+throw new Error('diagnostic only; do not merge this head');
+
 const output = execFileSync(process.execPath, [
   path.join(ROOT, 'scripts/audit-civication-life-position-role-world-readiness.mjs'),
   '--check'
