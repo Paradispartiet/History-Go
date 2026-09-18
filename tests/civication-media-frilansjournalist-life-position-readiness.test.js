@@ -51,6 +51,22 @@ if (fs.existsSync(path.join(ROOT, worldPath))) {
   const indexed = index.roles.find((entry) => entry.life_position_key === 'media/frilansjournalist');
   assert.ok(indexed);
   assert.equal(indexed.role_scope, 'media_frilansjournalist');
+  const world = read(worldPath);
+  assert.equal(world.subject_type, 'life_position');
+  assert.equal(world.status, 'role_world_complete');
+  assert.deepEqual(world.life_position_ref, { badge_id: 'media', id: 'frilansjournalist', label: 'Frilansjournalist' });
+  assert.equal(world.materialization.no_new_runtime, true);
+  assert.deepEqual(world.season.day_phases, ['morning','lunch','afternoon','evening']);
+  assert.equal(world.season.coverage.length, 56);
+  assert.equal(new Set(world.season.coverage.map((x) => x.day + '/' + x.phase)).size, 56);
+  assert.equal(world.materialization.source_refs.length, 14);
+  assert.equal(world.primary_threads.length, 14);
+  assert.equal(world.recurring_people_archetypes.length, 6);
+  assert.equal(world.private_aftermath.length, 5);
+  assert.equal(world.delayed_consequences.length, 6);
+  assert.match(world.sociological_core.description, /Næringsliv\/Frilanser/i);
+  assert.match(world.sociological_core.description, /Journalist\/Reporter/i);
+  assert.match(world.sociological_core.description, /ingen fast jobb|ingen fast lønn/i);
 } else {
   assert.equal(row.role_world_status, 'role_world_not_started');
   assert.equal(row.role_world_path, null);

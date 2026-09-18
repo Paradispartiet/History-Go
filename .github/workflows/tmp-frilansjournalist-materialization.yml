@@ -1,0 +1,60 @@
+name: Temporary Frilansjournalist materialization
+on:
+  push:
+    branches:
+      - civication/media-frilansjournalist-role-world
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/media-frilansjournalist-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Materialize Frilansjournalist Role World
+        run: node scripts/tmp-materialize-media-frilansjournalist.mjs
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify Frilansjournalist readiness and Role World
+        run: node tests/civication-media-frilansjournalist-life-position-readiness.test.js
+      - name: Verify global readiness
+        run: node tests/civication-life-position-role-world-readiness.test.js
+      - name: Verify noncareer taxonomy
+        run: node tests/civication-noncareer-role-taxonomy.test.js
+      - name: Verify Role World contract
+        run: node tests/civication-role-world-contract.test.js
+      - name: Verify Næringsliv Frilanser regression
+        run: node tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
+      - name: Verify materializer syntax
+        run: node --check scripts/tmp-materialize-media-frilansjournalist.mjs
+      - name: Commit materialized Frilansjournalist state
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            data/Civication/nonCareerRoleTaxonomy.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldPolicy.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorlds/media/media_frilansjournalist.json \
+            reports/civication-life-position-role-world-readiness.md \
+            tests/civication-life-position-role-world-readiness.test.js \
+            tests/civication-noncareer-role-taxonomy.test.js \
+            tests/civication-role-world-contract.test.js
+          if git diff --cached --quiet; then
+            echo 'Frilansjournalist materialized state already synchronized.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Materialize Frilansjournalist canonical Role World state'
+          git push origin HEAD:civication/media-frilansjournalist-role-world
