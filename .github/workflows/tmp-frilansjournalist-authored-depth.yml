@@ -24,8 +24,17 @@ jobs:
         run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
       - name: Verify Frilansjournalist readiness
         run: node tests/civication-media-frilansjournalist-life-position-readiness.test.js
-      - name: Verify Næringsliv Frilanser remains isolated
-        run: node tests/civication-naeringsliv-frilanser-life-position-readiness.test.js
+      - name: Verify Næringsliv Frilanser evidence remains isolated
+        run: |
+          node - <<'NODE'
+          const a=require('./data/Civication/lifePositionRoleWorldReadiness.json');
+          const row=a.positions.find(x=>x.key==='naeringsliv/frilanser');
+          if (!row) throw new Error('naeringsliv/frilanser missing');
+          if ((row.evidence.thematic_source_refs||[]).includes('data/Civication/narratives/leisure/media_frilansjournalist.json')) {
+            throw new Error('Media Frilansjournalist leaked into Næringsliv Frilanser thematic evidence');
+          }
+          console.log('Næringsliv Frilanser evidence remains isolated');
+          NODE
       - name: Commit authored Frilansjournalist state
         run: |
           git add \
