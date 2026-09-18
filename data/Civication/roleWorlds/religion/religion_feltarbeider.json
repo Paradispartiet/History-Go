@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_feltarbeider",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "feltarbeider",
+    "label": "Feltarbeider"
+  },
+  "title": "Feltarbeider",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å følge religiøse og livssynsrelaterte sosiale sammenhenger over tid med avtalt tilgang, sporbare feltnotater og respekt for menneskers kontroll, uten å gjøre nærhet, mengde materiale eller metodisk disiplin til automatisk forskningsautoritet",
+    "description": "Feltarbeider er en employment-independent fieldwork_practice. Rollen handler om avtalt tilgang, feltnotater, løpende samtykke, identifiserbarhet, posisjonalitet, portvoktergrenser, språklig tolking, opptaksgrenser, gjensidighet, utvalgsskjevhet, tidskontekst, feltavslutning og videre bruk av materiale. Den er mer systematisk og relasjonelt langvarig enn Trosstedsvandrerens besøkspraksis, men er ikke Religion/Forskning: den gir ingen akademisk stilling, forskningsetisk godkjenning, institusjonelt mandat, profesjonell metodeautoritet, lønn eller rett til å kalle egne påstander forskningsfunn. Den er også ulik Natur/Feltobservatør, som følger sted- og naturforhold fremfor menneskelige tros- og livssynsmiljøer. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "professional_culture",
+    "care_vs_efficiency",
+    "bureaucratic_power",
+    "public_private_leakage",
+    "shame_reputation",
+    "social_mask",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "avtalte feltperioder der adgang må forhandles konkret og kan endres",
+    "sosiale aktiviteter der feltnotater og opptak må avgrenses mot menneskers kontroll",
+    "gjentatte feltøkter der nærhet og fortrolighet kan skape falsk innsiderstatus",
+    "språklige situasjoner der lokale begreper ikke lar seg redusere til én enkel oversettelse",
+    "feltmateriale der synlige deltakere lett kan bli feilaktig behandlet som hele miljøet",
+    "etterarbeid der videre bruk, sitater og påstander må holdes innenfor tilgangens og materialets faktiske grenser"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "kontaktpersonen",
+      "social_function": "åpner og avgrenser praktisk tilgang uten å kunne samtykke på vegne av alle",
+      "class_position": "lokal kontakt med organisatorisk oversikt",
+      "status": "høy på praktisk adgang, begrenset over andres personlige grenser",
+      "power_over_player": "kan invitere, avgrense eller avslutte feltadgang",
+      "wants": "forutsigbar feltpraksis som ikke skaper merarbeid eller uro",
+      "conceals": "at egne interesser påvirker hvilke personer og situasjoner feltarbeideren får se",
+      "speech_style": "praktisk, kort og løsningsorientert",
+      "teaches_player": "at portvoktertilgang aldri erstatter individuell kontroll"
+    },
+    {
+      "id": "deltakeren",
+      "social_function": "viser hvordan samtykke, identifiserbarhet og videre bruk oppleves fra den som faktisk inngår i materialet",
+      "class_position": "person i det sosiale miljøet uten ansvar for feltarbeideren",
+      "status": "full myndighet over egen medvirkning, ikke nødvendigvis over miljøet som helhet",
+      "power_over_player": "kan trekke seg, korrigere eller begrense hva som brukes",
+      "wants": "å kunne delta i eget miljø uten å miste kontroll over personlige opplysninger",
+      "conceals": "at grensene kan endres med tema og dagsform",
+      "speech_style": "personlig, konkret og grensesettende",
+      "teaches_player": "at samtykke er situert og reversibelt"
+    },
+    {
+      "id": "feltvennen",
+      "social_function": "utfordrer etterpåklokskap, skjeve utsnitt og ideen om at feltarbeideren er nøytral",
+      "class_position": "likestilt privat feltpraktiker uten profesjonell autoritet",
+      "status": "troverdig gjennom ryddige notater og selverkjente grenser",
+      "power_over_player": "kan avsløre svake slutninger før de blir til bastante påstander",
+      "wants": "at materialet forblir sporbarere enn minnet",
+      "conceals": "at også egen metode har blinde soner",
+      "speech_style": "nøktern, kollegial og korrigerende",
+      "teaches_player": "at feltpraksis må tåle usikkerhet"
+    },
+    {
+      "id": "sprakbroen",
+      "social_function": "viser hvor oversettelse hjelper og hvor den samtidig kan forflate lokale begreper",
+      "class_position": "person med språk- og kontekstkunnskap, uten automatisk tolkningsmonopol",
+      "status": "høy på språklig nyanse i konkrete sammenhenger",
+      "power_over_player": "kan endre hvordan et begrep eller sitat forstås",
+      "wants": "at språklige forskjeller ikke blir visket bort for enkelhets skyld",
+      "conceals": "at egne oversettelsesvalg også er fortolkninger",
+      "speech_style": "presis, sammenlignende og forbeholden",
+      "teaches_player": "at oversettelse er en kunnskapsgrense"
+    },
+    {
+      "id": "den_skeptiske",
+      "social_function": "tester om feltarbeideren faktisk respekterer opptaksgrenser, ny bruk og retten til å si nei",
+      "class_position": "deltaker som ikke tar feltarbeiderens gode intensjon for gitt",
+      "status": "lav formell makt, høy kontroll over eget materiale",
+      "power_over_player": "kan nekte opptak, sitat eller videre medvirkning",
+      "wants": "at kontrollmuligheter skal være reelle, ikke bare høflige formuleringer",
+      "conceals": "at skepsisen også bygger på tidligere dårlige erfaringer",
+      "speech_style": "direkte, knapp og prøvende",
+      "teaches_player": "at tillatelse må tåle et faktisk nei"
+    },
+    {
+      "id": "notatpartneren",
+      "social_function": "skiller feltpraksis fra profesjonell forskning når materialet skal oppsummeres",
+      "class_position": "kunnskapsinteressert privatperson uten akademisk mandat",
+      "status": "tillit gjennom presise avgrensninger",
+      "power_over_player": "kan presse brede formuleringer tilbake til det materialet faktisk støtter",
+      "wants": "at påstander ikke får høyere status enn praksisen",
+      "conceals": "at sterke forbehold kan gjøre formidlingen mindre imponerende",
+      "speech_style": "rolig, analytisk og konkret",
+      "teaches_player": "at feltmateriale ikke automatisk er forskningsfunn"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "access_vs_entitlement",
+      "meaning": "avtalt tilgang mot antatt generell adgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "memory_vs_fieldnote",
+      "meaning": "rekonstruksjon mot sporbare feltnotater",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "consent_vs_continuity",
+      "meaning": "tidligere samtykke mot løpende kontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_vs_anonymity",
+      "meaning": "detaljrikdom mot identifiserbarhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "position_vs_neutrality",
+      "meaning": "egen posisjon mot forestilt nøytralitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "gatekeeper_vs_participant_agency",
+      "meaning": "portvokteradgang mot den enkeltes grenser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "translation_vs_smoothing",
+      "meaning": "praktisk oversettelse mot utvisket betydningsforskjell",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "recording_vs_presence",
+      "meaning": "komplett opptak mot menneskelig kontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reciprocity_vs_purchase",
+      "meaning": "gjensidighet mot kjøpt tilgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visible_group_vs_whole",
+      "meaning": "synlige stemmer mot hele miljøet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "special_day_vs_baseline",
+      "meaning": "særskilt dag mot vanlig praksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_vs_obligation",
+      "meaning": "feltavslutning mot uklare relasjonsforpliktelser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sharing_vs_reconsent",
+      "meaning": "ny bruk mot tidligere samtykkeramme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "field_practice_vs_research_authority",
+      "meaning": "feltpraksis mot profesjonell forskningsautoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Tilgang er avtalt, ikke overtatt.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Tilgang er avtalt, ikke overtatt.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Tilgang er avtalt, ikke overtatt.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Tilgang er avtalt, ikke overtatt.",
+        "thread_ids": [
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Minnet er tydeligere enn notatet.",
+        "thread_ids": [
+          "memory_vs_fieldnote",
+          "access_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Minnet er tydeligere enn notatet.",
+        "thread_ids": [
+          "memory_vs_fieldnote"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Minnet er tydeligere enn notatet.",
+        "thread_ids": [
+          "memory_vs_fieldnote"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Minnet er tydeligere enn notatet.",
+        "thread_ids": [
+          "memory_vs_fieldnote"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Et ja fra i går er ikke et ja for alltid.",
+        "thread_ids": [
+          "consent_vs_continuity",
+          "memory_vs_fieldnote"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Et ja fra i går er ikke et ja for alltid.",
+        "thread_ids": [
+          "consent_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Et ja fra i går er ikke et ja for alltid.",
+        "thread_ids": [
+          "consent_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Et ja fra i går er ikke et ja for alltid.",
+        "thread_ids": [
+          "consent_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Trenger du egentlig navnet?.",
+        "thread_ids": [
+          "identity_vs_anonymity",
+          "consent_vs_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Trenger du egentlig navnet?.",
+        "thread_ids": [
+          "identity_vs_anonymity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Trenger du egentlig navnet?.",
+        "thread_ids": [
+          "identity_vs_anonymity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Trenger du egentlig navnet?.",
+        "thread_ids": [
+          "identity_vs_anonymity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Du er også en del av situasjonen.",
+        "thread_ids": [
+          "position_vs_neutrality",
+          "identity_vs_anonymity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Du er også en del av situasjonen.",
+        "thread_ids": [
+          "position_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Du er også en del av situasjonen.",
+        "thread_ids": [
+          "position_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Du er også en del av situasjonen.",
+        "thread_ids": [
+          "position_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Kontaktpersonen kan ikke samtykke for alle.",
+        "thread_ids": [
+          "gatekeeper_vs_participant_agency",
+          "position_vs_neutrality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Kontaktpersonen kan ikke samtykke for alle.",
+        "thread_ids": [
+          "gatekeeper_vs_participant_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Kontaktpersonen kan ikke samtykke for alle.",
+        "thread_ids": [
+          "gatekeeper_vs_participant_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Kontaktpersonen kan ikke samtykke for alle.",
+        "thread_ids": [
+          "gatekeeper_vs_participant_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Det nærmeste norske ordet passer ikke helt.",
+        "thread_ids": [
+          "translation_vs_smoothing",
+          "gatekeeper_vs_participant_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Det nærmeste norske ordet passer ikke helt.",
+        "thread_ids": [
+          "translation_vs_smoothing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Det nærmeste norske ordet passer ikke helt.",
+        "thread_ids": [
+          "translation_vs_smoothing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Det nærmeste norske ordet passer ikke helt.",
+        "thread_ids": [
+          "translation_vs_smoothing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Opptaket endrer hva som kan sies.",
+        "thread_ids": [
+          "recording_vs_presence",
+          "translation_vs_smoothing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Opptaket endrer hva som kan sies.",
+        "thread_ids": [
+          "recording_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Opptaket endrer hva som kan sies.",
+        "thread_ids": [
+          "recording_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Opptaket endrer hva som kan sies.",
+        "thread_ids": [
+          "recording_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Hva skylder en feltarbeider tilbake?.",
+        "thread_ids": [
+          "reciprocity_vs_purchase",
+          "recording_vs_presence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Hva skylder en feltarbeider tilbake?.",
+        "thread_ids": [
+          "reciprocity_vs_purchase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Hva skylder en feltarbeider tilbake?.",
+        "thread_ids": [
+          "reciprocity_vs_purchase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Hva skylder en feltarbeider tilbake?.",
+        "thread_ids": [
+          "reciprocity_vs_purchase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: De synlige er ikke nødvendigvis hele miljøet.",
+        "thread_ids": [
+          "visible_group_vs_whole",
+          "reciprocity_vs_purchase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: De synlige er ikke nødvendigvis hele miljøet.",
+        "thread_ids": [
+          "visible_group_vs_whole"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: De synlige er ikke nødvendigvis hele miljøet.",
+        "thread_ids": [
+          "visible_group_vs_whole"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: De synlige er ikke nødvendigvis hele miljøet.",
+        "thread_ids": [
+          "visible_group_vs_whole"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Denne dagen er ikke en gjennomsnittsdag.",
+        "thread_ids": [
+          "special_day_vs_baseline",
+          "visible_group_vs_whole"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Denne dagen er ikke en gjennomsnittsdag.",
+        "thread_ids": [
+          "special_day_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Denne dagen er ikke en gjennomsnittsdag.",
+        "thread_ids": [
+          "special_day_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Denne dagen er ikke en gjennomsnittsdag.",
+        "thread_ids": [
+          "special_day_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Når feltperioden er over, hva skjer med relasjonen?.",
+        "thread_ids": [
+          "exit_vs_obligation",
+          "special_day_vs_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Når feltperioden er over, hva skjer med relasjonen?.",
+        "thread_ids": [
+          "exit_vs_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Når feltperioden er over, hva skjer med relasjonen?.",
+        "thread_ids": [
+          "exit_vs_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Når feltperioden er over, hva skjer med relasjonen?.",
+        "thread_ids": [
+          "exit_vs_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Et sitat skifter risiko når publikum skifter.",
+        "thread_ids": [
+          "sharing_vs_reconsent",
+          "exit_vs_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Et sitat skifter risiko når publikum skifter.",
+        "thread_ids": [
+          "sharing_vs_reconsent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Et sitat skifter risiko når publikum skifter.",
+        "thread_ids": [
+          "sharing_vs_reconsent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Et sitat skifter risiko når publikum skifter.",
+        "thread_ids": [
+          "sharing_vs_reconsent",
+          "field_practice_vs_research_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva kan du faktisk si etter feltet?.",
+        "thread_ids": [
+          "field_practice_vs_research_authority",
+          "sharing_vs_reconsent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva kan du faktisk si etter feltet?.",
+        "thread_ids": [
+          "field_practice_vs_research_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva kan du faktisk si etter feltet?.",
+        "thread_ids": [
+          "field_practice_vs_research_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva kan du faktisk si etter feltet?.",
+        "thread_ids": [
+          "field_practice_vs_research_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "access_vs_entitlement",
+      "relationship": "avtalt tilgang mot antatt generell adgang",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "memory_vs_fieldnote",
+      "relationship": "rekonstruksjon mot sporbare feltnotater",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "consent_vs_continuity",
+      "relationship": "tidligere samtykke mot løpende kontroll",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "identity_vs_anonymity",
+      "relationship": "detaljrikdom mot identifiserbarhet",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "position_vs_neutrality",
+      "relationship": "egen posisjon mot forestilt nøytralitet",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "gatekeeper_vs_participant_agency",
+      "relationship": "portvokteradgang mot den enkeltes grenser",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "translation_vs_smoothing",
+      "relationship": "praktisk oversettelse mot utvisket betydningsforskjell",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "recording_vs_presence",
+      "relationship": "komplett opptak mot menneskelig kontroll",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "reciprocity_vs_purchase",
+      "relationship": "gjensidighet mot kjøpt tilgang",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "visible_group_vs_whole",
+      "relationship": "synlige stemmer mot hele miljøet",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "special_day_vs_baseline",
+      "relationship": "særskilt dag mot vanlig praksis",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "exit_vs_obligation",
+      "relationship": "feltavslutning mot uklare relasjonsforpliktelser",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "sharing_vs_reconsent",
+      "relationship": "ny bruk mot tidligere samtykkeramme",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "field_practice_vs_research_authority",
+      "relationship": "feltpraksis mot profesjonell forskningsautoritet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "tilgang_blir_lopende",
+      "description": "Adgang behandles som en forhandlet og reviserbar sosial ramme fremfor en engangstillatelse.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle"
+      ]
+    },
+    {
+      "id": "notatet_blir_sporbart",
+      "description": "Feltnotater skiller samtidige registreringer, senere rekonstruksjon og egen posisjon tydeligere.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette"
+      ]
+    },
+    {
+      "id": "mennesker_beholder_kontroll",
+      "description": "Identifiserbarhet, opptak og ny bruk får sterkere grenser rundt den enkeltes råderett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre"
+      ]
+    },
+    {
+      "id": "utsnittet_blir_synlig",
+      "description": "Gjensidighet, synlige stemmer og særskilte tidspunkt blir behandlet som kilder til skjevhet fremfor nøytrale fakta.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag"
+      ]
+    },
+    {
+      "id": "feltrollen_far_en_slutt",
+      "description": "Avslutning og oppsummering gjør det tydelig når feltrollen opphører og hvor påstandens autoritet stopper.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes",
+        "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "adgang_moter_samtykke",
+      "setup_ref": "1/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "authority",
+        "relationship"
+      ]
+    },
+    {
+      "id": "notat_moter_posisjon",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "identitet_moter_opptak",
+      "setup_ref": "4/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "portvokter_moter_utvalg",
+      "setup_ref": "6/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "authority",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "gjensidighet_moter_exit",
+      "setup_ref": "9/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "status"
+      ]
+    },
+    {
+      "id": "ny_bruk_moter_pastand",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "knowledge"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#avtalt_adgang",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#feltnotatet_etter_hendelsen",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#samtykke_som_kan_trekkes",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#navnet_i_notatboken",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#egen_posisjon_i_rommet",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#portvokteren_eier_ikke_alle",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#ordet_som_ikke_lar_seg_oversette",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#opptaket_som_bor_stoppe",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#gjensidighet_uten_kjop",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#hvem_som_ble_med",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#hoytiden_som_ikke_er_normaldag",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#feltkontakt_som_avsluttes",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#sitatet_som_skal_videre",
+      "data/Civication/narratives/leisure/religion_feltarbeider.json#fra_felt_til_pastand"
+    ]
+  }
+}
