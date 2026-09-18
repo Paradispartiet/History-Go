@@ -8,7 +8,7 @@ const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 const overlay=read('data/Civication/badgeCareerContracts/natur.json');
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
-const lifeId=['felt','observator'].join('');
+const lifeId=['natur','interessert'].join('');
 const lifeKey=['natur',lifeId].join('/');
 const lifeScope=['natur',lifeId].join('_');
 const streamPath=['data','Civication','narratives','leisure',lifeScope+'.json'].join('/');
@@ -16,8 +16,8 @@ const worldPath=['data','Civication','roleWorlds','natur',lifeScope+'.json'].joi
 const stream=read(streamPath);
 const tier=overlay.tiers.find(x=>x.life_position?.id===lifeId);
 assert.ok(tier);
-assert.equal(tier.label,'Feltobservatør');
-assert.equal(tier.life_position.kind,'field_observation_practice');
+assert.equal(tier.label,'Naturinteressert');
+assert.equal(tier.life_position.kind,'nature_interest');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
 assert.equal(tier.career_unlock,undefined);
@@ -35,13 +35,9 @@ assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
-const naturinteressert=audit.positions.find(x=>x.key==='natur/naturinteressert');
-assert.ok(naturinteressert);
-assert.equal(naturinteressert.classification,'ready');
-assert.ok(!(naturinteressert.evidence.thematic_source_refs||[]).includes(streamPath));
-for(const key of ['natur/artsjeger','natur/fuglekikker','natur/turgaer','natur/artsobservator']){
+for(const key of ['natur/feltobservator','natur/artsobservator','natur/artsjeger','natur/fuglekikker','natur/sanker','natur/turgaer']){
  const neighbor=audit.positions.find(x=>x.key===key);
- assert.ok(neighbor);
+ assert.ok(neighbor,key);
  assert.equal(neighbor.classification,'ready',key+' must remain ready');
  assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
@@ -56,7 +52,7 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  const world=read(worldPath);
  assert.equal(world.subject_type,'life_position');
  assert.equal(world.status,'role_world_complete');
- assert.deepEqual(world.life_position_ref,{badge_id:'natur',id:lifeId,label:'Feltobservatør'});
+ assert.deepEqual(world.life_position_ref,{badge_id:'natur',id:lifeId,label:'Naturinteressert'});
  assert.equal(world.materialization.no_new_runtime,true);
  assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
  assert.equal(world.season.coverage.length,56);
@@ -66,14 +62,13 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  assert.equal(world.recurring_people_archetypes.length,6);
  assert.equal(world.private_aftermath.length,5);
  assert.equal(world.delayed_consequences.length,6);
+ assert.match(world.sociological_core.description,/Turgåer/);
  assert.match(world.sociological_core.description,/Artsobservatør/);
- assert.match(world.sociological_core.description,/Artsjeger/);
- assert.match(world.sociological_core.description,/Naturinteressert/);
+ assert.match(world.sociological_core.description,/Feltobservatør/);
  assert.match(world.sociological_core.description,/Feltassistent/);
- assert.match(world.sociological_core.description,/Naturveileder/);
 }else{
  assert.equal(row.role_world_status,'role_world_not_started');
  assert.equal(row.role_world_path,null);
  assert.equal(audit.first_ready?.key,lifeKey);
 }
-console.log('Feltobservatør readiness gate ok: field observation practice remains separate from species observation and Natur career worlds');
+console.log('Naturinteressert readiness gate ok: broad nature interest remains separate from specialized Natur practices and careers');
