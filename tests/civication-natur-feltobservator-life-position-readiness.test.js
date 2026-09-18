@@ -37,7 +37,7 @@ assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
 const naturinteressert=audit.positions.find(x=>x.key==='natur/naturinteressert');
 assert.ok(naturinteressert);
-assert.equal(naturinteressert.classification,'needs_authored_depth');
+assert.equal(naturinteressert.classification,'ready');
 assert.ok(!(naturinteressert.evidence.thematic_source_refs||[]).includes(streamPath));
 for(const key of ['natur/artsjeger','natur/fuglekikker','natur/turgaer','natur/artsobservator']){
  const neighbor=audit.positions.find(x=>x.key===key);
