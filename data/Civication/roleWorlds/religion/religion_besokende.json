@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_besokende",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "besokende",
+    "label": "Besøkende"
+  },
+  "title": "Besøkende",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gå inn i religiøse og livssynsrelaterte sosiale sammenhenger som gjest med nysgjerrighet, samtidig som invitasjonens ramme, deltakelsesgrenser, frivillig forklaring og begrenset slutningsrett respekteres",
+    "description": "Besøkende er en lavterskel visitor_practice: en situasjonsbundet gjesterolle i en konkret samling eller aktivitet. Den er smalere enn Trosstedsvandrer, som bygger flerbesøkskompetanse rundt tros- og livssynssteder; den er ikke Pilegrim, som organiserer en reisepraksis rundt mening; og den er ikke Livssynsutforsker, som sammenligner livssyn og fortolkninger. Gjentatte invitasjoner gir ikke i seg selv medlemskap, representasjonsmyndighet, religiøs autoritet eller profesjonell status. Verden bruker eksisterende scene- og konsekvensflater og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "care_vs_efficiency",
+    "bureaucratic_power",
+    "shame_reputation",
+    "public_private_leakage",
+    "professional_culture",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "åpne samlinger der en vert gjør deler av aktiviteten tilgjengelig for nye gjester",
+    "inngang og plassering der lokale signaler må leses før gjesten tar rom eller rolle",
+    "seremonielle sekvenser der observasjon og deltakelse har ulike grenser",
+    "pauser, kaffe og måltider der spørsmål, gjestfrihet og personlige behov forhandles sosialt",
+    "hverdagsarbeid med rydding, barn, frivillige og praktiske oppgaver som gjør miljøet mindre eksotisk",
+    "etterarbeid og deling der én konkret erfaring lett kan bli gjort til en for bred forklaring"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "verten",
+      "social_function": "avgrenser invitasjonen og gjør gjesterollen forståelig uten å kreve forhåndskunnskap",
+      "class_position": "lokal vert med situasjonsmyndighet for den konkrete samlingen",
+      "status": "høy på praktisk gjestekunnskap, ikke automatisk talsperson for hele tradisjonen",
+      "power_over_player": "kan åpne, avgrense eller avslutte gjestens tilgang til aktiviteter",
+      "wants": "at nye gjester kan være trygge uten å forstyrre andre",
+      "conceals": "at gjestearbeid kan kreve mer emosjonelt og praktisk arbeid enn gjesten ser",
+      "speech_style": "varm, konkret og grensesettende",
+      "teaches_player": "at en invitasjon alltid har en faktisk sosial ramme"
+    },
+    {
+      "id": "medlemmet",
+      "social_function": "viser hvordan personlige erfaringer kan være informative uten å være universelle",
+      "class_position": "deltaker eller medlem med førstehåndserfaring fra eget miljø",
+      "status": "legitim stemme om egen erfaring, men ikke nødvendig autoritet for alle",
+      "power_over_player": "kan velge om spørsmål besvares og korrigere overgeneralisering",
+      "wants": "å delta på egne premisser uten å bli gjort til obligatorisk informant",
+      "conceals": "at egen praksis også kan avvike fra andres",
+      "speech_style": "personlig, presis og tidvis utålmodig",
+      "teaches_player": "at nærhet til én person ikke gir en fasit på en hel tradisjon"
+    },
+    {
+      "id": "frivilligen",
+      "social_function": "synliggjør logistikk, mat, rydding og praktisk omsorg bak arrangementet",
+      "class_position": "frivillig med konkret arbeidsansvar, uten formell profesjonsmyndighet",
+      "status": "høy lokal kunnskap om hvordan samlingen faktisk fungerer",
+      "power_over_player": "kan styre praktisk flyt og be gjester bidra eller trekke seg tilbake",
+      "wants": "at hverdagsarbeidet fordeles uten at gjester skaper merarbeid",
+      "conceals": "at frivillig innsats ofte tas som en usynlig selvfølge",
+      "speech_style": "praktisk, humoristisk og direkte",
+      "teaches_player": "at religiøse miljøer også består av ordinært sosialt arbeid"
+    },
+    {
+      "id": "medbesokeren",
+      "social_function": "speiler gjestens usikkerhet, prestasjonspress og trang til raske konklusjoner",
+      "class_position": "likestilt gjest uten intern status",
+      "status": "ingen formell autoritet, men kan påvirke hvordan nye gjester tolker situasjonen",
+      "power_over_player": "kan normalisere både forsiktig observasjon og sosial overprestasjon",
+      "wants": "å gjøre et godt inntrykk og forstå hva som skjer",
+      "conceals": "at ønsket om å virke respektfull kan bli en ny form for selvopptatthet",
+      "speech_style": "nysgjerrig, rask og litt selvbevisst",
+      "teaches_player": "at også gjester skaper sosiale normer for hverandre"
+    },
+    {
+      "id": "arrangementsansvarlig",
+      "social_function": "holder grensen mellom offentlig adgang, program, personvern og praktisk sikkerhet",
+      "class_position": "person med delegert ansvar for den konkrete aktiviteten",
+      "status": "høy situasjonsmyndighet, men ikke nødvendigvis teologisk eller faglig autoritet",
+      "power_over_player": "kan fastsette foto-, plass- og deltakelsesgrenser",
+      "wants": "at arrangementet skal være åpent uten at åpenheten brukes til å overskride andres grenser",
+      "conceals": "at regler ofte er kompromisser mellom ulike hensyn",
+      "speech_style": "kort, tydelig og prosedyreorientert",
+      "teaches_player": "at offentlig adgang ikke betyr fri bruk av alt som skjer"
+    },
+    {
+      "id": "kildevennen",
+      "social_function": "hjelper spilleren å skille observasjon, lokal forklaring og egen tolkning etter besøket",
+      "class_position": "kunnskapsinteressert privatperson uten religiøs eller profesjonell myndighet",
+      "status": "troverdighet gjennom presise forbehold og kildegrenser",
+      "power_over_player": "kan utfordre en elegant, men for bred fortelling",
+      "wants": "at besøket blir husket presist fremfor spektakulært",
+      "conceals": "at overdreven forsiktighet også kan gjøre erfaringer flate",
+      "speech_style": "rolig, konkret og analytisk",
+      "teaches_player": "at gjesteerfaring gir situert kunnskap, ikke representasjonsrett"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "invitation_scope",
+      "meaning": "avgrenset invitasjon mot antatt generell adgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_cues_vs_stereotype",
+      "meaning": "lokale signaler mot stereotype forhåndsregler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "space_vs_entitlement",
+      "meaning": "ledig fysisk plass mot sosialt legitim plassering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_participation",
+      "meaning": "observasjon mot deltakelse uten eksplisitt åpning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_timing",
+      "meaning": "nysgjerrighet mot andres kontroll over tid og forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "hospitality_vs_performance",
+      "meaning": "gjestfrihet mot prestasjon av den perfekte gjesten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "community_vs_exhibit",
+      "meaning": "hverdagsarbeid mot et rent høytidsblikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "donation_vs_access",
+      "meaning": "frivillig støtte mot sosialt press og kjøpt adgang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "plurality_vs_single_voice",
+      "meaning": "intern variasjon mot én autoritativ stemme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_event_vs_private_moment",
+      "meaning": "offentlig arrangement mot private og sårbare øyeblikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "familiarity_vs_membership",
+      "meaning": "fortrolighet mot medlemskap og representasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_vs_verdict",
+      "meaning": "personlig grense mot universell dom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sharing_vs_representation",
+      "meaning": "egen erfaring mot å tale for en hel tradisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observation_vs_generalization",
+      "meaning": "observasjon og forklaring mot overdreven generalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Du er invitert — men til hva?.",
+        "thread_ids": [
+          "invitation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Du er invitert — men til hva?.",
+        "thread_ids": [
+          "invitation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Du er invitert — men til hva?.",
+        "thread_ids": [
+          "invitation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Du er invitert — men til hva?.",
+        "thread_ids": [
+          "invitation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hva forventes akkurat her?.",
+        "thread_ids": [
+          "local_cues_vs_stereotype",
+          "invitation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hva forventes akkurat her?.",
+        "thread_ids": [
+          "local_cues_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Hva forventes akkurat her?.",
+        "thread_ids": [
+          "local_cues_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hva forventes akkurat her?.",
+        "thread_ids": [
+          "local_cues_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Hvor setter en gjest seg?.",
+        "thread_ids": [
+          "space_vs_entitlement",
+          "local_cues_vs_stereotype"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Hvor setter en gjest seg?.",
+        "thread_ids": [
+          "space_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Hvor setter en gjest seg?.",
+        "thread_ids": [
+          "space_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Hvor setter en gjest seg?.",
+        "thread_ids": [
+          "space_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Når blir iakttakelse til deltakelse?.",
+        "thread_ids": [
+          "observation_vs_participation",
+          "space_vs_entitlement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Når blir iakttakelse til deltakelse?.",
+        "thread_ids": [
+          "observation_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Når blir iakttakelse til deltakelse?.",
+        "thread_ids": [
+          "observation_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Når blir iakttakelse til deltakelse?.",
+        "thread_ids": [
+          "observation_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Er dette et godt tidspunkt å spørre?.",
+        "thread_ids": [
+          "curiosity_vs_timing",
+          "observation_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Er dette et godt tidspunkt å spørre?.",
+        "thread_ids": [
+          "curiosity_vs_timing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Er dette et godt tidspunkt å spørre?.",
+        "thread_ids": [
+          "curiosity_vs_timing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Er dette et godt tidspunkt å spørre?.",
+        "thread_ids": [
+          "curiosity_vs_timing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Vertskap er ikke en prøve du må bestå.",
+        "thread_ids": [
+          "hospitality_vs_performance",
+          "curiosity_vs_timing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Vertskap er ikke en prøve du må bestå.",
+        "thread_ids": [
+          "hospitality_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Vertskap er ikke en prøve du må bestå.",
+        "thread_ids": [
+          "hospitality_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Vertskap er ikke en prøve du må bestå.",
+        "thread_ids": [
+          "hospitality_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Samlingen er også dagligliv.",
+        "thread_ids": [
+          "community_vs_exhibit",
+          "hospitality_vs_performance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Samlingen er også dagligliv.",
+        "thread_ids": [
+          "community_vs_exhibit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Samlingen er også dagligliv.",
+        "thread_ids": [
+          "community_vs_exhibit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Samlingen er også dagligliv.",
+        "thread_ids": [
+          "community_vs_exhibit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Donasjon er ikke adgangsbillett.",
+        "thread_ids": [
+          "donation_vs_access",
+          "community_vs_exhibit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Donasjon er ikke adgangsbillett.",
+        "thread_ids": [
+          "donation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Donasjon er ikke adgangsbillett.",
+        "thread_ids": [
+          "donation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Donasjon er ikke adgangsbillett.",
+        "thread_ids": [
+          "donation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: To medlemmer svarer ulikt.",
+        "thread_ids": [
+          "plurality_vs_single_voice",
+          "donation_vs_access"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: To medlemmer svarer ulikt.",
+        "thread_ids": [
+          "plurality_vs_single_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: To medlemmer svarer ulikt.",
+        "thread_ids": [
+          "plurality_vs_single_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: To medlemmer svarer ulikt.",
+        "thread_ids": [
+          "plurality_vs_single_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Åpent arrangement, private øyeblikk.",
+        "thread_ids": [
+          "public_event_vs_private_moment",
+          "plurality_vs_single_voice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Åpent arrangement, private øyeblikk.",
+        "thread_ids": [
+          "public_event_vs_private_moment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Åpent arrangement, private øyeblikk.",
+        "thread_ids": [
+          "public_event_vs_private_moment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Åpent arrangement, private øyeblikk.",
+        "thread_ids": [
+          "public_event_vs_private_moment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Gjentatt gjest er fortsatt gjest.",
+        "thread_ids": [
+          "familiarity_vs_membership",
+          "public_event_vs_private_moment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Gjentatt gjest er fortsatt gjest.",
+        "thread_ids": [
+          "familiarity_vs_membership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Gjentatt gjest er fortsatt gjest.",
+        "thread_ids": [
+          "familiarity_vs_membership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Gjentatt gjest er fortsatt gjest.",
+        "thread_ids": [
+          "familiarity_vs_membership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du kan gå uten å gjøre det til en dom.",
+        "thread_ids": [
+          "exit_vs_verdict",
+          "familiarity_vs_membership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du kan gå uten å gjøre det til en dom.",
+        "thread_ids": [
+          "exit_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du kan gå uten å gjøre det til en dom.",
+        "thread_ids": [
+          "exit_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du kan gå uten å gjøre det til en dom.",
+        "thread_ids": [
+          "exit_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Din opplevelse er ikke hele tradisjonen.",
+        "thread_ids": [
+          "sharing_vs_representation",
+          "exit_vs_verdict"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Din opplevelse er ikke hele tradisjonen.",
+        "thread_ids": [
+          "sharing_vs_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Din opplevelse er ikke hele tradisjonen.",
+        "thread_ids": [
+          "sharing_vs_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Din opplevelse er ikke hele tradisjonen.",
+        "thread_ids": [
+          "sharing_vs_representation",
+          "observation_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva lærte du egentlig?.",
+        "thread_ids": [
+          "observation_vs_generalization",
+          "sharing_vs_representation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva lærte du egentlig?.",
+        "thread_ids": [
+          "observation_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva lærte du egentlig?.",
+        "thread_ids": [
+          "observation_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva lærte du egentlig?.",
+        "thread_ids": [
+          "observation_vs_generalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "invitation_scope",
+      "relationship": "avgrenset invitasjon mot antatt generell adgang",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "local_cues_vs_stereotype",
+      "relationship": "lokale signaler mot stereotype forhåndsregler",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "space_vs_entitlement",
+      "relationship": "ledig fysisk plass mot sosialt legitim plassering",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "observation_vs_participation",
+      "relationship": "observasjon mot deltakelse uten eksplisitt åpning",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "curiosity_vs_timing",
+      "relationship": "nysgjerrighet mot andres kontroll over tid og forklaring",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "hospitality_vs_performance",
+      "relationship": "gjestfrihet mot prestasjon av den perfekte gjesten",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "community_vs_exhibit",
+      "relationship": "hverdagsarbeid mot et rent høytidsblikk",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "donation_vs_access",
+      "relationship": "frivillig støtte mot sosialt press og kjøpt adgang",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "plurality_vs_single_voice",
+      "relationship": "intern variasjon mot én autoritativ stemme",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "public_event_vs_private_moment",
+      "relationship": "offentlig arrangement mot private og sårbare øyeblikk",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "familiarity_vs_membership",
+      "relationship": "fortrolighet mot medlemskap og representasjon",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "exit_vs_verdict",
+      "relationship": "personlig grense mot universell dom",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "sharing_vs_representation",
+      "relationship": "egen erfaring mot å tale for en hel tradisjon",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "observation_vs_generalization",
+      "relationship": "observasjon og forklaring mot overdreven generalisering",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "gjesterollen_blir_presis",
+      "description": "Invitasjon, ankomst og plassering blir lest som konkrete sosiale rammer i stedet for generell adgang.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet",
+        "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit",
+        "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar"
+      ]
+    },
+    {
+      "id": "deltakelse_faar_grenser",
+      "description": "Seremoni, spørsmål og personlige øyeblikk får tydeligere grenser rundt samtykke og frivillig forklaring.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen",
+        "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen",
+        "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk"
+      ]
+    },
+    {
+      "id": "vertskap_uten_prestasjon",
+      "description": "Mat, hverdagsarbeid og økonomiske bidrag behandles som gjensidige praksiser uten krav om å prestere den perfekte gjesten.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken",
+        "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv",
+        "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren"
+      ]
+    },
+    {
+      "id": "variasjon_uten_fasit",
+      "description": "Ulike svar og gjentatt kontakt gir mer kunnskap uten å bli gjort om til medlemskap eller én autoritativ stemme.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra",
+        "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen"
+      ]
+    },
+    {
+      "id": "erfaringen_blir_avgrenset",
+      "description": "Avreise, viderefortelling og oppsummering skiller egen erfaring fra bredere påstander.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar",
+        "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa",
+        "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "invitasjon_moter_deltakelse",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "authority",
+        "relationship"
+      ]
+    },
+    {
+      "id": "plass_moter_privatsone",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "sporsmal_moter_variasjon",
+      "setup_ref": "5/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "vertskap_moter_bidrag",
+      "setup_ref": "6/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "status",
+        "relationship"
+      ]
+    },
+    {
+      "id": "hverdag_moter_fortrolighet",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "identity",
+        "authority"
+      ]
+    },
+    {
+      "id": "avreise_moter_fortelling",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "knowledge"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_besokende.json#invitasjonen_har_rammet",
+      "data/Civication/narratives/leisure/religion_besokende.json#ankomst_uten_fasit",
+      "data/Civication/narratives/leisure/religion_besokende.json#plassen_du_tar",
+      "data/Civication/narratives/leisure/religion_besokende.json#seremonien_og_gjesterollen",
+      "data/Civication/narratives/leisure/religion_besokende.json#sporsmalet_i_pausen",
+      "data/Civication/narratives/leisure/religion_besokende.json#bordet_og_takken",
+      "data/Civication/narratives/leisure/religion_besokende.json#samlingen_som_dagligliv",
+      "data/Civication/narratives/leisure/religion_besokende.json#bidraget_ved_doren",
+      "data/Civication/narratives/leisure/religion_besokende.json#uenigheten_innenfra",
+      "data/Civication/narratives/leisure/religion_besokende.json#aapen_samling_private_oyeblikk",
+      "data/Civication/narratives/leisure/religion_besokende.json#invitert_igjen",
+      "data/Civication/narratives/leisure/religion_besokende.json#nar_du_gar",
+      "data/Civication/narratives/leisure/religion_besokende.json#fortellingen_etterpa",
+      "data/Civication/narratives/leisure/religion_besokende.json#det_du_faktisk_vet"
+    ]
+  }
+}

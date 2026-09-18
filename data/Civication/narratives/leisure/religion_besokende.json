@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_besokende_stream",
+  "type": "leisure",
+  "title": "Besøkende — gjesterolle, vertskap og situasjonsforståelse",
+  "sociological_theme": "gjesterolle_invitasjonsramme_vertskap_deltakelsesgrenser_samtykke_lokal_kontekst_intern_variasjon_og_begrenset_generalisering",
+  "applies_when": {
+    "any_tags": [
+      "religion:besokende"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "invitasjonen_har_rammet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Du er invitert — men til hva?",
+      "situation": [
+        "En bekjent har invitert deg til en åpen samling, men invitasjonen sier lite om hvilke deler som er ment for gjester.",
+        "En invitasjon gir adgang til noe konkret; den gjør ikke alle rom, handlinger eller senere aktiviteter tilgjengelige.",
+        "Gjesterollen blir tryggere når rammen avklares før nysgjerrigheten fyller tomrommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør verten hva invitasjonen omfatter, og la resten være utenfor til du får en tydelig åpning.",
+          "effect": 1,
+          "tags": [
+            "invitation_scope",
+            "guest_role"
+          ],
+          "feedback": "Du lar vertskapets konkrete ramme definere hva gjesterollen faktisk innebærer."
+        },
+        {
+          "id": "B",
+          "label": "Tolk invitasjonen som generell adgang; når du først er ønsket inn, gjelder den sikkert alt som skjer.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør en avgrenset invitasjon større enn den er og tar adgang som ikke er gitt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_invitasjonen_har_rammet"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ankomst_uten_fasit",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Frivilligen",
+      "subject": "Hva forventes akkurat her?",
+      "situation": [
+        "Ved ankomst ser du at folk beveger seg, hilser og plasserer eiendeler på en måte du ikke kjenner.",
+        "Generelle forestillinger om religiøse miljøer sier mindre enn de lokale signalene du faktisk møter.",
+        "En besøkende trenger ikke kunne alt på forhånd, men må være villig til å korrigere egne antakelser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Se hva vertskapet kommuniserer, spør kort hvis noe er uklart, og juster deg etter den konkrete situasjonen.",
+          "effect": 1,
+          "tags": [
+            "local_cues",
+            "stereotype_check"
+          ],
+          "feedback": "Du behandler usikkerhet som noe som kan avklares lokalt uten å late som du allerede vet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den strengeste regelen du har hørt om andre steder; da viser du i det minste at du tar religion alvorlig.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du lar en generell forestilling overstyre menneskene og rammene du faktisk møter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_ankomst_uten_fasit"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plassen_du_tar",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arrangementsansvarlig",
+      "subject": "Hvor setter en gjest seg?",
+      "situation": [
+        "Rommet fylles, og noen plasser ser ledige ut selv om enkelte deltakere tydelig orienterer seg mot bestemte områder.",
+        "Sitteplasser kan være praktiske, symbolske eller knyttet til oppgaver som ikke er synlige for en ny gjest.",
+        "Å være velkommen betyr ikke nødvendigvis at alle posisjoner i rommet er like åpne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en tydelig gjesteplass eller spør før du tar en plass som ser ut til å ha en særskilt funksjon.",
+          "effect": 1,
+          "tags": [
+            "space_boundaries",
+            "guest_role"
+          ],
+          "feedback": "Du lar rommets sosiale organisering bli synlig før du tar plass i den."
+        },
+        {
+          "id": "B",
+          "label": "Sett deg der du får best oversikt; en ledig plass er en ledig plass.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør fysisk ledighet til sosial tillatelse uten å undersøke forskjellen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_plassen_du_tar"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seremonien_og_gjesterollen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Når blir iakttakelse til deltakelse?",
+      "situation": [
+        "En seremoni begynner, og flere rundt deg utfører handlinger du ikke kjenner betydningen eller forutsetningene for.",
+        "Noen handlinger kan være åpne for gjester, mens andre kan forutsette medlemskap, forberedelse eller et personlig valg.",
+        "Respekt kan bety å delta når man blir invitert, men også å la være når rollen er uklar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Observer først, og delta bare i det vertskapet uttrykkelig gjør tilgjengelig for gjester.",
+          "effect": 1,
+          "tags": [
+            "participation_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du skiller mellom å være nær en praksis og å ha samme rolle som dem som utøver den."
+        },
+        {
+          "id": "B",
+          "label": "Gjør det samme som de andre; det er tryggere å kopiere enn å skille seg ut.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør etterligning til samtykke og kan tre inn i en praksis uten å kjenne grensen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_seremonien_og_gjesterollen"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_i_pausen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medlemmet",
+      "subject": "Er dette et godt tidspunkt å spørre?",
+      "situation": [
+        "Du har et oppriktig spørsmål, men personen ved siden av deg bruker pausen til å hente kaffe og snakke med en venn.",
+        "Å være synlig i et religiøst miljø gjør ingen automatisk tilgjengelig som lærer eller representant.",
+        "Et spørsmål kan være godt og likevel komme på et dårlig tidspunkt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om personen har tid og lyst til å svare, og aksepter et kort nei uten å kreve begrunnelse.",
+          "effect": 1,
+          "tags": [
+            "question_timing",
+            "voluntary_explanation"
+          ],
+          "feedback": "Du gjør forklaring frivillig og lar personen beholde kontroll over egen tid."
+        },
+        {
+          "id": "B",
+          "label": "Still spørsmålet med en gang; når noen deltar offentlig, må de regne med å forklare hva de gjør.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør en annen deltakers nærvær til en plikt til å undervise deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_sporsmalet_i_pausen"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bordet_og_takken",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Frivilligen",
+      "subject": "Vertskap er ikke en prøve du må bestå",
+      "situation": [
+        "Etter samlingen blir du tilbudt mat og drikke, og du blir usikker på hvordan du skal vise at du setter pris på invitasjonen.",
+        "Gjestfrihet kan ha lokale former uten at en gjest må prestere takknemlighet eller spise noe vedkommende ikke kan eller ønsker.",
+        "Tydelighet om egne behov kan være mer respektfullt enn å late som alt passer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Takk for tilbudet, si enkelt fra om egne grenser eller behov, og ta imot det som faktisk passer.",
+          "effect": 1,
+          "tags": [
+            "hospitality",
+            "boundary_expression"
+          ],
+          "feedback": "Du lar gjestfrihet være frivillig på begge sider i stedet for en sosial prøve."
+        },
+        {
+          "id": "B",
+          "label": "Ta imot alt og skjul eventuelle problemer; en god gjest skal ikke gjøre vertskapet brydd.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør høflighet til selvutslettelse og skaper rom for misforståelser senere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_bordet_og_takken"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samlingen_som_dagligliv",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Frivilligen",
+      "subject": "Samlingen er også dagligliv",
+      "situation": [
+        "Etter den formelle delen rydder noen stoler, barn løper mellom bordene og flere diskuterer helt vanlige praktiske saker.",
+        "Religiøse miljøer består ikke bare av høytidelige øyeblikk; de bæres også av arbeid, rutiner og sosiale relasjoner.",
+        "En gjest kan lære mye av det ordinære uten å gjøre menneskene rundt seg til utstillingsobjekter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til det praktiske og sosiale arbeidet som skjer, uten å kreve at alt skal ha en særskilt religiøs forklaring.",
+          "effect": 1,
+          "tags": [
+            "everyday_community",
+            "ordinary_work"
+          ],
+          "feedback": "Du ser at meningsbærende praksis også har logistikk, relasjoner og helt vanlig dagligliv."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra den praktiske aktiviteten; det er bare den formelle delen som sier noe viktig om miljøet.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du reduserer miljøet til de mest høytidelige øyeblikkene og mister hvordan det faktisk fungerer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_samlingen_som_dagligliv"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bidraget_ved_doren",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medbesøkeren",
+      "subject": "Donasjon er ikke adgangsbillett",
+      "situation": [
+        "Ved utgangen står en boks for frivillige bidrag, og en annen gjest spør hvor mye man bør gi for å vise respekt.",
+        "Penger kan støtte drift, men beløpet sier ikke i seg selv hvor seriøst en gjest tok opplevelsen.",
+        "Frivillighet blir uklar dersom sosialt press gjør et valgfritt bidrag til skjult inngangspris."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn ut om bidraget faktisk er frivillig, og gi bare dersom du ønsker og har mulighet.",
+          "effect": 1,
+          "tags": [
+            "donation_boundary",
+            "status_pressure"
+          ],
+          "feedback": "Du skiller støtte fra kjøpt adgang og lar økonomiske grenser være legitime."
+        },
+        {
+          "id": "B",
+          "label": "Gi mer enn du egentlig vil; et synlig beløp viser vertskapet at du tok besøket på alvor.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør penger til et mål på respekt og forsterker et press som kanskje ikke var der."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_bidraget_ved_doren"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_innenfra",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medlemmet",
+      "subject": "To medlemmer svarer ulikt",
+      "situation": [
+        "Du spør to personer om den samme praksisen og får svar som ikke helt stemmer overens.",
+        "Uenighet kan skyldes generasjon, lokal historie, personlig overbevisning eller ulike retninger uten at ett svar må være falskt.",
+        "En besøkende ser bare et utsnitt og bør tåle at miljøet ikke lar seg redusere til én stemme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold begge svarene som situerte perspektiver og unngå å kåre ett av dem til fasit for alle.",
+          "effect": 1,
+          "tags": [
+            "internal_plurality",
+            "limited_inference"
+          ],
+          "feedback": "Du gjør variasjon til informasjon i stedet for et problem som må ryddes bort."
+        },
+        {
+          "id": "B",
+          "label": "Velg svaret som virker mest konsekvent og bruk det som forklaring på hva gruppen egentlig mener.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du erstatter intern forskjell med en ryddig, men dårligere representasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_uenigheten_innenfra"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aapen_samling_private_oyeblikk",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arrangementsansvarlig",
+      "subject": "Åpent arrangement, private øyeblikk",
+      "situation": [
+        "Arrangementet er annonsert offentlig, men underveis oppstår et sårbart øyeblikk der en deltaker deler noe personlig.",
+        "Offentlig adgang til et arrangement betyr ikke at alle ytringer og mennesker i rommet er fritt materiale for foto eller videreformidling.",
+        "En gjest må kunne skille mellom det som er åpent å overvære og det som er rimelig å beskytte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La kameraet ligge og behandle det personlige øyeblikket som noe du fikk overvære, ikke noe du automatisk kan publisere.",
+          "effect": 1,
+          "tags": [
+            "public_private_boundary",
+            "consent"
+          ],
+          "feedback": "Du skiller adgang fra publiseringsrett og lar sårbarhet få en egen grense."
+        },
+        {
+          "id": "B",
+          "label": "Dokumenter det diskret; et offentlig annonsert arrangement må tåle at det deles videre.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør offentlig invitasjon til et generelt samtykke som ingen faktisk har gitt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_aapen_samling_private_oyeblikk"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "invitert_igjen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Verten",
+      "subject": "Gjentatt gjest er fortsatt gjest",
+      "situation": [
+        "Du har vært med flere ganger, kjenner noen navn og blir møtt med varme når du kommer tilbake.",
+        "Fortrolighet kan vokse raskere enn formell eller personlig tilhørighet.",
+        "Gjennom gjentatte invitasjoner kan du få mer kunnskap uten at du dermed kan tale på miljøets vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta imot fortroligheten, men la medlemskap, representasjon og ansvar forbli noe som må være eksplisitt.",
+          "effect": 1,
+          "tags": [
+            "familiarity_membership",
+            "representation_boundary"
+          ],
+          "feedback": "Du lar relasjonell nærhet vokse uten å gjøre den til en status du ikke har fått."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å presentere deg som en innsider; du kjenner jo allerede folk og rutinene.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du oversetter det å bli kjent igjen til medlemskap og representasjonsrett uten grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_invitert_igjen"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_du_gar",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medbesøkeren",
+      "subject": "Du kan gå uten å gjøre det til en dom",
+      "situation": [
+        "Du merker at samlingen ikke passer deg og vurderer å gå før alt er ferdig.",
+        "Å forlate en aktivitet kan handle om energi, tid, komfort eller personlig smak og trenger ikke bli en vurdering av menneskene som blir igjen.",
+        "En gjest kan sette en grense uten å gjøre den til et universelt utsagn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå rolig når det er praktisk mulig, og beskriv valget senere som ditt eget behov eller din egen erfaring.",
+          "effect": 1,
+          "tags": [
+            "exit_boundary",
+            "verdict_restraint"
+          ],
+          "feedback": "Du skiller egen grense fra en dom over et større miljø."
+        },
+        {
+          "id": "B",
+          "label": "Gå demonstrativt og forklar etterpå at opplegget viser hvorfor denne typen religion ikke fungerer for deg.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du gjør én personlig reaksjon til en bred konklusjon som erfaringen ikke bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_nar_du_gar"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fortellingen_etterpa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildevennen",
+      "subject": "Din opplevelse er ikke hele tradisjonen",
+      "situation": [
+        "En venn spør hvordan det var, og du merker at en kort historie lett kan høres ut som en forklaring på hele tradisjonen.",
+        "Du har førstehåndserfaring med én konkret samling, men bare begrenset grunnlag for påstander utover den.",
+        "Presis formidling gjør opplevelsen mindre spektakulær, men mer troverdig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du observerte og fikk forklart, og marker tydelig hva som bare er din egen tolkning.",
+          "effect": 1,
+          "tags": [
+            "sharing_representation",
+            "source_boundary"
+          ],
+          "feedback": "Du beholder forskjellen mellom iakttakelse, forklaring og egen tolkning."
+        },
+        {
+          "id": "B",
+          "label": "Fortell hva de tror og hvordan de gjør det; du var jo der og så det selv.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du lar ett besøk gi deg en representasjonsmyndighet erfaringen ikke gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_fortellingen_etterpa"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_du_faktisk_vet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildevennen",
+      "subject": "Hva lærte du egentlig?",
+      "situation": [
+        "Etter flere inntrykk prøver du å oppsummere hva besøket faktisk ga deg av kunnskap.",
+        "Noe så du selv, noe ble forklart av bestemte personer, og noe fylte du inn ved hjelp av egne forventninger.",
+        "En robust gjesterolle ender ikke med sikkerhet om alt, men med bedre oversikt over hva som er observert, fortalt og fortsatt uklart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter erfaringen i det du observerte, det noen konkret forklarte, og det du fortsatt ikke vet.",
+          "effect": 1,
+          "tags": [
+            "observation_generalization",
+            "epistemic_humility"
+          ],
+          "feedback": "Du avslutter med mer presis kunnskap og tydeligere usikkerhet."
+        },
+        {
+          "id": "B",
+          "label": "Lag én samlet forklaring; for mange forbehold gjør det vanskelig å si at besøket lærte deg noe.",
+          "effect": -1,
+          "tags": [
+            "guest_overreach",
+            "assumption"
+          ],
+          "feedback": "Du ofrer grensene i kunnskapen for å få en ryddigere historie."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "besokende_det_du_faktisk_vet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const ROOT=path.resolve(__dirname,'..');
+const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
+const badge=read('data/badges/religion.json');
+const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
+const index=read('data/Civication/roleWorlds/index.json');
+const evidence=read('data/Civication/religionCareerLifeEvidence.json');
+const lifeId='besokende';
+const lifeKey='religion/besokende';
+const lifeScope='religion_besokende';
+const streamPath='data/Civication/narratives/leisure/religion_besokende.json';
+const worldPath='data/Civication/roleWorlds/religion/religion_besokende.json';
+const stream=read(streamPath);
+const world=read(worldPath);
+const tier=badge.tiers.find(x=>x.life_position?.id===lifeId);
+assert.ok(tier);
+assert.equal(tier.life_position.label,'Besøkende');
+assert.equal(tier.life_position.kind,'visitor_practice');
+assert.equal(tier.life_position.employment_independent,true);
+assert.equal(tier.career_offer,undefined);
+assert.equal(tier.career_unlock,undefined);
+assert.ok(evidence.canonical_decision.pure_life_or_practice_tiers.includes('Besøkende'));
+assert.ok(evidence.salary_mapping.not_salary_jobs.includes('Besøkende'));
+assert.equal(stream.schema,'civication_narrative_stream_v1');
+assert.equal(stream.id,lifeScope+'_stream');
+assert.deepEqual(stream.applies_when.any_tags,['religion:'+lifeId]);
+assert.equal(stream.storylets.length,14);
+assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
+for(const s of stream.storylets){assert.equal(s.choices.length,2);assert.deepEqual(s.choices.map(c=>c.effect),[1,-1]);}
+const row=audit.positions.find(x=>x.key===lifeKey);
+assert.ok(row);
+assert.equal(row.classification,'ready');
+assert.equal(row.role_world_status,'role_world_complete');
+assert.equal(row.role_world_path,worldPath);
+assert.equal(row.authored_depth.exact_source_ref_count,1);
+assert.equal(row.authored_depth.thematic_source_ref_count,0);
+assert.equal(row.authored_depth.max_narrative_depth,14);
+assert.equal(row.authored_depth.livelihood_template_count,0);
+assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
+assert.deepEqual(row.evidence.thematic_source_refs,[]);
+assert.deepEqual(row.evidence.livelihood_templates,[]);
+assert.ok(!audit.queue.some(x=>x.key===lifeKey));
+for(const key of ['religion/feltarbeider','religion/nysgjerrig','religion/ritualkjenner','religion/symboltolker','religion/tradisjonskjenner','religion/troslivskjenner']){
+ const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor,key);assert.equal(neighbor.classification,'needs_authored_depth',key);
+ assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
+}
+for(const key of ['religion/trosstedsvandrer','religion/pilegrim','religion/livssynsutforsker','religion/dialogbygger']){
+ const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor,key);assert.equal(neighbor.classification,'ready',key);
+ assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
+}
+const careerWorlds=index.roles.filter(x=>x.category==='religion'&&x.subject_type!=='life_position');
+assert.equal(careerWorlds.length,4,'Religion career worlds must remain separate and unchanged in count');
+const indexed=index.roles.find(x=>x.life_position_key===lifeKey);
+assert.ok(indexed);assert.equal(indexed.role_scope,lifeScope);assert.equal(indexed.status,'role_world_complete');
+assert.equal(world.schema,'civication_role_world_v1');
+assert.equal(world.subject_type,'life_position');
+assert.equal(world.status,'role_world_complete');
+assert.deepEqual(world.life_position_ref,{badge_id:'religion',id:lifeId,label:'Besøkende'});
+assert.equal(world.materialization.no_new_runtime,true);
+assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
+assert.equal(world.season.coverage.length,56);
+assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
+assert.equal(world.materialization.source_refs.length,14);
+assert.equal(world.primary_threads.length,14);
+assert.equal(world.recurring_people_archetypes.length,6);
+assert.equal(world.private_aftermath.length,5);
+assert.equal(world.delayed_consequences.length,6);
+assert.match(world.sociological_core.description,/Trosstedsvandrer/);
+assert.match(world.sociological_core.description,/Pilegrim/);
+assert.match(world.sociological_core.description,/Livssynsutforsker/);
+assert.match(world.sociological_core.description,/medlemskap/);
+assert.match(world.sociological_core.description,/representasjonsmyndighet/);
+console.log('Religion Besøkende readiness gate ok: low-threshold guest practice is source-backed, employment-independent and separate from site wandering, pilgrimage, worldview analysis and membership authority');
