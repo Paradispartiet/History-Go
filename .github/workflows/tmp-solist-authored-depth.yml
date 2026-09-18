@@ -1,0 +1,46 @@
+name: Temporary Solist authored depth
+on:
+  push:
+    branches:
+      - civication/musikk-solist-role-world
+permissions:
+  contents: write
+jobs:
+  author:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: civication/musikk-solist-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify Solist readiness
+        run: node tests/civication-musikk-solist-life-position-readiness.test.js
+      - name: Verify neighboring Music evidence remains isolated
+        run: |
+          node - <<'NODE'
+          const a=require('./data/Civication/lifePositionRoleWorldReadiness.json');
+          const src='data/Civication/narratives/leisure/musikk_solist.json';
+          for(const key of ['musikk/utovende_musiker','musikk/artist','musikk/konsertgjenger','musikk/scenehenger','musikk/musikknerd','musikk/plategraver','musikk/plateartist','musikk/publikum_deltaker']){
+            const row=a.positions.find(x=>x.key===key); if(!row) throw new Error(key+' missing');
+            if((row.evidence.exact_source_refs||[]).includes(src)) throw new Error(src+' leaked exact into '+key);
+            if((row.evidence.thematic_source_refs||[]).includes(src)) throw new Error(src+' leaked thematic into '+key);
+          }
+          console.log('Neighboring Music evidence remains isolated');
+          NODE
+      - name: Commit authored Solist state
+        run: |
+          git add data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+          if git diff --cached --quiet; then echo 'Solist authored-depth state already synchronized.'; exit 0; fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Synchronize Solist authored-depth state'
+          git push origin HEAD:civication/musikk-solist-role-world

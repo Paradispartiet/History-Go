@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const ROOT=path.resolve(__dirname,'..');
+const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
+const badge=read('data/badges/musikk.json');
+const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
+const index=read('data/Civication/roleWorlds/index.json');
+const streamPath='data/Civication/narratives/leisure/musikk_solist.json';
+const worldPath='data/Civication/roleWorlds/musikk/musikk_solist.json';
+const stream=read(streamPath);
+const tier=badge.tiers.find(x=>x.life_position?.id==='solist');
+assert.ok(tier);assert.equal(tier.threshold,150);assert.equal(tier.life_position.kind,'solo_performance_practice');assert.equal(tier.life_position.employment_independent,true);assert.equal(tier.career_offer,undefined);assert.equal(tier.career_unlock,undefined);
+assert.equal(stream.schema,'civication_narrative_stream_v1');assert.equal(stream.id,'musikk_solist_stream');assert.deepEqual(stream.applies_when.any_tags,['musikk:solist']);assert.equal(stream.storylets.length,14);assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
+for(const s of stream.storylets){assert.equal(s.choices.length,2);assert.deepEqual(s.choices.map(c=>c.effect),[1,-1]);}
+const row=audit.positions.find(x=>x.key==='musikk/solist');assert.ok(row);assert.equal(row.classification,'ready');assert.equal(row.authored_depth.exact_source_ref_count,1);assert.equal(row.authored_depth.max_narrative_depth,14);assert.equal(row.authored_depth.livelihood_template_count,0);assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);assert.deepEqual(row.evidence.livelihood_templates,[]);
+for(const key of ['musikk/utovende_musiker','musikk/artist']){
+ const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.equal(neighbor.classification,'needs_authored_depth',key+' must remain needs_authored_depth');assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
+}
+if(fs.existsSync(path.join(ROOT,worldPath))){assert.equal(row.role_world_status,'role_world_complete');assert.equal(row.role_world_path,worldPath);const indexed=index.roles.find(x=>x.life_position_key==='musikk/solist');assert.ok(indexed);assert.equal(indexed.role_scope,'musikk_solist');}else{assert.equal(row.role_world_status,'role_world_not_started');assert.equal(row.role_world_path,null);assert.equal(audit.first_ready?.key,'musikk/solist');}
+console.log('Solist readiness gate ok: ready + '+row.role_world_status);
