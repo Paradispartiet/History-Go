@@ -3,7 +3,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-const ROOT=path.resolve(__dirname,'..');
+import { fileURLToPath } from 'node:url';
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 const write=(rel,value)=>fs.writeFileSync(path.join(ROOT,rel),JSON.stringify(value,null,2)+'\n');
 const assert=(cond,msg)=>{ if(!cond) throw new Error(msg); };
