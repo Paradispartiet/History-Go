@@ -48,15 +48,6 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 | 28 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
 | 29 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
 | 30 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
-| 31 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
-| 32 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
-| 33 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
-| 34 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
-| 35 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 36 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 37 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 38 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
-| 39 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
