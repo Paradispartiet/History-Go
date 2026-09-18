@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_samfunnsdeltakelse",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "samfunnsengasjert_borger",
+    "label": "Samfunnsengasjert borger"
+  },
+  "title": "Samfunnsengasjert borger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å delta informert i samfunnslivet gjennom kildesjekk, institusjonskontakt, innspill, møter, frivillige bidrag og egen politisk beslutning uten at engasjement eller Badge-status blir forvekslet med representativt mandat, aktivistrolle, organisasjonsmyndighet eller profesjonell politisk status",
+    "description": "Samfunnsengasjert borger er en employment-independent civic_engagement for saksorientering, kildesjekk, kontakt med riktig ansvarsnivå, offentlige innspill, åpne møter, opprop, avgrenset foreningsbidrag, respektfull uenighet, ansvarskartlegging, offentlig/privat grense, egen valgbeslutning, responsusikkerhet og bærekraftig samfunnsoppmerksomhet. Rollen er bredere og lavere terskel enn Aktivists offentlige sakshandling, forskjellig fra Grasrotbyggers systematiske lokale deltakelsesstruktur og Organisasjonsmenneskets interne organisasjonsrolle, og gir ikke Tillitsvalgts representative mandate. Life-position-scope er bevisst separat fra eksisterende legacy role model med samme Badge-tittel. Rollen gir ingen jobb, lønn, valgt verv, offentlig myndighet, talerett på vegne av andre eller rådgiverstatus. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "public_attention",
+    "care_vs_efficiency",
+    "loyalty_up_down",
+    "shame_reputation",
+    "public_private_leakage",
+    "status_anxiety",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "hjemmeflaten der nyheter, primærkilder og offentlige dokumenter må skilles før deling eller innspill",
+    "kontakt med offentlige og andre relevante institusjoner der ansvarsnivå og saksprosess kan avklares",
+    "åpne møter og høringskanaler der eget syn må skilles fra andres og fra et representativt mandat",
+    "forenings- og frivillighetsflater der en konkret oppgave ikke automatisk gir talerolle",
+    "hverdagslige politiske samtaler der uenighet kan stå uten motivspekulasjon eller sosial tvang",
+    "valg og andre deltakelseskanaler der borgerens egen beslutning holdes atskilt fra råd om hva andre bør velge"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "naboen",
+      "social_function": "gjør lokale erfaringer og uenighet konkrete uten å representere hele området",
+      "class_position": "likestilt innbygger",
+      "status": "situert lokalkunnskap uten formelt mandat",
+      "power_over_player": "kan gi informasjon, utfordre antakelser og skape sosialt press, men kan ikke gi spilleren representativ myndighet",
+      "wants": "at konkrete problemer blir sett uten at nabolaget reduseres til én mening",
+      "conceals": "at egen erfaring lett kan framstå mer representativ enn den er",
+      "speech_style": "hverdagslig, konkret og stedstilknyttet",
+      "teaches_player": "å skille lokal erfaring fra påstanden om hva alle mener"
+    },
+    {
+      "id": "institusjonskontakten",
+      "social_function": "gjør ansvarsnivå, prosess og kontaktkanaler synlige",
+      "class_position": "ansatt eller kontaktpunkt i offentlig eller relevant institusjon innen eget mandat",
+      "status": "situert prosesskunnskap, ikke politisk støtteerklæring",
+      "power_over_player": "kan forklare hvor en henvendelse hører hjemme og hvordan den behandles",
+      "wants": "konkrete spørsmål som kan sendes til riktig ansvarsnivå",
+      "conceals": "at prosesspråk kan oppleves som avstand selv når det bare beskriver saksflyt",
+      "speech_style": "saklig, avgrenset og prosessorientert",
+      "teaches_player": "at tilgang til en kanal ikke er det samme som gjennomslag"
+    },
+    {
+      "id": "foreningsmedlemmet",
+      "social_function": "viser hvordan lavterskel frivillig deltakelse kan ha klare oppgaver uten å bli organisasjonsmandat",
+      "class_position": "frivillig eller medlem",
+      "status": "uformell tillit gjennom arbeid i en forening",
+      "power_over_player": "kan invitere til oppgaver og sosialt fellesskap, men kan ikke gjøre spilleren til talsperson uten faktisk mandat",
+      "wants": "at flere bidrar på en måte de kan stå i over tid",
+      "conceals": "at aktive miljøer lett forventer mer av dem som først sier ja",
+      "speech_style": "praktisk, vennlig og oppgaveorientert",
+      "teaches_player": "at deltakelse kan være avgrenset og likevel reell"
+    },
+    {
+      "id": "uenig_borger",
+      "social_function": "gjør legitim politisk uenighet synlig uten at den må bli konflikt eller motivdiagnose",
+      "class_position": "likestilt borger med annet standpunkt",
+      "status": "samme grunnleggende rett til egen politisk vurdering",
+      "power_over_player": "kan utfordre argumenter og identitet gjennom uenighet",
+      "wants": "å bli forstått som en faktisk samtalepartner, ikke som karikatur",
+      "conceals": "at også eget standpunkt kan være ufullstendig eller inkonsistent",
+      "speech_style": "direkte, begrunnende og villig til å korrigere misforståelser",
+      "teaches_player": "at politisk uenighet ikke opphever den andres beslutningsmyndighet"
+    },
+    {
+      "id": "horingsveilederen",
+      "social_function": "gjør format, offentlighet og skriftlig innspillsrolle konkret",
+      "class_position": "prosessveileder eller sekretariatskontakt innen en høringskanal",
+      "status": "prosessmyndighet innen formatet, ingen plikt til å støtte innholdet",
+      "power_over_player": "kan forklare frister, format og offentlighetsrammer for innspill",
+      "wants": "relevante og håndterbare innspill uten unødvendige sensitive opplysninger",
+      "conceals": "at et ryddig innspill fortsatt bare er ett av flere kunnskapsbidrag",
+      "speech_style": "presis, kort og formatbevisst",
+      "teaches_player": "at høring er informasjonsinnhenting, ikke en garanti for resultat"
+    },
+    {
+      "id": "naer_relasjon",
+      "social_function": "gjør grensen mellom samfunnsoppmerksomhet og resten av livet synlig",
+      "class_position": "venn eller nær relasjon uten politisk myndighet",
+      "status": "høy personlig betydning",
+      "power_over_player": "kan utfordre konstant beredskap og sosialt press rundt engasjement",
+      "wants": "at samfunnsinteressen kan eksistere uten å ta all tid og alle samtaler",
+      "conceals": "at egen tretthet av politikk også kan gjøre viktige temaer mindre tilgjengelige",
+      "speech_style": "varm, direkte og hverdagslig",
+      "teaches_player": "at bærekraftig samfunnsdeltakelse også krever grenser"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "issue_orientation",
+      "meaning": "sak før identitetsbundet standpunkt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_check",
+      "meaning": "kildesjekk før deling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "institution_contact",
+      "meaning": "riktig kontaktpunkt uten særstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "consultation_input",
+      "meaning": "offentlig innspill med skille mellom erfaring, fakta og forslag",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "meeting_participation",
+      "meaning": "åpent møte uten lånt mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "petition_scope",
+      "meaning": "signatur som støtte til faktisk tekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "volunteer_scope",
+      "meaning": "frivillig oppgave uten automatisk talerolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "disagreement_clarity",
+      "meaning": "uenighet uten motivspekulasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "responsibility_mapping",
+      "meaning": "ansvarsnivå før kritikk og forventning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_private_boundary",
+      "meaning": "offentlig samfunnsinnlegg uten lånt privatliv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "electoral_agency",
+      "meaning": "egen stemme som egen beslutning, uten Badge-basert anbefaling",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "response_uncertainty",
+      "meaning": "manglende svar uten motivkonklusjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sustainable_civic_attention",
+      "meaning": "samfunnsoppmerksomhet uten konstant beredskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "civic_identity",
+      "meaning": "bred borgerdeltakelse uten aktivist-, jobb- eller representasjonsmandat",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva er egentlig spørsmålet?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "issue_orientation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva er egentlig spørsmålet?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "issue_orientation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva er egentlig spørsmålet?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "issue_orientation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva er egentlig spørsmålet?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "issue_orientation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Et innlegg passer godt med det du allerede tenker. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "source_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Et innlegg passer godt med det du allerede tenker. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "source_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Et innlegg passer godt med det du allerede tenker. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "source_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Et innlegg passer godt med det du allerede tenker. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "source_check"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Hvem kan faktisk svare?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "institution_contact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Hvem kan faktisk svare?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "institution_contact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Hvem kan faktisk svare?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "institution_contact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Hvem kan faktisk svare?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "institution_contact"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Hva kan du faktisk bidra med?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "consultation_input"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Hva kan du faktisk bidra med?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "consultation_input"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Hva kan du faktisk bidra med?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "consultation_input"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Hva kan du faktisk bidra med?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "consultation_input"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Du får ordet etter flere andre. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "meeting_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Du får ordet etter flere andre. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "meeting_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Du får ordet etter flere andre. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "meeting_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Du får ordet etter flere andre. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "meeting_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Teksten er nesten riktig. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "petition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Teksten er nesten riktig. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "petition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Teksten er nesten riktig. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "petition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Teksten er nesten riktig. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "petition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Kan du hjelpe til med én oppgave?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "volunteer_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Kan du hjelpe til med én oppgave?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "volunteer_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Kan du hjelpe til med én oppgave?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "volunteer_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Kan du hjelpe til med én oppgave?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "volunteer_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Dere vurderer saken ulikt. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "disagreement_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Dere vurderer saken ulikt. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "disagreement_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Dere vurderer saken ulikt. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "disagreement_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Dere vurderer saken ulikt. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "disagreement_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Kommune, stat eller en annen aktør?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "responsibility_mapping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Kommune, stat eller en annen aktør?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "responsibility_mapping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Kommune, stat eller en annen aktør?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "responsibility_mapping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Kommune, stat eller en annen aktør?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "responsibility_mapping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Du vil forklare hvorfor saken betyr noe. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Du vil forklare hvorfor saken betyr noe. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Du vil forklare hvorfor saken betyr noe. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Du vil forklare hvorfor saken betyr noe. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Én handling blant flere. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "electoral_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Én handling blant flere. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "electoral_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Én handling blant flere. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "electoral_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Én handling blant flere. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "electoral_agency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Stillhet etter at du sendte det. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "response_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Stillhet etter at du sendte det. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "response_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Stillhet etter at du sendte det. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "response_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Stillhet etter at du sendte det. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "response_uncertainty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Må du følge med hele tiden?. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "sustainable_civic_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Må du følge med hele tiden?. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "sustainable_civic_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Må du følge med hele tiden?. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "sustainable_civic_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Må du følge med hele tiden?. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "sustainable_civic_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Deltakelse uten særmandat. Morgenen gjør sak, kilde eller ansvar tydelig før borgeren handler eller deler noe.",
+        "thread_ids": [
+          "civic_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Deltakelse uten særmandat. Midt på dagen gjør en annen borger, forening eller institusjon forskjellen mellom eget syn og faktisk mandat konkret.",
+        "thread_ids": [
+          "civic_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Deltakelse uten særmandat. Ettermiddagen krever et valg om informasjon, innspill, møte, personvern, uenighet eller politisk egenbeslutning.",
+        "thread_ids": [
+          "civic_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Deltakelse uten særmandat. Kvelden viser hva valget gjør med tillit, belastning, deltakelse og forståelsen av egen borgerrolle.",
+        "thread_ids": [
+          "civic_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "issue_orientation",
+      "relationship": "sak før identitetsbundet standpunkt",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "source_check",
+      "relationship": "kildesjekk før deling",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "institution_contact",
+      "relationship": "riktig kontaktpunkt uten særstatus",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "consultation_input",
+      "relationship": "offentlig innspill med skille mellom erfaring, fakta og forslag",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "meeting_participation",
+      "relationship": "åpent møte uten lånt mandat",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "petition_scope",
+      "relationship": "signatur som støtte til faktisk tekst",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "volunteer_scope",
+      "relationship": "frivillig oppgave uten automatisk talerolle",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "disagreement_clarity",
+      "relationship": "uenighet uten motivspekulasjon",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "responsibility_mapping",
+      "relationship": "ansvarsnivå før kritikk og forventning",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "public_private_boundary",
+      "relationship": "offentlig samfunnsinnlegg uten lånt privatliv",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "electoral_agency",
+      "relationship": "egen stemme som egen beslutning, uten Badge-basert anbefaling",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "response_uncertainty",
+      "relationship": "manglende svar uten motivkonklusjon",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "sustainable_civic_attention",
+      "relationship": "samfunnsoppmerksomhet uten konstant beredskap",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "civic_identity",
+      "relationship": "bred borgerdeltakelse uten aktivist-, jobb- eller representasjonsmandat",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "saken_blir_for_identiteten",
+      "description": "Kilde, ansvar og konkret forslag kommer foran sosialt press om å velge side raskt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen"
+      ]
+    },
+    {
+      "id": "innspill_blir_avgrenset_deltakelse",
+      "description": "Høring og åpne møter kan brukes uten å gjøre egen erfaring eller egen stemme representativ for alle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet"
+      ]
+    },
+    {
+      "id": "frivillighet_blir_bidrag_ikke_mandat",
+      "description": "Opprop og foreningsarbeid kan være reell deltakelse uten automatisk talerolle eller identitetsplikt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand"
+      ]
+    },
+    {
+      "id": "uenighet_blir_mer_presis",
+      "description": "Uenighet, ansvarsnivå og offentlig deling kan håndteres uten motivspekulasjon, feiladressat eller lånt privatliv.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget"
+      ]
+    },
+    {
+      "id": "borgerrollen_blir_baerekraftig",
+      "description": "Egen valgbeslutning, usikker respons og tidsgrenser gjør samfunnsdeltakelsen varig uten særmandat.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt",
+        "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "saken_moter_kilden",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kontakten_moter_horingen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "motet_moter_oppropet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "frivilligheten_moter_uenigheten",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "ansvarsnivaaet_moter_det_offentlige_innlegget",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "privacy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "valget_moter_identitetsgrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#saken_for_standpunktet",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#lenken_du_vil_dele",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#henvendelsen_til_institusjonen",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#høringsinnspillet",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_apne_motet",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#oppropet_for_signaturen",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#foreningen_trenger_en_hand",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#uenigheten_som_ikke_ma_vinnes",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hvem_har_ansvaret",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#det_offentlige_innlegget",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#valget_som_en_kanal",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#svaret_som_ikke_kom",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#engasjementet_som_spiser_alt",
+      "data/Civication/narratives/leisure/politikk_samfunnsdeltakelse.json#hva_som_gjor_deg_til_samfunnsengasjert_borger"
+    ]
+  }
+}
