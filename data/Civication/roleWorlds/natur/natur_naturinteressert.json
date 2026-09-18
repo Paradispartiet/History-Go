@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_naturinteressert",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "naturinteressert",
+    "label": "Naturinteressert"
+  },
+  "title": "Naturinteressert",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å la naturinteresse være en varig praksis for oppmerksomhet, nysgjerrighet, stedstilknytning og læring uten at hvert møte må bli dokumentasjon, spesialistidentitet, systematisk feltarbeid eller profesjonell fagmyndighet",
+    "description": "Naturinteressert er en employment-independent nature_interest og den bredeste Natur-livsposisjonen. Verden handler om små endringer, åpen nysgjerrighet, kunnskapsgrenser, nærnatur, årstidsendring, estetikk kontra funksjon, store påstander kontra lokale inntrykk, å la ting ligge og å la interessen vokse uten progresjonspress. Rollen er forskjellig fra Turgåer som bygger identitet rundt ferdsel, Fuglekikker og Artsobservatør som har mer avgrenset artsfokus, Artsjeger som har funnjakt og listepress, Sanker som har uttak og mat/material-praksis, og Feltobservatør som har repeterbar sted- og feltlogg. Naturinteressert gir ingen jobb, lønn, Feltassistent- eller Naturveilederstatus, Biolog- eller Økolog-tittel, forskningsrolle, rådgivningsmandat, forvaltningsmyndighet eller offentlig myndighet. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "status_anxiety",
+    "public_attention"
+  ],
+  "social_environments": [
+    "hverdagslige grøntområder og nærmiljø der små endringer kan merkes uten stor planlegging",
+    "hjemmeflaten der spørsmål, korte tekster og bilder møter en kunnskapsgrense som kan forbli åpen",
+    "samtaler med venner og barn der det er sosialt fristende å late som man vet mer enn man gjør",
+    "tettbygde steder der naturinteresse utfordrer forestillingen om at natur bare finnes langt borte",
+    "nabolagssamtaler der estetikk, ryddighet og naturverdi ikke automatisk peker i samme retning",
+    "møter med fagpersoner der bred interesse holdes tydelig adskilt fra spesialisert felt-, arts- og profesjonspraksis"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "nysgjerrig_venn",
+      "social_function": "deler spørsmål og hverdagslige naturmøter uten å gjøre dem til konkurranse",
+      "class_position": "likestilt venn uten faglig autoritet",
+      "status": "høy relasjonell betydning",
+      "power_over_player": "kan forsterke både undring og press om å virke kunnskapsrik",
+      "wants": "at det er lov å være interessert uten å kunne alt",
+      "conceals": "at egen selvsikkerhet noen ganger bygger på løse minner",
+      "speech_style": "varm, spørrende og uformell",
+      "teaches_player": "at naturinteresse kan være sosial uten å bli statushierarki"
+    },
+    {
+      "id": "barnet_som_spor",
+      "social_function": "gjør kunnskapsgrensen synlig gjennom direkte og grunnleggende spørsmål",
+      "class_position": "barn eller yngre person uten formell makt",
+      "status": "lav formell status, høy evne til å avdekke hull i voksne forklaringer",
+      "power_over_player": "kan presse spilleren til å velge mellom ærlig usikkerhet og oppdiktet svar",
+      "wants": "forståelige svar og rom for flere spørsmål",
+      "conceals": "ingenting strategisk; spørsmålet er ofte mer åpent enn den voksne tror",
+      "speech_style": "direkte, konkret og gjentakende",
+      "teaches_player": "at et godt spørsmål kan være mer verdifullt enn et raskt svar"
+    },
+    {
+      "id": "lokal_stedskjenner",
+      "social_function": "viser små endringer og hverdagsbruk i nærmiljøet uten profesjonell rolle",
+      "class_position": "nabo eller annen lokalkjent bruker",
+      "status": "situert kunnskap gjennom lang erfaring med stedet",
+      "power_over_player": "kan korrigere hukommelse om lokale endringer og bruk",
+      "wants": "at nærmiljøet blir lagt merke til uten romantisering",
+      "conceals": "at lang erfaring også kan bli til bastante antakelser",
+      "speech_style": "konkret, hverdagslig og stedstilknyttet",
+      "teaches_player": "at lokal erfaring er verdifull når den bevares som perspektiv"
+    },
+    {
+      "id": "kunnskapsvennen",
+      "social_function": "hjelper med å finne gode kilder uten å gjøre spørsmål til eksamen",
+      "class_position": "venn eller bekjent med mer kunnskap på enkelte områder",
+      "status": "uformell kunnskapsstatus",
+      "power_over_player": "kan peke mot kilder og nyansere en forklaring, men har ingen generell fagmyndighet",
+      "wants": "at nysgjerrighet leder til bedre spørsmål og kilder",
+      "conceals": "at også egen kunnskap er ujevn",
+      "speech_style": "forklarende, kildebevisst og villig til å si vet ikke",
+      "teaches_player": "at kunnskap kan deles uten å bygge en ekspertrolle rundt hele personen"
+    },
+    {
+      "id": "omraadebrukeren",
+      "social_function": "gjør det tydelig at naturområder også er hverdagssteder for mange andre",
+      "class_position": "annen legitim bruker av samme nærmiljø",
+      "status": "situert tilhørighet gjennom faktisk bruk",
+      "power_over_player": "kan utfordre spillerens ide om at naturinteresse gir prioritet til stedet",
+      "wants": "at området kan brukes med hensyn og gjensidig respekt",
+      "conceals": "at egen bruk også påvirker stedet",
+      "speech_style": "praktisk, kort og hverdagslig",
+      "teaches_player": "at interesse ikke gir eierskap til naturen eller til hvordan andre må oppleve den"
+    },
+    {
+      "id": "faglig_naturkontakt",
+      "social_function": "gjør grensen mellom bred interesse og profesjonell kunnskap tydelig uten å avvise nysgjerrighet",
+      "class_position": "fagperson med faktisk kompetanse og mandat innen et avgrenset område",
+      "status": "formell faglig autoritet i egen rolle",
+      "power_over_player": "kan korrigere overtolkning og peke på hva som krever mer metode eller kompetanse",
+      "wants": "at bred interesse brukes som inngang til læring, ikke som erstatning for faglig arbeid",
+      "conceals": "at fagpersoner også begynner med spørsmål og kan være usikre utenfor eget felt",
+      "speech_style": "presis, vennlig og tydelig på avgrensning",
+      "teaches_player": "at interesse og ekspertise er forskjellige ting uten at den ene gjør den andre verdiløs"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "noticing_change",
+      "meaning": "små endringer før forklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_without_status",
+      "meaning": "ukjent navn uten kunnskapsprestasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "presence_before_capture",
+      "meaning": "opplevelse før dokumentasjonsbehov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "knowledge_as_question",
+      "meaning": "fakta som spørsmål fremfor fasit",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "shared_curiosity",
+      "meaning": "deling av undring uten oppdiktet svar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "open_attention",
+      "meaning": "bred oppmerksomhet uten tvungen klassifisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "nearby_nature",
+      "meaning": "hverdagsnatur som legitim interesse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "aesthetic_vs_function",
+      "meaning": "estetikk adskilt fra naturverdi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "seasonal_memory",
+      "meaning": "årstidsendring og upresis hukommelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scale_awareness",
+      "meaning": "store utviklingstrekk adskilt fra lokale inntrykk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "leave_in_place",
+      "meaning": "interesse uten eierskapsbehov",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "peer_curiosity",
+      "meaning": "uenighet uten ekspertkamp",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interest_without_escalation",
+      "meaning": "bred interesse uten plikt til spesialisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "nature_interest_identity",
+      "meaning": "naturinteresse uten ekspert-, felt- eller jobbstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Det ser annerledes ut i dag. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "noticing_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Det ser annerledes ut i dag. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "noticing_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Det ser annerledes ut i dag. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "noticing_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Det ser annerledes ut i dag. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "noticing_change"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Hva heter den egentlig?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "curiosity_without_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Hva heter den egentlig?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "curiosity_without_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Hva heter den egentlig?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "curiosity_without_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Hva heter den egentlig?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "curiosity_without_status"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Må alt dokumenteres?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "presence_before_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Må alt dokumenteres?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "presence_before_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Må alt dokumenteres?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "presence_before_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Må alt dokumenteres?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "presence_before_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Virkeligheten ser annerledes ut. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "knowledge_as_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Virkeligheten ser annerledes ut. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "knowledge_as_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Virkeligheten ser annerledes ut. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "knowledge_as_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Virkeligheten ser annerledes ut. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "knowledge_as_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Hvorfor gjør naturen sånn?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "shared_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Hvorfor gjør naturen sånn?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "shared_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Hvorfor gjør naturen sånn?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "shared_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Hvorfor gjør naturen sånn?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "shared_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Hva hører du når du ikke leter etter noe bestemt?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "open_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Hva hører du når du ikke leter etter noe bestemt?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "open_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Hva hører du når du ikke leter etter noe bestemt?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "open_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Hva hører du når du ikke leter etter noe bestemt?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "open_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Det grønne er ikke bare langt borte. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "nearby_nature"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Det grønne er ikke bare langt borte. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "nearby_nature"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Det grønne er ikke bare langt borte. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "nearby_nature"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Det grønne er ikke bare langt borte. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "nearby_nature"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Er dette bare rot?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "aesthetic_vs_function"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Er dette bare rot?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "aesthetic_vs_function"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Er dette bare rot?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "aesthetic_vs_function"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Er dette bare rot?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "aesthetic_vs_function"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Små tegn kommer ikke samtidig hvert år. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "seasonal_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Små tegn kommer ikke samtidig hvert år. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "seasonal_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Små tegn kommer ikke samtidig hvert år. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "seasonal_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Små tegn kommer ikke samtidig hvert år. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "seasonal_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Gjelder dette også her?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "scale_awareness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Gjelder dette også her?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "scale_awareness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Gjelder dette også her?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "scale_awareness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Gjelder dette også her?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "scale_awareness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Beholde eller la ligge?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "leave_in_place"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Beholde eller la ligge?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "leave_in_place"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Beholde eller la ligge?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "leave_in_place"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Beholde eller la ligge?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "leave_in_place"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Dere har hørt forskjellige forklaringer. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "peer_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Dere har hørt forskjellige forklaringer. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "peer_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Dere har hørt forskjellige forklaringer. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "peer_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Dere har hørt forskjellige forklaringer. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "peer_curiosity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Må hobbyen hele tiden bli mer avansert?. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "interest_without_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Må hobbyen hele tiden bli mer avansert?. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "interest_without_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Må hobbyen hele tiden bli mer avansert?. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "interest_without_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Må hobbyen hele tiden bli mer avansert?. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "interest_without_escalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Å bry seg uten å måtte spesialisere seg. Morgenen gjør et lite naturmøte eller et åpent spørsmål synlig uten at det må få en rask forklaring.",
+        "thread_ids": [
+          "nature_interest_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Å bry seg uten å måtte spesialisere seg. Midt på dagen gjør en annen person, tekst eller situasjon kunnskapsgrense og sosial forventning konkret.",
+        "thread_ids": [
+          "nature_interest_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Å bry seg uten å måtte spesialisere seg. Ettermiddagen krever et valg om oppmerksomhet, deling, eierskap, tolkning eller graden av spesialisering.",
+        "thread_ids": [
+          "nature_interest_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Å bry seg uten å måtte spesialisere seg. Kvelden viser hva valget gjør med nysgjerrighet, tillit, identitet og forholdet mellom bred interesse og ekspertstatus.",
+        "thread_ids": [
+          "nature_interest_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "noticing_change",
+      "relationship": "små endringer før forklaring",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "curiosity_without_status",
+      "relationship": "ukjent navn uten kunnskapsprestasjon",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "presence_before_capture",
+      "relationship": "opplevelse før dokumentasjonsbehov",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "knowledge_as_question",
+      "relationship": "fakta som spørsmål fremfor fasit",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "shared_curiosity",
+      "relationship": "deling av undring uten oppdiktet svar",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "open_attention",
+      "relationship": "bred oppmerksomhet uten tvungen klassifisering",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "nearby_nature",
+      "relationship": "hverdagsnatur som legitim interesse",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "aesthetic_vs_function",
+      "relationship": "estetikk adskilt fra naturverdi",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "seasonal_memory",
+      "relationship": "årstidsendring og upresis hukommelse",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "scale_awareness",
+      "relationship": "store utviklingstrekk adskilt fra lokale inntrykk",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "leave_in_place",
+      "relationship": "interesse uten eierskapsbehov",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "peer_curiosity",
+      "relationship": "uenighet uten ekspertkamp",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "interest_without_escalation",
+      "relationship": "bred interesse uten plikt til spesialisering",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "nature_interest_identity",
+      "relationship": "naturinteresse uten ekspert-, felt- eller jobbstatus",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "undring_blir_tillatt",
+      "description": "Spørsmål og små endringer får verdi uten at spilleren må produsere en rask forklaring.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal"
+      ]
+    },
+    {
+      "id": "oppmerksomhet_blir_mer_enn_bilde",
+      "description": "Nærvær, lyd og nærnatur kan bli meningsfulle selv når de ikke blir samlet som dokumentasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende"
+      ]
+    },
+    {
+      "id": "kunnskap_blir_mindre_total",
+      "description": "Fakta, estetikk og store nyheter brukes som innganger til spørsmål fremfor ferdige lokale sannheter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift"
+      ]
+    },
+    {
+      "id": "naturinteresse_blir_mindre_eiende",
+      "description": "Årstidsendring og fine funn kan følges uten at hukommelse blir måleserie eller interesse blir eierskap.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem"
+      ]
+    },
+    {
+      "id": "interesse_blir_identitet_uten_ekspertkrav",
+      "description": "Uenighet og voksende interesse kan håndteres uten ekspertkamp eller plikt til å spesialisere seg.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass",
+        "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forandringen_moter_faktaet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "usikkerheten_moter_barnets_sporsmal",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "bildet_moter_lyttingen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "narrative",
+        "stress"
+      ]
+    },
+    {
+      "id": "naernaturen_moter_ryddighetsblikket",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "arsminnet_moter_den_store_overskriften",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "uenigheten_moter_identitetsgrensen",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#noe_har_endret_seg",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#navnet_du_ikke_kan",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#telefonen_eller_oyeblikket",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#faktaet_som_ikke_passet",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#barnets_sporsmal",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#lydene_i_bakgrunnen",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#byen_er_ogsa_levende",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#det_som_ser_uryddig_ut",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#arskiftet_i_det_lille",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#du_leste_en_overskrift",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#skal_du_ta_det_med_hjem",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#uenighet_uten_ekspertkamp",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#interessen_tar_mer_plass",
+      "data/Civication/narratives/leisure/natur_naturinteressert.json#hva_som_gjor_deg_til_naturinteressert"
+    ]
+  }
+}
