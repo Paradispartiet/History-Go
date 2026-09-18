@@ -42,7 +42,11 @@ for(const key of ['politikk/grasrotbygger','politikk/kampanjemenneske','politikk
  const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.equal(neighbor.classification,'ready');
  assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
-for(const key of ['politikk/demokratianalytiker','politikk/samfunnsengasjert_borger','politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
+const democracyNeighbor=audit.positions.find(x=>x.key==='politikk/demokratianalytiker');
+assert.ok(democracyNeighbor);
+assert.equal(democracyNeighbor.classification,'ready');
+assert.ok(!(democracyNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/demokratianalytiker');
+for(const key of ['politikk/samfunnsengasjert_borger','politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
  const pending=audit.positions.find(x=>x.key===key);assert.ok(pending);assert.equal(pending.classification,'needs_authored_depth');
 }
 const legacyRoleId=['politikk',lifeId].join('_');
