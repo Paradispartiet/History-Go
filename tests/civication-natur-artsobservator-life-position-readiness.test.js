@@ -35,12 +35,14 @@ assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
-for(const key of ['natur/feltobservator','natur/naturinteressert']){
- const neighbor=audit.positions.find(x=>x.key===key);
- assert.ok(neighbor);
- assert.equal(neighbor.classification,'needs_authored_depth',key+' must remain needs_authored_depth');
- assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
-}
+const feltNeighbor=audit.positions.find(x=>x.key==='natur/feltobservator');
+assert.ok(feltNeighbor);
+assert.equal(feltNeighbor.classification,'ready');
+assert.ok(!(feltNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into natur/feltobservator');
+const interestNeighbor=audit.positions.find(x=>x.key==='natur/naturinteressert');
+assert.ok(interestNeighbor);
+assert.equal(interestNeighbor.classification,'needs_authored_depth','natur/naturinteressert must remain needs_authored_depth');
+assert.ok(!(interestNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into natur/naturinteressert');
 const artsjeger=audit.positions.find(x=>x.key==='natur/artsjeger');
 assert.ok(artsjeger);
 assert.equal(artsjeger.classification,'ready');
