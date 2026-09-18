@@ -35,7 +35,11 @@ assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
-for(const key of ['politikk/statsvitenskapelig_ekspert','politikk/samfunnsengasjert_borger','politikk/tillitsvalgt']){
+const civicNeighbor=audit.positions.find(x=>x.key==='politikk/samfunnsengasjert_borger');
+assert.ok(civicNeighbor);
+assert.equal(civicNeighbor.classification,'ready');
+assert.ok(!(civicNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/samfunnsengasjert_borger');
+for(const key of ['politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
  const pending=audit.positions.find(x=>x.key===key);assert.ok(pending);assert.equal(pending.classification,'needs_authored_depth');
  assert.ok(!(pending.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
