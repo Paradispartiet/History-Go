@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "natur",
+  "role_scope": "natur_feltobservator",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "natur",
+    "id": "feltobservator",
+    "label": "Feltobservatør"
+  },
+  "title": "Feltobservatør",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å følge et sted og feltforhold over tid med repeterbare, korrigerbare notater uten å gjøre synlighet, spor, rute eller lokale forklaringer sikrere eller mer representative enn feltgrunnlaget faktisk tillater, og uten å gjøre en fritidspraksis til Feltassistent-, Naturveileder-, biolog- eller forvaltningsmyndighet",
+    "description": "Feltobservatør er en employment-independent field_observation_practice for stedets grunnramme, lys og synlighet, vind og nedbør, terreng og spor, rutedekning, menneskelig bruk, lokal kunnskap, feltfase, observerbarhet, dokumentasjonsutsnitt, observatørposisjon og hull i feltserier. Rollen er bredere sted- og habitatpraksis enn Artsobservatørs species_observation_practice og annerledes enn Artsjegers funnjakt og Naturinteresserts generelle interesse. Den gir ingen jobb, lønn, Feltassistent- eller Naturveilederstatus, biologisk forskningsrolle, HMS-mandat, rådgiverrolle, artsforvaltningsmandat eller offentlig myndighet. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "care_vs_efficiency",
+    "numerical_control",
+    "local_knowledge_vs_system",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "faste feltpunkter der samme sted kan se forskjellig ut under ulike lys-, vind- og nedbørsforhold",
+    "ruter og terreng der tilgjengelighet former hvilke deler av et område som faktisk blir lagt merke til",
+    "hverdagsbrukte naturområder der menneskelige spor, lokal kunnskap og andre brukere er del av feltkonteksten",
+    "hjemmeflaten der foto, tekst, tidspunkt og hull i feltserien ryddes uten falsk presisjon",
+    "små feltfellesskap der to observatører kan beskrive samme sted forskjellig uten at uenighet må skjules",
+    "møter med fagpersoner der en seriøs fritidsfeltlogg holdes tydelig adskilt fra profesjonell feltleveranse og forvaltning"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "feltvennen",
+      "social_function": "gjør sammenligning mellom ulike feltblikk mulig uten formell rang",
+      "class_position": "likestilt fritidsutøver",
+      "status": "situert tillit gjennom ryddige notater",
+      "power_over_player": "kan utfordre hva spilleren overser og foreslå alternative perspektiver",
+      "wants": "feltlogger som tåler sammenligning uten å late som de er komplette",
+      "conceals": "at eget blikk også har faste blindsoner",
+      "speech_style": "praktisk, nysgjerrig og konkret",
+      "teaches_player": "at to observatører kan se ulikt uten at én må eie sannheten"
+    },
+    {
+      "id": "lokal_stedskjenner",
+      "social_function": "bærer kunnskap om bruk, mikrosteder og lokale grenser som kartflaten ikke viser",
+      "class_position": "lokalkjent bruker eller nabo",
+      "status": "høy situert lokalkunnskap uten faglig godkjenningsrolle",
+      "power_over_player": "kan korrigere stednavn, ruter og bruksmønstre",
+      "wants": "at stedet forstås i lys av faktisk lokal bruk",
+      "conceals": "at lang lokal erfaring kan bli gjort mer generell enn den er",
+      "speech_style": "stedsspesifikk, fortellende og konkret",
+      "teaches_player": "at lokal kunnskap bør kildebevares, ikke anonymiseres inn i egen feltlogg"
+    },
+    {
+      "id": "erfaren_feltobservator",
+      "social_function": "viser hvordan enkel repeterbar feltpraksis kan bli presis uten å bli forskning",
+      "class_position": "erfaren amatør eller frivillig",
+      "status": "høy praksisstatus i miljøet, ingen automatisk profesjonsmyndighet",
+      "power_over_player": "kan utfordre svake sammenligninger og manglende kontekst",
+      "wants": "feltlogger som viser både mønstre og begrensninger",
+      "conceals": "at rutine kan bli rigid og gjøre uventede forhold mindre synlige",
+      "speech_style": "metodisk, rolig og tydelig på feltbetingelser",
+      "teaches_player": "at repeterbar praksis ikke trenger å late som den er profesjonell feltmetodikk"
+    },
+    {
+      "id": "faglig_feltkontakt",
+      "social_function": "gjør grensen mot profesjonell Feltassistent, Naturveileder, biologisk feltarbeid og forvaltning tydelig",
+      "class_position": "fagperson med faktisk arbeids- eller oppdragsmandat",
+      "status": "formell situert autoritet innen eget ansvar",
+      "power_over_player": "kan kreve faglig metode, HMS, leveransekrav eller avgrensning når arbeid faktisk utføres",
+      "wants": "at hobbydata ikke presenteres som profesjonell leveranse",
+      "conceals": "at profesjonelle også møter ufullstendige forhold og usikkerhet",
+      "speech_style": "presis, mandatbevisst og kildeorientert",
+      "teaches_player": "at fritidsfeltpraksis og betalt feltarbeid har ulike krav og ansvar"
+    },
+    {
+      "id": "omraadebrukeren",
+      "social_function": "representerer andre menneskers bruk av samme feltområde",
+      "class_position": "turgåer, nabo, grunneier eller annen legitim bruker",
+      "status": "situert rettighet eller brukstilknytning",
+      "power_over_player": "kan begrense adgang eller gjøre konflikt mellom feltfokus og annen bruk synlig",
+      "wants": "respekt for sted, adgang og andre aktiviteter",
+      "conceals": "at egen bruk også påvirker området",
+      "speech_style": "direkte, praktisk og opptatt av hverdagsbruk",
+      "teaches_player": "at feltet ikke er en tom datascene"
+    },
+    {
+      "id": "naer_relasjon",
+      "social_function": "gjør tidsbruk og identitetsgrensen rundt feltpraksisen synlig hjemme",
+      "class_position": "venn eller nær relasjon uten faglig myndighet",
+      "status": "høy emosjonell betydning",
+      "power_over_player": "kan utfordre når feltloggen spiser tid eller når hobbyidentiteten blir for total",
+      "wants": "at praksisen gir oppmerksomhet og ro uten å bli tvangspreget prestasjon",
+      "conceals": "at støtte også kan skape forventning om stadig større ekspertise",
+      "speech_style": "varm, direkte og hverdagslig",
+      "teaches_player": "at en seriøs praksis fortsatt kan være fritid"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "site_baseline",
+      "meaning": "stedets synlige ramme før tolkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visibility_context",
+      "meaning": "lys og synlighet som del av feltkonteksten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "condition_effect",
+      "meaning": "vind og bevegelige forhold uten falsk stabilitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "condition_comparability",
+      "meaning": "nedbør og ulike forhold uten urettferdig direkte sammenligning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "trace_without_owner",
+      "meaning": "spor beskrevet før sikkert opphav",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "route_coverage",
+      "meaning": "rutedekning og det feltloggen faktisk representerer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "human_use_context",
+      "meaning": "menneskelig bruk beskrevet uten forvaltningsmandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_knowledge_source",
+      "meaning": "lokal kunnskap med tydelig kilde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "seasonal_phase",
+      "meaning": "feltfase og kalender holdt adskilt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "detectability_limits",
+      "meaning": "lav observerbarhet uten sikker årsaksforklaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_scope",
+      "meaning": "bilde og dokumentasjon med tydelig utsnitt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "observer_position",
+      "meaning": "ulike feltblikk uten tvungen enighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "missing_field_interval",
+      "meaning": "hull i feltserien uten oppdiktet kontinuitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "field_observer_identity",
+      "meaning": "sted- og feltpraksis uten arts- eller profesjonsstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Start med stedet, ikke konklusjonen. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "site_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Start med stedet, ikke konklusjonen. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "site_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Start med stedet, ikke konklusjonen. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "site_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Start med stedet, ikke konklusjonen. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "site_baseline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Samme sted, annet lys. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "visibility_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Samme sted, annet lys. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "visibility_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Samme sted, annet lys. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "visibility_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Samme sted, annet lys. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "visibility_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Hva er stabilt når feltet beveger seg?. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "condition_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Hva er stabilt når feltet beveger seg?. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "condition_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Hva er stabilt når feltet beveger seg?. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "condition_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Hva er stabilt når feltet beveger seg?. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "condition_effect"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Hvor slutter sammenligningen å være rettferdig?. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "condition_comparability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Hvor slutter sammenligningen å være rettferdig?. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "condition_comparability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Hvor slutter sammenligningen å være rettferdig?. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "condition_comparability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Hvor slutter sammenligningen å være rettferdig?. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "condition_comparability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Et tydelig spor — men etter hva?. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "trace_without_owner"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Et tydelig spor — men etter hva?. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "trace_without_owner"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Et tydelig spor — men etter hva?. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "trace_without_owner"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Et tydelig spor — men etter hva?. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "trace_without_owner"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Du går der det er lettest å komme fram. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "route_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Du går der det er lettest å komme fram. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "route_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Du går der det er lettest å komme fram. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "route_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Du går der det er lettest å komme fram. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "route_coverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Naturen er ikke uten mennesker. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "human_use_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Naturen er ikke uten mennesker. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "human_use_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Naturen er ikke uten mennesker. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "human_use_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Naturen er ikke uten mennesker. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "human_use_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Stedet heter noe annet her. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "local_knowledge_source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Stedet heter noe annet her. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "local_knowledge_source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Stedet heter noe annet her. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "local_knowledge_source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Stedet heter noe annet her. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "local_knowledge_source"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Datoen sier én ting, feltet en annen. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "seasonal_phase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Datoen sier én ting, feltet en annen. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "seasonal_phase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Datoen sier én ting, feltet en annen. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "seasonal_phase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Datoen sier én ting, feltet en annen. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "seasonal_phase"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Mindre aktivitet — eller dårligere observerbarhet?. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "detectability_limits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Mindre aktivitet — eller dårligere observerbarhet?. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "detectability_limits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Mindre aktivitet — eller dårligere observerbarhet?. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "detectability_limits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Mindre aktivitet — eller dårligere observerbarhet?. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "detectability_limits"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Fotoet ser ryddigere ut enn feltet var. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "documentation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Fotoet ser ryddigere ut enn feltet var. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "documentation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Fotoet ser ryddigere ut enn feltet var. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "documentation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Fotoet ser ryddigere ut enn feltet var. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "documentation_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Dere beskriver samme sted forskjellig. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "observer_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Dere beskriver samme sted forskjellig. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "observer_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Dere beskriver samme sted forskjellig. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "observer_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Dere beskriver samme sted forskjellig. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "observer_position"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Tidsserien er ikke komplett. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "missing_field_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Tidsserien er ikke komplett. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "missing_field_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Tidsserien er ikke komplett. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "missing_field_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Tidsserien er ikke komplett. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "missing_field_interval"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Å følge stedet uten å eie forklaringen. Morgenen etablerer feltpunkt, forhold og hva som faktisk kan beskrives før dagens tolkning.",
+        "thread_ids": [
+          "field_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Å følge stedet uten å eie forklaringen. Midt på dagen gjør en annen person, kilde eller endring i feltet perspektiv og begrensninger synlige.",
+        "thread_ids": [
+          "field_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Å følge stedet uten å eie forklaringen. Ettermiddagen krever et valg om logg, sammenligning, rute, dokumentasjon eller tolkningsgrense.",
+        "thread_ids": [
+          "field_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Å følge stedet uten å eie forklaringen. Kvelden viser hva valget gjør med feltloggen, læring, tillit eller forholdet mellom hobbypraksis og profesjonell myndighet.",
+        "thread_ids": [
+          "field_observer_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "site_baseline",
+      "relationship": "stedets synlige ramme før tolkning",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "visibility_context",
+      "relationship": "lys og synlighet som del av feltkonteksten",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "condition_effect",
+      "relationship": "vind og bevegelige forhold uten falsk stabilitet",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "condition_comparability",
+      "relationship": "nedbør og ulike forhold uten urettferdig direkte sammenligning",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "trace_without_owner",
+      "relationship": "spor beskrevet før sikkert opphav",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "route_coverage",
+      "relationship": "rutedekning og det feltloggen faktisk representerer",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "human_use_context",
+      "relationship": "menneskelig bruk beskrevet uten forvaltningsmandat",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "local_knowledge_source",
+      "relationship": "lokal kunnskap med tydelig kilde",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "seasonal_phase",
+      "relationship": "feltfase og kalender holdt adskilt",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "detectability_limits",
+      "relationship": "lav observerbarhet uten sikker årsaksforklaring",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "documentation_scope",
+      "relationship": "bilde og dokumentasjon med tydelig utsnitt",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "observer_position",
+      "relationship": "ulike feltblikk uten tvungen enighet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "missing_field_interval",
+      "relationship": "hull i feltserien uten oppdiktet kontinuitet",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "field_observer_identity",
+      "relationship": "sted- og feltpraksis uten arts- eller profesjonsstatus",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "stedet_blir_for_tolkningen",
+      "description": "Feltpunkt, lys og forhold skilles tydeligere fra forklaringen observatøren senere legger oppå.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene"
+      ]
+    },
+    {
+      "id": "sammenligning_blir_betinget",
+      "description": "Nedbør, rutedekning og feltfase gjør det klart hva som faktisk kan sammenlignes mellom besøk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt"
+      ]
+    },
+    {
+      "id": "spor_og_menneskebruk_blir_beskrivelse",
+      "description": "Spor og menneskelig bruk kan logges uten sikkert opphav, skyld eller forvaltningskonklusjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet"
+      ]
+    },
+    {
+      "id": "kilder_og_perspektiver_bevares",
+      "description": "Lokal kunnskap og ulike observatørblikk beholdes som kilder og perspektiver i stedet for å smeltes sammen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet"
+      ]
+    },
+    {
+      "id": "feltloggen_taler_ikke_for_alt",
+      "description": "Observerbarhet, dokumentasjonsutsnitt og manglende intervaller gjør grensene for feltloggen eksplisitte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull",
+        "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "feltpunktet_moter_vaerskiftet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "synligheten_moter_stillheten",
+      "setup_ref": "2/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "stress"
+      ]
+    },
+    {
+      "id": "sporet_moter_menneskebruken",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "reputation",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "rutedekningen_moter_feltfasen",
+      "setup_ref": "6/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "lokalkunnskapen_moter_to_blkk",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "dokumentasjonen_moter_identitetsgrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/natur_feltobservator.json#punktet_for_du_ser",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#lyset_endrer_feltet",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#vinden_som_flytter_tegnene",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#den_vate_grensen",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#sporet_uten_eier",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#ruten_som_velger_dataene",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#menneskesporene_i_feltet",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#det_lokale_navnet",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#sesongskiftet_som_kommer_ujevnt",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#stillheten_som_kan_bety_mange_ting",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#bildet_som_ikke_fanger_hele_stedet",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#feltvennen_som_ser_noe_annet",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#feltloggen_med_hull",
+      "data/Civication/narratives/leisure/natur_feltobservator.json#hva_som_gjor_deg_til_feltobservator"
+    ]
+  }
+}
