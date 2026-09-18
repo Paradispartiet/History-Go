@@ -32,30 +32,40 @@
   "summary": {
     "selectable_life_positions": 199,
     "classifications": {
-      "ready": 107,
-      "needs_authored_depth": 52,
+      "ready": 108,
+      "needs_authored_depth": 51,
       "not_a_standalone_world": 40
     },
     "completed_life_position_role_worlds": 107,
     "queue_length": 52,
     "livelihood_backed_positions": 15,
-    "positions_with_exact_governed_sources": 107,
-    "positions_with_multi_scene_narrative_foundation": 107,
+    "positions_with_exact_governed_sources": 108,
+    "positions_with_multi_scene_narrative_foundation": 108,
     "life_position_role_world_complete": 107,
-    "pending_ready_positions": 0
+    "pending_ready_positions": 1
   },
-  "first_ready": null,
+  "first_ready": {
+    "rank": 1,
+    "key": "media/kommentator_felt",
+    "label": "Kommentator (felt)",
+    "badge_id": "media",
+    "classification": "ready",
+    "priority_score": 1390,
+    "exact_source_ref_count": 1,
+    "livelihood_template_count": 0,
+    "max_narrative_depth": 14
+  },
   "queue": [
     {
       "rank": 1,
       "key": "media/kommentator_felt",
       "label": "Kommentator (felt)",
       "badge_id": "media",
-      "classification": "needs_authored_depth",
-      "priority_score": 525,
-      "exact_source_ref_count": 0,
+      "classification": "ready",
+      "priority_score": 1390,
+      "exact_source_ref_count": 1,
       "livelihood_template_count": 0,
-      "max_narrative_depth": 0
+      "max_narrative_depth": 14
     },
     {
       "rank": 2,
@@ -847,7 +857,7 @@
         "description_present": true,
         "hook_count": 4,
         "exact_source_ref_count": 0,
-        "thematic_source_ref_count": 6,
+        "thematic_source_ref_count": 7,
         "livelihood_template_count": 0,
         "max_narrative_depth": 0
       },
@@ -857,6 +867,7 @@
           "data/Civication/narratives/leisure/kunst_vernissagegjenger.json",
           "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json",
           "data/Civication/narratives/leisure/liv_alternativ_bohem.json",
+          "data/Civication/narratives/leisure/media_kommentator_felt.json",
           "data/Civication/narratives/leisure/religion_dialogbygger.json",
           "data/Civication/narratives/leisure/scenekunst_scenehenger.json",
           "data/Civication/narratives/leisure/utdanning_laeringsutforsker.json"
@@ -1120,7 +1131,7 @@
         "description_present": true,
         "hook_count": 3,
         "exact_source_ref_count": 1,
-        "thematic_source_ref_count": 12,
+        "thematic_source_ref_count": 13,
         "livelihood_template_count": 0,
         "max_narrative_depth": 14
       },
@@ -3303,27 +3314,30 @@
       "kind": "commentary_practice",
       "semantic_mode": "lived_identity_or_practice",
       "runtime_source": "badge_tier",
-      "classification": "needs_authored_depth",
+      "classification": "ready",
       "role_world_status": "role_world_not_started",
       "role_world_path": null,
-      "priority_score": 525,
+      "priority_score": 1390,
       "authored_depth": {
         "description_present": false,
         "hook_count": 0,
-        "exact_source_ref_count": 0,
+        "exact_source_ref_count": 1,
         "thematic_source_ref_count": 0,
         "livelihood_template_count": 0,
-        "max_narrative_depth": 0
+        "max_narrative_depth": 14
       },
       "evidence": {
-        "exact_source_refs": [],
+        "exact_source_refs": [
+          "data/Civication/narratives/leisure/media_kommentator_felt.json"
+        ],
         "thematic_source_refs": [],
         "livelihood_templates": [],
         "livelihood_ref": null
       },
       "next_work": [
-        "author_role_specific_private_life_social_or_narrative_sources",
-        "then_reaudit_before_role_world_production"
+        "inventory_existing_scene_provenance",
+        "author_role_world_14x4",
+        "bind_primary_threads_and_private_aftermath"
       ]
     },
     {
