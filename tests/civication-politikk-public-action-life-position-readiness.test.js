@@ -46,7 +46,11 @@ const democracyNeighbor=audit.positions.find(x=>x.key==='politikk/demokratianaly
 assert.ok(democracyNeighbor);
 assert.equal(democracyNeighbor.classification,'ready');
 assert.ok(!(democracyNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/demokratianalytiker');
-for(const key of ['politikk/samfunnsengasjert_borger','politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
+const civicNeighbor=audit.positions.find(x=>x.key==='politikk/samfunnsengasjert_borger');
+assert.ok(civicNeighbor);
+assert.equal(civicNeighbor.classification,'ready');
+assert.ok(!(civicNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/samfunnsengasjert_borger');
+for(const key of ['politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
  const pending=audit.positions.find(x=>x.key===key);assert.ok(pending);assert.equal(pending.classification,'needs_authored_depth');
 }
 const legacyRoleId=['politikk',lifeId].join('_');
