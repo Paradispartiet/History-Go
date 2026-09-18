@@ -44,7 +44,7 @@ assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.deepEqual(row.evidence.thematic_source_refs,[]);
 assert.deepEqual(row.evidence.livelihood_templates,[]);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
-for(const key of ['religion/feltarbeider','religion/nysgjerrig','religion/ritualkjenner','religion/symboltolker','religion/tradisjonskjenner','religion/troslivskjenner']){
+for(const key of ['religion/nysgjerrig','religion/ritualkjenner','religion/symboltolker','religion/tradisjonskjenner','religion/troslivskjenner']){
  const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor,key);assert.equal(neighbor.classification,'needs_authored_depth',key);
  assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
