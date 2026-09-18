@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_aktivisme_praksis",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "aktivist",
+    "label": "Aktivist"
+  },
+  "title": "Aktivist",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å drive fredelig offentlig sakshandling med tydelige krav, etterprøvbart faktagrunnlag, samtykke og avgrenset representasjon uten at synlighet, gruppelojalitet eller Badge-status blir forvekslet med bredt mandat, valgt verv eller profesjonell politisk myndighet",
+    "description": "Aktivist er en employment-independent activism_practice for fredelig offentlig handling, kravformulering, kildekontroll, samtykke, praktisk arrangementsansvar, avgrenset talerolle, bildebruk, de-eskalering, samarbeid om avgrensede krav, ressursuavhengighet, mediekontakt, korreksjon, bærekraftig deltakelse og nøktern resultatforståelse. Rollen er forskjellig fra Grasrotbyggerens lokale deltakelsesstruktur, Kampanjemenneskets kampanjedrift, Møtesliters møtepraksis og Organisasjonsmenneskets interne struktur. Den gir ingen jobb, lønn, Organisasjonssekretær-status, politisk rådgiverrolle, valgt representasjon, offentlig saksbehandlingsmyndighet eller beslutningsmandat. Life-position-scope er bevisst separat fra eksisterende legacy role model for samme badge-tittel. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "public_attention",
+    "shame_reputation",
+    "care_vs_efficiency",
+    "loyalty_up_down",
+    "public_private_leakage",
+    "status_anxiety",
+    "local_knowledge_vs_system",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "små arbeidsflater der krav og faktapåstander må avgrenses før de blir offentlige",
+    "fredelige offentlige samlinger der praktisk ansvar, samtykke og trygg gjennomføring møter ønsket om synlighet",
+    "samtaler med berørte personer der støtte til en sak ikke gir eierskap til andres historie",
+    "situasjoner med sterk uenighet der gruppen må skille tydelig sakshandling fra konflikt som spektakel",
+    "mediekontakt der raske spørsmål kan utvide en talerolle langt utover det gruppen faktisk har avklart",
+    "kontakt med institusjoner der mottak, dialog og tilgang ikke må omtales som støtte eller politisk gjennomslag"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "medaktivisten",
+      "social_function": "deler offentlig sakshandling og gjør presset mellom tydelighet, lojalitet og korreksjon konkret",
+      "class_position": "likestilt deltaker uten automatisk talerett på vegne av andre",
+      "status": "uformell tillit gjennom innsats og tilstedeværelse",
+      "power_over_player": "kan forsterke gruppepress, tempo og forventninger til synlighet, men kan ikke gi valgt eller offentlig mandat",
+      "wants": "at saken skal bli tatt på alvor uten at gruppen mister retning",
+      "conceals": "at sterk identifikasjon med saken kan gjøre rettelser og pauser emosjonelt vanskelige",
+      "speech_style": "engasjert, direkte og handlingsorientert",
+      "teaches_player": "at lojalitet til en sak ikke krever lojalitet til enhver formulering eller taktikk"
+    },
+    {
+      "id": "berort_stemme",
+      "social_function": "gjør forskjellen mellom støtte til en sak og retten til å bruke andres erfaring tydelig",
+      "class_position": "person med direkte erfaring fra problemstillingen, uten plikt til å representere alle andre",
+      "status": "høy situert kunnskapsverdi om egen erfaring",
+      "power_over_player": "kan gi eller trekke samtykke til bruk av egen historie og utfordre forenklede krav",
+      "wants": "å bli hørt uten å bli redusert til symbol eller virkemiddel",
+      "conceals": "at det kan være sosialt vanskelig å si nei når en gruppe allerede har investert i en fortelling",
+      "speech_style": "konkret, erfaringsnær og tydelig på egne grenser",
+      "teaches_player": "at berørt erfaring ikke er kollektiv eiendom"
+    },
+    {
+      "id": "arrangementskontakten",
+      "social_function": "gjør praktiske rammer for fredelig offentlig samling konkrete uten å styre sakens innhold",
+      "class_position": "person med situert ansvar for sted, sikkerhet eller arrangementsdialog",
+      "status": "praktisk myndighet innen avgrensede rammer, ikke politisk talerolle",
+      "power_over_player": "kan kreve avklaringer om tid, sted, ansvar og gjennomføring innen sitt faktiske mandat",
+      "wants": "forutsigbar og trygg gjennomføring med tydelige kontaktpunkter",
+      "conceals": "at standardkrav ikke alltid passer like enkelt til små og uformelle initiativ",
+      "speech_style": "kort, konkret og ansvarsfokusert",
+      "teaches_player": "at fredelig offentlig handling også krever praktisk ansvar"
+    },
+    {
+      "id": "kritisk_motstemme",
+      "social_function": "gjør motstand, uenighet og fristelsen til offentlig konfrontasjon synlig",
+      "class_position": "person som er uenig eller kritisk uten formell makt over spilleren",
+      "status": "kan få stor oppmerksomhet i en konkret situasjon uten representativ status",
+      "power_over_player": "kan fremprovosere emosjonell respons og flytte oppmerksomhet fra sak til konflikt",
+      "wants": "å utfordre, protestere eller bli hørt fra et annet ståsted",
+      "conceals": "at motiv og støtteomfang ikke kan leses sikkert ut fra konfrontasjonen alene",
+      "speech_style": "kritisk, direkte og tidvis provoserende",
+      "teaches_player": "at sterk uenighet ikke opphever behovet for fredelig og avgrenset respons"
+    },
+    {
+      "id": "journalisten",
+      "social_function": "gjør tempo, sitatbarhet og representasjonsgrense synlig i offentlig kommunikasjon",
+      "class_position": "uavhengig medieaktør uten intern rolle i gruppen",
+      "status": "har publiseringsmakt, men gir ikke politisk mandat til den som blir intervjuet",
+      "power_over_player": "kan komprimere et komplekst budskap til et kort sitat og be om raske svar",
+      "wants": "et tydelig og etterprøvbart svar innen publiseringstid",
+      "conceals": "at redaksjonell komprimering kan gjøre interne nyanser mindre synlige",
+      "speech_style": "spiss, tidsbevisst og opptatt av konkret påstand og avsender",
+      "teaches_player": "å skille mellom eget syn, avklart talerolle og ubesluttede spørsmål"
+    },
+    {
+      "id": "institusjonskontakten",
+      "social_function": "representerer mottakeren av et krav eller innspill uten å gjøre dialog til gjennomslag",
+      "class_position": "ansatt eller kontaktpunkt i en relevant institusjon innen eget mandat",
+      "status": "situert prosess- eller mottakerrolle, ikke automatisk beslutningsmyndighet",
+      "power_over_player": "kan bekrefte mottak, forklare videre behandling eller avgrense kontaktformen",
+      "wants": "et forståelig krav med tydelig avsender og håndterbar dokumentasjon",
+      "conceals": "at mottak og høflig dialog lett kan tolkes som større politisk effekt enn det faktisk er",
+      "speech_style": "saklig, avgrenset og prosessorientert",
+      "teaches_player": "at tilgang og respons ikke er det samme som støtte eller beslutning"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "claim_scope",
+      "meaning": "kravformulering uten representasjonsoverdrivelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "evidence_before_message",
+      "meaning": "faktagrunnlag før slagkraftig formulering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "story_consent",
+      "meaning": "berørte menneskers samtykke og eierskap til egen erfaring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_action_duty",
+      "meaning": "fredelig offentlig samling med praktisk ansvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "spokesperson_scope",
+      "meaning": "talerolle uten automatisk mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visibility_consent",
+      "meaning": "synlighet og bildebruk uten å gjøre deltakelse til blankofullmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "deescalation",
+      "meaning": "fast sakshandling uten konflikt som statussymbol",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coalition_scope",
+      "meaning": "samarbeid om avgrensede krav uten falsk totalenighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resource_independence",
+      "meaning": "ressurser uten skjult styring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "media_scope",
+      "meaning": "medietempo uten representasjonsoverdrivelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_correction",
+      "meaning": "offentlig korreksjon foran omdømmeforsvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sustainable_participation",
+      "meaning": "engasjement uten slitenhet som lojalitetstest",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "outcome_humility",
+      "meaning": "synlighet skilt fra støtte, representasjon og effekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "activist_identity",
+      "meaning": "aktivismepraksis uten jobb-, rådgiver- eller valgt mandat",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva ber dere faktisk om?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "claim_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva ber dere faktisk om?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "claim_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva ber dere faktisk om?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "claim_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva ber dere faktisk om?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "claim_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Tallet er godt, men er det riktig?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "evidence_before_message"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Tallet er godt, men er det riktig?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "evidence_before_message"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Tallet er godt, men er det riktig?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "evidence_before_message"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Tallet er godt, men er det riktig?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "evidence_before_message"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Kan dere bruke det jeg fortalte?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "story_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Kan dere bruke det jeg fortalte?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "story_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Kan dere bruke det jeg fortalte?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "story_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Kan dere bruke det jeg fortalte?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "story_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Hvordan skal samlingen gjennomføres?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "public_action_duty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Hvordan skal samlingen gjennomføres?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "public_action_duty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Hvordan skal samlingen gjennomføres?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "public_action_duty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Hvordan skal samlingen gjennomføres?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "public_action_duty"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Snakker du for deg selv eller gruppen?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "spokesperson_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Snakker du for deg selv eller gruppen?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "spokesperson_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Snakker du for deg selv eller gruppen?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "spokesperson_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Snakker du for deg selv eller gruppen?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "spokesperson_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Et sterkt bilde, men hvem vil være synlig?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "visibility_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Et sterkt bilde, men hvem vil være synlig?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "visibility_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Et sterkt bilde, men hvem vil være synlig?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "visibility_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Et sterkt bilde, men hvem vil være synlig?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "visibility_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Noen prøver å dra dere inn i konflikt. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "deescalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Noen prøver å dra dere inn i konflikt. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "deescalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Noen prøver å dra dere inn i konflikt. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "deescalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Noen prøver å dra dere inn i konflikt. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "deescalation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Hvor mye er dere egentlig enige om?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "coalition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Hvor mye er dere egentlig enige om?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "coalition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Hvor mye er dere egentlig enige om?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "coalition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Hvor mye er dere egentlig enige om?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "coalition_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Hva følger med ressursen?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "resource_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Hva følger med ressursen?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "resource_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Hva følger med ressursen?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "resource_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Hva følger med ressursen?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "resource_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Kan du oppsummere hva dere mener nå?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "media_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Kan du oppsummere hva dere mener nå?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "media_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Kan du oppsummere hva dere mener nå?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "media_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Kan du oppsummere hva dere mener nå?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "media_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: En formulering viser seg å være feil. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "public_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: En formulering viser seg å være feil. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "public_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: En formulering viser seg å være feil. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "public_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: En formulering viser seg å være feil. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "public_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Er slitenhet et bevis på lojalitet?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "sustainable_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Er slitenhet et bevis på lojalitet?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "sustainable_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Er slitenhet et bevis på lojalitet?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "sustainable_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Er slitenhet et bevis på lojalitet?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "sustainable_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Mye oppmerksomhet — men hva betyr det?. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "outcome_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Mye oppmerksomhet — men hva betyr det?. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "outcome_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Mye oppmerksomhet — men hva betyr det?. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "outcome_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Mye oppmerksomhet — men hva betyr det?. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "outcome_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Engasjement uten formelt mandat. Morgenen gjør krav, fakta eller rollegrense tydelig før offentlig handling får fart.",
+        "thread_ids": [
+          "activist_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Engasjement uten formelt mandat. Midt på dagen gjør en annen deltaker, berørt person, journalist eller praktisk kontakt ansvar og representasjon konkret.",
+        "thread_ids": [
+          "activist_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Engasjement uten formelt mandat. Ettermiddagen krever et konkret valg om samtykke, faktagrunnlag, talerolle, fredelig gjennomføring eller avgrensning.",
+        "thread_ids": [
+          "activist_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Engasjement uten formelt mandat. Kvelden viser hva valget gjør med tillit, belastning, samarbeid og forståelsen av eget mandat.",
+        "thread_ids": [
+          "activist_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "claim_scope",
+      "relationship": "kravformulering uten representasjonsoverdrivelse",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "evidence_before_message",
+      "relationship": "faktagrunnlag før slagkraftig formulering",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "story_consent",
+      "relationship": "berørte menneskers samtykke og eierskap til egen erfaring",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "public_action_duty",
+      "relationship": "fredelig offentlig samling med praktisk ansvar",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "spokesperson_scope",
+      "relationship": "talerolle uten automatisk mandat",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "visibility_consent",
+      "relationship": "synlighet og bildebruk uten å gjøre deltakelse til blankofullmakt",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "deescalation",
+      "relationship": "fast sakshandling uten konflikt som statussymbol",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "coalition_scope",
+      "relationship": "samarbeid om avgrensede krav uten falsk totalenighet",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "resource_independence",
+      "relationship": "ressurser uten skjult styring",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "media_scope",
+      "relationship": "medietempo uten representasjonsoverdrivelse",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "public_correction",
+      "relationship": "offentlig korreksjon foran omdømmeforsvar",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "sustainable_participation",
+      "relationship": "engasjement uten slitenhet som lojalitetstest",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "outcome_humility",
+      "relationship": "synlighet skilt fra støtte, representasjon og effekt",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "activist_identity",
+      "relationship": "aktivismepraksis uten jobb-, rådgiver- eller valgt mandat",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "krav_blir_smalt_nok_til_a_eies",
+      "description": "Krav og fakta blir tydeligere uten å late som gruppen representerer flere enn den faktisk gjør.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten"
+      ]
+    },
+    {
+      "id": "berorte_forblir_personer_ikke_virkemidler",
+      "description": "Personlige erfaringer og bilder håndteres med samtykke fremfor som automatisk offentlig materiale.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne"
+      ]
+    },
+    {
+      "id": "offentlig_handling_blir_ansvarlig",
+      "description": "Praktisk arrangementsansvar, talerolle og motstand kan håndteres uten at engasjement blir overreach.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel"
+      ]
+    },
+    {
+      "id": "samarbeid_blir_avgrenset",
+      "description": "Felles krav, ressurser og mediekontakt kan brukes uten falsk enighet, skjult styring eller utvidet mandat.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat"
+      ]
+    },
+    {
+      "id": "aktivisme_blir_korrigerbar_og_baerekraftig",
+      "description": "Korreksjon, pauser og nøktern resultatforståelse blir del av en varig praksis fremfor tegn på svakhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang",
+        "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kravet_moter_mediet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "faktaet_moter_korreksjonen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "historien_moter_synligheten",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "markeringen_moter_motstanden",
+      "setup_ref": "4/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationship",
+        "responsibility"
+      ]
+    },
+    {
+      "id": "samarbeidet_moter_ressursene",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "financial",
+        "relationship"
+      ]
+    },
+    {
+      "id": "belastningen_moter_resultatet",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "stress",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kravet_for_slagordet",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#kilden_bak_plakaten",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#historien_som_ikke_er_din",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#markeringen_pa_offentlig_sted",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#talerollen",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bildet_av_deltakerne",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#motstand_uten_spektakel",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#flere_grupper_ett_opprop",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#bidraget_med_forventning",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#journalisten_vil_ha_ett_sitat",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#paastanden_som_ma_rettes",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#den_som_aldri_tar_pause",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_teller_som_framgang",
+      "data/Civication/narratives/leisure/politikk_aktivisme_praksis.json#hva_som_gjor_deg_til_aktivist"
+    ]
+  }
+}
