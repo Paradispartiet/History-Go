@@ -39,10 +39,14 @@ const civicNeighbor=audit.positions.find(x=>x.key==='politikk/samfunnsengasjert_
 assert.ok(civicNeighbor);
 assert.equal(civicNeighbor.classification,'ready');
 assert.ok(!(civicNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/samfunnsengasjert_borger');
-for(const key of ['politikk/statsvitenskapelig_ekspert','politikk/tillitsvalgt']){
- const pending=audit.positions.find(x=>x.key===key);assert.ok(pending);assert.equal(pending.classification,'needs_authored_depth');
- assert.ok(!(pending.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
-}
+const expertiseNeighbor=audit.positions.find(x=>x.key==='politikk/statsvitenskapelig_ekspert');
+assert.ok(expertiseNeighbor);
+assert.equal(expertiseNeighbor.classification,'ready');
+assert.ok(!(expertiseNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/statsvitenskapelig_ekspert');
+const mandatePending=audit.positions.find(x=>x.key==='politikk/tillitsvalgt');
+assert.ok(mandatePending);
+assert.equal(mandatePending.classification,'needs_authored_depth');
+assert.ok(!(mandatePending.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into politikk/tillitsvalgt');
 for(const key of ['politikk/aktivist','politikk/grasrotbygger','politikk/kampanjemenneske','politikk/motesliter','politikk/organisasjonsmenneske']){
  const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.equal(neighbor.classification,'ready');
  assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
