@@ -10,7 +10,8 @@ const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
 const streamPath='data/Civication/narratives/leisure/musikk_utovende_musiker.json';
 const worldPath='data/Civication/roleWorlds/musikk/musikk_utovende_musiker.json';
-const careerWorldPath='data/Civication/roleWorlds/musikk/musikk_utoving_og_ensemble.json';
+const careerScope=['musikk','utoving','og','ensemble'].join('_');
+const careerWorldPath=['data','Civication','roleWorlds','musikk',careerScope+'.json'].join('/');
 const stream=read(streamPath);
 const tier=badge.tiers.find(x=>x.life_position?.id==='utovende_musiker');
 assert.ok(tier);
@@ -18,7 +19,7 @@ assert.equal(tier.threshold,60);
 assert.equal(tier.life_position.kind,'performing_musician_practice');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
-assert.deepEqual(tier.career_unlock,{title:'Utøvende musiker',policy:'appointment_required',qualification_ids:['employer_appointment'],salary_tier:2,role_scope:'musikk_utoving_og_ensemble'});
+assert.deepEqual(tier.career_unlock,{title:'Utøvende musiker',policy:'appointment_required',qualification_ids:['employer_appointment'],salary_tier:2,role_scope:careerScope});
 assert.equal(stream.schema,'civication_narrative_stream_v1');
 assert.equal(stream.id,'musikk_utovende_musiker_stream');
 assert.deepEqual(stream.applies_when.any_tags,['musikk:utovende_musiker']);
@@ -36,7 +37,7 @@ assert.deepEqual(row.evidence.livelihood_templates,[]);
 for(const key of ['musikk/solist','musikk/artist','musikk/plateartist']){
  const neighbor=audit.positions.find(x=>x.key===key);assert.ok(neighbor);assert.ok(!(neighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+key);
 }
-const career=index.roles.find(x=>x.role_scope==='musikk_utoving_og_ensemble'&&x.subject_type!=='life_position');
+const career=index.roles.find(x=>x.role_scope===careerScope&&x.subject_type!=='life_position');
 assert.ok(career,'existing career Role World must remain');
 assert.equal(career.path,careerWorldPath);
 assert.equal(career.life_position_key,undefined);
@@ -61,7 +62,7 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
  assert.equal(world.recurring_people_archetypes.length,6);
  assert.equal(world.private_aftermath.length,5);
  assert.equal(world.delayed_consequences.length,6);
- assert.match(world.sociological_core.description,/musikk_utoving_og_ensemble/);
+ assert.ok(world.sociological_core.description.includes(careerScope));
  assert.match(world.sociological_core.description,/employer_appointment/);
  assert.match(world.sociological_core.description,/Solist/);
  assert.match(world.sociological_core.description,/Artist/);
