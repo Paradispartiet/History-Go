@@ -42,6 +42,21 @@ if(fs.existsSync(path.join(ROOT,worldPath))){
   const indexed=index.roles.find(x=>x.life_position_key==='musikk/publikum_deltaker');
   assert.ok(indexed);
   assert.equal(indexed.role_scope,'musikk_publikum_deltaker');
+  const world=read(worldPath);
+  assert.equal(world.subject_type,'life_position');
+  assert.equal(world.status,'role_world_complete');
+  assert.deepEqual(world.life_position_ref,{badge_id:'musikk',id:'publikum_deltaker',label:'Publikum / deltaker'});
+  assert.equal(world.materialization.no_new_runtime,true);
+  assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
+  assert.equal(world.season.coverage.length,56);
+  assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
+  assert.equal(world.materialization.source_refs.length,14);
+  assert.equal(world.primary_threads.length,14);
+  assert.equal(world.recurring_people_archetypes.length,6);
+  assert.equal(world.private_aftermath.length,5);
+  assert.equal(world.delayed_consequences.length,6);
+  assert.match(world.sociological_core.description,/Konsertgjenger/);
+  assert.match(world.sociological_core.description,/Scenehenger/);
 }else{
   assert.equal(row.role_world_status,'role_world_not_started');
   assert.equal(row.role_world_path,null);
