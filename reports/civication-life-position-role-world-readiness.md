@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 109 ready / 50 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 110 ready / 49 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 109
-**Multi-scene narrative foundations:** 109
-**Completed life-position Role Worlds:** 109
+**Exact governed-source matches:** 110
+**Multi-scene narrative foundations:** 110
+**Completed life-position Role Worlds:** 110
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `musikk/plateartist` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `natur/naturinteressert` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `politikk/aktivist` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `politikk/demokratianalytiker` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `religion/symboltolker` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `religion/tradisjonskjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `religion/troslivskjenner` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `scenekunst/publikum` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `musikk/publikum_deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `musikk/solist` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `musikk/utovende_musiker` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `natur/artsobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `natur/feltobservator` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `natur/naturinteressert` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `politikk/aktivist` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `politikk/demokratianalytiker` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `politikk/samfunnsengasjert_borger` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `politikk/statsvitenskapelig_ekspert` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `politikk/tillitsvalgt` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `religion/besokende` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `religion/feltarbeider` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `religion/nysgjerrig` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `religion/ritualkjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `religion/symboltolker` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `religion/tradisjonskjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `religion/troslivskjenner` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `scenekunst/publikum` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
