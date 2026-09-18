@@ -9,38 +9,6 @@ const { execFileSync } = require('node:child_process');
 const ROOT = path.resolve(__dirname, '..');
 const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(ROOT, rel), 'utf8'));
 
-const diagnosticPath = path.join(ROOT, 'data/Civication/lifePositionRoleWorldReadiness.json');
-const beforeText = fs.readFileSync(diagnosticPath, 'utf8');
-const diagnosticBefore = JSON.parse(beforeText);
-execFileSync(process.execPath, [
-  path.join(ROOT, 'scripts/audit-civication-life-position-role-world-readiness.mjs'),
-  '--write'
-], { cwd: ROOT, encoding: 'utf8' });
-const afterText = fs.readFileSync(diagnosticPath, 'utf8');
-const diagnosticAfter = JSON.parse(afterText);
-let firstDiff = -1;
-const minLen = Math.min(beforeText.length, afterText.length);
-for (let i = 0; i < minLen; i += 1) {
-  if (beforeText[i] !== afterText[i]) { firstDiff = i; break; }
-}
-if (firstDiff < 0 && beforeText.length !== afterText.length) firstDiff = minLen;
-const excerpt = (value) => firstDiff < 0 ? '' : value.slice(Math.max(0, firstDiff - 220), firstDiff + 500);
-console.error('READINESS_BYTE_DIAGNOSTIC_START');
-console.error(JSON.stringify({
-  before_length: beforeText.length,
-  after_length: afterText.length,
-  parsed_deep_equal: JSON.stringify(diagnosticBefore) === JSON.stringify(diagnosticAfter),
-  summary_deep_equal: JSON.stringify(diagnosticBefore.summary) === JSON.stringify(diagnosticAfter.summary),
-  queue_deep_equal: JSON.stringify(diagnosticBefore.queue) === JSON.stringify(diagnosticAfter.queue),
-  positions_deep_equal: JSON.stringify(diagnosticBefore.positions) === JSON.stringify(diagnosticAfter.positions),
-  first_ready_deep_equal: JSON.stringify(diagnosticBefore.first_ready) === JSON.stringify(diagnosticAfter.first_ready),
-  first_diff: firstDiff,
-  before_excerpt: excerpt(beforeText),
-  after_excerpt: excerpt(afterText)
-}, null, 2));
-console.error('READINESS_BYTE_DIAGNOSTIC_END');
-throw new Error('diagnostic only; do not merge this head');
-
 const output = execFileSync(process.execPath, [
   path.join(ROOT, 'scripts/audit-civication-life-position-role-world-readiness.mjs'),
   '--check'
