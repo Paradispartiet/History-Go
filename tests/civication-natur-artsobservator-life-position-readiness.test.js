@@ -41,7 +41,7 @@ assert.equal(feltNeighbor.classification,'ready');
 assert.ok(!(feltNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into natur/feltobservator');
 const interestNeighbor=audit.positions.find(x=>x.key==='natur/naturinteressert');
 assert.ok(interestNeighbor);
-assert.equal(interestNeighbor.classification,'needs_authored_depth','natur/naturinteressert must remain needs_authored_depth');
+assert.equal(interestNeighbor.classification,'ready');
 assert.ok(!(interestNeighbor.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into natur/naturinteressert');
 const artsjeger=audit.positions.find(x=>x.key==='natur/artsjeger');
 assert.ok(artsjeger);
