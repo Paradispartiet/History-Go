@@ -1,0 +1,51 @@
+name: Temporary Kommentator felt authored depth
+on:
+  push:
+    branches:
+      - civication/media-kommentator-felt-role-world
+permissions:
+  contents: write
+jobs:
+  author:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/media-kommentator-felt-role-world
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate life-position readiness
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify Kommentator felt readiness
+        run: node tests/civication-media-kommentator-felt-life-position-readiness.test.js
+      - name: Verify neighboring Media evidence remains isolated
+        run: |
+          node - <<'NODE'
+          const a=require('./data/Civication/lifePositionRoleWorldReadiness.json');
+          const src='data/Civication/narratives/leisure/media_kommentator_felt.json';
+          for(const key of ['media/kommentarfeltveteran','media/medievaktbikkje','media/debattant']){
+            const row=a.positions.find(x=>x.key===key);
+            if(!row) throw new Error(key+' missing');
+            if((row.evidence.thematic_source_refs||[]).includes(src)) throw new Error(src+' leaked into '+key);
+          }
+          console.log('Neighboring Media evidence remains isolated');
+          NODE
+      - name: Commit authored Kommentator felt state
+        run: |
+          git add \
+            data/Civication/lifePositionRoleWorldReadiness.json \
+            reports/civication-life-position-role-world-readiness.md
+          if git diff --cached --quiet; then
+            echo 'Kommentator felt authored-depth state already synchronized.'
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'Synchronize Kommentator felt authored-depth state'
+          git push origin HEAD:civication/media-kommentator-felt-role-world
