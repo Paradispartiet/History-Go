@@ -1,0 +1,650 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "politikk_tillitsvalgt_stream",
+  "type": "leisure",
+  "title": "Tillitsvalgt",
+  "sociological_theme": "representativt_mandat_lytting_intern_uenighet_prioritering_fortrolighet_forhandlingsgrenser_dokumentasjon_og_ansvarlighet_uten_automatisk_jobbstilling_eller_offentlig_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "politikk:tillitsvalgt"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "mandatet_ma_ha_en_avsender",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Valgprotokollen",
+      "subject": "Hvem har du faktisk rett til å representere?",
+      "situation": [
+        "Du blir omtalt som tillitsvalgt, men gruppen du skal representere består av flere personer med ulike forventninger.",
+        "Et representativt mandat må ha en identifiserbar avsender, et omfang og en måte å bli gitt eller fornyet på; Badge-poeng alene kan ikke skape dette mandatet.",
+        "Før du taler på vegne av andre, må det derfor være tydelig hvem som har valgt eller utpekt deg og hva de faktisk har bedt deg representere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilken gruppe som har gitt mandatet, hvordan det ble gitt, hvor lenge det gjelder og hvilke spørsmål det omfatter før du uttaler deg på deres vegne.",
+          "effect": 1,
+          "tags": [
+            "mandate_origin",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Behandle høy Badge-status og generell anerkjennelse som tilstrekkelig bevis på at du kan representere alle som berøres.",
+          "effect": -1,
+          "tags": [
+            "mandate_assumed",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_mandatet_ma_ha_en_avsender"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lytt_for_du_formulerer_kravet",
+      "message_type": "conversation",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medlemskontakten",
+      "subject": "Før du samler saken, må du høre forskjellene",
+      "situation": [
+        "Flere i gruppen beskriver samme sak ulikt: noen opplever den som prinsipielt viktig, andre som et praktisk problem, og noen er lite berørt.",
+        "En tillitsvalgt representerer mennesker med ulike erfaringer, ikke bare formuleringen som først kommer høyest eller raskest.",
+        "Lytting gjør det mulig å skille individuelle erfaringer fra det som faktisk er felles eller besluttet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Samle synspunktene, marker hvor de er like og ulike, og vent med den felles formuleringen til du vet hva gruppen faktisk står bak.",
+          "effect": 1,
+          "tags": [
+            "constituency_listening",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Start med konklusjonen du selv mener er sterkest og bruk samtalene til å finne støtte for den.",
+          "effect": -1,
+          "tags": [
+            "conclusion_first",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_lytt_for_du_formulerer_kravet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_i_egen_gruppe",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Mindretallsstemmen",
+      "subject": "Flertallet er ikke hele gruppen",
+      "situation": [
+        "Et tydelig flertall støtter én linje, men et mindretall mener at konsekvensene for dem blir vesentlig annerledes.",
+        "Representasjon krever ikke at all uenighet forsvinner før noe kan fremmes.",
+        "Det avgjørende er at mandatets hovedlinje og relevant intern uenighet ikke fremstilles som det samme."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fremfør hovedlinjen gruppen har gitt mandat til, og gjør relevant intern uenighet synlig der den påvirker saken eller konsekvensene.",
+          "effect": 1,
+          "tags": [
+            "minority_visibility",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Presenter gruppen som helt enig fordi det gjør budskapet enklere i møtet.",
+          "effect": -1,
+          "tags": [
+            "dissent_erasure",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_uenigheten_i_egen_gruppe"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hva_skal_pa_dagsorden",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Møteforberedelsen",
+      "subject": "Alt kan ikke fremmes samtidig",
+      "situation": [
+        "Gruppen har flere saker, mens neste møte bare har plass til noen få punkter.",
+        "Prioritering er en del av representasjonen fordi tid, oppmerksomhet og forhandlingsrom er begrenset.",
+        "Prioriteringen bør kunne forklares tilbake til dem som ga mandatet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter ut fra gruppens vedtak, hastegrad og konsekvenser, og noter hvilke saker som må komme senere og hvorfor.",
+          "effect": 1,
+          "tags": [
+            "agenda_priority",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Velg saken du selv synes er mest interessant og presenter den som gruppens naturlige førsteprioritet.",
+          "effect": -1,
+          "tags": [
+            "personal_agenda",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_hva_skal_pa_dagsorden"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "din_stemme_eller_gruppens",
+      "message_type": "task",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Motpartens kontakt",
+      "subject": "Er dette din mening eller deres mandat?",
+      "situation": [
+        "I møtet blir du spurt direkte hva du selv mener om en omstridt løsning.",
+        "Du kan ha en personlig vurdering samtidig som du er der for å representere en gruppe.",
+        "Hvis de to blandes sammen, blir det uklart om motparten møter din overbevisning eller gruppens mandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill eksplisitt mellom din egen vurdering og den posisjonen eller rammen gruppen har gitt deg mandat til å representere.",
+          "effect": 1,
+          "tags": [
+            "personal_collective_boundary",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Bruk din personlige overbevisning som gruppens standpunkt fordi du kjenner saken godt og ble valgt til rollen.",
+          "effect": -1,
+          "tags": [
+            "personal_view_as_mandate",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_din_stemme_eller_gruppens"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "saken_som_ikke_kan_deles_fritt",
+      "message_type": "conversation",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Et medlem",
+      "subject": "En personlig sak blir til representativt ansvar",
+      "situation": [
+        "Et medlem forteller om en sensitiv enkeltsak og ønsker hjelp, men har ikke sagt at detaljene kan deles videre.",
+        "En tillitsvalgt kan trenge å løfte et problem samtidig som personlige opplysninger og individuelle erfaringer ikke bør brukes videre uten avklaring.",
+        "Du må finne ut hva personen ønsker at du faktisk skal gjøre på deres vegne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva medlemmet ønsker hjelp til, hvilke opplysninger som kan bringes videre og om saken kan løftes som et generelt mønster uten unødvendige persondetaljer.",
+          "effect": 1,
+          "tags": [
+            "confidentiality_boundary",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Bruk de mest konkrete detaljene i møtet fordi en sterk historie vil gjøre problemet vanskeligere å avvise.",
+          "effect": -1,
+          "tags": [
+            "sensitive_detail_overreach",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_saken_som_ikke_kan_deles_fritt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_du_ikke_kan_love",
+      "message_type": "social",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Medlemskontakten",
+      "subject": "Representasjon er ikke det samme som resultatgaranti",
+      "situation": [
+        "Før møtet spør flere om du kan love at utfallet blir slik gruppen ønsker.",
+        "Du kan love forberedelse, tydelig representasjon og oppfølging, men resultatet avhenger også av andre aktører og prosesser.",
+        "For høye løfter kan gi kortvarig støtte og senere tap av tillit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær tydelig på hva du kan kontrollere: forberedelsen, representasjonen, dokumentasjonen og oppfølgingen; skill dette fra utfallet du ikke kan garantere.",
+          "effect": 1,
+          "tags": [
+            "promise_boundary",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Lov ønsket resultat for å vise handlekraft og håndter eventuelle avvik når møtet er over.",
+          "effect": -1,
+          "tags": [
+            "outcome_guarantee",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_det_du_ikke_kan_love"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forhandlingsrommet_har_grenser",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Motpartens kontakt",
+      "subject": "Et nytt kompromiss ligger utenfor rammen du fikk",
+      "situation": [
+        "Under samtalen kommer et kompromissforslag som gruppen ikke har diskutert på forhånd.",
+        "Forslaget kan være relevant, men det ligger utenfor den rammen du med sikkerhet vet at mandatet dekker.",
+        "Et representativt mandat kan inneholde handlingsrom, men det må finnes en grense for når nye premisser må tilbake til gruppen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hva du kan drøfte innenfor mandatet, og ta den nye delen tilbake til gruppen dersom den krever en fullmakt du ikke har.",
+          "effect": 1,
+          "tags": [
+            "negotiation_boundary",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter det nye premisset på stedet fordi representanten bør kunne utvide mandatet når forhandlingen krever det.",
+          "effect": -1,
+          "tags": [
+            "mandate_expansion",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_forhandlingsrommet_har_grenser"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "egeninteressen_i_rommet",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Den erfarne tillitsvalgte",
+      "subject": "Saken berører også deg personlig",
+      "situation": [
+        "Saken du representerer vil også påvirke deg selv direkte.",
+        "Det gjør ikke representasjonen ugyldig, men egeninteressen kan påvirke hvilke løsninger du foretrekker og hvilke kostnader du legger merke til.",
+        "Tillit blir mer etterprøvbar når relevante bindinger ikke skjules bak representantrollen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør egen berøring synlig, skill den fra gruppens vedtatte posisjon og la andre kontrollere at representasjonen ikke snevres inn til ditt eget behov.",
+          "effect": 1,
+          "tags": [
+            "conflict_of_interest",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Unngå å nevne egeninteressen fordi du mener at det du ønsker også er best for resten av gruppen.",
+          "effect": -1,
+          "tags": [
+            "self_interest_hidden",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_egeninteressen_i_rommet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referatet_som_kan_etterproves",
+      "message_type": "conversation",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Protokollføreren",
+      "subject": "Hva ble faktisk sagt, avtalt og stående åpent?",
+      "situation": [
+        "Etter møtet husker partene formuleringene litt forskjellig.",
+        "Representasjon trenger en sporbar overgang fra mandat til møte og tilbake til gruppen.",
+        "Et nøkternt referat skiller posisjoner, faktiske avtaler, uenighet og neste steg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter hva som ble lagt fram, hva motparten svarte, hva som faktisk ble avtalt og hvilke spørsmål som fortsatt er åpne.",
+          "effect": 1,
+          "tags": [
+            "documentation_trace",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Skriv oppsummeringen som en seier for egen side og la uklare punkter stå som om de var avklart.",
+          "effect": -1,
+          "tags": [
+            "victory_narrative",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_referatet_som_kan_etterproves"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_ledelsen_vil_ha_deg_med",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Motpartens kontakt",
+      "subject": "Kan du hjelpe oss å få gruppen til å godta dette?",
+      "situation": [
+        "Etter møtet ber motparten deg om å hjelpe til med å formidle en beslutning som gruppen ikke har tatt stilling til.",
+        "God dialog med motparten kan være verdifull, men representantrollen blir uklar dersom du går fra bindeledd til talsperson for den andre siden uten nytt mandat.",
+        "Du må kunne formidle informasjon presist uten å overta motpartens eierskap til beslutningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formidle beslutningen og begrunnelsen korrekt, men vær tydelig på at gruppens reaksjon og eventuell støtte må komme fra gruppen selv.",
+          "effect": 1,
+          "tags": [
+            "counterpart_cooption",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Bruk tilliten din i gruppen til å få beslutningen akseptert fordi et godt samarbeidsklima med motparten er viktigst nå.",
+          "effect": -1,
+          "tags": [
+            "representative_cooption",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_nar_ledelsen_vil_ha_deg_med"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_gruppen_vil_ha_et_lovet_resultat",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Medlemsmøtet",
+      "subject": "Press nedenfra kan også sprenge mandatet",
+      "situation": [
+        "Etter et vanskelig møte krever flere i gruppen at du lover et raskt resultat og bruker sterkere virkemidler enn det dere tidligere har avtalt.",
+        "En tillitsvalgt skal være lydhør for gruppen, men nye krav kan fortsatt kreve en ryddig beslutning og avklaring av konsekvenser.",
+        "Representasjon er ikke automatisk lydighet mot det siste eller høyeste kravet i rommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be gruppen avklare den nye linjen og konsekvensene gjennom den beslutningsmåten mandatet bygger på før du endrer hva du representerer.",
+          "effect": 1,
+          "tags": [
+            "constituency_pressure",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Ta det høyeste kravet som nytt mandat med en gang fordi tydelig press fra rommet viser hva gruppen egentlig vil.",
+          "effect": -1,
+          "tags": [
+            "loudest_voice_mandate",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_nar_gruppen_vil_ha_et_lovet_resultat"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilliten_kan_trekkes_tilbake",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Valgansvarlig",
+      "subject": "Mandatet må kunne vurderes på nytt",
+      "situation": [
+        "Perioden nærmer seg slutten, og gruppen skal vurdere om du fortsatt skal representere dem.",
+        "Noen er fornøyde med prosessen, andre mener du har prioritert feil eller kommunisert for sent.",
+        "Et representativt mandat innebærer ansvarlighet i begge retninger: du kan forklare valgene dine, og gruppen kan velge en annen representant."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg fram hva du gjorde, hvilke fullmakter du brukte, hva som ikke lyktes og hvilke tilbakemeldinger du tar med deg, uten å behandle gjenvalg som en rettighet.",
+          "effect": 1,
+          "tags": [
+            "accountability_cycle",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Vis til erfaringen og Badge-statusen som grunn til at rollen bør fortsette selv om gruppen ønsker en annen representant.",
+          "effect": -1,
+          "tags": [
+            "mandate_entitlement",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_tilliten_kan_trekkes_tilbake"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mandatet_er_ikke_en_jobbtittel",
+      "message_type": "conversation",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den erfarne tillitsvalgte",
+      "subject": "Tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv",
+      "situation": [
+        "Etter hvert har du lært å lytte, avgrense mandat, representere uenighet, dokumentere møter og stå til ansvar for gruppen som valgte eller utpekte deg.",
+        "Det kan være en omfattende sosial rolle, men Politikk-Badge-poeng skaper ikke i seg selv et faktisk valgresultat, ansettelsesforhold, partimandat eller offentlig myndighet.",
+        "Role World kan derfor beskrive representasjonens liv og press uten å late som spillet automatisk har gitt deg en formell jobb eller et offentlig verv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Tillitsvalgt som et representativt mandat som må ha en faktisk avsender og tydelige grenser, og hold det adskilt fra jobbtilbud og offentlig myndighet.",
+          "effect": 1,
+          "tags": [
+            "mandate_without_job",
+            "representative_clarity"
+          ],
+          "feedback": "Du holder representasjonen forankret i et identifiserbart mandat og gjør grensene etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "La Badge-statusen fungere som bevis på at du automatisk kan opptre som valgt representant, ansatt organisasjonssekretær eller offentlig beslutningstaker.",
+          "effect": -1,
+          "tags": [
+            "badge_as_mandate",
+            "representative_pressure"
+          ],
+          "feedback": "Du flytter fullmakt fra gruppen til representanten uten at mandatet faktisk er avklart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "tillitsvalgt_mandatet_er_ikke_en_jobbtittel"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

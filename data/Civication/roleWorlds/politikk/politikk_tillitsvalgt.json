@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "politikk",
+  "role_scope": "politikk_tillitsvalgt",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "politikk",
+    "id": "tillitsvalgt",
+    "label": "Tillitsvalgt"
+  },
+  "title": "Tillitsvalgt",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å representere en definert gruppe under et faktisk mandat når gruppen selv er uenig, motparten har eget handlingsrom, informasjon har ulike grenser og tillit må vedlikeholdes uten at Badge-status, egen overbevisning eller personlig synlighet blir gjort til fullmakt",
+    "description": "Tillitsvalgt er en employment-independent representative_mandate der spilleren må kunne vise hvem som har gitt mandatet, lytte før posisjoner formuleres, synliggjøre relevant intern uenighet, prioritere saker, skille egen mening fra gruppens standpunkt, avklare fortrolighet, begrense løfter og forhandlingsfullmakt, håndtere egeninteresse, dokumentere møter og stå til ansvar overfor gruppen som kan fornye eller trekke tilbake tilliten. Rollen er forskjellig fra Samfunnsengasjert borgers brede deltakelse og Aktivists handlingspraksis, og den er ikke Organisasjonssekretærs ansettelsesforhold eller et offentlig folkevalgt verv. Politikk-Badge-poeng kan åpne gameplay-posisjonen, men er ikke i seg selv et faktisk valgresultat, partimandat, ansettelse eller offentlig beslutningsmyndighet. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "loyalty_up_down",
+    "bureaucratic_power",
+    "local_knowledge_vs_system",
+    "public_attention",
+    "shame_reputation",
+    "care_vs_efficiency",
+    "professional_culture",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "medlems- og gruppesamtaler der representanten må finne ut hva som faktisk er felles, omstridt eller personlig",
+    "forberedelser der mange saker må prioriteres innenfor et avgrenset mandat og begrenset møtetid",
+    "møter med ledelse, administrasjon eller annen motpart der begge sider har egne fullmakter og interesser",
+    "situasjoner med sensitive enkeltsaker der representasjon må skilles fra fri bruk av personlige detaljer",
+    "oppfølging etter møter der avtaler, uenighet og neste steg må dokumenteres og formidles tilbake",
+    "ansvarlighetssituasjoner der gruppen vurderer om mandatet ble brukt slik det var gitt og om tilliten skal fornyes"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "valgansvarlig",
+      "social_function": "holder rede på hvordan representanten er valgt eller utpekt, hvem mandatet kommer fra og når det skal vurderes på nytt",
+      "class_position": "prosessrolle i gruppen uten eierskap til representantens standpunkt",
+      "status": "høy legitimitet i spørsmål om valg, periode og mandatets formelle opphav",
+      "power_over_player": "kan synliggjøre om rollen faktisk har en gyldig avsender og når gruppen skal vurdere representasjonen på nytt",
+      "wants": "at mandat, periode og ansvarlighet kan etterprøves",
+      "conceals": "at også formelle prosesser kan være preget av lav deltakelse eller uklare forventninger",
+      "speech_style": "nøktern, prosedyrenær og konkret",
+      "teaches_player": "at et representativt mandat må komme fra noen og kunne fornyes eller trekkes tilbake"
+    },
+    {
+      "id": "medlemskontakten",
+      "social_function": "samler hverdagslige erfaringer og krav fra dem representanten skal tale på vegne av",
+      "class_position": "medlem av den representerte gruppen uten særskilt beslutningsmyndighet alene",
+      "status": "høy situert kunnskap om hvordan saker faktisk merkes i gruppen",
+      "power_over_player": "kan utfordre om representantens formulering treffer det medlemmene faktisk opplever og prioriterer",
+      "wants": "at erfaringene nedenfra blir hørt før saken formuleres",
+      "conceals": "at egne erfaringer kan oppleves som mer representative enn de faktisk er",
+      "speech_style": "konkret, utålmodig og erfarenhetsnær",
+      "teaches_player": "at representasjon begynner med lytting og ikke med ferdig konklusjon"
+    },
+    {
+      "id": "mindretallsstemmen",
+      "social_function": "gjør intern uenighet og ulik konsekvens synlig når flertallet har en tydelig hovedlinje",
+      "class_position": "del av samme representerte gruppe, men uten flertallets støtte i den aktuelle saken",
+      "status": "lavere tallmessig støtte, men høy relevans når konsekvensene rammer ulikt",
+      "power_over_player": "kan synliggjøre at en samlet presentasjon skjuler viktig intern uenighet",
+      "wants": "at uenighet ikke slettes bare fordi gruppen trenger en felles linje",
+      "conceals": "at egen minoritetsposisjon også kan ønske mer plass enn mandatet gir",
+      "speech_style": "presis, skeptisk og opptatt av hva som forsvinner i ordet vi",
+      "teaches_player": "at representasjon kan ha en hovedlinje uten å gjøre gruppen kunstig enstemmig"
+    },
+    {
+      "id": "motpartens_kontakt",
+      "social_function": "er den institusjonelle motparten representanten må informere, drøfte eller forhandle med",
+      "class_position": "leder-, administrasjons- eller organisasjonsrolle med eget mandat og andre interesser enn gruppen",
+      "status": "har reelt handlingsrom på sin side av bordet, men eier ikke spillerens mandat",
+      "power_over_player": "kan styre møteformat, tilby kompromisser og be om tydeligere fullmakter, men kan ikke utvide spillerens mandat",
+      "wants": "en håndterbar prosess og tydelige posisjoner",
+      "conceals": "at behovet for ro og gjennomføring kan gjøre en medgjørlig representant fristende",
+      "speech_style": "saklig, løsningsorientert og opptatt av hva som faktisk kan besluttes",
+      "teaches_player": "at samarbeid ikke betyr at representanten skifter hvem han eller hun representerer"
+    },
+    {
+      "id": "erfaren_tillitsvalgt",
+      "social_function": "viser hvordan mandat, relasjon, dokumentasjon og personlig vurdering må holdes fra hverandre over tid",
+      "class_position": "erfaren representant uten myndighet over spillerens gruppe",
+      "status": "høy prosesskompetanse gjennom gjentatte representasjonssituasjoner",
+      "power_over_player": "kan utfordre blinde flekker og foreslå ryddigere prosess, men kan ikke gi spilleren nytt mandat",
+      "wants": "at representanten skal tåle både press ovenfra og nedenfra uten å late som rollen gir mer fullmakt enn den gjør",
+      "conceals": "at lang erfaring også kan gjøre enkelte arbeidsmåter til vaner som bør utfordres",
+      "speech_style": "kort, erfaringsbasert og grensetestende",
+      "teaches_player": "at tillit vedlikeholdes gjennom forutsigbar rolleforståelse, ikke bare gjennom gode resultater"
+    },
+    {
+      "id": "protokollforeren",
+      "social_function": "bevarer et nøkternt minne om hva som ble lagt fram, avtalt, avvist og stående åpent",
+      "class_position": "prosess- og dokumentasjonsrolle uten eget mandat til å bestemme utfallet",
+      "status": "høy troverdighet når ordlyd og møtepunkter senere blir omstridt",
+      "power_over_player": "kan gjøre forskjellen mellom faktisk avtale og etterfølgende fortelling synlig",
+      "wants": "at gruppen skal kunne kontrollere hva representasjonen faktisk førte til",
+      "conceals": "at også referater bygger på valg av detaljnivå og formulering",
+      "speech_style": "knapp, kronologisk og lite interessert i seierstolkninger",
+      "teaches_player": "at dokumentasjon beskytter både mandat, motpart og senere ansvarlighet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "mandate_origin",
+      "meaning": "hvem har du faktisk rett til å representere?",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "constituency_listening",
+      "meaning": "før du samler saken, må du høre forskjellene",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "minority_visibility",
+      "meaning": "flertallet er ikke hele gruppen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "agenda_priority",
+      "meaning": "alt kan ikke fremmes samtidig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "personal_collective_boundary",
+      "meaning": "er dette din mening eller deres mandat?",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "confidentiality_boundary",
+      "meaning": "en personlig sak blir til representativt ansvar",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "promise_boundary",
+      "meaning": "representasjon er ikke det samme som resultatgaranti",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "negotiation_boundary",
+      "meaning": "et nytt kompromiss ligger utenfor rammen du fikk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_of_interest",
+      "meaning": "saken berører også deg personlig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "documentation_trace",
+      "meaning": "hva ble faktisk sagt, avtalt og stående åpent?",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "counterpart_cooption",
+      "meaning": "kan du hjelpe oss å få gruppen til å godta dette?",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "constituency_pressure",
+      "meaning": "press nedenfra kan også sprenge mandatet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "accountability_cycle",
+      "meaning": "mandatet må kunne vurderes på nytt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mandate_without_job",
+      "meaning": "tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hvem har du faktisk rett til å representere?. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "mandate_origin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hvem har du faktisk rett til å representere?. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "mandate_origin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hvem har du faktisk rett til å representere?. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "mandate_origin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hvem har du faktisk rett til å representere?. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "mandate_origin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Før du samler saken, må du høre forskjellene. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "constituency_listening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Før du samler saken, må du høre forskjellene. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "constituency_listening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Før du samler saken, må du høre forskjellene. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "constituency_listening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Før du samler saken, må du høre forskjellene. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "constituency_listening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Flertallet er ikke hele gruppen. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "minority_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Flertallet er ikke hele gruppen. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "minority_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Flertallet er ikke hele gruppen. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "minority_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Flertallet er ikke hele gruppen. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "minority_visibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Alt kan ikke fremmes samtidig. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "agenda_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Alt kan ikke fremmes samtidig. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "agenda_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Alt kan ikke fremmes samtidig. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "agenda_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Alt kan ikke fremmes samtidig. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "agenda_priority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Er dette din mening eller deres mandat?. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "personal_collective_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Er dette din mening eller deres mandat?. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "personal_collective_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Er dette din mening eller deres mandat?. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "personal_collective_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Er dette din mening eller deres mandat?. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "personal_collective_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: En personlig sak blir til representativt ansvar. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "confidentiality_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: En personlig sak blir til representativt ansvar. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "confidentiality_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: En personlig sak blir til representativt ansvar. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "confidentiality_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: En personlig sak blir til representativt ansvar. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "confidentiality_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Representasjon er ikke det samme som resultatgaranti. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "promise_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Representasjon er ikke det samme som resultatgaranti. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "promise_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Representasjon er ikke det samme som resultatgaranti. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "promise_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Representasjon er ikke det samme som resultatgaranti. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "promise_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Et nytt kompromiss ligger utenfor rammen du fikk. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "negotiation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Et nytt kompromiss ligger utenfor rammen du fikk. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "negotiation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Et nytt kompromiss ligger utenfor rammen du fikk. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "negotiation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Et nytt kompromiss ligger utenfor rammen du fikk. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "negotiation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Saken berører også deg personlig. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "conflict_of_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Saken berører også deg personlig. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "conflict_of_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Saken berører også deg personlig. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "conflict_of_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Saken berører også deg personlig. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "conflict_of_interest"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Hva ble faktisk sagt, avtalt og stående åpent?. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "documentation_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Hva ble faktisk sagt, avtalt og stående åpent?. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "documentation_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Hva ble faktisk sagt, avtalt og stående åpent?. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "documentation_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Hva ble faktisk sagt, avtalt og stående åpent?. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "documentation_trace"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Kan du hjelpe oss å få gruppen til å godta dette?. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "counterpart_cooption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Kan du hjelpe oss å få gruppen til å godta dette?. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "counterpart_cooption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Kan du hjelpe oss å få gruppen til å godta dette?. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "counterpart_cooption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Kan du hjelpe oss å få gruppen til å godta dette?. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "counterpart_cooption"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Press nedenfra kan også sprenge mandatet. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "constituency_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Press nedenfra kan også sprenge mandatet. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "constituency_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Press nedenfra kan også sprenge mandatet. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "constituency_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Press nedenfra kan også sprenge mandatet. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "constituency_pressure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Mandatet må kunne vurderes på nytt. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "accountability_cycle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Mandatet må kunne vurderes på nytt. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "accountability_cycle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Mandatet må kunne vurderes på nytt. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "accountability_cycle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Mandatet må kunne vurderes på nytt. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "accountability_cycle"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv. Morgenen avklarer mandat, berørte grupper, informasjon og hvilke grenser som må være tydelige før representanten handler.",
+        "thread_ids": [
+          "mandate_without_job"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv. Midt på dagen gjør medlemmer, mindretall, motpart eller prosessroller uenighet, forventninger og makt sosialt synlige.",
+        "thread_ids": [
+          "mandate_without_job"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv. Ettermiddagen krever et valg om hva representanten faktisk kan fremme, love, dele, forhandle eller sende tilbake til gruppen.",
+        "thread_ids": [
+          "mandate_without_job"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv. Kvelden viser hva valget gjør med tillit, sporbarhet, rolleforståelse og forholdet mellom personlig mening og representativt ansvar.",
+        "thread_ids": [
+          "mandate_without_job"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "mandate_origin",
+      "relationship": "hvem har du faktisk rett til å representere?",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning",
+        "2/lunch"
+      ]
+    },
+    {
+      "id": "constituency_listening",
+      "relationship": "før du samler saken, må du høre forskjellene",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning",
+        "3/lunch"
+      ]
+    },
+    {
+      "id": "minority_visibility",
+      "relationship": "flertallet er ikke hele gruppen",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning",
+        "4/lunch"
+      ]
+    },
+    {
+      "id": "agenda_priority",
+      "relationship": "alt kan ikke fremmes samtidig",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning",
+        "5/lunch"
+      ]
+    },
+    {
+      "id": "personal_collective_boundary",
+      "relationship": "er dette din mening eller deres mandat?",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning",
+        "6/lunch"
+      ]
+    },
+    {
+      "id": "confidentiality_boundary",
+      "relationship": "en personlig sak blir til representativt ansvar",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning",
+        "7/lunch"
+      ]
+    },
+    {
+      "id": "promise_boundary",
+      "relationship": "representasjon er ikke det samme som resultatgaranti",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning",
+        "8/lunch"
+      ]
+    },
+    {
+      "id": "negotiation_boundary",
+      "relationship": "et nytt kompromiss ligger utenfor rammen du fikk",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning",
+        "9/lunch"
+      ]
+    },
+    {
+      "id": "conflict_of_interest",
+      "relationship": "saken berører også deg personlig",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning",
+        "10/lunch"
+      ]
+    },
+    {
+      "id": "documentation_trace",
+      "relationship": "hva ble faktisk sagt, avtalt og stående åpent?",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning",
+        "11/lunch"
+      ]
+    },
+    {
+      "id": "counterpart_cooption",
+      "relationship": "kan du hjelpe oss å få gruppen til å godta dette?",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning",
+        "12/lunch"
+      ]
+    },
+    {
+      "id": "constituency_pressure",
+      "relationship": "press nedenfra kan også sprenge mandatet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning",
+        "13/lunch"
+      ]
+    },
+    {
+      "id": "accountability_cycle",
+      "relationship": "mandatet må kunne vurderes på nytt",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch"
+      ]
+    },
+    {
+      "id": "mandate_without_job",
+      "relationship": "tillitsvalgt er et mandat, ikke automatisk jobb eller offentlig verv",
+      "beat_refs": [
+        "13/afternoon",
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "mandatet_blir_etterprovbart",
+      "description": "Mandatets avsender, lytting og intern uenighet blir en sporbar representasjonskjede i stedet for en personlig talerrolle.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe"
+      ]
+    },
+    {
+      "id": "prioritering_og_grenser_blir_synlige",
+      "description": "Dagsorden, skillet mellom egen mening og gruppens posisjon og håndtering av sensitive saker får eksplisitte grenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt"
+      ]
+    },
+    {
+      "id": "lofter_og_forhandling_far_fullmaktsgrense",
+      "description": "Utfallsforventninger, nye kompromisser og egeninteresse holdes innenfor et mandat som kan kontrolleres av gruppen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet"
+      ]
+    },
+    {
+      "id": "prosessen_kan_kontrolleres_i_ettertid",
+      "description": "Dokumentasjon, motpartspress og nytt press fra gruppen kan vurderes mot det som faktisk var avtalt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat"
+      ]
+    },
+    {
+      "id": "tillit_blir_fornybar_ikke_eid",
+      "description": "Ansvarlighet og rollegrensen gjør det klart at erfaring eller Badge-status ikke gir permanent mandat, jobb eller offentlig myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake",
+        "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "mandatet_moter_egen_stemme",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "lyttingen_moter_forhandlingen",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "mindretallet_moter_presset_nedenfra",
+      "setup_ref": "3/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "egeninteressen_moter_referatet",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fortroligheten_moter_ledelsespresset",
+      "setup_ref": "6/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "stress"
+      ]
+    },
+    {
+      "id": "dokumentasjonen_moter_ansvarligheten",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_ma_ha_en_avsender",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#lytt_for_du_formulerer_kravet",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#uenigheten_i_egen_gruppe",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#hva_skal_pa_dagsorden",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#din_stemme_eller_gruppens",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#saken_som_ikke_kan_deles_fritt",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#det_du_ikke_kan_love",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#forhandlingsrommet_har_grenser",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#egeninteressen_i_rommet",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#referatet_som_kan_etterproves",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_ledelsen_vil_ha_deg_med",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#nar_gruppen_vil_ha_et_lovet_resultat",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#tilliten_kan_trekkes_tilbake",
+      "data/Civication/narratives/leisure/politikk_tillitsvalgt.json#mandatet_er_ikke_en_jobbtittel"
+    ]
+  }
+}
