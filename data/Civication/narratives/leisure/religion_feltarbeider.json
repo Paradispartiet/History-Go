@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_feltarbeider_stream",
+  "type": "leisure",
+  "title": "Feltarbeider — tilgang, feltnotater og kunnskapsgrenser",
+  "sociological_theme": "feltpraksis_med_avtalt_tilgang_lopende_samtykke_feltnotater_identifiserbarhet_posisjonalitet_portvoktere_oversettelsesgrenser_utvalgsskjevhet_og_avslutning",
+  "applies_when": {
+    "any_tags": [
+      "religion:feltarbeider"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "avtalt_adgang",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontaktpersonen",
+      "subject": "Tilgang er avtalt, ikke overtatt",
+      "situation": [
+        "Du har fått lov til å følge en aktivitet over tid, men avtalen gjelder et bestemt rom, tidspunkt og formål.",
+        "Feltpraksis starter med en konkret adgang som kan være smalere enn det som fysisk er mulig å komme inn i.",
+        "At én person åpner en dør betyr ikke at alle andre mennesker eller situasjoner følger med på kjøpet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bekreft rammen for dagens adgang og spør på nytt hvis situasjonen beveger seg utenfor det dere avtalte.",
+          "effect": 1,
+          "tags": [
+            "access_scope",
+            "field_boundary"
+          ],
+          "feedback": "Du behandler tilgang som en løpende sosial avtale."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den opprinnelige tillatelsen som generell adgang; det er upraktisk å avklare hver endring.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør en avgrenset tillatelse til varig fullmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_avtalt_adgang"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feltnotatet_etter_hendelsen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Feltvennen",
+      "subject": "Minnet er tydeligere enn notatet",
+      "situation": [
+        "Etter en hendelse er du sikker på at du husker rekkefølgen, men feltnotatet ditt er mindre entydig.",
+        "Det som virker selvfølgelig noen timer senere kan allerede være blandet med egne forklaringer og etterpåklokskap.",
+        "Feltpraksis blir sterkere når beskrivelse og senere tolkning ikke glir sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hva du faktisk noterte der og da, og hva som er din senere rekonstruksjon.",
+          "effect": 1,
+          "tags": [
+            "fieldnote_trace",
+            "memory_boundary"
+          ],
+          "feedback": "Du gjør usikkerheten sporbar i stedet for å skjule den."
+        },
+        {
+          "id": "B",
+          "label": "Fyll hullene inn i notatet mens minnet fortsatt føles klart; helheten er viktigere enn små forbehold.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du lar etterpåklokskap se ut som samtidige feltnotater."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_feltnotatet_etter_hendelsen"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samtykke_som_kan_trekkes",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Deltakeren",
+      "subject": "Et ja fra i går er ikke et ja for alltid",
+      "situation": [
+        "En person som tidligere sa ja til at du fulgte aktiviteten virker mer reservert i dag.",
+        "Samtykke i et sosialt felt kan endres når tema, publikum eller personens egen situasjon endres.",
+        "Feltkontakt er ikke et abonnement på andre menneskers tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om rammen fortsatt er grei og gjør det enkelt å redusere eller avslutte din tilgang.",
+          "effect": 1,
+          "tags": [
+            "ongoing_consent",
+            "participant_control"
+          ],
+          "feedback": "Du behandler samtykke som noe levende og reversibelt."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett som før; dere har allerede avklart dette, og nye spørsmål kan gjøre alt unødvendig formelt.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør tidligere samtykke til varig råderett over en annen persons situasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_samtykke_som_kan_trekkes"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_i_notatboken",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Deltakeren",
+      "subject": "Trenger du egentlig navnet?",
+      "situation": [
+        "En detalj gjør personen lett gjenkjennelig selv om du ikke skriver fullt navn.",
+        "Anonymisering handler ikke bare om å fjerne navn; kombinasjoner av rolle, sted og hendelse kan identifisere noen.",
+        "Et godt feltnotat trenger ikke alltid den mest personlige detaljen for å bevare det relevante."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Reduser identifiserende detaljer til det som faktisk er nødvendig for å forstå hendelsen.",
+          "effect": 1,
+          "tags": [
+            "identifiability",
+            "data_minimization"
+          ],
+          "feedback": "Du skiller dokumentasjonsbehov fra nysgjerrighet på persondetaljer."
+        },
+        {
+          "id": "B",
+          "label": "Behold alt i egne notater; anonymisering er først et problem hvis materialet senere deles.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du samler mer identifiserende materiale enn praksisen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_navnet_i_notatboken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "egen_posisjon_i_rommet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Feltvennen",
+      "subject": "Du er også en del av situasjonen",
+      "situation": [
+        "Stemningen endrer seg litt når du kommer inn, og folk forklarer mer enn de gjorde før du var der.",
+        "Feltarbeideren står ikke utenfor den sosiale situasjonen; nærvær kan endre språk, tempo og hva som blir synlig.",
+        "Å registrere egen påvirkning gjør ikke feltnotatet svakere, men mindre naivt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvordan din rolle kan ha påvirket det du fikk se og høre.",
+          "effect": 1,
+          "tags": [
+            "positionality",
+            "observer_effect"
+          ],
+          "feedback": "Du gjør egen tilstedeværelse til en del av kunnskapsgrensen."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg selv utenfor notatet; målet er å beskrive dem, ikke deg.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du fremstiller materialet som om det oppstod uavhengig av ditt nærvær."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_egen_posisjon_i_rommet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "portvokteren_eier_ikke_alle",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontaktpersonen",
+      "subject": "Kontaktpersonen kan ikke samtykke for alle",
+      "situation": [
+        "Kontaktpersonen sier at det er helt greit at du blir, men en annen person i rommet virker utilpass.",
+        "Praktisk adgang kan organiseres av én person uten at vedkommende eier andres personlige grenser.",
+        "Feltpraksis må skille mellom institusjonell åpning og den enkeltes råderett over egen deltakelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta den enkeltes signal på alvor og avklar direkte eller trekk deg fra akkurat den delen.",
+          "effect": 1,
+          "tags": [
+            "gatekeeper_limit",
+            "individual_agency"
+          ],
+          "feedback": "Du skiller adgangsmyndighet fra råderett over andre mennesker."
+        },
+        {
+          "id": "B",
+          "label": "Følg kontaktpersonens beskjed; noen må ha siste ord når gruppen har åpnet døren.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du lar en portvokter erstatte den enkeltes egne grenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_portvokteren_eier_ikke_alle"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_som_ikke_lar_seg_oversette",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Språkbroen",
+      "subject": "Det nærmeste norske ordet passer ikke helt",
+      "situation": [
+        "Et lokalt begrep blir forklart med et norsk ord som høres kjent ut, men språkbroen sier at betydningen bare delvis overlapper.",
+        "Oversettelse kan gjøre materialet tilgjengelig samtidig som viktige nyanser forsvinner.",
+        "Feltpraksis bør kunne bevare et fremmed begrep uten å late som én oversettelse løser alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold originalbegrepet sammen med den situerte forklaringen og marker hvor oversettelsen er omtrentlig.",
+          "effect": 1,
+          "tags": [
+            "translation_limit",
+            "concept_context"
+          ],
+          "feedback": "Du bevarer friksjonen der språkene ikke dekker hverandre helt."
+        },
+        {
+          "id": "B",
+          "label": "Velg det norske ordet som ligger nærmest; leseren trenger en enkel term å holde fast i.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør en praktisk oversettelse til en falsk én-til-én-definisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_ordet_som_ikke_lar_seg_oversette"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "opptaket_som_bor_stoppe",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den skeptiske",
+      "subject": "Opptaket endrer hva som kan sies",
+      "situation": [
+        "En person begynner å snakke om noe sårbart og ser flere ganger mot telefonen du bruker til lydopptak.",
+        "Teknisk tillatelse til opptak betyr ikke at alle deler av en situasjon bør lagres videre.",
+        "Noen øyeblikk krever mindre dokumentasjon for at menneskene i rommet skal beholde kontroll."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp opptaket og avklar på nytt før noe sensitivt eventuelt tas opp senere.",
+          "effect": 1,
+          "tags": [
+            "recording_boundary",
+            "sensitive_moment"
+          ],
+          "feedback": "Du lar sårbarhet veie tyngre enn ønsket om komplett dokumentasjon."
+        },
+        {
+          "id": "B",
+          "label": "La opptaket gå; det er bedre å ha materialet og slette senere hvis noen protesterer.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du samler først og skyver kontrollen over materialet til etterkant."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_opptaket_som_bor_stoppe"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjensidighet_uten_kjop",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Deltakeren",
+      "subject": "Hva skylder en feltarbeider tilbake?",
+      "situation": [
+        "Du har fått mye tid og hjelp, og du kjenner behov for å gi noe tilbake.",
+        "Gjensidighet kan være høflighet, praktisk hjelp eller deling av et ferdig materiale, men den kan også skape press eller uklare forventninger.",
+        "Tilgang blir mindre frivillig dersom gaver eller tjenester begynner å fungere som betaling for fortsatt nærhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar en liten og passende form for gjensidighet uten å knytte den til mer tilgang eller bestemte svar.",
+          "effect": 1,
+          "tags": [
+            "reciprocity",
+            "access_purchase"
+          ],
+          "feedback": "Du gjør gjensidighet mulig uten å kjøpe videre nærhet."
+        },
+        {
+          "id": "B",
+          "label": "Gi en tydelig motytelse for tiden du har fått; da vet alle hva byttet består i.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør relasjonen mer transaksjonell og kan påvirke hvem som føler seg forpliktet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_gjensidighet_uten_kjop"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_som_ble_med",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Feltvennen",
+      "subject": "De synlige er ikke nødvendigvis hele miljøet",
+      "situation": [
+        "Etter flere feltøkter kjenner du best dem som snakker mye, er ofte til stede og liker å forklare.",
+        "Mennesker som er mindre synlige kan ha andre erfaringer uten at fraværet deres betyr at de er uviktige.",
+        "Et sosialt utsnitt formes av hvem som faktisk blir tilgjengelig for feltarbeideren."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hvilke typer mennesker materialet ditt faktisk bygger mest på, og hvem du vet lite om.",
+          "effect": 1,
+          "tags": [
+            "sample_visibility",
+            "representation_limit"
+          ],
+          "feedback": "Du gjør utvalgets skjevhet synlig før det blir til en generell påstand."
+        },
+        {
+          "id": "B",
+          "label": "Bruk de mest aktive som naturlige representanter; de kjenner jo miljøet best.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du lar tilgjengelighet bli forvekslet med representativitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_hvem_som_ble_med"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hoytiden_som_ikke_er_normaldag",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kontaktpersonen",
+      "subject": "Denne dagen er ikke en gjennomsnittsdag",
+      "situation": [
+        "Du følger en særlig viktig dag med flere mennesker, mer organisering og andre forventninger enn ellers.",
+        "Sterke feltøyeblikk er ofte nettopp sterke fordi de ikke er normale.",
+        "En enkelt høytidelig dag kan vise noe viktig uten å være et godt mål på vanlig praksis resten av året."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv dagen som en særskilt tidskontekst og unngå å gjøre intensiteten til normalnivå.",
+          "effect": 1,
+          "tags": [
+            "temporal_context",
+            "special_day"
+          ],
+          "feedback": "Du skiller betydningsfullt fra representativt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk dagen som hovedbilde; det er når mye skjer at miljøet viser hva det egentlig er.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør et ekstraordinært tidspunkt til standardbilde."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_hoytiden_som_ikke_er_normaldag"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "feltkontakt_som_avsluttes",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Deltakeren",
+      "subject": "Når feltperioden er over, hva skjer med relasjonen?",
+      "situation": [
+        "Den planlagte feltperioden går mot slutten, men noen du har blitt kjent med fortsetter å sende meldinger og invitere deg.",
+        "En feltkontakt kan bli personlig, men avslutningen bør ikke være uklar bare fordi relasjonen har vært varm.",
+        "Mennesker bør vite når du fortsatt opptrer som feltarbeider og når den rollen faktisk er avsluttet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær tydelig på at feltperioden avsluttes og avklar hvordan eventuell videre kontakt skal forstås.",
+          "effect": 1,
+          "tags": [
+            "field_exit",
+            "role_transition"
+          ],
+          "feedback": "Du lar andre vite når feltrollen opphører i stedet for å beholde et uklart mellomrom."
+        },
+        {
+          "id": "B",
+          "label": "La overgangen skje av seg selv; det virker kaldt å sette en formell slutt på en god relasjon.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør det vanskelig å vite om senere kontakt fortsatt blir behandlet som feltmateriale."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_feltkontakt_som_avsluttes"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_som_skal_videre",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den skeptiske",
+      "subject": "Et sitat skifter risiko når publikum skifter",
+      "situation": [
+        "Du vil bruke en formulering videre i en offentlig tekst, selv om personen opprinnelig sa den i en liten og avgrenset sammenheng.",
+        "Materiale kan endre sosial betydning når mottakerkretsen blir større enn den som opprinnelig var tenkt.",
+        "En formulering som virker ufarlig i feltnotatet kan bli identifiserende eller belastende i en ny sammenheng."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar videre bruk når publikum og risiko endres, og omskriv eller utelat dersom personen ikke ønsker eksponeringen.",
+          "effect": 1,
+          "tags": [
+            "secondary_use",
+            "reconsent"
+          ],
+          "feedback": "Du behandler ny bruk som en ny sosial situasjon, ikke bare en teknisk kopi."
+        },
+        {
+          "id": "B",
+          "label": "Bruk formuleringen så lenge navnet er fjernet; samtykket til feltarbeidet dekker også senere tekstbruk.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du lar tidligere adgang dekke en videre bruk som kan få helt andre følger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_sitatet_som_skal_videre"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fra_felt_til_pastand",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Hva kan du faktisk si etter feltet?",
+      "situation": [
+        "Du sitter med mange feltnotater og sterke inntrykk, men uten et formelt forskningsprosjekt eller akademisk mandat.",
+        "Fieldwork_practice kan gi disiplinert, situert kunnskap uten at det automatisk blir vitenskapelig forskning.",
+        "Det avgjørende er å holde påstanden innenfor materialet, egen rolle og de grensene som fulgte tilgangen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler hva materialet støtter, hva det ikke dekker, og skill feltpraksis fra profesjonell forskningsautoritet.",
+          "effect": 1,
+          "tags": [
+            "claim_scope",
+            "research_authority"
+          ],
+          "feedback": "Du lar feltpraksisen være presis uten å oppgradere statusen din."
+        },
+        {
+          "id": "B",
+          "label": "Presenter hovedmønsteret som et forskningsfunn; mengden feltnotater gjør forskjellen mellom praksis og forskning liten.",
+          "effect": -1,
+          "tags": [
+            "field_overreach",
+            "false_certainty"
+          ],
+          "feedback": "Du gjør arbeidsformen til en akademisk autoritet du ikke har fått."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "feltarbeider_fra_felt_til_pastand"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

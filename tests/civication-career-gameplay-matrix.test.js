@@ -73,4 +73,18 @@ assert.strictEqual(renholder.status, 'reference_complete', 'Renholder is the fir
 assert.strictEqual(renholder.audit.components.authority.level, 'complete', 'Renholder authority boundary is machine-auditable');
 assert.strictEqual(renholder.audit.complete_components.length, policy.contract_components.length, 'Renholder completes all 15 contract components');
 
+const legacyArbeider = matrix.worlds.find((world) => world.key === 'naeringsliv/arbeider');
+assert(legacyArbeider, 'legacy Arbeider world remains auditable as canonical non-career content');
+assert(
+  !legacyArbeider.artifacts.role_tests.includes('tests/civication-religion-feltarbeider-life-position-readiness.test.js'),
+  'career evidence matching must not treat Feltarbeider as Arbeider by filename substring'
+);
+
+for (const world of matrix.worlds) {
+  assert(
+    !world.artifacts.role_tests.some((rel) => rel.endsWith('-life-position-readiness.test.js')),
+    `${world.key} must not use a life-position readiness gate as career gameplay evidence`
+  );
+}
+
 console.log(`PASS: Career Gameplay Matrix v1 covers ${matrix.worlds.length} canonical career worlds and ${matrix.support_worlds.length} support worlds with a deterministic 15-component gate.`);
