@@ -46,21 +46,19 @@ jobs:
       - name: Verify compiled scene registry is synchronized
         run: node scripts/build-civication-scene-registry.mjs --check
 
-      - name: Run complete Civication suite
-        run: npm run test:civication
-
       - name: Generate PR 6064 rollout-readiness diagnostic outputs
-        if: failure()
         run: |
           node scripts/audit-civication-career-gameplay.mjs --write
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
 
       - name: Upload PR 6064 rollout-readiness outputs
-        if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: civication-6064-generated-v3
+          name: civication-6064-generated-v4
           path: |
             data/Civication/careerGameplayMatrix.json
             data/Civication/roleWorldRolloutReadiness.json
             reports/civication-role-world-rollout-readiness.md
+
+      - name: Run complete Civication suite
+        run: npm run test:civication
