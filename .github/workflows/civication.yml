@@ -50,6 +50,7 @@ jobs:
         run: |
           node scripts/audit-civication-career-gameplay.mjs --write
           node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          git diff --unified=0 -- data/Civication/roleWorldRolloutReadiness.json
 
       - name: Upload PR 6064 rollout-readiness outputs
         uses: actions/upload-artifact@v4
