@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_tradisjonskjenner_stream",
+  "type": "leisure",
+  "title": "Tradisjonskjenner — overføring, variasjon og historiske lag",
+  "sociological_theme": "religiøs_tradisjonskompetanse_overføring_historiske_lag_institusjoner_lokale_skikker_generasjoner_migrasjon_språk_reform_revival_kanon_og_sedvane_uten_ritual_eller_representasjonsmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "religion:tradisjonskjenner"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "tradisjon_er_overforing",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Historievennen",
+      "subject": "En tradisjon eksisterer fordi noe blir overført",
+      "situation": [
+        "Du møter en praksis som omtales som gammel, men ingen kan peke på én uavbrutt form.",
+        "Tradisjoner kan overføres gjennom familie, institusjoner, tekster, minner og gjentatt praksis selv når formen endrer seg.",
+        "Tradisjonskompetanse begynner med å spørre hva som faktisk videreføres, av hvem og gjennom hvilke kanaler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hva som overføres og hvilke personer, miljøer eller institusjoner som bærer det videre.",
+          "effect": 1,
+          "tags": [
+            "transmission",
+            "continuity_channels"
+          ],
+          "feedback": "Du gjør tradisjon til dokumenterbar overføring fremfor en påstand om uforanderlighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk alderen på tradisjonen som hovedforklaring; detaljer om overføring er sekundære.",
+          "effect": -1,
+          "tags": [
+            "timeless_tradition",
+            "continuity_assumption"
+          ],
+          "feedback": "Du gjør alder til erstatning for kunnskap om hvordan tradisjonen faktisk videreføres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_overforing"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kanon_og_sedvane",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Tekstkjenneren",
+      "subject": "Det som står skrevet og det som gjøres kan begge være tradisjon",
+      "situation": [
+        "En lokal skikk har sterk posisjon selv om den ikke kan spores direkte til en sentral tekst.",
+        "Religiøse tradisjoner kan bestå av både kanoniske kilder, kommentartradisjoner, sedvane og senere institusjonelle normer.",
+        "Tradisjonskjenneren må kunne skille kildetypene uten å redusere tradisjon til bare én av dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv skikken som tradisjonell praksis og undersøk hvordan den begrunnes lokalt og historisk.",
+          "effect": 1,
+          "tags": [
+            "canon_custom",
+            "local_practice"
+          ],
+          "feedback": "Du holder tekstgrunnlag og sedvane adskilt, men begge synlige."
+        },
+        {
+          "id": "B",
+          "label": "Vurder først om skikken har tydelig tekstgrunnlag; uten det er den mindre sentral som tradisjon.",
+          "effect": -1,
+          "tags": [
+            "textual_reduction",
+            "custom_devaluation"
+          ],
+          "feedback": "Du gjør én type kilde til målestokk for hele tradisjonsfeltet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_kanon_sedvane"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokal_variant",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den lokale kjenneren",
+      "subject": "Lokal praksis er ikke automatisk et avvik",
+      "situation": [
+        "To lokalsamfunn markerer samme høytid på ulike måter.",
+        "Forskjellen kan skyldes geografi, språk, migrasjonshistorie, institusjon eller familietradisjon.",
+        "Tradisjonskompetanse krever å beskrive variasjon uten å rangere én lokal form som selve malen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg felles kjerne og lokale former, og noter hvilke historiske forhold som forklarer forskjellen.",
+          "effect": 1,
+          "tags": [
+            "local_variation",
+            "historical_context"
+          ],
+          "feedback": "Du behandler lokal variasjon som en del av tradisjonens historie."
+        },
+        {
+          "id": "B",
+          "label": "Finn den mest formelle eller utbredte varianten og bruk den som standard.",
+          "effect": -1,
+          "tags": [
+            "standardization",
+            "authenticity_hierarchy"
+          ],
+          "feedback": "Du gjør utbredelse eller formalitet til fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_lokal_variant"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "generasjonene",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Familievennen",
+      "subject": "Samme tradisjon kan læres forskjellig av tre generasjoner",
+      "situation": [
+        "Besteforeldre, foreldre og unge beskriver samme tradisjon med ulike ord og prioriteringer.",
+        "Generasjonsskifter kan endre språk, praksis og begrunnelser uten at tilhørigheten nødvendigvis brytes.",
+        "Tradisjonskjenneren må forstå overføring som noe som også innebærer seleksjon og nytolkning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign hva hver generasjon viderefører, endrer og lar falle bort.",
+          "effect": 1,
+          "tags": [
+            "intergenerational_change",
+            "selective_transmission"
+          ],
+          "feedback": "Du gjør generasjonsforskjellen til historisk informasjon."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den eldste generasjonens praksis som målestokk for hvor mye tradisjonen er bevart.",
+          "effect": -1,
+          "tags": [
+            "elder_as_standard",
+            "change_as_loss"
+          ],
+          "feedback": "Du tolker endring som tap før du har undersøkt hva som faktisk videreføres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_generasjoner"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "migrasjon_og_nytt_sted",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Migrasjonshistorikeren",
+      "subject": "En tradisjon flytter ikke uendret",
+      "situation": [
+        "Et miljø etablerer seg i et nytt land og må tilpasse kalender, språk, bygg, mat og organisering.",
+        "Migrasjon kan både bevare bestemte former sterkere og skape nye kombinasjoner.",
+        "Tradisjonskunnskap må derfor følge både kontinuitet og nyskaping."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke elementer som bevares, hvilke som endres og hvilke nye løsninger som oppstår på det nye stedet.",
+          "effect": 1,
+          "tags": [
+            "migration_adaptation",
+            "continuity_change"
+          ],
+          "feedback": "Du beskriver tradisjon som mobil og situert."
+        },
+        {
+          "id": "B",
+          "label": "Skille tydelig mellom opprinnelig tradisjon og senere diaspora-varianter.",
+          "effect": -1,
+          "tags": [
+            "origin_essentialism",
+            "diaspora_devaluation"
+          ],
+          "feedback": "Du gjør opprinnelsesstedet til eneste målestokk for legitimitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_migrasjon"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "spraket_baerer_mer_enn_ord",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Språkbroen",
+      "subject": "Språkskifte kan endre hvordan tradisjonen læres",
+      "situation": [
+        "En yngre gruppe bruker et annet hovedspråk enn eldre medlemmer og oversetter sentrale begreper i undervisning og samtale.",
+        "Språk kan bære faste uttrykk, autoritetsformer og kulturelle assosiasjoner som ikke flyttes automatisk.",
+        "Tradisjonskjenneren må se språkskifte som del av overføringshistorien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvilke begreper som oversettes, beholdes og forklares på nytt mellom generasjonene.",
+          "effect": 1,
+          "tags": [
+            "language_transmission",
+            "translation_change"
+          ],
+          "feedback": "Du gjør språk til en synlig del av tradisjonsendringen."
+        },
+        {
+          "id": "B",
+          "label": "Fokuser på innholdet; hvilket språk det uttrykkes på er mest et praktisk spørsmål.",
+          "effect": -1,
+          "tags": [
+            "language_neutrality",
+            "transmission_loss"
+          ],
+          "feedback": "Du overser at språkvalget selv kan forme hva som videreføres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_sprak"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "institusjonen_og_hjemmet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den praktiserende",
+      "subject": "Tradisjon læres både offentlig og privat",
+      "situation": [
+        "Institusjonen underviser én ordning, mens familier viderefører egne vaner hjemme.",
+        "Offentlig lære og privat praksis kan støtte hverandre, men også leve med tydelige forskjeller.",
+        "Tradisjonskompetanse trenger begge nivåene uten å gjøre hjemmet til bare et avvik fra institusjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv institusjonell og familiær overføring som to separate, samvirkende tradisjonskanaler.",
+          "effect": 1,
+          "tags": [
+            "institution_home",
+            "dual_transmission"
+          ],
+          "feedback": "Du gjør både formell og uformell overføring synlig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk institusjonens ordning som hovedtradisjon og familievane som lokal tilpasning.",
+          "effect": -1,
+          "tags": [
+            "institutional_priority",
+            "private_practice_reduction"
+          ],
+          "feedback": "Du rangerer tradisjonskanaler uten å undersøke deres faktiske betydning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_institusjon_hjem"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reform_innenfra",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "Reform kan presenteres som både brudd og gjenopprettelse",
+      "situation": [
+        "En bevegelse endrer praksis og språk, men beskriver selv endringen som tilbakevending til en eldre eller renere tradisjon.",
+        "Reformbevegelser legitimerer ofte nytt gjennom bestemte fortellinger om fortiden.",
+        "Tradisjonskjenneren må skille bevegelsens egen historiefortelling fra dokumenterbar endring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv både reformens selvforståelse og hva som faktisk endres i praksis og institusjon.",
+          "effect": 1,
+          "tags": [
+            "reform",
+            "self_narration"
+          ],
+          "feedback": "Du gjør både aktørenes språk og den historiske endringen synlig."
+        },
+        {
+          "id": "B",
+          "label": "Ta reformens tilbakevending på ordet dersom den kan vise til eldre kilder.",
+          "effect": -1,
+          "tags": [
+            "restoration_claim",
+            "historical_shortcut"
+          ],
+          "feedback": "Du gjør normativ selvbeskrivelse til historisk konklusjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_reform"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "revival_og_gjenoppfinnelse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Arkivvennen",
+      "subject": "En gjenopplivet tradisjon kan være både ny og historisk forankret",
+      "situation": [
+        "En praksis tas opp igjen etter lang pause, delvis basert på arkiv, minner og nyere rekonstruksjon.",
+        "Gjenoppliving kan skape reell kontinuitet samtidig som formen nødvendigvis er preget av samtidige behov.",
+        "Tradisjonskunnskap bør kunne beskrive dette uten å stemple praksisen som enten falsk eller identisk med fortiden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom dokumenterte eldre elementer, senere rekonstruksjon og dagens sosiale funksjon.",
+          "effect": 1,
+          "tags": [
+            "revival",
+            "reconstruction"
+          ],
+          "feedback": "Du gjør tradisjonens nye historiske lag eksplisitt."
+        },
+        {
+          "id": "B",
+          "label": "Avgjør først om tradisjonen er autentisk nok til å regnes som videreføring.",
+          "effect": -1,
+          "tags": [
+            "authenticity_gate",
+            "binary_continuity"
+          ],
+          "feedback": "Du gjør en kompleks overføringshistorie til et ja/nei-spørsmål."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_revival"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hoytid_og_hverdagspraksis",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Kalenderkjenneren",
+      "subject": "Høytiden er synlig, men tradisjonen lever også mellom merkedagene",
+      "situation": [
+        "Du kan mange store høytider, men en lokal kjenner peker på små vaner som former hverdagen gjennom året.",
+        "Synlige høytider gir ikke nødvendigvis full oversikt over hvordan tradisjon faktisk vedlikeholdes.",
+        "Tradisjonskjenneren må derfor følge både kalenderens topper og hverdagslig overføring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg både høytider og de små rutinene som holder tradisjonen levende mellom dem.",
+          "effect": 1,
+          "tags": [
+            "festival_everyday",
+            "maintenance_practice"
+          ],
+          "feedback": "Du ser tradisjon som kontinuerlig sosial praksis."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter de store høytidene; de uttrykker tradisjonen tydeligst og mest representativt.",
+          "effect": -1,
+          "tags": [
+            "festival_bias",
+            "visibility_bias"
+          ],
+          "feedback": "Du lar det mest synlige stå for hele tradisjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_hoytid_hverdag"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "minne_og_historie",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Familievennen",
+      "subject": "Et sterkt minne er en kilde, men ikke hele historien",
+      "situation": [
+        "En familie forteller hvordan en tradisjon alltid har vært praktisert, mens eldre kilder viser flere endringer.",
+        "Kollektivt minne kan gi tilgang til mening og identitet samtidig som det forenkler kronologien.",
+        "Tradisjonskjenneren bør behandle minne og dokumentasjon som ulike kildetyper."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bevar familiens fortelling som minnekilde og sammenlign den med dokumenterte endringer.",
+          "effect": 1,
+          "tags": [
+            "memory_history",
+            "source_types"
+          ],
+          "feedback": "Du gjør forskjellen mellom levd minne og historisk rekonstruksjon produktiv."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter familiens egen fortelling; de som har levd tradisjonen vet best hvordan den har vært.",
+          "effect": -1,
+          "tags": [
+            "memory_as_chronicle",
+            "source_collapse"
+          ],
+          "feedback": "Du gjør erindring til fullstendig kronologi."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_minne_historie"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensen_mot_ritualkjenner",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ritualkjenneren",
+      "subject": "Å kjenne tradisjonens historie er ikke det samme som å kunne ritualet",
+      "situation": [
+        "Du kan forklare hvordan en praksis oppstod og endret seg, men kjenner ikke alle reglene for utførelse i dagens lokale ritual.",
+        "Tradisjonshistorie og ritualkompetanse overlapper, men de krever ulik situert kunnskap.",
+        "Tradisjonskjenneren bør derfor ikke utlede praktiske ritualregler bare fra historisk oversikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold tradisjonshistorien og dagens ritualpraksis separate der du mangler konkret ritualkunnskap.",
+          "effect": 1,
+          "tags": [
+            "tradition_ritual_boundary",
+            "epistemic_scope"
+          ],
+          "feedback": "Du skiller historisk literacy fra praktisk ritualkompetanse."
+        },
+        {
+          "id": "B",
+          "label": "Bruk tradisjonshistorien til å utlede hvordan ritualet bør gjennomføres i dag.",
+          "effect": -1,
+          "tags": [
+            "historical_normativity",
+            "ritual_overreach"
+          ],
+          "feedback": "Du gjør historisk kunnskap til praktisk myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_grense_ritual"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensen_mot_symboltolker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Symboltolkeren",
+      "subject": "Å kjenne tradisjonen gir ikke fasit på hvert symbol",
+      "situation": [
+        "Du kjenner et symbols plass i tradisjonens historie, men møter flere samtidige tolkninger av betydningen.",
+        "Tradisjonell plassering og symbolfortolkning er relatert, men ikke identiske kunnskapsoppgaver.",
+        "Tradisjonskjenneren må kunne vise hvor et symbol hører hjemme uten å eie alle fortolkningene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv symbolhistorien og la konkrete betydningstolkninger stå med sine egne kilder.",
+          "effect": 1,
+          "tags": [
+            "tradition_symbol_boundary",
+            "interpretive_plurality"
+          ],
+          "feedback": "Du skiller tradisjonell plassering fra fortolkningsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk tradisjonens etablerte bruk som hovedfasit for hva symbolet betyr.",
+          "effect": -1,
+          "tags": [
+            "tradition_as_interpretive_authority",
+            "meaning_reduction"
+          ],
+          "feedback": "Du gjør tradisjonskunnskap til tolkningsmonopol."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_grense_symbol"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tradisjonskjenner_ikke_troslivskjenner",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Bred tradisjonskunnskap er ikke total innsikt i hvordan mennesker tror",
+      "situation": [
+        "Du kan etter hvert forklare overføring, institusjoner, lokale former og historiske endringer, og andre begynner å spørre hva troende egentlig føler og mener.",
+        "Tradisjon setter rammer for trosliv, men enkeltmennesker kan forholde seg selektivt, kritisk eller distansert til den.",
+        "Tradisjonskjenner er derfor ikke Troslivskjenner, religiøs representant eller fagperson med mandat over personlige erfaringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar på tradisjonsmønstrene du kjenner og marker når spørsmålet går over i levd trosliv du ikke kan representere.",
+          "effect": 1,
+          "tags": [
+            "tradition_lived_religion_boundary",
+            "epistemic_humility"
+          ],
+          "feedback": "Du holder bred tradisjonskompetanse innenfor sin faktiske kunnskapsgrense."
+        },
+        {
+          "id": "B",
+          "label": "Bruk tradisjonskunnskapen som beste forklaring på troslivet; mønstrene viser vanligvis hva folk orienterer seg etter.",
+          "effect": -1,
+          "tags": [
+            "tradition_determinism",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar sosial tradisjon forklare mer av individets trosliv enn kildene bærer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_tradisjonskjenner_grense_trosliv"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
