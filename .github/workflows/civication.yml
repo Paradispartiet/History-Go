@@ -55,11 +55,13 @@ jobs:
       - name: Upload PR 6064 rollout-readiness outputs
         uses: actions/upload-artifact@v4
         with:
-          name: civication-6064-generated-v4
+          name: civication-6064-generated-v5
           path: |
             data/Civication/careerGameplayMatrix.json
             data/Civication/roleWorldRolloutReadiness.json
             reports/civication-role-world-rollout-readiness.md
 
-      - name: Run complete Civication suite
-        run: npm run test:civication
+      - name: Show exact rollout-readiness generator diff
+        run: |
+          git diff --unified=1 -- data/Civication/roleWorldRolloutReadiness.json
+          exit 1
