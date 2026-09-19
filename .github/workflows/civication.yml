@@ -20,7 +20,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -65,3 +65,22 @@ jobs:
             reports/civication-life-position-role-world-readiness.md
             data/Civication/careerGameplayMatrix.json
             reports/civication-career-gameplay-matrix.md
+
+      - name: Commit PR 6064 generator-exact outputs
+        if: failure() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_HEAD_REF: ${{ github.head_ref }}
+        run: |
+          git reset --hard "$PR_HEAD_SHA"
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+          git add             data/Civication/lifePositionRoleWorldReadiness.json             reports/civication-life-position-role-world-readiness.md             data/Civication/careerGameplayMatrix.json             reports/civication-career-gameplay-matrix.md
+          if git diff --cached --quiet; then
+            echo "Generated outputs already exact."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Civication: regenerate generator-exact outputs"
+          git push origin HEAD:"$PR_HEAD_REF"
