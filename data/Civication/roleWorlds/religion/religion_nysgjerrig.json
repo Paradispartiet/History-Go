@@ -1,0 +1,1150 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_nysgjerrig",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "nysgjerrig",
+    "label": "Nysgjerrig"
+  },
+  "title": "Nysgjerrig",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utforske religion gjennom spørsmål, kilder, samtaler og sammenligning uten å gjøre nysgjerrighet til medlemskap, privat tilgang, fagstatus eller tolkningsmyndighet",
+    "description": "Nysgjerrig er en lavterskel exploration_interest som organiserer de første gjentatte spørsmålene om religion rundt begreper, kilder, intern variasjon, historiske lag og grensen mellom personlig erfaring og bredere påstander. Rollen er ikke Besøkende, som er bundet til en konkret gjestesituasjon; ikke Livssynsutforsker, som sammenligner livssyn og meningssystemer mer systematisk; og ikke Tradisjonskjenner, Ritualkjenner, Symboltolker eller Troslivskjenner, som forutsetter dypere akkumulert literacy. Den er heller ikke Feltarbeider, som har en eksplisitt feltpraksis med tilgang, samtykke og dokumentasjonsansvar. Opparbeidet interesse gir aldri medlemskap, religiøs representasjonsrett, teologisk autoritet, forskerstatus eller profesjonelt mandat."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "public_private_leakage",
+    "status_anxiety",
+    "public_attention",
+    "bureaucratic_power",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "privat lesing, oppslag og kildesøk der et spørsmål kan bli mer presist eller bare mer selvsikkert",
+    "samtaler med praktiserende, venner og lokale kjennere der personlig erfaring og representasjon må skilles",
+    "bibliotek, museum og åpne kunnskapsflater der teksttyper, historiske lag og begreper kan sammenlignes",
+    "digitale strømmer og korte forklaringsformater der synlighet, algoritmer og forenkling former hva spilleren møter",
+    "foredrag, åpne arrangementer og offentlige samtaler der institusjonell autoritet har et faktisk, men avgrenset virkeområde",
+    "etterarbeid og deling der notater, sammenligninger og helhetsinntrykk må få en påstandsstyrke som kildene faktisk bærer"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "kildevennen",
+      "social_function": "presser gode spørsmål tilbake mot kildetype, belegg og eksplisitte kunnskapsgrenser",
+      "class_position": "kunnskapsinteressert privatperson uten religiøst eller profesjonelt mandat",
+      "status": "troverdighet gjennom presise forbehold og vilje til å korrigere egne førsteinntrykk",
+      "power_over_player": "kan utfordre brede formuleringer og kreve at kildene faktisk bærer påstanden",
+      "wants": "at nysgjerrighet skal føre til bedre spørsmål i stedet for sikrere tonefall",
+      "conceals": "at egen forkjærlighet for forbehold noen ganger gjør formidlingen unødvendig forsiktig",
+      "speech_style": "rolig, kildebevisst og konkret",
+      "teaches_player": "at interesse får verdi når påstanden ikke blir sterkere enn grunnlaget"
+    },
+    {
+      "id": "den_praktiserende",
+      "social_function": "viser hvordan førstehåndserfaring kan være viktig uten å representere alle som deler en tradisjon",
+      "class_position": "deltaker eller troende som taler fra eget liv, ikke på vegne av en hel kategori",
+      "status": "høy på egen erfaring og lavere på påtvunget representasjonsansvar",
+      "power_over_player": "kan velge hva som deles, avvise private spørsmål og korrigere overgeneralisering",
+      "wants": "å bli hørt som person fremfor brukt som illustrasjon av en hel tradisjon",
+      "conceals": "at egne erfaringer også er preget av miljø, generasjon og personlige valg",
+      "speech_style": "personlig, tydelig og avgrensende",
+      "teaches_player": "at én sann erfaring fortsatt bare er én erfaring"
+    },
+    {
+      "id": "bibliotekaren",
+      "social_function": "skiller mellom oppslagsverk, historiske kilder, normative tekster og beskrivelser av levd praksis",
+      "class_position": "formidler med tilgang til kilder og kataloger, uten teologisk eller trosmessig autoritet",
+      "status": "høy på kildeorientering og sjangerforståelse",
+      "power_over_player": "kan åpne nye kilder og avsløre at to tilsynelatende like tekster besvarer ulike spørsmål",
+      "wants": "at spilleren bruker riktig kildetype til riktig påstand",
+      "conceals": "at katalogens orden kan få kunnskapsfeltet til å virke mer ryddig enn det er",
+      "speech_style": "nøktern, hjelpsom og klassifiserende",
+      "teaches_player": "at tekst, historie og praksis må dokumenteres med forskjellige typer kilder"
+    },
+    {
+      "id": "sprakbroen",
+      "social_function": "viser hvor oversettelse gjør forståelse mulig og hvor den samtidig innfører nye assosiasjoner",
+      "class_position": "person med språk- og kontekstkunnskap uten monopol på tradisjonens betydning",
+      "status": "høy på nyanser i konkrete ord og situasjoner",
+      "power_over_player": "kan stoppe en tilsynelatende enkel sammenligning ved å vise hva oversettelsen mister",
+      "wants": "at begrepsforskjeller bevares når de faktisk endrer forståelsen",
+      "conceals": "at også egne oversettelsesvalg er fortolkninger",
+      "speech_style": "presis, sammenlignende og forbeholden",
+      "teaches_player": "at et kjent ord ikke alltid betyr at et kjent fenomen er funnet"
+    },
+    {
+      "id": "medleseren",
+      "social_function": "speiler spillerens raske funn, kaninhull, delingslyst og behov for en enkel forklaring",
+      "class_position": "likestilt nysgjerrig uten formell fag- eller trosstatus",
+      "status": "sosial innflytelse gjennom entusiasme, ikke gjennom mandat",
+      "power_over_player": "kan forsterke både kildekritikk og fristelsen til å dele en elegant forklaring før den er kontrollert",
+      "wants": "at utforskningen skal være levende nok til å fortsette",
+      "conceals": "at nyhet ofte føles sannere når den også er overraskende",
+      "speech_style": "rask, engasjert og assosiativ",
+      "teaches_player": "at entusiasme er drivstoff, ikke dokumentasjon"
+    },
+    {
+      "id": "den_lokale_kjenneren",
+      "social_function": "viser at praksis, ritual og autoritet alltid får en konkret lokal og institusjonell form",
+      "class_position": "lokal deltaker med erfaring fra eget miljø, uten automatisk representasjonsrett utover det",
+      "status": "høy på lokal praksiskunnskap og lavere på universaliserende utsagn",
+      "power_over_player": "kan forklare lokale variasjoner og avgrense hvilke regler, autoriteter og betydninger som faktisk gjelder her",
+      "wants": "at lokale forskjeller ikke skal reduseres til avvik fra en påstått universell standard",
+      "conceals": "at sterk lokal fortrolighet også kan gjøre andre varianter mindre synlige",
+      "speech_style": "situert, eksemplifiserende og tidvis korrigerende",
+      "teaches_player": "at en tradisjon alltid er større enn ett miljø og samtidig finnes gjennom konkrete miljøer"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "concept_before_category",
+      "meaning": "begrepet før kategorien; lokale ord mot for tidlig klassifisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "single_voice_vs_plurality",
+      "meaning": "enkeltstemmens verdi mot overgeneralisering til en hel tradisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "text_vs_lived_practice",
+      "meaning": "normativ eller lærd tekst mot levd og situert praksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "translation_vs_equivalence",
+      "meaning": "praktisk oversettelse mot falsk begrepsekvivalens",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "virality_vs_verification",
+      "meaning": "minneverdig forenkling mot sporbar kildekontroll",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "internal_disagreement_vs_authenticity",
+      "meaning": "intern uenighet mot jakt på én autentisk stemme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "continuity_vs_historical_layers",
+      "meaning": "historisk kontinuitet mot flate forestillinger om tidløs tradisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_meaning_vs_single_key",
+      "meaning": "flere samtidige ritualbetydninger mot én forklaringsnøkkel",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_privacy",
+      "meaning": "kunnskapsinteresse mot andres kontroll over personlig tro og praksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "comparison_vs_flattening",
+      "meaning": "presis komparasjon mot likhet som visker ut forskjeller",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authority_scope_vs_universalization",
+      "meaning": "reell institusjonell autoritet mot uberettiget universalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visibility_vs_representativeness",
+      "meaning": "offentlig synlighet mot representativitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interest_vs_claim_strength",
+      "meaning": "opparbeidet interesse mot påstandsstyrke som følger evidensen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "curiosity_vs_authority",
+      "meaning": "nysgjerrighet mot medlemskap, fagstatus, trosautoritet og ekspertise",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Ordet du bruker bestemmer hva du tror du ser.",
+        "thread_ids": [
+          "concept_before_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Ordet du bruker bestemmer hva du tror du ser.",
+        "thread_ids": [
+          "concept_before_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Ordet du bruker bestemmer hva du tror du ser.",
+        "thread_ids": [
+          "concept_before_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Ordet du bruker bestemmer hva du tror du ser.",
+        "thread_ids": [
+          "concept_before_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Én erfaring er sann — men ikke hele tradisjonen.",
+        "thread_ids": [
+          "single_voice_vs_plurality",
+          "concept_before_category"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Én erfaring er sann — men ikke hele tradisjonen.",
+        "thread_ids": [
+          "single_voice_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Én erfaring er sann — men ikke hele tradisjonen.",
+        "thread_ids": [
+          "single_voice_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Én erfaring er sann — men ikke hele tradisjonen.",
+        "thread_ids": [
+          "single_voice_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: En tekst sier ikke automatisk hvordan folk lever.",
+        "thread_ids": [
+          "text_vs_lived_practice",
+          "single_voice_vs_plurality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: En tekst sier ikke automatisk hvordan folk lever.",
+        "thread_ids": [
+          "text_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: En tekst sier ikke automatisk hvordan folk lever.",
+        "thread_ids": [
+          "text_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: En tekst sier ikke automatisk hvordan folk lever.",
+        "thread_ids": [
+          "text_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Et kjent norsk ord kan skjule en fremmed nyanse.",
+        "thread_ids": [
+          "translation_vs_equivalence",
+          "text_vs_lived_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Et kjent norsk ord kan skjule en fremmed nyanse.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Et kjent norsk ord kan skjule en fremmed nyanse.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Et kjent norsk ord kan skjule en fremmed nyanse.",
+        "thread_ids": [
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Videoen forklarer alt på førti sekunder.",
+        "thread_ids": [
+          "virality_vs_verification",
+          "translation_vs_equivalence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Videoen forklarer alt på førti sekunder.",
+        "thread_ids": [
+          "virality_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Videoen forklarer alt på førti sekunder.",
+        "thread_ids": [
+          "virality_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Videoen forklarer alt på førti sekunder.",
+        "thread_ids": [
+          "virality_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: To troende gir deg to ulike svar.",
+        "thread_ids": [
+          "internal_disagreement_vs_authenticity",
+          "virality_vs_verification"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: To troende gir deg to ulike svar.",
+        "thread_ids": [
+          "internal_disagreement_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: To troende gir deg to ulike svar.",
+        "thread_ids": [
+          "internal_disagreement_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: To troende gir deg to ulike svar.",
+        "thread_ids": [
+          "internal_disagreement_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: «Eldgammel» kan bety flere forskjellige ting.",
+        "thread_ids": [
+          "continuity_vs_historical_layers",
+          "internal_disagreement_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: «Eldgammel» kan bety flere forskjellige ting.",
+        "thread_ids": [
+          "continuity_vs_historical_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: «Eldgammel» kan bety flere forskjellige ting.",
+        "thread_ids": [
+          "continuity_vs_historical_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: «Eldgammel» kan bety flere forskjellige ting.",
+        "thread_ids": [
+          "continuity_vs_historical_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Det samme ritualet kan bære flere betydninger.",
+        "thread_ids": [
+          "ritual_meaning_vs_single_key",
+          "continuity_vs_historical_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Det samme ritualet kan bære flere betydninger.",
+        "thread_ids": [
+          "ritual_meaning_vs_single_key"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Det samme ritualet kan bære flere betydninger.",
+        "thread_ids": [
+          "ritual_meaning_vs_single_key"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Det samme ritualet kan bære flere betydninger.",
+        "thread_ids": [
+          "ritual_meaning_vs_single_key"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et interessant spørsmål kan fortsatt være privat.",
+        "thread_ids": [
+          "curiosity_vs_privacy",
+          "ritual_meaning_vs_single_key"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et interessant spørsmål kan fortsatt være privat.",
+        "thread_ids": [
+          "curiosity_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et interessant spørsmål kan fortsatt være privat.",
+        "thread_ids": [
+          "curiosity_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et interessant spørsmål kan fortsatt være privat.",
+        "thread_ids": [
+          "curiosity_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: To fenomener ligner — men på hvilket nivå?.",
+        "thread_ids": [
+          "comparison_vs_flattening",
+          "curiosity_vs_privacy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: To fenomener ligner — men på hvilket nivå?.",
+        "thread_ids": [
+          "comparison_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: To fenomener ligner — men på hvilket nivå?.",
+        "thread_ids": [
+          "comparison_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: To fenomener ligner — men på hvilket nivå?.",
+        "thread_ids": [
+          "comparison_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: En autoritet har også et virkeområde.",
+        "thread_ids": [
+          "authority_scope_vs_universalization",
+          "comparison_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: En autoritet har også et virkeområde.",
+        "thread_ids": [
+          "authority_scope_vs_universalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: En autoritet har også et virkeområde.",
+        "thread_ids": [
+          "authority_scope_vs_universalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: En autoritet har også et virkeområde.",
+        "thread_ids": [
+          "authority_scope_vs_universalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: De mest synlige stemmene er ikke nødvendigvis de vanligste.",
+        "thread_ids": [
+          "visibility_vs_representativeness",
+          "authority_scope_vs_universalization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: De mest synlige stemmene er ikke nødvendigvis de vanligste.",
+        "thread_ids": [
+          "visibility_vs_representativeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: De mest synlige stemmene er ikke nødvendigvis de vanligste.",
+        "thread_ids": [
+          "visibility_vs_representativeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: De mest synlige stemmene er ikke nødvendigvis de vanligste.",
+        "thread_ids": [
+          "visibility_vs_representativeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Mange notater er ikke det samme som sterk dokumentasjon.",
+        "thread_ids": [
+          "interest_vs_claim_strength",
+          "visibility_vs_representativeness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Mange notater er ikke det samme som sterk dokumentasjon.",
+        "thread_ids": [
+          "interest_vs_claim_strength"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Mange notater er ikke det samme som sterk dokumentasjon.",
+        "thread_ids": [
+          "interest_vs_claim_strength"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Mange notater er ikke det samme som sterk dokumentasjon.",
+        "thread_ids": [
+          "interest_vs_claim_strength",
+          "curiosity_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Interesse er en startposisjon, ikke en autoritet.",
+        "thread_ids": [
+          "curiosity_vs_authority",
+          "interest_vs_claim_strength"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Interesse er en startposisjon, ikke en autoritet.",
+        "thread_ids": [
+          "curiosity_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Interesse er en startposisjon, ikke en autoritet.",
+        "thread_ids": [
+          "curiosity_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Interesse er en startposisjon, ikke en autoritet.",
+        "thread_ids": [
+          "curiosity_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "concept_before_category",
+      "relationship": "begrepet før kategorien; lokale ord mot for tidlig klassifisering",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "single_voice_vs_plurality",
+      "relationship": "enkeltstemmens verdi mot overgeneralisering til en hel tradisjon",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "text_vs_lived_practice",
+      "relationship": "normativ eller lærd tekst mot levd og situert praksis",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "translation_vs_equivalence",
+      "relationship": "praktisk oversettelse mot falsk begrepsekvivalens",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "virality_vs_verification",
+      "relationship": "minneverdig forenkling mot sporbar kildekontroll",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "internal_disagreement_vs_authenticity",
+      "relationship": "intern uenighet mot jakt på én autentisk stemme",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "continuity_vs_historical_layers",
+      "relationship": "historisk kontinuitet mot flate forestillinger om tidløs tradisjon",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "ritual_meaning_vs_single_key",
+      "relationship": "flere samtidige ritualbetydninger mot én forklaringsnøkkel",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "curiosity_vs_privacy",
+      "relationship": "kunnskapsinteresse mot andres kontroll over personlig tro og praksis",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "comparison_vs_flattening",
+      "relationship": "presis komparasjon mot likhet som visker ut forskjeller",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "authority_scope_vs_universalization",
+      "relationship": "reell institusjonell autoritet mot uberettiget universalisering",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "visibility_vs_representativeness",
+      "relationship": "offentlig synlighet mot representativitet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "interest_vs_claim_strength",
+      "relationship": "opparbeidet interesse mot påstandsstyrke som følger evidensen",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "curiosity_vs_authority",
+      "relationship": "nysgjerrighet mot medlemskap, fagstatus, trosautoritet og ekspertise",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "begrep_stemme_og_praksis",
+      "description": "Begreper, enkeltstemmer og tekster blir skilt fra kategorier, representasjon og faktisk levd praksis.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen"
+      ]
+    },
+    {
+      "id": "oversettelse_medieform_og_uenighet",
+      "description": "Oversettelse, korte forklaringsformater og intern uenighet gjør det vanskeligere å holde fast ved én elegant fasit.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra"
+      ]
+    },
+    {
+      "id": "historie_ritual_og_privatsone",
+      "description": "Historiske lag, flere ritualbetydninger og personvern setter grenser for hva nysgjerrigheten kan gjøre til tilgjengelig materiale.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig"
+      ]
+    },
+    {
+      "id": "sammenligning_autoritet_og_synlighet",
+      "description": "Sammenligning, institusjonell autoritet og offentlig synlighet blir avgrenset slik at ingen av dem forveksles med universell representasjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle"
+      ]
+    },
+    {
+      "id": "pastand_og_egen_rolle",
+      "description": "Opparbeidet interesse kan bli presis kunnskap uten å gli over i medlemskap, fagstatus eller trosautoritet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand",
+        "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "begrep_moter_enkeltstemme",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "tekst_moter_oversettelse",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "kortformat_moter_intern_uenighet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "historisk_lag_moter_ritualbetydning",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "knowledge",
+        "status"
+      ]
+    },
+    {
+      "id": "privatsone_moter_autoritetsomfang",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "authority"
+      ]
+    },
+    {
+      "id": "synlighet_moter_egen_autoritetsgrense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "reputation",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_for_begrepet",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#en_person_er_ikke_tradisjonen",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#teksten_og_praksisen",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#det_kjente_ordet_som_betyr_noe_annet",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#algoritmens_korte_forklaring",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#uenigheten_innenfra",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#hvor_gammelt_er_egentlig",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#ritualet_uten_fasit",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#sporsmalet_som_ble_personlig",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#sammenligningen_som_ble_for_flat",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#autoriteten_som_ikke_er_universell",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#de_synlige_er_ikke_alle",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#fra_interesse_til_pastand",
+      "data/Civication/narratives/leisure/religion_nysgjerrig.json#nysgjerrig_ikke_troslivskjenner"
+    ]
+  }
+}
