@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_tradisjonskjenner",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "tradisjonskjenner",
+    "label": "Tradisjonskjenner"
+  },
+  "title": "Tradisjonskjenner",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å forstå hvordan religiøse tradisjoner overføres, endres, standardiseres og lokaliseres gjennom historie, familie, språk, migrasjon og institusjoner uten å gjøre historisk oversikt til ritualmyndighet, tolkningsmonopol eller representasjonsrett",
+    "description": "Tradisjonskjenner er en employment-independent tradition_literacy som organiserer gjentatt arbeid med overføring, historiske lag, lokale og generasjonelle variasjoner, kanon og sedvane, migrasjon, språk, reform og gjenoppliving. Rollen er ikke Ritualkjenner, som kan konkrete ritualforløp og deltakelsesgrenser; ikke Symboltolker, som arbeider med tegn, bilder og fortolkningslag; og ikke Troslivskjenner, som retter seg mot levd religion og personlige erfaringer. Tradisjonskunnskap gir heller ikke medlemskap, teologisk autoritet, ritualmyndighet, forskerstatus eller mandat til å definere andres trosliv."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "public_private_leakage",
+    "status_anxiety",
+    "public_attention",
+    "bureaucratic_power",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "familier og generasjonsfellesskap der tradisjon videreføres gjennom minner, vaner, språk og selektiv praksis",
+    "religiøse institusjoner der formell undervisning, standardisering og lokal sedvane møtes",
+    "migrasjons- og diasporamiljøer der tradisjoner bevares, oversettes og bygges om i nye omgivelser",
+    "arkiv, historiske kilder og muntlige minner der kontinuitet og endring må skilles analytisk",
+    "reform- og revivalmiljøer der aktører legitimerer endring gjennom bestemte fortellinger om fortiden",
+    "høytids- og hverdagsarenaer der synlig offentlig tradisjon og mindre privat praksis vedlikeholder ulike deler av samme arv"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "historievennen",
+      "social_function": "følger tradisjonens tidslag og skiller dokumentert kontinuitet fra ettertidens forenklinger",
+      "class_position": "historisk interessert kildebruker uten religiøst mandat",
+      "status": "høy på kronologi og kildesammenheng",
+      "power_over_player": "kan utfordre påstander om uforandret eller tidløs tradisjon",
+      "wants": "at kontinuitet og endring beskrives med faktiske overføringsledd",
+      "conceals": "at skriftlige kilder bevarer institusjonelle former bedre enn hverdagspraksis",
+      "speech_style": "kronologisk, kildeorientert og nøktern",
+      "teaches_player": "at tradisjon må spores gjennom overføring, ikke bare alder"
+    },
+    {
+      "id": "den_lokale_kjenneren",
+      "social_function": "viser hvordan lokal sedvane kan være legitim tradisjonspraksis uten å være universell standard",
+      "class_position": "lokalt forankret deltaker uten plikt til å representere hele tradisjonen",
+      "status": "høy på situert og lokal kunnskap",
+      "power_over_player": "kan korrigere når en formell norm feilaktig gjøres universell",
+      "wants": "at lokal variasjon tas alvorlig uten å bli gjort til hele tradisjonen",
+      "conceals": "at lokal normalitet kan gjøre andre miljøers former mindre synlige",
+      "speech_style": "konkret, stedbundet og korrigerende",
+      "teaches_player": "at variasjon er del av tradisjonens sosiale historie"
+    },
+    {
+      "id": "sprakbroen",
+      "social_function": "synliggjør hvordan språk, oversettelse og generasjon påvirker hva som videreføres",
+      "class_position": "tospråklig eller flerspråklig mellomposisjon mellom generasjoner",
+      "status": "høy på begreps- og oversettelsesforskjeller",
+      "power_over_player": "kan vise når tilsynelatende samme tradisjon endrer nyanse gjennom språk",
+      "wants": "at språkskifte behandles som innholdsrik overføring, ikke bare logistikk",
+      "conceals": "at ingen oversettelse fullt ut representerer alle generasjoners assosiasjoner",
+      "speech_style": "forklarende, kontrasterende og kontekstuell",
+      "teaches_player": "at språk er en del av tradisjonens overføringsmekanisme"
+    },
+    {
+      "id": "familievennen",
+      "social_function": "viser hvordan tradisjon lever i hjem, minner og generasjonelle valg ved siden av institusjonell lære",
+      "class_position": "nær hverdagslig familiepraksis uten formell autoritet",
+      "status": "høy på privat overføring og minne",
+      "power_over_player": "kan utfordre institusjonssentrerte beskrivelser av hva tradisjon faktisk er",
+      "wants": "at familietradisjon behandles som empirisk praksis uten å bli universalisert",
+      "conceals": "at sterke minner kan glatte over historiske endringer",
+      "speech_style": "personlig, fortellende og relasjonell",
+      "teaches_player": "å skille kollektivt minne fra kronologisk historie"
+    },
+    {
+      "id": "migrasjonshistorikeren",
+      "social_function": "sporer hvordan tradisjon endrer form når mennesker, språk og institusjoner flytter",
+      "class_position": "kunnskapsrik observatør av migrasjon og diasporadannelse",
+      "status": "høy på mobilitet og tilpasningshistorie",
+      "power_over_player": "kan avvise opprinnelsesstedet som eneste målestokk for autentisitet",
+      "wants": "at nye lokale former beskrives som historiske utviklinger med konkrete årsaker",
+      "conceals": "at begrepet diaspora selv kan skjule store interne forskjeller",
+      "speech_style": "sammenlignende, mobilitetsorientert og historisk",
+      "teaches_player": "at flytting både kan styrke bevaring og skape nye tradisjonsformer"
+    },
+    {
+      "id": "reformstemmen",
+      "social_function": "viser hvordan reform og gjenoppliving legitimerer endring gjennom bestemte bilder av fortiden",
+      "class_position": "engasjert deltaker eller formidler i endringsorientert miljø uten universelt mandat",
+      "status": "høy på bevegelsens egen selvforståelse",
+      "power_over_player": "kan vise hvorfor aktører opplever ny praksis som gjenopprettet kontinuitet",
+      "wants": "at reformens egne historiske argumenter tas alvorlig",
+      "conceals": "at tilbakevendingsspråk også kan skjule reelle institusjonelle nyvinninger",
+      "speech_style": "normativ, historiserende og overbevisende",
+      "teaches_player": "å skille aktørens selvfortelling fra analytisk historiebeskrivelse"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "transmission_vs_timelessness",
+      "meaning": "konkret overføring gjennom mennesker og institusjoner mot forestillingen om en tidløs tradisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "canon_vs_custom",
+      "meaning": "kanoniske kilder og sedvane som ulike tradisjonskanaler uten at én automatisk opphever den andre",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "local_variation_vs_standardization",
+      "meaning": "lokale former mot rangering av én variant som universell standard",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "generational_selection",
+      "meaning": "generasjonell overføring som både videreføring, seleksjon og nytolkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "migration_adaptation",
+      "meaning": "migrasjon som samtidig bevaring, tilpasning og nyskaping",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "language_transmission",
+      "meaning": "språk som aktiv del av hva som overføres og hvordan tradisjon forstås",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "institution_vs_home",
+      "meaning": "formell institusjon og familiær hverdagspraksis som parallelle tradisjonskanaler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "reform_and_self_narration",
+      "meaning": "reformens egen tilbakevendingsfortelling mot dokumenterbar historisk endring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "revival_and_reconstruction",
+      "meaning": "gjenoppliving som historisk forankring kombinert med moderne rekonstruksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "festival_vs_everyday",
+      "meaning": "synlige høytider mot de mindre hverdagslige praksisene som vedlikeholder tradisjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "memory_vs_history",
+      "meaning": "kollektivt minne som meningskilde uten å bli fullstendig kronologi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tradition_vs_ritual_scope",
+      "meaning": "tradisjonshistorie mot uberettiget praktisk ritualmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tradition_vs_symbol_scope",
+      "meaning": "tradisjonell plassering av symboler mot tolkningsmonopol",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "tradition_vs_lived_religion",
+      "meaning": "bred tradisjonskompetanse mot total forklaringsrett over enkeltmenneskers trosliv",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: En tradisjon eksisterer fordi noe blir overført.",
+        "thread_ids": [
+          "transmission_vs_timelessness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: En tradisjon eksisterer fordi noe blir overført.",
+        "thread_ids": [
+          "transmission_vs_timelessness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: En tradisjon eksisterer fordi noe blir overført.",
+        "thread_ids": [
+          "transmission_vs_timelessness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: En tradisjon eksisterer fordi noe blir overført.",
+        "thread_ids": [
+          "transmission_vs_timelessness"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Det som står skrevet og det som gjøres kan begge være tradisjon.",
+        "thread_ids": [
+          "canon_vs_custom"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Det som står skrevet og det som gjøres kan begge være tradisjon.",
+        "thread_ids": [
+          "canon_vs_custom"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Det som står skrevet og det som gjøres kan begge være tradisjon.",
+        "thread_ids": [
+          "canon_vs_custom"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Det som står skrevet og det som gjøres kan begge være tradisjon.",
+        "thread_ids": [
+          "canon_vs_custom"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Lokal praksis er ikke automatisk et avvik.",
+        "thread_ids": [
+          "local_variation_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Lokal praksis er ikke automatisk et avvik.",
+        "thread_ids": [
+          "local_variation_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Lokal praksis er ikke automatisk et avvik.",
+        "thread_ids": [
+          "local_variation_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Lokal praksis er ikke automatisk et avvik.",
+        "thread_ids": [
+          "local_variation_vs_standardization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Samme tradisjon kan læres forskjellig av tre generasjoner.",
+        "thread_ids": [
+          "generational_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Samme tradisjon kan læres forskjellig av tre generasjoner.",
+        "thread_ids": [
+          "generational_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Samme tradisjon kan læres forskjellig av tre generasjoner.",
+        "thread_ids": [
+          "generational_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Samme tradisjon kan læres forskjellig av tre generasjoner.",
+        "thread_ids": [
+          "generational_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En tradisjon flytter ikke uendret.",
+        "thread_ids": [
+          "migration_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En tradisjon flytter ikke uendret.",
+        "thread_ids": [
+          "migration_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En tradisjon flytter ikke uendret.",
+        "thread_ids": [
+          "migration_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En tradisjon flytter ikke uendret.",
+        "thread_ids": [
+          "migration_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Språkskifte kan endre hvordan tradisjonen læres.",
+        "thread_ids": [
+          "language_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Språkskifte kan endre hvordan tradisjonen læres.",
+        "thread_ids": [
+          "language_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Språkskifte kan endre hvordan tradisjonen læres.",
+        "thread_ids": [
+          "language_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Språkskifte kan endre hvordan tradisjonen læres.",
+        "thread_ids": [
+          "language_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Tradisjon læres både offentlig og privat.",
+        "thread_ids": [
+          "institution_vs_home"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Tradisjon læres både offentlig og privat.",
+        "thread_ids": [
+          "institution_vs_home"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Tradisjon læres både offentlig og privat.",
+        "thread_ids": [
+          "institution_vs_home"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Tradisjon læres både offentlig og privat.",
+        "thread_ids": [
+          "institution_vs_home"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Reform kan presenteres som både brudd og gjenopprettelse.",
+        "thread_ids": [
+          "reform_and_self_narration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Reform kan presenteres som både brudd og gjenopprettelse.",
+        "thread_ids": [
+          "reform_and_self_narration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Reform kan presenteres som både brudd og gjenopprettelse.",
+        "thread_ids": [
+          "reform_and_self_narration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Reform kan presenteres som både brudd og gjenopprettelse.",
+        "thread_ids": [
+          "reform_and_self_narration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: En gjenopplivet tradisjon kan være både ny og historisk forankret.",
+        "thread_ids": [
+          "revival_and_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: En gjenopplivet tradisjon kan være både ny og historisk forankret.",
+        "thread_ids": [
+          "revival_and_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: En gjenopplivet tradisjon kan være både ny og historisk forankret.",
+        "thread_ids": [
+          "revival_and_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: En gjenopplivet tradisjon kan være både ny og historisk forankret.",
+        "thread_ids": [
+          "revival_and_reconstruction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Høytiden er synlig, men tradisjonen lever også mellom merkedagene.",
+        "thread_ids": [
+          "festival_vs_everyday"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Høytiden er synlig, men tradisjonen lever også mellom merkedagene.",
+        "thread_ids": [
+          "festival_vs_everyday"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Høytiden er synlig, men tradisjonen lever også mellom merkedagene.",
+        "thread_ids": [
+          "festival_vs_everyday"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Høytiden er synlig, men tradisjonen lever også mellom merkedagene.",
+        "thread_ids": [
+          "festival_vs_everyday"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Et sterkt minne er en kilde, men ikke hele historien.",
+        "thread_ids": [
+          "memory_vs_history"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Et sterkt minne er en kilde, men ikke hele historien.",
+        "thread_ids": [
+          "memory_vs_history"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Et sterkt minne er en kilde, men ikke hele historien.",
+        "thread_ids": [
+          "memory_vs_history"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Et sterkt minne er en kilde, men ikke hele historien.",
+        "thread_ids": [
+          "memory_vs_history"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Å kjenne tradisjonens historie er ikke det samme som å kunne ritualet.",
+        "thread_ids": [
+          "tradition_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Å kjenne tradisjonens historie er ikke det samme som å kunne ritualet.",
+        "thread_ids": [
+          "tradition_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Å kjenne tradisjonens historie er ikke det samme som å kunne ritualet.",
+        "thread_ids": [
+          "tradition_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Å kjenne tradisjonens historie er ikke det samme som å kunne ritualet.",
+        "thread_ids": [
+          "tradition_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Å kjenne tradisjonen gir ikke fasit på hvert symbol.",
+        "thread_ids": [
+          "tradition_vs_symbol_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Å kjenne tradisjonen gir ikke fasit på hvert symbol.",
+        "thread_ids": [
+          "tradition_vs_symbol_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Å kjenne tradisjonen gir ikke fasit på hvert symbol.",
+        "thread_ids": [
+          "tradition_vs_symbol_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Å kjenne tradisjonen gir ikke fasit på hvert symbol.",
+        "thread_ids": [
+          "tradition_vs_symbol_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Bred tradisjonskunnskap er ikke total innsikt i hvordan mennesker tror.",
+        "thread_ids": [
+          "tradition_vs_lived_religion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Bred tradisjonskunnskap er ikke total innsikt i hvordan mennesker tror.",
+        "thread_ids": [
+          "tradition_vs_lived_religion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Bred tradisjonskunnskap er ikke total innsikt i hvordan mennesker tror.",
+        "thread_ids": [
+          "tradition_vs_lived_religion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Bred tradisjonskunnskap er ikke total innsikt i hvordan mennesker tror.",
+        "thread_ids": [
+          "tradition_vs_lived_religion"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "transmission_vs_timelessness",
+      "relationship": "konkret overføring gjennom mennesker og institusjoner mot forestillingen om en tidløs tradisjon",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "canon_vs_custom",
+      "relationship": "kanoniske kilder og sedvane som ulike tradisjonskanaler uten at én automatisk opphever den andre",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "local_variation_vs_standardization",
+      "relationship": "lokale former mot rangering av én variant som universell standard",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "generational_selection",
+      "relationship": "generasjonell overføring som både videreføring, seleksjon og nytolkning",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "migration_adaptation",
+      "relationship": "migrasjon som samtidig bevaring, tilpasning og nyskaping",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "language_transmission",
+      "relationship": "språk som aktiv del av hva som overføres og hvordan tradisjon forstås",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "institution_vs_home",
+      "relationship": "formell institusjon og familiær hverdagspraksis som parallelle tradisjonskanaler",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "reform_and_self_narration",
+      "relationship": "reformens egen tilbakevendingsfortelling mot dokumenterbar historisk endring",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "revival_and_reconstruction",
+      "relationship": "gjenoppliving som historisk forankring kombinert med moderne rekonstruksjon",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "festival_vs_everyday",
+      "relationship": "synlige høytider mot de mindre hverdagslige praksisene som vedlikeholder tradisjon",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "memory_vs_history",
+      "relationship": "kollektivt minne som meningskilde uten å bli fullstendig kronologi",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "tradition_vs_ritual_scope",
+      "relationship": "tradisjonshistorie mot uberettiget praktisk ritualmyndighet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "tradition_vs_symbol_scope",
+      "relationship": "tradisjonell plassering av symboler mot tolkningsmonopol",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "tradition_vs_lived_religion",
+      "relationship": "bred tradisjonskompetanse mot total forklaringsrett over enkeltmenneskers trosliv",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "overforing_kanon_og_lokalitet",
+      "description": "Overføring, kanon/sedvane og lokal variasjon etablerer tradisjon som historisk og sosial prosess fremfor tidløs standard.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant"
+      ]
+    },
+    {
+      "id": "generasjon_migrasjon_og_sprak",
+      "description": "Generasjonsskifte, migrasjon og språk viser hvordan kontinuitet skapes gjennom seleksjon, oversettelse og nye omgivelser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord"
+      ]
+    },
+    {
+      "id": "institusjon_reform_og_revival",
+      "description": "Hjem/institusjon, reform og gjenoppliving viser hvordan tradisjon både standardiseres og bygges om.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse"
+      ]
+    },
+    {
+      "id": "hverdag_minne_og_ritualgrense",
+      "description": "Hverdagspraksis og minne kompletterer høytids- og arkivbildet, mens ritualgrensen hindrer historisk kunnskap i å bli praktisk myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner"
+      ]
+    },
+    {
+      "id": "symbol_og_troslivsgrense",
+      "description": "Tradisjonskompetansen avsluttes med eksplisitte grenser mot symboltolkningsmonopol og representasjon av enkeltmenneskers trosliv.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker",
+        "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "overforing_moter_lokalitet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "generasjon_moter_migrasjon",
+      "setup_ref": "4/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "sprak_moter_institusjon",
+      "setup_ref": "6/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "knowledge",
+        "status"
+      ]
+    },
+    {
+      "id": "reform_moter_revival",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    },
+    {
+      "id": "hverdag_moter_minne",
+      "setup_ref": "10/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "relationship",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "historisk_oversikt_moter_egen_grense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjon_er_overforing",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#kanon_og_sedvane",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#lokal_variant",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#generasjonene",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#migrasjon_og_nytt_sted",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#spraket_baerer_mer_enn_ord",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#institusjonen_og_hjemmet",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#reform_innenfra",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#revival_og_gjenoppfinnelse",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#hoytid_og_hverdagspraksis",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#minne_og_historie",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_ritualkjenner",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#grensen_mot_symboltolker",
+      "data/Civication/narratives/leisure/religion_tradisjonskjenner.json#tradisjonskjenner_ikke_troslivskjenner"
+    ]
+  }
+}
