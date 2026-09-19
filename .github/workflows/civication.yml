@@ -48,3 +48,20 @@ jobs:
 
       - name: Run complete Civication suite
         run: npm run test:civication
+
+      - name: Generate PR 6064 diagnostic outputs
+        if: failure()
+        run: |
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --write
+
+      - name: Upload PR 6064 generated outputs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civication-6064-generated
+          path: |
+            data/Civication/lifePositionRoleWorldReadiness.json
+            reports/civication-life-position-role-world-readiness.md
+            data/Civication/careerGameplayMatrix.json
+            reports/civication-career-gameplay-matrix.md
