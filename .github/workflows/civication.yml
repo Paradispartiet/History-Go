@@ -72,6 +72,7 @@ jobs:
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PR_HEAD_REF: ${{ github.head_ref }}
         run: |
+          git fetch --no-tags --depth=1 origin "$PR_HEAD_SHA"
           git reset --hard "$PR_HEAD_SHA"
           node scripts/audit-civication-life-position-role-world-readiness.mjs --write
           node scripts/audit-civication-career-gameplay.mjs --write
