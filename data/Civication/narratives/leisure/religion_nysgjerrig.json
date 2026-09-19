@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_nysgjerrig_stream",
+  "type": "leisure",
+  "title": "Nysgjerrig — spørsmål, kilder og tolkningsgrenser",
+  "sociological_theme": "religiøs_nysgjerrighet_begrepsgrenser_kildekritikk_intern_variasjon_lært_tradisjon_levd_praksis_historisk_lagdeling_representativitet_personvern_sammenligning_og_grensen_mellom_interesse_og_autoritet",
+  "applies_when": {
+    "any_tags": [
+      "religion:nysgjerrig"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_for_begrepet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kildevennen",
+      "subject": "Ordet du bruker bestemmer hva du tror du ser",
+      "situation": [
+        "Du leser om en praksis og kjenner igjen et ord fra en annen sammenheng, men den lokale forklaringen bruker et annet begrep.",
+        "Religiøse begreper kan ligne hverandre på overflaten uten å ha samme historie, sosial funksjon eller betydning for dem som bruker dem.",
+        "Nysgjerrighet blir mer presis når kategorien ikke bestemmes før materialet er forstått."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold det lokale begrepet foreløpig og spør hva det betyr i akkurat denne sammenhengen.",
+          "effect": 1,
+          "tags": [
+            "concept_boundary",
+            "local_term"
+          ],
+          "feedback": "Du lar begrepet bli forklart før du plasserer det i din egen kategori."
+        },
+        {
+          "id": "B",
+          "label": "Bruk det nærmeste kjente ordet med en gang; forskjellen kan presiseres senere hvis den viser seg viktig.",
+          "effect": -1,
+          "tags": [
+            "premature_category",
+            "false_equivalence"
+          ],
+          "feedback": "Du gjør en foreløpig likhet til utgangspunkt for hele tolkningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_sporsmalet_for_begrepet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "en_person_er_ikke_tradisjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den praktiserende",
+      "subject": "Én erfaring er sann — men ikke hele tradisjonen",
+      "situation": [
+        "En person forklarer hva troen betyr i eget liv og sier samtidig at andre i samme miljø ville formulert seg annerledes.",
+        "Personlige erfaringer kan være svært informative uten å fungere som representativt sammendrag av en hel tradisjon.",
+        "Det er mulig å ta en stemme alvorlig uten å gjøre den til fasit."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle forklaringen som personens erfaring og let etter flere stemmer før du generaliserer.",
+          "effect": 1,
+          "tags": [
+            "single_voice",
+            "internal_plurality"
+          ],
+          "feedback": "Du bevarer erfaringens verdi uten å gjøre personen til ufrivillig talsperson."
+        },
+        {
+          "id": "B",
+          "label": "Bruk forklaringen som hovednøkkel; førstehåndserfaring er vanligvis mer pålitelig enn abstrakte forbehold.",
+          "effect": -1,
+          "tags": [
+            "overgeneralization",
+            "single_voice"
+          ],
+          "feedback": "Du gjør nærhet til én person om til representasjon av mange."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_en_person_er_ikke_tradisjonen"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teksten_og_praksisen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Bibliotekaren",
+      "subject": "En tekst sier ikke automatisk hvordan folk lever",
+      "situation": [
+        "Du finner en tydelig formulering i en religiøs tekst og fristes til å bruke den som direkte forklaring på dagens praksis.",
+        "Lærte tekster, tolkningstradisjoner, lokale vaner og individuelle valg kan stå i ulike forhold til hverandre.",
+        "Nysgjerrighet trenger derfor både tekst og observasjon av hvordan teksten faktisk brukes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva teksten sier, men hold spørsmålet om faktisk praksis åpent til du har egne kilder til den.",
+          "effect": 1,
+          "tags": [
+            "text_practice_boundary",
+            "source_type"
+          ],
+          "feedback": "Du skiller normativ tekst fra levd praksis."
+        },
+        {
+          "id": "B",
+          "label": "Bruk teksten som hovedforklaring; praksis som avviker er sannsynligvis unntak fra regelen.",
+          "effect": -1,
+          "tags": [
+            "text_determinism",
+            "false_certainty"
+          ],
+          "feedback": "Du lar én kildetype forklare mer enn den kan bære."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_teksten_og_praksisen"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_kjente_ordet_som_betyr_noe_annet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Språkbroen",
+      "subject": "Et kjent norsk ord kan skjule en fremmed nyanse",
+      "situation": [
+        "Et begrep oversettes med et norsk ord du kjenner godt, men språkbroen sier at oversettelsen bare dekker en del av betydningen.",
+        "Oversettelse gjør samtalen mulig samtidig som den kan importere assosiasjoner som ikke finnes i originalen.",
+        "En nysgjerrig leser bør kunne leve med at noen ord trenger forklaring i stedet for én perfekt erstatning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold originalbegrepet sammen med en kort situert forklaring og marker hva oversettelsen ikke dekker.",
+          "effect": 1,
+          "tags": [
+            "translation_limit",
+            "concept_context"
+          ],
+          "feedback": "Du lar språkforskjellen være synlig der den faktisk betyr noe."
+        },
+        {
+          "id": "B",
+          "label": "Velg det norske ordet som fungerer best; for mange fremmede begreper gjør bare forståelsen vanskeligere.",
+          "effect": -1,
+          "tags": [
+            "translation_smoothing",
+            "false_equivalence"
+          ],
+          "feedback": "Du vinner flyt ved å skjule en reell betydningsforskjell."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_det_kjente_ordet_som_betyr_noe_annet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "algoritmens_korte_forklaring",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Medleseren",
+      "subject": "Videoen forklarer alt på førti sekunder",
+      "situation": [
+        "En kort video gir en elegant forklaring på hvorfor en religiøs praksis finnes og blir raskt delt videre.",
+        "Formatet belønner tydelighet og overraskelse, men viser verken kildene, intern uenighet eller hvor generell forklaringen egentlig er.",
+        "Det som er lett å huske er ikke nødvendigvis det som er best dokumentert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk videoen som spor til videre lesing og kontroller påstanden mot kilder som viser grunnlaget.",
+          "effect": 1,
+          "tags": [
+            "algorithmic_simplification",
+            "verification"
+          ],
+          "feedback": "Du lar den korte forklaringen starte et spørsmål i stedet for å avslutte det."
+        },
+        {
+          "id": "B",
+          "label": "Behold forklaringen som arbeidsmodell; hvis den er feil vil andre kilder sannsynligvis motsi den senere.",
+          "effect": -1,
+          "tags": [
+            "virality_as_evidence",
+            "false_certainty"
+          ],
+          "feedback": "Du lar fravær av umiddelbar motstand fungere som dokumentasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_algoritmens_korte_forklaring"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_innenfra",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "To troende gir deg to ulike svar",
+      "situation": [
+        "To personer fra samme tradisjon svarer forskjellig på det samme spørsmålet og begge mener den andre legger for mye vekt på feil ting.",
+        "Intern uenighet kan handle om generasjon, miljø, tolkning, praksis eller personlige erfaringer uten at én stemme derfor er uekte.",
+        "Nysgjerrighet tåler at kategorier inneholder reelle konflikter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hva de faktisk er uenige om og hvilke erfaringer eller kilder de bygger på.",
+          "effect": 1,
+          "tags": [
+            "internal_disagreement",
+            "plurality"
+          ],
+          "feedback": "Du gjør uenigheten til informasjon om tradisjonens indre variasjon."
+        },
+        {
+          "id": "B",
+          "label": "Finn ut hvem som representerer den mest autentiske versjonen; ellers blir kategorien for uklar til å bruke.",
+          "effect": -1,
+          "tags": [
+            "authenticity_policing",
+            "single_voice"
+          ],
+          "feedback": "Du presser variasjonen inn i en konkurranse om én ekte stemme."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_uenigheten_innenfra"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvor_gammelt_er_egentlig",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "«Eldgammel» kan bety flere forskjellige ting",
+      "situation": [
+        "En praksis omtales som eldgammel, men kildene viser at dagens form er påvirket av nyere organisering, teknologi og nasjonale tradisjoner.",
+        "Historisk kontinuitet kan ligge i symboler, fortellinger eller ritualelementer selv om den konkrete formen har endret seg.",
+        "Religionshistorie blir svak når gammel opprinnelse brukes som snarvei rundt dokumenterte mellomledd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom eldre røtter og den daterbare formen praksisen faktisk har fått over tid.",
+          "effect": 1,
+          "tags": [
+            "historical_layering",
+            "continuity_change"
+          ],
+          "feedback": "Du gjør både kontinuitet og endring synlig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk «eldgammel» som rimelig samlebetegnelse; detaljene om senere utvikling kan komme i fotnoten.",
+          "effect": -1,
+          "tags": [
+            "timeless_tradition",
+            "historical_flattening"
+          ],
+          "feedback": "Du lar en effektiv merkelapp viske ut den historiske utviklingen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_hvor_gammelt_er_egentlig"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualet_uten_fasit",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den lokale kjenneren",
+      "subject": "Det samme ritualet kan bære flere betydninger",
+      "situation": [
+        "Du ser en handling gjentas på en bestemt måte og får tre ulike forklaringer på hvorfor den gjøres.",
+        "Ritualer kan ha lærte fortolkninger, lokale vaner, kroppslig rutine og personlige betydninger samtidig.",
+        "Nysgjerrighet blir for smal hvis én forklaring må avskaffe alle de andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter de ulike forklaringene og spør hvilken type betydning hver av dem beskriver.",
+          "effect": 1,
+          "tags": [
+            "ritual_polysemy",
+            "meaning_layers"
+          ],
+          "feedback": "Du lar ritualet ha flere samtidige sosiale og fortolkende lag."
+        },
+        {
+          "id": "B",
+          "label": "Velg den forklaringen som virker mest teologisk presis; de andre er trolig personlige tillegg.",
+          "effect": -1,
+          "tags": [
+            "single_interpretation",
+            "authority_overreach"
+          ],
+          "feedback": "Du gjør én type forklaring til målestokk for alle andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_ritualet_uten_fasit"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_som_ble_personlig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Bekjenten",
+      "subject": "Et interessant spørsmål kan fortsatt være privat",
+      "situation": [
+        "Samtalen om religion går fra generelle temaer til hva den andre personen selv tror, tviler på og gjør hjemme.",
+        "At et tema er faglig eller kulturelt interessant opphever ikke retten til å holde egen tro og praksis privat.",
+        "Nysgjerrighet trenger en tydelig grense mellom tilgjengelig informasjon og krav om personlig åpenhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør det eksplisitt at personen ikke trenger å svare og gå tilbake til temaet dersom spørsmålet blir for privat.",
+          "effect": 1,
+          "tags": [
+            "privacy_boundary",
+            "voluntary_disclosure"
+          ],
+          "feedback": "Du lar den andre styre hvor personlig samtalen skal være."
+        },
+        {
+          "id": "B",
+          "label": "Forklar at du spør av genuin interesse; det gjør som regel personlige spørsmål mindre påtrengende.",
+          "effect": -1,
+          "tags": [
+            "curiosity_entitlement",
+            "private_overreach"
+          ],
+          "feedback": "Du gjør din gode intensjon til begrunnelse for mer tilgang."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_sporsmalet_som_ble_personlig"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sammenligningen_som_ble_for_flat",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Medleseren",
+      "subject": "To fenomener ligner — men på hvilket nivå?",
+      "situation": [
+        "Du sammenligner to religiøse praksiser fordi begge involverer faste, pilegrimsreise eller bønn.",
+        "Likhet i ytre form betyr ikke nødvendigvis lik teologi, historisk utvikling, sosial status eller personlig funksjon.",
+        "Sammenligning er nyttig når det er tydelig hva som faktisk sammenlignes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi den konkrete dimensjonen du sammenligner og behold forskjellene som ikke inngår i sammenligningen.",
+          "effect": 1,
+          "tags": [
+            "comparative_dimension",
+            "difference_preservation"
+          ],
+          "feedback": "Du gjør sammenligningen presis nok til å være informativ."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den brede likheten som pedagogisk bro; nyansene kan komme etter at hovedpoenget er forstått.",
+          "effect": -1,
+          "tags": [
+            "comparative_flattening",
+            "false_equivalence"
+          ],
+          "feedback": "Du risikerer at den pedagogiske broen blir stående som konklusjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_sammenligningen_som_ble_for_flat"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "autoriteten_som_ikke_er_universell",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildevennen",
+      "subject": "En autoritet har også et virkeområde",
+      "situation": [
+        "Du finner en tydelig uttalelse fra en religiøs leder eller institusjon og vurderer å bruke den som svar på hva tradisjonen mener.",
+        "Formell autoritet kan være reell innen en bestemt institusjon uten å dekke alle retninger, lokalsamfunn eller enkeltpersoner.",
+        "Nysgjerrighet trenger både respekt for faktisk autoritet og presisjon om hvor den gjelder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvem uttalelsen representerer og unngå å utvide mandatet lenger enn kilden dokumenterer.",
+          "effect": 1,
+          "tags": [
+            "authority_scope",
+            "institutional_boundary"
+          ],
+          "feedback": "Du beholder autoriteten uten å gjøre den universell."
+        },
+        {
+          "id": "B",
+          "label": "Bruk uttalelsen som offisiell hovedposisjon; alternative stemmer kan omtales som variasjoner.",
+          "effect": -1,
+          "tags": [
+            "authority_overgeneralization",
+            "single_voice"
+          ],
+          "feedback": "Du gjør én institusjonell posisjon til standard for et større felt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_autoriteten_som_ikke_er_universell"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "de_synlige_er_ikke_alle",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Data-vennen",
+      "subject": "De mest synlige stemmene er ikke nødvendigvis de vanligste",
+      "situation": [
+        "Søkeresultatene dine domineres av debatt, konvertittfortellinger, aktivister og personer som er komfortable med å uttale seg offentlig.",
+        "Synlighet på nett formes av plattformer, språk, konflikt og hvem som ønsker å være offentlig.",
+        "Det tilgjengelige materialet kan derfor være systematisk annerledes enn den bredere gruppen du prøver å forstå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hvilke stemmer kildene dine faktisk dekker og let etter andre typer materiale før du hevder noe om helheten.",
+          "effect": 1,
+          "tags": [
+            "visibility_bias",
+            "representation_limit"
+          ],
+          "feedback": "Du gjør utvalgets skjevhet til en del av kunnskapen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk de mest tilgjengelige stemmene som rimelig bilde; de som ikke uttaler seg gir uansett lite materiale å arbeide med.",
+          "effect": -1,
+          "tags": [
+            "availability_bias",
+            "representation_error"
+          ],
+          "feedback": "Du forveksler offentlig synlighet med representativitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_de_synlige_er_ikke_alle"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fra_interesse_til_pastand",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Mange notater er ikke det samme som sterk dokumentasjon",
+      "situation": [
+        "Du har lest og sett mye om et tema og merker at formuleringene dine begynner å høres sikre ut.",
+        "Mengden tid brukt kan gi oversikt, men styrken i en påstand avhenger fortsatt av kildetype, uavhengighet, relevans og hva materialet faktisk dekker.",
+        "Nysgjerrighet blir mer troverdig når sikkerheten i språket følger sikkerheten i grunnlaget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom det du vet godt, det du antar og det du fortsatt bare har ett eller svakt grunnlag for.",
+          "effect": 1,
+          "tags": [
+            "claim_strength",
+            "evidence_boundary"
+          ],
+          "feedback": "Du lar påstandens styrke følge dokumentasjonen."
+        },
+        {
+          "id": "B",
+          "label": "Skriv tydelig ut fra helhetsinntrykket; for mange forbehold skjuler bare at du faktisk har satt deg inn i stoffet.",
+          "effect": -1,
+          "tags": [
+            "confidence_inflation",
+            "false_certainty"
+          ],
+          "feedback": "Du lar arbeidsinnsats bli erstatning for kildebelegg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_fra_interesse_til_pastand"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nysgjerrig_ikke_troslivskjenner",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Interesse er en startposisjon, ikke en autoritet",
+      "situation": [
+        "Du har fått god oversikt over flere temaer og andre begynner å spørre deg som om du representerer fagkunnskap eller en tradisjon innenfra.",
+        "Nysgjerrig er en utforskende posisjon: den kan utvikle presise spørsmål og god kildebruk uten å gi medlemskap, teologisk autoritet, forskerstatus eller den dybden som ligger i Troslivskjenner.",
+        "Å kjenne sin egen kunnskapsgrense gjør ikke interessen mindre verdifull."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del det du faktisk har kilder til og si tydelig hvor din egen rolle stopper.",
+          "effect": 1,
+          "tags": [
+            "interest_authority_boundary",
+            "epistemic_humility"
+          ],
+          "feedback": "Du gjør kunnskapsgrensen eksplisitt uten å gi opp det du faktisk har lært."
+        },
+        {
+          "id": "B",
+          "label": "Svar så godt du kan; når du har brukt mye tid på temaet er det rimelig at andre behandler deg som en kunnskapsressurs.",
+          "effect": -1,
+          "tags": [
+            "informal_expertise_inflation",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar opparbeidet interesse gli over i en autoritet som ikke er etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_nysgjerrig_nysgjerrig_ikke_troslivskjenner"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
