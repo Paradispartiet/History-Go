@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_ritualkjenner_stream",
+  "type": "leisure",
+  "title": "Ritualkjenner — rekkefølge, deltakelse og ritualgrenser",
+  "sociological_theme": "rituell_kompetanse_rekkefolge_deltakelse_tilgang_kroppslig_praksis_tid_sted_gjenstander_mat_lyd_overganger_intern_variasjon_historisk_endring_og_grensen_mellom_ritualkunnskap_og_religiøs_autoritet",
+  "applies_when": {
+    "any_tags": [
+      "religion:ritualkjenner"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "rekkefolgen_er_en_del_av_meningen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ritualverten",
+      "subject": "Det er ikke likegyldig hva som skjer først",
+      "situation": [
+        "Du kjenner igjen alle enkeltdelene i en seremoni, men oppdager at rekkefølgen varierer mellom to miljøer.",
+        "I ritualer kan overgangene mellom handlingene være like viktige som handlingene selv.",
+        "Rituell kompetanse innebærer å vite hva som faktisk er fast, hva som varierer, og hvem som avgjør forskjellen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg rekkefølgen og spør hvilke ledd som oppfattes som nødvendige, valgfrie eller lokale.",
+          "effect": 1,
+          "tags": [
+            "ritual_sequence",
+            "local_variation"
+          ],
+          "feedback": "Du lærer ritualets struktur uten å gjøre lokal praksis universell."
+        },
+        {
+          "id": "B",
+          "label": "Fokuser på hovedelementene; små forskjeller i rekkefølge endrer neppe ritualets betydning.",
+          "effect": -1,
+          "tags": [
+            "sequence_flattening",
+            "false_equivalence"
+          ],
+          "feedback": "Du overser at struktur kan være en del av selve ritualets betydning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_rekkefolgen"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "deltaker_eller_tilskuer",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den lokale kjenneren",
+      "subject": "Å være til stede betyr ikke alltid at du skal delta",
+      "situation": [
+        "Du blir invitert inn i et ritualrom, men ser at enkelte handlinger bare utføres av medlemmer eller bestemte roller.",
+        "Åpen adgang kan sameksistere med klare grenser for hvem som deltar i hvilke ledd.",
+        "Ritualkunnskap må derfor omfatte deltakelsesreglene, ikke bare hva som er synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør eksplisitt hvilke deler som er åpne for gjester og følg den grensen.",
+          "effect": 1,
+          "tags": [
+            "participation_boundary",
+            "guest_access"
+          ],
+          "feedback": "Du skiller mellom nærvær og rett til å delta."
+        },
+        {
+          "id": "B",
+          "label": "Følg med på hva andre gjør og delta når det virker sosialt naturlig.",
+          "effect": -1,
+          "tags": [
+            "implicit_permission",
+            "boundary_overreach"
+          ],
+          "feedback": "Du gjør observasjon av andre til erstatning for faktisk tillatelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_deltaker_eller_tilskuer"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kroppen_husker_for_hodet",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Den erfarne deltakeren",
+      "subject": "Ritualer læres ofte gjennom kroppen",
+      "situation": [
+        "En deltaker kan utføre bevegelsene sikkert, men har vanskelig for å forklare dem med begreper.",
+        "Rituell praksis kan være innarbeidet som rytme, gest, plassering og timing før den blir eksplisitt formulert.",
+        "Ritualkjenneren må kunne registrere kroppslig kompetanse uten å avvise den som ureflektert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle den kroppslige rutinen som kunnskap i seg selv og spør når den læres og korrigeres.",
+          "effect": 1,
+          "tags": [
+            "embodied_practice",
+            "tacit_knowledge"
+          ],
+          "feedback": "Du fanger ritualkompetanse som ikke alltid uttrykkes som teori."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter forklaringen; handling uten artikulert begrunnelse sier lite om hva ritualet betyr.",
+          "effect": -1,
+          "tags": [
+            "textual_bias",
+            "embodied_knowledge_loss"
+          ],
+          "feedback": "Du reduserer praktisk kunnskap til det som kan forklares verbalt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_kroppen_husker"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rett_tid_rett_sted",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Kalenderkjenneren",
+      "subject": "Samme handling kan skifte betydning med tid og sted",
+      "situation": [
+        "En handling utføres både hjemme, i et religiøst rom og på en årlig høytidsdag.",
+        "Ritualets sosiale og religiøse funksjon kan endres med kalender, rom, anledning og hvem som er til stede.",
+        "Rituell literacy handler derfor om kontekst, ikke bare gjentatt form."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Registrer tid, sted og anledning sammen med selve handlingen.",
+          "effect": 1,
+          "tags": [
+            "ritual_context",
+            "sacred_time_place"
+          ],
+          "feedback": "Du gjør konteksten til del av ritualbeskrivelsen."
+        },
+        {
+          "id": "B",
+          "label": "Beskriv handlingen likt hver gang; variasjonen i ramme er sekundær.",
+          "effect": -1,
+          "tags": [
+            "context_erasure",
+            "ritual_flattening"
+          ],
+          "feedback": "Du skiller formen fra forhold som kan endre dens funksjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_tid_sted"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjenstanden_er_ikke_bare_en_gjenstand",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ritualverten",
+      "subject": "Noen ting har bruksregler du ikke kan lese av formen",
+      "situation": [
+        "Du ser en gjenstand som ligner noe hverdagslig, men blir fortalt at den håndteres, oppbevares eller berøres etter bestemte regler.",
+        "Ritualobjekter kan få status gjennom bruk, innvielse, historie eller relasjon til et bestemt rom.",
+        "Ritualkunnskap krever at objektets sosiale regelverk tas like alvorlig som utseendet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvordan gjenstanden brukes og hvilke grenser som gjelder før du håndterer eller beskriver den.",
+          "effect": 1,
+          "tags": [
+            "ritual_object",
+            "handling_boundary"
+          ],
+          "feedback": "Du lærer objektets rolle gjennom praksisen rundt det."
+        },
+        {
+          "id": "B",
+          "label": "Beskriv først hva objektet forestiller eller symboliserer; håndteringsregler er praktiske detaljer.",
+          "effect": -1,
+          "tags": [
+            "object_symbol_reduction",
+            "boundary_overreach"
+          ],
+          "feedback": "Du gjør symboltolkning viktigere enn ritualets faktiske bruk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_gjenstanden"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lyd_og_stillhet",
+      "message_type": "story",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Musikkjenneren",
+      "subject": "Lyd kan markere overgang uten å forklare den",
+      "situation": [
+        "En bestemt melodi, resitasjon, klokke eller stillhet markerer at ritualet går inn i en ny fase.",
+        "Lyd fungerer ofte som handling: den organiserer oppmerksomhet, fellesskap og timing.",
+        "Ritualkjenneren må forstå funksjonen uten å anta at all lyd først og fremst er kunst eller budskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva lyden gjør i forløpet: samler, markerer, svarer, åpner eller avslutter.",
+          "effect": 1,
+          "tags": [
+            "ritual_sound",
+            "transition_marker"
+          ],
+          "feedback": "Du analyserer lyd som del av ritualets struktur."
+        },
+        {
+          "id": "B",
+          "label": "Fokuser på tekst og melodi; der ligger den viktigste betydningen.",
+          "effect": -1,
+          "tags": [
+            "aesthetic_reduction",
+            "function_loss"
+          ],
+          "feedback": "Du overser lydens praktiske funksjon i ritualet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_lyd_stillhet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mat_som_rituell_handling",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Verten",
+      "subject": "Å spise sammen kan være mer enn et måltid",
+      "situation": [
+        "Mat serveres i en bestemt rekkefølge og med regler for hvem som deler, avstår, velsigner eller begynner.",
+        "Rituell mat kan knytte sammen kropp, fellesskap, kalender, minne og grenser for tilhørighet.",
+        "Det er ikke nok å beskrive menyen dersom sosial organisering er selve poenget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvem som gjør hva rundt maten og hvordan måltidet plasseres i ritualforløpet.",
+          "effect": 1,
+          "tags": [
+            "ritual_food",
+            "communal_order"
+          ],
+          "feedback": "Du ser måltidet som organisert sosial praksis."
+        },
+        {
+          "id": "B",
+          "label": "Beskriv først hvilke retter som er tillatt og forbudt; resten er lokal etikette.",
+          "effect": -1,
+          "tags": [
+            "food_rule_reduction",
+            "context_loss"
+          ],
+          "feedback": "Du reduserer en sosial handling til en regeloversikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_mat"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overgangen_i_livet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Familievennen",
+      "subject": "Livsoverganger er både personlige og kollektive",
+      "situation": [
+        "Et ritual markerer fødsel, myndighet, ekteskap, død eller en annen overgang, men familiens ønsker og tradisjonens normer trekker ikke helt samme vei.",
+        "Overgangsritualer kan koordinere person, familie, institusjon og lokalsamfunn samtidig.",
+        "Ritualkunnskap trenger plass til både normert form og den konkrete familiens situasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom ritualets forventede struktur og hvordan familien faktisk tilpasser den.",
+          "effect": 1,
+          "tags": [
+            "life_cycle_rite",
+            "family_adaptation"
+          ],
+          "feedback": "Du gjør både sosial norm og levd tilpasning synlig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den formelle ritualordningen som hovedbeskrivelse; familievariasjon er sekundær.",
+          "effect": -1,
+          "tags": [
+            "formalism",
+            "lived_variation_loss"
+          ],
+          "feedback": "Du mister hvordan overgangsritualet faktisk forhandles."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_overgangen_i_livet"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "renhet_uten_forenkling",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Den lokale kjenneren",
+      "subject": "Renhet er ikke det samme som hygiene",
+      "situation": [
+        "Du møter regler for vask, klær, mat, kropp eller rom som omtales med et ord oversatt som renhet.",
+        "Rituell renhet kan være en religiøs eller sosial kategori med andre grenser enn medisinsk hygiene.",
+        "Ritualkjenneren må unngå både å medisinalisere ritualet og å gjøre det eksotisk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv reglene i deres egen rituelle sammenheng og skill dem eksplisitt fra hygienepåstander.",
+          "effect": 1,
+          "tags": [
+            "ritual_purity",
+            "category_boundary"
+          ],
+          "feedback": "Du holder ulike typer renhet fra hverandre."
+        },
+        {
+          "id": "B",
+          "label": "Oversett reglene til hygiene der det virker plausibelt; det gjør dem lettere å forstå.",
+          "effect": -1,
+          "tags": [
+            "medicalization",
+            "false_equivalence"
+          ],
+          "feedback": "Du erstatter ritualets kategori med en moderne forklaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_renhet"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_kan_lede",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ritualverten",
+      "subject": "Å kjenne ritualet gir ikke rett til å lede det",
+      "situation": [
+        "Du har lært rekkefølgen godt og blir bedt av en venn om å forklare hvordan ritualet gjennomføres.",
+        "I noen sammenhenger kan forklaring være åpen, mens selve ledelsen er knyttet til embete, medlemskap, kjønn, alder, innvielse eller lokal tillit.",
+        "Ritualkunnskap og ritualmyndighet er derfor to forskjellige ting."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det du kan, men si tydelig at kunnskap om formen ikke gir deg myndighet til å lede.",
+          "effect": 1,
+          "tags": [
+            "ritual_authority_boundary",
+            "role_limit"
+          ],
+          "feedback": "Du skiller literacy fra mandat."
+        },
+        {
+          "id": "B",
+          "label": "Hvis du kan rekkefølgen og ingen leder er tilgjengelig, er det rimelig å hjelpe til praktisk.",
+          "effect": -1,
+          "tags": [
+            "authority_inflation",
+            "role_overreach"
+          ],
+          "feedback": "Du gjør kunnskap til mandat uten å ha grunnlag for det."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_hvem_kan_lede"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samme_ritual_ulike_miljoer",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "Én ritualtype kan ha flere legitime former",
+      "situation": [
+        "Du sammenligner samme ritualtype i to lokalsamfunn og finner forskjeller i språk, varighet, musikk og hvem som deltar.",
+        "Variasjon kan være historisk, geografisk, institusjonell eller generasjonell uten at én form derfor er mindre ekte.",
+        "Ritualkunnskap må kunne beskrive mønster uten å late som at én variant er malen for alle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv felles struktur og noter eksplisitt hvilke ledd som varierer mellom miljøene.",
+          "effect": 1,
+          "tags": [
+            "ritual_variation",
+            "comparative_structure"
+          ],
+          "feedback": "Du sammenligner uten å rangere autentisitet."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest formelle varianten som standard og beskriv de andre som lokale avvik.",
+          "effect": -1,
+          "tags": [
+            "authenticity_hierarchy",
+            "variation_erasure"
+          ],
+          "feedback": "Du gjør institusjonell form til målestokk uten tilstrekkelig grunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_ulike_miljoer"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualet_endrer_seg",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arkivvennen",
+      "subject": "Kontinuitet kan eksistere gjennom forandring",
+      "situation": [
+        "Eldre beskrivelser viser at et ritual har fått nye språkformer, kortere varighet og andre praktiske rammer.",
+        "Endring betyr ikke automatisk brudd; kontinuitet kan ligge i funksjon, struktur, fortelling eller sosial gjenkjennelse.",
+        "Ritualkjenneren trenger historisk lagdeling, ikke bare et før-og-etter-bilde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hva som er endret, hva som er bevart, og hvem som beskriver endringen som viktig.",
+          "effect": 1,
+          "tags": [
+            "ritual_change",
+            "historical_layering"
+          ],
+          "feedback": "Du gjør kontinuitet og endring analyserbare samtidig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den eldste dokumenterte formen som referanse for hvor autentisk dagens ritual er.",
+          "effect": -1,
+          "tags": [
+            "antiquity_as_authenticity",
+            "historical_flattening"
+          ],
+          "feedback": "Du gjør alder til målestokk for legitimitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_endring"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritual_og_symbol_er_ikke_det_samme",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Du kan kjenne handlingen uten å eie alle tolkningene",
+      "situation": [
+        "Du kan beskrive nøyaktig når en gjenstand løftes, et lys tennes eller en gest gjøres, men får flere ulike forklaringer på hva den symboliserer.",
+        "Ritualkompetanse gjelder først og fremst hvordan handlingen inngår i praksisen; symboltolkning kan kreve andre kilder og andre fortolkningsgrenser.",
+        "Dette skiller Ritualkjenner fra Symboltolker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold ritualbeskrivelsen presis og marker symbolforklaringene som egne fortolkninger.",
+          "effect": 1,
+          "tags": [
+            "ritual_symbol_boundary",
+            "interpretive_plurality"
+          ],
+          "feedback": "Du lar handling og fortolkning være relaterte uten å slå dem sammen."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest utbredte symbolforklaringen og bruk den som ritualets hovedmening.",
+          "effect": -1,
+          "tags": [
+            "symbol_reduction",
+            "interpretive_overreach"
+          ],
+          "feedback": "Du gjør én tolkning til fasit for en praksis du egentlig kjenner bredere enn du tolker."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_ritual_symbol"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ritualkjenner_ikke_troslivskjenner",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Ritualkompetanse er spesialisert kunnskap, ikke total innsikt i trosliv",
+      "situation": [
+        "Du kjenner etter hvert mange ritualforløp, variasjoner og deltakelsesgrenser, og andre begynner å spørre deg om hva mennesker egentlig tror og føler.",
+        "Ritualer er en viktig del av levd religion, men de dekker ikke alene hverdagsliv, tvil, identitet, moralske valg eller personlige trosfortolkninger.",
+        "Ritualkjenner er derfor ikke det samme som Troslivskjenner, og heller ikke religiøs representant eller fagperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar på ritualpraksisen du kjenner og marker tydelig hvor spørsmålet går over i trosliv du ikke kan representere.",
+          "effect": 1,
+          "tags": [
+            "ritual_lived_religion_boundary",
+            "epistemic_humility"
+          ],
+          "feedback": "Du beskytter både ritualkompetansen og kunnskapsgrensen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk ritualkunnskapen som inngang til å forklare troslivet mer generelt; ritualene viser jo hva som faktisk betyr noe.",
+          "effect": -1,
+          "tags": [
+            "ritual_determinism",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar én praksisdimensjon forklare hele troslivet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_ritualkjenner_grense"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
