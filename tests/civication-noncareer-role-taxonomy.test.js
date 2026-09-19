@@ -171,12 +171,12 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 208, 'Role World-indeksen skal ha 85 karriereverdener + 123 life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 209, 'Role World-indeksen skal ha 85 karriereverdener + 124 life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 123, '123 canonical life-position worlds skal være materialisert, nå også Feltarbeider som egen employment-independent feltpraksis');
+assert.equal(lifePositionWorlds.length, 124, '124 canonical life-position worlds skal være materialisert, nå også Nysgjerrig som egen employment-independent exploration-interest');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('subkultur/gangster').life_position_ref, { badge_id: 'subkultur', id: null, label: 'Gangster' });
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
