@@ -64,30 +64,41 @@ for(const key of ['religion/besokende','religion/dialogbygger','religion/feltarb
 }
 
 const indexed=index.roles.find(x=>x.life_position_key===lifeKey);
-const worldExists=fs.existsSync(path.join(ROOT,worldPath));
-if(!worldExists){
-  assert.equal(row.role_world_status,'role_world_not_started');
-  assert.equal(row.role_world_path,null);
-  assert.equal(indexed,undefined,'Source-depth phase must not pre-register an unbuilt Role World');
-  const queued=audit.queue.find(x=>x.key===lifeKey);
-  assert.ok(queued,'Ready but unbuilt Nysgjerrig must remain in queue');
-  assert.equal(queued.rank,1,'Nysgjerrig should become the next canonical ready Role World after authored-depth repair');
-  assert.equal(queued.classification,'ready');
-}else{
-  const world=read(worldPath);
-  assert.equal(row.role_world_status,'role_world_complete');
-  assert.equal(row.role_world_path,worldPath);
-  assert.ok(!audit.queue.some(x=>x.key===lifeKey),'Completed Nysgjerrig must leave the queue');
-  assert.ok(indexed,'Completed Nysgjerrig must be indexed');
-  assert.equal(indexed.role_scope,lifeScope);
-  assert.equal(indexed.status,'role_world_complete');
-  assert.equal(world.schema,'civication_role_world_v1');
-  assert.equal(world.subject_type,'life_position');
-  assert.equal(world.status,'role_world_complete');
-  assert.deepEqual(world.life_position_ref,{badge_id:'religion',id:lifeId,label:'Nysgjerrig'});
-  assert.equal(world.materialization.no_new_runtime,true);
+assert.equal(row.role_world_status,'role_world_complete');
+assert.equal(row.role_world_path,worldPath);
+assert.ok(!audit.queue.some(x=>x.key===lifeKey),'Completed Nysgjerrig must leave the readiness queue');
+assert.ok(indexed,'Completed Nysgjerrig must be indexed');
+assert.equal(indexed.role_scope,lifeScope);
+assert.equal(indexed.status,'role_world_complete');
+
+const world=read(worldPath);
+assert.equal(world.schema,'civication_role_world_v1');
+assert.equal(world.subject_type,'life_position');
+assert.equal(world.status,'role_world_complete');
+assert.deepEqual(world.life_position_ref,{badge_id:'religion',id:lifeId,label:'Nysgjerrig'});
+assert.equal(world.materialization.no_new_runtime,true);
+assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
+assert.equal(world.season.coverage.length,56);
+assert.equal(new Set(world.season.coverage.map(x=>x.day+'/'+x.phase)).size,56);
+assert.equal(world.primary_threads.length,14);
+assert.equal(world.recurring_people_archetypes.length,6);
+assert.equal(world.private_aftermath.length,5);
+assert.equal(world.delayed_consequences.length,6);
+assert.equal(world.materialization.source_refs.length,14);
+assert.match(world.sociological_core.description,/Besøkende/);
+assert.match(world.sociological_core.description,/Livssynsutforsker/);
+assert.match(world.sociological_core.description,/Tradisjonskjenner/);
+assert.match(world.sociological_core.description,/Ritualkjenner/);
+assert.match(world.sociological_core.description,/Symboltolker/);
+assert.match(world.sociological_core.description,/Troslivskjenner/);
+assert.match(world.sociological_core.description,/Feltarbeider/);
+assert.match(world.sociological_core.description,/representasjonsrett/);
+assert.match(world.sociological_core.description,/forskerstatus/);
+
+for(const ref of world.materialization.source_refs){
+  const [file,id]=ref.split('#');
+  assert.equal(file,streamPath);
+  assert.ok(stream.storylets.some(s=>s.id===id),ref+' must resolve to an authored Nysgjerrig storylet');
 }
 
-console.log(worldExists
-  ? 'Religion Nysgjerrig authored-depth and completed Role World gate ok'
-  : 'Religion Nysgjerrig authored-depth gate ok: exact 14-storylet source makes the life position ready without employment or authority');
+console.log('Religion Nysgjerrig Role World gate ok: 14-storylet source, 56-beat life world and authority boundaries remain employment-independent and role-scoped');
