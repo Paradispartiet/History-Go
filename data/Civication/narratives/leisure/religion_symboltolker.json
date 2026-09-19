@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "religion_symboltolker_stream",
+  "type": "leisure",
+  "title": "Symboltolker — betydning, kontekst og fortolkningsgrenser",
+  "sociological_theme": "religiøs_symboltolkning_flersjiktet_betydning_historisk_kontekst_materialitet_ikonografi_tekst_ritual_sosial_bruk_intern_variasjon_makt_representasjon_og_grensen_mellom_tolkning_og_autoritet",
+  "applies_when": {
+    "any_tags": [
+      "religion:symboltolker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "symbolet_har_flere_lag",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Bildekjenneren",
+      "subject": "Ett symbol kan bære flere betydninger samtidig",
+      "situation": [
+        "Du møter et symbol som forklares både historisk, teologisk og personlig av ulike personer.",
+        "Symboler kan ha flere samtidige betydningslag uten at ett av dem automatisk opphever de andre.",
+        "Symboltolkning blir mer presis når ulike tolkningsnivåer holdes fra hverandre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom historisk, institusjonell og personlig betydning og noter hvem som står for hver tolkning.",
+          "effect": 1,
+          "tags": [
+            "meaning_layers",
+            "source_attribution"
+          ],
+          "feedback": "Du gjør flere betydningslag synlige uten å slå dem sammen."
+        },
+        {
+          "id": "B",
+          "label": "Velg den mest etablerte forklaringen og bruk den som hovedbetydning; de andre kan omtales som variasjoner.",
+          "effect": -1,
+          "tags": [
+            "single_meaning",
+            "interpretive_flattening"
+          ],
+          "feedback": "Du gjør én tolkning til standard for et symbol som faktisk brukes på flere måter."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_flere_lag"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "form_uten_kontekst",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Museumskjenneren",
+      "subject": "Lik form betyr ikke nødvendigvis lik betydning",
+      "situation": [
+        "To symboler ser nesten like ut, men kommer fra ulike historiske miljøer.",
+        "Visuell likhet kan skyldes delt formspråk, lån, tilfeldighet eller senere påvirkning.",
+        "Symboltolkeren må kunne undersøke kontekst før likhet blir til påstand om slektskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign opprinnelse, bruk og dokumenterte forbindelser før du hevder at symbolene betyr det samme.",
+          "effect": 1,
+          "tags": [
+            "visual_similarity",
+            "historical_context"
+          ],
+          "feedback": "Du lar dokumentert sammenheng avgjøre hvor langt sammenligningen kan gå."
+        },
+        {
+          "id": "B",
+          "label": "Bruk form-likheten som sterk indikasjon; symboler med samme geometri har ofte samme kjernebetydning.",
+          "effect": -1,
+          "tags": [
+            "shape_determinism",
+            "false_equivalence"
+          ],
+          "feedback": "Du gjør utseende til bevis for historisk og religiøs sammenheng."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_form_kontekst"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "objekt_eller_symbol",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ritualverten",
+      "subject": "Ikke alt som brukes i ritualet er først og fremst et symbol",
+      "situation": [
+        "En gjenstand inngår i et ritual, men deltakerne beskriver den mest som redskap, arvestykke eller praktisk nødvendighet.",
+        "Symbolsk betydning kan være til stede uten å være gjenstandens primære funksjon.",
+        "Symboltolkning krever derfor tilbakeholdenhet når selve praksisen forklarer objektet annerledes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hvordan gjenstanden faktisk brukes før du tolker dens form eller materiale symbolsk.",
+          "effect": 1,
+          "tags": [
+            "object_function",
+            "symbolization_boundary"
+          ],
+          "feedback": "Du lar bruk komme før fortolkning."
+        },
+        {
+          "id": "B",
+          "label": "Analyser form, materiale og plassering først; symbolikken kan være implisitt selv om brukerne ikke formulerer den.",
+          "effect": -1,
+          "tags": [
+            "overinterpretation",
+            "implicit_symbol_claim"
+          ],
+          "feedback": "Du gir din egen tolkning forrang fremfor dokumentert praksis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_objekt_symbol"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fargen_som_betyr_noe_her",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arkivvennen",
+      "subject": "Farger har historie, ikke universelle fasitsvar",
+      "situation": [
+        "En bestemt farge brukes ofte i en tradisjon, og du finner flere nettsteder som gir den én fast symbolsk betydning.",
+        "Fargebruk kan variere med periode, region, materiale, ritualtype og senere populærfortolkninger.",
+        "En presis symboltolker behandler farge som historisk og situert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn kilder til hvordan fargen faktisk brukes i denne tradisjonen og perioden.",
+          "effect": 1,
+          "tags": [
+            "color_symbolism",
+            "historical_specificity"
+          ],
+          "feedback": "Du knytter fargen til dokumentert kontekst."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den vanligste symbolske fargebetydningen som utgangspunkt; den er trolig kjent på tvers av tradisjoner.",
+          "effect": -1,
+          "tags": [
+            "universal_color_code",
+            "false_universality"
+          ],
+          "feedback": "Du gjør et populært symbolsk skjema universelt uten belegg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_farge"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tekst_og_bilde",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Tekstkjenneren",
+      "subject": "Et bilde kan sitere en tekst uten å illustrere den bokstavelig",
+      "situation": [
+        "Et motiv ser ut til å vise en kjent fortelling, men enkelte elementer finnes ikke i selve teksten.",
+        "Bilder kan tolke, kombinere og videreutvikle teksttradisjoner i stedet for å være direkte illustrasjoner.",
+        "Symboltolkning må derfor skille tekstkilde fra senere billedtradisjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Identifiser hva som faktisk kommer fra teksten og hva som tilhører den visuelle tradisjonen.",
+          "effect": 1,
+          "tags": [
+            "text_image_relation",
+            "tradition_layer"
+          ],
+          "feedback": "Du gjør forholdet mellom tekst og bilde etterprøvbart."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bildet til å fylle ut teksten; kunstneriske detaljer gjenspeiler ofte underforstått tradisjon.",
+          "effect": -1,
+          "tags": [
+            "image_as_text_evidence",
+            "source_blending"
+          ],
+          "feedback": "Du lar senere bildebruk bli bevis for hva teksten egentlig sier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_tekst_bilde"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "symbolet_i_hverdagen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den praktiserende",
+      "subject": "Et symbol kan være identitet før det er forklaring",
+      "situation": [
+        "En person bærer et religiøst symbol, men sier at det først og fremst uttrykker tilhørighet og familiehistorie.",
+        "Symbolbruk kan være sosial, emosjonell og identitetsmessig uten at brukeren selv legger vekt på en detaljert teologisk tolkning.",
+        "Symboltolkeren må kunne beskrive bruken uten å kreve en mer lærd forklaring enn personen selv gir."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle identitetsfunksjonen som en legitim betydning og unngå å overstyre den med en lærd tolkning.",
+          "effect": 1,
+          "tags": [
+            "identity_symbol",
+            "lived_meaning"
+          ],
+          "feedback": "Du lar brukerens egen betydning være en del av materialet."
+        },
+        {
+          "id": "B",
+          "label": "Suppler med den etablerte teologiske betydningen; ellers blir personens forklaring for subjektiv.",
+          "effect": -1,
+          "tags": [
+            "doctrinal_override",
+            "lived_meaning_erasure"
+          ],
+          "feedback": "Du gjør lærd tolkning viktigere enn faktisk bruk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_hverdagen"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forbudt_bilde_tillatt_tegn",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Historievennen",
+      "subject": "Bildegrenser kan selv forme symbolspråket",
+      "situation": [
+        "I et miljø finnes sterke grenser for avbildning, mens andre visuelle tegn, mønstre eller skriftformer får stor betydning.",
+        "Fravær av bestemte bilder betyr ikke fravær av symbolsk kommunikasjon.",
+        "Symbolkunnskap må derfor også forstå hvilke former som velges bort og hvorfor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg både tillatte former og eksplisitte grenser for avbildning i den konkrete tradisjonen.",
+          "effect": 1,
+          "tags": [
+            "aniconism",
+            "symbolic_alternatives"
+          ],
+          "feedback": "Du analyserer symbolbruk gjennom både nærvær og fravær."
+        },
+        {
+          "id": "B",
+          "label": "Fokuser på tegnene som faktisk finnes; forbud mot andre bilder er mer en regel enn symbolikk.",
+          "effect": -1,
+          "tags": [
+            "absence_ignored",
+            "rule_symbol_split"
+          ],
+          "feedback": "Du mister hvordan grenser kan forme selve uttrykksformen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_bildegrenser"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "politisk_bruk_av_religiost_symbol",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medievennen",
+      "subject": "Et religiøst symbol kan få ny betydning i offentlig konflikt",
+      "situation": [
+        "Et religiøst symbol brukes i en politisk demonstrasjon og får en tydeligere offentlig betydning enn i vanlig trospraksis.",
+        "Offentlig bruk kan aktivere identitet, konflikt og makt uten å oppheve eldre religiøse betydninger.",
+        "Symboltolkning må skille mellom tradisjonens bruk og den aktuelle politiske appropriasjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den politiske bruken som en situert betydningsforskyvning og behold den religiøse historien separat.",
+          "effect": 1,
+          "tags": [
+            "political_appropriation",
+            "context_shift"
+          ],
+          "feedback": "Du gjør endringen i bruk synlig uten å omskrive hele symbolhistorien."
+        },
+        {
+          "id": "B",
+          "label": "La den offentlige konflikten definere hva symbolet betyr i dag; aktuell bruk veier tyngst.",
+          "effect": -1,
+          "tags": [
+            "presentism",
+            "meaning_capture"
+          ],
+          "feedback": "Du lar én konflikt overta alle andre bruksformer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_politisk_bruk"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sacred_og_dekorativt",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Designvennen",
+      "subject": "Samme motiv kan være hellig ett sted og dekorativt et annet",
+      "situation": [
+        "Et motiv finnes både i et religiøst rom og som kommersiell dekor på klær og interiør.",
+        "Gjenbruk kan endre kontekst, verdi og opplevd respekt uten at motivets opprinnelige historie forsvinner.",
+        "Symboltolkeren må kunne beskrive denne forskjellen uten å anta at alle brukere oppfatter den likt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skille tydelig mellom religiøs, kommersiell og estetisk bruk og noter hvem som opplever forskjellen som viktig.",
+          "effect": 1,
+          "tags": [
+            "sacred_profane",
+            "commercial_reuse"
+          ],
+          "feedback": "Du gjør kontekstskiftet eksplisitt."
+        },
+        {
+          "id": "B",
+          "label": "Behandle motivet som samme symbol overalt; brukssituasjonen endrer ikke kjernen.",
+          "effect": -1,
+          "tags": [
+            "context_collapse",
+            "essentialism"
+          ],
+          "feedback": "Du overser at sosial kontekst kan endre betydningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_sacred_dekorativt"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tolkning_uten_eierskap",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den lokale kjenneren",
+      "subject": "Å forstå et symbol gir ikke rett til å definere det for andre",
+      "situation": [
+        "Du har lest mye om et symbol og møter en praktiserende som bruker det på en annen måte enn kildene dine beskriver.",
+        "Dokumentert kunnskap og levd bruk kan stå side om side uten at én av dem automatisk annullerer den andre.",
+        "Symboltolkerens kompetanse er fortolkende, ikke en rett til å korrigere andres identitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv forskjellen mellom kildenes tolkning og personens bruk uten å erklære én som den eneste riktige.",
+          "effect": 1,
+          "tags": [
+            "interpretive_humility",
+            "lived_variation"
+          ],
+          "feedback": "Du holder kunnskap og levd bruk i samme analyse uten å gjøre deg til dommer."
+        },
+        {
+          "id": "B",
+          "label": "Forklar den historiske betydningen; personen kan bruke symbolet fritt, men tolkningen bør være korrekt.",
+          "effect": -1,
+          "tags": [
+            "interpretive_authority",
+            "identity_correction"
+          ],
+          "feedback": "Du gjør kunnskap om symbolhistorie til myndighet over andres bruk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_tolkning_eierskap"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "intern_strid_om_symbolet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Samtalepartneren",
+      "subject": "Et symbol kan være omstridt innen samme tradisjon",
+      "situation": [
+        "To grupper innen samme tradisjon er uenige om et symbols plass, historiske legitimitet eller riktig bruk.",
+        "Intern konflikt kan være teologisk, politisk, generasjonell eller institusjonell.",
+        "Symboltolkning må kunne gjøre uenigheten til en del av betydningshistorien."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvem som tolker symbolet hvordan, og hvilke historiske eller institusjonelle argumenter de bruker.",
+          "effect": 1,
+          "tags": [
+            "internal_contestation",
+            "interpretive_plurality"
+          ],
+          "feedback": "Du behandler uenigheten som empirisk materiale."
+        },
+        {
+          "id": "B",
+          "label": "Finn den mest autoritative posisjonen og bruk den som standard; konflikter er sekundære.",
+          "effect": -1,
+          "tags": [
+            "authority_shortcut",
+            "plurality_erasure"
+          ],
+          "feedback": "Du reduserer en reell tolkningskonflikt til avvik fra én norm."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_intern_strid"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historisk_endret_betydning",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Arkivvennen",
+      "subject": "Betydning kan endre seg uten at formen gjør det",
+      "situation": [
+        "Det samme visuelle tegnet finnes i kilder fra flere hundre år, men brukes i forskjellige institusjonelle og sosiale sammenhenger.",
+        "Formkontinuitet kan skjule store endringer i hvem som bruker symbolet og hva det forbindes med.",
+        "Symbolhistorie krever derfor mer enn å følge motivets utseende over tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg både form, brukere, institusjoner og forklaringer gjennom perioden.",
+          "effect": 1,
+          "tags": [
+            "diachronic_symbolism",
+            "meaning_change"
+          ],
+          "feedback": "Du skiller visuell kontinuitet fra semantisk kontinuitet."
+        },
+        {
+          "id": "B",
+          "label": "Hvis formen er stabil, er det rimelig å anta at kjernebetydningen også er stabil.",
+          "effect": -1,
+          "tags": [
+            "form_continuity_assumption",
+            "historical_flattening"
+          ],
+          "feedback": "Du gjør visuell stabilitet til bevis for uendret betydning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_historisk_endring"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "symbol_og_ritual_er_ikke_det_samme",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Ritualkjenneren",
+      "subject": "Å tolke tegn er ikke det samme som å kunne ritualforløpet",
+      "situation": [
+        "Du kan forklare mange betydninger knyttet til et symbol, men kjenner ikke alle reglene for hvordan det brukes i et bestemt ritual.",
+        "Symbolfortolkning og ritualkompetanse overlapper, men de har ulike kunnskapsgrenser.",
+        "Dette skiller Symboltolker fra Ritualkjenner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold symboltolkningen til det du kan dokumentere og henvis ritualspørsmålet til ritualets egen praksis og kilder.",
+          "effect": 1,
+          "tags": [
+            "symbol_ritual_boundary",
+            "epistemic_scope"
+          ],
+          "feedback": "Du beskytter skillet mellom fortolkning og ritualkompetanse."
+        },
+        {
+          "id": "B",
+          "label": "Bruk symbolkunnskapen til å utlede ritualets funksjon; symbolene viser ofte hva handlingene egentlig betyr.",
+          "effect": -1,
+          "tags": [
+            "symbol_determinism",
+            "ritual_overreach"
+          ],
+          "feedback": "Du lar fortolkning erstatte kunnskap om praksis."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_symbol_ritual"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "symboltolker_ikke_troslivskjenner",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Notatpartneren",
+      "subject": "Symbolkompetanse er ikke total innsikt i trosliv",
+      "situation": [
+        "Andre begynner å spørre deg hva mennesker virkelig tror fordi du kan forklare symbolhistorie og ulike fortolkninger.",
+        "Symboler er én inngang til levd religion, men kan ikke alene forklare tvil, praksis, moral, hverdagsidentitet eller personlige erfaringer.",
+        "Symboltolker er derfor ikke det samme som Troslivskjenner, religiøs representant eller fagperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar på symbolbruken du kjenner og marker når spørsmålet går over i trosliv du ikke kan representere.",
+          "effect": 1,
+          "tags": [
+            "symbol_lived_religion_boundary",
+            "epistemic_humility"
+          ],
+          "feedback": "Du bevarer både symbolkompetansen og kunnskapsgrensen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk symbolene som nøkkel til troslivet mer generelt; de uttrykker jo hva tradisjonen verdsetter.",
+          "effect": -1,
+          "tags": [
+            "symbol_totalization",
+            "authority_overreach"
+          ],
+          "feedback": "Du lar én uttrykksform forklare hele troslivet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "religion_symboltolker_grense"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}

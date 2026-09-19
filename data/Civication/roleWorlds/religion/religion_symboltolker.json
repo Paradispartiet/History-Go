@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_symboltolker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "symboltolker",
+    "label": "Symboltolker"
+  },
+  "title": "Symboltolker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å tolke religiøse symboler gjennom historisk kontekst, materialitet, tekst, sosial bruk og intern variasjon uten å gjøre fortolkning til eierskap, ritualkompetanse eller religiøs autoritet",
+    "description": "Symboltolker er en employment-independent symbol_interpretation_practice som organiserer gjentatt arbeid med religiøse tegn, bilder, farger, gjenstander og offentlige symbolbruker rundt kildegrunnlag, kontekst, flertydighet og historisk endring. Rollen er ikke Ritualkjenner, som primært kan ritualforløp, deltakelsesgrenser og kroppslig praksis; ikke Tradisjonskjenner, som har bredere kunnskap om tradisjonens historiske og sosiale former; og ikke Troslivskjenner, som arbeider med levd religion utover symbolbruk. Symboltolkning gir heller aldri medlemskap, teologisk representasjonsrett, forskerstatus, ritualmyndighet eller mandat til å korrigere hvordan andre bruker et symbol."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "public_private_leakage",
+    "status_anxiety",
+    "public_attention",
+    "bureaucratic_power",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "museer, samlinger og historiske kilder der form, proveniens og kontekst må kobles før betydning hevdes",
+    "religiøse rom og ritualmiljøer der symbolbruk overlapper med praksis uten at fortolkning gir deltakelses- eller ledelsesrett",
+    "samtaler med praktiserende der levd identitetsbruk kan avvike fra lærde eller institusjonelle symbolforklaringer",
+    "digitale og offentlige flater der symboler sirkulerer løsrevet fra opprinnelig kontekst og får nye politiske eller kommersielle betydninger",
+    "arkiv, tekst- og bildemateriale der senere ikonografi kan videreutvikle, kombinere eller endre eldre teksttradisjoner",
+    "lokale og interne konflikter der samme symbol kan ha flere legitime, omstridte eller historisk skiftende fortolkninger"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "bildehistorikeren",
+      "social_function": "kobler motiv, materialitet, ikonografi og historisk proveniens uten å gjøre visuell likhet til bevis for identisk mening",
+      "class_position": "kunnskapsrik formidler eller samlingskjenner uten mandat over trospraksis",
+      "status": "høy på historisk bilde- og kildekunnskap",
+      "power_over_player": "kan avvise anakronistiske eller universelle symbolforklaringer og kreve dokumentert kontekst",
+      "wants": "at symboltolkning bygger på daterbare kilder og spesifikk bruk",
+      "conceals": "at museums- og arkivmateriale ofte favoriserer bevarte, institusjonelle og elitære uttrykk",
+      "speech_style": "kildeorientert, sammenlignende og presis",
+      "teaches_player": "at lik form og stabilt motiv ikke i seg selv beviser lik eller stabil betydning"
+    },
+    {
+      "id": "den_praktiserende",
+      "social_function": "viser hvordan symboler brukes som tilhørighet, minne og identitet uten nødvendigvis detaljert lærd fortolkning",
+      "class_position": "praktiserende eller tilknyttet deltaker uten plikt til å representere hele tradisjonen",
+      "status": "høy på egen levd symbolbruk",
+      "power_over_player": "kan korrigere når eksterne forklaringer overstyrer faktisk personlig bruk",
+      "wants": "at egen symbolbruk tas alvorlig uten å bli gjort til universell lære",
+      "conceals": "at personlig fortrolighet også kan gjøre andre interne tolkninger mindre synlige",
+      "speech_style": "personlig, situert og grensesettende",
+      "teaches_player": "at levd mening er empirisk relevant uten å bli hele tradisjonens fasit"
+    },
+    {
+      "id": "museumskjenneren",
+      "social_function": "avklarer proveniens, objektfunksjon og forskjellen mellom gjenstand, tegn og senere symbolisering",
+      "class_position": "samlings- eller kulturformidler med tilgang til objekthistorie, uten religiøs autoritet",
+      "status": "høy på materialitet og dokumentert bruk",
+      "power_over_player": "kan stoppe spekulativ fortolkning når objektets faktiske funksjon er bedre dokumentert",
+      "wants": "at ting forstås gjennom brukshistorie før symbolsk overtolkning",
+      "conceals": "at samlingskategorier selv kan være produkter av eldre tolkningstradisjoner",
+      "speech_style": "materiell, konkret og proveniensorientert",
+      "teaches_player": "at et objekt ikke automatisk er et symbol bare fordi det kan fortolkes"
+    },
+    {
+      "id": "ritualverten",
+      "social_function": "viser hvor symbolbruk inngår i ritual uten å la symboltolkning erstatte kunnskap om ritualets praktiske regler",
+      "class_position": "lokal vert eller organisator med situert ritualkompetanse",
+      "status": "høy på faktisk bruk og adgangsgrenser",
+      "power_over_player": "kan avvise utledninger av ritualpraksis som bare bygger på symbolbetydning",
+      "wants": "at fortolkning og ritualkompetanse holdes relaterte, men separate",
+      "conceals": "at lokale ritualforklaringer også kan være omstridte eller historisk endrede",
+      "speech_style": "praktisk, korrigerende og avgrensende",
+      "teaches_player": "at symbolmening ikke gir rett til å definere ritualets form eller lede det"
+    },
+    {
+      "id": "medievennen",
+      "social_function": "viser hvordan politisk, kommersiell og algoritmisk sirkulasjon kan forskyve et symbols offentlige betydning",
+      "class_position": "mediekyndig observatør uten eierskap til symbolets religiøse bruk",
+      "status": "høy på offentlig oppmerksomhet og kontekstskift",
+      "power_over_player": "kan synliggjøre hvem som får definisjonsmakt når et symbol går inn i konflikt eller marked",
+      "wants": "at aktuell offentlig bruk analyseres uten å viske ut symbolhistorien",
+      "conceals": "at medielogikk selv favoriserer konfliktfylte og lett gjenkjennelige betydninger",
+      "speech_style": "rask, offentlighetsorientert og kontrasterende",
+      "teaches_player": "at synlighet og aktualitet ikke automatisk er representativ betydning"
+    },
+    {
+      "id": "arkivvennen",
+      "social_function": "følger symbolers betydning gjennom tid og viser hvordan stabil form kan sameksistere med semantisk endring",
+      "class_position": "historisk interessert kildebruker uten faglig eller religiøst mandat",
+      "status": "høy på tidslag, kildekritikk og dokumenterte endringer",
+      "power_over_player": "kan utfordre forestillingen om at den eldste eller mest kjente forklaringen er den egentlige",
+      "wants": "at kontinuitet og endring beskrives konkret og kildebasert",
+      "conceals": "at skriftlige og visuelle arkiver ikke bevarer alle hverdagslige symbolbruker likt",
+      "speech_style": "kronologisk, dokumenterende og nyanserende",
+      "teaches_player": "at betydningshistorie må følges gjennom brukere, institusjoner og kontekster, ikke bare motivform"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "meaning_layers_vs_single_meaning",
+      "meaning": "flere samtidige betydningslag mot reduksjon til én autoritativ hovedbetydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "visual_context_vs_shape_determinism",
+      "meaning": "historisk og sosial kontekst mot forestillingen om at lik form beviser lik betydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "object_function_vs_symbolization",
+      "meaning": "dokumentert bruk av objekter mot automatisk symbolisering av form og materiale",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "historical_color_vs_universal_code",
+      "meaning": "situert fargebruk mot universelle symbolske fargekoder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "text_image_layers",
+      "meaning": "forholdet mellom tekstkilde og billedtradisjon mot sammenblanding av senere visualisering og opprinnelig tekst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "identity_use_vs_doctrinal_override",
+      "meaning": "levd identitetsbruk mot at lærd doktrine overstyrer brukerens egen symbolpraksis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "image_boundary_vs_absence_ignored",
+      "meaning": "bildegrenser og alternative uttrykksformer mot å ignorere symbolikken i det som bevisst velges bort",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "political_context_shift_vs_capture",
+      "meaning": "situert politisk bruk mot at én offentlig konflikt overtar hele symbolets betydningshistorie",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sacred_context_vs_commercial_collapse",
+      "meaning": "religiøs og kommersiell kontekst mot forestillingen om at samme motiv alltid betyr det samme",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interpretation_vs_ownership",
+      "meaning": "kunnskapsbasert fortolkning mot krav på å definere andres identitetsbruk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "plurality_vs_authority_shortcut",
+      "meaning": "intern tolkningsstrid mot snarveien via én autoritativ fasit",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "diachronic_meaning_vs_form_continuity",
+      "meaning": "historisk betydningsendring mot antakelsen om at stabil form betyr stabil mening",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "symbol_vs_ritual_scope",
+      "meaning": "symbolfortolkning mot uberettiget utledning av ritualets praktiske regler og funksjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "symbol_literacy_vs_lived_religion_authority",
+      "meaning": "symbolkompetanse mot total forklaringsrett over trosliv, medlemskap eller faglig autoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Ett symbol kan bære flere betydninger samtidig.",
+        "thread_ids": [
+          "meaning_layers_vs_single_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Ett symbol kan bære flere betydninger samtidig.",
+        "thread_ids": [
+          "meaning_layers_vs_single_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Ett symbol kan bære flere betydninger samtidig.",
+        "thread_ids": [
+          "meaning_layers_vs_single_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Ett symbol kan bære flere betydninger samtidig.",
+        "thread_ids": [
+          "meaning_layers_vs_single_meaning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Lik form betyr ikke nødvendigvis lik betydning.",
+        "thread_ids": [
+          "visual_context_vs_shape_determinism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Lik form betyr ikke nødvendigvis lik betydning.",
+        "thread_ids": [
+          "visual_context_vs_shape_determinism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Lik form betyr ikke nødvendigvis lik betydning.",
+        "thread_ids": [
+          "visual_context_vs_shape_determinism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Lik form betyr ikke nødvendigvis lik betydning.",
+        "thread_ids": [
+          "visual_context_vs_shape_determinism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Ikke alt som brukes i ritualet er først og fremst et symbol.",
+        "thread_ids": [
+          "object_function_vs_symbolization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Ikke alt som brukes i ritualet er først og fremst et symbol.",
+        "thread_ids": [
+          "object_function_vs_symbolization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Ikke alt som brukes i ritualet er først og fremst et symbol.",
+        "thread_ids": [
+          "object_function_vs_symbolization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Ikke alt som brukes i ritualet er først og fremst et symbol.",
+        "thread_ids": [
+          "object_function_vs_symbolization"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Farger har historie, ikke universelle fasitsvar.",
+        "thread_ids": [
+          "historical_color_vs_universal_code"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Farger har historie, ikke universelle fasitsvar.",
+        "thread_ids": [
+          "historical_color_vs_universal_code"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Farger har historie, ikke universelle fasitsvar.",
+        "thread_ids": [
+          "historical_color_vs_universal_code"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Farger har historie, ikke universelle fasitsvar.",
+        "thread_ids": [
+          "historical_color_vs_universal_code"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Et bilde kan sitere en tekst uten å illustrere den bokstavelig.",
+        "thread_ids": [
+          "text_image_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Et bilde kan sitere en tekst uten å illustrere den bokstavelig.",
+        "thread_ids": [
+          "text_image_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Et bilde kan sitere en tekst uten å illustrere den bokstavelig.",
+        "thread_ids": [
+          "text_image_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Et bilde kan sitere en tekst uten å illustrere den bokstavelig.",
+        "thread_ids": [
+          "text_image_layers"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Et symbol kan være identitet før det er forklaring.",
+        "thread_ids": [
+          "identity_use_vs_doctrinal_override"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Et symbol kan være identitet før det er forklaring.",
+        "thread_ids": [
+          "identity_use_vs_doctrinal_override"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Et symbol kan være identitet før det er forklaring.",
+        "thread_ids": [
+          "identity_use_vs_doctrinal_override"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Et symbol kan være identitet før det er forklaring.",
+        "thread_ids": [
+          "identity_use_vs_doctrinal_override"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Bildegrenser kan selv forme symbolspråket.",
+        "thread_ids": [
+          "image_boundary_vs_absence_ignored"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Bildegrenser kan selv forme symbolspråket.",
+        "thread_ids": [
+          "image_boundary_vs_absence_ignored"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Bildegrenser kan selv forme symbolspråket.",
+        "thread_ids": [
+          "image_boundary_vs_absence_ignored"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Bildegrenser kan selv forme symbolspråket.",
+        "thread_ids": [
+          "image_boundary_vs_absence_ignored"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Et religiøst symbol kan få ny betydning i offentlig konflikt.",
+        "thread_ids": [
+          "political_context_shift_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Et religiøst symbol kan få ny betydning i offentlig konflikt.",
+        "thread_ids": [
+          "political_context_shift_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Et religiøst symbol kan få ny betydning i offentlig konflikt.",
+        "thread_ids": [
+          "political_context_shift_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Et religiøst symbol kan få ny betydning i offentlig konflikt.",
+        "thread_ids": [
+          "political_context_shift_vs_capture"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Samme motiv kan være hellig ett sted og dekorativt et annet.",
+        "thread_ids": [
+          "sacred_context_vs_commercial_collapse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Samme motiv kan være hellig ett sted og dekorativt et annet.",
+        "thread_ids": [
+          "sacred_context_vs_commercial_collapse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Samme motiv kan være hellig ett sted og dekorativt et annet.",
+        "thread_ids": [
+          "sacred_context_vs_commercial_collapse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Samme motiv kan være hellig ett sted og dekorativt et annet.",
+        "thread_ids": [
+          "sacred_context_vs_commercial_collapse"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Å forstå et symbol gir ikke rett til å definere det for andre.",
+        "thread_ids": [
+          "interpretation_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Å forstå et symbol gir ikke rett til å definere det for andre.",
+        "thread_ids": [
+          "interpretation_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Å forstå et symbol gir ikke rett til å definere det for andre.",
+        "thread_ids": [
+          "interpretation_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Å forstå et symbol gir ikke rett til å definere det for andre.",
+        "thread_ids": [
+          "interpretation_vs_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Et symbol kan være omstridt innen samme tradisjon.",
+        "thread_ids": [
+          "plurality_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Et symbol kan være omstridt innen samme tradisjon.",
+        "thread_ids": [
+          "plurality_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Et symbol kan være omstridt innen samme tradisjon.",
+        "thread_ids": [
+          "plurality_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Et symbol kan være omstridt innen samme tradisjon.",
+        "thread_ids": [
+          "plurality_vs_authority_shortcut"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Betydning kan endre seg uten at formen gjør det.",
+        "thread_ids": [
+          "diachronic_meaning_vs_form_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Betydning kan endre seg uten at formen gjør det.",
+        "thread_ids": [
+          "diachronic_meaning_vs_form_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Betydning kan endre seg uten at formen gjør det.",
+        "thread_ids": [
+          "diachronic_meaning_vs_form_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Betydning kan endre seg uten at formen gjør det.",
+        "thread_ids": [
+          "diachronic_meaning_vs_form_continuity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Å tolke tegn er ikke det samme som å kunne ritualforløpet.",
+        "thread_ids": [
+          "symbol_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Å tolke tegn er ikke det samme som å kunne ritualforløpet.",
+        "thread_ids": [
+          "symbol_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Å tolke tegn er ikke det samme som å kunne ritualforløpet.",
+        "thread_ids": [
+          "symbol_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Å tolke tegn er ikke det samme som å kunne ritualforløpet.",
+        "thread_ids": [
+          "symbol_vs_ritual_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Symbolkompetanse er ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "symbol_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Symbolkompetanse er ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "symbol_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Symbolkompetanse er ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "symbol_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Symbolkompetanse er ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "symbol_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "meaning_layers_vs_single_meaning",
+      "relationship": "flere samtidige betydningslag mot reduksjon til én autoritativ hovedbetydning",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "visual_context_vs_shape_determinism",
+      "relationship": "historisk og sosial kontekst mot forestillingen om at lik form beviser lik betydning",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "object_function_vs_symbolization",
+      "relationship": "dokumentert bruk av objekter mot automatisk symbolisering av form og materiale",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "historical_color_vs_universal_code",
+      "relationship": "situert fargebruk mot universelle symbolske fargekoder",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "text_image_layers",
+      "relationship": "forholdet mellom tekstkilde og billedtradisjon mot sammenblanding av senere visualisering og opprinnelig tekst",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "identity_use_vs_doctrinal_override",
+      "relationship": "levd identitetsbruk mot at lærd doktrine overstyrer brukerens egen symbolpraksis",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "image_boundary_vs_absence_ignored",
+      "relationship": "bildegrenser og alternative uttrykksformer mot å ignorere symbolikken i det som bevisst velges bort",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "political_context_shift_vs_capture",
+      "relationship": "situert politisk bruk mot at én offentlig konflikt overtar hele symbolets betydningshistorie",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "sacred_context_vs_commercial_collapse",
+      "relationship": "religiøs og kommersiell kontekst mot forestillingen om at samme motiv alltid betyr det samme",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "interpretation_vs_ownership",
+      "relationship": "kunnskapsbasert fortolkning mot krav på å definere andres identitetsbruk",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "plurality_vs_authority_shortcut",
+      "relationship": "intern tolkningsstrid mot snarveien via én autoritativ fasit",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "diachronic_meaning_vs_form_continuity",
+      "relationship": "historisk betydningsendring mot antakelsen om at stabil form betyr stabil mening",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "symbol_vs_ritual_scope",
+      "relationship": "symbolfortolkning mot uberettiget utledning av ritualets praktiske regler og funksjon",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "symbol_literacy_vs_lived_religion_authority",
+      "relationship": "symbolkompetanse mot total forklaringsrett over trosliv, medlemskap eller faglig autoritet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "lag_form_og_objekt",
+      "description": "Flertydighet, visuell kontekst og faktisk objektbruk skiller dokumentert symbolanalyse fra automatiske hovedbetydninger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol"
+      ]
+    },
+    {
+      "id": "farge_tekst_og_identitet",
+      "description": "Fargehistorie, tekst–bilde-forhold og levd identitetsbruk viser hvordan mening bygges i ulike kildelag.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen"
+      ]
+    },
+    {
+      "id": "bildegrenser_offentlighet_og_marked",
+      "description": "Bildegrenser, politisk bruk og kommersiell gjenbruk viser hvordan fravær og kontekstskift former symbolenes offentlige betydning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt"
+      ]
+    },
+    {
+      "id": "eierskap_strid_og_historie",
+      "description": "Fortolkningsgrenser, intern strid og historisk endring hindrer at kunnskap blir definisjonsmakt eller én tidløs fasit.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning"
+      ]
+    },
+    {
+      "id": "symbol_ritual_og_trosliv",
+      "description": "Symbolkompetansen avsluttes med en eksplisitt grense mot ritualmyndighet, totalforklaring av trosliv og religiøs representasjonsrett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme",
+        "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "flertydighet_moter_form",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "knowledge",
+        "reputation"
+      ]
+    },
+    {
+      "id": "objekt_moter_farge_og_tekst",
+      "setup_ref": "3/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "knowledge",
+        "interpretation"
+      ]
+    },
+    {
+      "id": "identitet_moter_bildegrense",
+      "setup_ref": "6/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationship",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "offentlighet_moter_kommersialisering",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "status"
+      ]
+    },
+    {
+      "id": "eierskap_moter_intern_strid",
+      "setup_ref": "10/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "authority",
+        "relationship"
+      ]
+    },
+    {
+      "id": "historie_moter_egen_grense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_har_flere_lag",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#form_uten_kontekst",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#objekt_eller_symbol",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#fargen_som_betyr_noe_her",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#tekst_og_bilde",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#symbolet_i_hverdagen",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#forbudt_bilde_tillatt_tegn",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#politisk_bruk_av_religiost_symbol",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#sacred_og_dekorativt",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#tolkning_uten_eierskap",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#intern_strid_om_symbolet",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#historisk_endret_betydning",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#symbol_og_ritual_er_ikke_det_samme",
+      "data/Civication/narratives/leisure/religion_symboltolker.json#symboltolker_ikke_troslivskjenner"
+    ]
+  }
+}
