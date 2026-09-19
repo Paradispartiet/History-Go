@@ -46,18 +46,5 @@ jobs:
       - name: Verify compiled scene registry is synchronized
         run: node scripts/build-civication-scene-registry.mjs --check
 
-      - name: Generate PR 6066 life-position readiness
-        run: |
-          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-          git diff --unified=1 -- data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
-
-      - name: Upload PR 6066 generated readiness
-        uses: actions/upload-artifact@v4
-        with:
-          name: civication-6066-generated-readiness
-          path: |
-            data/Civication/lifePositionRoleWorldReadiness.json
-            reports/civication-life-position-role-world-readiness.md
-
       - name: Run complete Civication suite
         run: npm run test:civication
