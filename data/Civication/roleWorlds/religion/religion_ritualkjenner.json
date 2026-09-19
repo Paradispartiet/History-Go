@@ -1,0 +1,1149 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "religion",
+  "role_scope": "religion_ritualkjenner",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "religion",
+    "id": "ritualkjenner",
+    "label": "Ritualkjenner"
+  },
+  "title": "Ritualkjenner",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å kjenne ritualers rekkefølge, deltakelsesgrenser, kroppslige praksis og historiske variasjon uten å gjøre ritualkunnskap til medlemskap, symbolfasit, troslivsrepresentasjon eller ritualmyndighet",
+    "description": "Ritualkjenner er en employment-independent ritual_literacy der spilleren opparbeider presis kunnskap om hvordan ritualer organiseres gjennom rekkefølge, tid, sted, kropp, lyd, mat, objekter, overgangsfaser og regler for deltakelse. Rollen er ikke Tradisjonskjenner, som favner en bredere tradisjonsforståelse; ikke Symboltolker, som arbeider med fortolkningspraksis; og ikke Troslivskjenner, som krever bredere innsikt i levd religion, hverdagsliv og personlige trosfortolkninger. Den er heller ikke Feltarbeider, som har eksplisitt feltmetode, tilgangs- og dokumentasjonsansvar. Å kunne beskrive et ritual presist gir aldri automatisk medlemskap, rett til å lede ritualet, religiøst mandat, teologisk autoritet, forskerstatus eller profesjonell representasjonsrett."
+  },
+  "theme_ids": [
+    "local_knowledge_vs_system",
+    "social_mask",
+    "shame_reputation",
+    "public_private_leakage",
+    "status_anxiety",
+    "public_attention",
+    "bureaucratic_power",
+    "professional_culture"
+  ],
+  "social_environments": [
+    "ritualrom og åpne seremonier der nærvær, deltakelse og ledelse er forskjellige sosiale posisjoner",
+    "hjem, familier og livsoverganger der normert ritualform møter konkrete behov og lokale tilpasninger",
+    "høytider og kalenderbundne praksiser der tidspunkt, rytme og gjentakelse organiserer fellesskapet",
+    "måltider, lydlandskap og kroppslige rutiner der ritualkompetanse læres gjennom handling like mye som forklaring",
+    "lokale miljøer og institusjoner der samme ritualtype kan ha flere legitime former og ulike autoritetsgrenser",
+    "historiske kilder, notater og sammenligninger der endring, kontinuitet og fortolkning må holdes fra hverandre"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "ritualverten",
+      "social_function": "avklarer rekkefølge, adgang, praktiske regler og forskjellen mellom kunnskap og mandat",
+      "class_position": "lokal vert eller organisator med situert ansvar for et konkret ritualmiljø",
+      "status": "høy på lokal prosedyrekunnskap og faktisk tilgangsstyring",
+      "power_over_player": "kan åpne eller begrense deltakelse og korrigere spilleren når praktisk fortrolighet tolkes som autoritet",
+      "wants": "at gjester og kjennere forstår ritualets praktiske grenser uten å gjøre dem til universelle regler",
+      "conceals": "at lokale regler ofte er mer forhandlede og historisk endrede enn de virker i øyeblikket",
+      "speech_style": "konkret, instruktiv og grensesettende",
+      "teaches_player": "at nærvær, deltakelse, forklaring og ledelse er fire ulike ting"
+    },
+    {
+      "id": "den_erfarne_deltakeren",
+      "social_function": "viser hvordan ritualer læres gjennom kropp, timing, vane og korreksjon",
+      "class_position": "deltaker med lang praksiserfaring uten automatisk institusjonell autoritet",
+      "status": "høy på taus og kroppslig kompetanse",
+      "power_over_player": "kan demonstrere hva som faktisk gjøres og avvise for enkle verbale forklaringer",
+      "wants": "at innarbeidet praksis tas alvorlig som kunnskap",
+      "conceals": "at lang vane også kan gjøre lokale særtrekk usynlige for den som utfører dem",
+      "speech_style": "praktisk, kort og demonstrerende",
+      "teaches_player": "at ritualkompetanse ofte sitter i kroppen før den sitter i definisjonene"
+    },
+    {
+      "id": "den_lokale_kjenneren",
+      "social_function": "viser variasjon mellom miljøer og avgrenser hva som faktisk gjelder her",
+      "class_position": "lokal deltaker med bred erfaring fra eget miljø, uten monopol på andre miljøers praksis",
+      "status": "høy på lokal variasjonskunnskap",
+      "power_over_player": "kan stoppe universalisering og peke på forskjeller i språk, rekkefølge og adgang",
+      "wants": "at lokal praksis beskrives som en variant med egen historie, ikke som avvik fra én standard",
+      "conceals": "at sterk lokal fortrolighet kan gjøre andre legitime former mindre intuitive",
+      "speech_style": "situert, sammenlignende og korrigerende",
+      "teaches_player": "at ritualmønster kan være felles uten at én variant er fasiten"
+    },
+    {
+      "id": "kalenderkjenneren",
+      "social_function": "kobler ritualer til tid, høytid, rytme og gjentakelse",
+      "class_position": "kunnskapsrik deltaker eller formidler med kalender- og praksisoversikt",
+      "status": "høy på temporal struktur, uten teologisk mandat",
+      "power_over_player": "kan vise at samme handling skifter funksjon når tid, anledning eller rom endres",
+      "wants": "at ritualet forstås som tidsbundet praksis og ikke bare som en løs handling",
+      "conceals": "at kalenderens ryddighet kan skjule individuelle og lokale variasjoner",
+      "speech_style": "ordnet, kronologisk og eksemplifiserende",
+      "teaches_player": "at når og hvor kan være like viktig som hva"
+    },
+    {
+      "id": "familievennen",
+      "social_function": "viser hvordan overgangsritualer forhandles mellom person, familie, institusjon og fellesskap",
+      "class_position": "nær deltaker uten formell myndighet over ritualet",
+      "status": "høy på konkrete familiebehov og relasjonelle konsekvenser",
+      "power_over_player": "kan gjøre synlig hva den formelle ritualbeskrivelsen ikke fanger av sorg, konflikt, omsorg eller tilpasning",
+      "wants": "at ritualet fungerer for menneskene som faktisk står i overgangen",
+      "conceals": "at egne ønsker også kan stå i konflikt med andre familiemedlemmers grenser",
+      "speech_style": "personlig, praktisk og relasjonell",
+      "teaches_player": "at livsoverganger aldri bare er prosedyrer"
+    },
+    {
+      "id": "arkivvennen",
+      "social_function": "viser hvordan ritualer endres historisk uten at kontinuitet nødvendigvis forsvinner",
+      "class_position": "historisk interessert kildebruker uten religiøst eller akademisk mandat",
+      "status": "høy på dokumenterte tidsforskjeller og kildebevissthet",
+      "power_over_player": "kan utfordre forestillingen om at den eldste formen automatisk er den mest autentiske",
+      "wants": "at historisk endring beskrives konkret fremfor moralsk rangert",
+      "conceals": "at bevarte kilder ofte favoriserer formelle og skriftlige ritualformer",
+      "speech_style": "kildeorientert, kronologisk og nyanserende",
+      "teaches_player": "at kontinuitet må dokumenteres gjennom endring, ikke ved å late som at ritualer står stille"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "sequence_vs_flattening",
+      "meaning": "ritualets rekkefølge og nødvendige ledd mot reduksjon til løse hovedelementer",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "presence_vs_participation",
+      "meaning": "tilstedeværelse som gjest mot faktisk rett til å delta i bestemte ritualledd",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "embodied_vs_explicated",
+      "meaning": "kroppslig og taus ritualkompetanse mot kravet om at all kunnskap må kunne forklares verbalt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "context_vs_form",
+      "meaning": "tid, sted og anledning som del av ritualet mot en løsrevet beskrivelse av formen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "object_use_vs_symbol_reduction",
+      "meaning": "ritualgjenstandens bruk og håndteringsregler mot reduksjon til symbolbetydning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sound_function_vs_aesthetic_reduction",
+      "meaning": "lyd og stillhet som ritualhandling mot reduksjon til estetikk eller tekstinnhold",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "meal_order_vs_rule_reduction",
+      "meaning": "måltidet som organisert sosial og rituell praksis mot reduksjon til matregler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "life_cycle_norm_vs_family_adaptation",
+      "meaning": "normert overgangsritual mot familiens konkrete tilpasning og situasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_purity_vs_hygiene",
+      "meaning": "rituell renhetskategori mot medisinsk eller hygienisk feiltolkning",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "literacy_vs_authority",
+      "meaning": "kunnskap om ritualforløp mot mandatet til å lede eller autorisere ritualet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "variation_vs_authenticity",
+      "meaning": "legitim lokal og institusjonell variasjon mot rangering etter én autentisk standard",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "continuity_vs_antiquity",
+      "meaning": "historisk kontinuitet gjennom endring mot alder som mål på autentisitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_vs_symbol_interpretation",
+      "meaning": "presis praksiskunnskap mot uberettiget eierskap til symboltolkningen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ritual_literacy_vs_lived_religion_authority",
+      "meaning": "ritualkompetanse mot total forklaringsrett over trosliv, medlemskap eller fagautoritet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Det er ikke likegyldig hva som skjer først.",
+        "thread_ids": [
+          "sequence_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Det er ikke likegyldig hva som skjer først.",
+        "thread_ids": [
+          "sequence_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Det er ikke likegyldig hva som skjer først.",
+        "thread_ids": [
+          "sequence_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Det er ikke likegyldig hva som skjer først.",
+        "thread_ids": [
+          "sequence_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Å være til stede betyr ikke alltid at du skal delta.",
+        "thread_ids": [
+          "presence_vs_participation",
+          "sequence_vs_flattening"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Å være til stede betyr ikke alltid at du skal delta.",
+        "thread_ids": [
+          "presence_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Å være til stede betyr ikke alltid at du skal delta.",
+        "thread_ids": [
+          "presence_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Å være til stede betyr ikke alltid at du skal delta.",
+        "thread_ids": [
+          "presence_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Ritualer læres ofte gjennom kroppen.",
+        "thread_ids": [
+          "embodied_vs_explicated",
+          "presence_vs_participation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Ritualer læres ofte gjennom kroppen.",
+        "thread_ids": [
+          "embodied_vs_explicated"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Ritualer læres ofte gjennom kroppen.",
+        "thread_ids": [
+          "embodied_vs_explicated"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Ritualer læres ofte gjennom kroppen.",
+        "thread_ids": [
+          "embodied_vs_explicated"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Samme handling kan skifte betydning med tid og sted.",
+        "thread_ids": [
+          "context_vs_form",
+          "embodied_vs_explicated"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Samme handling kan skifte betydning med tid og sted.",
+        "thread_ids": [
+          "context_vs_form"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Samme handling kan skifte betydning med tid og sted.",
+        "thread_ids": [
+          "context_vs_form"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Samme handling kan skifte betydning med tid og sted.",
+        "thread_ids": [
+          "context_vs_form"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Noen ting har bruksregler du ikke kan lese av formen.",
+        "thread_ids": [
+          "object_use_vs_symbol_reduction",
+          "context_vs_form"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Noen ting har bruksregler du ikke kan lese av formen.",
+        "thread_ids": [
+          "object_use_vs_symbol_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Noen ting har bruksregler du ikke kan lese av formen.",
+        "thread_ids": [
+          "object_use_vs_symbol_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Noen ting har bruksregler du ikke kan lese av formen.",
+        "thread_ids": [
+          "object_use_vs_symbol_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Lyd kan markere overgang uten å forklare den.",
+        "thread_ids": [
+          "sound_function_vs_aesthetic_reduction",
+          "object_use_vs_symbol_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Lyd kan markere overgang uten å forklare den.",
+        "thread_ids": [
+          "sound_function_vs_aesthetic_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Lyd kan markere overgang uten å forklare den.",
+        "thread_ids": [
+          "sound_function_vs_aesthetic_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Lyd kan markere overgang uten å forklare den.",
+        "thread_ids": [
+          "sound_function_vs_aesthetic_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Å spise sammen kan være mer enn et måltid.",
+        "thread_ids": [
+          "meal_order_vs_rule_reduction",
+          "sound_function_vs_aesthetic_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Å spise sammen kan være mer enn et måltid.",
+        "thread_ids": [
+          "meal_order_vs_rule_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Å spise sammen kan være mer enn et måltid.",
+        "thread_ids": [
+          "meal_order_vs_rule_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Å spise sammen kan være mer enn et måltid.",
+        "thread_ids": [
+          "meal_order_vs_rule_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Livsoverganger er både personlige og kollektive.",
+        "thread_ids": [
+          "life_cycle_norm_vs_family_adaptation",
+          "meal_order_vs_rule_reduction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Livsoverganger er både personlige og kollektive.",
+        "thread_ids": [
+          "life_cycle_norm_vs_family_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Livsoverganger er både personlige og kollektive.",
+        "thread_ids": [
+          "life_cycle_norm_vs_family_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Livsoverganger er både personlige og kollektive.",
+        "thread_ids": [
+          "life_cycle_norm_vs_family_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Renhet er ikke det samme som hygiene.",
+        "thread_ids": [
+          "ritual_purity_vs_hygiene",
+          "life_cycle_norm_vs_family_adaptation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Renhet er ikke det samme som hygiene.",
+        "thread_ids": [
+          "ritual_purity_vs_hygiene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Renhet er ikke det samme som hygiene.",
+        "thread_ids": [
+          "ritual_purity_vs_hygiene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Renhet er ikke det samme som hygiene.",
+        "thread_ids": [
+          "ritual_purity_vs_hygiene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Å kjenne ritualet gir ikke rett til å lede det.",
+        "thread_ids": [
+          "literacy_vs_authority",
+          "ritual_purity_vs_hygiene"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Å kjenne ritualet gir ikke rett til å lede det.",
+        "thread_ids": [
+          "literacy_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Å kjenne ritualet gir ikke rett til å lede det.",
+        "thread_ids": [
+          "literacy_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Å kjenne ritualet gir ikke rett til å lede det.",
+        "thread_ids": [
+          "literacy_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Én ritualtype kan ha flere legitime former.",
+        "thread_ids": [
+          "variation_vs_authenticity",
+          "literacy_vs_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Én ritualtype kan ha flere legitime former.",
+        "thread_ids": [
+          "variation_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Én ritualtype kan ha flere legitime former.",
+        "thread_ids": [
+          "variation_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Én ritualtype kan ha flere legitime former.",
+        "thread_ids": [
+          "variation_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Kontinuitet kan eksistere gjennom forandring.",
+        "thread_ids": [
+          "continuity_vs_antiquity",
+          "variation_vs_authenticity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Kontinuitet kan eksistere gjennom forandring.",
+        "thread_ids": [
+          "continuity_vs_antiquity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Kontinuitet kan eksistere gjennom forandring.",
+        "thread_ids": [
+          "continuity_vs_antiquity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Kontinuitet kan eksistere gjennom forandring.",
+        "thread_ids": [
+          "continuity_vs_antiquity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du kan kjenne handlingen uten å eie alle tolkningene.",
+        "thread_ids": [
+          "ritual_vs_symbol_interpretation",
+          "continuity_vs_antiquity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du kan kjenne handlingen uten å eie alle tolkningene.",
+        "thread_ids": [
+          "ritual_vs_symbol_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du kan kjenne handlingen uten å eie alle tolkningene.",
+        "thread_ids": [
+          "ritual_vs_symbol_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du kan kjenne handlingen uten å eie alle tolkningene.",
+        "thread_ids": [
+          "ritual_vs_symbol_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Ritualkompetanse er spesialisert kunnskap, ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "ritual_literacy_vs_lived_religion_authority",
+          "ritual_vs_symbol_interpretation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Ritualkompetanse er spesialisert kunnskap, ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "ritual_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Ritualkompetanse er spesialisert kunnskap, ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "ritual_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Ritualkompetanse er spesialisert kunnskap, ikke total innsikt i trosliv.",
+        "thread_ids": [
+          "ritual_literacy_vs_lived_religion_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "sequence_vs_flattening",
+      "relationship": "ritualets rekkefølge og nødvendige ledd mot reduksjon til løse hovedelementer",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "1/afternoon",
+        "1/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "presence_vs_participation",
+      "relationship": "tilstedeværelse som gjest mot faktisk rett til å delta i bestemte ritualledd",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "2/afternoon",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "embodied_vs_explicated",
+      "relationship": "kroppslig og taus ritualkompetanse mot kravet om at all kunnskap må kunne forklares verbalt",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "3/afternoon",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "context_vs_form",
+      "relationship": "tid, sted og anledning som del av ritualet mot en løsrevet beskrivelse av formen",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "4/afternoon",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "object_use_vs_symbol_reduction",
+      "relationship": "ritualgjenstandens bruk og håndteringsregler mot reduksjon til symbolbetydning",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "5/afternoon",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "sound_function_vs_aesthetic_reduction",
+      "relationship": "lyd og stillhet som ritualhandling mot reduksjon til estetikk eller tekstinnhold",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "6/afternoon",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "meal_order_vs_rule_reduction",
+      "relationship": "måltidet som organisert sosial og rituell praksis mot reduksjon til matregler",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "7/afternoon",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "life_cycle_norm_vs_family_adaptation",
+      "relationship": "normert overgangsritual mot familiens konkrete tilpasning og situasjon",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "8/afternoon",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "ritual_purity_vs_hygiene",
+      "relationship": "rituell renhetskategori mot medisinsk eller hygienisk feiltolkning",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "9/afternoon",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "literacy_vs_authority",
+      "relationship": "kunnskap om ritualforløp mot mandatet til å lede eller autorisere ritualet",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "10/afternoon",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "variation_vs_authenticity",
+      "relationship": "legitim lokal og institusjonell variasjon mot rangering etter én autentisk standard",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "11/afternoon",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "continuity_vs_antiquity",
+      "relationship": "historisk kontinuitet gjennom endring mot alder som mål på autentisitet",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "12/afternoon",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "ritual_vs_symbol_interpretation",
+      "relationship": "presis praksiskunnskap mot uberettiget eierskap til symboltolkningen",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "13/afternoon",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "ritual_literacy_vs_lived_religion_authority",
+      "relationship": "ritualkompetanse mot total forklaringsrett over trosliv, medlemskap eller fagautoritet",
+      "beat_refs": [
+        "13/evening",
+        "14/morning",
+        "14/lunch",
+        "14/afternoon",
+        "14/evening"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "struktur_deltakelse_og_kropp",
+      "description": "Rekkefølge, adgang og kroppslig læring skiller ritualets faktiske praksis fra en løs liste over handlinger.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet"
+      ]
+    },
+    {
+      "id": "tid_objekt_og_lyd",
+      "description": "Tid, sted, gjenstander, lyd og stillhet blir forstått som operative deler av ritualet fremfor dekor eller løs symbolikk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet"
+      ]
+    },
+    {
+      "id": "mat_overgang_og_renhet",
+      "description": "Måltid, livsoverganger og renhetskategorier viser hvordan ritualet organiserer kropp, familie og fellesskap uten å kunne reduseres til hygiene eller etikette.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling"
+      ]
+    },
+    {
+      "id": "autoritet_variasjon_og_historie",
+      "description": "Ritualmyndighet, lokale variasjoner og historisk endring avgrenses slik at kunnskap ikke blir mandat og alder ikke blir autentisitetsmål.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg"
+      ]
+    },
+    {
+      "id": "ritual_symbol_og_trosliv",
+      "description": "Ritualkompetansen avsluttes med en eksplisitt grense mot symbolfasit, totalforklaring av trosliv og religiøs representasjonsrett.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme",
+        "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "rekkefolge_moter_deltakelse",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "knowledge",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kropp_moter_kontekst",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "knowledge",
+        "identity"
+      ]
+    },
+    {
+      "id": "objekt_moter_lyd_og_mat",
+      "setup_ref": "5/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "knowledge",
+        "status"
+      ]
+    },
+    {
+      "id": "livsovergang_moter_renhet",
+      "setup_ref": "8/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "knowledge"
+      ]
+    },
+    {
+      "id": "autoritet_moter_varians",
+      "setup_ref": "10/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "authority",
+        "reputation"
+      ]
+    },
+    {
+      "id": "historie_moter_egen_grense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "knowledge",
+        "authority"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#rekkefolgen_er_en_del_av_meningen",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#deltaker_eller_tilskuer",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#kroppen_husker_for_hodet",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#rett_tid_rett_sted",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#gjenstanden_er_ikke_bare_en_gjenstand",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#lyd_og_stillhet",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#mat_som_rituell_handling",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#overgangen_i_livet",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#renhet_uten_forenkling",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#hvem_kan_lede",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#samme_ritual_ulike_miljoer",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualet_endrer_seg",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritual_og_symbol_er_ikke_det_samme",
+      "data/Civication/narratives/leisure/religion_ritualkjenner.json#ritualkjenner_ikke_troslivskjenner"
+    ]
+  }
+}
