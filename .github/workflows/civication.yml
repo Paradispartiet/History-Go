@@ -48,18 +48,3 @@ jobs:
 
       - name: Run complete Civication suite
         run: npm run test:civication
-
-      - name: Generate PR 6067 Symboltolker readiness diagnostic
-        if: failure()
-        run: |
-          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-          git diff --unified=0 -- data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
-
-      - name: Upload PR 6067 Symboltolker readiness outputs
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: civication-6067-generated-readiness
-          path: |
-            data/Civication/lifePositionRoleWorldReadiness.json
-            reports/civication-life-position-role-world-readiness.md
