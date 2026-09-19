@@ -67,6 +67,16 @@ function component(level, paths, note) {
   if (!Object.hasOwn(LEVEL_SCORE, level)) throw new Error(`Unknown component level: ${level}`);
   return evidence(level, paths, note);
 }
+function matchesRoleFileSlug(fileSlug, values) {
+  const normalizedSlug = String(fileSlug || '').toLowerCase().replace(/_/g, '-');
+  return values.some((value) => {
+    const needle = String(value || '').toLowerCase().replace(/_/g, '-');
+    if (!needle) return false;
+    const escaped = needle.replace(/[.*+?^$()|[\]\\{}]/g, '\\$&');
+    return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`).test(normalizedSlug);
+  });
+}
+
 function matchesRoleText(text, values) {
   const lower = text.toLowerCase();
   return values.some((value) => {
@@ -267,7 +277,7 @@ for (const world of worlds.values()) {
   const roleTests = testTexts.filter(({ rel, text }) => {
     const fileSlug = path.basename(rel).toLowerCase();
     const values = [world.role_scope, ...world.role_ids];
-    return values.some((value) => value && fileSlug.includes(String(value).toLowerCase())) || matchesRoleText(text, values);
+    return matchesRoleFileSlug(fileSlug, values) || matchesRoleText(text, values);
   }).map(({ rel }) => rel);
 
   const mailFamilies = {};
