@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_aktiv_utover_stream",
+  "type": "leisure",
+  "title": "Aktiv utøver — regelmessig idrettspraksis, læring og grenser",
+  "sociological_theme": "sport_aktiv_utover_regelmessig_praksis_teknikk_belastning_restitusjon_gruppe_data_utstyr_kroppssignaler_inkludering_anlegg_uten_konkurransestatus_klubbmandat_trenerautoritet_eller_profesjonelt_arbeid",
+  "applies_when": {
+    "any_tags": [
+      "sport:aktiv_utover"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "uken_som_treningsrytme",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Treningspartneren",
+      "subject": "En treningsuke trenger retning uten å bli et regime",
+      "situation": [
+        "Du prøver å få flere økter til å passe mellom jobb, familie, søvn og andre avtaler.",
+        "Regelmessighet gjør ferdigheter og kapasitet mer stabile, men en plan er bare nyttig når den kan justeres etter faktisk liv og belastning.",
+        "Aktiv utøver handler om vedvarende praksis, ikke om å vinne hver uke over kalenderen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en realistisk ukeplan med noen tydelige økter og rom for å flytte eller kutte når belastningen ellers blir for høy.",
+          "effect": 1,
+          "tags": [
+            "training_rhythm",
+            "flexible_planning",
+            "practice_continuity"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Fyll alle ledige dager med trening og behandle enhver endring som manglende disiplin.",
+          "effect": -1,
+          "tags": [
+            "rigid_training",
+            "identity_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "training_rhythm_vs_rigidity"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teknikk_som_laring",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den erfarne medutøveren",
+      "subject": "Teknikk forbedres gjennom å se, forsøke og avklare",
+      "situation": [
+        "En bevegelse eller ferdighet fungerer ujevnt, og du ser at en annen utøver løser den annerledes.",
+        "Å kopiere et grep kan gi et nytt utgangspunkt, men ulike kropper, nivåer og idretter gjør at samme råd ikke virker likt for alle.",
+        "Du kan lære aktivt av andre uten å gjøre medutøvererfaring til trenerkompetanse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om å få se eller høre hvordan den andre tenker, prøv rådet avgrenset og behold retten til å justere etter egen respons.",
+          "effect": 1,
+          "tags": [
+            "skill_learning",
+            "peer_feedback",
+            "role_clarity"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den erfarne utøverens løsning til fasit og begynn å instruere andre som om du selv var trener.",
+          "effect": -1,
+          "tags": [
+            "coach_overclaim",
+            "technique_dogma",
+            "status_play"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skill_learning_without_coach_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "belastning_og_restitusjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Framgang krever også at belastningen får ta slutt",
+      "situation": [
+        "Etter flere gode økter kjenner du både motivasjon og tydelig tretthet.",
+        "Aktiv trening bygger kapasitet gjennom belastning, men restitusjon, søvn og pauser er del av samme praksis.",
+        "Å tåle mye i én periode er ikke det samme som at mer alltid er bedre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold neste økt bare dersom kroppen og hverdagen faktisk tåler den, og bruk roligere belastning eller hvile når det trengs.",
+          "effect": 1,
+          "tags": [
+            "load_management",
+            "recovery",
+            "body_awareness"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn en ekstra hard økt for å bevise at framgangen ikke stopper selv om trettheten øker.",
+          "effect": -1,
+          "tags": [
+            "overtraining",
+            "rest_denial",
+            "performance_pressure"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "load_vs_recovery"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppeokt_og_tempo",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Gruppekoordinatoren",
+      "subject": "Felles økt betyr ikke at alle skal holde samme tempo",
+      "situation": [
+        "En uformell gruppe trener sammen, men nivå, dagsform og mål varierer.",
+        "Felles struktur kan gi både motivasjon og trygghet.",
+        "Når tempoet blir en sosial opptaksprøve, kan aktiviteten miste folk som egentlig hører til."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar ramme og møtepunkt slik at ulik fart eller kapasitet kan eksistere uten at noen må forsvare hvorfor de trener annerledes.",
+          "effect": 1,
+          "tags": [
+            "group_practice",
+            "inclusive_pacing",
+            "shared_structure"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "La den raskeste eller sterkeste definere standarden og si at resten får henge med så godt de kan.",
+          "effect": -1,
+          "tags": [
+            "pace_hierarchy",
+            "gatekeeping",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "group_structure_vs_pace_hierarchy"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "data_som_verktoy",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Treningspartneren",
+      "subject": "Tall kan vise mønstre uten å eie vurderingen",
+      "situation": [
+        "Klokke eller app viser fart, puls, belastning eller mengde fra de siste ukene.",
+        "Data kan gjøre progresjon og variasjon synlig, men målingen kjenner ikke hele kroppen, søvnen eller situasjonen.",
+        "Aktiv utøver kan bruke tall systematisk uten å gjøre dem til dom over egen verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk målingene som ett informasjonsgrunnlag sammen med opplevd belastning, dagsform og det du faktisk prøver å utvikle.",
+          "effect": 1,
+          "tags": [
+            "training_data",
+            "self_observation",
+            "contextual_judgment"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "La én svak måling avgjøre at økten og formen var mislykket, og øk belastningen straks for å rette tallet.",
+          "effect": -1,
+          "tags": [
+            "metric_fixation",
+            "status_anxiety",
+            "load_escalation"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "data_vs_identity_score"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyr_og_inngangsterskel",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Utstyr skal løse et behov, ikke bevise seriøsitet",
+      "situation": [
+        "En ny deltaker spør hva som faktisk trengs for å bli med regelmessig.",
+        "Noen aktiviteter krever sikkerhetsutstyr eller bestemt materiell, mens mye annet først og fremst handler om komfort og preferanse.",
+        "Aktiv praksis blir mindre inkluderende når dyrt utstyr gjøres til symbol på hvem som er ekte utøver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tydelig mellom nødvendig sikkerhetsutstyr, nyttige valg og rene oppgraderinger, og gjør inngangen så enkel som aktiviteten tillater.",
+          "effect": 1,
+          "tags": [
+            "equipment_access",
+            "participation_threshold",
+            "class_awareness"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Anbefal topputstyr som minimum fordi seriøse utøvere bør investere ordentlig fra starten.",
+          "effect": -1,
+          "tags": [
+            "gear_status",
+            "cost_gatekeeping",
+            "seriousness_signal"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equipment_need_vs_status"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "smerte_uten_egendiagnose",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den erfarne medutøveren",
+      "subject": "Kroppssignaler kan beskrives uten å bli en diagnose",
+      "situation": [
+        "En smerte eller uvant reaksjon dukker opp igjen når du gjør en bestemt belastning.",
+        "Egen erfaring kan hjelpe deg å oppdage mønster og forklare hva som skjer.",
+        "Aktiv utøver gir ikke medisinsk myndighet til å fastslå skadeårsak eller behandling for deg selv eller andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Juster eller stopp belastningen, noter mønsteret og søk kvalifisert helsehjelp dersom plagene er vedvarende, alvorlige eller uklare.",
+          "effect": 1,
+          "tags": [
+            "body_signal",
+            "safety_boundary",
+            "medical_role_clarity"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Bestem hvilken skade det er ut fra erfaring og gi samme diagnose og behandlingsråd til andre i gruppen.",
+          "effect": -1,
+          "tags": [
+            "self_diagnosis",
+            "medical_overclaim",
+            "injury_normalization"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "body_signal_vs_medical_authority"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nybegynner_i_okta",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Erfaring gir ansvar for rommet, ikke eierskap til det",
+      "situation": [
+        "En ny deltaker bruker tid på regler, rekkefølge og praktiske detaljer som resten av gruppen tar for gitt.",
+        "Erfarne utøvere kan gjøre inngangen lettere gjennom konkret hjelp og tydelige lokale rutiner.",
+        "Hjelp blir fort rang når nybegynneren forventes å kopiere alt uten spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det som faktisk er nødvendig for å delta trygt og la resten læres gjennom egen erfaring og spørsmål.",
+          "effect": 1,
+          "tags": [
+            "newcomer_support",
+            "local_practice",
+            "peer_respect"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Korriger alt du ser med en gang slik at den nye raskt lærer hvordan en ordentlig utøver oppfører seg.",
+          "effect": -1,
+          "tags": [
+            "experience_hierarchy",
+            "gatekeeping",
+            "correction_pressure"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "experience_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aktiv_uten_klubb",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Treningspartneren",
+      "subject": "Regelmessig idrett trenger ikke klubbtilhørighet",
+      "situation": [
+        "Du trener ofte og målrettet, men uten medlemskap i et lag eller en klubb.",
+        "Klubber kan tilby anlegg, fellesskap, konkurranser og organisering, men ikke all aktiv idrettspraksis går gjennom en klubb.",
+        "Aktiv utøver beskriver praksisen din, ikke en organisasjonsrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv det du faktisk gjør og bruk klubbtilbud når det passer, uten å late som medlemskap er nødvendig for at praksisen skal være reell.",
+          "effect": 1,
+          "tags": [
+            "independent_practice",
+            "club_boundary",
+            "identity_accuracy"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Presenter deg som klubbspiller eller representant fordi du trener like mye som mange som er medlemmer.",
+          "effect": -1,
+          "tags": [
+            "club_status_claim",
+            "representation_overreach",
+            "identity_inflation"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_club_status"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konkurranse_som_mulighet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den konkurranseglade",
+      "subject": "Et resultat gjør deg ikke automatisk til konkurranseutøver",
+      "situation": [
+        "Du vurderer et løp, en kamp, en turnering eller en annen målt aktivitet for å teste ferdighetene dine.",
+        "Konkurranse kan være en del av aktiv praksis uten å være hele identiteten.",
+        "Konkurranseutøver er en egen livsposisjon med mer formalisert konkurransepraksis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk arrangementet som avgrenset erfaring og la eventuell videre konkurranseidentitet avhenge av faktisk, vedvarende praksis.",
+          "effect": 1,
+          "tags": [
+            "competition_exposure",
+            "status_boundary",
+            "practice_progression"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Ta én påmelding eller ett resultat som bevis på at du nå har samme status som en etablert konkurranseutøver.",
+          "effect": -1,
+          "tags": [
+            "competition_status_claim",
+            "result_identity",
+            "status_inflation"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "participation_vs_competition_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mat_og_restitusjonsprat",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Egne rutiner er ikke ernæringsfaglig autoritet",
+      "situation": [
+        "Etter trening snakker gruppen om mat, søvn og hva som gjør det lettere å komme seg til neste økt.",
+        "Personlige rutiner kan deles som erfaring.",
+        "Aktiv idrettspraksis gjør deg ikke til ernæringsfaglig eller medisinsk rådgiver for andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du selv pleier å gjøre dersom det er relevant, og skill personlige erfaringer fra individuelle helseråd.",
+          "effect": 1,
+          "tags": [
+            "recovery_routine",
+            "peer_experience",
+            "health_boundary"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Lag regler for hva andre bør spise og hvordan de bør restituere fordi treningsmengden din viser at du vet hva som virker.",
+          "effect": -1,
+          "tags": [
+            "nutrition_overclaim",
+            "body_control",
+            "authority_inflation"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "experience_vs_health_authority"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pause_og_tilbakekomst",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "En pause sletter ikke praksisen, men den endrer utgangspunktet",
+      "situation": [
+        "Sykdom, reise eller en travel periode har brutt treningsrytmen i flere uker.",
+        "Det er lett å sammenligne første økt tilbake med kapasiteten du hadde før pausen.",
+        "Aktiv utøver handler også om å kunne bygge praksis opp igjen uten straff."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Start fra den kapasiteten du faktisk har nå og bygg gradvis tilbake uten å gjøre pausen til et moralsk nederlag.",
+          "effect": 1,
+          "tags": [
+            "return_to_practice",
+            "gradual_load",
+            "identity_continuity"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Forsøk å hente inn tapte uker med flere harde økter tett etter hverandre for å bevise at du fortsatt er på samme nivå.",
+          "effect": -1,
+          "tags": [
+            "comeback_overreach",
+            "training_debt",
+            "self_punishment"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "continuity_vs_training_debt"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "delt_anlegg_og_plass",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Anleggsverten",
+      "subject": "Aktiv bruk gir ikke eierskap til fellesarealet",
+      "situation": [
+        "Du bruker samme bane, hall, løype eller treningsflate ofte og kjenner rytmen i stedet godt.",
+        "Erfaring gjør det lettere å planlegge og ta hensyn, men felles anlegg brukes av mennesker med ulike aktiviteter og nivåer.",
+        "Aktiv utøver har brukspraksis, ikke forvaltnings- eller prioriteringsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg lokale regler, avtal plass når det trengs og tilpass økten når andre har samme rett til området.",
+          "effect": 1,
+          "tags": [
+            "shared_facility",
+            "space_etiquette",
+            "public_access"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Ta den beste delen av området fordi du trener mest regelmessig og derfor bruker plassen mer seriøst enn andre.",
+          "effect": -1,
+          "tags": [
+            "space_capture",
+            "seniority_claim",
+            "informal_authority"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "shared_space_vs_seniority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "aktiv_utover_rollegrense",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Aktiv utøver er praksis, ikke en skjult tittelstige",
+      "situation": [
+        "Du trener regelmessig, utvikler ferdigheter og tar aktiviteten alvorlig.",
+        "Det gjør Aktiv utøver til en reell livsposisjon, men ikke automatisk til Mosjonist, Konkurranseutøver, Klubbspiller, Profesjonell utøver, trener eller helsepersonell.",
+        "De andre rollene har egne praksiser, statuser, organisasjonsbindinger eller kvalifikasjoner som må ha sitt eget grunnlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv deg som Aktiv utøver når det er den praksisen du faktisk lever, og la andre roller kreve sitt eget dokumenterte grunnlag.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "practice_identity",
+            "status_accuracy"
+          ],
+          "feedback": "Du holder aktiv idrettspraksis konkret og selvstendig uten å gjøre treningserfaring til konkurransestatus, klubbmandat, trenerautoritet eller yrke."
+        },
+        {
+          "id": "B",
+          "label": "Bruk treningsmengde og erfaring som generell legitimasjon for konkurranse-, klubb-, trener- eller profesjonell status.",
+          "effect": -1,
+          "tags": [
+            "role_conflation",
+            "professional_status_claim",
+            "authority_overreach"
+          ],
+          "feedback": "Valget gjør aktivitet, prestasjon eller erfaring til større status eller myndighet enn Aktiv utøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "active_practice_without_status_inflation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}

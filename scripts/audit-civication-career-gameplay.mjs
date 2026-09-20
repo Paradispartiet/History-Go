@@ -276,7 +276,7 @@ for (const world of worlds.values()) {
   world.badge_titles = uniq(world.badge_titles);
   const roleTests = testTexts.filter(({ rel, text }) => {
     const fileSlug = path.basename(rel).toLowerCase();
-    if (fileSlug.endsWith('-life-position-readiness.test.js')) return false;
+    if (fileSlug.endsWith('-life-position-readiness.test.js') || fileSlug.endsWith('-authored-depth.test.js')) return false;
     const values = [world.role_scope, ...world.role_ids];
     return matchesRoleFileSlug(fileSlug, values) || matchesRoleText(text, values);
   }).map(({ rel }) => rel);
