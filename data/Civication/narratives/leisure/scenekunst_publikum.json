@@ -1,0 +1,649 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_publikum_stream",
+  "type": "leisure",
+  "title": "Publikum — nærvær, mottakelse og grenser i scenekunstrommet",
+  "sociological_theme": "scenekunst_publikum_narvaer_kollektiv_respons_tilgjengelighet_etikette_opptak_personlige_grenser_etterprat_gjest_arbeidsplass_uten_kritiker_utover_eller_bransjemyndighet",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:publikum"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "publikum_er_tilstede",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Salverten",
+      "subject": "Publikum deltar gjennom oppmerksomhet uten å styre forestillingen",
+      "situation": [
+        "Du sitter i salen sammen med mennesker som reagerer forskjellig på det samme som skjer på scenen.",
+        "Publikum er ikke passivt i sosial forstand: nærvær, konsentrasjon, uro og respons påvirker rommet.",
+        "Samtidig gir billetten ingen kunstnerisk, teknisk eller organisatorisk myndighet over forestillingen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg med på både verket og hvordan ditt eget nærvær inngår i rommet uten å kreve kontroll over det som skjer.",
+          "effect": 1,
+          "tags": [
+            "audience_presence",
+            "attention_boundary"
+          ],
+          "feedback": "Du behandler publikum som en reell sosial rolle med tydelig grense mot produksjonen."
+        },
+        {
+          "id": "B",
+          "label": "Se publikumsrollen som ren mottakelse; alt som skjer i salen er kunstnernes ansvar.",
+          "effect": -1,
+          "tags": [
+            "passive_audience",
+            "shared_room_denial"
+          ],
+          "feedback": "Du overser at publikum også former situasjonen gjennom faktisk atferd."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_tilstede"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forventning_for_opplevelse",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Programleseren",
+      "subject": "Forventning er ikke det samme som erfaring",
+      "situation": [
+        "Programtekst, plakat og omtale gir deg et bilde av forestillingen før lyset går ned.",
+        "Markedsføring og forhåndskunnskap kan ramme inn opplevelsen, men de kan også styre hva du legger merke til.",
+        "Publikumspraksis innebærer å tåle at selve forestillingen ikke passer forhåndsbildet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk forhåndsinformasjonen som orientering, men la den faktiske forestillingen få korrigere forventningen.",
+          "effect": 1,
+          "tags": [
+            "expectation_vs_experience",
+            "open_reception"
+          ],
+          "feedback": "Du lar opplevelsen stå sterkere enn reklamebildet."
+        },
+        {
+          "id": "B",
+          "label": "Vurder forestillingen ut fra hvor godt den leverer det programteksten eller markedsføringen lovet.",
+          "effect": -1,
+          "tags": [
+            "marketing_as_contract",
+            "expectation_lock"
+          ],
+          "feedback": "Du gjør forhåndsrammen til fasit for et kunstnerisk møte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_forventning"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plass_sikt_og_behov",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Vertskapsvakten",
+      "subject": "En seteplass er også et spørsmål om kropp, sikt og tilgjengelighet",
+      "situation": [
+        "I salen har mennesker ulike behov knyttet til syn, hørsel, bevegelse, lys, lyd og trygg adkomst.",
+        "Det som er en grei plass for én person kan være vanskelig for en annen.",
+        "Publikumsrollen krever hensyn uten at du gjør egne behov til universell målestokk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Løs egen plassering gjennom vertskapet og respekter at andre kan ha andre tilgjengelighetsbehov enn deg.",
+          "effect": 1,
+          "tags": [
+            "accessibility",
+            "seat_context"
+          ],
+          "feedback": "Du behandler plassering som praktisk tilrettelegging, ikke rang."
+        },
+        {
+          "id": "B",
+          "label": "Bytt eller flytt deg på egen hånd når du ser en bedre løsning; det viktigste er at alle får best mulig opplevelse.",
+          "effect": -1,
+          "tags": [
+            "self_service_seating",
+            "boundary_bypass"
+          ],
+          "feedback": "Du kan skape nye problemer ved å overta vertskapets koordinering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_plass"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillhet_og_respons",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Salverten",
+      "subject": "Publikumskoder varierer mellom forestillinger",
+      "situation": [
+        "Noen forestillinger inviterer til verbal respons og bevegelse, andre bygger på konsentrert stillhet.",
+        "Uskrevne koder kan variere med sjanger, rom, alder og kunstnerisk form.",
+        "God publikumspraksis er derfor situert oppmerksomhet, ikke én universell etiketteregel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les rommet og eventuelle tydelige rammer før du avgjør hvor mye lyd og bevegelse som passer.",
+          "effect": 1,
+          "tags": [
+            "audience_etiquette",
+            "situated_norms"
+          ],
+          "feedback": "Du bruker kontekst fremfor å gjøre din vane til regel."
+        },
+        {
+          "id": "B",
+          "label": "Hold alltid helt stille under forestillingen; det er den tryggeste og mest respektfulle normen.",
+          "effect": -1,
+          "tags": [
+            "silence_as_universal",
+            "etiquette_rigidity"
+          ],
+          "feedback": "Du gjør én publikumskode universell selv der formen inviterer til noe annet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_koder"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "latter_applaus_og_flokk",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Etterprateren",
+      "subject": "Kollektiv respons kan trekke deg med",
+      "situation": [
+        "En sal kan le, gispe, bli stille eller applaudere nesten som én kropp.",
+        "Felles respons kan forsterke opplevelsen, men den kan også gjøre det vanskelig å vite hva du selv faktisk reagerte på.",
+        "Publikumskunnskap innebærer å skille egen erfaring fra rommets smitteeffekt uten å avvise fellesskapet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til både din egen reaksjon og hvordan den kollektive responsen påvirket den.",
+          "effect": 1,
+          "tags": [
+            "collective_response",
+            "self_reception"
+          ],
+          "feedback": "Du beholder både fellesskapet og ditt eget perspektiv."
+        },
+        {
+          "id": "B",
+          "label": "Ta den tydelige salresponsen som et godt mål på om scenen fungerte.",
+          "effect": -1,
+          "tags": [
+            "crowd_as_quality",
+            "response_shortcut"
+          ],
+          "feedback": "Du gjør kollektiv intensitet til kunstnerisk fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_kollektiv_respons"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefon_og_opptak",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Vertskapsvakten",
+      "subject": "Det du kan se er ikke automatisk ditt å registrere og dele",
+      "situation": [
+        "Du får lyst til å ta et bilde eller et kort opptak fordi et scenebilde er slående.",
+        "Scenekunst kan ha klare regler om mobilbruk, opphavsrett, arbeidsro og medpublikums opplevelse.",
+        "Publikumsrollen må respektere disse grensene selv når materialet bare skal deles privat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg stedets og produksjonens regler for mobil og opptak, og la telefonen ligge når tillatelsen ikke er tydelig.",
+          "effect": 1,
+          "tags": [
+            "recording_boundary",
+            "audience_privacy"
+          ],
+          "feedback": "Du skiller adgang til å se fra rett til å dokumentere."
+        },
+        {
+          "id": "B",
+          "label": "Ta et diskret bilde uten blitz dersom det ikke forstyrrer noen rundt deg.",
+          "effect": -1,
+          "tags": [
+            "quiet_recording_exception",
+            "permission_assumption"
+          ],
+          "feedback": "Diskresjon erstatter ikke tillatelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_opptak"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "a_forlate_salen",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Den erfarne gjesten",
+      "subject": "Å gå ut kan være et legitimt publikumsvalg",
+      "situation": [
+        "Under forestillingen blir en person uvel og en annen tydelig ukomfortabel med innholdet.",
+        "Å forlate salen kan handle om helse, trygghet, omsorg eller en personlig grense, ikke bare om vurdering av kvalitet.",
+        "Publikumspraksis bør gi rom for dette uten å gjøre utgang til demonstrasjon eller skam."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå rolig ut eller søk hjelp når det trengs, og la andre gjøre det samme uten å tolke motivet for dem.",
+          "effect": 1,
+          "tags": [
+            "exit_boundary",
+            "personal_safety"
+          ],
+          "feedback": "Du holder publikumsrollen kompatibel med egne og andres grenser."
+        },
+        {
+          "id": "B",
+          "label": "Bli sittende dersom du kan; å gå ut underveis er forstyrrende og bør unngås med mindre det er akutt.",
+          "effect": -1,
+          "tags": [
+            "stay_pressure",
+            "audience_shame"
+          ],
+          "feedback": "Du gjør sosial ro viktigere enn situerte behov."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_forlate"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "innholdsinfo_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Programleseren",
+      "subject": "Innholdsinformasjon kan forberede uten å avgjøre opplevelsen",
+      "situation": [
+        "Du ser informasjon om sterke lys, lyd, vold eller annet materiale før forestillingen.",
+        "Slik informasjon kan gjøre det mulig å velge, planlegge eller forberede seg uten å avsløre hvordan verket faktisk virker på den enkelte.",
+        "Publikumskunnskap skiller praktisk informasjon fra påstand om hva andre tåler eller bør føle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk informasjonen til å ta egne valg og la andre vurdere sine grenser selv.",
+          "effect": 1,
+          "tags": [
+            "content_information",
+            "personal_choice"
+          ],
+          "feedback": "Du gjør informasjon til støtte for autonomi, ikke sosial fasit."
+        },
+        {
+          "id": "B",
+          "label": "Fortell andre tydelig om de bør unngå forestillingen når du tror innholdet kan bli for sterkt.",
+          "effect": -1,
+          "tags": [
+            "protective_gatekeeping",
+            "reaction_prediction"
+          ],
+          "feedback": "Du overtar andres vurdering av egne grenser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_innholdsinfo"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etterprat_uten_kritikerrolle",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Etterprateren",
+      "subject": "Å mene noe er ikke det samme som å være kritiker",
+      "situation": [
+        "Etter forestillingen diskuterer dere tempo, skuespill, form og hva dere satt igjen med.",
+        "Et publikum kan utvikle presise og velbegrunnede meninger uten profesjonelt kritikeroppdrag.",
+        "Publikumsrollen blir sterkere når vurderinger uttrykkes som egne erfaringer og begrunnes konkret."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva som virket eller ikke virket for deg, og pek på konkrete øyeblikk uten å låne en profesjonell autoritet du ikke har.",
+          "effect": 1,
+          "tags": [
+            "audience_judgment",
+            "critic_boundary"
+          ],
+          "feedback": "Du beholder retten til vurdering uten å gjøre den til yrkesmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk et sikkert og kategorisk språk når du kan forklare hvorfor forestillingen lykkes eller mislykkes.",
+          "effect": -1,
+          "tags": [
+            "certainty_performance",
+            "critic_overreach"
+          ],
+          "feedback": "Selvsikker formulering gjør ikke publikumsrespons til profesjonell kritikk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_etterprat"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kjenne_noen_pa_scenen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Vennefølget",
+      "subject": "Når du kjenner en utøver, blandes støtte og vurdering",
+      "situation": [
+        "Du kjenner en av dem som står på scenen og møter personen etterpå.",
+        "Relasjonen kan gjøre deg mer oppmerksom, mer lojal eller mer forsiktig med kritikk.",
+        "Publikumskunnskap innebærer å skille vennestøtte fra påstand om forestillingens samlede kvalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi støtte som venn og vær tydelig hvis du også deler en konkret personlig publikumsreaksjon.",
+          "effect": 1,
+          "tags": [
+            "friendship_and_reception",
+            "role_separation"
+          ],
+          "feedback": "Du lar relasjonen og vurderingen eksistere uten å blande mandat."
+        },
+        {
+          "id": "B",
+          "label": "Unngå kritiske kommentarer helt; støtte til noen du kjenner er viktigere enn din publikumsreaksjon.",
+          "effect": -1,
+          "tags": [
+            "loyalty_over_response",
+            "relationship_filter"
+          ],
+          "feedback": "Du gjør nærhet til krav om én bestemt reaksjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_venn"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ta_med_en_nykommer",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Førstegangsgjesten",
+      "subject": "En ny publikummer trenger ikke bestå en kulturprøve",
+      "situation": [
+        "Du tar med noen som sjelden går på scenekunst og som ikke kjenner husets vaner.",
+        "Erfarne publikummere kan gjøre terskelen lavere ved å forklare praktiske ting uten å kontrollere smak eller reaksjon.",
+        "Publikumsrollen bør være åpen nok til at nykommere kan møte verket uten å bli rangert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar bare det praktiske som trengs, og la nykommeren danne sin egen opplevelse og sine egne meninger.",
+          "effect": 1,
+          "tags": [
+            "audience_onboarding",
+            "anti_gatekeeping"
+          ],
+          "feedback": "Du bruker erfaring til å åpne rommet."
+        },
+        {
+          "id": "B",
+          "label": "Gi noen råd om hva man bør legge merke til, så nykommeren får mer ut av forestillingen.",
+          "effect": -1,
+          "tags": [
+            "taste_instruction",
+            "soft_gatekeeping"
+          ],
+          "feedback": "Du risikerer å gjøre din egen lesning til inngangsbillett."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_nykommer"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjest_ikke_arbeidsleder",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Vertskapsvakten",
+      "subject": "Foajeen er publikumsrom og arbeidsplass samtidig",
+      "situation": [
+        "Kø, garderobe, innslipp eller plassering går saktere enn du hadde håpet.",
+        "Front-of-house-personale håndterer mange hensyn som ikke alltid er synlige for gjesten.",
+        "En publikumsbillett gir rett til tjenesten som tilbys, men ikke til å overta arbeidsledelsen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv problemet konkret og la personalet håndtere løsning og prioritering.",
+          "effect": 1,
+          "tags": [
+            "guest_worker_boundary",
+            "service_context"
+          ],
+          "feedback": "Du ivaretar behovet ditt uten å gjøre deg til arbeidsleder."
+        },
+        {
+          "id": "B",
+          "label": "Foreslå tydelig hvordan køen eller plasseringen bør organiseres når løsningen virker åpenbar.",
+          "effect": -1,
+          "tags": [
+            "guest_management",
+            "workplace_overreach"
+          ],
+          "feedback": "Du mangler oversikt over hensynene personalet faktisk koordinerer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_arbeidsplass"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikum_bredere_enn_spesifikke_gjengeridentiteter",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Repertoarvennen",
+      "subject": "Én publikumsrolle er bredere enn spesifikke gjengeridentiteter",
+      "situation": [
+        "Du har vært på noen ulike forestillinger, men uten faste vaner rundt første kveld eller lang erfaring med samme scenehus.",
+        "Publikum er grunnrollen: den krever ikke status rundt åpningskvelden eller omfattende repertoarerfaring.",
+        "Mer spesifikke første-kveld- og gjengangerpraksiser kan utvikles senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold publikumsrollen som den brede erfaringen og la mer spesifikke identiteter kreve sine egne mønstre.",
+          "effect": 1,
+          "tags": [
+            "audience_scope",
+            "specific_identity_boundary"
+          ],
+          "feedback": "Du holder progresjonen semantisk ryddig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk de forestillingene du allerede har sett som tegn på at du i praksis er blitt en erfaren fast gjenger.",
+          "effect": -1,
+          "tags": [
+            "experience_inflation",
+            "identity_shortcut"
+          ],
+          "feedback": "Noen besøk alene gjør ikke den mer spesifikke rollen ferdig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_grense_spesifikke"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikum_ikke_utover_eller_bransje",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Grensevokteren",
+      "subject": "Publikumserfaring gir perspektiv, ikke profesjonell scenemakt",
+      "situation": [
+        "Etter mange sterke opplevelser blir du tryggere på smak, dramaturgi og hva som treffer en sal.",
+        "Det kan gi et informert publikumsperspektiv, men ikke ferdigheter eller mandat som Utøver, regissør, dramaturg, kritiker, produsent eller kurator.",
+        "Publikum er en selvstendig rolle nettopp fordi erfaringen ikke trenger å late som den er bransjeposisjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk publikumsblikket presist og marker når spørsmålet krever utøver- eller fagkompetanse du ikke har.",
+          "effect": 1,
+          "tags": [
+            "audience_expertise_boundary",
+            "professional_authority"
+          ],
+          "feedback": "Du lar publikumsrollen være kompetent uten å blåse den opp til yrke."
+        },
+        {
+          "id": "B",
+          "label": "Trekk faglige konklusjoner når du har sett nok forestillinger til å kjenne hva som fungerer på scenen.",
+          "effect": -1,
+          "tags": [
+            "audience_to_professional",
+            "authority_inference"
+          ],
+          "feedback": "Mengde publikumsopplevelse er ikke det samme som profesjonelt mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunst_publikum_grense_utover"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
