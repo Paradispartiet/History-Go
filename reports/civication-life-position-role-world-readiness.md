@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 128 ready / 31 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 129 ready / 30 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 128
-**Multi-scene narrative foundations:** 128
-**Completed life-position Role Worlds:** 128
+**Exact governed-source matches:** 129
+**Multi-scene narrative foundations:** 129
+**Completed life-position Role Worlds:** 129
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,36 +18,36 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `scenekunst/publikum` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
-| 26 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
-| 27 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 28 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 29 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 30 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `scenekunst/utover` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `sport/aktiv_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `sport/klubbspiller` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `sport/konkurranseutover` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `sport/mosjonist` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
+| 25 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
+| 26 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
+| 27 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
+| 28 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
+| 29 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 30 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
