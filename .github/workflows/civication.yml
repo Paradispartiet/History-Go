@@ -48,3 +48,20 @@ jobs:
 
       - name: Run complete Civication suite
         run: npm run test:civication
+
+      - name: Generate life-position readiness diagnostic
+        if: failure()
+        run: node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+
+      - name: Show life-position readiness diagnostic diff
+        if: failure()
+        run: git diff -- data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+
+      - name: Upload life-position readiness diagnostic
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civication-6070-generated-readiness
+          path: |
+            data/Civication/lifePositionRoleWorldReadiness.json
+            reports/civication-life-position-role-world-readiness.md
