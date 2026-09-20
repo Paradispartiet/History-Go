@@ -85,6 +85,10 @@ for (const world of matrix.worlds) {
     !world.artifacts.role_tests.some((rel) => rel.endsWith('-life-position-readiness.test.js')),
     `${world.key} must not use a life-position readiness gate as career gameplay evidence`
   );
+  assert(
+    !world.artifacts.role_tests.some((rel) => rel.endsWith('-authored-depth.test.js')),
+    `${world.key} must not use a life-position authored-depth gate as career gameplay evidence`
+  );
 }
 
 console.log(`PASS: Career Gameplay Matrix v1 covers ${matrix.worlds.length} canonical career worlds and ${matrix.support_worlds.length} support worlds with a deterministic 15-component gate.`);
