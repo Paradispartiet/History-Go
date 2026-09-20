@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_klubbspiller_stream",
+  "type": "leisure",
+  "title": "Klubbspiller — organisert deltakelse, lagroller og klubbgrenser",
+  "sociological_theme": "sport_klubbspiller_organisert_deltakelse_oppmote_uttak_spilletid_lagroller_interne_koder_fellesressurser_okonomi_kjoring_konkurransegrense_kapteinsgrense_kroppssignaler_uten_trener_styre_eller_profesjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "sport:klubbspiller"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "oppmote_og_forpliktelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Klubben trenger forutsigbarhet, men ikke total råderett over kalenderen",
+      "situation": [
+        "Treningsgruppa planlegger faste økter og trenger å vite hvem som faktisk kommer.",
+        "Klubbtilhørighet innebærer gjensidig forpliktelse fordi andre organiserer øvelser, plass og grupper rundt oppmøtet.",
+        "Forpliktelsen er likevel ikke en arbeidskontrakt eller rett til å styre resten av livet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar tydelig på oppmøte, varsle tidlig når du ikke kan komme og behold grenser for søvn, familie, arbeid og helse.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "club_commitment_vs_total_availability"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Lov alltid oppmøte for å vise lojalitet, og la klubbforpliktelser overstyre resten av livet uten vurdering.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "club_commitment_vs_total_availability"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_commitment_vs_total_availability"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uttak_uten_selvverd",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Treneren",
+      "subject": "Du er ikke tatt ut denne gangen",
+      "situation": [
+        "En trener eller lagleder setter opp hvem som skal delta i neste organiserte aktivitet.",
+        "Uttak påvirker reell spilletid og opplevelsen av plass i gruppa.",
+        "Ett uttak sier noe om en konkret sportslig beslutning, men trenger ikke bli en total dom over verdi, medlemskap eller framtid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkret tilbakemelding når det er nyttig, fortsett praksisen og skill uttaket fra egenverdi og sosial tilhørighet.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "selection_vs_self_worth"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behandle uttaket som bevis på at du er rangert under de andre og krev at gruppa tar stilling til hvem som egentlig fortjener plassen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "selection_vs_self_worth"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selection_vs_self_worth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "spilletid_og_benken",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Mindre spilletid er fortsatt en del av klubbrollen",
+      "situation": [
+        "Du får mindre aktiv tid enn du håpet i en organisert kamp eller økt.",
+        "Klubbspill innebærer at roller og deltakelse kan variere fra gang til gang.",
+        "Misnøye kan tas opp uten at benk, reserveplass eller redusert rolle gjøres til sosial ydmykelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta opp forventningene saklig og spør hva som skal til for mer ansvar, uten å nedvurdere dem som får mer tid.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "playing_time_vs_status"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Vis misnøyen offentlig og gjør spilletid til bevis på hvem som har høyest verdi i gruppa.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "playing_time_vs_status"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "playing_time_vs_status"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rolle_i_laget",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Treneren",
+      "subject": "En konkret rolle er ikke det samme som generell rang",
+      "situation": [
+        "Du blir bedt om å løse en bestemt oppgave eller posisjon som ikke er den du helst vil ha.",
+        "I klubbidrett må enkeltutøveren ofte tilpasse seg en kollektiv struktur.",
+        "Å akseptere en oppgave betyr ikke at trenerens vurdering er permanent, og å være erfaren betyr ikke at du selv bestemmer rollene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Løs oppgaven så godt du kan, be om begrunnelse eller utviklingsmål ved behov og hold treneransvaret adskilt fra egen erfaring.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "team_role_vs_informal_authority"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ignorer oppgaven og fordel roller til andre fordi du mener erfaringen din gir bedre sportslig autoritet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "team_role_vs_informal_authority"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "team_role_vs_informal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "garderobekode_og_tilhoring",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ny klubbspiller",
+      "subject": "Det som alle vet, er ofte det ingen har forklart",
+      "situation": [
+        "En ny spiller forstår ikke alle de uskrevne rutinene før og etter aktivitet.",
+        "Klubber utvikler interne koder for kommunikasjon, plassbruk og sosial omgang.",
+        "Slike koder kan skape trygghet og identitet, men også fungere som gatekeeping når de brukes til å teste hvem som passer inn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar praktiske rutiner uten å gjøre dem til en skjult prøve på om den nye er riktig type person.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "club_norms_vs_gatekeeping"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den nye finne ut av kodene gjennom feil og erting fordi det er slik man lærer hvem som tåler miljøet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "club_norms_vs_gatekeeping"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_norms_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lagchatten_etter_tap",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Gruppchatten blir fort en ekstra garderobe",
+      "situation": [
+        "Et dårlig resultat eller en svak fellesøkt følger gruppa inn i meldinger på kvelden.",
+        "Digitale kanaler gjør koordinering enkel, men de kan også forlenge frustrasjon og sosial kontroll langt utenfor aktiviteten.",
+        "Klubbspilleren må kunne delta i gruppa uten å være permanent tilgjengelig for evaluering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold kritikken konkret, unngå å henge ut enkeltpersoner og la samtalen stoppe når den ikke lenger hjelper.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "team_chat_vs_afterhours_control"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett analysen hele kvelden og pek ut hvem som sviktet slik at alle forstår alvoret.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "team_chat_vs_afterhours_control"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "team_chat_vs_afterhours_control"
+      ],
+      "risk_links": [
+        "public_private_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyr_som_fellesressurs",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Materialansvarlig",
+      "subject": "Felles utstyr er ikke førstemann-til-mølla-status",
+      "situation": [
+        "Klubben har begrenset utstyr som flere spillere trenger i samme tidsrom.",
+        "Fast tilhørighet gjør at du lærer hva som finnes og hvordan ting vanligvis fordeles.",
+        "Kjennskap til systemet gir praktisk erfaring, ikke særrett til de beste ressursene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg den avtalte fordelingen, meld fra om mangler og del ressursene etter behov og regler.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "shared_equipment_vs_seniority"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Reserver det beste utstyret til deg selv fordi du møter oftere og derfor mener å ha opparbeidet førsterett.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "shared_equipment_vs_seniority"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "shared_equipment_vs_seniority"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avgift_og_okonomisk_press",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kassereren",
+      "subject": "Medlemskap koster, men økonomi skal ikke bli skam",
+      "situation": [
+        "En avgift, reise eller utstyrskostnad gjør neste periode dyrere enn vanlig.",
+        "Organisert klubbaktivitet har reelle kostnader som må fordeles eller finansieres.",
+        "Når betalingskraft blir tolket som lojalitet eller seriøsitet, kan økonomi bli en skjult rangordning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om klar informasjon om kostnader og ordninger, og støtt løsninger som gjør deltakelse mulig uten offentlig økonomisk skam.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "club_cost_vs_class_shame"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Si at de som ikke kan betale alt med en gang sannsynligvis ikke prioriterer klubben høyt nok.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "club_cost_vs_class_shame"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_cost_vs_class_shame"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reise_som_lagforpliktelse",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Laglederen",
+      "subject": "Kjøringen er også en del av den organiserte rytmen",
+      "situation": [
+        "Gruppa skal til en aktivitet et annet sted og må samordne biler og tidspunkt.",
+        "Klubbspill innebærer praktisk koordinering som går utover selve treningen.",
+        "Den som ofte hjelper til kan bli viktig, men får ikke av den grunn trener-, leder- eller beslutningsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva du faktisk kan bidra med, fordel praktiske oppgaver tydelig og skill hjelp fra retten til å bestemme over andre.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "practical_help_vs_leadership_claim"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta styringen over hele opplegget og forvent at de andre følger dine sportslige og praktiske beslutninger fordi du ordner kjøringen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "practical_help_vs_leadership_claim"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practical_help_vs_leadership_claim"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kamp_uten_konkurranseidentitet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Den konkurranseglade",
+      "subject": "Organisert kamp gjør ikke automatisk hele rollen til Konkurranseutøver",
+      "situation": [
+        "Klubben deltar i en organisert kamp eller målt aktivitet der resultatet teller den dagen.",
+        "Klubbspill kan inneholde konkurranse, men Klubbspiller beskriver først og fremst deltakelsen i klubbstrukturen.",
+        "Konkurranseutøver er en egen livsposisjon når konkurransepraksisen blir mer selvstendig, vedvarende og identitetsbærende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta resultatet seriøst i situasjonen og la eventuell konkurranseidentitet bygge på faktisk videre praksis, ikke bare medlemskapet.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "club_play_vs_competition_status"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk klubbmedlemskap og ett resultat som generell dokumentasjon på at du har status som etablert Konkurranseutøver.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "club_play_vs_competition_status"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_play_vs_competition_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kapteinsprat_uten_kaptein",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Å være tydelig i gruppa er ikke det samme som å være kaptein",
+      "situation": [
+        "Du har vært med lenge og flere hører på når du sier noe om stemning eller innsats.",
+        "Erfaring kan gi uformell innflytelse og ansvar for hvordan du bruker stemmen.",
+        "Kaptein er en egen utnevnt rolle; den følger ikke automatisk av anciennitet eller respekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk innflytelsen til å støtte tydelig kommunikasjon, men la formelle lagroller forbli hos dem som faktisk er utnevnt.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "seniority_vs_captaincy"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å irettesette og representere gruppa utad som om lang fartstid gjør deg til kaptein.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "seniority_vs_captaincy"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "seniority_vs_captaincy"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "trenerens_rad_og_egen_kropp",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Treneren",
+      "subject": "Sportslig veiledning fritar ikke fra egne kroppssignaler",
+      "situation": [
+        "Treneren foreslår en justering eller høyere belastning som passer den sportslige planen.",
+        "Klubbstrukturen gjør det naturlig å følge instruksjon og felles opplegg.",
+        "Samtidig kjenner spilleren egen kropp og må kunne varsle om smerte, sykdom eller uvanlig belastning uten å diagnostisere seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv sportslige råd innenfor trygge rammer, meld tydelig fra om kroppssignaler og søk kvalifisert helsehjelp når det trengs.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "coach_plan_vs_body_signal"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skjul smerte eller sykdom fordi en god klubbspiller ikke bør utfordre planen eller risikere plassen sin.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "coach_plan_vs_body_signal"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "coach_plan_vs_body_signal"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klubbmenneske_er_noe_annet",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Klubbhusansvarlig",
+      "subject": "Å spille for klubben gjør deg ikke til den som driver klubben",
+      "situation": [
+        "Du er på anlegget ofte og kjenner mange av menneskene rundt aktiviteten.",
+        "Det kan være naturlig å hjelpe til med små praktiske ting når du allerede er til stede.",
+        "Klubbmenneske er en egen community_identity knyttet til frivillig institusjonsliv; Klubbspiller skal ikke automatisk arve styre-, drifts- eller arrangøransvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp når du faktisk ønsker og kan, men skill spillerrollen fra varig driftsansvar og formelle verv.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "player_role_vs_club_operations"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta ansvar for klubbdrift og representasjon uten avtale fordi aktive spillere bør vise at de virkelig hører til.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "player_role_vs_club_operations"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "player_role_vs_club_operations"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klubbspiller_rollegrense",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Klubbspiller er organisert deltakelse, ikke en skjult profesjonell tittel",
+      "situation": [
+        "Du møter jevnlig, trener i klubbstrukturen og inngår i en organisert spillergruppe.",
+        "Det gjør Klubbspiller til en reell life-position med sterkere institusjonell binding enn Aktiv utøver alene.",
+        "Rollen gir ikke automatisk status som Konkurranseutøver, Profesjonell utøver, kaptein, trener, styremedlem eller klubbens talsperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv klubbtilhørigheten presist og la hver annen status, utnevnelse eller yrkesrolle kreve sitt eget grunnlag.",
+          "effect": 1,
+          "tags": [
+            "club_participation",
+            "role_clarity",
+            "club_participation_without_status_inflation"
+          ],
+          "feedback": "Du holder Klubbspiller som en reell utøverrolle i klubbstrukturen uten å gjøre medlemskap, erfaring eller spilletid til trener-, kapteins-, styre-, konkurranse- eller profesjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk medlemskap, erfaring og oppmøte som generell legitimasjon for sportslig, organisatorisk eller profesjonell myndighet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "club_participation_without_status_inflation"
+          ],
+          "feedback": "Valget gjør klubbtilhørighet, uttak eller erfaring til større status eller myndighet enn Klubbspiller-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "club_participation_without_status_inflation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
