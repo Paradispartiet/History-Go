@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_utover_stream",
+  "type": "leisure",
+  "title": "Utøver — scenisk praksis, ensembleansvar og rollegrenser",
+  "sociological_theme": "scenekunst_utover_oving_kropp_stemme_ensemble_fremforing_feedback_samtykke_materialansvar_profesjonsgrense_uten_regi_dramaturgi_koreografi_eller_produksjonsmandat",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:utover"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "for_oving_kropp_og_stemme",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Ovingspartneren",
+      "subject": "Forberedelse er arbeid, ikke et bevis på verdi",
+      "situation": [
+        "Dere møtes før en scenisk økt og kroppen kjennes treg mens stemmen trenger tid til å våkne.",
+        "God forberedelse kan gjøre arbeidet tryggere og mer presist, men samme rutine passer ikke alle kropper eller uttrykk.",
+        "Utøverpraksis handler om å møte opp forberedt uten å gjøre oppvarmingen til en moralsk test."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en konkret oppvarming som passer dagens materiale og egen kropp, og juster underveis.",
+          "effect": 1,
+          "tags": [
+            "preparation",
+            "body_awareness",
+            "practice_boundary"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Press deg gjennom den hardeste rutinen; synlig anstrengelse viser hvem som tar arbeidet seriøst.",
+          "effect": -1,
+          "tags": [
+            "performance_pressure",
+            "body_override",
+            "status_play"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_forberedelse"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kropp_stemme_og_grense",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bevegelsesveilederen",
+      "subject": "Et smertevarsel er informasjon, ikke ulydighet",
+      "situation": [
+        "En repetisjon krever kraftig stemmebruk og en fysisk sekvens som begynner å gi smerte.",
+        "Scenisk trening kan være krevende, men smerte og heshet er ikke nødvendigvis tegn på god innsats.",
+        "Den som utfører materialet må kunne beskrive egen grense og be om en tryggere løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si konkret hva som skjer i kropp eller stemme og be om å justere intensitet, teknikk eller repetisjon.",
+          "effect": 1,
+          "tags": [
+            "body_signal",
+            "voice_care",
+            "boundary_clarity"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Skjul smerten og fortsett til sekvensen sitter; stopp vil bare sinke de andre.",
+          "effect": -1,
+          "tags": [
+            "injury_normalization",
+            "silence_pressure",
+            "self_erasure"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_kroppsgrense"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ensemble_lytting_og_plass",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Scenemakkeren",
+      "subject": "Å være synlig er ikke det samme som å fylle alt rom",
+      "situation": [
+        "I en gruppesekvens oppstår et tomrom, og flere kan ta initiativ samtidig.",
+        "En utøver må kunne handle tydelig og samtidig registrere timing, rytme og hva de andre allerede bygger.",
+        "Ensemblearbeid blir svakere når initiativ alltid betyr å overta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta et tydelig initiativ som lar de andre svare og som kan gis videre når sekvensen endrer seg.",
+          "effect": 1,
+          "tags": [
+            "ensemble_listening",
+            "shared_timing",
+            "initiative_boundary"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Fyll hvert tomrom raskt; den som er mest synlig blir også den viktigste i scenen.",
+          "effect": -1,
+          "tags": [
+            "space_capture",
+            "visibility_status",
+            "coordination_loss"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_ensemblelytting"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "materiale_uten_perfeksjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Tekstmakker",
+      "subject": "Forbered materialet uten å late som alt må være ferdig",
+      "situation": [
+        "Du har fått nytt tekst- og bevegelsesmateriale og rekker ikke å gjøre alle detaljer like sikre før neste økt.",
+        "Forberedelse gjør samarbeidet mulig, men prøverommet finnes også for å undersøke det som ennå ikke sitter.",
+        "Det er forskjell på å komme uforberedt og å være åpen om hvor arbeidet faktisk står."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter de mest avgjørende overgangene, merk usikre partier og kom med et konkret utgangspunkt for videre arbeid.",
+          "effect": 1,
+          "tags": [
+            "material_preparation",
+            "learning_transparency",
+            "practice_process"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Skjul usikkerheten og spill som om alt sitter; det viktigste er at ingen oppdager hullene.",
+          "effect": -1,
+          "tags": [
+            "perfection_mask",
+            "uncertainty_hiding",
+            "status_defense"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_materialforberedelse"
+      ],
+      "risk_links": [
+        "knowledge_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "noter_uten_underkastelse",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Provelederen",
+      "subject": "En note skal prøves i materialet, ikke bæres som skam",
+      "situation": [
+        "Etter en gjennomgang får du en presis note om tempo og retning i en sekvens.",
+        "Noter kan skjerpe arbeidet, men de kan også misforstås eller bli uklare når de oversettes til kropp og stemme.",
+        "Utøveransvar er både å lytte og å avklare hva du faktisk skal forsøke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjenta noten med egne ord, prøv den konkret og spør dersom virkningen fortsatt er uklar.",
+          "effect": 1,
+          "tags": [
+            "note_work",
+            "artistic_listening",
+            "clarification"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Nikk til alt uten spørsmål; en god utøver viser aldri at en note er vanskelig å forstå.",
+          "effect": -1,
+          "tags": [
+            "obedience_display",
+            "shame_learning",
+            "unclear_execution"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_notearbeid"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mistet_inngang_og_reparasjon",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Scenemakkeren",
+      "subject": "En mistet inngang trenger reparasjon, ikke en syndebukk",
+      "situation": [
+        "Under en gjennomkjøring kommer du inn for sent, og en medutøver må holde sekvensen levende et par sekunder ekstra.",
+        "Feil er synlige i scenisk arbeid fordi timing deles med andre.",
+        "Profesjonell oppførsel kan ikke utledes av én feil; det viktige her er hvordan den håndteres i praksis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ansvar for den konkrete inngangen, avklar signalet og prøv overgangen på nytt sammen med de berørte.",
+          "effect": 1,
+          "tags": [
+            "cue_repair",
+            "accountability",
+            "shared_timing"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Forklar umiddelbart hvem andre som gjorde deg usikker, så feilen ikke fester seg til deg.",
+          "effect": -1,
+          "tags": [
+            "blame_shift",
+            "reputation_defense",
+            "repair_avoidance"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_reparasjon"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nervositet_for_fremforing",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den_erfarne_medutoveren",
+      "subject": "Nervøsitet før fremføring trenger en plan, ikke en identitetsdom",
+      "situation": [
+        "Rett før dere skal fremføre materialet merker du rask pust, tørre hender og trang til å kontrollere hver detalj.",
+        "Nervøsitet kan påvirke oppmerksomhet og timing uten å si noe enkelt om talent eller mot.",
+        "En utøver kan bruke konkrete rutiner og støtte uten å måtte late som kroppen er upåvirket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til pust, første handling og de avtalte signalene, og si fra dersom du trenger en praktisk justering.",
+          "effect": 1,
+          "tags": [
+            "performance_nerves",
+            "attention_anchor",
+            "self_regulation"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Tolk uroen som bevis på at du ikke hører hjemme der og prøv å skjule den for alle.",
+          "effect": -1,
+          "tags": [
+            "identity_collapse",
+            "anxiety_shame",
+            "attention_loss"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_nervositet"
+      ],
+      "risk_links": [
+        "personal_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fysisk_materiale_og_samtykke",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Bevegelsesveilederen",
+      "subject": "Fysisk materiale krever løpende samtykke",
+      "situation": [
+        "En sekvens innebærer løft, nær kontakt og en berøring som må treffe presist for å være trygg.",
+        "At noe er avtalt én gang betyr ikke at alle detaljer er uforanderlige når kropper, dagsform eller materialet endrer seg.",
+        "Scenisk nærhet blir mer presis når grenser kan uttrykkes uten sosial straff."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar kontaktpunkter og stopp-signaler før repetisjon, og åpne for ny avklaring når sekvensen endres.",
+          "effect": 1,
+          "tags": [
+            "physical_consent",
+            "contact_protocol",
+            "safety_practice"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Regn tidligere ja som varig tillatelse; nye spørsmål ødelegger bare flyten.",
+          "effect": -1,
+          "tags": [
+            "consent_assumption",
+            "boundary_drift",
+            "safety_risk"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_samtykke"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rekvisitt_kostyme_og_ansvar",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Materialforvalteren",
+      "subject": "Det du bruker på scenen er ikke automatisk ditt",
+      "situation": [
+        "En kostymedel og en rekvisitt er allerede satt opp for neste gjennomgang, men du vil ta dem med til et privat øvingsrom senere.",
+        "Utøveren trenger tilgang til materiale, mens gjenstandene også inngår i andres logistikk, vedlikehold og sikkerhet.",
+        "Bruk i en scene gir ikke eierskap eller rett til å flytte ting uten avklaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar utlån eller finn en erstatning til privat øving, og la oppsettet stå som avtalt.",
+          "effect": 1,
+          "tags": [
+            "shared_material",
+            "property_boundary",
+            "coordination"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Ta med det du trenger; siden du bruker gjenstandene i scenen har du i praksis førsterett.",
+          "effect": -1,
+          "tags": [
+            "informal_ownership",
+            "workflow_disruption",
+            "authority_drift"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_materialansvar"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "salrespons_uten_fasit",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Ovingspartneren",
+      "subject": "Salens respons er data, ikke en komplett kvalitetsdom",
+      "situation": [
+        "Etter fremføringen snakker dere om latter, stillhet og applaus som traff annerledes enn forventet.",
+        "Responsen kan fortelle noe om rytme, tydelighet og kontakt i øyeblikket, men samme signal kan ha flere årsaker.",
+        "Utøverpraksis krever å registrere reaksjoner uten å gjøre dem til eneste mål på arbeidet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Knytt responsen til konkrete øyeblikk, sammenlign med egne observasjoner og bruk den som ett av flere signaler.",
+          "effect": 1,
+          "tags": [
+            "room_response",
+            "performance_observation",
+            "quality_boundary"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Bruk styrken på applausen som direkte fasit på hvem som gjorde den beste prestasjonen.",
+          "effect": -1,
+          "tags": [
+            "applause_metric",
+            "status_comparison",
+            "single_signal_judgment"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_salrespons"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kolleganote_uten_regi",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Tekstmakker",
+      "subject": "Kollegafeedback skal hjelpe arbeidet uten å overta styringen",
+      "situation": [
+        "En medutøver spør hva du la merke til i en overgang som stadig mister retning.",
+        "Du har førstehåndskunnskap fra innsiden av sekvensen, men du har ikke automatisk ansvar for helheten.",
+        "Presis kollegafeedback kan være nyttig når den skiller observasjon fra instruksjonsmyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv det konkrete øyeblikket du merket, si hva det gjorde med din egen timing og la den andre vurdere neste forsøk.",
+          "effect": 1,
+          "tags": [
+            "peer_feedback",
+            "observation",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Gi en full løsning for hvordan hele sekvensen bør spilles og forvent at de andre følger den.",
+          "effect": -1,
+          "tags": [
+            "directorial_drift",
+            "solution_capture",
+            "authority_inflation"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_kollegafeedback"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dekke_en_annens_parti",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Ensemblekoordinatoren",
+      "subject": "Å dekke et parti krever avklart kapasitet",
+      "situation": [
+        "En deltaker blir borte, og du blir spurt om å dekke et kort parti i tillegg til ditt eget.",
+        "Fleksibilitet kan holde en fremføring sammen, men ekstra materiale kan også skape nye sikkerhets- og timingproblemer.",
+        "Utøveransvar er å vurdere faktisk kapasitet i stedet for å si ja for å bevise lojalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilke deler du realistisk kan dekke, hva som må forenkles og hvilke signaler som trenger en ny gjennomgang.",
+          "effect": 1,
+          "tags": [
+            "cover_capacity",
+            "role_adaptation",
+            "coordination"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til alt med én gang; det er bedre å risikere kaos enn å virke lite villig.",
+          "effect": -1,
+          "tags": [
+            "overcommitment",
+            "loyalty_pressure",
+            "execution_risk"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_dekning"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "praksis_og_profesjonell_status",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Grensevokteren",
+      "subject": "Mye praksis er ikke det samme som en profesjonell ansettelse",
+      "situation": [
+        "Du øver regelmessig, fremfører materiale og tar ansvar i gruppen, men har ingen avtalt yrkesrolle eller honorert kontrakt.",
+        "Utøver kan være en reell og krevende praksis også uten at den er levebrød.",
+        "Det er derfor nødvendig å skille kunstnerisk erfaring fra påstand om ansettelse, kvalifikasjon eller yrkesstatus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv deg som utøver i den praksisen du faktisk gjør, og hold profesjonell status knyttet til egne avtaler og kvalifikasjoner.",
+          "effect": 1,
+          "tags": [
+            "practice_identity",
+            "professional_boundary",
+            "employment_clarity"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Bruk mengden øving som bevis på at du allerede har samme yrkesstatus som en ansatt skuespiller eller danser.",
+          "effect": -1,
+          "tags": [
+            "status_inflation",
+            "employment_claim",
+            "credential_shortcut"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_profesjonsgrense"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utover_uten_andres_mandat",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Grensevokteren",
+      "subject": "Utøverrollen gir ansvar for egen praksis, ikke mandat over hele produksjonen",
+      "situation": [
+        "Etter flere økter kjenner du materialet godt og blir spurt om hva du mener bør endres.",
+        "Utøverperspektivet kan være viktig fordi du kjenner utførelsen fra innsiden.",
+        "Det perspektivet gjør deg likevel ikke automatisk til Regissør, Koreograf, Dramaturg eller produksjonsansvarlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi konkrete observasjoner fra utførelsen og la beslutninger som ligger i andre roller bli tatt gjennom avklarte ansvarslinjer.",
+          "effect": 1,
+          "tags": [
+            "performer_perspective",
+            "authority_boundary",
+            "role_clarity"
+          ],
+          "feedback": "Du holder utøverpraksisen konkret, ansvarlig og avgrenset til faktisk erfaring og rolle."
+        },
+        {
+          "id": "B",
+          "label": "Bruk erfaringen din som grunnlag for å overta beslutninger om retning, struktur og produksjon når du mener løsningen er åpenbar.",
+          "effect": -1,
+          "tags": [
+            "mandate_inflation",
+            "production_override",
+            "role_confusion"
+          ],
+          "feedback": "Valget gjør praksis, status eller ansvar større enn situasjonen gir dekning for."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "utover_rollegrense"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    }
+  ]
+}
