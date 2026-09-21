@@ -1,0 +1,1160 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "filosofi",
+  "role_scope": "filosofi_filosofistudent",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "filosofi",
+    "id": "filosofistudent",
+    "label": "Filosofistudent"
+  },
+  "title": "Filosofistudent",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å lære filosofi gjennom tekst, seminar, skriving, vurdering og revisjon uten at faglig usikkerhet skjules som sikkerhet eller studentstatus tas på forskudd som grad, ekspertise eller institusjonell myndighet",
+    "description": "Filosofistudent-verdenen behandler Filosofistudent som en employment-independent learning stage. Spilleren arbeider med primærtekst, sekundærlitteratur, begrepsskiller, essayutkast, seminar, kollokvie, veiledning, vurdering og eksamenskapasitet. Verden skiller studentens reelle læring fra ferdig profesjons- og fagautoritet: rollen gir ingen automatisk grad, Fagfilosof-status, forskerstilling, foreleserrolle, undervisningsmyndighet, sensurmyndighet, professortittel eller institusjonell talerett, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "social_mask",
+    "invisible_work",
+    "shame_reputation",
+    "numerical_control",
+    "care_vs_efficiency",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "første møte med en vanskelig primærtekst der sammendraget ikke lenger kan fungere som fasit",
+    "seminaret der studenten må tåle å vise hvor argumentrekonstruksjonen fortsatt er uferdig",
+    "skriveprosessen der kildebruk og egen formulering må holdes sporbare før siste utkast",
+    "medstudentkritikken der et godt motargument kan kreve reell revisjon av en tese",
+    "veiledningen der flere interessante ideer må reduseres til én undersøkbar problemstilling",
+    "vurderingssituasjonen der karakter og konkret tilbakemelding lett kan bli til identitetsdom",
+    "kollokviegruppen der tidlig enighet kan gjøre faglig uenighet sosialt kostbar",
+    "eksamensuken der målt lesetid kan konkurrere med faktisk søvn, hukommelse og resonneringsevne"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "seminarleder",
+      "social_function": "gjør uferdig forståelse eksplisitt gjennom spørsmål og argumentrekonstruksjon",
+      "class_position": "undervisningsrolle med avgrenset faglig og pedagogisk autoritet",
+      "status": "høy situasjonell fagstatus",
+      "power_over_player": "kan utfordre studentens begrunnelser og synliggjøre hull",
+      "wants": "at studenten viser arbeidsgangen fremfor å late som forståelsen er ferdig",
+      "conceals": "at et kort spørsmål kan oppleves som langt større evaluering enn det er",
+      "speech_style": "spørrende, presis og lite belønnende overfor retorisk tåke",
+      "teaches_player": "at det er faglig mulig å si hva man ikke vet ennå"
+    },
+    {
+      "id": "medstudent",
+      "social_function": "gir motargumenter, alternative lesninger og sosial sammenligning på samme læringsnivå",
+      "class_position": "likemann i samme eller nærliggende studiefase",
+      "status": "lav formell, moderat sosial og faglig betydning",
+      "power_over_player": "kan gjøre svakheter synlige uten å ha vurderingsmyndighet",
+      "wants": "å forstå stoffet gjennom reell faglig utveksling",
+      "conceals": "at egen usikkerhet ofte er større enn sikkerheten i seminar tilsier",
+      "speech_style": "direkte, prøvende og tekstnær",
+      "teaches_player": "at faglig motstand ikke trenger å være sosial avvisning"
+    },
+    {
+      "id": "veileder",
+      "social_function": "hjelper studenten å avgrense spørsmål og se strukturelle problemer i eget arbeid",
+      "class_position": "fagperson med avgrenset veiledningsmandat",
+      "status": "høy faglig autoritet innen veiledningssituasjonen",
+      "power_over_player": "kan foreslå retning og avgrensning uten å eie studentens argument",
+      "wants": "at oppgaven blir gjennomførbar og etterprøvbar",
+      "conceals": "at erfaring gjør enkelte valg mer åpenbare enn de er for studenten",
+      "speech_style": "avgrensende, konkret og orientert mot problemstilling",
+      "teaches_player": "at mindre omfang ofte kan gi mer presis filosofi"
+    },
+    {
+      "id": "foreleser",
+      "social_function": "formidler fagstoff, tradisjoner og tolkninger uten at hver muntlig formulering automatisk er dokumentert kilde",
+      "class_position": "institusjonell undervisningsrolle",
+      "status": "høy faglig synlighet",
+      "power_over_player": "kan forme hva studenten oppfatter som legitimt eller sentralt",
+      "wants": "at forelesningen brukes som inngang til videre faglig arbeid",
+      "conceals": "at studentene ofte hører midlertidige formuleringer som ferdige fasitsvar",
+      "speech_style": "strukturert, begrepstett og autoritativ i formen",
+      "teaches_player": "at autoritet og etterprøvbar kilde er to forskjellige ting"
+    },
+    {
+      "id": "venn_utenfor_studiet",
+      "social_function": "tester hvordan studentkunnskap oversettes i offentlig eller privat samtale uten ekspertmandat",
+      "class_position": "person utenfor fagmiljøet",
+      "status": "ingen institusjonell fagstatus",
+      "power_over_player": "kan belønne sikre og brede svar med sosial anerkjennelse",
+      "wants": "en forståelig forklaring på hva filosofi kan si om et tema",
+      "conceals": "at mer nyanserte svar kan oppleves mindre tilfredsstillende enn sikre konklusjoner",
+      "speech_style": "hverdagslig, direkte og resultatfokusert",
+      "teaches_player": "at formidling ikke krever å late som hele faget har ett svar"
+    },
+    {
+      "id": "eldre_student",
+      "social_function": "viser et senere læringsnivå uten å være ferdig fagautoritet",
+      "class_position": "student med mer erfaring og institusjonell kjennskap",
+      "status": "moderat uformell status",
+      "power_over_player": "kan normalisere feil, revisjon og usikkerhet",
+      "wants": "at nyere studenter skiller faglig utvikling fra behovet for å virke ferdig",
+      "conceals": "at egen mestring i ettertid kan gjøre tidligere forvirring mindre synlig",
+      "speech_style": "avdramatiserende, konkret og erfaren",
+      "teaches_player": "at studentrollen kan bli mer presis uten å bli ekspertrolle"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "text_vs_summary",
+      "meaning": "om primærtekst kan korrigere sekundær forklaring og forhåndsforståelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "uncertainty_vs_performance",
+      "meaning": "om uferdig forståelse kan uttrykkes uten å erstattes av sosialt trygg sikkerhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "citation_integrity",
+      "meaning": "om kilde og egen formulering forblir sporbare gjennom skriveprosessen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "argument_vs_identity",
+      "meaning": "om et motargument kan endre teksten uten å bli lest som dom over personen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scope_vs_breadth",
+      "meaning": "om oppgaven blir undersøkbar gjennom avgrensning fremfor å bruke bredde som statussignal",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "assessment_vs_self",
+      "meaning": "om karakter og vurdering forblir knyttet til konkret arbeid fremfor hele studentidentiteten",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "capacity_vs_control",
+      "meaning": "om studiepress styres etter faktisk læringskapasitet fremfor bare målbar våkentid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "student_vs_authority",
+      "meaning": "om Filosofistudent holdes separat fra grad, Fagfilosof, foreleser- og ekspertmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Teksten gir mindre mening enn sammendraget Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "primary_text_discipline",
+          "epistemic_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Teksten gir mindre mening enn sammendraget Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "primary_text_discipline",
+          "epistemic_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Teksten gir mindre mening enn sammendraget Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "primary_text_discipline",
+          "epistemic_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Teksten gir mindre mening enn sammendraget Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "primary_text_discipline",
+          "epistemic_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Du blir spurt om et argument du ikke har rukket å rekonstruere Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "epistemic_humility",
+          "citation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Du blir spurt om et argument du ikke har rukket å rekonstruere Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "epistemic_humility",
+          "citation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Du blir spurt om et argument du ikke har rukket å rekonstruere Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "epistemic_humility",
+          "citation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Du blir spurt om et argument du ikke har rukket å rekonstruere Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "epistemic_humility",
+          "citation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Formuleringen din ligner sekundærlitteraturen nesten ordrett Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "citation_boundary",
+          "revision_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#notatet_som_blir_for_likt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Formuleringen din ligner sekundærlitteraturen nesten ordrett Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "citation_boundary",
+          "revision_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#notatet_som_blir_for_likt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Formuleringen din ligner sekundærlitteraturen nesten ordrett Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "citation_boundary",
+          "revision_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#notatet_som_blir_for_likt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Formuleringen din ligner sekundærlitteraturen nesten ordrett Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "citation_boundary",
+          "revision_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#notatet_som_blir_for_likt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: En innvending treffer hovedideen i essayutkastet ditt Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "revision_practice",
+          "concept_distinction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: En innvending treffer hovedideen i essayutkastet ditt Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "revision_practice",
+          "concept_distinction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: En innvending treffer hovedideen i essayutkastet ditt Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "revision_practice",
+          "concept_distinction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: En innvending treffer hovedideen i essayutkastet ditt Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "revision_practice",
+          "concept_distinction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Samme ord gjør to forskjellige jobber i teksten Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "concept_distinction",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Samme ord gjør to forskjellige jobber i teksten Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "concept_distinction",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Samme ord gjør to forskjellige jobber i teksten Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "concept_distinction",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Samme ord gjør to forskjellige jobber i teksten Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "concept_distinction",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Du har fem mulige problemstillinger og ingen tydelig avgrensning Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "scope_discipline",
+          "assessment_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#veiledningen_med_for_mange_ideer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Du har fem mulige problemstillinger og ingen tydelig avgrensning Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "scope_discipline",
+          "assessment_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#veiledningen_med_for_mange_ideer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Du har fem mulige problemstillinger og ingen tydelig avgrensning Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "scope_discipline",
+          "assessment_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#veiledningen_med_for_mange_ideer"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Du har fem mulige problemstillinger og ingen tydelig avgrensning Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "scope_discipline",
+          "assessment_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#veiledningen_med_for_mange_ideer"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En svakere vurdering enn forventet føles større enn selve oppgaven Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "assessment_boundary",
+          "public_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En svakere vurdering enn forventet føles større enn selve oppgaven Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "assessment_boundary",
+          "public_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En svakere vurdering enn forventet føles større enn selve oppgaven Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "assessment_boundary",
+          "public_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En svakere vurdering enn forventet føles større enn selve oppgaven Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "assessment_boundary",
+          "public_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Du får spørsmål om hva filosofien sier om et aktuelt problem Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "public_boundary",
+          "reading_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Du får spørsmål om hva filosofien sier om et aktuelt problem Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "public_boundary",
+          "reading_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Du får spørsmål om hva filosofien sier om et aktuelt problem Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "public_boundary",
+          "reading_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Du får spørsmål om hva filosofien sier om et aktuelt problem Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "public_boundary",
+          "reading_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Alt virker relevant når du først begynner å lete Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "reading_boundary",
+          "authority_source_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Alt virker relevant når du først begynner å lete Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "reading_boundary",
+          "authority_source_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Alt virker relevant når du først begynner å lete Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "reading_boundary",
+          "authority_source_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Alt virker relevant når du først begynner å lete Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "reading_boundary",
+          "authority_source_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: En autoritativ formulering passer perfekt i argumentet ditt Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "authority_source_boundary",
+          "study_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: En autoritativ formulering passer perfekt i argumentet ditt Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "authority_source_boundary",
+          "study_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: En autoritativ formulering passer perfekt i argumentet ditt Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "authority_source_boundary",
+          "study_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: En autoritativ formulering passer perfekt i argumentet ditt Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "authority_source_boundary",
+          "study_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Mer tid våken føles som mer kontroll Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "study_capacity",
+          "seminar_dissent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#eksamensuken_uten_sovn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Mer tid våken føles som mer kontroll Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "study_capacity",
+          "seminar_dissent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#eksamensuken_uten_sovn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Mer tid våken føles som mer kontroll Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "study_capacity",
+          "seminar_dissent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#eksamensuken_uten_sovn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Mer tid våken føles som mer kontroll Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "study_capacity",
+          "seminar_dissent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#eksamensuken_uten_sovn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Alle nikker til samme tolkning etter den første som snakker Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "seminar_dissent",
+          "belief_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Alle nikker til samme tolkning etter den første som snakker Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "seminar_dissent",
+          "belief_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Alle nikker til samme tolkning etter den første som snakker Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "seminar_dissent",
+          "belief_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Alle nikker til samme tolkning etter den første som snakker Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "seminar_dissent",
+          "belief_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du mener ikke lenger det du skrev i førsteutkastet Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "belief_revision",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du mener ikke lenger det du skrev i førsteutkastet Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "belief_revision",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du mener ikke lenger det du skrev i førsteutkastet Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "belief_revision",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du mener ikke lenger det du skrev i førsteutkastet Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "belief_revision",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva betyr det å være filosofistudent etter et helt semester? Morgenen etablerer hva spilleren faktisk har lest, forstått eller kapasitet til før faglig prestasjonspress tar over.",
+        "thread_ids": [
+          "student_identity",
+          "primary_text_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#sesongslutt_hva_er_filosofistudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva betyr det å være filosofistudent etter et helt semester? Midt på dagen møter læringen tekst, medstudenter, seminar, veiledning eller vurderingskriterier.",
+        "thread_ids": [
+          "student_identity",
+          "primary_text_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#sesongslutt_hva_er_filosofistudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva betyr det å være filosofistudent etter et helt semester? Ettermiddagen gjør forskjellen mellom læringsdisiplin og lånt faglig sikkerhet til et konkret valg.",
+        "thread_ids": [
+          "student_identity",
+          "primary_text_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#sesongslutt_hva_er_filosofistudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva betyr det å være filosofistudent etter et helt semester? Kvelden viser hva valget etterlater i faglig tillit, privat selvbilde, arbeidskapasitet eller vilje til å revidere.",
+        "thread_ids": [
+          "student_identity",
+          "primary_text_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/filosofi_filosofistudent.json#sesongslutt_hva_er_filosofistudent"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "primary_text_discipline",
+      "description": "Om primærteksten får korrigere sammendrag og forhåndsforståelse i stedet for å presses inn i dem.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "epistemic_humility",
+      "description": "Om usikkerhet i seminar kan uttrykkes presist uten å kamufleres som ferdig forståelse.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "citation_boundary",
+      "description": "Om egen formulering og lånt formulering holdes sporbare gjennom hele skriveprosessen.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "revision_practice",
+      "description": "Om sterke motargumenter kan endre en tese uten at revisjon oppleves som identitetstap.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "concept_distinction",
+      "description": "Om like ord kan skilles i funksjon og betydning før argumentet vurderes.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "scope_discipline",
+      "description": "Om en studentoppgave avgrenses til noe som faktisk kan undersøkes innen rammen.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "assessment_boundary",
+      "description": "Om vurdering av ett arbeid skilles fra vurdering av egen verdi eller tilhørighet til faget.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "public_boundary",
+      "description": "Om studentstatus kan gi kontekst uten å lånes som ekspert- eller fagmandat.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "reading_boundary",
+      "description": "Om innsamling av litteratur kan stoppe lenge nok til at lesing blir tenkning, skriving og revisjon.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "authority_source_boundary",
+      "description": "Om foreleserautoritet skilles fra etterprøvbar kilde og selvstendig begrunnelse.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "study_capacity",
+      "description": "Om eksamenspress håndteres med faktisk kognitiv kapasitet i stedet for bare flere våkne timer.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "seminar_dissent",
+      "description": "Om foreløpig gruppeenighet kan utfordres uten at uenighet blir sosial illojalitet.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "belief_revision",
+      "description": "Om bedre grunner kan endre standpunkt selv når mye arbeid allerede bygger på den første posisjonen.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "student_identity",
+      "description": "Om Filosofistudent forblir en læringsfase uten å tas på forskudd som Fagfilosof-, foreleser- eller ekspertstatus.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "sammendrag_blir_fasit",
+      "description": "Hvis sekundærforklaringen får styre all lesing, kan teksten slutte å være et sted der egen forståelse faktisk testes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst",
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger"
+      ]
+    },
+    {
+      "id": "faglig_usikkerhet_blir_statuskamp",
+      "description": "Når usikkerhet skjules systematisk, kan seminar og kollokvie bli mer opptatt av å virke ferdig enn av å lære.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar",
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort"
+      ]
+    },
+    {
+      "id": "vurdering_blir_selvdom",
+      "description": "En svak vurdering kan gjøre neste oppgave større og mer perfeksjonistisk enn læringen faktisk krever.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet",
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt"
+      ]
+    },
+    {
+      "id": "autoritet_blir_lant",
+      "description": "Foreleser- og studentstatus kan gradvis brukes som erstatning for kilde, argument og avgrenset egen tale.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning",
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen"
+      ]
+    },
+    {
+      "id": "konsistens_blir_las",
+      "description": "Mye investert arbeid kan gjøre det vanskeligere å endre standpunkt selv når nye grunner faktisk er bedre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir",
+        "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "primartekst_blir_begrepspresisjon",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "seminarusikkerhet_blir_offentlig_grense",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kildegrense_blir_skrivetillit",
+      "setup_ref": "3/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "motargument_blir_standpunktrevisjon",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "identity",
+        "psyche"
+      ]
+    },
+    {
+      "id": "vurdering_blir_eksamenskapasitet",
+      "setup_ref": "7/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "psyche",
+        "health"
+      ]
+    },
+    {
+      "id": "gruppeenighet_blir_studentidentitet",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#forste_primartekst",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#seminaret_der_du_ikke_har_svar",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#notatet_som_blir_for_likt",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#motargumentet_som_svir",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#begrepet_med_to_betydninger",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#veiledningen_med_for_mange_ideer",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#karakteren_som_blir_identitet",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#diskusjonen_pa_kafeen",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#pensumlisten_som_aldri_tar_slutt",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#foreleserens_setning",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#eksamensuken_uten_sovn",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#gruppen_som_enes_for_fort",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#standpunktet_du_endrer",
+      "data/Civication/narratives/leisure/filosofi_filosofistudent.json#sesongslutt_hva_er_filosofistudent"
+    ]
+  }
+}

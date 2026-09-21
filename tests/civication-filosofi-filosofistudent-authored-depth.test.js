@@ -6,7 +6,7 @@ const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 
-const badge=read('data/badges/subkultur.json');
+const badge=read('data/badges/filosofi.json');
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
 const taxonomy=read('data/Civication/nonCareerRoleTaxonomy.json');
@@ -14,24 +14,24 @@ const checklist=read('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank=read('data/Civication/roleWorldThemeBank.json');
 const policy=read('data/Civication/roleWorldPolicy.json');
 
-const lifeKey='subkultur/hakkekylling';
-const lifeScope='subkultur_hakkekylling';
-const streamPath='data/Civication/narratives/leisure/subkultur_hakkekylling.json';
-const worldPath='data/Civication/roleWorlds/subkultur/subkultur_hakkekylling.json';
+const lifeKey='filosofi/filosofistudent';
+const lifeScope='filosofi_filosofistudent';
+const streamPath='data/Civication/narratives/leisure/filosofi_filosofistudent.json';
+const worldPath='data/Civication/roleWorlds/filosofi/filosofi_filosofistudent.json';
 
-const tier=badge.tiers.find(x=>x.label==='Hakkekylling');
+const tier=badge.tiers.find(x=>x.label==='Filosofistudent');
 assert.ok(tier);
-assert.equal(tier.life_position.kind,'subculture_status');
+assert.equal(tier.threshold,40);
+assert.equal(tier.life_position.id,'filosofistudent');
+assert.equal(tier.life_position.kind,'learning_stage');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
-assert.equal(tier.career_unlock.title,'Produksjonsassistent');
-assert.equal(tier.career_unlock.policy,'direct');
-assert.equal(tier.career_unlock.role_scope,'subkultur_arrangementsdrift');
+assert.equal(tier.career_unlock,undefined);
 
 const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
-assert.equal(stream.id,'subkultur_hakkekylling_stream');
-assert.deepEqual(stream.applies_when.any_tags,['subkultur:hakkekylling']);
+assert.equal(stream.id,'filosofi_filosofistudent_stream');
+assert.deepEqual(stream.applies_when.any_tags,['filosofi:filosofistudent']);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
@@ -44,6 +44,8 @@ for(const s of stream.storylets){
 
 const row=audit.positions.find(x=>x.key===lifeKey);
 assert.ok(row);
+assert.equal(row.runtime_source,'badge_tier');
+assert.equal(row.semantic_mode,'education_or_learning_position');
 assert.equal(row.classification,'ready');
 assert.equal(row.authored_depth.exact_source_ref_count,1);
 assert.equal(row.authored_depth.thematic_source_ref_count,0);
@@ -61,18 +63,20 @@ const world=read(worldPath);
 assert.ok(indexed);
 assert.equal(indexed.role_scope,lifeScope);
 assert.equal(indexed.status,'role_world_complete');
-assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Hakkekylling'});
+assert.deepEqual(indexed.life_position_ref,{badge_id:'filosofi',id:'filosofistudent',label:'Filosofistudent'});
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
+assert.equal(row.priority_score,365);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
 
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
 assert.equal(world.status,'role_world_complete');
-assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Hakkekylling'});
+assert.deepEqual(world.life_position_ref,{badge_id:'filosofi',id:'filosofistudent',label:'Filosofistudent'});
 assert.equal(world.materialization.no_new_runtime,true);
-assert.match(world.sociological_core.description,/employment-independent|Produksjonsassistent|Career-laget/i);
-assert.match(world.sociological_core.description,/ikke en plikt til å tåle mobbing|ikke en permanent identitet|ikke automatisk jobb/i);
+assert.match(world.sociological_core.description,/employment-independent learning stage|primærtekst|seminar|vurdering/i);
+assert.match(world.sociological_core.description,/ingen automatisk grad|Fagfilosof-status|foreleserrolle|institusjonell talerett/i);
+assert.match(world.sociological_core.description,/ingen ny runtime/i);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
@@ -91,18 +95,20 @@ assert.equal(world.materialization.source_refs.length,14);
 assert.equal(new Set(world.materialization.source_refs).size,14);
 for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(streamPath+'#'));
 
-assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_hakkekylling'],world.theme_ids);
+assert.deepEqual(themeBank.reference_profiles['filosofi/filosofi_filosofistudent'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds,144);
 assert.equal(taxonomy.canonical_counts.total_role_worlds,229);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,144);
 
-const hazing=stream.storylets.find(x=>x.id==='henteoppgaven_som_ikke_finnes');
-assert.match(hazing.situation.join(' '),/sannsynligvis ikke finnes|innvielsesvits|konstruert umulighet/i);
-const next=stream.storylets.find(x=>x.id==='den_nye_som_kommer_etter_deg');
-assert.match(next.situation.join(' '),/ny person|havner under deg|sende kostnaden nedover/i);
-const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_hakkekylling');
-assert.match(finale.situation.join(' '),/sosial erfaring|ikke en plikt|permanent identitet|frikort/i);
+const primary=stream.storylets.find(x=>x.id==='forste_primartekst');
+assert.match(primary.situation.join(' '),/primærteksten|sammendrag|forhånd/i);
+const citation=stream.storylets.find(x=>x.id==='notatet_som_blir_for_likt');
+assert.match(citation.situation.join(' '),/egen forklaring|kildens formulering|sporbarhet/i);
+const exam=stream.storylets.find(x=>x.id==='eksamensuken_uten_sovn');
+assert.match(exam.situation.join(' '),/søvn|kapasiteten|kontrollstrategier/i);
+const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_filosofistudent');
+assert.match(finale.situation.join(' '),/Fagfilosof|foreleser|institusjonell ekspert|autoriteten/i);
 
-console.log('Subkultur Hakkekylling authored-depth and Role World gate ok');
+console.log('Filosofistudent authored-depth and Role World gate ok');
