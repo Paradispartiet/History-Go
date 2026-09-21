@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_crew_stream",
+  "type": "leisure",
+  "title": "Crew — tilhørighet, bidrag og uformelle grenser",
+  "sociological_theme": "subkultur_crew_frivillig_tilhørighet_gjentatt_bidrag_tillit_arbeidsdeling_kreditering_fellesressurser_representasjon_exit_uten_automatisk_arbeidsrolle_eller_formell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:crew"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "siste_vakt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En erfaren crewmate",
+      "subject": "Hvem tar den siste vakten?",
+      "situation": [
+        "Etter en lang kveld gjenstår rydding og kontroll av felles utstyr, men ingen har en formell arbeidsplan.",
+        "Folk ser mot deg fordi du ofte blir igjen til slutt, og vanen er i ferd med å bli en uskreven forventning.",
+        "Crew-tilhørighet kan bygge sterk gjensidighet, men den blir skjev hvis pålitelighet alltid betyr at den samme personen bærer restarbeidet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fordel det som gjenstår tydelig og ta din del uten å gjøre frivillig innsats til fast plikt for én person.",
+          "effect": 1,
+          "tags": [
+            "shared_responsibility",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta alt selv uten å si noe, slik at de andre fortsetter å regne med at du ordner resten.",
+          "effect": -1,
+          "tags": [
+            "invisible_work",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_siste_vakt"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyret_som_gar_pa_rundgang",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den praktiske bærebjelken",
+      "subject": "Hvem eier ansvaret for felles utstyr?",
+      "situation": [
+        "En høyttaler og flere kabler går på rundgang mellom folk i miljøet.",
+        "Utstyret tilhører ikke deg, men du er den som vet hvem som lånte det sist og hva som mangler.",
+        "Et crew fungerer ofte gjennom delt tilgang, og nettopp derfor må ansvar kunne følges uten at én person blir uformell eier."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en enkel oversikt over hva som er ute og hvem som har det, uten å gjøre oversikten til privat kontroll.",
+          "effect": 1,
+          "tags": [
+            "resource_stewardship",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Hold oversikten bare i hodet og bruk den til å bestemme hvem som får låne neste gang.",
+          "effect": -1,
+          "tags": [
+            "informal_authority",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_utstyret_som_gar_pa_rundgang"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "chatten_som_blir_kommando",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den uformelle koordinatoren",
+      "subject": "Når blir koordinering til kommando?",
+      "situation": [
+        "En gruppechat brukes til å fordele tidspunkt, praktiske behov og hvem som tar med hva.",
+        "Du skriver ofte oppsummeringene fordi du følger med, og andre begynner å lese meldingene som beslutninger.",
+        "Den som organiserer informasjon kan få mer makt enn rollen egentlig gir, selv i et miljø uten formelle titler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hva som er avtalt av gruppa og hva som bare er ditt forslag.",
+          "effect": 1,
+          "tags": [
+            "informal_authority",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Skriv forslagene som ferdige beslutninger fordi det går raskere.",
+          "effect": -1,
+          "tags": [
+            "collective_decision",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_chatten_som_blir_kommando"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_ved_bordet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En ny deltaker",
+      "subject": "Er crewet åpent når noen ikke kjenner kodene?",
+      "situation": [
+        "En ny person møter opp, hjelper til og spør om ting som de erfarne tar for gitt.",
+        "Noen ler av spørsmålene og sier at man må finne ut av kodene selv.",
+        "Et crew beskytter identitet gjennom interne vaner, men kan samtidig gjøre inngangen unødvendig avhengig av å kjenne de rette menneskene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar de viktigste kodene og la resten læres gjennom faktisk deltakelse.",
+          "effect": 1,
+          "tags": [
+            "onboarding_gatekeeping",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den nye bevise at hen fortjener å være der ved å tåle å bli holdt utenfor.",
+          "effect": -1,
+          "tags": [
+            "culture_transmission",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_den_nye_ved_bordet"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_ikke_dukket_opp",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En gammel crewmate",
+      "subject": "Hva gjør dere når noen svikter en avtale?",
+      "situation": [
+        "En person som hadde sagt ja til å møte opp, kommer ikke og gir ingen beskjed før lenge etterpå.",
+        "Fraværet gjør at andre må ta mer, og irritasjonen sprer seg raskt i gruppa.",
+        "Pålitelighet er en viktig del av crew-status, men reparasjon krever mer enn offentlig uthenging."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta opp hva som skjedde, avklar hva personen faktisk kan love neste gang og fordel konsekvensen uten ydmykelse.",
+          "effect": 1,
+          "tags": [
+            "reliability_repair",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk gruppechatten til å gjøre personen til eksempel for alle andre.",
+          "effect": -1,
+          "tags": [
+            "shame_reputation",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_den_som_ikke_dukket_opp"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennskap_og_forventning",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En nær venn i crewet",
+      "subject": "Er vennskap det samme som tilgjengelighet?",
+      "situation": [
+        "En nær venn ber deg stille opp på kort varsel fordi «vi gjør jo alltid dette for hverandre».",
+        "Du vil gjerne hjelpe, men har allerede lovet tid til noe privat.",
+        "Når vennskap og crew-tilhørighet overlapper, kan et nei bli lest som avstand selv når forholdet egentlig tåler grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si konkret hva du kan og ikke kan gjøre, uten å gjøre vennskapet til regnskap.",
+          "effect": 1,
+          "tags": [
+            "friendship_obligation",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avlys det private du allerede har lovet fordi crewet alltid må komme først.",
+          "effect": -1,
+          "tags": [
+            "public_private_boundary",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_vennskap_og_forventning"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stilen_som_alle_kaller_var",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den estetiske drivkraften",
+      "subject": "Hvem eier et uttrykk som er blitt felles?",
+      "situation": [
+        "Et visuelt uttrykk, en frase og en måte å presentere kveldene på har vokst fram gjennom mange små bidrag.",
+        "En person begynner å omtale uttrykket som sitt eget fordi hen var tidlig ute med én del av det.",
+        "Subkulturell identitet skapes ofte kollektivt, og nettopp derfor kan kreditering bli vanskelig når ingen enkeltperson eier helheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom konkrete bidrag som kan krediteres og det kollektive uttrykket som flere har formet.",
+          "effect": 1,
+          "tags": [
+            "collective_identity",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den mest synlige personen få eierskap til hele uttrykket fordi det er enklest utad.",
+          "effect": -1,
+          "tags": [
+            "credit_invisible_work",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_stilen_som_alle_kaller_var"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fellespotten",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den praktiske bærebjelken",
+      "subject": "Små penger krever stor klarhet",
+      "situation": [
+        "Flere legger inn småbeløp til tape, batterier, transport og andre fellesutgifter.",
+        "Du ender med å sitte på oversikten fordi du betalte sist og har kvitteringene.",
+        "Det er en tillitsoppgave, men ikke et generelt budsjettmandat eller rett til å bruke midlene på nye ting uten enighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis saldo og utgifter enkelt, og be gruppa godkjenne nye bruk før pengene går ut.",
+          "effect": 1,
+          "tags": [
+            "money_transparency",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk litt av potten på noe du mener crewet trenger og forklar det etterpå.",
+          "effect": -1,
+          "tags": [
+            "informal_authority",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_fellespotten"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "du_kan_vel_love_det_for_oss",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En ekstern arrangør",
+      "subject": "Kan du representere alle?",
+      "situation": [
+        "En ekstern arrangør spør om crewet kan stille med folk en bestemt kveld og vil ha et raskt ja.",
+        "Du kjenner kapasiteten omtrent, men har ikke avtale om å binde de andre til noe.",
+        "Å være kjent som en del av et crew gjør deg til kontaktpunkt, men ikke automatisk til representant med fullmakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du kan sjekke interessen og komme tilbake med det gruppa faktisk har bekreftet.",
+          "effect": 1,
+          "tags": [
+            "representation_boundary",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Si ja på vegne av alle fordi du regner med at de stiller når det gjelder.",
+          "effect": -1,
+          "tags": [
+            "collective_decision",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_du_kan_vel_love_det_for_oss"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hvem_far_navnet_pa_plakaten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den som gjorde mest bakarbeid",
+      "subject": "Synlighet og faktisk innsats er ikke det samme",
+      "situation": [
+        "En plakat og en post skal takke dem som bidro, men de mest synlige navnene er ikke de som gjorde mest av arbeidet bak.",
+        "En person som tok mange små, nødvendige oppgaver vurderer å slutte å bidra fordi innsatsen aldri blir nevnt.",
+        "Usynlig arbeid kan holde et crew sammen samtidig som status samler seg hos dem som står fremst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krediter konkrete bidrag bredt og la usynlig arbeid telle i gruppas egen hukommelse.",
+          "effect": 1,
+          "tags": [
+            "credit_invisible_work",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold bare de mest synlige navnene fordi publikum ikke trenger å vite hvem som gjorde resten.",
+          "effect": -1,
+          "tags": [
+            "status_distribution",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_hvem_far_navnet_pa_plakaten"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "privatkvelden_som_blir_riggprat",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En nær person utenfor miljøet",
+      "subject": "Når følger crewet med hjem?",
+      "situation": [
+        "En privat kveld med venner glir igjen over i logistikk, småproblemer og hvem som burde gjøre hva neste gang.",
+        "En nær person utenfor miljøet sier at crewet stadig tar plass i tiden som skulle vært fri.",
+        "Tilhørighet blir sterk når den er nær, men den kan også spise opp andre deler av livet hvis alt blir behandlet som tilgjengelig tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg bort planleggingen for kvelden og avtal et annet tidspunkt for praktiske ting.",
+          "effect": 1,
+          "tags": [
+            "public_private_boundary",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett fordi de som ikke er del av miljøet får tåle at dette er en stor del av livet ditt.",
+          "effect": -1,
+          "tags": [
+            "identity_flexibility",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_privatkvelden_som_blir_riggprat"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_vil_trappe_ned",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Et crewmedlem som vil ut",
+      "subject": "Tilhørighet må tåle mindre tilstedeværelse",
+      "situation": [
+        "Et crewmedlem sier at hen vil være mindre med en periode uten å gjøre et stort nummer av det.",
+        "Noen reagerer som om redusert deltakelse betyr at personen ikke lenger kan regnes som en av dere.",
+        "Frivillig tilhørighet prøves hardest når noen trenger avstand uten å ville bryte vennskap eller historie."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La personen trappe ned uten lojalitetstest og la framtidig deltakelse være et reelt valg.",
+          "effect": 1,
+          "tags": [
+            "voluntary_exit",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Krev at personen velger mellom full deltakelse og å regnes som ute.",
+          "effect": -1,
+          "tags": [
+            "friendship_obligation",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_den_som_vil_trappe_ned"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_yngre_som_kopierer_tonen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "En yngre deltaker",
+      "subject": "Det dere belønner blir kultur",
+      "situation": [
+        "En yngre deltaker begynner å kopiere den harde tonen og de interne stikkene som noen bruker mot nye folk.",
+        "Hen gjør det fordi latter og status ser ut til å komme raskt når man virker uberørt.",
+        "Et crew lærer ikke bare gjennom regler; det lærer gjennom hva erfarne mennesker ler av, overser og korrigerer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si tydelig fra om tonen og vis at trygghet og pålitelighet gir mer status enn å trykke andre ned.",
+          "effect": 1,
+          "tags": [
+            "culture_transmission",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La det passere fordi alle må lære å tåle kulturen på egen hånd.",
+          "effect": -1,
+          "tags": [
+            "status_distribution",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_den_yngre_som_kopierer_tonen"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_crew",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "people"
+      ],
+      "from": "Den gamle crewmaten",
+      "subject": "Hva holder gruppa sammen når ingen tvinges?",
+      "situation": [
+        "Etter mange kvelder, små uenigheter og praktiske belastninger er det tydelig hvem som stadig møter opp, hvem som trenger mer avstand og hva gruppa faktisk forventer.",
+        "Det som først var et navn på tilhørighet har blitt en praksis av bidrag, tillit, hukommelse og grenser.",
+        "Crew-statusen er sterkest når den kan overleve at ansvar deles, folk sier nei og noen tar pause uten at fellesskapet kollapser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La crewet være et frivillig fellesskap der bidrag, kreditering og ansvar kan forhandles åpent.",
+          "effect": 1,
+          "tags": [
+            "crew_identity",
+            "crew_practice",
+            "boundary"
+          ],
+          "feedback": "Du styrker crewet som frivillig praksis med tydelig ansvar uten å gjøre tilhørighet til jobb eller formell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør tilhørigheten avhengig av at alle prioriterer gruppa foran alt annet og følger de mest etablerte.",
+          "effect": -1,
+          "tags": [
+            "voluntary_exit",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uformell tilhørighet til mer plikt eller myndighet enn Crew-posisjonen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "crew_sesongslutt_hva_er_crew"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
