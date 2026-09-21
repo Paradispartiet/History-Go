@@ -14,24 +14,24 @@ const checklist=read('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank=read('data/Civication/roleWorldThemeBank.json');
 const policy=read('data/Civication/roleWorldPolicy.json');
 
-const lifeKey='subkultur/crew';
-const lifeScope='subkultur_crew';
-const streamPath='data/Civication/narratives/leisure/subkultur_crew.json';
-const worldPath='data/Civication/roleWorlds/subkultur/subkultur_crew.json';
+const lifeKey='subkultur/hakkekylling';
+const lifeScope='subkultur_hakkekylling';
+const streamPath='data/Civication/narratives/leisure/subkultur_hakkekylling.json';
+const worldPath='data/Civication/roleWorlds/subkultur/subkultur_hakkekylling.json';
 
-const tier=badge.tiers.find(x=>x.label==='Crew');
+const tier=badge.tiers.find(x=>x.label==='Hakkekylling');
 assert.ok(tier);
 assert.equal(tier.life_position.kind,'subculture_status');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
-assert.equal(tier.career_unlock.title,'Arrangementsplanlegger');
+assert.equal(tier.career_unlock.title,'Produksjonsassistent');
 assert.equal(tier.career_unlock.policy,'direct');
-assert.equal(tier.career_unlock.role_scope,'subkultur_program_og_koordinering');
+assert.equal(tier.career_unlock.role_scope,'subkultur_arrangementsdrift');
 
 const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
-assert.equal(stream.id,'subkultur_crew_stream');
-assert.deepEqual(stream.applies_when.any_tags,['subkultur:crew']);
+assert.equal(stream.id,'subkultur_hakkekylling_stream');
+assert.deepEqual(stream.applies_when.any_tags,['subkultur:hakkekylling']);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
@@ -39,6 +39,7 @@ for(const s of stream.storylets){
   assert.equal(s.choices.length,2);
   assert.deepEqual(s.choices.map(c=>c.effect),[1,-1]);
   assert.ok(s.choices.every(c=>c.tags.length>=2));
+  assert.ok(s.choices.every(c=>new Set(c.tags).size===c.tags.length));
 }
 
 const row=audit.positions.find(x=>x.key===lifeKey);
@@ -60,7 +61,7 @@ const world=read(worldPath);
 assert.ok(indexed);
 assert.equal(indexed.role_scope,lifeScope);
 assert.equal(indexed.status,'role_world_complete');
-assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Crew'});
+assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Hakkekylling'});
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
@@ -68,10 +69,10 @@ assert.ok(!audit.queue.some(x=>x.key===lifeKey));
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
 assert.equal(world.status,'role_world_complete');
-assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Crew'});
+assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Hakkekylling'});
 assert.equal(world.materialization.no_new_runtime,true);
-assert.match(world.sociological_core.description,/employment-independent|Arrangementsplanlegger|Career-laget/i);
-assert.match(world.sociological_core.description,/ikke budsjett|ikke.*booking|ikke.*sikkerhets|ikke.*produksjonsmyndighet/i);
+assert.match(world.sociological_core.description,/employment-independent|Produksjonsassistent|Career-laget/i);
+assert.match(world.sociological_core.description,/ikke en plikt til å tåle mobbing|ikke en permanent identitet|ikke automatisk jobb/i);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
@@ -85,15 +86,23 @@ assert.ok(world.primary_threads.every(x=>new Set(x.beat_refs.map(ref=>Number(ref
 assert.equal(world.recurring_people_archetypes.length,6);
 assert.equal(world.private_aftermath.length,5);
 assert.equal(world.delayed_consequences.length,6);
+assert.ok(world.delayed_consequences.every(x=>Number(x.return_ref.split('/')[0])>Number(x.setup_ref.split('/')[0])));
 assert.equal(world.materialization.source_refs.length,14);
 assert.equal(new Set(world.materialization.source_refs).size,14);
 for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(streamPath+'#'));
 
-assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_crew'],world.theme_ids);
+assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_hakkekylling'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds,140);
 assert.equal(taxonomy.canonical_counts.total_role_worlds,225);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,140);
 
-console.log('Subkultur Crew authored-depth and Role World gate ok');
+const hazing=stream.storylets.find(x=>x.id==='henteoppgaven_som_ikke_finnes');
+assert.match(hazing.situation.join(' '),/sannsynligvis ikke finnes|innvielsesvits|konstruert umulighet/i);
+const next=stream.storylets.find(x=>x.id==='den_nye_som_kommer_etter_deg');
+assert.match(next.situation.join(' '),/ny person|havner under deg|sende kostnaden nedover/i);
+const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_hakkekylling');
+assert.match(finale.situation.join(' '),/sosial erfaring|ikke en plikt|permanent identitet|frikort/i);
+
+console.log('Subkultur Hakkekylling authored-depth and Role World gate ok');

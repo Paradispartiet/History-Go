@@ -1,0 +1,663 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_hakkekylling_stream",
+  "type": "leisure",
+  "title": "Hakkekylling — lav rang, syndebukkdynamikk og grenser",
+  "sociological_theme": "subkultur_hakkekylling_lav_status_syndebukk_grensearbeid_overtilpasning_sosial_rang_gjentakelse_og_bryte_moensteret_uten_a_gjoere_ydmykelse_til_identitet_eller_arbeidsrolle",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:hakkekylling"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "spoken_som_alltid_lander_samme_sted",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Når den interne spøken alltid trenger samme mål",
+      "situation": [
+        "I en sosial samling kommer den samme typen spøk tilbake hver gang noen trenger en rask latter.",
+        "Du merker at poenget sjelden er det du faktisk gjorde; det er at gruppen allerede vet hvem som er lettest å bruke som mål.",
+        "Hakkekylling som livsposisjon handler om å forstå lav intern rang uten å gjøre gjentatt ydmykelse til en naturlov eller et krav om å tåle alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si rolig at den spøken er brukt opp, og bli i rommet uten å gjøre grensen til et stort oppgjør.",
+          "effect": 1,
+          "tags": [
+            "boundary_voice",
+            "low_status_literacy"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Le høyere enn alle andre for å bevise at ingenting treffer deg.",
+          "effect": -1,
+          "tags": [
+            "self_erasure",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_spoken_som_alltid_lander_samme_sted"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "henteoppgaven_som_ikke_finnes",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker",
+      "subject": "Når testen er laget for at du ikke skal kunne lykkes",
+      "situation": [
+        "Noen sender deg for å hente en ting med et navn du aldri har hørt, og forklaringen blir vagere jo mer du spør.",
+        "Etter hvert skjønner du at gjenstanden sannsynligvis ikke finnes og at poenget er å se hvor lenge du fortsetter.",
+        "Det avgjørende er ikke å vinne testen, men å kunne stoppe en konstruert umulighet uten å gjøre egen verdighet avhengig av gruppens applaus."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp oppgaven når premisset ikke henger sammen, og spør direkte om dette bare er en innvielsesvits.",
+          "effect": 1,
+          "tags": [
+            "hazing_boundary",
+            "self_respect"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å lete lenge etter at du har forstått poenget, fordi det virker tryggere enn å avbryte.",
+          "effect": -1,
+          "tags": [
+            "compliance_spiral",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_henteoppgaven_som_ikke_finnes"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rotet_som_faar_et_navn",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre i miljøet",
+      "subject": "Når et lite rot straks får ditt navn",
+      "situation": [
+        "Etter en kveld mangler noe fra sin vanlige plass, og før noen har sett ordentlig etter kommer kommentaren om at dette sikkert var deg.",
+        "Ingen har egentlig oversikt over rekkefølgen, men anklagen fungerer fordi rollen allerede finnes i rommet.",
+        "En hakkekyllingposisjon blir sterkere når usikkerhet blir fylt med et kjent navn i stedet for med konkrete opplysninger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be gruppen gå gjennom hva som faktisk skjedde før noen bestemmer hvem som gjorde feil.",
+          "effect": 1,
+          "tags": [
+            "fact_before_blame",
+            "scapegoat_resistance"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Ta skylden med en gang for å få stemningen videre, selv om du ikke vet om du gjorde det.",
+          "effect": -1,
+          "tags": [
+            "absorbed_blame",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_rotet_som_faar_et_navn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kallenavnet_som_setter_seg",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær bekjent",
+      "subject": "Når kallenavnet begynner å erstatte deg",
+      "situation": [
+        "Et kallenavn som startet som en enkelt kommentar blir brukt av stadig flere, også av folk du knapt kjenner.",
+        "Navnet gjør det enklere å plassere deg i den lave rollen enn å forholde seg til hva du faktisk sier og gjør.",
+        "Det kan være sosialt kostbart å korrigere et navn som allerede får rommet til å le, men stillhet gjør ikke nødvendigvis bruken frivillig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk ditt eget navn konsekvent og si tydelig at kallenavnet ikke er noe andre kan ta for gitt.",
+          "effect": 1,
+          "tags": [
+            "name_boundary",
+            "identity_room"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "La alle bruke kallenavnet fordi motstand kan bli tolket som at du ikke tåler miljøet.",
+          "effect": -1,
+          "tags": [
+            "label_capture",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_kallenavnet_som_setter_seg"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ytterst_i_bildet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Når du stadig havner ytterst i rammen",
+      "situation": [
+        "På bilder, små planer og spontane avtaler ender du ofte ytterst eller får vite ting litt senere enn de andre.",
+        "Hver enkelt episode kan være tilfeldig, men mønsteret gjør det vanskelig å vite hvor mye plass du faktisk har i gruppen.",
+        "Lav rang blir særlig effektiv når den aldri uttales og derfor alltid kan forklares som et uhell."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør konkret hvordan folk ser din plass i gruppen, og vurder svaret ut fra handlingene som følger.",
+          "effect": 1,
+          "tags": [
+            "belonging_clarity",
+            "status_reading"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Jobb hardere for å være morsomst og mest tilgjengelig, slik at ingen kan begrunne å holde deg ytterst.",
+          "effect": -1,
+          "tags": [
+            "approval_overwork",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_ytterst_i_bildet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_du_burde_kunne",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker",
+      "subject": "Når kunnskap blir brukt som inngangskontroll",
+      "situation": [
+        "Noen stiller deg et detaljspørsmål om miljøets gamle historie og gjør selve svaret til en test på om du hører til.",
+        "Du vet ikke svaret, og flere venter på reaksjonen din mer enn på informasjonen.",
+        "Det er forskjell på å lære en intern historie og å måtte late som du allerede kjenner den for å slippe latter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke vet, og be om historien uten å gjøre uvitenhet til skam.",
+          "effect": 1,
+          "tags": [
+            "knowledge_without_shame",
+            "gatekeeping_resistance"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Finn på et sikkert svar og håp at selvsikkerheten teller mer enn om det stemmer.",
+          "effect": -1,
+          "tags": [
+            "bluffing_for_rank",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_sporsmalet_du_burde_kunne"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "alliert_i_enerommet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre i miljøet",
+      "subject": "Når støtten bare finnes uten publikum",
+      "situation": [
+        "En person sier alene at behandlingen av deg går for langt, men deltar i latteren så snart resten av gruppen er samlet.",
+        "Den private støtten betyr noe, men den endrer lite dersom den alltid forsvinner akkurat der mønsteret oppstår.",
+        "Hakkekyllingdynamikk lever ofte av at flere misliker den hver for seg, mens ingen vil betale den sosiale kostnaden ved å bryte rytmen sammen med andre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at privat støtte ikke er nok hvis den samme personen samtidig holder mønsteret i gang foran andre.",
+          "effect": 1,
+          "tags": [
+            "public_consistency",
+            "ally_accountability"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Godta at vedkommende egentlig er på din side og ikke be om noe som kan koste dem sosialt.",
+          "effect": -1,
+          "tags": [
+            "private_only_support",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_alliert_i_enerommet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lille_tjenesten_som_blir_fast",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær bekjent",
+      "subject": "Når den lille tjenesten alltid havner hos deg",
+      "situation": [
+        "I uformelle sammenkomster er det stadig du som blir bedt om å passe på ting, hente småting eller ordne det de andre ikke orker.",
+        "Ingen enkelt forespørsel er stor, og nettopp derfor er det vanskelig å peke på når hjelpsomhet ble til en fast plassering.",
+        "Dette er ikke Produksjonsassistent-jobben eller arrangøransvar; det er privat sosial rollefordeling som kan bli skjev uten at noen har bestemt det høyt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp når du faktisk vil, men fordel de gjentatte småoppgavene i stedet for å godta at de automatisk blir dine.",
+          "effect": 1,
+          "tags": [
+            "reciprocity_boundary",
+            "career_boundary"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Ta alt som kommer fordi nyttighet kan være den sikreste måten å beholde en plass i gruppen på.",
+          "effect": -1,
+          "tags": [
+            "usefulness_for_belonging",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_den_lille_tjenesten_som_blir_fast"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_du_ikke_var_der_for",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Når fortiden blir brukt som rangstige",
+      "situation": [
+        "En gammel episode blir fortalt igjen, og alle som var der får en ekstra plass i fellesskapet mens du blir minnet på at du kom senere.",
+        "Historien er reell og kan være viktig, men den brukes også som en enkel måte å skille de innvidde fra dem som ikke hadde mulighet til å være til stede.",
+        "Du kan respektere gruppens fortid uten å late som fravær gjør deg mindre virkelig i nåtiden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt til historien som historie, men ikke godta at tidligere tilstedeværelse avgjør all verdi nå.",
+          "effect": 1,
+          "tags": [
+            "history_without_rank",
+            "present_membership"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Overdriv hvor mye du visste om episoden fra før for å minske avstanden til de andre.",
+          "effect": -1,
+          "tags": [
+            "borrowed_memory",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_historien_du_ikke_var_der_for"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_som_kommer_etter_deg",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker",
+      "subject": "Når du plutselig ikke er nederst lenger",
+      "situation": [
+        "En ny person begynner å henge med gruppen, og nesten med en gang flyttes noen av de gamle vitsene og småtestene i den retningen.",
+        "For første gang på en stund kjenner du hvordan egen rang kan stige bare ved at noen andre havner under deg.",
+        "Det er et kritisk punkt: en hakkekyllingrolle kan opphøre, men mønsteret lever videre dersom lettelsen brukes til å sende kostnaden nedover."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La den nye slippe å arve rollen, selv om det betyr at din egen plass ikke blir sikrere med en gang.",
+          "effect": 1,
+          "tags": [
+            "cycle_breaking",
+            "downward_restraint"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Bli med på de gamle testene fordi det viser at du endelig er på innsiden.",
+          "effect": -1,
+          "tags": [
+            "passing_down_pressure",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_den_nye_som_kommer_etter_deg"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensen_som_blir_en_test",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre i miljøet",
+      "subject": "Når «tåler du ikke en spøk?» blir selve prøven",
+      "situation": [
+        "Etter at du sier fra om en kommentar, blir temaet raskt flyttet fra kommentaren til spørsmålet om du er for hårsår.",
+        "Dermed kan enhver grense brukes som nytt bevis på at du fortjener den lave rollen.",
+        "Å stå i gruppen samtidig som du avviser denne logikken er vanskeligere enn enten å eksplodere eller forsvinne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold fast ved den konkrete grensen uten å forsvare hele personligheten din eller kreve at alle må være enige.",
+          "effect": 1,
+          "tags": [
+            "boundary_persistence",
+            "social_staying_power"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Trekk grensen tilbake med en gang og gjør narr av deg selv før andre rekker å gjøre det.",
+          "effect": -1,
+          "tags": [
+            "boundary_retraction",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_grensen_som_blir_en_test"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "invitasjonen_som_forsvinner",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær bekjent",
+      "subject": "Når planen finnes, men ikke helt for deg",
+      "situation": [
+        "Du oppdager at flere skal møtes senere, selv om samtalen om planen ble ført mens du var i nærheten uten at noen spurte deg.",
+        "Ingen sier at du er uønsket, men ingen tar heller ansvar for å avklare om du faktisk var tenkt med.",
+        "Utydelig ekskludering kan holde en person i venteposisjon fordi håpet om neste invitasjon gjør hvert signal viktigere enn det burde være."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør én gang direkte om du er invitert, og la et uklart svar være informasjon nok til å lage egne planer.",
+          "effect": 1,
+          "tags": [
+            "invitation_clarity",
+            "independent_plan"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Følg med på alle signaler resten av kvelden og prøv å gjøre deg uunnværlig før de går.",
+          "effect": -1,
+          "tags": [
+            "approval_chasing",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_invitasjonen_som_forsvinner"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "syndebukken_nar_stemningen_snur",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Når gruppen trenger en enkel forklaring",
+      "situation": [
+        "Noe går dårlig i en felles aktivitet, og frustrasjonen gjør at flere raskt peker mot den personen det allerede er lettest å klandre.",
+        "Du kjenner igjen bevegelsen før det er klart hva som faktisk gikk galt.",
+        "Å avvise syndebukkrollen betyr ikke å finne en ny person å ofre; det betyr å gjøre forklaringen mer presis enn gruppens behov for rask lettelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå gjennom hendelsesforløpet konkret og stopp forsøket på å flytte hele ansvaret til én person.",
+          "effect": 1,
+          "tags": [
+            "shared_accountability",
+            "scapegoat_resistance"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Skyv ansvaret videre til en annen før gruppen rekker å samle seg om deg.",
+          "effect": -1,
+          "tags": [
+            "counter_scapegoating",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_syndebukken_nar_stemningen_snur"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_hakkekylling",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker",
+      "subject": "Hva er igjen når du nekter å gjøre lav rang til identitet?",
+      "situation": [
+        "Etter flere uker ser du tydeligere hvordan små vitser, uklare anklager, kallenavn og invitasjoner kan bygge en stabil lav posisjon uten at noen formelt har bestemt den.",
+        "Du har også sett at rollen ikke bare handler om hva andre gjør; den kan bli opprettholdt av egen overtilpasning eller ved at belastningen sendes videre til en ny person.",
+        "Hakkekylling som livsposisjon beskriver en sosial erfaring, ikke en plikt til å tåle ydmykelse, en permanent identitet eller et frikort for andre til å gjøre deg mindre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold evnen til å lese rang og gruppemønstre, men krev gjensidighet og ikke send rollen videre nedover.",
+          "effect": 1,
+          "tags": [
+            "status_literacy",
+            "cycle_breaking"
+          ],
+          "feedback": "Du gjør lav sosial rang lesbar uten å godta at ydmykelse, overtilpasning eller syndebukklogikk må styre plassen din."
+        },
+        {
+          "id": "B",
+          "label": "Gjør det å tåle mest mulig til bevis på at du endelig fortjener en høyere plass.",
+          "effect": -1,
+          "tags": [
+            "endurance_as_worth",
+            "rank_pressure"
+          ],
+          "feedback": "Valget lar den lave rollen få mer makt over selvbilde, ansvar eller hvordan belastningen sendes videre i gruppen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "hakkekylling_sesongslutt_hva_er_hakkekylling"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
