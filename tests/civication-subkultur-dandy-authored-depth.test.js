@@ -14,24 +14,24 @@ const checklist=read('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank=read('data/Civication/roleWorldThemeBank.json');
 const policy=read('data/Civication/roleWorldPolicy.json');
 
-const lifeKey='subkultur/crew';
-const lifeScope='subkultur_crew';
-const streamPath='data/Civication/narratives/leisure/subkultur_crew.json';
-const worldPath='data/Civication/roleWorlds/subkultur/subkultur_crew.json';
+const lifeKey='subkultur/dandy';
+const lifeScope='subkultur_dandy';
+const streamPath='data/Civication/narratives/leisure/subkultur_dandy.json';
+const worldPath='data/Civication/roleWorlds/subkultur/subkultur_dandy.json';
 
-const tier=badge.tiers.find(x=>x.label==='Crew');
+const tier=badge.tiers.find(x=>x.label==='Dandy');
 assert.ok(tier);
-assert.equal(tier.life_position.kind,'subculture_status');
+assert.equal(tier.life_position.kind,'alternative_life_status');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
-assert.equal(tier.career_unlock.title,'Arrangementsplanlegger');
+assert.equal(tier.career_unlock.title,'Booking- og innholdskoordinator');
 assert.equal(tier.career_unlock.policy,'direct');
 assert.equal(tier.career_unlock.role_scope,'subkultur_program_og_koordinering');
 
 const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
-assert.equal(stream.id,'subkultur_crew_stream');
-assert.deepEqual(stream.applies_when.any_tags,['subkultur:crew']);
+assert.equal(stream.id,'subkultur_dandy_stream');
+assert.deepEqual(stream.applies_when.any_tags,['subkultur:dandy']);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
@@ -60,7 +60,7 @@ const world=read(worldPath);
 assert.ok(indexed);
 assert.equal(indexed.role_scope,lifeScope);
 assert.equal(indexed.status,'role_world_complete');
-assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Crew'});
+assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Dandy'});
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
@@ -68,10 +68,10 @@ assert.ok(!audit.queue.some(x=>x.key===lifeKey));
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
 assert.equal(world.status,'role_world_complete');
-assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Crew'});
+assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Dandy'});
 assert.equal(world.materialization.no_new_runtime,true);
-assert.match(world.sociological_core.description,/employment-independent|Arrangementsplanlegger|Career-laget/i);
-assert.match(world.sociological_core.description,/ikke budsjett|ikke.*booking|ikke.*sikkerhets|ikke.*produksjonsmyndighet/i);
+assert.match(world.sociological_core.description,/employment-independent|Booking- og innholdskoordinator|Career-laget/i);
+assert.match(world.sociological_core.description,/ikke automatisk arbeid|ikke.*stylist|ikke.*profesjonell/i);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
@@ -89,11 +89,18 @@ assert.equal(world.materialization.source_refs.length,14);
 assert.equal(new Set(world.materialization.source_refs).size,14);
 for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(streamPath+'#'));
 
-assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_crew'],world.theme_ids);
+assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_dandy'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds,137);
 assert.equal(taxonomy.canonical_counts.total_role_worlds,222);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,137);
 
-console.log('Subkultur Crew authored-depth and Role World gate ok');
+const expensive=stream.storylets.find(x=>x.id==='plagget_du_ikke_har_rad_til');
+assert.match(expensive.situation.join(' '),/prisen|økonomisk|kjøpet/i);
+const photo=stream.storylets.find(x=>x.id==='den_som_ikke_vil_bli_fotografert');
+assert.match(photo.situation.join(' '),/fotograf|bildet|synlighet/i);
+const body=stream.storylets.find(x=>x.id==='kommentaren_om_kroppen');
+assert.match(body.situation.join(' '),/kropp|passform|silhuett/i);
+
+console.log('Subkultur Dandy authored-depth and Role World gate ok');

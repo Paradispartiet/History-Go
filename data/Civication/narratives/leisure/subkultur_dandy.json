@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_dandy_stream",
+  "type": "leisure",
+  "title": "Dandy — stil, smak og sosial lesbarhet",
+  "sociological_theme": "subkultur_dandy_selviscenesettelse_stil_smaksarbeid_materialkunnskap_forbruk_status_synlighet_proveniens_kroppsgrense_og_identitetsfleksibilitet_uten_automatisk_stylist_booking_eller_innholdsjobb",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:dandy"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "jakken_med_historie",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre stilkjenner",
+      "subject": "Er plagget fortsatt ditt når alle spør hvor det kommer fra?",
+      "situation": [
+        "Du bruker en eldre jakke med tydelig patina, og flere legger merke til den i løpet av kvelden.",
+        "En bekjent forteller at jakken ligner et sjeldent plagg fra en bestemt periode og begynner å fortelle historien videre som om proveniensen er sikker.",
+        "Dandy-posisjonen lever av detaljer og lesbarhet, men stil blir skjør når en god fortelling får større verdi enn det du faktisk vet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du faktisk vet om plagget og la resten være usikkert.",
+          "effect": 1,
+          "tags": [
+            "provenance_truth",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "La den mest imponerende versjonen stå fordi historien gjør antrekket mer interessant.",
+          "effect": -1,
+          "tags": [
+            "status_performance",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_jakken_med_historie"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "speilet_for_du_gar",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Hvor mye av kvelden skal avgjøres før du går ut?",
+      "situation": [
+        "Du har byttet kombinasjon flere ganger og merker at du vurderer hele kvelden ut fra hvordan uttrykket vil bli lest.",
+        "Det som begynte som glede ved form, materiale og proporsjon har blitt en lang kontrollrunde før du går.",
+        "Selviscenesettelse kan være lek og håndverk, men kan også gjøre terskelen for å møte andre unødvendig høy."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg det som kjennes riktig nok og gå ut før finjusteringen tar resten av kvelden.",
+          "effect": 1,
+          "tags": [
+            "self_presentation",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Bli hjemme litt til og fortsett til uttrykket føles umulig å misforstå.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_speilet_for_du_gar"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plagget_du_ikke_har_rad_til",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En butikkansatt",
+      "subject": "Det sitter perfekt, men prisen gjør ikke det",
+      "situation": [
+        "Du prøver et plagg som passer uttrykket ditt svært godt, men prisen er høyere enn det du har satt av til klær denne måneden.",
+        "Du vet at én synlig detalj kan få mye oppmerksomhet i miljøet, og nettopp derfor føles kjøpet mer betydningsfullt enn det egentlig er.",
+        "Dandy-status kan belønne presisjon, men økonomisk belastning er fortsatt reell selv når forbruket er estetisk begrunnet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La plagget bli igjen og noter hva det lærte deg om snitt og proporsjon.",
+          "effect": 1,
+          "tags": [
+            "consumption_boundary",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp det nå og bestem deg for å løse resten av måneden senere.",
+          "effect": -1,
+          "tags": [
+            "money_pressure",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_plagget_du_ikke_har_rad_til"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lante_frakken",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent med stor garderobe",
+      "subject": "Lånt stil krever også grenser",
+      "situation": [
+        "Du låner en frakk til en kveld fordi den passer anledningen bedre enn det du selv har.",
+        "Etterpå foreslår eieren at du bare kan beholde den noen uker til fordi «den ser mer ut som din nå».",
+        "Å dele klær kan være generøst og kreativt, men eierskap og forventning må fortsatt være tydelig når et plagg blir del av identiteten din."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lever frakken tilbake som avtalt og spør på nytt hvis du vil låne den senere.",
+          "effect": 1,
+          "tags": [
+            "borrowing_boundary",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Behold den videre uten å avtale noe fordi begge vet at du bruker den bedre.",
+          "effect": -1,
+          "tags": [
+            "identity_attachment",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_den_lante_frakken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blikket_i_doren",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person ved inngangen",
+      "subject": "Når klær blir lest før du blir kjent",
+      "situation": [
+        "Ved inngangen blir du møtt med en rask vurdering av antrekket før noen spør hvem du er.",
+        "Du slipper inn uten problem, men merker at to personer bak deg blir møtt langt kjøligere.",
+        "Stil kan gi sosial lesbarhet, men den kan også gjøre forskjellsbehandling så hverdagslig at den knapt blir kommentert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg merke til forskjellen og ikke gjør egen adgang til bevis på at vurderingen var rettferdig.",
+          "effect": 1,
+          "tags": [
+            "access_reading",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Nyt at uttrykket ditt fungerer og tenk at de andre bare burde ha forstått kodene bedre.",
+          "effect": -1,
+          "tags": [
+            "class_signals",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_blikket_i_doren"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_ble_delt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En fotograf",
+      "subject": "Når bildet blir mer kjent enn kvelden",
+      "situation": [
+        "Et bilde av antrekket ditt fra en kveld blir delt mye mer enn du hadde forventet.",
+        "Flere kommenterer uttrykket, og noen som aldri møtte deg den kvelden begynner å omtale bildet som typisk for deg.",
+        "Offentlig synlighet kan gjøre et øyeblikk til fast identitet lenge etter at du selv har gått videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La bildet være ett øyeblikk og unngå å forme neste valg bare for å gjenta responsen.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Bygg neste uttrykk rundt det folk allerede belønnet, selv om du er lei av det.",
+          "effect": -1,
+          "tags": [
+            "identity_flexibility",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_bildet_som_ble_delt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kopien_av_detaljen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En yngre stilinteressert",
+      "subject": "Når inspirasjon blir forvekslet med eierskap",
+      "situation": [
+        "En yngre person begynner å bruke en detalj du selv har gjort til en fast del av uttrykket ditt.",
+        "Andre peker raskt på likheten og spør om personen kopierer deg.",
+        "Dandy-kultur lever av sirkulasjon, referanser og små forskyvninger; status blir fort fattigere hvis enhver likhet behandles som tyveri."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at detaljer vandrer, og krediter inspirasjonskilden din når den faktisk finnes.",
+          "effect": 1,
+          "tags": [
+            "influence_credit",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Gjør likheten til et problem slik at alle forstår hvem de forbinder detaljen med først.",
+          "effect": -1,
+          "tags": [
+            "status_ownership",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_kopien_av_detaljen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagen_uten_markering",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Må du alltid være lesbar?",
+      "situation": [
+        "Du skal på en helt vanlig daglig aktivitet og har ikke behov for å markere deg visuelt.",
+        "En nær person kommenterer at du ser overraskende anonym ut og spør om alt er greit.",
+        "Når en stil blir sosialt kjent, kan fraværet av den også bli tolket som et signal du aldri mente å sende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La dagen være enkel uten å forklare det som identitetskrise.",
+          "effect": 1,
+          "tags": [
+            "identity_flexibility",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Bytt før du går fordi det føles ubehagelig at andre kan lese deg som mindre deg selv.",
+          "effect": -1,
+          "tags": [
+            "social_mask",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_dagen_uten_markering"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "skredderen_som_sier_nei",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En skredder",
+      "subject": "God form har materielle grenser",
+      "situation": [
+        "Du ber om en endring som i hodet ditt vil gjøre plagget skarpere, men skredderen mener stoffet ikke tåler inngrepet.",
+        "Du har et tydelig bilde av resultatet og blir fristet til å presse på fordi du allerede har brukt tid og penger på prosjektet.",
+        "Materialkunnskap setter grenser også for personlig uttrykk, og respekt for håndverket betyr å tåle at ideen må endres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt til materialvurderingen og finn en løsning som ikke ødelegger plagget.",
+          "effect": 1,
+          "tags": [
+            "material_respect",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Be om inngrepet likevel fordi uttrykket er viktigere enn skredderens forsiktighet.",
+          "effect": -1,
+          "tags": [
+            "craft_boundary",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_skredderen_som_sier_nei"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_billige_losningen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er poenget med en detalj ingen kan se prisen på?",
+      "situation": [
+        "Du finner en rimelig brukt løsning som visuelt gjør akkurat det du trenger, men uten navnet eller sjeldenheten som vanligvis gir status.",
+        "Ingen andre trenger å vite hva den kostet eller hvor den kom fra.",
+        "Forskjellen mellom smak og statussymbol blir tydeligst når resultatet fungerer uten at pris eller merke kan gjøre arbeidet for deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk den rimelige løsningen hvis form og funksjon faktisk fungerer.",
+          "effect": 1,
+          "tags": [
+            "taste_vs_price",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Dropp den fordi uttrykket mister verdi når andre ikke kan lese kostnaden eller sjeldenheten.",
+          "effect": -1,
+          "tags": [
+            "consumption_boundary",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_den_billige_losningen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kommentaren_om_kroppen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En stilbevisst bekjent",
+      "subject": "Når passform blir kroppsvurdering",
+      "situation": [
+        "En kommentar om passformen glir over i en vurdering av kroppen din snarere enn plagget.",
+        "Kommentaren presenteres som stilråd, men du merker at den gjør kroppen til et prosjekt som skal passe en bestemt silhuett.",
+        "Dandy-praksis kan være presis uten å gjøre kroppen til et permanent korrigeringsobjekt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Flytt samtalen tilbake til plagg, proporsjon og komfort.",
+          "effect": 1,
+          "tags": [
+            "body_boundary",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Ta kommentaren som et krav om å endre kroppen for å passe uttrykket bedre.",
+          "effect": -1,
+          "tags": [
+            "self_presentation",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_kommentaren_om_kroppen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiketten_som_ikke_stemmer",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En selger",
+      "subject": "Når varehistorien er penere enn virkeligheten",
+      "situation": [
+        "Et brukt plagg markedsføres med en eksklusiv historie, men etikett, søm og detaljer passer dårlig med påstanden.",
+        "Selgeren sier at historien er «god nok» fordi varen uansett er attraktiv.",
+        "Stilkunnskap har verdi når den kan tåle korreksjon, ikke når den bare brukes til å gjøre ting dyrere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøp bare hvis plagget er verdt prisen uten den tvilsomme historien.",
+          "effect": 1,
+          "tags": [
+            "provenance_truth",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Betal premium fordi de fleste uansett vil tro på historien.",
+          "effect": -1,
+          "tags": [
+            "market_signal",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_etiketten_som_ikke_stemmer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_ikke_vil_bli_fotografert",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker ved siden av deg",
+      "subject": "Synlighet er ikke automatisk samtykke",
+      "situation": [
+        "En fotograf vil ta et gruppebilde fordi flere antrekk fungerer godt sammen.",
+        "En av personene ved siden av deg trekker seg unna og sier at hen ikke vil på bildet.",
+        "Når stil og offentlig dokumentasjon glir sammen, blir retten til å være til stede uten å bli innhold en viktig grense."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør plass til at personen kan gå ut av bildet uten kommentar.",
+          "effect": 1,
+          "tags": [
+            "visibility_consent",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Si at man må tåle å bli fotografert når man kler seg så synlig.",
+          "effect": -1,
+          "tags": [
+            "public_attention",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_den_som_ikke_vil_bli_fotografert"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_dandy",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre stilkjenner",
+      "subject": "Hva står igjen når applausen skifter?",
+      "situation": [
+        "Etter mange kvelder og mange blikk er noen uttrykk blitt gjenkjent, andre glemt, og flere av valgene dine har kostet både tid og penger.",
+        "Det er tydeligere nå hvilke detaljer du faktisk liker, og hvilke du beholdt fordi de gjorde deg lett å lese for andre.",
+        "Dandy som livsposisjon blir bærekraftig når stil kan være disiplinert, leken og kunnskapsrik uten å kreve konstant kjøp, konstant synlighet eller fast maske."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold det du faktisk liker og la uttrykket få skifte uten å forsvare hvert skifte.",
+          "effect": 1,
+          "tags": [
+            "dandy_identity",
+            "dandy_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar stil være valgt praksis og kunnskap uten å gjøre synlighet, pris eller andres blikk til fast plikt."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved det mest gjenkjennelige fordi statusen blir svakere hvis andre må lære deg på nytt.",
+          "effect": -1,
+          "tags": [
+            "identity_flexibility",
+            "status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør uttrykket mer avhengig av rang, press eller ytre lesbarhet enn Dandy-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dandy_sesongslutt_hva_er_dandy"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

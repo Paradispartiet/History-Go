@@ -20,7 +20,7 @@ assert.equal(row.authored_depth.exact_source_ref_count,1);
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
 assert.ok(!audit.queue.some(x=>x.key===row.key));
-const unrelated=['subkultur/dandy'].map(key=>audit.positions.find(x=>x.key===key));
+const unrelated=['subkultur/deltaker'].map(key=>audit.positions.find(x=>x.key===key));
 for(const candidate of unrelated){
   assert.ok(candidate);
   assert.equal(candidate.classification,'needs_authored_depth');
