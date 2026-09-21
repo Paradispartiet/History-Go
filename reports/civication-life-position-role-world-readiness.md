@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 142 ready / 17 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 143 ready / 16 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 142
-**Multi-scene narrative foundations:** 142
-**Completed life-position Role Worlds:** 142
+**Exact governed-source matches:** 143
+**Multi-scene narrative foundations:** 143
+**Completed life-position Role Worlds:** 143
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,23 +18,22 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
