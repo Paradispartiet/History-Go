@@ -1,0 +1,1163 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "subkultur",
+  "role_scope": "subkultur_crew",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "subkultur",
+    "id": null,
+    "label": "Crew"
+  },
+  "title": "Crew",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å holde et selvorganisert fellesskap pålitelig og inkluderende når arbeidsdeling, status og uformell koordinering lett kan bli skjult plikt eller skjult myndighet",
+    "description": "Crew-verdenen behandler Crew som en employment-independent subkulturell livsposisjon: en vedvarende praksis av gjentatt bidrag, tillit, felles hukommelse, arbeidsdeling og frivillig tilhørighet. Den gir ikke automatisk ansettelse som Arrangementsplanlegger og gir heller ikke budsjett-, booking-, sikkerhets-, adgangs- eller produksjonsmyndighet. Career-laget eier konkrete jobbroller og formelle fullmakter; Crew-verdenen undersøker hva det koster å få et uformelt fellesskap til å fungere uten at vennskap, status eller pålitelighet blir omgjort til blank plikt."
+  },
+  "theme_ids": [
+    "invisible_work",
+    "loyalty_up_down",
+    "class_power",
+    "shame_reputation",
+    "social_mask",
+    "public_private_leakage",
+    "care_vs_efficiency",
+    "status_anxiety"
+  ],
+  "social_environments": [
+    "den lille arrangementskvelden der flere bidrar uten at alle har samme rolle eller synlighet",
+    "gruppechatten der informasjon, forslag og beslutninger lett glir sammen",
+    "lagerhjørnet og bilen der felles utstyr flytter seg mellom folk og krever sporbar omsorg",
+    "den private kvelden der praktiske spørsmål konkurrerer med tid som egentlig skulle være fri",
+    "møtet med en ny deltaker som ennå ikke kjenner kodene, humoren eller historien",
+    "øyeblikket der en ekstern arrangør vil ha ett raskt svar fra noen som ikke kan binde hele gruppa",
+    "fellespotten med småbeløp som gjør tillit og transparens konkret",
+    "samtalen med et medlem som vil trappe ned og dermed tester om fellesskapet faktisk er frivillig"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "gammel_crewmate",
+      "social_function": "bærer gruppas historie og normer uten å eie dem alene",
+      "class_position": "erfaren likemann med høy intern tillit",
+      "status": "høy relasjonell status",
+      "power_over_player": "kan definere hva som oppfattes som pålitelighet og lojalitet",
+      "wants": "at gruppa skal holde sammen gjennom gjensidig innsats",
+      "conceals": "at lang erfaring gjør egne vaner lette å forveksle med regler",
+      "speech_style": "fortrolig, kort og full av interne referanser",
+      "teaches_player": "at historie gir innflytelse, ikke automatisk myndighet"
+    },
+    {
+      "id": "uformell_koordinator",
+      "social_function": "samler informasjon og får praktiske ting til å henge sammen",
+      "class_position": "likemann med høy organisatorisk kapasitet",
+      "status": "middels til høy funksjonell status",
+      "power_over_player": "kan forme tempo og forventninger gjennom hva som oppsummeres og når",
+      "wants": "at ting blir gjort uten kaos",
+      "conceals": "at effektivitet noen ganger gjør forslag til kommandoer",
+      "speech_style": "presis, rask og handlingsorientert",
+      "teaches_player": "at koordinering må være tydelig om hvem som faktisk beslutter"
+    },
+    {
+      "id": "praktisk_baerebjelke",
+      "social_function": "gjør mye av det usynlige arbeidet med utstyr, rydding og små behov",
+      "class_position": "likemann med lav offentlig synlighet",
+      "status": "høy faktisk nytte men begrenset symbolsk status",
+      "power_over_player": "kan trekke tilbake innsats som resten har begynt å ta for gitt",
+      "wants": "at arbeidet fordeles og anerkjennes",
+      "conceals": "at slitasje har bygget seg opp over tid",
+      "speech_style": "nøktern, konkret og lite opptatt av image",
+      "teaches_player": "at et crew kollapser når usynlig arbeid bare blir forventet"
+    },
+    {
+      "id": "ny_deltaker",
+      "social_function": "tester om miljøets koder kan læres uten sosial ydmykelse",
+      "class_position": "nykommer med få interne bånd",
+      "status": "lav intern status",
+      "power_over_player": "gjør gruppas faktiske inngangsbarrierer synlige",
+      "wants": "å forstå hvordan man bidrar og blir regnet med",
+      "conceals": "at usikkerhet gjør små signaler om avvisning ekstra sterke",
+      "speech_style": "spørrende, direkte og observant",
+      "teaches_player": "at onboarding er kulturproduksjon"
+    },
+    {
+      "id": "medlem_som_vil_trappe_ned",
+      "social_function": "gjør frivillig exit og redusert deltakelse konkret",
+      "class_position": "etablert deltaker med lang historie men mindre kapasitet",
+      "status": "høy relasjonell verdi men synkende tilstedeværelse",
+      "power_over_player": "tester om vennskap tåler lavere tilgjengelighet",
+      "wants": "å beholde relasjoner uten full deltakelsesplikt",
+      "conceals": "at avstanden også innebærer sorg over tap av identitet",
+      "speech_style": "forsiktig, personlig og lite dramatisk",
+      "teaches_player": "at frivillighet må gjelde også når noen trenger mindre av fellesskapet"
+    },
+    {
+      "id": "naer_person_utenfor",
+      "social_function": "viser hva crewets rytme og krav gjør med livet utenfor miljøet",
+      "class_position": "partner, familie eller nær venn uten intern crew-status",
+      "status": "høy privat betydning og ingen intern myndighet",
+      "power_over_player": "kan sette grenser for tid, hjem og emosjonell kapasitet",
+      "wants": "at spilleren kan ha et sterkt miljø uten at alt annet blir resttid",
+      "conceals": "at vedkommende både kan like fellesskapet og være sliten av det",
+      "speech_style": "hverdagslig, konkret og lite imponert av interne rangeringer",
+      "teaches_player": "at tilhørighet blir bærekraftig først når den kan legges bort"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "responsibility_distribution",
+      "meaning": "om restarbeid og belastning fordeles eller samler seg hos de mest pålitelige",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "informal_authority",
+      "meaning": "om koordinering forblir tjeneste for gruppa eller blir til skjult kommandorolle",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resource_trust",
+      "meaning": "om felles utstyr og penger kan forvaltes transparent uten privat eierskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_distribution",
+      "meaning": "om kreditering følger faktisk innsats eller primært offentlig synlighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "onboarding_openness",
+      "meaning": "om nye kan lære kodene gjennom deltakelse uten å måtte tåle sosial nedvurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "voluntary_exit",
+      "meaning": "om medlemskap tåler pauser og nedtrapping uten lojalitetstest",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_private_leakage",
+      "meaning": "hvor mye gruppas praktiske behov og språk følger med inn i privat tid",
+      "runtime_binding": "existing"
+    },
+    {
+      "id": "career_boundary",
+      "meaning": "om Crew holdes som sosial livsposisjon separat fra konkrete Career-stillinger og formelle fullmakter",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Hvem tar den siste vakten? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "shared_responsibility",
+          "resource_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Hvem tar den siste vakten? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "shared_responsibility",
+          "resource_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Hvem tar den siste vakten? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "shared_responsibility",
+          "resource_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Hvem tar den siste vakten? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "shared_responsibility",
+          "resource_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Hvem eier ansvaret for felles utstyr? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "resource_stewardship",
+          "informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Hvem eier ansvaret for felles utstyr? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "resource_stewardship",
+          "informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Hvem eier ansvaret for felles utstyr? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "resource_stewardship",
+          "informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Hvem eier ansvaret for felles utstyr? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "resource_stewardship",
+          "informal_authority"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Når blir koordinering til kommando? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "informal_authority",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Når blir koordinering til kommando? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "informal_authority",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Når blir koordinering til kommando? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "informal_authority",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Når blir koordinering til kommando? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "informal_authority",
+          "onboarding_gatekeeping"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Er crewet åpent når noen ikke kjenner kodene? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "reliability_repair"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Er crewet åpent når noen ikke kjenner kodene? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "reliability_repair"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Er crewet åpent når noen ikke kjenner kodene? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "reliability_repair"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Er crewet åpent når noen ikke kjenner kodene? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "onboarding_gatekeeping",
+          "reliability_repair"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Hva gjør dere når noen svikter en avtale? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "reliability_repair",
+          "friendship_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Hva gjør dere når noen svikter en avtale? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "reliability_repair",
+          "friendship_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Hva gjør dere når noen svikter en avtale? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "reliability_repair",
+          "friendship_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Hva gjør dere når noen svikter en avtale? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "reliability_repair",
+          "friendship_obligation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Er vennskap det samme som tilgjengelighet? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "friendship_obligation",
+          "collective_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Er vennskap det samme som tilgjengelighet? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "friendship_obligation",
+          "collective_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Er vennskap det samme som tilgjengelighet? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "friendship_obligation",
+          "collective_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Er vennskap det samme som tilgjengelighet? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "friendship_obligation",
+          "collective_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Hvem eier et uttrykk som er blitt felles? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "collective_identity",
+          "money_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#stilen_som_alle_kaller_var"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Hvem eier et uttrykk som er blitt felles? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "collective_identity",
+          "money_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#stilen_som_alle_kaller_var"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Hvem eier et uttrykk som er blitt felles? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "collective_identity",
+          "money_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#stilen_som_alle_kaller_var"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Hvem eier et uttrykk som er blitt felles? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "collective_identity",
+          "money_transparency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#stilen_som_alle_kaller_var"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Små penger krever stor klarhet Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "money_transparency",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Små penger krever stor klarhet Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "money_transparency",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Små penger krever stor klarhet Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "money_transparency",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Små penger krever stor klarhet Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "money_transparency",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Kan du representere alle? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "representation_boundary",
+          "credit_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#du_kan_vel_love_det_for_oss"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Kan du representere alle? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "representation_boundary",
+          "credit_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#du_kan_vel_love_det_for_oss"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Kan du representere alle? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "representation_boundary",
+          "credit_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#du_kan_vel_love_det_for_oss"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Kan du representere alle? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "representation_boundary",
+          "credit_invisible_work"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#du_kan_vel_love_det_for_oss"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Synlighet og faktisk innsats er ikke det samme Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "credit_invisible_work",
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Synlighet og faktisk innsats er ikke det samme Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "credit_invisible_work",
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Synlighet og faktisk innsats er ikke det samme Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "credit_invisible_work",
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Synlighet og faktisk innsats er ikke det samme Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "credit_invisible_work",
+          "public_private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Når følger crewet med hjem? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "public_private_boundary",
+          "voluntary_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Når følger crewet med hjem? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "public_private_boundary",
+          "voluntary_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Når følger crewet med hjem? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "public_private_boundary",
+          "voluntary_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Når følger crewet med hjem? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "public_private_boundary",
+          "voluntary_exit"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Tilhørighet må tåle mindre tilstedeværelse Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "voluntary_exit",
+          "culture_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Tilhørighet må tåle mindre tilstedeværelse Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "voluntary_exit",
+          "culture_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Tilhørighet må tåle mindre tilstedeværelse Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "voluntary_exit",
+          "culture_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Tilhørighet må tåle mindre tilstedeværelse Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "voluntary_exit",
+          "culture_transmission"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Det dere belønner blir kultur Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "culture_transmission",
+          "crew_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Det dere belønner blir kultur Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "culture_transmission",
+          "crew_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Det dere belønner blir kultur Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "culture_transmission",
+          "crew_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Det dere belønner blir kultur Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "culture_transmission",
+          "crew_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva holder gruppa sammen når ingen tvinges? Morgenen gjør den sosiale forventningen synlig før noen har tatt eierskap til resten av dagen.",
+        "thread_ids": [
+          "crew_identity",
+          "shared_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva holder gruppa sammen når ingen tvinges? Midt på dagen blir det tydelig hvem som bærer informasjon, arbeid eller forventning, og hvem som faktisk kan si nei.",
+        "thread_ids": [
+          "crew_identity",
+          "shared_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva holder gruppa sammen når ingen tvinges? Ettermiddagen gjør forskjellen mellom frivillig bidrag og uformell plikt til et konkret valg.",
+        "thread_ids": [
+          "crew_identity",
+          "shared_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva holder gruppa sammen når ingen tvinges? Kvelden viser den private konsekvensen for tillit, tilhørighet, omdømme eller kapasitet uten å gjøre Crew til en jobbrolle.",
+        "thread_ids": [
+          "crew_identity",
+          "shared_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "shared_responsibility",
+      "description": "Hvordan restarbeid og belastning fordeles uten at pålitelighet blir permanent plikt for de samme.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "resource_stewardship",
+      "description": "Hvordan felles utstyr kan ha sporbar omsorg uten at oversikt blir privat eierskap.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "informal_authority",
+      "description": "Hvordan koordinering kan hjelpe gruppa uten å bli til skjult kommandorolle.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "onboarding_gatekeeping",
+      "description": "Hvordan interne koder beskytter identitet uten å gjøre nye deltakere avhengige av ydmykelse.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "reliability_repair",
+      "description": "Hvordan brudd på avtaler repareres uten at skam blir gruppas viktigste styringsmiddel.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "friendship_obligation",
+      "description": "Hvordan vennskap og gjensidighet kan tåle et nei uten å bli sosialt regnskap.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "collective_identity",
+      "description": "Hvordan estetikk og historie eies kollektivt samtidig som konkrete bidrag kan krediteres.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "money_transparency",
+      "description": "Hvordan små fellesmidler holdes forklarlige uten å skape uformelt budsjettmandat.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "representation_boundary",
+      "description": "Hvordan et crew kan ha kontaktpersoner uten at én deltaker automatisk kan binde alle andre.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "credit_invisible_work",
+      "description": "Hvordan usynlig innsats blir sett og husket før de mest synlige samler all status.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "public_private_boundary",
+      "description": "Hvordan crew-livet holdes sterkt uten at all privat tid blir tilgjengelig for gruppa.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "voluntary_exit",
+      "description": "Hvordan tilhørighet forblir frivillig når noen vil trappe ned eller forlate praksisen.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "culture_transmission",
+      "description": "Hvordan tone, humor og reaksjoner lærer nyere deltakere hva gruppa faktisk belønner.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "crew_identity",
+      "description": "Hvordan Crew som livsposisjon bygges av gjentatt bidrag og tillit uten å bli automatisk arbeidsrolle eller formell myndighet.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "paalitelighet_blir_plikt",
+      "description": "Den som alltid rydder eller ordner kan bli fanget av sin egen pålitelighet hvis forventningen aldri forhandles.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt",
+        "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp",
+        "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+      ]
+    },
+    {
+      "id": "oversikt_blir_myndighet",
+      "description": "Kontroll på utstyr, penger eller chat kan sakte bli sosial myndighet hvis gruppa slutter å skille informasjon fra beslutning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang",
+        "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando",
+        "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten"
+      ]
+    },
+    {
+      "id": "gatekeeping_blir_kultur",
+      "description": "Hvordan nye behandles blir raskt kopiert og gjort til normal kultur av de som kommer etter.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet",
+        "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen"
+      ]
+    },
+    {
+      "id": "usynlig_arbeid_blir_exit",
+      "description": "Manglende kreditering kan gjøre at praktiske bærebjelker gradvis trekker seg bort uten stort brudd.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten",
+        "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned"
+      ]
+    },
+    {
+      "id": "crew_lekkes_inn_i_privaten",
+      "description": "Når alle praktiske spørsmål får adgang til privat tid, blir fellesskapet vanskeligere å velge aktivt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning",
+        "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat",
+        "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "restarbeid_blir_standard",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "capacity"
+      ]
+    },
+    {
+      "id": "utstyrsoversikt_blir_kontroll",
+      "setup_ref": "2/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "trust",
+        "reputation"
+      ]
+    },
+    {
+      "id": "chatmakt_blir_representasjon",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/afternoon",
+      "domains": [
+        "authority",
+        "relationship"
+      ]
+    },
+    {
+      "id": "gatekeeping_blir_arv",
+      "setup_ref": "4/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "manglende_kreditering_blir_tilbaketrekning",
+      "setup_ref": "10/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "privatgrense_blir_baerekraft",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "capacity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/subkultur_crew.json#siste_vakt",
+      "data/Civication/narratives/leisure/subkultur_crew.json#utstyret_som_gar_pa_rundgang",
+      "data/Civication/narratives/leisure/subkultur_crew.json#chatten_som_blir_kommando",
+      "data/Civication/narratives/leisure/subkultur_crew.json#den_nye_ved_bordet",
+      "data/Civication/narratives/leisure/subkultur_crew.json#den_som_ikke_dukket_opp",
+      "data/Civication/narratives/leisure/subkultur_crew.json#vennskap_og_forventning",
+      "data/Civication/narratives/leisure/subkultur_crew.json#stilen_som_alle_kaller_var",
+      "data/Civication/narratives/leisure/subkultur_crew.json#fellespotten",
+      "data/Civication/narratives/leisure/subkultur_crew.json#du_kan_vel_love_det_for_oss",
+      "data/Civication/narratives/leisure/subkultur_crew.json#hvem_far_navnet_pa_plakaten",
+      "data/Civication/narratives/leisure/subkultur_crew.json#privatkvelden_som_blir_riggprat",
+      "data/Civication/narratives/leisure/subkultur_crew.json#den_som_vil_trappe_ned",
+      "data/Civication/narratives/leisure/subkultur_crew.json#den_yngre_som_kopierer_tonen",
+      "data/Civication/narratives/leisure/subkultur_crew.json#sesongslutt_hva_er_crew"
+    ]
+  }
+}

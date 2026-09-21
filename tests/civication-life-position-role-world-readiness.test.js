@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 135,
-  needs_authored_depth: 24,
+  ready: 136,
+  needs_authored_depth: 23,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 135);
+assert.equal(audit.summary.completed_life_position_role_worlds, 136);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 15);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 135);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 135);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 136);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 136);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
