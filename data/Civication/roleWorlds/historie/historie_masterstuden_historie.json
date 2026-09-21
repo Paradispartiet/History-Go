@@ -1,0 +1,1160 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_masterstuden_historie",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "masterstuden_historie",
+    "label": "Masterstuden"
+  },
+  "title": "Masterstuden",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjennomføre et selvstendig historiefaglig masterarbeid gjennom problemstilling, kildekritikk, metode, veiledning, arkiv og revisjon uten at avansert studentarbeid tas som ferdig grad, forskerrolle, doktorgradsopptak eller institusjonell ekspertmyndighet",
+    "description": "Masterstuden-verdenen behandler den canonicale `Masterstuden`-posisjonen som en employment-independent education_stage. Spilleren arbeider med problemstilling, kildekritikk, metodebeskrivelse, litteraturuenighet, arkivarbeid, kapitler, medstudentrespons, fristpress, referanserevisjon og selvstendig konklusjon. Rollen gir ingen automatisk fullført mastergrad, forskerstilling, doktorgradsopptak, stipendiatstatus, undervisningsmyndighet eller institusjonell talerett. Den canonicale labelen beholdes uendret i dette sporet, og ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "invisible_work",
+    "shame_reputation",
+    "numerical_control",
+    "public_private_leakage",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "problemstillingsarbeidet der et interessant tema må bli et avgrenset spørsmål",
+    "kildearbeidet der et godt dokument fortsatt må vurderes etter situasjon og avsender",
+    "metodekapitlet der den faktiske arbeidsprosessen må beskrives sannere enn den opprinnelige planen",
+    "veiledningen der tidligere tidsbruk ikke automatisk rettferdiggjør å beholde alt materiale",
+    "litteraturgjennomgangen der faglig uenighet må rekonstrueres før den brukes",
+    "arkivdagen der fravær av funn fortsatt påvirker hva studenten vet om materialet",
+    "medstudentlesingen der en enkel innvending kan synliggjøre skjulte antakelser",
+    "sluttfasen der frist, søvn, referanser og nøktern konklusjon konkurrerer om oppmerksomheten"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "veileder",
+      "social_function": "utfordrer problemstilling, avgrensning og metode uten å eie studentens endelige argument",
+      "class_position": "fagperson med avgrenset veiledningsmandat",
+      "status": "høy situasjonell fagautoritet",
+      "power_over_player": "kan gjøre urealistisk bredde og svake metodevalg tydelige",
+      "wants": "at oppgaven blir gjennomførbar og etterprøvbar",
+      "conceals": "at erfaring gjør kutt lettere å foreslå enn å gjennomføre",
+      "speech_style": "avgrensende, konkret og spørsmålssentrert",
+      "teaches_player": "at mindre materiale kan gi bedre historiefaglig arbeid"
+    },
+    {
+      "id": "medstudent",
+      "social_function": "gir likemannslesing og oppdager antakelser som har blitt usynlige for forfatteren",
+      "class_position": "student på tilsvarende nivå",
+      "status": "lav formell, høy lokal relevans",
+      "power_over_player": "kan skape faglig friksjon uten vurderingsmyndighet",
+      "wants": "gjensidig hjelp og lesbar argumentasjon",
+      "conceals": "at egen usikkerhet også er stor",
+      "speech_style": "direkte, konkret og tekstnær",
+      "teaches_player": "at et enkelt spørsmål kan være viktigere enn et langt forsvar"
+    },
+    {
+      "id": "seminarleder",
+      "social_function": "tester selvstendig bidrag og problemstilling i et offentlig, men fortsatt pedagogisk rom",
+      "class_position": "undervisningsrolle med avgrenset vurderingsmakt",
+      "status": "moderat til høy faglig status",
+      "power_over_player": "kan gjøre overdrevet originalitetsretorikk synlig",
+      "wants": "at studenten kan forklare eget bidrag nøkternt",
+      "conceals": "at ord som originalitet ofte oppfattes større enn de menes",
+      "speech_style": "presis, spørsmålsdrevet og lite opptatt av pynt",
+      "teaches_player": "at selvstendighet ikke krever å være først med hele temaet"
+    },
+    {
+      "id": "arkivar",
+      "social_function": "hjelper studenten å forstå materialets orden, hull og søkegrenser",
+      "class_position": "institusjonell kildeforvalter",
+      "status": "høy lokal kunnskap om samlingen",
+      "power_over_player": "kan forklare katalogstruktur og materialbegrensninger uten å bestemme konklusjonen",
+      "wants": "at materialet brukes med riktig proveniens og forventninger",
+      "conceals": "at enkelte hull først blir synlige gjennom faktisk søk",
+      "speech_style": "praktisk, dokumentorientert og konkret",
+      "teaches_player": "at en resultatløs arkivdag kan gi metodisk informasjon"
+    },
+    {
+      "id": "naer_person",
+      "social_function": "viser hvordan oppgavepress påvirker privat identitet og samtale",
+      "class_position": "partner, familie eller nær venn uten akademisk rolle",
+      "status": "høy privat betydning",
+      "power_over_player": "kan gjøre det synlig når oppgaven har overtatt hele dagsformen",
+      "wants": "kontakt der framdrift ikke er eneste mål på om dagen var god",
+      "conceals": "at støtte kan bli slitsom når prosjektet alltid er til stede",
+      "speech_style": "personlig, direkte og lite opptatt av akademisk status",
+      "teaches_player": "at masterfasen er en del av livet, ikke hele personen"
+    },
+    {
+      "id": "tidligere_masterstudent",
+      "social_function": "normaliserer at en ferdig oppgave kan være solid uten å gjøre studenten til forsker eller ekspert",
+      "class_position": "person som har gjennomført samme utdanningsfase",
+      "status": "moderat erfaringsautoritet uten institusjonell myndighet",
+      "power_over_player": "kan avdramatisere perfeksjonisme og sluttfasestress",
+      "wants": "at studenten leverer et redelig og avgrenset arbeid",
+      "conceals": "at vanskelighetene i egen sluttfase blir lettere å undervurdere i ettertid",
+      "speech_style": "nøktern, praktisk og erfaringsbasert",
+      "teaches_player": "at ferdig nok og faglig redelig kan være bedre enn uendelig utvidelse"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "question_vs_scope",
+      "meaning": "om problemstillingen forblir undersøkbart avgrenset når nye spor dukker opp",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_vs_confirmation",
+      "meaning": "om kilder vurderes kritisk også når de støtter studentens foretrukne tese",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "method_vs_presentation",
+      "meaning": "om metodebeskrivelsen følger den faktiske prosessen i stedet for en penere idealversjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "guidance_vs_sunk_cost",
+      "meaning": "om veiledning kan føre til kutt selv etter stor tidligere investering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "description_vs_argument",
+      "meaning": "om materialrik tekst faktisk kobles til problemstilling og eget resonnement",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "deadline_vs_capacity",
+      "meaning": "om fristpress håndteres med prioritering uten å gjøre søvn til permanent reservekapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conclusion_vs_attachment",
+      "meaning": "om den endelige konklusjonen får følge materialet selv når den blir mindre dramatisk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "education_vs_professional_status",
+      "meaning": "om Masterstuden holdes separat fra ferdig grad, forskerrolle, doktorgradsopptak og institusjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Spørsmålet blir større for hver uke Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "research_question",
+          "source_criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Spørsmålet blir større for hver uke Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "research_question",
+          "source_criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Spørsmålet blir større for hver uke Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "research_question",
+          "source_criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Spørsmålet blir større for hver uke Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "research_question",
+          "source_criticism"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Ett dokument passer tesen nesten for godt Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "source_criticism",
+          "method_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Ett dokument passer tesen nesten for godt Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "source_criticism",
+          "method_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Ett dokument passer tesen nesten for godt Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "source_criticism",
+          "method_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Ett dokument passer tesen nesten for godt Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "source_criticism",
+          "method_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Metodekapitlet lover mer systematikk enn arbeidsprosessen har hatt Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "method_truth",
+          "supervision_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Metodekapitlet lover mer systematikk enn arbeidsprosessen har hatt Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "method_truth",
+          "supervision_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Metodekapitlet lover mer systematikk enn arbeidsprosessen har hatt Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "method_truth",
+          "supervision_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Metodekapitlet lover mer systematikk enn arbeidsprosessen har hatt Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "method_truth",
+          "supervision_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du får beskjed om at prosjektet fortsatt er for bredt Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "supervision_scope",
+          "literature_disagreement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du får beskjed om at prosjektet fortsatt er for bredt Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "supervision_scope",
+          "literature_disagreement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du får beskjed om at prosjektet fortsatt er for bredt Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "supervision_scope",
+          "literature_disagreement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du får beskjed om at prosjektet fortsatt er for bredt Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "supervision_scope",
+          "literature_disagreement"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: To historikere bygger helt forskjellige forklaringer Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "literature_disagreement",
+          "negative_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sekundarlitteraturen_som_sier_ulikt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: To historikere bygger helt forskjellige forklaringer Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "literature_disagreement",
+          "negative_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sekundarlitteraturen_som_sier_ulikt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: To historikere bygger helt forskjellige forklaringer Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "literature_disagreement",
+          "negative_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sekundarlitteraturen_som_sier_ulikt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: To historikere bygger helt forskjellige forklaringer Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "literature_disagreement",
+          "negative_evidence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sekundarlitteraturen_som_sier_ulikt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Seks timer gir nesten ingenting du kan bruke Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "negative_evidence",
+          "analysis_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#arkivdagen_uten_funn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Seks timer gir nesten ingenting du kan bruke Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "negative_evidence",
+          "analysis_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#arkivdagen_uten_funn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Seks timer gir nesten ingenting du kan bruke Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "negative_evidence",
+          "analysis_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#arkivdagen_uten_funn"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Seks timer gir nesten ingenting du kan bruke Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "negative_evidence",
+          "analysis_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#arkivdagen_uten_funn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du har mange kilder, men lite eget argument Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "analysis_boundary",
+          "peer_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kapitlet_som_bare_er_referat"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du har mange kilder, men lite eget argument Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "analysis_boundary",
+          "peer_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kapitlet_som_bare_er_referat"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du har mange kilder, men lite eget argument Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "analysis_boundary",
+          "peer_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kapitlet_som_bare_er_referat"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du har mange kilder, men lite eget argument Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "analysis_boundary",
+          "peer_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kapitlet_som_bare_er_referat"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Et enkelt spørsmål avdekker et hull i argumentet Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "peer_revision",
+          "deadline_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#medstudenten_som_ser_noe_du_ikke_saa"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Et enkelt spørsmål avdekker et hull i argumentet Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "peer_revision",
+          "deadline_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#medstudenten_som_ser_noe_du_ikke_saa"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Et enkelt spørsmål avdekker et hull i argumentet Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "peer_revision",
+          "deadline_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#medstudenten_som_ser_noe_du_ikke_saa"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Et enkelt spørsmål avdekker et hull i argumentet Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "peer_revision",
+          "deadline_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#medstudenten_som_ser_noe_du_ikke_saa"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Planen ligger etter og søvn ser ut som den enkleste reservekapasiteten Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "deadline_capacity",
+          "independent_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Planen ligger etter og søvn ser ut som den enkleste reservekapasiteten Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "deadline_capacity",
+          "independent_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Planen ligger etter og søvn ser ut som den enkleste reservekapasiteten Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "deadline_capacity",
+          "independent_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Planen ligger etter og søvn ser ut som den enkleste reservekapasiteten Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "deadline_capacity",
+          "independent_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Du blir spurt hva som egentlig er ditt eget bidrag Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "independent_contribution",
+          "citation_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Du blir spurt hva som egentlig er ditt eget bidrag Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "independent_contribution",
+          "citation_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Du blir spurt hva som egentlig er ditt eget bidrag Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "independent_contribution",
+          "citation_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Du blir spurt hva som egentlig er ditt eget bidrag Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "independent_contribution",
+          "citation_correction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Du oppdager en feil i en referanse sent i prosessen Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "citation_correction",
+          "private_identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Du oppdager en feil i en referanse sent i prosessen Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "citation_correction",
+          "private_identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Du oppdager en feil i en referanse sent i prosessen Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "citation_correction",
+          "private_identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Du oppdager en feil i en referanse sent i prosessen Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "citation_correction",
+          "private_identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Hver samtale handler om hvor langt du har kommet Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "private_identity_boundary",
+          "conclusion_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Hver samtale handler om hvor langt du har kommet Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "private_identity_boundary",
+          "conclusion_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Hver samtale handler om hvor langt du har kommet Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "private_identity_boundary",
+          "conclusion_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Hver samtale handler om hvor langt du har kommet Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "private_identity_boundary",
+          "conclusion_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Materialet peker mot et mindre dramatisk svar enn du håpet Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "conclusion_discipline",
+          "master_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Materialet peker mot et mindre dramatisk svar enn du håpet Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "conclusion_discipline",
+          "master_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Materialet peker mot et mindre dramatisk svar enn du håpet Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "conclusion_discipline",
+          "master_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Materialet peker mot et mindre dramatisk svar enn du håpet Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "conclusion_discipline",
+          "master_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva står igjen etter en hel oppgavefase? Morgenen etablerer hva studenten faktisk vet, har tid til og kan dokumentere før prestasjonspress påvirker valgene.",
+        "thread_ids": [
+          "master_identity",
+          "research_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva står igjen etter en hel oppgavefase? Midt på dagen møter oppgavearbeidet kilder, veiledning, medstudenter, arkiv eller vurderingsrammer.",
+        "thread_ids": [
+          "master_identity",
+          "research_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva står igjen etter en hel oppgavefase? Ettermiddagen gjør forskjellen mellom selvstendig masterarbeid og statusdrevet overdrivelse til et konkret valg.",
+        "thread_ids": [
+          "master_identity",
+          "research_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva står igjen etter en hel oppgavefase? Kvelden viser hva valget etterlater i kildeintegritet, arbeidskapasitet, privat identitet eller oppgavens faglige bærekraft.",
+        "thread_ids": [
+          "master_identity",
+          "research_question"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "research_question",
+      "description": "Om problemstillingen holdes liten nok til å kunne undersøkes presist innen masterrammen.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "source_criticism",
+      "description": "Om attraktive kilder fortsatt vurderes etter avsender, formål, situasjon og representativitet.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "method_truth",
+      "description": "Om metodekapitlet beskriver den faktiske arbeidsprosessen og hvordan den har endret seg.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "supervision_scope",
+      "description": "Om veiledning kan føre til reell avgrensning uten at tidligere tidsbruk blir argument for å beholde alt.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "literature_disagreement",
+      "description": "Om faglig uenighet rekonstrueres før litteraturen brukes som støtte.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "negative_evidence",
+      "description": "Om dager uten tydelige funn fortsatt dokumenteres som kunnskap om materialets grenser.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "analysis_boundary",
+      "description": "Om detaljert framstilling kobles tydelig til problemstillingen og et eget argument.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "peer_revision",
+      "description": "Om medstudenters spørsmål kan synliggjøre antakelser som egen nærhet til materialet har skjult.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "deadline_capacity",
+      "description": "Om fristpress håndteres med prioritering og faktisk kapasitet fremfor systematisk søvnkutt.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "independent_contribution",
+      "description": "Om selvstendig bidrag beskrives konkret uten å overdrive nyhet eller faglig rekkevidde.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "citation_correction",
+      "description": "Om feil i referanser og påstandsstyrke faktisk repareres sent i prosessen.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "private_identity_boundary",
+      "description": "Om masteroppgaven kan være viktig uten å bli hele selvbildet og privatlivet.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "conclusion_discipline",
+      "description": "Om konklusjonen får bli så sterk som materialet tåler, selv når svaret blir mindre dramatisk.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "master_identity",
+      "description": "Om den canonicale Masterstuden-posisjonen holdes separat fra ferdig grad, forskerrolle og doktorgradsstatus.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "bredde_blir_ufullforbarhet",
+      "description": "Når hvert interessant spor blir del av hovedoppgaven, kan masterarbeidet bli stadig større og stadig vanskeligere å avslutte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper",
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen"
+      ]
+    },
+    {
+      "id": "bekreftelse_blir_kildeblindhet",
+      "description": "Kilder som passer godt kan gradvis få svakere kildekritisk behandling enn kilder som utfordrer tesen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut",
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt"
+      ]
+    },
+    {
+      "id": "metode_blir_fasade",
+      "description": "En ryddig metodebeskrivelse kan bli stående etter at den faktiske prosessen har endret seg vesentlig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker",
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer"
+      ]
+    },
+    {
+      "id": "frist_blir_selvbelastning",
+      "description": "Etterslep kan gjøre søvn og privat oppmerksomhet til skjulte ressurser som stadig tas fra framtidig kapasitet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid",
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet"
+      ]
+    },
+    {
+      "id": "avansert_studentarbeid_blir_status",
+      "description": "En sterk masteroppgave kan gjøre det fristende å omtale studentfasen som ferdig grad eller forskerstatus før formelle forhold finnes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt",
+        "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "problemstilling_blir_veiledningskutt",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kildekritikk_blir_konklusjonsdisiplin",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "reputation",
+        "identity"
+      ]
+    },
+    {
+      "id": "metodetroverdighet_blir_referanserevisjon",
+      "setup_ref": "3/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "litteraturuenighet_blir_selvstendig_bidrag",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "fristpress_blir_privatrestitusjon",
+      "setup_ref": "9/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "psyche",
+        "relationship"
+      ]
+    },
+    {
+      "id": "selvstendig_bidrag_blir_formell_grense",
+      "setup_ref": "10/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#problemstillingen_som_glipper",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kilden_som_ser_for_perfekt_ut",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#metoden_du_egentlig_ikke_bruker",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#veiledningen_som_kutter_halve_planen",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sekundarlitteraturen_som_sier_ulikt",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#arkivdagen_uten_funn",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#kapitlet_som_bare_er_referat",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#medstudenten_som_ser_noe_du_ikke_saa",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fristen_som_blir_til_nattearbeid",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#ordet_originalt",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#fotnoten_som_ikke_stemmer",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#nar_oppgaven_blir_hele_selvbildet",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#konklusjonen_som_ikke_ble_som_planlagt",
+      "data/Civication/narratives/leisure/historie_masterstuden_historie.json#sesongslutt_hva_er_masterstuden"
+    ]
+  }
+}
