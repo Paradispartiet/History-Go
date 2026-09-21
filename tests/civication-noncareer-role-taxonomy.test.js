@@ -171,16 +171,18 @@ vm.runInContext(
 assert.equal(relationshipSandbox.window.CivicationRelationshipEngine.STAGE_BY_LEVEL.length, 6,
   'relasjonssystemet skal fortsatt eie seks vennskapsstadier separat fra livsposisjoner');
 
-assert.equal(roleWorldIndex.roles.length, 217, 'Role World-indeksen skal ha 85 karriereverdener + 132 life-position worlds');
+assert.equal(roleWorldIndex.roles.length, 218, 'Role World-indeksen skal ha 85 karriereverdener + 133 life-position worlds');
 assert.ok(roleWorldIndex.roles.every((role) => role.status === 'role_world_complete'));
 const careerRoleWorlds = roleWorldIndex.roles.filter((role) => role.subject_type !== 'life_position');
 const lifePositionWorlds = roleWorldIndex.roles.filter((role) => role.subject_type === 'life_position');
 assert.equal(careerRoleWorlds.length, 85, 'karriereverdener skal fortsatt være nøyaktig 85');
-assert.equal(lifePositionWorlds.length, 132, '132 canonical life-position worlds skal være materialisert, nå også Sport Klubbspiller som egen employment-independent club_participation');
+assert.equal(lifePositionWorlds.length, 133, '133 canonical life-position worlds skal være materialisert, nå også Sport Konkurranseutøver som egen employment-independent competition_practice');
 const lifeWorldByKey = new Map(lifePositionWorlds.map((row) => [row.life_position_key, row]));
 assert.deepEqual(lifeWorldByKey.get('subkultur/gangster').life_position_ref, { badge_id: 'subkultur', id: null, label: 'Gangster' });
 assert.deepEqual(lifeWorldByKey.get('sport/supporter').life_position_ref, { badge_id: 'sport', id: 'supporter', label: 'Supporter' });
 assert.equal(lifeWorldByKey.get('sport/supporter').role_scope, 'sport_supporter');
+assert.deepEqual(lifeWorldByKey.get('sport/konkurranseutover').life_position_ref, { badge_id: 'sport', id: 'konkurranseutover', label: 'Konkurranseutøver' });
+assert.equal(lifeWorldByKey.get('sport/konkurranseutover').role_scope, 'sport_konkurranseutover');
 assert.deepEqual(lifeWorldByKey.get('sport/sondagsutover').life_position_ref, { badge_id: 'sport', id: 'sondagsutover', label: 'Søndagsutøver' });
 assert.equal(lifeWorldByKey.get('sport/sondagsutover').role_scope, 'sport_sondagsutover');
 assert.deepEqual(lifeWorldByKey.get('sport/tribunesliter').life_position_ref, { badge_id: 'sport', id: 'tribunesliter', label: 'Tribunesliter' });
@@ -355,7 +357,7 @@ assert.deepEqual(lifeWorldByKey.get('scenekunst/premieregjenger').life_position_
 assert.equal(lifeWorldByKey.get('scenekunst/premieregjenger').role_scope, 'scenekunst_premieregjenger');
 assert.deepEqual(lifeWorldByKey.get('scenekunst/teatergjenganger').life_position_ref, { badge_id: 'scenekunst', id: 'teatergjenganger', label: 'Teatergjenganger' });
 assert.equal(lifeWorldByKey.get('scenekunst/teatergjenganger').role_scope, 'scenekunst_teatergjenganger');
-assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 217, career_role_worlds: 85, life_position_role_worlds: 132 });
+assert.deepEqual(roleWorldIndex.summary, { role_worlds_total: 218, career_role_worlds: 85, life_position_role_worlds: 133 });
 assert.equal(roleModelManifest.files.length, 293,
   'roleModel-manifestet er authored inventory og skal ikke forveksles med spillerrolle-antallet');
 assert.equal(scenarioPeople.summary.role_model_file_count, 293);
@@ -382,8 +384,8 @@ const expectedCounts = {
   life_circumstance_option_values: 18,
   relationship_stages: 6,
   career_role_worlds: 85,
-  life_position_role_worlds: 132,
-  total_role_worlds: 217,
+  life_position_role_worlds: 133,
+  total_role_worlds: 218,
   role_model_manifest_files: 293,
   canonical_scenario_role_models: 287,
   shadowed_role_models: 6,
@@ -402,4 +404,4 @@ assert.deepEqual(taxonomy.role_world_rollout_boundary.allowed_subject_classes,
   ['career_role', 'life_position']);
 assert.equal(taxonomy.role_world_rollout_boundary.mass_materialization_allowed, false);
 
-console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 132 life-position worlds / layers remain separate');
+console.log('civication non-career role taxonomy ok: 199 selectable life positions / 85 career Role Worlds + 133 life-position worlds / layers remain separate');
