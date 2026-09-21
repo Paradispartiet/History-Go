@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_mosjonist_stream",
+  "type": "leisure",
+  "title": "Mosjonist — hverdagsbevegelse, kontinuitet og lav terskel",
+  "sociological_theme": "sport_mosjonist_hverdagsbevegelse_lavterskel_rytme_tempo_aktivitetsdata_utstyr_pauser_tilgang_kroppssignaler_hverdagsaktivitet_partner_arrangement_rollegrenser_uten_konkurranse_klubb_trener_eller_profesjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "sport:mosjonist"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "liten_terskel",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Litt bevegelse kan ha egen verdi",
+      "situation": [
+        "Du har en travel dag og kjenner motstand mot å komme i gang.",
+        "En kort økt kan holde vanen levende selv når du ikke har kapasitet til mer.",
+        "Hvis bare store økter teller, blir lavterskel aktivitet lett skjøvet bort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg en mengde som passer dagen og gjennomfør den uten å kreve maksimal innsats.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "small_step_vs_all_or_nothing"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Avlys alt fordi en kort økt ikke teller som ordentlig mosjon.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "small_step_vs_all_or_nothing"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "small_step_vs_all_or_nothing"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rytme_med_rom",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Mosjonspartneren",
+      "subject": "Rytme skal støtte, ikke straffe",
+      "situation": [
+        "Du har noen faste dager der bevegelse passer godt inn.",
+        "En enkel rytme gjør det lettere å starte uten mye planlegging.",
+        "Sykdom, omsorg og arbeid kan likevel kreve endring fra uke til uke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk rytmen som støtte og juster når livet krever det.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "routine_vs_compulsion"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Hold planen uansett og behandle avvik som tegn på svak disiplin.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "routine_vs_compulsion"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "routine_vs_compulsion"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tempo_uten_rang",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Mosjonspartneren",
+      "subject": "Ulik fart trenger ikke bli rang",
+      "situation": [
+        "Du trener sammen med en person som holder et annet tempo.",
+        "Dagsform og kapasitet kan variere mye mellom folk.",
+        "Når fart blir mål på seriøsitet, kan fellesskapet bli unødvendig hardt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal en form der begge kan delta uten å forsvare egen fart.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "pace_vs_social_rank"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "La den raskeste bestemme og si at resten må skjerpe seg.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "pace_vs_social_rank"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pace_vs_social_rank"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tall_som_informasjon",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Aktivitetsmåleren",
+      "subject": "Tall kan vise mønstre uten å dømme",
+      "situation": [
+        "Telefonen eller klokka viser skritt og aktive minutter.",
+        "Slike tall kan hjelpe deg å se mønstre over tid.",
+        "De forklarer ikke alene søvn, energi eller hvorfor dagen ble annerledes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk tallene som grov informasjon sammen med resten av hverdagen.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "metric_vs_self_judgment"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Press inn ekstra aktivitet bare for å rette et lavt tall.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "metric_vs_self_judgment"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "metric_vs_self_judgment"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyr_etter_behov",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Butikkmedarbeideren",
+      "subject": "Utstyr skal løse behov, ikke bevise seriøsitet",
+      "situation": [
+        "Det gamle utstyret ditt begynner å fungere dårlig.",
+        "Noe utstyr er nødvendig for sikkerhet, mens mye annet handler om komfort.",
+        "Pris og merke sier ikke hvor mye respekt en mosjonist fortjener."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg det som løser behovet ditt og skill krav fra oppgradering.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "equipment_need_vs_status"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Velg det dyreste fordi kostnad viser at du tar aktiviteten mer alvorlig.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "equipment_need_vs_status"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equipment_need_vs_status"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pause_og_restart",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Nærpersonen",
+      "subject": "En pause kan følges av en rolig restart",
+      "situation": [
+        "Du har hatt flere uker med lite aktivitet.",
+        "Kropp og vane kan trenge tid før gamle nivåer føles normale igjen.",
+        "Mosjon har ingen gjeld som må betales tilbake med ekstra harde dager."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Start fra kapasiteten du har nå og bygg opp igjen gradvis.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "pause_vs_training_debt"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Forsøk å ta igjen hele pausen med en svært hard uke.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "pause_vs_training_debt"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "pause_vs_training_debt"
+      ],
+      "risk_links": [
+        "fatigue_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ny_i_gruppa",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Nybegynneren",
+      "subject": "Lav terskel må også gjelde sosialt",
+      "situation": [
+        "En ny deltaker spør om det finnes uskrevne krav i gruppa.",
+        "Erfarne deltakere kjenner rutiner som nye folk ikke kjenner.",
+        "Humor og utstyrsprat kan skape press selv uten formelle regler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det som trengs for trygg deltakelse og la resten komme med erfaring.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "access_vs_gatekeeping"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "La den nye lære gjennom korreksjoner og erting til riktig uttrykk sitter.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "access_vs_gatekeeping"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "access_vs_gatekeeping"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kroppssignal",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Den erfarne mosjonisten",
+      "subject": "Et kroppssignal er ikke en diagnose",
+      "situation": [
+        "Du kjenner smerte eller en uvant reaksjon under en bestemt bevegelse.",
+        "Egen erfaring kan hjelpe deg å beskrive mønsteret.",
+        "Mosjonserfaring gir ikke medisinsk myndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Reduser belastningen og søk kvalifisert hjelp når situasjonen tilsier det.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "body_signal_vs_medical_authority"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Fastslå selv hva skaden er og gi samme diagnose til andre.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "body_signal_vs_medical_authority"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "body_signal_vs_medical_authority"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "hverdagsbevegelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kollegaen",
+      "subject": "Bevegelse kan også ligge i hverdagen",
+      "situation": [
+        "Du har gått mye, brukt trapper og gjort praktiske ærender uten egen økt.",
+        "Slike valg kan gi reell aktivitet gjennom dagen.",
+        "Når bare planlagte økter teller, blir mye bevegelse usynlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regn hverdagsbevegelsen med i aktivitetsbildet uten å late som alt er en treningsøkt.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "everyday_movement_vs_workout_purity"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Avvis all aktivitet som ikke står i en plan som irrelevant.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "everyday_movement_vs_workout_purity"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "everyday_movement_vs_workout_purity"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "andres_opplegg",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Mosjonspartneren",
+      "subject": "Andres opplegg kan inspirere uten å bli fasit",
+      "situation": [
+        "En bekjent forteller om et opplegg som fungerer godt for dem.",
+        "Det kan gi ideer til egen hverdag.",
+        "Kropp, tid og mål er likevel forskjellige fra person til person."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prøv det som virker relevant i en mengde som passer deg.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "peer_advice_vs_personal_context"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Kopier hele opplegget fordi den andres resultat viser at det må passe deg også.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "peer_advice_vs_personal_context"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "peer_advice_vs_personal_context"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "apent_arrangement",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Arrangøren",
+      "subject": "Et åpent arrangement kan gi retning uten ny status",
+      "situation": [
+        "Du vurderer en åpen aktivitet med fast dato som et konkret mål.",
+        "Påmelding kan gi motivasjon og fellesskap selv når plassering ikke er hovedpoenget.",
+        "Ett arrangement gjør ikke automatisk mosjonisten til etablert Konkurranseutøver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk arrangementet som et avgrenset mål og se hva du faktisk fortsetter med etterpå.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "event_goal_vs_competition_status"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk påmeldingen som bevis på at du nå bør regnes som Konkurranseutøver.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "event_goal_vs_competition_status"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "event_goal_vs_competition_status"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grense_mot_aktiv_utover",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Mosjon trenger ikke målrettet idrettsutvikling",
+      "situation": [
+        "Du beveger deg jevnlig og vil holde kroppen i gang.",
+        "Aktiv utøver har en tydeligere praksis rundt ferdighet, belastning og sportslig utvikling.",
+        "Mosjonist kan stå støtt med enklere mål om energi, rytme og hverdagsaktivitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv praksisen som mosjon når kontinuitet i hverdagen er hovedsaken.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "everyday_exercise_vs_athlete_practice"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk antall økter alene som bevis på samme rolle som en målrettet Aktiv utøver.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "everyday_exercise_vs_athlete_practice"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "everyday_exercise_vs_athlete_practice"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grense_mot_sondagsutover",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Mosjonspartneren",
+      "subject": "Hobbyidentitet er en egen ramme",
+      "situation": [
+        "En bekjent bygger helger og sosiale avtaler tydelig rundt sporten sin.",
+        "Søndagsutøver er en hobby_identity med en mer markert sosial plass.",
+        "Mosjonist trenger ikke gjøre aktiviteten til et sentralt hobbyfellesskap."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La egen mosjon ha den plassen den faktisk har.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "exercise_habit_vs_hobby_identity"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter deg som Søndagsutøver bare fordi du også liker aktivitet i helgene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "exercise_habit_vs_hobby_identity"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "exercise_habit_vs_hobby_identity"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mosjonist_rollegrense",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Mosjonist er hverdagsbevegelse, ikke en skjult rang",
+      "situation": [
+        "Du har en reell vane med bevegelse for energi, overskudd, rytme eller enkel mestring.",
+        "Det gjør Mosjonist til en selvstendig employment-independent participation_practice.",
+        "Rollen gir ikke automatisk status som Aktiv utøver, Søndagsutøver, Konkurranseutøver, Klubbspiller, Profesjonell utøver, trener eller medisinsk fagperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv mosjonen presist og la andre roller kreve egne praksiser eller kvalifikasjoner.",
+          "effect": 1,
+          "tags": [
+            "everyday_exercise",
+            "role_clarity",
+            "everyday_exercise_without_status_inflation"
+          ],
+          "feedback": "Du holder Mosjonist som en lavterskel, selvstyrt bevegelsespraksis uten å gjøre mengde, form eller erfaring til konkurransestatus, klubbtilhørighet, trenerautoritet eller profesjonell identitet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk regelmessig mosjon som generell legitimasjon for sportslig eller profesjonell status.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "everyday_exercise_without_status_inflation"
+          ],
+          "feedback": "Valget gjør mosjon, form eller erfaring til større status eller myndighet enn Mosjonist-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "everyday_exercise_without_status_inflation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
