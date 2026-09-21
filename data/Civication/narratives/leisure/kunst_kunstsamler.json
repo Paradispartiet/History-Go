@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "kunst_kunstsamler_stream",
+  "type": "leisure",
+  "title": "Kunstsamler — eierskap, samling og økonomiske grenser",
+  "sociological_theme": "kunst_kunstsamler_langsiktig_eierskap_proveniens_oppbevaring_auksjon_verdivurdering_privatsalg_offentlig_lan_markedsrykter_og_likviditetsgrenser_uten_automatisk_galleridrift_kunsthandel_investorrad_eller_kuratorisk_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "kunst:kunstsamler"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "det_forste_verket",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Når et kjøp blir starten på en samling",
+      "situation": [
+        "Du vurderer et verk du har tenkt på i flere dager, men kjøpet vil bruke en stor del av det du har satt av til kunst dette året.",
+        "Du liker verket uten å vite om det vil få høyere markedsverdi senere.",
+        "Kunstsamler-posisjonen begynner med et enkelt spørsmål: om eierskapet har verdi for deg også dersom andre aldri vurderer kjøpet som smart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kjøp bare hvis verket er verdt pengene for deg uten forventning om gevinst.",
+          "effect": 1,
+          "tags": [
+            "collection_intent",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp fordi det føles tryggere når du forestiller deg at prisen sikkert vil stige.",
+          "effect": -1,
+          "tags": [
+            "speculation_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_det_forste_verket"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "budsjettet_som_ser_lite_ut",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Tre små kjøp har blitt ett stort beløp",
+      "situation": [
+        "Flere moderate kjøp har til sammen brukt mer av årets frie midler enn du la merke til underveis.",
+        "Ingen enkelt handel føltes dramatisk, men totalsummen påvirker andre planer.",
+        "En samling kan vokse stykkevis mens likviditetsbelastningen først blir tydelig når kjøpene sees samlet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en samlet ramme og la neste kjøp vente til økonomien tåler det.",
+          "effect": 1,
+          "tags": [
+            "liquidity_boundary",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Behandle hvert kjøp isolert og stol på at du kan løse presset senere.",
+          "effect": -1,
+          "tags": [
+            "collection_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_budsjettet_som_ser_lite_ut"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proveniensen_med_hull",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En selger",
+      "subject": "Historien følger verket, men ikke alle ledd er dokumentert",
+      "situation": [
+        "Et eldre verk tilbys med en attraktiv eierhistorie, men dokumentasjonen har et tydelig mellomrom.",
+        "Selgeren mener gapet er vanlig og ikke nødvendigvis problematisk.",
+        "Som samler kan du akseptere usikkerhet, men ikke late som dokumentasjon finnes bare fordi historien passer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om det som faktisk kan dokumenteres og pris usikkerheten inn i beslutningen.",
+          "effect": 1,
+          "tags": [
+            "provenance_truth",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta hele historien som sikker fordi den gjør verket lettere å forklare og verdsette.",
+          "effect": -1,
+          "tags": [
+            "reputation_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_proveniensen_med_hull"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunstneren_som_vet_du_kjoper",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kunstner",
+      "subject": "Oppmerksomheten endrer relasjonen",
+      "situation": [
+        "En kunstner du har kjøpt flere verk av begynner å sende deg bilder før nye arbeider vises offentlig.",
+        "Det er hyggelig å bli husket, men tilgang kan også endre hvordan dere snakker sammen.",
+        "Samlerstatus gir økonomisk tyngde i enkelte relasjoner selv når ingen har avtalt at du skal påvirke kunstneriske valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær tydelig på at kjøp ikke gir deg redaksjonell eller kunstnerisk myndighet.",
+          "effect": 1,
+          "tags": [
+            "patronage_boundary",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Bruk kjøpshistorikken til å presse på for retningen du selv ønsker å se mer av.",
+          "effect": -1,
+          "tags": [
+            "class_power",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_kunstneren_som_vet_du_kjoper"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "auksjonen_som_loper",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En auksjonarius",
+      "subject": "Budene passerer grensen du satte hjemme",
+      "situation": [
+        "Du har bestemt en maksimalpris før auksjonen, men et annet bud kommer rett over den.",
+        "Det føles frustrerende å tape verket etter å ha fulgt det lenge.",
+        "Konkurransen i rommet kan gjøre en økonomisk grense om til et spørsmål om identitet eller nederlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp ved grensen du satte før budkonkurransen tok over.",
+          "effect": 1,
+          "tags": [
+            "auction_discipline",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "By videre fordi det føles verre å tape foran andre enn å overskride planen.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_auksjonen_som_loper"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ikke_far_plass",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Eierskap krever mer enn kjøpsøyeblikket",
+      "situation": [
+        "Samlingen har vokst slik at flere verk nå står lagret dårligere enn du er komfortabel med.",
+        "Du vurderer enda et kjøp, men mangler god plass og riktig oppbevaring.",
+        "Et verk kan være økonomisk kjøpt lenge før ansvaret for lagring, klima, innramming og håndtering faktisk er løst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter oppbevaring og vedlikehold før samlingen vokser videre.",
+          "effect": 1,
+          "tags": [
+            "stewardship",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp først og tenk at praktiske problemer får løses når de blir akutte.",
+          "effect": -1,
+          "tags": [
+            "ownership_cost",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_verket_som_ikke_far_plass"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forsikringen_som_endrer_bildet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En forsikringsrådgiver",
+      "subject": "Verdien på papiret er høyere enn du har forholdt deg til",
+      "situation": [
+        "En gjennomgang viser at flere verk samlet representerer større verdi enn du har brukt i daglig planlegging.",
+        "Det betyr ikke at beløpet er tilgjengelig kontant, og salg kan ta tid eller gi mindre enn forventet.",
+        "Samlerøkonomi blir lett misvisende hvis verdivurdering behandles som likvide penger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom anslått verdi og penger du faktisk kan disponere.",
+          "effect": 1,
+          "tags": [
+            "valuation_boundary",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Regn samlingens anslåtte verdi som økonomisk buffer i andre beslutninger.",
+          "effect": -1,
+          "tags": [
+            "liquidity_truth",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_forsikringen_som_endrer_bildet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_kjope",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær venn",
+      "subject": "Privat salg gjør prisen personlig",
+      "situation": [
+        "En venn ønsker å kjøpe et verk du vurderer å selge og spør hva du vil ha for det.",
+        "Du kjenner både egen kjøpspris og omtrentlige markedsnivåer, men vennskapet gjør forhandlingen mer ladet.",
+        "Privat videresalg kan blande relasjon, økonomi og omdømme selv uten at du driver handel profesjonelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær åpen om grunnlaget for prisen og la vennen si nei uten sosial kostnad.",
+          "effect": 1,
+          "tags": [
+            "private_sale_boundary",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Bruk vennskapet til å få en høyere pris fordi du vet hvor sterkt personen ønsker verket.",
+          "effect": -1,
+          "tags": [
+            "relationship_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_vennen_som_vil_kjope"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lanet_til_utstillingen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kurator",
+      "subject": "Et museum vil låne et verk du eier",
+      "situation": [
+        "En kurator spør om et verk kan lånes til en offentlig utstilling.",
+        "Du blir stolt over forespørselen, men transport, forsikring, kreditering og risiko må fortsatt avklares.",
+        "Å eie et verk kan gi mulighet til å bidra til offentlig tilgang uten at eierskapet blir kuratorisk autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar praktiske vilkår og la institusjonen eie den kuratoriske beslutningen.",
+          "effect": 1,
+          "tags": [
+            "public_loan_boundary",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Knytt lånet til krav om hvordan verket og samlingen din skal omtales.",
+          "effect": -1,
+          "tags": [
+            "prestige_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_lanet_til_utstillingen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_pa_veggen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kurator",
+      "subject": "Krediteringen blir en statussak",
+      "situation": [
+        "Ved utlån foreslås en nøktern kreditering som identifiserer privat samling uten å fremheve deg sterkt.",
+        "Du hadde sett for deg at navnet ditt skulle være mer synlig.",
+        "Samlerrollen kan bli offentlig på en måte som gjør støtte, eierskap og status vanskelige å skille."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Godta nøktern kreditering hvis den dekker dokumentasjonsbehovet.",
+          "effect": 1,
+          "tags": [
+            "public_attention",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Press på for større navnesynlighet fordi utlånet ellers føles undervurdert.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_navnet_pa_veggen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "salget_nar_du_trenger_penger",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Likviditetsbehovet er plutselig reelt",
+      "situation": [
+        "En uforutsett utgift gjør at du vurderer å selge et verk raskere enn planlagt.",
+        "Markedet er roligere enn da du kjøpte, og et raskt salg kan gi lavere pris.",
+        "Samlingen er eiendeler, men ikke nødvendigvis en stabil eller rask finansieringskilde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder salg nøkternt og aksepter at behov for kontanter kan endre utfallet.",
+          "effect": 1,
+          "tags": [
+            "liquidity_reality",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved ønsket pris fordi samlingen i hodet ditt allerede er verdt mer.",
+          "effect": -1,
+          "tags": [
+            "loss_aversion",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_salget_nar_du_trenger_penger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_om_neste_store_navn",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen samler",
+      "subject": "Alle virker å vite hvem som snart blir dyr",
+      "situation": [
+        "En annen samler omtaler en ung kunstner som et åpenbart neste gjennombrudd.",
+        "Flere i miljøet gjentar det samme, men ingen kan vise til annet enn interesse og tempo i markedet.",
+        "Samlerstatus kan gjøre markedsrykter mer overbevisende fordi de kommer fra mennesker med penger i samme spill."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom interesse, egen smak og påstander om framtidig pris.",
+          "effect": 1,
+          "tags": [
+            "market_rumor",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp raskt fordi det virker tryggere når mange med status sier det samme.",
+          "effect": -1,
+          "tags": [
+            "herd_pressure",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_ryktet_om_neste_store_navn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arven_som_blir_problem",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Et familiemedlem",
+      "subject": "Samlingen betyr ikke det samme for alle rundt deg",
+      "situation": [
+        "Et familiemedlem spør hva som egentlig skal skje med verkene dersom du ikke lenger kan forvalte dem selv.",
+        "Du merker at samlingen har fått stor mening for deg, men ikke nødvendigvis for andre.",
+        "Eierskap over tid innebærer også å gjøre dokumentasjon og praktiske ønsker forståelige uten å pålegge andre samme forhold til objektene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag enkel dokumentasjon og skill egne ønsker fra andres framtidige valg.",
+          "effect": 1,
+          "tags": [
+            "succession_stewardship",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Unngå temaet fordi det føles som om samlingens mening forsvinner hvis andre kan velge annerledes.",
+          "effect": -1,
+          "tags": [
+            "identity_attachment",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_arven_som_blir_problem"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_kunstsamler",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren samler",
+      "subject": "Hva står igjen når samlingen har vokst?",
+      "situation": [
+        "Du eier nå verk med ulik pris, historie og betydning, og noen av dem har vært lettere å kjøpe enn å forvalte.",
+        "Markedet har påvirket valgene dine, men ikke alle de viktigste verkene er de dyreste eller mest synlige.",
+        "Kunstsamler som livsposisjon blir bærekraftig når samling, økonomi og omsorg kan eksistere sammen uten at eierskap blir forvekslet med kunstnerisk autoritet, sikker investering eller sosial rang."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La samlingen være langsiktig eierskap under reelle økonomiske og praktiske grenser.",
+          "effect": 1,
+          "tags": [
+            "collector_identity",
+            "collector_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler samlingen som langsiktig eierskap under økonomiske, dokumentariske og relasjonelle grenser."
+        },
+        {
+          "id": "B",
+          "label": "Gjør størrelsen, prisen og synligheten til hovedmål fordi det er det andre kan lese tydeligst.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "collector_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør eierskap, pris eller tilgang til mer sikkerhet eller myndighet enn samlerrollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kunstsamler_sesongslutt_hva_er_kunstsamler"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
