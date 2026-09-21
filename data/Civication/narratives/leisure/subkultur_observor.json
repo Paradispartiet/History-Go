@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_observor_stream",
+  "type": "leisure",
+  "title": "Observør — utenforblikk, kodelesing og gradvis deltakelse",
+  "sociological_theme": "subkultur_observor_nykommerblikk_kodelesing_sporsmal_samtykke_ryktekritikk_moensterydmykhet_tilskueransvar_fortrolighet_og_gradvis_deltakelse_uten_automatisk_kulturhusvert_eller_formell_arrangementsrolle",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:observ_r"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "forste_kveld_uten_a_kjenne_noen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren deltaker",
+      "subject": "Du står i utkanten og prøver å forstå rommet",
+      "situation": [
+        "Du kommer alene til et miljø du bare kjenner gjennom andres beskrivelser.",
+        "Det er tydelig at noen kjenner kodene, mens du foreløpig bare ser mønstre, små signaler og hvem som snakker med hvem.",
+        "Observør-posisjonen begynner med usikkerhet: du kan lære mye ved å se, men du vet ennå ikke hva du faktisk forstår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vær åpen om at du er ny og bruk tid på å lære før du trekker konklusjoner.",
+          "effect": 1,
+          "tags": [
+            "newcomer_honesty",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Oppfør deg som om du allerede kjenner kodene for å unngå å virke utenfor.",
+          "effect": -1,
+          "tags": [
+            "status_performance",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_forste_kveld_uten_a_kjenne_noen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_du_ikke_vil_stille",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En rolig deltaker",
+      "subject": "Du forstår ikke referansen alle andre ler av",
+      "situation": [
+        "En intern referanse får resten av gruppa til å reagere raskt, men du skjønner ikke hva den viser til.",
+        "Du vurderer å late som du forstår fordi spørsmålet kan avsløre hvor ny du er.",
+        "Å observere uten spørsmål kan gi mange detaljer, men også gjøre misforståelser mer permanente enn de trenger å være."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør nøkternt hva referansen betyr uten å kreve en lang forklaring.",
+          "effect": 1,
+          "tags": [
+            "questioning",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Le med resten og bestem deg for å gjette betydningen senere.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_sporsmalet_du_ikke_vil_stille"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "mobilen_i_handa",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person ved siden av deg",
+      "subject": "Det er interessant nok til å filme, men ingen har spurt",
+      "situation": [
+        "Du ser et øyeblikk som ville vært lett å dele videre fordi det viser noe særegent ved miljøet.",
+        "Ingen rundt deg har invitert til opptak, og flere står tett nok til å bli tydelig gjenkjennelige.",
+        "Observasjon gir tilgang til situasjoner som andre kan oppleve som private selv når de skjer i et sosialt rom."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg bort kameraet eller spør tydelig før du gjør mennesker til dokumentasjon.",
+          "effect": 1,
+          "tags": [
+            "visibility_consent",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Film diskret fordi du bare registrerer det som allerede skjer foran deg.",
+          "effect": -1,
+          "tags": [
+            "public_attention",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_mobilen_i_handa"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_du_horer_to_ganger",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "To ulike deltakere",
+      "subject": "To personer forteller nesten samme historie",
+      "situation": [
+        "Du hører en negativ historie om en tredje person fra to ulike hold i løpet av samme uke.",
+        "Likheten gjør fortellingen mer troverdig, men du vet fortsatt ikke om kildene er uavhengige eller gjentar samme opphav.",
+        "En observør kan samle mønstre uten at gjentakelse automatisk blir til sannhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle historien som ubekreftet til du har mer enn sosial gjentakelse.",
+          "effect": 1,
+          "tags": [
+            "rumor_boundary",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Fortell videre at flere sier det samme, siden antallet gjentakelser virker som bekreftelse.",
+          "effect": -1,
+          "tags": [
+            "reputation_pressure",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_ryktet_du_horer_to_ganger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_som_alltid_star_alene",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen ny deltaker",
+      "subject": "Du ser samme person i utkanten flere ganger",
+      "situation": [
+        "En person står ofte alene og forlater arrangementer uten å ha snakket mye med andre.",
+        "Du vet ikke om vedkommende ønsker ro, føler seg ekskludert eller bare foretrekker å observere slik du selv gjør.",
+        "Å legge merke til noen gir ikke rett til å definere situasjonen deres, men det åpner for en enkel og reversibel kontakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hei uten å kreve forklaring og la den andre styre hvor mye kontakt det blir.",
+          "effect": 1,
+          "tags": [
+            "low_pressure_contact",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Bestem deg for at personen åpenbart er sosialt avvist og begynn å forklare det til andre.",
+          "effect": -1,
+          "tags": [
+            "projection_risk",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_den_som_alltid_star_alene"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kommentaren_som_gar_for_langt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En høylytt deltaker",
+      "subject": "Du er ikke målet, men du hører det tydelig",
+      "situation": [
+        "En kommentar om en annen person går fra intern erting til noe som høres nedsettende og målrettet ut.",
+        "Du er fortsatt ny og kjenner ikke relasjonen godt nok til å vite hele bakgrunnen.",
+        "Observørrollen fritar deg ikke automatisk for ansvar når noe skjer foran deg, men du må også skille mellom det du faktisk hørte og det du antar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker rolig at kommentaren hørtes over grensen ut, eller sjekk inn med den som ble rammet.",
+          "effect": 1,
+          "tags": [
+            "bystander_boundary",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Hold deg helt utenfor fordi du fortsatt bare er observør og derfor ikke har noe ansvar.",
+          "effect": -1,
+          "tags": [
+            "passive_complicity",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_kommentaren_som_gar_for_langt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "invitasjonen_til_bakrommet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Plutselig får du tilgang til noe mer lukket",
+      "situation": [
+        "En bekjent inviterer deg inn i en mindre krets etter et arrangement.",
+        "Du får høre detaljer om interne uenigheter og personer som ikke er til stede.",
+        "Mer tilgang gjør deg ikke automatisk til insider, og fortrolig informasjon er ikke en belønning du må omsette i status."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt uten å spre detaljene videre og la tilhørighet utvikle seg over tid.",
+          "effect": 1,
+          "tags": [
+            "confidentiality",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Bruk detaljene senere for å vise andre at du nå kjenner innsiden.",
+          "effect": -1,
+          "tags": [
+            "insider_claim",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_invitasjonen_til_bakrommet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tegnene_du_overfortolker",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Tre små hendelser begynner å ligne et mønster",
+      "situation": [
+        "Du har sett tre situasjoner der samme type person ser ut til å få mindre oppmerksomhet.",
+        "Det kan være et reelt mønster, men materialet er lite og situasjonene var forskjellige.",
+        "Observasjon blir mer presis når hypoteser får være foreløpige i stedet for å bli identitet eller dom for tidlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter mønsteret som et spørsmål og se etter både bekreftende og avkreftende eksempler.",
+          "effect": 1,
+          "tags": [
+            "pattern_humility",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Gjør tre observasjoner til en sikker forklaring på hvordan hele miljøet fungerer.",
+          "effect": -1,
+          "tags": [
+            "certainty_pressure",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_tegnene_du_overfortolker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_noen_spor_hva_du_synes",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En arrangør",
+      "subject": "Du blir bedt om en vurdering av et miljø du knapt kjenner",
+      "situation": [
+        "En arrangør spør hvordan kvelden opplevdes for en som er ny.",
+        "Du har flere konkrete inntrykk, men vet at én kveld ikke er representativ for hele miljøet.",
+        "Observørens verdi kan ligge i ferskt blikk, så lenge utsagn skilles fra brede konklusjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv konkrete situasjoner og si tydelig hva du ikke kan vite ennå.",
+          "effect": 1,
+          "tags": [
+            "bounded_feedback",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Gi en samlet dom over miljøet fordi et utenfrablikk uansett er mer objektivt.",
+          "effect": -1,
+          "tags": [
+            "outsider_authority",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_nar_noen_spor_hva_du_synes"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_ha_rapport",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent utenfra",
+      "subject": "Noen vil høre alt om de rare folkene",
+      "situation": [
+        "En bekjent som ikke var til stede ber om en underholdende oppsummering av menneskene du møtte.",
+        "Det ville være lett å gjøre detaljer, klær og interne uttrykk til karikaturer.",
+        "Å observere et miljø gir råstoff til historier, men ikke frikort til å gjøre mennesker til rekvisitter for et utenforpublikum."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell om egen opplevelse uten å gjøre andre til typer eller poenger.",
+          "effect": 1,
+          "tags": [
+            "representation_boundary",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Gjør de mest særpregede personene til morsomme karakterer fordi det er slik historien blir best.",
+          "effect": -1,
+          "tags": [
+            "othering",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_vennen_som_vil_ha_rapport"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lille_tjenesten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker som rydder",
+      "subject": "Du blir spurt om å holde noe i to minutter",
+      "situation": [
+        "En person ber deg hjelpe med en helt enkel praktisk ting mens andre rydder.",
+        "Oppgaven gir ingen formell rolle, adgang eller ansvar; den er bare en liten hjelp i situasjonen.",
+        "Observør kan gli over i deltakelse gjennom små handlinger, men det gjør deg ikke automatisk til crew eller ansatt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp hvis du vil, uten å tolke det som ny status eller jobb.",
+          "effect": 1,
+          "tags": [
+            "voluntary_help",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Bruk den lille oppgaven som bevis på at du nå hører til kjernen og har mer myndighet.",
+          "effect": -1,
+          "tags": [
+            "role_inflation",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_den_lille_tjenesten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stillheten_etter_sporsmalet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre deltaker",
+      "subject": "Du spør om noe, og rommet blir merkbart roligere",
+      "situation": [
+        "Et spørsmål du trodde var nøytralt treffer et tema flere ikke ønsker å forklare til en ny person.",
+        "Ingen avviser deg direkte, men svarene blir korte og samtalen skifter raskt.",
+        "Å lære et miljø innebærer også å registrere grenser uten å gjøre enhver lukket dør til personlig avvisning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Aksepter at du ikke får hele forklaringen nå og la temaet ligge.",
+          "effect": 1,
+          "tags": [
+            "boundary_reading",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Press videre fordi åpenhet bør bety at alle interne temaer kan forklares på forespørsel.",
+          "effect": -1,
+          "tags": [
+            "entitlement",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_stillheten_etter_sporsmalet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_nye_som_spor_deg",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En enda nyere deltaker",
+      "subject": "Plutselig tror noen at du kjenner stedet",
+      "situation": [
+        "En person som er enda nyere enn deg spør hvordan ting fungerer og hvem det er lurt å snakke med.",
+        "Du merker at du allerede kan svare på noen praktiske ting, men mye av kunnskapen din er fortsatt foreløpig.",
+        "Observørstatus kan gi relativ erfaring uten at den gjør deg til autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Del det du faktisk vet og merk tydelig det du bare tror.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Svar sikkert på alt fordi du nå vet mer enn personen som spør.",
+          "effect": -1,
+          "tags": [
+            "status_ladder",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_den_nye_som_spor_deg"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_observor",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren deltaker",
+      "subject": "Hva betyr det egentlig å ha vært Observør?",
+      "situation": [
+        "Etter mange kvelder kjenner du flere navn, koder og mønstre enn da du kom.",
+        "Du har også lært at enkelte ting ikke blir tydeligere bare fordi du har sett mer; de krever relasjon, tid eller direkte spørsmål.",
+        "Observør som livsposisjon er en legitim måte å nærme seg et miljø på når den kombinerer nysgjerrighet med samtykke, presisjon og vilje til å handle når ren passivitet ville gjort skade."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La erfaringen være et åpent mellomrom mellom utenforblikk og gradvis deltakelse.",
+          "effect": 1,
+          "tags": [
+            "observer_identity",
+            "observer_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder nysgjerrighet og presisjon uten å gjøre tilgang, blikk eller foreløpig kunnskap til mer myndighet enn det er."
+        },
+        {
+          "id": "B",
+          "label": "Gjør observatørrollen til bevis på at du forstår miljøet bedre enn dem som faktisk lever i det.",
+          "effect": -1,
+          "tags": [
+            "outsider_authority",
+            "observer_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør begrenset tilgang eller usikker kunnskap om til status, sikkerhet eller passivitet på en måte Observør-posisjonen ikke trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "observor_sesongslutt_hva_er_observor"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
