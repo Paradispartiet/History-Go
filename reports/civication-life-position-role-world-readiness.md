@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 134 ready / 25 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 135 ready / 24 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 134
-**Multi-scene narrative foundations:** 134
-**Completed life-position Role Worlds:** 134
+**Exact governed-source matches:** 135
+**Multi-scene narrative foundations:** 135
+**Completed life-position Role Worlds:** 135
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,31 +18,30 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `sport/profesjonell_utover` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
-| 10 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
-| 11 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 12 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 13 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
-| 14 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
-| 15 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
-| 16 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
-| 17 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
-| 18 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
-| 19 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
-| 20 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
-| 21 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 22 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 23 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 24 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
-| 25 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `subkultur/crew` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `subkultur/dandy` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `subkultur/deltaker` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `subkultur/gatesmart` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `subkultur/hakkekylling` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `subkultur/observ_r` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `kunst/kunstsamler` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `naeringsliv/sideprosjektbygger` | needs_authored_depth | 0 | 0 | 0 |
+| 9 | `filosofi/filosofistudent` | needs_authored_depth | 0 | 0 | 0 |
+| 10 | `historie/doktorgradsstudent_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 11 | `historie/masterstuden_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 12 | `historie/student_historie` | needs_authored_depth | 0 | 0 | 0 |
+| 13 | `kunst/kuratorpraksis` | needs_authored_depth | 0 | 0 | 0 |
+| 14 | `musikk/artist` | needs_authored_depth | 0 | 0 | 0 |
+| 15 | `musikk/frilansmusiker` | needs_authored_depth | 0 | 0 | 0 |
+| 16 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
+| 17 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
+| 18 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
+| 19 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
+| 20 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
+| 21 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
+| 22 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
+| 23 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 24 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
