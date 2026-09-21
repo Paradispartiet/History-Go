@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_konkurranseutover_stream",
+  "type": "leisure",
+  "title": "Konkurranseutøver — resultatpress, rangering og rollegrenser",
+  "sociological_theme": "sport_konkurranseutover_vedvarende_konkurransepraksis_pamelding_rangering_kvalifisering_kalender_motstander_resultatsynlighet_regelverk_utstyr_seedning_tap_seier_kroppssignal_klubbgrense_uten_profesjonell_eller_trenermyndighet",
+  "applies_when": {
+    "any_tags": [
+      "sport:konkurranseutover"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "pamelding_og_forpliktelse",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Arrangøren",
+      "subject": "En påmelding er en konkret forpliktelse, ikke råderett over resten av livet",
+      "situation": [
+        "Du melder deg på en konkurranse med fast dato, starttid og regler for oppmøte.",
+        "Påmeldingen gjør forberedelse og gjennomføring mer forpliktende enn en vanlig økt fordi arrangør og andre deltakere planlegger rundt feltet.",
+        "Forpliktelsen er likevel avgrenset til konkurransen og gir ikke sporten krav på all fritid, familie, arbeid eller studier."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg oppmøte og forberedelser tydelig, og behold nøkterne grenser rundt resten av hverdagen.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "entry_commitment_vs_total_availability"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Behandle påmeldingen som bevis på at alt annet bør vike frem til konkurransen er over.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "entry_commitment_vs_total_availability"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "entry_commitment_vs_total_availability"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rangering_uten_selvverd",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Resultatansvarlig",
+      "subject": "En rangering måler plassering i et felt, ikke verdi som menneske",
+      "situation": [
+        "Resultatlisten viser en tydelig plassering etter konkurransen.",
+        "Rangering gjør sammenligning eksplisitt og kan gi nyttig informasjon om nivå, progresjon og avstand til andre.",
+        "Den samme tydeligheten gjør det lett å la ett tall spise opp både motivasjon og selvbilde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les plasseringen som informasjon om denne prestasjonen og vurder hva den faktisk sier om videre praksis.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "ranking_vs_self_worth"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk plasseringen som generell dom over hvem du er sammenlignet med dem som endte foran eller bak.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "ranking_vs_self_worth"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "ranking_vs_self_worth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kvalifiseringsgrensen",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Konkurranselederen",
+      "subject": "En kvalifiseringsgrense avgjør adgang til et nivå, ikke hvem som fortjener respekt",
+      "situation": [
+        "Neste arrangement krever en bestemt tid, poengsum eller tidligere plassering.",
+        "Kvalifiseringskravet er en sportslig terskel som begrenser hvem som kan delta akkurat der.",
+        "Når adgangskrav blir sosial rang, blir de som ikke kvalifiserer lett behandlet som mindre seriøse eller mindre ekte utøvere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forhold deg til kravet konkret, tren mot det hvis du vil, og skill adgang til arrangementet fra respekt for andres praksis.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "qualification_vs_personhood"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk kvalifiseringsgrensen som bevis på at de under den ikke egentlig hører til blant konkurranseutøvere.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "qualification_vs_personhood"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "qualification_vs_personhood"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konkurransekalender_og_hverdag",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Konkurransekalenderen må få plass i livet uten å bli hele livet",
+      "situation": [
+        "Flere arrangementer ligger tett nok til at du må velge hva du faktisk skal delta i.",
+        "Vedvarende konkurransepraksis krever planlegging av belastning, økonomi og tid over flere uker.",
+        "Konkurranseutøver er employment-independent og gir ikke automatisk rett til å behandle arbeid, studier eller nære relasjoner som støtteapparat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg arrangementer du faktisk har kapasitet til og avklar tidsbruk og kostnader med dem som blir berørt.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "competition_calendar_vs_life"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Legg inn alt du kan rekke og forvent at andre tilpasser seg fordi konkurransene er viktigst akkurat nå.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "competition_calendar_vs_life"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "competition_calendar_vs_life"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motstanderen_som_malestokk",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Medkonkurrenten",
+      "subject": "Motstanderen er en sportslig målestokk, ikke en fiende utenfor konkurransen",
+      "situation": [
+        "Du møter en utøver du ofte sammenlignes med og som ligger nær deg resultatmessig.",
+        "Rivalisering kan gjøre taktikk og innsats skarpere fordi begge vet hva som står på spill.",
+        "Når rivalen gjøres til moralsk motstander, kan den sportslige sammenligningen lekke inn i respekt, omtale og sosial behandling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Konkurrer hardt innenfor reglene og hold kritikk av prestasjon, taktikk og situasjon adskilt fra personangrep.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "rivalry_vs_dehumanization"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk rivaliseringen til å svekke motstanderens omdømme også utenfor selve konkurransen.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "rivalry_vs_dehumanization"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "rivalry_vs_dehumanization"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "resultatet_blir_offentlig",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Bekjenten",
+      "subject": "Offentlige resultater gjør prestasjonen synlig, men ikke hele personen",
+      "situation": [
+        "Resultatet publiseres åpent og blir delt videre i meldinger eller sosiale flater.",
+        "Synlighet kan gi anerkjennelse og gjøre utvikling lett å følge over tid.",
+        "Den kan også gjøre svakere resultater vanskeligere å legge fra seg fordi andre kan kommentere dem lenge etterpå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La resultatet stå som dokumentasjon på prestasjonen og velg selv hvor mye videre forklaring eller deling du vil gjøre.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "visibility_vs_private_worth"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Følg med på hvem som reagerer og forklar bort resultatet offentlig til alle som kan ha sett det.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "visibility_vs_private_worth"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "visibility_vs_private_worth"
+      ],
+      "risk_links": [
+        "public_private_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "protest_og_regelverk",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Dommeren",
+      "subject": "Uenighet med en avgjørelse må gå gjennom reglene uten å bli krav på særbehandling",
+      "situation": [
+        "En avgjørelse eller resultatføring ser feil ut og kan ha påvirket plasseringen.",
+        "Konkurranser trenger prosedyrer for protest, kontroll og korrigering nettopp fordi dommer- og systemfeil kan skje.",
+        "Erfaring eller sterke resultater gir ikke egen rett til å hoppe over prosedyren eller presse funksjonærer personlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter det konkrete avviket og bruk den etablerte protest- eller korrigeringsprosedyren.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "protest_vs_entitlement"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Krev umiddelbar omgjøring og bruk egen status eller tidligere resultater som argument for at du bør bli trodd.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "protest_vs_entitlement"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "protest_vs_entitlement"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyrskontroll_og_like_vilkar",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk kontrollør",
+      "subject": "Utstyr skal oppfylle reglene uten å bli en kjøpekrafts-konkurranse",
+      "situation": [
+        "Før start blir utstyr kontrollert mot krav som skal sikre like vilkår eller sikkerhet.",
+        "Noe materiell kan være dyrt, mens annet først og fremst må være korrekt og funksjonelt.",
+        "Når kostnad og merkevare blandes med seriøsitet, blir økonomi en skjult rangering i startfeltet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sørg for at utstyret er lovlig og egnet, og skill nødvendige krav fra dyre oppgraderinger som bare er valg.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "equipment_vs_class_status"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Behandle dyrere utstyr som tegn på at noen har større rett til å bli tatt alvorlig i feltet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "equipment_vs_class_status"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "equipment_vs_class_status"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "startfelt_og_seedning",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Startfunksjonæren",
+      "subject": "Seedning organiserer konkurransen, men gjør ikke startgruppen til sosial klasse",
+      "situation": [
+        "Deltakerne blir plassert i heat, puljer eller rekkefølge ut fra tidligere resultater eller oppgitt nivå.",
+        "Seedning kan gi mer sammenlignbare forhold og mindre praktisk kaos.",
+        "Det er lett å lese startplass som sosial rang og behandle dem i andre grupper som mindre relevante."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk seedningen som konkurranseteknisk informasjon og vurder andre utøvere etter det de faktisk gjør i situasjonen.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "start_order_vs_social_rank"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "La startgruppen avgjøre hvem du hilser på, lytter til eller regner som reell konkurranse.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "start_order_vs_social_rank"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "start_order_vs_social_rank"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tap_og_forklaring",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Medkonkurrenten",
+      "subject": "Et tap trenger analyse uten syndebukk",
+      "situation": [
+        "Du presterer svakere enn forventet og vet at flere små forhold påvirket resultatet.",
+        "Konkurransepraksis krever at feil, taktikk og forberedelse kan vurderes ærlig.",
+        "Etter skuffelse er det fristende å beskytte egen status ved å legge hele årsaken på dommer, utstyr, forhold eller andre mennesker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill det du kunne påvirke fra det du ikke kunne styre, og bruk analysen til å velge neste konkrete forbedring.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "accountability_vs_scapegoating"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Finn én ytre forklaring som gjør at resultatet ikke trenger å si noe om egne valg eller forberedelser.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "accountability_vs_scapegoating"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "accountability_vs_scapegoating"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seier_uten_statusinflasjon",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medkonkurrenten",
+      "subject": "En seier gir et resultat, ikke automatisk trener-, klubb- eller yrkesmyndighet",
+      "situation": [
+        "Du vinner eller slår en prestasjon du har arbeidet lenge for.",
+        "Resultatet kan gi legitim stolthet, synlighet og sterkere tro på egen konkurransepraksis.",
+        "Det gjør deg ikke automatisk til trener, talsperson for en klubb eller Profesjonell utøver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta imot resultatet som sportslig prestasjon og hold råd, representasjon og yrkesstatus til roller du faktisk har.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "victory_vs_authority"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk seieren som bevis på at andre bør følge treningsrådene dine og at du kan uttale deg på vegne av miljøet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "victory_vs_authority"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "victory_vs_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kroppssignal_for_start",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Startnummeret opphever ikke kroppens varsler",
+      "situation": [
+        "Kort tid før start kjenner du smerte, sykdomsfølelse eller en uvanlig reaksjon i kroppen.",
+        "Forberedelser og forventninger gjør det vanskeligere å trekke seg fordi konkurransen har stått som et konkret mål lenge.",
+        "Konkurranseutøver gir ikke medisinsk kompetanse, men rollen krever at kroppssignaler kan få praktiske konsekvenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder å justere eller avstå, beskriv symptomene konkret og søk kvalifisert helsehjelp når situasjonen tilsier det.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "start_pressure_vs_safety"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Skjul signalene og start uansett fordi det å stå over ville svekke statusen din som konkurranseutøver.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "start_pressure_vs_safety"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "start_pressure_vs_safety"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konkurranse_uten_klubbkrav",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Arrangøren",
+      "subject": "Vedvarende konkurransepraksis kan eksistere uten klubbmedlemskap",
+      "situation": [
+        "Du deltar jevnlig i åpne arrangementer uten binding til en bestemt klubb.",
+        "Noen idretter organiseres tett gjennom klubb, mens andre konkurranser også er åpne for individuelle deltakere.",
+        "Konkurranseutøver beskriver den vedvarende konkurransepraksisen, ikke automatisk medlemskap eller representasjonsrett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilken konkurransepraksis du faktisk har og oppgi klubbtilknytning bare når den reelt finnes.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "competition_without_club_claim"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Presenter deg som klubbspiller eller representant fordi regelmessig konkurranse gjør tilknytningen underforstått.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "competition_without_club_claim"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "competition_without_club_claim"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konkurranseutover_rollegrense",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Konkurranseutøver er vedvarende konkurransepraksis, ikke en skjult profesjonell tittel",
+      "situation": [
+        "Du deltar regelmessig i formelle konkurranser der regler, motstand, resultat og rangering faktisk betyr noe.",
+        "Det gjør Konkurranseutøver til en selvstendig life-position som går lenger enn Aktiv utøver alene.",
+        "Rollen gir ikke automatisk status som Klubbspiller, Profesjonell utøver, trener, lagleder, dommer eller medisinsk fagperson."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv konkurransepraksisen presist og la klubbtilhørighet, yrke og myndighetsroller kreve sine egne grunnlag.",
+          "effect": 1,
+          "tags": [
+            "competition_practice",
+            "role_clarity",
+            "competition_practice_without_status_inflation"
+          ],
+          "feedback": "Du holder Konkurranseutøver som en vedvarende konkurransepraksis uten å gjøre resultater, rangering eller erfaring til klubbmyndighet, trenerautoritet eller profesjonell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk konkurranseerfaring og resultater som generell legitimasjon for klubb-, trener-, dommer- eller profesjonell status.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "competition_practice_without_status_inflation"
+          ],
+          "feedback": "Valget gjør konkurranseresultat, rangering eller erfaring til større status eller myndighet enn Konkurranseutøver-rollen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "competition_practice_without_status_inflation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
