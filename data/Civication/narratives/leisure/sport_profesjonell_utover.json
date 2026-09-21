@@ -1,0 +1,677 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "sport_profesjonell_utover_stream",
+  "type": "leisure",
+  "title": "Profesjonell utøver — profesjonell praksis, marked og rollegrenser",
+  "sociological_theme": "sport_profesjonell_utover_profesjonell_praksis_uten_ansettelsesforveksling_kontrakt_inntekt_prestasjon_tilgjengelighet_uttak_trenermandat_medisinsk_grense_agent_sponsor_medietrykk_lagkonkurranse_arbeidsgiverskifte_prekaritet_rollegrenser_uten_automatisk_karriere_klubb_trener_medisinsk_landslag_eller_stjernestatus",
+  "applies_when": {
+    "any_tags": [
+      "sport:profesjonell_utover"
+    ]
+  },
+  "time_slots": [
+    "people",
+    "leisure",
+    "personal"
+  ],
+  "storylets": [
+    {
+      "id": "profesjonell_praksis_uten_ansettelsesforveksling",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Profesjonell praksis og konkret ansettelse er to lag",
+      "situation": [
+        "Du lever med en vedvarende profesjonell utøverpraksis og blir vurdert gjennom trening, konkurranser og marked.",
+        "En konkret kontrakt eller utnevnelse avgjør hvem som betaler deg og hvilke plikter som gjelder akkurat nå.",
+        "Life-positionen Profesjonell utøver skal ikke gjøre career_unlock, arbeidsgiver eller lønn til del av identitetsmotoren."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold profesjonell praksis som egen livsposisjon og la konkrete jobbavtaler ligge i Career-laget.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "practice_vs_appointment"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Behandle life-positionen som automatisk bevis på at du er ansatt og lønnet i en klubb.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "practice_vs_appointment"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "practice_vs_appointment"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kontrakt_og_egenverdi",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Agenten",
+      "subject": "En kontrakt setter vilkår, ikke menneskeverd",
+      "situation": [
+        "En avtale nærmer seg slutten og markedsverdien din blir diskutert.",
+        "Kontrakter avgjør varighet, kompensasjon og plikter i en konkret profesjonell relasjon.",
+        "Når avtaleverdi blir identitetsverdi, blir forhandlinger lett personlige dommer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill kontraktsvilkår fra egen verdi og vurder avtalen som en tidsavgrenset arbeidsrelasjon.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "contract_vs_identity"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "La kontraktssummen avgjøre hvor mye respekt du mener du fortjener som person.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "contract_vs_identity"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "contract_vs_identity"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "inntekt_og_resultat",
+      "message_type": "story",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Økonomirådgiveren",
+      "subject": "Resultater påvirker inntekt uten å forklare hele livet",
+      "situation": [
+        "Bonus, startpenger eller markedsverdi kan påvirkes av prestasjoner.",
+        "Den økonomiske siden gjør profesjonell utøverpraksis mer utsatt enn hobby- og lavterskelroller.",
+        "En svak periode kan derfor gi reell økonomisk uro uten at hvert resultat må bli personlig krise."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag økonomisk handlingsrom og skill prestasjonsdata fra total egenverdi.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "income_vs_result_pressure"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Øk forbruket når resultatene er gode for å bevise at du hører hjemme på profesjonelt nivå.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "income_vs_result_pressure"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "income_vs_result_pressure"
+      ],
+      "risk_links": [
+        "precarity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "treningsplan_og_hverdag",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Profesjonell tilgjengelighet har fortsatt en privat grense",
+      "situation": [
+        "Trening, reise og restitusjon fyller store deler av uka.",
+        "Profesjonell praksis krever mer tilgjengelighet enn mosjon og vanlig konkurransedeltakelse.",
+        "Nære relasjoner og praktiske behov forsvinner likevel ikke fordi kalenderen er sportslig styrt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør kravene synlige og avtal hvor profesjonell tilgjengelighet faktisk slutter.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "availability_vs_private_life"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "La alle private planer være foreløpige fordi sporten alltid skal ha ubetinget førsteprioritet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "availability_vs_private_life"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "availability_vs_private_life"
+      ],
+      "risk_links": [
+        "care_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uttak_og_benking",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Uttak avgjør rolle i konkurransen, ikke profesjonell verdi alene",
+      "situation": [
+        "Du blir satt på benken eller står utenfor et uttak.",
+        "Et slikt valg påvirker eksponering, bonusmuligheter og neste kontrakt.",
+        "Det sier likevel ikke alene om du har mistet hele den profesjonelle praksisen eller menneskelig verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om konkret sportslig begrunnelse og arbeid videre uten å gjøre uttaket til total dom.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "selection_vs_professional_worth"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Behandle benking som bevis på at du ikke lenger kan regnes som profesjonell utøver.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "selection_vs_professional_worth"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "selection_vs_professional_worth"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "trenerens_mandat",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Treneren",
+      "subject": "Treneren leder prestasjonsarbeidet, men eier ikke hele personen",
+      "situation": [
+        "Treneren bestemmer belastning, taktiske roller og sportslige prioriteringer innenfor sitt mandat.",
+        "Som profesjonell utøver må du tåle tydelige krav og vurderinger.",
+        "Mandatet gir likevel ikke treneren generell myndighet over økonomi, privatliv eller medisinske konklusjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Følg sportslige beslutninger innenfor mandatet og ta andre spørsmål til riktig ansvarsnivå.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "coach_authority_vs_athlete_agency"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Godta at trenerens sportslige autoritet også avgjør private, økonomiske og medisinske spørsmål.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "coach_authority_vs_athlete_agency"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "coach_authority_vs_athlete_agency"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medisinsk_grense",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Fysioterapeuten",
+      "subject": "Profesjonell kroppskunnskap er ikke medisinsk myndighet",
+      "situation": [
+        "Du kjenner kroppen din svært godt etter mange år med systematisk trening.",
+        "Belastning, smerte og restitusjon er direkte knyttet til muligheten til å konkurrere og tjene penger.",
+        "Egen erfaring og trenererfaring kan beskrive mønstre, men skal ikke erstatte kvalifisert medisinsk vurdering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv symptomene presist og la medisinske beslutninger tas av kvalifisert helsepersonell.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "body_signal_vs_medical_authority"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Bruk profesjonell erfaring som grunnlag for å diagnostisere deg selv og andre på laget.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "body_signal_vs_medical_authority"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "body_signal_vs_medical_authority"
+      ],
+      "risk_links": [
+        "safety_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "agent_og_forhandling",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Agenten",
+      "subject": "Representasjon skal støtte, ikke overta",
+      "situation": [
+        "Agenten håndterer samtaler om kontrakt, marked og mulige klubbskifter.",
+        "God representasjon kan redusere informasjons- og maktubalanse.",
+        "Agenten har likevel ikke eierskap til karrierevalg, identitet eller relasjoner utenfor mandatet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk agenten som representant og behold tydelig beslutningsmyndighet over egne valg.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "representation_vs_personal_authority"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "La agenten bestemme klubb, privat kommunikasjon og offentlig profil uten at du forstår eller godkjenner valgene.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "representation_vs_personal_authority"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "representation_vs_personal_authority"
+      ],
+      "risk_links": [
+        "authority_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sponsor_og_synlighet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Sponsoransvarlig",
+      "subject": "Synlighet er en del av markedet, ikke hele personen",
+      "situation": [
+        "En sponsor ønsker innhold, arrangementer og bruk av navnet ditt.",
+        "Kommersielle avtaler kan være en reell del av profesjonell utøverøkonomi.",
+        "Når all privat synlighet blir salgbar flate, blir skillet mellom arbeid og person uklart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilke leveranser avtalen faktisk krever og hva som forblir privat.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "sponsor_visibility_vs_private_self"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Gjør alle private øyeblikk tilgjengelige fordi profesjonell status betyr at publikum har krav på dem.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "sponsor_visibility_vs_private_self"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sponsor_visibility_vs_private_self"
+      ],
+      "risk_links": [
+        "public_private_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medietrykk",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Journalisten",
+      "subject": "Offentlig vurdering er ikke hele profesjonsdommen",
+      "situation": [
+        "Et resultat eller en konflikt blir omtalt offentlig.",
+        "Profesjonelle utøvere blir oftere vurdert av publikum og medier enn vanlige mosjonister og klubbspillere.",
+        "Synlighet kan påvirke omdømme og marked, men overskrifter gir ikke full kunnskap om treningsarbeid, kontraktsvilkår eller privatliv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar på det som faktisk er offentlig relevant og behold grenser rundt resten.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "public_attention_vs_personhood"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "La medieomtalen avgjøre hvordan du selv vurderer hele karrieren og privatlivet.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "public_attention_vs_personhood"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "public_attention_vs_personhood"
+      ],
+      "risk_links": [
+        "status_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lagkamerat_og_intern_konkurranse",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "Lagkameraten",
+      "subject": "Lagarbeid og intern konkurranse må eksistere samtidig",
+      "situation": [
+        "Du og en lagkamerat konkurrerer om samme plass eller de samme oppdragene.",
+        "Profesjonell sport kan gjøre samarbeid og individuell knapphet sanne samtidig.",
+        "Hvis intern konkurranse blir personlig fiendskap, svekkes både arbeidsmiljø og prestasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Konkurrer om rollen på sportslige kriterier og samarbeid om det laget faktisk deler.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "teamwork_vs_internal_competition"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Hold tilbake informasjon og hjelp fordi lagkameratens framgang alltid er et direkte tap for deg.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "teamwork_vs_internal_competition"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "teamwork_vs_internal_competition"
+      ],
+      "risk_links": [
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "klubbskifte",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Arbeidsgiver kan skifte uten at praksisen forsvinner",
+      "situation": [
+        "En kontrakt avsluttes eller du bytter klubb, lag eller oppdragsgiver.",
+        "Career-laget kan endre aktiv stilling, lønn og organisatorisk tilhørighet.",
+        "Den spiller-valgte life-positionen Profesjonell utøver skal derfor ikke være teknisk låst til én arbeidsgiver."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La jobbstatus oppdateres separat og vurder profesjonell praksis på sitt eget grunnlag.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "employer_change_vs_practice_identity"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Slett den profesjonelle livsposisjonen automatisk hver gang en konkret kontrakt avsluttes.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "employer_change_vs_practice_identity"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "employer_change_vs_practice_identity"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "usikker_inntekt",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Økonomirådgiveren",
+      "subject": "Profesjonell status kan være økonomisk ujevn",
+      "situation": [
+        "Inntekten varierer mellom kontrakter, bonuser, støtte og perioder uten aktiv avtale.",
+        "Profesjonell praksis kan derfor eksistere med mer økonomisk usikkerhet enn statusbildet utenfra antyder.",
+        "Dyre symboler kan skjule usikkerhet, men løser den ikke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Planlegg etter faktisk inntekt og risiko i stedet for å finansiere et image.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "precarity_vs_status_display"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Oppretthold dyrt forbruk for å se profesjonell ut selv når inntekten faller.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "precarity_vs_status_display"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "precarity_vs_status_display"
+      ],
+      "risk_links": [
+        "class_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "profesjonell_rollegrense",
+      "message_type": "story",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Rolleavklareren",
+      "subject": "Profesjonell utøver er praksis, ikke en stabel av andre titler",
+      "situation": [
+        "Profesjonell utøver overlapper ofte med Aktiv utøver, Konkurranseutøver eller Klubbspiller i hverdagen.",
+        "Det gjør deg ikke automatisk til trener, medisinsk fagperson, Landslagsutøver eller Idrettsstjerne.",
+        "Profesjonell praksis må stå på egne premisser uten å sluke karriererollen eller andre sportsstatuser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv den profesjonelle praksisen presist og la andre roller kreve sine egne kriterier.",
+          "effect": 1,
+          "tags": [
+            "professional_practice",
+            "role_clarity",
+            "professional_practice_without_status_inflation"
+          ],
+          "feedback": "Du holder Profesjonell utøver som en employment-independent professional_practice og lar konkret ansettelse, lønn, klubbmandat og andre sportsstatuser ligge i sine egne canonical lag."
+        },
+        {
+          "id": "B",
+          "label": "Bruk profesjonell status som automatisk legitimasjon for trener-, medisinsk-, landslags- og stjernestatus.",
+          "effect": -1,
+          "tags": [
+            "status_pressure",
+            "overclaim",
+            "professional_practice_without_status_inflation"
+          ],
+          "feedback": "Valget gjør profesjonell praksis til bredere status, myndighet eller ansettelse enn life-positionen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "professional_practice_without_status_inflation"
+      ],
+      "risk_links": [
+        "identity_risk"
+      ],
+      "links": []
+    }
+  ]
+}
