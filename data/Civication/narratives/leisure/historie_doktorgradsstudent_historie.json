@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historie_doktorgradsstudent_historie_stream",
+  "type": "leisure",
+  "title": "Doktorgradsstudent — avhandling, kilder og faglig revisjon",
+  "sociological_theme": "historie_doktorgradsstudent_avgrensning_veiledning_arkivhull_proveniens_kapittelarbeid_seminar_review_framdrift_publiseringsgrense_privattid_og_teserevisjon_uten_automatisk_opptak_ansettelse_finansiering_grad_eller_institusjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "historie:doktorgradsstudent_historie"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "sporsmalet_som_er_for_stort",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Avhandlingen rommer plutselig et helt århundre",
+      "situation": [
+        "Du ser stadig flere relevante spor og merker at forskningsspørsmålet vokser hver gang du leser noe nytt.",
+        "Det store spørsmålet er intellektuelt interessant, men materialet og tiden du faktisk kan arbeide med er begrenset.",
+        "Doktorgradsfasen krever ikke at alle interessante spørsmål besvares i samme avhandling; avgrensning er en del av kunnskapsarbeidet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens spørsmålet til noe kildene og tiden faktisk kan bære, og noter resten som senere spor.",
+          "effect": 1,
+          "tags": [
+            "research_scope",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Behold hele bredden fordi en doktorgradsavhandling bør vise at du kan dekke feltet mest mulig fullstendig.",
+          "effect": -1,
+          "tags": [
+            "grandiosity_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_sporsmalet_som_er_for_stort"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "veilederen_som_er_uenig",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En veileder",
+      "subject": "Den faglige retningen får motstand tidlig",
+      "situation": [
+        "Veilederen mener hovedforklaringen din legger for mye vekt på én type kilde og foreslår en annen retning.",
+        "Du ser argumentet, men er ikke overbevist om at veilederens løsning er riktig.",
+        "Veiledning gir tung faglig motstand, men avhandlingen trenger fortsatt en begrunnet selvstendig retning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rekonstruer innvendingen presist, test den mot materialet og behold bare det som faktisk forbedrer prosjektet.",
+          "effect": 1,
+          "tags": [
+            "supervision_independence",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Endre retning umiddelbart fordi veilederens senioritet gjør motstanden til fasit.",
+          "effect": -1,
+          "tags": [
+            "seniority_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_veilederen_som_er_uenig"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arkivhullet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Den viktigste mappen mangler akkurat de årene du trenger",
+      "situation": [
+        "Arkivserien er rik før og etter perioden du undersøker, men har et stort hull midt i den mest avgjørende fasen.",
+        "Du kan fortsatt bygge et argument, men mangelen påvirker hvor sikkert du kan beskrive hendelsesforløpet.",
+        "Et doktorgradsprosjekt blir sterkere når fravær i materialet behandles som kunnskapsgrense, ikke som tom plass som kan fylles med antakelser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gjør arkivhullet eksplisitt og la påstandsstyrken følge det materialet faktisk kan vise.",
+          "effect": 1,
+          "tags": [
+            "archival_gap",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Skriv den mest sannsynlige overgangen som om den var dokumentert, siden resten av kildene peker samme vei.",
+          "effect": -1,
+          "tags": [
+            "evidence_overreach",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_arkivhullet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatet_uten_proveniens",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du finner et gammelt notat du selv skrev, men ikke hvor opplysningen kom fra",
+      "situation": [
+        "Et notat fra tidlig i prosjektet inneholder en opplysning som passer perfekt i kapitlet du skriver nå.",
+        "Du husker at den kom fra arkivarbeidet, men referansen er ikke med og du klarer ikke umiddelbart å finne originalen.",
+        "I et langt prosjekt kan egen arbeidsfil bli en sekundær kilde til egne minner dersom proveniens ikke holdes intakt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle opplysningen som ubekreftet til du finner originalreferansen eller kan dokumentere den på nytt.",
+          "effect": 1,
+          "tags": [
+            "provenance_discipline",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk opplysningen foreløpig fordi du vet at du aldri ville skrevet den ned uten å ha sett den et sted.",
+          "effect": -1,
+          "tags": [
+            "memory_substitution",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_notatet_uten_proveniens"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kapitlet_som_star_fast",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Tre uker med arbeid gir fortsatt ingen lesbar struktur",
+      "situation": [
+        "Du har mye materiale og mange notater, men kapitlet beveger seg mellom flere forklaringer uten klar argumentgang.",
+        "Mer lesing føles lettere enn å bestemme hva kapitlet faktisk skal hevde.",
+        "Avhandlingsarbeid kan stoppe i usynlig forberedelse når ny innsamling blir en måte å utsette komposisjon og faglig risiko på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en foreløpig argumentstruktur og skriv den svakeste delen synlig nok til at den kan kritiseres.",
+          "effect": 1,
+          "tags": [
+            "drafting_discipline",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å lese til du føler deg sikker på at kapitlet kan skrives riktig første gang.",
+          "effect": -1,
+          "tags": [
+            "preparation_loop",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_kapitlet_som_star_fast"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seminaret_med_det_vanskelige_sporsmalet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen stipendiat",
+      "subject": "Ett spørsmål viser at årsaksforklaringen din er for enkel",
+      "situation": [
+        "På et internt seminar spør en annen stipendiat om en alternativ forklaring du bare har behandlet kort.",
+        "Spørsmålet treffer et punkt du ikke kan løse muntlig der og da.",
+        "Doktorgradsfasen trener evnen til å ta et godt problem med seg tilbake til materialet uten å gjøre øyeblikkelig svar til mål på faglig verdi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at spørsmålet treffer et reelt problem, noter hva som må undersøkes og kom tilbake med et bedre svar senere.",
+          "effect": 1,
+          "tags": [
+            "seminar_revision",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar forklaringen hardere i rommet slik at prosjektet ikke fremstår svakere foran de andre.",
+          "effect": -1,
+          "tags": [
+            "performance_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_seminaret_med_det_vanskelige_sporsmalet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sitatet_fra_det_store_navnet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "En kjent historiker støtter poenget ditt, men på et annet grunnlag",
+      "situation": [
+        "Du finner et sitat fra en svært etablert historiker som ligner konklusjonen du ønsker å trekke.",
+        "Når du leser hele teksten ser du at argumentet bygger på et annet materiale og en annen tidsperiode.",
+        "Prestisjen til en kilde kan ikke erstatte samsvar mellom premisser, materiale og påstand."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk teksten bare der argumentet faktisk er relevant og forklar forskjellen i grunnlag.",
+          "effect": 1,
+          "tags": [
+            "authority_citation",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk sitatet bredt som støtte fordi navnet i seg selv vil gjøre påstanden vanskeligere å avvise.",
+          "effect": -1,
+          "tags": [
+            "prestige_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_sitatet_fra_det_store_navnet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fagfellen_som_vil_ha_mer",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En fagfelle",
+      "subject": "Et utkast får krav om en større ombygging",
+      "situation": [
+        "Du deler et artikkelutkast og får tilbake en grundig kommentar om at hovedargumentet kan være interessant, men at dokumentasjonen er for smal.",
+        "Forslaget innebærer betydelig mer arbeid enn du hadde planlagt for denne teksten.",
+        "Faglig kritikk må vurderes etter relevans og prosjektets reelle rammer, ikke bare etter hvor omfattende den er."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill mellom kritikken som er nødvendig for argumentets holdbarhet og ønskene som egentlig krever et annet prosjekt.",
+          "effect": 1,
+          "tags": [
+            "review_scope",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Gjør alle foreslåtte utvidelser for å vise at du tåler faglig kritikk og er villig til å arbeide nok.",
+          "effect": -1,
+          "tags": [
+            "compliance_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_fagfellen_som_vil_ha_mer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "framdriftsplanen_som_sprekker",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Planen viser tre måneder mer fremdrift enn teksten gjør",
+      "situation": [
+        "Den opprinnelige planen for kapitler og milepæler passer ikke lenger etter arkivhull og større revisjoner.",
+        "Det er ubehagelig å skrive om planen fordi endringen kan se ut som svak framdrift.",
+        "En realistisk forskningsplan er først nyttig når den kan endres av faktisk kunnskapsarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdater planen slik at den viser den reelle situasjonen og hvilke valg som har endret løpet.",
+          "effect": 1,
+          "tags": [
+            "progress_truth",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Behold den gamle planen utad og forsøk å hente inn alt privat for å unngå at forsinkelsen blir synlig.",
+          "effect": -1,
+          "tags": [
+            "schedule_masking",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_framdriftsplanen_som_sprekker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "artikkelen_ved_siden_av_avhandlingen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Et publiserbart sidespor begynner å spise hovedprosjektet",
+      "situation": [
+        "Et funn fra materialet kan bli en egen artikkel, og ideen er både interessant og synlig i fagmiljøet.",
+        "Arbeidet vil samtidig ta betydelig tid fra et avhandlingskapittel som allerede er forsinket.",
+        "Publisering kan være verdifullt uten at enhver mulig artikkel automatisk bør prioriteres foran avhandlingens bærekraft."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder artikkelen mot prosjektets faktiske kapasitet og utsett den dersom hovedarbeidet trenger tiden.",
+          "effect": 1,
+          "tags": [
+            "publication_boundary",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter artikkelen fordi synlig publisering alltid vil være mer verdifull enn et kapittel få andre ser ennå.",
+          "effect": -1,
+          "tags": [
+            "visibility_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_artikkelen_ved_siden_av_avhandlingen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "privatlivet_som_blir_fotnote",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Samtalen ender igjen i prosjektet ditt",
+      "situation": [
+        "En nær person spør hvordan du har det, og du merker at nesten hele svaret handler om avhandlingen, veiledning og framdrift.",
+        "Prosjektet krever mye oppmerksomhet, men det er ikke den eneste relasjonen eller identiteten du har.",
+        "En lang forskningsfase kan gjøre faglige problemer til privat klima dersom det ikke finnes steder der prosjektet faktisk slutter for dagen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag reelle perioder der avhandlingen ikke får være standardtema eller oppgave.",
+          "effect": 1,
+          "tags": [
+            "private_boundary",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Bruk all tilgjengelig privat tid til å tenke høyt om prosjektet fordi det er den enkleste måten å holde framdrift.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_privatlivet_som_blir_fotnote"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "funnet_som_ikke_stotter_tesen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Nye kilder gjør hovedforklaringen mindre overbevisende",
+      "situation": [
+        "Et nytt sett kilder passer dårlig med tesen som har strukturert flere kapitler.",
+        "Du kan forklare avviket bort, men du ser også en mulighet for at selve hovedforklaringen må endres.",
+        "Avhandlingen må tåle at materialet endrer prosjektet etter at mye arbeid allerede er investert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test om tesen faktisk må revideres og behold spor av hvorfor endringen ble nødvendig.",
+          "effect": 1,
+          "tags": [
+            "thesis_revision",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Behandle de nye kildene som spesialtilfeller så lenge som mulig for å beskytte strukturen du allerede har bygget.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost_pressure",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_funnet_som_ikke_stotter_tesen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_ekspert_i_programmet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En arrangør",
+      "subject": "Du blir presentert sterkere enn du selv ville formulert det",
+      "situation": [
+        "En arrangør omtaler deg som ekspert på avhandlingens tema i en offentlig programtekst.",
+        "Du kjenner feltet langt bedre enn da du startet, men arbeidet er fortsatt under utvikling og rollen din gir ikke automatisk institusjonell ekspertmyndighet.",
+        "Doktorgradsstudent kan innebære dyp spesialisering samtidig som tittel, grad og mandat fortsatt må beskrives presist."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en presis presentasjon av temaet du forsker på og hvilken rolle du faktisk har.",
+          "effect": 1,
+          "tags": [
+            "public_title_boundary",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "La ekspertbetegnelsen stå fordi den kan gi prosjektet mer tyngde og du tross alt kjenner temaet godt.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_ordet_ekspert_i_programmet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_doktorgradsstudent",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren stipendiat",
+      "subject": "Hva står igjen når prosjektet har blitt både fag og livsfase?",
+      "situation": [
+        "Du har avgrenset spørsmål, møtt arkivhull, skrevet svake utkast, endret forklaringer og blitt mer presis på hva kildene ikke kan vise.",
+        "Det faglige arbeidet kan være dypt uten at denne life-positionen i seg selv dokumenterer formelt opptak, ansettelse, finansiering eller ferdig grad.",
+        "Doktorgradsstudent som livsposisjon er en avansert lærings- og avhandlingsfase; Career-sporet og kvalifikasjonen `academic_phd_admission_or_employment` eier de formelle arbeids- og opptaksforholdene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La rollen uttrykke avansert læring og avhandlingsarbeid uten å ta formell grad, jobb eller institusjonell myndighet på forskudd.",
+          "effect": 1,
+          "tags": [
+            "doctoral_identity",
+            "doctoral_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar kilder, metode, revisjon og realistiske rammer styre avhandlingsfasen uten å gjøre faglig dybde til formell status."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den faglige dybden til bevis på at opptak, ansettelse og ferdig ekspertstatus i praksis allerede er oppnådd.",
+          "effect": -1,
+          "tags": [
+            "formal_status_overreach",
+            "doctoral_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør senioritet, prestisje, tidsbruk eller studentidentitet til mer evidens eller formell myndighet enn den faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "doktorgradsstudent_sesongslutt_hva_er_doktorgradsstudent"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

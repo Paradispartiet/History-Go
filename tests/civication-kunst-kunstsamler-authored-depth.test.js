@@ -98,9 +98,9 @@ for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(str
 assert.deepEqual(themeBank.reference_profiles['kunst/kunst_kunstsamler'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds,144);
-assert.equal(taxonomy.canonical_counts.total_role_worlds,229);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,144);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds,145);
+assert.equal(taxonomy.canonical_counts.total_role_worlds,230);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,145);
 
 const budget=stream.storylets.find(x=>x.id==='budsjettet_som_ser_lite_ut');
 assert.match(budget.situation.join(' '),/likviditetsbelastningen|frie midler|totalsummen/i);
