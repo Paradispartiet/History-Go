@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_deltaker_stream",
+  "type": "leisure",
+  "title": "Deltaker — tilhørighet, normer og gjensidighet",
+  "sociological_theme": "subkultur_deltaker_tilhorighet_uskrevne_normer_gjensidighet_adgang_fellesressurser_samtykke_grensearbeid_og_retten_til_a_trekke_seg_uten_arrangementscrew_eller_formell_arrangormyndighet",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:deltaker"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "forste_gang_du_blir_igjen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren deltaker",
+      "subject": "Når det uformelle hjelpearbeidet begynner",
+      "situation": [
+        "Kvelden er over, men noen blir igjen for å rydde kopper, brette tepper og få rommet tilbake i orden.",
+        "Ingen har satt deg på en vaktliste, men du merker at de samme få personene ofte tar det siste arbeidet.",
+        "Som Deltaker kan du bidra uten å gjøre frivillig hjelp til et usynlig skift eller late som du har arrangøransvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bli igjen en stund, avklar hva som faktisk trengs og gå når bidraget ditt er rimelig.",
+          "effect": 1,
+          "tags": [
+            "reciprocal_help",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Ta over resten uten å spørre fordi det viser at du hører til.",
+          "effect": -1,
+          "tags": [
+            "belonging_pressure",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_forste_gang_du_blir_igjen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_du_tar_med",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn utenfra",
+      "subject": "Når din invitasjon blir en annens første møte",
+      "situation": [
+        "En venn spør om å bli med til et lite arrangement du selv bare nylig har begynt å gå på.",
+        "Du vet hvilke praktiske normer som gjelder, men du eier verken stedet eller retten til å love at alle vil bli tatt imot likt.",
+        "Deltakelse gir lokal kunnskap, men ikke eierskap over adgang eller andre menneskers tilhørighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell vennen hva du faktisk vet, og la arrangørens eller stedets regler avgjøre resten.",
+          "effect": 1,
+          "tags": [
+            "invitation_responsibility",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Lov at alt går fint fordi folk kjenner deg der nå.",
+          "effect": -1,
+          "tags": [
+            "access_entitlement",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_vennen_du_tar_med"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regelen_ingen_fortalte_deg",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En annen deltaker",
+      "subject": "Den uskrevne regelen du først oppdager når du bryter den",
+      "situation": [
+        "Du gjør noe helt vanlig fra andre sammenhenger og blir raskt korrigert av en person som kjenner miljøet bedre.",
+        "Regelen står ingen steder, og måten den blir forklart på får deg til å føle at du burde ha visst den allerede.",
+        "Subkulturelle rom kan være avhengige av uskrevne normer, men læring fungerer dårlig hvis uvitenhet behandles som moralsk svikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp, spør hva regelen beskytter og juster deg uten å late som du visste det fra før.",
+          "effect": 1,
+          "tags": [
+            "implicit_norms",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar deg ved å si at en regel som ikke står skrevet ikke kan gjelde deg.",
+          "effect": -1,
+          "tags": [
+            "shame_reaction",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_regelen_ingen_fortalte_deg"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "plassen_som_alltid_er_opptatt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En ny deltaker",
+      "subject": "Hvem får ta plass uten å kjenne kodene?",
+      "situation": [
+        "En ny person setter seg på et område som de faste ofte bruker som sitt naturlige samlingspunkt.",
+        "Noen rundt deg reagerer som om personen har brutt en åpenbar orden, selv om ingen har forklart den.",
+        "Tilhørighet kan gjøre et rom oversiktlig for innsiderne og samtidig vanskelig å lese for den som nettopp har kommet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar rolig hvordan plassen vanligvis brukes, uten å gjøre den nye personen liten.",
+          "effect": 1,
+          "tags": [
+            "space_gatekeeping",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La irritasjonen bygge seg opp til personen selv skjønner at vedkommende er på feil sted.",
+          "effect": -1,
+          "tags": [
+            "insider_status",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_plassen_som_alltid_er_opptatt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppechatten_med_interne_koder",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren deltaker",
+      "subject": "Når intern humor gjør en person til selve poenget",
+      "situation": [
+        "I en gruppechat går en intern spøk videre fra å være gjenkjennelig til å handle stadig mer om én bestemt person.",
+        "De fleste svarer med korte reaksjoner, og ingen sier eksplisitt at noe er galt.",
+        "Interne koder kan skape nærhet, men de kan også skjule hvem som faktisk betaler prisen for fellesskapets humor."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stopp opp og flytt humoren bort fra personen før mønsteret setter seg.",
+          "effect": 1,
+          "tags": [
+            "internal_language",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legg på en ny variant fordi det viktigste er å vise at du forstår tonen.",
+          "effect": -1,
+          "tags": [
+            "peer_pressure",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_gruppechatten_med_interne_koder"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_lante_utstyret",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person som deler utstyr",
+      "subject": "Felles ting har også en eier og en neste bruker",
+      "situation": [
+        "Du får låne en liten ting som mange i miljøet bruker på omgang, og den blir liggende hos deg lenger enn avtalt.",
+        "Ingen etterlyser den direkte, men du vet at andre kan trenge den før neste samling.",
+        "Fellesressurser fungerer bare når lav formell kontroll erstattes av tydelig ansvar, ikke av at alle antar at noen andre ordner det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lever den tilbake eller avtal eksplisitt at du beholder den litt lenger.",
+          "effect": 1,
+          "tags": [
+            "shared_resources",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Vent til noen faktisk ber om den, siden ingen ser ut til å savne den ennå.",
+          "effect": -1,
+          "tags": [
+            "resource_drift",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_det_lante_utstyret"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_fra_kvelden",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En deltaker med kamera",
+      "subject": "Et godt bilde er ikke det samme som et felles bilde",
+      "situation": [
+        "Et bilde fra kvelden viser deg og flere andre tydelig, og fotografen vil legge det ut fordi stemningen ble spesielt god.",
+        "En av personene på bildet har tidligere vært forsiktig med offentlig synlighet, men er ikke tilgjengelig akkurat nå.",
+        "Å være til stede i et synlig miljø gjør ikke distribusjonssamtykke automatisk, heller ikke når bildet er positivt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vent med å publisere den identifiserbare versjonen til de berørte er spurt.",
+          "effect": 1,
+          "tags": [
+            "visibility_consent",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Legg det ut nå fordi alle var frivillig til stede da bildet ble tatt.",
+          "effect": -1,
+          "tags": [
+            "publicity_pressure",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_bildet_fra_kvelden"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pengene_til_fellespotten",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren deltaker",
+      "subject": "Når bidrag blir målt i penger",
+      "situation": [
+        "Det samles inn penger til en felles utgift, og flere gir raskt samme beløp uten mye diskusjon.",
+        "Denne måneden har du mindre å gå på, men du vil ikke at et lavere bidrag skal bli lest som svakere tilhørighet.",
+        "Et fellesskap blir sårbart hvis økonomisk kapasitet gradvis blir behandlet som bevis på lojalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si hva du kan bidra med og tilby en annen konkret innsats hvis det trengs.",
+          "effect": 1,
+          "tags": [
+            "contribution_boundary",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi det samme som de andre og løs privatøkonomien senere.",
+          "effect": -1,
+          "tags": [
+            "money_belonging",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_pengene_til_fellespotten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konflikten_ved_doren",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kjent deltaker",
+      "subject": "Når det frister å bruke innsiderstatus som argument",
+      "situation": [
+        "Ved inngangen oppstår en uenighet om hvem som kan komme inn denne kvelden og hvorfor.",
+        "Du kjenner flere på innsiden, men har ingen formell rolle i døra eller arrangementet.",
+        "Som Deltaker kan du kjenne konteksten uten å ha mandat til å overstyre den som faktisk håndterer adgang eller sikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar det du vet uten å late som du kan gi adgang eller avsi dom.",
+          "effect": 1,
+          "tags": [
+            "access_conflict",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk hvem du kjenner som pressmiddel for å få avgjørelsen endret.",
+          "effect": -1,
+          "tags": [
+            "informal_power",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_konflikten_ved_doren"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_noen_gjor_feil",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nyere deltaker",
+      "subject": "Hvordan korrigere uten å gjøre ydmykelse til ritual",
+      "situation": [
+        "En nyere person bryter en norm du selv lærte på den harde måten noen måneder tidligere.",
+        "Flere har lagt merke til feilen, og du merker at en offentlig korreksjon ville gi deg synlig status som en som kan kodene.",
+        "Fellesskapets normer kan beskyttes uten at kunnskap brukes til å rangere mennesker etter hvor tidlig de lærte dem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta personen til side og forklar normen og hvorfor den finnes.",
+          "effect": 1,
+          "tags": [
+            "correction_without_humiliation",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Korriger høyt foran de andre så regelen og din posisjon blir tydelig.",
+          "effect": -1,
+          "tags": [
+            "status_display",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_nar_noen_gjor_feil"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_uformelle_vakten",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En arrangør du kjenner",
+      "subject": "Når en liten tjeneste begynner å ligne en rolle",
+      "situation": [
+        "En arrangør du kjenner spør om du kan passe på en dør og noen vesker i noen minutter mens vedkommende løser noe annet.",
+        "Det er enkelt å si ja, men forespørselen glir fort over i spørsmål fra andre som om du representerer arrangementet.",
+        "Deltakerposisjonen kan innebære små tjenester, men skift, logistikk og myndighet tilhører Arrangementscrew eller andre formelle roller når ansvaret faktisk blir et arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hjelp kort hvis du vil, men send beslutninger og ansvar tilbake til den som faktisk har rollen.",
+          "effect": 1,
+          "tags": [
+            "informal_role_boundary",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å opptre som ansvarlig for døra fordi folk allerede spør deg.",
+          "effect": -1,
+          "tags": [
+            "career_blur",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_den_uformelle_vakten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historien_du_ikke_eier",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person som har vært med lenge",
+      "subject": "Når du blir bedt om å forklare et miljø du bare kjenner delvis",
+      "situation": [
+        "En bekjent utenfra spør deg hva miljøet egentlig står for og hvorfor folk der gjør ting på bestemte måter.",
+        "Du har egne erfaringer, men flere av historiene og konfliktene du har hørt er eldre enn din egen deltakelse.",
+        "Tilhørighet gir et perspektiv, ikke automatisk mandat til å snakke på vegne av alle eller gjøre usikre historier definitive."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du selv har sett, og marker tydelig hva du ikke kan representere sikkert.",
+          "effect": 1,
+          "tags": [
+            "representation_humility",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gi én ryddig forklaring på vegne av miljøet fordi det høres mer overbevisende ut.",
+          "effect": -1,
+          "tags": [
+            "identity_ownership",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_historien_du_ikke_eier"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "dagen_du_ikke_orker",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Når fravær begynner å kjennes som illojalitet",
+      "situation": [
+        "Det skjer noe i miljøet du vanligvis ville møtt opp på, men du er sliten og trenger en kveld uten mennesker.",
+        "Ingen har gitt deg en oppgave, likevel kjenner du et press om at fravær vil bli lest som at du glir ut.",
+        "Deltakelse er en valgt sosial praksis; hvis hvert fravær må forsvares, har tilhørigheten begynt å ligne en plikt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bli hjemme uten å gjøre det til en test på om du fortsatt hører til.",
+          "effect": 1,
+          "tags": [
+            "participation_capacity",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Dra selv om du ikke orker, først og fremst for å bli sett som fortsatt lojal.",
+          "effect": -1,
+          "tags": [
+            "loyalty_pressure",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_dagen_du_ikke_orker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_deltakelse",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er igjen når du ikke trenger å bevise at du er innenfor?",
+      "situation": [
+        "Etter flere uker kjenner du flere navn, flere normer og flere av de små rutinene som gjør miljøet forståelig innenfra.",
+        "Du har også sett hvor lett deltakelse kan gli over i adgangskrav, uformell rang, økonomisk press eller oppgaver ingen egentlig avtalte.",
+        "Deltaker som livsposisjon skal bety aktiv tilstedeværelse og gjensidighet uten eierskap over fellesskapet, automatisk arbeid eller krav om konstant synlighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold deltakelsen som valgt praksis: bidra, lær, sett grenser og la andre eie sine egne valg.",
+          "effect": 1,
+          "tags": [
+            "participant_identity",
+            "deltaker_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar tilhørighet være valgt deltakelse med ansvar og grenser, uten å gjøre innsiderstatus til eierskap, arbeid eller myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Mål om du fortsatt hører til etter hvor mye adgang, status og uformelt ansvar du har fått.",
+          "effect": -1,
+          "tags": [
+            "belonging_entitlement",
+            "belonging_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør tilhørighet mer avhengig av rang, adgang, press eller uavklart ansvar enn Deltaker-posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "deltaker_sesongslutt_hva_er_deltakelse"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
