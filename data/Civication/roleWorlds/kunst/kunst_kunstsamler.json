@@ -1,0 +1,1160 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_kunstsamler",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "kunstsamler",
+    "label": "Kunstsamler"
+  },
+  "title": "Kunstsamler",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge og forvalte en kunstsamling over tid uten å forveksle eierskap, anslått verdi eller markedsadgang med sikker investering, kunstnerisk autoritet eller profesjonell kunsthandel",
+    "description": "Kunstsamler-verdenen behandler Kunstsamler som en livelihood-sensitive ownership identity: spilleren bygger en samling over tid, og faktisk økonomi begrenser hvor ambisiøs den kan bli. Verden undersøker kjøp, auksjon, proveniens, oppbevaring, forsikring, anslått verdi, privat videresalg, utlån, markedsrykter og framtidig forvaltning. Posisjonen er ikke automatisk Gallerist, kunsthandler, kurator, investor eller rådgiver. Den gir ingen jobb, lønn, selskapsstatus, salgsmakt over andres verk, kuratorisk myndighet eller finansiell rådgivningsautoritet, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "consumption",
+    "class_power",
+    "status_anxiety",
+    "shame_reputation",
+    "public_attention",
+    "numerical_control",
+    "precarity",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "første kjøp der egen smak må skilles fra forventning om framtidig gevinst",
+    "årsbudsjettet der mange moderate kjøp samlet blir et likviditetsspørsmål",
+    "handel med ufullstendig proveniens der dokumentasjon og fortelling trekker i ulike retninger",
+    "relasjonen til en kunstner som vet at spilleren kjøper og derfor kan lese samlerens meninger som økonomisk press",
+    "auksjonen der konkurranse og offentlig budgivning utfordrer forhåndssatt prisgrense",
+    "hjemmet eller lageret der oppbevaring viser at eierskap fortsetter etter betalingen",
+    "forsikrings- og verdivurderingssamtalen der anslått verdi kan forveksles med kontanter",
+    "utlånet til en offentlig institusjon der eierskap, kreditering og kuratorisk autonomi må skilles"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "erfaren_samler",
+      "social_function": "normaliserer langsiktig eierskap, dokumentasjon og tvil uten å gjøre smak til fasit",
+      "class_position": "person med større økonomisk og sosial erfaring i samlermiljøet",
+      "status": "høy symbolsk kapital",
+      "power_over_player": "kan gjøre bestemte kjøpsmønstre og navn mer sosialt attraktive",
+      "wants": "at samlingen skal bli mer gjennomtenkt over tid",
+      "conceals": "at egen økonomisk kapasitet gjør enkelte råd lettere å følge enn for spilleren",
+      "speech_style": "rolig, sammenlignende og erfaren",
+      "teaches_player": "at økonomisk kapasitet er del av samlerpraksisen, ikke et pinlig avvik fra den"
+    },
+    {
+      "id": "selger",
+      "social_function": "presenterer verk, pris og proveniens i en situasjon der informasjon og salgsmål sameksisterer",
+      "class_position": "kommersiell mellomposisjon i kunstmarkedet",
+      "status": "høy situasjonell informasjonsmakt",
+      "power_over_player": "kan forme knapphet, historie og prisforståelse",
+      "wants": "å gjennomføre en handel uten å miste troverdighet",
+      "conceals": "at attraktive fortellinger kan være enklere å selge enn komplekse forbehold",
+      "speech_style": "informert, trygg og transaksjonsnær",
+      "teaches_player": "at selgerens kunnskap ikke opphever behovet for dokumentasjon"
+    },
+    {
+      "id": "kunstner",
+      "social_function": "viser hvordan kjøpekraft kan påvirke en relasjon uten formell myndighet",
+      "class_position": "produsent av verk med varierende markedsposisjon",
+      "status": "kunstnerisk autoritet over eget arbeid",
+      "power_over_player": "kan gi tidlig tilgang eller avslå påvirkning",
+      "wants": "å selge uten å miste kontroll over egne valg",
+      "conceals": "at gjentatte kjøp kan gjøre en samlers reaksjoner vanskeligere å ignorere",
+      "speech_style": "verkssentrert, konkret og varsom rundt forventninger",
+      "teaches_player": "at patronasje og kontroll ikke er det samme"
+    },
+    {
+      "id": "kurator",
+      "social_function": "representerer offentlig utlån og institusjonell bruk av privateide verk",
+      "class_position": "institusjonell fagperson",
+      "status": "høy kuratorisk myndighet innen eget mandat",
+      "power_over_player": "kan velge, kontekstualisere eller avslå utlån",
+      "wants": "å vise verket på faglig og praktisk forsvarlige vilkår",
+      "conceals": "at private eiere kan være både ressurs og kilde til press",
+      "speech_style": "formell, avgrenset og dokumentasjonsorientert",
+      "teaches_player": "at eierskap ikke er kuratorisk kontroll"
+    },
+    {
+      "id": "forsikringsradgiver",
+      "social_function": "gjør forskjellen mellom anslått verdi, dokumentasjon og disponibel økonomi konkret",
+      "class_position": "profesjonell tjenesteyter uten kunstnerisk myndighet",
+      "status": "teknisk autoritet på forsikringsgrunnlag",
+      "power_over_player": "kan kreve dokumentasjon eller endre dekning",
+      "wants": "at verdier og risiko beskrives konsistent",
+      "conceals": "at et høyt forsikringsbeløp lett kan oppleves som rikdom selv når det ikke er likvid",
+      "speech_style": "tallorientert, betinget og presis",
+      "teaches_player": "at verdi på papir ikke er det samme som penger i hånd"
+    },
+    {
+      "id": "naer_venn",
+      "social_function": "tester hvordan eierskap og videresalg påvirker en relasjon uten profesjonell ramme",
+      "class_position": "privat relasjon uten markedsmyndighet",
+      "status": "høy personlig betydning",
+      "power_over_player": "kan gjøre prisforhandling følelsesmessig kostbar",
+      "wants": "å bevare relasjonen selv om handelen ikke blir noe av",
+      "conceals": "at ønsket om verket kan gjøre åpen prisprat ubehagelig",
+      "speech_style": "direkte, personlig og lite formell",
+      "teaches_player": "at privat handel trenger tydeligere grenser nettopp fordi relasjonen betyr noe"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "collection_vs_speculation",
+      "meaning": "om kjøp begrunnes i langsiktig eierskap eller forventet prisgevinst",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "liquidity_pressure",
+      "meaning": "om spilleren skiller anslått samlingsverdi fra penger som faktisk kan brukes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "provenance_discipline",
+      "meaning": "om usikker historikk dokumenteres som usikker i stedet for å bli sikker gjennom gjentakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "stewardship_capacity",
+      "meaning": "om lagring, håndtering og forsikring holder tritt med nye kjøp",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "patronage_power",
+      "meaning": "om økonomisk støtte respekterer kunstnerens faglige autonomi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "status_display",
+      "meaning": "om utlån, kreditering og kjente navn brukes som dokumentasjon eller rangmarkør",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "market_rumor_dependence",
+      "meaning": "om kollektiv begeistring behandles som sosial informasjon eller som sikker prisprognose",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "professional_boundary",
+      "meaning": "om Kunstsamler holdes separat fra Gallerist, kunsthandel, kuratering og finansiell rådgivning",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Når et kjøp blir starten på en samling Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "collection_intent",
+          "liquidity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#det_forste_verket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Når et kjøp blir starten på en samling Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "collection_intent",
+          "liquidity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#det_forste_verket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Når et kjøp blir starten på en samling Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "collection_intent",
+          "liquidity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#det_forste_verket"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Når et kjøp blir starten på en samling Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "collection_intent",
+          "liquidity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#det_forste_verket"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Tre små kjøp har blitt ett stort beløp Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "liquidity_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#budsjettet_som_ser_lite_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Tre små kjøp har blitt ett stort beløp Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "liquidity_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#budsjettet_som_ser_lite_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Tre små kjøp har blitt ett stort beløp Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "liquidity_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#budsjettet_som_ser_lite_ut"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Tre små kjøp har blitt ett stort beløp Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "liquidity_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#budsjettet_som_ser_lite_ut"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Historien følger verket, men ikke alle ledd er dokumentert Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "provenance_truth",
+          "patronage_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Historien følger verket, men ikke alle ledd er dokumentert Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "provenance_truth",
+          "patronage_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Historien følger verket, men ikke alle ledd er dokumentert Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "provenance_truth",
+          "patronage_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Historien følger verket, men ikke alle ledd er dokumentert Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "provenance_truth",
+          "patronage_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Oppmerksomheten endrer relasjonen Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "patronage_boundary",
+          "auction_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Oppmerksomheten endrer relasjonen Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "patronage_boundary",
+          "auction_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Oppmerksomheten endrer relasjonen Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "patronage_boundary",
+          "auction_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Oppmerksomheten endrer relasjonen Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "patronage_boundary",
+          "auction_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Budene passerer grensen du satte hjemme Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "auction_discipline",
+          "stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Budene passerer grensen du satte hjemme Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "auction_discipline",
+          "stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Budene passerer grensen du satte hjemme Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "auction_discipline",
+          "stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Budene passerer grensen du satte hjemme Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "auction_discipline",
+          "stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Eierskap krever mer enn kjøpsøyeblikket Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "stewardship",
+          "valuation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Eierskap krever mer enn kjøpsøyeblikket Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "stewardship",
+          "valuation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Eierskap krever mer enn kjøpsøyeblikket Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "stewardship",
+          "valuation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Eierskap krever mer enn kjøpsøyeblikket Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "stewardship",
+          "valuation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Verdien på papiret er høyere enn du har forholdt deg til Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "valuation_boundary",
+          "private_sale_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Verdien på papiret er høyere enn du har forholdt deg til Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "valuation_boundary",
+          "private_sale_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Verdien på papiret er høyere enn du har forholdt deg til Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "valuation_boundary",
+          "private_sale_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Verdien på papiret er høyere enn du har forholdt deg til Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "valuation_boundary",
+          "private_sale_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Privat salg gjør prisen personlig Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "private_sale_boundary",
+          "public_loan_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#vennen_som_vil_kjope"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Privat salg gjør prisen personlig Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "private_sale_boundary",
+          "public_loan_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#vennen_som_vil_kjope"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Privat salg gjør prisen personlig Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "private_sale_boundary",
+          "public_loan_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#vennen_som_vil_kjope"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Privat salg gjør prisen personlig Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "private_sale_boundary",
+          "public_loan_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#vennen_som_vil_kjope"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Et museum vil låne et verk du eier Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "public_loan_boundary",
+          "public_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Et museum vil låne et verk du eier Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "public_loan_boundary",
+          "public_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Et museum vil låne et verk du eier Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "public_loan_boundary",
+          "public_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Et museum vil låne et verk du eier Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "public_loan_boundary",
+          "public_attention"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Krediteringen blir en statussak Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "public_attention",
+          "liquidity_reality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#navnet_pa_veggen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Krediteringen blir en statussak Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "public_attention",
+          "liquidity_reality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#navnet_pa_veggen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Krediteringen blir en statussak Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "public_attention",
+          "liquidity_reality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#navnet_pa_veggen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Krediteringen blir en statussak Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "public_attention",
+          "liquidity_reality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#navnet_pa_veggen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Likviditetsbehovet er plutselig reelt Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "liquidity_reality",
+          "market_rumor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Likviditetsbehovet er plutselig reelt Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "liquidity_reality",
+          "market_rumor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Likviditetsbehovet er plutselig reelt Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "liquidity_reality",
+          "market_rumor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Likviditetsbehovet er plutselig reelt Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "liquidity_reality",
+          "market_rumor"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Alle virker å vite hvem som snart blir dyr Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "market_rumor",
+          "succession_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Alle virker å vite hvem som snart blir dyr Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "market_rumor",
+          "succession_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Alle virker å vite hvem som snart blir dyr Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "market_rumor",
+          "succession_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Alle virker å vite hvem som snart blir dyr Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "market_rumor",
+          "succession_stewardship"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Samlingen betyr ikke det samme for alle rundt deg Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "succession_stewardship",
+          "collector_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Samlingen betyr ikke det samme for alle rundt deg Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "succession_stewardship",
+          "collector_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Samlingen betyr ikke det samme for alle rundt deg Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "succession_stewardship",
+          "collector_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Samlingen betyr ikke det samme for alle rundt deg Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "succession_stewardship",
+          "collector_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva står igjen når samlingen har vokst? Morgenen etablerer hva spilleren faktisk eier, vet og kan betale for før omdømme eller marked påvirker valget.",
+        "thread_ids": [
+          "collector_identity",
+          "collection_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva står igjen når samlingen har vokst? Midt på dagen møter samlingen selgere, kunstnere, venner, institusjoner eller praktiske forvaltningskrav.",
+        "thread_ids": [
+          "collector_identity",
+          "collection_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva står igjen når samlingen har vokst? Ettermiddagen gjør forskjellen mellom eierskap, markedspress og ufortjent myndighet til et konkret valg.",
+        "thread_ids": [
+          "collector_identity",
+          "collection_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva står igjen når samlingen har vokst? Kvelden viser hva valget etterlater i økonomisk ro, relasjoner, dokumentasjon, status eller ansvar for verkene.",
+        "thread_ids": [
+          "collector_identity",
+          "collection_intent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "collection_intent",
+      "description": "Om eierskap begrunnes i langsiktig forhold til verkene eller i forestillingen om framtidig gevinst.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "liquidity_boundary",
+      "description": "Om samlet kjøpsbelastning vurderes mot penger som faktisk er tilgjengelige.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "provenance_truth",
+      "description": "Om dokumentert proveniens skilles fra attraktive, men usikre historier.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "patronage_boundary",
+      "description": "Om gjentatte kjøp gir støtte uten å bli kunstnerisk eller redaksjonell myndighet.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "auction_discipline",
+      "description": "Om forhåndssatte grenser tåler konkurranse, tap og offentlig budpress.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "stewardship",
+      "description": "Om lagring, klima, innramming og håndtering regnes som reelt eierskapsansvar.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "valuation_boundary",
+      "description": "Om anslått verdi holdes adskilt fra disponibel likviditet og sikker finansieringsverdi.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "private_sale_boundary",
+      "description": "Om privat videresalg kan håndteres transparent uten å bruke nære relasjoner som prispress.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "public_loan_boundary",
+      "description": "Om offentlig utlån kan bidra til tilgang uten at eier krever kuratorisk kontroll.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "public_attention",
+      "description": "Om kreditering og utlån brukes til dokumentasjon eller personlig statussynlighet.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "liquidity_reality",
+      "description": "Om behov for kontanter får endre salgsvilkår uten at tapsaversjon gjør anslått verdi absolutt.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "market_rumor",
+      "description": "Om markedsrykter skilles fra egen smak og dokumenterbar informasjon.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "succession_stewardship",
+      "description": "Om dokumentasjon og framtidig forvaltning kan planlegges uten å pålegge andre samme identitet.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "collector_identity",
+      "description": "Om samlingen forblir eierskap under økonomiske og praktiske grenser, ikke investortittel eller sosial rang.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "samlingen_blir_buffer_i_hodet",
+      "description": "Høy anslått verdi kan gradvis få spilleren til å føle seg mer likvid enn økonomien faktisk er.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet",
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger"
+      ]
+    },
+    {
+      "id": "kjop_blir_statusforsvar",
+      "description": "Budkonkurranse og markedsrykter kan gjøre det vanskeligere å skille tap av et verk fra tap av sosial posisjon.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper",
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn"
+      ]
+    },
+    {
+      "id": "eierskap_blir_innflytelse",
+      "description": "Gjentatte kjøp og offentlig utlån kan gjøre det fristende å lese økonomisk betydning som kunstnerisk eller kuratorisk myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper",
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen"
+      ]
+    },
+    {
+      "id": "samlingen_vokser_forbi_omsorgen",
+      "description": "Nye kjøp kan fortsette etter at lagring og dokumentasjon allerede er for svak.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass",
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem"
+      ]
+    },
+    {
+      "id": "proveniens_blir_fortelling",
+      "description": "En attraktiv historikk kan gradvis bli omtalt som sikker hvis usikkerheten ikke beholdes i dokumentasjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull",
+        "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forste_kjop_blir_spekulasjonsmal",
+      "setup_ref": "1/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kjopsbelastning_blir_likviditetskrav",
+      "setup_ref": "2/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "economy",
+        "identity"
+      ]
+    },
+    {
+      "id": "proveniensgap_blir_omdommerisiko",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "patronasje_blir_innflytelsesforventning",
+      "setup_ref": "4/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "auksjonsgrense_blir_tapsaversjon",
+      "setup_ref": "5/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "oppbevaring_blir_framtidig_forvaltning",
+      "setup_ref": "6/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "bureaucracy",
+        "relationship"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#det_forste_verket",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#budsjettet_som_ser_lite_ut",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#proveniensen_med_hull",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#kunstneren_som_vet_du_kjoper",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#auksjonen_som_loper",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#verket_som_ikke_far_plass",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#forsikringen_som_endrer_bildet",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#vennen_som_vil_kjope",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#lanet_til_utstillingen",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#navnet_pa_veggen",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#salget_nar_du_trenger_penger",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#ryktet_om_neste_store_navn",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#arven_som_blir_problem",
+      "data/Civication/narratives/leisure/kunst_kunstsamler.json#sesongslutt_hva_er_kunstsamler"
+    ]
+  }
+}
