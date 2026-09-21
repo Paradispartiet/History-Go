@@ -6,7 +6,7 @@ const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 
-const badge=read('data/badges/subkultur.json');
+const catalog=read('data/Civication/lifePositionCatalog.json');
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
 const taxonomy=read('data/Civication/nonCareerRoleTaxonomy.json');
@@ -14,24 +14,24 @@ const checklist=read('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank=read('data/Civication/roleWorldThemeBank.json');
 const policy=read('data/Civication/roleWorldPolicy.json');
 
-const lifeKey='subkultur/observ_r';
-const lifeScope='subkultur_observor';
-const streamPath='data/Civication/narratives/leisure/subkultur_observor.json';
-const worldPath='data/Civication/roleWorlds/subkultur/subkultur_observor.json';
+const lifeKey='naeringsliv/sideprosjektbygger';
+const lifeScope='naeringsliv_sideprosjektbygger';
+const streamPath='data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json';
+const worldPath='data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json';
 
-const tier=badge.tiers.find(x=>x.label==='Observør');
-assert.ok(tier);
-assert.equal(tier.life_position.kind,'subculture_status');
-assert.equal(tier.life_position.employment_independent,true);
-assert.equal(tier.career_offer,undefined);
-assert.equal(tier.career_unlock.title,'Kulturhusvert');
-assert.equal(tier.career_unlock.policy,'direct');
-assert.equal(tier.career_unlock.role_scope,'subkultur_arrangementsdrift');
+const naering=(catalog.badges||[]).find(x=>x.badge_id==='naeringsliv');
+assert.ok(naering);
+const position=(naering.positions||[]).find(x=>x.id==='sideprosjektbygger');
+assert.ok(position);
+assert.equal(position.label,'Sideprosjektbygger');
+assert.equal(position.kind,'livelihood_identity');
+assert.match(position.description,/ved siden av jobb|studier|arbeidsledighet/i);
+assert.deepEqual(position.hooks,['sideprosjekt','kveld','forste_kunde']);
 
 const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
-assert.equal(stream.id,'subkultur_observor_stream');
-assert.deepEqual(stream.applies_when.any_tags,['subkultur:observ_r']);
+assert.equal(stream.id,'naeringsliv_sideprosjektbygger_stream');
+assert.deepEqual(stream.applies_when.any_tags,['naeringsliv:sideprosjektbygger']);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
@@ -44,13 +44,15 @@ for(const s of stream.storylets){
 
 const row=audit.positions.find(x=>x.key===lifeKey);
 assert.ok(row);
+assert.equal(row.runtime_source,'catalog');
+assert.equal(row.semantic_mode,'livelihood_or_ownership_identity');
 assert.equal(row.classification,'ready');
 assert.equal(row.authored_depth.exact_source_ref_count,1);
-assert.equal(row.authored_depth.thematic_source_ref_count,0);
+assert.equal(row.authored_depth.thematic_source_ref_count,1);
 assert.equal(row.authored_depth.max_narrative_depth,14);
 assert.equal(row.authored_depth.livelihood_template_count,0);
 assert.deepEqual(row.evidence.exact_source_refs,[streamPath]);
-assert.deepEqual(row.evidence.thematic_source_refs,[]);
+assert.deepEqual(row.evidence.thematic_source_refs,['data/Civication/narratives/leisure/musikk_musikknerd.json']);
 for(const other of audit.positions.filter(x=>x.key!==lifeKey)){
   assert.ok(!(other.evidence.exact_source_refs||[]).includes(streamPath),streamPath+' leaked exact into '+other.key);
   assert.ok(!(other.evidence.thematic_source_refs||[]).includes(streamPath),streamPath+' leaked thematic into '+other.key);
@@ -61,18 +63,20 @@ const world=read(worldPath);
 assert.ok(indexed);
 assert.equal(indexed.role_scope,lifeScope);
 assert.equal(indexed.status,'role_world_complete');
-assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Observør'});
+assert.deepEqual(indexed.life_position_ref,{badge_id:'naeringsliv',id:'sideprosjektbygger',label:'Sideprosjektbygger'});
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
+assert.equal(row.priority_score,380);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
 
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
 assert.equal(world.status,'role_world_complete');
-assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Observør'});
+assert.deepEqual(world.life_position_ref,{badge_id:'naeringsliv',id:'sideprosjektbygger',label:'Sideprosjektbygger'});
 assert.equal(world.materialization.no_new_runtime,true);
-assert.match(world.sociological_core.description,/employment-independent|Kulturhusvert|Career-laget/i);
-assert.match(world.sociological_core.description,/ikke automatisk jobb|skift|lønn|formell/i);
+assert.match(world.sociological_core.description,/livelihood identity|ved siden av|hovedforpliktelser/i);
+assert.match(world.sociological_core.description,/ikke automatisk jobb|Frilanser-status|selskap/i);
+assert.match(world.sociological_core.description,/ingen ny runtime/i);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
@@ -91,18 +95,22 @@ assert.equal(world.materialization.source_refs.length,14);
 assert.equal(new Set(world.materialization.source_refs).size,14);
 for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(streamPath+'#'));
 
-assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_observor'],world.theme_ids);
+assert.deepEqual(themeBank.reference_profiles['naeringsliv/naeringsliv_sideprosjektbygger'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds,143);
 assert.equal(taxonomy.canonical_counts.total_role_worlds,228);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,143);
 
-const filming=stream.storylets.find(x=>x.id==='mobilen_i_handa');
-assert.match(filming.situation.join(' '),/filme|opptak|gjenkjennelige|private/i);
-const bystander=stream.storylets.find(x=>x.id==='kommentaren_som_gar_for_langt');
-assert.match(bystander.situation.join(' '),/nedsettende|ansvar|faktisk hørte/i);
-const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_observor');
-assert.match(finale.situation.join(' '),/samtykke|presisjon|passivitet|skade/i);
+const resources=stream.storylets.find(x=>x.id==='arbeidsmaskinen_i_sekken');
+assert.match(resources.situation.join(' '),/arbeidsgiverens maskin|utstyr|lisenser|privat/i);
+const firstPay=stream.storylets.find(x=>x.id==='den_forste_som_vil_betale');
+assert.match(firstPay.situation.join(' '),/første betalende bruker|ikke automatisk|jobb|selskap/i);
+const special=stream.storylets.find(x=>x.id==='tilbudet_om_a_gjore_det_for_noen_andre');
+assert.match(special.situation.join(' '),/spesifikk levering|Frilanser|tjenestebedrift/i);
+const income=stream.storylets.find(x=>x.id==='den_lille_inntekten');
+assert.match(income.situation.join(' '),/litt inntekt|stabilt|hovedjobb|studier/i);
+const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_sideprosjektbygger');
+assert.match(finale.situation.join(' '),/jobb|frilansidentitet|selskap|evig vekst/i);
 
-console.log('Subkultur Observør authored-depth and Role World gate ok');
+console.log('Sideprosjektbygger authored-depth and Role World gate ok');

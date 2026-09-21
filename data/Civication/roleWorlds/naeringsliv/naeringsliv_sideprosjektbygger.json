@@ -1,0 +1,1161 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "naeringsliv",
+    "id": "sideprosjektbygger",
+    "label": "Sideprosjektbygger"
+  },
+  "title": "Sideprosjektbygger",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å bygge noe reelt ved siden av jobb, studier, arbeidsledighet eller andre hovedforpliktelser uten at tidlige brukere, små inntekter eller egen entusiasme automatisk gjør prosjektet til jobb, frilansvirksomhet eller selskap",
+    "description": "Sideprosjektbygger-verdenen behandler Sideprosjektbygger som en livelihood identity: spilleren bygger noe i avgrenset fritid uten å vite om det noen gang blir mer. Verden undersøker tidsgrenser, scope, bruk av ressurser, første betalende bruker, enkeltbrukeres ønsker, perioder uten fremdrift, offentlig identitet, små faste kostnader, support, privatlivslekkasje, betalte spesialleveranser, små inntekter og retten til å avslutte eller la prosjektet forbli lite. Rollen oppretter ikke automatisk jobb, lønn, Frilanser-status, selskap, organisasjonsnummer, arbeidsgiveransvar, ledermyndighet eller finansiering, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "precarity",
+    "public_private_leakage",
+    "invisible_work",
+    "care_vs_efficiency",
+    "status_anxiety",
+    "social_mask",
+    "numerical_control",
+    "bureaucratic_power"
+  ],
+  "social_environments": [
+    "den faste fritidsøkten der prosjektet må få plass uten at resten av livet blir resttid",
+    "den første lille versjonen der funksjonslisten utfordrer evnen til å lære før alt er bygget",
+    "grensen mot hovedjobben der privat prosjekt og arbeidsgivers utstyr eller lisenser må holdes adskilt",
+    "møtet med den første personen som faktisk vil betale og dermed skaper forventninger om support og retning",
+    "vennen som ønsker en spesialvariant og gjør én konkret bruker lett å forveksle med hele etterspørselen",
+    "den travle perioden der prosjektet står stille uten at pausen nødvendigvis betyr nederlag",
+    "privatøkonomien der små abonnementer og tjenester blir gjentatte kostnader før inntekten er stabil",
+    "hjemmet og nære relasjoner der prosjektet kan lekke inn i all samtale og all ledig oppmerksomhet"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "erfaren_sideprosjektbygger",
+      "social_function": "normaliserer liten skala, langsom læring og muligheten for at et prosjekt aldri blir hovedarbeid",
+      "class_position": "person med erfaring fra flere små egne prosjekter ved siden av annet arbeid",
+      "status": "moderat symbolsk autoritet basert på erfaring, ikke formell myndighet",
+      "power_over_player": "kan gjøre bestemte vekstfortellinger mer eller mindre attraktive",
+      "wants": "at spilleren skal lære hva prosjektet faktisk tåler før store livsendringer",
+      "conceals": "at egne vellykkede prosjekter kan gjøre tilfeldighet og kapasitet mindre synlig i ettertid",
+      "speech_style": "konkret, avdramatiserende og opptatt av kapasitet",
+      "teaches_player": "at et lite prosjekt ikke er en mislykket stor virksomhet"
+    },
+    {
+      "id": "tidlig_bruker",
+      "social_function": "gir konkret bruksinformasjon uten å representere hele markedet",
+      "class_position": "person med et reelt problem prosjektet delvis løser",
+      "status": "lav formell makt, høy læringsverdi",
+      "power_over_player": "kan påvirke retning gjennom tydelige ønsker og tidlig entusiasme",
+      "wants": "at løsningen skal fungere bedre for eget behov",
+      "conceals": "at eget behov ikke nødvendigvis er representativt",
+      "speech_style": "praktisk, konkret og fokusert på bruk",
+      "teaches_player": "at én bruker er data, ikke hele strategien"
+    },
+    {
+      "id": "betalende_bruker",
+      "social_function": "gjør forskjellen mellom frivillig testing og faktisk forventning til leveranse synlig",
+      "class_position": "liten kunde- eller abonnentrolle uten arbeidsgivermakt",
+      "status": "økonomisk relevant, men avgrenset",
+      "power_over_player": "kan forvente det som faktisk ble lovet mot betaling",
+      "wants": "forutsigbar funksjon og tydelig respons",
+      "conceals": "at betaling lett kan tolkes som rett til ubegrenset tilgjengelighet",
+      "speech_style": "direkte, forventningsorientert og konkret om feil",
+      "teaches_player": "at små inntekter også krever tydelig scope og supportgrense"
+    },
+    {
+      "id": "kollega",
+      "social_function": "representerer grensen mot hovedjobb, arbeidstid og arbeidsgivers ressurser",
+      "class_position": "likemann i separat hovedarbeidsrolle",
+      "status": "ordinær arbeidsplassstatus",
+      "power_over_player": "kan legge merke til uklare ressurs- og tidsgrenser",
+      "wants": "at privat prosjekt ikke skaper problemer i felles arbeid",
+      "conceals": "at nysgjerrighet på prosjektet kan blandes med arbeidsplassens normer",
+      "speech_style": "hverdagslig, konkret og rollebevisst",
+      "teaches_player": "at sideprosjektet må tåle en tydelig grense mot hovedjobben"
+    },
+    {
+      "id": "naer_person",
+      "social_function": "viser hva prosjektets tidsbruk gjør med privat oppmerksomhet og relasjon",
+      "class_position": "partner, familie eller nær venn uten prosjektrolle",
+      "status": "høy privat betydning",
+      "power_over_player": "kan gjøre kostnaden ved konstant prosjektmodus tydelig",
+      "wants": "at prosjektet skal få eksistere uten å spise all felles tid",
+      "conceals": "at støtte kan bli vanskelig å uttrykke når prosjektet stadig er til stede",
+      "speech_style": "personlig, konkret og lite imponert av vekstretorikk",
+      "teaches_player": "at privat kapasitet er en faktisk prosjektbegrensning"
+    },
+    {
+      "id": "venn_med_spesialbehov",
+      "social_function": "tester grensen mellom sosial nærhet, brukerfeedback og betalt spesialleveranse",
+      "class_position": "privat relasjon med konkret brukssituasjon",
+      "status": "høy relasjonell, lav formell autoritet",
+      "power_over_player": "kan gjøre et enkelt behov vanskelig å avslå uten skyld",
+      "wants": "en versjon som passer eget problem bedre",
+      "conceals": "at vennskap kan gjøre kostnaden ved ønsket mindre synlig",
+      "speech_style": "uformell, entusiastisk og løsningsorientert",
+      "teaches_player": "at nærhet ikke gjør ett behov representativt"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "time_capacity",
+      "meaning": "om prosjektet bruker avgrenset kapasitet eller gradvis gjør all ledig tid tilgjengelig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "scope_vs_learning",
+      "meaning": "om nye funksjoner prioriteres etter læring eller samles før noen får prøve prosjektet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "main_role_boundary",
+      "meaning": "om sideprosjektet holdes adskilt fra hovedjobb, studier og andres ressurser",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "monetization_signal",
+      "meaning": "om første betaling behandles som ett signal eller som automatisk krav om profesjonalisering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "support_capacity",
+      "meaning": "om forventet oppfølging står i forhold til tid, betaling og det som faktisk ble lovet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_life_leakage",
+      "meaning": "om prosjektet kan ha privat tid uten å eie all privat oppmerksomhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "income_vs_life_change",
+      "meaning": "om liten og ujevn inntekt skilles fra bærekraftig hovedinntekt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_freedom",
+      "meaning": "om prosjektet kan fryses, endres eller avsluttes uten at tidligere tidsbruk bestemmer framtiden",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Når skal prosjektet få plass? Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "time_boundary",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Når skal prosjektet få plass? Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "time_boundary",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Når skal prosjektet få plass? Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "time_boundary",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Når skal prosjektet få plass? Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "time_boundary",
+          "scope_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Tre funksjoner blir plutselig tolv Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "scope_discipline",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#ideen_som_vokser_for_fort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Tre funksjoner blir plutselig tolv Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "scope_discipline",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#ideen_som_vokser_for_fort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Tre funksjoner blir plutselig tolv Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "scope_discipline",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#ideen_som_vokser_for_fort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Tre funksjoner blir plutselig tolv Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "scope_discipline",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#ideen_som_vokser_for_fort"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Verktøyet tilhører hovedjobben, prosjektet gjør ikke det Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "resource_boundary",
+          "first_customer_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#arbeidsmaskinen_i_sekken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Verktøyet tilhører hovedjobben, prosjektet gjør ikke det Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "resource_boundary",
+          "first_customer_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#arbeidsmaskinen_i_sekken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Verktøyet tilhører hovedjobben, prosjektet gjør ikke det Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "resource_boundary",
+          "first_customer_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#arbeidsmaskinen_i_sekken"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Verktøyet tilhører hovedjobben, prosjektet gjør ikke det Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "resource_boundary",
+          "first_customer_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#arbeidsmaskinen_i_sekken"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Interesse blir til et konkret spørsmål om penger Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "first_customer_boundary",
+          "user_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Interesse blir til et konkret spørsmål om penger Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "first_customer_boundary",
+          "user_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Interesse blir til et konkret spørsmål om penger Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "first_customer_boundary",
+          "user_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Interesse blir til et konkret spørsmål om penger Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "first_customer_boundary",
+          "user_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: En liten tjeneste kan endre prosjektets retning Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "user_signal_boundary",
+          "pace_resilience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#vennen_som_vil_ha_en_spesialversjon"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: En liten tjeneste kan endre prosjektets retning Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "user_signal_boundary",
+          "pace_resilience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#vennen_som_vil_ha_en_spesialversjon"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: En liten tjeneste kan endre prosjektets retning Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "user_signal_boundary",
+          "pace_resilience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#vennen_som_vil_ha_en_spesialversjon"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: En liten tjeneste kan endre prosjektets retning Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "user_signal_boundary",
+          "pace_resilience"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#vennen_som_vil_ha_en_spesialversjon"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Ingen fremdrift betyr ikke nødvendigvis at prosjektet er dødt Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "pace_resilience",
+          "identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Ingen fremdrift betyr ikke nødvendigvis at prosjektet er dødt Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "pace_resilience",
+          "identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Ingen fremdrift betyr ikke nødvendigvis at prosjektet er dødt Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "pace_resilience",
+          "identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Ingen fremdrift betyr ikke nødvendigvis at prosjektet er dødt Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "pace_resilience",
+          "identity_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Hvor stort skal prosjektet se ut før det er stort? Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "identity_boundary",
+          "cost_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Hvor stort skal prosjektet se ut før det er stort? Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "identity_boundary",
+          "cost_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Hvor stort skal prosjektet se ut før det er stort? Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "identity_boundary",
+          "cost_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Hvor stort skal prosjektet se ut før det er stort? Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "identity_boundary",
+          "cost_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Små kostnader begynner å bli faste Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "cost_boundary",
+          "support_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Små kostnader begynner å bli faste Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "cost_boundary",
+          "support_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Små kostnader begynner å bli faste Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "cost_boundary",
+          "support_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Små kostnader begynner å bli faste Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "cost_boundary",
+          "support_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Betaling skaper forventning om respons Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "support_boundary",
+          "private_time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Betaling skaper forventning om respons Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "support_boundary",
+          "private_time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Betaling skaper forventning om respons Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "support_boundary",
+          "private_time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Betaling skaper forventning om respons Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "support_boundary",
+          "private_time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Alt blir etter hvert en mulig idé til prosjektet Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "private_time_boundary",
+          "project_vs_assignment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Alt blir etter hvert en mulig idé til prosjektet Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "private_time_boundary",
+          "project_vs_assignment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Alt blir etter hvert en mulig idé til prosjektet Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "private_time_boundary",
+          "project_vs_assignment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Alt blir etter hvert en mulig idé til prosjektet Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "private_time_boundary",
+          "project_vs_assignment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Prosjektet ligner plutselig en betalt spesialleveranse Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "project_vs_assignment",
+          "income_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Prosjektet ligner plutselig en betalt spesialleveranse Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "project_vs_assignment",
+          "income_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Prosjektet ligner plutselig en betalt spesialleveranse Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "project_vs_assignment",
+          "income_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Prosjektet ligner plutselig en betalt spesialleveranse Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "project_vs_assignment",
+          "income_signal_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Det kommer penger, men ikke nok til å bære livet Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "income_signal_boundary",
+          "stop_or_continue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Det kommer penger, men ikke nok til å bære livet Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "income_signal_boundary",
+          "stop_or_continue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Det kommer penger, men ikke nok til å bære livet Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "income_signal_boundary",
+          "stop_or_continue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Det kommer penger, men ikke nok til å bære livet Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "income_signal_boundary",
+          "stop_or_continue"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Prosjektet fungerer, men interessen er svak Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "stop_or_continue",
+          "side_project_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Prosjektet fungerer, men interessen er svak Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "stop_or_continue",
+          "side_project_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Prosjektet fungerer, men interessen er svak Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "stop_or_continue",
+          "side_project_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Prosjektet fungerer, men interessen er svak Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "stop_or_continue",
+          "side_project_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva betyr det å bygge noe ved siden av resten av livet? Morgenen etablerer hvilken kapasitet, rollegrense eller faktisk prosjektstatus spilleren starter dagen med.",
+        "thread_ids": [
+          "side_project_identity",
+          "time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva betyr det å bygge noe ved siden av resten av livet? Midt på dagen møter prosjektet brukere, hovedjobb, relasjoner, kostnader eller konkrete forventninger.",
+        "thread_ids": [
+          "side_project_identity",
+          "time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva betyr det å bygge noe ved siden av resten av livet? Ettermiddagen gjør forskjellen mellom læring i liten skala og ubegrunnet vekstpress til et konkret valg.",
+        "thread_ids": [
+          "side_project_identity",
+          "time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva betyr det å bygge noe ved siden av resten av livet? Kvelden viser hva valget etterlater i privat kapasitet, økonomi, identitet, relasjoner eller prosjektets videre bærekraft.",
+        "thread_ids": [
+          "side_project_identity",
+          "time_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "time_boundary",
+      "description": "Om prosjektet får fast, begrenset plass ved siden av hovedlivet eller gradvis spiser all ledig kapasitet.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "scope_discipline",
+      "description": "Om prosjektet lærer gjennom små leverbare versjoner eller vokser til permanent forberedelse.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "resource_boundary",
+      "description": "Om private prosjektressurser holdes adskilt fra arbeidsgivers eller andre hovedrolles verktøy og lisenser.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "first_customer_boundary",
+      "description": "Om første betaling tolkes som ett signal eller som automatisk krav om jobb-, kunde- eller selskapsvekst.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "user_signal_boundary",
+      "description": "Om én brukers konkrete ønske blir datapunkt eller hele prosjektets nye retning.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "pace_resilience",
+      "description": "Om perioder med lav kapasitet tåles uten at skyld utløser overarbeid.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "identity_boundary",
+      "description": "Om offentlig identitet kan beskrive prosjektet uten å gjøre forsøket til hele personens status.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "cost_boundary",
+      "description": "Om gjentatte små prosjektkostnader holdes innenfor en faktisk privat ramme.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "support_boundary",
+      "description": "Om betaling gir realistisk oppfølging uten å oppheve hovedforpliktelser og tilgjengelighetsgrenser.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "private_time_boundary",
+      "description": "Om prosjektet får privat tid uten at all privat tid blir prosjektarbeid.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "project_vs_assignment",
+      "description": "Om betalte spesialleveranser holdes separate fra selve prosjektet og fra automatisk frilansidentitet.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "income_signal_boundary",
+      "description": "Om liten, ujevn inntekt behandles som læring eller som bevis på at hovedinntekt straks kan erstattes.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "stop_or_continue",
+      "description": "Om tidligere tidsbruk kan avsluttes, fryses eller endres uten at sunk cost bestemmer framtiden.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "side_project_identity",
+      "description": "Om Sideprosjektbygger kan være en varig liten praksis uten plikt til selskap, jobb, frilans eller evig vekst.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "fritid_blir_alltid_tilgjengelig",
+      "description": "Når prosjektarbeid ikke har sluttpunkt, kan all pause gradvis begynne å føles som tapt fremdrift.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet"
+      ]
+    },
+    {
+      "id": "forste_betaling_blir_profesjonaliseringspress",
+      "description": "En tidlig betaling kan få spilleren til å love mer support og vekst enn den lille prosjektformen tåler.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen"
+      ]
+    },
+    {
+      "id": "smakostnader_blir_fast_belastning",
+      "description": "Flere små verktøy og tjenester kan samlet gjøre prosjektet dyrere å holde i live enn spilleren har planlagt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten"
+      ]
+    },
+    {
+      "id": "prosjekt_blir_hele_identiteten",
+      "description": "Offentlig synlighet kan gjøre det sosialt dyrere å endre eller stoppe noe som fortsatt bare er et forsøk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det"
+      ]
+    },
+    {
+      "id": "spesialleveranse_blir_ny_jobblogikk",
+      "description": "Betalt tilpasning kan trekke prosjektet mot andres frister og behov uten at spilleren egentlig ønsket en Frilanser-praksis.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre",
+        "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "tidsramme_blir_privatkapasitet",
+      "setup_ref": "1/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "scope_blir_brukerlaering",
+      "setup_ref": "2/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "ressursgrense_blir_hovedrolle_tillit",
+      "setup_ref": "3/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "work",
+        "reputation"
+      ]
+    },
+    {
+      "id": "forste_betaling_blir_supportforventning",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kostnadstak_blir_inntektsrealitet",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "identity"
+      ]
+    },
+    {
+      "id": "sunk_cost_blir_exitfrihet",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "psyche",
+        "identity"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_faste_kvelden",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#ideen_som_vokser_for_fort",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#arbeidsmaskinen_i_sekken",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_som_vil_betale",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#vennen_som_vil_ha_en_spesialversjon",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_tomme_uken",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#navnet_pa_profilen",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#regningen_som_endrer_regnestykket",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_forste_klagen",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#prosjektet_pa_middagsbordet",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#tilbudet_om_a_gjore_det_for_noen_andre",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#den_lille_inntekten",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#nesten_ingen_bruker_det",
+      "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json#sesongslutt_hva_er_sideprosjektbygger"
+    ]
+  }
+}
