@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "subkultur_gatesmart_stream",
+  "type": "leisure",
+  "title": "Gatesmart — situasjonslesing, grenser og handlingsrom",
+  "sociological_theme": "subkultur_gatesmart_situasjonslesing_risikovurdering_grenser_ryktekalibrering_hjelp_plan_b_sosialt_press_og_handlingsrom_uten_kriminalitetskompetanse_vaktmyndighet_eller_kulturmedarbeiderrolle",
+  "applies_when": {
+    "any_tags": [
+      "subkultur:gatesmart"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "snarveien_du_ikke_trenger",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren kjenning",
+      "subject": "Når snarveien mest handler om å bevise noe",
+      "situation": [
+        "På vei hjem foreslår noen en raskere vei gjennom et område du ikke kjenner godt på denne tiden av døgnet.",
+        "Du har ingen konkret grunn til å tro at noe vil skje, men du merker at hele diskusjonen har blitt en test på hvem som tør mest.",
+        "Gatesmart handler om å lese situasjonen nøkternt og beholde handlingsrom, ikke om å gjøre unødvendig risiko til identitetsbevis."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg den oversiktlige veien og la behovet for å imponere være irrelevant.",
+          "effect": 1,
+          "tags": [
+            "exit_margin",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Ta snarveien først og fremst for å vise at du ikke lar deg skremme.",
+          "effect": -1,
+          "tags": [
+            "bravado_pressure",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_snarveien_du_ikke_trenger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_er_for_sliten",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "Når det sosiale tempoet går lenger enn kapasiteten",
+      "situation": [
+        "En venn er utslitt og merkbart mindre orientert enn tidligere på kvelden.",
+        "Resten av gruppen vil videre og antar at vedkommende bare kan henge med litt til.",
+        "Situasjonsforståelse handler også om å legge merke til når en person trenger ro, følge eller en enkel vei hjem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva vennen trenger og hjelp med en trygg avslutning før resten bestemmer seg videre.",
+          "effect": 1,
+          "tags": [
+            "careful_exit",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Press videre fordi det er flaut å være gruppen som avslutter tidlig.",
+          "effect": -1,
+          "tags": [
+            "group_pressure",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_vennen_som_er_for_sliten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ryktet_om_hjornet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person som kjenner området",
+      "subject": "Når et rykte begynner å høres ut som et kart",
+      "situation": [
+        "Du får høre at et bestemt hjørne alltid bør unngås, men historien skifter litt hver gang den blir fortalt.",
+        "Ingen kan vise til en konkret hendelse nå, samtidig som flere gjentar vurderingen med stor sikkerhet.",
+        "Gatesmart dømmekraft må kunne ta varsler alvorlig uten å gjøre rykter om mennesker og områder til sikre fakta."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta informasjonen med i vurderingen, men skill tydelig mellom konkret observasjon og gjentatt rykte.",
+          "effect": 1,
+          "tags": [
+            "rumor_calibration",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta historien videre som sikker kunnskap fordi mange allerede sier det samme.",
+          "effect": -1,
+          "tags": [
+            "reputation_amplification",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_ryktet_om_hjornet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tingen_du_blir_bedt_om_a_passe",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En perifer bekjent",
+      "subject": "Når en enkel tjeneste mangler sammenheng",
+      "situation": [
+        "En perifer bekjent ber deg holde en lukket bag en stund fordi personen må ordne noe annet.",
+        "Du kjenner ikke innholdet, tidsrammen eller hvorfor akkurat du ble spurt, og personen blir irritert når du spør.",
+        "Å være gatesmart betyr å tåle å si nei til uklart ansvar uten å måtte bevise at forespørselen er farlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du ikke tar ansvar for noe du ikke kjenner rammene rundt.",
+          "effect": 1,
+          "tags": [
+            "unclear_responsibility",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Ta den for å vise at du er en person man kan stole på uten spørsmål.",
+          "effect": -1,
+          "tags": [
+            "loyalty_test",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_tingen_du_blir_bedt_om_a_passe"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "stemningen_som_skifter",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Når en diskusjon slutter å være en diskusjon",
+      "situation": [
+        "Utenfor et arrangement går en høylytt uenighet fra spøk til tydelig irritasjon mellom to grupper.",
+        "Du kjenner én av personene og merker at flere begynner å stille seg nærmere i stedet for å roe ned.",
+        "Gatesmart vurdering handler om å registrere eskalering tidlig og bevare muligheten til å trekke seg før stolthet blir viktigere enn situasjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Trekk deg ut av klyngen og hjelp bekjenten bort hvis det kan gjøres uten å eskalere.",
+          "effect": 1,
+          "tags": [
+            "escalation_reading",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Bli stående tett på for å vise at din side ikke trekker seg først.",
+          "effect": -1,
+          "tags": [
+            "side_taking_pressure",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_stemningen_som_skifter"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "telefonen_som_dor",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Når plan B burde kommet før batteriet gjorde det",
+      "situation": [
+        "Telefonen går tom for strøm mens du er på vei mellom to avtaler sent på kvelden.",
+        "Du kjenner hovedretningen, men ikke detaljene godt nok til å være sikker på neste del.",
+        "Praktisk gatesmarthet er ofte kjedelig: vite når man skal stoppe, spørre, finne et åpent bemannet sted eller endre planen før usikkerheten vokser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå inn et åpent bemannet sted og få oversikt før du fortsetter.",
+          "effect": 1,
+          "tags": [
+            "fallback_planning",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett på intuisjon fordi det føles mer selvsikkert enn å be om hjelp.",
+          "effect": -1,
+          "tags": [
+            "confidence_performance",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_telefonen_som_dor"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "doren_noen_sier_er_grei",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent av en bekjent",
+      "subject": "Når kjennskap blir brukt som adgangskort",
+      "situation": [
+        "Noen hevder at en sidedør er grei å bruke fordi de kjenner en person som jobber i bygget.",
+        "Du har ingen avtale om det, og forklaringen bygger mest på at «alle gjør det».",
+        "Gatesmarthet gir ikke rett til å omdefinere andres grenser; lokalkunnskap er ikke det samme som tillatelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk den ordinære inngangen eller avklar adgang med noen som faktisk har ansvar.",
+          "effect": 1,
+          "tags": [
+            "permission_boundary",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Følg etter fordi sosial kjennskap sannsynligvis er nok.",
+          "effect": -1,
+          "tags": [
+            "informal_access",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_doren_noen_sier_er_grei"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "personen_som_ser_seg_over_skulderen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En ukjent person",
+      "subject": "Når du ser uro uten å vite historien",
+      "situation": [
+        "En ukjent person i nærheten ser gjentatte ganger bak seg og virker opptatt av en annen person lenger unna.",
+        "Du vet ikke hva relasjonen er eller hva som har skjedd, men uroen virker reell nok til at du legger merke til den.",
+        "Situasjonsforståelse krever at du kan tilby konkret, lavmælt hjelp uten å dikte en forklaring eller sette deg selv i en konfrontasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør diskret om personen trenger hjelp til å komme til et mer offentlig sted eller kontakte relevant hjelp.",
+          "effect": 1,
+          "tags": [
+            "bounded_help",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Konfronter den andre personen direkte fordi du allerede har forstått hva som foregår.",
+          "effect": -1,
+          "tags": [
+            "assumption_escalation",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_personen_som_ser_seg_over_skulderen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "planen_som_ingen_vil_forklare",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En gruppe bekjente",
+      "subject": "Når uklarhet blir solgt som spontanitet",
+      "situation": [
+        "En gruppe vil videre til et nytt sted, men svarene på hvor, hvor lenge og hvordan man kommer seg hjem er påfallende vage.",
+        "Alle virker entusiastiske, og spørsmål blir møtt med at du bare må bli med og slutte å overtenke.",
+        "Gatesmart dømmekraft betyr å kunne etterspørre nok informasjon til å velge selv, også når gruppedynamikken belønner impulsivitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om de praktiske rammene og stå over hvis du fortsatt ikke får et tydelig nok bilde.",
+          "effect": 1,
+          "tags": [
+            "plan_clarity",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Bli med uten å vite mer fordi det vil være sosialt vanskelig å si nei nå.",
+          "effect": -1,
+          "tags": [
+            "impulse_pressure",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_planen_som_ingen_vil_forklare"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sporsmalet_du_ikke_kan_svare_for_andre",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En sikkerhetsansatt",
+      "subject": "Når lokalkunnskap blir forvekslet med representasjon",
+      "situation": [
+        "En sikkerhetsansatt spør deg om hvem som var til stede tidligere og hva en annen person pleier å gjøre.",
+        "Du kjenner noen av menneskene, men har bare sett deler av kvelden og vet ikke hele forløpet.",
+        "Å være gatesmart betyr også å vite grensen for egen kunnskap og ikke fylle hull med antakelser for å virke informert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell bare det du faktisk observerte og marker tydelig hva du ikke vet.",
+          "effect": 1,
+          "tags": [
+            "knowledge_boundary",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Fyll inn det mest sannsynlige fordi du kjenner miljøet godt nok til å skjønne resten.",
+          "effect": -1,
+          "tags": [
+            "certainty_performance",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_sporsmalet_du_ikke_kan_svare_for_andre"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lommeboken_pa_bakken",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En person ved garderoben",
+      "subject": "Når et funn kan bli sosial kapital",
+      "situation": [
+        "Du finner en lommebok nær et område der mange fra miljøet har stått gjennom kvelden.",
+        "En bekjent foreslår at dere bare legger ut bilde i en intern kanal og beholder den til noen dere kjenner melder seg.",
+        "Praktisk dømmekraft handler om å velge en etterprøvbar returvei fremfor å gjøre et funn til privat kontroll over en annens eiendeler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lever den til ansvarlig stedspersonale eller en annen tydelig, etterprøvbar hittekanal.",
+          "effect": 1,
+          "tags": [
+            "traceable_return",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Behold den selv fordi intern kjennskap føles tryggere enn formelle rutiner.",
+          "effect": -1,
+          "tags": [
+            "private_control",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_lommeboken_pa_bakken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "posisjonen_som_ble_delt_live",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær bekjent",
+      "subject": "Når sosial koordinering blir løpende sporing",
+      "situation": [
+        "En nær bekjent deler posisjonen din i en gruppechat for å gjøre det lettere for flere å møtes.",
+        "Det er praktisk akkurat nå, men du ble ikke spurt og delingen gjør bevegelsene dine synlige lenger enn selve møtet krever.",
+        "Gatesmarthet omfatter også digital situasjonsforståelse: nyttig koordinering bør ikke automatisk bli vedvarende eksponering."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om at delingen stoppes når formålet er over, og avklar neste gang før posisjon deles.",
+          "effect": 1,
+          "tags": [
+            "location_privacy",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "La det fortsette fordi det kan virke mistenksomt å bry seg om slik synlighet.",
+          "effect": -1,
+          "tags": [
+            "visibility_pressure",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_posisjonen_som_ble_delt_live"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "er_det_trygt_her",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn utenfra",
+      "subject": "Når noen ber om et ja eller nei du ikke kan garantere",
+      "situation": [
+        "En venn som ikke kjenner området spør om det er trygt å være der sent.",
+        "Du kjenner rytmen bedre enn vennen, men vet også at forhold, tidspunkt og mennesker kan endre vurderingen raskt.",
+        "Gatesmart kunnskap er situert og foreløpig; den blir farlig som identitet hvis du later som du kan garantere andres sikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar hva du faktisk kjenner til, hva som er usikkert og hvilke enkle valg som gir mer handlingsrom.",
+          "effect": 1,
+          "tags": [
+            "calibrated_guidance",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Gi et kategorisk svar fordi det viktigste er å fremstå som den som kjenner området.",
+          "effect": -1,
+          "tags": [
+            "expert_posture",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_er_det_trygt_her"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_gatesmart",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er igjen når du ikke trenger å virke uberørt?",
+      "situation": [
+        "Etter flere uker merker du at du oftere registrerer uklare avtaler, skiftende stemning, manglende plan B og press om å bevise tilhørighet.",
+        "Du har også sett hvor lett «gatesmart» kan bli en rolle der selvsikkerhet, mistenksomhet eller risikotaking ser ut som kompetanse.",
+        "Gatesmart som livsposisjon skal være nøktern situasjonslesing og gode grenser, ikke kriminalitetskunnskap, fryktløshet, vaktrolle eller rett til å definere mennesker og steder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold dømmekraften som en stille praksis: observer, avklar, behold en utvei og trekk deg når situasjonen krever det.",
+          "effect": 1,
+          "tags": [
+            "street_judgement",
+            "gatesmart_practice",
+            "boundary"
+          ],
+          "feedback": "Du beholder situasjonsforståelse som nøktern dømmekraft og handlingsrom, uten å gjøre risiko, mistanke eller uformell status til identitet."
+        },
+        {
+          "id": "B",
+          "label": "Mål hvor gatesmart du er etter hvor lite du spør og hvor mye risiko du tåler uten å vise uro.",
+          "effect": -1,
+          "tags": [
+            "fearless_identity",
+            "street_status_pressure",
+            "overreach"
+          ],
+          "feedback": "Valget gjør Gatesmart mer avhengig av bravado, antakelser, gruppepress eller uavklart ansvar enn posisjonen trenger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "gatesmart_sesongslutt_hva_er_gatesmart"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
