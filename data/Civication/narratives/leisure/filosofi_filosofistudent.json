@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "filosofi_filosofistudent_stream",
+  "type": "leisure",
+  "title": "Filosofistudent — tekst, seminar og revisjon",
+  "sociological_theme": "filosofi_filosofistudent_primartekst_kildegrense_begrepsarbeid_seminar_veiledning_vurdering_eksamenskapasitet_uenighet_og_standpunktrevisjon_uten_automatisk_grad_fagfilosofstatus_undervisningsrolle_eller_institusjonell_autoritet",
+  "applies_when": {
+    "any_tags": [
+      "filosofi:filosofistudent"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "forste_primartekst",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Teksten gir mindre mening enn sammendraget",
+      "situation": [
+        "Du har lest et kort sammendrag før seminar, men primærteksten er langt vanskeligere enn du forventet.",
+        "Flere av begrepene brukes annerledes enn i dagligtale, og du merker at du fristes til å lese sammendragets konklusjon tilbake inn i hvert avsnitt.",
+        "Filosofistudent-posisjonen begynner med å tåle at forståelsen er foreløpig og at selve teksten kan korrigere det du trodde på forhånd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hva du faktisk forstår, hva du er usikker på, og gå tilbake til teksten før du konkluderer.",
+          "effect": 1,
+          "tags": [
+            "primary_text_discipline",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk sammendragets hovedpoeng som fasit og tolke uklare avsnitt slik at de passer.",
+          "effect": -1,
+          "tags": [
+            "summary_substitution",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_forste_primartekst"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seminaret_der_du_ikke_har_svar",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En seminarleder",
+      "subject": "Du blir spurt om et argument du ikke har rukket å rekonstruere",
+      "situation": [
+        "Seminarlederen spør hvorfor forfatteren mener en bestemt konklusjon følger av premissene.",
+        "Du kjenner temaet, men har ikke arbeidet deg gjennom hele argumentgangen.",
+        "Som student er det faglig legitimt å være midt i læringen; problemet oppstår når usikkerhet skjules som sikker faglig autoritet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si tydelig hva du ser i argumentet og hvor analysen din fortsatt er uferdig.",
+          "effect": 1,
+          "tags": [
+            "epistemic_humility",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Svar sikkert ut fra hva du tror forfatteren må ha ment for å unngå å virke uforberedt.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_seminaret_der_du_ikke_har_svar"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "notatet_som_blir_for_likt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Formuleringen din ligner sekundærlitteraturen nesten ordrett",
+      "situation": [
+        "Du skriver et arbeidsnotat og ser at en god formulering fra en kommentar har satt seg så sterkt at setningen din nesten er identisk.",
+        "Poenget er relevant, men du har ennå ikke skilt tydelig mellom egen forklaring og kildens formulering.",
+        "Studentarbeid krever sporbarhet også før teksten er ferdig, fordi kildegrensen blir vanskeligere å rekonstruere senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker kilden nå og skriv om poenget med egne ord når du faktisk har forstått det.",
+          "effect": 1,
+          "tags": [
+            "citation_boundary",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "La formuleringen stå foreløpig og regn med at du husker hvor den kom fra når teksten skal leveres.",
+          "effect": -1,
+          "tags": [
+            "source_blur",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_notatet_som_blir_for_likt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "motargumentet_som_svir",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En medstudent",
+      "subject": "En innvending treffer hovedideen i essayutkastet ditt",
+      "situation": [
+        "En medstudent peker på et moteksempel som gjør at hovedtesen din ikke kan stå helt slik den er formulert.",
+        "Du har brukt mye tid på argumentet og kjenner umiddelbart behov for å forsvare hele prosjektet.",
+        "Filosofisk læring innebærer at en sterk innvending kan forbedre arbeidet selv når den gjør en tidligere formulering ubrukelig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test om innvendingen faktisk holder og revider tesen dersom den gjør det.",
+          "effect": 1,
+          "tags": [
+            "revision_practice",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar hovedtesen først og finn senere en grunn til at moteksemplet ikke bør telle.",
+          "effect": -1,
+          "tags": [
+            "identity_defense",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_motargumentet_som_svir"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "begrepet_med_to_betydninger",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Samme ord gjør to forskjellige jobber i teksten",
+      "situation": [
+        "Du oppdager at et sentralt begrep ser ut til å skifte betydning mellom to deler av argumentet.",
+        "Det er fristende å behandle ordet som om det betyr det samme hele veien fordi teksten da blir enklere.",
+        "Begrepsarbeid på studentnivå handler ofte om å gjøre slike forskjeller synlige før man vurderer hvem som har rett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ut de to betydningene og test argumentet med dem adskilt.",
+          "effect": 1,
+          "tags": [
+            "concept_distinction",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Velg den betydningen som passer best med konklusjonen og bruk den konsekvent på vegne av forfatteren.",
+          "effect": -1,
+          "tags": [
+            "concept_flattening",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_begrepet_med_to_betydninger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "veiledningen_med_for_mange_ideer",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En veileder",
+      "subject": "Du har fem mulige problemstillinger og ingen tydelig avgrensning",
+      "situation": [
+        "Du møter til veiledning med flere interessante spor, men oppgaven har begrenset lengde og tid.",
+        "Veilederen spør ikke hvilken idé som er mest imponerende, men hvilken du faktisk kan undersøke presist.",
+        "En studentoppgave blir ofte sterkere når avgrensning gjør argumentet etterprøvbart."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én problemstilling som kan undersøkes skikkelig innen rammen.",
+          "effect": 1,
+          "tags": [
+            "scope_discipline",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Forsøk å beholde alle sporene fordi bredde vil vise hvor mye du har lest.",
+          "effect": -1,
+          "tags": [
+            "breadth_pressure",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_veiledningen_med_for_mange_ideer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "karakteren_som_blir_identitet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "En svakere vurdering enn forventet føles større enn selve oppgaven",
+      "situation": [
+        "Du får en karakter som er lavere enn du hadde sett for deg etter mye arbeid.",
+        "Tilbakemeldingen peker på konkrete svakheter i struktur og kildebruk, men du merker at du leser den som dom over om du passer til filosofi.",
+        "Vurderingen gjelder et bestemt arbeid under bestemte kriterier; læringsposisjonen blir skjør hvis hvert resultat blir hele identiteten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill vurderingen av teksten fra vurderingen av deg selv og bruk de konkrete kommentarene videre.",
+          "effect": 1,
+          "tags": [
+            "assessment_boundary",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Tolke karakteren som bevis på at du enten mangler talent eller må bevise deg med en mye større neste prestasjon.",
+          "effect": -1,
+          "tags": [
+            "shame_reputation",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_karakteren_som_blir_identitet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "diskusjonen_pa_kafeen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn utenfor studiet",
+      "subject": "Du får spørsmål om hva filosofien sier om et aktuelt problem",
+      "situation": [
+        "En venn spør hva du som filosofistudent mener filosofien egentlig viser om et stort samfunnsspørsmål.",
+        "Du kjenner noen relevante argumenter og tradisjoner, men studiet gir deg ikke mandat til å tale på vegne av hele faget.",
+        "Studentstatus kan gjøre et privat resonnement mer interessant uten at det blir ekspertuttalelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar noen relevante argumenter og marker tydelig hvor du snakker for deg selv.",
+          "effect": 1,
+          "tags": [
+            "public_boundary",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk studentstatusen som ekstra tyngde og presenter ditt syn som det faglig riktige svaret.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_diskusjonen_pa_kafeen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pensumlisten_som_aldri_tar_slutt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Alt virker relevant når du først begynner å lete",
+      "situation": [
+        "Du finner stadig nye bøker og artikler som kan være relevante for semesteroppgaven.",
+        "Leselisten vokser raskere enn du rekker å arbeide grundig med det du allerede har.",
+        "Akademisk læring krever også å stoppe innsamlingen lenge nok til å tenke, skrive og revidere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en begrunnet grense for videre lesing og bruk tid på å arbeide med materialet du har.",
+          "effect": 1,
+          "tags": [
+            "reading_boundary",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å samle litteratur fordi mer lesing alltid vil gjøre argumentet tryggere før du begynner å skrive ordentlig.",
+          "effect": -1,
+          "tags": [
+            "preparation_loop",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_pensumlisten_som_aldri_tar_slutt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foreleserens_setning",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En foreleser",
+      "subject": "En autoritativ formulering passer perfekt i argumentet ditt",
+      "situation": [
+        "En foreleser sier noe i timen som ville løst et vanskelig avsnitt i oppgaven din.",
+        "Du husker poenget tydelig, men ikke om det var foreleserens egen tolkning, en etablert lesning eller en spontan formulering.",
+        "Akademisk autoritet gjør ikke en muntlig setning selvforklarende som kilde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn en etterprøvbar kilde eller presenter poenget nøkternt som noe som ble diskutert i undervisningen.",
+          "effect": 1,
+          "tags": [
+            "authority_source_boundary",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk formuleringen som faglig fasit fordi den kom fra en foreleser.",
+          "effect": -1,
+          "tags": [
+            "teacher_deference",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_foreleserens_setning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eksamensuken_uten_sovn",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Mer tid våken føles som mer kontroll",
+      "situation": [
+        "Eksamen nærmer seg og du ligger bak planen du satte tidligere i semesteret.",
+        "Du vurderer å kutte søvn flere netter fordi hver ekstra time lesing føles målbar.",
+        "Læring under press kan gjøre kontrollstrategier selvødeleggende når kapasiteten som skal bruke kunnskapen samtidig brytes ned."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter en realistisk leseplan som også beholder søvn og grunnleggende funksjon.",
+          "effect": 1,
+          "tags": [
+            "study_capacity",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk natten som reservekapasitet og regn med at mer våkentid automatisk gir bedre faglig kontroll.",
+          "effect": -1,
+          "tags": [
+            "numerical_control",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_eksamensuken_uten_sovn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppen_som_enes_for_fort",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kollokviegruppe",
+      "subject": "Alle nikker til samme tolkning etter den første som snakker",
+      "situation": [
+        "En i gruppen gir en klar tolkning av teksten, og resten av samtalen begynner raskt å bygge videre på den.",
+        "Du ser en mulig alternativ lesning, men er usikker på om den holder.",
+        "Kollokvier fungerer best når foreløpig enighet kan utfordres uten at uenighet behandles som sosial motstand."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg fram den alternative lesningen som et spørsmål og test begge mot teksten.",
+          "effect": 1,
+          "tags": [
+            "seminar_dissent",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "La enigheten stå fordi gruppen allerede virker effektiv og din usikkerhet kan forsinke fremdriften.",
+          "effect": -1,
+          "tags": [
+            "conformity_pressure",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_gruppen_som_enes_for_fort"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "standpunktet_du_endrer",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du mener ikke lenger det du skrev i førsteutkastet",
+      "situation": [
+        "Etter flere uker med lesing og diskusjon ser du at ditt opprinnelige standpunkt ikke lenger virker holdbart.",
+        "Du kjenner motstand fordi store deler av utkastet er bygget rundt den første posisjonen.",
+        "Å endre standpunkt på grunn av bedre grunner er ikke et tap av konsistens; det er en del av det studenten faktisk trener på."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Revider argumentet slik at teksten viser hvorfor du endret syn.",
+          "effect": 1,
+          "tags": [
+            "belief_revision",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Behold konklusjonen og juster begrunnelsene rundt den for å slippe å bygge oppgaven på nytt.",
+          "effect": -1,
+          "tags": [
+            "consistency_pressure",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_standpunktet_du_endrer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_filosofistudent",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre student",
+      "subject": "Hva betyr det å være filosofistudent etter et helt semester?",
+      "situation": [
+        "Du har lest tekster du først misforsto, levert arbeid som kunne vært bedre, endret standpunkt og blitt mer presis på hva du ikke vet.",
+        "Du kan argumentere bedre enn før, men det gjør deg fortsatt ikke til Fagfilosof, foreleser eller institusjonell ekspert.",
+        "Filosofistudent som livsposisjon er en læringsfase der tekst, argument, seminar, vurdering og revisjon får forme dømmekraft uten at graden, tittelen eller autoriteten tas på forskudd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La studentrollen være et sted for disiplinert læring og revisjon uten å låne ferdig fagstatus.",
+          "effect": 1,
+          "tags": [
+            "student_identity",
+            "student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du beholder studentrollen som disiplinert læring: tekst, kilde, argument og revisjon får være sterkere enn behovet for å virke ferdig."
+        },
+        {
+          "id": "B",
+          "label": "Gjør studentidentiteten til bevis på faglig autoritet fordi du nå har brukt mye tid på feltet.",
+          "effect": -1,
+          "tags": [
+            "status_completion",
+            "student_overreach",
+            "authority_pressure"
+          ],
+          "feedback": "Valget gjør usikkerhet, vurdering eller studentstatus til mer ferdig faglig autoritet enn læringsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "filosofistudent_sesongslutt_hva_er_filosofistudent"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
