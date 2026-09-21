@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_sideprosjektbygger_stream",
+  "type": "leisure",
+  "title": "Sideprosjektbygger — bygging ved siden av hovedlivet",
+  "sociological_theme": "naeringsliv_sideprosjektbygger_avgrenset_tid_scope_forste_betalende_bruker_kostnadstak_support_privattidsgrense_sma_inntekt_og_retten_til_a_forbli_liten_uten_automatisk_frilansjobb_selskap_eller_grunderstatus",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:sideprosjektbygger"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "den_forste_faste_kvelden",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Når skal prosjektet få plass?",
+      "situation": [
+        "Du har jobb, studier eller andre hovedforpliktelser på dagtid og har bestemt deg for å bygge videre på en idé i fritiden.",
+        "Prosjektet er viktig nok til at du vil gi det fast plass, men ikke viktig nok til at resten av livet kan behandles som ventetid.",
+        "Sideprosjektbygger-posisjonen begynner med en enkel ressurs: avgrenset tid som må tas fra noe, men ikke fra alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en konkret, begrenset tidsramme og la prosjektet være ferdig for dagen når den er brukt.",
+          "effect": 1,
+          "tags": [
+            "time_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "La hver ledige time være tilgjengelig for prosjektet fordi fremdrift er viktigst mens motivasjonen er høy.",
+          "effect": -1,
+          "tags": [
+            "work_life_spillover",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_den_forste_faste_kvelden"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ideen_som_vokser_for_fort",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Tre funksjoner blir plutselig tolv",
+      "situation": [
+        "Det som startet som én enkel løsning har fått en stadig lengre liste over ting som også kunne vært nyttige.",
+        "Du merker at det er lettere å legge til enn å avgjøre hva prosjektet faktisk trenger for å kunne prøves av andre.",
+        "Et sideprosjekt kan bli permanent forberedelse hvis omfanget vokser raskere enn læringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én liten leverbar versjon og parker resten til du har sett hvordan den brukes.",
+          "effect": 1,
+          "tags": [
+            "scope_discipline",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Bygg alle ideene først, slik at ingen kan avvise prosjektet for å mangle noe.",
+          "effect": -1,
+          "tags": [
+            "perfection_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_ideen_som_vokser_for_fort"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsmaskinen_i_sekken",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kollega",
+      "subject": "Verktøyet tilhører hovedjobben, prosjektet gjør ikke det",
+      "situation": [
+        "Du vurderer å bruke arbeidsgiverens maskin eller betalte verktøy fordi de allerede er tilgjengelige og bedre enn dine egne.",
+        "Prosjektet er privat og ingen på jobb har avtalt at utstyr eller lisenser kan brukes til det.",
+        "Det som virker som en liten praktisk snarvei kan gjøre grensene mellom hovedarbeid og sideprosjekt uklare før prosjektet egentlig har bevist noe."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hold privat prosjekt på egne verktøy eller avklar eksplisitt hva som faktisk kan brukes.",
+          "effect": 1,
+          "tags": [
+            "resource_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Bruk arbeidsgiverens ressurser diskret fordi prosjektet foreløpig er så lite at det neppe spiller noen rolle.",
+          "effect": -1,
+          "tags": [
+            "role_boundary",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_arbeidsmaskinen_i_sekken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_forste_som_vil_betale",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En tidlig bruker",
+      "subject": "Interesse blir til et konkret spørsmål om penger",
+      "situation": [
+        "En person som har prøvd prosjektet spør om de kan betale for å fortsette å bruke det.",
+        "Du har ikke planlagt noen full virksomhet og vet ennå ikke hvor mye støtte, vedlikehold eller oppfølging betalingen vil skape.",
+        "Første betalende bruker er et signal om verdi, men ikke automatisk bevis på at prosjektet bør bli jobb, selskap eller kundedrevet tjeneste."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens hva betalingen faktisk dekker og test om ordningen er håndterbar i liten skala.",
+          "effect": 1,
+          "tags": [
+            "first_customer_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til alt personen ønsker fordi første betaling føles som bevis på at prosjektet må vokse raskt.",
+          "effect": -1,
+          "tags": [
+            "growth_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_den_forste_som_vil_betale"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_ha_en_spesialversjon",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "En liten tjeneste kan endre prosjektets retning",
+      "situation": [
+        "En venn liker prosjektet, men vil bare bruke det dersom du bygger en egen variant som passer akkurat deres behov.",
+        "Endringen er mulig, men vil bruke mye av den begrensede tiden du har satt av.",
+        "Når et sideprosjekt møter sin første konkrete bruker kan én persons behov fort bli forvekslet med hele markedet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle ønsket som ett datapunkt og vurder om det passer retningen før du bygger.",
+          "effect": 1,
+          "tags": [
+            "user_signal_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "La vennens behov styre neste fase fordi en faktisk bruker må være viktigere enn din opprinnelige plan.",
+          "effect": -1,
+          "tags": [
+            "single_user_bias",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_vennen_som_vil_ha_en_spesialversjon"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_tomme_uken",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Ingen fremdrift betyr ikke nødvendigvis at prosjektet er dødt",
+      "situation": [
+        "En travel uke går uten at du åpner prosjektet.",
+        "Du kjenner skyld fordi den faste rytmen brøt sammen, selv om hovedforpliktelsene faktisk krevde mer denne uken.",
+        "Et sideprosjekt lever ved siden av annet liv; bærekraft handler også om å tåle perioder med lavere tempo uten å gjøre dem til moralsk nederlag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La uka være et avvik og gjenoppta den avgrensede rytmen når kapasiteten kommer tilbake.",
+          "effect": 1,
+          "tags": [
+            "pace_resilience",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Ta igjen alt i helgen fordi null fremdrift føles uakseptabelt når du først har startet.",
+          "effect": -1,
+          "tags": [
+            "guilt_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_den_tomme_uken"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "navnet_pa_profilen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Hvor stort skal prosjektet se ut før det er stort?",
+      "situation": [
+        "Du vurderer å endre offentlig profil slik at prosjektet får en mer fremtredende plass.",
+        "Det finnes allerede noe som virker, men bruken er fortsatt liten og fremtiden er åpen.",
+        "Synlighet kan hjelpe prosjektet å finne mennesker, men kan også låse identiteten din til noe som fortsatt er et forsøk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv prosjektet nøkternt som det faktisk er nå og la identiteten være større enn prosjektet.",
+          "effect": 1,
+          "tags": [
+            "identity_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Presenter deg først og fremst gjennom prosjektet for å skape forventning om at det allerede er en viktig satsing.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_navnet_pa_profilen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "regningen_som_endrer_regnestykket",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Små kostnader begynner å bli faste",
+      "situation": [
+        "Et abonnement, en tjeneste og et domene gjør at prosjektet nå har månedlige kostnader selv i perioder med lav aktivitet.",
+        "Inntekten er fortsatt liten og uregelmessig.",
+        "Et sideprosjekt kan være billig hver for seg, men gjentatte kostnader gjør det nødvendig å vite hvor mye privat økonomi som faktisk skal bære usikkerheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett et tydelig kostnadstak og behold bare det prosjektet faktisk bruker.",
+          "effect": 1,
+          "tags": [
+            "cost_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "La kostnadene løpe fordi de hver for seg er små og kan forsvares dersom prosjektet en dag vokser.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_regningen_som_endrer_regnestykket"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_forste_klagen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En betalende bruker",
+      "subject": "Betaling skaper forventning om respons",
+      "situation": [
+        "En person som har betalt melder at noe ikke fungerer som forventet.",
+        "Du er midt i en vanlig arbeids- eller studiedag og kan ikke løse problemet umiddelbart.",
+        "Selv liten inntekt kan skape reelle forventninger, men den opphever ikke automatisk grensene rundt hovedforpliktelser og tilgjengelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar tydelig om når du realistisk kan se på problemet og hold den avtalte rammen.",
+          "effect": 1,
+          "tags": [
+            "support_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Slipp alt annet og gjør deg alltid umiddelbart tilgjengelig fordi en betalende bruker aldri bør måtte vente.",
+          "effect": -1,
+          "tags": [
+            "availability_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_den_forste_klagen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_pa_middagsbordet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Alt blir etter hvert en mulig idé til prosjektet",
+      "situation": [
+        "Du merker at samtaler, pauser og felles tid stadig glir over i hva prosjektet trenger neste gang.",
+        "Den nære personen er interessert, men begynner å kommentere at prosjektet alltid følger med inn i rommet.",
+        "Sideprosjektet trenger privat tid for å eksistere, men privat tid trenger også perioder der prosjektet ikke får bruke oppmerksomheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag tydelige prosjektfrie perioder og la nærhet være noe annet enn produktutvikling.",
+          "effect": 1,
+          "tags": [
+            "private_time_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å bruke all ledig samtale som idéarbeid fordi det er slik små prosjekter får nok fart.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_prosjektet_pa_middagsbordet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilbudet_om_a_gjore_det_for_noen_andre",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En bekjent",
+      "subject": "Prosjektet ligner plutselig et oppdrag",
+      "situation": [
+        "En bekjent spør om du kan bygge en tilpasset løsning for dem mot betaling fordi de liker det du allerede har laget.",
+        "Det de ber om ligger ved siden av prosjektet, men vil kreve spesifikk levering og frist.",
+        "Et sideprosjekt kan gi oppdrag, men ett oppdrag gjør ikke automatisk Sideprosjektbygger til Frilanser eller prosjektet til en tjenestebedrift."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill oppdraget fra selve prosjektet og si bare ja hvis kapasitet og omfang kan avgrenses tydelig.",
+          "effect": 1,
+          "tags": [
+            "project_vs_assignment",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Gjør oppdraget til ny retning for prosjektet fordi betalt arbeid alltid er viktigere enn egen utforskning.",
+          "effect": -1,
+          "tags": [
+            "freelance_drift",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_tilbudet_om_a_gjore_det_for_noen_andre"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_lille_inntekten",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Det kommer penger, men ikke nok til å bære livet",
+      "situation": [
+        "Prosjektet har begynt å gi litt inntekt enkelte måneder.",
+        "Beløpet dekker noen kostnader og litt mer, men er langt fra stabilt eller forutsigbart.",
+        "Små inntekter kan være viktig læring uten å måtte tolkes som bevis på at hovedjobb, studier eller andre ordninger bør avsluttes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behandle inntekten som et eget lite spor og krev mer stabilitet før store livsendringer.",
+          "effect": 1,
+          "tags": [
+            "income_signal_boundary",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "La noen gode måneder være nok til å planlegge som om prosjektet snart skal bære hovedinntekten.",
+          "effect": -1,
+          "tags": [
+            "runway_fantasy",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_den_lille_inntekten"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nesten_ingen_bruker_det",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Prosjektet fungerer, men interessen er svak",
+      "situation": [
+        "Den tekniske eller praktiske løsningen gjør det du ønsket, men få mennesker kommer tilbake til den.",
+        "Du har brukt nok tid til at det er ubehagelig å tenke på å stoppe.",
+        "Et sideprosjekt kan være vellykket som læring selv om det aldri blir kommersielt eller stort."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder nøkternt om prosjektet skal endres, fryses eller avsluttes uten å kalle tiden bortkastet.",
+          "effect": 1,
+          "tags": [
+            "stop_or_continue",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett på samme måte fordi tidligere tidsbruk bare gir mening dersom prosjektet til slutt vokser.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_nesten_ingen_bruker_det"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_sideprosjektbygger",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren sideprosjektbygger",
+      "subject": "Hva betyr det å bygge noe ved siden av resten av livet?",
+      "situation": [
+        "Etter mange uker finnes det nå et virkelig prosjekt med brukere, kostnader, små inntekter og tydeligere begrensninger.",
+        "Det er fortsatt usikkert om prosjektet noen gang blir større, og den usikkerheten er ikke lenger det samme som mangel på fremdrift.",
+        "Sideprosjektbygger som livsposisjon er bærekraftig når byggingen kan gi læring, verdi og kanskje inntekt uten at prosjektet automatisk blir jobb, frilansidentitet, selskap eller plikt til evig vekst."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La prosjektets faktiske verdi og kapasitet avgjøre neste fase, også hvis riktig størrelse fortsatt er liten.",
+          "effect": 1,
+          "tags": [
+            "side_project_identity",
+            "side_project_practice",
+            "boundary"
+          ],
+          "feedback": "Du lar prosjektet utvikle seg innenfor faktisk tid, kapasitet og etterspørsel uten å gjøre små signaler til større status enn de bærer."
+        },
+        {
+          "id": "B",
+          "label": "Gjør vekst til hovedmålet fordi prosjektet ellers ikke kan rettferdiggjøre tiden som allerede er brukt.",
+          "effect": -1,
+          "tags": [
+            "growth_pressure",
+            "side_project_overreach",
+            "growth_pressure"
+          ],
+          "feedback": "Valget gjør usikker fremdrift, tidlig betaling eller sosial synlighet til sterkere vekstkrav enn sideprosjektet faktisk tåler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "sideprosjekt_sesongslutt_hva_er_sideprosjektbygger"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
