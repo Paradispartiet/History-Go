@@ -1,0 +1,1160 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_doktorgradsstudent_historie",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "doktorgradsstudent_historie",
+    "label": "Doktorgradsstudent"
+  },
+  "title": "Doktorgradsstudent",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjennomføre en avansert historisk avhandlingsfase gjennom avgrensning, kildekritikk, veiledning, skriving og revisjon uten at faglig dybde eller studentidentitet tas som bevis på formelt opptak, ansettelse, finansiering, ferdig grad eller institusjonell ekspertmyndighet",
+    "description": "Doktorgradsstudent-verdenen behandler Doktorgradsstudent som en employment-independent doctoral_study_stage. Spilleren arbeider med forskningsspørsmål, arkivhull, proveniens, kapittelutkast, seminar, review, framdriftsplan, publiseringsgrenser, privatliv og teserevisjon. Life-positionen eier den lærings- og avhandlingsmessige erfaringen, men verken oppretter eller verifiserer formelt doktorgradsopptak, ansettelse, stipendiatlønn, finansiering, etikkgodkjenning, publisering, ferdig grad eller institusjonell talerett. Career-sporet `historie_forskning_og_akademia` og kvalifikasjonen `academic_phd_admission_or_employment` eier de formelle arbeids- og opptaksforholdene. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "invisible_work",
+    "shame_reputation",
+    "public_private_leakage",
+    "precarity",
+    "local_knowledge_vs_system",
+    "care_vs_efficiency"
+  ],
+  "social_environments": [
+    "arbeidsøkten der et for stort spørsmål må bli et faktisk undersøkbar avhandlingsproblem",
+    "veiledningen der senior faglig motstand utfordrer uten å eie den endelige retningen",
+    "arkivet der fravær i serien blir kunnskapsgrense i stedet for tomrom som kan fylles",
+    "kapittelarbeidet der uferdig argumentasjon må bli synlig før mer lesing kan fungere som forbedring",
+    "stipendiatseminaret der et vanskelig spørsmål treffer et reelt metodisk problem",
+    "fagfellekommentaren der omfattende ønsker må skilles fra det argumentet faktisk trenger",
+    "framdriftsplanen der forsinkelse og nye funn må beskrives sannere enn opprinnelig kalender",
+    "privatlivet der prosjektets høye intensitet ikke automatisk får eie all samtale og egenverdi"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "veileder",
+      "social_function": "gir tung faglig motstand og metodisk retning uten å eie avhandlingens endelige argument",
+      "class_position": "senior akademisk fagperson i veiledningsrelasjon",
+      "status": "høy faglig og situasjonell autoritet",
+      "power_over_player": "kan påvirke retning, prioritering og opplevelsen av hva som regnes som legitimt",
+      "wants": "at prosjektet blir metodisk holdbart og gjennomførbart",
+      "conceals": "at senioritet kan gjøre egne preferanser vanskeligere å skille fra nødvendige krav",
+      "speech_style": "presis, krevende og orientert mot argumentets svakeste punkt",
+      "teaches_player": "at faglig uenighet med veileder kan håndteres gjennom materiale og begrunnelse"
+    },
+    {
+      "id": "annen_stipendiat",
+      "social_function": "gir likemannsfriksjon, alternative forklaringer og realistisk speil av usikkerheten i samme fase",
+      "class_position": "person i tilsvarende avansert studiefase",
+      "status": "lav formell, høy lokal relevans",
+      "power_over_player": "kan gjøre problemer synlige uten vurderingsmandat",
+      "wants": "gjensidig faglig hjelp og et seminar der spørsmål faktisk tåles",
+      "conceals": "at egen framdrift og usikkerhet også er ujevn",
+      "speech_style": "direkte, detaljert og lite imponert av statusmarkører",
+      "teaches_player": "at et spørsmål som ikke kan besvares nå kan være verdifullt arbeid senere"
+    },
+    {
+      "id": "arkivar",
+      "social_function": "representerer materialets proveniens, tilgangslogikk og praktiske begrensninger",
+      "class_position": "institusjonell kildeforvalter",
+      "status": "høy lokal kunnskap om samlingen, ikke autoritet over avhandlingens konklusjon",
+      "power_over_player": "kan avklare serier, mangler og dokumentasjonsforhold",
+      "wants": "at materialet brukes og beskrives med riktig proveniens",
+      "conceals": "at katalogsystemet ikke alltid gjør alle historiske hull synlige ved første søk",
+      "speech_style": "konkret, systemnær og dokumentorientert",
+      "teaches_player": "at arkivets orden og historisk virkelighet ikke er samme ting"
+    },
+    {
+      "id": "fagfelle",
+      "social_function": "tester argument, evidens og scope gjennom kritisk lesning",
+      "class_position": "fagperson eller avansert forsker uten automatisk myndighet over hele prosjektet",
+      "status": "høy situasjonell vurderingsmakt",
+      "power_over_player": "kan gjøre svake dokumentasjonsledd tydelige og foreslå større ombygging",
+      "wants": "at teksten tåler rivalforklaringer og etterprøving",
+      "conceals": "at egne faglige interesser kan gjøre enkelte utvidelser mer attraktive enn prosjektets ramme",
+      "speech_style": "kritisk, detaljert og argumentorientert",
+      "teaches_player": "at nyttig review kan være både nødvendig og avgrenset"
+    },
+    {
+      "id": "naer_person",
+      "social_function": "viser hvordan langvarig avhandlingsarbeid påvirker privat identitet, oppmerksomhet og restitusjon",
+      "class_position": "partner, familie eller nær venn uten prosjektrolle",
+      "status": "høy privat betydning",
+      "power_over_player": "kan gjøre kostnaden ved konstant prosjektmodus synlig",
+      "wants": "kontakt der avhandlingen ikke er eneste tema eller mål på dagen",
+      "conceals": "at støtte kan bli vanskelig når faglig stress alltid får førsteprioritet",
+      "speech_style": "personlig, konkret og lite opptatt av akademisk prestisje",
+      "teaches_player": "at forskningsidentitet ikke trenger å være hele privatpersonen"
+    },
+    {
+      "id": "arrangor",
+      "social_function": "tester hvordan spesialisering presenteres offentlig uten å bli til overdrevet ekspert- eller institusjonstittel",
+      "class_position": "formidler eller arrangementsansvarlig uten myndighet over graden",
+      "status": "situasjonell offentlig portvakt",
+      "power_over_player": "kan gi synlighet gjennom programtekst og introduksjon",
+      "wants": "en tydelig og attraktiv presentasjon av temaet",
+      "conceals": "at sterkere titler ofte er enklere å markedsføre",
+      "speech_style": "kort, publikumsvendt og statusbevisst",
+      "teaches_player": "at offentlig presisjon om rolle er en del av faglig integritet"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "scope_vs_grandiosity",
+      "meaning": "om forskningsspørsmålet kan bli mindre når kilder, metode og tid krever det",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "supervision_vs_independence",
+      "meaning": "om veilederautoritet kan utfordre prosjektet uten å bli erstatning for begrunnet vurdering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "evidence_gap_integrity",
+      "meaning": "om arkivhull og usikker proveniens faktisk begrenser påstandsstyrken",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "drafting_vs_preparation",
+      "meaning": "om uferdig tekst kan produseres og kritiseres før all lesing føles ferdig",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "review_vs_compliance",
+      "meaning": "om faglig kritikk vurderes etter argumentets behov fremfor omfang eller sosial rang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "progress_vs_masking",
+      "meaning": "om framdriftsplan og forsinkelse beskrives etter faktisk prosjektstatus",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "thesis_vs_sunk_cost",
+      "meaning": "om ny evidens kan endre en tese etter stor tidsinvestering",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "life_position_vs_formal_phd",
+      "meaning": "om doctoral study stage holdes separat fra opptak, ansettelse, finansiering, grad og Career-myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Avhandlingen rommer plutselig et helt århundre Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "research_scope",
+          "supervision_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Avhandlingen rommer plutselig et helt århundre Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "research_scope",
+          "supervision_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Avhandlingen rommer plutselig et helt århundre Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "research_scope",
+          "supervision_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Avhandlingen rommer plutselig et helt århundre Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "research_scope",
+          "supervision_independence"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Den faglige retningen får motstand tidlig Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "supervision_independence",
+          "archival_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Den faglige retningen får motstand tidlig Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "supervision_independence",
+          "archival_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Den faglige retningen får motstand tidlig Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "supervision_independence",
+          "archival_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Den faglige retningen får motstand tidlig Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "supervision_independence",
+          "archival_gap"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Den viktigste mappen mangler akkurat de årene du trenger Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "archival_gap",
+          "provenance_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#arkivhullet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Den viktigste mappen mangler akkurat de årene du trenger Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "archival_gap",
+          "provenance_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#arkivhullet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Den viktigste mappen mangler akkurat de årene du trenger Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "archival_gap",
+          "provenance_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#arkivhullet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Den viktigste mappen mangler akkurat de årene du trenger Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "archival_gap",
+          "provenance_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#arkivhullet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du finner et gammelt notat du selv skrev, men ikke hvor opplysningen kom fra Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "provenance_discipline",
+          "drafting_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#notatet_uten_proveniens"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du finner et gammelt notat du selv skrev, men ikke hvor opplysningen kom fra Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "provenance_discipline",
+          "drafting_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#notatet_uten_proveniens"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du finner et gammelt notat du selv skrev, men ikke hvor opplysningen kom fra Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "provenance_discipline",
+          "drafting_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#notatet_uten_proveniens"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du finner et gammelt notat du selv skrev, men ikke hvor opplysningen kom fra Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "provenance_discipline",
+          "drafting_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#notatet_uten_proveniens"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Tre uker med arbeid gir fortsatt ingen lesbar struktur Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "drafting_discipline",
+          "seminar_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Tre uker med arbeid gir fortsatt ingen lesbar struktur Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "drafting_discipline",
+          "seminar_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Tre uker med arbeid gir fortsatt ingen lesbar struktur Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "drafting_discipline",
+          "seminar_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Tre uker med arbeid gir fortsatt ingen lesbar struktur Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "drafting_discipline",
+          "seminar_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Ett spørsmål viser at årsaksforklaringen din er for enkel Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "seminar_revision",
+          "authority_citation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#seminaret_med_det_vanskelige_sporsmalet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Ett spørsmål viser at årsaksforklaringen din er for enkel Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "seminar_revision",
+          "authority_citation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#seminaret_med_det_vanskelige_sporsmalet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Ett spørsmål viser at årsaksforklaringen din er for enkel Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "seminar_revision",
+          "authority_citation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#seminaret_med_det_vanskelige_sporsmalet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Ett spørsmål viser at årsaksforklaringen din er for enkel Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "seminar_revision",
+          "authority_citation"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#seminaret_med_det_vanskelige_sporsmalet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: En kjent historiker støtter poenget ditt, men på et annet grunnlag Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "authority_citation",
+          "review_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: En kjent historiker støtter poenget ditt, men på et annet grunnlag Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "authority_citation",
+          "review_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: En kjent historiker støtter poenget ditt, men på et annet grunnlag Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "authority_citation",
+          "review_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: En kjent historiker støtter poenget ditt, men på et annet grunnlag Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "authority_citation",
+          "review_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Et utkast får krav om en større ombygging Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "review_scope",
+          "progress_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Et utkast får krav om en større ombygging Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "review_scope",
+          "progress_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Et utkast får krav om en større ombygging Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "review_scope",
+          "progress_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Et utkast får krav om en større ombygging Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "review_scope",
+          "progress_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Planen viser tre måneder mer fremdrift enn teksten gjør Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "progress_truth",
+          "publication_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Planen viser tre måneder mer fremdrift enn teksten gjør Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "progress_truth",
+          "publication_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Planen viser tre måneder mer fremdrift enn teksten gjør Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "progress_truth",
+          "publication_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Planen viser tre måneder mer fremdrift enn teksten gjør Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "progress_truth",
+          "publication_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Et publiserbart sidespor begynner å spise hovedprosjektet Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "publication_boundary",
+          "private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Et publiserbart sidespor begynner å spise hovedprosjektet Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "publication_boundary",
+          "private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Et publiserbart sidespor begynner å spise hovedprosjektet Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "publication_boundary",
+          "private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Et publiserbart sidespor begynner å spise hovedprosjektet Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "publication_boundary",
+          "private_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Samtalen ender igjen i prosjektet ditt Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "private_boundary",
+          "thesis_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Samtalen ender igjen i prosjektet ditt Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "private_boundary",
+          "thesis_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Samtalen ender igjen i prosjektet ditt Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "private_boundary",
+          "thesis_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Samtalen ender igjen i prosjektet ditt Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "private_boundary",
+          "thesis_revision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Nye kilder gjør hovedforklaringen mindre overbevisende Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "thesis_revision",
+          "public_title_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#funnet_som_ikke_stotter_tesen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Nye kilder gjør hovedforklaringen mindre overbevisende Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "thesis_revision",
+          "public_title_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#funnet_som_ikke_stotter_tesen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Nye kilder gjør hovedforklaringen mindre overbevisende Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "thesis_revision",
+          "public_title_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#funnet_som_ikke_stotter_tesen"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Nye kilder gjør hovedforklaringen mindre overbevisende Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "thesis_revision",
+          "public_title_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#funnet_som_ikke_stotter_tesen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Du blir presentert sterkere enn du selv ville formulert det Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "public_title_boundary",
+          "doctoral_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Du blir presentert sterkere enn du selv ville formulert det Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "public_title_boundary",
+          "doctoral_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Du blir presentert sterkere enn du selv ville formulert det Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "public_title_boundary",
+          "doctoral_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Du blir presentert sterkere enn du selv ville formulert det Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "public_title_boundary",
+          "doctoral_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva står igjen når prosjektet har blitt både fag og livsfase? Morgenen etablerer hva prosjektet faktisk vet, mangler eller har kapasitet til før status og framdriftspress kommer inn.",
+        "thread_ids": [
+          "doctoral_identity",
+          "research_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva står igjen når prosjektet har blitt både fag og livsfase? Midt på dagen møter avhandlingsarbeidet veiledning, arkiv, seminar, review eller nære relasjoner.",
+        "thread_ids": [
+          "doctoral_identity",
+          "research_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva står igjen når prosjektet har blitt både fag og livsfase? Ettermiddagen gjør forskjellen mellom metodisk revisjon og statusdrevet overstyring til et konkret valg.",
+        "thread_ids": [
+          "doctoral_identity",
+          "research_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva står igjen når prosjektet har blitt både fag og livsfase? Kvelden viser hva valget etterlater i kildeintegritet, faglig selvstendighet, privat belastning eller avhandlingens bærekraft.",
+        "thread_ids": [
+          "doctoral_identity",
+          "research_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "research_scope",
+      "description": "Om forskningsspørsmålet holdes innenfor det tid, materiale og metode faktisk kan bære.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "supervision_independence",
+      "description": "Om veiledning blir tung faglig motstand uten å erstatte begrunnet selvstendig retning.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "archival_gap",
+      "description": "Om fravær i kildematerialet blir eksplisitt kunnskapsgrense fremfor skjult antakelse.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "provenance_discipline",
+      "description": "Om lange arbeidsprosesser beholder sporbarheten fra notat tilbake til original kilde.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "drafting_discipline",
+      "description": "Om uferdig argumentasjon kan gjøres synlig nok til å kritiseres før all usikkerhet er borte.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "seminar_revision",
+      "description": "Om vanskelige spørsmål blir inngang til ny undersøkelse fremfor offentlig forsvarskamp.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "authority_citation",
+      "description": "Om prestisjetunge navn bare brukes der premisser og materiale faktisk er relevante.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "review_scope",
+      "description": "Om faglig kritikk skilles mellom nødvendige reparasjoner og ønsker som krever et annet prosjekt.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "progress_truth",
+      "description": "Om framdriftsplanen kan endres av faktisk forskningsarbeid uten å skjule forsinkelse.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "publication_boundary",
+      "description": "Om publiserbare sidespor vurderes mot avhandlingens reelle kapasitet og hovedløp.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "private_boundary",
+      "description": "Om avhandlingsarbeidet får privat plass uten å bli hele privatlivet og identiteten.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "thesis_revision",
+      "description": "Om ny evidens kan endre en investert hovedforklaring uten at sunk cost låser prosjektet.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "public_title_boundary",
+      "description": "Om dyp spesialisering kan beskrives presist uten å låne ferdig ekspert- eller institusjonstittel.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "doctoral_identity",
+      "description": "Om doctoral study stage holdes separat fra formelt opptak, ansettelse, finansiering, ferdig grad og Career-myndighet.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "bredde_blir_ufullforbarhet",
+      "description": "Når hvert nytt spor legges inn i hovedspørsmålet, kan avhandlingen bli stadig mer ambisiøs og stadig mindre skrivbar.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort",
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast"
+      ]
+    },
+    {
+      "id": "senioritet_blir_fasit",
+      "description": "Gjentatt underordning under senior faglig rang kan gjøre selvstendig kildevurdering svakere akkurat der uenighet burde undersøkes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig",
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet"
+      ]
+    },
+    {
+      "id": "framdrift_blir_skjuling",
+      "description": "En utdatert plan kan gjøre privat overarbeid til løsningen på forskningsendringer som egentlig burde synliggjøres.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker",
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote"
+      ]
+    },
+    {
+      "id": "publisering_blir_avsporing",
+      "description": "Synlige sidespor kan gradvis belønnes sterkere enn hovedarbeid som fortsatt er uferdig og lite offentlig.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen",
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer"
+      ]
+    },
+    {
+      "id": "faglig_dybde_blir_formell_status",
+      "description": "Spesialisering kan gjøre overdrevet offentlig tittelbruk og antakelser om grad eller ansettelse sosialt lettere å akseptere.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet",
+        "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "scope_blir_kapittelstruktur",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "veiledning_blir_seminarselvstendighet",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "arkivhull_blir_teserevisjon",
+      "setup_ref": "3/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "proveniens_blir_review_tillit",
+      "setup_ref": "4/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "framdrift_blir_privatbelastning",
+      "setup_ref": "9/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "psyche",
+        "relationship"
+      ]
+    },
+    {
+      "id": "offentlig_tittel_blir_formell_grense",
+      "setup_ref": "13/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sporsmalet_som_er_for_stort",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#veilederen_som_er_uenig",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#arkivhullet",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#notatet_uten_proveniens",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#kapitlet_som_star_fast",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#seminaret_med_det_vanskelige_sporsmalet",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sitatet_fra_det_store_navnet",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#fagfellen_som_vil_ha_mer",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#framdriftsplanen_som_sprekker",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#artikkelen_ved_siden_av_avhandlingen",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#privatlivet_som_blir_fotnote",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#funnet_som_ikke_stotter_tesen",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#ordet_ekspert_i_programmet",
+      "data/Civication/narratives/leisure/historie_doktorgradsstudent_historie.json#sesongslutt_hva_er_doktorgradsstudent"
+    ]
+  }
+}
