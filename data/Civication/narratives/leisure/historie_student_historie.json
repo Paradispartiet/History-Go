@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historie_student_historie_stream",
+  "type": "leisure",
+  "title": "Student — grunnleggende historiefaglig læring",
+  "sociological_theme": "historie_student_forelesning_pensum_kildekontekst_seminar_gruppearbeid_forste_oppgave_litteratursok_referansesporbarhet_presentasjon_vurdering_eksamen_og_faglig_usikkerhet_uten_automatisk_grad_masterstatus_forskerjobb_eller_ekspertmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "historie:student_historie"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "forste_forelesning",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Alt virker viktig samtidig",
+      "situation": [
+        "Forelesningen introduserer flere perioder, begreper og navn på én gang, og du merker at notatene blir en nesten ordrett kopi av lysbildene.",
+        "Du rekker å skrive mye, men har vanskelig for å se hva som faktisk er hovedpoeng og hva som bare er detaljer.",
+        "Studentfasen begynner med å lære forskjellen mellom å registrere stoff og å organisere det slik at du senere kan bruke det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned hovedspørsmål, sentrale begreper og noen få eksempler du faktisk forstår.",
+          "effect": 1,
+          "tags": [
+            "note_structure",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Prøv å få med alt ordrett fordi mengden notater føles som den sikreste måten å lære på.",
+          "effect": -1,
+          "tags": [
+            "capture_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_forste_forelesning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pensumkapitlet_du_ikke_forstar",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Teksten er vanskeligere enn sammendraget i timen",
+      "situation": [
+        "Et pensumkapittel bruker faglige begreper du bare delvis kjenner igjen fra forelesningen.",
+        "Du fristes til å hoppe til konklusjonen og stole på at detaljene faller på plass senere.",
+        "Grunnleggende historiefaglig læring krever at usikkerhet blir synlig nok til at du kan undersøke den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker begrepene du ikke forstår og finn ut hva de betyr før du bygger videre på konklusjonen.",
+          "effect": 1,
+          "tags": [
+            "reading_discipline",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Les raskt videre og stol på at helheten gjør detaljene overflødige.",
+          "effect": -1,
+          "tags": [
+            "summary_shortcut",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_pensumkapitlet_du_ikke_forstar"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_sier_noe_annet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Primærkilden passer ikke lærebokens korte framstilling",
+      "situation": [
+        "En kilde fra perioden uttrykker et syn som ikke passer helt med den ryddige framstillingen i pensumboka.",
+        "Forskjellen kan skyldes perspektiv, situasjon eller at pensumboka oppsummerer et større mønster.",
+        "Det første kildekritiske steget er å tåle at én kilde ikke automatisk bekrefter det du allerede har lest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hvem som laget kilden, når, hvorfor og hvordan den passer eller ikke passer med framstillingen.",
+          "effect": 1,
+          "tags": [
+            "source_context",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Bruk kilden som bevis på at læreboka må være feil fordi den er nærmere hendelsen i tid.",
+          "effect": -1,
+          "tags": [
+            "single_source_overreach",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_kilden_som_sier_noe_annet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "seminaret_der_du_er_usikker",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En seminarleder",
+      "subject": "Du blir bedt om å forklare et begrep du bare delvis har forstått",
+      "situation": [
+        "Seminarlederen spør hva et sentralt begrep betyr i teksten dere har lest.",
+        "Du har en idé, men er ikke sikker på om formuleringen din holder.",
+        "På studentnivå er presis usikkerhet mer faglig nyttig enn å late som forståelsen er ferdig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar hva du tror begrepet betyr og marker tydelig hva du fortsatt er usikker på.",
+          "effect": 1,
+          "tags": [
+            "seminar_humility",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Gi et sikkert svar ut fra første inntrykk for å unngå å virke uforberedt.",
+          "effect": -1,
+          "tags": [
+            "performance_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_seminaret_der_du_er_usikker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gruppearbeidet_som_blir_skjevt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En medstudent",
+      "subject": "Én person gjør nesten alt",
+      "situation": [
+        "Gruppen skal forberede en kort presentasjon, men én medstudent har tatt ansvar for struktur, kilder og nesten alle lysbilder.",
+        "Det er praktisk å la personen fortsette fordi arbeidet ser bra ut og fristen nærmer seg.",
+        "Gruppearbeid er også en læringssituasjon; gratispassasjerrollen kan skjule at du ikke selv kan forklare stoffet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta ansvar for en tydelig del og sørg for at du kan forklare den med egne ord.",
+          "effect": 1,
+          "tags": [
+            "group_contribution",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "La den sterkeste personen fullføre fordi et godt felles resultat er viktigere enn hvem som lærte hva.",
+          "effect": -1,
+          "tags": [
+            "free_rider_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_gruppearbeidet_som_blir_skjevt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forste_korte_oppgave",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du har mange fakta, men ingen tydelig påstand",
+      "situation": [
+        "Du skal levere en kort oppgave og har samlet flere relevante detaljer fra pensum.",
+        "Teksten blir likevel en liste over informasjon uten klart svar på spørsmålet.",
+        "Historiefaglig studentarbeid krever tidlig trening i å gjøre fakta relevante for en påstand."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler ett enkelt svar og la hvert avsnitt vise hvordan materialet støtter eller nyanserer det.",
+          "effect": 1,
+          "tags": [
+            "argument_basics",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Ta med mest mulig relevant stoff og stol på at leseren ser poenget gjennom mengden.",
+          "effect": -1,
+          "tags": [
+            "fact_accumulation",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_forste_korte_oppgave"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "biblioteket_som_blir_sok",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du finner flere treff enn du klarer å vurdere",
+      "situation": [
+        "Et litteratursøk gir mange bøker og artikler med titler som ser relevante ut.",
+        "Du kjenner ikke forfatterne eller debatten godt nok til å vite hva som er sentralt.",
+        "På tidlig studentnivå er søk først nyttig når treffene vurderes etter relevans, type tekst og hvordan de faktisk kan brukes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg noen få tekster, les sammendrag og innledning, og vurder hva de faktisk bidrar med.",
+          "effect": 1,
+          "tags": [
+            "search_selection",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Last ned flest mulig treff fordi en stor mappe gjør det mindre sannsynlig at du mangler noe.",
+          "effect": -1,
+          "tags": [
+            "collection_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_biblioteket_som_blir_sok"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "referansen_du_glemte",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du husker poenget, men ikke hvor du leste det",
+      "situation": [
+        "Et godt poeng fra lesingen dukker opp i utkastet, men notatet ditt mangler bok- og sidenummer.",
+        "Du tror du husker hvilken tekst det kom fra, men er ikke helt sikker.",
+        "Referanser er ikke pynt etter skrivingen; de er sporbarhet mellom påstand og kilde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Finn originalstedet før du bruker poenget eller la det stå markert som ubekreftet.",
+          "effect": 1,
+          "tags": [
+            "reference_traceability",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Skriv poenget inn nå og planlegg å finne referansen når resten av teksten er ferdig.",
+          "effect": -1,
+          "tags": [
+            "memory_substitution",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_referansen_du_glemte"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "presentasjonen_for_klassen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En foreleser",
+      "subject": "Du skal forklare et tema på fem minutter",
+      "situation": [
+        "Du har mer stoff enn tiden tillater og merker at de mest kompliserte delene er vanskelige å forklare kort.",
+        "Det er fristende å bruke flere fagord for å få fram at du har lest mye.",
+        "God studentformidling viser forståelse ved å velge og forklare, ikke ved å presse mest mulig inn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én tydelig linje, forklar begrepene og kutt detaljer som ikke trengs for poenget.",
+          "effect": 1,
+          "tags": [
+            "presentation_clarity",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Bruk hele ordforrådet og flest mulig detaljer fordi kompleksitet vil signalisere faglig nivå.",
+          "effect": -1,
+          "tags": [
+            "jargon_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_presentasjonen_for_klassen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "karakteren_som_svir",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Tilbakemeldingen er svakere enn du håpet",
+      "situation": [
+        "Du får tilbake en oppgave med konkrete kommentarer om struktur, kilder og argumentasjon.",
+        "Karakteren er lavere enn forventet, og du merker at du leser vurderingen som et tegn på om du passer til faget.",
+        "En vurdering på studentnivå gjelder et bestemt arbeid og kan brukes som informasjon om hva du trenger å lære videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill tilbakemeldingen fra selvbildet og velg én eller to konkrete ting å forbedre neste gang.",
+          "effect": 1,
+          "tags": [
+            "assessment_learning",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Tolke resultatet som bevis på at du enten mangler talent eller må overprestere på alt framover.",
+          "effect": -1,
+          "tags": [
+            "shame_reputation",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_karakteren_som_svir"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eksamenslesingen_som_blir_telling",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Timer og sider blir viktigere enn hva du husker",
+      "situation": [
+        "Eksamen nærmer seg, og du begynner å måle dagen i antall timer lest og sider gjennomgått.",
+        "Du kan nå tallene godt, men oppdager at du ikke alltid kan forklare stoffet uten boka foran deg.",
+        "Målbar innsats er ikke det samme som læring dersom du ikke tester hva du faktisk kan hente fram og bruke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test deg selv på spørsmål og sammenhenger, og bruk tiden der forståelsen faktisk svikter.",
+          "effect": 1,
+          "tags": [
+            "retrieval_practice",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å øke antall lesetimer fordi mer eksponering må bety at mer sitter.",
+          "effect": -1,
+          "tags": [
+            "numerical_control",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_eksamenslesingen_som_blir_telling"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "historiepraten_hjemme",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn",
+      "subject": "Du får lyst til å rette alle forenklinger",
+      "situation": [
+        "En venn beskriver en historisk hendelse med en forenkling du nylig har lært å problematisere.",
+        "Du kjenner fristelsen til å bruke studentrollen som autoritet i samtalen.",
+        "Å ha begynt å studere et fag gir mer språk og flere spørsmål, men ikke automatisk mandat til å korrigere alle som ekspert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar nyansen du kjenner og marker at du fortsatt er student i faget.",
+          "effect": 1,
+          "tags": [
+            "public_student_boundary",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Bruk studietilhørigheten som grunn til at din versjon bør veie tyngre enn vennens.",
+          "effect": -1,
+          "tags": [
+            "borrowed_authority",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_historiepraten_hjemme"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_du_ikke_lenger_er_sikker_pa",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Semesteret har gjort et enkelt svar mer komplisert",
+      "situation": [
+        "Et tema du tidligere hadde et klart syn på fremstår nå mer sammensatt etter flere kilder og perspektiver.",
+        "Det føles mindre tilfredsstillende å ha flere forbehold enn før.",
+        "Historiefaglig læring kan øke usikkerheten samtidig som forståelsen blir bedre, fordi flere forklaringer og begrensninger blir synlige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La det nye forbeholdet stå og formuler hva du nå vet bedre og hva som fortsatt er åpent.",
+          "effect": 1,
+          "tags": [
+            "complexity_tolerance",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Gå tilbake til den første enkle forklaringen fordi et tydelig svar føles mer kunnskapsrikt.",
+          "effect": -1,
+          "tags": [
+            "certainty_pressure",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_det_du_ikke_lenger_er_sikker_pa"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_student",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En eldre student",
+      "subject": "Hva betyr det å være Historiestudent etter det første ordentlige løpet?",
+      "situation": [
+        "Du kan lese mer kritisk, organisere notater bedre, skrive enklere argumenter og se flere begrensninger i kilder enn da du startet.",
+        "Det er reell faglig utvikling, men life-positionen gir ingen ferdig grad, masterstatus, forskerjobb, doktorgradsopptak eller institusjonell ekspertmyndighet.",
+        "Student er den canonicale Historie-posisjonen for denne tidlige utdanningsfasen; den skal uttrykke læring uten å hoppe over de senere nivåene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La rollen være en grunnleggende historiefaglig læringsfase uten å låne senere grader eller profesjonell status.",
+          "effect": 1,
+          "tags": [
+            "student_identity",
+            "history_student_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar grunnleggende historiefaglig læring bygge seg gjennom lesing, kilder, argument og revisjon uten å låne senere fagstatus."
+        },
+        {
+          "id": "B",
+          "label": "Gjør studieerfaringen til bevis på at du allerede bør behandles som ferdig historiker eller ekspert.",
+          "effect": -1,
+          "tags": [
+            "formal_status_overreach",
+            "history_student_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør mengde, sikkerhet eller studenttilhørighet til mer ferdig faglig autoritet enn denne utdanningsfasen gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "historie_student_sesongslutt_hva_er_student"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
