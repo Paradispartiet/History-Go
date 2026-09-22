@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "historie_masterstuden_historie_stream",
+  "type": "leisure",
+  "title": "Masterstuden — problemstilling, kilder og selvstendig oppgave",
+  "sociological_theme": "historie_masterstuden_problemstilling_kildekritikk_metodetroverdighet_veiledning_litteraturuenighet_arkivarbeid_argumentarbeid_frist_referanserevisjon_og_selvstendig_konklusjon_uten_automatisk_grad_forskerjobb_doktorgradsopptak_eller_institusjonell_myndighet",
+  "applies_when": {
+    "any_tags": [
+      "historie:masterstuden_historie"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "problemstillingen_som_glipper",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Spørsmålet blir større for hver uke",
+      "situation": [
+        "Du startet med et konkret tema, men hver ny bok og kilde trekker problemstillingen i en ny retning.",
+        "Det blir vanskeligere å vite hvilke funn som faktisk svarer på oppgaven og hvilke som bare er interessante.",
+        "En masteroppgave trenger et spørsmål som er stort nok til å være faglig men lite nok til å kunne undersøkes innen tid og materiale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv problemstillingen om til én tydelig undersøkbar kjerne og legg sidespor i en egen liste.",
+          "effect": 1,
+          "tags": [
+            "research_question",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "La spørsmålet fortsette å vokse fordi bredde vil vise at du har oversikt over hele feltet.",
+          "effect": -1,
+          "tags": [
+            "scope_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_problemstillingen_som_glipper"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_ser_for_perfekt_ut",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Ett dokument passer tesen nesten for godt",
+      "situation": [
+        "Du finner en kilde som uttrykker akkurat det argumentet du håpet å kunne bygge.",
+        "Når du ser nærmere på dokumentet er både avsender, formål og situasjon spesielle.",
+        "Kildekritikk på masternivå betyr at relevans ikke opphever behovet for å spørre hvem som laget kilden, hvorfor og for hvem."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk dokumentet, men gjør avsender, situasjon og begrensninger eksplisitte i argumentet.",
+          "effect": 1,
+          "tags": [
+            "source_criticism",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "La innholdet stå som direkte bevis fordi formuleringen er så tydelig og passer problemstillingen.",
+          "effect": -1,
+          "tags": [
+            "confirmation_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_kilden_som_ser_for_perfekt_ut"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "metoden_du_egentlig_ikke_bruker",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Metodekapitlet lover mer systematikk enn arbeidsprosessen har hatt",
+      "situation": [
+        "Du har skrevet at du sammenligner materialet etter faste kategorier, men i praksis har kategoriene endret seg mens du leste.",
+        "Endringen kan være faglig fornuftig, men teksten beskriver fortsatt den gamle planen.",
+        "Metode blir troverdig når den beskriver det arbeidet som faktisk ble gjort og hvorfor det endret seg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppdater metodebeskrivelsen og forklar hvordan kategoriene utviklet seg gjennom materialet.",
+          "effect": 1,
+          "tags": [
+            "method_truth",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Behold den ryddige opprinnelige metoden i teksten fordi den ser mer akademisk ut enn den faktiske prosessen.",
+          "effect": -1,
+          "tags": [
+            "method_masking",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_metoden_du_egentlig_ikke_bruker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "veiledningen_som_kutter_halve_planen",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En veileder",
+      "subject": "Du får beskjed om at prosjektet fortsatt er for bredt",
+      "situation": [
+        "Veilederen mener du bør kutte både en periode og en kildegruppe for å få tid til reell faglig drøfting.",
+        "Du har allerede investert mye lesing i delene som foreslås fjernet.",
+        "Veiledning kan gjøre tapt arbeid synlig, men tidligere tidsbruk er ikke i seg selv et argument for å beholde alt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test om avgrensningen faktisk gjør oppgaven bedre og kutt materiale som ikke lenger tjener spørsmålet.",
+          "effect": 1,
+          "tags": [
+            "supervision_scope",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Behold alle delene fordi det vil føles som sløsing å fjerne arbeid du allerede har gjort.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_veiledningen_som_kutter_halve_planen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sekundarlitteraturen_som_sier_ulikt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "To historikere bygger helt forskjellige forklaringer",
+      "situation": [
+        "To sentrale framstillinger av temaet ditt prioriterer ulike årsaker og leser de samme hendelsene forskjellig.",
+        "Det er fristende å velge den som passer best med din egen første idé.",
+        "På masternivå er uenighet i litteraturen et materiale som må rekonstrueres før du bruker det som støtte."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva de faktisk er uenige om og hvilke kilder eller premisser som bærer forskjellen.",
+          "effect": 1,
+          "tags": [
+            "literature_disagreement",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Velg én framstilling som hovedautoritet og bruk den andre bare som kontrast.",
+          "effect": -1,
+          "tags": [
+            "authority_shortcut",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_sekundarlitteraturen_som_sier_ulikt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arkivdagen_uten_funn",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Seks timer gir nesten ingenting du kan bruke",
+      "situation": [
+        "Du har brukt en hel dag i arkivet og sitter igjen med få relevante dokumenter.",
+        "Det føles som tapt tid sammenlignet med dager der du finner mye materiale.",
+        "Historisk arbeid består også av negative funn, avgrensning og kunnskap om hva som ikke finnes der du forventet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva du faktisk undersøkte og hva fraværet betyr for videre søk.",
+          "effect": 1,
+          "tags": [
+            "negative_evidence",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Dropp å dokumentere dagen fordi bare funn som kan siteres senere er verdt å ta vare på.",
+          "effect": -1,
+          "tags": [
+            "productivity_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_arkivdagen_uten_funn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kapitlet_som_bare_er_referat",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du har mange kilder, men lite eget argument",
+      "situation": [
+        "Kapittelet beskriver hendelser og gjengir kilder detaljert, men du ser at avsnittene sjelden forklarer hvorfor materialet er relevant for problemstillingen.",
+        "Teksten er informativ uten å være tydelig analytisk.",
+        "En masteroppgave trenger mer enn korrekt gjengivelse; leseren må kunne se hvordan materialet brukes til å svare på spørsmålet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv om avsnittene slik at hvert sentralt eksempel kobles eksplisitt til argumentet.",
+          "effect": 1,
+          "tags": [
+            "analysis_boundary",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Behold den detaljerte framstillingen fordi mengden dokumentasjon i seg selv viser faglig tyngde.",
+          "effect": -1,
+          "tags": [
+            "description_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_kapitlet_som_bare_er_referat"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medstudenten_som_ser_noe_du_ikke_saa",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En medstudent",
+      "subject": "Et enkelt spørsmål avdekker et hull i argumentet",
+      "situation": [
+        "En medstudent spør hvordan du vet at to dokumenter faktisk representerer samme aktørgruppe.",
+        "Du har tatt likheten for gitt fordi språk og tidspunkt ligner.",
+        "Likemannslesing kan synliggjøre antakelser som har blitt usynlige etter måneder i samme materiale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til kildene og test om koblingen faktisk kan dokumenteres.",
+          "effect": 1,
+          "tags": [
+            "peer_revision",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar koblingen fordi du kjenner materialet mye bedre enn medstudenten gjør.",
+          "effect": -1,
+          "tags": [
+            "familiarity_bias",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_medstudenten_som_ser_noe_du_ikke_saa"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_som_blir_til_nattearbeid",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Planen ligger etter og søvn ser ut som den enkleste reservekapasiteten",
+      "situation": [
+        "Innleveringsfristen nærmer seg og flere deler trenger fortsatt revisjon.",
+        "Du vurderer å hente inn etterslepet ved å kutte søvn gjennom flere netter.",
+        "En masteroppgave blir ikke bedre av flere våkne timer dersom vurderingsevne og konsentrasjon samtidig faller."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter hvilke deler som må bli gode nok og behold søvn nok til faktisk å kunne vurdere teksten.",
+          "effect": 1,
+          "tags": [
+            "deadline_capacity",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Bruk nettene som ekstra arbeidstid fordi fristen gjør all tilgjengelig tid like verdifull.",
+          "effect": -1,
+          "tags": [
+            "numerical_control",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_fristen_som_blir_til_nattearbeid"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ordet_originalt",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En seminarleder",
+      "subject": "Du blir spurt hva som egentlig er ditt eget bidrag",
+      "situation": [
+        "På et seminar spør lederen hva som er originalt i oppgaven din.",
+        "Du kjenner press fordi ordet høres ut som om du må finne noe ingen historiker noen gang har sett før.",
+        "På masternivå kan et selvstendig bidrag være en tydelig avgrenset undersøkelse, ny kombinasjon av kilder eller presis vurdering av et kjent spørsmål."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv konkret hva du selv undersøker og hva som skiller arbeidet fra litteraturen du bygger på.",
+          "effect": 1,
+          "tags": [
+            "independent_contribution",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Overdriv hvor nytt prosjektet er fordi originalitet høres ut som et krav om å være først med hele poenget.",
+          "effect": -1,
+          "tags": [
+            "novelty_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_ordet_originalt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fotnoten_som_ikke_stemmer",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du oppdager en feil i en referanse sent i prosessen",
+      "situation": [
+        "En fotnote peker til feil side, og når du sjekker originalen ser du at formuleringen i teksten din er litt sterkere enn kilden.",
+        "Feilen er liten, men den berører et poeng du allerede har brukt flere steder.",
+        "Sen oppdagelse gjør ikke kildekorreksjon mindre nødvendig; den gjør sporbar revisjon viktigere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett referansen og juster alle steder der påstanden ble sterkere enn kilden tåler.",
+          "effect": 1,
+          "tags": [
+            "citation_correction",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Rett bare siden i fotnoten og la argumentet stå fordi endringen ellers skaper mer arbeid.",
+          "effect": -1,
+          "tags": [
+            "late_stage_pressure",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_fotnoten_som_ikke_stemmer"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_oppgaven_blir_hele_selvbildet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En nær person",
+      "subject": "Hver samtale handler om hvor langt du har kommet",
+      "situation": [
+        "Du merker at dagsform og selvfølelse følger hvor fornøyd du er med oppgaven akkurat den dagen.",
+        "En nær person spør om dere kan snakke om noe annet uten at du tolker det som mangel på støtte.",
+        "En utdanningsfase kan være viktig uten at framdriften trenger å bli hele målet på om dagen eller personen er vellykket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag perioder der oppgaven ikke får definere samtalen eller verdien av dagen.",
+          "effect": 1,
+          "tags": [
+            "private_identity_boundary",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Hold fast ved prosjektet som hovedtema fordi det er det viktigste som skjer i livet akkurat nå.",
+          "effect": -1,
+          "tags": [
+            "public_private_leakage",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_nar_oppgaven_blir_hele_selvbildet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "konklusjonen_som_ikke_ble_som_planlagt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Materialet peker mot et mindre dramatisk svar enn du håpet",
+      "situation": [
+        "Etter gjennomgangen ser du at kildene støtter en mer begrenset konklusjon enn hypotesen du startet med.",
+        "Den nye konklusjonen er mindre spektakulær, men bedre dokumentert.",
+        "En masteroppgave blir ikke svakere av at funnene er nøkterne dersom argumentet følger materialet presist."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La konklusjonen bli så sterk som kildene tillater, selv om den er mindre dramatisk.",
+          "effect": 1,
+          "tags": [
+            "conclusion_discipline",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Behold den opprinnelige større konklusjonen og presenter begrensningene som mindre unntak.",
+          "effect": -1,
+          "tags": [
+            "thesis_attachment",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_konklusjonen_som_ikke_ble_som_planlagt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_masterstuden",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En tidligere masterstudent",
+      "subject": "Hva står igjen etter en hel oppgavefase?",
+      "situation": [
+        "Du har avgrenset et spørsmål, arbeidet med kilder, skrevet kapitler, blitt korrigert og endret konklusjoner.",
+        "Det er en reell avansert læringsfase, men life-positionen i seg selv gir ingen ferdig grad, forskerstilling, doktorgradsopptak eller institusjonell ekspertmyndighet.",
+        "`Masterstuden` er den canonicale labelen i badge-dataene; rollen beskriver utdanningsfasen slik den faktisk er registrert, uten å omskrive det canonicale grunnlaget i dette sporet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La rollen uttrykke selvstendig masterarbeid og læring uten å ta ferdig grad eller profesjonell myndighet på forskudd.",
+          "effect": 1,
+          "tags": [
+            "master_identity",
+            "master_practice",
+            "learning_boundary"
+          ],
+          "feedback": "Du lar problemstilling, kilder, metode og revisjon styre masterfasen uten å gjøre avansert studentarbeid til ferdig profesjonsstatus."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den avanserte oppgaven til bevis på at du i praksis allerede har ferdig grad og forskerstatus.",
+          "effect": -1,
+          "tags": [
+            "formal_status_overreach",
+            "master_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget gjør tidsbruk, bredde eller studentstatus til mer faglig sikkerhet eller formell myndighet enn utdanningsfasen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "masterstuden_sesongslutt_hva_er_masterstuden"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

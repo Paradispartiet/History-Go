@@ -94,9 +94,9 @@ for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(str
 assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_hakkekylling'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds,145);
-assert.equal(taxonomy.canonical_counts.total_role_worlds,230);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,145);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds,146);
+assert.equal(taxonomy.canonical_counts.total_role_worlds,231);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,146);
 
 const hazing=stream.storylets.find(x=>x.id==='henteoppgaven_som_ikke_finnes');
 assert.match(hazing.situation.join(' '),/sannsynligvis ikke finnes|innvielsesvits|konstruert umulighet/i);
