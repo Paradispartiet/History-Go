@@ -1,0 +1,1161 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "historie",
+  "role_scope": "historie_student_historie",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "historie",
+    "id": "student_historie",
+    "label": "Student"
+  },
+  "title": "Student",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å lære grunnleggende historiefag gjennom forelesning, pensum, kildekritikk, seminar, korte oppgaver, referanser og eksamen uten at studenttilhørighet eller tidlig faglig mestring tas som ferdig grad eller profesjonell autoritet",
+    "description": "Historie / Student-verdenen behandler Student som en employment-independent education_stage. Spilleren arbeider med forelesningsstoff, pensum, primærkilder, seminar, gruppearbeid, første oppgave, litteratursøk, referansesporbarhet, presentasjon, vurdering og eksamensarbeid. Rollen gir ingen automatisk grad, Masterstuden-status, doktorgradsopptak, forskerstilling, undervisningsmyndighet eller institusjonell ekspertrolle, og introduserer ingen ny runtime."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "status_anxiety",
+    "social_mask",
+    "invisible_work",
+    "shame_reputation",
+    "numerical_control",
+    "care_vs_efficiency",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "forelesningen der mengden stoff må organiseres i spørsmål og sammenhenger",
+    "pensumarbeidet der vanskelige fagbegreper gjør usikkerheten synlig",
+    "møtet med en primærkilde som ikke passer den ryddige lærebokframstillingen",
+    "seminaret der studenten må tåle å formulere hva som fortsatt ikke er forstått",
+    "gruppearbeidet der et godt sluttprodukt kan skjule skjev læringsfordeling",
+    "den første korte oppgaven der fakta må bli argument",
+    "biblioteksøket der mange treff må reduseres til noen få brukbare tekster",
+    "eksamensperioden der målbar arbeidsmengde kan forveksles med faktisk læring"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "seminarleder",
+      "social_function": "gjør grunnleggende begreper og usikkerhet eksplisitt gjennom spørsmål",
+      "class_position": "undervisningsrolle med avgrenset faglig autoritet",
+      "status": "høy situasjonell fagstatus",
+      "power_over_player": "kan synliggjøre hva studenten ikke kan forklare ennå",
+      "wants": "at studenten viser arbeidsgangen fremfor å late som forståelsen er ferdig",
+      "conceals": "at korte spørsmål kan oppleves mer vurderende enn de er",
+      "speech_style": "spørrende, presis og tekstnær",
+      "teaches_player": "at presis usikkerhet er en legitim del av læring"
+    },
+    {
+      "id": "medstudent",
+      "social_function": "gir likemannskritikk og deler ansvar i seminar og gruppearbeid",
+      "class_position": "likemann i samme tidlige utdanningsfase",
+      "status": "lav formell, moderat sosial betydning",
+      "power_over_player": "kan gjøre uklare antakelser synlige eller skjule skjev arbeidsdeling",
+      "wants": "å få gruppen og egen læring gjennom emnet",
+      "conceals": "at egen forståelse også er ujevn",
+      "speech_style": "uformell, prøvende og konkret",
+      "teaches_player": "at medstudentens spørsmål kan avsløre hull uten å være fasit"
+    },
+    {
+      "id": "foreleser",
+      "social_function": "formidler overblikk og begreper uten at hver formulering blir personlig ekspertmandat for studenten",
+      "class_position": "institusjonell undervisningsrolle",
+      "status": "høy faglig synlighet",
+      "power_over_player": "kan forme hva studenten oppfatter som sentralt",
+      "wants": "at stoffet blir forståelig som inngang til videre arbeid",
+      "conceals": "at ryddig formidling kan få historiske konflikter til å virke enklere enn de er",
+      "speech_style": "strukturert, oversiktsorientert og begrepstett",
+      "teaches_player": "at forelesningen er startpunkt, ikke erstatning for selvstendig pensum- og kildearbeid"
+    },
+    {
+      "id": "bibliotekar",
+      "social_function": "hjelper studenten å skille søketreff, teksttyper og tilgangsveier",
+      "class_position": "institusjonell informasjonsforvalter",
+      "status": "høy lokal søkekompetanse",
+      "power_over_player": "kan forbedre hvordan studenten finner og avgrenser litteratur",
+      "wants": "at studenten bruker søkeverktøy og metadata presist",
+      "conceals": "at gode søk fortsatt krever faglig vurdering av resultatene",
+      "speech_style": "praktisk, systemnær og metodisk",
+      "teaches_player": "at mange treff ikke er det samme som god litteratur"
+    },
+    {
+      "id": "venn_utenfor_studiet",
+      "social_function": "tester hvordan ny fagkunnskap brukes i vanlig samtale uten ekspertmandat",
+      "class_position": "person utenfor fagmiljøet",
+      "status": "ingen institusjonell fagstatus",
+      "power_over_player": "kan belønne sikre svar med sosial anerkjennelse",
+      "wants": "en forståelig samtale om historie",
+      "conceals": "at enkle forklaringer ofte er mer tilfredsstillende enn gode forbehold",
+      "speech_style": "hverdagslig, direkte og resultatorientert",
+      "teaches_player": "at det er mulig å dele faglige nyanser uten å låne ekspertstatus"
+    },
+    {
+      "id": "eldre_student",
+      "social_function": "viser et senere læringsnivå uten å gjøre tidlig studentfase til ferdig profesjon",
+      "class_position": "student med mer erfaring i studieløpet",
+      "status": "moderat uformell autoritet",
+      "power_over_player": "kan normalisere dårlige oppgaver, revisjon og usikkerhet",
+      "wants": "at nye studenter lærer arbeidsform fremfor å konkurrere om å virke ferdige",
+      "conceals": "at egen erfaring i ettertid kan få startfasen til å se ryddigere ut enn den var",
+      "speech_style": "avdramatiserende, konkret og praktisk",
+      "teaches_player": "at grunnleggende studentarbeid har verdi uten å hoppe over senere nivåer"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "capture_vs_structure",
+      "meaning": "om stoff organiseres i forståelige sammenhenger fremfor å samles som mengde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "summary_vs_understanding",
+      "meaning": "om vanskelige begreper undersøkes før studenten bygger videre på en konklusjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_vs_context",
+      "meaning": "om primærkilden vurderes i sin produksjonssituasjon før den brukes som bevis",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "facts_vs_argument",
+      "meaning": "om fakta blir relevante gjennom et eksplisitt svar fremfor ren akkumulasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "search_vs_selection",
+      "meaning": "om søket reduseres til tekster som faktisk kan brukes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "assessment_vs_identity",
+      "meaning": "om vurdering forblir knyttet til konkret arbeid fremfor hele selvbildet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "hours_vs_learning",
+      "meaning": "om eksamensarbeid måles etter faktisk gjenhenting og forståelse fremfor bare tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "student_vs_profession",
+      "meaning": "om Student holdes separat fra grad, Masterstuden, doktorgradsopptak, forskerjobb og ekspertmyndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1, morning: Alt virker viktig samtidig Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "note_structure",
+          "reading_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1, lunch: Alt virker viktig samtidig Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "note_structure",
+          "reading_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1, afternoon: Alt virker viktig samtidig Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "note_structure",
+          "reading_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1, evening: Alt virker viktig samtidig Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "note_structure",
+          "reading_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2, morning: Teksten er vanskeligere enn sammendraget i timen Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "reading_discipline",
+          "source_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#pensumkapitlet_du_ikke_forstar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2, lunch: Teksten er vanskeligere enn sammendraget i timen Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "reading_discipline",
+          "source_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#pensumkapitlet_du_ikke_forstar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2, afternoon: Teksten er vanskeligere enn sammendraget i timen Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "reading_discipline",
+          "source_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#pensumkapitlet_du_ikke_forstar"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2, evening: Teksten er vanskeligere enn sammendraget i timen Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "reading_discipline",
+          "source_context"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#pensumkapitlet_du_ikke_forstar"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3, morning: Primærkilden passer ikke lærebokens korte framstilling Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "source_context",
+          "seminar_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#kilden_som_sier_noe_annet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3, lunch: Primærkilden passer ikke lærebokens korte framstilling Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "source_context",
+          "seminar_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#kilden_som_sier_noe_annet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3, afternoon: Primærkilden passer ikke lærebokens korte framstilling Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "source_context",
+          "seminar_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#kilden_som_sier_noe_annet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3, evening: Primærkilden passer ikke lærebokens korte framstilling Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "source_context",
+          "seminar_humility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#kilden_som_sier_noe_annet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4, morning: Du blir bedt om å forklare et begrep du bare delvis har forstått Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "seminar_humility",
+          "group_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4, lunch: Du blir bedt om å forklare et begrep du bare delvis har forstått Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "seminar_humility",
+          "group_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4, afternoon: Du blir bedt om å forklare et begrep du bare delvis har forstått Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "seminar_humility",
+          "group_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4, evening: Du blir bedt om å forklare et begrep du bare delvis har forstått Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "seminar_humility",
+          "group_contribution"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5, morning: Én person gjør nesten alt Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "group_contribution",
+          "argument_basics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5, lunch: Én person gjør nesten alt Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "group_contribution",
+          "argument_basics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5, afternoon: Én person gjør nesten alt Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "group_contribution",
+          "argument_basics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5, evening: Én person gjør nesten alt Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "group_contribution",
+          "argument_basics"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6, morning: Du har mange fakta, men ingen tydelig påstand Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "argument_basics",
+          "search_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_korte_oppgave"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6, lunch: Du har mange fakta, men ingen tydelig påstand Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "argument_basics",
+          "search_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_korte_oppgave"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6, afternoon: Du har mange fakta, men ingen tydelig påstand Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "argument_basics",
+          "search_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_korte_oppgave"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6, evening: Du har mange fakta, men ingen tydelig påstand Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "argument_basics",
+          "search_selection"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#forste_korte_oppgave"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7, morning: Du finner flere treff enn du klarer å vurdere Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "search_selection",
+          "reference_traceability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7, lunch: Du finner flere treff enn du klarer å vurdere Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "search_selection",
+          "reference_traceability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7, afternoon: Du finner flere treff enn du klarer å vurdere Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "search_selection",
+          "reference_traceability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7, evening: Du finner flere treff enn du klarer å vurdere Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "search_selection",
+          "reference_traceability"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8, morning: Du husker poenget, men ikke hvor du leste det Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "reference_traceability",
+          "presentation_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#referansen_du_glemte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8, lunch: Du husker poenget, men ikke hvor du leste det Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "reference_traceability",
+          "presentation_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#referansen_du_glemte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8, afternoon: Du husker poenget, men ikke hvor du leste det Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "reference_traceability",
+          "presentation_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#referansen_du_glemte"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8, evening: Du husker poenget, men ikke hvor du leste det Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "reference_traceability",
+          "presentation_clarity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#referansen_du_glemte"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9, morning: Du skal forklare et tema på fem minutter Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "presentation_clarity",
+          "assessment_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9, lunch: Du skal forklare et tema på fem minutter Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "presentation_clarity",
+          "assessment_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9, afternoon: Du skal forklare et tema på fem minutter Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "presentation_clarity",
+          "assessment_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9, evening: Du skal forklare et tema på fem minutter Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "presentation_clarity",
+          "assessment_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10, morning: Tilbakemeldingen er svakere enn du håpet Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "assessment_learning",
+          "retrieval_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10, lunch: Tilbakemeldingen er svakere enn du håpet Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "assessment_learning",
+          "retrieval_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10, afternoon: Tilbakemeldingen er svakere enn du håpet Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "assessment_learning",
+          "retrieval_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10, evening: Tilbakemeldingen er svakere enn du håpet Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "assessment_learning",
+          "retrieval_practice"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11, morning: Timer og sider blir viktigere enn hva du husker Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "retrieval_practice",
+          "public_student_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11, lunch: Timer og sider blir viktigere enn hva du husker Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "retrieval_practice",
+          "public_student_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11, afternoon: Timer og sider blir viktigere enn hva du husker Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "retrieval_practice",
+          "public_student_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11, evening: Timer og sider blir viktigere enn hva du husker Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "retrieval_practice",
+          "public_student_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12, morning: Du får lyst til å rette alle forenklinger Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "public_student_boundary",
+          "complexity_tolerance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12, lunch: Du får lyst til å rette alle forenklinger Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "public_student_boundary",
+          "complexity_tolerance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12, afternoon: Du får lyst til å rette alle forenklinger Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "public_student_boundary",
+          "complexity_tolerance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12, evening: Du får lyst til å rette alle forenklinger Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "public_student_boundary",
+          "complexity_tolerance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13, morning: Semesteret har gjort et enkelt svar mer komplisert Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "complexity_tolerance",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13, lunch: Semesteret har gjort et enkelt svar mer komplisert Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "complexity_tolerance",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13, afternoon: Semesteret har gjort et enkelt svar mer komplisert Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "complexity_tolerance",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13, evening: Semesteret har gjort et enkelt svar mer komplisert Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "complexity_tolerance",
+          "student_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14, morning: Hva betyr det å være Historiestudent etter det første ordentlige løpet? Morgenen etablerer hva studenten faktisk forstår, husker eller trenger å undersøke før prestasjonspresset kommer inn.",
+        "thread_ids": [
+          "student_identity",
+          "note_structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14, lunch: Hva betyr det å være Historiestudent etter det første ordentlige løpet? Midt på dagen møter læringen forelesning, kilder, medstudenter, bibliotek eller undervisningssituasjoner.",
+        "thread_ids": [
+          "student_identity",
+          "note_structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14, afternoon: Hva betyr det å være Historiestudent etter det første ordentlige løpet? Ettermiddagen gjør forskjellen mellom faktisk læring og sosialt trygg overforenkling til et konkret valg.",
+        "thread_ids": [
+          "student_identity",
+          "note_structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14, evening: Hva betyr det å være Historiestudent etter det første ordentlige løpet? Kvelden viser hva valget etterlater i forståelse, selvbilde, kildeintegritet eller vilje til å korrigere.",
+        "thread_ids": [
+          "student_identity",
+          "note_structure"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "note_structure",
+      "description": "Om forelesningsstoff organiseres i hovedspørsmål og sammenhenger fremfor ren registrering.",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "reading_discipline",
+      "description": "Om vanskelige begreper undersøkes før studenten bygger videre på en konklusjon.",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "source_context",
+      "description": "Om primærkilder vurderes etter avsender, tidspunkt og situasjon før de brukes som bevis.",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "seminar_humility",
+      "description": "Om usikkerhet i seminar kan uttrykkes presist uten å kamufleres som sikkerhet.",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "group_contribution",
+      "description": "Om gruppearbeid faktisk fordeler læring fremfor bare produksjon av et godt sluttprodukt.",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "argument_basics",
+      "description": "Om fakta blir relevante ved å knyttes til et tydelig svar fremfor å samles som mengde.",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "search_selection",
+      "description": "Om litteratursøk prioriteres etter relevans og bruk fremfor størrelsen på trefflisten.",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "reference_traceability",
+      "description": "Om påstand og kilde forblir sporbare gjennom utkast og revisjon.",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "presentation_clarity",
+      "description": "Om kort formidling bygger på utvalg og forklaring fremfor fagord og detaljmengde.",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "assessment_learning",
+      "description": "Om vurdering brukes som konkret læringsinformasjon fremfor identitetsdom.",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "retrieval_practice",
+      "description": "Om eksamensarbeid tester hva studenten faktisk kan hente fram og bruke.",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "public_student_boundary",
+      "description": "Om studenttilhørighet gir kontekst uten å lånes som ekspertmandat.",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "complexity_tolerance",
+      "description": "Om økt forståelse får gjøre tidligere enkle svar mer nyanserte og mindre sikre.",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "student_identity",
+      "description": "Om Historie / Student forblir grunnleggende utdanningsfase uten senere grad eller profesjonsstatus.",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "mengde_blir_laringsillusjon",
+      "description": "Mye stikkord, mange treff og mange timer kan samlet skape følelse av kontroll uten at forståelsen øker tilsvarende.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning",
+        "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok",
+        "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling"
+      ]
+    },
+    {
+      "id": "sikkerhet_blir_statusforsvar",
+      "description": "Behovet for å virke forberedt kan gjøre seminarusikkerhet og kildekompleksitet vanskeligere å uttrykke.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker",
+        "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa"
+      ]
+    },
+    {
+      "id": "gruppearbeid_blir_laringsskjevhet",
+      "description": "Et godt gruppeprodukt kan skjule at noen deltakere ikke selv kan forklare materialet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt",
+        "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen"
+      ]
+    },
+    {
+      "id": "vurdering_blir_selvdom",
+      "description": "Tidlige resultater kan gjøre neste arbeid mer statusdrevet dersom karakteren tolkes som talentdom.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir",
+        "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+      ]
+    },
+    {
+      "id": "studenttilhorighet_blir_lant_autoritet",
+      "description": "Ny faglig kunnskap kan brukes som sosial tittel lenge før utdanningen gir profesjonell eller institusjonell myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme",
+        "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "stikkord_blir_oppgavestruktur",
+      "setup_ref": "1/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    },
+    {
+      "id": "kildekontekst_blir_argument",
+      "setup_ref": "3/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "gruppeansvar_blir_presentasjon",
+      "setup_ref": "5/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "referansesporbarhet_blir_vurdering",
+      "setup_ref": "8/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "eksamenspraksis_blir_faglig_usikkerhet",
+      "setup_ref": "11/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "psyche",
+        "identity"
+      ]
+    },
+    {
+      "id": "offentlig_studentgrense_blir_identitet",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "identity",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/historie_student_historie.json#forste_forelesning",
+      "data/Civication/narratives/leisure/historie_student_historie.json#pensumkapitlet_du_ikke_forstar",
+      "data/Civication/narratives/leisure/historie_student_historie.json#kilden_som_sier_noe_annet",
+      "data/Civication/narratives/leisure/historie_student_historie.json#seminaret_der_du_er_usikker",
+      "data/Civication/narratives/leisure/historie_student_historie.json#gruppearbeidet_som_blir_skjevt",
+      "data/Civication/narratives/leisure/historie_student_historie.json#forste_korte_oppgave",
+      "data/Civication/narratives/leisure/historie_student_historie.json#biblioteket_som_blir_sok",
+      "data/Civication/narratives/leisure/historie_student_historie.json#referansen_du_glemte",
+      "data/Civication/narratives/leisure/historie_student_historie.json#presentasjonen_for_klassen",
+      "data/Civication/narratives/leisure/historie_student_historie.json#karakteren_som_svir",
+      "data/Civication/narratives/leisure/historie_student_historie.json#eksamensarbeidet_som_blir_telling",
+      "data/Civication/narratives/leisure/historie_student_historie.json#historiepraten_hjemme",
+      "data/Civication/narratives/leisure/historie_student_historie.json#det_du_ikke_lenger_er_sikker_pa",
+      "data/Civication/narratives/leisure/historie_student_historie.json#sesongslutt_hva_er_student"
+    ]
+  }
+}
