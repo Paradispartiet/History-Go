@@ -115,4 +115,9 @@ assert.match(publicClaim.situation.join(' '),/banebrytende|dokumenteres|offentli
 const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_kuratorpraksis');
 assert.match(finale.situation.join(' '),/employer_appointment|kunst_kuratering_og_program|institusjonell/i);
 
+assert.equal(new Set(stream.storylets.flatMap(s=>s.choices.map(c=>c.feedback))).size,28);
+assert.equal(new Set(world.season.coverage.map(b=>b.summary)).size,56);
+assert.ok(world.primary_threads.every(t=>typeof t.relationship==='string' && t.relationship.length>0 && !('description' in t)));
+const allowedDomains=new Set(['job','relationship','psyche','livelihood','economy','housing','reputation','narrative']);
+assert.ok(world.delayed_consequences.every(c=>c.domains.every(d=>allowedDomains.has(d))));
 console.log('Kunst Kuratorpraksis authored-depth and Role World gate ok');
