@@ -35,6 +35,7 @@ const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
 assert.equal(stream.id,'kunst_kuratorpraksis_stream');
 assert.deepEqual(stream.applies_when.any_tags,['kunst:kuratorpraksis']);
+assert.deepEqual(read('data/Civication/narratives/manifest.json').streams.filter(x=>x.id===stream.id),[{id:stream.id,path:streamPath}]);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
