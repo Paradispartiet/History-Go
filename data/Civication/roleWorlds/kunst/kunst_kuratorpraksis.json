@@ -1,0 +1,1160 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "kunst",
+  "role_scope": "kunst_kuratorpraksis",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "kunst",
+    "id": "kuratorpraksis",
+    "label": "Kurator"
+  },
+  "title": "Kurator",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å drive kuratorisk research, utvalg, begrunnelse og relasjonelt programarbeid uten at faglig praksis tas som bevis på formell ansettelse, budsjettfullmakt eller institusjonell programmyndighet",
+    "description": "Kuratorpraksis-verdenen behandler Kurator som en employment-independent curatorial_practice_or_livelihood life position. Spilleren arbeider med research, utvalg, kunstnerdialog, tolkning, proveniens, representasjon, ressursgrenser, kreditering, publikumsrespons, habilitet og programminne. Life-positionen kan uttrykke reell kuratorisk praksis, men den oppretter ikke formell Kurator-ansettelse, budsjettfullmakt, programmandat, kontraktsmyndighet eller institusjonell beslutningsrett. Formell Career-Kurator krever `employer_appointment` og eies av `kunst_kuratering_og_program`. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "class_power",
+    "status_anxiety",
+    "bureaucratic_power",
+    "care_vs_efficiency",
+    "invisible_work",
+    "shame_reputation",
+    "public_attention"
+  ],
+  "social_environments": [
+    "researchbordet der et sterkt utvalg fortsatt bare er et forslag uten institusjonelt mandat",
+    "kunstnerdialogen der et nei må stå selv når verket passer prosjektet perfekt",
+    "tekst- og formidlingsarbeidet der kuratorisk lesning må skilles fra sikker mening om verket",
+    "proveniensarbeidet der attraktive fortellinger må holdes adskilt fra dokumenterte ledd",
+    "utvalgsdiskusjonen der prestisje, nettverk og representasjon kan forveksles med faglig relevans",
+    "produksjonsfasen der budsjett og logistikk faktisk endrer hvilke valg som er mulige",
+    "publikums- og kommunikasjonsfasen der intensjon, reaksjon og offentlig språk kan trekke i ulike retninger",
+    "etterarbeidet der kreditering, beslutningsspor og korreksjoner må bevares som programminne"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "kunstner",
+      "social_function": "representerer verkets egen kontekst, samtykke og vilkår i møte med kuratorisk tolkning",
+      "class_position": "kunstnerisk produsent med kontroll over egen deltakelse",
+      "status": "høy autoritet over eget verk og egne vilkår",
+      "power_over_player": "kan godkjenne, avgrense eller avslå deltakelse",
+      "wants": "at verket inngår på vilkår som ikke reduserer kunstnerens kontroll eller mening",
+      "conceals": "at tidligere dårlige institusjonserfaringer kan gjøre reservasjoner sterkere enn de først uttrykkes",
+      "speech_style": "konkret, verksnær og tydelig på grenser",
+      "teaches_player": "at kuratorisk relevans ikke opphever kunstnerens samtykke"
+    },
+    {
+      "id": "samarbeidspartner",
+      "social_function": "tester hvordan nettverk, logistikk og relasjonell bekvemmelighet påvirker utvalg",
+      "class_position": "kollega eller prosjektpartner uten automatisk programmyndighet",
+      "status": "moderat lokal innflytelse",
+      "power_over_player": "kan gjøre enkelte valg enklere å gjennomføre",
+      "wants": "et prosjekt som både fungerer praktisk og oppleves faglig troverdig",
+      "conceals": "at eksisterende nettverk ofte føles mer nøytrale enn de faktisk er",
+      "speech_style": "pragmatisk, løsningsorientert og relasjonelt bevisst",
+      "teaches_player": "at gjennomførbarhet og relevans er to forskjellige kriterier"
+    },
+    {
+      "id": "kommunikasjonsansvarlig",
+      "social_function": "oversetter prosjektet til offentlig språk og synlighet",
+      "class_position": "profesjonell formidler med ansvar for rekkevidde",
+      "status": "høy kontroll over offentlig framing",
+      "power_over_player": "kan forsterke eller forenkle kuratoriske påstander",
+      "wants": "en tydelig og attraktiv fortelling som publikum forstår",
+      "conceals": "at sterke superlativer ofte gir bedre oppmerksomhet enn presise forbehold",
+      "speech_style": "kort, publikumsrettet og effektorientert",
+      "teaches_player": "at kuratorisk integritet også gjelder offentlig språk"
+    },
+    {
+      "id": "publikumsvert",
+      "social_function": "bringer konkrete publikumsreaksjoner tilbake til prosjektet uten å representere hele offentligheten",
+      "class_position": "frontlinjerolle tett på besøkendes faktiske møte med utstillingen",
+      "status": "lav formell programmyndighet, høy lokal observasjonsverdi",
+      "power_over_player": "kan synliggjøre lesninger kuratoren ikke forutså",
+      "wants": "at rom og informasjon faktisk fungerer for besøkende",
+      "conceals": "at sterke enkelthendelser kan få større vekt enn bredere mønstre",
+      "speech_style": "observasjonsnær, konkret og lite teoretisk",
+      "teaches_player": "at intensjon ikke kontrollerer hvordan et rom faktisk leses"
+    },
+    {
+      "id": "erfaren_kurator",
+      "social_function": "normaliserer skillet mellom kuratorisk praksis og institusjonelt mandat",
+      "class_position": "person med formell eller langvarig kuratorisk erfaring",
+      "status": "høy symbolsk og faglig kapital",
+      "power_over_player": "kan validere eller utfordre spillerens forståelse av rollegrenser",
+      "wants": "at praksisen blir tydeligere og mer ansvarlig uten at tittelbruk erstatter mandat",
+      "conceals": "at formell posisjon gjør enkelte handlingsrom lettere tilgjengelige enn for spilleren",
+      "speech_style": "presis, avgrensende og opptatt av beslutningsspor",
+      "teaches_player": "at god kuratering også innebærer å vite hvilke beslutninger man ikke eier"
+    },
+    {
+      "id": "venn_i_kunstfeltet",
+      "social_function": "tester habilitet og relasjonell nærhet i utvalgsarbeid",
+      "class_position": "privat eller faglig nær relasjon uten rett til plass i programmet",
+      "status": "høy relasjonell betydning",
+      "power_over_player": "kan gjøre avslag og nøytral vurdering sosialt kostbar",
+      "wants": "å bli sett og vurdert seriøst",
+      "conceals": "at nærhet kan gjøre et ordinært ønske vanskeligere å avvise",
+      "speech_style": "uformell, direkte og personlig",
+      "teaches_player": "at habilitet blir viktigere, ikke mindre, når relasjonen betyr noe"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "practice_vs_mandate",
+      "meaning": "om research og utvalg kan være reell praksis uten å bli institusjonell beslutningsrett",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "interpretation_vs_truth",
+      "meaning": "om kuratorisk lesning kan formidles tydelig uten å gjøres til entydig mening om verket",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "relevance_vs_prestige",
+      "meaning": "om kjente navn, nettverk og synlighet holdes adskilt fra faglig relevans",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "representation_vs_tokenism",
+      "meaning": "om representasjon unngår å gjøre enkeltpersoner til symbolsk erstatning for brede grupper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "resource_truth",
+      "meaning": "om budsjett og logistikk kan være synlige årsaker til endringer i utvalget",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "public_claims",
+      "meaning": "om ekstern kommunikasjon holder seg innenfor det researchen faktisk kan dokumentere",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "conflict_of_interest",
+      "meaning": "om nære relasjoner håndteres eksplisitt i stedet for å bli skjult utvalgsmakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "life_position_vs_appointment",
+      "meaning": "om Kuratorpraksis holdes separat fra employer_appointment, formell ansettelse og institusjonell myndighet",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Du har satt sammen en klar idé for hvilke verk som burde vises sammen.",
+        "thread_ids": [
+          "mandate_boundary",
+          "artist_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Forslaget er faglig gjennomarbeidet, men du har ikke fått et institusjonelt mandat til å bestemme programmet.",
+        "thread_ids": [
+          "mandate_boundary",
+          "artist_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Presenter utvalget som et begrunnet forslag og skill tydelig mellom faglig vurdering og faktisk beslutningsmyndighet.",
+        "thread_ids": [
+          "mandate_boundary",
+          "artist_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Forslaget kan prøves av dem som faktisk eier programbeslutningen.",
+        "thread_ids": [
+          "mandate_boundary",
+          "artist_consent"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Et bestemt verk ville styrket fortellingen du prøver å bygge.",
+        "thread_ids": [
+          "artist_consent",
+          "interpretive_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#kunstneren_som_sier_nei"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Kunstneren ønsker ikke at verket skal brukes i denne sammenhengen.",
+        "thread_ids": [
+          "artist_consent",
+          "interpretive_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#kunstneren_som_sier_nei"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Respekter avslaget og arbeid videre med programideen uten å gjøre kunstnerens nei til et faglig problem som må omgås.",
+        "thread_ids": [
+          "artist_consent",
+          "interpretive_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#kunstneren_som_sier_nei"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Kunstnerens avslag får praktisk virkning, og samtalen kan fortsette på andre vilkår.",
+        "thread_ids": [
+          "artist_consent",
+          "interpretive_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#kunstneren_som_sier_nei"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Du har skrevet en kort tekst som gjør utstillingen lett å forstå.",
+        "thread_ids": [
+          "interpretive_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#teksten_som_gjor_verket_for_enkelt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Når du leser den på nytt ser du at formuleringen tillegger verket én entydig mening som kunstneren selv aldri har formulert.",
+        "thread_ids": [
+          "interpretive_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#teksten_som_gjor_verket_for_enkelt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Marker tolkningen som en kuratorisk lesning og bevar rom for andre forståelser.",
+        "thread_ids": [
+          "interpretive_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#teksten_som_gjor_verket_for_enkelt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Teksten viser at dette er en lesning og lar publikum møte verket med egne spørsmål.",
+        "thread_ids": [
+          "interpretive_boundary",
+          "provenance_truth"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#teksten_som_gjor_verket_for_enkelt"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Et eldre verk har en eierhistorie som styrker utstillingens fortelling.",
+        "thread_ids": [
+          "provenance_truth",
+          "prestige_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Flere ledd er dokumentert, men en viktig overgang er fortsatt uklar.",
+        "thread_ids": [
+          "provenance_truth",
+          "prestige_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Beskriv bare det som kan dokumenteres og gjør usikkerheten eksplisitt i researchen.",
+        "thread_ids": [
+          "provenance_truth",
+          "prestige_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Eierhistorien blir publisert med et synlig hull der dokumentasjonen slutter.",
+        "thread_ids": [
+          "provenance_truth",
+          "prestige_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Et kjent kunstnernavn vil sannsynligvis gjøre prosjektet lettere å formidle og finansiere.",
+        "thread_ids": [
+          "prestige_boundary",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Et mindre kjent verk passer samtidig bedre til det faglige spørsmålet du faktisk undersøker.",
+        "thread_ids": [
+          "prestige_boundary",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Vurder verkene etter hva de faktisk gjør i prosjektet og gjør eventuell synlighetsstrategi eksplisitt separat.",
+        "thread_ids": [
+          "prestige_boundary",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Det mindre kjente verket kan vurderes for sin faktiske rolle i prosjektet.",
+        "thread_ids": [
+          "prestige_boundary",
+          "representation_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Du arbeider med et tema der institusjoner historisk har vist få perspektiver.",
+        "thread_ids": [
+          "representation_boundary",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#representasjonen_som_blir_symbolsk"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "En kollega foreslår at én kunstner kan fylle representasjonshullet alene.",
+        "thread_ids": [
+          "representation_boundary",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#representasjonen_som_blir_symbolsk"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Utvid researchen og vær konkret om hva én praksis faktisk kan og ikke kan representere.",
+        "thread_ids": [
+          "representation_boundary",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#representasjonen_som_blir_symbolsk"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Kunstneren blir møtt som en egen praksis fremfor representant for en hel gruppe.",
+        "thread_ids": [
+          "representation_boundary",
+          "resource_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#representasjonen_som_blir_symbolsk"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Det faglig sterkeste verket i utvalget er dyrt å transportere, forsikre og installere.",
+        "thread_ids": [
+          "resource_boundary",
+          "network_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#budsjettet_som_flytter_utvalget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Det finnes andre verk som kan bære deler av samme spørsmål innenfor en realistisk ramme.",
+        "thread_ids": [
+          "resource_boundary",
+          "network_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#budsjettet_som_flytter_utvalget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Revider utvalget åpent etter faktiske rammer og forklar hvilke konsekvenser begrensningen har.",
+        "thread_ids": [
+          "resource_boundary",
+          "network_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#budsjettet_som_flytter_utvalget"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Budsjettets begrensning blir synlig i begrunnelsen for det reviderte utvalget.",
+        "thread_ids": [
+          "resource_boundary",
+          "network_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#budsjettet_som_flytter_utvalget"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "En samarbeidspartner foreslår å prioritere verk fra personer som allerede er godt forbundet med institusjonens nettverk.",
+        "thread_ids": [
+          "network_boundary",
+          "crediting_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Forslaget begrunnes med at relasjonene vil gjøre produksjonen enklere.",
+        "thread_ids": [
+          "network_boundary",
+          "crediting_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Skill praktisk relasjonsfordel fra faglig utvalg og dokumenter hvorfor hvert verk er med.",
+        "thread_ids": [
+          "network_boundary",
+          "crediting_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Nettverksfordelen noteres som praktisk forhold, og utvalget får selvstendige grunner.",
+        "thread_ids": [
+          "network_boundary",
+          "crediting_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Et verk er registrert med en kreditering som mangler én samarbeidspartner.",
+        "thread_ids": [
+          "crediting_integrity",
+          "audience_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#etiketten_med_feil_kreditering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Det er sent i prosessen og endringen påvirker flere flater.",
+        "thread_ids": [
+          "crediting_integrity",
+          "audience_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#etiketten_med_feil_kreditering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Rett krediteringen i alle relevante flater og dokumenter hva som ble endret.",
+        "thread_ids": [
+          "crediting_integrity",
+          "audience_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#etiketten_med_feil_kreditering"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Samarbeidspartneren får korrekt navn i skilt, katalog og varig dokumentasjon.",
+        "thread_ids": [
+          "crediting_integrity",
+          "audience_feedback"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#etiketten_med_feil_kreditering"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Flere besøkende reagerer på en sammenstilling som du mente skulle være åpen og undersøkende.",
+        "thread_ids": [
+          "audience_feedback",
+          "public_claim_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Reaksjonen viser at rommet produserer en tolkning du ikke hadde forutsett.",
+        "thread_ids": [
+          "audience_feedback",
+          "public_claim_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Undersøk reaksjonen og vurder om kontekst, tekst eller plassering bør endres uten å late som én respons representerer alle.",
+        "thread_ids": [
+          "audience_feedback",
+          "public_claim_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Reaksjonen undersøkes konkret, og rommet kan endres uten å late som én stemme er alle.",
+        "thread_ids": [
+          "audience_feedback",
+          "public_claim_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "En pressemelding beskriver prosjektet som banebrytende og historisk unikt.",
+        "thread_ids": [
+          "public_claim_boundary",
+          "conflict_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Du kjenner researchen godt nok til å vite at påstanden ikke kan dokumenteres så sterkt.",
+        "thread_ids": [
+          "public_claim_boundary",
+          "conflict_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Be om en mer presis formulering som skiller ambisjon fra dokumenterbar påstand.",
+        "thread_ids": [
+          "public_claim_boundary",
+          "conflict_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Pressemeldingen kan fortsatt engasjere uten å hevde en udokumentert historisk unikhet.",
+        "thread_ids": [
+          "public_claim_boundary",
+          "conflict_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "En venn viser deg et nytt arbeid og spør om det kan få plass i det kuratoriske prosjektet.",
+        "thread_ids": [
+          "conflict_boundary",
+          "program_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Verket er interessant, men relasjonen gjør vurderingen vanskeligere å holde ren.",
+        "thread_ids": [
+          "conflict_boundary",
+          "program_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Vurder verket etter samme dokumenterte kriterier som resten og gjør habiliteten synlig der det er relevant.",
+        "thread_ids": [
+          "conflict_boundary",
+          "program_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Vennens verk prøves mot de samme kriteriene, med relasjonen synlig for de berørte.",
+        "thread_ids": [
+          "conflict_boundary",
+          "program_memory"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Utstillingen er tatt ned og oppmerksomheten har flyttet seg videre.",
+        "thread_ids": [
+          "program_memory",
+          "curatorial_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Notater, endringer, krediteringer og begrunnelser ligger spredt i ulike filer og meldinger.",
+        "thread_ids": [
+          "program_memory",
+          "curatorial_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Samle et tydelig arkiv som viser hva som var research, hva som ble besluttet og hva som ble endret underveis.",
+        "thread_ids": [
+          "program_memory",
+          "curatorial_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Arkivet viser også revisjoner og gjør senere etterprøving mulig.",
+        "thread_ids": [
+          "program_memory",
+          "curatorial_identity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Du har gjort research, bygd utvalg, skrevet tekster, håndtert relasjoner og revidert prosjektet etter nye opplysninger.",
+        "thread_ids": [
+          "curatorial_identity",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Det er reell kuratorisk praksis, men badge-life-positionen i seg selv gir ikke institusjonell ansettelse, budsjettfullmakt eller endelig programmyndighet.",
+        "thread_ids": [
+          "curatorial_identity",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "La Kuratorpraksis uttrykke faglig praksis uten å ta ansettelse, programmandat eller institusjonell myndighet på forskudd.",
+        "thread_ids": [
+          "curatorial_identity",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Erfaringen kan tas videre uten å utgi seg for en formell ansettelse eller fullmakt.",
+        "thread_ids": [
+          "curatorial_identity",
+          "mandate_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "mandate_boundary",
+      "beat_refs": [
+        "1/morning",
+        "2/lunch",
+        "4/afternoon",
+        "8/evening",
+        "11/morning"
+      ],
+      "relationship": "arenaens programansvarlige"
+    },
+    {
+      "id": "artist_consent",
+      "beat_refs": [
+        "2/morning",
+        "3/lunch",
+        "5/afternoon",
+        "9/evening",
+        "12/morning"
+      ],
+      "relationship": "kunstneren"
+    },
+    {
+      "id": "interpretive_boundary",
+      "beat_refs": [
+        "3/morning",
+        "4/lunch",
+        "6/afternoon",
+        "10/evening",
+        "13/morning"
+      ],
+      "relationship": "kunstneren og tekstleseren"
+    },
+    {
+      "id": "provenance_truth",
+      "beat_refs": [
+        "4/morning",
+        "5/lunch",
+        "7/afternoon",
+        "11/evening",
+        "14/morning"
+      ],
+      "relationship": "långiveren og arkivansvarlig"
+    },
+    {
+      "id": "prestige_boundary",
+      "beat_refs": [
+        "5/morning",
+        "6/lunch",
+        "8/afternoon",
+        "12/evening",
+        "1/morning"
+      ],
+      "relationship": "kunstnerne og visningsarenaen"
+    },
+    {
+      "id": "representation_boundary",
+      "beat_refs": [
+        "6/morning",
+        "7/lunch",
+        "9/afternoon",
+        "13/evening",
+        "2/morning"
+      ],
+      "relationship": "kunstneren og representasjonskritikeren"
+    },
+    {
+      "id": "resource_boundary",
+      "beat_refs": [
+        "7/morning",
+        "8/lunch",
+        "10/afternoon",
+        "14/evening",
+        "3/morning"
+      ],
+      "relationship": "arenaens produsent"
+    },
+    {
+      "id": "network_boundary",
+      "beat_refs": [
+        "8/morning",
+        "9/lunch",
+        "11/afternoon",
+        "1/evening",
+        "4/morning"
+      ],
+      "relationship": "samarbeidspartneren med institusjonsnettverk"
+    },
+    {
+      "id": "crediting_integrity",
+      "beat_refs": [
+        "9/morning",
+        "10/lunch",
+        "12/afternoon",
+        "2/evening",
+        "5/morning"
+      ],
+      "relationship": "medskaperen som mangler kreditering"
+    },
+    {
+      "id": "audience_feedback",
+      "beat_refs": [
+        "10/morning",
+        "11/lunch",
+        "13/afternoon",
+        "3/evening",
+        "6/morning"
+      ],
+      "relationship": "besøkende"
+    },
+    {
+      "id": "public_claim_boundary",
+      "beat_refs": [
+        "11/morning",
+        "12/lunch",
+        "14/afternoon",
+        "4/evening",
+        "7/morning"
+      ],
+      "relationship": "presseansvarlig"
+    },
+    {
+      "id": "conflict_boundary",
+      "beat_refs": [
+        "12/morning",
+        "13/lunch",
+        "1/afternoon",
+        "5/evening",
+        "8/morning"
+      ],
+      "relationship": "vennen og medkuratoren"
+    },
+    {
+      "id": "program_memory",
+      "beat_refs": [
+        "13/morning",
+        "14/lunch",
+        "2/afternoon",
+        "6/evening",
+        "9/morning"
+      ],
+      "relationship": "arkivansvarlig"
+    },
+    {
+      "id": "curatorial_identity",
+      "beat_refs": [
+        "14/morning",
+        "1/lunch",
+        "3/afternoon",
+        "7/evening",
+        "10/morning"
+      ],
+      "relationship": "arenaens programansvarlige"
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "forslag_blir_mandat_i_hodet",
+      "description": "Et sterkt kuratorisk forslag kan gradvis oppleves som en beslutning før noen med faktisk mandat har vedtatt det.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat",
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+      ]
+    },
+    {
+      "id": "prestisje_blir_utvalgskriterium",
+      "description": "Synlighet og kjente navn kan over tid bli behandlet som faglig kvalitet dersom kriteriene ikke holdes eksplisitte.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet",
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+      ]
+    },
+    {
+      "id": "fortelling_blir_dokumentasjon",
+      "description": "Proveniens og programnarrativ kan gli sammen slik at attraktive, men usikre ledd omtales som sikre.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig",
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen"
+      ]
+    },
+    {
+      "id": "intensjon_blir_forsvar",
+      "description": "Sterk kuratorisk intensjon kan gjøre publikumsreaksjoner lettere å avvise enn å undersøke.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet",
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver"
+      ]
+    },
+    {
+      "id": "relasjon_blir_skjult_habilitet",
+      "description": "Nære relasjoner og praktiske nettverk kan gradvis bli til usynlige kriterier for hvem som får plass.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn",
+        "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "mandat_blir_offentlig_pastand",
+      "setup_ref": "1/afternoon",
+      "return_ref": "11/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "kunstnersamtykke_blir_programminne",
+      "setup_ref": "2/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "proveniens_blir_krediteringsintegritet",
+      "setup_ref": "4/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "representasjon_blir_publikumsrespons",
+      "setup_ref": "6/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "reputation",
+        "relationship"
+      ]
+    },
+    {
+      "id": "ressursgrense_blir_utvalgsspor",
+      "setup_ref": "7/afternoon",
+      "return_ref": "13/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "habilitet_blir_formell_grense",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#utvalget_uten_mandat",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#kunstneren_som_sier_nei",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#teksten_som_gjor_verket_for_enkelt",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#proveniensen_som_ikke_er_ferdig",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#det_kjente_navnet",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#representasjonen_som_blir_symbolsk",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#budsjettet_som_flytter_utvalget",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#gjestelisten_som_blir_faglig_kriterium",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#etiketten_med_feil_kreditering",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#publikumsreaksjonen_som_endrer_rommet",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#pressemeldingen_som_overdriver",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#vennen_som_vil_inn",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#arkivet_etter_utstillingen",
+      "data/Civication/narratives/leisure/kunst_kuratorpraksis.json#sesongslutt_hva_er_kuratorpraksis"
+    ]
+  }
+}
