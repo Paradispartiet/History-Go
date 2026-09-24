@@ -94,9 +94,9 @@ for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(str
 assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_gatesmart'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds,147);
-assert.equal(taxonomy.canonical_counts.total_role_worlds,232);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,147);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds,148);
+assert.equal(taxonomy.canonical_counts.total_role_worlds,233);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,148);
 
 const rumor=stream.storylets.find(x=>x.id==='ryktet_om_hjornet');
 assert.match(rumor.situation.join(' '),/rykte|konkret observasjon|sikre fakta/i);
