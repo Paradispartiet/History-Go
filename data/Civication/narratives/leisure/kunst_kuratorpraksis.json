@@ -1,0 +1,691 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "kunst_kuratorpraksis_stream",
+  "type": "leisure",
+  "title": "Kuratorpraksis — research, utvalg og begrunnet programarbeid",
+  "sociological_theme": "kunst_kuratorpraksis_research_utvalg_kunstnerdialog_proveniens_representasjon_kreditering_habilitet_publikumsrespons_offentlige_pastander_og_programminne_uten_automatisk_ansettelse_budsjettfullmakt_eller_institusjonell_programmyndighet",
+  "applies_when": {
+    "any_tags": [
+      "kunst:kuratorpraksis"
+    ]
+  },
+  "time_slots": [
+    "leisure",
+    "personal",
+    "people"
+  ],
+  "storylets": [
+    {
+      "id": "utvalget_uten_mandat",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Du kan se en sterk utstilling, men eier ikke programmet",
+      "situation": [
+        "Du har satt sammen en klar idé for hvilke verk som burde vises sammen.",
+        "Forslaget er faglig gjennomarbeidet, men du har ikke fått et institusjonelt mandat til å bestemme programmet.",
+        "Kuratorisk praksis kan eksistere som research, forslag og begrunnelse uten at idéen automatisk blir en beslutning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Presenter utvalget som et begrunnet forslag og skill tydelig mellom faglig vurdering og faktisk beslutningsmyndighet.",
+          "effect": 1,
+          "tags": [
+            "mandate_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Snakk om utvalget som om programmet allerede er avgjort fordi den kuratoriske logikken er sterk.",
+          "effect": -1,
+          "tags": [
+            "authority_overreach",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_utvalget_uten_mandat"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunstneren_som_sier_nei",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kunstner",
+      "subject": "Et verk passer perfekt, men kunstneren vil ikke delta",
+      "situation": [
+        "Et bestemt verk ville styrket fortellingen du prøver å bygge.",
+        "Kunstneren ønsker ikke at verket skal brukes i denne sammenhengen.",
+        "Kuratorisk sammenheng gir ikke rett til å overstyre kunstnerens samtykke eller vilkår."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter avslaget og arbeid videre med programideen uten å gjøre kunstnerens nei til et faglig problem som må omgås.",
+          "effect": 1,
+          "tags": [
+            "artist_consent",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Press videre fordi verkets betydning for helheten bør veie tyngre enn kunstnerens reservasjon.",
+          "effect": -1,
+          "tags": [
+            "curatorial_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_kunstneren_som_sier_nei"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teksten_som_gjor_verket_for_enkelt",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Veggteksen blir tydelig, men reduserer verket for mye",
+      "situation": [
+        "Du har skrevet en kort tekst som gjør utstillingen lett å forstå.",
+        "Når du leser den på nytt ser du at formuleringen tillegger verket én entydig mening som kunstneren selv aldri har formulert.",
+        "Formidling krever avgrensning uten å gjøre kuratorisk tolkning til autoritativ sannhet om verket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker tolkningen som en kuratorisk lesning og bevar rom for andre forståelser.",
+          "effect": 1,
+          "tags": [
+            "interpretive_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold formuleringen som sikker forklaring fordi publikum trenger ett klart svar.",
+          "effect": -1,
+          "tags": [
+            "meaning_overclaim",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_teksten_som_gjor_verket_for_enkelt"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proveniensen_som_ikke_er_ferdig",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Historikken er interessant, men dokumentasjonen har hull",
+      "situation": [
+        "Et eldre verk har en eierhistorie som styrker utstillingens fortelling.",
+        "Flere ledd er dokumentert, men en viktig overgang er fortsatt uklar.",
+        "Kuratorisk relevans gjør ikke ufullstendig proveniens til ferdig dokumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv bare det som kan dokumenteres og gjør usikkerheten eksplisitt i researchen.",
+          "effect": 1,
+          "tags": [
+            "provenance_truth",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Bruk hele historien som sikker fordi den passer så godt med programnarrativet.",
+          "effect": -1,
+          "tags": [
+            "narrative_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_proveniensen_som_ikke_er_ferdig"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "det_kjente_navnet",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Ett kjent navn vil trekke publikum og presse",
+      "situation": [
+        "Et kjent kunstnernavn vil sannsynligvis gjøre prosjektet lettere å formidle og finansiere.",
+        "Et mindre kjent verk passer samtidig bedre til det faglige spørsmålet du faktisk undersøker.",
+        "Kuratorisk praksis må kunne skille mellom synlighet, symbolsk kapital og faglig relevans."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder verkene etter hva de faktisk gjør i prosjektet og gjør eventuell synlighetsstrategi eksplisitt separat.",
+          "effect": 1,
+          "tags": [
+            "prestige_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Velg det kjente navnet fordi oppmerksomhet i seg selv vil styrke prosjektets legitimitet.",
+          "effect": -1,
+          "tags": [
+            "status_anxiety",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_det_kjente_navnet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "representasjonen_som_blir_symbolsk",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kollega",
+      "subject": "Én kunstner blir bedt om å representere en hel erfaring",
+      "situation": [
+        "Du arbeider med et tema der institusjoner historisk har vist få perspektiver.",
+        "En kollega foreslår at én kunstner kan fylle representasjonshullet alene.",
+        "Representasjon blir lett tokenistisk når én person forventes å bære en hel gruppe eller erfaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Utvid researchen og vær konkret om hva én praksis faktisk kan og ikke kan representere.",
+          "effect": 1,
+          "tags": [
+            "representation_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold løsningen fordi synlig representasjon er viktigere enn om én person får for mye symbolsk ansvar.",
+          "effect": -1,
+          "tags": [
+            "tokenism_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_representasjonen_som_blir_symbolsk"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "budsjettet_som_flytter_utvalget",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Transport og forsikring gjør favorittverket urealistisk",
+      "situation": [
+        "Det faglig sterkeste verket i utvalget er dyrt å transportere, forsikre og installere.",
+        "Det finnes andre verk som kan bære deler av samme spørsmål innenfor en realistisk ramme.",
+        "Kuratorisk kvalitet må også kunne håndtere praktiske begrensninger uten å skjule dem som rene faglige valg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Revider utvalget åpent etter faktiske rammer og forklar hvilke konsekvenser begrensningen har.",
+          "effect": 1,
+          "tags": [
+            "resource_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Late som det alternative valget alltid var faglig førsteprioritet for å unngå at budsjett blir synlig i beslutningen.",
+          "effect": -1,
+          "tags": [
+            "budget_masking",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_budsjettet_som_flytter_utvalget"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gjestelisten_som_blir_faglig_kriterium",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En samarbeidspartner",
+      "subject": "Nettverket blir blandet inn i hvem som får oppmerksomhet",
+      "situation": [
+        "En samarbeidspartner foreslår å prioritere verk fra personer som allerede er godt forbundet med institusjonens nettverk.",
+        "Forslaget begrunnes med at relasjonene vil gjøre produksjonen enklere.",
+        "Relasjonell friksjon er reell, men nettverksnærhet er ikke det samme som kuratorisk relevans."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill praktisk relasjonsfordel fra faglig utvalg og dokumenter hvorfor hvert verk er med.",
+          "effect": 1,
+          "tags": [
+            "network_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La nettverksfordelen telle som kvalitet fordi prosjektet ellers blir vanskeligere å gjennomføre.",
+          "effect": -1,
+          "tags": [
+            "access_bias",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_gjestelisten_som_blir_faglig_kriterium"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "etiketten_med_feil_kreditering",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "En kreditering er nesten riktig, men ikke helt",
+      "situation": [
+        "Et verk er registrert med en kreditering som mangler én samarbeidspartner.",
+        "Det er sent i prosessen og endringen påvirker flere flater.",
+        "Kuratorisk praksis innebærer også å reparere små krediteringsfeil før de blir til permanent institusjonelt minne."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Rett krediteringen i alle relevante flater og dokumenter hva som ble endret.",
+          "effect": 1,
+          "tags": [
+            "crediting_integrity",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La den stå fordi feilen er liten og vil være krevende å rette overalt nå.",
+          "effect": -1,
+          "tags": [
+            "late_stage_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_etiketten_med_feil_kreditering"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikumsreaksjonen_som_endrer_rommet",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En publikumsvert",
+      "subject": "En del av utstillingen blir lest helt annerledes enn forventet",
+      "situation": [
+        "Flere besøkende reagerer på en sammenstilling som du mente skulle være åpen og undersøkende.",
+        "Reaksjonen viser at rommet produserer en tolkning du ikke hadde forutsett.",
+        "Kuratorisk praksis kan ikke kontrollere all lesning, men den kan ta konsekvensene av hvordan verk faktisk møter publikum."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Undersøk reaksjonen og vurder om kontekst, tekst eller plassering bør endres uten å late som én respons representerer alle.",
+          "effect": 1,
+          "tags": [
+            "audience_feedback",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Avvis reaksjonen fordi den ikke samsvarer med den kuratoriske intensjonen og derfor må bero på misforståelse.",
+          "effect": -1,
+          "tags": [
+            "intentionality_bias",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_publikumsreaksjonen_som_endrer_rommet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pressemeldingen_som_overdriver",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En kommunikasjonsansvarlig",
+      "subject": "Formuleringen er sterkere enn researchen tåler",
+      "situation": [
+        "En pressemelding beskriver prosjektet som banebrytende og historisk unikt.",
+        "Du kjenner researchen godt nok til å vite at påstanden ikke kan dokumenteres så sterkt.",
+        "Offentlig synlighet gjør kuratorisk integritet avhengig av at formidlingen ikke løper forbi kunnskapsgrunnlaget."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en mer presis formulering som skiller ambisjon fra dokumenterbar påstand.",
+          "effect": 1,
+          "tags": [
+            "public_claim_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La overdrivelsen stå fordi kommunikasjon trenger sterkere språk enn intern research.",
+          "effect": -1,
+          "tags": [
+            "visibility_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_pressemeldingen_som_overdriver"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_som_vil_inn",
+      "message_type": "social",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En venn i kunstfeltet",
+      "subject": "En nær relasjon spør om plass i prosjektet",
+      "situation": [
+        "En venn viser deg et nytt arbeid og spør om det kan få plass i det kuratoriske prosjektet.",
+        "Verket er interessant, men relasjonen gjør vurderingen vanskeligere å holde ren.",
+        "Kuratorisk praksis trenger en måte å håndtere habilitet og nærhet uten å gjøre vennskap til skjult utvalgskriterium."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder verket etter samme dokumenterte kriterier som resten og gjør habiliteten synlig der det er relevant.",
+          "effect": 1,
+          "tags": [
+            "conflict_boundary",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La relasjonen vippe avgjørelsen fordi tillit til personen også sier noe om kvaliteten.",
+          "effect": -1,
+          "tags": [
+            "relationship_pressure",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_vennen_som_vil_inn"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arkivet_etter_utstillingen",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "Deg selv",
+      "subject": "Prosjektet er over, men dokumentasjonen skal leve videre",
+      "situation": [
+        "Utstillingen er tatt ned og oppmerksomheten har flyttet seg videre.",
+        "Notater, endringer, krediteringer og begrunnelser ligger spredt i ulike filer og meldinger.",
+        "Kuratorisk praksis fortsetter i programminnet: framtidige lesere må kunne skille forslag, beslutninger og senere korreksjoner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Samle et tydelig arkiv som viser hva som var research, hva som ble besluttet og hva som ble endret underveis.",
+          "effect": 1,
+          "tags": [
+            "program_memory",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Behold bare sluttversjonen fordi mellomstadiene ikke lenger har praktisk verdi.",
+          "effect": -1,
+          "tags": [
+            "documentation_loss",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_arkivet_etter_utstillingen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_kuratorpraksis",
+      "message_type": "decision",
+      "time_slot": [
+        "leisure",
+        "personal",
+        "people"
+      ],
+      "from": "En erfaren kurator",
+      "subject": "Hva betyr Kurator når praksis og jobb ikke er det samme?",
+      "situation": [
+        "Du har gjort research, bygd utvalg, skrevet tekster, håndtert relasjoner og revidert prosjektet etter nye opplysninger.",
+        "Det er reell kuratorisk praksis, men badge-life-positionen i seg selv gir ikke institusjonell ansettelse, budsjettfullmakt eller endelig programmyndighet.",
+        "Formell Kurator-jobb i Career-sporet krever `employer_appointment` og eies av `kunst_kuratering_og_program`."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La Kuratorpraksis uttrykke faglig praksis uten å ta ansettelse, programmandat eller institusjonell myndighet på forskudd.",
+          "effect": 1,
+          "tags": [
+            "curatorial_identity",
+            "curatorial_practice",
+            "boundary"
+          ],
+          "feedback": "Du behandler kuratorisk praksis som research, begrunnelse og relasjonelt ansvar uten å gjøre den til skjult institusjonell myndighet."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den kuratoriske erfaringen til bevis på at du allerede har samme mandat som en formelt utnevnt Kurator.",
+          "effect": -1,
+          "tags": [
+            "formal_authority_overreach",
+            "curatorial_overreach",
+            "status_pressure"
+          ],
+          "feedback": "Valget lar prestisje, relasjon eller faglig sikkerhet bli mer mandat enn praksisen faktisk gir."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "kuratorpraksis_sesongslutt_hva_er_kuratorpraksis"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
