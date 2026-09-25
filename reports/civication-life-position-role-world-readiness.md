@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 150 ready / 9 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 151 ready / 8 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 150
-**Multi-scene narrative foundations:** 150
-**Completed life-position Role Worlds:** 150
+**Exact governed-source matches:** 151
+**Multi-scene narrative foundations:** 151
+**Completed life-position Role Worlds:** 151
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,15 +18,14 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `naeringsliv/bedriftseier` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 6 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 7 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 8 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
-| 9 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `naeringsliv/grunder` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `naeringsliv/industrieier` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `naeringsliv/investor` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
+| 5 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
+| 6 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
+| 7 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 8 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 

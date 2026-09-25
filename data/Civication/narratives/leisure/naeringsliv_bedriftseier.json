@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_bedriftseier_stream",
+  "type": "leisure",
+  "title": "Bedriftseier — eierskap, kapital og styringsgrenser",
+  "sociological_theme": "naeringsliv_bedriftseier_eierkapital_selskapsmidler_utdeling_reinvestering_eier_leder_grense_styre_medeiere_flertall_personlig_sikkerhet_naerstaende_handel_ansattelinje_delsalg_likviditet_eierskifte_og_grensen_mot_grunder_investor_industrieier_eller_daglig_leder",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:bedriftseier"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "kapitalen_som_ma_inn",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Regnskapsrådgiveren",
+      "subject": "Virksomheten trenger mer kapital",
+      "situation": [
+        "Selskapet har et konkret finansieringsbehov og du vurderer å skyte inn mer av egne penger.",
+        "Som Bedriftseier kan du tilføre kapital, men private midler og selskapets midler er fortsatt to ulike økonomier.",
+        "Før du handler må form, beløp og forventning til tilbakebetaling eller eierskap være tydelig dokumentert."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar om pengene er kapitalinnskudd eller lån og dokumenter beslutningen før overføringen.",
+          "effect": 1,
+          "tags": [
+            "owner_capital",
+            "money_boundary"
+          ],
+          "feedback": "Tilførselen får en tydelig eiermessig og økonomisk betydning."
+        },
+        {
+          "id": "B",
+          "label": "Overfør penger raskt og bestem senere hvordan det skal bokføres.",
+          "effect": -1,
+          "tags": [
+            "capital_ambiguity",
+            "private_company_blur"
+          ],
+          "feedback": "Private penger går inn i virksomheten uten at det er klart hva overføringen faktisk betyr."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_kapitalen_som_ma_inn"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "selskapets_kort_i_lommen",
+      "message_type": "conflict",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Deg selv",
+      "subject": "En privat utgift er enkel å betale med selskapets kort",
+      "situation": [
+        "Du står med en privat kostnad og har selskapets betalingskort tilgjengelig.",
+        "Eierskap gjør ikke virksomhetens penger til en privat konto, selv når du kontrollerer hele selskapet.",
+        "Små sammenblandinger gjør det vanskeligere å holde økonomi, regnskap og eieruttak forståelig senere."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Betal privat og hold selskapets betalingsmidler til virksomhetens kostnader.",
+          "effect": 1,
+          "tags": [
+            "company_asset_boundary",
+            "owner_discipline"
+          ],
+          "feedback": "Skillet mellom eier og selskap forblir synlig i hverdagen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk selskapets kort og rydd opp i beløpet senere.",
+          "effect": -1,
+          "tags": [
+            "asset_blur",
+            "convenience_pressure"
+          ],
+          "feedback": "En enkel snarvei gjør skillet mellom virksomhet og privatøkonomi mindre etterprøvbart."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_selskapets_kort_i_lommen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "overskuddet_som_alle_vil_ha",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medeieren",
+      "subject": "Hva skal skje med årets overskudd?",
+      "situation": [
+        "Virksomheten har et overskudd, og medeieren ønsker uttak mens driften samtidig trenger penger til kommende investeringer.",
+        "Bedriftseierrollen handler ikke bare om avkastning, men også om hvor mye kapital virksomheten skal beholde.",
+        "Uttak og reinvestering må vurderes mot likviditet, planlagt aktivitet og eiernes avtalte beslutningsform."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg fram et begrunnet forslag som viser både mulig eieruttak og kapitalbehovet i virksomheten.",
+          "effect": 1,
+          "tags": [
+            "distribution_policy",
+            "reinvestment_balance"
+          ],
+          "feedback": "Eierne kan diskutere avkastning og videre drift på samme faktagrunnlag."
+        },
+        {
+          "id": "B",
+          "label": "Ta ut mest mulig nå og la driften finne finansiering senere.",
+          "effect": -1,
+          "tags": [
+            "short_term_extraction",
+            "capital_pressure"
+          ],
+          "feedback": "Eieruttaket prioriteres uten at framtidig kapitalbehov er vurdert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_overskuddet_som_alle_vil_ha"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "daglig_leder_som_far_en_eierordre",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Daglig leder",
+      "subject": "Du vil gripe direkte inn i en driftsbeslutning",
+      "situation": [
+        "Daglig leder har valgt en løsning du er uenig i, og du vurderer å gi en direkte instruks fordi du eier selskapet.",
+        "Eierskap og daglig ledelse er ulike roller selv når samme person kan fylle begge i enkelte virksomheter.",
+        "Hvis selskapet har en separat leder, må eierstyring skje gjennom de beslutnings- og styringskanalene virksomheten faktisk bruker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Ta saken gjennom riktig eier- eller styrekanal og la den operative rollen få tydelig mandat.",
+          "effect": 1,
+          "tags": [
+            "owner_management_boundary",
+            "governance_channel"
+          ],
+          "feedback": "Uenigheten håndteres uten å gjøre eierskap til uformell detaljstyring."
+        },
+        {
+          "id": "B",
+          "label": "Overstyr lederen direkte fordi eieren til slutt bestemmer uansett.",
+          "effect": -1,
+          "tags": [
+            "owner_override",
+            "authority_blur"
+          ],
+          "feedback": "Den formelle lederrollen blir mindre tydelig fordi eiermakten brukes utenfor styringskanalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_daglig_leder_som_far_en_eierordre"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "styret_som_sier_nei",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Styrelederen",
+      "subject": "Styret støtter ikke planen din",
+      "situation": [
+        "Du ønsker en strategisk endring, men styret mener planen er for dårlig underbygget.",
+        "En Bedriftseier kan ha sterk innflytelse uten at alle selskapsorganer blir overflødige.",
+        "Uenigheten må skilles fra spørsmålet om hvem som har hvilket ansvar i den konkrete beslutningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om begrunnelsen, forbedre beslutningsgrunnlaget og bruk den styringsformen som gjelder for saken.",
+          "effect": 1,
+          "tags": [
+            "board_owner_boundary",
+            "decision_quality"
+          ],
+          "feedback": "Eiermakt og styreansvar holdes adskilt mens planen prøves på nytt."
+        },
+        {
+          "id": "B",
+          "label": "Press styret til å godkjenne fordi eierskapet gjør motstanden illojal.",
+          "effect": -1,
+          "tags": [
+            "board_pressure",
+            "owner_power"
+          ],
+          "feedback": "Uenighet blir behandlet som ulydighet i stedet for som del av virksomhetens styring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_styret_som_sier_nei"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medeieren_som_vil_en_annen_vei",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medeieren",
+      "subject": "To eiere vil forskjellige ting med selskapet",
+      "situation": [
+        "Du og medeieren er enige om at virksomheten skal fortsette, men uenige om tempo, kapitalbruk og hvor mye eierne skal være involvert.",
+        "Et delt eierskap krever mer enn et felles navn; beslutningsregler og forventninger må tåle reell uenighet.",
+        "Hvis alt avgjøres gjennom personlig press, blir medeierskapet vanskelig å forutsi."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til eieravtaler og beslutningsregler og avklar hvilke spørsmål som faktisk krever felles beslutning.",
+          "effect": 1,
+          "tags": [
+            "coowner_governance",
+            "shared_ownership"
+          ],
+          "feedback": "Uenigheten får en struktur som ikke avhenger av hvem som presser hardest."
+        },
+        {
+          "id": "B",
+          "label": "Bruk din større eierandel til å avslutte diskusjonen også i saker der dere tidligere har avtalt felles prosess.",
+          "effect": -1,
+          "tags": [
+            "majority_pressure",
+            "coowner_conflict"
+          ],
+          "feedback": "Formell eiervekt brukes til å erstatte den styringsformen dere selv har etablert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_medeieren_som_vil_en_annen_vei"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "majoriteten_som_ikke_er_alt",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Eiermøtet",
+      "subject": "Du har flertall, men en mindre eier protesterer",
+      "situation": [
+        "Du kontrollerer flertallet av eierskapet og ønsker en beslutning som en mindre eier mener stiller dem urimelig svakt.",
+        "Flertall gir reell beslutningsmakt, men god eierstyring krever fortsatt en virksomhetsbegrunnelse og ikke bare personlig fordel.",
+        "En eierkonflikt blir dyrere når makt og sak blandes sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter virksomhetsbegrunnelsen og håndter den mindre eierens innvending før beslutningen låses.",
+          "effect": 1,
+          "tags": [
+            "majority_responsibility",
+            "minority_fairness"
+          ],
+          "feedback": "Flertallet brukes som styringsmekanisme uten at begrunnelsen reduseres til ren makt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk flertallet uten videre forklaring fordi eierprosenten avgjør alt som betyr noe.",
+          "effect": -1,
+          "tags": [
+            "majority_absolutism",
+            "owner_power"
+          ],
+          "feedback": "Formell kontroll blir brukt som erstatning for et etterprøvbart beslutningsgrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_majoriteten_som_ikke_er_alt"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "garantien_med_privathuset_i_bakgrunnen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Bankkontakten",
+      "subject": "Finansiering krever personlig sikkerhet",
+      "situation": [
+        "Virksomheten kan få finansiering dersom du som eier stiller personlig sikkerhet.",
+        "En personlig garanti flytter deler av selskapets finansielle belastning over på din private økonomi.",
+        "Det kan være et bevisst valg, men bare dersom beløp, varighet og hva som kan utløse ansvaret er forstått."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om hele garantirammeverket skriftlig og vurder privat tåleevne før du aksepterer.",
+          "effect": 1,
+          "tags": [
+            "personal_guarantee",
+            "owner_exposure"
+          ],
+          "feedback": "Eierens private eksponering blir behandlet som en egen beslutning."
+        },
+        {
+          "id": "B",
+          "label": "Signer raskt fordi selskapet trenger pengene og detaljene kan gjennomgås senere.",
+          "effect": -1,
+          "tags": [
+            "guarantee_pressure",
+            "private_exposure"
+          ],
+          "feedback": "Virksomhetens finansieringsbehov får styre en privat forpliktelse du ikke har avgrenset."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_garantien_med_privathuset_i_bakgrunnen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avtalen_med_ditt_eget_selskap",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regnskapsrådgiveren",
+      "subject": "Virksomheten skal kjøpe noe fra deg privat",
+      "situation": [
+        "Selskapet trenger en eiendel du eier privat, og du vurderer å selge eller leie den inn til virksomheten.",
+        "Når samme person står på begge sider av en handel, må pris, vilkår og beslutningsprosess kunne tåle at andre ser dem.",
+        "Bedriftseierrollen gir ikke automatisk rett til å sette vilkår som bare er gunstige for eieren."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bruk dokumenterbare vilkår og sørg for at beslutningen behandles åpent i riktig kanal.",
+          "effect": 1,
+          "tags": [
+            "related_party_transaction",
+            "fair_terms"
+          ],
+          "feedback": "Handelen kan vurderes som en virksomhetstransaksjon og ikke bare som eierens valg."
+        },
+        {
+          "id": "B",
+          "label": "Sett en pris som passer deg fordi selskapet uansett er ditt.",
+          "effect": -1,
+          "tags": [
+            "self_dealing",
+            "asset_blur"
+          ],
+          "feedback": "Eierskapet brukes til å gjøre en nærstående handel mindre etterprøvbar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_avtalen_med_ditt_eget_selskap"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_ansatte_som_gar_rett_til_eieren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En ansatt",
+      "subject": "En ansatt går forbi lederen og ber deg ordne saken",
+      "situation": [
+        "En ansatt kontakter deg direkte fordi du er eier og ber deg endre en beslutning fra den operative ledelsen.",
+        "Eieren påvirker rammene for virksomheten, men blir ikke automatisk nærmeste leder for alle ansatte.",
+        "Hvis eieren stadig løser personalsaker direkte, svekkes ansvarslinjene som den daglige driften er avhengig av."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lytt til saken, men send den tilbake til riktig leder- eller styringskanal med mindre den faktisk krever eierbehandling.",
+          "effect": 1,
+          "tags": [
+            "owner_employee_boundary",
+            "management_line"
+          ],
+          "feedback": "Den ansatte blir hørt uten at eierrollen blir en parallell ledelseslinje."
+        },
+        {
+          "id": "B",
+          "label": "Endre beslutningen direkte for å vise at ansatte alltid kan komme til eieren.",
+          "effect": -1,
+          "tags": [
+            "shadow_management",
+            "owner_power"
+          ],
+          "feedback": "Eierrollen blir en uformell overleder som gjør det uklart hvem som faktisk har driftsansvar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_den_ansatte_som_gar_rett_til_eieren"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilbudet_om_a_selge_en_del",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En potensiell kjøper",
+      "subject": "Noen vil kjøpe en del av selskapet",
+      "situation": [
+        "En kjøper tilbyr deg penger for en eierandel og ønsker rask avklaring.",
+        "Et delsalg handler ikke bare om pris; det endrer hvem som får økonomiske interesser og mulig innflytelse i virksomheten.",
+        "Før et ja må du forstå hva du gir fra deg, hvilke rettigheter som følger andelen og hvordan medeierskapet skal fungere etterpå."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder pris, rettigheter og framtidig styring samlet før du aksepterer et salg.",
+          "effect": 1,
+          "tags": [
+            "partial_sale",
+            "ownership_change"
+          ],
+          "feedback": "Salgssummen vurderes sammen med den nye eierstrukturen."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter den høyeste prisen og løs styringsspørsmålene etter at kjøperen er inne.",
+          "effect": -1,
+          "tags": [
+            "sale_pressure",
+            "governance_debt"
+          ],
+          "feedback": "Kontanter prioriteres før du vet hvordan eierskapet faktisk endres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_tilbudet_om_a_selge_en_del"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "likviditeten_som_tvinger_fram_et_valg",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Økonomiansvarlig",
+      "subject": "Selskapet har verdier, men for lite tilgjengelige penger",
+      "situation": [
+        "Virksomheten ser lønnsom ut over tid, men betalingsforpliktelser kommer før forventede innbetalinger.",
+        "Som Bedriftseier må du skille mellom verdier på papiret og kontanter som faktisk er tilgjengelige når regninger forfaller.",
+        "En eier kan tilføre midler, redusere uttak eller støtte annen finansiering, men bør ikke skjule problemet ved tilfeldige private overføringer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en konkret likviditetsplan og velg en dokumentert finansierings- eller kostnadsløsning.",
+          "effect": 1,
+          "tags": [
+            "liquidity_ownership",
+            "capital_planning"
+          ],
+          "feedback": "Eierbeslutningen svarer på tidspunktet pengene faktisk trengs."
+        },
+        {
+          "id": "B",
+          "label": "Overfør akkurat nok privat hver gang kontoen blir lav.",
+          "effect": -1,
+          "tags": [
+            "cash_patch",
+            "private_company_blur"
+          ],
+          "feedback": "Likviditetsproblemet blir gjentatte private nødløsninger uten en samlet plan."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_likviditeten_som_tvinger_fram_et_valg"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_neste_eieren",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Et familiemedlem",
+      "subject": "Noen må en dag overta eller kjøpe deg ut",
+      "situation": [
+        "Du ønsker ikke å eie virksomheten for alltid og begynner å diskutere en framtidig overdragelse.",
+        "Eierskifte berører verdi, ansvar, informasjon og hvem som faktisk skal ha kontroll etter at du trer tilbake.",
+        "Et godt handoff krever mer enn at neste eier kjenner historien; virksomheten må være forståelig uten deg."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter eierstruktur, nøkkelavtaler og beslutningsansvar før dere forhandler om selve overdragelsen.",
+          "effect": 1,
+          "tags": [
+            "ownership_succession",
+            "transfer_readiness"
+          ],
+          "feedback": "Virksomheten blir lettere å overføre fordi eierskapet ikke bare sitter i hodet ditt."
+        },
+        {
+          "id": "B",
+          "label": "Vent med all struktur til noen faktisk er klare til å kjøpe eller overta.",
+          "effect": -1,
+          "tags": [
+            "succession_delay",
+            "owner_dependency"
+          ],
+          "feedback": "Eierskiftet blir avhengig av at du personlig forklarer alt under tidspress."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_den_neste_eieren"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_bedriftseier",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er faktisk bygget gjennom Bedriftseier-sesongen?",
+      "situation": [
+        "Du har håndtert kapitalinnskudd, skillet mellom private og selskapsmidler, overskudd, eier–leder-grenser, styre, medeierskap, flertall, personlig sikkerhet, nærstående handel, ansatte, delsalg, likviditet og eierskifte.",
+        "Det som binder situasjonene sammen er business_ownership: økonomiske rettigheter og styringsansvar knyttet til eierskap i en faktisk virksomhet.",
+        "Rollen er forskjellig fra Gründer, som skal eie etablering og entreprenøriell praksis, fra Investor, som skal eie kapitalplassering på tvers av investeringer, fra Industrieier, som gjelder industrielt eierskap, og fra Daglig leder, som er en egen arbeidsgiverforankret lederrolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Bedriftseier som eierskapslaget og la etablering, investering, industri og daglig ledelse ligge i sine egne roller.",
+          "effect": 1,
+          "tags": [
+            "business_owner_definition",
+            "role_boundary"
+          ],
+          "feedback": "Eierskapet står igjen som et eget sosialt og økonomisk ansvar uten å overta naboposisjonene."
+        },
+        {
+          "id": "B",
+          "label": "La Bedriftseier bli samlebetegnelsen for alle som starter, leder eller investerer i en virksomhet.",
+          "effect": -1,
+          "tags": [
+            "role_collapse",
+            "ownership_overreach"
+          ],
+          "feedback": "Eierskap, ledelse, etablering og investering blir slått sammen til én uklar status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "bedriftseier_sesongslutt_hva_er_en_bedriftseier"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}

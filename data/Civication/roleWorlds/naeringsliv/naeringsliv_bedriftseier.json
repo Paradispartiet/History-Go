@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "naeringsliv_bedriftseier",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "naeringsliv",
+    "id": "bedriftseier",
+    "label": "Bedriftseier"
+  },
+  "title": "Bedriftseier",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å utøve eierskap i en faktisk virksomhet uten å blande privatøkonomi, selskapsmidler, daglig ledelse, styreansvar og medeiermakt til én uformell rolle",
+    "description": "Bedriftseier er en employment-independent business_ownership-posisjon som eier det økonomiske og styringsmessige laget rundt en faktisk virksomhet: kapitalinnskudd, skille mellom private og selskapsmidler, utdeling og reinvestering, eier–leder-grense, styrekanal, medeierskap, flertall, personlig sikkerhet, nærstående handel, ansattelinjer, delsalg, likviditet og eierskifte. Rollen er forskjellig fra Gründer, som skal eie etablering og entreprenøriell praksis, fra Investor, som skal eie kapitalplassering på tvers av investeringer, fra Industrieier, som gjelder industrielt eierskap, og fra Daglig leder, som er en separat arbeidsgiverforankret lederrolle. Bedriftseier gir ingen automatisk daglig leder-status, styrelederstatus, arbeidstakerstatus, fri tilgang til selskapets midler, rett til å ignorere medeieravtaler eller garanti for avkastning. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "class_power",
+    "professional_culture",
+    "invisible_work",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "eiermøter der kapitalbruk, utdeling og reinvestering må begrunnes mot virksomhetens faktiske behov",
+    "styringssituasjoner der eier, styre og daglig leder har ulike roller og myndighetslinjer",
+    "medeierrelasjoner der flertall, avtaler og gjensidig avhengighet må tåle reell uenighet",
+    "finansieringssituasjoner der selskapets kapitalbehov kan flytte belastning inn i eierens privatøkonomi",
+    "transaksjoner mellom eier og selskap der pris, vilkår og beslutningskanal må tåle innsyn",
+    "delsalg og eierskifte der pris, rettigheter og framtidig styring endres samtidig"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "medeieren",
+      "social_function": "gjør delt eierskap, utdeling, tempo og beslutningsregler konkrete",
+      "class_position": "annen eier med egne økonomiske interesser og formelle rettigheter i samme virksomhet",
+      "status": "kan ha mindre, lik eller større eierandel uten å bli daglig leder av den grunn",
+      "power_over_player": "kan blokkere, forsinke eller endre eierbeslutninger der avtaler eller styringsform krever samspill",
+      "wants": "forutsigbar avkastning og tydelige regler for hvordan eierne tar store beslutninger",
+      "conceals": "at egne likviditetsbehov noen ganger presenteres som om de var identiske med virksomhetens behov",
+      "speech_style": "eierorientert, tallnær og opptatt av hva som er avtalt",
+      "teaches_player": "å skille delt eierskap fra personlig kontroll"
+    },
+    {
+      "id": "daglig_leder",
+      "social_function": "gjør skillet mellom eierskap og operativ ledelse konkret",
+      "class_position": "arbeidsgiverforankret leder med ansvar for den daglige virksomheten",
+      "status": "har operativ myndighet innenfor mandatet, men eier ikke automatisk virksomheten",
+      "power_over_player": "kan gjennomføre eller motsette seg uformelle eierønsker når de kolliderer med rolle- og styringslinjer",
+      "wants": "et tydelig mandat som ikke endres gjennom spontane eierinstrukser",
+      "conceals": "at sterk operativ kontroll noen ganger kan gjøre eierinnspill lettere å avvise enn å behandle",
+      "speech_style": "operativ, prioriterende og opptatt av gjennomførbarhet",
+      "teaches_player": "å bruke eierkanaler uten å gjøre eierskapet til en parallell sjefslinje"
+    },
+    {
+      "id": "styrelederen",
+      "social_function": "gjør forholdet mellom eierønske, styreansvar og beslutningskvalitet konkret",
+      "class_position": "leder av virksomhetens styre der slikt organ finnes",
+      "status": "kan lede styrebehandling uten å eie virksomheten eller overta daglig drift",
+      "power_over_player": "kan kreve bedre beslutningsgrunnlag og stoppe at eierønsker behandles som ferdige vedtak i feil kanal",
+      "wants": "sporbare beslutninger med tydelig rolle- og ansvarsfordeling",
+      "conceals": "at prosesskrav noen ganger kan oppleves tryggere enn å ta stilling til en vanskelig strategisk uenighet",
+      "speech_style": "formell, begrunnende og prosessorientert",
+      "teaches_player": "at eierskap ikke opphever virksomhetens styringsstruktur"
+    },
+    {
+      "id": "regnskapsradgiveren",
+      "social_function": "gjør skillet mellom privatøkonomi, selskapsmidler og eiertransaksjoner etterprøvbart",
+      "class_position": "ekstern eller intern regnskapsfaglig rådgiver",
+      "status": "har faglig innsyn i dokumentasjon, men ingen automatisk eier- eller ledermyndighet",
+      "power_over_player": "kan synliggjøre når private og selskapsmessige transaksjoner ikke henger sammen med dokumentert formål",
+      "wants": "at kapitalinnskudd, uttak og nærstående handler kan forstås og følges i ettertid",
+      "conceals": "at ryddig dokumentasjon ikke alene avgjør om en eierbeslutning er strategisk klok",
+      "speech_style": "presis, dokumentnær og opptatt av hva en post faktisk betyr",
+      "teaches_player": "å gjøre eierbeslutninger lesbare som transaksjoner, ikke bare intensjoner"
+    },
+    {
+      "id": "bankkontakten",
+      "social_function": "gjør eierens private eksponering og selskapets finansieringsbehov konkrete",
+      "class_position": "finansieringspart som vurderer virksomhetens betalingsevne og sikkerhet",
+      "status": "kan tilby finansiering på vilkår, men avgjør ikke hvordan eieren bør organisere privatøkonomien",
+      "power_over_player": "kan gjøre kapitaltilgang avhengig av sikkerhet, dokumentasjon eller andre finansielle vilkår",
+      "wants": "et forståelig finansieringscase med avklart sikkerhet og betjening",
+      "conceals": "at bankens risikoreduksjon kan flytte mer belastning over på eieren privat",
+      "speech_style": "vilkårsorientert, nøktern og dokumentasjonsdrevet",
+      "teaches_player": "å skille virksomhetens finansieringsproblem fra eierens private tåleevne"
+    },
+    {
+      "id": "potensiell_kjoper",
+      "social_function": "gjør pris, rettigheter og framtidig styring konkrete ved delsalg eller overdragelse",
+      "class_position": "ekstern aktør som ønsker å kjøpe hele eller deler av eierskapet",
+      "status": "har ingen eiermyndighet før en faktisk transaksjon er gjennomført",
+      "power_over_player": "kan tilby likviditet og samtidig endre forhandlingsbalansen rundt framtidig kontroll",
+      "wants": "en eierandel med tydelig økonomisk og styringsmessig betydning",
+      "conceals": "at høy pris noen ganger kan være knyttet til rettigheter eller kontroll eieren undervurderer",
+      "speech_style": "transaksjonsorientert, verdifokusert og opptatt av rettigheter",
+      "teaches_player": "å vurdere salgspris sammen med hva slags eierskap som faktisk gis bort"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "owner_capital",
+      "meaning": "eierkapital, lån og skillet mellom privat finansiering og selskapets midler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "company_asset_boundary",
+      "meaning": "selskapets penger og eiendeler holdt adskilt fra eierens privatøkonomi",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "distribution_policy",
+      "meaning": "utdeling, reinvestering og hvor mye kapital virksomheten skal beholde",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "owner_management_boundary",
+      "meaning": "eiermakt holdt adskilt fra daglig ledelse og operativ detaljstyring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "board_owner_boundary",
+      "meaning": "eierinnflytelse, styreansvar og bruk av riktige styringskanaler",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "coowner_governance",
+      "meaning": "medeierskap, avtalte beslutningsregler og reell uenighet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "majority_responsibility",
+      "meaning": "flertallsmakt, minoritetshensyn og etterprøvbar virksomhetsbegrunnelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "personal_guarantee",
+      "meaning": "personlig sikkerhet og hvor mye selskapsbelastning eieren flytter inn i privatøkonomien",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "related_party_transaction",
+      "meaning": "nærstående handel, dokumenterbare vilkår og selvhandel",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "owner_employee_boundary",
+      "meaning": "ansatte, lederlinjer og grensen mot en parallell eierstyrt driftskanal",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "partial_sale",
+      "meaning": "delsalg, pris, rettigheter og endret eierstruktur",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "liquidity_ownership",
+      "meaning": "likviditet, kapitaltilførsel og eierens ansvar for å velge dokumenterte løsninger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "ownership_succession",
+      "meaning": "eierskifte, overtakbar struktur og avhengighet av personen som eier",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "business_owner_definition",
+      "meaning": "Bedriftseier som eget eierskapslag adskilt fra etablering, investering, industri og daglig ledelse",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Virksomheten trenger mer kapital. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "owner_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Virksomheten trenger mer kapital. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "owner_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Virksomheten trenger mer kapital. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "owner_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Virksomheten trenger mer kapital. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "owner_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: En privat utgift er enkel å betale med selskapets kort. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "company_asset_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: En privat utgift er enkel å betale med selskapets kort. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "company_asset_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: En privat utgift er enkel å betale med selskapets kort. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "company_asset_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: En privat utgift er enkel å betale med selskapets kort. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "company_asset_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Hva skal skje med årets overskudd?. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "distribution_policy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Hva skal skje med årets overskudd?. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "distribution_policy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Hva skal skje med årets overskudd?. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "distribution_policy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Hva skal skje med årets overskudd?. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "distribution_policy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Du vil gripe direkte inn i en driftsbeslutning. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "owner_management_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Du vil gripe direkte inn i en driftsbeslutning. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "owner_management_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Du vil gripe direkte inn i en driftsbeslutning. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "owner_management_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Du vil gripe direkte inn i en driftsbeslutning. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "owner_management_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Styret støtter ikke planen din. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "board_owner_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Styret støtter ikke planen din. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "board_owner_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Styret støtter ikke planen din. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "board_owner_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Styret støtter ikke planen din. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "board_owner_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: To eiere vil forskjellige ting med selskapet. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "coowner_governance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: To eiere vil forskjellige ting med selskapet. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "coowner_governance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: To eiere vil forskjellige ting med selskapet. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "coowner_governance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: To eiere vil forskjellige ting med selskapet. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "coowner_governance"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Du har flertall, men en mindre eier protesterer. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "majority_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Du har flertall, men en mindre eier protesterer. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "majority_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Du har flertall, men en mindre eier protesterer. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "majority_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Du har flertall, men en mindre eier protesterer. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "majority_responsibility"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Finansiering krever personlig sikkerhet. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "personal_guarantee"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Finansiering krever personlig sikkerhet. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "personal_guarantee"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Finansiering krever personlig sikkerhet. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "personal_guarantee"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Finansiering krever personlig sikkerhet. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "personal_guarantee"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Virksomheten skal kjøpe noe fra deg privat. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "related_party_transaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Virksomheten skal kjøpe noe fra deg privat. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "related_party_transaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Virksomheten skal kjøpe noe fra deg privat. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "related_party_transaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Virksomheten skal kjøpe noe fra deg privat. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "related_party_transaction"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: En ansatt går forbi lederen og ber deg ordne saken. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "owner_employee_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: En ansatt går forbi lederen og ber deg ordne saken. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "owner_employee_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: En ansatt går forbi lederen og ber deg ordne saken. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "owner_employee_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: En ansatt går forbi lederen og ber deg ordne saken. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "owner_employee_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Noen vil kjøpe en del av selskapet. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "partial_sale"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Noen vil kjøpe en del av selskapet. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "partial_sale"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Noen vil kjøpe en del av selskapet. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "partial_sale"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Noen vil kjøpe en del av selskapet. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "partial_sale"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Selskapet har verdier, men for lite tilgjengelige penger. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "liquidity_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Selskapet har verdier, men for lite tilgjengelige penger. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "liquidity_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Selskapet har verdier, men for lite tilgjengelige penger. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "liquidity_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Selskapet har verdier, men for lite tilgjengelige penger. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "liquidity_ownership"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Noen må en dag overta eller kjøpe deg ut. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "ownership_succession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Noen må en dag overta eller kjøpe deg ut. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "ownership_succession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Noen må en dag overta eller kjøpe deg ut. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "ownership_succession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Noen må en dag overta eller kjøpe deg ut. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "ownership_succession"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Bedriftseier-sesongen?. Morgenen gjør eierposisjon, kapitalbinding, avtale eller styringsgrense eksplisitt før dagens valg.",
+        "thread_ids": [
+          "business_owner_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Bedriftseier-sesongen?. Midt på dagen møter eierskapet en konkret part som synliggjør makt, ansvar eller interessekonflikt.",
+        "thread_ids": [
+          "business_owner_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Bedriftseier-sesongen?. Ettermiddagen krever et konkret eiermessig valg om kapital, styring, medeierskap, salg eller overdragelse.",
+        "thread_ids": [
+          "business_owner_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Bedriftseier-sesongen?. Kvelden viser hva valget gjør med privat eksponering, styringsklarhet, medeierskap eller virksomhetens handlingsrom.",
+        "thread_ids": [
+          "business_owner_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "owner_capital",
+      "relationship": "eierkapital, lån og skillet mellom privat finansiering og selskapets midler",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "2/lunch",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "company_asset_boundary",
+      "relationship": "selskapets penger og eiendeler holdt adskilt fra eierens privatøkonomi",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "3/lunch",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "distribution_policy",
+      "relationship": "utdeling, reinvestering og hvor mye kapital virksomheten skal beholde",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "4/lunch",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "owner_management_boundary",
+      "relationship": "eiermakt holdt adskilt fra daglig ledelse og operativ detaljstyring",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "5/lunch",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "board_owner_boundary",
+      "relationship": "eierinnflytelse, styreansvar og bruk av riktige styringskanaler",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/lunch",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "coowner_governance",
+      "relationship": "medeierskap, avtalte beslutningsregler og reell uenighet",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "7/lunch",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "majority_responsibility",
+      "relationship": "flertallsmakt, minoritetshensyn og etterprøvbar virksomhetsbegrunnelse",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "8/lunch",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "personal_guarantee",
+      "relationship": "personlig sikkerhet og hvor mye selskapsbelastning eieren flytter inn i privatøkonomien",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "9/lunch",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "related_party_transaction",
+      "relationship": "nærstående handel, dokumenterbare vilkår og selvhandel",
+      "beat_refs": [
+        "9/morning",
+        "9/afternoon",
+        "10/lunch",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "owner_employee_boundary",
+      "relationship": "ansatte, lederlinjer og grensen mot en parallell eierstyrt driftskanal",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/lunch",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "partial_sale",
+      "relationship": "delsalg, pris, rettigheter og endret eierstruktur",
+      "beat_refs": [
+        "11/morning",
+        "11/afternoon",
+        "12/lunch",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "liquidity_ownership",
+      "relationship": "likviditet, kapitaltilførsel og eierens ansvar for å velge dokumenterte løsninger",
+      "beat_refs": [
+        "12/morning",
+        "12/afternoon",
+        "13/lunch",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "ownership_succession",
+      "relationship": "eierskifte, overtakbar struktur og avhengighet av personen som eier",
+      "beat_refs": [
+        "13/morning",
+        "13/afternoon",
+        "14/lunch",
+        "14/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "business_owner_definition",
+      "relationship": "Bedriftseier som eget eierskapslag adskilt fra etablering, investering, industri og daglig ledelse",
+      "beat_refs": [
+        "14/morning",
+        "14/afternoon",
+        "1/lunch",
+        "1/evening",
+        "2/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "privat_og_selskap_skilles",
+      "description": "Kapitalinnskudd, betalingsmidler og garantier får tydelige grenser mellom eierens private økonomi og virksomhetens økonomi.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen"
+      ]
+    },
+    {
+      "id": "eierstyring_blir_synlig",
+      "description": "Daglig leder, styre og ansatte møter eierskapet gjennom tydelige styringskanaler i stedet for spontane eierordrer.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren"
+      ]
+    },
+    {
+      "id": "medeierskap_far_regler",
+      "description": "Utdeling, medeieruenighet og flertall håndteres som strukturerte eierbeslutninger og ikke personlig maktkamp.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt"
+      ]
+    },
+    {
+      "id": "eiertransaksjoner_blir_etterprovbare",
+      "description": "Nærstående handel, likviditet og delsalg får dokumenterbare vilkår og eksplisitt kapital- eller styringsbetydning.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg"
+      ]
+    },
+    {
+      "id": "eierskapet_blir_overforbart",
+      "description": "Virksomheten kan forstås og overtas uten at hele eierrollen bare finnes i dagens eiers hode.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren",
+        "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "kapitalinnskuddet_moter_uttaket",
+      "setup_ref": "1/afternoon",
+      "return_ref": "3/evening",
+      "domains": [
+        "economy",
+        "livelihood"
+      ]
+    },
+    {
+      "id": "selskapets_kort_moter_naerstaende_handel",
+      "setup_ref": "2/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "eierordren_moter_styret",
+      "setup_ref": "4/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "relationship",
+        "narrative"
+      ]
+    },
+    {
+      "id": "medeierkonflikten_moter_flertallet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "7/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "garantien_moter_likviditeten",
+      "setup_ref": "8/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "delsalget_moter_eierskiftet",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#kapitalen_som_ma_inn",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#selskapets_kort_i_lommen",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#overskuddet_som_alle_vil_ha",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#daglig_leder_som_far_en_eierordre",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#styret_som_sier_nei",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#medeieren_som_vil_en_annen_vei",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#majoriteten_som_ikke_er_alt",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#garantien_med_privathuset_i_bakgrunnen",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#avtalen_med_ditt_eget_selskap",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_ansatte_som_gar_rett_til_eieren",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#tilbudet_om_a_selge_en_del",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#likviditeten_som_tvinger_fram_et_valg",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#den_neste_eieren",
+      "data/Civication/narratives/leisure/naeringsliv_bedriftseier.json#sesongslutt_hva_er_en_bedriftseier"
+    ]
+  }
+}
