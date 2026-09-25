@@ -69,7 +69,7 @@ assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
 assert.equal(row.priority_score,365);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
-assert.equal(audit.queue[0].key,'naeringsliv/bedriftseier');
+assert.equal(audit.queue[0].key,'naeringsliv/grunder');
 
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
