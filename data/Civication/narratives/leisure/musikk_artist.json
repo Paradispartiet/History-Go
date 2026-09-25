@@ -1,0 +1,650 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_artist_stream",
+  "type": "leisure",
+  "title": "Artist — prosjektidentitet, kunstnerisk retning og offentlig representasjon",
+  "sociological_theme": "musikk_artist_prosjektidentitet_kunstnerisk_retning_samarbeid_bestillingsgrenser_prosjektbudsjett_offentlig_representasjon_visuell_bruk_medskaperkreditering_publikumsforventning_baerekraft_og_grensen_mot_utovende_musiker_solist_plateartist_frilansmusiker_eller_berommelsesstatus",
+  "applies_when": {
+    "any_tags": [
+      "musikk:artist"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "navnet_som_skal_baere_prosjektet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Hvilket navn skal faktisk bære prosjektet?",
+      "situation": [
+        "Du har materiale som henger sammen, men artistnavnet og prosjektidentiteten er fortsatt uklare.",
+        "En Artist kan bygge en tydelig offentlig kunstnerisk identitet uten at identiteten automatisk er et selskap, en stilling eller et løfte om berømmelse.",
+        "Navnet må kunne romme det du faktisk lager nå, samtidig som det kan skilles fra privatpersonen og fra samarbeidspartnernes egne bidrag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer artistnavnet og skriv ned hva prosjektet faktisk omfatter før du bruker navnet offentlig.",
+          "effect": 1,
+          "tags": [
+            "artist_identity",
+            "scope_boundary"
+          ],
+          "feedback": "Prosjektet får en tydelig identitet som kan forklares uten å late som den dekker mer enn den gjør."
+        },
+        {
+          "id": "B",
+          "label": "Bruk navnet på alt med en gang og la betydningen bli bestemt av reaksjonene senere.",
+          "effect": -1,
+          "tags": [
+            "identity_sprawl",
+            "status_pressure"
+          ],
+          "feedback": "Artistnavnet blir en uklar beholder som andre må tolke på dine vegne."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_navnet_som_skal_baere_prosjektet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "repertoaret_som_spriker",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Alt er godt, men ikke alt peker samme vei",
+      "situation": [
+        "Du har flere sterke verk som trekker i ulike retninger og kunne vært samlet under samme Artist-prosjekt.",
+        "Kunstnerisk identitet krever ikke ensartethet, men publikum og samarbeidspartnere trenger et forståelig premiss for hvorfor materialet hører sammen.",
+        "Artistrollen handler her om å velge en retning uten å gjøre variasjon til et problem i seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg et tydelig prosjektpremiss og behold bare det materialet som faktisk støtter retningen nå.",
+          "effect": 1,
+          "tags": [
+            "artistic_direction",
+            "repertoire_boundary"
+          ],
+          "feedback": "Du gjør bredden lesbar ved å gi prosjektet en bevisst retning."
+        },
+        {
+          "id": "B",
+          "label": "Ta med alt fordi en ekte Artist bør vise hele spennvidden samtidig.",
+          "effect": -1,
+          "tags": [
+            "direction_drift",
+            "identity_pressure"
+          ],
+          "feedback": "Prosjektet mister retning fordi statusargumentet erstatter et kunstnerisk valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_repertoaret_som_spriker"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "samarbeidspartneren_som_vil_endre_retning",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En medskaper",
+      "subject": "Samarbeidet gjør prosjektet bedre, men også annerledes",
+      "situation": [
+        "En medskaper foreslår en ny retning som er sterk, men som flytter prosjektet bort fra premisset du allerede har kommunisert.",
+        "Artistidentitet gir ikke rett til å behandle samarbeid som ren bestilling, og samarbeid gir heller ikke medskaperen automatisk kontroll over hele prosjektet.",
+        "Det avgjørende er å avklare hvilket ansvar og hvilke kunstneriske beslutninger dere faktisk deler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hva dere skaper sammen, hva som fortsatt er ditt Artist-prosjekt, og hva som eventuelt må bli et eget felles prosjekt.",
+          "effect": 1,
+          "tags": [
+            "collaboration_scope",
+            "authorship_boundary"
+          ],
+          "feedback": "Samarbeidet får tydelige grenser uten å redusere medskaperens reelle bidrag."
+        },
+        {
+          "id": "B",
+          "label": "Behold all kontroll fordi prosjektet står i ditt navn, men bruk ideene som passer.",
+          "effect": -1,
+          "tags": [
+            "credit_capture",
+            "artist_overreach"
+          ],
+          "feedback": "Navnet ditt brukes som begrunnelse for å gjøre felles skapende arbeid til ensidig kontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_samarbeidspartneren_som_vil_endre_retning"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bestillingen_som_vil_kjope_uttrykket",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En bestiller",
+      "subject": "De vil ha uttrykket ditt, men også styre det",
+      "situation": [
+        "En bestiller ønsker et nytt verk fordi de kjenner igjen uttrykket ditt, men legger samtidig fram detaljerte krav til budskap og form.",
+        "En Artist kan ta betalt for avgrenset arbeid uten at betaling gjør kunstnerisk identitet til arbeidsgiverstyrt instruks.",
+        "Før du sier ja må det være klart hvilke føringer som er en del av bestillingen, og hvilke valg som fortsatt er dine."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forhandle et skriftlig premiss som skiller bestillers krav fra dine kunstneriske valg.",
+          "effect": 1,
+          "tags": [
+            "commission_boundary",
+            "artistic_autonomy"
+          ],
+          "feedback": "Bestillingen blir konkret nok til at både betaling og kunstnerisk ansvar kan forstås."
+        },
+        {
+          "id": "B",
+          "label": "Si ja først og regn med at du kan endre kravene senere hvis de ikke passer uttrykket.",
+          "effect": -1,
+          "tags": [
+            "scope_ambiguity",
+            "autonomy_conflict"
+          ],
+          "feedback": "Uklare premisser flytter konflikten til et tidspunkt der både penger og omdømme står mer på spill."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_bestillingen_som_vil_kjope_uttrykket"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "budsjettet_som_ikke_er_kunstnerisk",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Prosjektarket",
+      "subject": "Et sterkt prosjekt trenger fortsatt et faktisk budsjett",
+      "situation": [
+        "Du vil gjennomføre et nytt Artist-prosjekt og har begynt å love medvirkning, lokaler og leveranser.",
+        "Kunstnerisk overbevisning betaler ikke automatisk for andre menneskers tid eller for kostnadene prosjektet skaper.",
+        "Artistrollen kan romme prosjektøkonomi, men gir ikke tilgang til ubegrensede midler eller rett til å skyve risikoen over på medvirkende."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en realistisk kostnadsramme og avklar honorar og omfang før du lover mer arbeid.",
+          "effect": 1,
+          "tags": [
+            "project_budget",
+            "fair_compensation"
+          ],
+          "feedback": "Prosjektets ambisjon blir koblet til ressurser som faktisk finnes."
+        },
+        {
+          "id": "B",
+          "label": "Hold økonomien åpen fordi gode prosjekter bør finne pengene underveis.",
+          "effect": -1,
+          "tags": [
+            "budget_denial",
+            "cost_shifting"
+          ],
+          "feedback": "Usikkerheten blir i praksis flyttet til dem som allerede har satt av tid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_budsjettet_som_ikke_er_kunstnerisk"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "promoteksten_som_lager_en_persona",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kommunikasjonspartneren",
+      "subject": "Teksten er slagkraftig, men personen i den finnes nesten ikke",
+      "situation": [
+        "En kort presentasjon gjør Artist-prosjektet lett å selge inn, men beskriver deg som mer kompromissløs, erfaren og entydig enn du selv kjenner deg igjen i.",
+        "Offentlig representasjon kan forenkle, men den bør ikke konstruere en persona som gjør senere valg eller samarbeid vanskeligere.",
+        "Artistidentitet er et redigert offentlig uttrykk, ikke en plikt til å spille en oppdiktet privat rolle."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskriv teksten slik at den er tydelig og interessant uten å påstå egenskaper eller meritter du ikke vil stå for.",
+          "effect": 1,
+          "tags": [
+            "public_representation",
+            "persona_boundary"
+          ],
+          "feedback": "Presentasjonen kan brukes offentlig uten at du må forsvare en figur andre har funnet på."
+        },
+        {
+          "id": "B",
+          "label": "Behold teksten fordi en sterk persona er viktigere enn presisjonen når folk skal legge merke til deg.",
+          "effect": -1,
+          "tags": [
+            "persona_inflation",
+            "attention_pressure"
+          ],
+          "feedback": "Synlighet kjøpes ved å gjøre framtidige forventninger vanskeligere å kontrollere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_promoteksten_som_lager_en_persona"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bildet_som_blir_profil",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Fotografen",
+      "subject": "Ett bilde blir plutselig hele ansiktet til prosjektet",
+      "situation": [
+        "Et bilde fra en tidligere fotografering fungerer svært godt som profilbilde for Artist-prosjektet.",
+        "At du har fått bildet tilsendt betyr ikke nødvendigvis at all offentlig bruk, beskjæring eller viderebruk er avklart.",
+        "Visuell identitet må behandles som et samarbeid med konkrete bruksgrenser, ikke som gratis råmateriale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar bruksrett, kreditering og eventuell redigering med fotografen før bildet blir fast profilmateriale.",
+          "effect": 1,
+          "tags": [
+            "image_rights",
+            "visual_identity"
+          ],
+          "feedback": "Den visuelle profilen bygger på en bruk begge faktisk har forstått og akseptert."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bildet først og ta diskusjonen bare hvis fotografen reagerer.",
+          "effect": -1,
+          "tags": [
+            "rights_assumption",
+            "publicity_pressure"
+          ],
+          "feedback": "Profilen bygges på en rettighet du aldri undersøkte."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_bildet_som_blir_profil"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_ikke_passser_i_prosjektet",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Det nye verket er sterkt, men endrer hvem prosjektet er",
+      "situation": [
+        "Du har laget et verk du er stolt av, men det bryter tydelig med prosjektets nåværende retning.",
+        "En Artist trenger ikke gjøre hvert nytt verk til del av samme identitet bare fordi det er laget av samme person.",
+        "Å holde noe tilbake kan være en aktiv kunstnerisk beslutning og ikke et tegn på at verket er mislykket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "La verket stå utenfor dette prosjektet og bestem senere om det trenger en annen ramme.",
+          "effect": 1,
+          "tags": [
+            "project_coherence",
+            "work_placement"
+          ],
+          "feedback": "Verket får beholde sin egen styrke uten å tvinge fram en identitetsendring."
+        },
+        {
+          "id": "B",
+          "label": "Publiser det under samme prosjekt fordi alt du lager må styrke Artist-statusen.",
+          "effect": -1,
+          "tags": [
+            "identity_accumulation",
+            "status_pressure"
+          ],
+          "feedback": "Artiststatus blir viktigere enn sammenhengen mellom verkene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_verket_som_ikke_passser_i_prosjektet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medskaperen_som_forsvinner_bak_navnet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "leisure"
+      ],
+      "from": "En medskaper",
+      "subject": "Prosjektet står i ditt navn, men arbeidet var ikke bare ditt",
+      "situation": [
+        "Et nytt arbeid blir presentert under Artist-navnet ditt, selv om en medskaper har formet sentrale deler av resultatet.",
+        "En tydelig hovedidentitet kan være legitim, men den må ikke gjøre reelt skapende arbeid usynlig.",
+        "Artistrollen trenger derfor en praksis for å beskrive bidrag presist uten å late som alle har hatt samme ansvar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv medskaperens faktiske bidrag tydelig og avklar hvordan det skal presenteres sammen med Artist-navnet.",
+          "effect": 1,
+          "tags": [
+            "contributor_visibility",
+            "authorship_credit"
+          ],
+          "feedback": "Prosjektidentiteten kan være tydelig samtidig som skapende arbeid blir navngitt korrekt."
+        },
+        {
+          "id": "B",
+          "label": "La hovednavnet stå alene fordi publikum først og fremst trenger én avsender.",
+          "effect": -1,
+          "tags": [
+            "credit_erasure",
+            "brand_pressure"
+          ],
+          "feedback": "Forenklingen gjør en reell medskaper mindre synlig enn arbeidet tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_medskaperen_som_forsvinner_bak_navnet"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikummet_som_forventer_den_gamle_deg",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En følger",
+      "subject": "De vil ha tilbake uttrykket du har forlatt",
+      "situation": [
+        "Noen som har fulgt Artist-prosjektet lenge reagerer negativt på at det nye materialet har en annen retning.",
+        "Publikums forventninger er reelle sosiale signaler, men de gir ikke eierskap til framtidige kunstneriske valg.",
+        "Samtidig kan et brått skifte forklares uten å gjøre publikum til et problem som må avvises."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar hva som har endret seg og stå for den nye retningen uten å love en retur du ikke ønsker.",
+          "effect": 1,
+          "tags": [
+            "audience_expectation",
+            "artistic_change"
+          ],
+          "feedback": "Endringen blir kommunisert som et valg, ikke som et angrep på dem som likte det gamle."
+        },
+        {
+          "id": "B",
+          "label": "Form det nye materialet tilbake mot det gamle fordi Artist-identiteten bør gi folk det de allerede forventer.",
+          "effect": -1,
+          "tags": [
+            "audience_capture",
+            "identity_stagnation"
+          ],
+          "feedback": "Forventningen får styre prosjektet mer enn den kunstneriske retningen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_publikummet_som_forventer_den_gamle_deg"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "foresporselen_som_vil_love_for_mye",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En arrangør",
+      "subject": "De vil presentere deg større enn grunnlaget tilsier",
+      "situation": [
+        "En arrangør foreslår en presentasjon som antyder at Artist-prosjektet har større gjennomslag og mer dokumentert tyngde enn det faktisk har.",
+        "En sterk introduksjon kan være nyttig, men Artiststatus er ikke det samme som Headliner-, Stjerneartist- eller Popstjerne-status.",
+        "Hvis en offentlig påstand ikke kan forsvares, blir kortsiktig prestisje en framtidig omdømmerisiko."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en presentasjon som er attraktiv, men holder seg til dokumenterbare verk, samarbeid og faktisk aktivitet.",
+          "effect": 1,
+          "tags": [
+            "claim_accuracy",
+            "status_boundary"
+          ],
+          "feedback": "Presentasjonen bygger interesse uten å låne status fra nivåer prosjektet ikke har."
+        },
+        {
+          "id": "B",
+          "label": "La arrangøren bruke de største formuleringene fordi markedsføring alltid overdriver litt.",
+          "effect": -1,
+          "tags": [
+            "claim_inflation",
+            "prestige_pressure"
+          ],
+          "feedback": "Du lar andres formuleringer skape en status du senere må forklare."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_foresporselen_som_vil_love_for_mye"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prosjektet_som_tar_over_hverdagen",
+      "message_type": "task",
+      "time_slot": [
+        "home",
+        "personal"
+      ],
+      "from": "Deg selv",
+      "subject": "Artist-prosjektet har begynt å spise all ledig tid",
+      "situation": [
+        "Du bruker stadig mer av privat tid på planlegging, meldinger, materiale og koordinering rundt Artist-prosjektet.",
+        "Et employment-independent kunstnerisk liv kan være omfattende uten at det automatisk er en fullt finansiert jobb.",
+        "Hvis prosjektet bare fungerer når hvile og private forpliktelser alltid må vike, er modellen vanskelig å holde over tid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens faste perioder for Artist-arbeidet og utsett deler som ikke trenger å skje nå.",
+          "effect": 1,
+          "tags": [
+            "sustainable_practice",
+            "private_boundary"
+          ],
+          "feedback": "Prosjektet får en arbeidsform som ikke forutsetter at resten av livet forsvinner."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å ta all tilgjengelig tid fordi seriøs Artist-identitet må prioriteres foran hverdagsgrenser.",
+          "effect": -1,
+          "tags": [
+            "overwork_identity",
+            "private_leakage"
+          ],
+          "feedback": "Engasjementet blir målt i hvor mye privat kapasitet du klarer å ofre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_prosjektet_som_tar_over_hverdagen"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_artistrollen_blir_tatt_for_en_job",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En samarbeidspartner",
+      "subject": "De antar at Artist betyr fast jobb og tilgjengelighet",
+      "situation": [
+        "En samarbeidspartner omtaler deg som om Artist-statusen innebærer fast profesjonell stilling, løpende lønn og plikt til å være tilgjengelig på bestemte tider.",
+        "Denne livsposisjonen er employment-independent artistic_identity_and_livelihood og kan eksistere med eller uten enkeltstående betalt arbeid.",
+        "Artist gir ingen automatisk arbeidsgiver, fast lønn, plateselskap, bookingmakt eller myndighet over andre roller."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Korriger forventningen og skill Artist-identiteten fra enhver konkret avtale om betalt arbeid.",
+          "effect": 1,
+          "tags": [
+            "employment_boundary",
+            "artist_livelihood"
+          ],
+          "feedback": "Rollen kan være alvorlig og økonomisk relevant uten å bli behandlet som en ansettelse som ikke finnes."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter forventningen fordi det virker mer profesjonelt å bli behandlet som om du allerede har en fast Artist-jobb.",
+          "effect": -1,
+          "tags": [
+            "employment_fiction",
+            "professionalism_pressure"
+          ],
+          "feedback": "En uklar livsposisjon blir gjort om til plikter og rettigheter ingen har avtalt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_nar_artistrollen_blir_tatt_for_en_job"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_artist",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er faktisk bygget gjennom Artist-sesongen?",
+      "situation": [
+        "Du har definert prosjektidentitet, retning, samarbeid, bestillingsgrenser, budsjett, offentlig representasjon, visuell bruk, verkplassering og publikumshåndtering.",
+        "Det som binder handlingene sammen er en employment-independent artistic_identity_and_livelihood: et vedvarende kunstnerisk prosjekt med sosial, praktisk og noen ganger økonomisk virkelighet.",
+        "Det er fortsatt ikke det samme som Utøvende musiker, Solist, Plateartist, Frilansmusiker, Headliner, Stjerneartist eller Popstjerne, og Artiststatus oppretter ingen fast jobb eller berømmelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Artist som egen prosjektidentitet og la andre musikkposisjoner bare gjelde når deres egne vilkår faktisk er oppfylt.",
+          "effect": 1,
+          "tags": [
+            "artist_definition",
+            "role_boundary"
+          ],
+          "feedback": "Artistrollen står igjen som et selvstendig kunstnerisk liv uten å overta naboposisjonene."
+        },
+        {
+          "id": "B",
+          "label": "La Artist bli samlebetegnelsen som automatisk inkluderer alle andre musikkroller og statuser.",
+          "effect": -1,
+          "tags": [
+            "role_collapse",
+            "status_overreach"
+          ],
+          "feedback": "Skillet mellom praksis, levevei, innspilling, framføring og berømmelsesstatus forsvinner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "artist_sesongslutt_hva_er_en_artist"
+      ],
+      "risk_links": [
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
