@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "musikk",
+  "role_scope": "musikk_frilansmusiker",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "musikk",
+    "id": "frilansmusiker",
+    "label": "Frilansmusiker"
+  },
+  "title": "Frilansmusiker",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å gjøre musikkarbeid til en bærekraftig bookingbasert levevei der honorar, prøvetid, kalender, avlysning, logistikk, utstyr, fakturering, betaling og kundemakt er tydelige uten at gjentatte spillejobber automatisk blir fast ansettelse eller at økonomilaget overtar kunstnerisk identitet og framføringspraksis",
+    "description": "Frilansmusiker er en employment-independent freelance_music_livelihood som eier den musikkspesifikke økonomien og avtalelogikken rundt spillejobber: honorar og scope, prøvetid, datohold, avlysning, reise og transport, faktura, sen betaling, utstyrsansvar, kalenderkollisjon, vikar, gratisforespørsel, gjentatte bookinger og tidsvindu. Rollen er forskjellig fra Utøvende musiker og Solist, som beskriver musikalsk framføringspraksis, og fra Artist, som beskriver kunstnerisk prosjektidentitet. Den er også smalere enn Naeringsliv/Frilanser, som beskriver generell frilanslogikk på tvers av fag. Frilansmusiker gir ingen automatisk arbeidsgiver, fast lønn mellom bookinger, bookinggaranti, arbeidstakerstatus, Artist-identitet, ensemblemyndighet eller fame-status. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "invisible_work",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "class_power",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "bookingdialoger der dato, varighet, honorar og praktiske krav må avklares før kalenderen låses",
+    "prøver og produksjonsforberedelser der usynlig tidsbruk kan vokse etter at den opprinnelige rammen er satt",
+    "reise- og logistikkdager der en kort framføring kan beslaglegge betydelig tid og egne ressurser",
+    "administrativt etterarbeid der faktura, referanser og betalingsfrister avgjør om arbeidet faktisk blir betalt",
+    "kollegiale vikarløp og kalenderkollisjoner der pålitelighet må balanseres mot begrenset kapasitet",
+    "gjentatte kundeforhold der regelmessige spillejobber kan ligne stabilt arbeid uten automatisk å bli en ansettelse"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "bookeren",
+      "social_function": "gjør honorar, datohold, tidsvindu og bookingvilkår konkrete uten å bli arbeidsgiver",
+      "class_position": "arrangørkontakt eller mellomledd som kjøper en avgrenset musikalsk leveranse",
+      "status": "kan forhandle og bekrefte den konkrete bookingen, men oppretter ikke automatisk fast arbeid",
+      "power_over_player": "kan tilby eller trekke konkrete datoer og påvirke hvor mye usikkerhet Frilansmusikeren må bære",
+      "wants": "en pålitelig leveranse til en pris og tidsramme som passer arrangementet",
+      "conceals": "at fleksibilitet ofte har større verdi for kjøperen enn for musikeren som holder kalenderen av",
+      "speech_style": "dato-, pris- og leveranseorientert",
+      "teaches_player": "å skille forespørsel, bekreftet booking og faktisk ansettelse"
+    },
+    {
+      "id": "prosjektlederen",
+      "social_function": "gjør prøvetid, endret omfang og praktiske tillegg synlige",
+      "class_position": "prosjektansvarlig for en avgrenset produksjon eller framføring",
+      "status": "kan koordinere avtalt arbeid, men ikke ensidig utvide leveransen uten konsekvens",
+      "power_over_player": "kan legge til prøver, flytte tider og skape press gjennom produksjonens samlede behov",
+      "wants": "at alle ledd er på plass når prosjektet skal gjennomføres",
+      "conceals": "at små tillegg for hver deltaker kan bli betydelig merarbeid når de summeres",
+      "speech_style": "løsningsorientert, tidsstyrt og praktisk",
+      "teaches_player": "å gjøre merarbeid synlig før det blir normalisert"
+    },
+    {
+      "id": "arrangoren",
+      "social_function": "gjør avlysning, tekniske forventninger og gratisforespørsler konkrete",
+      "class_position": "aktør som eier eller gjennomfører arrangementet der musikken skal leveres",
+      "status": "har arrangementsansvar, men ikke automatisk rett til musikerens utstyr, hele dag eller gratisarbeid",
+      "power_over_player": "kan endre arrangementets rammer og påvirke om framtidige datoer blir tilbudt",
+      "wants": "en gjennomførbar kveld med minst mulig friksjon og kostnad",
+      "conceals": "at egen arrangementsrisiko lett kan skyves nedover til enkeltutøvere",
+      "speech_style": "praktisk, hastverksdrevet og opptatt av at programmet fungerer",
+      "teaches_player": "å skille samarbeid fra ensidig overføring av arrangementsrisiko"
+    },
+    {
+      "id": "okonomikontakten",
+      "social_function": "gjør faktura, betalingsfrist og dokumentert oppfølging konkrete",
+      "class_position": "administrativ kontakt hos kjøper eller arrangør",
+      "status": "forvalter betalingsløpet, men definerer ikke den musikalske leveransen",
+      "power_over_player": "kan forsinke eller avklare utbetaling gjennom interne rutiner og dokumentkrav",
+      "wants": "korrekt dokumentasjon som kan behandles uten ekstra runder",
+      "conceals": "at interne forsinkelser fortsatt har reell kostnad for den som venter på honoraret",
+      "speech_style": "referanse-, frist- og dokumentorientert",
+      "teaches_player": "å behandle betalingsoppfølging som dokumenterbar administrasjon"
+    },
+    {
+      "id": "musikerkollegaen",
+      "social_function": "gjør vikarbruk, kalenderkonflikt og kollegial overlevering konkrete",
+      "class_position": "annen selvstendig musiker som kan ta eller formidle en booking",
+      "status": "har egen praksis og egne vilkår; er ikke en underordnet ressurs som kan flyttes uten samtykke",
+      "power_over_player": "kan redde en vanskelig booking, men også avslå uklare eller dårlig overleverte rammer",
+      "wants": "klar informasjon om honorar, tid, sted og musikalsk forventning før et ja",
+      "conceals": "at kollegial velvilje kan skjule hvor mye risiko som overtas på kort varsel",
+      "speech_style": "direkte, erfaringsbasert og tidskonkret",
+      "teaches_player": "å gjøre vikarløsninger til transparente handoffs, ikke private nødgrep"
+    },
+    {
+      "id": "den_faste_bookeren",
+      "social_function": "gjør gjentatte bookinger og grensen mot ansettelse synlig",
+      "class_position": "tilbakevendende kjøper av musikkarbeid over tid",
+      "status": "kan gi regelmessighet uten å bli arbeidsgiver bare fordi mønsteret gjentar seg",
+      "power_over_player": "kan bli en stor del av kalenderen og dermed få uformell makt over tilgjengelighet og pris",
+      "wants": "forutsigbar tilgang til en musiker som allerede kjenner formatet",
+      "conceals": "at gjentakelse kan skape forventninger om lojalitet eller tilgjengelighet som aldri er avtalt",
+      "speech_style": "fortrolig, kort og preget av tidligere samarbeid",
+      "teaches_player": "å skille stabil bookinghistorikk fra rettigheter og plikter i et arbeidsforhold"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "fee_scope",
+      "meaning": "honorar, leveranseomfang og hva betalingen faktisk dekker",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rehearsal_scope",
+      "meaning": "prøvetid, merarbeid og betalt tidsbruk",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "date_hold",
+      "meaning": "foreløpig datohold, bekreftelse og kalenderkostnad",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cancellation_terms",
+      "meaning": "sen avlysning og fordeling av økonomisk risiko",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "travel_cost",
+      "meaning": "reise, transport, bæretid og den fulle arbeidsdagen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "invoice_accuracy",
+      "meaning": "fakturering, referanser og usynlig administrativt arbeid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "late_payment",
+      "meaning": "sen betaling, dokumentert oppfølging og kundemakt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "equipment_scope",
+      "meaning": "utstyrsansvar, transport og ressurser som ikke følger automatisk med honoraret",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "calendar_integrity",
+      "meaning": "dobbeltbooking, kapasitetsansvar og avtalelojalitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "substitute_handoff",
+      "meaning": "vikar, godkjenning og overtakbar bookinginformasjon",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exposure_offer",
+      "meaning": "gratis framføring, synlighetsløfter og frivillig grense",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "repeat_booking",
+      "meaning": "gjentatte spillejobber, stabilitet og grensen mot ansettelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "time_window",
+      "meaning": "oppmøtevindu, fleksibilitet og hvor mye av dagen én booking faktisk kjøper",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "freelance_music_definition",
+      "meaning": "Frilansmusiker som musikkspesifikk levevei og grensene mot praksis, Artist og generell frilansrolle",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Hva skal én spillejobb faktisk koste?. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "fee_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Hva skal én spillejobb faktisk koste?. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "fee_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Hva skal én spillejobb faktisk koste?. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "fee_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Hva skal én spillejobb faktisk koste?. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "fee_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Det kommer plutselig en ekstra prøve. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "rehearsal_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Det kommer plutselig en ekstra prøve. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "rehearsal_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Det kommer plutselig en ekstra prøve. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "rehearsal_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Det kommer plutselig en ekstra prøve. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "rehearsal_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: De vil at du holder av datoen, men kan ikke bekrefte. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "date_hold"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: De vil at du holder av datoen, men kan ikke bekrefte. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "date_hold"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: De vil at du holder av datoen, men kan ikke bekrefte. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "date_hold"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: De vil at du holder av datoen, men kan ikke bekrefte. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "date_hold"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Spillejobben avlyses dagen før. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "cancellation_terms"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Spillejobben avlyses dagen før. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "cancellation_terms"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Spillejobben avlyses dagen før. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "cancellation_terms"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Spillejobben avlyses dagen før. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "cancellation_terms"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: Jobben er kort, men dagen blir lang. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "travel_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: Jobben er kort, men dagen blir lang. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "travel_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: Jobben er kort, men dagen blir lang. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "travel_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: Jobben er kort, men dagen blir lang. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "travel_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Spillejobben er ferdig, men betalingen er ikke sendt. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "invoice_accuracy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Spillejobben er ferdig, men betalingen er ikke sendt. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "invoice_accuracy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Spillejobben er ferdig, men betalingen er ikke sendt. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "invoice_accuracy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Spillejobben er ferdig, men betalingen er ikke sendt. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "invoice_accuracy"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Fristen er passert uten betaling. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "late_payment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Fristen er passert uten betaling. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "late_payment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Fristen er passert uten betaling. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "late_payment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Fristen er passert uten betaling. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "late_payment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: De antar at du tar med mer utstyr enn avtalt. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "equipment_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: De antar at du tar med mer utstyr enn avtalt. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "equipment_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: De antar at du tar med mer utstyr enn avtalt. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "equipment_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: De antar at du tar med mer utstyr enn avtalt. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "equipment_scope"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: To forespørsler ender på samme kveld. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "calendar_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: To forespørsler ender på samme kveld. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "calendar_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: To forespørsler ender på samme kveld. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "calendar_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: To forespørsler ender på samme kveld. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "calendar_integrity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Du kan ikke gjennomføre, men jobben kan fortsatt løses. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "substitute_handoff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Du kan ikke gjennomføre, men jobben kan fortsatt løses. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "substitute_handoff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Du kan ikke gjennomføre, men jobben kan fortsatt løses. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "substitute_handoff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Du kan ikke gjennomføre, men jobben kan fortsatt løses. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "substitute_handoff"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: De tilbyr synlighet i stedet for honorar. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "exposure_offer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: De tilbyr synlighet i stedet for honorar. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "exposure_offer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: De tilbyr synlighet i stedet for honorar. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "exposure_offer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: De tilbyr synlighet i stedet for honorar. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "exposure_offer"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Du spiller ofte samme sted, men er fortsatt ikke ansatt. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "repeat_booking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Du spiller ofte samme sted, men er fortsatt ikke ansatt. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "repeat_booking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Du spiller ofte samme sted, men er fortsatt ikke ansatt. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "repeat_booking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Du spiller ofte samme sted, men er fortsatt ikke ansatt. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "repeat_booking"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: De betaler for kvelden og forventer at hele dagen er tilgjengelig. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "time_window"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: De betaler for kvelden og forventer at hele dagen er tilgjengelig. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "time_window"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: De betaler for kvelden og forventer at hele dagen er tilgjengelig. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "time_window"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: De betaler for kvelden og forventer at hele dagen er tilgjengelig. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "time_window"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Frilansmusiker-sesongen?. Morgenen gjør avtaleramme, tidsbruk, kostnad eller betalingspremiss synlig før dagens valg.",
+        "thread_ids": [
+          "freelance_music_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Frilansmusiker-sesongen?. Midt på dagen møter bookingen en konkret aktør som synliggjør makt, ansvar eller uklar forventning.",
+        "thread_ids": [
+          "freelance_music_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Frilansmusiker-sesongen?. Ettermiddagen krever et konkret valg om honorar, kalender, avlysning, logistikk, betaling eller avtalegrense.",
+        "thread_ids": [
+          "freelance_music_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Frilansmusiker-sesongen?. Kvelden viser hva valget gjør med økonomisk rom, kapasitet, tillit eller framtidige bookinger.",
+        "thread_ids": [
+          "freelance_music_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "fee_scope",
+      "relationship": "honorar, leveranseomfang og hva betalingen faktisk dekker",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "2/lunch",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "rehearsal_scope",
+      "relationship": "prøvetid, merarbeid og betalt tidsbruk",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "3/lunch",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "date_hold",
+      "relationship": "foreløpig datohold, bekreftelse og kalenderkostnad",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "4/lunch",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "cancellation_terms",
+      "relationship": "sen avlysning og fordeling av økonomisk risiko",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "5/lunch",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "travel_cost",
+      "relationship": "reise, transport, bæretid og den fulle arbeidsdagen",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/lunch",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "invoice_accuracy",
+      "relationship": "fakturering, referanser og usynlig administrativt arbeid",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "7/lunch",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "late_payment",
+      "relationship": "sen betaling, dokumentert oppfølging og kundemakt",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "8/lunch",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "equipment_scope",
+      "relationship": "utstyrsansvar, transport og ressurser som ikke følger automatisk med honoraret",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "9/lunch",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "calendar_integrity",
+      "relationship": "dobbeltbooking, kapasitetsansvar og avtalelojalitet",
+      "beat_refs": [
+        "9/morning",
+        "9/afternoon",
+        "10/lunch",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "substitute_handoff",
+      "relationship": "vikar, godkjenning og overtakbar bookinginformasjon",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/lunch",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "exposure_offer",
+      "relationship": "gratis framføring, synlighetsløfter og frivillig grense",
+      "beat_refs": [
+        "11/morning",
+        "11/afternoon",
+        "12/lunch",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "repeat_booking",
+      "relationship": "gjentatte spillejobber, stabilitet og grensen mot ansettelse",
+      "beat_refs": [
+        "12/morning",
+        "12/afternoon",
+        "13/lunch",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "time_window",
+      "relationship": "oppmøtevindu, fleksibilitet og hvor mye av dagen én booking faktisk kjøper",
+      "beat_refs": [
+        "13/morning",
+        "13/afternoon",
+        "14/lunch",
+        "14/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "freelance_music_definition",
+      "relationship": "Frilansmusiker som musikkspesifikk levevei og grensene mot praksis, Artist og generell frilansrolle",
+      "beat_refs": [
+        "14/morning",
+        "14/afternoon",
+        "1/lunch",
+        "1/evening",
+        "2/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "honorar_blir_en_rammet_leveranse",
+      "description": "Pris, prøvetid og logistikk bindes til det arbeidet som faktisk skal gjøres i stedet for bare til selve framføringsøyeblikket.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen"
+      ]
+    },
+    {
+      "id": "kalenderen_blir_en_knapp_ressurs",
+      "description": "Datohold, avlysning og dobbeltbooking behandles som reell kapasitets- og risikofordeling.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld"
+      ]
+    },
+    {
+      "id": "betalingen_blir_dokumenterbar",
+      "description": "Faktura og sen betaling får et eksplisitt administrativt spor i stedet for å bli overlatt til sosial forsiktighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut"
+      ]
+    },
+    {
+      "id": "praktiske_tillegg_far_eier",
+      "description": "Utstyr, vikar og oppmøtevindu blir avklart som konkrete ansvar i bookingen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen"
+      ]
+    },
+    {
+      "id": "frilansmusiker_blir_en_egen_levevei",
+      "description": "Gjentatte bookinger og synlighetsforespørsler kan vurderes økonomisk uten at Frilansmusiker blir Artist, Utøvende musiker, Solist eller fast ansatt.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse",
+        "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "honoraret_moter_provetiden",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "economy",
+        "livelihood"
+      ]
+    },
+    {
+      "id": "datoholdet_moter_avlysningen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "reisen_moter_fakturaen",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "betalingsfristen_moter_ny_booking",
+      "setup_ref": "7/afternoon",
+      "return_ref": "9/evening",
+      "domains": [
+        "livelihood",
+        "psyche"
+      ]
+    },
+    {
+      "id": "utstyrsgrensen_moter_vikaren",
+      "setup_ref": "8/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "gjentakelsen_moter_rollegrensen",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#honoraret_for_spillejobben",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#provetiden_som_ikke_sto_i_tilbudet",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#datoen_som_holdes_uten_bekreftelse",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#avlysningen_dagen_for",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#reisen_og_baeringen",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#fakturaen_etter_spillingen",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#betalingen_som_drar_ut",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#utstyret_som_forventes_inkludert",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#to_bookinger_samme_kveld",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#vikaren_som_ma_inn",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#gratisspillingen_for_synlighet",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#faste_spillejobber_uten_ansettelse",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#kunden_som_vil_eie_hele_dagen",
+      "data/Civication/narratives/leisure/musikk_frilansmusiker.json#sesongslutt_hva_er_frilansmusiker"
+    ]
+  }
+}

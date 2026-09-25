@@ -6,7 +6,7 @@ const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
 const read=(rel)=>JSON.parse(fs.readFileSync(path.join(ROOT,rel),'utf8'));
 
-const badge=read('data/badges/subkultur.json');
+const badge=read('data/badges/musikk.json');
 const audit=read('data/Civication/lifePositionRoleWorldReadiness.json');
 const index=read('data/Civication/roleWorlds/index.json');
 const taxonomy=read('data/Civication/nonCareerRoleTaxonomy.json');
@@ -14,24 +14,25 @@ const checklist=read('data/Civication/roleWorldAuthoringChecklist.json');
 const themeBank=read('data/Civication/roleWorldThemeBank.json');
 const policy=read('data/Civication/roleWorldPolicy.json');
 
-const lifeKey='subkultur/dandy';
-const lifeScope='subkultur_dandy';
-const streamPath='data/Civication/narratives/leisure/subkultur_dandy.json';
-const worldPath='data/Civication/roleWorlds/subkultur/subkultur_dandy.json';
+const lifeKey='musikk/frilansmusiker';
+const lifeScope='musikk_frilansmusiker';
+const streamPath='data/Civication/narratives/leisure/musikk_frilansmusiker.json';
+const worldPath='data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json';
 
-const tier=badge.tiers.find(x=>x.label==='Dandy');
+const tier=badge.tiers.find(x=>x.life_position?.id==='frilansmusiker');
 assert.ok(tier);
-assert.equal(tier.life_position.kind,'alternative_life_status');
+assert.equal(tier.label,'Frilansmusiker');
+assert.equal(tier.threshold,85);
+assert.equal(tier.life_position.kind,'freelance_music_livelihood');
 assert.equal(tier.life_position.employment_independent,true);
 assert.equal(tier.career_offer,undefined);
-assert.equal(tier.career_unlock.title,'Booking- og innholdskoordinator');
-assert.equal(tier.career_unlock.policy,'direct');
-assert.equal(tier.career_unlock.role_scope,'subkultur_program_og_koordinering');
+assert.equal(tier.career_unlock,undefined);
 
 const stream=read(streamPath);
 assert.equal(stream.schema,'civication_narrative_stream_v1');
-assert.equal(stream.id,'subkultur_dandy_stream');
-assert.deepEqual(stream.applies_when.any_tags,['subkultur:dandy']);
+assert.equal(stream.id,'musikk_frilansmusiker_stream');
+assert.deepEqual(stream.applies_when.any_tags,['musikk:frilansmusiker']);
+assert.deepEqual(read('data/Civication/narratives/manifest.json').streams.filter(x=>x.id===stream.id),[{id:stream.id,path:streamPath}]);
 assert.equal(stream.storylets.length,14);
 assert.equal(new Set(stream.storylets.map(x=>x.id)).size,14);
 for(const s of stream.storylets){
@@ -39,10 +40,13 @@ for(const s of stream.storylets){
   assert.equal(s.choices.length,2);
   assert.deepEqual(s.choices.map(c=>c.effect),[1,-1]);
   assert.ok(s.choices.every(c=>c.tags.length>=2));
+  assert.ok(s.choices.every(c=>new Set(c.tags).size===c.tags.length));
 }
 
 const row=audit.positions.find(x=>x.key===lifeKey);
 assert.ok(row);
+assert.equal(row.runtime_source,'badge_tier');
+assert.equal(row.semantic_mode,'livelihood_or_ownership_identity');
 assert.equal(row.classification,'ready');
 assert.equal(row.authored_depth.exact_source_ref_count,1);
 assert.equal(row.authored_depth.thematic_source_ref_count,0);
@@ -60,18 +64,22 @@ const world=read(worldPath);
 assert.ok(indexed);
 assert.equal(indexed.role_scope,lifeScope);
 assert.equal(indexed.status,'role_world_complete');
-assert.deepEqual(indexed.life_position_ref,{badge_id:'subkultur',id:null,label:'Dandy'});
+assert.deepEqual(indexed.life_position_ref,{badge_id:'musikk',id:'frilansmusiker',label:'Frilansmusiker'});
 assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
+assert.equal(row.priority_score,365);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
+assert.equal(audit.queue[0].key,'naeringsliv/bedriftseier');
 
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
 assert.equal(world.status,'role_world_complete');
-assert.deepEqual(world.life_position_ref,{badge_id:'subkultur',id:null,label:'Dandy'});
+assert.deepEqual(world.life_position_ref,{badge_id:'musikk',id:'frilansmusiker',label:'Frilansmusiker'});
 assert.equal(world.materialization.no_new_runtime,true);
-assert.match(world.sociological_core.description,/employment-independent|Booking- og innholdskoordinator|Career-laget/i);
-assert.match(world.sociological_core.description,/ikke automatisk arbeid|ikke.*stylist|ikke.*profesjonell/i);
+assert.match(world.sociological_core.description,/employment-independent freelance_music_livelihood|honorar|booking/i);
+assert.match(world.sociological_core.description,/Utøvende musiker|Solist|Artist|Naeringsliv\/Frilanser/i);
+assert.match(world.sociological_core.description,/ingen automatisk arbeidsgiver|fast lønn mellom bookinger|arbeidstakerstatus/i);
+assert.match(world.sociological_core.description,/Ingen ny runtime/i);
 
 assert.equal(world.season.days,14);
 assert.deepEqual(world.season.day_phases,['morning','lunch','afternoon','evening']);
@@ -85,22 +93,32 @@ assert.ok(world.primary_threads.every(x=>new Set(x.beat_refs.map(ref=>Number(ref
 assert.equal(world.recurring_people_archetypes.length,6);
 assert.equal(world.private_aftermath.length,5);
 assert.equal(world.delayed_consequences.length,6);
+assert.ok(world.delayed_consequences.every(x=>Number(x.return_ref.split('/')[0])>Number(x.setup_ref.split('/')[0])));
 assert.equal(world.materialization.source_refs.length,14);
 assert.equal(new Set(world.materialization.source_refs).size,14);
 for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(streamPath+'#'));
 
-assert.deepEqual(themeBank.reference_profiles['subkultur/subkultur_dandy'],world.theme_ids);
+assert.deepEqual(themeBank.reference_profiles['musikk/musikk_frilansmusiker'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
 assert.equal(taxonomy.canonical_counts.life_position_role_worlds,150);
 assert.equal(taxonomy.canonical_counts.total_role_worlds,235);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,150);
 
-const expensive=stream.storylets.find(x=>x.id==='plagget_du_ikke_har_rad_til');
-assert.match(expensive.situation.join(' '),/prisen|økonomisk|kjøpet/i);
-const photo=stream.storylets.find(x=>x.id==='den_som_ikke_vil_bli_fotografert');
-assert.match(photo.situation.join(' '),/fotograf|bildet|synlighet/i);
-const body=stream.storylets.find(x=>x.id==='kommentaren_om_kroppen');
-assert.match(body.situation.join(' '),/kropp|passform|silhuett/i);
+const fee=stream.storylets.find(x=>x.id==='honoraret_for_spillejobben');
+assert.match(fee.situation.join(' '),/honorar|forberedelse|reise/i);
+const cancellation=stream.storylets.find(x=>x.id==='avlysningen_dagen_for');
+assert.match(cancellation.situation.join(' '),/avlyst|risiko|bekreftet booking/i);
+const late=stream.storylets.find(x=>x.id==='betalingen_som_drar_ut');
+assert.match(late.situation.join(' '),/faktura|frist|honorar/i);
+const employment=stream.storylets.find(x=>x.id==='faste_spillejobber_uten_ansettelse');
+assert.match(employment.situation.join(' '),/ikke.*automatisk.*ansettelse|lønn mellom datoene|arbeidsgiveransvar/i);
+const finale=stream.storylets.find(x=>x.id==='sesongslutt_hva_er_frilansmusiker');
+assert.match(finale.situation.join(' '),/Utøvende musiker|Solist|Artist|Naeringsliv\/Frilanser/i);
 
-console.log('Subkultur Dandy authored-depth and Role World gate ok');
+assert.equal(new Set(stream.storylets.flatMap(s=>s.choices.map(c=>c.feedback))).size,28);
+assert.equal(new Set(world.season.coverage.map(b=>b.summary)).size,56);
+assert.ok(world.primary_threads.every(t=>typeof t.relationship==='string' && t.relationship.length>0 && !('description' in t)));
+const allowedDomains=new Set(['job','relationship','psyche','livelihood','economy','housing','reputation','narrative']);
+assert.ok(world.delayed_consequences.every(c=>c.domains.every(d=>allowedDomains.has(d))));
+console.log('Musikk Frilansmusiker authored-depth and Role World gate ok');
