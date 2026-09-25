@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "musikk_frilansmusiker_stream",
+  "type": "leisure",
+  "title": "Frilansmusiker — booking, honorar og spillejobbøkonomi",
+  "sociological_theme": "musikk_frilansmusiker_booking_honorar_provetid_datohold_avlysning_logistikk_faktura_sen_betaling_utstyr_kalender_vikar_synlighet_gjentatte_bookinger_tidsvindu_og_grensen_mot_artist_utovende_musiker_solist_eller_generell_frilansrolle",
+  "applies_when": {
+    "any_tags": [
+      "musikk:frilansmusiker"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "honoraret_for_spillejobben",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En booker",
+      "subject": "Hva skal én spillejobb faktisk koste?",
+      "situation": [
+        "Du blir spurt om å spille på en bestemt dato, men forespørselen sier bare tidspunkt og sted.",
+        "For en Frilansmusiker må honoraret forstås sammen med varighet, forberedelse, reise og andre konkrete krav.",
+        "Et ja før rammen er avklart gjør det vanskelig å vite hva betalingen faktisk dekker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om skriftlig omfang og gi et samlet honorartilbud før du reserverer datoen.",
+          "effect": 1,
+          "tags": [
+            "fee_scope",
+            "booking_clarity"
+          ],
+          "feedback": "Prisen blir knyttet til en konkret leveranse og en konkret dato."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til datoen først og ta honoraret senere fordi det er viktigst å få bookingen.",
+          "effect": -1,
+          "tags": [
+            "fee_ambiguity",
+            "booking_pressure"
+          ],
+          "feedback": "Datoen blir bundet før du vet hva arbeidet er verdt eller hva som forventes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_honoraret_for_spillejobben"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "provetiden_som_ikke_sto_i_tilbudet",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Prosjektlederen",
+      "subject": "Det kommer plutselig en ekstra prøve",
+      "situation": [
+        "Etter at spillejobben er avtalt, blir du bedt om å møte til en ekstra prøve som aldri sto i rammen.",
+        "Prøvetid er fortsatt arbeidstid i den konkrete leveransen selv om publikum aldri ser den.",
+        "Frilansmusikerrollen krever derfor at endret tidsbruk håndteres som en endring i avtalen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar om prøven skal honoreres eller om resten av rammen må justeres før du bekrefter.",
+          "effect": 1,
+          "tags": [
+            "rehearsal_scope",
+            "paid_time"
+          ],
+          "feedback": "Den ekstra tiden blir synlig som en reell del av leveransen."
+        },
+        {
+          "id": "B",
+          "label": "Møt opp uten å si noe fordi prøver bare er en del av det å være profesjonell.",
+          "effect": -1,
+          "tags": [
+            "unpaid_expansion",
+            "professionalism_pressure"
+          ],
+          "feedback": "Merarbeidet blir normalisert uten at rammen endres."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_provetiden_som_ikke_sto_i_tilbudet"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "datoen_som_holdes_uten_bekreftelse",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "En booker",
+      "subject": "De vil at du holder av datoen, men kan ikke bekrefte",
+      "situation": [
+        "En mulig spillejobb er interessant, men arrangøren vil bare at du holder datoen foreløpig.",
+        "En uavklart reservasjon kan blokkere andre betalte muligheter selv om den aldri blir endelig.",
+        "Frilansmusikerens kalender trenger derfor en tydelig grense mellom forespørsel og bekreftet booking."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sett en konkret frist for når datoen må bekreftes før reservasjonen faller bort.",
+          "effect": 1,
+          "tags": [
+            "date_hold",
+            "calendar_boundary"
+          ],
+          "feedback": "Kalenderen blir forutsigbar uten at du trenger å avvise muligheten med en gang."
+        },
+        {
+          "id": "B",
+          "label": "Hold datoen åpen på ubestemt tid fordi det virker samarbeidsvillig.",
+          "effect": -1,
+          "tags": [
+            "soft_hold",
+            "availability_pressure"
+          ],
+          "feedback": "En usikker forespørsel får samme plass som en faktisk booking."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_datoen_som_holdes_uten_bekreftelse"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avlysningen_dagen_for",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arrangøren",
+      "subject": "Spillejobben avlyses dagen før",
+      "situation": [
+        "Du har satt av datoen, forberedt materialet og sagt nei til annet arbeid, men arrangementet blir avlyst dagen før.",
+        "Avlysning flytter risiko mellom partene, og den risikoen forsvinner ikke fordi musikken aldri blir framført.",
+        "En Frilansmusiker trenger derfor tydelige vilkår for hva som skjer når en bekreftet booking trekkes sent."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vis til avtalt avlysningsvilkår og be om den kompensasjonen som følger av det.",
+          "effect": 1,
+          "tags": [
+            "cancellation_terms",
+            "risk_allocation"
+          ],
+          "feedback": "Avlysningen håndteres etter en kjent regel i stedet for improvisert press."
+        },
+        {
+          "id": "B",
+          "label": "Godta null betaling for å bevare relasjonen, selv om du allerede har båret kostnaden.",
+          "effect": -1,
+          "tags": [
+            "risk_transfer",
+            "relationship_pressure"
+          ],
+          "feedback": "Hele avlysningsrisikoen blir lagt på deg fordi du frykter å miste framtidige bookinger."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_avlysningen_dagen_for"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "reisen_og_baeringen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Reiseplanen",
+      "subject": "Jobben er kort, men dagen blir lang",
+      "situation": [
+        "Selve framføringen er kort, men reisen krever flere timer og du må frakte eget utstyr.",
+        "Spillejobbøkonomi består ikke bare av tiden foran publikum; logistikk kan være en vesentlig del av den faktiske belastningen.",
+        "Før du bekrefter må du vite hvilke kostnader og tidsblokker du selv skal bære."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regn inn reise, transport og nødvendig bæretid i vurderingen før du aksepterer rammen.",
+          "effect": 1,
+          "tags": [
+            "travel_cost",
+            "logistics_load"
+          ],
+          "feedback": "Du vurderer hele arbeidsdagen, ikke bare minuttene med musikk."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra reisen fordi honoraret først og fremst bør gjelde selve framføringen.",
+          "effect": -1,
+          "tags": [
+            "hidden_logistics",
+            "fee_pressure"
+          ],
+          "feedback": "Store deler av dagen blir gjort økonomisk usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_reisen_og_baeringen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fakturaen_etter_spillingen",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Deg selv",
+      "subject": "Spillejobben er ferdig, men betalingen er ikke sendt",
+      "situation": [
+        "Framføringen gikk som avtalt, og nå må dokumentasjonen for betaling ut.",
+        "Frilansmusikerens administrative arbeid skjer ofte etter at den synlige delen er ferdig.",
+        "En korrekt faktura må samsvare med avtalt honorar, mottaker og betalingsfrist."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Send fakturaen med riktig referanse og den fristen som faktisk ble avtalt.",
+          "effect": 1,
+          "tags": [
+            "invoice_accuracy",
+            "admin_work"
+          ],
+          "feedback": "Den usynlige administrasjonen blir gjort ferdig mens avtalen fortsatt er fersk."
+        },
+        {
+          "id": "B",
+          "label": "Vent til noen minner deg på betalingen fordi papirarbeidet ikke er den egentlige jobben.",
+          "effect": -1,
+          "tags": [
+            "admin_delay",
+            "invisible_work"
+          ],
+          "feedback": "Betalingsløpet blir tilfeldig fordi administrasjonen behandles som uviktig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_fakturaen_etter_spillingen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "betalingen_som_drar_ut",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Økonomikontakten",
+      "subject": "Fristen er passert uten betaling",
+      "situation": [
+        "Fakturaen har passert avtalt frist, og du har fortsatt ikke mottatt honoraret.",
+        "En sen betaling kan være en administrativ feil, men den påvirker likevel Frilansmusikerens økonomiske handlingsrom.",
+        "Oppfølgingen bør være dokumentert og saklig før problemet vokser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Send en presis påminnelse med fakturanummer, forfallsdato og forespørsel om konkret betalingsdato.",
+          "effect": 1,
+          "tags": [
+            "late_payment",
+            "documented_followup"
+          ],
+          "feedback": "Du gjør betalingsproblemet etterprøvbart uten å eskalere mer enn nødvendig."
+        },
+        {
+          "id": "B",
+          "label": "Vent videre uten å spørre fordi du ikke vil virke vanskelig.",
+          "effect": -1,
+          "tags": [
+            "payment_avoidance",
+            "client_power"
+          ],
+          "feedback": "Usikkerheten fortsetter fordi frykten for relasjonen blir viktigere enn avtalen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_betalingen_som_drar_ut"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utstyret_som_forventes_inkludert",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Arrangøren",
+      "subject": "De antar at du tar med mer utstyr enn avtalt",
+      "situation": [
+        "Kort tid før spillejobben får du beskjed om at du forventes å ta med ekstra teknisk utstyr.",
+        "At du er Frilansmusiker betyr ikke at alle praktiske ressurser automatisk følger med honoraret.",
+        "Utstyrsansvar må være eksplisitt fordi transport, risiko og teknisk bruk ellers flyttes uten at avtalen endres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilket utstyr du faktisk leverer, og pris eller avgrens ekstra behov separat.",
+          "effect": 1,
+          "tags": [
+            "equipment_scope",
+            "resource_boundary"
+          ],
+          "feedback": "Ansvar og kostnad følger den faktiske avtalen i stedet for en sen antakelse."
+        },
+        {
+          "id": "B",
+          "label": "Ta med alt du kan for å unngå diskusjon.",
+          "effect": -1,
+          "tags": [
+            "equipment_creep",
+            "service_pressure"
+          ],
+          "feedback": "En ny ressursforpliktelse blir lagt til uten at noen tar ansvar for endringen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_utstyret_som_forventes_inkludert"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_bookinger_samme_kveld",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Kalenderen",
+      "subject": "To forespørsler ender på samme kveld",
+      "situation": [
+        "Du har sagt et foreløpig ja til én spillejobb og får deretter en bedre betalt booking på samme tidspunkt.",
+        "Frilansfrihet betyr ikke at samme tid kan selges to ganger uten konsekvenser.",
+        "Kalenderintegritet er en del av omdømmet når andre planlegger rundt at du møter."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Respekter den bekreftede avtalen, og tilby den andre datoen bare hvis den faktisk kan flyttes.",
+          "effect": 1,
+          "tags": [
+            "calendar_integrity",
+            "booking_commitment"
+          ],
+          "feedback": "Du behandler tid som en ressurs du bare kan love én gang."
+        },
+        {
+          "id": "B",
+          "label": "Ta den best betalte og finn en forklaring til den første senere.",
+          "effect": -1,
+          "tags": [
+            "double_booking",
+            "fee_pressure"
+          ],
+          "feedback": "Kortsiktig gevinst skyver risikoen over på dem som allerede planla med deg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_to_bookinger_samme_kveld"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vikaren_som_ma_inn",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En musikerkollega",
+      "subject": "Du kan ikke gjennomføre, men jobben kan fortsatt løses",
+      "situation": [
+        "Du blir forhindret fra å møte til en bekreftet spillejobb og vurderer å foreslå en annen musiker.",
+        "En vikar kan være en praktisk løsning, men arrangøren må vite hvem som faktisk skal levere før endringen er reell.",
+        "Kollegaen trenger også tydelig informasjon om honorar, tidspunkt og hva som forventes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar vikaren med arrangøren og gi kollegaen den samme konkrete rammen du selv fikk.",
+          "effect": 1,
+          "tags": [
+            "substitute_handoff",
+            "transparent_booking"
+          ],
+          "feedback": "Endringen blir et dokumentert handoff i stedet for en privat nødløsning."
+        },
+        {
+          "id": "B",
+          "label": "Send en kollega uten å involvere arrangøren fordi resultatet sannsynligvis blir like godt.",
+          "effect": -1,
+          "tags": [
+            "unauthorized_substitute",
+            "handoff_risk"
+          ],
+          "feedback": "En praktisk løsning blir gjort til en ensidig endring av hvem avtalen gjelder."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_vikaren_som_ma_inn"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gratisspillingen_for_synlighet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En arrangør",
+      "subject": "De tilbyr synlighet i stedet for honorar",
+      "situation": [
+        "Du får tilbud om en profilert framføring uten betaling fordi arrangøren mener eksponeringen kan være verdifull.",
+        "Synlighet kan ha verdi, men den er ikke automatisk betaling og kan ikke vurderes uten å se på tid, kostnader og hvem som faktisk tjener på arrangementet.",
+        "Frilansmusikerrollen trenger en bevisst grense mellom frivillig medvirkning og gratis profesjonelt arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder arrangementet som en egen frivillig beslutning og si nei hvis ressursbruken ikke kan forsvares.",
+          "effect": 1,
+          "tags": [
+            "exposure_offer",
+            "voluntary_boundary"
+          ],
+          "feedback": "Du skiller et selvvalgt gratisbidrag fra press om å erstatte honorar med løfter."
+        },
+        {
+          "id": "B",
+          "label": "Si ja fordi synlighet alltid er en investering i framtidige bookinger.",
+          "effect": -1,
+          "tags": [
+            "exposure_pressure",
+            "future_promise"
+          ],
+          "feedback": "Et usikkert framtidsløfte brukes som om det var betaling nå."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_gratisspillingen_for_synlighet"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "faste_spillejobber_uten_ansettelse",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En fast booker",
+      "subject": "Du spiller ofte samme sted, men er fortsatt ikke ansatt",
+      "situation": [
+        "Du blir booket regelmessig av samme aktør og rytmen begynner å ligne en fast arbeidsplan.",
+        "Gjentatte spillejobber kan gi stabilitet uten at de automatisk oppretter ansettelse, lønn mellom datoene eller arbeidsgiveransvar.",
+        "Det må derfor være tydelig hvilke vilkår som gjelder for hver booking og hva som eventuelt faktisk er en separat arbeidsavtale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om tydelig skriftlig skille mellom de enkelte bookingene og eventuelle rettigheter eller plikter som krever egen avtale.",
+          "effect": 1,
+          "tags": [
+            "repeat_booking",
+            "employment_boundary"
+          ],
+          "feedback": "Stabilitet blir ikke forvekslet med en ansettelse som aldri er avtalt."
+        },
+        {
+          "id": "B",
+          "label": "Begynn å opptre som fast ansatt fordi regelmessigheten uansett gjør forholdet til en jobb.",
+          "effect": -1,
+          "tags": [
+            "employment_assumption",
+            "role_blur"
+          ],
+          "feedback": "Uformell stabilitet blir gjort om til plikter og forventninger uten kontraktsgrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_faste_spillejobber_uten_ansettelse"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunden_som_vil_eie_hele_dagen",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Bookeren",
+      "subject": "De betaler for kvelden og forventer at hele dagen er tilgjengelig",
+      "situation": [
+        "En booker flytter lydsjekk og oppmøte flere ganger og forventer at du holder hele dagen fri.",
+        "Fleksibilitet kan være del av en booking, men den må ha en grense når tidsvinduet blir vesentlig større enn avtalt.",
+        "Frilansmusikerens autonomi avhenger av at én booking ikke uten videre kan beslaglegge all annen kapasitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar et endelig oppmøtevindu eller reforhandle rammen dersom hele dagen faktisk skal reserveres.",
+          "effect": 1,
+          "tags": [
+            "time_window",
+            "client_boundary"
+          ],
+          "feedback": "Tilgjengelighet blir definert som en konkret del av leveransen."
+        },
+        {
+          "id": "B",
+          "label": "Hold hele dagen åpen uten å ta det opp fordi kunden betaler for spillejobben.",
+          "effect": -1,
+          "tags": [
+            "availability_capture",
+            "client_power"
+          ],
+          "feedback": "Én booking får kontroll over mer tid enn den avtalte rammen tilsier."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_kunden_som_vil_eie_hele_dagen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_frilansmusiker",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er faktisk bygget gjennom Frilansmusiker-sesongen?",
+      "situation": [
+        "Du har håndtert honorar, prøvetid, datohold, avlysning, logistikk, faktura, sen betaling, utstyr, kalenderkollisjon, vikar, gratisforespørsel og gjentatte bookinger.",
+        "Det som binder situasjonene sammen er en employment-independent freelance_music_livelihood der musikkarbeid kjøpes og avtales fra booking til booking.",
+        "Rollen er fortsatt forskjellig fra Utøvende musiker og Solist som beskriver framføringspraksis, fra Artist som beskriver kunstnerisk prosjektidentitet, og fra den generelle Naeringsliv/Frilanser-posisjonen som dekker frilanslogikk på tvers av fag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Frilansmusiker som den musikkspesifikke leveveisrollen og la naboposisjonene eie sine egne grenser.",
+          "effect": 1,
+          "tags": [
+            "freelance_music_definition",
+            "role_boundary"
+          ],
+          "feedback": "Spillejobbøkonomien står igjen som et eget lag uten å overta kunstnerisk identitet eller musikalsk praksis."
+        },
+        {
+          "id": "B",
+          "label": "La Frilansmusiker bli samlebetegnelsen for enhver som spiller musikk uten fast stilling.",
+          "effect": -1,
+          "tags": [
+            "role_collapse",
+            "livelihood_overreach"
+          ],
+          "feedback": "Levevei, praksis og identitet blir slått sammen til én uklar status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "frilansmusiker_sesongslutt_hva_er_frilansmusiker"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
