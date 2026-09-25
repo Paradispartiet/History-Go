@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_grunder_stream",
+  "type": "leisure",
+  "title": "Gründer — etablering, kunder og entreprenøriell praksis",
+  "sociological_theme": "naeringsliv_grunder_reelle_kunder_prising_medgrunderarbeid_leveransekapasitet_faste_kostnader_grunderkapasitet_leverandoravhengighet_tidlig_bemanning_kundekonsentrasjon_pivot_administrasjon_vekstkapital_stoppbeslutning_og_grensen_mot_grunderdrommer_sideprosjektbygger_bedriftseier_investor_eller_daglig_leder",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:grunder"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "den_forste_reelle_kunden",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En kunde",
+      "subject": "Noen vil faktisk kjøpe det du bygger",
+      "situation": [
+        "En kunde er klar til å betale for en konkret leveranse, og virksomheten går fra testing til et reelt kommersielt løfte.",
+        "Gründerrollen begynner å få tyngde når en kunde kan holde deg ansvarlig for pris, tidspunkt og resultat.",
+        "Før du sier ja må du vite hva kunden faktisk kjøper, og hva som fortsatt bare er utvikling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avgrens leveransen, prisen og tidspunktet før du bekrefter salget.",
+          "effect": 1,
+          "tags": [
+            "customer_commitment",
+            "delivery_scope"
+          ],
+          "feedback": "Det første salget blir et faktisk løfte som kan gjennomføres og evalueres."
+        },
+        {
+          "id": "B",
+          "label": "Ta betalingen først og bestem detaljene underveis fordi kunden allerede har sagt ja.",
+          "effect": -1,
+          "tags": [
+            "premature_sale",
+            "scope_ambiguity"
+          ],
+          "feedback": "Et viktig gjennombrudd blir samtidig en uklar forpliktelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_den_forste_reelle_kunden"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisen_som_ma_baere_mer_enn_entusiasme",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En kunde",
+      "subject": "Prisen virker høy helt til du regner på arbeidet",
+      "situation": [
+        "Kunden vil kjøpe, men prisen du først tenkte på dekker knapt tiden og ressursene leveransen krever.",
+        "En ny virksomhet kan velge lave priser strategisk, men den bør vite hva den subsidierer og hvor lenge.",
+        "Gründerpraksis krever at pris kobles til faktisk kostnad og kapasitet, ikke bare ønsket om å få et ja."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Regn gjennom leveransen og sett en pris eller avgrensning som virksomheten kan gjenta.",
+          "effect": 1,
+          "tags": [
+            "pricing_model",
+            "unit_economics"
+          ],
+          "feedback": "Prisen blir et bevisst forretningsvalg i stedet for et uttrykk for nervøsitet."
+        },
+        {
+          "id": "B",
+          "label": "Hold prisen kunstig lav fordi flere kunder automatisk vil løse økonomien senere.",
+          "effect": -1,
+          "tags": [
+            "underpricing",
+            "volume_fantasy"
+          ],
+          "feedback": "Virksomheten lover en modell som blir dyrere jo mer den lykkes."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_prisen_som_ma_baere_mer_enn_entusiasme"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "medgrunderen_og_arbeidet",
+      "message_type": "social",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medgründeren",
+      "subject": "Dere bygger sammen, men arbeidet fordeler seg skjevt",
+      "situation": [
+        "Du og en medgründer har samme mål, men oppgaver og beslutninger har gradvis samlet seg hos én av dere.",
+        "Gründerrollen handler om faktisk arbeid i etableringen, ikke om at en tittel alene fordeler ansvar.",
+        "Uklare roller gjør både leveranser og senere vanskelige beslutninger mer personlige enn de trenger å være."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar ansvarsområder, beslutningsgrenser og hva dere forventer av hverandres kapasitet nå.",
+          "effect": 1,
+          "tags": [
+            "cofounder_roles",
+            "founder_accountability"
+          ],
+          "feedback": "Samarbeidet får en arbeidsstruktur som kan justeres når virksomheten endrer seg."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett uten å ta praten fordi lik motivasjon bør være nok til å jevne ut forskjellene.",
+          "effect": -1,
+          "tags": [
+            "role_avoidance",
+            "founder_resentment"
+          ],
+          "feedback": "Ubalansen får vokse uten at noen vet hva som faktisk var forventet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_medgrunderen_og_arbeidet"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunden_som_vil_ha_mer_enn_du_kan_levere",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En kunde",
+      "subject": "Et stort salg krever mer enn virksomheten kan levere",
+      "situation": [
+        "En viktig kunde ønsker større volum og kortere frist enn dagens kapasitet tåler.",
+        "Tidlig vekst kan være verdifull, men et salg er ikke godt bare fordi beløpet er større.",
+        "Gründeren må vurdere om virksomheten kan levere uten å gjøre framtidige løfter avhengige av improvisasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forhandle volum eller frist til et nivå som dagens kapasitet faktisk kan bære.",
+          "effect": 1,
+          "tags": [
+            "sales_capacity",
+            "promise_discipline"
+          ],
+          "feedback": "Vekstmuligheten blir koblet til det virksomheten kan levere nå."
+        },
+        {
+          "id": "B",
+          "label": "Si ja til hele bestillingen og regn med at presset tvinger fram en løsning.",
+          "effect": -1,
+          "tags": [
+            "overpromise",
+            "growth_pressure"
+          ],
+          "feedback": "Salget blir en forpliktelse som bare kan holdes dersom alt annet går perfekt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_kunden_som_vil_ha_mer_enn_du_kan_levere"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_forste_faste_regningen",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Virksomhetskontoen",
+      "subject": "En liten fast kostnad blir plutselig permanent",
+      "situation": [
+        "Du vurderer et verktøy eller lokale som gjør arbeidet enklere, men kostnaden løper hver måned uansett salg.",
+        "Faste kostnader endrer hvor mye virksomheten må tjene før den har handlingsrom.",
+        "I tidlig entreprenøriell praksis er gjentatte utgifter derfor et strategisk valg, ikke bare et praktisk kjøp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Knytt kostnaden til et konkret behov og sett en dato for å revurdere om den fortsatt forsvarer seg.",
+          "effect": 1,
+          "tags": [
+            "fixed_cost",
+            "runway_discipline"
+          ],
+          "feedback": "Utgiften får et formål og en stoppregel før den blir vane."
+        },
+        {
+          "id": "B",
+          "label": "Legg til kostnaden fordi profesjonelle virksomheter bør ha slike verktøy fra starten.",
+          "effect": -1,
+          "tags": [
+            "cost_creep",
+            "professionalism_pressure"
+          ],
+          "feedback": "Symbolsk profesjonalitet blir til en fast belastning før nytten er bevist."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_den_forste_faste_regningen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsuken_uten_stopp",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Deg selv",
+      "subject": "Alt i virksomheten peker tilbake på deg",
+      "situation": [
+        "Kunder, utvikling, salg og administrasjon fyller stadig mer av uken, og det finnes ingen naturlig slutt på oppgavelisten.",
+        "Selvsysselsetting kan gi kontroll over retningen uten å gi ubegrenset personlig kapasitet.",
+        "Hvis virksomheten bare fungerer når gründeren alltid er tilgjengelig, er arbeidsformen en del av problemet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer faste arbeidsgrenser og velg hva virksomheten ikke skal gjøre denne uken.",
+          "effect": 1,
+          "tags": [
+            "founder_capacity",
+            "sustainable_self_employment"
+          ],
+          "feedback": "Prioriteringen gjør at virksomheten må lære å fungere innenfor en faktisk kapasitet."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett til alt er ferdig fordi etableringsfasen krever at privat tid tåler å forsvinne.",
+          "effect": -1,
+          "tags": [
+            "founder_overwork",
+            "private_leakage"
+          ],
+          "feedback": "Manglende kapasitet skjules ved at gründeren selv absorberer den."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_arbeidsuken_uten_stopp"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "leverandoren_som_blir_kritisk",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En leverandør",
+      "subject": "Én ekstern part holder hele leveransen oppe",
+      "situation": [
+        "En leverandør har blitt så viktig at forsinkelse hos dem vil stoppe din egen leveranse.",
+        "En tidlig virksomhet kan være avhengig av eksterne ressurser uten å ha stor forhandlingsmakt.",
+        "Gründeransvaret er å forstå avhengigheten før kunden oppdager den gjennom et brudd."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar levering, alternativ og hva du gjør dersom leverandøren svikter.",
+          "effect": 1,
+          "tags": [
+            "supplier_dependency",
+            "continuity_plan"
+          ],
+          "feedback": "Avhengigheten blir håndtert som en del av leveransemodellen."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett som før fordi leverandøren alltid har levert til nå.",
+          "effect": -1,
+          "tags": [
+            "single_point_dependency",
+            "optimism_bias"
+          ],
+          "feedback": "En skjult sårbarhet får stå helt til den treffer kunden."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_leverandoren_som_blir_kritisk"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "den_forste_som_skal_hjelpe_til",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En mulig medarbeider",
+      "subject": "Virksomheten trenger mer kapasitet enn grunnleggerne har",
+      "situation": [
+        "Arbeidsmengden har blitt stor nok til at du vurderer å få inn en annen person fast eller prosjektvis.",
+        "Mer kapasitet betyr også tydeligere ansvar, betaling og forventninger til hvordan arbeidet organiseres.",
+        "Gründerrollen gir ikke automatisk arbeidsgiver- eller ledermyndighet bare fordi virksomheten trenger hjelp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer behov, varighet, betaling og ansvar før du lover personen en rolle.",
+          "effect": 1,
+          "tags": [
+            "early_staffing",
+            "work_arrangement"
+          ],
+          "feedback": "Behovet blir gjort konkret før relasjonen bygges rundt en uklar tittel."
+        },
+        {
+          "id": "B",
+          "label": "Be en bekjent begynne med en gang og finn ut av rolle og betaling når dere ser om det fungerer.",
+          "effect": -1,
+          "tags": [
+            "informal_labour",
+            "role_ambiguity"
+          ],
+          "feedback": "Virksomhetens kapasitetsproblem flyttes over på en person uten tydelig ramme."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_den_forste_som_skal_hjelpe_til"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kunden_som_blir_for_viktig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Salgsoversikten",
+      "subject": "Én kunde står for nesten alt som kommer inn",
+      "situation": [
+        "Virksomheten har fått fart, men én kunde står for mesteparten av omsetningen og påvirker kalenderen sterkt.",
+        "En stor kunde kan gi stabilitet samtidig som avhengigheten gjør hvert krav vanskeligere å avslå.",
+        "Gründerpraksis må derfor se på hvor sårbar virksomheten blir dersom kunden endrer plan eller forsvinner."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold kunden, men bygg en plan for flere inntektskilder og tydeligere kapasitetsgrenser.",
+          "effect": 1,
+          "tags": [
+            "customer_concentration",
+            "commercial_resilience"
+          ],
+          "feedback": "Avhengigheten blir behandlet som en forretningsrisiko uten å avvise en god kunde."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass hele virksomheten til kunden fordi sikker omsetning er viktigere enn spredning.",
+          "effect": -1,
+          "tags": [
+            "customer_capture",
+            "commercial_dependency"
+          ],
+          "feedback": "En enkelt kunde får stadig større kontroll over hva virksomheten kan gjøre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_kunden_som_blir_for_viktig"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "produktet_som_ma_endre_seg",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Bruksdataene",
+      "subject": "Kundene bruker noe annet enn det du bygget for",
+      "situation": [
+        "Reelle kunder bruker løsningen på en annen måte enn den opprinnelige planen forutsatte.",
+        "Når virksomheten finnes i markedet, må læring fra faktisk bruk kunne endre produktet uten at alle tidligere valg forsvares.",
+        "En pivot er ikke automatisk framgang; den må svare på et mønster som er tydelig nok til å teste videre."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Velg én begrunnet endring og mål om den løser det kundene faktisk gjør.",
+          "effect": 1,
+          "tags": [
+            "market_learning",
+            "pivot_discipline"
+          ],
+          "feedback": "Endringen blir et nytt forsøk som kan vurderes, ikke en ny fortelling alene."
+        },
+        {
+          "id": "B",
+          "label": "Bytt hele retningen umiddelbart fordi enhver uventet bruk betyr at den opprinnelige planen var feil.",
+          "effect": -1,
+          "tags": [
+            "reactive_pivot",
+            "signal_chasing"
+          ],
+          "feedback": "Virksomheten blir like ustabil som de siste observasjonene."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_produktet_som_ma_endre_seg"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "administrasjonen_som_har_blitt_virkelig",
+      "message_type": "task",
+      "time_slot": [
+        "personal",
+        "home"
+      ],
+      "from": "Regnskapsrådgiveren",
+      "subject": "Virksomheten har flere transaksjoner enn du klarer å huske",
+      "situation": [
+        "Kjøp, salg og avtaler har blitt mange nok til at muntlig oversikt og enkle notater ikke lenger er tilstrekkelig.",
+        "Administrasjon er en del av en reell virksomhet selv om den ikke føles som produkt, salg eller kundearbeid.",
+        "Gründerpraksis trenger rutiner som gjør tall, avtaler og frister forståelige også etter en travel uke."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en fast administrativ rytme og sørg for at dokumentasjon blir samlet når hendelsene skjer.",
+          "effect": 1,
+          "tags": [
+            "operating_admin",
+            "record_discipline"
+          ],
+          "feedback": "Det usynlige arbeidet blir en del av driften før rotet blir større."
+        },
+        {
+          "id": "B",
+          "label": "Utsett administrasjonen til virksomheten er stor nok til å ha noen andre som gjør den.",
+          "effect": -1,
+          "tags": [
+            "admin_debt",
+            "founder_avoidance"
+          ],
+          "feedback": "Veksten gjør gammel uorden dyrere å rekonstruere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_administrasjonen_som_har_blitt_virkelig"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pengene_som_kan_kjope_fart",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "En finansieringskontakt",
+      "subject": "Ekstern kapital kan få virksomheten til å vokse raskere",
+      "situation": [
+        "Du får mulighet til å hente ekstern finansiering for å øke tempoet i virksomheten.",
+        "Kapital kan kjøpe tid og kapasitet, men den endrer også hvilke milepæler og forventninger virksomheten må forholde seg til.",
+        "Gründerens oppgave er å vite hva pengene skal bevise før høyere tempo blir et mål i seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer hvilket konkret neste bevis kapitalen skal finansiere og hva virksomheten gjør hvis resultatet uteblir.",
+          "effect": 1,
+          "tags": [
+            "growth_capital_use",
+            "milestone_discipline"
+          ],
+          "feedback": "Finansieringen blir koblet til et eksplisitt lærings- eller vekstmål."
+        },
+        {
+          "id": "B",
+          "label": "Ta inn mest mulig kapital nå fordi større reserve alltid gir flere muligheter.",
+          "effect": -1,
+          "tags": [
+            "capital_acceleration",
+            "growth_for_growth"
+          ],
+          "feedback": "Mer penger gjør tempoet høyere før retningen er tydeligere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_pengene_som_kan_kjope_fart"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nar_det_er_riktig_a_stoppe",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "people"
+      ],
+      "from": "Medgründeren",
+      "subject": "Virksomheten virker ikke slik dere trodde",
+      "situation": [
+        "Etter lang tid med arbeid er kundetilgangen svakere og kostnadene høyere enn dere planla.",
+        "Tid som allerede er brukt kan forklare hvorfor det er vanskelig å stoppe, men den kan ikke alene gjøre framtidig arbeid lønnsomt.",
+        "Entreprenøriell praksis inkluderer også beslutningen om å redusere, endre eller avslutte når premissene ikke holder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder framtidige kostnader og realistiske muligheter uten å bruke tidligere innsats som hovedargument for å fortsette.",
+          "effect": 1,
+          "tags": [
+            "exit_decision",
+            "sunk_cost_boundary"
+          ],
+          "feedback": "Videreføring eller stopp blir vurdert ut fra det som fortsatt kan skje."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett uansett fordi så mye arbeid allerede er lagt ned at det må bli verdt det til slutt.",
+          "effect": -1,
+          "tags": [
+            "sunk_cost",
+            "founder_identity"
+          ],
+          "feedback": "Tidligere innsats blir gjort til en forpliktelse om å bruke enda mer."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_nar_det_er_riktig_a_stoppe"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_grunder",
+      "message_type": "milestone",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Deg selv",
+      "subject": "Hva er faktisk bygget gjennom Gründer-sesongen?",
+      "situation": [
+        "Du har håndtert reelle kunder, pris, medgründerarbeid, leveransekapasitet, faste kostnader, egen arbeidsmengde, leverandøravhengighet, tidlig bemanning, kundekonsentrasjon, pivot, administrasjon, finansiering og stoppbeslutning.",
+        "Det som binder situasjonene sammen er entrepreneurial_practice_and_self_employment: å få en virksomhet til å fungere i møte med reelle kunder, ressurser og forpliktelser.",
+        "Rollen er forskjellig fra Gründerdrømmer før etablering, fra Sideprosjektbygger som kan forbli lite ved siden av hovedlivet, fra Bedriftseier som eier eierskaps- og governance-laget, fra Investor som eier kapitalplassering, og fra Daglig leder som er en egen formell lederjobb."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold Gründer som etablerings- og entreprenørpraksisen og la eierskap, investering og formell ledelse ligge i sine egne roller.",
+          "effect": 1,
+          "tags": [
+            "entrepreneur_definition",
+            "role_boundary"
+          ],
+          "feedback": "Gründerrollen står igjen som aktiv virksomhetsbygging uten å overta alle rollene rundt virksomheten."
+        },
+        {
+          "id": "B",
+          "label": "La Gründer bli samlebetegnelsen for enhver som eier, leder, finansierer eller arbeider i en ny virksomhet.",
+          "effect": -1,
+          "tags": [
+            "role_collapse",
+            "founder_overreach"
+          ],
+          "feedback": "Etablering, eierskap, investering og ledelse blir slått sammen til én uklar status."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "grunder_sesongslutt_hva_er_en_grunder"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
