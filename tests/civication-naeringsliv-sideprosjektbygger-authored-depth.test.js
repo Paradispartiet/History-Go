@@ -98,9 +98,9 @@ for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(str
 assert.deepEqual(themeBank.reference_profiles['naeringsliv/naeringsliv_sideprosjektbygger'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds,148);
-assert.equal(taxonomy.canonical_counts.total_role_worlds,233);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,148);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds,149);
+assert.equal(taxonomy.canonical_counts.total_role_worlds,234);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,149);
 
 const resources=stream.storylets.find(x=>x.id==='arbeidsmaskinen_i_sekken');
 assert.match(resources.situation.join(' '),/arbeidsgiverens maskin|utstyr|lisenser|privat/i);
