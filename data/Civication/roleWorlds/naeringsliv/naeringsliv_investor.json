@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "naeringsliv_investor",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "naeringsliv",
+    "id": "investor",
+    "label": "Investor"
+  },
+  "title": "Investor",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å allokere egen kapital under usikkerhet uten å forveksle investering med operativ ledelse, generelt selskapseierskap eller profesjonell forvaltning av andres penger",
+    "description": "Investor er en employment-independent capital_ownership_and_investment-posisjon for egen kapitalallokering: investeringstese, verdsettelse, posisjonsstørrelse, betalingsberedskap, nedside, belåning, informasjonskvalitet, drawdown, minoritetsrettigheter, oppfølgingskapital, eierinnflytelse, exit og kontantreserve. Rollen er forskjellig fra Bedriftseier, Industrieier og Gründer, og fra de formelle karrierene Kapitalforvalter, Finansanalytiker og Daglig leder. Investor gir ingen automatisk operativ instruksjonsmyndighet, arbeidstakerstatus, styreplass, rådgiverautorisasjon, mandat over andres penger eller garanti for avkastning. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "class_power",
+    "professional_culture",
+    "invisible_work",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "investeringsmøter der tese, pris og nedside prøves mot hverandre",
+    "porteføljedialoger om konsentrasjon, betalingsberedskap, reserve og belåning",
+    "dokumentgjennomgang der rapporterte tall og estimater får ulik evidensvekt",
+    "private transaksjoner der eierrettigheter og utvanning påvirker økonomisk verdi",
+    "markedsfall der følelse, pris og underliggende tese må skilles",
+    "exit- og oppfølgingsbeslutninger der alternativ bruk av egen kapital blir eksplisitt"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "analytikeren",
+      "social_function": "gjør investeringshypoteser, verdsettelse og informasjonsgrunnlag etterprøvbart",
+      "class_position": "uavhengig analyseperson uten mandat over spillerens kapital",
+      "status": "har kunnskapsmakt gjennom modeller og dokumentasjon",
+      "power_over_player": "kan avdekke premisser som ikke henger sammen",
+      "wants": "at beslutninger kan spores til data, antakelser og falsifikasjonspunkter",
+      "conceals": "at modeller kan gi falsk presisjon når input er svak",
+      "speech_style": "presis, premissdrevet og opptatt av hva som faktisk kan verifiseres",
+      "teaches_player": "å skille investeringscase fra fortelling"
+    },
+    {
+      "id": "portefoljeradgiveren",
+      "social_function": "gjør posisjonsstørrelse, betalingsberedskap, reserve og exit sammenlignbart på porteføljenivå",
+      "class_position": "rådgiver uten eierskap eller automatisk fullmakt",
+      "status": "har påvirkning gjennom rammer for samlet risiko",
+      "power_over_player": "kan synliggjøre konsekvenser som ikke finnes i ett enkelt case",
+      "wants": "at kapitalbruk passer tidshorisont, betalingsberedskap og risikobæreevne",
+      "conceals": "at diversifisering kan brukes mekanisk uten å forstå underliggende risiko",
+      "speech_style": "rammeorientert, sannsynlighetsbevisst og rolig",
+      "teaches_player": "å se hver investering som del av en samlet kapitalstruktur"
+    },
+    {
+      "id": "bankkontakten",
+      "social_function": "gjør belåning, sikkerhetskrav og finansieringsvilkår konkrete",
+      "class_position": "långiverpart med kontraktsmakt, ikke eiermyndighet",
+      "status": "kan endre handlefrihet gjennom rente, sikkerhet og tvangsvilkår",
+      "power_over_player": "kan gjøre ønsket eksponering mulig eller uholdbar",
+      "wants": "betjeningsevne og sikkerhet som tåler stress",
+      "conceals": "at bankens risikoreduksjon kan øke investorens tvangsrisiko",
+      "speech_style": "vilkårsnær, tallorientert og opptatt av sikkerhet",
+      "teaches_player": "at finansiering endrer hvem som kontrollerer tidspunktet for beslutninger"
+    },
+    {
+      "id": "revisoren",
+      "social_function": "skiller dokumenterte tall fra estimater og presentasjon",
+      "class_position": "uavhengig kontrollfunksjon uten investeringsmandat",
+      "status": "har troverdighetsmakt over kvaliteten på rapportert informasjon",
+      "power_over_player": "kan avdekke svak dokumentasjon og regnskapsmessige forbehold",
+      "wants": "at beslutningsgrunnlaget beskriver hva tallene faktisk kan bevise",
+      "conceals": "at formell dokumentasjon ikke eliminerer all økonomisk usikkerhet",
+      "speech_style": "dokumentorientert, nøktern og presis",
+      "teaches_player": "å vekte evidens etter kvalitet"
+    },
+    {
+      "id": "transaksjonsadvokaten",
+      "social_function": "gjør eierrettigheter, minoritetsvern og governance-grenser konkrete",
+      "class_position": "juridisk rådgiver uten automatisk eier- eller styremyndighet",
+      "status": "har ekspertmakt over tolkning av avtaler og rettigheter",
+      "power_over_player": "kan vise at like eierprosenter gir ulike økonomiske og styringsmessige posisjoner",
+      "wants": "at kapitalen bindes med forståtte rettigheter og ansvar",
+      "conceals": "at juridisk ryddighet kan forveksles med økonomisk attraktivitet",
+      "speech_style": "klausulnær, konsekvensorientert og tydelig på mandat",
+      "teaches_player": "at eierskapets rettigheter må forstås før de prises"
+    },
+    {
+      "id": "medinvestoren",
+      "social_function": "speiler markedspress, oppfølgingskapital og følelsene rundt gevinst og tap",
+      "class_position": "annen kapitaleier med egne interesser og tidshorisont",
+      "status": "har sosial påvirkning, men ingen myndighet over spillerens beslutning",
+      "power_over_player": "kan forsterke flokkatferd eller utfordre beslutningsdisiplin",
+      "wants": "en beslutning som kan forsvares på egne premisser",
+      "conceals": "at egen posisjon kan farge rådene som gis",
+      "speech_style": "erfaringsnær, direkte og opptatt av timing",
+      "teaches_player": "å skille sosial bekreftelse fra selvstendig kapitalallokering"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "investment_thesis",
+      "meaning": "hva må være sant for at investeringen skal virke",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "valuation_discipline",
+      "meaning": "selskapet er attraktivt, men prisen har løpt",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "position_sizing",
+      "meaning": "én investering dominerer porteføljen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "liquidity_horizon",
+      "meaning": "tidshorisonten kolliderer med privat betalingsberedskap",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "downside_analysis",
+      "meaning": "basiscaset ser ryddig ut, men nedsiden er tynn",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "portfolio_leverage",
+      "meaning": "belåning kan øke både avkastning og tvang",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "information_quality",
+      "meaning": "datagrunnlaget har ulik kvalitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "drawdown_discipline",
+      "meaning": "kursfallet tvinger fram et nytt spørsmål",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "minority_rights",
+      "meaning": "eierandelen gir mindre vern enn prosenttallet antyder",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "follow_on_capital",
+      "meaning": "selskapet ber eierne følge opp med mer kapital",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "owner_influence_boundary",
+      "meaning": "eierrollen begynner å ligne daglig ledelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_discipline",
+      "meaning": "en god investering kan likevel være moden for salg",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cash_optionality",
+      "meaning": "kontanter ser svake ut når alt annet stiger",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "investor_definition",
+      "meaning": "hva er investor når rollene skilles fra hverandre",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1 morgen: hva må være sant for at investeringen skal virke — morning.",
+        "thread_ids": [
+          "investment_thesis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1 lunsj: hva må være sant for at investeringen skal virke — lunch.",
+        "thread_ids": [
+          "investment_thesis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1 ettermiddag: hva må være sant for at investeringen skal virke — afternoon.",
+        "thread_ids": [
+          "investment_thesis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1 kveld: hva må være sant for at investeringen skal virke — evening.",
+        "thread_ids": [
+          "investment_thesis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2 morgen: selskapet er attraktivt, men prisen har løpt — morning.",
+        "thread_ids": [
+          "valuation_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2 lunsj: selskapet er attraktivt, men prisen har løpt — lunch.",
+        "thread_ids": [
+          "valuation_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2 ettermiddag: selskapet er attraktivt, men prisen har løpt — afternoon.",
+        "thread_ids": [
+          "valuation_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2 kveld: selskapet er attraktivt, men prisen har løpt — evening.",
+        "thread_ids": [
+          "valuation_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3 morgen: én investering dominerer porteføljen — morning.",
+        "thread_ids": [
+          "position_sizing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3 lunsj: én investering dominerer porteføljen — lunch.",
+        "thread_ids": [
+          "position_sizing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3 ettermiddag: én investering dominerer porteføljen — afternoon.",
+        "thread_ids": [
+          "position_sizing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3 kveld: én investering dominerer porteføljen — evening.",
+        "thread_ids": [
+          "position_sizing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4 morgen: tidshorisonten kolliderer med privat betalingsberedskap — morning.",
+        "thread_ids": [
+          "liquidity_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4 lunsj: tidshorisonten kolliderer med privat betalingsberedskap — lunch.",
+        "thread_ids": [
+          "liquidity_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4 ettermiddag: tidshorisonten kolliderer med privat betalingsberedskap — afternoon.",
+        "thread_ids": [
+          "liquidity_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4 kveld: tidshorisonten kolliderer med privat betalingsberedskap — evening.",
+        "thread_ids": [
+          "liquidity_horizon"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5 morgen: basiscaset ser ryddig ut, men nedsiden er tynn — morning.",
+        "thread_ids": [
+          "downside_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5 lunsj: basiscaset ser ryddig ut, men nedsiden er tynn — lunch.",
+        "thread_ids": [
+          "downside_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5 ettermiddag: basiscaset ser ryddig ut, men nedsiden er tynn — afternoon.",
+        "thread_ids": [
+          "downside_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5 kveld: basiscaset ser ryddig ut, men nedsiden er tynn — evening.",
+        "thread_ids": [
+          "downside_analysis"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6 morgen: belåning kan øke både avkastning og tvang — morning.",
+        "thread_ids": [
+          "portfolio_leverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6 lunsj: belåning kan øke både avkastning og tvang — lunch.",
+        "thread_ids": [
+          "portfolio_leverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6 ettermiddag: belåning kan øke både avkastning og tvang — afternoon.",
+        "thread_ids": [
+          "portfolio_leverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6 kveld: belåning kan øke både avkastning og tvang — evening.",
+        "thread_ids": [
+          "portfolio_leverage"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7 morgen: datagrunnlaget har ulik kvalitet — morning.",
+        "thread_ids": [
+          "information_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7 lunsj: datagrunnlaget har ulik kvalitet — lunch.",
+        "thread_ids": [
+          "information_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7 ettermiddag: datagrunnlaget har ulik kvalitet — afternoon.",
+        "thread_ids": [
+          "information_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7 kveld: datagrunnlaget har ulik kvalitet — evening.",
+        "thread_ids": [
+          "information_quality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8 morgen: kursfallet tvinger fram et nytt spørsmål — morning.",
+        "thread_ids": [
+          "drawdown_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8 lunsj: kursfallet tvinger fram et nytt spørsmål — lunch.",
+        "thread_ids": [
+          "drawdown_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8 ettermiddag: kursfallet tvinger fram et nytt spørsmål — afternoon.",
+        "thread_ids": [
+          "drawdown_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8 kveld: kursfallet tvinger fram et nytt spørsmål — evening.",
+        "thread_ids": [
+          "drawdown_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9 morgen: eierandelen gir mindre vern enn prosenttallet antyder — morning.",
+        "thread_ids": [
+          "minority_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9 lunsj: eierandelen gir mindre vern enn prosenttallet antyder — lunch.",
+        "thread_ids": [
+          "minority_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9 ettermiddag: eierandelen gir mindre vern enn prosenttallet antyder — afternoon.",
+        "thread_ids": [
+          "minority_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9 kveld: eierandelen gir mindre vern enn prosenttallet antyder — evening.",
+        "thread_ids": [
+          "minority_rights"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10 morgen: selskapet ber eierne følge opp med mer kapital — morning.",
+        "thread_ids": [
+          "follow_on_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10 lunsj: selskapet ber eierne følge opp med mer kapital — lunch.",
+        "thread_ids": [
+          "follow_on_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10 ettermiddag: selskapet ber eierne følge opp med mer kapital — afternoon.",
+        "thread_ids": [
+          "follow_on_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10 kveld: selskapet ber eierne følge opp med mer kapital — evening.",
+        "thread_ids": [
+          "follow_on_capital"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11 morgen: eierrollen begynner å ligne daglig ledelse — morning.",
+        "thread_ids": [
+          "owner_influence_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11 lunsj: eierrollen begynner å ligne daglig ledelse — lunch.",
+        "thread_ids": [
+          "owner_influence_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11 ettermiddag: eierrollen begynner å ligne daglig ledelse — afternoon.",
+        "thread_ids": [
+          "owner_influence_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11 kveld: eierrollen begynner å ligne daglig ledelse — evening.",
+        "thread_ids": [
+          "owner_influence_boundary"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12 morgen: en god investering kan likevel være moden for salg — morning.",
+        "thread_ids": [
+          "exit_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12 lunsj: en god investering kan likevel være moden for salg — lunch.",
+        "thread_ids": [
+          "exit_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12 ettermiddag: en god investering kan likevel være moden for salg — afternoon.",
+        "thread_ids": [
+          "exit_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12 kveld: en god investering kan likevel være moden for salg — evening.",
+        "thread_ids": [
+          "exit_discipline"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13 morgen: kontanter ser svake ut når alt annet stiger — morning.",
+        "thread_ids": [
+          "cash_optionality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13 lunsj: kontanter ser svake ut når alt annet stiger — lunch.",
+        "thread_ids": [
+          "cash_optionality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13 ettermiddag: kontanter ser svake ut når alt annet stiger — afternoon.",
+        "thread_ids": [
+          "cash_optionality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13 kveld: kontanter ser svake ut når alt annet stiger — evening.",
+        "thread_ids": [
+          "cash_optionality"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14 morgen: hva er investor når rollene skilles fra hverandre — morning.",
+        "thread_ids": [
+          "investor_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14 lunsj: hva er investor når rollene skilles fra hverandre — lunch.",
+        "thread_ids": [
+          "investor_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14 ettermiddag: hva er investor når rollene skilles fra hverandre — afternoon.",
+        "thread_ids": [
+          "investor_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14 kveld: hva er investor når rollene skilles fra hverandre — evening.",
+        "thread_ids": [
+          "investor_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "investment_thesis",
+      "relationship": "hva må være sant for at investeringen skal virke",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "2/lunch",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "valuation_discipline",
+      "relationship": "selskapet er attraktivt, men prisen har løpt",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "3/lunch",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "position_sizing",
+      "relationship": "én investering dominerer porteføljen",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "4/lunch",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "liquidity_horizon",
+      "relationship": "tidshorisonten kolliderer med privat betalingsberedskap",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "5/lunch",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "downside_analysis",
+      "relationship": "basiscaset ser ryddig ut, men nedsiden er tynn",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/lunch",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "portfolio_leverage",
+      "relationship": "belåning kan øke både avkastning og tvang",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "7/lunch",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "information_quality",
+      "relationship": "datagrunnlaget har ulik kvalitet",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "8/lunch",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "drawdown_discipline",
+      "relationship": "kursfallet tvinger fram et nytt spørsmål",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "9/lunch",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "minority_rights",
+      "relationship": "eierandelen gir mindre vern enn prosenttallet antyder",
+      "beat_refs": [
+        "9/morning",
+        "9/afternoon",
+        "10/lunch",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "follow_on_capital",
+      "relationship": "selskapet ber eierne følge opp med mer kapital",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/lunch",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "owner_influence_boundary",
+      "relationship": "eierrollen begynner å ligne daglig ledelse",
+      "beat_refs": [
+        "11/morning",
+        "11/afternoon",
+        "12/lunch",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "exit_discipline",
+      "relationship": "en god investering kan likevel være moden for salg",
+      "beat_refs": [
+        "12/morning",
+        "12/afternoon",
+        "13/lunch",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "cash_optionality",
+      "relationship": "kontanter ser svake ut når alt annet stiger",
+      "beat_refs": [
+        "13/morning",
+        "13/afternoon",
+        "14/lunch",
+        "14/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "investor_definition",
+      "relationship": "hva er investor når rollene skilles fra hverandre",
+      "beat_refs": [
+        "14/morning",
+        "14/afternoon",
+        "1/lunch",
+        "1/evening",
+        "2/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "tesen_og_prisen_blir_skilt",
+      "description": "Tese, verdsettelse og nedside blir separate kontrollpunkter før kapital bindes.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset"
+      ]
+    },
+    {
+      "id": "portefoljerisikoen_blir_synlig",
+      "description": "Posisjonsstørrelse, betalingsberedskap og belåning blir lest som samlet bæreevne.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt"
+      ]
+    },
+    {
+      "id": "beslutningsgrunnlaget_far_kvalitet",
+      "description": "Informasjonskvalitet og drawdown vurderes uten å gjøre prisbevegelse til eneste sannhet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen"
+      ]
+    },
+    {
+      "id": "private_eierrettigheter_blir_konkrete",
+      "description": "Minoritetsrettigheter, oppfølgingskapital og eierinnflytelse får eksplisitte grenser.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ"
+      ]
+    },
+    {
+      "id": "kapitalen_far_exit_og_pause",
+      "description": "Exit, kontantreserve og rolledefinisjon gjør kapitalens neste bruk like viktig som historiske kjøp.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut",
+        "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "tesen_moter_nedsiden",
+      "setup_ref": "1/afternoon",
+      "return_ref": "5/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "verdsettelsen_moter_exit",
+      "setup_ref": "2/afternoon",
+      "return_ref": "12/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "konsentrasjonen_moter_betalingsberedskapen",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "economy",
+        "housing"
+      ]
+    },
+    {
+      "id": "belaningen_moter_markedsfallet",
+      "setup_ref": "6/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "minoritetsrettighetene_moter_emisjonen",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "eierinnflytelsen_moter_rollegrensen",
+      "setup_ref": "11/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#investeringshypotesen_for_forste_kjop",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#prisen_som_loper_fra_verdien",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#en_posisjon_som_blir_for_stor",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#kapitalen_du_kan_trenge_for_tidlig",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#nedsiden_som_forsvinner_i_basiscaset",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#lanet_som_forsterker_alt",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#informasjonen_som_ikke_er_like_god_overalt",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#fallet_som_tester_tesen",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#minoritetsposten_med_svake_rettigheter",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#emisjonen_som_krever_mer_kapital",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#eierinnflytelsen_som_blir_operativ",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#salget_som_er_vanskelig_nar_tesen_fortsatt_er_god",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#kontantreserven_som_ser_passiv_ut",
+      "data/Civication/narratives/leisure/naeringsliv_investor.json#sesongslutt_hva_er_en_investor"
+    ]
+  }
+}

@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_investor_stream",
+  "type": "leisure",
+  "title": "Investor — kapitalallokering, eierrettigheter og porteføljerisiko",
+  "sociological_theme": "naeringsliv_investor_egen_kapitalallokering_investeringstese_verdsettelse_posisjonsstorrelse_betalingsberedskap_nedside_belaning_informasjonskvalitet_drawdown_minoritetsrettigheter_oppfolgingskapital_eierinnflytelse_exit_kontantreserve_og_rollegrense",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:investor"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "investeringshypotesen_for_forste_kjop",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Analytikeren",
+      "subject": "Hva må være sant for at investeringen skal virke?",
+      "situation": [
+        "Du vurderer å plassere egen kapital i et selskap du har fulgt lenge.",
+        "Som Investor må du kunne formulere hva som skaper verdi, hva som kan falsifisere tesen og hvor lenge kapitalen kan være bundet.",
+        "En investeringshypotese er ikke et løfte om avkastning, men et etterprøvbart grunnlag for å ta risiko."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv ned drivere, tidshorisont og konkrete forhold som vil få deg til å revurdere tesen.",
+          "effect": 1,
+          "tags": [
+            "investment_thesis",
+            "falsifiable_case"
+          ],
+          "feedback": "Tesen blir konkret nok til at senere informasjon kan prøves mot den."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp fordi historien virker overbevisende og bestem senere hvorfor du eier.",
+          "effect": -1,
+          "tags": [
+            "investment_thesis_failure",
+            "falsifiable_case_failure"
+          ],
+          "feedback": "Fortellingen blir en begrunnelse i etterkant i stedet for et beslutningsgrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_investeringshypotesen_for_forste_kjop"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "prisen_som_loper_fra_verdien",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Analytikeren",
+      "subject": "Selskapet er attraktivt, men prisen har løpt",
+      "situation": [
+        "Virksomheten leverer godt, samtidig som markedsprisen har steget langt raskere enn inntjeningen.",
+        "Investorrollen krever å skille kvaliteten på et selskap fra vilkårene du betaler for å eie en andel.",
+        "Verdsettelse handler om hvilke forventninger som allerede er innbakt og hvor mye feilmargin prisen tåler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign prisen med realistiske kontantstrømmer, forventninger og alternative avkastningskrav før kjøp.",
+          "effect": 1,
+          "tags": [
+            "valuation_discipline",
+            "expectation_load"
+          ],
+          "feedback": "Pris og kvalitet blir to separate spørsmål i kapitalallokeringen."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp straks fordi et godt selskap alltid er en god investering uansett pris.",
+          "effect": -1,
+          "tags": [
+            "valuation_discipline_failure",
+            "expectation_load_failure"
+          ],
+          "feedback": "Kvalitet brukes som unnskyldning for å ignorere hva kapitalen faktisk kjøper."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_prisen_som_loper_fra_verdien"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "en_posisjon_som_blir_for_stor",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Porteføljerådgiveren",
+      "subject": "Én investering dominerer porteføljen",
+      "situation": [
+        "En tidligere investering har steget så mye at den nå utgjør en svært stor del av din investerbare kapital.",
+        "Konsentrasjon kan være bevisst, men den gjør én feilvurdering avgjørende for hele porteføljen.",
+        "Investor må velge posisjonsstørrelse ut fra samlet bæreevne, ikke bare troen på ett case."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer hvor stor samlet nedside du tåler og rebalanser hvis posisjonen overstiger den rammen.",
+          "effect": 1,
+          "tags": [
+            "position_sizing",
+            "concentration_risk"
+          ],
+          "feedback": "Posisjonsstørrelsen kobles til samlet risikobudsjett."
+        },
+        {
+          "id": "B",
+          "label": "Behold alt fordi gevinsthistorikken beviser at konsentrasjonen er trygg.",
+          "effect": -1,
+          "tags": [
+            "position_sizing_failure",
+            "concentration_risk_failure"
+          ],
+          "feedback": "Fortidig gevinst blir brukt som bevis mot framtidig konsentrasjonsrisiko."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_en_posisjon_som_blir_for_stor"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kapitalen_du_kan_trenge_for_tidlig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Porteføljerådgiveren",
+      "subject": "Tidshorisonten kolliderer med privat betalingsberedskap",
+      "situation": [
+        "En investeringsmulighet krever at kapital bindes samtidig som du kan få behov for penger til andre formål de neste årene.",
+        "Investorens tidshorisont må passe kapitalens faktiske tilgjengelighet; tvangssalg kan gjøre en langsiktig tese irrelevant.",
+        "Betalingsberedskap er derfor en del av risikostyringen før investeringen, ikke bare et problem når markedet faller."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill reservekapital fra langsiktig investerbar kapital før du binder nye penger.",
+          "effect": 1,
+          "tags": [
+            "liquidity_horizon",
+            "forced_sale_risk"
+          ],
+          "feedback": "Kapitalens horisont avklares før markedet bestemmer tidspunktet for deg."
+        },
+        {
+          "id": "B",
+          "label": "Invester alt nå og regn med at du kan selge på gode vilkår dersom pengene trengs.",
+          "effect": -1,
+          "tags": [
+            "liquidity_horizon_failure",
+            "forced_sale_risk_failure"
+          ],
+          "feedback": "Betalingsberedskapsbehovet skyves fram til det eventuelt tvinger fram et dårlig salg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_kapitalen_du_kan_trenge_for_tidlig"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "nedsiden_som_forsvinner_i_basiscaset",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Revisoren",
+      "subject": "Basiscaset ser ryddig ut, men nedsiden er tynn",
+      "situation": [
+        "Regnearket viser god forventet avkastning i hovedscenarioet, mens svakere utfall bare er kort omtalt.",
+        "Investor må forstå tapspotensial, kapitalbehov og permanent verdiforringelse før oppsiden får dominere beslutningen.",
+        "Nedsideanalyse handler ikke om pessimisme, men om hva som skjer når sentrale forutsetninger svikter samtidig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Bygg et konkret negativt scenario med finansiering, resultat og mulig permanent tap før du bestemmer størrelsen.",
+          "effect": 1,
+          "tags": [
+            "downside_analysis",
+            "permanent_loss"
+          ],
+          "feedback": "Nedsiden blir en eksplisitt del av beslutningen og posisjonsstørrelsen."
+        },
+        {
+          "id": "B",
+          "label": "Bruk hovedscenarioet fordi for mange negative varianter bare gjør beslutningen vanskeligere.",
+          "effect": -1,
+          "tags": [
+            "downside_analysis_failure",
+            "permanent_loss_failure"
+          ],
+          "feedback": "Usikkerheten skjules ved å gjøre hovedscenarioet til eneste målestokk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_nedsiden_som_forsvinner_i_basiscaset"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lanet_som_forsterker_alt",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Bankkontakten",
+      "subject": "Belåning kan øke både avkastning og tvang",
+      "situation": [
+        "Du kan låne mot porteføljen for å øke eksponeringen mot en investering du mener er feilpriset.",
+        "Belåning forsterker både gevinst og tap, men viktigst kan den flytte tidspunktet for beslutningen fra investor til långiver.",
+        "Marginvilkår, rente og sikkerhetskrav må forstås som deler av porteføljerisikoen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stress-test fall, rente og sikkerhetskrav før du avgjør om belåning overhodet passer kapitalen din.",
+          "effect": 1,
+          "tags": [
+            "portfolio_leverage",
+            "financing_constraint"
+          ],
+          "feedback": "Belåningen vurderes ut fra tvangsrisiko, ikke bare forventet meravkastning."
+        },
+        {
+          "id": "B",
+          "label": "Lån maksimalt fordi høyere forventet avkastning gjør finansieringsrisikoen sekundær.",
+          "effect": -1,
+          "tags": [
+            "portfolio_leverage_failure",
+            "financing_constraint_failure"
+          ],
+          "feedback": "Oppsiden får dekke over at finansieringen kan tvinge fram salg på feil tidspunkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_lanet_som_forsterker_alt"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "informasjonen_som_ikke_er_like_god_overalt",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Revisoren",
+      "subject": "Datagrunnlaget har ulik kvalitet",
+      "situation": [
+        "To investeringer ser sammenlignbare ut i presentasjonene, men dokumentasjonen bak nøkkeltallene er svært ulik.",
+        "Investor må skille mellom rapportert tall, estimat, ledelsesfortelling og uavhengig verifiserbar informasjon.",
+        "Informasjonskvalitet påvirker hvor presist du kan verdsette og hvor stor sikkerhetsmargin du trenger."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk hvilke forutsetninger som er verifiserte, estimerte eller partsopplysninger og juster sikkerhetsmarginen deretter.",
+          "effect": 1,
+          "tags": [
+            "information_quality",
+            "evidence_weight"
+          ],
+          "feedback": "Usikkerheten i datagrunnlaget blir synlig i selve investeringsbeslutningen."
+        },
+        {
+          "id": "B",
+          "label": "Behandle alle presenterte nøkkeltall som like pålitelige så lenge de står i samme format.",
+          "effect": -1,
+          "tags": [
+            "information_quality_failure",
+            "evidence_weight_failure"
+          ],
+          "feedback": "Presentasjonsformen forveksles med kvaliteten på underlaget."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_informasjonen_som_ikke_er_like_god_overalt"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fallet_som_tester_tesen",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medinvestoren",
+      "subject": "Kursfallet tvinger fram et nytt spørsmål",
+      "situation": [
+        "Markedsprisen faller kraftig kort tid etter kjøpet uten at årsaken er åpenbar.",
+        "Investor må skille mellom lavere pris og svakere investeringscase før følelsen av tap får styre.",
+        "En drawdown er informasjon om markedet, men ikke automatisk bevis for eller mot den opprinnelige tesen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå tilbake til tesens drivere og falsifikasjonspunkter før du kjøper mer, holder eller selger.",
+          "effect": 1,
+          "tags": [
+            "drawdown_discipline",
+            "thesis_review"
+          ],
+          "feedback": "Prisfallet blir behandlet som et signal som må tolkes mot tesen."
+        },
+        {
+          "id": "B",
+          "label": "Selg umiddelbart for å stoppe ubehaget uten å undersøke om premissene faktisk er endret.",
+          "effect": -1,
+          "tags": [
+            "drawdown_discipline_failure",
+            "thesis_review_failure"
+          ],
+          "feedback": "Ubehaget blir beslutningsregel og erstatter vurderingen av hva som faktisk har endret seg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_fallet_som_tester_tesen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "minoritetsposten_med_svake_rettigheter",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Transaksjonsadvokaten",
+      "subject": "Eierandelen gir mindre vern enn prosenttallet antyder",
+      "situation": [
+        "Du vurderer en minoritetspost i et unotert selskap der avtalen gir begrenset innsyn og få rettigheter ved nye emisjoner eller salg.",
+        "Investor eier ikke bare en prosentandel; rettigheter, prioritet, utvanning og tilgang til informasjon påvirker hva andelen faktisk betyr.",
+        "Private eierrettigheter må leses før prisen kan vurderes som om instrumentene var like."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg innsyn, utvanningsvern, salgsrettigheter og prioritet før du priser posten.",
+          "effect": 1,
+          "tags": [
+            "minority_rights",
+            "ownership_terms"
+          ],
+          "feedback": "Eierandelen vurderes sammen med de faktiske rettighetene som følger den."
+        },
+        {
+          "id": "B",
+          "label": "Se bare på eierprosenten fordi juridiske detaljer uansett først betyr noe ved en tvist.",
+          "effect": -1,
+          "tags": [
+            "minority_rights_failure",
+            "ownership_terms_failure"
+          ],
+          "feedback": "Prosenttallet får skjule at økonomiske og juridiske rettigheter kan være svake."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_minoritetsposten_med_svake_rettigheter"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "emisjonen_som_krever_mer_kapital",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medinvestoren",
+      "subject": "Selskapet ber eierne følge opp med mer kapital",
+      "situation": [
+        "Et porteføljeselskap trenger ny kapital tidligere enn antatt og eksisterende eiere må velge om de vil delta.",
+        "Oppfølgingskapital kan beskytte en god investering, men kan også gjøre en svak tese dyrere å forlate.",
+        "Investor må vurdere den nye investeringen på dagens informasjon, ikke bare forsvare pengene som allerede er satt inn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder emisjonen som en ny kapitalbeslutning med oppdatert tese, pris, utvanning og alternativ bruk av pengene.",
+          "effect": 1,
+          "tags": [
+            "follow_on_capital",
+            "sunk_cost_resistance"
+          ],
+          "feedback": "Ny kapital vurderes på dagens premisser i stedet for historisk stolthet."
+        },
+        {
+          "id": "B",
+          "label": "Delta automatisk fordi du allerede har investert mye og ikke vil innrømme at første beslutning kan ha vært feil.",
+          "effect": -1,
+          "tags": [
+            "follow_on_capital_failure",
+            "sunk_cost_resistance_failure"
+          ],
+          "feedback": "Tidligere investering blir argument for å øke eksponeringen uten ny vurdering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_emisjonen_som_krever_mer_kapital"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "eierinnflytelsen_som_blir_operativ",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Transaksjonsadvokaten",
+      "subject": "Eierrollen begynner å ligne daglig ledelse",
+      "situation": [
+        "Du har fått betydelig eierandel og blir invitert stadig dypere inn i konkrete driftsbeslutninger.",
+        "Investor kan bruke eierrettigheter og governance-kanaler, men eierandel skaper ikke automatisk operativ instruksjonsmyndighet.",
+        "Rollegrensen beskytter både ansvarslinjer og kvaliteten på kapitalbeslutningen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar hvilke beslutninger som hører til eier-/styrenivå og hvilke som tilhører formell ledelse før du påvirker videre.",
+          "effect": 1,
+          "tags": [
+            "owner_influence_boundary",
+            "governance_boundary"
+          ],
+          "feedback": "Eierinnflytelse holdes innenfor den myndigheten som faktisk finnes."
+        },
+        {
+          "id": "B",
+          "label": "Gi direkte instrukser til ansatte fordi kapitalinnsatsen gjør deg til den reelle sjefen.",
+          "effect": -1,
+          "tags": [
+            "owner_influence_boundary_failure",
+            "governance_boundary_failure"
+          ],
+          "feedback": "Kapitalmakt blir forvekslet med operativt mandat og uklare ansvarslinjer oppstår."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_eierinnflytelsen_som_blir_operativ"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "salget_som_er_vanskelig_nar_tesen_fortsatt_er_god",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Porteføljerådgiveren",
+      "subject": "En god investering kan likevel være moden for salg",
+      "situation": [
+        "En investering har utviklet seg godt, men prisen reflekterer nå mye av den framtidige oppsiden du opprinnelig så.",
+        "Investor må kunne selge selv uten katastrofe når forventet avkastning, alternativkostnad eller porteføljerisiko har endret seg.",
+        "Exit er en kapitalallokeringsbeslutning, ikke en dom over selskapet eller en lojalitetstest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign forventet framtidig avkastning med risiko og alternative plasseringer før du bestemmer om kapitalen skal frigjøres.",
+          "effect": 1,
+          "tags": [
+            "exit_discipline",
+            "opportunity_cost"
+          ],
+          "feedback": "Exit vurderes mot framtidig kapitalbruk, ikke følelsen rundt historisk gevinst."
+        },
+        {
+          "id": "B",
+          "label": "Hold for alltid fordi et salg av en vinner føles som å gi opp noe som har fungert.",
+          "effect": -1,
+          "tags": [
+            "exit_discipline_failure",
+            "opportunity_cost_failure"
+          ],
+          "feedback": "Historisk suksess blir et argument mot å evaluere dagens forventede avkastning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_salget_som_er_vanskelig_nar_tesen_fortsatt_er_god"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kontantreserven_som_ser_passiv_ut",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Porteføljerådgiveren",
+      "subject": "Kontanter ser svake ut når alt annet stiger",
+      "situation": [
+        "Markedet har steget lenge og kontantreserven trekker ned den målte avkastningen i gode perioder.",
+        "For Investor kan ubrukt kapital være bevisst opsjonalitet dersom den dekker privat betalingsberedskap eller gir rom for framtidige muligheter.",
+        "Kontanter har også alternativkostnad, så reserve må ha en eksplisitt funksjon og størrelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer hvilken del som er beredskap, framtidig investeringskapital og kortsiktig behov, og vurder kostnaden ved hver del.",
+          "effect": 1,
+          "tags": [
+            "cash_optionality",
+            "reserve_policy"
+          ],
+          "feedback": "Kontantbeholdningen får en begrunnet funksjon og kan vurderes mot alternativkostnaden."
+        },
+        {
+          "id": "B",
+          "label": "Invester hele reserven fordi kapital som ikke er i markedet alltid er bortkastet.",
+          "effect": -1,
+          "tags": [
+            "cash_optionality_failure",
+            "reserve_policy_failure"
+          ],
+          "feedback": "Presset om å være fullt investert fjerner handlingsrommet uten at behovet er analysert."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_kontantreserven_som_ser_passiv_ut"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_investor",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Analytikeren",
+      "subject": "Hva er Investor når rollene skilles fra hverandre?",
+      "situation": [
+        "Etter sesongen må du skille kapitalplassering fra selskapsdrift, industrielt eierskap og profesjonell finansforvaltning.",
+        "Investor er en employment-independent posisjon for allokering av egen kapital under usikkerhet; Bedriftseier, Industrieier og Gründer har andre eierskaps- eller virksomhetslag, mens Kapitalforvalter, Finansanalytiker og Daglig leder er separate formelle karrierer.",
+        "Investorstatus gir ingen automatisk arbeidstakerstatus, styreplass, rådgiverautorisasjon, operativ instruksjonsmyndighet, mandat over andres penger eller garanti for avkastning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rollegrensen eksplisitt og la investering, selskapseierskap, industrielt eierskap og profesjonell forvaltning ha hvert sitt mandat.",
+          "effect": 1,
+          "tags": [
+            "investor_definition",
+            "authority_boundary"
+          ],
+          "feedback": "Investorrollen blir presis: egen kapitalallokering uten automatisk profesjons- eller driftsmyndighet."
+        },
+        {
+          "id": "B",
+          "label": "La Investor bli samlebetegnelse for alle som eier, leder, analyserer eller forvalter kapital.",
+          "effect": -1,
+          "tags": [
+            "investor_definition_failure",
+            "authority_boundary_failure"
+          ],
+          "feedback": "Rollegrensene kollapser og kapitalplassering blandes med jobb, drift og forvaltning av andres midler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "investor_sesongslutt_hva_er_en_investor"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
