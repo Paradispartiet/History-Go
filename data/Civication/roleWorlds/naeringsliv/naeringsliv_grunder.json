@@ -1,0 +1,1136 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "naeringsliv",
+  "role_scope": "naeringsliv_grunder",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "naeringsliv",
+    "id": "grunder",
+    "label": "Gründer"
+  },
+  "title": "Gründer",
+  "status": "role_world_complete",
+  "sociological_core": {
+    "main_problem": "å få en ny virksomhet til å fungere i møte med reelle kunder, kostnader, leveranser og begrenset kapasitet uten at Gründer-status automatisk blir eierskap, investering eller formell ledermyndighet",
+    "description": "Gründer er en employment-independent entrepreneurial_practice_and_self_employment-posisjon som eier det aktive etablerings- og virksomhetsbyggingslaget: reelle kunder, prising, medgründerarbeid, leveransekapasitet, faste kostnader, gründerens egen arbeidskapasitet, leverandøravhengighet, tidlig bemanning, kundekonsentrasjon, pivot, administrasjon, bruk av vekstkapital og beslutningen om å stoppe eller endre. Rollen er forskjellig fra Gründerdrømmer, som eier idé- og valideringsfasen før virksomheten er reell, og fra Sideprosjektbygger, som kan forbli et avgrenset prosjekt ved siden av hovedlivet. Bedriftseier eier eierkapital og governance, Investor eier kapitalplassering, og Daglig leder er en separat formell lederjobb. Gründer gir ingen automatisk eierandel, styreverv, daglig leder-status, arbeidsgiverstatus, finansiering eller rett til å binde andre utover faktiske avtaler. Ingen ny runtime introduseres."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "invisible_work",
+    "status_anxiety",
+    "shame_reputation",
+    "precarity",
+    "class_power",
+    "care_vs_efficiency",
+    "public_private_leakage"
+  ],
+  "social_environments": [
+    "tidlige kundeleveranser der markedsbekreftelse blir til faktiske løfter om pris, scope og tidspunkt",
+    "medgründerarbeid der entusiasme må oversettes til ansvar, kapasitet og tydelige beslutningsgrenser",
+    "driftsvalg der faste kostnader, leverandører og tidlig bemanning bestemmer hvor raskt virksomheten kan vokse",
+    "markedslæring der kundekonsentrasjon og faktisk bruk kan kreve endret retning",
+    "administrativt arbeid der transaksjoner og avtaler blir for mange til å bæres av hukommelse alene",
+    "finansierings- og stoppbeslutninger der tempo må vurderes mot hva virksomheten faktisk kan bevise framover"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "kunden",
+      "social_function": "gjør pris, leveranse, tidsfrist og faktisk markedsverdi konkrete",
+      "class_position": "betalende kunde med et reelt behov og mulighet til å holde virksomheten ansvarlig for leveransen",
+      "status": "har kjøpermakt i den konkrete handelen, men ingen automatisk myndighet over virksomhetens øvrige retning",
+      "power_over_player": "kan kjøpe, avslå, endre volum eller stille krav innenfor det som faktisk er avtalt",
+      "wants": "en forståelig leveranse som løser et konkret behov til avtalt tid og pris",
+      "conceals": "at kundens eget tidspress kan bli presentert som om det automatisk var gründerens kapasitet",
+      "speech_style": "behovsorientert, konkret og opptatt av resultat",
+      "teaches_player": "å skille markedsbekreftelse fra retten til å love mer enn virksomheten kan levere"
+    },
+    {
+      "id": "medgrunderen",
+      "social_function": "gjør delt entreprenørarbeid, rollefordeling og uenighet konkret",
+      "class_position": "annen aktiv grunnlegger eller etableringspartner med eget ansvar i virksomheten",
+      "status": "har entreprenøriell innflytelse gjennom faktisk arbeid og avtaler, men ikke automatisk eierskaps- eller ledermyndighet utover det som finnes",
+      "power_over_player": "kan stoppe framdrift, endre prioriteringer eller trekke egen kapasitet dersom forventningene blir uklare",
+      "wants": "tydelig ansvar og en etableringsmodell der arbeidsbelastning og beslutninger kan forklares",
+      "conceals": "at entusiasme i starten kan ha skjult hvor forskjellige forventninger dere har til tid og tempo",
+      "speech_style": "handlingsorientert, direkte og preget av felles historikk",
+      "teaches_player": "å gjøre medgründerrelasjonen til faktisk arbeid og beslutningsstruktur i stedet for symbolsk fellesskap"
+    },
+    {
+      "id": "leverandoren",
+      "social_function": "gjør eksterne avhengigheter og leveransekjede synlig i en liten virksomhet",
+      "class_position": "uavhengig leverandør av en ressurs virksomheten trenger for å levere",
+      "status": "kan ha stor praktisk makt uten å være del av gründerselskapet eller ledelsen",
+      "power_over_player": "kan forsinke eller endre vilkår for en ressurs som kunden din er avhengig av",
+      "wants": "forutsigbare bestillinger, betaling og tydelige behov",
+      "conceals": "at egen kapasitetsmangel kan være vanskelig å varsle tidlig når kunden er liten",
+      "speech_style": "praktisk, leveranseorientert og vilkårsnær",
+      "teaches_player": "å behandle leverandøravhengighet som del av egen leveransemodell"
+    },
+    {
+      "id": "regnskapsradgiveren",
+      "social_function": "gjør transaksjoner, frister og administrasjon til en reell del av etableringen",
+      "class_position": "regnskapsfaglig rådgiver uten automatisk eier- eller ledermyndighet",
+      "status": "kan synliggjøre dokumentasjonsbehov og økonomiske mønstre uten å bestemme virksomhetens strategi",
+      "power_over_player": "kan gjøre det tydelig når gründerens hukommelse og uformelle systemer ikke lenger er tilstrekkelige",
+      "wants": "at virksomhetens tall og dokumentasjon kan følges og forstås over tid",
+      "conceals": "at administrative systemer kan bli mer omfattende enn den unge virksomheten faktisk trenger",
+      "speech_style": "nøktern, dokumentorientert og fristbevisst",
+      "teaches_player": "å gjøre usynlig administrasjon til en fast del av virksomhetsdriften"
+    },
+    {
+      "id": "mulig_medarbeider",
+      "social_function": "gjør kapasitetsbehov, betaling og rolleavklaring konkret når virksomheten vokser utover grunnleggerne",
+      "class_position": "person som vurderer å bidra fast eller prosjektvis mot tydelig avtalt kompensasjon",
+      "status": "har egen forhandlingsposisjon og blir ikke automatisk ansatt, medeier eller leder av å hjelpe til",
+      "power_over_player": "kan avslå en uklar rolle og dermed tvinge virksomheten til å erkjenne hva slags kapasitet den faktisk trenger",
+      "wants": "tydelig arbeid, tidsramme, betaling og ansvar før innsatsen begynner",
+      "conceals": "at håpet om framtidig mulighet kan gjøre det fristende å godta mer uklarhet enn ønskelig",
+      "speech_style": "praktisk, spørrende og opptatt av hverdagen i rollen",
+      "teaches_player": "å definere arbeidsarrangementet før en personlig relasjon blir løsningen på et kapasitetsproblem"
+    },
+    {
+      "id": "finansieringskontakten",
+      "social_function": "gjør ekstern kapital til et spørsmål om milepæl, tempo og forventning i stedet for status",
+      "class_position": "aktør som kan formidle eller tilby finansiering til en virksomhet i etablering",
+      "status": "kan påvirke veksttempo gjennom kapitaltilgang, men eier ingen automatisk beslutningsmyndighet før en faktisk avtale finnes",
+      "power_over_player": "kan gjøre videre vekst lettere samtidig som finansieringskrav endrer hva virksomheten må bevise",
+      "wants": "en tydelig bruk av kapitalen og et forståelig neste verdibevis",
+      "conceals": "at mer kapital også kan gjøre det vanskeligere for gründeren å redusere tempo eller endre plan",
+      "speech_style": "milepæl-, kapital- og vekstorientert",
+      "teaches_player": "å behandle finansiering som et middel til et definert bevis, ikke som bekreftelse på Gründer-status"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "customer_commitment",
+      "meaning": "første reelle kunder, leveranseomfang og hva virksomheten faktisk lover",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "pricing_model",
+      "meaning": "prising, kostnadsforståelse og om salgsmodellen tåler gjentakelse",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "cofounder_roles",
+      "meaning": "medgründerarbeid, ansvarsdeling og forventet kapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "sales_capacity",
+      "meaning": "vekstsalg holdt innenfor faktisk leveransekapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "fixed_cost",
+      "meaning": "faste kostnader, varighet og hva som må bevises før kostnadsbasen økes",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "founder_capacity",
+      "meaning": "selvsysselsetting, arbeidsgrenser og om gründeren skjuler kapasitetsmangel med privat tid",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "supplier_dependency",
+      "meaning": "leverandøravhengighet og kontinuitet i kundeleveransen",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "early_staffing",
+      "meaning": "tidlig bemanning, tydelig betaling og rolle før virksomheten får mer kapasitet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "customer_concentration",
+      "meaning": "kundekonsentrasjon, kommersiell avhengighet og handlingsrom",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "market_learning",
+      "meaning": "faktisk kundeadferd, pivot og disiplinert markedslæring",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "operating_admin",
+      "meaning": "administrativ rytme, dokumentasjon og usynlig arbeid i en reell virksomhet",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "growth_capital_use",
+      "meaning": "ekstern finansiering koblet til konkrete milepæler i stedet for vekst som mål i seg selv",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "exit_decision",
+      "meaning": "stopp, reduksjon eller endring vurdert mot framtidige muligheter og ikke bare tidligere innsats",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "entrepreneur_definition",
+      "meaning": "Gründer som entreprenøriell praksis og selvsysselsetting adskilt fra idéstatus, eierskap, investering og formell ledelse",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1: Noen vil faktisk kjøpe det du bygger. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "customer_commitment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1: Noen vil faktisk kjøpe det du bygger. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "customer_commitment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1: Noen vil faktisk kjøpe det du bygger. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "customer_commitment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1: Noen vil faktisk kjøpe det du bygger. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "customer_commitment"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2: Prisen virker høy helt til du regner på arbeidet. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "pricing_model"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2: Prisen virker høy helt til du regner på arbeidet. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "pricing_model"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2: Prisen virker høy helt til du regner på arbeidet. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "pricing_model"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2: Prisen virker høy helt til du regner på arbeidet. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "pricing_model"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3: Dere bygger sammen, men arbeidet fordeler seg skjevt. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "cofounder_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3: Dere bygger sammen, men arbeidet fordeler seg skjevt. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "cofounder_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3: Dere bygger sammen, men arbeidet fordeler seg skjevt. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "cofounder_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3: Dere bygger sammen, men arbeidet fordeler seg skjevt. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "cofounder_roles"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4: Et stort salg krever mer enn virksomheten kan levere. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "sales_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4: Et stort salg krever mer enn virksomheten kan levere. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "sales_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4: Et stort salg krever mer enn virksomheten kan levere. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "sales_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4: Et stort salg krever mer enn virksomheten kan levere. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "sales_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5: En liten fast kostnad blir plutselig permanent. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "fixed_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5: En liten fast kostnad blir plutselig permanent. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "fixed_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5: En liten fast kostnad blir plutselig permanent. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "fixed_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5: En liten fast kostnad blir plutselig permanent. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "fixed_cost"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6: Alt i virksomheten peker tilbake på deg. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "founder_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6: Alt i virksomheten peker tilbake på deg. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "founder_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6: Alt i virksomheten peker tilbake på deg. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "founder_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6: Alt i virksomheten peker tilbake på deg. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "founder_capacity"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7: Én ekstern part holder hele leveransen oppe. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "supplier_dependency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7: Én ekstern part holder hele leveransen oppe. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "supplier_dependency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7: Én ekstern part holder hele leveransen oppe. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "supplier_dependency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7: Én ekstern part holder hele leveransen oppe. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "supplier_dependency"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8: Virksomheten trenger mer kapasitet enn grunnleggerne har. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "early_staffing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8: Virksomheten trenger mer kapasitet enn grunnleggerne har. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "early_staffing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8: Virksomheten trenger mer kapasitet enn grunnleggerne har. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "early_staffing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8: Virksomheten trenger mer kapasitet enn grunnleggerne har. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "early_staffing"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9: Én kunde står for nesten alt som kommer inn. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "customer_concentration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9: Én kunde står for nesten alt som kommer inn. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "customer_concentration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9: Én kunde står for nesten alt som kommer inn. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "customer_concentration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9: Én kunde står for nesten alt som kommer inn. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "customer_concentration"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10: Kundene bruker noe annet enn det du bygget for. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "market_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10: Kundene bruker noe annet enn det du bygget for. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "market_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10: Kundene bruker noe annet enn det du bygget for. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "market_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10: Kundene bruker noe annet enn det du bygget for. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "market_learning"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11: Virksomheten har flere transaksjoner enn du klarer å huske. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "operating_admin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11: Virksomheten har flere transaksjoner enn du klarer å huske. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "operating_admin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11: Virksomheten har flere transaksjoner enn du klarer å huske. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "operating_admin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11: Virksomheten har flere transaksjoner enn du klarer å huske. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "operating_admin"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12: Ekstern kapital kan få virksomheten til å vokse raskere. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "growth_capital_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12: Ekstern kapital kan få virksomheten til å vokse raskere. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "growth_capital_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12: Ekstern kapital kan få virksomheten til å vokse raskere. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "growth_capital_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12: Ekstern kapital kan få virksomheten til å vokse raskere. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "growth_capital_use"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13: Virksomheten virker ikke slik dere trodde. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "exit_decision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13: Virksomheten virker ikke slik dere trodde. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "exit_decision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13: Virksomheten virker ikke slik dere trodde. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "exit_decision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13: Virksomheten virker ikke slik dere trodde. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "exit_decision"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Gründer-sesongen?. Morgenen gjør kunde-, kostnads-, kapasitets- eller driftsforutsetningen eksplisitt før dagens valg.",
+        "thread_ids": [
+          "entrepreneur_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Gründer-sesongen?. Midt på dagen møter virksomheten en konkret kunde, medgründer, leverandør eller annen part som gjør premisset sosialt virkelig.",
+        "thread_ids": [
+          "entrepreneur_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Gründer-sesongen?. Ettermiddagen krever et konkret etableringsvalg om pris, leveranse, kapasitet, drift, finansiering eller retning.",
+        "thread_ids": [
+          "entrepreneur_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14: Hva er faktisk bygget gjennom Gründer-sesongen?. Kvelden viser hva valget gjør med virksomhetens handlingsrom, gründerens kapasitet eller relasjonene rundt etableringen.",
+        "thread_ids": [
+          "entrepreneur_definition"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "customer_commitment",
+      "relationship": "første reelle kunder, leveranseomfang og hva virksomheten faktisk lover",
+      "beat_refs": [
+        "1/morning",
+        "1/afternoon",
+        "2/lunch",
+        "2/evening",
+        "3/morning"
+      ]
+    },
+    {
+      "id": "pricing_model",
+      "relationship": "prising, kostnadsforståelse og om salgsmodellen tåler gjentakelse",
+      "beat_refs": [
+        "2/morning",
+        "2/afternoon",
+        "3/lunch",
+        "3/evening",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "cofounder_roles",
+      "relationship": "medgründerarbeid, ansvarsdeling og forventet kapasitet",
+      "beat_refs": [
+        "3/morning",
+        "3/afternoon",
+        "4/lunch",
+        "4/evening",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "sales_capacity",
+      "relationship": "vekstsalg holdt innenfor faktisk leveransekapasitet",
+      "beat_refs": [
+        "4/morning",
+        "4/afternoon",
+        "5/lunch",
+        "5/evening",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "fixed_cost",
+      "relationship": "faste kostnader, varighet og hva som må bevises før kostnadsbasen økes",
+      "beat_refs": [
+        "5/morning",
+        "5/afternoon",
+        "6/lunch",
+        "6/evening",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "founder_capacity",
+      "relationship": "selvsysselsetting, arbeidsgrenser og om gründeren skjuler kapasitetsmangel med privat tid",
+      "beat_refs": [
+        "6/morning",
+        "6/afternoon",
+        "7/lunch",
+        "7/evening",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "supplier_dependency",
+      "relationship": "leverandøravhengighet og kontinuitet i kundeleveransen",
+      "beat_refs": [
+        "7/morning",
+        "7/afternoon",
+        "8/lunch",
+        "8/evening",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "early_staffing",
+      "relationship": "tidlig bemanning, tydelig betaling og rolle før virksomheten får mer kapasitet",
+      "beat_refs": [
+        "8/morning",
+        "8/afternoon",
+        "9/lunch",
+        "9/evening",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "customer_concentration",
+      "relationship": "kundekonsentrasjon, kommersiell avhengighet og handlingsrom",
+      "beat_refs": [
+        "9/morning",
+        "9/afternoon",
+        "10/lunch",
+        "10/evening",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "market_learning",
+      "relationship": "faktisk kundeadferd, pivot og disiplinert markedslæring",
+      "beat_refs": [
+        "10/morning",
+        "10/afternoon",
+        "11/lunch",
+        "11/evening",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "operating_admin",
+      "relationship": "administrativ rytme, dokumentasjon og usynlig arbeid i en reell virksomhet",
+      "beat_refs": [
+        "11/morning",
+        "11/afternoon",
+        "12/lunch",
+        "12/evening",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "growth_capital_use",
+      "relationship": "ekstern finansiering koblet til konkrete milepæler i stedet for vekst som mål i seg selv",
+      "beat_refs": [
+        "12/morning",
+        "12/afternoon",
+        "13/lunch",
+        "13/evening",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "exit_decision",
+      "relationship": "stopp, reduksjon eller endring vurdert mot framtidige muligheter og ikke bare tidligere innsats",
+      "beat_refs": [
+        "13/morning",
+        "13/afternoon",
+        "14/lunch",
+        "14/evening",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "entrepreneur_definition",
+      "relationship": "Gründer som entreprenøriell praksis og selvsysselsetting adskilt fra idéstatus, eierskap, investering og formell ledelse",
+      "beat_refs": [
+        "14/morning",
+        "14/afternoon",
+        "1/lunch",
+        "1/evening",
+        "2/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "salget_blir_en_leveransemodell",
+      "description": "Kunde, pris og kapasitet bindes sammen slik at tidlige salg kan gjentas uten at virksomheten lover mer enn den tåler.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere"
+      ]
+    },
+    {
+      "id": "grunnleggerarbeidet_far_grenser",
+      "description": "Medgründerroller og egen arbeidskapasitet blir eksplisitte i stedet for at entusiasme skjuler hvem som bærer virksomheten.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp"
+      ]
+    },
+    {
+      "id": "driften_blir_mindre_sarbar",
+      "description": "Faste kostnader, leverandøravhengighet og tidlig bemanning behandles som konkrete driftsvalg.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til"
+      ]
+    },
+    {
+      "id": "markedet_far_lov_til_a_endre_planen",
+      "description": "Kundekonsentrasjon og faktisk bruk blir signaler som kan endre retning uten at hver observasjon utløser panikk.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg"
+      ]
+    },
+    {
+      "id": "grunderrollen_blir_en_reell_praksis",
+      "description": "Administrasjon, kapitalbruk og muligheten til å stoppe gjør Gründer til aktiv entreprenøriell praksis uten å låne Bedriftseiers eller Daglig leders myndighet.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe",
+        "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "forste_salg_moter_prismodellen",
+      "setup_ref": "1/afternoon",
+      "return_ref": "2/evening",
+      "domains": [
+        "economy",
+        "reputation"
+      ]
+    },
+    {
+      "id": "medgrunderrollen_moter_vekstsalget",
+      "setup_ref": "3/afternoon",
+      "return_ref": "4/evening",
+      "domains": [
+        "relationship",
+        "livelihood"
+      ]
+    },
+    {
+      "id": "fast_kostnad_moter_grunderkapasitet",
+      "setup_ref": "5/afternoon",
+      "return_ref": "6/evening",
+      "domains": [
+        "economy",
+        "psyche"
+      ]
+    },
+    {
+      "id": "leverandor_moter_tidlig_bemanning",
+      "setup_ref": "7/afternoon",
+      "return_ref": "8/evening",
+      "domains": [
+        "livelihood",
+        "relationship"
+      ]
+    },
+    {
+      "id": "kundekonsentrasjon_moter_pivot",
+      "setup_ref": "9/afternoon",
+      "return_ref": "10/evening",
+      "domains": [
+        "economy",
+        "narrative"
+      ]
+    },
+    {
+      "id": "vekstkapital_moter_stoppbeslutning",
+      "setup_ref": "12/afternoon",
+      "return_ref": "14/evening",
+      "domains": [
+        "livelihood",
+        "narrative"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_reelle_kunden",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#prisen_som_ma_baere_mer_enn_entusiasme",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#medgrunderen_og_arbeidet",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_vil_ha_mer_enn_du_kan_levere",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_faste_regningen",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#arbeidsuken_uten_stopp",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#leverandoren_som_blir_kritisk",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#den_forste_som_skal_hjelpe_til",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#kunden_som_blir_for_viktig",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#produktet_som_ma_endre_seg",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#administrasjonen_som_har_blitt_virkelig",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#pengene_som_kan_kjope_fart",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#nar_det_er_riktig_a_stoppe",
+      "data/Civication/narratives/leisure/naeringsliv_grunder.json#sesongslutt_hva_er_en_grunder"
+    ]
+  }
+}
