@@ -1,0 +1,58 @@
+name: Temporary Industrieier read-only materialization
+
+on:
+  push:
+    branches:
+      - civication/naeringsliv-industrieier-role-world
+    paths:
+      - .github/workflows/tmp-industrieier-readonly.yml
+
+permissions:
+  contents: read
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Materialize branch files in runner workspace
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const R=(p)=>JSON.parse(fs.readFileSync(p,'utf8'));
+          const W=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n');
+          const worldPath='data/Civication/roleWorlds/naeringsliv/naeringsliv_industrieier.json';
+          const world=R(worldPath);
+          const indexPath='data/Civication/roleWorlds/index.json';
+          const index=R(indexPath);
+          if(!index.roles.some(x=>x.life_position_key==='naeringsliv/industrieier')) index.roles.push({category:'naeringsliv',role_scope:'naeringsliv_industrieier',subject_type:'life_position',life_position_key:'naeringsliv/industrieier',life_position_ref:{badge_id:'naeringsliv',id:'industrieier',label:'Industrieier'},status:'role_world_complete',path:worldPath});
+          index.status='238_role_worlds_materialized';
+          index.summary={role_worlds_total:238,career_role_worlds:85,life_position_role_worlds:153};
+          index.career_role_world_count=85;
+          index.life_position_role_world_count=153;
+          W(indexPath,index);
+          const checklistPath='data/Civication/roleWorldAuthoringChecklist.json';
+          const checklist=R(checklistPath);
+          if(!checklist.reference_worlds.includes(worldPath)) checklist.reference_worlds.push(worldPath);
+          W(checklistPath,checklist);
+          const themePath='data/Civication/roleWorldThemeBank.json';
+          const theme=R(themePath);
+          theme.reference_profiles['naeringsliv/naeringsliv_industrieier']=world.theme_ids;
+          W(themePath,theme);
+          NODE
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Package exact generated files
+        uses: actions/upload-artifact@v4
+        with:
+          name: industrieier-generated
+          path: |
+            data/Civication/roleWorlds/index.json
+            data/Civication/roleWorldAuthoringChecklist.json
+            data/Civication/roleWorldThemeBank.json
+            data/Civication/lifePositionRoleWorldReadiness.json
+            reports/civication-life-position-role-world-readiness.md
+          if-no-files-found: error
