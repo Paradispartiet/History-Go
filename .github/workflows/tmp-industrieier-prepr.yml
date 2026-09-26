@@ -1,0 +1,26 @@
+name: Temporary Industrieier pre-PR verification
+
+on:
+  push:
+    branches:
+      - civication/naeringsliv-industrieier-role-world
+    paths:
+      - .github/workflows/tmp-industrieier-prepr.yml
+
+permissions:
+  contents: read
+
+jobs:
+  civication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify compiled scene registry is synchronized
+        run: node scripts/build-civication-scene-registry.mjs --check
+      - name: Run complete Civication suite
+        run: npm run test:civication
