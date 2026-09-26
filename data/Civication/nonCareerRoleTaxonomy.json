@@ -27,7 +27,7 @@
     "Activity-, benefit- og housing-status er circumstances i hg_civi_life_positions_v1, ikke egne Role Worlds eller jobbroller.",
     "Vennskap og relasjonsnivå eies av CivicationRelationshipEngine og skal ikke dupliseres som livsposisjoner.",
     "Livelihood er dokumenterte inntektsstrømmer/muligheter og omskriver verken jobbstatus eller identitet.",
-    "roleModel er en authored fag-/rollemodell og kan være alias, Badge-tier eller canonical work scope; antallet roleModels er derfor ikke antallet spillerroller.",
+    "roleModel er en authored fag-/rollemodell for Career, Badge-tier eller Scenario People-resolusjon. En roleModel-fil er ikke i seg selv en spillerrolle.",
     "Role World kan beskrive en formell karriererolle eller en canonical life_position, men må fortsatt materialiseres gjennom civication_scene_v1 og eksisterende Scene Pipeline."
   ],
   "classes": {
@@ -108,8 +108,8 @@
     "canonical_scenario_role_models": 287,
     "shadowed_role_models": 6,
     "career_matrix_explicit_noncareer_worlds": 3,
-    "life_position_role_worlds": 152,
-    "total_role_worlds": 237
+    "life_position_role_worlds": 153,
+    "total_role_worlds": 238
   },
   "semantic_edge_cases": [
     {
@@ -313,7 +313,8 @@
       "musikk/artist",
       "musikk/frilansmusiker",
       "naeringsliv/bedriftseier",
-      "naeringsliv/grunder"
+      "naeringsliv/grunder",
+      "naeringsliv/industrieier"
     ],
     "next_source_backed_candidate": null
   }
