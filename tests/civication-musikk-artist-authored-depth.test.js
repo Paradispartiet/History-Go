@@ -69,7 +69,7 @@ assert.equal(row.role_world_status,'role_world_complete');
 assert.equal(row.role_world_path,worldPath);
 assert.equal(row.priority_score,365);
 assert.ok(!audit.queue.some(x=>x.key===lifeKey));
-assert.equal(audit.queue[0].key,'naeringsliv/industrieier');
+assert.equal(audit.queue[0].key,'naeringsliv/investor');
 
 assert.equal(world.schema,'civication_role_world_v1');
 assert.equal(world.subject_type,'life_position');
@@ -101,9 +101,9 @@ for(const ref of world.materialization.source_refs) assert.ok(ref.startsWith(str
 assert.deepEqual(themeBank.reference_profiles['musikk/musikk_artist'],world.theme_ids);
 assert.ok(checklist.reference_worlds.includes(worldPath));
 assert.ok(taxonomy.role_world_rollout_boundary.completed_life_position_role_worlds.includes(lifeKey));
-assert.equal(taxonomy.canonical_counts.life_position_role_worlds,152);
-assert.equal(taxonomy.canonical_counts.total_role_worlds,237);
-assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,152);
+assert.equal(taxonomy.canonical_counts.life_position_role_worlds,153);
+assert.equal(taxonomy.canonical_counts.total_role_worlds,238);
+assert.equal(policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,153);
 
 const commission=stream.storylets.find(x=>x.id==='bestillingen_som_vil_kjope_uttrykket');
 assert.match(commission.situation.join(' '),/betaling|kunstnerisk identitet|bestillingen/i);
