@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "naeringsliv_industrieier_stream",
+  "type": "leisure",
+  "title": "Industrieier — produksjonsmidler, kapitalbinding og industrielt eierskap",
+  "sociological_theme": "naeringsliv_industrieier_industrielt_eierskap_produksjonsmidler_industrikapital_kapasitetsutnyttelse_vedlikehold_energi_ravareavhengighet_anleggssted_automatisering_beredskap_pant_miljoforpliktelser_fleranleggskapital_oppkjop_avvikling_og_grensen_mot_bedriftseier_investor_industribygger_daglig_leder_eller_produksjonsleder",
+  "applies_when": {
+    "any_tags": [
+      "naeringsliv:industrieier"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "produksjonslinjen_som_ma_fornyes",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Fabrikksjefen",
+      "subject": "Produksjonslinjen nærmer seg grensen for hva den tåler",
+      "situation": [
+        "En sentral produksjonslinje kan fortsatt holdes i drift, men feilraten og vedlikeholdsbehovet øker mens konkurrentene investerer i nyere utstyr.",
+        "Som Industrieier eier du kapitalbindingen og den langsiktige beslutningen om produksjonsmidlene, men ikke den operative fabrikkledelsen.",
+        "Valget må koble investeringen til dokumentert behov, finansiering, levetid og hva anlegget faktisk skal produsere framover."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev et investeringsgrunnlag med kapasitetsbehov, levetid, finansiering og alternativer før du binder kapital.",
+          "effect": 1,
+          "tags": [
+            "industrial_capex",
+            "asset_lifecycle"
+          ],
+          "feedback": "Forventningene til investeringen blir målbare før pengene bindes."
+        },
+        {
+          "id": "B",
+          "label": "Bestem at den dyreste nye linjen skal kjøpes fordi moderne utstyr i seg selv viser at virksomheten satser.",
+          "effect": -1,
+          "tags": [
+            "prestige_capex",
+            "asset_overbuild"
+          ],
+          "feedback": "Eierskapet gjør status til investeringskriterium og binder kapital uten et tydelig produksjonsbehov."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_produksjonslinjen_som_ma_fornyes"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kapasiteten_som_staar_halvtom",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Fabrikksjefen",
+      "subject": "Anlegget har mer kapasitet enn markedet bruker",
+      "situation": [
+        "Ordreinngangen er svakere enn da anlegget ble dimensjonert, og store deler av produksjonskapasiteten står ubrukt.",
+        "Industrieierskap betyr å bære kapitalen som er bundet i anlegget også når etterspørselen svinger.",
+        "Du må skille mellom et midlertidig markedsgap og en varig overkapasitet før du legger mer penger inn i volum."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om scenarier for etterspørsel, kapasitetsutnyttelse og kontantbehov før du velger å holde, redusere eller bygge om kapasiteten.",
+          "effect": 1,
+          "tags": [
+            "capacity_utilization",
+            "demand_scenario"
+          ],
+          "feedback": "Overkapasiteten behandles som et langsiktig eierproblem med flere mulige utfall."
+        },
+        {
+          "id": "B",
+          "label": "Krev maksimal produksjon uansett ordreinngang slik at maskinene ikke ser underutnyttet ut.",
+          "effect": -1,
+          "tags": [
+            "forced_output",
+            "inventory_risk"
+          ],
+          "feedback": "Kapitalbindingen flyttes fra anlegget til usolgte varer uten at markedet er løst."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_kapasiteten_som_staar_halvtom"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vedlikeholdet_som_ikke_kan_utsettes",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk rådgiver",
+      "subject": "Vedlikeholdsetterslepet begynner å spise av anleggets verdi",
+      "situation": [
+        "Flere vedlikeholdspunkter er utsatt for å holde produksjonen i gang og kontantstrømmen oppe.",
+        "Et industrielt anlegg kan se lønnsomt ut på kort sikt samtidig som eierverdien svekkes hvis vedlikeholdet systematisk skyves framover.",
+        "Industrieieren må forstå forskjellen mellom planlagt utsettelse og en drift som finansierer seg ved å forbruke produksjonsmidlene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev en prioritert vedlikeholdsplan som viser risiko, produksjonsstans og kapitalbehov over tid.",
+          "effect": 1,
+          "tags": [
+            "maintenance_backlog",
+            "asset_preservation"
+          ],
+          "feedback": "Vedlikehold blir behandlet som vern av produksjonskapital, ikke bare som en løpende kostnad."
+        },
+        {
+          "id": "B",
+          "label": "Be fabrikken fortsette som før så lenge det fortsatt kommer varer ut av linjen.",
+          "effect": -1,
+          "tags": [
+            "maintenance_deferral",
+            "hidden_asset_decay"
+          ],
+          "feedback": "Kortsiktig produksjon får skjule at anleggets tekniske og økonomiske levetid spises opp."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_vedlikeholdet_som_ikke_kan_utsettes"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "energiprisen_som_endrer_regnestykket",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Energirådgiveren",
+      "subject": "Energikostnaden har endret hele marginbildet",
+      "situation": [
+        "Anlegget bruker mye energi, og kostnaden har blitt en av de største usikkerhetene i produksjonsøkonomien.",
+        "Som Industrieier må du forholde deg til at energi ikke bare er en driftskostnad, men også kan påvirke hvilke produksjonsmidler og lokasjoner som er bærekraftige å eie.",
+        "Du trenger et langsiktig syn på energieffektivitet, kontrakter og investeringsbehov uten å gjøre deg til operativ energisjef."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om et langsiktig energiscenario som sammenligner effektivisering, avtaler og investeringer før eierkapital bindes.",
+          "effect": 1,
+          "tags": [
+            "energy_exposure",
+            "industrial_efficiency"
+          ],
+          "feedback": "Energi blir del av eierskapets langsiktige kapitalbeslutning i stedet for en ren budsjettpost."
+        },
+        {
+          "id": "B",
+          "label": "Forutsett at energiprisene snart går tilbake og utsett alle strukturelle vurderinger.",
+          "effect": -1,
+          "tags": [
+            "energy_assumption",
+            "cost_denial"
+          ],
+          "feedback": "En kritisk kostnadsdriver behandles som midlertidig uten at eierskapet har et alternativ."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_energiprisen_som_endrer_regnestykket"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ravaren_som_bare_en_leverandor_har",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Innkjøpssjefen",
+      "subject": "En nøkkelråvare kommer nesten bare fra én leverandør",
+      "situation": [
+        "Produksjonen er avhengig av en råvare der én leverandør står for nesten hele volumet.",
+        "Industrieierens kapital er bundet i et anlegg som mister mye av sin verdi hvis innsatsfaktoren ikke kommer fram.",
+        "Du må vurdere robustheten i forsyningen på eierskapsnivå uten å overta de daglige innkjøpene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev en dokumentert avhengighetsanalyse og alternativer for leverandør, lager, substitutt eller teknisk omstilling.",
+          "effect": 1,
+          "tags": [
+            "raw_material_dependency",
+            "supply_resilience"
+          ],
+          "feedback": "Forsyningsrisiko blir knyttet til verdien av produksjonsmidlene og framtidig handlingsrom."
+        },
+        {
+          "id": "B",
+          "label": "Godta avhengigheten fordi leverandøren alltid har levert tidligere.",
+          "effect": -1,
+          "tags": [
+            "single_source_complacency",
+            "supply_fragility"
+          ],
+          "feedback": "Historisk stabilitet behandles som garanti for framtidig produksjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_ravaren_som_bare_en_leverandor_har"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anlegget_som_er_bundet_til_stedet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunekontakten",
+      "subject": "Anleggets verdi henger tett sammen med stedet det står på",
+      "situation": [
+        "Anlegget er avhengig av lokal infrastruktur, arbeidskraft, transport og offentlige rammer som ikke enkelt kan flyttes.",
+        "Industrieierskap skiller seg fra et mer flyttbart finansielt eierskap fordi store produksjonsmidler kan være fysisk låst til ett sted i tiår.",
+        "Før du bygger videre må du vite hvilke stedbundne forutsetninger du faktisk tar for gitt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg infrastruktur, arbeidskraft, transport og langsiktige rammer før du øker kapitalbindingen på stedet.",
+          "effect": 1,
+          "tags": [
+            "site_dependency",
+            "location_resilience"
+          ],
+          "feedback": "Stedet blir vurdert som en del av investeringen, ikke som en gratis konstant."
+        },
+        {
+          "id": "B",
+          "label": "Utvid anlegget fordi tomten allerede finnes og dermed virker som det naturlige valget.",
+          "effect": -1,
+          "tags": [
+            "site_lock_in",
+            "path_dependence"
+          ],
+          "feedback": "Historisk plassering blir gjort til framtidig strategi uten ny vurdering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_anlegget_som_er_bundet_til_stedet"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "automatiseringen_som_endrer_anlegget",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Fabrikksjefen",
+      "subject": "Automatisering kan løfte produktiviteten, men endrer hele anlegget",
+      "situation": [
+        "Et automatiseringsprosjekt lover høyere produktivitet, men krever ny kompetanse, ombygging og flere år med avskrivninger.",
+        "Som Industrieier må du vurdere om investeringen faktisk styrker produksjonsmidlenes langsiktige verdi.",
+        "Du skal ikke velge bemanning i detalj, men du kan heller ikke behandle menneskelig og teknisk overgang som noe som skjer av seg selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev et investeringscase som inkluderer ombygging, kompetansebehov, overgangsrisiko og realistisk produktivitetsgevinst.",
+          "effect": 1,
+          "tags": [
+            "automation_transition",
+            "industrial_productivity"
+          ],
+          "feedback": "Teknologien vurderes som en hel industriell overgang, ikke bare som et maskinkjøp."
+        },
+        {
+          "id": "B",
+          "label": "Godkjenn automatiseringen på prosentmålet alene og la resten løses etter installasjon.",
+          "effect": -1,
+          "tags": [
+            "automation_hype",
+            "transition_blindness"
+          ],
+          "feedback": "Et teknologiløfte blir brukt til å ignorere kostnadene ved selve omstillingen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_automatiseringen_som_endrer_anlegget"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "beredskapen_for_den_store_stansen",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk rådgiver",
+      "subject": "Ett havari kan stoppe store deler av produksjonen",
+      "situation": [
+        "En kritisk komponent mangler reell reserve, og et havari kan gi lang produksjonsstans.",
+        "Industrieierens problem er ikke å styre hver reservedel, men å forstå når konsentrert teknisk risiko truer hele kapitalgrunnlaget.",
+        "Beredskap koster penger før den trengs, mens fravær av beredskap kan gjøre anlegget verdiløst akkurat når markedet er sterkest."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om en kontinuitetsplan som viser kritiske komponenter, reservedeler, alternative løsninger og økonomisk konsekvens av stans.",
+          "effect": 1,
+          "tags": [
+            "continuity_resilience",
+            "critical_assets"
+          ],
+          "feedback": "Beredskap blir vurdert opp mot verdien av å holde produksjonsmidlene tilgjengelige."
+        },
+        {
+          "id": "B",
+          "label": "Aksepter risikoen fordi reservekapasitet ikke gir inntekter i et normalt år.",
+          "effect": -1,
+          "tags": [
+            "single_point_failure",
+            "resilience_underinvestment"
+          ],
+          "feedback": "Normal drift blir brukt som argument for å ignorere en risiko som bare blir synlig når den utløses."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_beredskapen_for_den_store_stansen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "panten_som_legges_i_maskinene",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Bankkontakten",
+      "subject": "Ny finansiering krever sikkerhet i produksjonsmidlene",
+      "situation": [
+        "Banken tilbyr kapital til en større investering, men vil ha omfattende sikkerhet i maskiner og anlegg.",
+        "Industrieierens eiendeler er både produksjonsgrunnlag og mulig sikkerhet, og finansiering kan derfor endre hvem som bærer risikoen ved et tilbakeslag.",
+        "Du må forstå hva som faktisk bindes og hvilke handlingsrom som forsvinner før kapitalen tas inn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Vurder sikkerheten, lånevilkårene og konsekvensen for framtidig investeringsfrihet før avtalen inngås.",
+          "effect": 1,
+          "tags": [
+            "asset_financing",
+            "collateral_exposure"
+          ],
+          "feedback": "Finansieringen blir vurdert sammen med hva eierskapet faktisk setter på spill."
+        },
+        {
+          "id": "B",
+          "label": "Ta finansieringen fordi lånet gjør investeringen mulig og se på sikkerheten som en formalitet.",
+          "effect": -1,
+          "tags": [
+            "collateral_blindness",
+            "leverage_pressure"
+          ],
+          "feedback": "Produksjonsmidlene bindes til långiver uten at handlingsrommet er forstått."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_panten_som_legges_i_maskinene"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "miljoforpliktelsen_som_folger_anlegget",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Miljørådgiveren",
+      "subject": "En gammel del av anlegget kan bære framtidige miljøkostnader",
+      "situation": [
+        "Historisk drift har etterlatt mulig forurensning og krav som kan følge anlegget lenge etter at produksjonen er endret.",
+        "Industrieierskap omfatter ikke bare markedsverdien av maskiner og bygg, men også langsiktige forpliktelser knyttet til det fysiske produksjonsstedet.",
+        "Du trenger et dokumentert bilde av kostnader, ansvar og tiltak før eiendelen prises eller bygges om."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev teknisk og økonomisk kartlegging av miljøforpliktelsen og bygg den inn i investerings- og verdivurderingen.",
+          "effect": 1,
+          "tags": [
+            "environmental_liability",
+            "site_obligation"
+          ],
+          "feedback": "Eierverdien inkluderer også forpliktelser som følger det fysiske anlegget."
+        },
+        {
+          "id": "B",
+          "label": "Se bort fra historiske forhold fordi dagens produksjon følger andre standarder.",
+          "effect": -1,
+          "tags": [
+            "legacy_liability_denial",
+            "valuation_blind_spot"
+          ],
+          "feedback": "Dagens drift brukes til å ignorere kostnader som kan være skapt av gårsdagens drift."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_miljoforpliktelsen_som_folger_anlegget"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "to_anlegg_som_konkurrerer_om_kapitalen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Konsernøkonomien",
+      "subject": "To anlegg trenger kapital samtidig",
+      "situation": [
+        "To fabrikker har gode investeringsargumenter, men eierkapitalen er ikke stor nok til å finansiere begge programmene fullt ut.",
+        "Industrieierrollen handler også om å allokere knapp kapital mellom fysiske produksjonsbaser med ulike markeder, risikoer og levetider.",
+        "Du må sammenligne hva hvert anlegg skal være i framtiden, ikke bare hvem som argumenterer sterkest i dag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sammenlign anleggene på strategisk rolle, avkastningskrav, risiko, levetid og alternativkostnad før kapitalen fordeles.",
+          "effect": 1,
+          "tags": [
+            "multi_site_allocation",
+            "capital_priority"
+          ],
+          "feedback": "Kapitalen fordeles etter hva eiendelene skal gjøre for industrivirksomheten over tid."
+        },
+        {
+          "id": "B",
+          "label": "Del pengene likt for å unngå konflikt mellom fabrikkene.",
+          "effect": -1,
+          "tags": [
+            "equal_split_bias",
+            "portfolio_avoidance"
+          ],
+          "feedback": "Lik behandling erstatter en reell prioritering av produksjonsmidler."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_to_anlegg_som_konkurrerer_om_kapitalen"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kjopet_av_et_nytt_anlegg",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Transaksjonsrådgiveren",
+      "subject": "Et eksisterende anlegg er til salgs",
+      "situation": [
+        "Et konkurrerende eller komplementært produksjonsanlegg kan kjøpes til en pris som virker attraktiv sammenlignet med å bygge nytt.",
+        "For en Industrieier er oppkjøpet mer enn en finansiell plassering fordi du overtar fysiske eiendeler, vedlikeholdshistorikk, stedbundne forhold og framtidige kapitalbehov.",
+        "Prisen må vurderes sammen med hva det faktisk koster å eie og utvikle anlegget etter overtakelsen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev teknisk, kommersiell og finansiell gjennomgang med eksplisitt plan for framtidig kapitalbehov før bud.",
+          "effect": 1,
+          "tags": [
+            "industrial_acquisition",
+            "asset_due_diligence"
+          ],
+          "feedback": "Kjøpsprisen blir bare én del av vurderingen av det industrielle eierskapet."
+        },
+        {
+          "id": "B",
+          "label": "Kjøp fordi prisen ligger under bokført verdi og anta at forskjellen er en sikker gevinst.",
+          "effect": -1,
+          "tags": [
+            "cheap_asset_bias",
+            "acquisition_blindness"
+          ],
+          "feedback": "En lav pris får skjule kostnaden ved å overta et fysisk produksjonssystem."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_kjopet_av_et_nytt_anlegg"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anlegget_som_kanskje_ma_stenges",
+      "message_type": "conflict",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Fabrikksjefen",
+      "subject": "Et gammelt anlegg har ikke lenger et tydelig framtidsgrunnlag",
+      "situation": [
+        "Et anlegg har svak lønnsomhet, høyt investeringsbehov og få tegn til at markedet vil bære en full modernisering.",
+        "Industrieierskap innebærer også å kunne slutte å binde kapital i et produksjonsmiddel som ikke lenger har en troverdig framtid.",
+        "En nedleggelse påvirker mennesker og lokalsamfunn, men det gjør også en langvarig utsettelse uten reell plan."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Krev et transparent beslutningsgrunnlag for modernisering, salg, ombygging eller avvikling og gjør konsekvensene eksplisitte.",
+          "effect": 1,
+          "tags": [
+            "industrial_exit",
+            "asset_redeployment"
+          ],
+          "feedback": "Eierskapet gjør også vanskelige sluttbeslutninger sammenlignbare og etterprøvbare."
+        },
+        {
+          "id": "B",
+          "label": "Hold anlegget i gang uten sluttdato fordi en nedleggelse er vanskelig å kommunisere.",
+          "effect": -1,
+          "tags": [
+            "exit_avoidance",
+            "capital_trap"
+          ],
+          "feedback": "Kapital og tid bindes videre fordi beslutningen er sosialt og politisk ubehagelig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_anlegget_som_kanskje_ma_stenges"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_industrieier",
+      "message_type": "decision",
+      "time_slot": [
+        "personal",
+        "leisure"
+      ],
+      "from": "Eiermøtet",
+      "subject": "Hva er faktisk bygget gjennom Industrieier-sesongen?",
+      "situation": [
+        "Sesongen har tvunget fram valg om maskiner, kapasitet, vedlikehold, energi, råvarer, sted, automatisering, beredskap, finansiering, miljøforpliktelser, fleranlegg, oppkjøp og avvikling.",
+        "Industrieier er ikke det samme som Bedriftseier, Investor, Industribygger, Daglig leder eller Produksjonsleder.",
+        "Kjernen er langsiktig eierskap til industrielle produksjonsmidler og kapitalen, forpliktelsene og valgene som følger de fysiske eiendelene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Definer rollen som industrielt eierskap til produksjonsmidler med ansvar for langsiktig kapitalbinding og strukturelle eierbeslutninger.",
+          "effect": 1,
+          "tags": [
+            "industrial_owner_definition",
+            "ownership_boundary"
+          ],
+          "feedback": "Industrieier forblir en selvstendig eierskapsposisjon med klare grenser mot drift, investering og omdømme."
+        },
+        {
+          "id": "B",
+          "label": "Definer rollen som retten til å bestemme alle daglige produksjonsvalg fordi du eier anlegget.",
+          "effect": -1,
+          "tags": [
+            "owner_operator_blur",
+            "authority_overreach"
+          ],
+          "feedback": "Eierskap blandes sammen med operativ ledermyndighet og gjør rollegrensene uklare."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "industrieier_sesongslutt_hva_er_en_industrieier"
+      ],
+      "risk_links": [
+        "financial_risk",
+        "reputation_risk"
+      ],
+      "links": []
+    }
+  ]
+}
