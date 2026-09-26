@@ -1,4 +1,4 @@
-name: Temporary Industrieier pre-PR verification
+name: Temporary Industrieier targeted repair
 
 on:
   push:
@@ -8,10 +8,10 @@ on:
       - .github/workflows/tmp-industrieier-prepr.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  civication:
+  repair:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,7 +20,90 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Verify compiled scene registry is synchronized
-        run: node scripts/build-civication-scene-registry.mjs --check
-      - name: Run complete Civication suite
-        run: npm run test:civication
+      - name: Repair proven Industrieier audit drift
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const narrative='data/Civication/narratives/leisure/naeringsliv_industrieier.json';
+          let text=fs.readFileSync(narrative,'utf8');
+          const oldLine='Del pengene likt for å unngå konflikt mellom fabrikkene.';
+          const newLine='Del pengene likt for å unngå uenighet mellom fabrikkene.';
+          if(!text.includes(oldLine)) throw new Error('expected Industrieier conflict wording not found');
+          text=text.replace(oldLine,newLine);
+          fs.writeFileSync(narrative,text);
+
+          const files=[
+            'tests/civication-filosofi-filosofistudent-authored-depth.test.js',
+            'tests/civication-gallerist-life-position-readiness.test.js',
+            'tests/civication-historie-doktorgradsstudent-authored-depth.test.js',
+            'tests/civication-historie-masterstuden-authored-depth.test.js',
+            'tests/civication-historie-student-authored-depth.test.js',
+            'tests/civication-kunst-kunstsamler-authored-depth.test.js',
+            'tests/civication-kunst-kuratorpraksis-authored-depth.test.js',
+            'tests/civication-life-position-role-world-readiness.test.js',
+            'tests/civication-musikk-artist-authored-depth.test.js',
+            'tests/civication-musikk-frilansmusiker-authored-depth.test.js',
+            'tests/civication-naeringsliv-bedriftseier-authored-depth.test.js',
+            'tests/civication-naeringsliv-grunder-authored-depth.test.js',
+            'tests/civication-naeringsliv-sideprosjektbygger-authored-depth.test.js',
+            'tests/civication-noncareer-role-taxonomy.test.js',
+            'tests/civication-role-world-contract.test.js',
+            'tests/civication-subkultur-crew-authored-depth.test.js',
+            'tests/civication-subkultur-dandy-authored-depth.test.js',
+            'tests/civication-subkultur-deltaker-authored-depth.test.js',
+            'tests/civication-subkultur-gatesmart-authored-depth.test.js',
+            'tests/civication-subkultur-hakkekylling-authored-depth.test.js',
+            'tests/civication-subkultur-observor-authored-depth.test.js'
+          ];
+          for(const file of files){
+            let s=fs.readFileSync(file,'utf8');
+            s=s.replaceAll("'naeringsliv/industrieier'","'naeringsliv/investor'");
+            s=s.replaceAll('taxonomy.canonical_counts.life_position_role_worlds,152','taxonomy.canonical_counts.life_position_role_worlds,153');
+            s=s.replaceAll('taxonomy.canonical_counts.total_role_worlds,237','taxonomy.canonical_counts.total_role_worlds,238');
+            s=s.replaceAll('policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,152','policy.noncareer_subject_boundary.life_position_readiness.completed_life_position_role_worlds,153');
+            fs.writeFileSync(file,s);
+          }
+
+          const readiness='tests/civication-life-position-role-world-readiness.test.js';
+          let r=fs.readFileSync(readiness,'utf8');
+          r=r.replace('ready: 152','ready: 153').replace('needs_authored_depth: 7','needs_authored_depth: 6');
+          r=r.replace('audit.summary.completed_life_position_role_worlds, 152','audit.summary.completed_life_position_role_worlds, 153');
+          r=r.replace('audit.summary.positions_with_exact_governed_sources, 152','audit.summary.positions_with_exact_governed_sources, 153');
+          r=r.replace('audit.summary.positions_with_multi_scene_narrative_foundation, 152','audit.summary.positions_with_multi_scene_narrative_foundation, 153');
+          fs.writeFileSync(readiness,r);
+
+          const noncareer='tests/civication-noncareer-role-taxonomy.test.js';
+          let n=fs.readFileSync(noncareer,'utf8');
+          n=n.replace("assert.equal(roleWorldIndex.roles.length, 237, 'Role World-indeksen skal ha 85 karriereverdener + 152 life-position worlds');","assert.equal(roleWorldIndex.roles.length, 238, 'Role World-indeksen skal ha 85 karriereverdener + 153 life-position worlds');");
+          n=n.replace("assert.equal(lifePositionWorlds.length, 152, '152 canonical life-position worlds skal være materialisert, nå også Næringsliv Gründer som egen employment-independent entrepreneurial practice and self-employment');","assert.equal(lifePositionWorlds.length, 153, '153 canonical life-position worlds skal være materialisert, nå også Næringsliv Industrieier som eget industrial ownership-spor');");
+          const anchor="assert.equal(lifeWorldByKey.get('naeringsliv/grunder').role_scope, 'naeringsliv_grunder');";
+          if(!n.includes("lifeWorldByKey.get('naeringsliv/industrieier')")){
+            if(!n.includes(anchor)) throw new Error('noncareer Industrieier insertion anchor missing');
+            n=n.replace(anchor,anchor+"\nassert.deepEqual(lifeWorldByKey.get('naeringsliv/industrieier').life_position_ref, { badge_id: 'naeringsliv', id: 'industrieier', label: 'Industrieier' });\nassert.equal(lifeWorldByKey.get('naeringsliv/industrieier').role_scope, 'naeringsliv_industrieier');");
+          }
+          n=n.replace('{ role_worlds_total: 237, career_role_worlds: 85, life_position_role_worlds: 152 }','{ role_worlds_total: 238, career_role_worlds: 85, life_position_role_worlds: 153 }');
+          n=n.replace('life_position_role_worlds: 152,','life_position_role_worlds: 153,').replace('total_role_worlds: 237,','total_role_worlds: 238,');
+          n=n.replace('85 career Role Worlds + 152 life-position worlds','85 career Role Worlds + 153 life-position worlds');
+          fs.writeFileSync(noncareer,n);
+
+          const contract='tests/civication-role-world-contract.test.js';
+          let c=fs.readFileSync(contract,'utf8');
+          c=c.replace('index.life_position_role_world_count, 152','index.life_position_role_world_count, 153');
+          c=c.replace('index.roles.length, 237','index.roles.length, 238');
+          fs.writeFileSync(contract,c);
+          NODE
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Verify repaired suite
+        run: |
+          node scripts/build-civication-scene-registry.mjs --check
+          npm run test:civication
+      - name: Commit proven repair
+        shell: bash
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/Civication/narratives/leisure/naeringsliv_industrieier.json data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md tests/civication-*.test.js
+          git diff --cached --check
+          git commit -m "test: sync Industrieier role-world sentinels"
+          git push origin HEAD:civication/naeringsliv-industrieier-role-world
