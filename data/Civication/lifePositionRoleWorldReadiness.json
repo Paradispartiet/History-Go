@@ -32,33 +32,22 @@
   "summary": {
     "selectable_life_positions": 199,
     "classifications": {
-      "ready": 152,
-      "needs_authored_depth": 7,
+      "ready": 153,
+      "needs_authored_depth": 6,
       "not_a_standalone_world": 40
     },
-    "completed_life_position_role_worlds": 152,
-    "queue_length": 7,
+    "completed_life_position_role_worlds": 153,
+    "queue_length": 6,
     "livelihood_backed_positions": 15,
-    "positions_with_exact_governed_sources": 152,
-    "positions_with_multi_scene_narrative_foundation": 152,
-    "life_position_role_world_complete": 152,
+    "positions_with_exact_governed_sources": 153,
+    "positions_with_multi_scene_narrative_foundation": 153,
+    "life_position_role_world_complete": 153,
     "pending_ready_positions": 0
   },
   "first_ready": null,
   "queue": [
     {
       "rank": 1,
-      "key": "naeringsliv/industrieier",
-      "label": "Industrieier",
-      "badge_id": "naeringsliv",
-      "classification": "needs_authored_depth",
-      "priority_score": 500,
-      "exact_source_ref_count": 0,
-      "livelihood_template_count": 0,
-      "max_narrative_depth": 0
-    },
-    {
-      "rank": 2,
       "key": "naeringsliv/investor",
       "label": "Investor",
       "badge_id": "naeringsliv",
@@ -69,7 +58,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 3,
+      "rank": 2,
       "key": "scenekunst/dramaturg",
       "label": "Dramaturg",
       "badge_id": "scenekunst",
@@ -80,7 +69,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 4,
+      "rank": 3,
       "key": "scenekunst/koreograf",
       "label": "Koreograf",
       "badge_id": "scenekunst",
@@ -91,7 +80,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 5,
+      "rank": 4,
       "key": "scenekunst/regissor",
       "label": "Regissør",
       "badge_id": "scenekunst",
@@ -102,7 +91,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 6,
+      "rank": 5,
       "key": "scenekunst/scenekunstkurator",
       "label": "Scenekunstkurator",
       "badge_id": "scenekunst",
@@ -113,7 +102,7 @@
       "max_narrative_depth": 0
     },
     {
-      "rank": 7,
+      "rank": 6,
       "key": "scenekunst/skuespiller_danser",
       "label": "Skuespiller / danser",
       "badge_id": "scenekunst",
@@ -246,7 +235,7 @@
         "description_present": true,
         "hook_count": 3,
         "exact_source_ref_count": 1,
-        "thematic_source_ref_count": 17,
+        "thematic_source_ref_count": 18,
         "livelihood_template_count": 0,
         "max_narrative_depth": 14
       },
@@ -262,7 +251,7 @@
           "data/Civication/narratives/leisure/liv_lovsbane_kriminell.json",
           "data/Civication/narratives/leisure/media_bidragsyter.json",
           "data/Civication/narratives/leisure/media_frilansjournalist.json",
-          "data/Civication/narratives/leisure/naeringsliv_pendler.json"
+          "data/Civication/narratives/leisure/naeringsliv_industrieier.json"
         ],
         "livelihood_templates": [],
         "livelihood_ref": null
@@ -3775,28 +3764,27 @@
       "kind": "industrial_ownership",
       "semantic_mode": "livelihood_or_ownership_identity",
       "runtime_source": "badge_tier",
-      "classification": "needs_authored_depth",
-      "role_world_status": "role_world_not_started",
-      "role_world_path": null,
-      "priority_score": 500,
+      "classification": "ready",
+      "role_world_status": "role_world_complete",
+      "role_world_path": "data/Civication/roleWorlds/naeringsliv/naeringsliv_industrieier.json",
+      "priority_score": 365,
       "authored_depth": {
         "description_present": false,
         "hook_count": 0,
-        "exact_source_ref_count": 0,
+        "exact_source_ref_count": 1,
         "thematic_source_ref_count": 0,
         "livelihood_template_count": 0,
-        "max_narrative_depth": 0
+        "max_narrative_depth": 14
       },
       "evidence": {
-        "exact_source_refs": [],
+        "exact_source_refs": [
+          "data/Civication/narratives/leisure/naeringsliv_industrieier.json"
+        ],
         "thematic_source_refs": [],
         "livelihood_templates": [],
         "livelihood_ref": null
       },
-      "next_work": [
-        "author_role_specific_private_life_social_or_narrative_sources",
-        "then_reaudit_before_role_world_production"
-      ]
+      "next_work": []
     },
     {
       "key": "naeringsliv/investor",
