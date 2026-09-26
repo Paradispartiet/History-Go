@@ -1,4 +1,4 @@
-name: Temporary Industrieier read-only materialization
+name: Temporary Industrieier materialization sync
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
       - .github/workflows/tmp-industrieier-readonly.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   materialize:
@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Materialize branch files in runner workspace
+      - name: Materialize exact generated files
         shell: bash
         run: |
           node <<'NODE'
@@ -45,14 +45,18 @@ jobs:
           W(themePath,theme);
           NODE
           node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-      - name: Package exact generated files
-        uses: actions/upload-artifact@v4
-        with:
-          name: industrieier-generated
-          path: |
-            data/Civication/roleWorlds/index.json
-            data/Civication/roleWorldAuthoringChecklist.json
-            data/Civication/roleWorldThemeBank.json
-            data/Civication/lifePositionRoleWorldReadiness.json
+      - name: Commit generated governance output
+        shell: bash
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            data/Civication/roleWorlds/index.json \
+            data/Civication/roleWorldAuthoringChecklist.json \
+            data/Civication/roleWorldThemeBank.json \
+            data/Civication/lifePositionRoleWorldReadiness.json \
             reports/civication-life-position-role-world-readiness.md
-          if-no-files-found: error
+          mapfile -t staged < <(git diff --cached --name-only)
+          test "${#staged[@]}" -eq 5
+          git commit -m "chore: materialize Industrieier generated governance"
+          git push origin HEAD:civication/naeringsliv-industrieier-role-world
