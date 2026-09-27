@@ -15,12 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Inspect triggers_on_choice semantics
+      - name: Inspect proven trigger thread contract
         shell: bash
         run: |
-          echo '=== non-JSON consumers / validators ==='
-          grep -R --line-number --exclude='*.json' --exclude='*.md' 'triggers_on_choice' js scripts tests src 2>/dev/null || true
-          echo '=== exact missing target occurrences ==='
-          grep -R --line-number 'by_areal_people_plansjef_004_presisjon\|by_areal_people_plansjef_004_tempo_risiko\|by_areal_people_skolevei_005_presisjon\|by_areal_people_skolevei_005_tempo_risiko\|by_areal_people_juridisk_006_presisjon\|by_areal_people_juridisk_006_tempo_risiko\|by_areal_people_politisk_007_presisjon\|by_areal_people_politisk_007_tempo_risiko\|by_areal_people_arkitekt_008_presisjon\|by_areal_people_arkitekt_008_tempo_risiko' data js scripts tests 2>/dev/null || true
-          echo '=== representative trigger maps ==='
-          grep -R --line-number -A8 -B2 '"triggers_on_choice"' data/Civication/mailFamilies/by data/Civication/mailFamilies/naeringsliv 2>/dev/null | head -320 || true
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const file='data/Civication/mailFamilies/naeringsliv/job/formann_job.json';
+          const data=JSON.parse(fs.readFileSync(file,'utf8'));
+          const family=data.families.find(f => (f.threads||[]).some(t => t.id === 'job_formann_week1_first_shift_board_fair'));
+          const thread=family.threads.find(t => t.id === 'job_formann_week1_first_shift_board_fair');
+          console.log(JSON.stringify({family_id:family.id, thread}, null, 2));
+          const by=JSON.parse(fs.readFileSync('data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json','utf8'));
+          const sourceFamily=by.families.find(f => (f.mails||[]).some(m => m.id === 'by_areal_people_plansjef_004'));
+          console.log('BY_SOURCE_FAMILY', JSON.stringify({id:sourceFamily.id, threads:sourceFamily.threads || null}, null, 2));
+          NODE
