@@ -279,7 +279,8 @@
                 "precision",
                 "politisk_lesbarhet"
               ],
-              "feedback": "Du gjør saken kortere uten å gjøre risikoen usynlig for ledelsen."
+              "feedback": "Du gjør saken kortere uten å gjøre risikoen usynlig for ledelsen.",
+              "triggers_on_choice": "by_areal_people_plansjef_004_presisjon"
             },
             {
               "id": "B",
@@ -290,7 +291,8 @@
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du gir plansjefen noe brukbart raskt, men skyver deler av vurderingen videre."
+              "feedback": "Du gir plansjefen noe brukbart raskt, men skyver deler av vurderingen videre.",
+              "triggers_on_choice": "by_areal_people_plansjef_004_tempo_risiko"
             }
           ],
           "next_bias": {
@@ -355,7 +357,8 @@
                 "trafikksikkerhet",
                 "precision"
               ],
-              "feedback": "Du gjør brukskunnskapen etterprøvbar før den forsvinner i plankartets antakelser."
+              "feedback": "Du gjør brukskunnskapen etterprøvbar før den forsvinner i plankartets antakelser.",
+              "triggers_on_choice": "by_areal_people_skolevei_005_presisjon"
             },
             {
               "id": "B",
@@ -366,7 +369,8 @@
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du demper trykket raskt, men lar et mulig avvik mellom kart og faktisk bruk bestå."
+              "feedback": "Du demper trykket raskt, men lar et mulig avvik mellom kart og faktisk bruk bestå.",
+              "triggers_on_choice": "by_areal_people_skolevei_005_tempo_risiko"
             }
           ],
           "next_bias": {
@@ -431,7 +435,8 @@
                 "juridisk_presisjon",
                 "integrity"
               ],
-              "feedback": "Du gjør intensjonen om til en bestemmelse som kan følges opp i byggesaken."
+              "feedback": "Du gjør intensjonen om til en bestemmelse som kan følges opp i byggesaken.",
+              "triggers_on_choice": "by_areal_people_juridisk_006_presisjon"
             },
             {
               "id": "B",
@@ -442,7 +447,8 @@
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du unngår omkamp nå, men bestemmelsen kan bli for svak når tiltaket skal gjennomføres."
+              "feedback": "Du unngår omkamp nå, men bestemmelsen kan bli for svak når tiltaket skal gjennomføres.",
+              "triggers_on_choice": "by_areal_people_juridisk_006_tempo_risiko"
             }
           ],
           "next_bias": {
@@ -507,7 +513,8 @@
                 "demokratisk_lesbarhet",
                 "precision"
               ],
-              "feedback": "Du gjør ansvaret lesbart uten å ta den politiske vurderingen ut av politikken."
+              "feedback": "Du gjør ansvaret lesbart uten å ta den politiske vurderingen ut av politikken.",
+              "triggers_on_choice": "by_areal_people_politisk_007_presisjon"
             },
             {
               "id": "B",
@@ -518,7 +525,8 @@
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du gjør teksten lettere å lese, men kan gjøre det uklart hvem som eier risikoen."
+              "feedback": "Du gjør teksten lettere å lese, men kan gjøre det uklart hvem som eier risikoen.",
+              "triggers_on_choice": "by_areal_people_politisk_007_tempo_risiko"
             }
           ],
           "next_bias": {
@@ -583,7 +591,8 @@
                 "romlig_forstaelse",
                 "precision"
               ],
-              "feedback": "Du behandler illustrasjonen som faglig materiale, ikke bare som et pent bilde."
+              "feedback": "Du behandler illustrasjonen som faglig materiale, ikke bare som et pent bilde.",
+              "triggers_on_choice": "by_areal_people_arkitekt_008_presisjon"
             },
             {
               "id": "B",
@@ -594,7 +603,8 @@
                 "tempo",
                 "risk"
               ],
-              "feedback": "Du får et tydelig bilde ut raskt, men kan låse forventninger før konsekvensene er sjekket."
+              "feedback": "Du får et tydelig bilde ut raskt, men kan låse forventninger før konsekvensene er sjekket.",
+              "triggers_on_choice": "by_areal_people_arkitekt_008_tempo_risiko"
             }
           ],
           "next_bias": {
@@ -614,6 +624,358 @@
           },
           "channel": "private",
           "messageChannel": "private"
+        }
+      ],
+      "threads": [
+        {
+          "id": "by_areal_people_plansjef_004_presisjon",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "morning",
+          "priority": 71,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Møteversjonen holder risikoen synlig",
+          "summary": "Elin bruker den korte møteversjonen uten å miste grøntdraget og skoleveien av syne; forenklingen gjør saken mer lesbar uten å skjule faglig risiko.",
+          "situation": [
+            "Elin har brukt møteversjonen i forberedelsen og sier at den var kort nok til å fungere, men presis nok til at grøntdraget og skoleveien fortsatt ble behandlet som reelle premisser.",
+            "Det gjør at neste diskusjon kan handle om prioritering i stedet for å oppdage skjult risiko på nytt."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_plansjef_004_tempo_risiko",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "morning",
+          "priority": 70,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "elin_plansjef",
+          "sender": "elin_plansjef",
+          "person_id": "elin_plansjef",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Forbeholdene kommer tilbake som nye spørsmål",
+          "summary": "Den raske møteversjonen kom fram i tide, men de utsatte faglige forbeholdene blir nå spørsmål ledelsen må rydde i før saken kan gå videre.",
+          "situation": [
+            "Elin fikk et brukbart dokument raskt, men møtet avdekket at grøntdrag og skolevei var for svakt forklart til at ansvarsbildet ble klart.",
+            "Det som ble spart i tid før møtet kommer tilbake som omarbeiding og behov for en ny faglig avklaring."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_skolevei_005_presisjon",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "lunch",
+          "priority": 67,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "tariq_trafikk_skolevei",
+          "sender": "tariq_trafikk_skolevei",
+          "person_id": "tariq_trafikk_skolevei",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den faktiske skoleveien er nå en del av grunnlaget",
+          "summary": "Barnas faktiske rute er lagt inn i kartgrunnlaget og saksnotatet, slik at trafikksikkerheten kan vurderes mot den veien som faktisk brukes.",
+          "situation": [
+            "Tariq bekrefter at snarveien bak parkeringskjelleren nå er synlig i materialet som prosjektet og kommunen arbeider videre med.",
+            "Avviket mellom plankartets antakelse og faktisk bruk kan dermed testes og dokumenteres før planvalget låses."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_skolevei_005_tempo_risiko",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "lunch",
+          "priority": 66,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "tariq_trafikk_skolevei",
+          "sender": "tariq_trafikk_skolevei",
+          "person_id": "tariq_trafikk_skolevei",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Den midlertidige skoleveiavklaringen holder ikke alene",
+          "summary": "Den praktiske avklaringen dempet trykket, men forskjellen mellom formelt kartgrunnlag og barnas faktiske rute dukker opp igjen før saken kan ferdigstilles.",
+          "situation": [
+            "Tariq melder at den midlertidige løsningen fungerer i hverdagen, men at plankartet fortsatt beskriver en annen bevegelse enn den barn faktisk bruker.",
+            "Uten en oppdatering av grunnlaget risikerer neste vurdering å bygge videre på samme feil premiss."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_juridisk_006_presisjon",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 73,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Rekkefølgekravet kan faktisk håndheves",
+          "summary": "Nora bekrefter at det strammere rekkefølgekravet gjør grøntdrag og skolevei til gjennomførbare plikter i stedet for bare gode intensjoner.",
+          "situation": [
+            "Den nye formuleringen knytter gjennomføringstidspunkt og krav tydelig nok sammen til at forholdet kan følges opp når byggesaken kommer.",
+            "Saken mister litt fleksibilitet nå, men vinner juridisk presisjon og et etterprøvbart ansvar senere."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_juridisk_006_tempo_risiko",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 72,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "nora_planjuss",
+          "sender": "nora_planjuss",
+          "person_id": "nora_planjuss",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Intensjonen mangler fortsatt håndhevbarhet",
+          "summary": "Nora varsler at teksten fortsatt uttrykker ønsket resultat uten å sikre når eller hvordan grøntdrag og skolevei faktisk må være løst.",
+          "situation": [
+            "Framdriften ble beholdt, men den åpne formuleringen flytter risikoen til gjennomføringsfasen der kommunen har mindre rom til å korrigere.",
+            "Et senere prosjekt kan derfor oppfylle ordlyden uten å levere den virkningen saksframstillingen lover."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_politisk_007_presisjon",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 65,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maja_utvalgssekretaer",
+          "sender": "maja_utvalgssekretaer",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Utvalget ser hva som er fag og hva som er politikk",
+          "summary": "Maja bekrefter at saksframlegget nå skiller dokumentert faglig risiko fra de prioriteringene politikerne faktisk skal eie.",
+          "situation": [
+            "Utvalget får et kort beslutningsgrunnlag der usikkerhet og konsekvens er synlig uten at administrasjonen gjør den politiske avveiingen på forhånd.",
+            "Ansvarsdelingen blir dermed lettere å etterprøve både under møtet og i den senere protokollen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_politisk_007_tempo_risiko",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "afternoon",
+          "priority": 64,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "maja_utvalgssekretaer",
+          "sender": "maja_utvalgssekretaer",
+          "person_id": "maja_utvalgssekretaer",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "job",
+          "messageChannel": "job",
+          "mail_class": "job_message",
+          "subject": "Forenklingen gjør ansvarslinjen uklar",
+          "summary": "Den korte teksten er lett å lese, men Maja får nye spørsmål om hvilke konsekvenser som er faglige premisser og hvilke valg utvalget selv må stå for.",
+          "situation": [
+            "Flere formuleringer kan leses som om administrasjonen allerede har valgt mellom politiske alternativer, selv om hensikten bare var å komprimere saken.",
+            "Før behandling må ansvaret derfor skrives tydeligere fram for å unngå at risiko og prioritering blandes sammen."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_arkitekt_008_presisjon",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 63,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "petter_plankonsulent",
+          "sender": "petter_plankonsulent",
+          "person_id": "petter_plankonsulent",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Høydeillustrasjonen tåler den faglige kontrollen",
+          "summary": "Kontrollen mot grøntdrag, skolevei, støy og overvann viser hvilke forutsetninger illustrasjonen bygger på, slik at den kan brukes uten å framstå som et ferdig svar.",
+          "situation": [
+            "Petter får tilbake en tydelig liste over hvilke deler av illustrasjonen som holder og hvilke premisser som må merkes før den deles videre.",
+            "Bildet kan dermed brukes som kommunikasjon uten at det alene låser forventningen til planens endelige løsning."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
+        },
+        {
+          "id": "by_areal_people_arkitekt_008_tempo_risiko",
+          "mail_type": "people",
+          "mail_family": "aktorer_og_press",
+          "role_scope": "by_radgiver_plan",
+          "phase": "evening",
+          "priority": 62,
+          "cooldown": 0,
+          "repeatable": false,
+          "stage": "stable",
+          "from": "petter_plankonsulent",
+          "sender": "petter_plankonsulent",
+          "person_id": "petter_plankonsulent",
+          "place_id": "oslo_planomrade_indre_by",
+          "channel": "private",
+          "messageChannel": "private",
+          "mail_class": "private_message",
+          "subject": "Illustrasjonen har allerede begynt å låse forventninger",
+          "summary": "Den raske delingen gjør høydebildet til et uformelt løfte før konsekvensene for grøntdrag, skolevei, støy og overvann er kontrollert.",
+          "situation": [
+            "Petter melder at illustrasjonen allerede sirkulerer som om den viser den sannsynlige løsningen, selv om flere faglige avveininger fortsatt er åpne.",
+            "Neste runde må derfor både korrigere forventninger og forklare hvilke premisser bildet ikke viste."
+          ],
+          "choices": [
+            {
+              "id": "A",
+              "label": "Lest",
+              "effect": 0,
+              "tags": [
+                "consequence"
+              ],
+              "feedback": "Konsekvensen er registrert i Lillebekk-sakens videre spor."
+            }
+          ]
         }
       ]
     },
