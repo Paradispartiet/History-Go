@@ -1,4 +1,4 @@
-name: Temporary Civication duplicate scene-id audit
+name: Temporary Civication duplicate scene-id repair
 
 on:
   push:
@@ -7,45 +7,83 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  audit:
+  repair-verify-finalize:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Audit duplicate scene IDs
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Prove legacy mirror ownership and remove it
         shell: bash
         run: |
-          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/before.json
           node - <<'NODE'
           const fs = require('node:fs');
-          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
-          const duplicates = (audit.blocking_issues || []).filter((issue) => issue.category === 'duplicate_scene_id');
-          console.log(JSON.stringify({
-            summary: audit.summary,
-            duplicate_count: duplicates.length,
-            duplicates
-          }, null, 2));
+          const audit = JSON.parse(fs.readFileSync('/tmp/before.json','utf8'));
+          if (audit.summary.duplicate_scene_ids !== 35) throw new Error(`expected 35 duplicate IDs before repair, got ${audit.summary.duplicate_scene_ids}`);
+          if (audit.summary.blocking_issues !== 36) throw new Error(`expected 36 blockers before repair, got ${audit.summary.blocking_issues}`);
+          NODE
+          TEST_REFS=$(git grep -n -F 'naeringslivCivic2.json' -- ':!data/Civication/jobbmails/naeringslivCivic2.json' ':!.github/workflows/tmp-scene-pipeline-duplicate-ids.yml' || true)
+          if [ -n "$TEST_REFS" ]; then
+            echo "$TEST_REFS" >&2
+            echo 'Legacy mirror is still referenced outside the temporary audit workflow.' >&2
+            exit 1
+          fi
+          grep -q 'jobbmails/naeringsliv/naeringslivCivic.json' js/Civication/CivicationDayBoot.js
+          grep -q 'jobbmails/naeringsliv/naeringslivCivic.json' js/Civication/core/civicationEventEngine.js
+          rm data/Civication/jobbmails/naeringslivCivic2.json
+
+      - name: Verify focused blocker reduction
+        shell: bash
+        run: |
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/after.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('/tmp/after.json','utf8'));
+          const counts = {};
+          for (const issue of audit.blocking_issues || []) counts[issue.category] = (counts[issue.category] || 0) + 1;
+          console.log(JSON.stringify({summary:audit.summary, category_counts:counts}, null, 2));
+          if (audit.summary.missing_internal_references !== 0) throw new Error(`missing refs regressed to ${audit.summary.missing_internal_references}`);
+          if ((counts.duplicate_scene_id || 0) !== 21) throw new Error(`expected 21 duplicate blockers after mirror removal, got ${counts.duplicate_scene_id || 0}`);
+          if ((counts.daily_work_situation_budget_conflict || 0) !== 1) throw new Error(`expected the one existing budget blocker to remain`);
+          if (audit.summary.blocking_issues !== 22) throw new Error(`expected 22 blockers after repair, got ${audit.summary.blocking_issues}`);
           NODE
 
-      - name: Trace legacy naeringsliv mirror references
+      - name: Synchronize derived Civication state
         shell: bash
         run: |
-          echo '=== explicit naeringslivCivic2 references ==='
-          git grep -n -F 'naeringslivCivic2.json' -- ':!data/Civication/jobbmails/naeringslivCivic2.json' || true
-          echo '=== explicit categorized naeringslivCivic references ==='
-          git grep -n -F 'jobbmails/naeringsliv/naeringslivCivic.json' || true
-          echo '=== file metadata ==='
-          node - <<'NODE'
-          const fs = require('node:fs');
-          for (const p of [
-            'data/Civication/jobbmails/naeringslivCivic2.json',
-            'data/Civication/jobbmails/naeringsliv/naeringslivCivic.json'
-          ]) {
-            const data = JSON.parse(fs.readFileSync(p, 'utf8'));
-            console.log(JSON.stringify({path:p, role:data.role, version:data.version, mails:(data.mails||[]).length, ids:(data.mails||[]).map(x=>x.id)}, null, 2));
-          }
-          NODE
+          if ! node scripts/build-civication-scene-registry.mjs --check; then
+            node scripts/build-civication-scene-registry.mjs --write
+          fi
+          node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+      - name: Verify complete Civication state
+        run: |
+          npm run test:civication
+          git diff --check
+
+      - name: Commit permanent legacy-mirror removal
+        shell: bash
+        run: |
+          rm -f .github/workflows/tmp-scene-pipeline-duplicate-ids.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git diff --cached --quiet && { echo 'No permanent changes to commit.' >&2; exit 1; }
+          git commit -m 'Civication: remove obsolete naeringsliv jobmail mirror'
+          git push
