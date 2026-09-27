@@ -67,7 +67,12 @@ jobs:
               s=s.replace(/ready:\s*154,\s*\n\s*needs_authored_depth:\s*5,\s*\n\s*not_a_standalone_world:\s*40/g,`ready: ${c.ready},\n  needs_authored_depth: ${c.needs_authored_depth},\n  not_a_standalone_world: ${c.not_a_standalone_world}`);
               for(const f of ['completed_life_position_role_worlds','pending_ready_positions','livelihood_backed_positions','positions_with_exact_governed_sources','positions_with_multi_scene_narrative_foundation'])s=replaceAssert(s,`audit.summary.${f}`,audit.summary[f]);
             }
-            if(name==='civication-noncareer-role-taxonomy.test.js')s=s.replace(/85 karriereverdener \+ 154 life-position worlds/g,`85 karriereverdener + ${life} life-position worlds`).replace(/154 canonical life-position worlds skal være materialisert, nå også Næringsliv Investor som egen capital ownership and investment-posisjon/g,`${life} canonical life-position worlds skal være materialisert, nå også Scenekunst Dramaturg som egen employment-independent dramaturgical practice-posisjon`);
+            if(name==='civication-noncareer-role-taxonomy.test.js'){
+              s=s.replace(/85 karriereverdener \+ 154 life-position worlds/g,`85 karriereverdener + ${life} life-position worlds`)
+                 .replace(/154 canonical life-position worlds skal være materialisert, nå også Næringsliv Investor som egen capital ownership and investment-posisjon/g,`${life} canonical life-position worlds skal være materialisert, nå også Scenekunst Dramaturg som egen employment-independent dramaturgical practice-posisjon`)
+                 .replace(/(const expectedCounts = \{[\s\S]*?life_position_role_worlds:\s*)154(,\s*\n\s*total_role_worlds:\s*)239/g,`$1${life}$2${total}`)
+                 .replace(/85 career Role Worlds \+ 154 life-position worlds/g,`85 career Role Worlds + ${life} life-position worlds`);
+            }
             if(s!==before){fs.writeFileSync(p,s);changed.push(name)}
           }
           console.log(JSON.stringify({total,career,life,nextQueue,readiness:audit.summary,changed_tests:changed.length},null,2));
