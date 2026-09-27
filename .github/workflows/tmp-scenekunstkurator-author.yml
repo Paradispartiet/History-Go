@@ -22,10 +22,39 @@ jobs:
       - run: npm ci --no-audit --no-fund
 
       - name: Author and materialize Scenekunstkurator
+        shell: bash
         run: |
-          node scripts/tmp-author-scenekunstkurator.cjs author
-          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
-          node scripts/tmp-author-scenekunstkurator.cjs sync
+          set +e
+          DIAG=.tmp-scenekunstkurator-diagnostic.txt
+          : > "$DIAG"
+          node scripts/tmp-author-scenekunstkurator.cjs author >> "$DIAG" 2>&1
+          A=$?
+          echo "author_exit=$A" >> "$DIAG"
+          if [ "$A" -eq 0 ]; then
+            node scripts/audit-civication-life-position-role-world-readiness.mjs --write >> "$DIAG" 2>&1
+            B=$?
+          else
+            B=99
+          fi
+          echo "audit_exit=$B" >> "$DIAG"
+          if [ "$A" -eq 0 ] && [ "$B" -eq 0 ]; then
+            node scripts/tmp-author-scenekunstkurator.cjs sync >> "$DIAG" 2>&1
+            C=$?
+          else
+            C=99
+          fi
+          echo "sync_exit=$C" >> "$DIAG"
+          cat "$DIAG"
+          if [ "$A" -ne 0 ] || [ "$B" -ne 0 ] || [ "$C" -ne 0 ]; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add "$DIAG"
+            git commit -m "TEMP capture Scenekunstkurator authoring diagnostic"
+            git push origin HEAD:civication/scenekunst-scenekunstkurator-role-world
+            exit 1
+          fi
+          rm "$DIAG"
+          set -e
 
       - name: Verify complete Scenekunstkurator state
         run: |
@@ -42,6 +71,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git rm .github/workflows/tmp-scenekunstkurator-author.yml scripts/tmp-author-scenekunstkurator.cjs
+          git rm -f .tmp-scenekunstkurator-diagnostic.txt || true
           git add data/Civication reports/civication-life-position-role-world-readiness.md tests/civication-*.test.js
           git diff --cached --check
           git commit -m "Civication: author Scenekunst Scenekunstkurator Role World"
