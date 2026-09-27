@@ -1,4 +1,4 @@
-name: Temporary Civication mail-plan diagnosis
+name: Temporary Civication staged-plan test
 
 on:
   push:
@@ -11,20 +11,9 @@ permissions:
   contents: read
 
 jobs:
-  diagnose:
+  staged-plan-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Locate mail plan runtime and tests
-        shell: bash
-        run: |
-          echo '=== mail-related tests ==='
-          find tests -maxdepth 1 -type f \( -iname '*mail*' -o -iname '*inbox*' \) -print | sort
-          echo '=== allowed_families consumers ==='
-          grep -R --line-number --exclude='*.json' --exclude='*.md' 'allowed_families' . | head -120 || true
-          echo '=== mail plan references ==='
-          grep -R --line-number --exclude='*.json' --exclude='*.md' 'mailPlans\|mail_plan\|mail plan' . | head -160 || true
-          echo '=== mail family loaders ==='
-          grep -R --line-number --exclude='*.json' --exclude='*.md' 'mailFamilies\|mail_family_catalog' . | head -160 || true
-          echo '=== kapital/eierskap references ==='
-          grep -R --line-number 'kapital_og_eierskap\|kapital_risiko_og_vekst\|eierskap_styring_og_ansvar\|samfunnsverdi_arbeidsplasser_og_skatt\|investering_bygging_og_exit' . | head -200 || true
+      - name: Prove current audit misclassifies staged future split
+        run: node tests/civication-scene-pipeline-staged-plan.test.js
