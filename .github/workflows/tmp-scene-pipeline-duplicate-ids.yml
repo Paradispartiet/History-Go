@@ -30,3 +30,22 @@ jobs:
             duplicates
           }, null, 2));
           NODE
+
+      - name: Trace legacy naeringsliv mirror references
+        shell: bash
+        run: |
+          echo '=== explicit naeringslivCivic2 references ==='
+          git grep -n -F 'naeringslivCivic2.json' -- ':!data/Civication/jobbmails/naeringslivCivic2.json' || true
+          echo '=== explicit categorized naeringslivCivic references ==='
+          git grep -n -F 'jobbmails/naeringsliv/naeringslivCivic.json' || true
+          echo '=== file metadata ==='
+          node - <<'NODE'
+          const fs = require('node:fs');
+          for (const p of [
+            'data/Civication/jobbmails/naeringslivCivic2.json',
+            'data/Civication/jobbmails/naeringsliv/naeringslivCivic.json'
+          ]) {
+            const data = JSON.parse(fs.readFileSync(p, 'utf8'));
+            console.log(JSON.stringify({path:p, role:data.role, version:data.version, mails:(data.mails||[]).length, ids:(data.mails||[]).map(x=>x.id)}, null, 2));
+          }
+          NODE
