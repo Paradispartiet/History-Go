@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_regissor_stream",
+  "type": "leisure",
+  "title": "Regissør — prøvbar scenisk ledelse, utøveragency, samarbeid og mandatgrense",
+  "sociological_theme": "scenekunst_regissor_tolkingshypotese_provbar_reginote_utoveragency_samtykke_romlig_evidens_faggrense_proveevidens_publikumsmottak_produksjonslas_kreditering_privatarbeid_og_mandatseparasjon",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:regissor"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "lesningen_som_blir_hypotese",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dramaturgen",
+      "subject": "En tydelig lesning er fortsatt bare en lesning",
+      "situation": [
+        "Du har formulert en sterk retning for scenen, og teamet begynner å omtale den som verkets egentlige mening.",
+        "Regiarbeid trenger en arbeidshypotese som kan organisere prøven uten å gjøre tolkning til oppdaget sannhet.",
+        "Regissørens autoritet ligger i å ramme en undersøkelse og ta avgrensede valg, ikke i å eie betydningen alene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler hva lesningen forklarer, hva den ikke forklarer, og bygg neste prøve rundt ett konkret spørsmål.",
+          "effect": 1,
+          "tags": [
+            "interpretive_humility",
+            "rehearsal_question"
+          ],
+          "feedback": "Prøven får en tydelig retning som fortsatt kan korrigeres."
+        },
+        {
+          "id": "B",
+          "label": "Presenter lesningen som den endelige meningen slik at teamet slipper å bruke tid på alternative retninger.",
+          "effect": -1,
+          "tags": [
+            "interpretive_humility_failure",
+            "rehearsal_question_failure"
+          ],
+          "feedback": "En arbeidshypotese blir gjort til kunstnerisk fasit før den er prøvd."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_lesningen_som_blir_hypotese"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "noten_som_blir_dom",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "En reginote treffer identiteten, ikke handlingen",
+      "situation": [
+        "En utøver får beskjed om å være mer interessant i en scene som fortsatt er uklar.",
+        "Reginoter virker best når de peker mot observerbar handling, relasjon eller rytme framfor personlighet og verdi.",
+        "Språket i prøverommet er også makt: presisjon kan redusere både skam og lydighet uten forståelse."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oversett noten til en konkret handling eller relasjon som kan prøves og be utøveren beskrive hva som faktisk endrer seg.",
+          "effect": 1,
+          "tags": [
+            "note_discipline",
+            "performer_agency"
+          ],
+          "feedback": "Noten blir prøvbar og utøverens faglige respons blir en del av evidensen."
+        },
+        {
+          "id": "B",
+          "label": "Gjenta karakterdommen sterkere slik at utøveren forstår hvilket nivå du forventer.",
+          "effect": -1,
+          "tags": [
+            "note_discipline_failure",
+            "performer_agency_failure"
+          ],
+          "feedback": "Uklart språk får høyere trykk i stedet for høyere presisjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_noten_som_blir_dom"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "grensen_i_den_intime_scenen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Scenen krever nærhet uten at regi kan eie kroppen",
+      "situation": [
+        "En scene innebærer fysisk nærhet som må kunne repeteres presist over tid.",
+        "Kunstnerisk intensjon kan ikke brukes som erstatning for konkret samtykke, avtalte grenser og mulighet til å endre løsning.",
+        "Regissøren må kunne holde scenens funksjon tydelig uten å gjøre kroppslig tilgjengelighet til lydighetskrav."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill scenens dramatiske funksjon fra den konkrete fysiske løsningen, avklar grenser og prøv et reelt alternativ.",
+          "effect": 1,
+          "tags": [
+            "embodied_consent",
+            "direction_boundary"
+          ],
+          "feedback": "Scenens funksjon kan undersøkes uten at én fysisk løsning blir tvangsmessig premiss."
+        },
+        {
+          "id": "B",
+          "label": "Be utøverne gjennomføre den planlagte nærheten først og ta grensene når scenen allerede fungerer.",
+          "effect": -1,
+          "tags": [
+            "embodied_consent_failure",
+            "direction_boundary_failure"
+          ],
+          "feedback": "Kunstnerisk framdrift brukes til å utsette samtykke og alternativtenkning."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_grensen_i_den_intime_scenen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "blokkeringen_som_moter_rommet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk partner",
+      "subject": "Den sceniske ideen kolliderer med rommets faktiske grenser",
+      "situation": [
+        "En sentral plassering gir dårlig sikt og skaper en teknisk konflikt i rommet.",
+        "Regi organiserer oppmerksomhet i et konkret rom; siktlinjer, sikkerhet og teknisk gjennomførbarhet er kunnskap, ikke bare service rundt ideen.",
+        "Tilpasning bør være sporbar slik at tekniske grenser ikke kamufleres som smak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke funksjoner plasseringen skulle løse, og prøv en ny løsning som bevarer de viktigste relasjonene.",
+          "effect": 1,
+          "tags": [
+            "spatial_evidence",
+            "collaboration_boundary"
+          ],
+          "feedback": "Rommet blir en del av den sceniske tenkningen i stedet for en skjult motstander."
+        },
+        {
+          "id": "B",
+          "label": "Be teknikken kompensere rundt den opprinnelige plasseringen fordi det kunstneriske valget kom først.",
+          "effect": -1,
+          "tags": [
+            "spatial_evidence_failure",
+            "collaboration_boundary_failure"
+          ],
+          "feedback": "Førsterett i prosessen forveksles med overordnet beslutningsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_blokkeringen_som_moter_rommet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "teksten_som_motsetter_seg_konseptet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dramatikeren",
+      "subject": "Konseptet forklarer ikke lenger teksten",
+      "situation": [
+        "Flere prøver viser at enkelte tekstpartier bare fungerer når utøverne arbeider mot den opprinnelige regihypotesen.",
+        "Et regikonsept er et verktøy for lesning og struktur, ikke et krav om at all evidens skal passe inn.",
+        "Når motfunn gjentar seg, må konseptet kunne endres uten at prosessen mister retning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Dokumenter motfunnene, nedgrader den gamle hypotesen og prøv en revidert struktur på neste gjennomløp.",
+          "effect": 1,
+          "tags": [
+            "textual_counterevidence",
+            "concept_reversibility"
+          ],
+          "feedback": "Regien beholder retning ved å være korrigerbar mot gjentatte motfunn."
+        },
+        {
+          "id": "B",
+          "label": "Behold konseptet og juster utøvernes arbeid til avvikene slutter å være synlige.",
+          "effect": -1,
+          "tags": [
+            "textual_counterevidence_failure",
+            "concept_reversibility_failure"
+          ],
+          "feedback": "Konseptlojalitet blir viktigere enn det arbeidet faktisk viser."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_teksten_som_motsetter_seg_konseptet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "designet_som_blir_reginote",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Designpartneren",
+      "subject": "Et visuelt samarbeid har to faglige eiere",
+      "situation": [
+        "Du ønsker en sterk scenisk kontrast og begynner å spesifisere designløsningen detalj for detalj.",
+        "Regi kan definere dramaturgisk funksjon, rytme og relasjon uten automatisk å eie det andre fagets metode og løsning.",
+        "Et godt grensesnitt gjør intensjon, begrensning og beslutningsansvar synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv funksjonen du trenger, vis hvilke sceniske konsekvenser som er kritiske, og la designpartneren svare med løsninger.",
+          "effect": 1,
+          "tags": [
+            "discipline_interface",
+            "shared_authorship"
+          ],
+          "feedback": "Samarbeidet får et tydelig problem å løse uten at faggrensene blir slettet."
+        },
+        {
+          "id": "B",
+          "label": "Detaljstyr løsningen fordi helheten til slutt er regissørens ansvar.",
+          "effect": -1,
+          "tags": [
+            "discipline_interface_failure",
+            "shared_authorship_failure"
+          ],
+          "feedback": "Helhetsansvar blir brukt som begrunnelse for å overta et annet fags metode."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_designet_som_blir_reginote"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proven_som_endrer_tempoet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Det planlagte tempoet finnes ikke i kroppen",
+      "situation": [
+        "En scene er tenkt rask, men gjentatte gjennomløp viser at relasjonen mister lesbarhet når tempoet presses.",
+        "Prøven produserer situert evidens om timing, oppmerksomhet og handling, men ett gjennomløp er ikke en universell fasit.",
+        "Regissøren må skille ønsket effekt fra den første mekanismen som skulle skape den."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi effekten du trenger, endre én temporal variabel og sammenlign to gjennomløp før du låser tempoet.",
+          "effect": 1,
+          "tags": [
+            "rehearsal_evidence",
+            "effect_mechanism_split"
+          ],
+          "feedback": "Tempoet blir et undersøkbart virkemiddel, ikke et lydighetsmål."
+        },
+        {
+          "id": "B",
+          "label": "Be utøverne repetere raskere til den opprinnelige tidsplanen sitter.",
+          "effect": -1,
+          "tags": [
+            "rehearsal_evidence_failure",
+            "effect_mechanism_split_failure"
+          ],
+          "feedback": "Den første mekanismen blir forvekslet med selve scenens hensikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_proven_som_endrer_tempoet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "uenigheten_i_proverommet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medregissøren",
+      "subject": "To lesninger konkurrerer om samme scene",
+      "situation": [
+        "En fagfelle mener scenen krever en annen relasjonell akse enn den du har arbeidet med.",
+        "Regifaglig uenighet kan være kvalitetskontroll dersom argumentene bindes til observasjon og konsekvens framfor status.",
+        "Det formelle mandatet, der det finnes, avgjør hvem som tar sluttvalget, men ikke hvem som har rett til å produsere motfunn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler begge lesningene som prøvbare hypoteser og avklar hvem som faktisk har beslutningsmandat etter prøven.",
+          "effect": 1,
+          "tags": [
+            "peer_challenge",
+            "mandate_separation"
+          ],
+          "feedback": "Uenigheten blir produktiv uten å gjøre autoritet usynlig."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Regissør-identiteten som grunn til å avslutte diskusjonen før alternativet prøves.",
+          "effect": -1,
+          "tags": [
+            "peer_challenge_failure",
+            "mandate_separation_failure"
+          ],
+          "feedback": "Identitet brukes som erstatning for både evidens og faktisk avtalt mandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_uenigheten_i_proverommet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vikaren_som_trenger_struktur",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "En utøver må inn uten å arve hele prosessen",
+      "situation": [
+        "Kort før visning må en ny utøver inn i flere scener med lite tid til å forstå alle tidligere valg.",
+        "Regikunnskap ligger i relasjoner, handlinger, rytme, notater og kroppslig hukommelse; et sent handoff må prioritere det som faktisk bærer scenen.",
+        "Fullstendig prosesshistorie er mindre nyttig enn tydelige ankerpunkter, sikkerhetsgrenser og restusikkerhet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag et prioritert handoff med scenefunksjon, relasjonelle ankerpunkter, trygge forenklinger og hva som fortsatt er åpent.",
+          "effect": 1,
+          "tags": [
+            "handoff_priority",
+            "role_transfer"
+          ],
+          "feedback": "Den nye utøveren får et realistisk arbeidsgrunnlag uten å bli redusert til kopi."
+        },
+        {
+          "id": "B",
+          "label": "Krev at vikaren kopierer originalutøveren så nøyaktig som mulig for å spare tid.",
+          "effect": -1,
+          "tags": [
+            "handoff_priority_failure",
+            "role_transfer_failure"
+          ],
+          "feedback": "Likhet i overflate blir brukt som snarvei rundt forståelse og ny kroppslig evidens."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_vikaren_som_trenger_struktur"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forhandsvisningen_som_blir_folkeavstemning",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dramaturgen",
+      "subject": "Ett publikum blir gjort til alle publikummere",
+      "situation": [
+        "En liten forhåndsvisning reagerer tydelig på én scene, og teamet vil straks endre hele sekvensen.",
+        "Publikumsrespons er situert data: sammensetning, kontekst og spørsmål påvirker hva den kan fortelle.",
+        "Regi må kunne ta mottak på alvor uten å gjøre en liten responsflate til plebisitt over verket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter reaksjonene etter hva de faktisk viser, velg ett spørsmål og prøv en avgrenset endring før større endring.",
+          "effect": 1,
+          "tags": [
+            "audience_evidence",
+            "sampling_humility"
+          ],
+          "feedback": "Responsen åpner en kontrollert ny undersøkelse."
+        },
+        {
+          "id": "B",
+          "label": "Behandle den tydeligste reaksjonen som representativ og bygg resten av forestillingen rundt den.",
+          "effect": -1,
+          "tags": [
+            "audience_evidence_failure",
+            "sampling_humility_failure"
+          ],
+          "feedback": "Et lite rom får ubegrunnet representativitet over hele verket."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_forhandsvisningen_som_blir_folkeavstemning"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_som_laser_scenen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "En produksjonsfrist gjør et utkast dyrt å endre",
+      "situation": [
+        "Tekniske fag trenger stabile cues før flere regispørsmål er ferdig undersøkt.",
+        "Produksjonsavhengigheter er reelle og kan kreve midlertidige låser uten å gjøre scenen kunstnerisk endelig.",
+        "Tydelig versjonering må skille hva som er låst, hvorfor, og hvem som eier neste mulige endring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hvilke valg som låses av produksjonsbehov, hvilke som fortsatt er reversible, og hva en senere endring faktisk vil koste.",
+          "effect": 1,
+          "tags": [
+            "production_lock",
+            "rework_visibility"
+          ],
+          "feedback": "Teamet får et stabilt arbeidsgrunnlag uten at usikkerheten forsvinner fra historikken."
+        },
+        {
+          "id": "B",
+          "label": "Kall hele scenen ferdig slik at ingen andre trenger å forholde seg til usikkerheten.",
+          "effect": -1,
+          "tags": [
+            "production_lock_failure",
+            "rework_visibility_failure"
+          ],
+          "feedback": "Et operativt behov blir omskrevet til kunstnerisk sluttpunkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_fristen_som_laser_scenen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "programteksten_som_gjor_regien_allmektig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunikasjonsansvarlig",
+      "subject": "Offentlig tekst overdriver regissørens eierskap",
+      "situation": [
+        "Programteksten beskriver forestillingen som regissørens visjon selv om tekst, utøverarbeid, dramaturgi og design har formet resultatet vesentlig.",
+        "Offentlig forenkling kan gjøre faktisk medskaping usynlig og flytte attribusjon oppover i hierarkiet.",
+        "Regissørrollen må kunne være tydelig uten å absorbere andres opphav og faglige bidrag."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskriv teksten slik at regiansvaret er tydelig samtidig som sentrale opphav og medskapende bidrag forblir synlige.",
+          "effect": 1,
+          "tags": [
+            "public_credit",
+            "attribution_trace"
+          ],
+          "feedback": "Regiansvar og kollektivt arbeid kan beskrives samtidig."
+        },
+        {
+          "id": "B",
+          "label": "Behold formuleringen fordi publikum trenger én tydelig kunstnerisk avsender.",
+          "effect": -1,
+          "tags": [
+            "public_credit_failure",
+            "attribution_trace_failure"
+          ],
+          "feedback": "Kommunikativ enkelhet kjøpes ved å gjøre andres arbeid usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_programteksten_som_gjor_regien_allmektig"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proven_som_folger_hjem",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Prøverommet fortsetter i hodet etter arbeidstid",
+      "situation": [
+        "Du merker at du fortsatt analyserer utøvernes valg, konflikter og feil lenge etter at prøven er slutt.",
+        "Regiarbeid kan gjøre andre menneskers uttrykk og sårbarhet til kontinuerlig mentalt materiale; grenseløs beredskap svekker både relasjon og neste dags oppmerksomhet.",
+        "Privatlivet må kunne romme presset uten at fortrolig prøveinnhold eller ubetalt reservearbeid blir normalen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv presset uten å dele fortrolige detaljer, legg bort notatene og bestem når neste arbeidsøkt faktisk begynner.",
+          "effect": 1,
+          "tags": [
+            "private_containment",
+            "invisible_work"
+          ],
+          "feedback": "En tydelig slutt beskytter både fortrolighet og neste dags faglige presisjon."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å analysere hjemme fordi helhetsansvar betyr at regissøren aldri kan koble av.",
+          "effect": -1,
+          "tags": [
+            "private_containment_failure",
+            "invisible_work_failure"
+          ],
+          "feedback": "Helhetsansvar blir gjort til permanent personlig beredskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_proven_som_folger_hjem"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_regissor",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regissørkollegaen",
+      "subject": "Hva slags myndighet følger egentlig Regissør-identiteten?",
+      "situation": [
+        "Etter to uker har du formulert hypoteser, gitt prøvbare noter, organisert oppmerksomhet, håndtert motfunn og koordinert faglige grensesnitt.",
+        "Regissør er her en employment-independent directing_practice_or_livelihood: Badge-identiteten kan eksistere som praksis eller levevei uten arbeidsgiveransettelse eller institusjonelt mandat.",
+        "Formell Regissør-jobb krever fortsatt appointment_required; livsposisjonen gjør deg ikke automatisk til Dramaturg, Koreograf, Skuespiller / danser, Produsent, Scenekunstkurator eller Kunstnerisk leder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer praksisen som korrigerbar scenisk ledelse, prøvbar kommunikasjon, synlig attribusjon og tydelig mandatgrense, og la formell myndighet følge faktisk avtale.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "employment_independence"
+          ],
+          "feedback": "Rollen blir tydelig som praksis og mulig levevei uten å late som den gir institusjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Badge-identiteten som bevis på at du kan styre utøvere, fagpartnere, produksjon og offentlig kommunikasjon uten særskilt mandat.",
+          "effect": -1,
+          "tags": [
+            "role_boundary_failure",
+            "employment_independence_failure"
+          ],
+          "feedback": "Identitet glir over i ubegrunnet arbeidsgiver- og beslutningsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "regissor_sesongslutt_hva_er_en_regissor"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
