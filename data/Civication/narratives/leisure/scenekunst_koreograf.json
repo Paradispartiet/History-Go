@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_koreograf_stream",
+  "type": "leisure",
+  "title": "Koreograf — kroppslig komposisjon, medskaping, samtykke og sporbar overføring",
+  "sociological_theme": "scenekunst_koreograf_kroppslig_komposisjon_medskaping_samtykke_proveevidens_belastning_tilpasning_kreditering_dokumentasjon_produksjonsgrense_og_mandatseparasjon",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:koreograf"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "bevegelsesmateriale_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Bevegelsesmaterialet har flere mulige retninger",
+      "situation": [
+        "Du har samlet korte bevegelsesfraser fra prøven, men materialet peker ikke mot én opplagt struktur.",
+        "Koreografisk praksis må skille observasjon av bevegelse fra beslutningen om hva materialet skal bli.",
+        "Et arbeidskart skal gjøre rytme, retning og kontrast synlig uten å late som første lesning er den eneste mulige."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter frasene etter rytme, retning og overgang, og prøv to ulike organiseringshypoteser før du låser formen.",
+          "effect": 1,
+          "tags": [
+            "movement_observation",
+            "structural_reversibility"
+          ],
+          "feedback": "Materialet forblir undersøkbart og kan endres av neste prøve."
+        },
+        {
+          "id": "B",
+          "label": "Velg den første sammenhengende sekvensen og behandle den som verkets endelige struktur.",
+          "effect": -1,
+          "tags": [
+            "movement_observation_failure",
+            "structural_reversibility_failure"
+          ],
+          "feedback": "Et tidlig mønster får status som fasit før alternativene er prøvd."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_bevegelsesmateriale_uten_fasit"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "bidraget_som_blir_usynlig",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Medskapende utøver",
+      "subject": "Hvem eier frasen som oppstod i rommet?",
+      "situation": [
+        "En utøver utvikler en bevegelsesløsning som raskt blir sentral i helheten.",
+        "Koreografisk arbeid kan være både individuelt komponert og medskapt; opphav, bearbeiding og kreditering må kunne skilles.",
+        "Sporbar kreditering beskytter både samarbeid og senere offentlig presentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva utøveren utviklet, hva du bearbeidet, og avklar krediteringen mens prosessen fortsatt er fersk.",
+          "effect": 1,
+          "tags": [
+            "authorship_trace",
+            "credit_discipline"
+          ],
+          "feedback": "Bidraget får en synlig historie uten at samarbeidet fryses til juridisk språk."
+        },
+        {
+          "id": "B",
+          "label": "La materialet inngå uten særskilt spor fordi alt som skjer i prøverommet uansett tilhører koreografien.",
+          "effect": -1,
+          "tags": [
+            "authorship_trace_failure",
+            "credit_discipline_failure"
+          ],
+          "feedback": "Medskaping forsvinner inn i en generell kunstneridentitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_bidraget_som_blir_usynlig"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "beroring_som_forutsetter_samtykke",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "En kontaktsekvens krever mer enn teknisk presisjon",
+      "situation": [
+        "En ny sekvens bygger på løft, vektføring og tett fysisk kontakt.",
+        "Samtykke i kroppslig arbeid må være konkret, reversibelt og mulig å trekke tilbake uten sosial straff.",
+        "Koreografisk tydelighet kan ikke erstatte utøverens rett til å markere grenser i egen kropp."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar kontaktpunkter, alternativer og stopptegn før sekvensen repeteres i høyere intensitet.",
+          "effect": 1,
+          "tags": [
+            "embodied_consent",
+            "reversible_contact"
+          ],
+          "feedback": "Sekvensen kan utvikles med tydelige grenser og reelle alternativer."
+        },
+        {
+          "id": "B",
+          "label": "Be alle gjennomføre sekvensen som planlagt først, og ta eventuelle grenser etterpå når formen er tydelig.",
+          "effect": -1,
+          "tags": [
+            "embodied_consent_failure",
+            "reversible_contact_failure"
+          ],
+          "feedback": "Formpress blir brukt som grunn til å utsette kroppslig samtykke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_beroring_som_forutsetter_samtykke"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proven_som_motfunn",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Prøvepartneren",
+      "subject": "Kroppen motsier planen",
+      "situation": [
+        "En overgang som ser presis ut i notatet faller fra hverandre når den gjentas i faktisk tempo.",
+        "Prøven gir situert evidens om timing, tyngde og koordinasjon, men én gjennomkjøring er ikke universell fasit.",
+        "Koreografen må la kroppslige motfunn endre hypotesen uten å gjøre enkeltopplevelsen til ny regel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva som faktisk svikter, juster én variabel og prøv overgangen igjen før du konkluderer.",
+          "effect": 1,
+          "tags": [
+            "rehearsal_evidence",
+            "embodied_counterevidence"
+          ],
+          "feedback": "Planen blir korrigerbar mot det som faktisk skjer i rommet."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar notatet og be utøverne repetere til kroppen tilpasser seg den opprinnelige planen.",
+          "effect": -1,
+          "tags": [
+            "rehearsal_evidence_failure",
+            "embodied_counterevidence_failure"
+          ],
+          "feedback": "Dokumentet får høyere status enn den observerte bevegelsen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_proven_som_motfunn"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "belastningen_som_ikke_synes",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Presisjonen koster mer enn den ser ut til",
+      "situation": [
+        "En utøver leverer sekvensen rent, men forteller at gjentakelsen gir økende belastning.",
+        "Belastning er faglig informasjon, ikke et tegn på svak innsats, og koreografisk kontinuitet må tåle tilpasning.",
+        "Praksisen må skille ønsket uttrykk fra én bestemt fysisk løsning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Reduser repetisjonsmengden, finn en alternativ mekanikk og behold uttrykksmålet som egen variabel.",
+          "effect": 1,
+          "tags": [
+            "load_visibility",
+            "adaptive_composition"
+          ],
+          "feedback": "Uttrykket kan bevares samtidig som arbeidsmåten korrigeres."
+        },
+        {
+          "id": "B",
+          "label": "Behold sekvensen uendret fordi den fortsatt ser kontrollert ut fra salen.",
+          "effect": -1,
+          "tags": [
+            "load_visibility_failure",
+            "adaptive_composition_failure"
+          ],
+          "feedback": "Synlig resultat brukes til å overstyre kroppslig belastningsinformasjon."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_belastningen_som_ikke_synes"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ulik_kropp_samme_intensjon",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Ny utøver",
+      "subject": "Materialet må kunne flytte inn i en annen kropp",
+      "situation": [
+        "En ny utøver overtar deler av materialet og løser vekt, rekkevidde og tempo annerledes.",
+        "Koreografisk overføring handler ikke om å kopiere overflate nøyaktig, men om å identifisere hvilke relasjoner og intensjoner som faktisk må bestå.",
+        "Tilpasning kan derfor være en presisering av verket, ikke et avvik fra det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi hvilke kvaliteter som er bærende, og bygg en versjon som fungerer med den nye utøverens faktiske forutsetninger.",
+          "effect": 1,
+          "tags": [
+            "transferable_intent",
+            "adaptive_authorship"
+          ],
+          "feedback": "Materialet beholder sin funksjon uten å late som kropper er utskiftbare."
+        },
+        {
+          "id": "B",
+          "label": "Krev identisk utførelse fordi koreografien ellers mister autentisitet.",
+          "effect": -1,
+          "tags": [
+            "transferable_intent_failure",
+            "adaptive_authorship_failure"
+          ],
+          "feedback": "Likhet i form blir forvekslet med troskap mot verkets hensikt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_ulik_kropp_samme_intensjon"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "musikken_som_laser_tellingen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lydpartneren",
+      "subject": "Tellingen og lyden trekker i hver sin retning",
+      "situation": [
+        "En sekvens er utviklet mot en foreløpig lydflate, men det nye lydmaterialet endrer opplevelsen av puls og varighet.",
+        "Koreografisk timing kan organiseres mot telling, pust, hendelse eller lyd, og disse systemene må ikke skjules under ett felles tempo.",
+        "Samarbeidet trenger et tydelig grensesnitt for hva som er fast og hva som fortsatt kan forhandles."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill de koreografiske ankerpunktene fra lydens struktur og prøv hvor koblingen faktisk må være presis.",
+          "effect": 1,
+          "tags": [
+            "temporal_interface",
+            "collaboration_boundary"
+          ],
+          "feedback": "Begge faglige systemer kan endres uten at ansvar blir uklart."
+        },
+        {
+          "id": "B",
+          "label": "Lås lyden til den gamle tellingen fordi bevegelsen ble laget først.",
+          "effect": -1,
+          "tags": [
+            "temporal_interface_failure",
+            "collaboration_boundary_failure"
+          ],
+          "feedback": "Førsterett i prosessen blir gjort til kunstnerisk myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_musikken_som_laser_tellingen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rommet_endrer_koreografien",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk partner",
+      "subject": "Scenerommet tåler ikke laboratorieversjonen",
+      "situation": [
+        "Materialet er utviklet i et stort rom, men spillestedet har smalere passasjer og andre siktlinjer.",
+        "Romlige begrensninger er koreografisk informasjon fordi avstand, retning og risiko inngår i bevegelsens virkning.",
+        "Tilpasning må være sporbar slik at produksjonskrav ikke kamufleres som kunstnerisk smak."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hvilke avstander som er funksjonelle, bygg en stedstilpasset variant og marker hva som er teknisk begrunnet.",
+          "effect": 1,
+          "tags": [
+            "spatial_adaptation",
+            "constraint_visibility"
+          ],
+          "feedback": "Rommet blir en eksplisitt del av komposisjonen framfor en skjult feilmargin."
+        },
+        {
+          "id": "B",
+          "label": "Press laboratorieversjonen inn i rommet og be teknikken løse resten rundt den.",
+          "effect": -1,
+          "tags": [
+            "spatial_adaptation_failure",
+            "constraint_visibility_failure"
+          ],
+          "feedback": "Produksjonsbegrensningen skyves over på andre fag uten ny koreografisk vurdering."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_rommet_endrer_koreografien"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vikaren_kommer_inn_sent",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "En sen utskifting gjør kunnskapen synlig",
+      "situation": [
+        "Kort før visning må en annen utøver inn i flere sekvenser.",
+        "Koreografisk kunnskap ligger både i notater, video, kroppslig hukommelse og relasjoner mellom utøvere.",
+        "Et sent handoff må prioritere hva som faktisk er sikkerhetskritisk, strukturelt bærende og mulig å lære på tiden som finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Lag en prioritert overføring med bærende ankerpunkter, trygge forenklinger og tydelig restusikkerhet.",
+          "effect": 1,
+          "tags": [
+            "handoff_priority",
+            "knowledge_distribution"
+          ],
+          "feedback": "Den nye utøveren får et realistisk og sporbar arbeidsgrunnlag."
+        },
+        {
+          "id": "B",
+          "label": "Forsøk å presse hele originalversjonen inn på samme tid fordi enhver forenkling svekker verket.",
+          "effect": -1,
+          "tags": [
+            "handoff_priority_failure",
+            "knowledge_distribution_failure"
+          ],
+          "feedback": "Fullstendighet blir viktigere enn faktisk lærbarhet og sikker gjennomføring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_vikaren_kommer_inn_sent"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "videoen_som_blir_arkiv",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dokumentasjonspartneren",
+      "subject": "Prøvevideoen får et nytt liv",
+      "situation": [
+        "Video er tatt opp for intern hukommelse, men noen vil bruke klippet i presentasjon og søknadsmateriale.",
+        "Dokumentasjon av kroppslig arbeid kan skifte formål, og samtykke til intern prøvebruk er ikke automatisk samtykke til offentlig sirkulasjon.",
+        "Koreografisk dokumentasjon trenger derfor både formålsgrense og sporbar godkjenning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar nytt formål og hvem som er synlig før klippet brukes utenfor den avtalte prøvefunksjonen.",
+          "effect": 1,
+          "tags": [
+            "documentation_consent",
+            "purpose_boundary"
+          ],
+          "feedback": "Materialet kan få ny bruk uten at den opprinnelige situasjonen omskrives i ettertid."
+        },
+        {
+          "id": "B",
+          "label": "Bruk klippet fordi alle allerede visste at kameraet var i rommet.",
+          "effect": -1,
+          "tags": [
+            "documentation_consent_failure",
+            "purpose_boundary_failure"
+          ],
+          "feedback": "Tilstedeværelse foran kamera blir tolket som generelt publiseringssamtykke."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_videoen_som_blir_arkiv"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_som_fryser_materialet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "En teknisk frist gjør utkastet permanent",
+      "situation": [
+        "Lys og scene trenger en stabil struktur før flere koreografiske spørsmål er ferdig prøvd.",
+        "Produksjonsfrister er reelle avhengigheter, men de gjør ikke et foreløpig bevegelsesvalg kunstnerisk endelig.",
+        "God overlevering skiller det som må låses fra det som fortsatt kan endres innenfor kjente rammer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker hvilke sekvenser som låses av produksjonsbehov, hvilke som fortsatt er reversible, og hvem som eier neste beslutning.",
+          "effect": 1,
+          "tags": [
+            "production_lock",
+            "rework_visibility"
+          ],
+          "feedback": "Teamet får en presis beslutningsgrense uten å gjøre utkast til sannhet."
+        },
+        {
+          "id": "B",
+          "label": "Kall hele koreografien ferdig slik at ingen andre fag trenger å forholde seg til usikkerhet.",
+          "effect": -1,
+          "tags": [
+            "production_lock_failure",
+            "rework_visibility_failure"
+          ],
+          "feedback": "Usikkerheten skjules og vender senere tilbake som dyrt omarbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_fristen_som_fryser_materialet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "krediteringen_i_programmet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunikasjonsansvarlig",
+      "subject": "Én linje skal forklare hvem som skapte hva",
+      "situation": [
+        "Programteksten skal komprimere en lang prosess til få krediteringslinjer.",
+        "Når koreografi er utviklet gjennom både komposisjon og medskaping, kan en for enkel kreditering gjøre bidrag usynlige.",
+        "Offentlig tekst må være kort uten å viske ut forskjellen mellom hovedansvar, medskaping og utøverarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler en kort kreditering som skiller hovedansvar fra dokumenterte medskapende bidrag, og la de berørte lese den før publisering.",
+          "effect": 1,
+          "tags": [
+            "public_credit",
+            "attribution_trace"
+          ],
+          "feedback": "Den offentlige teksten blir kort og samtidig sporbar mot faktisk prosess."
+        },
+        {
+          "id": "B",
+          "label": "Bruk bare Koreograf som samlet kreditering fordi publikum ikke trenger prosessdetaljer.",
+          "effect": -1,
+          "tags": [
+            "public_credit_failure",
+            "attribution_trace_failure"
+          ],
+          "feedback": "Institusjonell enkelhet kjøpes ved å gjøre medskapende arbeid usynlig."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_krediteringen_i_programmet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "materialet_som_folger_hjem",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Kroppen og notatene fortsetter etter prøven",
+      "situation": [
+        "Du merker at du fortsatt går gjennom timing, feil og andres fysiske valg lenge etter at prøven er slutt.",
+        "Koreografisk arbeid kan gjøre både egen kropp og andres bevegelse til et kontinuerlig analysefelt; grenseløst etterarbeid svekker neste dags oppmerksomhet.",
+        "Privatlivet må kunne romme belastningen uten at fortrolig prøveinnhold eller ubetalt reservearbeid blir normalen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv presset uten å dele andres fortrolige detaljer, legg bort materialet og bestem når neste arbeidsøkt faktisk begynner.",
+          "effect": 1,
+          "tags": [
+            "private_containment",
+            "invisible_work"
+          ],
+          "feedback": "En tydelig slutt på arbeidsøkten beskytter både relasjonen og neste dags presisjon."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å analysere hjemme fordi den som leder materialet må være mentalt tilgjengelig hele tiden.",
+          "effect": -1,
+          "tags": [
+            "private_containment_failure",
+            "invisible_work_failure"
+          ],
+          "feedback": "Usynlig arbeid blir gjort til permanent personlig beredskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_materialet_som_folger_hjem"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_koreograf",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Koreografkollegaen",
+      "subject": "Hva slags myndighet følger egentlig Koreograf-identiteten?",
+      "situation": [
+        "Etter to uker har du komponert, prøvd, tilpasset, kreditert og dokumentert bevegelsesmateriale gjennom flere arbeidsflater.",
+        "Koreograf er her en employment-independent choreographic_practice_or_self_employment: Badge-identiteten kan eksistere som selvstendig praksis uten arbeidsgiveransettelse eller institusjonelt mandat.",
+        "Formell Koreograf-jobb krever fortsatt appointment_required; livsposisjonen gjør deg ikke automatisk til Regissør, Skuespiller / danser, Dramaturg, Produsent, Scenekunstkurator eller Kunstnerisk leder."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer praksisen som kroppslig komposisjon, sporbar medskaping, korrigerbar prøveevidens og tydelig mandatgrense, og la formell myndighet følge faktisk avtale.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "employment_independence"
+          ],
+          "feedback": "Rollen blir tydelig som praksis og mulig selvstendig levevei uten å late som den gir institusjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Badge-identiteten som bevis på at du kan styre andre utøvere, produksjon og offentlig kreditering uten særskilt avtale.",
+          "effect": -1,
+          "tags": [
+            "role_boundary_failure",
+            "employment_independence_failure"
+          ],
+          "feedback": "Identitet glir over i ubegrunnet arbeidsgiver- og beslutningsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "koreograf_sesongslutt_hva_er_en_koreograf"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
