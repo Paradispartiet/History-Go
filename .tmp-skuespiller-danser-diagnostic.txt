@@ -1,0 +1,21 @@
+author_exit=0
+WROTE: data/Civication/lifePositionRoleWorldReadiness.json
+WROTE: reports/civication-life-position-role-world-readiness.md
+audit_exit=0
+/home/runner/work/History-Go/History-Go/scripts/tmp-author-skuespiller-danser.cjs:147
+  const leaked=audit.positions.filter(x=>x.key!==lifeKey&&[...(x.evidence?.exact_source_refs||[]),...(x.evidence?.thematic_source_refs||[])].includes(streamPath)).map(x=>x.key);if(leaked.length)throw new Error(`Skuespiller/danser source leaked into ${leaked.join(', ')}`);
+                                                                                                                                                                                                  ^
+
+Error: Skuespiller/danser source leaked into scenekunst/premieregjenger
+    at sync (/home/runner/work/History-Go/History-Go/scripts/tmp-author-skuespiller-danser.cjs:147:201)
+    at Object.<anonymous> (/home/runner/work/History-Go/History-Go/scripts/tmp-author-skuespiller-danser.cjs:173:88)
+    at Module._compile (node:internal/modules/cjs/loader:1781:14)
+    at Object..js (node:internal/modules/cjs/loader:1913:10)
+    at Module.load (node:internal/modules/cjs/loader:1505:32)
+    at Function._load (node:internal/modules/cjs/loader:1309:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:254:19)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49
+
+Node.js v22.23.2
+sync_exit=1
