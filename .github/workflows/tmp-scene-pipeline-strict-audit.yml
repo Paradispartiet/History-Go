@@ -20,7 +20,21 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --no-audit --no-fund
+      - name: Diagnose scene pipeline blockers
+        shell: bash
+        run: |
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
+          const byCategory = {};
+          for (const issue of audit.blocking_issues || []) {
+            (byCategory[issue.category] ||= []).push(issue);
+          }
+          console.log(JSON.stringify({ summary: audit.summary, blocking_by_category: byCategory }, null, 2));
+          NODE
       - name: Run scene pipeline audit in strict mode
         run: node scripts/audit-civication-scene-pipeline.mjs --strict
       - name: Verify no repository drift
+        if: always()
         run: git diff --check
