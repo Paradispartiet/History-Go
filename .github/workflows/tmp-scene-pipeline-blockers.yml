@@ -15,17 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Inspect proven trigger thread contract
+      - name: Inspect compiled trigger semantics
         shell: bash
         run: |
           node - <<'NODE'
           const fs = require('node:fs');
-          const file='data/Civication/mailFamilies/naeringsliv/job/formann_job.json';
-          const data=JSON.parse(fs.readFileSync(file,'utf8'));
-          const family=data.families.find(f => (f.threads||[]).some(t => t.id === 'job_formann_week1_first_shift_board_fair'));
-          const thread=family.threads.find(t => t.id === 'job_formann_week1_first_shift_board_fair');
-          console.log(JSON.stringify({family_id:family.id, thread}, null, 2));
-          const by=JSON.parse(fs.readFileSync('data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json','utf8'));
-          const sourceFamily=by.families.find(f => (f.mails||[]).some(m => m.id === 'by_areal_people_plansjef_004'));
-          console.log('BY_SOURCE_FAMILY', JSON.stringify({id:sourceFamily.id, threads:sourceFamily.threads || null}, null, 2));
+          const reg=JSON.parse(fs.readFileSync('data/Civication/compiledSceneRegistryV1.json','utf8'));
+          const scenes=Array.isArray(reg.scenes)?reg.scenes:Object.values(reg.scenes||{});
+          const scene=scenes.find(s => s.id === 'by_areal_people_plansjef_004');
+          console.log(JSON.stringify(scene, null, 2));
           NODE
