@@ -1,0 +1,78 @@
+name: Temporary Skuespiller danser Role World authoring
+
+on:
+  push:
+    branches:
+      - civication/scenekunst-skuespiller-danser-role-world
+    paths:
+      - .github/workflows/tmp-skuespiller-danser-author.yml
+
+permissions:
+  contents: write
+
+jobs:
+  author-verify-finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - name: Author and materialize Skuespiller danser
+        shell: bash
+        run: |
+          set +e
+          DIAG=.tmp-skuespiller-danser-diagnostic.txt
+          : > "$DIAG"
+          node scripts/tmp-author-skuespiller-danser.cjs author >> "$DIAG" 2>&1
+          A=$?
+          echo "author_exit=$A" >> "$DIAG"
+          if [ "$A" -eq 0 ]; then
+            node scripts/audit-civication-life-position-role-world-readiness.mjs --write >> "$DIAG" 2>&1
+            B=$?
+          else
+            B=99
+          fi
+          echo "audit_exit=$B" >> "$DIAG"
+          if [ "$A" -eq 0 ] && [ "$B" -eq 0 ]; then
+            node scripts/tmp-author-skuespiller-danser.cjs sync >> "$DIAG" 2>&1
+            C=$?
+          else
+            C=99
+          fi
+          echo "sync_exit=$C" >> "$DIAG"
+          cat "$DIAG"
+          if [ "$A" -ne 0 ] || [ "$B" -ne 0 ] || [ "$C" -ne 0 ]; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add "$DIAG"
+            git commit -m "TEMP capture Skuespiller danser authoring diagnostic"
+            git push origin HEAD:civication/scenekunst-skuespiller-danser-role-world
+            exit 1
+          fi
+          rm "$DIAG"
+          set -e
+
+      - name: Verify complete Skuespiller danser state
+        run: |
+          node tests/civication-scenekunst-skuespiller-danser-authored-depth.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-life-position-role-world-readiness.test.js
+          node tests/civication-noncareer-role-taxonomy.test.js
+          node scripts/build-civication-scene-registry.mjs --check
+          npm run test:civication
+          git diff --check
+
+      - name: Commit permanent Skuespiller danser state
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/tmp-skuespiller-danser-author.yml scripts/tmp-author-skuespiller-danser.cjs
+          git rm -f .tmp-skuespiller-danser-diagnostic.txt || true
+          git add data/Civication reports/civication-life-position-role-world-readiness.md tests/civication-*.test.js
+          git diff --cached --check
+          git commit -m "Civication: author Scenekunst Skuespiller danser Role World"
+          git push origin HEAD:civication/scenekunst-skuespiller-danser-role-world
