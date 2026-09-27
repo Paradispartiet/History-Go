@@ -51,11 +51,11 @@ jobs:
           if (audit.summary.blocking_issues !== 36) throw new Error(`expected 36 blockers after repair, got ${audit.summary.blocking_issues}`);
           console.log(JSON.stringify({ summary: audit.summary, category_counts: counts }, null, 2));
           NODE
-      - name: Synchronize compiled scene registry if needed
+      - name: Synchronize compiled scene registry
         shell: bash
         run: |
           if ! node scripts/build-civication-scene-registry.mjs --check; then
-            node scripts/build-civication-scene-registry.mjs
+            node scripts/build-civication-scene-registry.mjs --write
           fi
           node scripts/build-civication-scene-registry.mjs --check
           node scripts/audit-civication-career-gameplay.mjs --check
@@ -69,7 +69,7 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git rm .github/workflows/tmp-scene-pipeline-blockers.yml scripts/tmp-fix-by-radgiver-trigger-threads.cjs
-          git add data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json tests/civication-by-radgiver-trigger-threads.test.js data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json
+          git add data/Civication/mailFamilies/by/people/by_radgiver_plan_people.json tests/civication-by-radgiver-trigger-threads.test.js data/Civication/compiledSceneRegistryV1.json data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md
           git diff --cached --check
           git commit -m "Civication: repair By-rådgiver trigger threads"
           git push origin HEAD:civication/scene-pipeline-strict-blockers-2
