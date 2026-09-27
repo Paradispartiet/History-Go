@@ -1,0 +1,26 @@
+name: Temporary Civication scene pipeline strict audit
+
+on:
+  push:
+    branches:
+      - civication/scene-pipeline-enforcement-audit
+    paths:
+      - .github/workflows/tmp-scene-pipeline-strict-audit.yml
+
+permissions:
+  contents: read
+
+jobs:
+  strict-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Run scene pipeline audit in strict mode
+        run: node scripts/audit-civication-scene-pipeline.mjs --strict
+      - name: Verify no repository drift
+        run: git diff --check
