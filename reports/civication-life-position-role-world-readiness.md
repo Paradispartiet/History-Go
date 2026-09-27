@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 158 ready / 1 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 159 ready / 0 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 158
-**Multi-scene narrative foundations:** 158
-**Completed life-position Role Worlds:** 158
+**Exact governed-source matches:** 159
+**Multi-scene narrative foundations:** 159
+**Completed life-position Role Worlds:** 159
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,7 +18,6 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 

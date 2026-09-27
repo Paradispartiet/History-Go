@@ -25,15 +25,15 @@ assert.equal(audit.version, 2);
 assert.equal(audit.summary.selectable_life_positions, taxonomy.canonical_counts.selectable_life_positions_total);
 assert.equal(audit.summary.selectable_life_positions, 199);
 assert.deepEqual(audit.summary.classifications, {
-  ready: 158,
-  needs_authored_depth: 1,
+  ready: 159,
+  needs_authored_depth: 0,
   not_a_standalone_world: 40
 });
-assert.equal(audit.summary.completed_life_position_role_worlds, 158);
+assert.equal(audit.summary.completed_life_position_role_worlds, 159);
 assert.equal(audit.summary.pending_ready_positions, 0);
 assert.equal(audit.summary.livelihood_backed_positions, 15);
-assert.equal(audit.summary.positions_with_exact_governed_sources, 158);
-assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 158);
+assert.equal(audit.summary.positions_with_exact_governed_sources, 159);
+assert.equal(audit.summary.positions_with_multi_scene_narrative_foundation, 159);
 assert.equal(audit.first_ready, null);
 assert.equal(taxonomy.role_world_rollout_boundary.next_source_backed_candidate, null);
 assert.equal(policy.noncareer_subject_boundary.life_position_readiness.first_source_backed_candidate, null);
@@ -889,10 +889,10 @@ assert.ok(!(audit.queue || []).some((row) => ['sport/supporter','by/nabolagskjen
 assert.ok((audit.queue || []).every((row) => row.classification !== 'not_a_standalone_world'));
 assert.equal(new Set(audit.positions.map((row) => row.key)).size, 199);
 assert.deepEqual(new Set(audit.positions.map((row) => row.classification)),
-  new Set(['ready', 'needs_authored_depth', 'not_a_standalone_world']));
+  new Set(['ready', 'not_a_standalone_world']));
 assert.ok(audit.semantics.audit_only_no_new_runtime);
 assert.ok(audit.semantics.readiness_classification_is_independent_of_role_world_lifecycle);
 assert.ok(audit.semantics.one_life_position_per_role_world_pr);
 assert.ok(audit.semantics.livelihood_opportunity_alone_is_not_role_world_depth);
 
-console.log('civication life-position Role World readiness v2 ok: 133 ready / 26 authored-depth / 40 not-standalone; 133 complete / no pending-ready');
+console.log('civication life-position Role World readiness v2 ok: 159 ready / 0 authored-depth / 40 not-standalone; 159 complete / no pending-ready');
