@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_dramaturg_stream",
+  "type": "leisure",
+  "title": "Dramaturg — verklesning, prøveevidens, kildegrense og delt mandat",
+  "sociological_theme": "scenekunst_dramaturg_sporbar_analyse_korrigerbar_radgivning_proveevidens_kildegrense_versjonsdisiplin_rettigheter_produksjonsbegrensning_offentlig_pastand_usynlig_arbeid_og_mandatseparasjon",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:dramaturg"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "forste_lesning_uten_fasit",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dramatikeren",
+      "subject": "Første lesning uten fasit",
+      "situation": [
+        "Du får et nytt tekstutkast der flere scener fungerer enkeltvis, men verkets bevegelse fortsatt er uklar.",
+        "Dramaturgisk praksis begynner med å skille observasjon fra smak og løsningsforslag.",
+        "Et strukturkart er et arbeidsredskap: det skal gjøre alternativer synlige uten å late som dramaturgen eier verkets mening."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg vendepunkter, gjentakelser og åpne spørsmål før du foreslår endringer.",
+          "effect": 1,
+          "tags": [
+            "structural_reading",
+            "interpretive_humility"
+          ],
+          "feedback": "Arbeidet åpner flere presise hypoteser som kan prøves mot teksten."
+        },
+        {
+          "id": "B",
+          "label": "Skriv én samlet dom om hva teksten egentlig handler om og bruk den som fasit.",
+          "effect": -1,
+          "tags": [
+            "structural_reading_failure",
+            "interpretive_humility_failure"
+          ],
+          "feedback": "En foreløpig lesning blir gjort til autoritet før andre perspektiver er undersøkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_forste_lesning_uten_fasit"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forfatterintensjon_og_verkeffekt",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Dramatikeren",
+      "subject": "Intensjon og virkning peker ikke samme vei",
+      "situation": [
+        "Forfatteren forklarer hva en scene skal gjøre, mens lesningen din viser at teksten kan produsere en annen effekt.",
+        "Dramaturgen må kunne holde opphavspersonens intensjon og verkets faktiske organisering i samme samtale uten å underordne den ene den andre.",
+        "Rådet må være etterprøvbart og formulert slik at forfatteren fortsatt eier beslutningen om teksten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv forskjellen mellom uttalt intensjon og lesbar effekt, og be om en konkret tekstlig prøve.",
+          "effect": 1,
+          "tags": [
+            "authorial_consent",
+            "effect_vs_intention"
+          ],
+          "feedback": "Uenigheten blir et arbeidsproblem som kan undersøkes i teksten."
+        },
+        {
+          "id": "B",
+          "label": "Fortell forfatteren hvilken betydning scenen må ha fordi dramaturgisk analyse står over intensjon.",
+          "effect": -1,
+          "tags": [
+            "authorial_consent_failure",
+            "effect_vs_intention_failure"
+          ],
+          "feedback": "Analysen glir over i skjult forfattermandat."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_forfatterintensjon_og_verkeffekt"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "proven_som_evidens",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Prøven endrer hva teksten gjør",
+      "situation": [
+        "I prøverommet oppstår en pause og en fysisk avstand som flytter scenens tyngdepunkt.",
+        "En prøve gir situert evidens om rytme, handling og mottak, men den er ikke automatisk en universell fasit.",
+        "Dramaturgens notat må skille hva som faktisk skjedde fra hypotesen om hvorfor det virket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hendelsen, formuler to mulige forklaringer og foreslå en ny avgrenset prøve.",
+          "effect": 1,
+          "tags": [
+            "rehearsal_evidence",
+            "hypothesis_discipline"
+          ],
+          "feedback": "Prøven blir kunnskap som kan korrigeres av neste prøve."
+        },
+        {
+          "id": "B",
+          "label": "Gjør den første sterke prøveopplevelsen til endelig konklusjon om scenens funksjon.",
+          "effect": -1,
+          "tags": [
+            "rehearsal_evidence_failure",
+            "hypothesis_discipline_failure"
+          ],
+          "feedback": "Et levende øyeblikk fryses til regel uten kontroll."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_proven_som_evidens"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "strukturkartet_som_blir_bestilling",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Meddramaturgen",
+      "subject": "Når kartet begynner å styre verket",
+      "situation": [
+        "Et strukturkart du laget for å synliggjøre mønstre blir sitert av teamet som om det var en vedtatt plan.",
+        "Usynlig analysearbeid kan få makt når dokumentet sirkulerer uten spor av hva som var observasjon, hypotese og beslutning.",
+        "Dramaturgen må beskytte forskjellen mellom analyse og bestilling."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Versjoner kartet og merk tydelig hva som er funn, spørsmål og faktisk besluttet arbeid.",
+          "effect": 1,
+          "tags": [
+            "version_discipline",
+            "mandate_separation"
+          ],
+          "feedback": "Dokumentet blir nyttig uten å få skjult myndighet."
+        },
+        {
+          "id": "B",
+          "label": "La teamet bruke kartet som plan fordi det sparer tid og viser at analysen blir tatt på alvor.",
+          "effect": -1,
+          "tags": [
+            "version_discipline_failure",
+            "mandate_separation_failure"
+          ],
+          "feedback": "Analyseformatet blir en uformell kommandolinje."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_strukturkartet_som_blir_bestilling"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kilden_som_bar_for_mye",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kildepartneren",
+      "subject": "En historisk kilde bærer for stor påstand",
+      "situation": [
+        "Produksjonen bruker et historisk sitat som nøkkel til verkets offentlige fortelling, men proveniens og kontekst er ufullstendig.",
+        "Dramaturgisk research må skille dokumentasjon, tolkning og kunstnerisk bruk.",
+        "Usikkerhet er ikke et nederlag; den må følge påstanden slik at scenisk kraft ikke låner falsk faktamyndighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Merk hva kilden dokumenterer, hva som er tolkning og hva som fortsatt må avklares.",
+          "effect": 1,
+          "tags": [
+            "source_uncertainty",
+            "evidence_weight"
+          ],
+          "feedback": "Kilden kan brukes som spørsmål uten å bære mer autoritet enn den tåler."
+        },
+        {
+          "id": "B",
+          "label": "Behold formuleringen uendret fordi kunstnerisk tydelighet er viktigere enn kildegrensen.",
+          "effect": -1,
+          "tags": [
+            "source_uncertainty_failure",
+            "evidence_weight_failure"
+          ],
+          "feedback": "Foreløpig research blir presentert som historisk fasit."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_kilden_som_bar_for_mye"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rettigheten_som_ikke_folger_ideen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "God idé, uavklart rettighet",
+      "situation": [
+        "En scenisk idé avhenger av et tekstutdrag og et arkivmateriale som teamet ennå ikke har dokumentert bruksrett til.",
+        "Dramaturgen kan oppdage og beskrive rettighetsrisiko, men kan ikke gi samtykke på vegne av opphavsperson eller institusjon.",
+        "Rettighetsstatus må derfor inn i arbeidsgrunnlaget før kunstnerisk entusiasme blir irreversibelt produksjonsarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill kunstnerisk hypotese fra rettighetsstatus og send avklaringen til riktig eier før permanent bygging.",
+          "effect": 1,
+          "tags": [
+            "rights_boundary",
+            "reversible_work"
+          ],
+          "feedback": "Arbeidet kan fortsette reversibelt uten at dramaturgen later som rettigheten er avklart."
+        },
+        {
+          "id": "B",
+          "label": "Be teamet fortsette som om tillatelsen kommer fordi ideen allerede er viktig for forestillingen.",
+          "effect": -1,
+          "tags": [
+            "rights_boundary_failure",
+            "reversible_work_failure"
+          ],
+          "feedback": "Fremdrift skjuler en juridisk og sosial avhengighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_rettigheten_som_ikke_folger_ideen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "ensemblets_motfunn",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Utøveren",
+      "subject": "Ensemblet motsier arbeidsboken",
+      "situation": [
+        "To utøvere beskriver scenens problem på en måte som ikke passer den dramaturgiske hypotesen du har brukt i flere dager.",
+        "Kroppslig og scenisk erfaring er ikke underordnet arbeidsboken; motfunn må kunne endre analysegrunnlaget.",
+        "Dramaturgisk autoritet styrkes av korrigerbarhet, ikke av å vinne diskusjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be utøverne beskrive konkrete øyeblikk og revider hypotesen der observasjonene faktisk utfordrer den.",
+          "effect": 1,
+          "tags": [
+            "embodied_counterevidence",
+            "revision_discipline"
+          ],
+          "feedback": "Motfunnet blir innarbeidet uten at erfaring gjøres til ny ene-fasit."
+        },
+        {
+          "id": "B",
+          "label": "Forsvar arbeidsboken fordi dramaturgen har større oversikt over hele verket enn ensemblet.",
+          "effect": -1,
+          "tags": [
+            "embodied_counterevidence_failure",
+            "revision_discipline_failure"
+          ],
+          "feedback": "Oversikt brukes som statusargument mot situert kunnskap."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_ensemblets_motfunn"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "beslutningen_som_skyves_til_dramaturgen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regiteamet",
+      "subject": "Kan du bare bestemme dette?",
+      "situation": [
+        "Teamet er uenig om et sentralt scenisk valg og ber dramaturgen avgjøre saken for å få prøven videre.",
+        "Dramaturgisk rådgivning kan tydeliggjøre alternativer, konsekvenser og verklogikk, men gir ikke automatisk regimandat.",
+        "Når ansvar flyttes i tidsnød, kan et råd bli til myndighet uten at noen har vedtatt det."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Formuler alternativene og konsekvensene, og returner den sceniske beslutningen til den som faktisk har mandatet.",
+          "effect": 1,
+          "tags": [
+            "advisory_boundary",
+            "decision_ownership"
+          ],
+          "feedback": "Rådet blir handlingsrelevant uten å overta beslutningsmandatet."
+        },
+        {
+          "id": "B",
+          "label": "Ta avgjørelsen selv fordi noen må få prøven videre og du kjenner argumentene best.",
+          "effect": -1,
+          "tags": [
+            "advisory_boundary_failure",
+            "decision_ownership_failure"
+          ],
+          "feedback": "Tidsnød skaper en uformell rolleutvidelse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_beslutningen_som_skyves_til_dramaturgen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "fristen_som_gjor_usikkerhet_dyr",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "Fristen presser fram en falsk avklaring",
+      "situation": [
+        "Teknisk avdeling trenger et svar før dramaturgiske spørsmål er ferdig undersøkt.",
+        "Produksjonsbegrensninger er reell kunnskap, men de gjør ikke automatisk en foreløpig tolkning sann.",
+        "Godt handoff skiller det som må låses nå fra det som fortsatt kan være reversibelt."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Navngi hva som faktisk må besluttes, hva som kan bygges reversibelt og hvem som eier restspørsmålene.",
+          "effect": 1,
+          "tags": [
+            "production_constraint",
+            "rework_visibility"
+          ],
+          "feedback": "Teamet får en brukbar beslutningsgrense og synlig restarbeid."
+        },
+        {
+          "id": "B",
+          "label": "Kall hele pakken avklart slik at ingen mister tid på flere spørsmål.",
+          "effect": -1,
+          "tags": [
+            "production_constraint_failure",
+            "rework_visibility_failure"
+          ],
+          "feedback": "Usikkerheten forsvinner fra dokumentet og kommer tilbake som dyr rework."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_fristen_som_gjor_usikkerhet_dyr"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "programteksten_som_blir_for_sikker",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunikasjonsredaktøren",
+      "subject": "Programteksten gjør hypotesen til sannhet",
+      "situation": [
+        "En tidlig dramaturgisk hypotese er blitt skrevet om til en sikker påstand i programteksten.",
+        "Når arbeidsnotater vandrer ut i offentligheten, kan institusjonens prestisje gjøre foreløpig kunnskap vanskelig å korrigere.",
+        "Dramaturgen må kunne reparere påstanden uten å late som han eller hun eier all offentlig kommunikasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Versjoner en presis korreksjon, vis kildegrensen og avklar hvem som godkjenner den offentlige teksten.",
+          "effect": 1,
+          "tags": [
+            "public_claim_control",
+            "correction_discipline"
+          ],
+          "feedback": "Korreksjonen bevarer både ansvar og muligheten for en kompleks fortelling."
+        },
+        {
+          "id": "B",
+          "label": "La påstanden stå fordi publikum trenger en tydelig historie og nyanser vil svekke kommunikasjonen.",
+          "effect": -1,
+          "tags": [
+            "public_claim_control_failure",
+            "correction_discipline_failure"
+          ],
+          "feedback": "Kommunikativ klarhet kjøpes med lånt kunnskapsautoritet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_programteksten_som_blir_for_sikker"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "forhandsvisningen_som_overfortolkes",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Meddramaturgen",
+      "subject": "Én publikumsreaksjon blir alle publikums stemme",
+      "situation": [
+        "En liten forhåndsvisning reagerer sterkt på ett parti, og teamet vil straks omskrive store deler av verket.",
+        "Publikumsrespons er situert informasjon: hvem som var i rommet, rammen og spørsmålet påvirker hva responsen kan si.",
+        "Dramaturgen må bruke mottak som materiale uten å gjøre den til plebisitt over verket."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Sorter reaksjonene etter hva de faktisk viser og velg ett spørsmål som kan prøves videre.",
+          "effect": 1,
+          "tags": [
+            "audience_evidence",
+            "sampling_humility"
+          ],
+          "feedback": "Responsen åpner et nytt kontrollert spørsmål i stedet for en panikkrevisjon."
+        },
+        {
+          "id": "B",
+          "label": "Behandle den tydeligste reaksjonen som representativ for framtidig publikum og omskriv deretter.",
+          "effect": -1,
+          "tags": [
+            "audience_evidence_failure",
+            "sampling_humility_failure"
+          ],
+          "feedback": "Et lite rom får ubegrunnet representativitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_forhandsvisningen_som_overfortolkes"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "versjonen_som_forsvant",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonslederen",
+      "subject": "Ingen vet hvilken tekst som er gjeldende",
+      "situation": [
+        "Etter flere små endringer arbeider utøvere og tekniske fag plutselig fra ulike tekstversjoner.",
+        "Versjonsdisiplin er usynlig arbeid helt til den svikter og skaper sosial friksjon, omarbeid og feil attribusjon.",
+        "Dramaturgen kan holde sporbarhet, men må også gjøre eier og beslutning synlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Stans videre spredning, identifiser gjeldende versjon og dokumenter hvem som godkjente hvilke endringer.",
+          "effect": 1,
+          "tags": [
+            "version_control",
+            "attribution_trace"
+          ],
+          "feedback": "Teamet får et felles arbeidsgrunnlag og en etterprøvbar endringshistorikk."
+        },
+        {
+          "id": "B",
+          "label": "Send den nyeste filen på nytt uten å rydde historikken fordi alle bør forstå at siste fil gjelder.",
+          "effect": -1,
+          "tags": [
+            "version_control_failure",
+            "attribution_trace_failure"
+          ],
+          "feedback": "Filrekkefølge erstatter beslutningshistorikk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_versjonen_som_forsvant"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "arbeidsboken_som_folger_hjem",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Analysen fortsetter etter at dagen er slutt",
+      "situation": [
+        "Du merker at du fortsatt sorterer andres formuleringer og konflikter lenge etter at arbeidsdagen er over.",
+        "Dramaturgisk arbeid er ofte kognitivt og emosjonelt usynlig; grenseløs tilgjengelighet kan gjøre omsorg og presisjon dårligere neste dag.",
+        "Privatlivet skal kunne romme belastningen uten at fortrolig materiale eller ubetalt reservearbeid blir normalen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv presset uten å dele fortrolig innhold, avslutt arbeidsboken for kvelden og avtal når du faktisk tar den opp igjen.",
+          "effect": 1,
+          "tags": [
+            "private_containment",
+            "invisible_work"
+          ],
+          "feedback": "En tydelig grense beskytter både relasjonen og neste dags faglige presisjon."
+        },
+        {
+          "id": "B",
+          "label": "Fortsett å finredigere hjemme fordi grundighet er en del av identiteten og ingen andre ser hvor mye tid det tar.",
+          "effect": -1,
+          "tags": [
+            "private_containment_failure",
+            "invisible_work_failure"
+          ],
+          "feedback": "Usynlig arbeid blir gjort til personlig plikt uten sluttpunkt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_arbeidsboken_som_folger_hjem"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_dramaturg",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Meddramaturgen",
+      "subject": "Hva slags myndighet har en dramaturg egentlig?",
+      "situation": [
+        "Etter to uker har du lest, kartlagt, prøvd hypoteser, fulgt kilder, versjoner og reaksjoner gjennom flere arbeidsflater.",
+        "Dramaturg er her en employment-independent dramaturgical_practice_or_livelihood: Badge-identiteten kan eksistere uten ansettelse, lønn eller institusjonelt mandat.",
+        "Formell Dramaturg-jobb krever fortsatt appointment_required; livsposisjonen gjør deg ikke automatisk til Regissør, Dramatiker, Scenekunstkurator, Produsent eller Kildeansvarlig."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer praksisen som sporbar analyse, korrigerbar rådgivning og tydelig mandatgrense, og la formell myndighet følge faktisk avtale.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "employment_independence"
+          ],
+          "feedback": "Rollen blir tydelig som praksis uten å late som den gir en stilling eller andres mandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Badge-identiteten som bevis på at du kan ta kunstneriske, rettslige og produksjonsmessige beslutninger for andre.",
+          "effect": -1,
+          "tags": [
+            "role_boundary_failure",
+            "employment_independence_failure"
+          ],
+          "feedback": "Identitet glir over i ubegrunnet institusjonell fullmakt."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "dramaturg_sesongslutt_hva_er_en_dramaturg"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
