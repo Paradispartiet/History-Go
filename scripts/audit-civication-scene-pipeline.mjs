@@ -9,6 +9,7 @@ export const DEFAULT_REPO_ROOT = path.resolve(SCRIPT_DIR, "..");
 export const PATHS = Object.freeze({
   policy: "data/Civication/scenePipelinePolicyV1.json",
   contract: "data/Civication/sceneContractV1.schema.json",
+  badgeRoleMappings: "data/Civication/badgeRoleMappings.json",
   plans: "data/Civication/mailPlans",
   families: "data/Civication/mailFamilies",
   dayProgram: "data/Civication/mailDayProgram.json",
@@ -68,6 +69,21 @@ function uniq(values) {
 
 function sorted(values) {
   return uniq(values).sort((a, b) => a.localeCompare(b, "nb"));
+}
+
+function collectStagedFutureSplitKeys(mappings) {
+  const staged = new Set();
+  for (const [category, career] of Object.entries(mappings?.careers || {})) {
+    const activeScopes = new Set([
+      ...Object.keys(career?.roles || {}),
+      ...Object.values(career?.title_to_role_scope || {}).map(norm).filter(Boolean)
+    ]);
+    for (const candidate of asArray(career?.future_split_candidates)) {
+      const roleScope = norm(candidate?.role_scope);
+      if (roleScope && !activeScopes.has(roleScope)) staged.add(`${category}/${roleScope}`);
+    }
+  }
+  return staged;
 }
 
 function asArray(value) {
@@ -400,7 +416,7 @@ function analyzeDayProgram(root, policy) {
   };
 }
 
-function auditPlanReachability(root, plans, runtimeMailTypes, allCatalogs) {
+function auditPlanReachability(root, plans, runtimeMailTypes, allCatalogs, stagedFutureSplitKeys = new Set()) {
   const catalogByPath = new Map(allCatalogs.map((row) => [row.path, row]));
   const report = [];
 
@@ -408,6 +424,9 @@ function auditPlanReachability(root, plans, runtimeMailTypes, allCatalogs) {
     const plan = planRow.json;
     const category = norm(plan?.category || planRow.path.split("/").at(-2));
     const roleScope = norm(plan?.role_scope || path.basename(planRow.path, ".json").replace(/_plan$/, ""));
+    const planKey = `${category}/${roleScope}`;
+    const activationStatus = stagedFutureSplitKeys.has(planKey) ? "staged_future_split" : "active_or_unclassified";
+    const blockingReachability = activationStatus !== "staged_future_split";
     const familyRoot = `${PATHS.families}/${category}`;
     const roleCatalogs = allCatalogs.filter((row) => {
       if (!row.path.startsWith(`${familyRoot}/`)) return false;
@@ -478,6 +497,8 @@ function auditPlanReachability(root, plans, runtimeMailTypes, allCatalogs) {
       id: norm(plan?.id),
       category,
       role_scope: roleScope,
+      activation_status: activationStatus,
+      blocking_reachability: blockingReachability,
       runtime_paths: runtimePaths,
       runtime_paths_present: runtimePaths.filter((relative) => catalogByPath.has(relative)),
       total_steps: steps.length,
@@ -571,10 +592,15 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
 
   const policyResult = readJsonResult(root, PATHS.policy);
   const contractResult = readJsonResult(root, PATHS.contract);
+  const badgeRoleMappingsResult = fileExists(root, PATHS.badgeRoleMappings)
+    ? readJsonResult(root, PATHS.badgeRoleMappings)
+    : { ok: true, value: {} };
   if (!policyResult.ok) parseErrors.push({ path: PATHS.policy, error: policyResult.error });
   if (!contractResult.ok) parseErrors.push({ path: PATHS.contract, error: contractResult.error });
+  if (!badgeRoleMappingsResult.ok) parseErrors.push({ path: PATHS.badgeRoleMappings, error: badgeRoleMappingsResult.error });
   const policy = policyResult.value || {};
   const contract = contractResult.value || {};
+  const stagedFutureSplitKeys = collectStagedFutureSplitKeys(badgeRoleMappingsResult.value || {});
 
   const allJsonPaths = walkFiles(root, "data/Civication", (relative) => relative.endsWith(".json"));
   const parsedJson = [];
@@ -647,7 +673,7 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
   const allCatalogs = parsedJson
     .filter((row) => row.path.startsWith(`${PATHS.families}/`))
     .map((row) => ({ ...row, items: flattenCatalog(row.json, row.path) }));
-  const planReachability = auditPlanReachability(root, planRows, runtimeMailTypes, allCatalogs);
+  const planReachability = auditPlanReachability(root, planRows, runtimeMailTypes, allCatalogs, stagedFutureSplitKeys);
 
   const wrappers = detectAnswerWrappers(root);
   const fallbackChoiceSources = sorted(filesContaining(root, "__civi_fallback_choice"));
@@ -662,13 +688,13 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
   const schemaLessFormats = formatInventory.filter((row) => row.format.startsWith("schema-less:"));
   const directStepCount = planReachability.reduce((sum, plan) => sum + plan.direct_steps, 0);
   const totalStepCount = planReachability.reduce((sum, plan) => sum + plan.total_steps, 0);
-  const knownContentNotLoaded = planReachability.flatMap((plan) => plan.steps
+  const knownContentNotLoaded = planReachability.filter((plan) => plan.blocking_reachability).flatMap((plan) => plan.steps
     .filter((step) => step.content_exists && !step.content_loaded)
     .map((step) => ({ plan: plan.path, role_scope: plan.role_scope, ...step })));
-  const semanticSubstitutions = planReachability.flatMap((plan) => plan.steps
+  const semanticSubstitutions = planReachability.filter((plan) => plan.blocking_reachability).flatMap((plan) => plan.steps
     .filter((step) => step.semantic_substitution)
     .map((step) => ({ plan: plan.path, role_scope: plan.role_scope, ...step })));
-  const missingPlanFamilies = planReachability.flatMap((plan) => plan.steps
+  const missingPlanFamilies = planReachability.filter((plan) => plan.blocking_reachability).flatMap((plan) => plan.steps
     .filter((step) => step.missing_allowed_families.length)
     .map((step) => ({ plan: plan.path, role_scope: plan.role_scope, ...step })));
 
@@ -748,7 +774,8 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
       direct_ratio: totalStepCount ? directStepCount / totalStepCount : 0,
       content_exists_but_not_loaded: knownContentNotLoaded,
       semantic_substitutions: semanticSubstitutions,
-      missing_plan_families: missingPlanFamilies
+      missing_plan_families: missingPlanFamilies,
+      staged_future_split_plans: planReachability.filter((plan) => plan.activation_status === "staged_future_split").map((plan) => plan.path)
     },
     day_program: dayProgram,
     blocking_issues: blockingIssues,
