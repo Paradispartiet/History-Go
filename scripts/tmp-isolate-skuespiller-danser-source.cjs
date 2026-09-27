@@ -18,4 +18,10 @@ const bank=JSON.parse(fs.readFileSync(bankPath,'utf8'));
 const key='scenekunst/scenekunst_skuespiller_danser';
 bank.reference_profiles[key]=(bank.reference_profiles[key]||[]).map((id)=>id==='status_games'?'status_anxiety':id);
 fs.writeFileSync(bankPath,JSON.stringify(bank,null,2)+'\n');
-console.log('isolated premieregjenger hook collision and aligned status_games to canonical status_anxiety theme');
+
+const readinessTestPath=path.join(root,'tests/civication-life-position-role-world-readiness.test.js');
+let t=fs.readFileSync(readinessTestPath,'utf8');
+t=t.replace("new Set(['ready', 'needs_authored_depth', 'not_a_standalone_world'])","new Set(['ready', 'not_a_standalone_world'])")
+  .replace(/console\.log\('civication life-position Role World readiness v2 ok: [^']*'\);/,"console.log('civication life-position Role World readiness v2 ok: 159 ready / 0 authored-depth / 40 not-standalone; 159 complete / no pending-ready');");
+fs.writeFileSync(readinessTestPath,t);
+console.log('isolated premieregjenger hook collision, aligned canonical status theme, and set final two-class readiness contract');
