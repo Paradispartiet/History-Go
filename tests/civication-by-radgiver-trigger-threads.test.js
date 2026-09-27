@@ -91,7 +91,11 @@ assert.match(runtimeSource, /family\?\.threads/, 'mail runtime must index family
 assert.match(runtimeSource, /choice\?\.triggers_on_choice/, 'mail runtime must read choice-level triggers_on_choice');
 assert.match(runtimeSource, /threadIndex\.get\(key\)/, 'mail runtime must resolve the triggered thread id from its thread index');
 
-const rawAudit = execFileSync(process.execPath, [auditPath, '--json'], { cwd: ROOT, encoding: 'utf8' });
+const rawAudit = execFileSync(process.execPath, [auditPath, '--json'], {
+  cwd: ROOT,
+  encoding: 'utf8',
+  maxBuffer: 16 * 1024 * 1024
+});
 const audit = JSON.parse(rawAudit);
 assert.equal(audit.summary.missing_internal_references, 0, 'scene-pipeline audit must have no dangling internal references');
 assert.equal((audit.blocking_issues || []).filter((issue) => issue.category === 'missing_internal_reference').length, 0);
