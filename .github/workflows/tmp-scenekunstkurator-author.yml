@@ -1,0 +1,48 @@
+name: Temporary Scenekunstkurator Role World authoring
+
+on:
+  push:
+    branches:
+      - civication/scenekunst-scenekunstkurator-role-world
+    paths:
+      - .github/workflows/tmp-scenekunstkurator-author.yml
+
+permissions:
+  contents: write
+
+jobs:
+  author-verify-finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+
+      - name: Author and materialize Scenekunstkurator
+        run: |
+          node scripts/tmp-author-scenekunstkurator.cjs author
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+          node scripts/tmp-author-scenekunstkurator.cjs sync
+
+      - name: Verify complete Scenekunstkurator state
+        run: |
+          node tests/civication-scenekunst-scenekunstkurator-authored-depth.test.js
+          node tests/civication-role-world-contract.test.js
+          node tests/civication-life-position-role-world-readiness.test.js
+          node tests/civication-noncareer-role-taxonomy.test.js
+          node scripts/build-civication-scene-registry.mjs --check
+          npm run test:civication
+          git diff --check
+
+      - name: Commit permanent Scenekunstkurator state
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/tmp-scenekunstkurator-author.yml scripts/tmp-author-scenekunstkurator.cjs
+          git add data/Civication reports/civication-life-position-role-world-readiness.md tests/civication-*.test.js
+          git diff --cached --check
+          git commit -m "Civication: author Scenekunst Scenekunstkurator Role World"
+          git push origin HEAD:civication/scenekunst-scenekunstkurator-role-world
