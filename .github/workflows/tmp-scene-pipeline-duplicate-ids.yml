@@ -1,0 +1,32 @@
+name: Temporary Civication duplicate scene-id audit
+
+on:
+  push:
+    branches:
+      - civication/scene-pipeline-duplicate-ids
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Audit duplicate scene IDs
+        shell: bash
+        run: |
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
+          const duplicates = (audit.blocking_issues || []).filter((issue) => issue.category === 'duplicate_scene_id');
+          console.log(JSON.stringify({
+            summary: audit.summary,
+            duplicate_count: duplicates.length,
+            duplicates
+          }, null, 2));
+          NODE
