@@ -1,0 +1,36 @@
+name: Temporary Civication scene-pipeline blocker diagnosis
+
+on:
+  push:
+    branches:
+      - civication/scene-pipeline-strict-blockers-2
+    paths:
+      - .github/workflows/tmp-scene-pipeline-blockers.yml
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Emit exact blocking issue inventory
+        shell: bash
+        run: |
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
+          const issues = audit.blocking_issues || [];
+          const counts = {};
+          for (const issue of issues) counts[issue.category] = (counts[issue.category] || 0) + 1;
+          console.log('SUMMARY', JSON.stringify(audit.summary, null, 2));
+          console.log('CATEGORY_COUNTS', JSON.stringify(counts, null, 2));
+          console.log('BLOCKING_ISSUES_BEGIN');
+          for (const [i, issue] of issues.entries()) console.log(JSON.stringify({index:i+1,...issue}));
+          console.log('BLOCKING_ISSUES_END');
+          NODE
