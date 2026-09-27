@@ -1,0 +1,40 @@
+name: Temporary Regissør thematic isolation patch
+
+on:
+  push:
+    branches:
+      - civication/scenekunst-regissor-role-world
+    paths:
+      - .github/workflows/tmp-regissor-patch.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove accidental Skrivebordspoet hook overlap
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/tmp-regissor-author.yml')
+          s=p.read_text()
+          old='før større omskriving'
+          new='før større endring'
+          if s.count(old) != 1:
+              raise SystemExit(f'expected one thematic-overlap phrase, found {s.count(old)}')
+          p.write_text(s.replace(old,new))
+          PY
+      - name: Commit patch and remove helper
+        shell: bash
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/tmp-regissor-patch.yml
+          git add .github/workflows/tmp-regissor-author.yml
+          git diff --cached --check
+          git commit -m "chore: isolate Regissør narrative source"
+          git push origin HEAD:civication/scenekunst-regissor-role-world
