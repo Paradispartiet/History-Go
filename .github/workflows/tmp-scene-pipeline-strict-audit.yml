@@ -1,4 +1,4 @@
-name: Temporary Civication scene pipeline strict audit
+name: Temporary Civication mail-plan diagnosis
 
 on:
   push:
@@ -11,30 +11,20 @@ permissions:
   contents: read
 
 jobs:
-  strict-audit:
+  diagnose:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci --no-audit --no-fund
-      - name: Diagnose scene pipeline blockers
+      - name: Locate mail plan runtime and tests
         shell: bash
         run: |
-          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
-          const byCategory = {};
-          for (const issue of audit.blocking_issues || []) {
-            (byCategory[issue.category] ||= []).push(issue);
-          }
-          console.log(JSON.stringify({ summary: audit.summary, blocking_by_category: byCategory }, null, 2));
-          NODE
-      - name: Run scene pipeline audit in strict mode
-        run: node scripts/audit-civication-scene-pipeline.mjs --strict
-      - name: Verify no repository drift
-        if: always()
-        run: git diff --check
+          echo '=== mail-related tests ==='
+          find tests -maxdepth 1 -type f \( -iname '*mail*' -o -iname '*inbox*' \) -print | sort
+          echo '=== allowed_families consumers ==='
+          grep -R --line-number --exclude='*.json' --exclude='*.md' 'allowed_families' . | head -120 || true
+          echo '=== mail plan references ==='
+          grep -R --line-number --exclude='*.json' --exclude='*.md' 'mailPlans\|mail_plan\|mail plan' . | head -160 || true
+          echo '=== mail family loaders ==='
+          grep -R --line-number --exclude='*.json' --exclude='*.md' 'mailFamilies\|mail_family_catalog' . | head -160 || true
+          echo '=== kapital/eierskap references ==='
+          grep -R --line-number 'kapital_og_eierskap\|kapital_risiko_og_vekst\|eierskap_styring_og_ansvar\|samfunnsverdi_arbeidsplasser_og_skatt\|investering_bygging_og_exit' . | head -200 || true
