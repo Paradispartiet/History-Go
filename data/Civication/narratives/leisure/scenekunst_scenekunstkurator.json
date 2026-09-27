@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_scenekunstkurator_stream",
+  "type": "leisure",
+  "title": "Scenekunstkurator — sporbar programlogikk, kunstnerautonomi, utvalg og mandatgrense",
+  "sociological_theme": "scenekunst_scenekunstkurator_programhypotese_utvalgsbalanse_habilitet_liveproduksjon_representasjonsintegritet_kontekstautonomi_lokalkunnskap_publikumsevidens_risikoseparasjon_tilgjengelighet_kreditering_fortrolighet_og_mandatseparasjon",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:scenekunstkurator"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "programmet_som_blir_personlig_smak",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kuratorfaglig kollega",
+      "subject": "Et program trenger mer enn personlig smak",
+      "situation": [
+        "Du setter sammen tre verk du selv opplever som sterke, men kan ikke ennå forklare hvorfor de skal stå sammen i samme program.",
+        "Kuratering av scenekunst krever en eksplisitt programlogikk som skiller smak, hypotese, kontekst og praktiske begrensninger.",
+        "En kurator kan ta kunstneriske valg uten å late som egen preferanse er nøytral eller selvforklarende kvalitet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv en kort programhypotese, noter hvilke observasjoner som støtter den, og marker hva som fortsatt bare er preferanse.",
+          "effect": 1,
+          "tags": [
+            "program_rationale",
+            "curatorial_transparency"
+          ],
+          "feedback": "Programmet får en prøvbar begrunnelse uten at smak skjules som objektiv sannhet."
+        },
+        {
+          "id": "B",
+          "label": "Presenter den personlige smaken som en tilstrekkelig kvalitetsbegrunnelse fordi kuratorrollen nettopp handler om å velge.",
+          "effect": -1,
+          "tags": [
+            "program_rationale_failure",
+            "curatorial_transparency_failure"
+          ],
+          "feedback": "Smak blir kamuflert som kvalitetsmål og gjør senere korreksjon vanskeligere."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_programmet_som_blir_personlig_smak"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "utlysningen_med_den_skjulte_kontaktkretsen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Den uavhengige kunstneren",
+      "subject": "En åpen utlysning kan fortsatt være sosialt lukket",
+      "situation": [
+        "En åpen utlysning får mange søknader, men de sterkeste interne anbefalingene kommer fra miljøer du allerede kjenner godt.",
+        "Formell åpenhet garanterer ikke lik tilgang når språk, kontaktkrets, tidsfrister og uformelle anbefalinger fordeler oppmerksomheten skjevt.",
+        "Kuratorisk vurdering må kunne dokumentere kriterier og håndtere kontaktkretsnærhet uten å late som relasjoner ikke finnes."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Frys kriteriene før siste utvalg, registrer nære relasjoner og gjør en ekstra gjennomgang av kandidater uten intern forkjemper.",
+          "effect": 1,
+          "tags": [
+            "selection_fairness",
+            "network_bias"
+          ],
+          "feedback": "Utvalget blir mer etterprøvbart uten å late som alle kandidater startet fra samme posisjon."
+        },
+        {
+          "id": "B",
+          "label": "Bruk anbefalingene_fra_kontaktkretsen som kvalitetssignal fordi personer du stoler på allerede har gjort en første sortering.",
+          "effect": -1,
+          "tags": [
+            "selection_fairness_failure",
+            "network_bias_failure"
+          ],
+          "feedback": "Uformell tilgang får større vekt enn den annonserte åpne prosessen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_utlysningen_med_den_skjulte_kontaktkretsen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "verket_som_kommer_med_en_rider",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk produsent",
+      "subject": "Det inviterte verket finnes også som tid, rom og rider",
+      "situation": [
+        "Et internasjonalt gjestespill passer programmet kunstnerisk, men den tekniske rideren krever mer riggetid, kompetanse og sceneplass enn første plan forutsatte.",
+        "Live scenekunst materialiseres gjennom konkrete forhold som transport, rigg, sikkerhet, prøvetid og lokal bemanning.",
+        "Kuratoren må skille kunstnerisk begrunnelse fra produksjonsløfte og gjøre konsekvensene synlige før invitasjonen blir irreversibel."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hva i rideren som er kunstnerisk ufravikelig, hva som kan forhandles, og hvem som faktisk kan godkjenne ressursbruken.",
+          "effect": 1,
+          "tags": [
+            "production_reality",
+            "commitment_reversibility"
+          ],
+          "feedback": "Invitasjonen får et realistisk produksjonsgrunnlag uten at kunstnerisk verdi reduseres til logistikk."
+        },
+        {
+          "id": "B",
+          "label": "Send endelig invitasjon først og la produksjonen finne en løsning fordi verket allerede er kuratorisk riktig.",
+          "effect": -1,
+          "tags": [
+            "production_reality_failure",
+            "commitment_reversibility_failure"
+          ],
+          "feedback": "Kuratorisk entusiasme blir et skjult produksjonsvedtak for andre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_verket_som_kommer_med_en_rider"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "representasjon_uten_tokenisering",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kunstneren",
+      "subject": "Representasjon kan bli et krav om å bære en kategori",
+      "situation": [
+        "Du ønsker et mer representativt program og merker at én kunstner stadig omtales internt som den som skal dekke et bestemt perspektiv.",
+        "Representasjon er et reelt fordelingsspørsmål, men kunstnere blir redusert når identitet brukes som programfunksjon uten hensyn til verkets egenart.",
+        "Kuratorisk kontekst må kunne synliggjøre strukturell skjevhet uten å gjøre en enkelt kunstner til symbolsk pliktbærer."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilket strukturelt hull programmet faktisk har, vurder flere mulige verk, og la den valgte kunstnerens arbeid beholde sin egen kompleksitet.",
+          "effect": 1,
+          "tags": [
+            "representation_integrity",
+            "artist_autonomy"
+          ],
+          "feedback": "Programmet kan ta representasjon på alvor uten å gjøre kunstneren til en funksjonell markør."
+        },
+        {
+          "id": "B",
+          "label": "Behold kunstneren som representativ løsning og bygg formidlingen rundt kategorien publikum lettest vil forstå.",
+          "effect": -1,
+          "tags": [
+            "representation_integrity_failure",
+            "artist_autonomy_failure"
+          ],
+          "feedback": "Strukturell ambisjon blir lagt som identitetsarbeid på én kunstner."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_representasjon_uten_tokenisering"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kontekstteksten_som_eier_verket",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kunstneren",
+      "subject": "Kuratorens konteksttekst begynner å eie verket",
+      "situation": [
+        "Du skriver en tydelig rammetekst som forklarer hvordan et verk bør forstås i programmet.",
+        "Kontekst kan åpne historiske, politiske og estetiske forbindelser, men blir overstyrende når tolkningen presenteres som verkets egentlige mening.",
+        "Scenekunstkuratering må skille kuratorisk hypotese fra kunstnerens opphav og publikums rett til å møte et flertydig verk."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Marker teksten som en kuratorisk lesning, fjern påstander du ikke kan forankre, og la kunstneren korrigere feil om verkets premisser.",
+          "effect": 1,
+          "tags": [
+            "context_integrity",
+            "interpretive_humility"
+          ],
+          "feedback": "Formidlingen gir retning uten å absorbere verkets betydning."
+        },
+        {
+          "id": "B",
+          "label": "Spiss teksten ytterligere slik at publikum får én korrekt inngang til hva verket egentlig handler om.",
+          "effect": -1,
+          "tags": [
+            "context_integrity_failure",
+            "interpretive_humility_failure"
+          ],
+          "feedback": "Kuratorisk språk blir behandlet som autoritativ fasit over kunstnerens verk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_kontekstteksten_som_eier_verket"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "vennen_i_programmet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kuratorfaglig kollega",
+      "subject": "En nær relasjon gjør et godt verk vanskeligere å vurdere",
+      "situation": [
+        "En nær venn sender et prosjekt som passer svært godt inn i programmet du utvikler.",
+        "Habilitet handler ikke bare om korrupsjon; nærhet kan påvirke tilgang, tolkningsvilje og hvor mye usikkerhet du tåler i en søknad.",
+        "Kuratorrollen må kunne håndtere interessekonflikt eksplisitt uten å automatisk ekskludere gode verk eller skjule relasjonen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Opplys om relasjonen, trekk inn en uavhengig vurdering og dokumenter hvem som tar den endelige beslutningen.",
+          "effect": 1,
+          "tags": [
+            "conflict_disclosure",
+            "selection_fairness"
+          ],
+          "feedback": "Relasjonen blir håndtert som en synlig vurderingsrisiko i stedet for en hemmelig premiss."
+        },
+        {
+          "id": "B",
+          "label": "Vurder søknaden alene og unngå å nevne relasjonen fordi du kjenner din egen integritet.",
+          "effect": -1,
+          "tags": [
+            "conflict_disclosure_failure",
+            "selection_fairness_failure"
+          ],
+          "feedback": "Selvtillit blir brukt som erstatning for habilitetsrutine."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_vennen_i_programmet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "lokalscenen_som_blir_bakgrunn",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Lokal arrangør",
+      "subject": "Den lokale scenen blir kulisse for et importert program",
+      "situation": [
+        "Et gjesteprogram markedsføres som et møte med byen, men lokale miljøer kommer først inn når programmet allerede er låst.",
+        "Lokalkunnskap er ikke dekor; den kan endre timing, samarbeid, publikumsforståelse og hvilke kunstneriske relasjoner som faktisk finnes.",
+        "Kuratering på et sted krever at lokal medvirkning får påvirke programlogikken hvis den skal omtales som samarbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Åpne ett reelt beslutningspunkt på nytt, betal for lokal kompetanse og beskriv tydelig hva lokale partnere faktisk kan påvirke.",
+          "effect": 1,
+          "tags": [
+            "local_knowledge",
+            "reciprocity"
+          ],
+          "feedback": "Stedet får faktisk innflytelse i stedet for å fungere som autentiserende bakgrunn."
+        },
+        {
+          "id": "B",
+          "label": "Be lokale aktører bidra med introduksjoner og synlighet uten å endre det allerede ferdige programmet.",
+          "effect": -1,
+          "tags": [
+            "local_knowledge_failure",
+            "reciprocity_failure"
+          ],
+          "feedback": "Samarbeidsretorikk skjuler at beslutningsmakten allerede er brukt opp."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_lokalscenen_som_blir_bakgrunn"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "publikumstallet_som_blir_kvalitet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Publikumsrådgiver",
+      "subject": "Et fullt hus er ikke det samme som et godt program",
+      "situation": [
+        "Én forestilling selger ut raskt mens et annet verk får lavere belegg og sterkere faglig respons fra et mindre publikum.",
+        "Publikumstall måler etterspørsel under bestemte forhold, ikke kunstnerisk kvalitet, relevans eller langsiktig verdi alene.",
+        "Kuratoren trenger flere mål og må kunne forklare hva hvert mål faktisk sier før neste program justeres."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill salg, rekkevidde, publikumsutvikling og kunstnerisk læring, og bruk hvert datapunkt bare til beslutninger det kan støtte.",
+          "effect": 1,
+          "tags": [
+            "audience_evidence",
+            "metric_humility"
+          ],
+          "feedback": "Publikumsdata blir beslutningsgrunnlag uten å bli gjort til total dom over kunstnerisk verdi."
+        },
+        {
+          "id": "B",
+          "label": "Prioriter utsolgte formater neste sesong fordi markedet allerede har vist hva publikum vil ha.",
+          "effect": -1,
+          "tags": [
+            "audience_evidence_failure",
+            "metric_humility_failure"
+          ],
+          "feedback": "Ett lett mål får definere både kvalitet og framtidig programrom."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_publikumstallet_som_blir_kvalitet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "risikoen_som_blir_sensur",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Institusjonsleder",
+      "subject": "Omdømmerisiko blir formulert som kunstnerisk kvalitet",
+      "situation": [
+        "Et politisk krevende verk skaper uro hos ledelsen før kontrakten er endelig signert.",
+        "Institusjoner kan ha reelle juridiske, sikkerhetsmessige og økonomiske grenser, men disse må navngis som grenser i stedet for å omskrives til påstander om svak kunst.",
+        "Kuratorisk integritet krever å skille saklig risikoanalyse fra opportunistisk kvalitetsargumentasjon."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "List de konkrete risikoene, hvem som eier dem, hvilke tiltak som finnes, og hold kunstnerisk vurdering separat fra institusjonens toleranse.",
+          "effect": 1,
+          "tags": [
+            "risk_separation",
+            "artist_autonomy"
+          ],
+          "feedback": "Reell risiko kan behandles uten at institusjonell frykt blir maskert som estetisk dom."
+        },
+        {
+          "id": "B",
+          "label": "Beskriv verket som kunstnerisk umodent slik at programendringen kan forsvares uten offentlig konflikt.",
+          "effect": -1,
+          "tags": [
+            "risk_separation_failure",
+            "artist_autonomy_failure"
+          ],
+          "feedback": "Kvalitetsspråk brukes til å skjule et annet beslutningsgrunnlag."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_risikoen_som_blir_sensur"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tilgjengeligheten_som_blir_forenkling",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Tilgjengelighetsrådgiver",
+      "subject": "Tilgjengelighet er mer enn å gjøre verket enklere",
+      "situation": [
+        "Du får beskjed om at et komplekst verk bør forklares mer for å bli tilgjengelig for flere publikummere.",
+        "Tilgjengelighet kan handle om språk, teksting, sensoriske forhold, informasjon, pris og fysisk adgang uten at verkets kompleksitet må reduseres.",
+        "Kuratoren må skille barrierer rundt møtet fra den kunstneriske formen selv."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg konkrete barrierer med rådgiveren og kunstneren, og velg tiltak som øker adgang uten å late som kompleksitet er feilen.",
+          "effect": 1,
+          "tags": [
+            "access_design",
+            "artistic_complexity"
+          ],
+          "feedback": "Tilgjengeligheten forbedres gjennom konkrete adgangstiltak mens verkets egen form forblir et kunstnerisk spørsmål."
+        },
+        {
+          "id": "B",
+          "label": "Be kunstneren forenkle strukturen fordi et mer direkte verk automatisk vil være mer inkluderende.",
+          "effect": -1,
+          "tags": [
+            "access_design_failure",
+            "artistic_complexity_failure"
+          ],
+          "feedback": "Inkludering blir brukt som argument for å standardisere kunstnerisk uttrykk."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_tilgjengeligheten_som_blir_forenkling"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "tidsplanen_som_lager_kunstnerisk_logikk",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Teknisk produsent",
+      "subject": "Tidsplanen begynner å late som den er dramaturgi",
+      "situation": [
+        "To verk plasseres etter hverandre fordi samme tekniske rigg kan gjenbrukes, og programteksten begynner senere å beskrive rekkefølgen som en bevisst kunstnerisk dialog.",
+        "Produksjonseffektivitet kan være en legitim begrensning, men etterrasjonalisering gjør praktiske valg om til falsk kuratorisk intensjon.",
+        "Programmet blir sterkere når kunstnerisk og operativ begrunnelse kan eksistere samtidig og være sporbar."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold rekkefølgen hvis den fungerer, men dokumenter den tekniske årsaken og test om den påståtte kunstneriske forbindelsen faktisk holder.",
+          "effect": 1,
+          "tags": [
+            "constraint_traceability",
+            "program_rationale"
+          ],
+          "feedback": "Programmet kan romme praktiske kompromisser uten å forfalske sin egen historie."
+        },
+        {
+          "id": "B",
+          "label": "Skriv en overbevisende tematisk kobling slik at publikum slipper å se den praktiske årsaken.",
+          "effect": -1,
+          "tags": [
+            "constraint_traceability_failure",
+            "program_rationale_failure"
+          ],
+          "feedback": "Et logistisk valg får konstruert kunstnerisk nødvendighet i ettertid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_tidsplanen_som_lager_kunstnerisk_logikk"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "pressemeldingen_som_gjor_kuratoren_til_opphav",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kommunikasjonsansvarlig",
+      "subject": "Pressemeldingen gjør kuratoren til verkets hovedopphav",
+      "situation": [
+        "Utkastet til pressemelding omtaler sesongen som din visjon og bruker kunstnerne primært som eksempler på programideen.",
+        "Kuratering skaper reelle forbindelser og rammer, men kunstneriske verk har egne opphav, samarbeid og rettigheter som ikke bør absorberes av programfortellingen.",
+        "Offentlig kreditering må kunne gjøre kuratorarbeidet synlig uten å gjøre kunstnerne til råmateriale for kuratorens profil."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Omskriv teksten slik at kuratorisk programlogikk er tydelig samtidig som kunstnernes verk, opphav og samarbeid beholder selvstendig kreditering.",
+          "effect": 1,
+          "tags": [
+            "public_credit",
+            "attribution_trace"
+          ],
+          "feedback": "Kuratorarbeidet blir synlig uten å flytte opphav fra kunstnerne til programmet."
+        },
+        {
+          "id": "B",
+          "label": "Behold én sterk kuratorfortelling fordi pressearbeid fungerer best når sesongen har én tydelig avsender.",
+          "effect": -1,
+          "tags": [
+            "public_credit_failure",
+            "attribution_trace_failure"
+          ],
+          "feedback": "Kommunikativ enkelhet gjør kunstnerisk opphav underordnet kuratorprofilen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_pressemeldingen_som_gjor_kuratoren_til_opphav"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avslagene_som_folger_hjem",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Avslagene fortsetter privat etter at kontoret er stengt",
+      "situation": [
+        "Du har lest mange personlige prosjektbeskrivelser og sendt avslag til kunstnere du kjenner og respekterer.",
+        "Kuratorarbeid innebærer asymmetrisk tilgang til sårbart materiale og kan skape skyld, grubling og privat beredskap lenge etter beslutningen.",
+        "Fortrolighet og restitusjon må beskyttes slik at privatlivet ikke blir et uformelt klagekontor eller en ny vurderingsrunde."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv belastningen uten å dele søknadsdetaljer, noter eventuelle prosessfeil til arbeidstid og avslutt vurderingsarbeidet for kvelden.",
+          "effect": 1,
+          "tags": [
+            "private_containment",
+            "confidentiality"
+          ],
+          "feedback": "Belastningen blir anerkjent uten at fortrolighet og arbeidstid lekker videre."
+        },
+        {
+          "id": "B",
+          "label": "Gå gjennom de avslåtte søknadene hjemme en gang til og del detaljer med en nærperson for å få bekreftet at valgene var riktige.",
+          "effect": -1,
+          "tags": [
+            "private_containment_failure",
+            "confidentiality_failure"
+          ],
+          "feedback": "Privat støtte kjøpes ved å åpne materiale som ikke tilhører privatlivet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_avslagene_som_folger_hjem"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_en_scenekunstkurator",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Kuratorfaglig kollega",
+      "subject": "Hva slags myndighet følger egentlig Scenekunstkurator-identiteten?",
+      "situation": [
+        "Etter to uker har du formulert programhypoteser, vurdert utvalg, kontekst, representasjon, produksjonsvilkår, publikumsdata, kreditering og institusjonell risiko.",
+        "Scenekunstkurator er her en employment-independent curatorial_programming_practice_or_livelihood: Badge-identiteten kan romme selvstendig program- og kuratorpraksis uten arbeidsgiveransettelse eller institusjonelt mandat.",
+        "Formell Scenekunstkurator-jobb krever fortsatt appointment_required; livsposisjonen gjør deg ikke automatisk til Kunstnerisk leder, Produsent, Dramaturg, Regissør, Koreograf eller Skuespiller / danser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer praksisen som sporbar programlogikk, rettferdig utvalg, kunstnerautonomi, kontekstintegritet og tydelig mandatgrense, og la formell myndighet følge faktisk avtale.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "employment_independence"
+          ],
+          "feedback": "Rollen blir tydelig som kuratorisk praksis og mulig levevei uten å late som den gir institusjonell fullmakt."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Badge-identiteten som bevis på at du kan disponere programbudsjett, inngå avtaler og definere institusjonens kunstneriske linje uten særskilt mandat.",
+          "effect": -1,
+          "tags": [
+            "role_boundary_failure",
+            "employment_independence_failure"
+          ],
+          "feedback": "Identitet glir over i ubegrunnet budsjett-, avtale- og institusjonsmyndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "scenekunstkurator_sesongslutt_hva_er_en_scenekunstkurator"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
