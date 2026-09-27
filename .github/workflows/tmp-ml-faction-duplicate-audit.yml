@@ -1,0 +1,55 @@
+name: Temporary ml_faction duplicate audit
+
+on:
+  push:
+    branches:
+      - civication/scene-pipeline-ml-faction-duplicate
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Compare duplicate faction family objects
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const paths = [
+            'data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json',
+            'data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json'
+          ];
+          const [standalone, bundled] = paths.map(p => JSON.parse(fs.readFileSync(p,'utf8')));
+          const a = standalone.families.find(f => f.id === 'mellomleder_fraksjonsvalg');
+          const b = bundled.families.find(f => f.id === 'mellomleder_fraksjonsvalg');
+          console.log(JSON.stringify({
+            standalone_meta: {schema:standalone.schema, category:standalone.category, role_scope:standalone.role_scope, mail_type:standalone.mail_type},
+            bundled_meta: {schema:bundled.schema, category:bundled.category, role_scope:bundled.role_scope, mail_type:bundled.mail_type},
+            standalone_family:a,
+            bundled_family:b,
+            family_deep_equal: JSON.stringify(a) === JSON.stringify(b)
+          }, null, 2));
+          if (!a || !b) throw new Error('Expected family in both files');
+          if (!a.mails?.some(m => m.id === 'ml_faction_001') || !b.mails?.some(m => m.id === 'ml_faction_001')) throw new Error('Expected ml_faction_001 in both family copies');
+          NODE
+
+      - name: Trace all ownership and loader references
+        shell: bash
+        run: |
+          echo '=== ml_faction_001 ==='
+          git grep -n -F 'ml_faction_001' || true
+          echo '=== mellomleder_fraksjonsvalg ==='
+          git grep -n -F 'mellomleder_fraksjonsvalg' || true
+          echo '=== standalone filename ==='
+          git grep -n -F 'mellomleder_fraksjonsvalg.json' -- ':!.github/workflows/tmp-ml-faction-duplicate-audit.yml' || true
+          echo '=== bundled filename ==='
+          git grep -n -F 'mellomleder_job.json' -- ':!.github/workflows/tmp-ml-faction-duplicate-audit.yml' || true
+          echo '=== naeringsliv job manifests/loaders ==='
+          find data/Civication/mailFamilies/naeringsliv -maxdepth 3 -type f -print | sort
+          git grep -n -E 'mailFamilies/naeringsliv|naeringsliv/job|role_scope.*mellomleder' js scripts data/Civication 2>/dev/null | head -n 300 || true
