@@ -1,0 +1,664 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "scenekunst_skuespiller_danser_stream",
+  "type": "leisure",
+  "title": "Skuespiller / danser — profesjonell utøverpraksis, arbeidsvilkår, ensemble og rollegrense",
+  "sociological_theme": "scenekunst_skuespiller_danser_casting_avtale_rollefortolkning_bevegelsesgrense_ensembleoverforing_usynligarbeid_typecasting_intimitet_turnebelastning_skadeinformasjon_reginoter_kollegakonkurranse_offentligrespons_og_appointmentgrense",
+  "applies_when": {
+    "any_tags": [
+      "scenekunst:skuespiller_danser"
+    ]
+  },
+  "time_slots": [
+    "personal",
+    "home",
+    "people",
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "provespillet_og_egenverdien",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Castingansvarlig",
+      "subject": "Prøvespillet avgjør en rolle, ikke din verdi",
+      "situation": [
+        "Du går ut av et prøvespill uten å vite om valgene traff produksjonens behov.",
+        "Casting avgjør ofte mellom mange kvalifiserte utøvere på grunnlag av rolleprofil, kjemi, format og helhet, ikke bare en lineær kvalitetsrangering.",
+        "Profesjonell praksis krever at du kan evaluere eget arbeid uten å gjøre ett utfall til en dom over identiteten din."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter hva du faktisk kunne kontrollere i forberedelse og gjennomføring, og vent med konklusjoner om egen verdi til du har mer evidens.",
+          "effect": 1,
+          "tags": [
+            "audition_evidence",
+            "self_evaluation"
+          ],
+          "feedback": "Utfallet blir informasjon om en konkret casting, ikke et totalmål på profesjonell verdi."
+        },
+        {
+          "id": "B",
+          "label": "Les avslaget som bevis på at du mangler det som skal til, og legg om hele uttrykket ditt før neste prøvespill.",
+          "effect": -1,
+          "tags": [
+            "audition_evidence_failure",
+            "self_evaluation_failure"
+          ],
+          "feedback": "Et enkelt utfall får definere både identitet og neste kunstneriske valg."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_provespillet_og_egenverdien"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "avtalen_for_forste_provedag",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonsleder",
+      "subject": "Profesjonell praksis er ikke det samme som å være ansatt",
+      "situation": [
+        "Du får tilbud om å gå inn i en produksjon og blir bedt om å møte til første prøve før alle vilkår er avklart.",
+        "Skuespiller / danser er en employment-independent professional_performance_practice_or_livelihood og kan romme selvstendig arbeid, frilans og prosjektpraksis.",
+        "En formell jobb som Skuespiller / danser krever fortsatt appointment_required; Badge-identiteten skaper ikke automatisk arbeidsgiverforhold, lønn eller institusjonsmandat."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avklar oppdragets eller ansettelsens faktiske vilkår, honorar, prøvetid og beslutningsmyndighet før du behandler tilbudet som en formell jobb.",
+          "effect": 1,
+          "tags": [
+            "employment_boundary",
+            "contract_clarity"
+          ],
+          "feedback": "Profesjonsidentiteten holdes atskilt fra det konkrete retts- og arbeidsforholdet."
+        },
+        {
+          "id": "B",
+          "label": "Anta at Badge-identiteten betyr at du allerede er ansatt, og la vilkårene ordnes etter at prøvene har startet.",
+          "effect": -1,
+          "tags": [
+            "employment_boundary_failure",
+            "contract_clarity_failure"
+          ],
+          "feedback": "Identitet brukes som erstatning for avtale og formell appointment."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_avtalen_for_forste_provedag"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "rollen_som_krever_research",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regissøren",
+      "subject": "Research gir materiale, men ikke fasit",
+      "situation": [
+        "Du skal spille en rolle med historiske og sosiale erfaringer som ligger langt fra dine egne.",
+        "Research kan gi språk, kontekst og presisjon, men dokumentasjon og møter med kilder gir ikke automatisk rett til å påstå at du kjenner andres erfaring innenfra.",
+        "Skuespillerarbeid må omsette funn til sceniske valg uten å forveksle innlevelse med eierskap til virkeligheten."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skill det du vet fra det du tolker, og la research informere konkrete sceniske valg uten å gjøre rollen til dokumentarisk sannhet.",
+          "effect": 1,
+          "tags": [
+            "role_research",
+            "interpretive_boundary"
+          ],
+          "feedback": "Researchen skjerper arbeidet uten å bli brukt som autorisasjon over andres liv."
+        },
+        {
+          "id": "B",
+          "label": "Bruk researchen som bevis på at din tolkning nå er den autentiske versjonen av erfaringen.",
+          "effect": -1,
+          "tags": [
+            "role_research_failure",
+            "interpretive_boundary_failure"
+          ],
+          "feedback": "Innlevelse blir gjort om til ubegrunnet eierskap til erfaring."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_rollen_som_krever_research"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "endringen_i_bevegelsesfrasen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Koreografen",
+      "subject": "En ny bevegelse må fungere i den kroppen som skal gjøre den",
+      "situation": [
+        "En bevegelsesfrase endres sent, og den nye overgangen utfordrer balanse og belastning.",
+        "Profesjonell presisjon krever både trenbarhet og evne til å gi spesifikk informasjon om hva kroppen faktisk kan gjenta sikkert.",
+        "Koreografisk myndighet over materialet opphever ikke utøverens ansvar for å beskrive egne fysiske grenser."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Test overgangen kontrollert, beskriv det konkrete problemet og be om teknisk justering eller progresjon før full intensitet.",
+          "effect": 1,
+          "tags": [
+            "movement_safety",
+            "performer_boundary"
+          ],
+          "feedback": "Materialet kan utvikles uten at profesjonalisme blir lik taus selvoverskridelse."
+        },
+        {
+          "id": "B",
+          "label": "Skjul problemet og gjør full versjon hver gang for å bevise at du er profesjonell.",
+          "effect": -1,
+          "tags": [
+            "movement_safety_failure",
+            "performer_boundary_failure"
+          ],
+          "feedback": "Stillhet gjør kroppslig risiko til en skjult del av prestasjonen."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_endringen_i_bevegelsesfrasen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "erstatteren_i_ensemblet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Scenemakkeren",
+      "subject": "En erstatter trenger overføring, ikke sosial straff",
+      "situation": [
+        "En kollega blir syk og en erstatter kommer inn med kort tid til forestilling.",
+        "Ensemblekvalitet avhenger av at timing, signaler og praktisk kunnskap kan overføres, også når besetningen endres.",
+        "Profesjonell status svekkes når fast tilhørighet brukes til å holde nødvendig informasjon tilbake."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi erstatteren de konkrete signalene, avtal risikopunkter og gjør én konsentrert gjennomgang av overganger dere deler.",
+          "effect": 1,
+          "tags": [
+            "ensemble_transfer",
+            "colleague_reliability"
+          ],
+          "feedback": "Ensemblet beskytter forestillingen ved å gjøre taus kunnskap delbar."
+        },
+        {
+          "id": "B",
+          "label": "La erstatteren finne ut av det meste selv så den faste besetningen beholder sin fordel.",
+          "effect": -1,
+          "tags": [
+            "ensemble_transfer_failure",
+            "colleague_reliability_failure"
+          ],
+          "feedback": "Statusforsvar skaper unødvendig usikkerhet i felles materiale."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_erstatteren_i_ensemblet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "gratisarbeidet_rundt_prøven",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Agenten",
+      "subject": "Forberedelse har en kostnad selv når den ikke står på scenen",
+      "situation": [
+        "En produksjon ber om flere ekstra videoer, tekstprøver og tilgjengelighetsblokker før endelig avtale.",
+        "Profesjonelle utøvere investerer ofte betydelig tid før tilskuere ser resultatet, men ikke all forventet tilgjengelighet er automatisk rimelig eller honorert.",
+        "Bærekraftig praksis krever å skille ordinær egenforberedelse fra arbeid som produksjonen bestiller og bruker."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Kartlegg hva som er din normale forberedelse og hva produksjonen konkret ber om, og avklar omfang og vilkår før du leverer mer.",
+          "effect": 1,
+          "tags": [
+            "labor_visibility",
+            "fee_boundary"
+          ],
+          "feedback": "Det usynlige arbeidet blir synlig nok til at omfang og forventning kan forhandles."
+        },
+        {
+          "id": "B",
+          "label": "Lever alt uten spørsmål for å vise at du er lett å samarbeide med, uansett samlet tidsbruk.",
+          "effect": -1,
+          "tags": [
+            "labor_visibility_failure",
+            "fee_boundary_failure"
+          ],
+          "feedback": "Samarbeidsvilje blir målt som grenseløs gratis tilgjengelighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_gratisarbeidet_rundt_prøven"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "profilen_som_blir_en_type",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Castingansvarlig",
+      "subject": "En tydelig profil kan bli en for smal boks",
+      "situation": [
+        "Du får stadig forespørsler om svært like roller fordi tidligere arbeid har gjort deg lett å plassere.",
+        "Gjenkjennelighet kan gi arbeid, men gjentatt casting kan også snevre inn hvilke ferdigheter bransjen får se.",
+        "Utøveren trenger en bevisst strategi for når spesialisering er nyttig og når nytt materiale må demonstrere større spenn."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Behold det som faktisk fungerer i profilen, men velg neste presentasjonsmateriale slik at en annen ferdighet blir konkret synlig.",
+          "effect": 1,
+          "tags": [
+            "typecasting_awareness",
+            "portfolio_range"
+          ],
+          "feedback": "Profilen brukes strategisk uten å bli behandlet som en permanent identitet."
+        },
+        {
+          "id": "B",
+          "label": "Tilpass alt nytt materiale til samme type fordi markedet allerede har bestemt hvem du er.",
+          "effect": -1,
+          "tags": [
+            "typecasting_awareness_failure",
+            "portfolio_range_failure"
+          ],
+          "feedback": "Tidligere etterspørsel får definere hele framtidig repertoar."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_profilen_som_blir_en_type"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "intimitet_og_koreografi",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Intimitetsansvarlig",
+      "subject": "Scenisk intimitet må være koreografert og reversibel",
+      "situation": [
+        "En intim sekvens skal justeres, og den nye løsningen innebærer nærmere fysisk kontakt enn den dere tidligere har avtalt.",
+        "Profesjonell intimitet er scenisk materiale som trenger presise handlinger, samtykke og en måte å endre eller stoppe detaljer uten sosial straff.",
+        "Kjemi mellom utøvere er ikke en erstatning for tydelig koreografi og løpende grenseavklaring."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hvilke handlinger som endres, avklar samtykke eksplisitt og lås den avtalte versjonen før dere spiller den i tempo.",
+          "effect": 1,
+          "tags": [
+            "intimacy_protocol",
+            "consent_specificity"
+          ],
+          "feedback": "Sekvensen kan være troverdig fordi grensene er presise, ikke fordi de er uklare."
+        },
+        {
+          "id": "B",
+          "label": "La kjemien styre detaljene i øyeblikket slik at scenen virker mer ekte.",
+          "effect": -1,
+          "tags": [
+            "intimacy_protocol_failure",
+            "consent_specificity_failure"
+          ],
+          "feedback": "Improvisert nærhet gjør den andre utøveren ansvarlig for å stoppe noe i sanntid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_intimitet_og_koreografi"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "turneen_som_spiser_restitusjonen",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonsleder",
+      "subject": "Turnéplanen er også en prestasjonsbetingelse",
+      "situation": [
+        "Flere forestillinger ligger tett med transport, innrigg og kort restitusjon mellom spillestedene.",
+        "Profesjonell pålitelighet handler ikke bare om å møte opp, men om å forvalte søvn, stemme, kropp og konsentrasjon slik at kvalitet kan gjentas.",
+        "Når planen er presset må belastning og prioriteringer beskrives konkret før slitasje blir en individuell hemmelighet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Prioriter restitusjon mellom forestillingene, marker de mest belastende overgangene og ta opp konkrete planendringer hvis kapasiteten faller.",
+          "effect": 1,
+          "tags": [
+            "touring_load",
+            "recovery_management"
+          ],
+          "feedback": "Belastningen behandles som en produksjonsfaktor som kan observeres og håndteres."
+        },
+        {
+          "id": "B",
+          "label": "Bruk all ledig tid på ekstra trening og sosial synlighet for å vise at turnéen ikke påvirker deg.",
+          "effect": -1,
+          "tags": [
+            "touring_load_failure",
+            "recovery_management_failure"
+          ],
+          "feedback": "Slitasje skjules til den påvirker kvalitet eller helse."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_turneen_som_spiser_restitusjonen"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "smerten_for_premieren",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Scenemakkeren",
+      "subject": "Å skjule en skade er ikke det samme som å redde forestillingen",
+      "situation": [
+        "Et smerteproblem forverres siste uke før premiere, og du frykter at å si fra kan påvirke besetningen.",
+        "Utøveren kjenner egne symptomer best, mens produksjonen trenger tidlig informasjon for å kunne vurdere tilpasning, erstatter eller annen plan.",
+        "Profesjonell ansvarlighet betyr å rapportere funksjon og begrensning presist, ikke å stille diagnose eller love mer enn kroppen tåler."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv hva du kan og ikke kan gjøre stabilt, og be produksjonen planlegge en konkret reserve eller justering.",
+          "effect": 1,
+          "tags": [
+            "injury_reporting",
+            "continuity_planning"
+          ],
+          "feedback": "Tidlig presisjon gir ensemblet flere realistiske handlingsmuligheter."
+        },
+        {
+          "id": "B",
+          "label": "Skjul problemet til etter premieren fordi resten av laget allerede har investert for mye.",
+          "effect": -1,
+          "tags": [
+            "injury_reporting_failure",
+            "continuity_planning_failure"
+          ],
+          "feedback": "Informasjon holdes tilbake til valgmulighetene er blitt færre."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_smerten_for_premieren"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "noten_som_endrer_spillet",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Regissøren",
+      "subject": "En note er et forslag til handling som må forstås",
+      "situation": [
+        "Du får beskjed om å gjøre scenen mer farlig, men ordet beskriver ingen konkret handling.",
+        "Reginoter virker først når utøveren kan oversette dem til spillbare valg, relasjon, rytme eller oppmerksomhet.",
+        "Profesjonell mottakelighet er ikke taus lydighet; det er å undersøke noten lojalt nok til å finne ut hva den faktisk gjør."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be om eller foreslå en konkret spillbar handling, prøv den fullt og vurder effekten i scenen.",
+          "effect": 1,
+          "tags": [
+            "note_translation",
+            "rehearsal_agency"
+          ],
+          "feedback": "Noten blir testbar scenisk informasjon i stedet for et abstrakt krav."
+        },
+        {
+          "id": "B",
+          "label": "Nikk uten spørsmål og prøv å se farligere ut uten å vite hva som skal endres.",
+          "effect": -1,
+          "tags": [
+            "note_translation_failure",
+            "rehearsal_agency_failure"
+          ],
+          "feedback": "Uklar lydighet produserer usikkerhet forkledd som fleksibilitet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_noten_som_endrer_spillet"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "kollegaen_som_blir_konkurrent",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Scenemakkeren",
+      "subject": "Konkurranse finnes, men ensemblet trenger fortsatt tillit",
+      "situation": [
+        "Du og en nær kollega søker mange av de samme rollene og merker at informasjon om prøvespill og muligheter blir vanskelig å dele.",
+        "Frilansfeltet kan gjøre kolleger til konkurrenter samtidig som de er avhengige av hverandres faglighet på scenen.",
+        "Profesjonell relasjon krever et bevisst skille mellom legitim egeninteresse og sabotasje av den andres arbeid."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Avtal hvilke typer informasjon dere deler frivillig, og hold konkurransen utenfor prøverommet når dere faktisk arbeider sammen.",
+          "effect": 1,
+          "tags": [
+            "peer_competition",
+            "ensemble_trust"
+          ],
+          "feedback": "Konkurransen blir håndterbar fordi arbeidsrelasjonen får egne regler."
+        },
+        {
+          "id": "B",
+          "label": "Bruk prøverommet til å markere svakhetene til kollegaen slik at beslutningstakere ser forskjellen mellom dere.",
+          "effect": -1,
+          "tags": [
+            "peer_competition_failure",
+            "ensemble_trust_failure"
+          ],
+          "feedback": "Karrierekamp lekker inn i materialet og svekker felles arbeid."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_kollegaen_som_blir_konkurrent"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "anmeldelsen_og_offentligheten",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Nærpersonen",
+      "subject": "Offentlig vurdering trenger ikke flytte inn i privatlivet",
+      "situation": [
+        "Etter premiere kommer både sterke anmeldelser, hard kritikk og mange korte reaksjoner i sosiale kanaler.",
+        "Skuespiller- og danserarbeid blir offentlig vurdert på en måte som lett blander rolleprestasjon, kropp, personlighet og markedsverdi.",
+        "En bærekraftig profesjonsidentitet trenger en grense mellom relevant tilbakemelding og kontinuerlig overvåking av egen omtale."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Les den tilbakemeldingen som faktisk kan brukes, avtal et tidspunkt for evaluering og la resten av kvelden være privat.",
+          "effect": 1,
+          "tags": [
+            "public_feedback",
+            "private_boundary"
+          ],
+          "feedback": "Offentlig respons får en avgrenset plass i læringen uten å eie privatlivet."
+        },
+        {
+          "id": "B",
+          "label": "Sjekk alle reaksjoner fortløpende og endre neste forestilling etter den siste kommentaren du finner.",
+          "effect": -1,
+          "tags": [
+            "public_feedback_failure",
+            "private_boundary_failure"
+          ],
+          "feedback": "Tilfeldig respons får direkte styring over både forestilling og selvbilde."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_anmeldelsen_og_offentligheten"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    },
+    {
+      "id": "sesongslutt_hva_er_skuespiller_danser",
+      "message_type": "decision",
+      "time_slot": [
+        "people",
+        "personal"
+      ],
+      "from": "Produksjonsleder",
+      "subject": "Hva slags myndighet følger egentlig Skuespiller / danser-identiteten?",
+      "situation": [
+        "Etter to uker har du arbeidet med casting, avtaler, rolleforståelse, koreografi, ensemble, honorert arbeid, typecasting, intimitet, turné, skadeinformasjon, noter og offentlig respons.",
+        "Skuespiller / danser er her en employment-independent professional_performance_practice_or_livelihood: identiteten kan romme selvstendig profesjonell praksis og levevei uten automatisk arbeidsgiveransettelse.",
+        "Formell Skuespiller / danser-jobb krever fortsatt appointment_required; livsposisjonen gjør deg ikke automatisk til Regissør, Koreograf, Dramaturg, Produsent, Kunstnerisk leder eller Scenekunstkurator."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppsummer praksisen som trenbar scenisk kompetanse, avtaleklarhet, ensembleansvar, kroppslige grenser og profesjonell offentlighet, og la formell myndighet følge faktisk avtale.",
+          "effect": 1,
+          "tags": [
+            "role_boundary",
+            "employment_independence"
+          ],
+          "feedback": "Rollen blir tydelig som profesjonell praksis og mulig levevei uten å late som den gir andres mandat."
+        },
+        {
+          "id": "B",
+          "label": "Bruk Badge-identiteten som bevis på at du allerede har jobb, lønn og myndighet til å styre regi, koreografi og produksjonsvalg.",
+          "effect": -1,
+          "tags": [
+            "role_boundary_failure",
+            "employment_independence_failure"
+          ],
+          "feedback": "Identitet glir over i ubegrunnet ansettelse og kunstnerisk myndighet."
+        }
+      ],
+      "opens_streams": [],
+      "adds_flags": [
+        "skuespiller_danser_sesongslutt_hva_er_skuespiller_danser"
+      ],
+      "risk_links": [
+        "reputation_risk",
+        "relationship_risk"
+      ],
+      "links": []
+    }
+  ]
+}
