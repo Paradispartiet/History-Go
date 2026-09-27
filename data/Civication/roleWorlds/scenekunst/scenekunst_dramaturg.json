@@ -1,0 +1,1086 @@
+{
+  "schema": "civication_role_world_v1",
+  "version": 1,
+  "category": "scenekunst",
+  "role_scope": "scenekunst_dramaturg",
+  "title": "Dramaturg — sporbar analyse, korrigerbar rådgivning og tydelig mandat",
+  "status": "role_world_complete",
+  "subject_type": "life_position",
+  "life_position_ref": {
+    "badge_id": "scenekunst",
+    "id": "dramaturg",
+    "label": "Dramaturg"
+  },
+  "sociological_core": {
+    "main_problem": "tolkningsmakt uten automatisk beslutningsmyndighet",
+    "description": "Dramaturg som employment-independent dramaturgical_practice_or_livelihood handler om å gjøre verklesning, prøveevidens, kilder, versjoner og konsekvenser sporbare mens andres kunstneriske og institusjonelle mandat forblir hos dem. Badge-identiteten gir ingen automatisk ansettelse, lønn eller formell myndighet: formell Dramaturg-jobb krever fortsatt appointment_required. Rollen må skille seg fra Regissør, Dramatiker, Scenekunstkurator, Produsent og Kildeansvarlig, og ingen ny runtime opprettes."
+  },
+  "theme_ids": [
+    "professional_culture",
+    "invisible_work",
+    "loyalty_up_down",
+    "public_attention",
+    "shame_reputation",
+    "public_private_leakage",
+    "local_knowledge_vs_system"
+  ],
+  "social_environments": [
+    "tekstbord_og_verklesning",
+    "proverom_og_observasjon",
+    "kilde_og_researchverksted",
+    "produksjonsmote_og_versjonsbord",
+    "offentlig_formidling_og_publikumsrespons",
+    "privat_etterklang_uten_materiallekkasje"
+  ],
+  "recurring_people_archetypes": [
+    {
+      "id": "liv_dramatiker",
+      "social_function": "Dramatiker og opphavsperson som prøver om analysen åpner alternativer eller skjuler en bestilling.",
+      "class_position": "opphavsperson med eierskap til egen tekst",
+      "status": "høy kunstnerisk legitimitet rundt tekst og språk",
+      "power_over_player": "kan godta eller avvise råd om egen tekst, men kan ikke gi dramaturgen generell regi- eller institusjonsmyndighet",
+      "wants": "at teksten utfordres presist uten at stemmen hennes blir råstoff for andres framdrift",
+      "conceals": "hvor sårbar hun blir når teamet omtaler teksten som et problem som skal løses",
+      "speech_style": "billedlig og tekstnær, men presis om samtykke og attribusjon",
+      "teaches_player": "at god dramaturgi lar forfatterrespons endre analysen"
+    },
+    {
+      "id": "samir_scenisk_partner",
+      "social_function": "Scenisk beslutningstaker som bruker prøven som undersøkelse og trenger motspill uten å outsource mandatet.",
+      "class_position": "kunstnerisk samarbeidspartner med avtalt scenisk mandat",
+      "status": "synlig lederposisjon i prøverommet",
+      "power_over_player": "kan velge hva som prøves når han faktisk er oppnevnt, men kan ikke gjøre dramaturgens notat til skjult regiavgjørelse",
+      "wants": "et motspill som gjør neste prøve skarpere og mer etterprøvbar",
+      "conceals": "at tydeligheten hans noen ganger bygger på en hypotese han ennå ikke vil nedgradere",
+      "speech_style": "handlingsorientert og konkret om hva som skal prøves",
+      "teaches_player": "at prøveevidens må skilles fra beslutningsmandat"
+    },
+    {
+      "id": "amina_utover",
+      "social_function": "Utøver som tilfører kroppslig og situert kunnskap når arbeidsboken blir for abstrakt.",
+      "class_position": "kunstnerisk utøver i prosjektfellesskapet",
+      "status": "høy situert troverdighet om hva som faktisk skjer i spill",
+      "power_over_player": "kan gi motfunn fra praksis og nekte utrygge arbeidsmåter, men eier ikke hele verkets tolkning",
+      "wants": "at erfaring fra prøven behandles som kunnskap og ikke bare utførelse",
+      "conceals": "at hun av og til toner ned uenighet for ikke å framstå som vanskelig",
+      "speech_style": "konkret om handling, rytme og kropp, mindre interessert i abstrakte dommer",
+      "teaches_player": "at dramaturgisk oversikt må tåle motfunn fra utøverens erfaring"
+    },
+    {
+      "id": "maja_produksjonsleder",
+      "social_function": "Produksjonsleder som gjør tids-, ressurs- og avhengighetskostnader synlige før uklare notater blir dyrt arbeid.",
+      "class_position": "produksjonsleder med delegert prosessansvar",
+      "status": "sterk posisjon i frister, koordinering og reversibilitet",
+      "power_over_player": "kan stoppe uforsvarlig eller uavklart produksjonsarbeid, men kan ikke tildele kunstnerisk eller rettslig mandat",
+      "wants": "et arbeidsgrunnlag med versjon, eier, restspørsmål og tydelig beslutningsgrense",
+      "conceals": "hvor mye uavklart arbeid hun absorberer for å beskytte teamet",
+      "speech_style": "kort og presis om versjon, avhengighet, ansvar og frist",
+      "teaches_player": "at produksjonsbegrensning er kunnskap, men ikke kunstnerisk fasit"
+    },
+    {
+      "id": "ingrid_kildepartner",
+      "social_function": "Kilde- og researchpartner som holder dokumentasjon, motfunn, usikkerhet og bruk fra hverandre.",
+      "class_position": "faglig samarbeidspartner med ansvar for kildepresisjon",
+      "status": "autoritet på dokumentasjon innen sitt avgrensede felt",
+      "power_over_player": "kan kreve at udokumenterte faktapåstander merkes eller korrigeres, men kan ikke alene bestemme verkets mening",
+      "wants": "at motfunn får endre arbeidsgrunnlaget uten at hun blir totalgarantist for forestillingen",
+      "conceals": "hvor usikker enkelte proveniensledd fortsatt er når resten av teamet ønsker framdrift",
+      "speech_style": "rolig, kildeorientert og nøye med forskjellen mellom dokumentasjon og tolkning",
+      "teaches_player": "at usikkerhet må følge påstanden videre i systemet"
+    },
+    {
+      "id": "noah_meddramaturg",
+      "social_function": "Fagfelle som kan se blinde flekker i analyse, arbeidsmåte og publikumslesning.",
+      "class_position": "frilanser eller kollega i dramaturgisk praksis",
+      "status": "kollegial status uten personal- eller beslutningsmyndighet",
+      "power_over_player": "kan utfordre metode og lesning, men kan ikke gi spilleren ansettelse, rettighet eller formelt mandat",
+      "wants": "at uenighet kan brukes som kvalitetskontroll framfor statushierarki",
+      "conceals": "at han selv ønsker å framstå som den som ser strukturen raskest",
+      "speech_style": "spørrende, analytisk og villig til å vise egne forbehold",
+      "teaches_player": "at dramaturgisk autoritet må være korrigerbar også mellom fagfeller"
+    }
+  ],
+  "slow_axes": [
+    {
+      "id": "interpretive_humility",
+      "meaning": "Hvor godt spilleren holder observasjon, hypotese og tolkning fra hverandre.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "authorial_consent",
+      "meaning": "Hvor tydelig forfatterens eierskap og samtykke forblir gjennom omskriving.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "rehearsal_evidence",
+      "meaning": "Hvor korrigerbar analysen er mot det som faktisk skjer i prøven.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "source_uncertainty",
+      "meaning": "Hvor synlig dokumentasjon, motfunn og kunnskapsgrenser følger offentlige påstander.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "mandate_separation",
+      "meaning": "Hvor godt rådgivning holdes atskilt fra regi-, rettighets-, produksjons- og institusjonsmyndighet.",
+      "runtime_binding": "editorial_only_until_governed"
+    },
+    {
+      "id": "private_containment",
+      "meaning": "Hvor godt belastning kan deles privat uten at fortrolig materiale og grenseløst arbeid følger med.",
+      "runtime_binding": "editorial_only_until_governed"
+    }
+  ],
+  "season": {
+    "days": 14,
+    "day_phases": [
+      "morning",
+      "lunch",
+      "afternoon",
+      "evening"
+    ],
+    "coverage": [
+      {
+        "day": 1,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 1 morning: Første lesning uten fasit. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_01"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 1 lunch: Første lesning uten fasit. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_01"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 1 afternoon: Første lesning uten fasit. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_01"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit"
+        ]
+      },
+      {
+        "day": 1,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 1 evening: Første lesning uten fasit. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_01"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 2 morning: Intensjon og virkning peker ikke samme vei. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_02"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forfatterintensjon_og_verkeffekt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 2 lunch: Intensjon og virkning peker ikke samme vei. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_02"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forfatterintensjon_og_verkeffekt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 2 afternoon: Intensjon og virkning peker ikke samme vei. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_02"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forfatterintensjon_og_verkeffekt"
+        ]
+      },
+      {
+        "day": 2,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 2 evening: Intensjon og virkning peker ikke samme vei. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_02"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forfatterintensjon_og_verkeffekt"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 3 morning: Prøven endrer hva teksten gjør. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_03"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#proven_som_evidens"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 3 lunch: Prøven endrer hva teksten gjør. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_03"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#proven_som_evidens"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 3 afternoon: Prøven endrer hva teksten gjør. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_03"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#proven_som_evidens"
+        ]
+      },
+      {
+        "day": 3,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 3 evening: Prøven endrer hva teksten gjør. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_03"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#proven_som_evidens"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 4 morning: Når kartet begynner å styre verket. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_04"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 4 lunch: Når kartet begynner å styre verket. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_04"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 4 afternoon: Når kartet begynner å styre verket. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_04"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling"
+        ]
+      },
+      {
+        "day": 4,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 4 evening: Når kartet begynner å styre verket. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_04"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 5 morning: En historisk kilde bærer for stor påstand. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_05"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#kilden_som_bar_for_mye"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 5 lunch: En historisk kilde bærer for stor påstand. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_05"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#kilden_som_bar_for_mye"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 5 afternoon: En historisk kilde bærer for stor påstand. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_05"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#kilden_som_bar_for_mye"
+        ]
+      },
+      {
+        "day": 5,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 5 evening: En historisk kilde bærer for stor påstand. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_05"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#kilden_som_bar_for_mye"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 6 morning: God idé, uavklart rettighet. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_06"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#rettigheten_som_ikke_folger_ideen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 6 lunch: God idé, uavklart rettighet. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_06"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#rettigheten_som_ikke_folger_ideen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 6 afternoon: God idé, uavklart rettighet. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_06"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#rettigheten_som_ikke_folger_ideen"
+        ]
+      },
+      {
+        "day": 6,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 6 evening: God idé, uavklart rettighet. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_06"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#rettigheten_som_ikke_folger_ideen"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 7 morning: Ensemblet motsier arbeidsboken. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_07"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 7 lunch: Ensemblet motsier arbeidsboken. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_07"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 7 afternoon: Ensemblet motsier arbeidsboken. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_07"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn"
+        ]
+      },
+      {
+        "day": 7,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 7 evening: Ensemblet motsier arbeidsboken. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_07"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 8 morning: Kan du bare bestemme dette?. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_08"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#beslutningen_som_skyves_til_dramaturgen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 8 lunch: Kan du bare bestemme dette?. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_08"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#beslutningen_som_skyves_til_dramaturgen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 8 afternoon: Kan du bare bestemme dette?. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_08"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#beslutningen_som_skyves_til_dramaturgen"
+        ]
+      },
+      {
+        "day": 8,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 8 evening: Kan du bare bestemme dette?. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_08"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#beslutningen_som_skyves_til_dramaturgen"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 9 morning: Fristen presser fram en falsk avklaring. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_09"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#fristen_som_gjor_usikkerhet_dyr"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 9 lunch: Fristen presser fram en falsk avklaring. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_09"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#fristen_som_gjor_usikkerhet_dyr"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 9 afternoon: Fristen presser fram en falsk avklaring. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_09"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#fristen_som_gjor_usikkerhet_dyr"
+        ]
+      },
+      {
+        "day": 9,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 9 evening: Fristen presser fram en falsk avklaring. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_09"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#fristen_som_gjor_usikkerhet_dyr"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 10 morning: Programteksten gjør hypotesen til sannhet. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_10"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 10 lunch: Programteksten gjør hypotesen til sannhet. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_10"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 10 afternoon: Programteksten gjør hypotesen til sannhet. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_10"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker"
+        ]
+      },
+      {
+        "day": 10,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 10 evening: Programteksten gjør hypotesen til sannhet. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_10"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 11 morning: Én publikumsreaksjon blir alle publikums stemme. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_11"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forhandsvisningen_som_overfortolkes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 11 lunch: Én publikumsreaksjon blir alle publikums stemme. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_11"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forhandsvisningen_som_overfortolkes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 11 afternoon: Én publikumsreaksjon blir alle publikums stemme. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_11"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forhandsvisningen_som_overfortolkes"
+        ]
+      },
+      {
+        "day": 11,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 11 evening: Én publikumsreaksjon blir alle publikums stemme. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_11"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forhandsvisningen_som_overfortolkes"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 12 morning: Ingen vet hvilken tekst som er gjeldende. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_12"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#versjonen_som_forsvant"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 12 lunch: Ingen vet hvilken tekst som er gjeldende. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_12"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#versjonen_som_forsvant"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 12 afternoon: Ingen vet hvilken tekst som er gjeldende. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_12"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#versjonen_som_forsvant"
+        ]
+      },
+      {
+        "day": 12,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 12 evening: Ingen vet hvilken tekst som er gjeldende. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_12"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#versjonen_som_forsvant"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 13 morning: Analysen fortsetter etter at dagen er slutt. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_13"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 13 lunch: Analysen fortsetter etter at dagen er slutt. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_13"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 13 afternoon: Analysen fortsetter etter at dagen er slutt. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_13"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem"
+        ]
+      },
+      {
+        "day": 13,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 13 evening: Analysen fortsetter etter at dagen er slutt. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_13"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "morning",
+        "beat_type": "info",
+        "summary": "Dag 14 morning: Hva slags myndighet har en dramaturg egentlig?. arbeidsgrunnlaget åpnes og premissene skilles; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_14"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#sesongslutt_hva_er_en_dramaturg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "lunch",
+        "beat_type": "conversation",
+        "summary": "Dag 14 lunch: Hva slags myndighet har en dramaturg egentlig?. en annen person utfordrer lesningen; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_14"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#sesongslutt_hva_er_en_dramaturg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "afternoon",
+        "beat_type": "decision",
+        "summary": "Dag 14 afternoon: Hva slags myndighet har en dramaturg egentlig?. spilleren må avgrense handling og mandat; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_14"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#sesongslutt_hva_er_en_dramaturg"
+        ]
+      },
+      {
+        "day": 14,
+        "phase": "evening",
+        "beat_type": "private_consequence",
+        "summary": "Dag 14 evening: Hva slags myndighet har en dramaturg egentlig?. arbeidet får en privat etterklang uten å lekke fortrolig innhold; arbeidsboken beholder sporbarhet mellom observasjon, hypotese, beslutning og restspørsmål.",
+        "thread_ids": [
+          "dramaturg_thread_14"
+        ],
+        "materialization_refs": [
+          "data/Civication/narratives/leisure/scenekunst_dramaturg.json#sesongslutt_hva_er_en_dramaturg"
+        ]
+      }
+    ]
+  },
+  "primary_threads": [
+    {
+      "id": "dramaturg_thread_01",
+      "relationship": "Dramatikeren: Første lesning uten fasit utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "1/morning",
+        "1/lunch",
+        "2/afternoon",
+        "3/lunch",
+        "4/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_02",
+      "relationship": "Dramatikeren: Intensjon og virkning peker ikke samme vei utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "2/morning",
+        "2/lunch",
+        "3/afternoon",
+        "4/lunch",
+        "5/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_03",
+      "relationship": "Utøveren: Prøven endrer hva teksten gjør utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "3/morning",
+        "3/lunch",
+        "4/afternoon",
+        "5/lunch",
+        "6/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_04",
+      "relationship": "Meddramaturgen: Når kartet begynner å styre verket utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "4/morning",
+        "4/lunch",
+        "5/afternoon",
+        "6/lunch",
+        "7/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_05",
+      "relationship": "Kildepartneren: En historisk kilde bærer for stor påstand utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "5/morning",
+        "5/lunch",
+        "6/afternoon",
+        "7/lunch",
+        "8/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_06",
+      "relationship": "Produksjonslederen: God idé, uavklart rettighet utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "6/morning",
+        "6/lunch",
+        "7/afternoon",
+        "8/lunch",
+        "9/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_07",
+      "relationship": "Utøveren: Ensemblet motsier arbeidsboken utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "7/morning",
+        "7/lunch",
+        "8/afternoon",
+        "9/lunch",
+        "10/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_08",
+      "relationship": "Regiteamet: Kan du bare bestemme dette? utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "8/morning",
+        "8/lunch",
+        "9/afternoon",
+        "10/lunch",
+        "11/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_09",
+      "relationship": "Produksjonslederen: Fristen presser fram en falsk avklaring utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "9/morning",
+        "9/lunch",
+        "10/afternoon",
+        "11/lunch",
+        "12/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_10",
+      "relationship": "Kommunikasjonsredaktøren: Programteksten gjør hypotesen til sannhet utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "10/morning",
+        "10/lunch",
+        "11/afternoon",
+        "12/lunch",
+        "13/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_11",
+      "relationship": "Meddramaturgen: Én publikumsreaksjon blir alle publikums stemme utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "11/morning",
+        "11/lunch",
+        "12/afternoon",
+        "13/lunch",
+        "14/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_12",
+      "relationship": "Produksjonslederen: Ingen vet hvilken tekst som er gjeldende utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "12/morning",
+        "12/lunch",
+        "13/afternoon",
+        "14/lunch",
+        "1/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_13",
+      "relationship": "Nærpersonen: Analysen fortsetter etter at dagen er slutt utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "13/morning",
+        "13/lunch",
+        "14/afternoon",
+        "1/lunch",
+        "2/morning"
+      ]
+    },
+    {
+      "id": "dramaturg_thread_14",
+      "relationship": "Meddramaturgen: Hva slags myndighet har en dramaturg egentlig? utvikles fra analyse til sosial reaksjon og senere korrigering uten at dramaturgen overtar andres mandat.",
+      "beat_refs": [
+        "14/morning",
+        "14/lunch",
+        "1/afternoon",
+        "2/lunch",
+        "3/morning"
+      ]
+    }
+  ],
+  "private_aftermath": [
+    {
+      "id": "private_aftermath_1",
+      "description": "Etter første lesning uten fasit må spilleren skille faglig ansvar fra privat grubling, beskytte fortrolighet og la hvile være en del av presisjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit"
+      ]
+    },
+    {
+      "id": "private_aftermath_2",
+      "description": "Etter når kartet begynner å styre verket må spilleren skille faglig ansvar fra privat grubling, beskytte fortrolighet og la hvile være en del av presisjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling"
+      ]
+    },
+    {
+      "id": "private_aftermath_3",
+      "description": "Etter ensemblet motsier arbeidsboken må spilleren skille faglig ansvar fra privat grubling, beskytte fortrolighet og la hvile være en del av presisjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn"
+      ]
+    },
+    {
+      "id": "private_aftermath_4",
+      "description": "Etter programteksten gjør hypotesen til sannhet må spilleren skille faglig ansvar fra privat grubling, beskytte fortrolighet og la hvile være en del av presisjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker"
+      ]
+    },
+    {
+      "id": "private_aftermath_5",
+      "description": "Etter analysen fortsetter etter at dagen er slutt må spilleren skille faglig ansvar fra privat grubling, beskytte fortrolighet og la hvile være en del av presisjonen.",
+      "materialization_refs": [
+        "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem"
+      ]
+    }
+  ],
+  "delayed_consequences": [
+    {
+      "id": "dramaturg_delayed_1",
+      "setup_ref": "1/afternoon",
+      "return_ref": "4/afternoon",
+      "domains": [
+        "narrative",
+        "relationship"
+      ]
+    },
+    {
+      "id": "dramaturg_delayed_2",
+      "setup_ref": "2/afternoon",
+      "return_ref": "6/afternoon",
+      "domains": [
+        "relationship",
+        "reputation"
+      ]
+    },
+    {
+      "id": "dramaturg_delayed_3",
+      "setup_ref": "3/afternoon",
+      "return_ref": "8/afternoon",
+      "domains": [
+        "narrative",
+        "reputation"
+      ]
+    },
+    {
+      "id": "dramaturg_delayed_4",
+      "setup_ref": "5/afternoon",
+      "return_ref": "10/afternoon",
+      "domains": [
+        "reputation",
+        "narrative"
+      ]
+    },
+    {
+      "id": "dramaturg_delayed_5",
+      "setup_ref": "7/afternoon",
+      "return_ref": "12/afternoon",
+      "domains": [
+        "relationship",
+        "psyche"
+      ]
+    },
+    {
+      "id": "dramaturg_delayed_6",
+      "setup_ref": "9/afternoon",
+      "return_ref": "14/afternoon",
+      "domains": [
+        "job",
+        "reputation"
+      ]
+    }
+  ],
+  "materialization": {
+    "no_new_runtime": true,
+    "source_refs": [
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forste_lesning_uten_fasit",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forfatterintensjon_og_verkeffekt",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#proven_som_evidens",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#strukturkartet_som_blir_bestilling",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#kilden_som_bar_for_mye",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#rettigheten_som_ikke_folger_ideen",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#ensemblets_motfunn",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#beslutningen_som_skyves_til_dramaturgen",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#fristen_som_gjor_usikkerhet_dyr",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#programteksten_som_blir_for_sikker",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#forhandsvisningen_som_overfortolkes",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#versjonen_som_forsvant",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#arbeidsboken_som_folger_hjem",
+      "data/Civication/narratives/leisure/scenekunst_dramaturg.json#sesongslutt_hva_er_en_dramaturg"
+    ]
+  }
+}

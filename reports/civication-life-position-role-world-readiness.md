@@ -1,11 +1,11 @@
 # Civication life-position Role World readiness
 
 **Selectable life positions audited:** 199
-**Classification:** 154 ready / 5 needs_authored_depth / 40 not_a_standalone_world
+**Classification:** 155 ready / 4 needs_authored_depth / 40 not_a_standalone_world
 **Livelihood-backed:** 15
-**Exact governed-source matches:** 154
-**Multi-scene narrative foundations:** 154
-**Completed life-position Role Worlds:** 154
+**Exact governed-source matches:** 155
+**Multi-scene narrative foundations:** 155
+**Completed life-position Role Worlds:** 155
 **Pending ready positions:** 0
 
 ## Decision
@@ -18,11 +18,10 @@ Livelihood templates count as provenance for an economic opportunity, but never 
 
 | Rank | Position | Class | Exact refs | Livelihood | Narrative depth |
 | ---: | --- | --- | ---: | ---: | ---: |
-| 1 | `scenekunst/dramaturg` | needs_authored_depth | 0 | 0 | 0 |
-| 2 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
-| 3 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
-| 4 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
-| 5 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
+| 1 | `scenekunst/koreograf` | needs_authored_depth | 0 | 0 | 0 |
+| 2 | `scenekunst/regissor` | needs_authored_depth | 0 | 0 | 0 |
+| 3 | `scenekunst/scenekunstkurator` | needs_authored_depth | 0 | 0 | 0 |
+| 4 | `scenekunst/skuespiller_danser` | needs_authored_depth | 0 | 0 | 0 |
 
 ## Boundaries
 
