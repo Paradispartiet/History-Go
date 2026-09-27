@@ -39,7 +39,7 @@ jobs:
           NODE
           test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json
           test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json
-          grep -q 'existing vinnerscenen i `naeringsliv/job/mellomleder_job.json`' data/Civication/COMPILED_SCENE_REGISTRY_V1.md
+          grep -q 'eksisterende vinnerscenen i `naeringsliv/job/mellomleder_job.json`' data/Civication/COMPILED_SCENE_REGISTRY_V1.md
           grep -q 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json' data/Civication/careerGameplayMatrix.json
           grep -q 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json' data/Civication/praksisfortellinger_registry.json
           REFS=$(git grep -n -F 'mellomleder_fraksjonsvalg.json' -- ':!data/Civication/compiledSceneRegistryV1.json' ':!.github/workflows/tmp-ml-faction-duplicate-audit.yml' || true)
