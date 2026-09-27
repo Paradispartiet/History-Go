@@ -15,22 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
-        with:
-          node-version: 22
-      - name: Emit exact blocking issue inventory
+      - name: Inspect triggers_on_choice semantics
         shell: bash
         run: |
-          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/scene-pipeline-audit.json
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const audit = JSON.parse(fs.readFileSync('/tmp/scene-pipeline-audit.json', 'utf8'));
-          const issues = audit.blocking_issues || [];
-          const counts = {};
-          for (const issue of issues) counts[issue.category] = (counts[issue.category] || 0) + 1;
-          console.log('SUMMARY', JSON.stringify(audit.summary, null, 2));
-          console.log('CATEGORY_COUNTS', JSON.stringify(counts, null, 2));
-          console.log('BLOCKING_ISSUES_BEGIN');
-          for (const [i, issue] of issues.entries()) console.log(JSON.stringify({index:i+1,...issue}));
-          console.log('BLOCKING_ISSUES_END');
-          NODE
+          echo '=== non-JSON consumers / validators ==='
+          grep -R --line-number --exclude='*.json' --exclude='*.md' 'triggers_on_choice' js scripts tests src 2>/dev/null || true
+          echo '=== exact missing target occurrences ==='
+          grep -R --line-number 'by_areal_people_plansjef_004_presisjon\|by_areal_people_plansjef_004_tempo_risiko\|by_areal_people_skolevei_005_presisjon\|by_areal_people_skolevei_005_tempo_risiko\|by_areal_people_juridisk_006_presisjon\|by_areal_people_juridisk_006_tempo_risiko\|by_areal_people_politisk_007_presisjon\|by_areal_people_politisk_007_tempo_risiko\|by_areal_people_arkitekt_008_presisjon\|by_areal_people_arkitekt_008_tempo_risiko' data js scripts tests 2>/dev/null || true
+          echo '=== representative trigger maps ==='
+          grep -R --line-number -A8 -B2 '"triggers_on_choice"' data/Civication/mailFamilies/by data/Civication/mailFamilies/naeringsliv 2>/dev/null | head -320 || true
