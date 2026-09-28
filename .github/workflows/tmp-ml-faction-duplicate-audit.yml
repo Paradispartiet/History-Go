@@ -1,4 +1,4 @@
-name: Temporary ml_faction duplicate repair
+name: Temporary ml_faction ignored-source audit proof
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  repair-verify-finalize:
+  prove-audit-semantics:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,69 +25,54 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Prove winner ownership and remove standalone shadow
+      - name: Prove transition source is ignored by compiler
         shell: bash
         run: |
-          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/before.json
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const audit = JSON.parse(fs.readFileSync('/tmp/before.json','utf8'));
-          if (audit.summary.duplicate_scene_ids !== 21) throw new Error(`expected 21 duplicate IDs before repair, got ${audit.summary.duplicate_scene_ids}`);
-          if (audit.summary.blocking_issues !== 22) throw new Error(`expected 22 blockers before repair, got ${audit.summary.blocking_issues}`);
-          const issue = (audit.blocking_issues || []).find(x => x.category === 'duplicate_scene_id' && x.id === 'ml_faction_001');
-          if (!issue) throw new Error('ml_faction_001 duplicate blocker not found');
-          NODE
           test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json
           test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json
-          grep -q 'eksisterende vinnerscenen i `naeringsliv/job/mellomleder_job.json`' data/Civication/COMPILED_SCENE_REGISTRY_V1.md
-          grep -q 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json' data/Civication/careerGameplayMatrix.json
-          grep -q 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json' data/Civication/praksisfortellinger_registry.json
-          REFS=$(git grep -n -F 'mellomleder_fraksjonsvalg.json' -- ':!data/Civication/compiledSceneRegistryV1.json' ':!.github/workflows/tmp-ml-faction-duplicate-audit.yml' || true)
-          if [ -n "$REFS" ]; then
-            echo "$REFS" >&2
-            echo 'Standalone shadow still has non-derived references.' >&2
-            exit 1
-          fi
-          rm data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json
-
-      - name: Verify focused blocker reduction
-        shell: bash
-        run: |
-          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/after.json
           node - <<'NODE'
           const fs = require('node:fs');
-          const audit = JSON.parse(fs.readFileSync('/tmp/after.json','utf8'));
-          const counts = {};
-          for (const issue of audit.blocking_issues || []) counts[issue.category] = (counts[issue.category] || 0) + 1;
-          console.log(JSON.stringify({summary:audit.summary, category_counts:counts}, null, 2));
-          if (audit.summary.missing_internal_references !== 0) throw new Error(`missing refs regressed to ${audit.summary.missing_internal_references}`);
-          if ((counts.duplicate_scene_id || 0) !== 20) throw new Error(`expected 20 duplicate blockers after repair, got ${counts.duplicate_scene_id || 0}`);
-          if ((counts.daily_work_situation_budget_conflict || 0) !== 1) throw new Error('expected one existing budget blocker');
-          if (audit.summary.blocking_issues !== 21) throw new Error(`expected 21 blockers after repair, got ${audit.summary.blocking_issues}`);
-          if ((audit.blocking_issues || []).some(x => x.category === 'duplicate_scene_id' && x.id === 'ml_faction_001')) throw new Error('ml_faction_001 duplicate still present');
+          const registry = JSON.parse(fs.readFileSync('data/Civication/compiledSceneRegistryV1.json', 'utf8'));
+          const transition = 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json';
+          if (!(registry.ignored_source_files || []).includes(transition)) {
+            throw new Error(`${transition} is not in ignored_source_files`);
+          }
+          if ((registry.compiled_source_files || []).includes(transition)) {
+            throw new Error(`${transition} unexpectedly appears in compiled_source_files`);
+          }
           NODE
 
-      - name: Synchronize derived Civication state
+      - name: Require reachability-aware duplicate blocker
         shell: bash
         run: |
-          node scripts/build-civication-scene-registry.mjs --write
-          node scripts/build-civication-scene-registry.mjs --check
-          node scripts/audit-civication-career-gameplay.mjs --check
-          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/audit.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const audit = JSON.parse(fs.readFileSync('/tmp/audit.json', 'utf8'));
+          const counts = {};
+          for (const issue of audit.blocking_issues || []) {
+            counts[issue.category] = (counts[issue.category] || 0) + 1;
+          }
+          console.log(JSON.stringify({ summary: audit.summary, category_counts: counts }, null, 2));
+          if (audit.summary.missing_internal_references !== 0) {
+            throw new Error(`missing refs regressed to ${audit.summary.missing_internal_references}`);
+          }
+          if ((counts.duplicate_scene_id || 0) !== 20) {
+            throw new Error(`expected 20 canonical duplicate blockers, got ${counts.duplicate_scene_id || 0}`);
+          }
+          if ((counts.daily_work_situation_budget_conflict || 0) !== 1) {
+            throw new Error('expected one existing budget blocker');
+          }
+          if (audit.summary.blocking_issues !== 21) {
+            throw new Error(`expected 21 blockers, got ${audit.summary.blocking_issues}`);
+          }
+          if ((audit.blocking_issues || []).some((issue) => issue.category === 'duplicate_scene_id' && issue.id === 'ml_faction_001')) {
+            throw new Error('ml_faction_001 must not be a canonical duplicate blocker when one occurrence is compiler-ignored');
+          }
+          NODE
 
       - name: Verify complete Civication state
         run: |
+          node scripts/build-civication-scene-registry.mjs --check
           npm run test:civication
           git diff --check
-
-      - name: Commit permanent shadow removal
-        shell: bash
-        run: |
-          rm -f .github/workflows/tmp-ml-faction-duplicate-audit.yml
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A
-          git diff --cached --check
-          git diff --cached --quiet && { echo 'No permanent changes to commit.' >&2; exit 1; }
-          git commit -m 'Civication: remove obsolete mellomleder faction shadow'
-          git push
