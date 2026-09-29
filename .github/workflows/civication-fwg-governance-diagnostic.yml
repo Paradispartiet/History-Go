@@ -23,20 +23,58 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Patch FWG audit compatibility
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('scripts/audit-civication-fwg-governance.mjs')
+          text = path.read_text()
+
+          replacements = [
+              (
+                  "function senderOf(mail) {\n  return mail.person_id || mail.sender || mail.from || '';\n}",
+                  "function senderOf(mail) {\n  return mail.people_ref || mail.person_id || mail.sender || mail.from || '';\n}"
+              ),
+              (
+                  "  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  const findings = [];",
+                  "  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  if (!Object.keys(minimums).length) return { status: 'na', findings: [] };\n  const findings = [];"
+              ),
+              (
+                  "    const id = actor.example_id;\n    if (!id) {\n      findings.push(`aktørtype uten example_id: ${actor.actor_type || '(ukjent)'}`);",
+                  "    const id = actor.example_id || actor.id;\n    const actorType = actor.actor_type || actor.role || '(ukjent)';\n    if (!id) {\n      findings.push(`aktørtype uten eksempel-id: ${actorType}`);"
+              ),
+              (
+                  "      findings.push(`ubrukt aktør-eksempel: ${id} (${actor.actor_type || '?'}) dukker ikke opp som avsender`);",
+                  "      findings.push(`ubrukt aktør-eksempel: ${id} (${actorType}) dukker ikke opp som avsender`);"
+              ),
+              (
+                  "  const declared = uniqueSorted((fwg.place_grammar || []).map((p) => p.place_id));",
+                  "  const declared = uniqueSorted((fwg.place_grammar || []).map((p) => p.place_id || p.id));"
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Expected FWG audit block not found:\n{old}')
+              text = text.replace(old, new, 1)
+
+          path.write_text(text)
+
       - name: Regenerate FWG governance report
         run: node scripts/audit-civication-fwg-governance.mjs
 
       - name: Show regenerated summary
         run: grep -E 'FWG-filer auditert|Totalt antall avvik' docs/CIVICATION_FWG_GOVERNANCE.md
 
-      - name: Commit exact generated report
+      - name: Commit exact diagnostic result
         run: |
-          if git diff --quiet -- docs/CIVICATION_FWG_GOVERNANCE.md; then
-            echo 'FWG governance report already synchronized.'
+          if git diff --quiet -- scripts/audit-civication-fwg-governance.mjs docs/CIVICATION_FWG_GOVERNANCE.md; then
+            echo 'FWG governance audit and report already synchronized.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/CIVICATION_FWG_GOVERNANCE.md
-          git commit -m 'Civication: regenerate FWG governance report'
+          git add scripts/audit-civication-fwg-governance.mjs docs/CIVICATION_FWG_GOVERNANCE.md
+          git commit -m 'Civication: support current FWG grammar fields'
           git push
