@@ -1,0 +1,81 @@
+name: Civication FWG required axes diagnostic
+
+on:
+  push:
+    branches:
+      - 'agent/civication-fwg-required-axes-20260929'
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compute mail-field coverage
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+
+          root = Path('.')
+          roles = ['musikk_scene_og_produksjon', 'musikk_utoving_og_ensemble']
+          mail_types = ['job','people','conflict','story','event','micro','followup','knowledge','consequence']
+          standard_axes = ['task_domain','competency','pressure','choice_axis','consequence_axis','narrative_arc','learning_focus']
+          result = {}
+
+          def nonempty(value):
+              return value is not None and value != '' and value != [] and value != {}
+
+          for role in roles:
+              grammar_path = root / 'data/Civication/workGrammars/musikk' / f'{role}.json'
+              grammar = json.loads(grammar_path.read_text())
+              mails = []
+              per_type = {}
+              for mail_type in mail_types:
+                  path = root / 'data/Civication/mailFamilies/musikk' / mail_type / f'{role}_{mail_type}.json'
+                  if not path.exists():
+                      per_type[mail_type] = {'present': False, 'mail_count': 0}
+                      continue
+                  catalog = json.loads(path.read_text())
+                  typed = []
+                  for family in catalog.get('families', []):
+                      typed.extend(family.get('mails', []))
+                  mails.extend(typed)
+                  per_type[mail_type] = {'present': True, 'mail_count': len(typed)}
+
+              union = sorted({k for mail in mails for k in mail})
+              common = sorted(set.intersection(*(set(mail) for mail in mails))) if mails else []
+              standard = {
+                  axis: {
+                      'present_nonempty': sum(1 for mail in mails if nonempty(mail.get(axis))),
+                      'missing_or_empty': sum(1 for mail in mails if not nonempty(mail.get(axis)))
+                  }
+                  for axis in standard_axes
+              }
+              result[role] = {
+                  'mail_count': len(mails),
+                  'current_required_axes': grammar.get('mail_generation_contract', {}).get('required_axes', []),
+                  'per_type': per_type,
+                  'common_fields': common,
+                  'standard_axis_coverage': standard,
+                  'all_fields': union,
+              }
+
+          out = root / 'reports/fwg-required-axes-diagnostic.json'
+          out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + '\n')
+          print(out.read_text())
+
+      - name: Commit diagnostic evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reports/fwg-required-axes-diagnostic.json
+          git commit -m 'chore: capture FWG required axes diagnostic'
+          git push
