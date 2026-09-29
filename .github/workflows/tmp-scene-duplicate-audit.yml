@@ -1,4 +1,4 @@
-name: TEMP scene duplicate repair
+name: TEMP scene duplicate validation
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  repair:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -20,80 +20,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: npm
 
-      - name: Namespace the 19 colliding leisure storylet IDs
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
 
-          renames = [
-              ('film_tv_filmnerd.json', 'anbefalingen'),
-              ('natur_fuglekikker.json', 'den_skadde_fuglen'),
-              ('naeringsliv_sideprosjektbygger.json', 'den_tomme_uken'),
-              ('subkultur_gangster.json', 'den_yngre_som_ser_opp_til_deg'),
-              ('subkultur_dandy.json', 'etiketten_som_ikke_stemmer'),
-              ('film_tv_seriesluker.json', 'lista_som_aldri_blir_tom'),
-              ('litteratur_litteraturkritiker.json', 'motargumentet'),
-              ('religion_besokende.json', 'plassen_du_tar'),
-              ('vitenskap_maker.json', 'prosjektet_som_aldri_blir_ferdig'),
-              ('psykologi_relasjonsbygger.json', 'radet_som_tok_over_valget'),
-              ('religion_nysgjerrig.json', 'ritualet_uten_fasit'),
-              ('utdanning_utdanningskritiker.json', 'sammenhengen_som_ble_arsak'),
-              ('scenekunst_scenehenger.json', 'sesongslutt_hva_slags_scenehenger'),
-              ('filosofi_sporrer.json', 'sporsmalet_bak_sporsmalet'),
-              ('subkultur_observor.json', 'stillheten_etter_sporsmalet'),
-              ('film_tv_seer.json', 'telefonen_i_handa'),
-              ('filmklubbmenneske.json', 'tilgjengelig_visning'),
-              ('religion_nysgjerrig.json', 'uenigheten_innenfra'),
-              ('film_tv_seriesluker.json', 'vent_pa_meg'),
-          ]
+      - name: Verify compiled scene registry is synchronized
+        run: node scripts/build-civication-scene-registry.mjs --check
 
-          narratives = Path('data/Civication/narratives/leisure')
-          role_worlds = Path('data/Civication/roleWorlds')
+      - name: Run complete Civication suite
+        run: npm run test:civication
 
-          for filename, old_id in renames:
-              path = narratives / filename
-              if not path.is_file():
-                  raise SystemExit(f'missing narrative: {path}')
-
-              role_slug = path.stem
-              new_id = f'{role_slug}_{old_id}'
-              text = path.read_text(encoding='utf-8')
-              old_pattern = re.compile(r'("id"\s*:\s*")' + re.escape(old_id) + r'(")')
-              new_pattern = re.compile(r'"id"\s*:\s*"' + re.escape(new_id) + r'"')
-              old_count = len(old_pattern.findall(text))
-              new_count = len(new_pattern.findall(text))
-
-              if old_count == 1 and new_count == 0:
-                  text = old_pattern.sub(r'\1' + new_id + r'\2', text, count=1)
-                  path.write_text(text, encoding='utf-8')
-              elif old_count == 0 and new_count == 1:
-                  pass
-              else:
-                  raise SystemExit(
-                      f'unexpected id state in {path}: {old_id}={old_count}, {new_id}={new_count}'
-                  )
-
-              old_ref = f'data/Civication/narratives/leisure/{filename}#{old_id}'
-              new_ref = f'data/Civication/narratives/leisure/{filename}#{new_id}'
-              ref_hits = 0
-              for ref_file in role_worlds.rglob('*.json'):
-                  ref_text = ref_file.read_text(encoding='utf-8')
-                  count = ref_text.count(old_ref)
-                  if count:
-                      ref_file.write_text(ref_text.replace(old_ref, new_ref), encoding='utf-8')
-                      ref_hits += count
-              remaining = sum(
-                  p.read_text(encoding='utf-8').count(old_ref)
-                  for p in role_worlds.rglob('*.json')
-              )
-              if remaining:
-                  raise SystemExit(f'stale role-world refs remain for {old_ref}: {remaining}')
-              print(f'{filename}: {old_id} -> {new_id}; updated refs={ref_hits}')
-          PY
-
-      - name: Verify strict duplicate delta
+      - name: Verify duplicate audit delta
         run: |
           node --input-type=module <<'NODE'
           import {
@@ -117,15 +55,3 @@ jobs:
             throw new Error(`Expected 2 blockers, got ${audit.summary.blocking_issues}`);
           }
           NODE
-
-      - name: Commit repair to diagnosis branch
-        run: |
-          if git diff --quiet -- data/Civication/narratives/leisure data/Civication/roleWorlds; then
-            echo 'No repair diff to commit.'
-            exit 0
-          fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/Civication/narratives/leisure data/Civication/roleWorlds
-          git commit -m 'Fix colliding leisure storylet IDs'
-          git push
