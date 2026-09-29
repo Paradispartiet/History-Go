@@ -1,0 +1,40 @@
+name: TEMP scene duplicate audit
+
+on:
+  push:
+    branches:
+      - 'civication/scene-pipeline-next-duplicate'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Print duplicate blockers
+        run: |
+          node --input-type=module <<'NODE'
+          import {
+            auditRepository,
+            DEFAULT_REPO_ROOT
+          } from './scripts/audit-civication-scene-pipeline.mjs';
+
+          const audit = auditRepository(DEFAULT_REPO_ROOT);
+          console.log('SUMMARY ' + JSON.stringify(audit.summary));
+          for (const row of audit.inventory.duplicate_scene_ids || []) {
+            console.log('DUP ' + JSON.stringify(row));
+          }
+          for (const issue of (audit.blocking_issues || []).filter((row) => row.category !== 'duplicate_scene_id')) {
+            console.log('OTHER ' + JSON.stringify(issue));
+          }
+          NODE
