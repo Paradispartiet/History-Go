@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 42
+- Totalt antall avvik: 31
 
 ## Statusmatrise
 
@@ -42,8 +42,8 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | redaktor_bok | litteratur | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a | n/a |
 | media_redaksjon | media | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | media_redaksjonell_ledelse | media | n/a | n/a | ✅ | ⚠️ 1 | n/a | n/a | n/a |
-| musikk_scene_og_produksjon | musikk | n/a | ⚠️ 4 | ✅ | ✅ | n/a | n/a | n/a |
-| musikk_utoving_og_ensemble | musikk | n/a | ⚠️ 7 | ⚠️ 1 | ✅ | n/a | n/a | n/a |
+| musikk_scene_og_produksjon | musikk | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
+| musikk_utoving_og_ensemble | musikk | n/a | ✅ | ⚠️ 1 | ✅ | n/a | n/a | n/a |
 | finansanalytiker | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | finansdirektor | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | naeringsliv_administrasjon_og_okonomistyring | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -300,24 +300,12 @@ Kilde: `data/Civication/workGrammars/media/media_redaksjonell_ledelse.json`
 
 Kilde: `data/Civication/workGrammars/musikk/musikk_scene_og_produksjon.json`
 
-- **required_axes** (4):
-  - akse 'authority_boundary' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'competence' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'handoff' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'safety' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### musikk_utoving_og_ensemble (`musikk/musikk_utoving_og_ensemble`)
 
 Kilde: `data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json`
 
-- **required_axes** (7):
-  - akse 'appointment_required' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'authority_boundary' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'bounded_rework' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'handoff' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'History Go' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'persistent_work_object' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
-  - akse 'waiting' finnes ikke som felt på noen mail (FWG bruker den trolig som tema, ikke kolonne — avklar required_axes-semantikk mot Arealplanlegger-referansen)
 - **place_grammar** (1):
   - udeklarert sted i mail: blaa (ikke i place_grammar)
 
