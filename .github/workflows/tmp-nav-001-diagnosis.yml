@@ -1,0 +1,111 @@
+name: TEMP nav_001 diagnosis
+
+on:
+  push:
+    branches:
+      - 'civication/nav-001-diagnosis'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Show exact nav_001 nodes and local references
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          files = [
+              Path('data/Civication/jobbmails/byCivic.json'),
+              Path('data/Civication/jobbmails/mediaCivic.json'),
+              Path('data/Civication/jobbmails/naeringsliv/naeringslivCivic.json'),
+          ]
+
+          def walk(value, pointer='$'):
+              if isinstance(value, dict):
+                  if value.get('id') == 'nav_001':
+                      print(f'NODE {path} {pointer} ' + json.dumps(value, ensure_ascii=False, sort_keys=True))
+                  for key, child in value.items():
+                      walk(child, f'{pointer}.{key}')
+              elif isinstance(value, list):
+                  for i, child in enumerate(value):
+                      walk(child, f'{pointer}[{i}]')
+              elif isinstance(value, str) and 'nav_001' in value:
+                  print(f'STRING_REF {path} {pointer} {value!r}')
+
+          for path in files:
+              data = json.loads(path.read_text(encoding='utf-8'))
+              print(f'=== {path} ===')
+              walk(data)
+          PY
+
+      - name: Show repo-wide jobmail and nav references
+        run: |
+          echo '=== nav_001 repo-wide ==='
+          grep -R -n --exclude='compiledSceneRegistryV1.json' --exclude='tmp-nav-001-diagnosis.yml' 'nav_001' . || true
+          echo '=== jobbmail schema/loaders/files repo-wide ==='
+          grep -R -n -E --exclude='compiledSceneRegistryV1.json' --exclude='tmp-nav-001-diagnosis.yml' 'jobbmail\.civication\.v1|jobbmails|byCivic\.json|mediaCivic\.json|naeringslivCivic\.json' js scripts tests data/Civication/source data/Civication 2>/dev/null | head -n 500 || true
+
+      - name: Show compiler fallback semantics
+        run: |
+          echo '=== LEGACY_FALLBACK_ROOT uses ==='
+          grep -n -C 12 'LEGACY_FALLBACK_ROOT' scripts/build-civication-scene-registry.mjs || true
+          echo '=== source/ignored selection code ==='
+          grep -n -C 12 -E 'ignored_source_files|compiled_source_files|source_files|fallback' scripts/build-civication-scene-registry.mjs | head -n 500 || true
+
+      - name: Inspect compiled registry reachability for the three files and nav_001
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          registry_path = Path('data/Civication/compiledSceneRegistryV1.json')
+          registry = json.loads(registry_path.read_text(encoding='utf-8'))
+          compiler = registry.get('compiler', {})
+          targets = [
+              'data/Civication/jobbmails/byCivic.json',
+              'data/Civication/jobbmails/mediaCivic.json',
+              'data/Civication/jobbmails/naeringsliv/naeringslivCivic.json',
+          ]
+
+          print('COMPILER_KEYS', sorted(compiler.keys()))
+          for target in targets:
+              for key in ('source_files', 'compiled_source_files', 'ignored_source_files'):
+                  value = compiler.get(key)
+                  present = isinstance(value, list) and target in value
+                  print(f'REACH {target} {key}={present}')
+
+          def walk(value, pointer='$'):
+              if isinstance(value, dict):
+                  if value.get('id') == 'nav_001' or value.get('scene_id') == 'nav_001':
+                      compact = {k: v for k, v in value.items() if k in ('id','scene_id','source_file','pointer','category','kind','type','schema','source_pointer')}
+                      print('REGISTRY_NAV', pointer, json.dumps(compact, ensure_ascii=False, sort_keys=True))
+                  for key, child in value.items():
+                      walk(child, f'{pointer}.{key}')
+              elif isinstance(value, list):
+                  for i, child in enumerate(value):
+                      walk(child, f'{pointer}[{i}]')
+          walk(registry)
+          PY
+
+      - name: Run current scene audit summary
+        run: |
+          node --input-type=module <<'NODE'
+          import { auditRepository, DEFAULT_REPO_ROOT } from './scripts/audit-civication-scene-pipeline.mjs';
+          const audit = auditRepository(DEFAULT_REPO_ROOT);
+          console.log('SUMMARY ' + JSON.stringify(audit.summary));
+          console.log('DUPLICATES ' + JSON.stringify(audit.inventory.duplicate_scene_ids || []));
+          console.log('BLOCKERS ' + JSON.stringify(audit.blocking_issues || []));
+          NODE
