@@ -1,4 +1,4 @@
-name: Temporary ml_faction ignored-source audit proof
+name: Temporary ml_faction reachability audit fix
 
 on:
   push:
@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  prove-audit-semantics:
+  repair-verify-finalize:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,26 +25,67 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Prove transition source is ignored by compiler
+      - name: Prove regression is red before repair
         shell: bash
         run: |
-          test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json
-          test -f data/Civication/mailFamilies/naeringsliv/job/mellomleder_job.json
-          node - <<'NODE'
-          const fs = require('node:fs');
-          const registry = JSON.parse(fs.readFileSync('data/Civication/compiledSceneRegistryV1.json', 'utf8'));
-          const transition = 'data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json';
-          if (!(registry.ignored_source_files || []).includes(transition)) {
-            throw new Error(`${transition} is not in ignored_source_files`);
-          }
-          if ((registry.compiled_source_files || []).includes(transition)) {
-            throw new Error(`${transition} unexpectedly appears in compiled_source_files`);
-          }
-          NODE
+          if node tests/civication-scene-pipeline-ignored-source-duplicates.test.js; then
+            echo 'Regression test unexpectedly passed before repair.' >&2
+            exit 1
+          fi
 
-      - name: Require reachability-aware duplicate blocker
+      - name: Make duplicate audit compiler-reachability-aware
         shell: bash
         run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/audit-civication-scene-pipeline.mjs')
+          text = path.read_text()
+          old = '''  const ids = new Map();
+          for (const record of sceneRecords) {
+            if (!ids.has(record.id)) ids.set(record.id, []);
+            ids.get(record.id).push(record);
+          }
+          const duplicateSceneIds = [...ids.entries()]
+            .filter(([, rows]) => rows.length > 1)
+            .map(([id, rows]) => ({
+              id,
+              occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))
+            }))
+            .sort((a, b) => a.id.localeCompare(b.id, "en"));
+          '''
+          new = '''  const compiledRegistry = parsedJson.find(
+            (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
+          )?.json;
+          const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
+          const duplicateCandidateRecords = sceneRecords.filter(
+            (record) => !compilerIgnoredSourceFiles.has(record.source_path)
+          );
+
+          const ids = new Map();
+          for (const record of duplicateCandidateRecords) {
+            if (!ids.has(record.id)) ids.set(record.id, []);
+            ids.get(record.id).push(record);
+          }
+          const duplicateSceneIds = [...ids.entries()]
+            .filter(([, rows]) => rows.length > 1)
+            .map(([id, rows]) => ({
+              id,
+              occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))
+            }))
+            .sort((a, b) => a.id.localeCompare(b.id, "en"));
+          '''
+          if text.count(old) != 1:
+              raise SystemExit(f'expected exactly one duplicate-audit block, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
+          git diff -- scripts/audit-civication-scene-pipeline.mjs
+          git diff --check
+
+      - name: Prove focused blocker reduction
+        shell: bash
+        run: |
+          node tests/civication-scene-pipeline-ignored-source-duplicates.test.js
           node scripts/audit-civication-scene-pipeline.mjs --json > /tmp/audit.json
           node - <<'NODE'
           const fs = require('node:fs');
@@ -67,12 +108,25 @@ jobs:
             throw new Error(`expected 21 blockers, got ${audit.summary.blocking_issues}`);
           }
           if ((audit.blocking_issues || []).some((issue) => issue.category === 'duplicate_scene_id' && issue.id === 'ml_faction_001')) {
-            throw new Error('ml_faction_001 must not be a canonical duplicate blocker when one occurrence is compiler-ignored');
+            throw new Error('ml_faction_001 duplicate blocker still present');
           }
           NODE
 
       - name: Verify complete Civication state
+        shell: bash
         run: |
           node scripts/build-civication-scene-registry.mjs --check
           npm run test:civication
           git diff --check
+
+      - name: Commit permanent audit fix and remove temporary workflow
+        shell: bash
+        run: |
+          rm .github/workflows/tmp-ml-faction-duplicate-audit.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/audit-civication-scene-pipeline.mjs tests/civication-scene-pipeline-ignored-source-duplicates.test.js .github/workflows/tmp-ml-faction-duplicate-audit.yml
+          git diff --cached --check
+          git diff --cached --quiet && { echo 'No permanent changes to commit.' >&2; exit 1; }
+          git commit -m 'Civication: ignore compiler-excluded sources in duplicate audit'
+          git push
