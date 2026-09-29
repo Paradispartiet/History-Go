@@ -25,11 +25,28 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Prove regression is red before repair
+      - name: Prove pre-existing gameplay matrix drift and synchronize it
+        shell: bash
+        run: |
+          if node scripts/audit-civication-career-gameplay.mjs --check; then
+            echo 'Expected the inherited careerGameplayMatrix.json drift to be present.' >&2
+            exit 1
+          fi
+          node scripts/audit-civication-career-gameplay.mjs --write
+          CHANGED=$(git diff --name-only)
+          test "$CHANGED" = 'data/Civication/careerGameplayMatrix.json' || {
+            echo "Unexpected derived changes before audit repair:" >&2
+            echo "$CHANGED" >&2
+            exit 1
+          }
+          node scripts/audit-civication-career-gameplay.mjs --check
+          git diff --check
+
+      - name: Prove regression is red before audit repair
         shell: bash
         run: |
           if node tests/civication-scene-pipeline-ignored-source-duplicates.test.js; then
-            echo 'Regression test unexpectedly passed before repair.' >&2
+            echo 'Regression test unexpectedly passed before audit repair.' >&2
             exit 1
           fi
 
@@ -42,16 +59,17 @@ jobs:
           path = Path('scripts/audit-civication-scene-pipeline.mjs')
           text = path.read_text()
           needle = '  const ids = new Map();\n  for (const record of sceneRecords) {'
-          replacement = '''  const compiledRegistry = parsedJson.find(
-            (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
-          )?.json;
-          const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
-          const duplicateCandidateRecords = sceneRecords.filter(
-            (record) => !compilerIgnoredSourceFiles.has(record.source_path)
-          );
-
-          const ids = new Map();
-          for (const record of duplicateCandidateRecords) {'''
+          replacement = (
+              '  const compiledRegistry = parsedJson.find(\n'
+              '    (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"\n'
+              '  )?.json;\n'
+              '  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n'
+              '  const duplicateCandidateRecords = sceneRecords.filter(\n'
+              '    (record) => !compilerIgnoredSourceFiles.has(record.source_path)\n'
+              '  );\n\n'
+              '  const ids = new Map();\n'
+              '  for (const record of duplicateCandidateRecords) {'
+          )
           if text.count(needle) != 1:
               raise SystemExit(f'expected exactly one duplicate-audit anchor, found {text.count(needle)}')
           path.write_text(text.replace(needle, replacement, 1))
@@ -93,17 +111,19 @@ jobs:
         shell: bash
         run: |
           node scripts/build-civication-scene-registry.mjs --check
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
           npm run test:civication
           git diff --check
 
-      - name: Commit permanent audit fix and remove temporary workflow
+      - name: Commit permanent repairs and remove temporary workflow
         shell: bash
         run: |
           rm .github/workflows/tmp-ml-faction-duplicate-audit.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/audit-civication-scene-pipeline.mjs tests/civication-scene-pipeline-ignored-source-duplicates.test.js .github/workflows/tmp-ml-faction-duplicate-audit.yml
+          git add scripts/audit-civication-scene-pipeline.mjs tests/civication-scene-pipeline-ignored-source-duplicates.test.js data/Civication/careerGameplayMatrix.json .github/workflows/tmp-ml-faction-duplicate-audit.yml
           git diff --cached --check
           git diff --cached --quiet && { echo 'No permanent changes to commit.' >&2; exit 1; }
-          git commit -m 'Civication: ignore compiler-excluded sources in duplicate audit'
+          git commit -m 'Civication: align scene audit with compiled reachability'
           git push
