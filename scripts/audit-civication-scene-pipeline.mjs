@@ -18,6 +18,10 @@ export const PATHS = Object.freeze({
   civicationJs: "js/Civication"
 });
 
+const LEGACY_INVENTORY_SCENE_ROOTS = Object.freeze([
+  "data/Civication/jobbmails"
+]);
+
 const DEFAULT_LEGACY_PLAN_TYPES = Object.freeze([
   "job",
   "knowledge",
@@ -586,6 +590,40 @@ export function validateScene(scene) {
   return issues;
 }
 
+function isLegacyInventorySceneSource(sourcePath) {
+  const relative = norm(sourcePath).replace(/\\/g, "/");
+  return LEGACY_INVENTORY_SCENE_ROOTS.some(
+    (root) => relative === root || relative.startsWith(`${root}/`)
+  );
+}
+
+export function findDuplicateSceneIds(sceneRecords, ignoredSourceFiles = []) {
+  const ignored = ignoredSourceFiles instanceof Set
+    ? ignoredSourceFiles
+    : new Set(uniq(ignoredSourceFiles));
+  const ids = new Map();
+
+  for (const record of Array.isArray(sceneRecords) ? sceneRecords : []) {
+    if (!norm(record?.id)) continue;
+    if (ignored.has(record.source_path) || isLegacyInventorySceneSource(record.source_path)) continue;
+    if (!ids.has(record.id)) ids.set(record.id, []);
+    ids.get(record.id).push(record);
+  }
+
+  return [...ids.entries()]
+    .filter(([, rows]) => rows.length > 1)
+    .map(([id, rows]) => ({
+      id,
+      occurrences: rows.map((row) => ({
+        path: row.source_path,
+        pointer: row.pointer,
+        type: row.mail_type,
+        family: row.mail_family
+      }))
+    }))
+    .sort((a, b) => a.id.localeCompare(b.id, "en"));
+}
+
 export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
   const root = path.resolve(repoRoot);
   const parseErrors = [];
@@ -623,22 +661,7 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
     (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
   )?.json;
   const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
-  const duplicateCandidateRecords = sceneRecords.filter(
-    (record) => !compilerIgnoredSourceFiles.has(record.source_path)
-  );
-
-  const ids = new Map();
-  for (const record of duplicateCandidateRecords) {
-    if (!ids.has(record.id)) ids.set(record.id, []);
-    ids.get(record.id).push(record);
-  }
-  const duplicateSceneIds = [...ids.entries()]
-    .filter(([, rows]) => rows.length > 1)
-    .map(([id, rows]) => ({
-      id,
-      occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))
-    }))
-    .sort((a, b) => a.id.localeCompare(b.id, "en"));
+  const duplicateSceneIds = findDuplicateSceneIds(sceneRecords, compilerIgnoredSourceFiles);
 
   const missingInternalReferences = [];
   for (const record of sceneRecords) {
