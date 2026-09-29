@@ -1,0 +1,55 @@
+name: Civication FWG conflict diagnostic
+
+on:
+  push:
+    branches:
+      - 'agent/civication-fwg-conflict-bindings-20260929'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Patch FWG conflict binding semantics
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('scripts/audit-civication-fwg-governance.mjs')
+          text = path.read_text()
+          old = """  // 2. Hver conflict-mails pressure bør være forankret i en konfliktakse/-id.\n  const anchors = new Set([...conflicts.map(c => c.id), ...conflicts.map(c => c.axis)].filter(Boolean));\n  const conflictCatalog = role.catalogs.find(c => c.type === 'conflict');\n  for (const mail of conflictCatalog?.mails || []) {\n    if (mail.pressure && !anchors.has(mail.pressure)) {\n      findings.push(`konflikt-mail ${mail.id} har pressure '${mail.pressure}' uten forankring i conflict_grammar`);\n    }\n  }"""
+          new = """  // 2. En conflict-mail kan være forankret enten eksplisitt via en deklarert\n  // mail_family eller semantisk via conflict_grammar id/axis/pressure.\n  const familyAnchors = new Set(conflicts.flatMap(c => c.mail_families || []));\n  const pressureAnchors = new Set([\n    ...conflicts.map(c => c.id),\n    ...conflicts.map(c => c.axis),\n    ...conflicts.map(c => c.pressure),\n  ].filter(Boolean));\n  const conflictCatalog = role.catalogs.find(c => c.type === 'conflict');\n  for (const mail of conflictCatalog?.mails || []) {\n    const familyBound = mail.mail_family && familyAnchors.has(mail.mail_family);\n    if (mail.pressure && !familyBound && !pressureAnchors.has(mail.pressure)) {\n      findings.push(`konflikt-mail ${mail.id} har pressure '${mail.pressure}' uten forankring i conflict_grammar`);\n    }\n  }"""
+          if old not in text:
+              raise SystemExit('Expected conflict audit block not found')
+          path.write_text(text.replace(old, new, 1))
+
+      - name: Regenerate FWG governance report
+        run: node scripts/audit-civication-fwg-governance.mjs
+
+      - name: Show regenerated summary
+        run: grep -E 'FWG-filer auditert|Totalt antall avvik' docs/CIVICATION_FWG_GOVERNANCE.md
+
+      - name: Commit exact diagnostic result
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add scripts/audit-civication-fwg-governance.mjs docs/CIVICATION_FWG_GOVERNANCE.md
+          if git diff --cached --quiet; then
+            echo 'No FWG conflict changes.'
+            exit 0
+          fi
+          git commit -m 'Civication: respect explicit FWG conflict bindings'
+          git push
