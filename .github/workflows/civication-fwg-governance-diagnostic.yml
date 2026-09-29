@@ -1,0 +1,42 @@
+name: Civication FWG governance diagnostic
+
+on:
+  push:
+    branches:
+      - 'agent/civication-fwg-governance-sync-20260929'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Regenerate FWG governance report
+        run: node scripts/audit-civication-fwg-governance.mjs
+
+      - name: Show regenerated summary
+        run: grep -E 'FWG-filer auditert|Totalt antall avvik' docs/CIVICATION_FWG_GOVERNANCE.md
+
+      - name: Commit exact generated report
+        run: |
+          if git diff --quiet -- docs/CIVICATION_FWG_GOVERNANCE.md; then
+            echo 'FWG governance report already synchronized.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/CIVICATION_FWG_GOVERNANCE.md
+          git commit -m 'Civication: regenerate FWG governance report'
+          git push
