@@ -36,10 +36,12 @@ jobs:
           assert marker in text, 'audit helper insertion marker missing'
           text = text.replace(marker, helper + marker, 1)
 
-          old = '''  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n  const duplicateCandidateRecords = sceneRecords.filter(\n    (record) => !compilerIgnoredSourceFiles.has(record.source_path)\n  );\n\n  const ids = new Map();\n  for (const record of duplicateCandidateRecords) {\n    if (!ids.has(record.id)) ids.set(record.id, []);\n    ids.get(record.id).push(record);\n  }\n  const duplicateSceneIds = [...ids.entries()]\n    .filter(([, rows]) => rows.length > 1)\n    .map(([id, rows]) => ({\n      id,\n      occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))\n    }))\n    .sort((a, b) => a.id.localeCompare(b.id, "en"));\n'''
-          new = '''  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n  const duplicateSceneIds = findDuplicateSceneIds(sceneRecords, compilerIgnoredSourceFiles);\n'''
-          assert old in text, 'duplicate candidate block mismatch'
-          text = text.replace(old, new, 1)
+          start_marker = '  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n'
+          end_marker = '\n\n  const referencedIds = new Set();'
+          start = text.index(start_marker)
+          end = text.index(end_marker, start)
+          replacement = '''  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n  const duplicateSceneIds = findDuplicateSceneIds(sceneRecords, compilerIgnoredSourceFiles);'''
+          text = text[:start] + replacement + text[end:]
           audit_path.write_text(text)
 
           test_path = Path('tests/civication-scene-pipeline-ignored-source-duplicates.test.js')
