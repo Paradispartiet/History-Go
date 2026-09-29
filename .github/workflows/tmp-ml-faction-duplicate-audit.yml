@@ -25,21 +25,33 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Prove pre-existing gameplay matrix drift and synchronize it
+      - name: Prove inherited governance drift and synchronize it
         shell: bash
         run: |
           if node scripts/audit-civication-career-gameplay.mjs --check; then
-            echo 'Expected the inherited careerGameplayMatrix.json drift to be present.' >&2
+            echo 'Expected inherited careerGameplayMatrix.json drift.' >&2
             exit 1
           fi
           node scripts/audit-civication-career-gameplay.mjs --write
-          CHANGED=$(git diff --name-only)
-          test "$CHANGED" = 'data/Civication/careerGameplayMatrix.json' || {
-            echo "Unexpected derived changes before audit repair:" >&2
-            echo "$CHANGED" >&2
-            exit 1
-          }
           node scripts/audit-civication-career-gameplay.mjs --check
+
+          if node scripts/audit-civication-role-world-rollout-readiness.mjs --check; then
+            echo 'Expected inherited roleWorldRolloutReadiness drift.' >&2
+            exit 1
+          fi
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+
+          git diff --name-only > /tmp/derived-files.txt
+          cat /tmp/derived-files.txt
+          grep -qx 'data/Civication/careerGameplayMatrix.json' /tmp/derived-files.txt
+          grep -qx 'data/Civication/roleWorldRolloutReadiness.json' /tmp/derived-files.txt
+          while IFS= read -r file; do
+            case "$file" in
+              data/Civication/careerGameplayMatrix.json|data/Civication/roleWorldRolloutReadiness.json|reports/civication-career-gameplay-matrix.md|reports/civication-role-world-rollout-readiness.md) ;;
+              *) echo "Unexpected derived change: $file" >&2; exit 1 ;;
+            esac
+          done < /tmp/derived-files.txt
           git diff --check
 
       - name: Prove regression is red before audit repair
@@ -122,7 +134,7 @@ jobs:
           rm .github/workflows/tmp-ml-faction-duplicate-audit.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add scripts/audit-civication-scene-pipeline.mjs tests/civication-scene-pipeline-ignored-source-duplicates.test.js data/Civication/careerGameplayMatrix.json .github/workflows/tmp-ml-faction-duplicate-audit.yml
+          git add scripts/audit-civication-scene-pipeline.mjs tests/civication-scene-pipeline-ignored-source-duplicates.test.js data/Civication/careerGameplayMatrix.json data/Civication/roleWorldRolloutReadiness.json reports/civication-career-gameplay-matrix.md reports/civication-role-world-rollout-readiness.md .github/workflows/tmp-ml-faction-duplicate-audit.yml
           git diff --cached --check
           git diff --cached --quiet && { echo 'No permanent changes to commit.' >&2; exit 1; }
           git commit -m 'Civication: align scene audit with compiled reachability'
