@@ -37,7 +37,7 @@ jobs:
           text = text.replace(marker, helper + marker, 1)
 
           start_marker = '  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n'
-          end_marker = '\n\n  const referencedIds = new Set();'
+          end_marker = '\n\n  const missingInternalReferences = [];'
           start = text.index(start_marker)
           end = text.index(end_marker, start)
           replacement = '''  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));\n  const duplicateSceneIds = findDuplicateSceneIds(sceneRecords, compilerIgnoredSourceFiles);'''
