@@ -107,7 +107,7 @@ jobs:
           console.log('DUPLICATES ' + JSON.stringify(duplicates));
           console.log('BLOCKERS ' + JSON.stringify(audit.blocking_issues || []));
 
-          if (duplicates.length !== 1 || duplicates[0]?.scene_id !== 'nav_001') {
+          if (duplicates.length !== 1 || duplicates[0]?.id !== 'nav_001') {
             throw new Error(`Expected only nav_001 duplicate, got ${JSON.stringify(duplicates)}`);
           }
           if (audit.summary.missing_internal_references !== 0) {
