@@ -40,7 +40,7 @@ function uniqueSorted(values) {
   return [...new Set(values.filter(v => v !== undefined && v !== null && v !== ''))].sort((a, b) => String(a).localeCompare(String(b), 'nb'));
 }
 function senderOf(mail) {
-  return mail.person_id || mail.sender || mail.from || '';
+  return mail.people_ref || mail.person_id || mail.sender || mail.from || '';
 }
 
 // Samler alle mailer (og thread-rotmailer) for en rolle, gruppert per type.
@@ -69,6 +69,7 @@ function collectRole(fwg) {
 
 function checkMinimumCounts(fwg, role) {
   const minimums = fwg.mail_generation_contract?.minimum_counts || {};
+  if (!Object.keys(minimums).length) return { dimension: 'minimum_counts', status: 'n/a', findings: [] };
   const findings = [];
   for (const type of Object.keys(minimums).sort()) {
     const min = minimums[type];
@@ -103,7 +104,7 @@ function checkRequiredAxes(fwg, role) {
 }
 
 function checkPlaceGrammar(fwg, role) {
-  const declared = uniqueSorted((fwg.place_grammar || []).map(p => p.place_id));
+  const declared = uniqueSorted((fwg.place_grammar || []).map(p => p.place_id || p.id));
   if (!declared.length) return { dimension: 'place_grammar', status: 'n/a', findings: [] };
   const used = new Set(role.allMails.map(m => m.place_id).filter(Boolean));
   const findings = [];
@@ -128,13 +129,14 @@ function checkActorGrammar(fwg, role) {
   }
   const findings = [];
   for (const actor of actors) {
-    const id = actor.example_id;
+    const id = actor.example_id || actor.id;
+    const actorType = actor.actor_type || actor.role || '(ukjent)';
     if (!id) {
-      findings.push(`aktørtype uten example_id: ${actor.actor_type || '(ukjent)'}`);
+      findings.push(`aktørtype uten eksempel-id: ${actorType}`);
       continue;
     }
     if (!sendersByType.has(id)) {
-      findings.push(`ubrukt aktør-eksempel: ${id} (${actor.actor_type || '?'}) dukker ikke opp som avsender`);
+      findings.push(`ubrukt aktør-eksempel: ${id} (${actorType}) dukker ikke opp som avsender`);
       continue;
     }
     const allowed = actor.can_send_mail_types;

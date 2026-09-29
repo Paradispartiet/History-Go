@@ -8,6 +8,7 @@ on:
       - '!data/Civication/scenarioPeople/**'
       - '!data/Civication/scenarioPeople_index.json'
       - 'data/badges/**'
+      - 'docs/CIVICATION_FWG_GOVERNANCE.md'
       - 'js/Civication/**'
       - 'tests/civication-*.test.js'
       - 'tests/run-civication-tests.mjs'
@@ -42,6 +43,11 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+
+      - name: Verify FWG governance report is synchronized
+        run: |
+          node scripts/audit-civication-fwg-governance.mjs
+          git diff --exit-code -- docs/CIVICATION_FWG_GOVERNANCE.md
 
       - name: Verify compiled scene registry is synchronized
         run: node scripts/build-civication-scene-registry.mjs --check
