@@ -38,3 +38,10 @@ jobs:
             console.log('OTHER ' + JSON.stringify(issue));
           }
           NODE
+
+      - name: Inspect anbefalingen references
+        run: |
+          echo '=== exact anbefalingen occurrences ==='
+          grep -R -n --exclude='compiledSceneRegistryV1.json' --exclude='careerGameplayMatrix.json' --exclude='roleWorldRolloutReadiness.json' '"anbefalingen"' data/Civication js tests scripts || true
+          echo '=== leisure loader references ==='
+          grep -R -n --exclude='compiledSceneRegistryV1.json' 'narratives/leisure\|storylets' js/Civication scripts tests | head -n 200 || true
