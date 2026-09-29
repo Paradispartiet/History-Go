@@ -37,8 +37,12 @@ jobs:
                   "function senderOf(mail) {\n  return mail.people_ref || mail.person_id || mail.sender || mail.from || '';\n}"
               ),
               (
-                  "  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  const findings = [];",
-                  "  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  if (!Object.keys(minimums).length) return { status: 'na', findings: [] };\n  const findings = [];"
+                  "function checkMinimumCounts(fwg, role) {\n  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  const findings = [];",
+                  "function checkMinimumCounts(fwg, role) {\n  const minimums = fwg.mail_generation_contract?.minimum_counts || {};\n  if (!Object.keys(minimums).length) return { dimension: 'minimum_counts', status: 'n/a', findings: [] };\n  const findings = [];"
+              ),
+              (
+                  "  const declared = uniqueSorted((fwg.place_grammar || []).map(p => p.place_id));",
+                  "  const declared = uniqueSorted((fwg.place_grammar || []).map(p => p.place_id || p.id));"
               ),
               (
                   "    const id = actor.example_id;\n    if (!id) {\n      findings.push(`aktørtype uten example_id: ${actor.actor_type || '(ukjent)'}`);",
@@ -47,10 +51,6 @@ jobs:
               (
                   "      findings.push(`ubrukt aktør-eksempel: ${id} (${actor.actor_type || '?'}) dukker ikke opp som avsender`);",
                   "      findings.push(`ubrukt aktør-eksempel: ${id} (${actorType}) dukker ikke opp som avsender`);"
-              ),
-              (
-                  "  const declared = uniqueSorted((fwg.place_grammar || []).map((p) => p.place_id));",
-                  "  const declared = uniqueSorted((fwg.place_grammar || []).map((p) => p.place_id || p.id));"
               ),
           ]
 
