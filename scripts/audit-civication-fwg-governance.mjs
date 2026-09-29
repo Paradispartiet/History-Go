@@ -161,11 +161,18 @@ function checkConflictGrammar(fwg, role) {
       if (!role.familyIds.has(fam)) findings.push(`konfliktfamilie mangler: ${fam} (nevnt i ${conflict.id})`);
     }
   }
-  // 2. Hver conflict-mails pressure bør være forankret i en konfliktakse/-id.
-  const anchors = new Set([...conflicts.map(c => c.id), ...conflicts.map(c => c.axis)].filter(Boolean));
+  // 2. En conflict-mail kan være forankret enten eksplisitt via en deklarert
+  // mail_family eller semantisk via conflict_grammar id/axis/pressure.
+  const familyAnchors = new Set(conflicts.flatMap(c => c.mail_families || []));
+  const pressureAnchors = new Set([
+    ...conflicts.map(c => c.id),
+    ...conflicts.map(c => c.axis),
+    ...conflicts.map(c => c.pressure),
+  ].filter(Boolean));
   const conflictCatalog = role.catalogs.find(c => c.type === 'conflict');
   for (const mail of conflictCatalog?.mails || []) {
-    if (mail.pressure && !anchors.has(mail.pressure)) {
+    const familyBound = mail.mail_family && familyAnchors.has(mail.mail_family);
+    if (mail.pressure && !familyBound && !pressureAnchors.has(mail.pressure)) {
       findings.push(`konflikt-mail ${mail.id} har pressure '${mail.pressure}' uten forankring i conflict_grammar`);
     }
   }
