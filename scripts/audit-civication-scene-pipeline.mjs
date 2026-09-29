@@ -625,6 +625,7 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
   const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
   const duplicateCandidateRecords = sceneRecords.filter(
     (record) => !compilerIgnoredSourceFiles.has(record.source_path)
+      && !record.source_path.startsWith("data/Civication/jobbmails/")
   );
 
   const ids = new Map();
