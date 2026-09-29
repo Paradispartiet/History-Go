@@ -619,8 +619,16 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
   for (const row of sceneSourceFiles) collectAllIdentifiers(row.json, identifierIndex);
   for (const record of sceneRecords) identifierIndex.add(record.id);
 
+  const compiledRegistry = parsedJson.find(
+    (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
+  )?.json;
+  const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
+  const duplicateCandidateRecords = sceneRecords.filter(
+    (record) => !compilerIgnoredSourceFiles.has(record.source_path)
+  );
+
   const ids = new Map();
-  for (const record of sceneRecords) {
+  for (const record of duplicateCandidateRecords) {
     if (!ids.has(record.id)) ids.set(record.id, []);
     ids.get(record.id).push(record);
   }
