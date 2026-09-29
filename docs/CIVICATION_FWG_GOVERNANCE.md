@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 43
+- Totalt antall avvik: 42
 
 ## Statusmatrise
 
@@ -19,7 +19,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | by_radgiver_plan | by | ✅ | ✅ | n/a | n/a | n/a | n/a | n/a |
 | by_saksbehandler | by | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | kurator_film_tv | film_tv | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
-| manusmedarbeider | film_tv | ✅ | ✅ | ✅ | ⚠️ 2 | ⚠️ 2 | ✅ | ✅ |
+| manusmedarbeider | film_tv | ✅ | ✅ | ✅ | ⚠️ 2 | ⚠️ 1 | ✅ | ✅ |
 | produksjonsassistent | film_tv | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
 | programleder | film_tv | n/a | n/a | ✅ | ✅ | ⚠️ 2 | n/a | n/a |
 | regissor | film_tv | n/a | n/a | ✅ | ⚠️ 1 | ✅ | n/a | n/a |
@@ -146,8 +146,7 @@ Kilde: `data/Civication/workGrammars/film_tv/manusmedarbeider.json`
 - **actor_grammar** (2):
   - aktør elias_manusforfatter sender mailtyper utenfor can_send_mail_types: conflict, followup (tillatt: people, story)
   - aktør selma_scriptkoordinator sender mailtyper utenfor can_send_mail_types: followup, story (tillatt: event, consequence)
-- **conflict_grammar** (2):
-  - konflikt-mail film_tv_manus_conflict_motstridende_001 har pressure 'motstridende_bestillinger' uten forankring i conflict_grammar
+- **conflict_grammar** (1):
   - konflikt-mail film_tv_manus_realism_author_response_001 har pressure 'ny_versjon_vs_uforlost_brief' uten forankring i conflict_grammar
 
 ### produksjonsassistent (`film_tv/produksjonsassistent`)
