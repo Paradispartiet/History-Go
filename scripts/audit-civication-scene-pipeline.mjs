@@ -623,9 +623,15 @@ export function auditRepository(repoRoot = DEFAULT_REPO_ROOT) {
     (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
   )?.json;
   const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
-  const duplicateCandidateRecords = sceneRecords.filter(
-    (record) => !compilerIgnoredSourceFiles.has(record.source_path)
-  );
+  const compilerLegacyFallbackRoot = norm(compiledRegistry?.legacy_fallback_inventory?.root).replace(/\/+$/, "");
+  const duplicateCandidateRecords = sceneRecords.filter((record) => {
+    if (compilerIgnoredSourceFiles.has(record.source_path)) return false;
+    if (compilerLegacyFallbackRoot && (
+      record.source_path === compilerLegacyFallbackRoot
+      || record.source_path.startsWith(`${compilerLegacyFallbackRoot}/`)
+    )) return false;
+    return true;
+  });
 
   const ids = new Map();
   for (const record of duplicateCandidateRecords) {

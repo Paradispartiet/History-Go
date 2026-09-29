@@ -13,7 +13,13 @@ const registryPath = path.join(
 );
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 const ignoredSourceFiles = new Set(registry.ignored_source_files || []);
+const legacyFallbackRoot = String(registry.legacy_fallback_inventory?.root || "").replace(/\/+$/, "");
 const transitionSource = "data/Civication/mailFamilies/naeringsliv/job/mellomleder_fraksjonsvalg.json";
+const legacyNavSources = [
+  "data/Civication/jobbmails/byCivic.json",
+  "data/Civication/jobbmails/mediaCivic.json",
+  "data/Civication/jobbmails/naeringsliv/naeringslivCivic.json"
+];
 
 assert.ok(
   ignoredSourceFiles.has(transitionSource),
@@ -23,6 +29,21 @@ assert.ok(
   !(registry.compiled_source_files || []).includes(transitionSource),
   `${transitionSource} must not be compiled into the runtime registry`
 );
+assert.equal(
+  legacyFallbackRoot,
+  "data/Civication/jobbmails",
+  "legacy jobbmail root must remain explicit compiler inventory rather than a competing scene source"
+);
+for (const source of legacyNavSources) {
+  assert.ok(
+    source.startsWith(`${legacyFallbackRoot}/`),
+    `${source} must remain inside compiler legacy fallback inventory`
+  );
+  assert.ok(
+    !(registry.compiled_source_files || []).includes(source),
+    `${source} must not be compiled into the runtime registry`
+  );
+}
 
 const audit = auditRepository(DEFAULT_REPO_ROOT);
 const duplicateBlockers = (audit.blocking_issues || []).filter(
@@ -35,12 +56,23 @@ for (const issue of duplicateBlockers) {
       !ignoredSourceFiles.has(occurrence.path),
       `duplicate blocker ${issue.id} must not include compiler-ignored source ${occurrence.path}`
     );
+    assert.ok(
+      !legacyFallbackRoot || (
+        occurrence.path !== legacyFallbackRoot
+        && !occurrence.path.startsWith(`${legacyFallbackRoot}/`)
+      ),
+      `duplicate blocker ${issue.id} must not include compiler legacy source ${occurrence.path}`
+    );
   }
 }
 
 assert.ok(
   !duplicateBlockers.some((issue) => issue.id === "ml_faction_001"),
   "ml_faction_001 must not be a canonical duplicate blocker when its transition occurrence is compiler-ignored"
+);
+assert.ok(
+  !duplicateBlockers.some((issue) => issue.id === "nav_001"),
+  "nav_001 must not be a canonical duplicate blocker when all occurrences live under compiler legacy fallback inventory"
 );
 
 console.log("civication-scene-pipeline-ignored-source-duplicates.test.js: OK");
