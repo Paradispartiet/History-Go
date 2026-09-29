@@ -21,27 +21,12 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Print duplicate blockers
-        run: |
-          node --input-type=module <<'NODE'
-          import {
-            auditRepository,
-            DEFAULT_REPO_ROOT
-          } from './scripts/audit-civication-scene-pipeline.mjs';
-
-          const audit = auditRepository(DEFAULT_REPO_ROOT);
-          console.log('SUMMARY ' + JSON.stringify(audit.summary));
-          for (const row of audit.inventory.duplicate_scene_ids || []) {
-            console.log('DUP ' + JSON.stringify(row));
-          }
-          for (const issue of (audit.blocking_issues || []).filter((row) => row.category !== 'duplicate_scene_id')) {
-            console.log('OTHER ' + JSON.stringify(issue));
-          }
-          NODE
-
       - name: Inspect anbefalingen references
         run: |
-          echo '=== exact anbefalingen occurrences ==='
-          grep -R -n --exclude='compiledSceneRegistryV1.json' --exclude='careerGameplayMatrix.json' --exclude='roleWorldRolloutReadiness.json' '"anbefalingen"' data/Civication js tests scripts || true
-          echo '=== leisure loader references ==='
-          grep -R -n --exclude='compiledSceneRegistryV1.json' 'narratives/leisure\|storylets' js/Civication scripts tests | head -n 200 || true
+          grep -R -n \
+            --exclude='compiledSceneRegistryV1.json' \
+            --exclude='careerGameplayMatrix.json' \
+            --exclude='roleWorldRolloutReadiness.json' \
+            --exclude='lifePositionRoleWorldReadiness.json' \
+            --exclude='tmp-scene-duplicate-audit.yml' \
+            'anbefalingen' data/Civication js tests scripts || true
