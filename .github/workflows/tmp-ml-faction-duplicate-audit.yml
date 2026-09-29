@@ -41,20 +41,8 @@ jobs:
 
           path = Path('scripts/audit-civication-scene-pipeline.mjs')
           text = path.read_text()
-          old = '''  const ids = new Map();
-          for (const record of sceneRecords) {
-            if (!ids.has(record.id)) ids.set(record.id, []);
-            ids.get(record.id).push(record);
-          }
-          const duplicateSceneIds = [...ids.entries()]
-            .filter(([, rows]) => rows.length > 1)
-            .map(([id, rows]) => ({
-              id,
-              occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))
-            }))
-            .sort((a, b) => a.id.localeCompare(b.id, "en"));
-          '''
-          new = '''  const compiledRegistry = parsedJson.find(
+          needle = '  const ids = new Map();\n  for (const record of sceneRecords) {'
+          replacement = '''  const compiledRegistry = parsedJson.find(
             (row) => row.path === "data/Civication/compiledSceneRegistryV1.json"
           )?.json;
           const compilerIgnoredSourceFiles = new Set(uniq(compiledRegistry?.ignored_source_files));
@@ -63,21 +51,10 @@ jobs:
           );
 
           const ids = new Map();
-          for (const record of duplicateCandidateRecords) {
-            if (!ids.has(record.id)) ids.set(record.id, []);
-            ids.get(record.id).push(record);
-          }
-          const duplicateSceneIds = [...ids.entries()]
-            .filter(([, rows]) => rows.length > 1)
-            .map(([id, rows]) => ({
-              id,
-              occurrences: rows.map((row) => ({ path: row.source_path, pointer: row.pointer, type: row.mail_type, family: row.mail_family }))
-            }))
-            .sort((a, b) => a.id.localeCompare(b.id, "en"));
-          '''
-          if text.count(old) != 1:
-              raise SystemExit(f'expected exactly one duplicate-audit block, found {text.count(old)}')
-          path.write_text(text.replace(old, new, 1))
+          for (const record of duplicateCandidateRecords) {'''
+          if text.count(needle) != 1:
+              raise SystemExit(f'expected exactly one duplicate-audit anchor, found {text.count(needle)}')
+          path.write_text(text.replace(needle, replacement, 1))
           PY
           git diff -- scripts/audit-civication-scene-pipeline.mjs
           git diff --check
