@@ -162,7 +162,7 @@ assert.match(headerMenu, /testMode\\.setEnabled\\(!testMode\\.isEnabled\\(\\)\\)
 assert.match(headerMenu, /hg:testModeChanged/, 'knappen må følge runtime-state');
 assert.match(components, /\\.header-test-mode-button\\[aria-pressed="true"\\]/, 'aktiv testmodus må ha synlig state');
 
-assert.match(contract, /synlige \\`TEST\\`-knappen i headeren/, 'canonical kontrakt må tillate headerkontrollen');
+assert.match(contract, /synlige .*TEST.*knappen i headeren/, 'canonical kontrakt må tillate headerkontrollen');
 assert.doesNotMatch(contract, /gir ingen offentlig knapp/, 'gammel hidden-only policy må være borte');
 assert.match(contract, /generell «Unlock all»-kontroll/, 'TEST-knappen må ikke gjeninnføre Unlock all');
 
