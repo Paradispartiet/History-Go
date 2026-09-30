@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 31
+- Totalt antall avvik: 30
 
 ## Statusmatrise
 
@@ -43,7 +43,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | media_redaksjon | media | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | media_redaksjonell_ledelse | media | n/a | n/a | ✅ | ⚠️ 1 | n/a | n/a | n/a |
 | musikk_scene_og_produksjon | musikk | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
-| musikk_utoving_og_ensemble | musikk | n/a | ✅ | ⚠️ 1 | ✅ | n/a | n/a | n/a |
+| musikk_utoving_og_ensemble | musikk | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | finansanalytiker | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | finansdirektor | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | naeringsliv_administrasjon_og_okonomistyring | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -306,8 +306,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/musikk/musikk_utoving_og_ensemble.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: blaa (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### finansanalytiker (`naeringsliv/finansanalytiker`)
 
