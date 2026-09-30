@@ -79,7 +79,7 @@ for (const type of TYPES) {
 assert.equal(ids.size, 15);
 
 const knowledge = read(`data/Civication/mailFamilies/scenekunst/knowledge/${ROLE}_knowledge.json`).families[0].mails[0];
-assert.equal(knowledge.place_id, 'black_box_teater');
+assert.equal(knowledge.place_id, 'sesongportefolje_og_mandatkart');
 assert.equal(knowledge.task_payload.person_id, 'inger_buresund');
 assert.equal(knowledge.task_contract.completion_rule, 'history_go_payload_completed');
 for (const ref of knowledge.task_contract.evidence_refs) assert.ok(fs.existsSync(path.join(ROOT, ref)), ref);

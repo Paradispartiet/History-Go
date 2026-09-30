@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 21
+- Totalt antall avvik: 15
 
 ## Statusmatrise
 
@@ -79,12 +79,12 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | religion_formidling_og_kulturarv | religion | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | religion_forskning | religion | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
 | religion_utredning_og_radgivning | religion | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
-| scenekunst_dramaturgi_og_utvikling | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| scenekunst_institusjonsledelse | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| scenekunst_program_og_kuratering | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| scenekunst_regi_og_koreografi | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| scenekunst_scene_og_produksjon | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| scenekunst_utoving_og_ensemble | scenekunst | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
+| scenekunst_dramaturgi_og_utvikling | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| scenekunst_institusjonsledelse | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| scenekunst_program_og_kuratering | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| scenekunst_regi_og_koreografi | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| scenekunst_scene_og_produksjon | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| scenekunst_utoving_og_ensemble | scenekunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | barnehageassistent | sosial_laering | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | sport_sportsledelse | sport | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | sport_trener | sport | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -513,43 +513,37 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_dramaturgi_og_utvikling.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: nationaltheatret (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### scenekunst_institusjonsledelse (`scenekunst/scenekunst_institusjonsledelse`)
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_institusjonsledelse.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: black_box_teater (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### scenekunst_program_og_kuratering (`scenekunst/scenekunst_program_og_kuratering`)
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_program_og_kuratering.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: black_box_teater (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### scenekunst_regi_og_koreografi (`scenekunst/scenekunst_regi_og_koreografi`)
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_regi_og_koreografi.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: nationaltheatret (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### scenekunst_scene_og_produksjon (`scenekunst/scenekunst_scene_og_produksjon`)
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_scene_og_produksjon.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: nationaltheatret (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### scenekunst_utoving_og_ensemble (`scenekunst/scenekunst_utoving_og_ensemble`)
 
 Kilde: `data/Civication/workGrammars/scenekunst/scenekunst_utoving_og_ensemble.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: nationaltheatret (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### Barnehageassistent / pedagogisk medarbeider (`sosial_laering/barnehageassistent`)
 
