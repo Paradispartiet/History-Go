@@ -35,14 +35,6 @@ jobs:
             fs.writeFileSync(path, source.replace(before, after));
           }
 
-          function removeActor(path, id) {
-            const source = fs.readFileSync(path, 'utf8');
-            const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const pattern = new RegExp(`,\\s*\\{"id"\\s*:\\s*"${escaped}"[^}]*\\}`);
-            if (!pattern.test(source)) throw new Error(`${path}: actor ${id} not found as removable trailing actor entry`);
-            fs.writeFileSync(path, source.replace(pattern, ''));
-          }
-
           replaceOnce(
             'data/Civication/workGrammars/filosofi/filosofi_forskning_og_formidling.json',
             '{"id": "bestilling_vs_premissapenhet", "axis": "forhandskonklusjon_vs_etterprovbar_analyse"}',
@@ -65,9 +57,23 @@ jobs:
           replaceOnce(historyJob, '"people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse"', '"people_ref": "selma_okonomisjef_historie_institusjonsledelse"');
           replaceOnce(historyJob, '"people_ref": "nora_teamkoordinator_historie_institusjonsledelse"', '"people_ref": "jon_beredskapsleder_historie_institusjonsledelse"');
 
-          removeActor('data/Civication/workGrammars/litteratur/redaktor_bok.json', 'litteratur_produksjonsansvarlig');
-          removeActor('data/Civication/workGrammars/media/media_redaksjonell_ledelse.json', 'media_kilde');
-          removeActor('data/Civication/workGrammars/psykologi/fagansvarlig.json', 'psykologi_fagansvarlig_veileder');
+          const litteraturEvent = 'data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json';
+          replaceOnce(
+            litteraturEvent,
+            '"from": "Redaksjonssjefen",\n          "people_ref": "litteratur_redaksjonssjef"',
+            '"from": "Produksjonsansvarlig",\n          "people_ref": "litteratur_produksjonsansvarlig"'
+          );
+
+          const mediaEvent = 'data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json';
+          replaceOnce(mediaEvent, '"people_ref":"media_vaktsjef"', '"people_ref":"media_kilde"');
+          replaceOnce(mediaEvent, '"from":"Vaktsjefen"', '"from":"Kilden"');
+
+          const psykologiEvent = 'data/Civication/mailFamilies/psykologi/event/fagansvarlig_event.json';
+          replaceOnce(
+            psykologiEvent,
+            '"from": "Den organisatoriske lederen",\n      "people_ref": "psykologi_fagansvarlig_leder"',
+            '"from": "Veilederen",\n      "people_ref": "psykologi_fagansvarlig_veileder"'
+          );
 
           replaceOnce(
             'data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json',
@@ -84,7 +90,7 @@ jobs:
         run: |
           node scripts/audit-civication-fwg-governance.mjs
           grep -F -- '- Totalt antall avvik: 0' docs/CIVICATION_FWG_GOVERNANCE.md
-          node scripts/build-civication-scene-registry.mjs
+          node scripts/build-civication-scene-registry.mjs --write
       - name: Run focused closeout tests
         run: |
           node tests/civication-fwg-governance-conflict-bindings.test.js
@@ -92,6 +98,10 @@ jobs:
           node tests/civication-psykologi-spesialistpsykolog-prerequisites.test.js
           node tests/civication-litteratur-redaktor-bok-role-world-rollout.test.js
           node tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js
+          node tests/civication-litteratur-redaktor-bok-rollout-playability.test.js
+          node tests/civication-media-redaksjonell-ledelse-rollout-playability.test.js
+          node tests/civication-psykologi-fagansvarlig-rollout-playability.test.js
+          node tests/civication-compiled-scene-registry-parity.test.js
       - name: Run complete Civication suite
         id: full_suite
         continue-on-error: true
@@ -117,9 +127,9 @@ jobs:
                   data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json \
                   data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json \
                   data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json \
-                  data/Civication/workGrammars/litteratur/redaktor_bok.json \
-                  data/Civication/workGrammars/media/media_redaksjonell_ledelse.json \
-                  data/Civication/workGrammars/psykologi/fagansvarlig.json \
+                  data/Civication/mailFamilies/litteratur/event/redaktor_bok_event.json \
+                  data/Civication/mailFamilies/media/event/media_redaksjonell_ledelse_event.json \
+                  data/Civication/mailFamilies/psykologi/event/fagansvarlig_event.json \
                   data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json \
                   tests/civication-psykologi-spesialistpsykolog-prerequisites.test.js \
                   docs/CIVICATION_FWG_GOVERNANCE.md \
