@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 30
+- Totalt antall avvik: 21
 
 ## Statusmatrise
 
@@ -19,11 +19,11 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | by_radgiver_plan | by | ✅ | ✅ | n/a | n/a | n/a | n/a | n/a |
 | by_saksbehandler | by | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | kurator_film_tv | film_tv | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
-| manusmedarbeider | film_tv | ✅ | ✅ | ✅ | ⚠️ 2 | ⚠️ 1 | ✅ | ✅ |
+| manusmedarbeider | film_tv | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | produksjonsassistent | film_tv | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
-| programleder | film_tv | n/a | n/a | ✅ | ✅ | ⚠️ 2 | n/a | n/a |
-| regissor | film_tv | n/a | n/a | ✅ | ⚠️ 1 | ✅ | n/a | n/a |
-| serieskaper | film_tv | n/a | n/a | ✅ | ⚠️ 2 | ⚠️ 1 | n/a | n/a |
+| programleder | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
+| regissor | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
+| serieskaper | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
 | filosofi_forskning_og_formidling | filosofi | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
 | filosofi_undervisning_og_akademia | filosofi | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
 | historie_arkiv_og_dokumentasjon | historie | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
@@ -143,11 +143,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/film_tv/manusmedarbeider.json`
 
-- **actor_grammar** (2):
-  - aktør elias_manusforfatter sender mailtyper utenfor can_send_mail_types: conflict, followup (tillatt: people, story)
-  - aktør selma_scriptkoordinator sender mailtyper utenfor can_send_mail_types: followup, story (tillatt: event, consequence)
-- **conflict_grammar** (1):
-  - konflikt-mail film_tv_manus_realism_author_response_001 har pressure 'ny_versjon_vs_uforlost_brief' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### produksjonsassistent (`film_tv/produksjonsassistent`)
 
@@ -159,26 +155,19 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/film_tv/programleder.json`
 
-- **conflict_grammar** (2):
-  - konflikt-mail film_tv_program_conflict_premiss_001 har pressure 'skarphet_vs_kildestatus' uten forankring i conflict_grammar
-  - konflikt-mail film_tv_program_realism_editorial_premise_rework_001 har pressure 'salgbart_anslag_vs_sannferdig_premiss' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### regissor (`film_tv/regissor`)
 
 Kilde: `data/Civication/workGrammars/film_tv/regissor.json`
 
-- **actor_grammar** (1):
-  - aktør leila_forste_regiassistent sender mailtyper utenfor can_send_mail_types: story (tillatt: micro, event, people)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### serieskaper (`film_tv/serieskaper`)
 
 Kilde: `data/Civication/workGrammars/film_tv/serieskaper.json`
 
-- **actor_grammar** (2):
-  - aktør jonas_hovedforfatter_series sender mailtyper utenfor can_send_mail_types: followup (tillatt: people, story, event)
-  - aktør henrik_produksjonsprodusent_series sender mailtyper utenfor can_send_mail_types: story (tillatt: event, conflict, consequence)
-- **conflict_grammar** (1):
-  - konflikt-mail film_tv_series_conflict_notes_001 har pressure 'flere_legitime_notes_vs_en_sammenhengende_episode' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### filosofi_forskning_og_formidling (`filosofi/filosofi_forskning_og_formidling`)
 
