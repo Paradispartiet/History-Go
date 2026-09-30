@@ -1,0 +1,46 @@
+name: Temporary FWG Blå place correction
+
+on:
+  push:
+    branches:
+      - agent/civication-fwg-blaa-place-20260930
+
+permissions:
+  contents: write
+
+jobs:
+  fix-and-regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v5
+        with:
+          ref: agent/civication-fwg-blaa-place-20260930
+          fetch-depth: 0
+
+      - name: Correct mail workplace and regenerate FWG report
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const file = 'data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json';
+          const source = fs.readFileSync(file, 'utf8');
+          const from = '"place_id": "blaa"';
+          const to = '"place_id": "partitur_arrangement_og_versjonsflate"';
+          const matches = source.split(from).length - 1;
+          if (matches !== 1) throw new Error(`Expected exactly one ${from}, found ${matches}`);
+          fs.writeFileSync(file, source.replace(from, to));
+          NODE
+          node scripts/audit-civication-fwg-governance.mjs > docs/CIVICATION_FWG_GOVERNANCE.md
+          grep -Fq -- '- Totalt antall avvik: 30' docs/CIVICATION_FWG_GOVERNANCE.md
+          ! grep -Fq -- 'udeklarert sted i mail: blaa' docs/CIVICATION_FWG_GOVERNANCE.md
+          git diff --check
+
+      - name: Commit generated correction
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/mailFamilies/musikk/knowledge/musikk_utoving_og_ensemble_knowledge.json docs/CIVICATION_FWG_GOVERNANCE.md
+          git commit -m 'Civication: separate Blå History Go target from FWG workplace'
+          git push origin HEAD:agent/civication-fwg-blaa-place-20260930
