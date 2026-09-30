@@ -93,7 +93,22 @@ jobs:
           node tests/civication-litteratur-redaktor-bok-role-world-rollout.test.js
           node tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js
       - name: Run complete Civication suite
-        run: npm run test:civication
+        id: full_suite
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run test:civication 2>&1 | tee civication-full-suite.log
+      - name: Upload full-suite log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civication-full-suite-log
+          path: civication-full-suite.log
+          if-no-files-found: error
+      - name: Require complete Civication suite
+        if: steps.full_suite.outcome != 'success'
+        run: exit 1
       - name: Commit verified closeout
         run: |
           git config user.name github-actions[bot]
