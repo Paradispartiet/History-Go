@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 10
+- Totalt antall avvik: 0
 
 ## Statusmatrise
 
@@ -24,13 +24,13 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | programleder | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
 | regissor | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
 | serieskaper | film_tv | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
-| filosofi_forskning_og_formidling | filosofi | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
-| filosofi_undervisning_og_akademia | filosofi | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
-| historie_arkiv_og_dokumentasjon | historie | n/a | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a |
+| filosofi_forskning_og_formidling | filosofi | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
+| filosofi_undervisning_og_akademia | filosofi | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
+| historie_arkiv_og_dokumentasjon | historie | n/a | n/a | ✅ | ✅ | ✅ | n/a | n/a |
 | historie_fagledelse | historie | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | historie_forskning_og_akademia | historie | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | historie_forvaltning_og_radgivning | historie | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
-| historie_institusjonsledelse | historie | n/a | n/a | ✅ | ⚠️ 3 | n/a | n/a | n/a |
+| historie_institusjonsledelse | historie | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | historie_museum_og_samling | historie | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | kunst_konservering_og_samling | kunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | kunst_kunstnerisk_ledelse | kunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
@@ -39,9 +39,9 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | kunst_publikum_og_formidling | kunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | kunst_utstillingsproduksjon | kunst | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | redaksjonsmedarbeider | litteratur | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
-| redaktor_bok | litteratur | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a | n/a |
+| redaktor_bok | litteratur | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | media_redaksjon | media | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
-| media_redaksjonell_ledelse | media | n/a | n/a | ✅ | ⚠️ 1 | n/a | n/a | n/a |
+| media_redaksjonell_ledelse | media | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | musikk_scene_og_produksjon | musikk | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | musikk_utoving_og_ensemble | musikk | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | finansanalytiker | naeringsliv | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -67,14 +67,14 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | politikk_parlamentarisk_arbeid | politikk | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | politikk_politisk_radgivning | politikk | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | politikk_regjeringsledelse | politikk | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
-| fagansvarlig | psykologi | n/a | ✅ | ✅ | ⚠️ 1 | n/a | n/a | n/a |
+| fagansvarlig | psykologi | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | forsker_psykologi | psykologi | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | klinikkleder | psykologi | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | professor_psykologi | psykologi | n/a | ✅ | ✅ | ✅ | n/a | n/a | n/a |
 | psykolog | psykologi | ✅ | ✅ | ✅ | ✅ | ✅ | n/a | n/a |
 | psykologi_arbeids_og_karriereveiledning | psykologi | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | psykologi_miljoarbeid | psykologi | n/a | ✅ | ✅ | n/a | n/a | n/a | n/a |
-| spesialistpsykolog | psykologi | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
+| spesialistpsykolog | psykologi | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | religion_fagledelse | religion | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | religion_formidling_og_kulturarv | religion | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | religion_forskning | religion | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
@@ -173,22 +173,19 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/filosofi/filosofi_forskning_og_formidling.json`
 
-- **conflict_grammar** (1):
-  - konflikt-mail filosofi_forskning_conflict_fasit_001 har pressure 'bestillerklarhet_vs_premissapenhet' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### filosofi_undervisning_og_akademia (`filosofi/filosofi_undervisning_og_akademia`)
 
 Kilde: `data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json`
 
-- **conflict_grammar** (1):
-  - konflikt-mail filosofi_undervisning_conflict_sensorgrunnlag_001 har pressure 'faglig_skjonn_vs_forhandskjente_kriterier' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### historie_arkiv_og_dokumentasjon (`historie/historie_arkiv_og_dokumentasjon`)
 
 Kilde: `data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json`
 
-- **conflict_grammar** (1):
-  - konflikt-mail historie_arkiv_conflict_innsyn_001 har pressure 'rask_tilgang_vs_minimering_og_myndighet' uten forankring i conflict_grammar
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### historie_fagledelse (`historie/historie_fagledelse`)
 
@@ -212,10 +209,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/historie/historie_institusjonsledelse.json`
 
-- **actor_grammar** (3):
-  - ubrukt aktør-eksempel: karin_styreleder_historie_institusjonsledelse (styreleder og mandatgrensesnitt) dukker ikke opp som avsender
-  - ubrukt aktør-eksempel: selma_okonomisjef_historie_institusjonsledelse (økonomisjef og ressursgrensesnitt) dukker ikke opp som avsender
-  - ubrukt aktør-eksempel: jon_beredskapsleder_historie_institusjonsledelse (beredskaps- og kommunikasjonsleder) dukker ikke opp som avsender
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### historie_museum_og_samling (`historie/historie_museum_og_samling`)
 
@@ -269,8 +263,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/litteratur/redaktor_bok.json`
 
-- **actor_grammar** (1):
-  - ubrukt aktør-eksempel: litteratur_produksjonsansvarlig (produksjonsansvarlig) dukker ikke opp som avsender
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### media_redaksjon (`media/media_redaksjon`)
 
@@ -282,8 +275,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/media/media_redaksjonell_ledelse.json`
 
-- **actor_grammar** (1):
-  - ubrukt aktør-eksempel: media_kilde (kilde) dukker ikke opp som avsender
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### musikk_scene_og_produksjon (`musikk/musikk_scene_og_produksjon`)
 
@@ -439,8 +431,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/psykologi/fagansvarlig.json`
 
-- **actor_grammar** (1):
-  - ubrukt aktør-eksempel: psykologi_fagansvarlig_veileder (veileder) dukker ikke opp som avsender
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### Forsker (psykologi) (`psykologi/forsker_psykologi`)
 
@@ -482,8 +473,7 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/psykologi/spesialistpsykolog.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: psykologisk_institutt_uio (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### religion_fagledelse (`religion/religion_fagledelse`)
 
