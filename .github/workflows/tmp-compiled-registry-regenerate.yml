@@ -1,0 +1,35 @@
+name: Temporary compiled scene registry regeneration
+
+on:
+  push:
+    branches:
+      - agent/civication-fwg-blaa-place-20260930
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v5
+        with:
+          ref: agent/civication-fwg-blaa-place-20260930
+          fetch-depth: 0
+
+      - name: Regenerate and verify compiled scene registry
+        shell: bash
+        run: |
+          node scripts/build-civication-scene-registry.mjs --write
+          node scripts/build-civication-scene-registry.mjs --check
+          git diff --check
+
+      - name: Commit regenerated registry
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/compiledSceneRegistryV1.json
+          git commit -m 'chore: regenerate Civication scene registry'
+          git push origin HEAD:agent/civication-fwg-blaa-place-20260930
