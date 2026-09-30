@@ -71,7 +71,7 @@ for (const type of TYPES) {
 }
 
 const knowledge = read(`data/Civication/mailFamilies/scenekunst/knowledge/${ROLE}_knowledge.json`).families[0].mails[0];
-assert.equal(knowledge.place_id, 'nationaltheatret');
+assert.equal(knowledge.place_id, 'research_og_kildeverksted');
 assert.equal(knowledge.task_payload.person_id, 'johanne_dybwad');
 assert.equal(knowledge.task_contract.completion_rule, 'history_go_payload_completed');
 
