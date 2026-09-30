@@ -148,7 +148,7 @@
       "actor_type": "hovedforfatter",
       "example_id": "jonas_hovedforfatter_series",
       "function": "Leder konkret manusarbeid og gjør episode-, karakter- og dialogkonsekvenser synlige i writers room.",
-      "can_send_mail_types": ["people", "story", "event"]
+      "can_send_mail_types": ["people", "story", "event", "followup"]
     },
     {
       "actor_type": "manusredaktor",
@@ -160,7 +160,7 @@
       "actor_type": "produksjonsprodusent",
       "example_id": "henrik_produksjonsprodusent_series",
       "function": "Synliggjør kostnad, plan, location- og medvirkendekonsekvenser og krever avklaring før kostbare kreative endringer låses.",
-      "can_send_mail_types": ["event", "conflict", "consequence"]
+      "can_send_mail_types": ["event", "conflict", "consequence", "story"]
     }
   ],
   "place_grammar": [
@@ -204,6 +204,7 @@
     {
       "id": "notes_vs_seriekjerne",
       "pressure": "flere_legitime_bestillere",
+      "mail_families": ["serieskaper_noteskonflikt"],
       "must_remain_visible": ["note_eier", "hvilket_mal_notet_tjener", "hvilke_notes_som_kolliderer", "hvem_som_kan_prioritere"]
     },
     {
