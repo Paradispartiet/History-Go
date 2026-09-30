@@ -1,0 +1,115 @@
+name: Temporary Civication FWG final closeout
+
+on:
+  push:
+    branches:
+      - civication/fwg-final-governance-closeout
+
+permissions:
+  contents: write
+
+jobs:
+  closeout:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/fwg-final-governance-closeout
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Apply evidence-based FWG closeout
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          function replaceOnce(path, before, after) {
+            const source = fs.readFileSync(path, 'utf8');
+            const count = source.split(before).length - 1;
+            if (count !== 1) throw new Error(`${path}: expected exactly one match, found ${count}: ${before}`);
+            fs.writeFileSync(path, source.replace(before, after));
+          }
+
+          function removeActor(path, id) {
+            const source = fs.readFileSync(path, 'utf8');
+            const escaped = id.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const pattern = new RegExp(`,\\s*\\{"id"\\s*:\\s*"${escaped}"[^}]*\\}`);
+            if (!pattern.test(source)) throw new Error(`${path}: actor ${id} not found as removable trailing actor entry`);
+            fs.writeFileSync(path, source.replace(pattern, ''));
+          }
+
+          replaceOnce(
+            'data/Civication/workGrammars/filosofi/filosofi_forskning_og_formidling.json',
+            '{"id": "bestilling_vs_premissapenhet", "axis": "forhandskonklusjon_vs_etterprovbar_analyse"}',
+            '{"id": "bestilling_vs_premissapenhet", "axis": "forhandskonklusjon_vs_etterprovbar_analyse", "mail_families": ["filosofi_bestillingskonflikt"]}'
+          );
+          replaceOnce(
+            'data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json',
+            '{"id":"effektiv_sensur_vs_transparens","axis":"rask_sortering_vs_begrunnet_kriteriebruk","must_remain_visible":',
+            '{"id":"effektiv_sensur_vs_transparens","axis":"rask_sortering_vs_begrunnet_kriteriebruk","mail_families":["filosofi_sensorgrunnlag"],"must_remain_visible":'
+          );
+          replaceOnce(
+            'data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json',
+            '{"id":"tilgang_vs_personvern","axis":"gjenfinnbarhet_vs_lovlig_og_minimert_utlevering","must_remain_visible":',
+            '{"id":"tilgang_vs_personvern","axis":"gjenfinnbarhet_vs_lovlig_og_minimert_utlevering","mail_families":["historie_arkiv_innsyn_og_minimering"],"must_remain_visible":'
+          );
+
+          const historyJob = 'data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json';
+          replaceOnce(historyJob, '"people_ref": "ingrid_avdelingsdirektor_historie_institusjonsledelse"', '"people_ref": "karin_styreleder_historie_institusjonsledelse"');
+          replaceOnce(historyJob, '"people_ref": "marius_seniorhistoriker_historie_institusjonsledelse"', '"people_ref": "marius_fagdirektor_historie_institusjonsledelse"');
+          replaceOnce(historyJob, '"people_ref": "sander_kvalitetsradgiver_historie_institusjonsledelse"', '"people_ref": "selma_okonomisjef_historie_institusjonsledelse"');
+          replaceOnce(historyJob, '"people_ref": "nora_teamkoordinator_historie_institusjonsledelse"', '"people_ref": "jon_beredskapsleder_historie_institusjonsledelse"');
+
+          removeActor('data/Civication/workGrammars/litteratur/redaktor_bok.json', 'litteratur_produksjonsansvarlig');
+          removeActor('data/Civication/workGrammars/media/media_redaksjonell_ledelse.json', 'media_kilde');
+          removeActor('data/Civication/workGrammars/psykologi/fagansvarlig.json', 'psykologi_fagansvarlig_veileder');
+
+          replaceOnce(
+            'data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json',
+            '"place_id": "psykologisk_institutt_uio"',
+            '"place_id": "tverrspesialistisk_hypotesemote"'
+          );
+          replaceOnce(
+            'tests/civication-psykologi-spesialistpsykolog-prerequisites.test.js',
+            "a.equal(knowledge.place_id,'psykologisk_institutt_uio');a.equal(knowledge.task_payload.person_id,'harald_schjelderup');",
+            "a.equal(knowledge.place_id,'tverrspesialistisk_hypotesemote');const hgDependency=g.knowledge_dependencies.find(x=>x.id==='history_go_psykologi_ekspertise_institusjon_og_kildegrense');a.equal(hgDependency.place_id,'psykologisk_institutt_uio');a.equal(knowledge.task_payload.person_id,'harald_schjelderup');"
+          );
+          NODE
+      - name: Regenerate governance and compiled registry
+        run: |
+          node scripts/audit-civication-fwg-governance.mjs
+          grep -F -- '- Totalt antall avvik: 0' docs/CIVICATION_FWG_GOVERNANCE.md
+          node scripts/build-civication-scene-registry.mjs
+      - name: Run focused closeout tests
+        run: |
+          node tests/civication-fwg-governance-conflict-bindings.test.js
+          node tests/civication-historie-institusjonsledelse-prerequisites.test.js
+          node tests/civication-psykologi-spesialistpsykolog-prerequisites.test.js
+          node tests/civication-litteratur-redaktor-bok-role-world-rollout.test.js
+          node tests/civication-psykologi-fagansvarlig-role-world-rollout.test.js
+      - name: Run complete Civication suite
+        run: npm run test:civication
+      - name: Commit verified closeout
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/Civication/workGrammars/filosofi/filosofi_forskning_og_formidling.json \
+                  data/Civication/workGrammars/filosofi/filosofi_undervisning_og_akademia.json \
+                  data/Civication/workGrammars/historie/historie_arkiv_og_dokumentasjon.json \
+                  data/Civication/mailFamilies/historie/job/historie_institusjonsledelse_job.json \
+                  data/Civication/workGrammars/litteratur/redaktor_bok.json \
+                  data/Civication/workGrammars/media/media_redaksjonell_ledelse.json \
+                  data/Civication/workGrammars/psykologi/fagansvarlig.json \
+                  data/Civication/mailFamilies/psykologi/knowledge/spesialistpsykolog_knowledge.json \
+                  tests/civication-psykologi-spesialistpsykolog-prerequisites.test.js \
+                  docs/CIVICATION_FWG_GOVERNANCE.md \
+                  data/Civication/compiledSceneRegistryV1.json
+          git diff --cached --check
+          git diff --cached --quiet && { echo 'No closeout changes to commit'; exit 1; }
+          git commit -m 'Civication: close final FWG governance gaps'
+          git push origin HEAD:civication/fwg-final-governance-closeout
