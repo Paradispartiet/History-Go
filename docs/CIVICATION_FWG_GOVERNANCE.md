@@ -7,7 +7,7 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 ## Sammendrag
 
 - FWG-filer auditert: 87
-- Totalt antall avvik: 15
+- Totalt antall avvik: 10
 
 ## Statusmatrise
 
@@ -90,10 +90,10 @@ Dimensjoner: `minimum_counts`, `required_axes`, `place_grammar`, `actor_grammar`
 | sport_trener | sport | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | sport_utover | sport | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | subkultur_arrangementsdrift | subkultur | n/a | ✅ | n/a | n/a | n/a | n/a | n/a |
-| subkultur_kulturarena_ledelse | subkultur | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| subkultur_produksjon_og_prosjekt | subkultur | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| subkultur_produksjonsledelse | subkultur | n/a | n/a | ⚠️ 1 | ✅ | n/a | n/a | n/a |
-| subkultur_program_og_koordinering | subkultur | n/a | n/a | ⚠️ 2 | ✅ | n/a | n/a | n/a |
+| subkultur_kulturarena_ledelse | subkultur | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| subkultur_produksjon_og_prosjekt | subkultur | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| subkultur_produksjonsledelse | subkultur | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
+| subkultur_program_og_koordinering | subkultur | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | vitenskap_assistent_og_laboratorium | vitenskap | n/a | n/a | ✅ | ✅ | n/a | n/a | n/a |
 | vitenskap_doktorlop_og_postdoktor | vitenskap | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
 | vitenskap_forskning | vitenskap | n/a | n/a | n/a | n/a | n/a | n/a | n/a |
@@ -579,30 +579,25 @@ Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 Kilde: `data/Civication/workGrammars/subkultur/subkultur_kulturarena_ledelse.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: club_7_vika (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### subkultur_produksjon_og_prosjekt (`subkultur/subkultur_produksjon_og_prosjekt`)
 
 Kilde: `data/Civication/workGrammars/subkultur/subkultur_produksjon_og_prosjekt.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: club_7_vika (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### subkultur_produksjonsledelse (`subkultur/subkultur_produksjonsledelse`)
 
 Kilde: `data/Civication/workGrammars/subkultur/subkultur_produksjonsledelse.json`
 
-- **place_grammar** (1):
-  - udeklarert sted i mail: club_7_vika (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### subkultur_program_og_koordinering (`subkultur/subkultur_program_og_koordinering`)
 
 Kilde: `data/Civication/workGrammars/subkultur/subkultur_program_og_koordinering.json`
 
-- **place_grammar** (2):
-  - ubrukt sted i grammatikken: programbord_prioritering_og_kriterielogg (ingen mail forankret her)
-  - udeklarert sted i mail: club_7_vika (ikke i place_grammar)
+Ingen avvik. FWG styrer mailFamilies på alle deklarerte dimensjoner. ✅
 
 ### vitenskap_assistent_og_laboratorium (`vitenskap/vitenskap_assistent_og_laboratorium`)
 
