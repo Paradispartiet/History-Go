@@ -325,12 +325,11 @@
     </div>
   </footer>
 
-  <script src="js/debug/HGTestMode.js"></script>
-
   <!-- Ikke-kritiske scripts får aldri blokkere app-entry. -->
   <script>
     window.addEventListener("hg:appReady", () => {
       const scripts = [
+        "js/debug/HGTestMode.js",
         "js/i18n.js",
         "dist/web/knowledge.js",
         "dist/web/hgInsights.js",

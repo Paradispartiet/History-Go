@@ -52,41 +52,6 @@
     geoStatus.insertAdjacentElement("afterend", minDayButton);
   }
 
-  function ensureTestModeButton() {
-    const testMode = window.HGTestMode;
-    const geoStatus = document.getElementById("geoStatus");
-    if (!testMode || !geoStatus || typeof testMode.isEnabled !== "function" || typeof testMode.setEnabled !== "function") return;
-
-    let button = document.getElementById("btnTestMode");
-    if (!button) {
-      button = document.createElement("button");
-      button.id = "btnTestMode";
-      button.className = "iconbtn header-test-mode-button";
-      button.type = "button";
-      button.textContent = "TEST";
-      geoStatus.insertAdjacentElement("beforebegin", button);
-    }
-
-    function render(enabled = testMode.isEnabled()) {
-      const active = enabled === true;
-      button.setAttribute("aria-pressed", active ? "true" : "false");
-      button.setAttribute("aria-label", active ? "Slå av testmodus" : "Slå på testmodus");
-      button.title = active ? "Testmodus på" : "Testmodus av";
-    }
-
-    if (button.dataset.hgTestModeBound !== "1") {
-      button.dataset.hgTestModeBound = "1";
-      button.addEventListener("click", () => {
-        testMode.setEnabled(!testMode.isEnabled());
-      });
-      window.addEventListener("hg:testModeChanged", (event) => {
-        render(event?.detail?.enabled === true);
-      });
-    }
-
-    render();
-  }
-
   function setLesesporMenuLabel() {
     const button = document.getElementById("btnLesespor");
     const label = button?.querySelector?.(".header-menu-action-label");
@@ -183,7 +148,6 @@
     ensureLesesporStyles();
     ensureLearningMenuStyles();
     promoteMinDayToHeader();
-    ensureTestModeButton();
     setLesesporMenuLabel();
     ensureLearningMenuEntries();
 
