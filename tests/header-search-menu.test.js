@@ -168,9 +168,11 @@ function testMenuLabelsDescribeTheirRealDestinations() {
   assert.doesNotMatch(index, /id="openToggle"/);
   assert.doesNotMatch(index, /id="btnUnlockAll"/);
   const testModeScript = '<script src="js/debug/HGTestMode.js"></script>';
-  const appScript = '<script type="module" src="./js/app.js?v=20260916v17"></script>';
+  const appScriptStart = '<script type="module" src="./js/app.js';
+  const appScriptIndex = index.indexOf(appScriptStart);
   assert.equal(index.split(testModeScript).length - 1, 1);
-  assert.ok(index.indexOf(testModeScript) < index.indexOf(appScript));
+  assert.ok(appScriptIndex >= 0);
+  assert.ok(index.indexOf(testModeScript) < appScriptIndex);
   const loaderStart = index.indexOf('const scripts = [');
   const loaderEnd = index.indexOf('let chain = Promise.resolve()', loaderStart);
   assert.ok(loaderStart >= 0 && loaderEnd > loaderStart);
