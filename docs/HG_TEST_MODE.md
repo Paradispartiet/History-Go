@@ -1,15 +1,15 @@
-# Skjult utviklermodus i History GO
+# Testmodus i History GO
 
 Status: **canonical runtime- og produktsikkerhetskontrakt for index-appens testmodus**  
 Runtime: [`../js/debug/HGTestMode.js`](../js/debug/HGTestMode.js)  
 Entrypoint: [`../index.html`](../index.html)  
-Sist kontrollert: **2026-07-26**
+Sist kontrollert: **2026-09-30**
 
-Dette dokumentet eier reglene for den skjulte utviklermodusen i `index.html`-appen. Runtimefilen eier den faktiske tilstanden og implementasjonen.
+Dette dokumentet eier reglene for testmodus i `index.html`-appen. Runtimefilen eier den faktiske tilstanden og implementasjonen; headeren eier den synlige TEST-kontrollen.
 
 ## Grunnregel
 
-Testmodus er et utviklerverktøy og vises ikke i den vanlige menyen. Vanlige spillere skal aldri kunne omgå GPS-gaten ved et tilfeldig menytrykk.
+Testmodus er et eksplisitt test- og QA-verktøy. `index.html` viser én tydelig `TEST`-knapp i headeren som kan slå GPS-bypass av og på. Knappen gir ingen andre privilegier enn den eksisterende `HGTestMode`-runtimekontrakten.
 
 Den eneste varige lagringsnøkkelen er:
 
@@ -21,7 +21,7 @@ Testmodus er ikke autentisering, autorisasjon eller en produksjonsrolle. Den kan
 
 ## Aktivere og deaktivere
 
-På en utviklerenhet kan testmodus aktiveres med:
+I index-appen kan testmodus slås av og på med den synlige `TEST`-knappen i headeren. På en utviklerenhet kan den også aktiveres med:
 
 ```text
 ?hgTest=1
@@ -86,11 +86,12 @@ Testmodus kan brukes til:
 - eksplisitt GPS-bypass i utvikling og QA;
 - runtime health og smoke-tester;
 - isolerte demoer og fixtures;
+- den synlige `TEST`-knappen i headeren, som bruker `HGTestMode.setEnabled(...)`;
 - utviklerkontroller som uttrykkelig leser `HGTestMode.isEnabled()`.
 
 Testmodus gir ikke:
 
-- offentlig knapp, menybryter eller synlig «Unlock all»-kontroll;
+- en generell «Unlock all»-kontroll eller andre skjulte privilegier utover GPS-testmodusen;
 - produksjonsdiscovery eller ekte Social Meet-profiler;
 - automatisk fallback fra serverfeil til demo-state;
 - rett til å skrive til backend, database eller production storage;
@@ -103,7 +104,7 @@ Demo-/TEST_MODE-data skal forbli atskilt fra ekte profiler og servereid state.
 
 Endringer i query-key, storage-key, runtimealiaser, bootbro, synlig UI eller hvilke sikkerhetsgrenser testmodus kan påvirke skal oppdatere:
 
-1. `js/debug/HGTestMode.js`;
+1. `js/debug/HGTestMode.js` dersom runtime-semantikken endres;
 2. dette dokumentet;
-3. relevante smoke-/runtime-tester;
+3. relevante UI-/smoke-/runtime-tester;
 4. `README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md` dersom subsystemgrenser endres.

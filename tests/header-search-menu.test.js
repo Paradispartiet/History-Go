@@ -167,8 +167,16 @@ function testMenuLabelsDescribeTheirRealDestinations() {
   assert.doesNotMatch(index, /Lås opp testmodus/);
   assert.doesNotMatch(index, /id="openToggle"/);
   assert.doesNotMatch(index, /id="btnUnlockAll"/);
-  assert.doesNotMatch(index, /<script src="js\/debug\/HGTestMode\.js"><\/script>/);
-  assert.match(index, /window\.addEventListener\("hg:appReady"[\s\S]*"js\/debug\/HGTestMode\.js"/);
+  const testModeScript = '<script src="js/debug/HGTestMode.js"></script>';
+  const appScriptStart = '<script type="module" src="./js/app.js';
+  const appScriptIndex = index.indexOf(appScriptStart);
+  assert.equal(index.split(testModeScript).length - 1, 1);
+  assert.ok(appScriptIndex >= 0);
+  assert.ok(index.indexOf(testModeScript) < appScriptIndex);
+  const loaderStart = index.indexOf('const scripts = [');
+  const loaderEnd = index.indexOf('let chain = Promise.resolve()', loaderStart);
+  assert.ok(loaderStart >= 0 && loaderEnd > loaderStart);
+  assert.doesNotMatch(index.slice(loaderStart, loaderEnd), /js\/debug\/HGTestMode\.js/);
 }
 
 function testFagverketAndKnowledgeAreDistinctMenuDestinations() {

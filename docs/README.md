@@ -42,7 +42,7 @@ Etikkpolicyen eier de overordnede virksomhetsprinsippene. Aktsomhetsvurderingen 
 2. [`../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md`](../README/SYSTEM_REGISTRY_SUBSYSTEM_CONTRACTS.md) — aktive API-, storage-, privacy- og UI-kontrakter for subsystemene
 3. [`../README/SYSTEM_MAP.md`](../README/SYSTEM_MAP.md) — runtime-flyt og modulkjeder
 4. [`APP_STRUCTURE_INDEX.md`](./APP_STRUCTURE_INDEX.md) — canonical entry-, boot-, router-, MapView- og sidegrensekontrakt for `index.html`
-5. [`HG_TEST_MODE.md`](./HG_TEST_MODE.md) — canonical skjult utviklermodus, storage-/aliasgrense og produktsikkerhet
+5. [`HG_TEST_MODE.md`](./HG_TEST_MODE.md) — canonical testmodus med eksplisitt headerkontroll, storage-/aliasgrense og produktsikkerhet
 6. [`../README/README_DEV.md`](../README/README_DEV.md) — kjøring, debugging og validering
 7. [`../README/cssREADME.md`](../README/cssREADME.md) — lokal CSS-guide for faktisk lastrekkefølge, cascade og praktisk fileierskap i index-appen
 8. [`../README/TEAM_WORKFLOW.md`](../README/TEAM_WORKFLOW.md) — arbeidsflyt og dokumentprioritet ved endringer
