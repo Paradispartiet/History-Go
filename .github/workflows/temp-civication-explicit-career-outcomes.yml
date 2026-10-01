@@ -1,0 +1,124 @@
+name: TEMP Civication explicit career outcomes
+
+on:
+  push:
+    branches:
+      - civication/explicit-career-outcomes
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: civication/explicit-career-outcomes
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Make existing runtime defaults explicit in the three remaining plans
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const paths = [
+            'data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json',
+            'data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json',
+            'data/Civication/mailPlans/naeringsliv/mellomleder_plan.json'
+          ];
+          const outcomeRules = {
+            fired: {
+              stability_values: ['FIRED'],
+              strikes_gte: 3,
+              score_lte: -3
+            },
+            promoted: {
+              completion_ratio_gte: 1,
+              score_gte: 2,
+              strikes_lte: 0,
+              allow_warning: false
+            },
+            stagnated: {
+              autonomy_delta: -12,
+              add_branch_flags: ['career_stagnated', 'evening_pressure', 'morning_choices_expand'],
+              stability: 'STAGNATED'
+            }
+          };
+          for (const path of paths) {
+            const plan = JSON.parse(fs.readFileSync(path, 'utf8'));
+            if (plan.outcome_rules) throw new Error(`${path} already has outcome_rules; refusing to overwrite authored behavior`);
+            const { sequence, ...head } = plan;
+            const next = { ...head, outcome_rules: outcomeRules, sequence };
+            fs.writeFileSync(path, `${JSON.stringify(next, null, 2)}\n`);
+          }
+          NODE
+
+      - name: Regenerate Career Gameplay Matrix and rollout readiness
+        run: |
+          npm run build:civication:career-gameplay-matrix
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+
+      - name: Prove all 85 career worlds close performance progression and exit
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const matrix = JSON.parse(fs.readFileSync('data/Civication/careerGameplayMatrix.json', 'utf8'));
+          const debt = matrix.summary.component_debt;
+          if (matrix.summary.career_worlds !== 85) throw new Error(`career_worlds=${matrix.summary.career_worlds}`);
+          if (matrix.summary.runtime_gate_pass !== 85) throw new Error(`runtime_gate_pass=${matrix.summary.runtime_gate_pass}`);
+          for (const id of ['performance', 'progression', 'exit']) {
+            const row = debt[id];
+            if (row.complete !== 85 || row.partial !== 0 || row.missing !== 0) {
+              throw new Error(`${id}: ${JSON.stringify(row)}`);
+            }
+          }
+          for (const key of [
+            'naeringsliv/fagarbeider',
+            'naeringsliv/lager_og_driftsmedarbeider',
+            'naeringsliv/mellomleder'
+          ]) {
+            const world = matrix.worlds.find((row) => row.key === key);
+            if (!world) throw new Error(`Missing world ${key}`);
+            for (const id of ['performance', 'progression', 'exit']) {
+              if (world.audit.components[id].level !== 'complete') {
+                throw new Error(`${key} ${id}=${world.audit.components[id].level}`);
+              }
+            }
+          }
+          console.log('PASS: 85/85 complete for performance, progression and exit.');
+          NODE
+
+      - name: Focused audits and career outcome runtime proof
+        run: |
+          npm run audit:civication:career-gameplay
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          node tests/civication-career-outcomes.test.js
+
+      - name: Full Civication suite
+        run: npm run test:civication
+
+      - name: Commit materialized outputs and remove temporary workflow
+        run: |
+          rm .github/workflows/temp-civication-explicit-career-outcomes.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add \
+            data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json \
+            data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json \
+            data/Civication/mailPlans/naeringsliv/mellomleder_plan.json \
+            data/Civication/careerGameplayMatrix.json \
+            reports/civication-career-gameplay-matrix.md \
+            data/Civication/roleWorldRolloutReadiness.json \
+            reports/civication-role-world-rollout-readiness.md \
+            .github/workflows/temp-civication-explicit-career-outcomes.yml
+          git diff --cached --check
+          git commit -m 'Civication: make final career outcomes explicit'
+          git push origin HEAD:civication/explicit-career-outcomes
