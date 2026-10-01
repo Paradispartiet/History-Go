@@ -74,8 +74,8 @@
         "missing": 0
       },
       "performance": {
-        "complete": 82,
-        "partial": 3,
+        "complete": 85,
+        "partial": 0,
         "missing": 0
       },
       "economy": {
@@ -84,13 +84,13 @@
         "missing": 0
       },
       "progression": {
-        "complete": 82,
-        "partial": 3,
+        "complete": 85,
+        "partial": 0,
         "missing": 0
       },
       "exit": {
-        "complete": 82,
-        "partial": 3,
+        "complete": 85,
+        "partial": 0,
         "missing": 0
       }
     }
@@ -11002,12 +11002,31 @@
             "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
-              "data/Civication/praksisfortellinger_registry.json"
+              "tests/civication-brand-employer-bridge.test.js",
+              "tests/civication-career-noncareer-reconciliation.test.js",
+              "tests/civication-career-outcome-reachability.test.js",
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-career-role-resolver.test.js",
+              "tests/civication-career-rolemodel-ownership.test.js",
+              "tests/civication-day-phase-ui-reentry-lock.test.js",
+              "tests/civication-fagarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-readiness-prerequisites.test.js",
+              "tests/civication-fagarbeider-role-world-rollout.test.js",
+              "tests/civication-fagarbeider-rollout-playability.test.js",
+              "tests/civication-fagarbeider-second-week-praksisfortellinger.test.js",
+              "tests/civication-fagarbeider-two-week-flow.test.js",
+              "tests/civication-formann-readiness-prerequisites.test.js",
+              "tests/civication-formann-role-world-rollout.test.js",
+              "tests/civication-inbox-channels.test.js",
+              "tests/civication-job-eligibility.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-praksisfortellinger-cross-role.test.js",
+              "tests/civication-renholder-role-package.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -11019,21 +11038,23 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
               "data/Civication/roleModels/naeringsliv/fagarbeider.json",
-              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json"
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_fag_og_produksjon.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/fagarbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/fagarbeider.json"
+              "data/Civication/roleModels/naeringsliv/fagarbeider.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": true,
@@ -11050,7 +11071,10 @@
           "quality_axes",
           "authority",
           "consequences",
-          "economy"
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [
@@ -12118,12 +12142,22 @@
             "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
-              "data/Civication/praksisfortellinger_registry.json"
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-first-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-readiness-prerequisites.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-role-package.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-role-world-rollout.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-rollout-playability.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-second-week-praksisfortellinger.test.js",
+              "tests/civication-lager-og-driftsmedarbeider-two-week-flow.test.js",
+              "tests/civication-lifestory-shell-role-bridge.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-renholder-role-package.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -12135,21 +12169,23 @@
             "note": "Exact salary exists for all 1 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
               "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json",
-              "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json"
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_logistikk_og_drift.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/lager_og_driftsmedarbeider_plan.json",
-              "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json"
+              "data/Civication/roleModels/naeringsliv/lager_og_driftsmedarbeider.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": true,
@@ -12166,7 +12202,10 @@
           "quality_axes",
           "authority",
           "consequences",
-          "economy"
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [
@@ -12418,12 +12457,22 @@
             "note": "Later consequence/follow-up path is role-tested."
           },
           "performance": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
-              "data/Civication/praksisfortellinger_registry.json"
+              "tests/civication-career-outcomes.test.js",
+              "tests/civication-job-offer-eligibility-ui.test.js",
+              "tests/civication-mellomleder-first-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-readiness-prerequisites.test.js",
+              "tests/civication-mellomleder-role-world-rollout.test.js",
+              "tests/civication-mellomleder-rollout-playability.test.js",
+              "tests/civication-mellomleder-second-week-praksisfortellinger.test.js",
+              "tests/civication-mellomleder-two-week-flow.test.js",
+              "tests/civication-naeringsliv-life-career-split.test.js",
+              "tests/civication-renholder-role-package.test.js",
+              "tests/civication-scene-pipeline-ignored-source-duplicates.test.js"
             ],
-            "note": "Performance signals/outcomes exist without a complete tested evaluation."
+            "note": "Positive and negative outcomes are defined and role-tested."
           },
           "economy": {
             "level": "complete",
@@ -12435,22 +12484,24 @@
             "note": "Exact salary exists for all 3 linked career title(s)."
           },
           "progression": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
               "data/Civication/roleModels/naeringsliv/kapitalforvalter.json",
               "data/Civication/workGrammars/naeringsliv/naeringsliv_finans_og_kapitalforvaltning.json",
-              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json"
+              "data/Civication/workGrammars/naeringsliv/naeringsliv_virksomhetsledelse.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Progression exists as content or outcome, not a complete transition path."
+            "note": "Career path and positive runtime outcome are both present."
           },
           "exit": {
-            "level": "partial",
+            "level": "complete",
             "evidence": [
               "data/Civication/mailPlans/naeringsliv/mellomleder_plan.json",
-              "data/Civication/roleModels/naeringsliv/kapitalforvalter.json"
+              "data/Civication/roleModels/naeringsliv/kapitalforvalter.json",
+              "tests/civication-career-outcomes.test.js"
             ],
-            "note": "Exit exists as content or outcome, not a complete transition path."
+            "note": "Exit destinations and negative runtime outcome are both present."
           }
         },
         "runtime_gate": true,
@@ -12467,7 +12518,10 @@
           "quality_axes",
           "authority",
           "consequences",
-          "economy"
+          "performance",
+          "economy",
+          "progression",
+          "exit"
         ],
         "practice_story_count": 5,
         "practice_weeks": [
