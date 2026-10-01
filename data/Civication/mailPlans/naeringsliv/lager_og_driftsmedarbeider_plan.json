@@ -14,6 +14,30 @@
       "Hvordan blir HMS en del av flyten i stedet for noe som står i veien for den?"
     ]
   },
+  "outcome_rules": {
+    "fired": {
+      "stability_values": [
+        "FIRED"
+      ],
+      "strikes_gte": 3,
+      "score_lte": -3
+    },
+    "promoted": {
+      "completion_ratio_gte": 1,
+      "score_gte": 2,
+      "strikes_lte": 0,
+      "allow_warning": false
+    },
+    "stagnated": {
+      "autonomy_delta": -12,
+      "add_branch_flags": [
+        "career_stagnated",
+        "evening_pressure",
+        "morning_choices_expand"
+      ],
+      "stability": "STAGNATED"
+    }
+  },
   "sequence": [
     {
       "step": 1,
