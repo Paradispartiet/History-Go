@@ -1,9 +1,9 @@
 // js/Civication/ui/CivicationTestModeUI.js
-// Civication testmodus: dev-/flagget "Test"-knapp + testpanel for å starte ALLE roller,
+// Civication testmodus: alltid synlig "Test"-knapp + testpanel for å starte ALLE roller,
 // ikke bare Controller, uten konsoll.
 //
 // Prinsipp:
-// - Knappen monteres bare i dev/localhost eller når flagget er eksplisitt aktivert.
+// - Knappen monteres alltid i Civication-headeren som et permanent utviklerverktøy.
 // - Rollelisten bygges datadrevet fra data/Civication/roleModels/manifest.json.
 // - Roller startes via eksisterende CivicationRoleStarter.
 // - Arbeidsdagen bygges via eksisterende CivicationDailyMailBuilder.
@@ -69,13 +69,7 @@
   }
 
   function isEnabled() {
-    var queryEnabled = false;
-    try { queryEnabled = new URLSearchParams(window.location.search || "").has("civiTest"); } catch (e) {}
-    var host = String(window.location?.hostname || "");
-    var localHost = host === "localhost" || host === "127.0.0.1" || host === "";
-    var stored = false;
-    try { stored = localStorage.getItem(FLAG_KEY) === "true"; } catch (e) {}
-    return queryEnabled || stored || localHost;
+    return true;
   }
 
   async function loadJson(path) {
@@ -649,7 +643,6 @@
 
   function mount() {
     if (!hasDom()) return;
-    if (!isEnabled()) return;
     ensureButton();
     loadRolesAsync();
   }
