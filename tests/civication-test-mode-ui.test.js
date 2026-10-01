@@ -95,7 +95,11 @@ function makeDom() {
 async function run() {
   global.window = global;
   global.localStorage = makeStorage();
-  global.location = { href: 'http://localhost/Civication.html', search: '' };
+  global.location = {
+    href: 'https://paradispartiet.github.io/History-Go/Civication.html',
+    search: '',
+    hostname: 'paradispartiet.github.io'
+  };
   global.Event = class Event { constructor(type) { this.type = type; } };
   global.document = makeDom();
   const dispatchedEvents = [];
@@ -112,9 +116,10 @@ async function run() {
   const TM = global.CivicationTestMode;
   assert(TM, 'CivicationTestMode global skal eksponeres');
 
-  // Testknappen skal rendres permanent uten query-param/localStorage-flagg.
+  // Testknappen skal rendres permanent i produksjon uten query-param/localStorage-flagg.
   assert.strictEqual(TM.isEnabled(), true, 'testmodus-UI skal være permanent tilgjengelig');
   assert(global.document.getElementById('civicationTestButton'), 'testknapp skal opprettes uten flagg');
+  assert.strictEqual(global.localStorage.getItem('civication_test_mode_v1'), null, 'permanent testknapp skal ikke tvinge testmodus-flagg');
   assert.strictEqual(global.document.getElementById('civicationTestModePanel'), null, 'testpanel opprettes først når det åpnes');
 
   // Rolleliste bygges datadrevet fra manifest. loadRoles() venter på async
