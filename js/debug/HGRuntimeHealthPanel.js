@@ -2,6 +2,7 @@
   "use strict";
 
   const PANEL_ID = "hgRuntimeHealthPanel";
+  const TRIGGER_ID = "hgRuntimeHealthButton";
   const STYLE_ID = "hgRuntimeHealthPanelStyle";
   const REFRESH_DELAY_MS = 180;
   const EVENTS = ["updateProfile", "civi:homeChanged", "civi:inboxChanged", "hg:socialChanged", "hg:socialDemoChanged", "hg:dailyObjectivesChanged", "hg:dailyProgressChanged"];
@@ -44,12 +45,39 @@
       #${PANEL_ID} button:hover{background:#fff}
       #${PANEL_ID} .hg-rhp-smoke{margin:6px 0;font-weight:700}
       #${PANEL_ID} .hg-rhp-demo{margin:6px 0;padding:6px;border:1px solid rgba(255,255,255,.2);border-radius:8px}
+      #${TRIGGER_ID}{height:36px!important;min-width:0!important;padding:0 12px!important;flex:0 0 auto!important;border-radius:999px!important;font-size:12px!important;font-weight:800!important;border:1px solid rgba(255,255,255,.22)!important;background:rgba(255,255,255,.10)!important;color:#fff!important;box-shadow:none!important}
+      #${TRIGGER_ID}:hover,#${TRIGGER_ID}:focus-visible{background:rgba(255,255,255,.18)!important;outline:none}
     `;
     document.head?.appendChild(style);
   }
 
   function getPanel() {
     return document.getElementById(PANEL_ID);
+  }
+
+  function getTrigger() {
+    return document.getElementById(TRIGGER_ID);
+  }
+
+  function ensureTrigger() {
+    if (!isEnabled()) return null;
+    ensureStyle();
+    let trigger = getTrigger();
+    if (trigger) return trigger;
+
+    trigger = document.createElement("button");
+    trigger.id = TRIGGER_ID;
+    trigger.type = "button";
+    trigger.textContent = "Health";
+    trigger.setAttribute("aria-label", "Åpne Runtime health");
+    trigger.setAttribute("title", "Runtime health");
+    trigger.addEventListener("click", () => { openPanel(); });
+
+    const target = document.querySelector?.(".app-footer .app-actions")
+      || document.querySelector?.(".app-footer")
+      || document.body;
+    target?.appendChild(trigger);
+    return trigger;
   }
 
   function ensurePanel() {
@@ -175,7 +203,8 @@
   }
 
   function paint(health) {
-    const panel = ensurePanel();
+    const panel = getPanel();
+    if (!panel) return;
     const body = panel.querySelector(".hg-rhp-body");
     if (!body) return;
     const blockers = Array.isArray(health?.blockers) ? health.blockers : [];
@@ -207,19 +236,20 @@
     } catch (error) {
       lastSmoke = { ok: false, blockers: [{ message: `Smoke feilet: ${error?.message || error}` }], warnings: [], summary: "Smoke-test fant blokkere." };
     }
-    if (lastHealth) paint(lastHealth);
+    if (lastHealth && getPanel()) paint(lastHealth);
     return lastSmoke;
   }
 
   function paintMissing() {
-    const panel = ensurePanel();
+    const panel = getPanel();
+    if (!panel) return;
     const body = panel.querySelector(".hg-rhp-body");
     if (body) body.textContent = "HG_RuntimeHealth mangler";
   }
 
   async function refresh() {
+    if (!isEnabled() || !getPanel()) return;
     try { lastTodayHealth = await window.HG_TodayHub?.health?.(); } catch (_error) { lastTodayHealth = null; }
-    if (!isEnabled()) return;
     if (!window.HG_RuntimeHealth?.health) {
       paintMissing();
       return;
@@ -233,7 +263,7 @@
   }
 
   function scheduleRefresh() {
-    if (!isEnabled()) return;
+    if (!isEnabled() || !getPanel()) return;
     clearTimeout(refreshTimer);
     refreshTimer = setTimeout(() => { refresh(); }, REFRESH_DELAY_MS);
   }
@@ -244,17 +274,21 @@
     EVENTS.forEach((eventName) => window.addEventListener?.(eventName, scheduleRefresh));
   }
 
-  function render() {
+  function openPanel() {
     if (!isEnabled()) return;
     ensurePanel();
     attachListeners();
     return refresh();
   }
 
+  function render() {
+    if (!isEnabled()) return;
+    return ensureTrigger();
+  }
+
   function remove() {
     clearTimeout(refreshTimer);
     getPanel()?.remove?.();
-    document.getElementById(STYLE_ID)?.remove?.();
   }
 
   window.HG_RuntimeHealthPanel = { render, refresh, remove, isEnabled, runSmoke };
