@@ -62,10 +62,19 @@ function installDocument() {
     listeners: {},
     createElement(tagName) { return new Element(tagName, document); },
     getElementById(id) { return document.byId[id] || null; },
-    addEventListener(type, fn) { document.listeners[type] = document.listeners[type] || []; document.listeners[type].push(fn); }
+    addEventListener(type, fn) { document.listeners[type] = document.listeners[type] || []; document.listeners[type].push(fn); },
+    querySelector(selector) {
+      if (selector === '.app-footer .app-actions') return document.appActions;
+      if (selector === '.app-footer') return document.footer;
+      return null;
+    }
   };
   document.head = new Element('head', document);
   document.body = new Element('body', document);
+  document.footer = new Element('footer', document);
+  document.appActions = new Element('div', document);
+  document.body.appendChild(document.footer);
+  document.footer.appendChild(document.appActions);
   return document;
 }
 
@@ -76,7 +85,11 @@ function boot({ testMode = false, health } = {}) {
   global.console = { log() {}, warn() {}, error() {} };
   global.setTimeout = (fn) => { fn(); return 1; };
   global.clearTimeout = () => {};
-  global.addEventListener = () => {};
+  const windowListeners = {};
+  global.addEventListener = (type, fn) => {
+    windowListeners[type] = windowListeners[type] || [];
+    windowListeners[type].push(fn);
+  };
   delete global.HG_TEST_MODE;
   delete global.TEST_MODE;
   delete global.HGTestMode;
@@ -90,35 +103,64 @@ function boot({ testMode = false, health } = {}) {
     }
   };
   vm.runInThisContext(fs.readFileSync('js/debug/HGRuntimeHealthPanel.js', 'utf8'), { filename: 'HGRuntimeHealthPanel.js' });
-  return { panel: global.HG_RuntimeHealthPanel, document: global.document, storage: global.localStorage, calls: () => calls };
+  return {
+    panel: global.HG_RuntimeHealthPanel,
+    document: global.document,
+    storage: global.localStorage,
+    calls: () => calls,
+    emit(type) { (windowListeners[type] || []).forEach((fn) => fn({ type })); }
+  };
 }
 
 (async () => {
   let env = boot({ testMode: false });
-  await env.panel.render();
+  env.panel.render();
+  assert.strictEqual(env.document.getElementById('hgRuntimeHealthButton'), null, 'footer trigger does not render outside test mode');
   assert.strictEqual(env.document.getElementById('hgRuntimeHealthPanel'), null, 'panel does not render outside test mode');
 
   env = boot({ testMode: true, health: { score: 77, summary: 'To advarsler', blockers: [], warnings: [{ key: 'w1', message: 'Mangler valgfri data' }] } });
-  await env.panel.render();
+  env.panel.render();
+  let trigger = env.document.getElementById('hgRuntimeHealthButton');
+  assert(trigger, 'test mode renders a footer trigger');
+  assert.strictEqual(trigger.parentNode, env.document.appActions, 'trigger is mounted in footer actions');
+  assert.strictEqual(env.document.getElementById('hgRuntimeHealthPanel'), null, 'runtime panel stays closed until the footer trigger is pressed');
+  assert.strictEqual(env.calls(), 0, 'closed panel does not run health diagnostics');
+
+  trigger.click();
+  await Promise.resolve();
+  await Promise.resolve();
   let el = env.document.getElementById('hgRuntimeHealthPanel');
-  assert(el, 'panel renders in test mode');
+  assert(el, 'footer trigger opens runtime panel');
   assert.match(el.bodyEl.innerHTML, /77/, 'panel shows score');
   assert.match(el.bodyEl.innerHTML, /To advarsler/, 'panel shows summary');
   assert.match(el.bodyEl.innerHTML, /Advarsler/, 'score 60-84 shows warning label');
 
   env = boot({ testMode: true, health: { score: 95, summary: 'Privacy issue', blockers: [{ key: 'privacy_leak', message: 'privacy leak' }], warnings: [] } });
-  await env.panel.render();
+  trigger = env.document.getElementById('hgRuntimeHealthButton');
+  trigger.click();
+  await Promise.resolve();
+  await Promise.resolve();
   assert.match(env.document.getElementById('hgRuntimeHealthPanel').bodyEl.innerHTML, /Personvernblokkere/, 'privacy blocker changes status label');
 
   env = boot({ testMode: true });
-  await env.panel.render();
+  trigger = env.document.getElementById('hgRuntimeHealthButton');
+  trigger.click();
+  await Promise.resolve();
+  await Promise.resolve();
   const beforeClick = env.calls();
   env.document.getElementById('hgRuntimeHealthPanel').refreshButton.click();
   await Promise.resolve();
+  await Promise.resolve();
   assert.strictEqual(env.calls(), beforeClick + 1, 'refresh button calls health again');
 
-  env.panel.remove();
-  assert.strictEqual(env.document.getElementById('hgRuntimeHealthPanel'), null, 'remove removes panel element');
+  env.document.getElementById('hgRuntimeHealthPanel').hideButton.click();
+  assert.strictEqual(env.document.getElementById('hgRuntimeHealthPanel'), null, 'hide removes panel element');
+  assert(env.document.getElementById('hgRuntimeHealthButton'), 'hide keeps footer trigger available');
+  const beforeClosedEvent = env.calls();
+  env.emit('updateProfile');
+  await Promise.resolve();
+  assert.strictEqual(env.document.getElementById('hgRuntimeHealthPanel'), null, 'runtime events do not reopen a hidden panel');
+  assert.strictEqual(env.calls(), beforeClosedEvent, 'hidden panel does not refresh in the background');
 
   const mutations = env.storage.calls.filter(([name]) => name !== 'getItem');
   assert.deepStrictEqual(mutations, [], 'panel does not mutate localStorage');
