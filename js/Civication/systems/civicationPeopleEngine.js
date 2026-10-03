@@ -317,29 +317,14 @@
     };
   }
 
-  async function getCollectedHistoryPeople(excludeIds) {
-    const historyBridge = window.CivicationHistoryPeopleBridge;
-    if (!historyBridge?.getCollectedConversationPeople) return [];
-    try {
-      const rows = await historyBridge.getCollectedConversationPeople(excludeIds);
-      return Array.isArray(rows) ? rows : [];
-    } catch {
-      return [];
-    }
-  }
-
   async function rebuildPeopleState(activeArg) {
     const active = activeArg || window.CivicationState?.getActivePosition?.() || null;
-
-    // History Go-samlingen er et personlig sosialt lag, ikke en jobbavhengighet.
-    // Derfor skal samlede personer fortsatt være tilgjengelige uten aktiv rolle.
     if (!active) {
-      const historyPeople = await getCollectedHistoryPeople();
       return writeState({
         updated_at: new Date().toISOString(),
         role_scope: null,
         career_id: null,
-        available_people: historyPeople
+        available_people: []
       });
     }
 
@@ -398,16 +383,6 @@
         scored = await historyBridge.decorateAvailablePeople(scored);
       } catch {}
     }
-
-    // Hele resten av samlingen legges på som selvstendige samtalepartnere.
-    // Personer som allerede legemliggjør en arketype ekskluderes her, slik at
-    // samme historiske person bare vises én gang. 8-grensen gjelder kun den
-    // eksisterende kontekst-/arketypelisten, aldri History Go-samlingen.
-    const usedHistoryIds = new Set(
-      scored.map((row) => String(row?.hg_person?.id || "").trim()).filter(Boolean)
-    );
-    const historyPeople = await getCollectedHistoryPeople(usedHistoryIds);
-    scored = [...scored, ...historyPeople];
 
     return writeState({
       updated_at: new Date().toISOString(),
