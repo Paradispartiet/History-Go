@@ -5,6 +5,7 @@
 //   - hendelsesmotoren (HG_CiviEngine / CivicationEventEngine)
 //   - livelihood opportunity bridge (løste valg + livsposisjonsnettverk)
 //   - rolle-modell-runtime
+//   - rollemail-bundne History Go-personer som faglige samtalepartnere
 //   - blokkerte jobbmeldinger
 //   - forpliktelser (obligation engine)
 //   - onAppOpen(): åpner appen, bygger dagens mail-/innboks-scener
@@ -60,6 +61,22 @@
       return true;
     } catch (error) {
       console.warn("[CivicationDayBoot] role model runtime kunne ikke lastes", error);
+      return false;
+    }
+  }
+
+  /** @returns {Promise<boolean>} */
+  async function ensureCivicationRoleMailPeopleUILoaded() {
+    if (window.CivicationRoleMailPeopleUI?.boot) {
+      window.CivicationRoleMailPeopleUI.boot();
+      return true;
+    }
+    try {
+      await loadScriptOnce("js/Civication/ui/CivicationRoleMailPeopleUI.js");
+      window.CivicationRoleMailPeopleUI?.boot?.();
+      return !!window.CivicationRoleMailPeopleUI;
+    } catch (error) {
+      console.warn("[CivicationDayBoot] rollemail-People kunne ikke lastes", error);
       return false;
     }
   }
@@ -131,6 +148,7 @@
       });
 
       await ensureCivicationRoleModelRuntimeLoaded();
+      await ensureCivicationRoleMailPeopleUILoaded();
       await ensureCivicationBlockedJobMessagesLoaded();
       await ensureLivelihoodOpportunityBridgeLoaded();
       window.CivicationLivelihoodOpportunityBridge?.init?.(window.HG_CiviEngine);
