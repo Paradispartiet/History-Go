@@ -39,6 +39,27 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     await page.goto(`${origin}/Civication.html`, { waitUntil: 'load' });
     // Preserve the old observation window so its request count can be diagnosed.
     await page.waitForTimeout(2500);
+    report.failedRequestsAt2500ms = report.failedRequests.length;
+    await page.waitForFunction(() => {
+      const app = globalThis as any;
+      return !!app.HG_CiviEngine
+        && typeof app.CivicationRoleModelRuntime?.decorateMail === 'function'
+        && typeof app.CivicationSceneCatalog?.getRoleMails === 'function'
+        && typeof app.CivicationCalendar?.setPhase === 'function'
+        && typeof app.CivicationSocialPlaceResolver?.loadPlaces === 'function';
+    });
+    report.sourceLoading = await page.evaluate(async () => {
+      const app = globalThis as any;
+      let timer: any;
+      try {
+        const places: any = await Promise.race([
+          app.CivicationSocialPlaceResolver.loadPlaces(),
+          new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Source place loading timed out')), 90000); })
+        ]);
+        return { placeCount: places.length,
+          socialPlaceCount: app.CivicationSocialPlaceResolver.resolveAllCivicationSocialPlaces().length };
+      } finally { clearTimeout(timer); }
+    });
     report.boot = await page.evaluate(() => {
       const doc = (globalThis as any).document;
       return { hasDash: !!doc.querySelector('#civiDashboardSection'),
@@ -49,7 +70,8 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     await context.close();
     report.failedRequestsDuringClose = report.failedRequests.length - report.failedRequestsBeforeClose;
     console.log('Civication boot request diagnostics', JSON.stringify(report));
-    if (!report.boot.hasDash || !report.boot.hasCivicationText || report.pageErrors.length) {
+    if (!report.boot.hasDash || !report.boot.hasCivicationText || report.pageErrors.length
+      || report.failedRequestsBeforeClose || !report.sourceLoading.placeCount || !report.sourceLoading.socialPlaceCount) {
       throw new Error('Civication boot smoke failed; see request diagnostics');
     }
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));

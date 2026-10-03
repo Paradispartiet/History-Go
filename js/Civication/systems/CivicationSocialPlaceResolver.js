@@ -48,6 +48,8 @@
   const BRANDS_MASTER_PATH = "data/brands/brands_master.json";
   const BRANDS_BY_PLACE_PATH = "data/brands/brands_by_place.json";
   const PLACES_MANIFEST_PATH = "data/places/manifest.json";
+  // Del nettleserens ressurser med shell, kart og mailmotor under kaldstart.
+  const PLACE_FETCH_CONCURRENCY = 6;
 
   // Stabile prefikser for avledede sosiale locationId-er. Endres aldri – player-
   // og friend-snapshots, samtaletråder og henvendelser bygger på disse.
@@ -819,6 +821,7 @@
   let _brandsByIdCache = null;
   let _placesCache = null;
   let _placesByIdCache = null;
+  let _placesLoadPromise = null;
 
   async function fetchJson(path) {
     const res = await fetch(path, { cache: "no-store" });
@@ -855,39 +858,58 @@
   // av appen), ellers fra manifestets source-filer. places_index.json brukes
   // ALDRI som kilde.
   async function loadPlaces() {
+    if (_placesLoadPromise) return _placesLoadPromise;
     if (Array.isArray(_placesCache)) return _placesCache;
     if (Array.isArray(window.PLACES) && window.PLACES.length) {
       _placesCache = window.PLACES.slice();
       _placesByIdCache = indexPlacesById(_placesCache);
       return _placesCache;
     }
-    _placesCache = [];
-    try {
-      const manifest = await fetchJson(PLACES_MANIFEST_PATH);
-      const files = ensureArray(manifest && manifest.files);
-      const loaded = await Promise.all(files.map(async (rel) => {
-        try {
-          // Manifest-stiene starter allerede med "places/..." — prefiks kun "data/".
-          const json = await fetchJson("data/" + rel);
-          return ensureArray(Array.isArray(json) ? json : (json && json.places));
-        } catch (_e) {
-          return [];
+    _placesLoadPromise = (async () => {
+      try {
+        const manifest = await fetchJson(PLACES_MANIFEST_PATH);
+        const files = ensureArray(manifest && manifest.files);
+        const loaded = new Array(files.length);
+        let nextIndex = 0;
+        let complete = true;
+        async function worker() {
+          while (nextIndex < files.length) {
+            const index = nextIndex++;
+            try {
+              // Manifest-stiene starter med "places/..." — prefiks kun "data/".
+              const json = await fetchJson("data/" + files[index]);
+              loaded[index] = ensureArray(Array.isArray(json) ? json : (json && json.places));
+            } catch (_e) {
+              complete = false;
+              loaded[index] = [];
+            }
+          }
         }
-      }));
-      loaded.forEach((arr) => { _placesCache = _placesCache.concat(arr); });
-    } catch (e) {
-      console.warn("[CivicationSocialPlaceResolver] kunne ikke laste place-manifest:", (e && e.message) || e);
+        await Promise.all(Array.from({ length: Math.min(PLACE_FETCH_CONCURRENCY, files.length) }, worker));
+        // Manifestrekkefølge avgjør første ID-treff, ikke nettverksrekkefølge.
+        const places = loaded.flat();
+        _placesByIdCache = indexPlacesById(places);
+        // En midlertidig feil skal kunne prøves på nytt ved neste kall.
+        if (complete) _placesCache = places;
+        return places;
+      } catch (e) {
+        console.warn("[CivicationSocialPlaceResolver] kunne ikke laste place-manifest:", (e && e.message) || e);
+        return [];
+      }
+    })();
+    try {
+      return await _placesLoadPromise;
+    } finally {
+      _placesLoadPromise = null;
     }
-    _placesByIdCache = indexPlacesById(_placesCache);
-    return _placesCache;
   }
 
   async function init() {
-    await Promise.all([loadBrandPlaceMap(), loadBrandMaster(), loadPlaces()]);
+    const [byPlace, brandMaster, places] = await Promise.all([loadBrandPlaceMap(), loadBrandMaster(), loadPlaces()]);
     return {
-      byPlace: _byPlaceCache,
-      brandMaster: _brandMasterCache,
-      places: _placesCache
+      byPlace,
+      brandMaster,
+      places
     };
   }
 
