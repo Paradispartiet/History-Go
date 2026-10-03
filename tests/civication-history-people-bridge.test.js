@@ -161,7 +161,8 @@ async function run() {
   }
 
   // 8) RoleModelRuntime: samlede personer i rollemodellens kategori blir
-  //    history_people på role_model_meta; people_connections speiles fra filen.
+  //    history_people på role_model_meta med den konteksten rollemailen trenger;
+  //    people_connections speiles fortsatt fra rollemodellen.
   {
     freshEnv(["edvard_munch", "camilla_collett"]);
     vm.runInThisContext(fs.readFileSync(roleModelRuntimePath, "utf8"), { filename: roleModelRuntimePath });
@@ -177,14 +178,21 @@ async function run() {
     const decorated = await runtime.decorateMail(mail, null, model);
     assert.deepStrictEqual(
       decorated.role_model_meta.history_people,
-      [{ id: "edvard_munch", name: "Edvard Munch" }]
+      [{
+        id: "edvard_munch",
+        name: "Edvard Munch",
+        category: "kunst",
+        description: "Maler.",
+        place_id: "ekely",
+        year: null,
+        image: null
+      }]
     );
     assert.deepStrictEqual(decorated.role_model_meta.people_connections, ["gustav_vigeland"]);
   }
 
-  // 9) NextActionUI viser forbilde-linjen når mailens event har
-  //    role_model_meta.history_people (satt av RoleModelRuntime).
-  //    Mini-DOM etter mønster fra civication-next-action-consolidation.test.js.
+  // 9) NextActionUI viser bare mailens egne History Go-personer som
+  //    rolle-/oppgavebundne samtalevalg.
   {
     class FakeEl {
       constructor(tag) {
@@ -260,8 +268,8 @@ async function run() {
           choices: [{ id: "A1", label: "Ja" }],
           role_model_meta: {
             history_people: [
-              { id: "edvard_munch", name: "Edvard Munch" },
-              { id: "camilla_collett", name: "Camilla Collett" }
+              { id: "edvard_munch", name: "Edvard Munch", category: "kunst", description: "Maler." },
+              { id: "camilla_collett", name: "Camilla Collett", category: "litteratur", description: "Forfatter." }
             ]
           }
         }
@@ -272,16 +280,17 @@ async function run() {
     vm.runInThisContext(fs.readFileSync(uiPath, "utf8"), { filename: uiPath });
     assert.strictEqual(global.CivicationNextActionUI.open(), true, "NextAction åpner");
     const html = findById(body, "civiNextActionModalBody").innerHTML;
-    assert.ok(html.includes("Forbilder fra samlingen din"), "forbilde-linjen rendres");
-    assert.ok(html.includes("Edvard Munch, Camilla Collett"), "forbildene listes med navn");
+    assert.ok(html.includes("Personer fra History Go som er relevante for denne rollen"), "rollemailens personseksjon rendres");
+    assert.ok(html.includes("Snakk med Edvard Munch"), "første mail-koblede person kan åpnes");
+    assert.ok(html.includes("Snakk med Camilla Collett"), "andre mail-koblede person kan åpnes");
 
-    // Uten history_people rendres ingen forbilde-linje.
+    // Uten history_people rendres ingen rolle-personseksjon.
     global.CivicationMailEngine = {
       getInbox: () => [{ id: "mail-A", status: "open", event: { id: "mail-A", subject: "Fasesak A", choices: [] } }]
     };
     global.CivicationNextActionUI.refresh?.();
     const html2 = findById(body, "civiNextActionModalBody").innerHTML;
-    assert.ok(!html2.includes("Forbilder fra samlingen din"), "ingen forbilde-linje uten history_people");
+    assert.ok(!html2.includes("Personer fra History Go som er relevante for denne rollen"), "ingen personseksjon uten history_people");
   }
 
   console.log("civication-history-people-bridge.test.js: alle tester OK");
