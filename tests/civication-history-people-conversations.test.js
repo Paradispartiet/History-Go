@@ -3,6 +3,8 @@
 // - History Go-personer er ikke en fri/rolleuavhengig kontaktliste.
 // - RoleModelRuntime velger maks tre samlede personer fra rollens kategori og
 //   legger dem på den konkrete rollemailen som role_model_meta.history_people.
+// - Utvalget roterer deterministisk mellom dager, slik at hele den relevante
+//   samlingen kan komme frem uten å gjøre hver mail til en lang kontaktliste.
 // - NextAction kan bare bruke personer som faktisk finnes på den aktive mailen,
 //   og perspektivet utdyper oppgave, rolle og dilemma.
 
@@ -117,6 +119,7 @@ function resetGlobals() {
   global.CivicationNextActionUI = undefined;
   global.CivicationJsonStore = undefined;
   global.CivicationEventEngine = undefined;
+  global.CivicationCalendar = undefined;
   global.CivicationPlaceAccessBridge = { getBucket: () => [] };
   global.HG_IdentityCore = { getProfile: () => ({ dominant: null, focus: {} }) };
   global.localStorage = createLocalStorage();
@@ -174,8 +177,14 @@ async function run() {
   assert.strictEqual(typeof global.CivicationPeopleUI.startHistoryConversation, "undefined");
 
   // 3) RoleModelRuntime binder samlet People til den konkrete rollemailen.
-  //    Fem relevante personer finnes i samlingen, men mailen får maks tre.
+  //    Fem relevante personer finnes i samlingen, men hver mail viser maks tre.
+  //    Dagsrotasjonen må samtidig gjøre alle fem mulige over tid.
   global.CivicationState = { getActivePosition: () => ACTIVE };
+  let dayIndex = 1;
+  global.CivicationCalendar = {
+    getPhaseModel: () => ({ dayIndex }),
+    getDisplayModel: () => ({ dayIndex })
+  };
   vm.runInThisContext(fs.readFileSync(roleRuntimePath, "utf8"), { filename: roleRuntimePath });
 
   const rawMail = {
@@ -199,13 +208,33 @@ async function run() {
   const decorated = await global.CivicationRoleModelRuntime.decorateMail(rawMail, ACTIVE, ROLE_MODEL);
   const linkedPeople = decorated.role_model_meta.history_people;
   assert.strictEqual(linkedPeople.length, 3, "rollemailen har maks tre relevante History Go-personer");
-  assert.deepStrictEqual(linkedPeople.map((p) => p.id), ["kunst_person_01", "kunst_person_02", "kunst_person_03"]);
+  assert.strictEqual(new Set(linkedPeople.map((p) => p.id)).size, 3);
   assert.ok(linkedPeople.every((p) => p.category === "kunst"));
   assert.ok(linkedPeople.every((p) => p.description.startsWith("Historisk kunstperson")));
   assert.strictEqual(linkedPeople.some((p) => p.id === historiePerson.id), false, "person fra feil rollekategori følger ikke mailen");
   assert.strictEqual(linkedPeople.some((p) => p.id === "kunst_usamlet"), false, "usamlet person følger ikke mailen");
-  assert.strictEqual(linkedPeople[0].year, 1900);
-  assert.strictEqual(linkedPeople[0].place_id, "kunst_place_01");
+  linkedPeople.forEach((p) => {
+    const source = kunstPeople.find((candidate) => candidate.id === p.id);
+    assert.ok(source, "mail-personen skal komme fra den samlede kunstsamlingen");
+    assert.strictEqual(p.year, source.year);
+    assert.strictEqual(p.place_id, source.placeId);
+  });
+
+  dayIndex = 2;
+  const decoratedDay2 = await global.CivicationRoleModelRuntime.decorateMail(rawMail, ACTIVE, ROLE_MODEL);
+  const linkedDay2 = decoratedDay2.role_model_meta.history_people;
+  assert.strictEqual(linkedDay2.length, 3);
+  assert.notDeepStrictEqual(linkedDay2.map((p) => p.id), linkedPeople.map((p) => p.id), "neste dag skal rotere relevante personer");
+  const twoDayUnion = new Set([...linkedPeople, ...linkedDay2].map((p) => p.id));
+  assert.strictEqual(twoDayUnion.size, 5, "alle fem relevante samlede personer kan komme frem over to dager");
+  assert.deepStrictEqual(
+    [...twoDayUnion].sort(),
+    kunstPeople.map((p) => p.id).sort(),
+    "rotasjonen skal dekke hele den relevante samlingen"
+  );
+
+  // Gå tilbake til dag 1 for NextAction-verifiseringen av den konkrete mailen.
+  dayIndex = 1;
 
   // 4) NextAction kan kun bruke personer som ligger på denne konkrete mailen.
   global.CivicationMailEngine = {
@@ -223,33 +252,37 @@ async function run() {
     }
   };
   global.CivicationNextActionSelector = { getCurrent: () => decorated };
-  global.CivicationCalendar = { getPhase: () => "work" };
+  global.CivicationCalendar.getPhase = () => "work";
   global.CivicationDayProgression = { inspect: () => null };
 
   vm.runInThisContext(fs.readFileSync(nextActionPath, "utf8"), { filename: nextActionPath });
   const next = global.CivicationNextActionUI;
   const mailPeople = next.getRoleMailHistoryPeople(decorated.id);
   assert.strictEqual(mailPeople.length, 3);
-  assert.deepStrictEqual(mailPeople.map((p) => p.id), ["kunst_person_01", "kunst_person_02", "kunst_person_03"]);
+  assert.deepStrictEqual(mailPeople.map((p) => p.id), linkedPeople.map((p) => p.id));
 
-  const taskAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "task");
+  const activePerson = linkedPeople[0];
+  const taskAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, activePerson.id, "task");
   assert.ok(taskAnswer);
-  assert.strictEqual(taskAnswer.personName, "Kunstperson 01");
+  assert.strictEqual(taskAnswer.personName, activePerson.name);
   assert.ok(taskAnswer.answer.includes("Velg verk til den nye utstillingen"));
   assert.ok(taskAnswer.answer.includes("Velg en begrunnet verkssammensetning"));
   assert.ok(taskAnswer.answer.includes("kontekstlesning"));
 
-  const roleAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "role");
+  const roleAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, activePerson.id, "role");
   assert.ok(roleAnswer.answer.includes("Kurator"));
   assert.ok(roleAnswer.answer.includes("Kuratoren vurderer kvalitet"));
   assert.ok(roleAnswer.answer.includes("offentlig vurdering"));
 
-  const dilemmaAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "dilemma");
+  const dilemmaAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, activePerson.id, "dilemma");
   assert.ok(dilemmaAnswer.answer.includes("kvalitet mot tilgjengelighet"));
 
-  // Person 04 er samlet og i riktig kategori, men ligger ikke blant de tre som
-  // denne mailen faktisk har fått. Derfor kan ingen samtale startes via mailen.
-  assert.strictEqual(next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_04", "task"), null);
+  // En samlet kunstperson som ikke ligger i akkurat denne mailens tre-personers
+  // vindu kan ikke brukes via denne mailen, men rotasjonstesten over viser at
+  // personen kan dukke opp på en relevant mail/dag senere.
+  const notOnThisMail = kunstPeople.find((p) => !linkedPeople.some((linked) => linked.id === p.id));
+  assert.ok(notOnThisMail);
+  assert.strictEqual(next.buildRoleMailHistoryPersonAnswer(decorated.id, notOnThisMail.id, "task"), null);
   assert.strictEqual(next.buildRoleMailHistoryPersonAnswer(decorated.id, historiePerson.id, "task"), null);
   assert.deepStrictEqual(next.getRoleMailHistoryPeople("annen_mail"), []);
 
