@@ -109,8 +109,11 @@
     for (const value of list) {
       if (typeof value === "string" && norm(value)) return norm(value);
       if (value && typeof value === "object") {
-        const text = norm(value.description || value.setup || value.title || value.label || value.name || value.id);
-        if (text) return text;
+        const title = norm(value.title || value.label || value.name || value.id);
+        const description = norm(value.description || value.setup);
+        if (title && description && title !== description) return title + ": " + description;
+        if (description) return description;
+        if (title) return title;
       }
     }
     return "";
