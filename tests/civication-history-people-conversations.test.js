@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// Regresjon for riktig Civication-kontrakt:
-// History Go-personer er IKKE en fri kontaktliste. De kan bare bli
-// samtalepartnere når en aktiv rollemail selv eksponerer dem gjennom
-// role_model_meta.history_people, og samtalen skal utdype akkurat den
-// rollen/oppgaven samtidig som den forblir en personlig melding.
+// Verifiserer den korrigerte People-kontrakten:
+// - History Go-personer er ikke en fri/rolleuavhengig kontaktliste.
+// - RoleModelRuntime velger maks tre samlede personer fra rollens kategori og
+//   legger dem på den konkrete rollemailen som role_model_meta.history_people.
+// - NextAction kan bare bruke personer som faktisk finnes på den aktive mailen,
+//   og perspektivet utdyper oppgave, rolle og dilemma.
 
 const assert = require("assert");
 const fs = require("fs");
@@ -14,188 +15,248 @@ const root = path.resolve(__dirname, "..");
 const bridgePath = path.join(root, "js/Civication/systems/civicationHistoryPeopleBridge.js");
 const peopleEnginePath = path.join(root, "js/Civication/systems/civicationPeopleEngine.js");
 const peopleUiPath = path.join(root, "js/Civication/ui/CivicationPeopleUI.js");
-const roleMailUiPath = path.join(root, "js/Civication/ui/CivicationRoleMailPeopleUI.js");
+const roleRuntimePath = path.join(root, "js/Civication/systems/civicationRoleModelRuntime.js");
+const nextActionPath = path.join(root, "js/Civication/ui/CivicationNextActionUI.js");
 
-function source(pathname) {
-  return fs.readFileSync(pathname, "utf8");
+const kunstPeople = Array.from({ length: 5 }, (_, index) => {
+  const n = String(index + 1).padStart(2, "0");
+  return {
+    id: `kunst_person_${n}`,
+    name: `Kunstperson ${n}`,
+    category: "kunst",
+    desc: `Historisk kunstperson nummer ${n}.`,
+    placeId: `kunst_place_${n}`,
+    year: 1900 + index,
+    image: `/bilder/people/kunst_${n}.jpg`
+  };
+});
+
+const historiePerson = {
+  id: "historie_person_01",
+  name: "Historieperson 01",
+  category: "historie",
+  desc: "Relevant for historie, ikke for kunstrollen.",
+  placeId: "historie_place_01",
+  year: 1880
+};
+
+const FIXTURE_INDEX = {
+  schema: "civication_history_people_index_v1",
+  person_count: 7,
+  categories: {
+    kunst: [
+      ...kunstPeople,
+      {
+        id: "kunst_usamlet",
+        name: "Usamlet kunstperson",
+        category: "kunst",
+        desc: "Skal aldri følge mailen.",
+        placeId: "kunst_place_x",
+        year: 1920
+      }
+    ],
+    historie: [historiePerson]
+  }
+};
+
+const ROLE_MODEL = {
+  schema: "civication_role_model_v1",
+  category: "kunst",
+  role_scope: "kurator",
+  role_id: "kunst_kurator",
+  title: "Kurator",
+  education_basis: ["Kunsthistorie og kuratorisk praksis"],
+  professional_description: [
+    "Kuratoren vurderer kvalitet, kontekst og offentlig presentasjon.",
+    "Arbeidet krever prioritering mellom verk, institusjon og publikum."
+  ],
+  competence_axes: [
+    { id: "context_reading", label: "kontekstlesning" },
+    { id: "public_judgement", label: "offentlig vurdering" }
+  ],
+  ideal_type_problems: [
+    { id: "quality_vs_access", label: "kvalitet mot tilgjengelighet" }
+  ],
+  required_knowledge: {
+    people_connections: ["kunstnere", "institusjoner"]
+  }
+};
+
+const ACTIVE = {
+  career_id: "kunst",
+  role_scope: "kurator",
+  role_id: "kunst_kurator",
+  title: "Kurator"
+};
+
+function createLocalStorage() {
+  const store = new Map();
+  return {
+    getItem(key) {
+      key = String(key);
+      return store.has(key) ? store.get(key) : null;
+    },
+    setItem(key, value) {
+      store.set(String(key), String(value));
+    },
+    removeItem(key) {
+      store.delete(String(key));
+    },
+    clear() {
+      store.clear();
+    }
+  };
 }
 
-function setupGlobals() {
+function resetGlobals() {
   global.window = global;
+  global.CivicationHistoryPeopleBridge = undefined;
+  global.CivicationPeopleEngine = undefined;
+  global.CivicationPeopleUI = undefined;
+  global.CivicationRoleModelRuntime = undefined;
+  global.CivicationNextActionUI = undefined;
+  global.CivicationJsonStore = undefined;
+  global.CivicationEventEngine = undefined;
+  global.CivicationPlaceAccessBridge = { getBucket: () => [] };
+  global.HG_IdentityCore = { getProfile: () => ({ dominant: null, focus: {} }) };
+  global.localStorage = createLocalStorage();
   global.Event = function Event(type) { this.type = type; };
   global.addEventListener = function () {};
-  global.requestAnimationFrame = function (fn) { fn(); return 1; };
-  global.setTimeout = function (fn) { fn(); return 1; };
-
+  global.dispatchEvent = function () {};
+  global.requestAnimationFrame = undefined;
   global.document = {
+    readyState: "complete",
+    body: null,
     addEventListener() {},
     getElementById() { return null; }
   };
 
-  const roleEvent = {
-    id: "mail_kunst_formidler_01",
-    subject: "Formidle et vanskelig verk",
-    phase: "work",
-    situation: ["Du skal forklare et krevende verk for et publikum som har kort tid."],
-    task_payload: {
-      expected_output: "Lag en kort formidling som gjør verkets konflikt forståelig."
-    },
-    role_model_meta: {
-      category: "kunst",
-      role_scope: "formidler",
-      role_id: "kunst_formidler",
-      title: "Formidler",
-      professional_description: ["Formidleren må koble faglig presisjon til et språk publikum faktisk kan bruke."],
-      selected_competence_axes: [
-        { id: "publikumsforstaelse", title: "Publikumsforståelse", description: "Tilpass dybde uten å gjøre innholdet flatt." }
-      ],
-      selected_ideal_type_problems: [
-        { id: "forenkling", title: "Forenkling mot presisjon", description: "Hvor mye kan forenkles før meningen forsvinner?" }
-      ],
-      history_people: [
-        { id: "edvard_munch", name: "Edvard Munch" }
-      ]
-    }
-  };
+  const collected = Object.fromEntries([
+    ...kunstPeople.map((person) => [person.id, true]),
+    [historiePerson.id, true]
+  ]);
+  global.localStorage.setItem("people_collected", JSON.stringify(collected));
 
-  global.CivicationState = {
-    getActivePosition() {
-      return { career_id: "kunst", role_scope: "formidler", title: "Formidler" };
-    },
-    getInbox() { return [{ status: "pending", event: roleEvent }]; }
-  };
-  global.CivicationCareerRoleResolver = {
-    resolveCareerRoleScope() { return "formidler"; }
-  };
-  global.CivicationMailEngine = {
-    getInbox() { return [{ status: "pending", event: roleEvent }]; }
-  };
-  global.CivicationHistoryPeopleBridge = {
-    getCollectedByCategory(category) {
-      assert.strictEqual(category, "kunst");
-      return [
-        {
-          id: "edvard_munch",
-          name: "Edvard Munch",
-          category: "kunst",
-          desc: "Munch arbeidet gjentatte ganger med angst, tap og spenningen mellom personlig erfaring og offentlig uttrykk."
-        },
-        {
-          id: "annen_person",
-          name: "Annen Person",
-          category: "kunst",
-          desc: "Finnes i samlingen, men er ikke koblet til denne rollemailen."
-        }
-      ];
+  global.fetch = async function (url) {
+    const target = String(url);
+    if (target.includes("historyPeople_index.json")) {
+      return { ok: true, json: async () => FIXTURE_INDEX };
     }
-  };
-
-  let registered = null;
-  let opened = null;
-  let conversationArgs = null;
-
-  global.CivicationFriendMessages = {
-    resolvePrivateThreadForFriend(friendId) { return "friend_" + friendId; },
-    registerPrivateMessage(message) {
-      registered = message;
-      return { registered: true, event: { channel: "private", mail_class: "private_message" } };
-    },
-    dispatchPrivateMessageOpen(friendId, context) {
-      opened = { friendId, context };
-      return context;
-    }
-  };
-  global.CivicationSocialConversationEngine = {
-    createSocialConversationFromResponse(response, context) {
-      conversationArgs = { response, context };
-      return {
-        conversationId: "conv_" + response.friendId + "_001",
-        friendId: response.friendId,
-        friendName: response.friendName,
-        phase: response.phase,
-        status: "open"
-      };
-    }
-  };
-  global.CivicationFriendsEngine = { getCurrentPhase: () => "work" };
-  global.CivicationNextActionUI = {
-    open() { return true; },
-    render() { return true; },
-    refresh() { return true; },
-    getCurrent() { return { id: roleEvent.id, subject: roleEvent.subject }; }
-  };
-
-  return {
-    roleEvent,
-    getRegistered: () => registered,
-    getOpened: () => opened,
-    getConversationArgs: () => conversationArgs
+    return { ok: false, json: async () => null };
   };
 }
 
-function run() {
-  // 1) #6121 sin globale kontaktliste skal være borte.
-  const bridgeSource = source(bridgePath);
-  const peopleEngineSource = source(peopleEnginePath);
-  const peopleUiSource = source(peopleUiPath);
+async function run() {
+  resetGlobals();
 
-  assert.ok(!bridgeSource.includes("getCollectedConversationPeople"), "bridge skal ikke eksponere hele samlingen som samtalepartnere");
-  assert.ok(!peopleEngineSource.includes("getCollectedHistoryPeople"), "PeopleEngine skal ikke appendere hele History Go-samlingen");
-  assert.ok(!peopleUiSource.includes("data-civi-history-person"), "People-panelet skal ikke ha fri samtaleknapp for History Go-samlingen");
-  assert.ok(peopleEngineSource.includes("available_people: []"), "uten aktiv rolle skal PeopleEngine ha tom tilgjengelig-liste");
+  // 1) Bridge eksponerer kategoribundet samling, men ikke #6121 sin frie
+  //    conversation-people API.
+  vm.runInThisContext(fs.readFileSync(bridgePath, "utf8"), { filename: bridgePath });
+  const bridge = global.CivicationHistoryPeopleBridge;
+  await bridge.load();
+  assert.strictEqual(typeof bridge.getCollectedConversationPeople, "undefined");
+  assert.strictEqual(typeof bridge.conversationFriendId, "undefined");
+  assert.strictEqual(bridge.getCollectedByCategory("kunst").length, 5);
+  assert.strictEqual(bridge.getCollectedByCategory("historie").length, 1);
+  assert.strictEqual(bridge.getCollectedByCategory("kunst").some((p) => p.id === "kunst_usamlet"), false);
 
-  // 2) Rollemail-People-laget bruker kun personer som mailen selv har koblet inn.
-  const state = setupGlobals();
-  vm.runInThisContext(source(roleMailUiPath), { filename: roleMailUiPath });
-  const ui = global.CivicationRoleMailPeopleUI;
+  // 2) PeopleEngine skal igjen være rolleavhengig. Uten aktiv rolle finnes det
+  //    ingen fri liste over History Go-personer.
+  global.CivicationState = { getActivePosition: () => null };
+  vm.runInThisContext(fs.readFileSync(peopleEnginePath, "utf8"), { filename: peopleEnginePath });
+  const noRoleState = await global.CivicationPeopleEngine.rebuildPeopleState();
+  assert.strictEqual(noRoleState.role_scope, null);
+  assert.strictEqual(noRoleState.career_id, null);
+  assert.deepStrictEqual(noRoleState.available_people, []);
 
-  const ctx = ui.getRoleMailContext("mail_kunst_formidler_01");
-  assert.ok(ctx, "aktiv rollemail skal gi People-kontekst");
-  assert.deepStrictEqual(ctx.people.map((p) => p.id), ["edvard_munch"]);
+  // PeopleUI skal heller ikke ha en fri startHistoryConversation-inngang.
+  vm.runInThisContext(fs.readFileSync(peopleUiPath, "utf8"), { filename: peopleUiPath });
+  assert.strictEqual(typeof global.CivicationPeopleUI.startHistoryConversation, "undefined");
 
-  const html = ui.buildPeopleHtml("mail_kunst_formidler_01");
-  assert.ok(html.includes("Snakk med Edvard Munch om oppgaven"));
-  assert.ok(!html.includes("Annen Person"), "samlet, men ikke mail-koblet person skal ikke vises");
+  // 3) RoleModelRuntime binder samlet People til den konkrete rollemailen.
+  //    Fem relevante personer finnes i samlingen, men mailen får maks tre.
+  global.CivicationState = { getActivePosition: () => ACTIVE };
+  vm.runInThisContext(fs.readFileSync(roleRuntimePath, "utf8"), { filename: roleRuntimePath });
 
-  // 3) Samtalen utdyper rollemailens liv/oppgave og forblir privat.
-  const started = ui.startRoleMailConversation("mail_kunst_formidler_01", "edvard_munch");
-  assert.strictEqual(started.ok, true);
-  assert.strictEqual(started.friendId, "history_go_person_edvard_munch");
+  const rawMail = {
+    id: "mail_kurator_01",
+    subject: "Velg verk til den nye utstillingen",
+    situation: ["Du må prioritere mellom sterke verk med ulike publikumsbehov."],
+    task_domain: "kuratorisk vurdering",
+    task_payload: {
+      expected_output: "Velg en begrunnet verkssammensetning"
+    },
+    role_model_refs: {
+      competence_axes: ["context_reading", "public_judgement"],
+      ideal_type_problems: ["quality_vs_access"]
+    },
+    choices: [
+      { id: "A", label: "Prioriter helhet" },
+      { id: "B", label: "Prioriter bredde" }
+    ]
+  };
 
-  const registered = state.getRegistered();
-  assert.ok(registered, "personlig melding skal registreres");
-  assert.strictEqual(registered.channel, "private");
-  assert.strictEqual(registered.type, "private");
-  assert.strictEqual(registered.source, "civication_role_mail_person");
-  assert.ok(!Object.prototype.hasOwnProperty.call(registered, "career_id"));
-  assert.ok(!Object.prototype.hasOwnProperty.call(registered, "role_scope"));
-  assert.ok(registered.body.includes("Edvard Munch"));
-  assert.ok(registered.body.includes("Formidler-rollen"));
-  assert.ok(registered.body.includes("Formidle et vanskelig verk"));
-  assert.ok(registered.body.includes("Munch arbeidet gjentatte ganger"));
-  assert.ok(registered.body.includes("Lag en kort formidling"));
-  assert.ok(registered.body.includes("Formidleren må koble faglig presisjon"));
-  assert.ok(registered.body.includes("Publikumsforståelse"));
-  assert.ok(registered.body.includes("Forenkling mot presisjon"));
+  const decorated = await global.CivicationRoleModelRuntime.decorateMail(rawMail, ACTIVE, ROLE_MODEL);
+  const linkedPeople = decorated.role_model_meta.history_people;
+  assert.strictEqual(linkedPeople.length, 3, "rollemailen har maks tre relevante History Go-personer");
+  assert.deepStrictEqual(linkedPeople.map((p) => p.id), ["kunst_person_01", "kunst_person_02", "kunst_person_03"]);
+  assert.ok(linkedPeople.every((p) => p.category === "kunst"));
+  assert.ok(linkedPeople.every((p) => p.description.startsWith("Historisk kunstperson")));
+  assert.strictEqual(linkedPeople.some((p) => p.id === historiePerson.id), false, "person fra feil rollekategori følger ikke mailen");
+  assert.strictEqual(linkedPeople.some((p) => p.id === "kunst_usamlet"), false, "usamlet person følger ikke mailen");
+  assert.strictEqual(linkedPeople[0].year, 1900);
+  assert.strictEqual(linkedPeople[0].place_id, "kunst_place_01");
 
-  const conversationArgs = state.getConversationArgs();
-  assert.strictEqual(conversationArgs.response.friendId, "history_go_person_edvard_munch");
-  assert.strictEqual(conversationArgs.context.source, "civication_role_mail_person");
-  assert.strictEqual(state.getOpened().friendId, "history_go_person_edvard_munch");
+  // 4) NextAction kan kun bruke personer som ligger på denne konkrete mailen.
+  global.CivicationMailEngine = {
+    getInbox() {
+      return [{ id: decorated.id, status: "pending", event: decorated }];
+    }
+  };
+  global.CivicationTaskEngine = {
+    getTaskByMailId(mailId) {
+      if (mailId !== decorated.id) return null;
+      return {
+        kind: "kuratorisk vurdering",
+        task_payload: { expected_output: "Velg en begrunnet verkssammensetning" }
+      };
+    }
+  };
+  global.CivicationNextActionSelector = { getCurrent: () => decorated };
+  global.CivicationCalendar = { getPhase: () => "work" };
+  global.CivicationDayProgression = { inspect: () => null };
 
-  // 4) En person som finnes i History Go-samlingen, men ikke på akkurat denne
-  //    rollemailen, kan ikke startes som samtalepartner.
-  const unrelated = ui.startRoleMailConversation("mail_kunst_formidler_01", "annen_person");
-  assert.strictEqual(unrelated.ok, false);
-  assert.strictEqual(unrelated.reason, "person_not_linked_to_role_mail");
+  vm.runInThisContext(fs.readFileSync(nextActionPath, "utf8"), { filename: nextActionPath });
+  const next = global.CivicationNextActionUI;
+  const mailPeople = next.getRoleMailHistoryPeople(decorated.id);
+  assert.strictEqual(mailPeople.length, 3);
+  assert.deepStrictEqual(mailPeople.map((p) => p.id), ["kunst_person_01", "kunst_person_02", "kunst_person_03"]);
 
-  // 5) Samme mail kan ikke brukes når aktiv rolle ikke lenger matcher mailens rolle.
-  global.CivicationCareerRoleResolver.resolveCareerRoleScope = () => "gallerist";
-  const wrongRole = ui.startRoleMailConversation("mail_kunst_formidler_01", "edvard_munch");
-  assert.strictEqual(wrongRole.ok, false);
-  assert.strictEqual(wrongRole.reason, "role_mail_people_unavailable");
+  const taskAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "task");
+  assert.ok(taskAnswer);
+  assert.strictEqual(taskAnswer.personName, "Kunstperson 01");
+  assert.ok(taskAnswer.answer.includes("Velg verk til den nye utstillingen"));
+  assert.ok(taskAnswer.answer.includes("Velg en begrunnet verkssammensetning"));
+  assert.ok(taskAnswer.answer.includes("kontekstlesning"));
+
+  const roleAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "role");
+  assert.ok(roleAnswer.answer.includes("Kurator"));
+  assert.ok(roleAnswer.answer.includes("Kuratoren vurderer kvalitet"));
+  assert.ok(roleAnswer.answer.includes("offentlig vurdering"));
+
+  const dilemmaAnswer = next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_01", "dilemma");
+  assert.ok(dilemmaAnswer.answer.includes("kvalitet mot tilgjengelighet"));
+
+  // Person 04 er samlet og i riktig kategori, men ligger ikke blant de tre som
+  // denne mailen faktisk har fått. Derfor kan ingen samtale startes via mailen.
+  assert.strictEqual(next.buildRoleMailHistoryPersonAnswer(decorated.id, "kunst_person_04", "task"), null);
+  assert.strictEqual(next.buildRoleMailHistoryPersonAnswer(decorated.id, historiePerson.id, "task"), null);
+  assert.deepStrictEqual(next.getRoleMailHistoryPeople("annen_mail"), []);
 
   console.log("civication-history-people-conversations.test.js: alle tester OK");
 }
 
-run();
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
