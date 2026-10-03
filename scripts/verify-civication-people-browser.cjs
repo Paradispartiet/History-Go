@@ -44,7 +44,7 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
         collection: localStorage.getItem('people_collected') };
     });
     assert.deepEqual(selected.people, ['munch']);
-    await page.locator(`[data-mail-id="${selected.mailId}"]`).waitFor();
+    await page.locator(`article[data-mail-id="${selected.mailId}"]`).waitFor();
     await page.getByRole('button', { name: 'Snakk med Edvard Munch', exact: true }).click();
     const conversation = page.locator('[data-civi-role-person-conversation="munch"]');
     await conversation.waitFor();
@@ -102,7 +102,7 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
         return { id: event.id, choiceCount: event.choices.length, collection: localStorage.getItem('people_collected') };
       }, { scenario, previousId: selected.mailId });
       selected.mailId = fixture.id;
-      await page.locator(`[data-mail-id="${fixture.id}"]`).waitFor();
+      await page.locator(`article[data-mail-id="${fixture.id}"]`).waitFor();
       assert.equal(await page.locator('[data-civi-role-person]').count(), 0, scenario);
       assert(fixture.choiceCount > 0, `${scenario} must retain answer choices`);
       assert.equal(await page.locator('[data-civi-next-action-answer]').count(), fixture.choiceCount, scenario);
