@@ -4,11 +4,8 @@
 // Prinsipp (hybridmodellen):
 // - Arketypene i people_access_map.json beholder mekanikken (access, scoring,
 //   social_style). Har spilleren SAMLET en History Go-person i en av arketypens
-//   `hg_categories`, kan den ekte personen vises som identitet i stedet for det
+//   `hg_categories`, vises den ekte personen som identitet i stedet for det
 //   konstruerte arketypenavnet.
-// - ALLE samlede History Go-personer eksponeres i tillegg som egne, stabile
-//   samtalepartnere. De er et personlig sosialt lag og er ikke avhengige av
-//   aktiv jobb/rolle i Civication.
 // - Hverdags-NPC-ene i mailflyten (data/Civication/npcs/**) forblir fiktive.
 // - RoleModelRuntime bruker samme oppslag til å legge samlede personer som
 //   faglige forbilder (`history_people`) på role_model_meta.
@@ -19,15 +16,13 @@
 // - data/Civication/historyPeople_index.json — generert kategoriindeks over
 //   personene (npm run civication:history-people:build).
 //
-// Alle valg er deterministiske: samme samling gir samme person per arketype og
-// samme conversation_friend_id for en historisk person på tvers av roller.
+// Alle valg er deterministiske: samme samling gir samme person per arketype.
 (function () {
   "use strict";
 
   if (window.CivicationHistoryPeopleBridge) return;
 
   const INDEX_PATH = "data/Civication/historyPeople_index.json";
-  const CONVERSATION_ID_PREFIX = "history_go_person_";
 
   let categoriesCache = null; // { [category]: LightPerson[] } eller null før load
   let loadPromise = null;
@@ -69,26 +64,6 @@
     }
   }
 
-  function snapshotPerson(person, fallbackCategory) {
-    const id = String(person?.id || "").trim();
-    if (!id) return null;
-    return {
-      id,
-      name: String(person?.name || id),
-      category: String(person?.category || fallbackCategory || ""),
-      desc: String(person?.desc || ""),
-      placeId: String(person?.placeId || ""),
-      year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
-      image: String(person?.image || ""),
-      cardImage: String(person?.cardImage || "")
-    };
-  }
-
-  function conversationFriendId(personId) {
-    const id = String(personId || "").trim();
-    return id ? CONVERSATION_ID_PREFIX + id : "";
-  }
-
   // Samlede personer i én kategori, sortert på id (deterministisk).
   // Krever at load() har fullført; før det returneres tom liste.
   function getCollectedByCategory(category) {
@@ -99,57 +74,6 @@
     return rows
       .filter((p) => collected.has(String(p?.id || "")))
       .sort((a, b) => String(a.id).localeCompare(String(b.id)));
-  }
-
-  // Hele spillerens History Go-personsamling, ikke bare personer som passer en
-  // av de generiske Civication-arketypene. Dedupliseres på canonical person-id.
-  async function getCollectedPeople() {
-    await load();
-    const collected = new Set(getCollectedIds());
-    const byId = new Map();
-
-    Object.keys(categoriesCache || {}).sort().forEach((category) => {
-      const rows = Array.isArray(categoriesCache[category]) ? categoriesCache[category] : [];
-      rows.forEach((person) => {
-        const id = String(person?.id || "").trim();
-        if (!id || !collected.has(id) || byId.has(id)) return;
-        const snapshot = snapshotPerson(person, category);
-        if (snapshot) byId.set(id, snapshot);
-      });
-    });
-
-    return Array.from(byId.values()).sort((a, b) => {
-      const byName = String(a.name).localeCompare(String(b.name), "nb");
-      return byName || String(a.id).localeCompare(String(b.id));
-    });
-  }
-
-  // Normaliserer samlede History Go-personer til selvstendige PeopleEngine-rader.
-  // excludeIds brukes når en person allerede legemliggjør en access_map-arketype,
-  // slik at samme historiske person ikke vises to ganger i samme panel.
-  async function getCollectedConversationPeople(excludeIds) {
-    const excluded = new Set(
-      (excludeIds instanceof Set ? Array.from(excludeIds) : Array.isArray(excludeIds) ? excludeIds : [])
-        .map(String)
-    );
-    const people = await getCollectedPeople();
-    return people
-      .filter((person) => !excluded.has(String(person.id)))
-      .map((person) => ({
-        id: CONVERSATION_ID_PREFIX + person.id,
-        type: "history_person",
-        name: person.name,
-        description: person.desc,
-        category: person.category,
-        source_place_id: person.placeId || null,
-        social_style: "history_go",
-        score: null,
-        hg_categories: person.category ? [person.category] : [],
-        source: "history_go_collection",
-        conversation_friend_id: conversationFriendId(person.id),
-        can_converse: true,
-        hg_person: { ...person }
-      }));
   }
 
   function stableHash(str) {
@@ -207,16 +131,22 @@
       const person = pickForArchetype(row.id, cats, usedIds);
       if (!person) return row;
       usedIds.add(String(person.id));
-      const snapshot = snapshotPerson(person, cats[0]);
 
       return {
         ...row,
         name: String(person.name || row.name),
         description: String(person.desc || row.description || ""),
         archetype_name: row.name,
-        conversation_friend_id: conversationFriendId(person.id),
-        can_converse: true,
-        hg_person: snapshot
+        hg_person: {
+          id: person.id,
+          name: person.name,
+          category: person.category,
+          desc: person.desc || "",
+          placeId: person.placeId || "",
+          year: Number.isFinite(Number(person.year)) ? Number(person.year) : null,
+          image: person.image || "",
+          cardImage: person.cardImage || ""
+        }
       };
     });
   }
@@ -233,9 +163,6 @@
     load,
     getCollectedIds,
     getCollectedByCategory,
-    getCollectedPeople,
-    getCollectedConversationPeople,
-    conversationFriendId,
     pickForArchetype,
     decorateAvailablePeople,
     inspect
