@@ -207,8 +207,9 @@
     };
   }
 
-  // Samlede History Go-personer i rollemodellens kategori — vises som faglige
-  // forbilder på mailene. Tom liste når broen mangler eller ingenting er samlet.
+  // Samlede History Go-personer i rollemodellens kategori. Disse følger den
+  // konkrete rollemailen som faglige perspektiver; de er ikke en fri kontaktliste.
+  // Maks tre per mail holder koblingen lesbar og rolleforankret.
   async function loadHistoryPeople(roleModel) {
     const bridge = window.CivicationHistoryPeopleBridge;
     const category = norm(roleModel?.category);
@@ -217,7 +218,15 @@
       await bridge.load();
       return (bridge.getCollectedByCategory(category) || [])
         .slice(0, 3)
-        .map(person => ({ id: norm(person?.id), name: norm(person?.name) }))
+        .map(person => ({
+          id: norm(person?.id),
+          name: norm(person?.name),
+          category: norm(person?.category || category),
+          description: norm(person?.desc),
+          place_id: norm(person?.placeId) || null,
+          year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
+          image: norm(person?.cardImage || person?.image) || null
+        }))
         .filter(person => person.id && person.name);
     } catch {
       return [];
