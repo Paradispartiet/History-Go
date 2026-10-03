@@ -1,4 +1,4 @@
-// Browser regression through the supported Civication.html lite-map boot, catalog, decorator,
+// Browser regression through Civication.html boot, catalog, decorator,
 // workday transport, inbox, selector and UI. Only saved game data is controlled;
 // no production function is replaced. This is not a career-unlock/playthrough test.
 const assert = require('node:assert/strict');
@@ -7,6 +7,12 @@ const fs = require('node:fs');
 
 module.exports = async function verifyPeople(browser, origin, outputDir) {
   const context = await browser.newContext({ viewport: { width: 1024, height: 768 } });
+  // The independent cold-boot run records the unbounded social-place fanout.
+  // Exercise People with the supported PLACES cache populated from the exact
+  // repository index. No network response or production function is replaced.
+  const places = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data/places/places_index.json'), 'utf8'));
+  assert(Array.isArray(places) && places.length > 0, 'Canonical place cache fixture must be an array');
+  await context.addInitScript(list => { window.PLACES = list; }, places);
   const page = await context.newPage();
   const pageErrors = [];
   const consoleErrors = [];
@@ -17,9 +23,7 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
   page.on('console', message => { if (message.type() === 'error') consoleErrors.push(message.text()); });
   page.on('requestfailed', request => failedRequests.push({ url: request.url(), error: request.failure()?.errorText }));
   try {
-    // Rich-map boot is diagnosed separately without this flag. Its resource
-    // pressure must not be mistaken for a People-contract regression.
-    await page.goto(`${origin}/Civication.html?civicationLite=1`, { waitUntil: 'load' });
+    await page.goto(`${origin}/Civication.html`, { waitUntil: 'load' });
     await page.waitForFunction(() => !!window.HG_CiviEngine
       && typeof window.CivicationRoleModelRuntime?.decorateMail === 'function'
       && typeof window.CivicationSceneCatalog?.getRoleMails === 'function'
@@ -124,7 +128,8 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
       assert.equal(await page.evaluate(() => localStorage.getItem('people_collected')), seededCollection);
     }
     assert.deepEqual(pageErrors, []);
-    return { appBootMode: 'civicationLite=1', relevantCollectedPerson: 'munch', caseQuestionSourceAndLimit: true,
+    return { appBootMode: 'rich map with canonical PLACES cache fixture', placeCacheCount: places.length,
+      relevantCollectedPerson: 'munch', caseQuestionSourceAndLimit: true,
       unrelatedPersonHidden: true, emptyBindingHidden: true, legacySavedMailHidden: true,
       resetCollectionHidden: true, collectionUnchangedByRuntime: true, answerChoicesRetained: true, pageErrors };
   } catch (error) {
@@ -134,7 +139,8 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
       selector: !!window.CivicationNextActionSelector, ui: !!window.CivicationNextActionUI,
       calendar: typeof window.CivicationCalendar?.setPhase,
       lastScripts: Array.from(document.scripts).map(script => script.src).slice(-8) })).catch(() => null);
-    console.error('People browser failure', JSON.stringify({ pageErrors, consoleErrors, failedRequests, readiness }));
+    console.error('People browser failure', JSON.stringify({ pageErrors,
+      consoleErrors: [...new Set(consoleErrors)], failedRequestCount: failedRequests.length, readiness }));
     throw error;
   } finally {
     fs.writeFileSync(path.join(outputDir, 'people-diagnostics.json'), JSON.stringify({ pageErrors, consoleErrors, failedRequests }, null, 2) + '\n');
