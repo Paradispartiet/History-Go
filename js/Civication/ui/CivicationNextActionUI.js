@@ -14,6 +14,12 @@
 
   const MODAL_ID = "civiNextActionModal";
   const BODY_ID = "civiNextActionModalBody";
+  // Keep this fail-closed scope available even when the lazy runtime fails.
+  const EXPLICIT_ART_HISTORY_ROLES = new Set([
+    "kunst_kuratering_og_program", "kunst_konservering_og_samling",
+    "kunst_utstillingsproduksjon", "kunst_kunstnerisk_ledelse",
+    "kunst_museumsledelse", "kunst_publikum_og_formidling"
+  ]);
 
   // Module-scope references so render/open/close never depend on getElementById re-parsing
   // string innerHTML — keeps the surface testable with lightweight DOM mocks.
@@ -248,7 +254,9 @@
     const ev = findInboxEventById(norm(mailId)) || {};
     // Persisted mail from before the explicit cutover has no reviewed binding.
     // Keep it answerable, but never show its former category-only person list.
-    const explicit = window.CivicationRoleModelRuntime?.usesExplicitHistoryPeople?.(ev.role_model_meta);
+    const category = norm(ev.category || ev.role_model_meta?.category);
+    const roleScope = norm(ev.role_scope || ev.role_model_meta?.role_scope);
+    const explicit = category === "kunst" && EXPLICIT_ART_HISTORY_ROLES.has(roleScope);
     if (explicit && ev.role_model_meta?.history_people_relevance?.status !== "linked") return [];
     const collected = explicit ? new Set(window.CivicationHistoryPeopleBridge?.getCollectedIds?.() || []) : null;
     const people = ev?.role_model_meta?.history_people;

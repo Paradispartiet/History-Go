@@ -229,5 +229,12 @@ function environment(compiled, options = {}) {
   assert.deepEqual(clone(ui.window.CivicationNextActionUI.getRoleMailHistoryPeople(mail.id)), [], "a restored/reset collection cannot expose a formerly collected person");
   ui.show(stale, activeFor(stale.role_scope));
   assert.deepEqual(clone(ui.window.CivicationNextActionUI.getRoleMailHistoryPeople(stale.id)), [], "persisted category-only lists stay hidden after cutover");
+  delete ui.window.CivicationRoleModelRuntime;
+  ui.setCollected(["gustav_vigeland"]);
+  for (const scope of registry.scope) {
+    const oldMail = { ...stale, role_scope: scope.role_scope, role_model_meta: { category: scope.category, role_scope: scope.role_scope, history_people: [{ id: "gustav_vigeland", name: "Gustav Vigeland" }] } };
+    ui.show(oldMail, activeFor(scope.role_scope));
+    assert.deepEqual(clone(ui.window.CivicationNextActionUI.getRoleMailHistoryPeople(oldMail.id)), [], "all explicit scopes fail closed when the lazy runtime is absent");
+  }
   console.log("civication-history-people-relevance.test.js: 90 source/workday/UI mails, scope guards, collection, rotation, build audit and both boot orders OK");
 })().catch(error => { console.error(error); process.exitCode = 1; });
