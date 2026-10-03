@@ -71,6 +71,13 @@ jobs:
       - name: Generate typecheck baseline report
         run: npm run typecheck:report
 
+      - name: Upload Civication browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civication-browser-diagnostics
+          path: reports/civication-browser/
+
       - name: Print report summary
         if: always()
         run: sed -n '1,90p' reports/typecheck-baseline-report.md
