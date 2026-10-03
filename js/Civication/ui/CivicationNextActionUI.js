@@ -14,6 +14,12 @@
 
   const MODAL_ID = "civiNextActionModal";
   const BODY_ID = "civiNextActionModalBody";
+  // Keep this fail-closed scope available even when the lazy runtime fails.
+  const EXPLICIT_ART_HISTORY_ROLES = new Set([
+    "kunst_kuratering_og_program", "kunst_konservering_og_samling",
+    "kunst_utstillingsproduksjon", "kunst_kunstnerisk_ledelse",
+    "kunst_museumsledelse", "kunst_publikum_og_formidling"
+  ]);
 
   // Module-scope references so render/open/close never depend on getElementById re-parsing
   // string innerHTML — keeps the surface testable with lightweight DOM mocks.
@@ -246,6 +252,13 @@
   // Ingen global people_collected-liste brukes som samtaleinngang her.
   function getRoleMailHistoryPeople(mailId) {
     const ev = findInboxEventById(norm(mailId)) || {};
+    // Persisted mail from before the explicit cutover has no reviewed binding.
+    // Keep it answerable, but never show its former category-only person list.
+    const category = norm(ev.category || ev.role_model_meta?.category);
+    const roleScope = norm(ev.role_scope || ev.role_model_meta?.role_scope);
+    const explicit = category === "kunst" && EXPLICIT_ART_HISTORY_ROLES.has(roleScope);
+    if (explicit && ev.role_model_meta?.history_people_relevance?.status !== "linked") return [];
+    const collected = explicit ? new Set(window.CivicationHistoryPeopleBridge?.getCollectedIds?.() || []) : null;
     const people = ev?.role_model_meta?.history_people;
     return (Array.isArray(people) ? people : [])
       .map(function (person) {
@@ -256,10 +269,11 @@
           description: norm(person?.description || person?.desc),
           place_id: norm(person?.place_id || person?.placeId) || null,
           year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
-          image: norm(person?.image) || null
+          image: norm(person?.image) || null,
+          relevance: person?.relevance || null
         };
       })
-      .filter(function (person) { return person.id && person.name; })
+      .filter(function (person) { return person.id && person.name && (!collected || collected.has(person.id)); })
       .slice(0, 3);
   }
 
@@ -322,12 +336,19 @@
         + (taskParts.join(" ") || "Les situasjonen som en konkret del av rolleutøvelsen, ikke bare som et svarvalg.");
     }
 
+    const relevance = person.relevance;
+    if (relevance?.reason && relevance?.question) {
+      const claims = (Array.isArray(relevance.evidence) ? relevance.evidence : []).map(item => norm(item?.claim)).filter(Boolean);
+      answer += " Historisk eksempel: " + claims.join(" ") + " " + norm(relevance.reason) + " Spørsmål til saken: " + norm(relevance.question);
+    }
+
     return {
       mailId: mid,
       personId: person.id,
       personName: person.name,
       questionId: qid,
       personContext: person.description,
+      evidence: Array.isArray(relevance?.evidence) ? relevance.evidence : [],
       answer: answer
     };
   }
@@ -374,6 +395,7 @@
           + "<p class=\"muted\">Dette perspektivet hører til denne rollemailen og utdyper oppgaven; det er ikke et historisk sitat.</p>"
           + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Spørsmål til rolleperspektivet\">" + questionButtons + "</div>"
           + (result?.answer ? "<div class=\"civi-task-box\" style=\"margin-top:8px;\"><div class=\"civi-task-kicker\">Perspektiv på oppgaven</div><div>" + escapeHtml(result.answer) + "</div></div>" : "")
+          + historyPeopleEvidenceHtml(result?.evidence)
           + "</div>";
       }
     }
@@ -383,6 +405,14 @@
       + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Rolleperspektiver\">" + buttons + "</div>"
       + conversation
       + "</section>";
+  }
+
+  function historyPeopleEvidenceHtml(evidence) {
+    return (Array.isArray(evidence) ? evidence : []).map(function (item) {
+      const links = (Array.isArray(item?.sources) ? item.sources : []).filter(source => /^https:\/\//.test(norm(source?.url)));
+      return "<p class=\"muted\">" + escapeHtml(item?.application_limit || "") + "</p>"
+        + (links.length ? "<p>Kilde: " + links.map(source => "<a href=\"" + escapeHtml(source.url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHtml(source.title || source.id) + "</a>").join(" · ") + "</p>" : "");
+    }).join("");
   }
 
   function bodyLines(action) {

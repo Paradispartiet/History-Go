@@ -46,6 +46,38 @@ Den skal beskrive blant annet:
 
 En generisk Badge-generert roleModel er ikke automatisk en full rollebibel. For `role_world_complete` kreves den rikere sosiale modellen i Role World-standarden.
 
+### History Go-personer på konkrete kunstmailer
+
+`historyPeople_relevance_v1.json` eier de eksplisitte koblingene for de seks
+avanserte kunstrollene i registerets `scope`. Hver original mail-ID har én
+vurdert binding med rolle, oppgavedomene, scenarioaktør og mailens arbeidsflate.
+`related_people`, `people_ref` og `people_connections` er fortsatt Civication-
+aktørreferanser; de er ikke History Go-person-ID-er.
+
+Et historisk eksempel har eksakt History Go-ID, kildebelagt påstand og en
+avgrensning av hva eksemplet kan brukes til. Mailbindingen legger til en
+redaksjonell begrunnelse og et oppgavespesifikt spørsmål. Tom personliste er
+et vurdert resultat. I disse seks rollene brukes ingen kategorifallback.
+Andre roller beholder sin tidligere kontrakt inntil de er kartlagt separat.
+
+SceneCatalog dekorerer rollemailen før arbeids-/dagsbyggeren endrer instans-ID.
+RoleModelRuntime bruker `source_mail_id`, ellers `daily_mail_meta.source_mail_id`,
+ellers eksakt `id`. Motstridende source-ID-er eller avvikende oppgavekontekst
+gir tom liste. Bare eksplisitt koblede **samlede** personer er valgbare; maks
+tre og deterministisk dagrotasjon gjelder innenfor denne mengden.
+
+Output er fortsatt `role_model_meta.history_people`, med kilde-/begrunnelsesdata
+i `relevance` og status i `history_people_relevance`. NextAction leser bare denne
+mailens liste. Lagrede kategorilister uten den nye bindingstatusen skjules;
+mailer som allerede er lagret, kan fortsatt besvares og får nye koblinger når
+de bygges på nytt. History Go-samlingen leses, men skrives ikke fra Civication.
+
+Kjør `node scripts/audit-civication-history-people-relevance.mjs` og
+`node tests/civication-history-people-relevance.test.js` etter kildeendringer.
+Auditen krever full scoped maildekning, gyldige person-/case-/kildereferanser
+og compilerens uendrede `source_hash`; endret kildemail krever ny vurdering.
+Testen kjøres også av den komplette Civication-suiten.
+
 ## Hva FWG/work grammar eier
 
 FWG beskriver arbeidets grammatikk: oppgaver, actors, steder, praksisfortellinger, kvalitet, risiko og mulige variasjoner. Det er et authored produksjonslag som kan materialisere work-scenes.

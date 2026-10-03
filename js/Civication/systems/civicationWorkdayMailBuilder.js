@@ -429,11 +429,16 @@
       }
       return out;
     }
-    async function decorateMails(mails) {
+    async function decorateMails(mails, active) {
       const list = Array.isArray(mails) ? mails : [];
       const bridge = window.CivicationCareerKnowledgeBridge;
-      if (typeof bridge?.decorateMail !== "function") return list;
-      return Promise.all(list.map((mail) => bridge.decorateMail(mail)));
+      const roleRuntime = window.CivicationRoleModelRuntime;
+      return Promise.all(list.map(async (mail) => {
+        const enriched = typeof bridge?.decorateMail === "function" ? await bridge.decorateMail(mail) : mail;
+        return typeof roleRuntime?.decorateMail === "function"
+          ? roleRuntime.decorateMail(enriched, active)
+          : enriched;
+      }));
     }
     async function getRoleMails(active, state = getState(), options = {}) {
       const category = norm(active?.career_id);
@@ -460,6 +465,7 @@
             ? projection.situation.map(norm).filter(Boolean)
             : [norm(projection.summary)].filter(Boolean),
           scene_catalog_source_path: norm(entry.source_path || projection.scene_catalog_source_path),
+          scene_catalog_source_hash: norm(entry.source_hash),
           scene_catalog_version: SCENE_CATALOG_VERSION
         });
       });
@@ -469,7 +475,7 @@
         if (!mailBrandId) return true;
         return !!activeBrandId && mailBrandId === activeBrandId;
       });
-      const mails = (await decorateMails(brandFiltered)).map(decorateSceneInteraction);
+      const mails = (await decorateMails(brandFiltered, active)).map(decorateSceneInteraction);
       catalogTrace.push({
         at: new Date().toISOString(),
         consumer: norm(options.consumer || "scene_director") || "scene_director",

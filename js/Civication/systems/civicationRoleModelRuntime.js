@@ -10,7 +10,15 @@
 
   const PATCHED_FLAG = "__civicationRoleModelRuntimePatched";
   const CACHE = new Map();
+  const INFLIGHT = new Map();
   const MANIFEST_PATH = "data/Civication/roleModels/manifest.json";
+  const RELEVANCE_PATH = "data/Civication/historyPeople_relevance_v1.json";
+  // Fail-closed scope remains known even if the relevance file fails to load.
+  const EXPLICIT_ART_ROLES = new Set([
+    "kunst_kuratering_og_program", "kunst_konservering_og_samling",
+    "kunst_utstillingsproduksjon", "kunst_kunstnerisk_ledelse",
+    "kunst_museumsledelse", "kunst_publikum_og_formidling"
+  ]);
 
   function norm(value) {
     return String(value || "").trim();
@@ -87,22 +95,26 @@
     const p = norm(path);
     if (!p) return null;
     if (CACHE.has(p)) return CACHE.get(p);
+    if (INFLIGHT.has(p)) return INFLIGHT.get(p);
+    const pending = (async () => {
+      try {
+        const res = await fetch(p, { cache: "no-store" });
+        if (!res.ok) {
+          CACHE.set(p, null);
+          return null;
+        }
 
-    try {
-      const res = await fetch(p, { cache: "no-store" });
-      if (!res.ok) {
+        const json = await res.json();
+        CACHE.set(p, json);
+        return json;
+      } catch (error) {
+        if (window.DEBUG) console.warn("[CivicationRoleModelRuntime] kunne ikke laste", p, error);
         CACHE.set(p, null);
         return null;
       }
-
-      const json = await res.json();
-      CACHE.set(p, json);
-      return json;
-    } catch (error) {
-      if (window.DEBUG) console.warn("[CivicationRoleModelRuntime] kunne ikke laste", p, error);
-      CACHE.set(p, null);
-      return null;
-    }
+    })();
+    INFLIGHT.set(p, pending);
+    try { return await pending; } finally { INFLIGHT.delete(p); }
   }
 
   async function loadManifestSet() {
@@ -237,7 +249,7 @@
       .filter(person => norm(person?.id) && norm(person?.name));
     if (rows.length <= 3) return rows;
 
-    const mailIdentity = norm(mail?.id || mail?.mail_key || mail?.task_id || mail?.subject || "mail");
+    const mailIdentity = norm(mail?.source_mail_id || mail?.daily_mail_meta?.source_mail_id || mail?.id || mail?.mail_key || mail?.task_id || mail?.subject || "mail");
     const seed = [
       norm(roleModel?.category),
       norm(roleModel?.role_scope),
@@ -277,7 +289,83 @@
     }
   }
 
-  function buildRoleModelMeta(roleModel, refs, historyPeople) {
+  function usesExplicitHistoryPeople(roleModel) {
+    return norm(roleModel?.category) === "kunst" && EXPLICIT_ART_ROLES.has(norm(roleModel?.role_scope));
+  }
+
+  async function loadExplicitHistoryPeople(model, mail, active) {
+    const sourceId = norm(mail?.source_mail_id);
+    const dailySourceId = norm(mail?.daily_mail_meta?.source_mail_id);
+    const identity = sourceId || dailySourceId || norm(mail?.id);
+    const result = (status, people = []) => ({ people, diagnostic: { status, source_mail_id: identity || null } });
+    if (sourceId && dailySourceId && sourceId !== dailySourceId) return result("conflicting_source_ids");
+    const category = norm(model.category), roleScope = norm(model.role_scope);
+    const activeCategory = norm(active?.career_id);
+    const activeScope = resolveCanonicalRoleScope(active) || norm(active?.role_scope);
+    if (!identity || norm(mail?.category) !== category || norm(mail?.role_scope) !== roleScope ||
+        (activeCategory && activeCategory !== category) || (activeScope && activeScope !== roleScope)) {
+      return result("context_mismatch");
+    }
+    const registry = await loadJson(RELEVANCE_PATH);
+    if (registry?.schema !== "civication_history_people_relevance_v1" || registry?.version !== 1 ||
+        !Array.isArray(registry?.bindings) || !Array.isArray(registry?.cases) || !Array.isArray(registry?.sources) ||
+        !Array.isArray(registry?.scope) || !registry.scope.some(row => row.category === category && row.role_scope === roleScope)) {
+      return result("registry_unavailable");
+    }
+    const matches = registry.bindings.filter(row => row.category === category && row.role_scope === roleScope && row.mail_id === identity);
+    if (matches.length !== 1) return result("missing_or_duplicate_binding");
+    const binding = matches[0];
+    if (["task_domain", "place_id", "people_ref"].some(key => !norm(binding[key]) || norm(mail?.[key]) !== norm(binding[key])) ||
+        (mail?.scene_catalog_source_path && (norm(mail.scene_catalog_source_path) !== norm(binding.source_path) ||
+          norm(mail.scene_catalog_source_hash) !== norm(binding.source_hash))) ||
+        (mail?.scene_catalog_source_hash && norm(mail.scene_catalog_source_hash) !== norm(binding.source_hash))) {
+      return result("context_mismatch");
+    }
+    if (!Array.isArray(binding.people)) return result("invalid_binding");
+    if (binding.review_status === "no_supported_link" && !binding.people.length) return result("no_supported_link");
+    if (binding.review_status !== "linked" || !binding.people.length) return result("invalid_binding");
+    const bridge = window.CivicationHistoryPeopleBridge;
+    if (!bridge?.load || !bridge?.getPersonById || !bridge?.getCollectedByIds) return result("index_unavailable");
+    try {
+      await bridge.load();
+      const relevantById = new Map();
+      for (const link of binding.people) {
+        const personId = norm(link?.person_id);
+        const person = bridge.getPersonById(personId);
+        if (!person || norm(person.category) !== category || relevantById.has(personId) ||
+            !norm(link.reason) || !norm(link.question) || !Array.isArray(link.case_ids) || !link.case_ids.length) return result("invalid_binding");
+        const evidence = [];
+        for (const caseId of link.case_ids) {
+          const cases = registry.cases.filter(row => row.id === caseId && row.person_id === personId);
+          const item = cases[0];
+          if (cases.length !== 1 || !norm(item.verified_claim) || !norm(item.application_limit) ||
+              !Array.isArray(item.source_ids) || !item.source_ids.length) return result("invalid_binding");
+          const sources = [];
+          for (const source of item.source_ids) {
+            const found = registry.sources.filter(row => row.id === source);
+            if (found.length !== 1 || !/^https:\/\//.test(norm(found[0].url))) return result("invalid_binding");
+            sources.push({ id: found[0].id, title: norm(found[0].title), url: found[0].url });
+          }
+          evidence.push({ id: item.id, claim: item.verified_claim, application_limit: item.application_limit, sources });
+        }
+        relevantById.set(personId, { case_ids: [...link.case_ids], reason: link.reason, question: link.question, evidence });
+      }
+      const collected = bridge.getCollectedByIds([...relevantById.keys()]);
+      const selected = selectHistoryPeopleForMail(collected, model, { ...mail, source_mail_id: identity });
+      const people = selected.map(person => ({
+        id: person.id, name: person.name, category: person.category,
+        description: norm(person.desc), place_id: norm(person.placeId) || null,
+        year: Number.isFinite(Number(person.year)) ? Number(person.year) : null,
+        image: norm(person.cardImage || person.image) || null,
+        relevance: relevantById.get(person.id)
+      }));
+      return result(people.length ? "linked" : "no_collected_candidate", people);
+    } catch {
+      return result("index_unavailable");
+    }
+  }
+
+  function buildRoleModelMeta(roleModel, refs, historyPeople, diagnostic = null) {
     if (!roleModel) return null;
 
     const normalizedRefs = normalizeRoleModelRefs(refs);
@@ -298,6 +386,7 @@
       selected_ideal_type_problems: pickByIds(roleModel.ideal_type_problems, normalizedRefs.ideal_type_problems),
       people_connections: uniqueStrings(roleModel.required_knowledge?.people_connections),
       history_people: Array.isArray(historyPeople) ? historyPeople : [],
+      ...(diagnostic ? { history_people_relevance: diagnostic } : {}),
       refs: normalizedRefs
     };
   }
@@ -306,11 +395,22 @@
     if (!mail || typeof mail !== "object") return mail;
 
     const model = roleModel || await loadRoleModel(active);
-    if (!model) return mail;
+    if (!model) {
+      const scope = resolveCanonicalRoleScope(active) || norm(active?.role_scope || mail.role_scope);
+      const category = norm(active?.career_id || mail.category);
+      if (!usesExplicitHistoryPeople({ category, role_scope: scope })) return mail;
+      return { ...mail, role_model_meta: {
+        ...(mail.role_model_meta || {}), category, role_scope: scope, history_people: [],
+        history_people_relevance: { status: "role_model_unavailable", source_mail_id: norm(mail.source_mail_id || mail.id) || null }
+      } };
+    }
 
     const refs = normalizeRoleModelRefs(mail.role_model_refs);
-    const historyPeople = await loadHistoryPeople(model, mail);
-    const roleModelMeta = buildRoleModelMeta(model, refs, historyPeople);
+    const explicit = usesExplicitHistoryPeople(model)
+      ? await loadExplicitHistoryPeople(model, mail, active)
+      : null;
+    const historyPeople = explicit ? explicit.people : await loadHistoryPeople(model, mail);
+    const roleModelMeta = buildRoleModelMeta(model, refs, historyPeople, explicit?.diagnostic);
 
     return {
       ...mail,
@@ -395,6 +495,7 @@
     loadRoleModel,
     decorateMail,
     decoratePack,
+    usesExplicitHistoryPeople,
     resolveRoleModelPath,
     resolveLegacyRoleScope,
     resolveSluggedRoleScope,
