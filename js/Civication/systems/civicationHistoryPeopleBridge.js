@@ -26,6 +26,7 @@
 
   let categoriesCache = null; // { [category]: LightPerson[] } eller null før load
   let loadPromise = null;
+  let peopleById = null;
 
   async function load() {
     if (categoriesCache) return categoriesCache;
@@ -44,6 +45,13 @@
       }
       const categories = json?.categories;
       categoriesCache = categories && typeof categories === "object" ? categories : {};
+      peopleById = new Map();
+      for (const rows of Object.values(categoriesCache)) {
+        for (const person of Array.isArray(rows) ? rows : []) {
+          const id = String(person?.id || "").trim();
+          if (id) peopleById.set(id, person);
+        }
+      }
       return categoriesCache;
     })();
 
@@ -73,6 +81,21 @@
     const collected = new Set(getCollectedIds());
     return rows
       .filter((p) => collected.has(String(p?.id || "")))
+      .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+  }
+
+  // Eksakt ID-oppslag for eksplisitt mailrelevans. Samlingen leses ved hvert
+  // kall; nye innsamlinger krever ikke at indekscachen lastes på nytt.
+  function getPersonById(id) {
+    return peopleById?.get(String(id || "").trim()) || null;
+  }
+
+  function getCollectedByIds(ids) {
+    const collected = new Set(getCollectedIds());
+    return [...new Set((Array.isArray(ids) ? ids : []).map(id => String(id || "").trim()))]
+      .filter(id => id && collected.has(id))
+      .map(getPersonById)
+      .filter(Boolean)
       .sort((a, b) => String(a.id).localeCompare(String(b.id)));
   }
 
@@ -163,6 +186,8 @@
     load,
     getCollectedIds,
     getCollectedByCategory,
+    getPersonById,
+    getCollectedByIds,
     pickForArchetype,
     decorateAvailablePeople,
     inspect

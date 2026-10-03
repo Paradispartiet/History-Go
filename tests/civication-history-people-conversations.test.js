@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 // Verifiserer den korrigerte People-kontrakten:
 // - History Go-personer er ikke en fri/rolleuavhengig kontaktliste.
-// - RoleModelRuntime velger maks tre samlede personer fra rollens kategori og
+// - Den eldre, ikke-kartlagte kurator-fixturen beholder kategorikontrakten:
+//   RoleModelRuntime velger maks tre samlede personer fra rollens kategori og
 //   legger dem på den konkrete rollemailen som role_model_meta.history_people.
 // - Utvalget roterer deterministisk mellom dager, slik at hele den relevante
 //   samlingen kan komme frem uten å gjøre hver mail til en lang kontaktliste.
 // - NextAction kan bare bruke personer som faktisk finnes på den aktive mailen,
 //   og perspektivet utdyper oppgave, rolle og dilemma.
+// Eksplisitt mailrelevans for de seks avanserte kunstrollene testes separat i
+// civication-history-people-relevance.test.js.
 
 const assert = require("assert");
 const fs = require("fs");

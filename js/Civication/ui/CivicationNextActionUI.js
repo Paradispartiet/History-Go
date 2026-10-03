@@ -246,6 +246,11 @@
   // Ingen global people_collected-liste brukes som samtaleinngang her.
   function getRoleMailHistoryPeople(mailId) {
     const ev = findInboxEventById(norm(mailId)) || {};
+    // Persisted mail from before the explicit cutover has no reviewed binding.
+    // Keep it answerable, but never show its former category-only person list.
+    const explicit = window.CivicationRoleModelRuntime?.usesExplicitHistoryPeople?.(ev.role_model_meta);
+    if (explicit && ev.role_model_meta?.history_people_relevance?.status !== "linked") return [];
+    const collected = explicit ? new Set(window.CivicationHistoryPeopleBridge?.getCollectedIds?.() || []) : null;
     const people = ev?.role_model_meta?.history_people;
     return (Array.isArray(people) ? people : [])
       .map(function (person) {
@@ -256,10 +261,11 @@
           description: norm(person?.description || person?.desc),
           place_id: norm(person?.place_id || person?.placeId) || null,
           year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
-          image: norm(person?.image) || null
+          image: norm(person?.image) || null,
+          relevance: person?.relevance || null
         };
       })
-      .filter(function (person) { return person.id && person.name; })
+      .filter(function (person) { return person.id && person.name && (!collected || collected.has(person.id)); })
       .slice(0, 3);
   }
 
@@ -322,12 +328,19 @@
         + (taskParts.join(" ") || "Les situasjonen som en konkret del av rolleutøvelsen, ikke bare som et svarvalg.");
     }
 
+    const relevance = person.relevance;
+    if (relevance?.reason && relevance?.question) {
+      const claims = (Array.isArray(relevance.evidence) ? relevance.evidence : []).map(item => norm(item?.claim)).filter(Boolean);
+      answer += " Historisk eksempel: " + claims.join(" ") + " " + norm(relevance.reason) + " Spørsmål til saken: " + norm(relevance.question);
+    }
+
     return {
       mailId: mid,
       personId: person.id,
       personName: person.name,
       questionId: qid,
       personContext: person.description,
+      evidence: Array.isArray(relevance?.evidence) ? relevance.evidence : [],
       answer: answer
     };
   }
@@ -374,6 +387,7 @@
           + "<p class=\"muted\">Dette perspektivet hører til denne rollemailen og utdyper oppgaven; det er ikke et historisk sitat.</p>"
           + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Spørsmål til rolleperspektivet\">" + questionButtons + "</div>"
           + (result?.answer ? "<div class=\"civi-task-box\" style=\"margin-top:8px;\"><div class=\"civi-task-kicker\">Perspektiv på oppgaven</div><div>" + escapeHtml(result.answer) + "</div></div>" : "")
+          + historyPeopleEvidenceHtml(result?.evidence)
           + "</div>";
       }
     }
@@ -383,6 +397,14 @@
       + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Rolleperspektiver\">" + buttons + "</div>"
       + conversation
       + "</section>";
+  }
+
+  function historyPeopleEvidenceHtml(evidence) {
+    return (Array.isArray(evidence) ? evidence : []).map(function (item) {
+      const links = (Array.isArray(item?.sources) ? item.sources : []).filter(source => /^https:\/\//.test(norm(source?.url)));
+      return "<p class=\"muted\">" + escapeHtml(item?.application_limit || "") + "</p>"
+        + (links.length ? "<p>Kilde: " + links.map(source => "<a href=\"" + escapeHtml(source.url) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" + escapeHtml(source.title || source.id) + "</a>").join(" · ") + "</p>" : "");
+    }).join("");
   }
 
   function bodyLines(action) {
