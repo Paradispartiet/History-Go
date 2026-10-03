@@ -207,17 +207,70 @@
     };
   }
 
-  // Samlede History Go-personer i rollemodellens kategori — vises som faglige
-  // forbilder på mailene. Tom liste når broen mangler eller ingenting er samlet.
-  async function loadHistoryPeople(roleModel) {
+  function stableHash(value) {
+    const text = String(value || "");
+    let hash = 0;
+    for (let i = 0; i < text.length; i += 1) {
+      hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
+    }
+    return Math.abs(hash);
+  }
+
+  function resolveHistoryPeopleDayIndex(mail) {
+    const candidates = [
+      mail?.daily_mail_meta?.dayIndex,
+      mail?.daily_mail_meta?.day_index,
+      mail?.dayIndex,
+      mail?.day_index,
+      window.CivicationCalendar?.getPhaseModel?.()?.dayIndex,
+      window.CivicationCalendar?.getDisplayModel?.()?.dayIndex
+    ];
+    for (const value of candidates) {
+      const n = Number(value);
+      if (Number.isFinite(n) && n >= 1) return Math.floor(n);
+    }
+    return 1;
+  }
+
+  function selectHistoryPeopleForMail(people, roleModel, mail) {
+    const rows = (Array.isArray(people) ? people : [])
+      .filter(person => norm(person?.id) && norm(person?.name));
+    if (rows.length <= 3) return rows;
+
+    const mailIdentity = norm(mail?.id || mail?.mail_key || mail?.task_id || mail?.subject || "mail");
+    const seed = [
+      norm(roleModel?.category),
+      norm(roleModel?.role_scope),
+      mailIdentity
+    ].join("|");
+    const baseStart = stableHash(seed) % rows.length;
+    const dayOffset = (resolveHistoryPeopleDayIndex(mail) - 1) * 3;
+    const start = (baseStart + dayOffset) % rows.length;
+
+    return [0, 1, 2].map(offset => rows[(start + offset) % rows.length]);
+  }
+
+  // Samlede History Go-personer i rollemodellens kategori. Disse følger den
+  // konkrete rollemailen som faglige perspektiver; de er ikke en fri kontaktliste.
+  // Maks tre per mail holder koblingen lesbar. Utvalget roterer deterministisk
+  // mellom mailer/dager, slik at hele den relevante samlingen kan komme frem over tid.
+  async function loadHistoryPeople(roleModel, mail) {
     const bridge = window.CivicationHistoryPeopleBridge;
     const category = norm(roleModel?.category);
     if (!bridge?.load || !category) return [];
     try {
       await bridge.load();
-      return (bridge.getCollectedByCategory(category) || [])
-        .slice(0, 3)
-        .map(person => ({ id: norm(person?.id), name: norm(person?.name) }))
+      const relevant = bridge.getCollectedByCategory(category) || [];
+      return selectHistoryPeopleForMail(relevant, roleModel, mail)
+        .map(person => ({
+          id: norm(person?.id),
+          name: norm(person?.name),
+          category: norm(person?.category || category),
+          description: norm(person?.desc),
+          place_id: norm(person?.placeId) || null,
+          year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
+          image: norm(person?.cardImage || person?.image) || null
+        }))
         .filter(person => person.id && person.name);
     } catch {
       return [];
@@ -256,7 +309,7 @@
     if (!model) return mail;
 
     const refs = normalizeRoleModelRefs(mail.role_model_refs);
-    const historyPeople = await loadHistoryPeople(model);
+    const historyPeople = await loadHistoryPeople(model, mail);
     const roleModelMeta = buildRoleModelMeta(model, refs, historyPeople);
 
     return {

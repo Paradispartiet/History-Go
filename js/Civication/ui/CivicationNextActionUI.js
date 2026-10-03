@@ -23,6 +23,7 @@
   let pendingRefresh = false;
   let answerDebugContext = null;
   let queuedUpdateFrame = 0;
+  let roleMailPersonState = { mailId: "", personId: "", questionId: "" };
 
   function perfMark(name) {
     try { if (window.DEBUG && window.performance?.mark) window.performance.mark(name); } catch (_e) {}
@@ -218,19 +219,170 @@
     return "<div class=\"civi-next-action-meta muted\">" + parts.map(escapeHtml).join(" · ") + "</div>";
   }
 
-  // Samlede History Go-personer i rollens kategori (satt av RoleModelRuntime
-  // som role_model_meta.history_people). Vises som faglige forbilder på mailen.
-  function historyPeopleLine(action) {
-    const ev = findInboxEventById(String(action?.id || "")) || {};
-    const people = ev?.role_model_meta?.history_people;
-    if (!Array.isArray(people) || !people.length) return "";
-    const names = people
-      .map(function (person) { return String(person?.name || "").trim(); })
+  function findInboxEventById(mailId) {
+    const inbox = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || [];
+    const item = Array.isArray(inbox)
+      ? inbox.find(function (row) {
+        const ev = row?.event || row || {};
+        return String(row?.id || ev?.id || "").trim() === mailId || String(ev?.id || "").trim() === mailId;
+      })
+      : null;
+    return item?.event || item || null;
+  }
+
+  function roleMetaText(item) {
+    if (typeof item === "string") return norm(item);
+    return norm(item?.label || item?.title || item?.name || item?.description || item?.text || item?.id);
+  }
+
+  function roleMetaTexts(items, limit) {
+    return (Array.isArray(items) ? items : [])
+      .map(roleMetaText)
       .filter(Boolean)
+      .slice(0, Number(limit) || 2);
+  }
+
+  // Personer er alltid hentet fra den konkrete rollemailens role_model_meta.
+  // Ingen global people_collected-liste brukes som samtaleinngang her.
+  function getRoleMailHistoryPeople(mailId) {
+    const ev = findInboxEventById(norm(mailId)) || {};
+    const people = ev?.role_model_meta?.history_people;
+    return (Array.isArray(people) ? people : [])
+      .map(function (person) {
+        return {
+          id: norm(person?.id),
+          name: norm(person?.name),
+          category: norm(person?.category),
+          description: norm(person?.description || person?.desc),
+          place_id: norm(person?.place_id || person?.placeId) || null,
+          year: Number.isFinite(Number(person?.year)) ? Number(person.year) : null,
+          image: norm(person?.image) || null
+        };
+      })
+      .filter(function (person) { return person.id && person.name; })
       .slice(0, 3);
-    if (!names.length) return "";
-    return "<div class=\"civi-next-action-meta muted\">🎓 Forbilder fra samlingen din: "
-      + names.map(escapeHtml).join(", ") + "</div>";
+  }
+
+  function findRoleMailHistoryPerson(mailId, personId) {
+    const pid = norm(personId);
+    if (!pid) return null;
+    return getRoleMailHistoryPeople(mailId).find(function (person) { return person.id === pid; }) || null;
+  }
+
+  function roleMailSituationText(ev) {
+    if (Array.isArray(ev?.situation)) {
+      const joined = ev.situation.map(norm).filter(Boolean).join(" ");
+      if (joined) return joined;
+    }
+    return norm(ev?.situation || ev?.body || ev?.summary || ev?.message);
+  }
+
+  // Bygger et deterministisk faglig svar av eksisterende rolle-/mailmetadata.
+  // Personen brukes som historisk perspektivanker; teksten utgir seg ikke for
+  // å være et autentisk sitat fra den historiske personen.
+  function buildRoleMailHistoryPersonAnswer(mailId, personId, questionId) {
+    const mid = norm(mailId);
+    const person = findRoleMailHistoryPerson(mid, personId);
+    if (!person) return null;
+
+    const ev = findInboxEventById(mid) || {};
+    const meta = ev.role_model_meta || {};
+    const task = window.CivicationTaskEngine?.getTaskByMailId?.(mid) || null;
+    const payload = ev.task_payload || task?.task_payload || {};
+    const subject = norm(ev.subject || ev.title || "denne oppgaven");
+    const roleTitle = norm(meta.title || getActiveRole()?.title || "rollen");
+    const expected = norm(task?.task_payload?.expected_output || payload.expected_output);
+    const domain = norm(ev.task_domain || task?.kind || ev.task_kind);
+    const situation = roleMailSituationText(ev);
+    const professional = roleMetaTexts(meta.professional_description, 2);
+    const competence = roleMetaTexts(meta.selected_competence_axes, 2);
+    const dilemmas = roleMetaTexts(meta.selected_ideal_type_problems, 2);
+    const connections = roleMetaTexts(meta.people_connections, 2);
+    const qid = ["task", "role", "dilemma"].includes(norm(questionId)) ? norm(questionId) : "task";
+
+    let answer = "";
+    if (qid === "role") {
+      const roleParts = [];
+      if (professional.length) roleParts.push(professional.join(" "));
+      if (competence.length) roleParts.push("Her trener du særlig: " + competence.join("; ") + ".");
+      if (connections.length) roleParts.push("Rollen er også knyttet til: " + connections.join(", ") + ".");
+      answer = "I rollen «" + roleTitle + "» er dette en del av arbeidslivet bak mailen. "
+        + (roleParts.join(" ") || "Se på hva situasjonen krever av ansvar, vurdering og faglig skjønn.");
+    } else if (qid === "dilemma") {
+      answer = dilemmas.length
+        ? "Det sentrale dilemmaet i denne rollen kan leses gjennom: " + dilemmas.join("; ") + ". Se hvordan valget ditt i «" + subject + "» treffer disse spenningene."
+        : "Se etter spenningen mellom det oppgaven ber deg levere, hvem som berøres, og hvilket ansvar rollen faktisk gir deg i «" + subject + "».";
+    } else {
+      const taskParts = [];
+      if (expected) taskParts.push("Forventet leveranse er: " + expected + ".");
+      else if (situation) taskParts.push(situation);
+      if (domain) taskParts.push("Arbeidstype: " + domain + ".");
+      if (competence.length) taskParts.push("Det viktigste å legge merke til faglig er " + competence.join(" og ") + ".");
+      answer = "I «" + subject + "» bør du først forstå hva jobben faktisk krever. "
+        + (taskParts.join(" ") || "Les situasjonen som en konkret del av rolleutøvelsen, ikke bare som et svarvalg.");
+    }
+
+    return {
+      mailId: mid,
+      personId: person.id,
+      personName: person.name,
+      questionId: qid,
+      personContext: person.description,
+      answer: answer
+    };
+  }
+
+  function historyPeopleSection(action) {
+    const mailId = norm(action?.id);
+    if (!mailId) return "";
+    const people = getRoleMailHistoryPeople(mailId);
+    if (!people.length) return "";
+
+    if (roleMailPersonState.mailId && roleMailPersonState.mailId !== mailId) {
+      roleMailPersonState = { mailId: "", personId: "", questionId: "" };
+    }
+
+    const buttons = people.map(function (person) {
+      return "<button class=\"civi-btn secondary\" type=\"button\" data-civi-role-person=\"1\" data-mail-id=\""
+        + escapeHtml(mailId) + "\" data-person-id=\"" + escapeHtml(person.id) + "\">Snakk med "
+        + escapeHtml(person.name) + "</button>";
+    }).join(" ");
+
+    let conversation = "";
+    if (roleMailPersonState.mailId === mailId && roleMailPersonState.personId) {
+      const person = findRoleMailHistoryPerson(mailId, roleMailPersonState.personId);
+      if (person) {
+        const questionId = roleMailPersonState.questionId || "task";
+        const result = buildRoleMailHistoryPersonAnswer(mailId, person.id, questionId);
+        const personMeta = [person.category, person.year].filter(Boolean).join(" · ");
+        const questionButtons = [
+          ["task", "Hva betyr oppgaven?"],
+          ["role", "Hva må jeg forstå om rollen?"],
+          ["dilemma", "Hvor ligger dilemmaet?"]
+        ].map(function (entry) {
+          const selected = entry[0] === questionId ? " aria-pressed=\"true\"" : "";
+          return "<button class=\"civi-btn secondary\" type=\"button\" data-civi-role-person-question=\""
+            + entry[0] + "\" data-mail-id=\"" + escapeHtml(mailId) + "\" data-person-id=\""
+            + escapeHtml(person.id) + "\"" + selected + ">" + entry[1] + "</button>";
+        }).join(" ");
+
+        conversation = "<div class=\"civi-next-action-task-sheet\" data-civi-role-person-conversation=\""
+          + escapeHtml(person.id) + "\">"
+          + "<div class=\"civi-task-kicker\">Samtale med " + escapeHtml(person.name) + "</div>"
+          + (personMeta ? "<div class=\"civi-next-action-meta muted\">" + escapeHtml(personMeta) + "</div>" : "")
+          + (person.description ? "<p>" + escapeHtml(person.description) + "</p>" : "")
+          + "<p class=\"muted\">Dette perspektivet hører til denne rollemailen og utdyper oppgaven; det er ikke et historisk sitat.</p>"
+          + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Spørsmål til rolleperspektivet\">" + questionButtons + "</div>"
+          + (result?.answer ? "<div class=\"civi-task-box\" style=\"margin-top:8px;\"><div class=\"civi-task-kicker\">Perspektiv på oppgaven</div><div>" + escapeHtml(result.answer) + "</div></div>" : "")
+          + "</div>";
+      }
+    }
+
+    return "<section class=\"civi-next-action-role-people\" style=\"margin:10px 0;\">"
+      + "<div class=\"civi-next-action-meta muted\">Personer fra History Go som er relevante for denne rollen:</div>"
+      + "<div class=\"civi-next-action-choices\" role=\"group\" aria-label=\"Rolleperspektiver\">" + buttons + "</div>"
+      + conversation
+      + "</section>";
   }
 
   function bodyLines(action) {
@@ -287,17 +439,6 @@
 
   // Hvilken task-gate som viser oppgavearket sitt inline (én om gangen).
   let expandedTaskGateId = "";
-
-  function findInboxEventById(mailId) {
-    const inbox = window.CivicationMailEngine?.getInbox?.() || window.CivicationState?.getInbox?.() || [];
-    const item = Array.isArray(inbox)
-      ? inbox.find(function (row) {
-        const ev = row?.event || row || {};
-        return String(row?.id || ev?.id || "").trim() === mailId || String(ev?.id || "").trim() === mailId;
-      })
-      : null;
-    return item?.event || item || null;
-  }
 
   function buildTaskGateSheetHtml(action, mailId) {
     const ev = findInboxEventById(mailId) || {};
@@ -461,7 +602,7 @@
       + "<article class=\"civi-next-action-card\" data-mail-id=\"" + escapeHtml(action.id) + "\">"
       + "<h3 class=\"civi-next-action-subject\">" + escapeHtml(action.subject) + "</h3>"
       + metaLine(action)
-      + historyPeopleLine(action)
+      + historyPeopleSection(action)
       + (lines.length ? "<div class=\"civi-next-action-body\">" + lines.map(function (line) {
         return "<p>" + escapeHtml(line) + "</p>";
       }).join("") + "</div>" : "")
@@ -741,6 +882,30 @@
         return;
       }
 
+      const personBtn = target.closest("[data-civi-role-person]");
+      if (personBtn && modal.contains(personBtn) && !personBtn.disabled) {
+        event.preventDefault();
+        const mailId = norm(personBtn.getAttribute("data-mail-id"));
+        const personId = norm(personBtn.getAttribute("data-person-id"));
+        if (!findRoleMailHistoryPerson(mailId, personId)) return;
+        roleMailPersonState = { mailId, personId, questionId: "task" };
+        render();
+        return;
+      }
+
+      const personQuestionBtn = target.closest("[data-civi-role-person-question]");
+      if (personQuestionBtn && modal.contains(personQuestionBtn) && !personQuestionBtn.disabled) {
+        event.preventDefault();
+        const mailId = norm(personQuestionBtn.getAttribute("data-mail-id"));
+        const personId = norm(personQuestionBtn.getAttribute("data-person-id"));
+        const questionId = norm(personQuestionBtn.getAttribute("data-civi-role-person-question"));
+        if (!findRoleMailHistoryPerson(mailId, personId)) return;
+        if (!["task", "role", "dilemma"].includes(questionId)) return;
+        roleMailPersonState = { mailId, personId, questionId };
+        render();
+        return;
+      }
+
       const taskBtn = target.closest("[data-civi-next-action-task]");
       if (taskBtn && modal.contains(taskBtn) && !taskBtn.disabled) {
         event.preventDefault();
@@ -794,6 +959,8 @@
     render,
     refresh,
     getCurrent: getCurrentAction,
+    getRoleMailHistoryPeople,
+    buildRoleMailHistoryPersonAnswer,
     advanceUntilNextRealAction,
     prepareNextActionSurface,
     isAnswerInFlight: function () { return answerInFlight; }
