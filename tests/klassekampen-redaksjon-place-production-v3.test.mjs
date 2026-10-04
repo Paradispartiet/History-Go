@@ -77,7 +77,7 @@ test('Klassekampen canonical Place carries the source-reviewed Media underbadges
   assert.equal(place.imageMeta?.author, 'Mahlum');
   assert.equal(place.imageMeta?.licenseShortName, 'Public domain');
   assert.equal(place.imageMeta?.verifiedAt, '2026-10-04');
-  assert.equal(place.frontImage, 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Steplagaarden_gr%C3%B6nland%204%20oslo%20rk%20163836%20IMG%208308.JPG');
+  assert.equal(place.frontImage, 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Steplagaarden_gr%C3%B6nland_4_oslo_rk_163836_IMG_8308.JPG');
   assert.equal(place.frontImageMeta?.author, 'Bjoertvedt');
   assert.equal(place.frontImageMeta?.license, 'CC BY-SA 3.0 NO');
 });
