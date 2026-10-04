@@ -1,0 +1,98 @@
+name: TEMP Klassekampen Phase 2 v3 GREEN
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase2-v3-20261004
+
+permissions:
+  contents: write
+
+concurrency:
+  group: klassekampen-phase2-v3-green
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase2-v3-20261004
+          fetch-depth: 0
+
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
+
+      - name: Materialize reviewed Commons assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bilder/people bilder/kort/objects bilder/kort/brands
+          UA='History-Go educational place production (https://github.com/Paradispartiet/History-Go)'
+          curl -A "$UA" -L --fail --retry 3 --retry-delay 2 \
+            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Bj%C3%B8rgulv%20Braanen%20%28174850%29.jpg' \
+            -o bilder/people/bjorgulv_braanen.jpg
+          curl -A "$UA" -L --fail --retry 3 --retry-delay 2 \
+            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Klassekampen_no_1_1969.jpg' \
+            -o bilder/kort/objects/klassekampen_forste_utgave_1969.jpg
+          curl -A "$UA" -L --fail --retry 3 --retry-delay 2 \
+            'https://commons.wikimedia.org/wiki/Special:Redirect/file/Klassekampen_logo.gif' \
+            -o bilder/kort/brands/klassekampen.gif
+          test -s bilder/people/bjorgulv_braanen.jpg
+          test -s bilder/kort/objects/klassekampen_forste_utgave_1969.jpg
+          test -s bilder/kort/brands/klassekampen.gif
+
+      - name: Prepare canonical Phase 2 inputs
+        run: node scripts/tmp-klassekampen-phase2-v3.mjs prepare
+
+      - name: Build governed Media production context
+        run: npm run quiz:context -- --category media --target klassekampen_redaksjon --output data/quiz/production_context/media/klassekampen_redaksjon.json
+
+      - name: Finalize canonical quiz and QuizCard
+        run: node scripts/tmp-klassekampen-phase2-v3.mjs finalize
+
+      - name: Rebuild owner-managed outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:web
+          npm run place:build -- klassekampen_redaksjon
+
+      - name: Verify governed quiz package
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-content
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+
+      - name: Verify Phase 2 and owner-managed outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/klassekampen-redaksjon-place-production-v3.test.mjs
+          npm run place:verify -- klassekampen_redaksjon
+          npm run build:web:check
+          npm run places:index:check
+          npm run place-open:check
+          node scripts/build-place-production-v3-projections.mjs klassekampen_redaksjon --check
+
+      - name: Commit verified permanent materialization
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f scripts/tmp-klassekampen-phase2-v3.mjs .github/workflows/tmp-klassekampen-phase2-v3.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git status --short
+          if git diff --cached --quiet; then
+            echo 'No materialization changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Materialize Klassekampen Phase 2 on Place Production v3'
+          git push origin HEAD:agent/klassekampen-phase2-v3-20261004
