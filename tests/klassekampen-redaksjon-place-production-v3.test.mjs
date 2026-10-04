@@ -34,6 +34,33 @@ test('Klassekampen-redaksjonen is registered in Place Production v3 routing', ()
   assert.deepEqual(entry.tests, [TEST_PATH]);
 });
 
+test('Media is upgraded to the governed adaptive quiz-production contract for its first pilot', () => {
+  const manifest = readJson('data/fag/fag_manifest.json');
+  const media = manifest.media;
+  assert.ok(media, 'missing Media fag manifest entry');
+  assert.equal(media.quizPackageSchema, '../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json');
+  assert.equal(media.quizProduction?.status, 'pilot');
+  assert.deepEqual(media.quizProduction?.required_inputs, [
+    'pensum',
+    'emner',
+    'fagkart',
+    'methods',
+    'supersetQuizMal',
+    'quizStandard',
+    'quizQuestionSchema',
+  ]);
+  assert.equal(media.quizProduction?.context_builder, 'scripts/build-quiz-production-context.mjs');
+  assert.equal(media.quizProduction?.profile_system, 'adaptive_relative_superset');
+
+  const superset = readJson('data/fag/media/supersetQUIZMAL_media.json');
+  assert.equal(superset.version, '3.0');
+  assert.equal(superset.governance?.authority, 'category_content_and_orchestration');
+  assert.equal(superset.governance?.package_schema, 'data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json');
+  assert.equal(superset.adaptive_profiles?.normal?.sets, 4);
+  assert.equal(superset.adaptive_profiles?.normal?.questions_per_set, 7);
+  assert.deepEqual(superset.relative_progression?.phase_sequences?.['4'], ['opening', 'middle', 'bridge', 'final']);
+});
+
 test('Klassekampen Phase 1 evidence remains intact while Phase 2 collections, quiz and runtime are materialized', () => {
   const record = loadWorkflowRecord(PLACE_ID);
 
