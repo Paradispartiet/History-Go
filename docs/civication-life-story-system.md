@@ -183,7 +183,9 @@ ikke som en etikett som overstyrer alle andre historier.
 Møtene deklarerer separate flagg for avtalt, gjennomført, avslått og
 avbrutt. En framtidig scene kan ikke besvares før den er tilgjengelig.
 `faseAvslutning` legger søvnscenene sist, etter kveldens samtaler og
-refleksjon. Kalenderens sceneoversikt filtrerer også på faktiske conditions.
+refleksjon. Rolleavgrensede `sceneTekster` og `valgKonsekvenser` kan rette
+teksten i delte scener uten å endre deres valg/effekter eller andre roller.
+Kalenderens sceneoversikt filtrerer også på faktiske conditions.
 Fiktive øvingsrom og møteplasser vises med navn uten et oppdiktet GPS-anker.
 
 `State.reconcileContent` fyller nye personer og ennå ukjente, automatisk

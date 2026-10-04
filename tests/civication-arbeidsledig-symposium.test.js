@@ -18,7 +18,9 @@ const roleIds = new Set(raw.roleScenes.scenes.map((s) => s.id));
 const seen = new Set();
 const paths = [{}, { d2_en_retning: "miljo" }, { d2_en_retning: "kunnskap" }];
 let runs = 0;
-function play(overrides, lastDay = 7) {
+function play(overrides, lastDay = 7, profileTags = []) {
+  if (profileTags.length) globalThis.CivicationLifestoryProfileTags = profileTags;
+  else delete globalThis.CivicationLifestoryProfileTags;
   let state = State.createInitialState(content);
   const actual = {};
   for (let day = 1; day <= lastDay; day++) {
@@ -65,6 +67,7 @@ function play(overrides, lastDay = 7) {
     assert.equal(Endings.isFinalDay(state, content), true);
     assert.ok(state.tidligereValg.arbeidsledig_uke_avsluttet);
   }
+  delete globalThis.CivicationLifestoryProfileTags;
   return state;
 }
 // Finner en kjørbar prefix for hvert valg vi møter, heller enn å gjøre
@@ -73,6 +76,17 @@ while (paths.length) { play(paths.shift()); assert.ok(++runs < 350); }
 for (const scene of raw.roleScenes.scenes.filter((s) => s.id !== "d4_eldre_historie_videre")) {
   for (const choice of scene.valg) assert.ok(seen.has(scene.id + ":" + choice.id), `uavspilt gren: ${scene.id}/${choice.id}`);
 }
+// Profilbonus og lite energi må heller ikke legge samtaler etter søvnen.
+const quietWeek = play({ natt_02_legg_deg_tidligere: "myk_landing", d2_natt_oeyeblikk_foer_soevnen: "tre_ting_som_gikk", by_02_miljoeet_samles: "staa_over" }, 7, ["rest", "low_energy", "subculture"]);
+for (const day of [1, 2]) {
+  const evening = quietWeek.arkiv.filter((e) => e.dag === day && e.fase === "kveld");
+  assert.equal(evening.at(-1).sceneId, day === 1 ? "natt_01_paa_tide_aa_sove" : "d2_natt_oeyeblikk_foer_soevnen");
+}
+assert.ok(quietWeek.arkiv.some((e) => e.sceneId === "natt_02_legg_deg_tidligere"));
+assert.ok(!quietWeek.arkiv.some((e) => e.konsekvensTekst?.includes("Du ser bildene dagen etter")));
+assert.ok(!quietWeek.arkiv.some((e) => e.konsekvensTekst?.includes("Middagen ble god, du kom deg ut")));
+const untouched = raw.lifeScenes.scenes.find((s) => s.id === "d2_natt_oeyeblikk_foer_soevnen");
+assert.ok(untouched.valg.find((c) => c.id === "tre_ting_som_gikk").konsekvensTekst.includes("Middagen ble god"), "rolleoverstyring endrer ikke delt råinnhold");
 // Rollebroene må faktisk treffe de eksisterende canonicale pakkene.
 for (const bridge of raw.role.symposium.rollebroer) {
   assert.equal(read(bridge.role_world).role_scope, bridge.role_scope);
@@ -119,6 +133,8 @@ for (const [field, value] of [["standardTraad", "ukjent"]]) {
 }
 const bad = JSON.parse(JSON.stringify(raw)); bad.roleScenes.scenes[0].stedId = "ukjent";
 assert.throws(() => Content.buildContent(bad), /ukjent sted/);
+const badConsequence = JSON.parse(JSON.stringify(raw)); badConsequence.role.symposium.valgKonsekvenser.dag2_kveld_oppsummering.ukjent = "ukjent valg";
+assert.throws(() => Content.buildContent(badConsequence), /ugyldig valgkonsekvens/);
 // Rollebroen åpner den faktiske livsprofilen, ikke Personlig/bosted.
 const clicks = [];
 globalThis.document = { querySelector: (selector) => ({ click: () => clicks.push(selector) }) };

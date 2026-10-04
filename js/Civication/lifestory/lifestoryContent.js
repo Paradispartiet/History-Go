@@ -128,7 +128,12 @@
       .concat(Array.isArray(raw.lifeScenes?.scenes) ? raw.lifeScenes.scenes : [])
       .map((scene) => {
         const text = role?.symposium?.sceneTekster?.[scene.id];
-        return text === undefined ? scene : Object.assign({}, scene, { tekst: text });
+        const consequences = role?.symposium?.valgKonsekvenser?.[scene.id];
+        if (text === undefined && !consequences) return scene;
+        const copy = Object.assign({}, scene);
+        if (text !== undefined) copy.tekst = text;
+        if (consequences) copy.valg = scene.valg.map((choice) => consequences[choice.id] === undefined ? choice : Object.assign({}, choice, { konsekvensTekst: consequences[choice.id] }));
+        return copy;
       });
 
     const content = { role, faser, threads, scenes };
@@ -283,6 +288,13 @@
       }
       for (const [id, text] of Object.entries(book.sceneTekster || {})) {
         if (!sceneIds.has(id) || typeof text !== "string" || !text.trim()) push("symposium: ugyldig scenetekst");
+      }
+      for (const [id, consequences] of Object.entries(book.valgKonsekvenser || {})) {
+        const scene = scenes.find((s) => s.id === id);
+        if (!scene || !consequences || typeof consequences !== "object" || Array.isArray(consequences)) { push("symposium: ugyldig valgkonsekvens"); continue; }
+        for (const [choiceId, text] of Object.entries(consequences)) {
+          if (!scene.valg.some((c) => c.id === choiceId) || typeof text !== "string" || !text.trim()) push("symposium: ugyldig valgkonsekvens");
+        }
       }
       const personIds = new Set((role.personer || []).map((p) => p.id));
       const placeIds = new Set();
