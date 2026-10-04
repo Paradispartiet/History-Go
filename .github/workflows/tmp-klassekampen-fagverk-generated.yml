@@ -1,4 +1,4 @@
-name: TEMP Klassekampen Fagverk generated outputs
+name: TEMP Klassekampen generated outputs
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: klassekampen-fagverk-generated
+  group: klassekampen-generated
   cancel-in-progress: true
 
 jobs:
@@ -32,12 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Regenerate canonical Fagverk outputs
+      - name: Regenerate canonical derived outputs
         shell: bash
         run: |
           set -euo pipefail
           node scripts/build-fagverk-package.mjs
           node scripts/generate-fagverk-release-notes.mjs
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run place-open:build
 
       - name: Enforce bounded generated delta
         shell: bash
@@ -45,7 +48,7 @@ jobs:
           set -euo pipefail
           while IFS= read -r path; do
             case "$path" in
-              data/emner/emnebank.json|data/fagverk/fagverk_coverage.json|data/fagverk/fagverk_release_notes.json)
+              data/emner/emnebank.json|data/fagverk/fagverk_coverage.json|data/fagverk/fagverk_release_notes.json|data/fagverk/fagverk_registry.json|data/fagverk/subject_status.json|data/fagverk/fagverk_release.json|data/runtime/place-open/klassekampen_redaksjon.json)
                 ;;
               *)
                 echo "Unexpected generated path: $path"
@@ -54,24 +57,31 @@ jobs:
             esac
           done < <(git status --porcelain | sed -E 's/^.. //' | sed '/^$/d')
 
-      - name: Verify generated Fagverk state
+      - name: Verify generated state
         shell: bash
         run: |
           set -euo pipefail
           npm run fagverk:check
           npm run fagverk:release-notes:check
           node scripts/audit-fagverk-place-pages.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          npm run test:place-open
 
-      - name: Commit verified generated outputs
+      - name: Commit verified generated outputs and remove temporary workflow
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/emner/emnebank.json data/fagverk/fagverk_coverage.json data/fagverk/fagverk_release_notes.json
-          if git diff --cached --quiet; then
-            echo 'No generated changes to commit.'
-            exit 0
-          fi
-          git commit -m 'Regenerate Fagverk package and release notes'
+          git add \
+            data/emner/emnebank.json \
+            data/fagverk/fagverk_coverage.json \
+            data/fagverk/fagverk_release_notes.json \
+            data/fagverk/fagverk_registry.json \
+            data/fagverk/subject_status.json \
+            data/fagverk/fagverk_release.json \
+            data/runtime/place-open/klassekampen_redaksjon.json
+          git rm .github/workflows/tmp-klassekampen-fagverk-generated.yml
+          git commit -m 'Regenerate Klassekampen derived outputs'
           git push origin HEAD:agent/klassekampen-place-production-v3-20261004
