@@ -322,3 +322,16 @@ Bare én fase skal være `PÅGÅR` om gangen.
 - runtime/UI: IKKE STARTET
 
 **Konklusjon:** Klassekampen-redaksjonen har nok dokumentert bredde til en `standard` fullproduksjon. Fase 0 er ferdig; neste lovlige innholdsendring er fase 1, og asset-gatene skal forbli fail-closed til rettighetsgrunnlag og separate bilde-roller er dokumentert.
+
+## Fase 1-materialisering — 2026-09-15
+
+Fase 1 er materialisert fail-closed fra låst base `458ab1e5ddea12c6035593bd3ee661a30084f549`.
+
+- Canonical Place har de fire bekreftede Media-underbadgene, kildebundet `desc`/`popupDesc`, Place-eid Fagverk v2 og inspectable `externalLinks`.
+- `data/places/production/klassekampen_redaksjon.json` er canonical v4.2-produksjonspakke med 12 verifiserte claims og eksplisitt setningsdekning.
+- Språkleksikonet har ett avgrenset stedsspor for publikasjonsnavnet «Klassekampen»; dagens avis skilles fra det generelle uttrykket og den separate 1909–1940-avisen.
+- Chronology er kildebundet til 1969, 1973, 1977, 1991, 1996, 2002 og 2018. Grønland 4 behandles bare som dokumentert nåværende redaksjonsadresse; ingen innflyttingsdato er konstruert.
+- `data/epoker/epoke-place-index.json`, `data/places/places_index.json` og Fagverk-release er regenerert med sine eierkommandoer og kontrollert i sync.
+- Ingen People-, Object-, Brand-, Production-/Kunstverk-collection, bilde/frontImage, quiz, QuizCard eller `place-open`-runtime er materialisert i denne fasen.
+
+Neste gate er Fase 2.
