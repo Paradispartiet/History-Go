@@ -10,6 +10,7 @@ import {
 
 const PLACE_ID = 'klassekampen_redaksjon';
 const TEST_PATH = 'tests/klassekampen-redaksjon-place-production-v3.test.mjs';
+const IMAGE_AUDIT_PATH = 'reports/place-production/klassekampen-image-asset-audit-v1.md';
 
 test('Klassekampen-redaksjonen is registered in Place Production v3 routing', () => {
   const routing = JSON.parse(fs.readFileSync('.github/ci/place-production-routing-v2.json', 'utf8'));
@@ -45,7 +46,9 @@ test('Klassekampen Phase 1 is preserved fail-closed in Place Production v3', () 
   }
   assert.equal(record.modules.quiz?.status, 'BLOCKED');
   assert.equal(record.modules.runtime?.status, 'BLOCKED');
-  assert.equal(record.manual_reviews.images.status, 'PENDING');
+  assert.equal(record.manual_reviews.images.status, 'PASS');
+  assert.ok(record.manual_reviews.images.evidence?.includes(IMAGE_AUDIT_PATH));
+  assert.equal(fs.existsSync(IMAGE_AUDIT_PATH), true, `missing image asset audit: ${IMAGE_AUDIT_PATH}`);
   assert.equal(record.manual_reviews.final_ui.status, 'PENDING');
   assert.ok(record.blockers.length >= 2);
   assert.equal(deriveWorkflowState(record), 'blocked');
@@ -54,7 +57,7 @@ test('Klassekampen Phase 1 is preserved fail-closed in Place Production v3', () 
   assert.equal(fs.existsSync(record.sources.factuality_record), true, `missing factuality record: ${record.sources.factuality_record}`);
 });
 
-test('Klassekampen canonical Place carries the source-reviewed Media underbadges and Fagverk', () => {
+test('Klassekampen canonical Place carries the source-reviewed Media underbadges, Fagverk and reviewed image contract', () => {
   const placePath = 'data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json';
   const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
   assert.deepEqual(place.underbadge_ids, [
@@ -68,6 +71,15 @@ test('Klassekampen canonical Place carries the source-reviewed Media underbadges
   assert.equal(place.fagverk?.schema, 'history_go_place_fagverk_v2');
   assert.equal(place.fagverk?.status, 'curated');
   assert.ok(Array.isArray(place.knowledge?.sources) && place.knowledge.sources.length >= 5);
+
+  assert.equal(place.image, 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Groenland%204%20Oslo.jpg');
+  assert.equal(place.imageMeta?.fileTitle, 'File:Groenland 4 Oslo.jpg');
+  assert.equal(place.imageMeta?.author, 'Mahlum');
+  assert.equal(place.imageMeta?.licenseShortName, 'Public domain');
+  assert.equal(place.imageMeta?.verifiedAt, '2026-10-04');
+  assert.equal(place.frontImage, 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Steplagaarden_gr%C3%B6nland%204%20oslo%20rk%20163836%20IMG%208308.JPG');
+  assert.equal(place.frontImageMeta?.author, 'Bjoertvedt');
+  assert.equal(place.frontImageMeta?.license, 'CC BY-SA 3.0 NO');
 });
 
 test('Klassekampen factuality and language records retain the verified Phase 1 boundary', () => {
