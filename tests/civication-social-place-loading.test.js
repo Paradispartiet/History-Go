@@ -38,7 +38,7 @@ const response = data => ({ ok: true, json: async () => data });
       // Complete out of order, including the two conflicting IDs.
       for (let n = 0; n < (6 - i % 6); n++) await tick();
       active--;
-      return i % 2 ? { places: [rows[i]] } : [rows[i]];
+      return i % 3 === 0 ? rows[i] : (i % 3 === 1 ? [rows[i]] : { places: [rows[i]] });
     } };
   }, window);
   let secondDone = false;
@@ -82,17 +82,44 @@ const response = data => ({ ok: true, json: async () => data });
 
   // A failed source still yields available rows for this call, but is retried
   // on the next call; both init() and lookup see the recovered complete data.
-  let sourceAttempts = 0;
+  let sourceAttempts = 0, goodSourceAttempts = 0, partialManifestAttempts = 0;
   const partial = resolver(async url => {
-    if (url === manifestPath) return response({ files: files.slice(0, 2) });
+    if (url === manifestPath) { partialManifestAttempts++; return response({ files: files.slice(0, 2) }); }
     if (url.includes('brands_by_place')) return response({});
     if (url.includes('brands_master')) return response([]);
     if (url === `data/${files[1]}` && ++sourceAttempts === 1) return { ok: false, status: 503 };
+    if (url === `data/${files[0]}`) goodSourceAttempts++;
     return response([rows[files.indexOf(url.slice(5))]]);
   });
   assert.equal((await partial.init()).places.length, 1);
   assert.equal((await partial.init()).places.length, 2);
   assert.equal(sourceAttempts, 2);
+  assert.equal(goodSourceAttempts, 1, 'Successful sources survive a failed sibling and retry');
+  assert.equal(partialManifestAttempts, 1, 'A successful manifest is retained across retries');
+  partial.clearCacheForTesting();
+  assert.equal((await partial.init()).places.length, 2);
+  assert.equal(goodSourceAttempts, 2, 'Clearing the cache also clears successful file results');
+  assert.equal(partialManifestAttempts, 2);
+
+  let persistentGoodAttempts = 0, persistentBadAttempts = 0;
+  const persistent = resolver(async url => {
+    if (url === manifestPath) return response({ files: files.slice(0, 2) });
+    if (url === `data/${files[1]}`) { persistentBadAttempts++; throw new Error('persistent failure'); }
+    persistentGoodAttempts++;
+    return response(rows[0]);
+  });
+  for (let i = 0; i < 3; i++) assert.equal((await persistent.loadPlaces()).length, 1);
+  assert.equal(persistentGoodAttempts, 1);
+  assert.equal(persistentBadAttempts, 3, 'Persistent failures retry only the unavailable source');
+
+  let malformedAttempts = 0;
+  const malformed = resolver(async url => {
+    if (url === manifestPath) return response({ files: [files[0]] });
+    return response(++malformedAttempts === 1 ? { unexpected: true } : rows[0]);
+  });
+  assert.equal((await malformed.loadPlaces()).length, 0);
+  assert.equal((await malformed.loadPlaces()).length, 1);
+  assert.equal(malformedAttempts, 2, 'Invalid source shape remains retryable');
 
   // Preserve the supported preloaded-cache path without writing History Go state.
   const preloaded = [rows[0]];
@@ -112,5 +139,15 @@ const response = data => ({ ok: true, json: async () => data });
   assert.equal((await empty.loadPlaces()).length, 0);
   assert.equal((await empty.loadPlaces()).length, 0);
   assert.equal(emptyCalls, 1);
+  const httpGate = require('../scripts/civication-source-http-gate.cjs');
+  const origin = 'http://127.0.0.1:4173/';
+  const errors = [
+    { url: new URL(manifestPath, origin).href, status: 500 },
+    { url: new URL(`data/${files[0]}?retry=1`, origin).href, status: 404 },
+    { url: new URL('data/places/source_0_manifest.json', origin).href, status: 404 },
+    { url: new URL('favicon.ico', origin).href, status: 404 }
+  ];
+  assert.deepEqual(httpGate(errors, origin, files), errors.slice(0, 2));
+  assert.deepEqual(httpGate(errors.slice(2), origin, files), []);
   console.log(`civication source loading ok: ${files.length} sources, peak ${peak}, shared completion, stable order, retry and cache`);
 })().catch(error => { console.error(error); process.exitCode = 1; });

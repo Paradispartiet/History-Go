@@ -822,6 +822,15 @@
   let _placesCache = null;
   let _placesByIdCache = null;
   let _placesLoadPromise = null;
+  let _placeManifestFiles = null;
+  const _placeFileResults = new Map();
+
+  function placesFromSource(json) {
+    if (Array.isArray(json)) return json;
+    if (json && Array.isArray(json.places)) return json.places;
+    if (json && typeof json.id === "string") return [json];
+    throw new Error("Ugyldig source-format for steder");
+  }
 
   async function fetchJson(path) {
     const res = await fetch(path, { cache: "no-store" });
@@ -867,18 +876,28 @@
     }
     _placesLoadPromise = (async () => {
       try {
-        const manifest = await fetchJson(PLACES_MANIFEST_PATH);
-        const files = ensureArray(manifest && manifest.files);
+        if (!_placeManifestFiles) {
+          const manifest = await fetchJson(PLACES_MANIFEST_PATH);
+          if (!manifest || !Array.isArray(manifest.files)) throw new Error("Ugyldig place-manifest");
+          _placeManifestFiles = manifest.files;
+        }
+        const files = _placeManifestFiles;
         const loaded = new Array(files.length);
         let nextIndex = 0;
         let complete = true;
         async function worker() {
           while (nextIndex < files.length) {
             const index = nextIndex++;
+            const rel = files[index];
+            if (_placeFileResults.has(rel)) {
+              loaded[index] = _placeFileResults.get(rel);
+              continue;
+            }
             try {
               // Manifest-stiene starter med "places/..." — prefiks kun "data/".
-              const json = await fetchJson("data/" + files[index]);
-              loaded[index] = ensureArray(Array.isArray(json) ? json : (json && json.places));
+              const json = await fetchJson("data/" + rel);
+              loaded[index] = placesFromSource(json);
+              _placeFileResults.set(rel, loaded[index]);
             } catch (_e) {
               complete = false;
               loaded[index] = [];
@@ -931,6 +950,8 @@
     _brandsByIdCache = null;
     _placesCache = null;
     _placesByIdCache = null;
+    _placeManifestFiles = null;
+    _placeFileResults.clear();
   }
 
   window.CivicationSocialPlaceResolver = {
