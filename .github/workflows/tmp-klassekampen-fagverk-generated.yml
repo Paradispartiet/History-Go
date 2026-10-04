@@ -1,0 +1,77 @@
+name: TEMP Klassekampen Fagverk generated outputs
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-place-production-v3-20261004
+
+permissions:
+  contents: write
+
+concurrency:
+  group: klassekampen-fagverk-generated
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-place-production-v3-20261004
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Regenerate canonical Fagverk outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-fagverk-package.mjs
+          node scripts/generate-fagverk-release-notes.mjs
+
+      - name: Enforce bounded generated delta
+        shell: bash
+        run: |
+          set -euo pipefail
+          allowed='data/emner/emnebank.json
+data/fagverk/fagverk_coverage.json
+data/fagverk/fagverk_release_notes.json'
+          changed="$(git status --porcelain | sed -E 's/^.. //' | grep -v '^\.github/workflows/tmp-klassekampen-fagverk-generated.yml$' || true)"
+          unexpected="$(comm -23 <(printf '%s\n' "$changed" | sed '/^$/d' | sort) <(printf '%b\n' "$allowed" | sort))"
+          if [ -n "$unexpected" ]; then
+            echo 'Unexpected generated paths:'
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+
+      - name: Verify generated Fagverk state
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run fagverk:check
+          npm run fagverk:release-notes:check
+          node scripts/audit-fagverk-place-pages.mjs
+
+      - name: Commit verified generated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/emner/emnebank.json data/fagverk/fagverk_coverage.json data/fagverk/fagverk_release_notes.json
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Regenerate Fagverk package and release notes'
+          git push origin HEAD:agent/klassekampen-place-production-v3-20261004
