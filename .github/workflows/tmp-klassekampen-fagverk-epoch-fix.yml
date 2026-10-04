@@ -1,0 +1,127 @@
+name: TEMP Klassekampen Fagverk and epoch fix
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-place-production-v3-20261004
+
+permissions:
+  contents: write
+
+concurrency:
+  group: klassekampen-fagverk-epoch-fix
+  cancel-in-progress: true
+
+jobs:
+  fix-and-verify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-place-production-v3-20261004
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Apply bounded Fagverk and epoch fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          const registryPath = 'data/fagverk/fagverk_registry.json';
+          const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+          registry.placeLinks ||= {};
+          registry.placeLinks.klassekampen_redaksjon = {
+            sourceFile: 'places/media/oslo/places_oslo_media/klassekampen_redaksjon.json',
+            field: 'fagverk',
+            schema: 'history_go_place_fagverk_v2',
+            level: 'standard',
+            status: 'curated'
+          };
+          fs.writeFileSync(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
+
+          const placePath = 'data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json';
+          const place = JSON.parse(fs.readFileSync(placePath, 'utf8'));
+          if (place?.fagverk?.schema !== 'history_go_place_fagverk_v2' || place?.fagverk?.status !== 'curated') {
+            throw new Error('Klassekampen Fagverk is not the expected curated v2 block');
+          }
+          const generalforsamlingUrl = 'https://klassekampen.no/side/generalforsamling-2025';
+          place.fagverk.source_urls ||= [];
+          if (!place.fagverk.source_urls.includes(generalforsamlingUrl)) {
+            place.fagverk.source_urls.push(generalforsamlingUrl);
+          }
+          place.externalLinks ||= [];
+          if (!place.externalLinks.some((entry) => entry?.url === generalforsamlingUrl)) {
+            place.externalLinks.push({
+              type: 'official',
+              label: 'Klassekampen – generalforsamling 2025',
+              url: generalforsamlingUrl,
+              lang: 'nb',
+              verifiedAt: place.fagverk.verified_at
+            });
+          }
+          fs.writeFileSync(placePath, `${JSON.stringify(place, null, 2)}\n`);
+
+          const testPath = 'tests/epoke-place-index.test.mjs';
+          let testSource = fs.readFileSync(testPath, 'utf8');
+          const oldCount = 'assert.equal(index.stats.verified_place_production_milestone_count, 578);';
+          const newCount = 'assert.equal(index.stats.verified_place_production_milestone_count, 586);';
+          if (testSource.includes(oldCount)) {
+            testSource = testSource.replace(oldCount, newCount);
+          } else if (!testSource.includes(newCount)) {
+            throw new Error('Unexpected verified place-production milestone count assertion');
+          }
+
+          const testName = 'Klassekampen contributes exactly eight verified production milestones';
+          if (!testSource.includes(testName)) {
+            const marker = 'test("Hausmannsbrua contributes exactly three verified production milestones", () => {';
+            if (!testSource.includes(marker)) throw new Error('Could not find epoch test insertion marker');
+            const regression = `test("${testName}", () => {\n  const index = buildEpokePlaceIndex();\n  const milestones = Object.values(index.domains.historie.epochs)\n    .flatMap((epoch) => epoch.places || [])\n    .filter((place) => place.place_id === "klassekampen_redaksjon")\n    .flatMap((place) => place.milestones || [])\n    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");\n  assert.deepEqual(\n    milestones.map((milestone) => milestone.claim_id).sort(),\n    [\n      "claim_klassekampen_braanen_2002",\n      "claim_klassekampen_daily_1977",\n      "claim_klassekampen_first_issue_1969",\n      "claim_klassekampen_independent_1991",\n      "claim_klassekampen_monthly_1969",\n      "claim_klassekampen_online_1996",\n      "claim_klassekampen_skurdal_2018",\n      "claim_klassekampen_weekly_1973"\n    ]\n  );\n});\n\n`;
+            testSource = testSource.replace(marker, regression + marker);
+          }
+          fs.writeFileSync(testPath, testSource);
+          NODE
+
+      - name: Rebuild owner-managed place outputs
+        run: npm run place:build -- klassekampen_redaksjon
+
+      - name: Verify Fagverk and epoch contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-fagverk-place-pages.mjs
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-substance-audit.test.mjs tests/fagverk-link-audit.test.mjs
+          npm run epoker:places:check
+          node --test tests/epoke-place-index.test.mjs
+          node scripts/build-place-production-v3-projections.mjs klassekampen_redaksjon --check
+
+      - name: Commit verified fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/fagverk_registry.json \
+                  data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json \
+                  data/places/places_index.json \
+                  data/runtime/place-open/klassekampen_redaksjon.json \
+                  reports/place-production/klassekampen-redaksjon-workcard-current.json \
+                  reports/place-production/klassekampen-redaksjon-quality-gate-current.json \
+                  tests/epoke-place-index.test.mjs
+          if git diff --cached --quiet; then
+            echo 'No fixes to commit.'
+            exit 0
+          fi
+          git commit -m 'Fix Klassekampen Fagverk and epoch integration'
+          git push origin HEAD:agent/klassekampen-place-production-v3-20261004
