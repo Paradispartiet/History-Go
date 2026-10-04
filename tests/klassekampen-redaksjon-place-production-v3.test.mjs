@@ -17,6 +17,9 @@ const SOURCE_BRIEF_PATH = 'data/quiz/production_briefs/media/klassekampen_redaks
 const CONTEXT_PATH = 'data/quiz/production_context/media/klassekampen_redaksjon.json';
 const QUIZCARD_MANIFEST_PATH = 'data/quizcards/media/manifest.json';
 const QUIZCARD_COLLECTION_PATH = 'data/quizcards/media/klassekampen_redaksjon_quizkort_v1.json';
+const PEOPLE_ID = 'bjorgulv_braanen';
+const PEOPLE_IMAGE = 'bilder/people/bjorgulv_braanen.jpg';
+const PEOPLE_IMAGE_SOURCE = 'https://commons.wikimedia.org/wiki/File:Bj%C3%B8rgulv_Braanen_(174850).jpg';
 
 function readJson(path) {
   return JSON.parse(fs.readFileSync(path, 'utf8'));
@@ -90,7 +93,7 @@ test('Klassekampen canonical Place carries the source-reviewed Media underbadges
   assert.equal(place.place_card_profile?.schema, 'history_go_place_card_profile_v2');
   assert.deepEqual(place.place_card_profile?.collection_ids, ['people', 'objects', 'brands', 'productions']);
   assert.deepEqual(place.rounds, ['people', 'objects', 'brands', 'productions']);
-  assert.ok(place.related_people_ids?.includes('mari_skurdal'));
+  assert.ok(place.related_people_ids?.includes(PEOPLE_ID));
   assert.ok(place.objects?.some((item) => item.id === 'klassekampen_forste_utgave_1969'));
   assert.deepEqual(
     place.productions?.map((item) => item.id).sort(),
@@ -114,16 +117,18 @@ test('Klassekampen brand and person bindings are explicit and image provenance i
   assert.ok(brand.source_urls?.length >= 1);
 
   const people = readJson('data/people/media/oslo/people_media_oslo.json');
-  const mari = people.find((person) => person.id === 'mari_skurdal');
-  assert.ok(mari, 'missing Mari Skurdal canonical person');
-  assert.ok(mari.places?.includes(PLACE_ID));
+  const person = people.find((candidate) => candidate.id === PEOPLE_ID);
+  assert.ok(person, 'missing Bjørgulv Braanen canonical person');
+  assert.ok(person.places?.includes(PLACE_ID));
+  assert.equal(person.image, PEOPLE_IMAGE);
+  assert.equal(fs.existsSync(PEOPLE_IMAGE), true, `missing documentary person image: ${PEOPLE_IMAGE}`);
 
   const attributions = readJson('data/people/people_image_attributions.json');
-  const mariAttribution = attributions.find((item) => item.personId === 'mari_skurdal');
-  assert.ok(mariAttribution, 'Mari Skurdal image must have explicit provenance before People can pass');
-  assert.equal(mariAttribution.file, mari.image);
-  assert.ok(mariAttribution.sourcePage);
-  assert.ok(mariAttribution.license);
+  const attribution = attributions.find((item) => item.personId === PEOPLE_ID);
+  assert.ok(attribution, 'Bjørgulv Braanen image must have explicit provenance before People can pass');
+  assert.equal(attribution.file, PEOPLE_IMAGE);
+  assert.equal(attribution.sourcePage, PEOPLE_IMAGE_SOURCE);
+  assert.equal(attribution.license, 'CC BY-SA 4.0');
 });
 
 test('Klassekampen is registered as a canonical Media quiz target with a 4x7 package', () => {
