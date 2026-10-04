@@ -10,7 +10,8 @@
   "sources": {
     "factuality_record": "data/places/production/klassekampen_redaksjon.json",
     "evidence_refs": [
-      "reports/place-production/klassekampen-source-review-v1.md"
+      "reports/place-production/klassekampen-source-review-v1.md",
+      "reports/place-production/klassekampen-image-asset-audit-v1.md"
     ]
   },
   "read_first": {
@@ -129,11 +130,15 @@
   },
   "blockers": [
     "Phase 2 canonical People, Object, Brand and Production entities with current place bindings and assets are not materialized.",
-    "Portrait/front image, canonical 4 x 7 quiz, QuizCard binding and final place-open runtime are not materialized."
+    "Canonical 4 x 7 quiz, QuizCard binding and final place-open runtime are not materialized."
   ],
   "manual_reviews": {
     "images": {
-      "status": "PENDING"
+      "status": "PASS",
+      "evidence": [
+        "data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json",
+        "reports/place-production/klassekampen-image-asset-audit-v1.md"
+      ]
     },
     "final_ui": {
       "status": "PENDING"
