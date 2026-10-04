@@ -2,12 +2,12 @@
   "version": 1,
   "id": "arbeidsledig",
   "navn": "Arbeidsledig",
-  "kjernefantasi": "Du er uten formell jobb, men livet ditt består av mer enn venting. Den første uka følger søknaden, de praktiske pliktene og menneskene som kan åpne en annen retning. Det du har sagt og avtalt, følger deg videre.",
+  "kjernefantasi": "Du er uten formell jobb, men livet ditt består av mer enn venting. Søknader og praktiske plikter går ved siden av selvvalgte prosjekter, miljøer og livsroller. Den første uka lar en kontakt bli til en egen historie; det du har sagt, gjort eller takket nei til, følger deg videre.",
   "arbeidsoppgaver": [
     "holde meldekort og dokumentasjon i orden",
-    "søke jobber og stå i selvpresentasjonen",
-    "bygge ramme i dager uten ramme",
-    "bruke tiden på det som faktisk åpner dører: kunnskap"
+    "avklare søknader uten å gjøre dem til hele identiteten",
+    "bygge en egen rytme med plass til hvile og mennesker",
+    "utforske prosjekter, fellesskap og livsroller gjennom konkrete valg"
   ],
   "personer": [
     {
@@ -44,6 +44,36 @@
       "id": "booker",
       "navn": "Kveldens booker",
       "beskrivelse": "Avklarer en mulig liten spillejobb. En forespørsel er ikke en bekreftet booking."
+    },
+    {
+      "id": "lea",
+      "navn": "Lea",
+      "beskrivelse": "Bygger små prototyper på biblioteket. Spør etter én ting som kan prøves, og tåler at et prosjekt foreløpig ikke skal selges."
+    },
+    {
+      "id": "elin",
+      "navn": "Elin",
+      "beskrivelse": "Deler atelierplass og går i skrivegruppe. Hun spør før hun leser, låner materialer eller viser andres arbeid."
+    },
+    {
+      "id": "sara",
+      "navn": "Sara",
+      "beskrivelse": "Holder orden på klubbkvelder og et lokalt initiativ. Hun vil dele oppgaver, men vet at ledig tid ikke betyr ubegrenset kapasitet."
+    },
+    {
+      "id": "ivar",
+      "navn": "Ivar",
+      "beskrivelse": "Går gjennom byen med gamle bilder og egne notater. Skiller minner fra det kildene faktisk kan vise."
+    },
+    {
+      "id": "nora",
+      "navn": "Nora",
+      "beskrivelse": "Registrerer natur sammen med andre og bruker verkstedet til enkle modeller. Vil heller beholde et usikkert funn enn å pynte på resultatet."
+    },
+    {
+      "id": "daniel",
+      "navn": "Daniel",
+      "beskrivelse": "Er med i filmklubb, bokgruppe og på konserter. Vil at nye folk skal kunne delta uten å kjenne alle referansene eller ta alle vaktene."
     }
   ],
   "hovedkonflikter": [
@@ -134,7 +164,13 @@
       "familie": 55,
       "mira": 40,
       "amir": 40,
-      "booker": 40
+      "booker": 40,
+      "lea": 40,
+      "elin": 40,
+      "sara": 40,
+      "ivar": 40,
+      "nora": 40,
+      "daniel": 40
     }
   },
   "dagsplan": {
@@ -183,6 +219,36 @@
         "id": "bibliotek",
         "navn": "Bibliotekets arbeidsbord",
         "type": "fiktivt_sted"
+      },
+      {
+        "id": "prosjektbord",
+        "navn": "Bibliotekets prosjektbord",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "skaperrom",
+        "navn": "Det åpne skaperrommet",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "klubbrom",
+        "navn": "Klubbens møterom",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "gatehjorne",
+        "navn": "Møtestedet ved det gamle gatehjørnet",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "feltbord",
+        "navn": "Møtestedet ved parken",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "kulturrom",
+        "navn": "Kulturgruppas samtalerom",
+        "type": "fiktivt_sted"
       }
     ],
     "rollebroer": [
@@ -192,7 +258,8 @@
         "navn": "Frilansmusiker",
         "role_world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
         "narrative": "data/Civication/narratives/leisure/musikk_frilansmusiker.json",
-        "grense": "Prøve, booking og honorar. Ingen automatisk jobb eller Badge-opplåsing."
+        "grense": "Prøve, booking og honorar. Ingen automatisk jobb eller Badge-opplåsing.",
+        "badge_id": "musikk"
       },
       {
         "threadId": "miljoet_og_amir",
@@ -200,7 +267,198 @@
         "navn": "Gangster",
         "role_world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
         "narrative": "data/Civication/narratives/leisure/subkultur_gangster.json",
-        "grense": "Tilhørighet, sosial gjeld, rykte og avgrensede oppdrag. Arbeidsledighet innebærer ikke kriminalitet."
+        "grense": "Tilhørighet, sosial gjeld, rykte og avgrensede oppdrag. Arbeidsledighet innebærer ikke kriminalitet.",
+        "badge_id": "subkultur"
+      },
+      {
+        "threadId": "prosjektet_og_lea",
+        "role_scope": "naeringsliv_sideprosjektbygger",
+        "navn": "Sideprosjektbygger",
+        "badge_id": "naeringsliv",
+        "threshold": 10,
+        "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+        "narrative": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "prosjektet_og_lea",
+        "role_scope": "naeringsliv_frilanser",
+        "navn": "Frilanser",
+        "badge_id": "naeringsliv",
+        "threshold": 40,
+        "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json",
+        "narrative": "data/Civication/narratives/leisure/naeringsliv_frilanser.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "prosjektet_og_lea",
+        "role_scope": "naeringsliv_grunderdrommer",
+        "navn": "Gründerdrømmer",
+        "badge_id": "naeringsliv",
+        "threshold": 85,
+        "role_world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json",
+        "narrative": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "skaperrommet_og_elin",
+        "role_scope": "litteratur_skrivebordspoet",
+        "navn": "Skrivebordspoet",
+        "badge_id": "litteratur",
+        "threshold": 40,
+        "role_world": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json",
+        "narrative": "data/Civication/narratives/leisure/skrivebordspoet.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "skaperrommet_og_elin",
+        "role_scope": "kunst_ateliermenneske",
+        "navn": "Ateliermenneske",
+        "badge_id": "kunst",
+        "threshold": 60,
+        "role_world": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json",
+        "narrative": "data/Civication/narratives/leisure/kunst_ateliermenneske.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "skaperrommet_og_elin",
+        "role_scope": "scenekunst_improentusiast",
+        "navn": "Improentusiast",
+        "badge_id": "scenekunst",
+        "threshold": 25,
+        "role_world": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json",
+        "narrative": "data/Civication/narratives/leisure/scenekunst_improentusiast.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "klubben_og_sara",
+        "role_scope": "sport_klubbmenneske",
+        "navn": "Klubbmenneske",
+        "badge_id": "sport",
+        "threshold": 10,
+        "role_world": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json",
+        "narrative": "data/Civication/narratives/leisure/sport_klubbmenneske.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "klubben_og_sara",
+        "role_scope": "politikk_grasrotbygger",
+        "navn": "Grasrotbygger",
+        "badge_id": "politikk",
+        "threshold": 15,
+        "role_world": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json",
+        "narrative": "data/Civication/narratives/leisure/politikk_grasrotbygger.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "klubben_og_sara",
+        "role_scope": "politikk_organisasjonsmenneske",
+        "navn": "Organisasjonsmenneske",
+        "badge_id": "politikk",
+        "threshold": 60,
+        "role_world": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json",
+        "narrative": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "byvandringen_og_ivar",
+        "role_scope": "by_byvandrer",
+        "navn": "Byvandrer",
+        "badge_id": "by",
+        "threshold": 5,
+        "role_world": "data/Civication/roleWorlds/by/by_byvandrer.json",
+        "narrative": "data/Civication/narratives/leisure/by_byvandrer.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "byvandringen_og_ivar",
+        "role_scope": "by_flanor",
+        "navn": "Flanør",
+        "badge_id": "by",
+        "threshold": 60,
+        "role_world": "data/Civication/roleWorlds/by/by_flanor.json",
+        "narrative": "data/Civication/narratives/leisure/by_flanor.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "byvandringen_og_ivar",
+        "role_scope": "historie_lokalhistoriker",
+        "navn": "Lokalhistoriker",
+        "badge_id": "historie",
+        "threshold": 15,
+        "role_world": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json",
+        "narrative": "data/Civication/narratives/leisure/historie_lokalhistoriker.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "feltarbeidet_og_nora",
+        "role_scope": "natur_fuglekikker",
+        "navn": "Fuglekikker",
+        "badge_id": "natur",
+        "threshold": 10,
+        "role_world": "data/Civication/roleWorlds/natur/natur_fuglekikker.json",
+        "narrative": "data/Civication/narratives/leisure/natur_fuglekikker.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "feltarbeidet_og_nora",
+        "role_scope": "natur_sanker",
+        "navn": "Sanker",
+        "badge_id": "natur",
+        "threshold": 40,
+        "role_world": "data/Civication/roleWorlds/natur/natur_sanker.json",
+        "narrative": "data/Civication/narratives/leisure/natur_sanker.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "feltarbeidet_og_nora",
+        "role_scope": "vitenskap_folkeforsker",
+        "navn": "Folkeforsker",
+        "badge_id": "vitenskap",
+        "threshold": 5,
+        "role_world": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json",
+        "narrative": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "feltarbeidet_og_nora",
+        "role_scope": "vitenskap_maker",
+        "navn": "Maker",
+        "badge_id": "vitenskap",
+        "threshold": 15,
+        "role_world": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json",
+        "narrative": "data/Civication/narratives/leisure/vitenskap_maker.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "kulturkveldene_og_daniel",
+        "role_scope": "film_tv_filmklubbmenneske",
+        "navn": "Filmklubbmenneske",
+        "badge_id": "film_tv",
+        "threshold": 25,
+        "role_world": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json",
+        "narrative": "data/Civication/narratives/leisure/filmklubbmenneske.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "kulturkveldene_og_daniel",
+        "role_scope": "litteratur_bokklubbmenneske",
+        "navn": "Bokklubbmenneske",
+        "badge_id": "litteratur",
+        "threshold": 25,
+        "role_world": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json",
+        "narrative": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
+      },
+      {
+        "threadId": "kulturkveldene_og_daniel",
+        "role_scope": "musikk_konsertgjenger",
+        "navn": "Konsertgjenger",
+        "badge_id": "musikk",
+        "threshold": 5,
+        "role_world": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json",
+        "narrative": "data/Civication/narratives/leisure/musikk_konsertgjenger.json",
+        "grense": "Selvvalgt livsposisjon. Badge-krav gjelder; møtet gir ikke automatisk identitet, jobb, inntekt eller nye merker."
       }
     ],
     "faseAvslutning": [
@@ -308,6 +566,150 @@
         ],
         "avtalt": "amir_prat_avtalt",
         "gjennomfort": "amir_prat_gjennomfort"
+      },
+      {
+        "id": "prosjekt_mote4",
+        "navn": "Møtet med Lea",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "prosjektbord",
+        "personer": [
+          "lea"
+        ],
+        "avtalt": "prosjekt_mote_dag4",
+        "gjennomfort": "prosjekt_mote_gjennomfort"
+      },
+      {
+        "id": "prosjekt_mote6",
+        "navn": "Møtet med Lea",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "prosjektbord",
+        "personer": [
+          "lea"
+        ],
+        "avtalt": "prosjekt_mote_dag6",
+        "gjennomfort": "prosjekt_mote_gjennomfort"
+      },
+      {
+        "id": "skape_mote4",
+        "navn": "Møtet med Elin",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "skaperrom",
+        "personer": [
+          "elin"
+        ],
+        "avtalt": "skape_mote_dag4",
+        "gjennomfort": "skape_mote_gjennomfort"
+      },
+      {
+        "id": "skape_mote6",
+        "navn": "Møtet med Elin",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "skaperrom",
+        "personer": [
+          "elin"
+        ],
+        "avtalt": "skape_mote_dag6",
+        "gjennomfort": "skape_mote_gjennomfort"
+      },
+      {
+        "id": "fellesskap_mote4",
+        "navn": "Møtet med Sara",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "klubbrom",
+        "personer": [
+          "sara"
+        ],
+        "avtalt": "fellesskap_mote_dag4",
+        "gjennomfort": "fellesskap_mote_gjennomfort"
+      },
+      {
+        "id": "fellesskap_mote6",
+        "navn": "Møtet med Sara",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "klubbrom",
+        "personer": [
+          "sara"
+        ],
+        "avtalt": "fellesskap_mote_dag6",
+        "gjennomfort": "fellesskap_mote_gjennomfort"
+      },
+      {
+        "id": "byhistorie_mote4",
+        "navn": "Møtet med Ivar",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "gatehjorne",
+        "personer": [
+          "ivar"
+        ],
+        "avtalt": "byhistorie_mote_dag4",
+        "gjennomfort": "byhistorie_mote_gjennomfort"
+      },
+      {
+        "id": "byhistorie_mote6",
+        "navn": "Møtet med Ivar",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "gatehjorne",
+        "personer": [
+          "ivar"
+        ],
+        "avtalt": "byhistorie_mote_dag6",
+        "gjennomfort": "byhistorie_mote_gjennomfort"
+      },
+      {
+        "id": "utforsking_mote4",
+        "navn": "Møtet med Nora",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "feltbord",
+        "personer": [
+          "nora"
+        ],
+        "avtalt": "utforsking_mote_dag4",
+        "gjennomfort": "utforsking_mote_gjennomfort"
+      },
+      {
+        "id": "utforsking_mote6",
+        "navn": "Møtet med Nora",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "feltbord",
+        "personer": [
+          "nora"
+        ],
+        "avtalt": "utforsking_mote_dag6",
+        "gjennomfort": "utforsking_mote_gjennomfort"
+      },
+      {
+        "id": "kultur_mote4",
+        "navn": "Møtet med Daniel",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "kulturrom",
+        "personer": [
+          "daniel"
+        ],
+        "avtalt": "kultur_mote_dag4",
+        "gjennomfort": "kultur_mote_gjennomfort"
+      },
+      {
+        "id": "kultur_mote6",
+        "navn": "Møtet med Daniel",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "kulturrom",
+        "personer": [
+          "daniel"
+        ],
+        "avtalt": "kultur_mote_dag6",
+        "gjennomfort": "kultur_mote_gjennomfort"
       }
     ],
     "sceneTekster": {
@@ -329,6 +731,7 @@
       "by_02_miljoeet_samles": {
         "staa_over": "Du lar invitasjonen ligge. Kanskje ser du på bildene i morgen; i kveld vil du være hjemme."
       }
-    }
+    },
+    "rollevalgFlagg": "arbeidsledig_rolleforslag"
   }
 }

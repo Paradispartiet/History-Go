@@ -696,6 +696,48 @@ ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ## 10. Regelen for Civication
 
+### Arbeidsledig: flere innganger til selvvalgte livsroller
+
+Den første uka har ni kontaktretninger. Musikk, Amirs miljø og læring/jobbsøk
+går sammen med seks nye spor: Leas prosjektbord, Elins skaperrom, Saras klubb
+og lokale initiativ, Ivars byvandring, Noras observasjonsøkt og Daniels
+kulturgruppe. Møtet velges på dag 3 og kan legges til dag 4, utsettes til
+dag 6 eller avslås. Bare et gjennomført møtescenevalg skriver gjennomføring
+til historien. Oppfølgingen på dag 5 og 6 leser den konkrete møtehistorien.
+
+Dag 7 tilbyr 19 eksisterende livsroller fra de seks nye sporene, i tillegg
+til Frilansmusiker og Gangster. Alle tre tidligere spor kan også åpne hele
+livsprofilen. `symposium.rollevalgFlagg` lagrer hvilken rolle spilleren vil
+undersøke. Dette er interesse, ikke aktiv identitet. Rollebroene bærer
+canonical `role_scope`, `badge_id`, rolleverdensfil og narrativkilde; de nye
+broene har også terskelen fra livsposisjonskatalogen.
+
+Livsprofilen leser forslaget fra `CivicationLifestoryUI.getRoleSuggestion()`.
+Den tilbyr den vanlige eksplisitte `CivicationLifePositions.activate()` bare
+når `getLifeContext().unlocked_life_positions` faktisk inneholder rollen.
+Ellers viser den kravet. Jobb, ytelser, penger og merker endres ikke av å
+vise forslaget. Eksisterende aktive roller i andre Badge-kategorier beholdes.
+Symposium lar spilleren åpne profilen igjen etter gjenlasting uten å spille
+dag-7-valget på nytt.
+
+De 17 tidligere uregistrerte narrativkildene i denne leveransen er koblet
+inn i det eksisterende narrativmanifestet. Folkeforsker-fila bruker samme
+`civication_narrative_stream_v1` som kildeadapteren krever. Valgte aktive
+livsposisjoner gir taggene som åpner private scener gjennom eksisterende
+`CivicationNarrativeSceneSource`; et rolleforslag eller et møte åpner dem
+ikke alene. Rollehistoriene videre bruker fortsatt sine egne karakterer
+og sin eksisterende progresjon. Førsteukens Symposium bevarer møtene og
+valgene fra førsteuka; det importerer ikke disse som hendelser i en annen
+fortellingsmotor.
+
+Regresjonsbevis: `civication-arbeidsledig-symposium.test.js` spiller alle
+rollevalg og alle tre møtevalg for hver ny retning med gjenlasting etter
+hvert valg. `civication-arbeidsledig-role-handoff.test.js` verifiserer alle
+19 nye roller både låst og tilgjengelig, eksplisitt aktivering, privat
+narrativleveranse, gjenlasting og flere samtidige livsroller. Den faktiske
+nettleserflyten følger tolv forløp gjennom Civication.html, inkludert låste
+forslag og aktivering av en tilgjengelig rolle gjennom livsprofilen.
+
 Civication er ikke et mailspill. Civication er et livsfortellingsspill
 der hver stilling er en arbeidslivsfortelling, privatlivet går
 parallelt, dagen er spillbrettet, scener er gameplay og valg former
