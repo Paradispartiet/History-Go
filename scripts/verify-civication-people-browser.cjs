@@ -7,12 +7,7 @@ const fs = require('node:fs');
 
 module.exports = async function verifyPeople(browser, origin, outputDir) {
   const context = await browser.newContext({ viewport: { width: 1024, height: 768 } });
-  // The independent cold-boot run records the unbounded social-place fanout.
-  // Exercise People with the supported PLACES cache populated from the exact
-  // repository index. No network response or production function is replaced.
-  const places = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'data/places/places_index.json'), 'utf8'));
-  assert(Array.isArray(places) && places.length > 0, 'Canonical place cache fixture must be an array');
-  await context.addInitScript(list => { window.PLACES = list; }, places);
+  // Fresh normal boot: no PLACES cache fixture or network/function replacement.
   const page = await context.newPage();
   const pageErrors = [];
   const consoleErrors = [];
@@ -30,6 +25,17 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
       && typeof window.CivicationNextActionSelector?.getCurrent === 'function'
       && typeof window.CivicationNextActionUI?.open === 'function'
       && typeof window.CivicationCalendar?.setPhase === 'function');
+    const sourcePlaceCount = await page.evaluate(async () => {
+      let timer;
+      try {
+        const places = await Promise.race([
+          window.CivicationSocialPlaceResolver.loadPlaces(),
+          new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('People source loading timed out')), 90000); })
+        ]);
+        return places.length;
+      } finally { clearTimeout(timer); }
+    });
+    assert(sourcePlaceCount > 0, 'Cold People boot must finish source loading');
 
     const selected = await page.evaluate(async () => {
       const active = { career_id: 'kunst', role_scope: 'kunst_kuratering_og_program',
@@ -128,7 +134,8 @@ module.exports = async function verifyPeople(browser, origin, outputDir) {
       assert.equal(await page.evaluate(() => localStorage.getItem('people_collected')), seededCollection);
     }
     assert.deepEqual(pageErrors, []);
-    return { appBootMode: 'rich map with canonical PLACES cache fixture', placeCacheCount: places.length,
+    assert.deepEqual(failedRequests, [], 'People cold boot must not exhaust browser resources');
+    return { appBootMode: 'rich map cold boot without PLACES fixture', sourcePlaceCount,
       relevantCollectedPerson: 'munch', caseQuestionSourceAndLimit: true,
       unrelatedPersonHidden: true, emptyBindingHidden: true, legacySavedMailHidden: true,
       resetCollectionHidden: true, collectionUnchangedByRuntime: true, answerChoicesRetained: true, pageErrors };

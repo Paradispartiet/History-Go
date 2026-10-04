@@ -157,3 +157,19 @@ conversation.clearConversationsForTesting();
 const html = resolver.buildSocialPlaceHeaderHtml(java, 'leisure');
 for (const text of ['Java Kaffebar', 'Kaffe', 'St. Hanshaugen park', 'Fritidsfase']) assert.ok(html.includes(text));
 console.log(`civication social-place resolver ok (${places.length} resolver-kilder, ${canonicalPlaces.length} canonical steder validert)`);
+
+// Exercise the real manifest/source path as well as the pure opts-based model.
+// Every canonical source ID and social classification must survive cold loading.
+global.fetch = async rel => ({ ok: true, json: async () => readJson(rel) });
+(async () => {
+  const loaded = await resolver.init();
+  assert.deepStrictEqual(
+    [...new Set(loaded.places.map(p => String(p.id)))].sort(),
+    [...canonicalSourceIds].sort(),
+    'cold resolver must decode every canonical singleton/array/wrapper source'
+  );
+  assert.deepStrictEqual(resolver.resolveAllCivicationSocialPlaces(),
+    resolver.resolveAllCivicationSocialPlaces({ brandMaster, brandByPlace, places: canonicalPlaces }),
+    'cold and explicit canonical source models must match in full');
+  console.log(`civication cold source parity ok (${canonicalSourceIds.size} unique IDs, full social model)`);
+})().catch(error => { console.error(error); process.exitCode = 1; });
