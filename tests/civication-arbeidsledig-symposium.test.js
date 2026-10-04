@@ -89,8 +89,41 @@ const untouched = raw.lifeScenes.scenes.find((s) => s.id === "d2_natt_oeyeblikk_
 assert.ok(untouched.valg.find((c) => c.id === "tre_ting_som_gikk").konsekvensTekst.includes("Middagen ble god"), "rolleoverstyring endrer ikke delt råinnhold");
 // Rollebroene må faktisk treffe de eksisterende canonicale pakkene.
 for (const bridge of raw.role.symposium.rollebroer) {
-  assert.equal(read(bridge.role_world).role_scope, bridge.role_scope);
+  const world = read(bridge.role_world);
+  assert.equal(world.role_scope, bridge.role_scope);
+  assert.equal(world.life_position_ref.badge_id, bridge.badge_id);
+  assert.equal(world.life_position_ref.label, bridge.navn);
   assert.ok(read(bridge.narrative).storylets.length);
+  assert.ok(read('data/Civication/narratives/manifest.json').streams.some((s) => s.path === bridge.narrative));
+}
+// Hvert nytt spor spilles fra dag 1 med alle tre møtevalg. Et utsatt/avvist
+// møte blir aldri flyttet til dag 4 eller fortalt som gjennomført uten scene.
+const newRoutes = ['prosjekt', 'skape', 'fellesskap', 'byhistorie', 'utforsking', 'kultur'];
+for (const route of newRoutes) {
+  for (const when of ['dag4', 'dag6', 'egen_tid']) {
+    const state = play({ d2_en_retning: route, ['d3_' + route + '_invitasjon']: when });
+    const book = Runner.getSymposium(state, content);
+    const roleBridges = raw.role.symposium.rollebroer.filter((b) => b.threadId === state.tidligereValg.arbeidsledig_hovedtraad);
+    assert.equal(book.rollebro.role_scope, state.tidligereValg.arbeidsledig_rolleforslag);
+    assert.ok(roleBridges.length >= 3);
+    for (const other of newRoutes.filter((r) => r !== route)) assert.ok(!state.spilteScener.includes('d3_' + other + '_invitasjon'));
+    assert.equal(state.spilteScener.includes('d4_' + route + '_moetet'), when === 'dag4');
+    assert.equal(state.spilteScener.includes('d6_' + route + '_moetet'), when === 'dag6');
+    assert.equal(!!state.tidligereValg[route + '_mote_gjennomfort'], when !== 'egen_tid');
+    assert.equal(book.moter.filter((m) => m.id.startsWith(route + '_mote')).length, when === 'egen_tid' ? 0 : 1);
+    assert.ok(state.tidligereValg.arbeidsledig_uke_avsluttet);
+    assert.equal(state.threadState.nav_og_meldekortet.status, 'completed');
+  }
+}
+const noRoleChoice = play({ d2_en_retning: 'prosjekt', d7_prosjekt_videre: 'egen_trad' });
+assert.equal(Runner.getSymposium(noRoleChoice, content).rollebro, null, 'flere muligheter er ikke et automatisk rollevalg');
+assert.equal(noRoleChoice.tidligereValg.arbeidsledig_rolleforslag, undefined);
+for (const mutate of [
+  (raw) => { raw.role.symposium.rollebroer.push(raw.role.symposium.rollebroer[0]); },
+  (raw) => { raw.roleScenes.scenes.find((s) => s.id === 'd7_prosjekt_videre').valg[0].effekter.flagg.arbeidsledig_rolleforslag = 'ukjent'; }
+]) {
+  const broken = JSON.parse(JSON.stringify(raw)); mutate(broken);
+  assert.throws(() => Content.buildContent(broken), /rollebro/);
 }
 // Fremtidig konsert, gammel knapp og feil gren får ikke skrive historien.
 const start = State.createInitialState(content);

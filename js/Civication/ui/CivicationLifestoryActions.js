@@ -70,6 +70,9 @@
 
     if (type === "aapne_livsposisjoner") {
       if (!openCategory(HANDLING_TO_CATEGORY[type])) return { utfoert: false, type };
+      // Valget er nettopp lagret. Hent forslaget fra historien før panelet
+      // åpnes, også når valget bare endret flagg og ikke ga updateProfile.
+      /** @type {any} */ (globalScope).CivicationLifePositionUI?.render?.();
       // Livsprofilen eies av activeJobCard under Karriere og åpnes med
       // seksjonens vanlige knapp. Ingen rolle eller jobb aktiveres her.
       const btn = /** @type {any} */ (globalScope).document?.querySelector?.("#activeJobSection [data-civi-mini-open]");

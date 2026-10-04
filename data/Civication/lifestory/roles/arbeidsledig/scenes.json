@@ -1039,7 +1039,7 @@
       "tilgjengelighet": "start",
       "prioritet": 5,
       "tittel": "Hvem vil du møte videre?",
-      "tekst": "Jonas sender et lydklipp fra Mira: «Hun mangler noen å prøve denne med.» Samtidig skriver bekjenten om Amir og en liten undergrunnskveld. Du ser fra meldingene til lista på bordet. Hvilken samtale vil du begynne med?",
+      "tekst": "Jonas og bekjenten kjenner folk som bruker tida på musikk, små prosjekter, kunst, klubbliv, byvandringer, natur og kulturkvelder. Mira har sendt et lydklipp; Amir vil snakke om en undergrunnskveld. Du kan også holde fast ved læring og søknader. Hvilken kontakt vil du begynne med? Dette valget gjelder den første samtalen, ikke hele identiteten din.",
       "valg": [
         {
           "id": "musikk",
@@ -1106,6 +1106,125 @@
           "livsstil": [
             "craft",
             "process"
+          ]
+        },
+        {
+          "id": "prosjekt",
+          "tekst": "Snakk med Lea om et eget prosjekt",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "prosjektet_og_lea"
+            },
+            "threads": {
+              "prosjektet_og_lea": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Lea. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "skape",
+          "tekst": "Spør Elin om skriving og skaperrommet",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "skaperrommet_og_elin"
+            },
+            "threads": {
+              "skaperrommet_og_elin": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Elin. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "fellesskap",
+          "tekst": "Møt Sara i klubben og det lokale initiativet",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "klubben_og_sara"
+            },
+            "threads": {
+              "klubben_og_sara": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Sara. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "byhistorie",
+          "tekst": "Bli kjent med Ivar gjennom by og historie",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "byvandringen_og_ivar"
+            },
+            "threads": {
+              "byvandringen_og_ivar": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Ivar. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "utforsking",
+          "tekst": "Møt Nora for natur og små undersøkelser",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "feltarbeidet_og_nora"
+            },
+            "threads": {
+              "feltarbeidet_og_nora": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Nora. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "kultur",
+          "tekst": "Spør Daniel om film, bøker og konserter",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "kulturkveldene_og_daniel"
+            },
+            "threads": {
+              "kulturkveldene_og_daniel": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du får kontakt med Daniel. På dag 3 kan dere avklare tidspunkt og hva du vil prøve.",
+          "livsstil": [
+            "culture"
           ]
         }
       ]
@@ -2392,7 +2511,8 @@
           "tekst": "Se Frilansmusiker blant livsposisjonene",
           "effekter": {
             "flagg": {
-              "musikk_rollebro_aapnet": true
+              "musikk_rollebro_aapnet": true,
+              "arbeidsledig_rolleforslag": "musikk_frilansmusiker"
             },
             "meters": {
               "handlingsrom": 1
@@ -2415,6 +2535,19 @@
             }
           },
           "konsekvensTekst": "Du trenger ikke en formell rolleetikett for å beholde Mira og historien deres."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "d7_musikk_videre_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Ukas spor begrenser ikke hvilke andre livsroller du kan velge.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
         }
       ],
       "conditions": {
@@ -2441,7 +2574,8 @@
           "tekst": "Se Gangster blant livsposisjonene",
           "effekter": {
             "flagg": {
-              "miljo_rollebro_aapnet": true
+              "miljo_rollebro_aapnet": true,
+              "arbeidsledig_rolleforslag": "subkultur_gangster"
             },
             "meters": {
               "handlingsrom": 1
@@ -2464,6 +2598,19 @@
             }
           },
           "konsekvensTekst": "Historien om Amir blir stående, også hvis du legger kontakten bak deg."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "d7_miljo_videre_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Ukas spor begrenser ikke hvilke andre livsroller du kan velge.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
         }
       ],
       "conditions": {
@@ -2515,6 +2662,19 @@
           "konsekvensTekst": "Du går videre til de faktiske læringsoppgavene. Historien har ikke gitt deg et merke på forskudd.",
           "handling": {
             "type": "gaa_til_quiz"
+          }
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "d7_kunnskap_videre_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Ukas spor begrenser ikke hvilke andre livsroller du kan velge.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
           }
         }
       ],
@@ -2607,6 +2767,2981 @@
                 "stepDelta": 1
               }
             }
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_prosjekt_invitasjon",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva vil du lage først?",
+      "tekst": "På bordet ligger en idé du har skissert på et ark. Den er ikke prøvd ennå. Jonas har satt deg i kontakt med Lea. Hun sender et bilde av en enkel pappmodell: «Jeg pleier å teste ideer ved prosjektbordet på biblioteket. Ta med en skisse hvis du vil. Det trenger ikke være noe du vil selge.» Hun har tid på dag 4 eller dag 6 klokka 14.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "prosjekt_moetetid": "dag4",
+              "prosjekt_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved bibliotekets prosjektbord. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "prosjekt_moetetid": "dag6",
+              "prosjekt_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Lea bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "prosjekt_moetetid": "ingen",
+              "prosjekt_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Lea. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_prosjekt_moetet",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "lea",
+      "stedId": "prosjektbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Skissen og de tre ekstra funksjonene",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Lea ser på skissen du har med. Du forklarer én løsning, men før du er ferdig har du nevnt tre ting den også kunne gjøre. «Hva kan vi prøve i løpet av denne timen?» spør hun. Ved nabobordet sitter noen og klipper en modell ut av papp.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Lag en enkel versjon av den første ideen",
+          "effekter": {
+            "flagg": {
+              "prosjekt_mote_gjennomfort": true,
+              "prosjekt_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Dere prøver en grov versjon. Lea peker på ett sted hun ikke forstår hvordan den skal brukes. Det gir deg et konkret spørsmål å jobbe med.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Bruk timen til å finne hvem ideen er nyttig for",
+          "effekter": {
+            "flagg": {
+              "prosjekt_mote_gjennomfort": true,
+              "prosjekt_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Dere skriver ned hvem du vil spørre, og hva du vil finne ut. Ingen modell er laget ennå, og ingen har bestilt et oppdrag.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_prosjekt_moetet",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "lea",
+      "stedId": "prosjektbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Skissen og de tre ekstra funksjonene",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Lea ser på skissen du har med. Du forklarer én løsning, men før du er ferdig har du nevnt tre ting den også kunne gjøre. «Hva kan vi prøve i løpet av denne timen?» spør hun. Ved nabobordet sitter noen og klipper en modell ut av papp.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Lag en enkel versjon av den første ideen",
+          "effekter": {
+            "flagg": {
+              "prosjekt_mote_gjennomfort": true,
+              "prosjekt_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Dere prøver en grov versjon. Lea peker på ett sted hun ikke forstår hvordan den skal brukes. Det gir deg et konkret spørsmål å jobbe med.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Bruk timen til å finne hvem ideen er nyttig for",
+          "effekter": {
+            "flagg": {
+              "prosjekt_mote_gjennomfort": true,
+              "prosjekt_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Dere skriver ned hvem du vil spørre, og hva du vil finne ut. Ingen modell er laget ennå, og ingen har bestilt et oppdrag.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_prosjekt_venter",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Lea har bekreftet prosjektbordet på dag 6. Du har ikke prøvd skissen sammen med henne ennå. Vil du rydde plass til avtalen eller la resten av dagen være åpen?",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "lea_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "lea_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_prosjekt_egen_tid",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Lea",
+      "tekst": "Du takket nei til prosjektbordet denne uka. Lea venter ikke på deg. Skissen kan bli liggende, eller du kan jobbe litt på egen hånd.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Arbeid litt med skissen hjemme",
+          "effekter": {
+            "flagg": {
+              "prosjekt_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du endrer skissen hjemme. Lea har verken sett eller testet den.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Legg prosjektet til side noen dager",
+          "effekter": {
+            "flagg": {
+              "prosjekt_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar skissen ligge. Ingen kunde eller samarbeidspartner venter på en leveranse."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_prosjekt_venter",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Lea",
+      "tekst": "Lea har sett at dere møtes på dag 6. Hun ber deg ta med én skisse, ikke en ferdig presentasjon. På bordet ligger arket du vil vise henne.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Tegn én skisse å ta med",
+          "effekter": {
+            "flagg": {
+              "prosjekt_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Skissen er klar til møtet. Den er foreløpig ikke prøvd av andre.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Skriv ned problemet uten å tegne løsningen ennå",
+          "effekter": {
+            "flagg": {
+              "prosjekt_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Du har et spørsmål å ta med til Lea. Møtet er fortsatt først på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_prosjekt_egen_tid",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går beholdt du tida hjemme etter at du takket nei til prosjektbordet. Lea venter fortsatt ikke på en leveranse. På dag 5 kan du gi ideen en liten økt eller la den hvile; det du gjorde i går står i historien.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Arbeid litt med skissen hjemme",
+          "effekter": {
+            "flagg": {
+              "prosjekt_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du endrer skissen hjemme. Lea har verken sett eller testet den.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Legg prosjektet til side noen dager",
+          "effekter": {
+            "flagg": {
+              "prosjekt_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar skissen ligge. Ingen kunde eller samarbeidspartner venter på en leveranse."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_prosjekt_oppfolging",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lea spør hva du vil prøve neste gang",
+      "tekst": "Lea følger opp samtalen ved prosjektbordet: «Vil du prøve noe selv først, eller sende meg ett spørsmål?» Hun ber ikke om flere funksjoner. Du kan holde prosjektet lite mens du finner ut hva det skal bli.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Sett av én time til et avgrenset forsøk",
+          "effekter": {
+            "flagg": {
+              "prosjekt_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du skriver inn én arbeidstime. Målet er å prøve noe, ikke å love en ferdig leveranse.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be Lea lese ett spørsmål før du bygger videre",
+          "effekter": {
+            "flagg": {
+              "prosjekt_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Du sender ett spørsmål. Lea kan svare når hun har tid; du har ikke avtalt nytt oppmøte."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "dag4",
+          "prosjekt_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_prosjekt_kontakt",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Lea videre",
+      "tekst": "Lea sender et bilde av sin egen modell, som også har en løs del. «Ikke helt der ennå», skriver hun. Etter møtet deres kjenner du noen du kan vise uferdig arbeid til.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Behold kontakten uten å utvide prosjektet",
+          "effekter": {
+            "flagg": {
+              "prosjekt_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Lea vet at du vil holde kontakten. Dere har ikke avtalt en større leveranse."
+        },
+        {
+          "id": "pause",
+          "tekst": "La prosjektet være ditt eget en stund",
+          "effekter": {
+            "flagg": {
+              "prosjekt_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Du vil prøve mer alene før neste samtale. Lea forventer ikke et nytt møte denne uka."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_moetetid": "dag4",
+          "prosjekt_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_prosjekt_videre",
+      "threadId": "prosjektet_og_lea",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "lea",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et prosjekt kan få plass uten å bli en jobb",
+      "tekst": "Du ser gjennom skissen og meldingene med Lea. Vil du bygge et sideprosjekt, undersøke frilansoppdrag eller utforske en forretningsidé? Det er ulike retninger, og et ønske om inntekt er ikke en bestilling.",
+      "valg": [
+        {
+          "id": "naeringsliv_sideprosjektbygger",
+          "tekst": "Undersøk Sideprosjektbygger i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "naeringsliv_sideprosjektbygger"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Sideprosjektbygger. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "naeringsliv_frilanser",
+          "tekst": "Undersøk Frilanser i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "naeringsliv_frilanser"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Frilanser. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "naeringsliv_grunderdrommer",
+          "tekst": "Undersøk Gründerdrømmer i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "naeringsliv_grunderdrommer"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Gründerdrømmer. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "prosjekt_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "prosjekt_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_skape_invitasjon",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du kan ta med noe som ikke er ferdig",
+      "tekst": "Du har begynt på et utkast, men har ennå ikke vist det til noen. Jonas videresender invitasjonen fra Elin til et åpent skaperrom. Der sitter folk med tekster, tegninger og små øvelser. «Du kan vise noe, eller bare se hvordan vi arbeider», skriver hun. Hun kan møte deg dag 4 eller dag 6 klokka 14.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "skape_moetetid": "dag4",
+              "skape_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved det åpne skaperrommet. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "skape_moetetid": "dag6",
+              "skape_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Elin bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "skape_moetetid": "ingen",
+              "skape_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Elin. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_skape_moetet",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "elin",
+      "stedId": "skaperrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem bestemmer over utkastet?",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Elin setter fram to stoler ved arbeidsbordet. Du tar ut arket du har med. Hun spør om du vil ha forslag, eller om du heller vil arbeide mens hun sitter ved siden av. Fra rommet innenfor høres noen som prøver en improvisert scene. Du trenger ikke vise arket til dem.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Be om tilbakemelding på én del av utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_mote_gjennomfort": true,
+              "skape_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Elin kommenterer den delen du ba om. Du skriver ned ett forslag og beholder retten til å la resten stå.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Arbeid ved bordet uten å dele utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_mote_gjennomfort": true,
+              "skape_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du bruker bordet til å arbeide. Elin har ikke lest teksten, og ingen har fått lov til å vise den videre.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_skape_moetet",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "elin",
+      "stedId": "skaperrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem bestemmer over utkastet?",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Elin setter fram to stoler ved arbeidsbordet. Du tar ut arket du har med. Hun spør om du vil ha forslag, eller om du heller vil arbeide mens hun sitter ved siden av. Fra rommet innenfor høres noen som prøver en improvisert scene. Du trenger ikke vise arket til dem.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Be om tilbakemelding på én del av utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_mote_gjennomfort": true,
+              "skape_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Elin kommenterer den delen du ba om. Du skriver ned ett forslag og beholder retten til å la resten stå.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Arbeid ved bordet uten å dele utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_mote_gjennomfort": true,
+              "skape_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du bruker bordet til å arbeide. Elin har ikke lest teksten, og ingen har fått lov til å vise den videre.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_skape_venter",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Elin forventer deg først på dag 6. Utkastet ligger hjemme. Du trenger ikke få det ferdig i dag; arbeidsrommet skal gi plass til det som fortsatt er uferdig.",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "elin_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "elin_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_skape_egen_tid",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Elin",
+      "tekst": "Du valgte å stå over skaperrommet denne uka. Elin har ingen avtale med deg. Arket ligger hjemme, og du kan fortsette uten at noen skal vurdere det.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Skriv eller tegn litt hjemme",
+          "effekter": {
+            "flagg": {
+              "skape_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du arbeider videre på arket. Du har ikke deltatt i en skrivegruppe eller improøkt.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta fri fra utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Utkastet blir liggende privat. Ingen venter på at du skal vise det fram."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_skape_venter",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Elin",
+      "tekst": "Elin har holdt av samtalen på dag 6. Du trenger ikke ferdigstille arket før dere møtes. Hun har spurt hva du vil ha hjelp til, og du kan velge hvor mye du vil dele.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Velg én del du kan vise fram",
+          "effekter": {
+            "flagg": {
+              "skape_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du velger delen du vil vise. Ingen andre har lest den ennå.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Bestem deg for å arbeide uten å dele",
+          "effekter": {
+            "flagg": {
+              "skape_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Du vil bruke arbeidsrommet og beholde utkastet privat. Det kan du si til Elin når dere møtes."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_skape_egen_tid",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går valgte du egen tid etter avslaget på skaperrommet. Elin har ikke lest utkastet ditt. I dag kan du arbeide videre privat eller la arket ligge uten å gjøre pausen til et nytt løfte om å vise det fram.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Skriv eller tegn litt hjemme",
+          "effekter": {
+            "flagg": {
+              "skape_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du arbeider videre på arket. Du har ikke deltatt i en skrivegruppe eller improøkt.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta fri fra utkastet",
+          "effekter": {
+            "flagg": {
+              "skape_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Utkastet blir liggende privat. Ingen venter på at du skal vise det fram."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_skape_oppfolging",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arbeidet trenger ikke publikum ennå",
+      "tekst": "Elin skriver etter møtet i skaperrommet: «Vil du komme innom igjen når du har arbeidet litt videre?» Hun sender også navnet på skrivegruppa og tidspunktet for en åpen improøkt. Du trenger ikke melde deg på begge.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Gi teksten eller tegningen en ny arbeidsøkt",
+          "effekter": {
+            "flagg": {
+              "skape_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du setter av tid til utkastet. Det er en arbeidsøkt, ikke en publisering.",
+          "livsstil": [
+            "craft",
+            "culture"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Spør hva en ny deltaker gjør på improøkta",
+          "effekter": {
+            "flagg": {
+              "skape_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Du spør om formatet og hva som forventes. Du har ennå ikke meldt deg på økta."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "dag4",
+          "skape_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_skape_kontakt",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Elin videre",
+      "tekst": "Elin spør om hun kan vise et eget utkast neste gang dere snakker. Etter møtet vet du at tilbakemelding kan gå begge veier. Det er mulig å være med i et skapende miljø uten å gi bort kontrollen over arbeidet.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Si ja til å lese når dere avtaler en ny tid",
+          "effekter": {
+            "flagg": {
+              "skape_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Du vil gjerne lese Elins utkast senere. Dere har ikke bestemt tid eller publisering."
+        },
+        {
+          "id": "pause",
+          "tekst": "Behold kontakten, men ikke ta på deg mer nå",
+          "effekter": {
+            "flagg": {
+              "skape_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Elin vet at du vil holde kontakten uten nye oppgaver denne uka."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "skape_moetetid": "dag4",
+          "skape_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_skape_videre",
+      "threadId": "skaperrommet_og_elin",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "elin",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Skriving, atelier eller improvisasjon?",
+      "tekst": "Du blar mellom utkastet og meldingene fra Elin. Skriving, atelierfellesskap og improvisasjon har ulike rytmer. Velg hva du vil undersøke videre; du trenger ikke få noe publisert eller bli ansatt for å fortsette å skape.",
+      "valg": [
+        {
+          "id": "litteratur_skrivebordspoet",
+          "tekst": "Undersøk Skrivebordspoet i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "litteratur_skrivebordspoet"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Skrivebordspoet. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "kunst_ateliermenneske",
+          "tekst": "Undersøk Ateliermenneske i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "kunst_ateliermenneske"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Ateliermenneske. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "scenekunst_improentusiast",
+          "tekst": "Undersøk Improentusiast i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "scenekunst_improentusiast"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Improentusiast. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "skape_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "skape_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_fellesskap_invitasjon",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ledig time er ikke et fast skift",
+      "tekst": "Bekjenten kjenner Sara, som holder en åpen prat i klubbens møterom. Hun vil ha nye folk innom og forteller også om et lokalt initiativ. «Du kan komme uten å melde deg til en vakt», skriver hun. Hun foreslår dag 4 eller dag 6 klokka 14.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "fellesskap_moetetid": "dag4",
+              "fellesskap_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved klubbens møterom. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "fellesskap_moetetid": "dag6",
+              "fellesskap_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Sara bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "fellesskap_moetetid": "ingen",
+              "fellesskap_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Sara. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_fellesskap_moetet",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "sara",
+      "stedId": "klubbrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lista med de samme navnene",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Sara viser deg lista over frivillige oppgaver. De samme navnene går igjen. En deltaker spør om du kan ta flere vakter siden du ikke har jobb nå. Sara skyver lista til side: «Vi må spørre hva folk faktisk har kapasitet til.» Du kan velge ett bidrag eller bare delta i praten.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Ta én liten oppgave med avtalt sluttid",
+          "effekter": {
+            "flagg": {
+              "fellesskap_mote_gjennomfort": true,
+              "fellesskap_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du hjelper med å sortere utstyret fram til avtalt sluttid. Sara skriver ikke navnet ditt på nye vakter.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Delta i praten uten å ta en vakt",
+          "effekter": {
+            "flagg": {
+              "fellesskap_mote_gjennomfort": true,
+              "fellesskap_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du sier hva du er interessert i og hører på de andre. Du har ikke meldt deg til praktisk arbeid.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_fellesskap_moetet",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "sara",
+      "stedId": "klubbrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lista med de samme navnene",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Sara viser deg lista over frivillige oppgaver. De samme navnene går igjen. En deltaker spør om du kan ta flere vakter siden du ikke har jobb nå. Sara skyver lista til side: «Vi må spørre hva folk faktisk har kapasitet til.» Du kan velge ett bidrag eller bare delta i praten.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Ta én liten oppgave med avtalt sluttid",
+          "effekter": {
+            "flagg": {
+              "fellesskap_mote_gjennomfort": true,
+              "fellesskap_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du hjelper med å sortere utstyret fram til avtalt sluttid. Sara skriver ikke navnet ditt på nye vakter.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Delta i praten uten å ta en vakt",
+          "effekter": {
+            "flagg": {
+              "fellesskap_mote_gjennomfort": true,
+              "fellesskap_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du sier hva du er interessert i og hører på de andre. Du har ikke meldt deg til praktisk arbeid.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_fellesskap_venter",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Sara har satt opp praten på dag 6. Du er ikke på noen dugnadsvakt i dag. Du kan holde av avtalen uten å fylle alle de ledige timene med klubbarbeid.",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "sara_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "sara_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_fellesskap_egen_tid",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Sara",
+      "tekst": "Du takket nei til praten denne uka. Sara vet at du ikke kommer. Du står ikke på dugnadslista og trenger ikke finne noen som kan ta plassen din.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Les om initiativet uten å melde deg inn",
+          "effekter": {
+            "flagg": {
+              "fellesskap_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du undersøker saken hjemme. Du har ikke meldt deg til klubbarbeid eller sluttet deg til en organisasjon.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La klubb og initiativ vente",
+          "effekter": {
+            "flagg": {
+              "fellesskap_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Sara har fått et tydelig nei til denne uka. Det skaper ingen ny plikt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_fellesskap_venter",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Sara",
+      "tekst": "Sara minner om praten på dag 6. Hun har ikke satt deg på dugnadslista. Du kan tenke gjennom om du er mest interessert i klubblivet eller saken det lokale initiativet arbeider med.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Skriv ned ett spørsmål om initiativet",
+          "effekter": {
+            "flagg": {
+              "fellesskap_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du har et spørsmål til praten. Det er ikke en politisk tilslutning eller et verv.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Bestem hvor mye tid du kan tilby",
+          "effekter": {
+            "flagg": {
+              "fellesskap_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Du skriver ned kapasiteten din. Ingen har fått et løfte om vakter."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_fellesskap_egen_tid",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går brukte du tida uten å møte Sara. Avslaget gjelder fortsatt denne uka, og ingen har skrevet deg på en vakt. Du kan undersøke initiativet hjemme eller gi deg selv en dag uten klubbplaner.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Les om initiativet uten å melde deg inn",
+          "effekter": {
+            "flagg": {
+              "fellesskap_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du undersøker saken hjemme. Du har ikke meldt deg til klubbarbeid eller sluttet deg til en organisasjon.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La klubb og initiativ vente",
+          "effekter": {
+            "flagg": {
+              "fellesskap_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Sara har fått et tydelig nei til denne uka. Det skaper ingen ny plikt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_fellesskap_oppfolging",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem får være med på å bestemme?",
+      "tekst": "Sara sender notatet fra praten i klubbrommet. Der står både praktiske oppgaver og et forslag fra det lokale initiativet. «Si fra hvis vi har gjengitt deg feil», skriver hun. Du kan følge klubben, undersøke saken eller holde kontakten uformelt.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Spør hvordan nye deltakere kan foreslå noe",
+          "effekter": {
+            "flagg": {
+              "fellesskap_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du ber om framgangsmåten for forslag. Du har ikke fått et verv eller mandat til å tale for gruppa.",
+          "livsstil": [
+            "process",
+            "visibility"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be om én konkret oppgave framfor en fast vakt",
+          "effekter": {
+            "flagg": {
+              "fellesskap_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Sara vet at framtidige oppgaver må avtales enkeltvis. Du har ikke sagt ja til en fast dugnadsrolle."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "dag4",
+          "fellesskap_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_fellesskap_kontakt",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Sara videre",
+      "tekst": "Sara sender neste åpne møtetid som informasjon. Etter praten deres vet hun hva du er interessert i, men invitasjonen er ikke en ny vakt. Du kan bli kjent med miljøet i ditt eget tempo.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Be om invitasjoner uten faste oppgaver",
+          "effekter": {
+            "flagg": {
+              "fellesskap_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Sara kan sende deg åpne invitasjoner. Ingen ny vakt er avtalt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Be henne vente med flere invitasjoner",
+          "effekter": {
+            "flagg": {
+              "fellesskap_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Sara vet at du trenger en pause. Tidligere deltakelse er ikke et løfte om neste gang."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "fellesskap_moetetid": "dag4",
+          "fellesskap_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_fellesskap_videre",
+      "threadId": "klubben_og_sara",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "sara",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et fellesskap med plass til din kapasitet",
+      "tekst": "Meldingene fra Sara viser flere veier videre: klubbliv, et lokalt initiativ eller organisasjonsarbeid. Interesse for én sak gir verken automatisk medlemskap eller et politisk verv. Hva vil du undersøke nærmere?",
+      "valg": [
+        {
+          "id": "sport_klubbmenneske",
+          "tekst": "Undersøk Klubbmenneske i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "sport_klubbmenneske"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Klubbmenneske. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "politikk_grasrotbygger",
+          "tekst": "Undersøk Grasrotbygger i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "politikk_grasrotbygger"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Grasrotbygger. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "politikk_organisasjonsmenneske",
+          "tekst": "Undersøk Organisasjonsmenneske i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "politikk_organisasjonsmenneske"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Organisasjonsmenneske. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "fellesskap_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "fellesskap_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_byhistorie_invitasjon",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Bildet av et gatehjørne",
+      "tekst": "Jonas viser deg et gammelt bilde Ivar har med på byvandringer. Bygningen er borte, men gatehjørnet finnes. «Vi kan sammenligne bildet med stedet», skriver Ivar. Dere kan møtes dag 4 eller dag 6 klokka 14; turen er gratis og tar en time. Ivar sender deg en kopi av bildet så du kan se på det hjemme.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "byhistorie_moetetid": "dag4",
+              "byhistorie_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved møtestedet ved det gamle gatehjørnet. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "byhistorie_moetetid": "dag6",
+              "byhistorie_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Ivar bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "byhistorie_moetetid": "ingen",
+              "byhistorie_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Ivar. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_byhistorie_moetet",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "ivar",
+      "stedId": "gatehjorne",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et årstall du ikke kan bekrefte",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Ivar møter deg ved gatehjørnet med en kopi av bildet. En nabo stanser og husker en butikk som lå der, men er usikker på når den stengte. Bak dere ligger en passasje med en lukket port. Ivar foreslår å holde turen på de åpne gatene.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Noter minnet som usikkert og sammenlign med bildet",
+          "effekter": {
+            "flagg": {
+              "byhistorie_mote_gjennomfort": true,
+              "byhistorie_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du noterer hva naboen husker og markerer årstallet som usikkert. Bildet bekrefter ikke datoen alene.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Gå videre langs den åpne gata og se etter andre spor",
+          "effekter": {
+            "flagg": {
+              "byhistorie_mote_gjennomfort": true,
+              "byhistorie_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Dere følger den åpne gata. Du får sett flere spor uten å gå gjennom den private porten.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_byhistorie_moetet",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "ivar",
+      "stedId": "gatehjorne",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et årstall du ikke kan bekrefte",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Ivar møter deg ved gatehjørnet med en kopi av bildet. En nabo stanser og husker en butikk som lå der, men er usikker på når den stengte. Bak dere ligger en passasje med en lukket port. Ivar foreslår å holde turen på de åpne gatene.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Noter minnet som usikkert og sammenlign med bildet",
+          "effekter": {
+            "flagg": {
+              "byhistorie_mote_gjennomfort": true,
+              "byhistorie_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du noterer hva naboen husker og markerer årstallet som usikkert. Bildet bekrefter ikke datoen alene.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Gå videre langs den åpne gata og se etter andre spor",
+          "effekter": {
+            "flagg": {
+              "byhistorie_mote_gjennomfort": true,
+              "byhistorie_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Dere følger den åpne gata. Du får sett flere spor uten å gå gjennom den private porten.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_byhistorie_venter",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Turen med Ivar er på dag 6. Kopien av bildet ligger hjemme, men du har ennå ikke gått ruta med ham. Dagen i dag har ingen møteavtale ved gatehjørnet.",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "ivar_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "ivar_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_byhistorie_egen_tid",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Ivar",
+      "tekst": "Du valgte å stå over turen denne uka. Ivar forventer deg ikke ved gatehjørnet. Bildet kan fortsatt være interessant selv om dere ikke gikk sammen.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Se på bildet hjemme og noter ett spørsmål",
+          "effekter": {
+            "flagg": {
+              "byhistorie_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du undersøker kopien hjemme. Det er ikke en gjennomført byvandring.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La bildet og turen vente",
+          "effekter": {
+            "flagg": {
+              "byhistorie_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du har ingen møteavtale med Ivar. Han venter ikke på et svar ved gatehjørnet."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_byhistorie_venter",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Ivar",
+      "tekst": "Turen med Ivar er avtalt til dag 6. Du kan se på kopien av bildet på forhånd, men du har ennå ikke vært ved gatehjørnet sammen med ham.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Skriv ned hva bildet ikke forteller",
+          "effekter": {
+            "flagg": {
+              "byhistorie_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du lager spørsmål om bildet. De er ikke bekreftede historiske opplysninger.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Se etter en offentlig rute til møtestedet",
+          "effekter": {
+            "flagg": {
+              "byhistorie_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Du finner en rute å bruke på dag 6. Turen er planlagt, ikke gjennomført."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_byhistorie_egen_tid",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går holdt du dagen fri fra turen med Ivar. Kopien av bildet finnes fortsatt, men ingen felles byvandring er gjennomført. Du kan se på bildet hjemme i dag eller vente med spørsmålet om gatehjørnet.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Se på bildet hjemme og noter ett spørsmål",
+          "effekter": {
+            "flagg": {
+              "byhistorie_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du undersøker kopien hjemme. Det er ikke en gjennomført byvandring.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La bildet og turen vente",
+          "effekter": {
+            "flagg": {
+              "byhistorie_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du har ingen møteavtale med Ivar. Han venter ikke på et svar ved gatehjørnet."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_byhistorie_oppfolging",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ivar sender bildets bakside",
+      "tekst": "Etter turen sender Ivar et bilde av påskriften på baksiden. Den kan hjelpe, men håndskriften er vanskelig å lese. «Jeg vil sjekke før jeg bruker årstallet», skriver han. Du kan undersøke kilden eller fortsette å bli kjent med gatene.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Sammenlign påskriften med en annen kilde",
+          "effekter": {
+            "flagg": {
+              "byhistorie_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du setter av tid til kildearbeid. Årstallet blir ikke sikkert bare fordi du har skrevet det ned.",
+          "livsstil": [
+            "heritage",
+            "outdoor"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Tegn ruta dere gikk og legg til en ny offentlig gate",
+          "effekter": {
+            "flagg": {
+              "byhistorie_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Du tegner den gjennomførte ruta og et forslag til neste tur. Ingen ny tur med Ivar er avtalt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "dag4",
+          "byhistorie_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_byhistorie_kontakt",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Ivar videre",
+      "tekst": "Ivar foreslår at dere kan ta et annet kvartal senere. Etter turen deres vet du at samme gate kan gi både en langsom vandring og et konkret historisk spørsmål. Du trenger ikke gjøre hver tur til et forskningsprosjekt.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Hold kontakten om en senere tur",
+          "effekter": {
+            "flagg": {
+              "byhistorie_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Ivar vet at du gjerne vil gå igjen. Ny dato er ikke bestemt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Utforsk videre på egen hånd",
+          "effekter": {
+            "flagg": {
+              "byhistorie_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Du vil gå alene en stund. Det avlyser ingen avtalt tur."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "byhistorie_moetetid": "dag4",
+          "byhistorie_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_byhistorie_videre",
+      "threadId": "byvandringen_og_ivar",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "ivar",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vandre, dvele eller undersøke historien?",
+      "tekst": "Du finner fram kopien av bildet Ivar sendte. Vil du bli kjent med byen gjennom turer, rusle uten plan eller undersøke historiske spor? Byvandrer, Flanør og Lokalhistoriker gir ulike retninger videre.",
+      "valg": [
+        {
+          "id": "by_byvandrer",
+          "tekst": "Undersøk Byvandrer i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "by_byvandrer"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Byvandrer. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "by_flanor",
+          "tekst": "Undersøk Flanør i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "by_flanor"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Flanør. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "historie_lokalhistoriker",
+          "tekst": "Undersøk Lokalhistoriker i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "historie_lokalhistoriker"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Lokalhistoriker. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "byhistorie_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "byhistorie_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_utforsking_invitasjon",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En kort observasjonsøkt",
+      "tekst": "Bekjenten sender deg kontaktinfo til Nora, som registrerer natur i en park og lager enkle modeller på et verksted. «Du kan bli med på én økt uten å kunne artsnavnene», skriver hun. Hun foreslår dag 4 eller dag 6 klokka 14 ved parken. Dere skal observere, ikke sanke mat.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "utforsking_moetetid": "dag4",
+              "utforsking_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved møtestedet ved parken. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "utforsking_moetetid": "dag6",
+              "utforsking_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Nora bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "utforsking_moetetid": "ingen",
+              "utforsking_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Nora. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_utforsking_moetet",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "nora",
+      "stedId": "feltbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du hørte noe, men så det ikke",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Nora står ved møtestedet med et enkelt skjema. Dere hører en fugl inne i krattet, men ser den ikke. Hun ber deg skille det du hørte fra arten du tror det var. Etter tjue minutter har dere få sikre funn. Skjemaet har plass til både usikkerhet og null.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Noter lyd, tidspunkt og usikker artsbestemmelse",
+          "effekter": {
+            "flagg": {
+              "utforsking_mote_gjennomfort": true,
+              "utforsking_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du registrerer det du faktisk observerte, med usikkerheten synlig. Ingen sikker art er lagt til av denne scenen.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Registrer øktas varighet og de sikre nullene",
+          "effekter": {
+            "flagg": {
+              "utforsking_mote_gjennomfort": true,
+              "utforsking_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du noterer hvor lenge dere undersøkte og hva dere ikke fant. Økta er gjennomført selv om resultatet er beskjedent.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_utforsking_moetet",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "nora",
+      "stedId": "feltbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du hørte noe, men så det ikke",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Nora står ved møtestedet med et enkelt skjema. Dere hører en fugl inne i krattet, men ser den ikke. Hun ber deg skille det du hørte fra arten du tror det var. Etter tjue minutter har dere få sikre funn. Skjemaet har plass til både usikkerhet og null.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Noter lyd, tidspunkt og usikker artsbestemmelse",
+          "effekter": {
+            "flagg": {
+              "utforsking_mote_gjennomfort": true,
+              "utforsking_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du registrerer det du faktisk observerte, med usikkerheten synlig. Ingen sikker art er lagt til av denne scenen.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Registrer øktas varighet og de sikre nullene",
+          "effekter": {
+            "flagg": {
+              "utforsking_mote_gjennomfort": true,
+              "utforsking_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du noterer hvor lenge dere undersøkte og hva dere ikke fant. Økta er gjennomført selv om resultatet er beskjedent.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_utforsking_venter",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Nora vet at du kommer på dag 6. Dere har ikke registrert noe sammen. Du kan holde av den timen uten å gjøre resten av uka til feltarbeid.",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "nora_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "nora_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_utforsking_egen_tid",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Nora",
+      "tekst": "Du takket nei til økta denne uka. Nora forventer deg ikke i parken. Du kan undersøke noe hjemme uten å gjøre det til et feltfunn.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Les om observasjonsmetoden",
+          "effekter": {
+            "flagg": {
+              "utforsking_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du leser om metoden. Du har ikke registrert en art, sanket noe eller vært på verkstedet.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La undersøkelsen vente",
+          "effekter": {
+            "flagg": {
+              "utforsking_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du har ingen observasjonsavtale denne uka. Det tomme skjemaet blir ikke fylt av at dagen går."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_utforsking_venter",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Nora",
+      "tekst": "Nora har avtalt observasjonsøkta med deg på dag 6. Hun sender et tomt skjema så du kan se hva dere skal registrere. Du har ikke samlet noen observasjoner sammen med henne ennå.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Les skjemaet og skriv ned det du ikke forstår",
+          "effekter": {
+            "flagg": {
+              "utforsking_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du har spørsmål klare til møtet. Skjemaet inneholder fortsatt ingen observasjoner.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Avklar hva dere gjør hvis dere ikke finner noe",
+          "effekter": {
+            "flagg": {
+              "utforsking_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Nora sier at en økt uten funn også skal registreres. Det er en metodeavklaring før møtet."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_utforsking_egen_tid",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går hadde du egen tid etter at du takket nei til Noras økt. Det ligger ingen felles observasjon i historien. På dag 5 kan du lese om metoden eller la undersøkelsen vente; det blir fortsatt ingen feltregistrering av det.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Les om observasjonsmetoden",
+          "effekter": {
+            "flagg": {
+              "utforsking_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du leser om metoden. Du har ikke registrert en art, sanket noe eller vært på verkstedet.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "La undersøkelsen vente",
+          "effekter": {
+            "flagg": {
+              "utforsking_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du har ingen observasjonsavtale denne uka. Det tomme skjemaet blir ikke fylt av at dagen går."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_utforsking_oppfolging",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Nora vil sammenligne like økter",
+      "tekst": "Nora sender skjemaet fra observasjonsøkta. «Skal vi sammenligne senere, må vi bruke samme framgangsmåte», skriver hun. Hun nevner også verkstedet, der hun vil bygge en enkel modell av måleoppsettet. Du kan følge feltarbeidet eller spørre om byggingen.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Behold metoden til en senere observasjonsøkt",
+          "effekter": {
+            "flagg": {
+              "utforsking_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du lagrer framgangsmåten for neste gang. Du har ikke gjennomført en ny registrering.",
+          "livsstil": [
+            "outdoor",
+            "process"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Spør hva som trengs til modellen på verkstedet",
+          "effekter": {
+            "flagg": {
+              "utforsking_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Du spør om deler, verktøy og omfang. Du har ikke fått opplæring eller laget en modell ennå."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "dag4",
+          "utforsking_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_utforsking_kontakt",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Nora videre",
+      "tekst": "Nora spør om du vil beholde skjemaet til senere. Etter økta vet du hvor viktig det er å skille et mulig funn fra et sikkert. Hun har flere interesser enn fugler; dere kan undersøke hva som passer deg.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Behold kontakten om feltarbeid og verksted",
+          "effekter": {
+            "flagg": {
+              "utforsking_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Nora vet at du er interessert i mer. Ingen ny økt eller verkstedtime er avtalt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta en pause fra felles undersøkelser",
+          "effekter": {
+            "flagg": {
+              "utforsking_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Du lar registreringene fra økta stå og tar ingen nye oppgaver nå."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utforsking_moetetid": "dag4",
+          "utforsking_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_utforsking_videre",
+      "threadId": "feltarbeidet_og_nora",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "nora",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva vil du undersøke videre?",
+      "tekst": "Du vurderer fuglekikking, sanking, folkeforskning og praktisk bygging. Meldingene med Nora gir en kontakt du kan ta opp igjen. Sanking krever egne avklaringer om arter og sted før noe plukkes eller spises.",
+      "valg": [
+        {
+          "id": "natur_fuglekikker",
+          "tekst": "Undersøk Fuglekikker i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "natur_fuglekikker"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Fuglekikker. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "natur_sanker",
+          "tekst": "Undersøk Sanker i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "natur_sanker"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Sanker. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "vitenskap_folkeforsker",
+          "tekst": "Undersøk Folkeforsker i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "vitenskap_folkeforsker"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Folkeforsker. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "vitenskap_maker",
+          "tekst": "Undersøk Maker i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "vitenskap_maker"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Maker. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "utforsking_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "utforsking_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d3_kultur_invitasjon",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "melding",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du trenger ikke kjenne referansene",
+      "tekst": "Jonas introduserer deg for Daniel, som er med i en filmklubb og en bokgruppe. «Vi tar en gratis prat om neste program først. Du trenger ikke ha sett filmene», skriver han. Han kan møte deg i samtalerommet dag 4 eller dag 6 klokka 14. Han sender to korte programforslag sammen med invitasjonen.",
+      "valg": [
+        {
+          "id": "dag4",
+          "tekst": "Avtal møtet på dag 4 klokka 14",
+          "effekter": {
+            "flagg": {
+              "kultur_moetetid": "dag4",
+              "kultur_mote_dag4": true
+            }
+          },
+          "konsekvensTekst": "Dere avtaler dag 4 klokka 14 ved kulturgruppas samtalerom. Du har ikke møtt ennå."
+        },
+        {
+          "id": "dag6",
+          "tekst": "Avtal heller dag 6 klokka 14",
+          "effekter": {
+            "flagg": {
+              "kultur_moetetid": "dag6",
+              "kultur_mote_dag6": true
+            }
+          },
+          "konsekvensTekst": "Daniel bekrefter dag 6 klokka 14. Ingen forventer at du kommer på dag 4."
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Stå over møtet denne uka",
+          "effekter": {
+            "flagg": {
+              "kultur_moetetid": "ingen",
+              "kultur_mote_avslaatt": true
+            }
+          },
+          "konsekvensTekst": "Du sier fra til Daniel. Det er ingen møteavtale denne uka; du kan beholde interessen uten å delta."
+        }
+      ]
+    },
+    {
+      "id": "d4_kultur_moetet",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "møte",
+      "avsender": "daniel",
+      "stedId": "kulturrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samtalen som noen nesten faller ut av",
+      "tekst": "Det er dag 4, klokka 14, når dere møtes. Daniel har lagt to programforslag på bordet. En erfaren deltaker nevner regissører og bøker du ikke kjenner. En annen blir stille. Daniel spør om dere vil forklare noen holdepunkter eller velge ut fra det dere er nysgjerrige på. Det er en programprat, ingen filmvisning eller betalt konsert.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Be om en kort forklaring som flere kan bruke",
+          "effekter": {
+            "flagg": {
+              "kultur_mote_gjennomfort": true,
+              "kultur_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Deltakeren forklarer sammenhengen, og flere slipper til. Dere har hatt en programprat, ikke sett en film.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Fortell hva du er nysgjerrig på uten å late som du kjenner alt",
+          "effekter": {
+            "flagg": {
+              "kultur_mote_gjennomfort": true,
+              "kultur_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du foreslår et tema, og Daniel skriver det ned. Deltakelse krevde ikke at du kunne referansene på forhånd.",
+          "livsstil": [
+            "culture"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_mote_dag4": true
+        }
+      }
+    },
+    {
+      "id": "d6_kultur_moetet",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "møte",
+      "avsender": "daniel",
+      "stedId": "kulturrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samtalen som noen nesten faller ut av",
+      "tekst": "Det er dag 6, klokka 14, når dere møtes. Daniel har lagt to programforslag på bordet. En erfaren deltaker nevner regissører og bøker du ikke kjenner. En annen blir stille. Daniel spør om dere vil forklare noen holdepunkter eller velge ut fra det dere er nysgjerrige på. Det er en programprat, ingen filmvisning eller betalt konsert.",
+      "valg": [
+        {
+          "id": "proev",
+          "tekst": "Be om en kort forklaring som flere kan bruke",
+          "effekter": {
+            "flagg": {
+              "kultur_mote_gjennomfort": true,
+              "kultur_motevalg": "proev"
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Deltakeren forklarer sammenhengen, og flere slipper til. Dere har hatt en programprat, ikke sett en film.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Fortell hva du er nysgjerrig på uten å late som du kjenner alt",
+          "effekter": {
+            "flagg": {
+              "kultur_mote_gjennomfort": true,
+              "kultur_motevalg": "avgrens"
+            }
+          },
+          "konsekvensTekst": "Du foreslår et tema, og Daniel skriver det ned. Deltakelse krevde ikke at du kunne referansene på forhånd.",
+          "livsstil": [
+            "culture"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_mote_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d4_kultur_venter",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "melding",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avtalen er først på dag 6",
+      "tekst": "Daniel forventer deg til programpraten på dag 6. I dag har du ingen filmvisning eller gruppesamtale å møte til. Forslagene hans kan få ligge litt.",
+      "valg": [
+        {
+          "id": "kalender",
+          "tekst": "Behold tidspunktet i kalenderen",
+          "effekter": {
+            "flagg": {
+              "daniel_kalender_sjekket": true
+            }
+          },
+          "konsekvensTekst": "Du beholder møtet på dag 6. Ingen avtale er gjennomført i dag."
+        },
+        {
+          "id": "egen_dag",
+          "tekst": "La resten av dagen være din egen",
+          "effekter": {
+            "flagg": {
+              "daniel_egen_dag4": true
+            }
+          },
+          "konsekvensTekst": "Du velger åpen tid i dag. Det endrer ikke avtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d4_kultur_egen_tid",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du valgte å stå over møtet med Daniel",
+      "tekst": "Du takket nei til programpraten denne uka. Daniel forventer deg ikke i samtalerommet. Du kan lese eller se noe hjemme uten å være med i gruppa.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Bruk litt tid på en bok hjemme",
+          "effekter": {
+            "flagg": {
+              "kultur_egen_tid_dag4": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du leser hjemme. Det er ingen gjennomført bokklubbkveld eller filmvisning.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta en kveld uten program",
+          "effekter": {
+            "flagg": {
+              "kultur_egen_tid_dag4": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar forslagene ligge. Ingen billett er kjøpt og ingen vakt må dekkes."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_kultur_venter",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Før møtet med Daniel",
+      "tekst": "Daniel har satt av programpraten på dag 6. Han sender to korte omtaler du kan se på hvis du vil. Du trenger ikke lese dem for å få delta.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Les om ett av forslagene",
+          "effekter": {
+            "flagg": {
+              "kultur_forberedelse_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du har lest én omtale. Du har ikke sett filmen eller deltatt i programpraten ennå.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "avklar",
+          "tekst": "Be om å få komme uten forberedelser",
+          "effekter": {
+            "flagg": {
+              "kultur_forberedelse_dag5": "avklaring"
+            }
+          },
+          "konsekvensTekst": "Daniel bekrefter at det går fint. Avtalen gjelder samtalen på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "dag6"
+        }
+      }
+    },
+    {
+      "id": "d5_kultur_egen_tid",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Egen tid også på dag 5",
+      "tekst": "I går hadde du en egen dag etter avslaget på Daniels programprat. Han forventer fortsatt ikke at du kommer denne uka. Du kan lese hjemme eller la dagen være uten program. Ingen billett eller vakt er bestilt.",
+      "valg": [
+        {
+          "id": "hjemme",
+          "tekst": "Bruk litt tid på en bok hjemme",
+          "effekter": {
+            "flagg": {
+              "kultur_egen_tid_dag5": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du leser hjemme. Det er ingen gjennomført bokklubbkveld eller filmvisning.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta en kveld uten program",
+          "effekter": {
+            "flagg": {
+              "kultur_egen_tid_dag5": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar forslagene ligge. Ingen billett er kjøpt og ingen vakt må dekkes."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "ingen"
+        }
+      }
+    },
+    {
+      "id": "d5_kultur_oppfolging",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "melding",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Daniel spør hva slags kveld du vil ha",
+      "tekst": "Daniel sender forslagene fra programpraten. Bokgruppa vil møtes igjen, og filmklubben arbeider med en ny visning. Han nevner en konsert, men sender prisen sammen med datoen. Det er forskjell på en gratis prat og en kveld som må inn i budsjettet.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Spør om en gratis samtale i bok- eller filmgruppa",
+          "effekter": {
+            "flagg": {
+              "kultur_oppfolging": "arbeid"
+            }
+          },
+          "konsekvensTekst": "Du ber om tid og format før du lover oppmøte. Ingen ny visning eller bokkveld er gjennomført.",
+          "livsstil": [
+            "culture"
+          ]
+        },
+        {
+          "id": "sporr",
+          "tekst": "Se på konsertprisen før du bestemmer deg",
+          "effekter": {
+            "flagg": {
+              "kultur_oppfolging": "sporr"
+            }
+          },
+          "konsekvensTekst": "Du vurderer kostnaden uten å kjøpe billett. Det er ingen utgift eller konsertavtale ennå."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "dag4",
+          "kultur_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d6_kultur_kontakt",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "melding",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakten med Daniel videre",
+      "tekst": "Daniel spør om du vil få neste program når det er klart. Etter praten vet du at kulturgruppa har både åpne samtaler og oppgaver som må fordeles. En invitasjon betyr ikke at du automatisk skal stå ved medlemsbordet.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Be om programmet uten å ta en fast oppgave",
+          "effekter": {
+            "flagg": {
+              "kultur_kontakt_videre": true
+            }
+          },
+          "konsekvensTekst": "Daniel kan sende programmet. Ingen billett, vakt eller medlemskap er avtalt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Be om litt tid før flere invitasjoner",
+          "effekter": {
+            "flagg": {
+              "kultur_kontakt_pause": true
+            }
+          },
+          "konsekvensTekst": "Daniel vet at du vil vente. Praten dere hadde blir stående i historien."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kultur_moetetid": "dag4",
+          "kultur_mote_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "d7_kultur_videre",
+      "threadId": "kulturkveldene_og_daniel",
+      "fase": "ettermiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": "daniel",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Film, bøker eller konserter?",
+      "tekst": "Du ser gjennom forslagene Daniel sendte. Filmklubb, bokklubb og konsertliv kan være viktige deler av uka uten å være arbeid. Velg hva du vil undersøke videre, og vurder tid og pris når en konkret invitasjon kommer.",
+      "valg": [
+        {
+          "id": "film_tv_filmklubbmenneske",
+          "tekst": "Undersøk Filmklubbmenneske i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "film_tv_filmklubbmenneske"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Filmklubbmenneske. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "litteratur_bokklubbmenneske",
+          "tekst": "Undersøk Bokklubbmenneske i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "litteratur_bokklubbmenneske"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Bokklubbmenneske. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "musikk_konsertgjenger",
+          "tekst": "Undersøk Konsertgjenger i livsprofilen",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_rolleforslag": "musikk_konsertgjenger"
+            }
+          },
+          "konsekvensTekst": "Du vil undersøke Konsertgjenger. Livsprofilen viser om rollen er tilgjengelig og lar deg velge selv. Ukas møter blir stående slik de faktisk skjedde.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold interessen uten å velge en livsposisjon",
+          "effekter": {
+            "flagg": {
+              "kultur_egen_trad": true
+            }
+          },
+          "konsekvensTekst": "Du beholder interessen og historien. Et møte, et utsatt møte eller et nei gjør deg ikke automatisk til en bestemt rolle."
+        },
+        {
+          "id": "alle_roller",
+          "tekst": "Se hele utvalget av tilgjengelige livsposisjoner",
+          "effekter": {
+            "flagg": {
+              "kultur_hele_profilen": true
+            }
+          },
+          "konsekvensTekst": "Du åpner hele livsprofilen. Du kan ha flere aktive livsposisjoner samtidig, også mens du er uten formell jobb.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
           }
         }
       ]

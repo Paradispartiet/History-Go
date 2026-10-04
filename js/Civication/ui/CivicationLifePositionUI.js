@@ -71,6 +71,12 @@
       ? context.unlocked_life_positions
       : [];
     const primary = context?.primary_life_position || null;
+    const suggestion = window.CivicationLifestoryUI?.getRoleSuggestion?.() || null;
+    const suggestedBadgeName = suggestion && window.BADGES?.find((badge) => badge.id === suggestion.badge_id)?.name;
+    const suggestedPosition = suggestion && unlocked.find((position) =>
+      position.badge_id === suggestion.badge_id && position.label === suggestion.navn);
+    const suggestionIsActive = suggestion && (context.active_life_positions || []).some((position) =>
+      position.badge_id === suggestion.badge_id && position.label === suggestion.navn);
     const employment = context?.employment || { formal_status: "no_formal_job", active_job: null };
     const circumstances = context?.circumstances || {};
     const optionsByField = context?.circumstance_options || {};
@@ -125,6 +131,14 @@
       <div style="margin-top:10px">Livsposisjon: <strong>${escapeHtml(primaryText)}</strong></div>
       ${primaryDescription ? `<div style="margin-top:5px;font-size:.9em">${escapeHtml(primaryDescription)}</div>` : ""}
       ${primaryHooks.length ? `<div style="margin-top:4px;font-size:.82em;opacity:.68">Kan prege livet ditt: ${escapeHtml(primaryHooks.join(" · "))}</div>` : ""}
+      ${suggestion ? `
+        <div data-civi-life-suggestion style="margin-top:9px">
+          <strong>Fra historien din: ${escapeHtml(suggestion.navn)}</strong>
+          ${suggestionIsActive ? '<p>Denne livsposisjonen er allerede aktiv.</p>' : suggestedPosition
+            ? `<p>Tilgjengelig. Du velger selv om den skal være aktiv.</p><button type="button" data-civi-life-suggestion-activate>Velg ${escapeHtml(suggestion.navn)}</button>`
+            : `<p>Ikke tilgjengelig ennå.${Number.isFinite(suggestion.threshold) ? ` Krever minst ${escapeHtml(suggestion.threshold)} poeng i ${escapeHtml(suggestedBadgeName || suggestion.badge_id)}.` : ' Fortsett med merkene for denne retningen.'} Du kan beholde kontakten og historien mens du bygger videre.</p>`}
+        </div>
+      ` : ""}
       ${unlocked.length ? `
         <label style="display:block;margin-top:8px;font-size:.9em" for="civiLifePositionSelect">Velg livsposisjon</label>
         <select id="civiLifePositionSelect" style="width:100%;margin-top:4px">
@@ -139,6 +153,12 @@
     `;
 
     host.appendChild(block);
+
+    block.querySelector("[data-civi-life-suggestion-activate]")?.addEventListener("click", () => {
+      if (!suggestedPosition) return;
+      const result = api.activate(suggestedPosition.badge_id, suggestedPosition.label);
+      if (result?.ok) queueRender();
+    });
 
     block.querySelector("#civiLifePositionSelect")?.addEventListener("change", (event) => {
       const select = /** @type {HTMLSelectElement|null} */ (event.currentTarget);

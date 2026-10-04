@@ -341,6 +341,8 @@
     if (!book) return null;
     const selected = state.tidligereValg[book.hovedtraadFlagg];
     const foreground = content.threads.find((t) => t.id === (selected || book.standardTraad));
+    const bridges = (book.rollebroer || []).filter((b) => b.threadId === foreground?.id);
+    const selectedRole = book.rollevalgFlagg && state.tidligereValg[book.rollevalgFlagg];
     const steder = book.steder || [];
     const timeline = state.arkiv.map((entry) => {
       const scene = content.scenes.find((s) => s.id === entry.sceneId);
@@ -356,7 +358,8 @@
     return {
       tittel: book.tittel,
       hovedtraad: foreground || null,
-      rollebro: (book.rollebroer || []).find((b) => b.threadId === foreground?.id) || null,
+      rollebro: bridges.find((b) => b.role_scope === selectedRole) || (bridges.length === 1 ? bridges[0] : null),
+      rollebroer: bridges,
       personer: content.role.personer.map((p) => Object.assign({}, p, { relasjon: state.relasjoner[p.id] })),
       steder,
       traader: content.threads.filter((t) => state.threadState[t.id]).map((t) => Object.assign({}, t, state.threadState[t.id])),

@@ -314,8 +314,19 @@
           if (foreground && !threadIds.has(foreground)) push(`symposium: scene ${scene.id} velger ukjent hovedtråd`);
         }
       }
+      const bridgeScopes = new Set();
+      if (book.rollevalgFlagg !== undefined && (typeof book.rollevalgFlagg !== "string" || !book.rollevalgFlagg.trim())) push("symposium: ugyldig rollevalgFlagg");
       for (const bridge of book.rollebroer || []) {
         if (!threadIds.has(bridge.threadId) || !bridge.role_scope || !bridge.navn || !bridge.grense || !/^data\/Civication\/roleWorlds\/.+\.json$/.test(bridge.role_world || "") || !/^data\/Civication\/narratives\/.+\.json$/.test(bridge.narrative || "")) push("symposium: ugyldig rollebro");
+        if (bridgeScopes.has(bridge.role_scope)) push("symposium: duplisert rollebro");
+        bridgeScopes.add(bridge.role_scope);
+        if (book.rollevalgFlagg && (!bridge.badge_id || (bridge.threshold !== undefined && (!Number.isFinite(bridge.threshold) || bridge.threshold < 0)))) push("symposium: rollebro mangler gyldig Badge eller terskel");
+      }
+      for (const scene of scenes) {
+        for (const choice of scene.valg || []) {
+          const roleScope = book.rollevalgFlagg && choice.effekter?.flagg?.[book.rollevalgFlagg];
+          if (roleScope && !bridgeScopes.has(roleScope)) push("symposium: valg peker på ukjent rollebro");
+        }
       }
       const choiceFlags = new Set(scenes.flatMap((s) => (s.valg || []).flatMap((c) => Object.keys(c.effekter?.flagg || {}))));
       const meetingIds = new Set();
