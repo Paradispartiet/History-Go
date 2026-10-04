@@ -40,7 +40,7 @@
     velg_bosted: "personlig",
     aapne_butikk: "kommers",
     aapne_karriere: "karriere",
-    aapne_livsposisjoner: "personlig"
+    aapne_livsposisjoner: "karriere"
   };
 
   /**
@@ -67,6 +67,16 @@
   function perform(handling) {
     const type = handling && typeof handling === "object" ? String(handling.type || "") : "";
     if (!type) return { utfoert: false, type: null };
+
+    if (type === "aapne_livsposisjoner") {
+      if (!openCategory(HANDLING_TO_CATEGORY[type])) return { utfoert: false, type };
+      // Livsprofilen eies av activeJobCard under Karriere og åpnes med
+      // seksjonens vanlige knapp. Ingen rolle eller jobb aktiveres her.
+      const btn = /** @type {any} */ (globalScope).document?.querySelector?.("#activeJobSection [data-civi-mini-open]");
+      if (!btn || typeof btn.click !== "function") return { utfoert: false, type };
+      btn.click();
+      return { utfoert: true, type };
+    }
 
     if (HANDLING_TO_CATEGORY[type]) {
       return { utfoert: openCategory(HANDLING_TO_CATEGORY[type]), type };

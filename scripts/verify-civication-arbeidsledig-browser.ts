@@ -5,10 +5,10 @@ import { join } from 'node:path';
 
 export default async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {
   const cases = [
-    { id: 'musikk_booket', route: 'musikk', choices: {} },
+    { id: 'musikk_booket', route: 'musikk', choices: { d7_musikk_videre: 'rolleflaten' } },
     { id: 'musikk_avslaatt', route: 'musikk', choices: { d5_booker: 'avsta' } },
     { id: 'musikk_sen_prove', route: 'musikk', choices: { d3_mira_telefon: 'lytte_forst', d4_mira_lyttingen: 'prove_dag6' } },
-    { id: 'miljo_avbrutt', route: 'miljo', choices: { d5_amir_oppmotet: 'ga_hjem' } },
+    { id: 'miljo_avbrutt', route: 'miljo', choices: { d5_amir_oppmotet: 'ga_hjem', d7_miljo_videre: 'rolleflaten' } },
     { id: 'kunnskap_referanse_utsatt', route: 'kunnskap', choices: { soknad_01_hullet: 'referanse', d2_referansen_venter: 'vent', d3_soknad_uten_svar: 'send_na', meldekort_01_fristen: 'utsett', d2_frist_stress: 'utsett_igjen' } }
   ];
   const reports: any[] = [];
@@ -21,6 +21,10 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     try {
       await page.goto(`${origin}/Civication.html`, { waitUntil: 'load' });
       await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.());
+      await page.waitForFunction(() => {
+        const app = globalThis as any;
+        return app.document.body.classList.contains('civi-mini-mode') && app.HG_CiviEngine && app.CivicationLifePositions?.getLifeContext;
+      });
       const readState = () => page.evaluate(() => (globalThis as any).CivicationLifestoryState.load());
       let state: any = await readState();
       assert.equal(state.rolle, 'arbeidsledig');
@@ -49,6 +53,15 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         assert.equal(after.arkiv.length, state.arkiv.length + 1, `${scenario.id}/${sceneId}: one choice, one archive event`);
         assert.equal(after.arkiv.at(-1).sceneId, sceneId);
         assert.equal(after.arkiv.at(-1).valgId, choiceId);
+        if (choiceId === 'rolleflaten') {
+          await page.locator('#civiSectionPopup [data-civi-life-position]').waitFor({ state: 'visible' });
+          assert.equal(await page.evaluate(() => (globalThis as any).CivicationState.getActivePosition()), null);
+          assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position), null);
+          await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
+        }
+        // A real action can leave Min dag (career on day 7). Return through
+        // the user's footer so the next story choice stays reachable.
+        await page.locator('.civi-footer button[data-category="minDag"]').click();
         trace.push({ day: state.dag, phase: state.fase, sceneId, choiceId });
         if ([2, 5, 6].includes(after.dag) && !reloadedDays.has(after.dag)) {
           reloadedDays.add(after.dag);

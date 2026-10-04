@@ -7,6 +7,7 @@ const Content = require("../js/Civication/lifestory/lifestoryContent.js");
 const State = require("../js/Civication/lifestory/lifestoryState.js");
 const Runner = require("../js/Civication/lifestory/lifestoryRunner.js");
 const Endings = require("../js/Civication/lifestory/lifestoryEndings.js");
+const Actions = require("../js/Civication/ui/CivicationLifestoryActions.js");
 const root = path.join(__dirname, "..");
 const read = (p) => JSON.parse(fs.readFileSync(path.join(root, p), "utf8"));
 const manifest = read("data/Civication/lifestory/manifest.json");
@@ -118,4 +119,12 @@ for (const [field, value] of [["standardTraad", "ukjent"]]) {
 }
 const bad = JSON.parse(JSON.stringify(raw)); bad.roleScenes.scenes[0].stedId = "ukjent";
 assert.throws(() => Content.buildContent(bad), /ukjent sted/);
+// Rollebroen åpner den faktiske livsprofilen, ikke Personlig/bosted.
+const clicks = [];
+globalThis.document = { querySelector: (selector) => ({ click: () => clicks.push(selector) }) };
+try {
+  assert.equal(Actions.perform({ type: "aapne_livsposisjoner" }).utfoert, true);
+  assert.deepEqual(clicks, ['.civi-footer button[data-category="karriere"]', '#activeJobSection [data-civi-mini-open]']);
+} finally { delete globalThis.document; }
+assert.equal(Actions.perform({ type: "aapne_livsposisjoner" }).utfoert, false);
 console.log(`arbeidsledig symposium ok: ${runs} hele uker, ${seen.size} rollevalg, legacy-save og storage-reload`);
