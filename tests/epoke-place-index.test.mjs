@@ -17,7 +17,29 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 240);
-  assert.equal(index.stats.verified_place_production_milestone_count, 578);
+  assert.equal(index.stats.verified_place_production_milestone_count, 586);
+});
+
+test("Klassekampen contributes exactly eight verified production milestones", () => {
+  const index = buildEpokePlaceIndex();
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "klassekampen_redaksjon")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.deepEqual(
+    milestones.map((milestone) => milestone.claim_id).sort(),
+    [
+      "claim_klassekampen_braanen_2002",
+      "claim_klassekampen_daily_1977",
+      "claim_klassekampen_first_issue_1969",
+      "claim_klassekampen_independent_1991",
+      "claim_klassekampen_monthly_1969",
+      "claim_klassekampen_online_1996",
+      "claim_klassekampen_skurdal_2018",
+      "claim_klassekampen_weekly_1973"
+    ]
+  );
 });
 
 test("Hausmannsbrua contributes exactly three verified production milestones", () => {
