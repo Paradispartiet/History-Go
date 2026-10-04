@@ -43,16 +43,16 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          allowed='data/emner/emnebank.json
-data/fagverk/fagverk_coverage.json
-data/fagverk/fagverk_release_notes.json'
-          changed="$(git status --porcelain | sed -E 's/^.. //' | grep -v '^\.github/workflows/tmp-klassekampen-fagverk-generated.yml$' || true)"
-          unexpected="$(comm -23 <(printf '%s\n' "$changed" | sed '/^$/d' | sort) <(printf '%b\n' "$allowed" | sort))"
-          if [ -n "$unexpected" ]; then
-            echo 'Unexpected generated paths:'
-            printf '%s\n' "$unexpected"
-            exit 1
-          fi
+          while IFS= read -r path; do
+            case "$path" in
+              data/emner/emnebank.json|data/fagverk/fagverk_coverage.json|data/fagverk/fagverk_release_notes.json)
+                ;;
+              *)
+                echo "Unexpected generated path: $path"
+                exit 1
+                ;;
+            esac
+          done < <(git status --porcelain | sed -E 's/^.. //' | sed '/^$/d')
 
       - name: Verify generated Fagverk state
         shell: bash
