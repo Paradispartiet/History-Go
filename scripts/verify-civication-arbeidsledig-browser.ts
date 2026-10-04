@@ -55,6 +55,15 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         assert.equal(after.arkiv.at(-1).valgId, choiceId);
         if (choiceId === 'rolleflaten') {
           await page.locator('#civiSectionPopup [data-civi-life-position]').waitFor({ state: 'visible' });
+          // A profile update may render the parent job card after the child
+          // profile. The open profile must survive that actual event path.
+          await page.evaluate(async () => {
+            const app = globalThis as any;
+            app.dispatchEvent(new app.Event('updateProfile'));
+            await new Promise(resolve => app.requestAnimationFrame(() => app.requestAnimationFrame(resolve)));
+          });
+          await page.locator('#civiSectionPopup [data-civi-life-position]').waitFor({ state: 'visible' });
+          assert.equal(await page.locator('#civiSectionPopup [data-civi-life-position]').count(), 1);
           assert.equal(await page.evaluate(() => (globalThis as any).CivicationState.getActivePosition()), null);
           assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position), null);
           await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
@@ -88,6 +97,17 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       assert.equal(errors.length, 0, `${scenario.id}: no page errors`);
       await page.screenshot({ path: join(outputDir, `arbeidsledig-${scenario.id}.png`), fullPage: true });
       reports.push({ id: scenario.id, days: state.dag, reloadedDays: Array.from(reloadedDays), trace, pageErrors: errors });
+    } catch (error) {
+      const snapshot = await page.evaluate(() => {
+        const app = globalThis as any, doc = app.document;
+        return { scene: app.CivicationLifestoryUI?.getCurrentSceneInfo?.(),
+          hasProfileUi: !!app.CivicationLifePositionUI, profileCount: doc.querySelectorAll('[data-civi-life-position]').length,
+          popup: doc.querySelector('#civiSectionPopup')?.getAttribute('aria-hidden'),
+          popupText: doc.querySelector('#civiSectionPopupBody')?.innerText?.slice(0, 1800) };
+      }).catch(() => null);
+      console.error('Arbeidsledig browser failure', JSON.stringify({ scenario: scenario.id, trace, snapshot, pageErrors: errors }));
+      await page.screenshot({ path: join(outputDir, `arbeidsledig-${scenario.id}-failure.png`), fullPage: true }).catch(() => {});
+      throw error;
     } finally { await context.close(); }
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };

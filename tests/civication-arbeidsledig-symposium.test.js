@@ -143,4 +143,28 @@ try {
   assert.deepEqual(clicks, ['.civi-footer button[data-category="karriere"]', '#activeJobSection [data-civi-mini-open]']);
 } finally { delete globalThis.document; }
 assert.equal(Actions.perform({ type: "aapne_livsposisjoner" }).utfoert, false);
-console.log(`arbeidsledig symposium ok: ${runs} hele uker, ${seen.size} rollevalg, legacy-save og storage-reload`);
+// Ekte parent-/child-renderere: samme host som i full-shell, med minimal
+// DOM-fixture. Parentens innerHTML erstatter barna akkurat som i nettleseren.
+(async () => {
+  const host = { children: [], html: "", querySelector(selector) { return this.children.find((c) => selector === "[" + c.attr + "]") || null; }, appendChild(child) { child.parent = this; this.children.push(child); } };
+  Object.defineProperty(host, "innerHTML", { get() { return this.html; }, set(value) { this.html = value; this.children = []; } });
+  const doc = {
+    getElementById(id) { return id === "activeJobCard" ? host : null; }, querySelectorAll() { return []; },
+    createElement() { return { style: {}, setAttribute(key) { this.attr = key; }, querySelector() { return null; }, querySelectorAll() { return []; }, remove() { this.parent.children = this.parent.children.filter((child) => child !== this); } }; }
+  };
+  const sandbox = { document: doc, console, localStorage: { getItem() { return null; } }, window: {
+    addEventListener() {}, CivicationState: { getActivePosition() { return null; } },
+    CivicationLifePositions: { getLifeContext() { return { employment: {}, circumstances: {}, circumstance_options: {}, unlocked_life_positions: [] }; } },
+    CivicationLivelihoods: { getSnapshot() { return { active_streams: [], pending_opportunities: [] }; } }
+  } };
+  vm.createContext(sandbox);
+  for (const file of ["CivicationUI.js", "CivicationLifePositionUI.js", "CivicationLivelihoodUI.js"]) vm.runInContext(fs.readFileSync(path.join(root, "js/Civication/ui", file), "utf8"), sandbox);
+  for (let i = 0; i < 3; i++) {
+    sandbox.window.CivicationLifePositionUI.render();
+    sandbox.window.CivicationLivelihoodUI.render();
+    await sandbox.renderCivication();
+    assert.equal(host.children.filter((child) => child.attr === "data-civi-life-position").length, 1, "livsprofilen beholdes etter parent-render");
+    assert.equal(host.children.filter((child) => child.attr === "data-civi-livelihood").length, 1, "levevei beholdes etter parent-render");
+  }
+  console.log(`arbeidsledig symposium ok: ${runs} hele uker, ${seen.size} rollevalg, legacy-save, storage-reload og profil-render`);
+})().catch((error) => { console.error(error); process.exitCode = 1; });
