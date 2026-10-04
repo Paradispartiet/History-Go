@@ -17,10 +17,10 @@ const roleIds = new Set(raw.roleScenes.scenes.map((s) => s.id));
 const seen = new Set();
 const paths = [{}, { d2_en_retning: "miljo" }, { d2_en_retning: "kunnskap" }];
 let runs = 0;
-function play(overrides) {
+function play(overrides, lastDay = 7) {
   let state = State.createInitialState(content);
   const actual = {};
-  for (let day = 1; day <= 7; day++) {
+  for (let day = 1; day <= lastDay; day++) {
     assert.equal(state.dag, day);
     assert.equal(state.dagFerdig, false, `dag ${day} har innhold`);
     let guard = 0;
@@ -49,15 +49,21 @@ function play(overrides) {
       if (state.tidligereValg.booking_avslaatt || state.tidligereValg.musikk_hjemme) assert.ok(!state.spilteScener.includes("d6_spillejobben"));
       if (state.tidligereValg.amir_trakk_seg) assert.ok(!state.spilteScener.includes("d5_amir_oppmotet"));
       if (state.tidligereValg.utsatte_meldekortet) assert.ok(!state.spilteScener.includes("d2_meldekort_ok"), "sendt dag 2 må ikke bli en dag 1-kvittering");
+      if (scene.id === "d2_frist_stress" && choice.id === "utsett_igjen") assert.ok(!state.tidligereValg.sendte_meldekortet, "utsatt betyr fortsatt ikke sendt");
+      const navMeeting = memory.moter.find((m) => m.id === "nav_telefon");
+      if (state.tidligereValg.nav_samtale_avtalt) assert.ok(navMeeting);
+      if (state.tidligereValg.nav_samtale_gjennomfort) assert.equal(navMeeting.status, "gjennomfort");
       assert.ok(++guard < 90);
     }
-    if (day < 7) {
+    if (day < lastDay) {
       assert.equal(Endings.isFinalDay(state, content), false);
       Runner.startNextDay(state, content);
     }
   }
-  assert.equal(Endings.isFinalDay(state, content), true);
-  assert.ok(state.tidligereValg.arbeidsledig_uke_avsluttet);
+  if (lastDay === 7) {
+    assert.equal(Endings.isFinalDay(state, content), true);
+    assert.ok(state.tidligereValg.arbeidsledig_uke_avsluttet);
+  }
   return state;
 }
 // Finner en kjørbar prefix for hvert valg vi møter, heller enn å gjøre
@@ -78,13 +84,17 @@ assert.throws(() => Runner.applyChoice(start, content, "d6_spillejobben", "folge
 assert.equal(JSON.stringify(start), before);
 // Nye kontakter fylles inn uten å endre en legacy-save eller vekke en
 // fullført tråd. Dag 4 har en eksplisitt videreføring uten fiktive fortidsmøter.
-const legacy = play({ d2_en_retning: "kunnskap" });
-legacy.dag = 3; legacy.dagFerdig = true;
-legacy.arkiv = legacy.arkiv.filter((e) => e.dag <= 3);
+const legacy = play({ d2_en_retning: "kunnskap" }, 3);
+const oldRoleScenes = new Set(["meldekort_01_fristen", "soknad_01_hullet", "rytme_01_dagen_flyter", "d2_frist_stress", "d2_meldekort_ok", "d2_veien_videre", "d2_kveld_uten_ramme", "d3_soknad_svar", "d3_det_du_kan"]);
+legacy.arkiv = legacy.arkiv.filter((e) => !roleIds.has(e.sceneId) || oldRoleScenes.has(e.sceneId));
 legacy.spilteScener = legacy.arkiv.map((e) => e.sceneId);
 delete legacy.tidligereValg.arbeidsledig_hovedtraad;
 delete legacy.relasjoner.mira; delete legacy.relasjoner.amir; delete legacy.relasjoner.booker;
 delete legacy.threadState.ugens_retning;
+delete legacy.threadState.musikken_og_mira;
+delete legacy.threadState.miljoet_og_amir;
+delete legacy.threadState.kunnskapen_og_soknadene;
+assert.ok(!legacy.tidligereValg.arbeidsledig_uke_avsluttet);
 const archive = JSON.stringify(legacy.arkiv);
 State.reconcileContent(legacy, content);
 assert.equal(JSON.stringify(legacy.arkiv), archive);

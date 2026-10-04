@@ -572,7 +572,8 @@
    * null før innholdet er lastet.
    * @returns {{ sceneId: string|null, tittel: string|null, fase: string,
    *   dagFerdig: boolean, threadId: string|null, threadType: string|null,
-   *   rolleNavn: string|null }|null}
+   *   rolleNavn: string|null,
+   *   sted: { id: string, navn: string, type?: string }|null }|null}
    */
   function getCurrentSceneInfo() {
     if (!content || !state) return null;

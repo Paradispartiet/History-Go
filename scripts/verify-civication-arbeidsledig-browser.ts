@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
-async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {
+export default async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {
   const cases = [
     { id: 'musikk_booket', route: 'musikk', choices: {} },
     { id: 'musikk_avslaatt', route: 'musikk', choices: { d5_booker: 'avsta' } },
@@ -79,5 +79,3 @@ async function verifyArbeidsledig(browser: any, origin: string, outputDir: strin
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
 }
-
-module.exports = verifyArbeidsledig;

@@ -72,8 +72,8 @@
     },
     {
       "id": "bygget_kompetanse",
-      "navn": "Bygget kompetanse",
-      "tekst": "Du har valgt et konkret kunnskapshull og laget en plan for å arbeide med det. Planen gir retning; dokumentert læring og merker kommer fra de faktiske oppgavene og quizzene i History Go. Ingen jobb er lovet ved ukas slutt.",
+      "navn": "En retning for læringen",
+      "tekst": "Du har valgt et kunnskapshull og satt av tid til å arbeide med det. Lista er mer konkret enn da uka begynte. Det er et arbeid du kan følge videre, selv mens du venter på svar fra arbeidsgivere.",
       "kriterier": {
         "meters": {
           "handlingsrom": {
@@ -107,7 +107,7 @@
     {
       "id": "sto_i_det",
       "navn": "Sto i det",
-      "tekst": "Ingen jobb ennå, men du sto i det. Meldekort levert, søknader ute, verdigheten i behold. Noen uker handler om å holde stand — og det gjorde du.",
+      "tekst": "Ingen formell jobb ennå. Du har kommet gjennom den første uka, tatt valg og møtt det som kom. Noe er ryddet, noe er fortsatt åpent. Du har et sted å fortsette fra.",
       "kriterier": {
         "flagg": {
           "sendte_meldekortet": true,
@@ -209,6 +209,18 @@
     ],
     "moter": [
       {
+        "id": "nav_telefon",
+        "navn": "Telefonsamtalen med NAV",
+        "dag": 2,
+        "fase": "formiddag",
+        "stedId": "nav_samtale",
+        "personer": [
+          "nav_veileder"
+        ],
+        "avtalt": "nav_samtale_avtalt",
+        "gjennomfort": "nav_samtale_gjennomfort"
+      },
+      {
         "id": "mira_samtale",
         "navn": "Telefonsamtalen med Mira",
         "dag": 3,
@@ -297,7 +309,7 @@
       }
     ],
     "sceneTekster": {
-      "d3_ettermiddag_kroppen_vil_ut": "Tre dager med søknader, plikter og egne planer. Du kjenner etter hva kroppen trenger nå: bevegelse, frisk luft eller en rolig ettermiddag. Hvordan du sov tidligere, endres ikke av denne scenen.",
+      "d3_ettermiddag_kroppen_vil_ut": "Tre dager med søknader, plikter og egne planer. Du kjenner etter hva kroppen trenger nå: bevegelse, frisk luft eller en rolig ettermiddag.",
       "d2_ettermiddag_rommet_som_forsvant": "Du lot tida stå åpen på dag 1. Nå er det ettermiddag igjen. Se etter hva det faktisk ble plass til, og om du vil velge én ting mer bevisst i dag.",
       "d2_ettermiddag_lista_moeter_veggen": "Du fylte lista på dag 1. Nå er det ettermiddag på dag 2, og du kan se gjennom det som fortsatt er relevant. Du trenger ikke gjennomføre alt for at planen skal være nyttig.",
       "d2_venn_02_stille_kveld": "Du har ikke avtalt å møte Jonas i kveld. Et bilde dukker opp i feeden med folk samlet et annet sted. Hva vil du gjøre med kvelden du faktisk har?"
