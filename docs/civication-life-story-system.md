@@ -194,7 +194,8 @@ får en eksplisitt dag-4-videreføring; ingen møter skrives inn i fortiden.
 Min dag viser den komplette historien i «Historien så langt», med cast,
 steder, møtestatus, kommende scener og tidslinje. Musikk-/miljøtrådene
 peker på de eksisterende canonicale Frilansmusiker-/Gangster-pakkene.
-`aapne_livsposisjoner` åpner Personlig-flaten; aktivering og Badge-gater
+`aapne_livsposisjoner` åpner livsprofilen i Aktiv rolle under Karriere;
+aktivering og Badge-gater
 forblir eid av den eksisterende livsposisjonsruntimen. En kontakt er ikke
 automatisk jobb, livsposisjon, kriminalitet eller et betalt inntektsløp.
 
