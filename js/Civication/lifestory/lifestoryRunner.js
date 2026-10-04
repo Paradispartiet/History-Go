@@ -128,7 +128,8 @@
   function selectNextScene(state, content) {
     const candidates = getCandidateScenes(state, content);
     if (!candidates.length) return null;
-    return candidates.slice().sort((a, b) => (b.prioritet || 0) - (a.prioritet || 0))[0];
+    const closers = content.role.symposium?.faseAvslutning || [];
+    return candidates.slice().sort((a, b) => Number(closers.includes(a.id)) - Number(closers.includes(b.id)) || (b.prioritet || 0) - (a.prioritet || 0))[0];
   }
 
   /**
@@ -150,6 +151,12 @@
     }
     const choice = (scene.valg || []).find((c) => c.id === choiceId);
     if (!choice) throw new Error(`[LifestoryRunner] ukjent valg "${choiceId}" i scenen "${sceneId}"`);
+
+    // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
+    // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
+    if (content.role.symposium && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
+      throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
+    }
 
     State.applyEffects(state, choice.effekter);
 
@@ -238,7 +245,7 @@
     state.dagFerdig = false;
     for (const thread of content.threads) {
       const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
-      if (startDag <= state.dag && !state.threadState[thread.id]) {
+      if (startDag <= state.dag && thread.startVedValg !== true && !state.threadState[thread.id]) {
         state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
       }
     }
@@ -307,7 +314,8 @@
       senereFaser.indexOf(s.fase) !== -1 &&
       s.tilgjengelighet === "start" &&
       isThreadPlayable(state, s.threadId) &&
-      state.spilteScener.indexOf(s.id) === -1
+      state.spilteScener.indexOf(s.id) === -1 &&
+      conditionsMet(state, s)
     );
 
     const dagsplan = content.role?.dagsplan?.[String(state.dag)] || [];
@@ -324,6 +332,43 @@
     };
   }
 
+  /** Rollens symposium er en lesemodell over samme arkiv og flagg som
+   * runneren bruker. Ingen separat hukommelse, klokke eller rollewrite.
+   * @param {any} state @param {any} content @returns {any|null}
+   */
+  function getSymposium(state, content) {
+    const book = content.role.symposium;
+    if (!book) return null;
+    const selected = state.tidligereValg[book.hovedtraadFlagg];
+    const foreground = content.threads.find((t) => t.id === (selected || book.standardTraad));
+    const steder = book.steder || [];
+    const timeline = state.arkiv.map((entry) => {
+      const scene = content.scenes.find((s) => s.id === entry.sceneId);
+      const sted = steder.find((p) => p.id === scene?.stedId) || null;
+      const person = content.role.personer.find((p) => p.id === scene?.avsender) || null;
+      return Object.assign({}, entry, { sted, person });
+    });
+    const avtaler = content.scenes.filter((s) =>
+      s.dag >= state.dag && state.spilteScener.indexOf(s.id) === -1 &&
+      isThreadPlayable(state, s.threadId) && conditionsMet(state, s)
+    ).filter((s) => s.dag > state.dag || content.faser.findIndex((f) => f.id === s.fase) >= content.faser.findIndex((f) => f.id === state.fase))
+      .map((s) => ({ id: s.id, dag: s.dag, fase: s.fase, tittel: s.tittel, sted: steder.find((p) => p.id === s.stedId) || null }));
+    return {
+      tittel: book.tittel,
+      hovedtraad: foreground || null,
+      rollebro: (book.rollebroer || []).find((b) => b.threadId === foreground?.id) || null,
+      personer: content.role.personer.map((p) => Object.assign({}, p, { relasjon: state.relasjoner[p.id] })),
+      steder,
+      traader: content.threads.filter((t) => state.threadState[t.id]).map((t) => Object.assign({}, t, state.threadState[t.id])),
+      tidslinje: timeline,
+      moter: (book.moter || []).filter((m) => state.tidligereValg[m.avtalt] || state.tidligereValg[m.avslaatt]).map((m) => Object.assign({}, m, {
+        sted: steder.find((p) => p.id === m.stedId),
+        status: state.tidligereValg[m.avslaatt] ? "avslaatt" : state.tidligereValg[m.avbrutt] ? "avbrutt" : state.tidligereValg[m.gjennomfort] ? "gjennomfort" : "avtalt"
+      })),
+      avtaler
+    };
+  }
+
   const api = {
     conditionsMet,
     isThreadPlayable,
@@ -334,7 +379,8 @@
     completeDay,
     startNextDay,
     getDaySummary,
-    getView
+    getView,
+    getSymposium
   };
   /** @type {any} */ (globalScope).CivicationLifestoryRunner = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;

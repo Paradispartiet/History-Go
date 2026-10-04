@@ -81,6 +81,9 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
+    const verifyArbeidsledig = require('./verify-civication-arbeidsledig-browser.js');
+    report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
+    console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
   } finally {
     try { if (browser) await browser.close(); }
     finally {

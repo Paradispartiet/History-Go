@@ -72,7 +72,7 @@
     const threadState = {};
     for (const thread of content.threads) {
       const startDag = typeof thread.startDag === "number" ? thread.startDag : 1;
-      if (startDag <= 1) threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
+      if (startDag <= 1 && thread.startVedValg !== true) threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
     }
     const state = {
       version: VERSION,
@@ -190,6 +190,24 @@
     getStorage()?.writeJson(STORAGE_KEY, state);
   }
 
+  /** Nye personer/tråder i en innholdspakke må kunne nå en eksisterende save.
+   * Bevarer valg, arkiv, dag og alle eksisterende relasjoner/trådstatuser.
+   * Ingen tidligere hendelse opprettes eller spilles på nytt.
+   * @param {any} state @param {any} content @returns {any}
+   */
+  function reconcileContent(state, content) {
+    if (!state || state.rolle !== content.role.id) return state;
+    for (const [id, value] of Object.entries(content.role.startState.relasjoner || {})) {
+      if (!(id in state.relasjoner)) state.relasjoner[id] = value;
+    }
+    for (const thread of content.threads) {
+      if ((thread.startDag || 1) <= state.dag && thread.startVedValg !== true && !state.threadState[thread.id]) {
+        state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
+      }
+    }
+    return state;
+  }
+
   /** @returns {LifestoryState|null} */
   function load() {
     const stored = getStorage()?.readJson(STORAGE_KEY, null);
@@ -201,7 +219,7 @@
     getStorage()?.remove(STORAGE_KEY);
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, applyEffects, snapshotThreadStatus, save, load, reset };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

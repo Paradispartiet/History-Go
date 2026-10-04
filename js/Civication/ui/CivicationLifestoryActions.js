@@ -29,6 +29,7 @@
     velg_bosted: "åpner nabolagsvalget",
     aapne_butikk: "åpner butikken",
     aapne_karriere: "åpner karrierepanelet",
+    aapne_livsposisjoner: "åpner livsposisjonene",
     gaa_til_quiz: "går til History GO",
     gaa_til_byen: "går ut i byen (History GO)",
     gaa_til_debatt: "går til debatten i History GO"
@@ -38,7 +39,8 @@
   const HANDLING_TO_CATEGORY = {
     velg_bosted: "personlig",
     aapne_butikk: "kommers",
-    aapne_karriere: "karriere"
+    aapne_karriere: "karriere",
+    aapne_livsposisjoner: "personlig"
   };
 
   /**

@@ -165,6 +165,44 @@ aldri med dvale-tråder.
 
 ## 5. Day Runner
 
+### Rollens symposium og kontinuitet
+
+En rolle kan deklarere `role.symposium`: samlet premiss, slutt på forløpet,
+steder, møter, rollebroer, standardtråd og flagget som velger tråden i
+forgrunnen. Arbeidsledig er første slike pakke og går over dag 1–7.
+Symposium er innhold og en lesemodell, ikke en ny fortellingsmotor eller
+lagringsnøkkel. `Runner.getSymposium(state, content)` bygger historieboka
+fra det eksisterende arkivet, relasjonene, trådstatusene og tidligere valg.
+
+`startVedValg: true` på en tråd betyr at den bare startes av en eksplisitt
+`effekter.threads`-endring. Dagskifte eller gjenlasting åpner den ikke.
+Arbeidsledigs valg på dag 2 åpner musikken med Mira, miljøet med Amir eller
+kunnskaps-/søknadssporet. NAV og dagsrytmen fortsetter som bakgrunnsplikter,
+ikke som en etikett som overstyrer alle andre historier.
+
+Møtene deklarerer separate flagg for avtalt, gjennomført, avslått og
+avbrutt. En framtidig scene kan ikke besvares før den er tilgjengelig.
+`faseAvslutning` legger søvnscenene sist, etter kveldens samtaler og
+refleksjon. Kalenderens sceneoversikt filtrerer også på faktiske conditions.
+Fiktive øvingsrom og møteplasser vises med navn uten et oppdiktet GPS-anker.
+
+`State.reconcileContent` fyller nye personer og ennå ukjente, automatisk
+startede tråder inn i en eksisterende save. Dag, tidligere relasjoner,
+trådstatus og arkiv beholdes. En eldre Arbeidsledig-save uten dag-2-valget
+får en eksplisitt dag-4-videreføring; ingen møter skrives inn i fortiden.
+
+Min dag viser den komplette historien i «Historien så langt», med cast,
+steder, møtestatus, kommende scener og tidslinje. Musikk-/miljøtrådene
+peker på de eksisterende canonicale Frilansmusiker-/Gangster-pakkene.
+`aapne_livsposisjoner` åpner Personlig-flaten; aktivering og Badge-gater
+forblir eid av den eksisterende livsposisjonsruntimen. En kontakt er ikke
+automatisk jobb, livsposisjon, kriminalitet eller et betalt inntektsløp.
+
+Den kompatible Arbeidsledig-mailpakken deklarerer `cycle_policy: once`.
+Livsmailruntimen bevarer de fem eksisterende mailene og svarene deres,
+men åpner ikke dokumentasjon/søknad/rytme på nytt etter uttømming.
+Andre mailpakker beholder sin eksisterende sykluskontrakt.
+
 Runneren gjør bare dette:
 
 1. Les Player State
