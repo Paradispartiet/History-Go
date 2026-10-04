@@ -11,7 +11,7 @@
       "tilgjengelighet": "start",
       "prioritet": 9,
       "tittel": "Meldekort må sendes innen fristen",
-      "tekst": "Melding fra NAV: «Meldekortet ditt må sendes innen i morgen kl 12. Vi mangler også dokumentasjon på forrige arbeidsforhold.» Det er den typen oppgave som tar ti minutter — og som likevel kan bli liggende.",
+      "tekst": "Melding fra NAV: «Meldekortet ditt må sendes innen i morgen kl 12. Vi mangler også dokumentasjon på forrige arbeidsforhold.» Veilederen har satt opp en telefonsamtale i morgen formiddag. Du ser på meldingen mens frokosten blir kald.",
       "valg": [
         {
           "id": "send_naa",
@@ -24,7 +24,8 @@
               "psyke": 2
             },
             "flagg": {
-              "sendte_meldekortet": true
+              "sendte_meldekortet": true,
+              "nav_samtale_avtalt": true
             },
             "threads": {
               "nav_og_meldekortet": {
@@ -32,7 +33,7 @@
               }
             }
           },
-          "konsekvensTekst": "Ti minutter. Ferdig. Resten av dagen slipper å ha den hengende over seg.",
+          "konsekvensTekst": "Meldekortet er sendt. Dokumentasjonen på forrige arbeidsforhold er fortsatt en egen oppgave; du har ikke sendt den ved å fylle ut kortet.",
           "livsstil": [
             "process"
           ]
@@ -47,7 +48,8 @@
               "energi": 1
             },
             "flagg": {
-              "utsatte_meldekortet": true
+              "utsatte_meldekortet": true,
+              "nav_samtale_avtalt": true
             },
             "threads": {
               "nav_og_meldekortet": {
@@ -55,7 +57,7 @@
               }
             }
           },
-          "konsekvensTekst": "Du har tid. Det er nettopp det som er problemet: alt kan gjøres senere, og senere har ingen frist før den plutselig har det.",
+          "konsekvensTekst": "Du har utsatt kortet. Fristen er dag 2 klokka 12; dokumentasjonskravet står også igjen.",
           "livsstil": [
             "avoidance"
           ]
@@ -74,7 +76,8 @@
             },
             "flagg": {
               "sendte_meldekortet": true,
-              "ryddet_dokumentasjon": true
+              "ryddet_dokumentasjon": true,
+              "nav_samtale_avtalt": true
             },
             "threads": {
               "nav_og_meldekortet": {
@@ -88,7 +91,8 @@
             "legitimacy"
           ]
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "soknad_01_hullet",
@@ -112,7 +116,9 @@
               "psyke": -2
             },
             "flagg": {
-              "aerlig_om_hullet": true
+              "aerlig_om_hullet": true,
+              "svarte_arbeidsgiveren": true,
+              "arbeidsgiversvar": "aerlig"
             },
             "threads": {
               "soknaden_og_hullet": {
@@ -135,7 +141,9 @@
               "psyke": -1
             },
             "flagg": {
-              "pyntet_paa_cv": true
+              "pyntet_paa_cv": true,
+              "svarte_arbeidsgiveren": true,
+              "arbeidsgiversvar": "pynt"
             },
             "threads": {
               "soknaden_og_hullet": {
@@ -161,7 +169,8 @@
               "energi": -2
             },
             "flagg": {
-              "ba_om_referanse": true
+              "ba_om_referanse": true,
+              "arbeidsgiversvar": "referanse"
             },
             "threads": {
               "soknaden_og_hullet": {
@@ -174,7 +183,8 @@
             "opportunism"
           ]
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "rytme_01_dagen_flyter",
@@ -186,7 +196,7 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "Dagen flyter uten ramme",
-      "tekst": "Klokka er 14:30 og du er ikke sikker på hva formiddagen ble til. Uten jobb er det ingen som bygger dagen for deg — den må bygges, eller så flyter den.",
+      "tekst": "Klokka er 14:30. Søknadssvaret og meldekortet har tatt oppmerksomhet; resten av ettermiddagen er din. Hva vil du bruke den til?",
       "valg": [
         {
           "id": "bygg_ramme",
@@ -199,7 +209,8 @@
               "energi": -1
             },
             "flagg": {
-              "bygget_ramme": true
+              "bygget_ramme": true,
+              "arbeidsledig_rytmevalg": "bygg_ramme"
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -223,7 +234,8 @@
               "energi": -3
             },
             "flagg": {
-              "brukte_tiden_paa_kunnskap": true
+              "brukte_tiden_paa_kunnskap": true,
+              "arbeidsledig_rytmevalg": "bruk_tiden_paa_kunnskap"
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -247,7 +259,8 @@
               "energi": -2
             },
             "flagg": {
-              "jobbet_med_eget_prosjekt": true
+              "jobbet_med_eget_prosjekt": true,
+              "arbeidsledig_rytmevalg": "eget_prosjekt"
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -274,7 +287,8 @@
               "bekjent": 4
             },
             "flagg": {
-              "tok_en_oel_paa_puben": true
+              "tok_en_oel_paa_puben": true,
+              "arbeidsledig_rytmevalg": "ta_en_oel_paa_puben"
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -282,7 +296,7 @@
               }
             }
           },
-          "konsekvensTekst": "Bekjenten din sitter der som vanlig og kjenner som alltid noen som «kanskje trenger folk». Det ble to øl, hundre kroner og en lettere kveld.",
+          "konsekvensTekst": "Bekjenten sitter der som vanlig og kjenner noen som «kanskje trenger folk». Ølen koster nitti kroner. Du blir sittende litt lenger enn du hadde tenkt.",
           "livsstil": [
             "nightlife"
           ]
@@ -297,7 +311,8 @@
               "energi": 2
             },
             "flagg": {
-              "lot_dagen_skli": true
+              "lot_dagen_skli": true,
+              "arbeidsledig_rytmevalg": "la_skli"
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -310,7 +325,8 @@
             "avoidance"
           ]
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "d2_frist_stress",
@@ -323,7 +339,10 @@
       "prioritet": 9,
       "conditions": {
         "flagg": {
-          "utsatte_meldekortet": true
+          "utsatte_meldekortet": true,
+          "sendte_meldekortet": {
+            "finnes": false
+          }
         }
       },
       "tittel": "Fristen er i dag kl 12",
@@ -343,11 +362,11 @@
             },
             "threads": {
               "nav_og_meldekortet": {
-                "status": "completed"
+                "status": "active"
               }
             }
           },
-          "konsekvensTekst": "Sendt 08:12. Du lover deg selv at neste meldekort ikke skal få lov til å bli en støkk.",
+          "konsekvensTekst": "Kortet går inn før fristen. Du har stoppet kortfristen fra å bli et problem; dokumentene må fortsatt avklares separat.",
           "livsstil": [
             "process"
           ]
@@ -370,12 +389,13 @@
               }
             }
           },
-          "konsekvensTekst": "11:58. Du rakk det — så vidt. Hendene dine skalv da du trykket send, og det var ikke koffeinet.",
+          "konsekvensTekst": "Du legger telefonen ved siden av tallerkenen. «Etter frokost», tenker du. Kortet er fortsatt ikke sendt, og fristen nærmer seg.",
           "livsstil": [
             "avoidance"
           ]
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "d2_meldekort_ok",
@@ -388,13 +408,14 @@
       "prioritet": 9,
       "conditions": {
         "flagg": {
+          "sendte_meldekortet": true,
           "utsatte_meldekortet": {
             "finnes": false
           }
         }
       },
-      "tittel": "«Alt er i orden hos oss»",
-      "tekst": "Kort melding fra veilederen: «Meldekort og dokumentasjon mottatt — alt er i orden hos oss. Lykke til med søknadene denne uka.» En liten ting. Den bærer likevel.",
+      "tittel": "Meldekortet er registrert",
+      "tekst": "Veilederen bekrefter at meldekortet du sendte på dag 1 er registrert. Meldingen gjelder kortet; den sier ikke at arbeidsdokumentasjonen er mottatt eller at en ytelse er innvilget.",
       "valg": [
         {
           "id": "svar_takk",
@@ -412,7 +433,7 @@
             },
             "threads": {
               "nav_og_meldekortet": {
-                "status": "completed"
+                "status": "active"
               }
             }
           },
@@ -431,13 +452,14 @@
             },
             "threads": {
               "nav_og_meldekortet": {
-                "status": "completed"
+                "status": "active"
               }
             }
           },
           "konsekvensTekst": "Én bekymring mindre. Dagen har plass til noe som faktisk bygger."
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "d2_veien_videre",
@@ -449,7 +471,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "«Hva kan du — egentlig?»",
-      "tekst": "Oppfølgingssamtale med veilederen. Hun skyver CV-en til side: «Glem hullet. Hva KAN du? Det er kompetansen din som utløser tilbudene — byen er full av steder å lære.»",
+      "tekst": "Veilederen ringer til det avtalte tidspunktet. «Vi holder dokumentasjonskravet atskilt fra veien videre. Hva kan du, og hva ønsker du å bruke tida til?» Samtalen avgjør verken en ytelse eller et jobbtilbud.",
       "valg": [
         {
           "id": "sats_paa_kunnskap",
@@ -464,15 +486,16 @@
               "handlingsrom": 3
             },
             "flagg": {
-              "satser_paa_kunnskap": true
+              "satser_paa_kunnskap": true,
+              "nav_samtale_gjennomfort": true
             },
             "threads": {
               "dagen_uten_ramme": {
-                "status": "completed"
+                "stepDelta": 1
               }
             }
           },
-          "konsekvensTekst": "Du går ut med en annen holdning enn du kom inn med: kunnskapen og merkene du samler der ute i byen ER kompetansen som åpner jobbtilbudene.",
+          "konsekvensTekst": "Du skriver ett læringspunkt på lappen mens dere snakker. Etter samtalen kan du følge det opp i byen; foreløpig er det et sted å begynne.",
           "handling": {
             "type": "gaa_til_quiz"
           }
@@ -488,7 +511,8 @@
               "synlighet": 2
             },
             "flagg": {
-              "soekte_bredt": true
+              "soekte_bredt": true,
+              "nav_samtale_gjennomfort": true
             },
             "threads": {
               "dagen_uten_ramme": {
@@ -496,9 +520,10 @@
               }
             }
           },
-          "konsekvensTekst": "Elleve søknader på en formiddag. De ni av dem vet du selv at du ikke ville fått — og de leser det like fort som du skrev det."
+          "konsekvensTekst": "Etter samtalen sender du elleve søknader. Flere stillinger krever noe du ennå ikke kan vise til. Innboksen er full av kvitteringer, men ingen av dem er et svar."
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "d2_kveld_uten_ramme",
@@ -562,7 +587,8 @@
             "avoidance"
           ]
         }
-      ]
+      ],
+      "stedId": "hjem"
     },
     {
       "id": "d3_soknad_svar",
@@ -574,7 +600,7 @@
       "tilgjengelighet": "start",
       "prioritet": 8,
       "tittel": "Svar på søknaden",
-      "tekst": "Mailen ligger øverst i innboksen: «Takk for søknaden. Vi har gått videre med en kandidat med mer dokumentert kompetanse på området.» Du leser den to ganger.",
+      "tekst": "Arbeidsgiveren som ba om redegjørelsen på dag 1, svarer etter at du sendte den: «Vi går videre med en annen kandidat.» Avslaget gjelder den ene søknaden fra forrige uke, ikke alle mulighetene dine.",
       "valg": [
         {
           "id": "les_hva_de_saa_etter",
@@ -598,7 +624,7 @@
               }
             }
           },
-          "konsekvensTekst": "«Dokumentert kompetanse.» Det er akkurat det merkene i denne byen er — dokumentasjon. Du vet hvor kunnskapen finnes, og nå vet du hvilken du mangler.",
+          "konsekvensTekst": "Du stanser ved ordene «dokumentert kompetanse» og skriver ned kravet. Du vil finne en måte å vise hva du kan, i stedet for å omskrive CV-en enda en gang.",
           "handling": {
             "type": "aapne_karriere"
           }
@@ -649,7 +675,16 @@
           },
           "konsekvensTekst": "Lokket klikker igjen. Avslaget ligger der fortsatt i morgen — men det gjør søknadsfristene også."
         }
-      ]
+      ],
+      "conditions": {
+        "flagg": {
+          "svarte_arbeidsgiveren": true,
+          "redegjorelse_utsatt": {
+            "finnes": false
+          }
+        }
+      },
+      "stedId": "hjem"
     },
     {
       "id": "d3_det_du_kan",
@@ -661,7 +696,7 @@
       "tilgjengelighet": "start",
       "prioritet": 7,
       "tittel": "Det du kan — svart på hvitt",
-      "tekst": "Du setter deg med et ark og skriver lista: det du faktisk kan, det du nesten kan, og det stillingene stadig spør etter som du mangler. Byen er full av steder å lære — og merkene derfra er dokumentasjon.",
+      "tekst": "Du lager en liste over det du kan vise fram og det du vil lære. Den skal hjelpe deg å velge videre, enten du følger søknadssporet eller bruker mer tid på et miljø utenfor det. En plan er ikke det samme som dokumentert kompetanse.",
       "valg": [
         {
           "id": "velg_ett_hull",
@@ -685,7 +720,7 @@
               }
             }
           },
-          "konsekvensTekst": "Ett hull, én plan. Neste gang noen spør om dokumentert kompetanse, er svaret et merke du faktisk har.",
+          "konsekvensTekst": "Du setter en ring rundt ett punkt og finner en oppgave å begynne med. Resten av lista får ligge. Dette vil ta mer enn én ettermiddag.",
           "handling": {
             "type": "gaa_til_quiz"
           }
@@ -713,7 +748,1866 @@
               }
             }
           },
-          "konsekvensTekst": "«Dette var nyttig. Skal høre rundt,» svarer han. Det er sånn halvparten av byens jobber besettes — før de lyses ut."
+          "konsekvensTekst": "«Dette var nyttig. Skal høre rundt», svarer bekjenten. Du lar lista ligge på bordet. Han har lovet å spørre, ikke skaffet deg en jobb."
+        }
+      ],
+      "stedId": "hjem"
+    },
+    {
+      "id": "d1_nav_dokumentene",
+      "threadId": "nav_og_meldekortet",
+      "fase": "formiddag",
+      "dag": 1,
+      "visningstype": "samtale",
+      "avsender": "nav_veileder",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 7,
+      "tittel": "Det som ikke følger med meldekortet",
+      "tekst": "Du åpner mappa fra forrige jobb. Arbeidsavtalen ligger der, men du er usikker på om vedlegget om sluttdatoen er godt nok. Meldekortet har ikke med seg disse filene.",
+      "valg": [
+        {
+          "id": "last_opp",
+          "tekst": "Send dokumentene fra mappa",
+          "effekter": {
+            "flagg": {
+              "ryddet_dokumentasjon": true
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Du sender arbeidsavtalen og vedlegget med sluttdatoen. Kvitteringen dukker opp på skjermen; saken er fortsatt til behandling."
+        },
+        {
+          "id": "mangler_bekreftelsen",
+          "tekst": "Be om bekreftelsen du mangler",
+          "effekter": {
+            "flagg": {
+              "etterspurte_dokumentasjon": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du ber tidligere arbeidsgiver om bekreftelsen. Dokumentasjonen er etterspurt, ikke sendt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ryddet_dokumentasjon": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d2_nav_dokumenter_mottatt",
+      "threadId": "nav_og_meldekortet",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "nav_veileder",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Dokumentene er mottatt",
+      "tekst": "NAV kvitterer for dokumentene som faktisk er sendt. Meldekortet behandles separat. Du trenger ikke gå gjennom dokumentinnsendingen en gang til.",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver kvitteringen og gå videre",
+          "effekter": {
+            "flagg": {
+              "dokumenter_mottatt": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Dokumentkravet er ryddet for denne uka. NAV tar mindre plass; meldekortfristen forsvinner ikke dersom kortet fortsatt er utsatt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ryddet_dokumentasjon": true
+        }
+      }
+    },
+    {
+      "id": "d2_nav_dokumenter_venter",
+      "threadId": "nav_og_meldekortet",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "nav_veileder",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Bekreftelsen kom",
+      "tekst": "Tidligere arbeidsgiver sender bekreftelsen du ba om i går. Den ligger øverst i innboksen. Arbeidsavtalen ligger fortsatt i mappa; begge må videre til NAV.",
+      "valg": [
+        {
+          "id": "send_videre",
+          "tekst": "Send bekreftelsen og avtalen til NAV",
+          "effekter": {
+            "flagg": {
+              "ryddet_dokumentasjon": true,
+              "dokumenter_mottatt": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Dokumentene er sendt videre. Du får en mottakskvittering; du har ikke fått en avgjørelse om penger."
+        },
+        {
+          "id": "la_ligge",
+          "tekst": "La den bli liggende i innboksen",
+          "effekter": {
+            "flagg": {
+              "dokumenter_utsatt": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "escalated",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du har dokumentet, men NAV har det ikke. Dette huskes som en åpen oppgave."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ryddet_dokumentasjon": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d3_nav_etter_fristen",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "nav_veileder",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 11,
+      "tittel": "Fristen du utsatte",
+      "tekst": "Klokka 12 på dag 2 er passert. Du har ennå ikke sendt meldekortet. Dette må ryddes før du behandler det som en avsluttet sak.",
+      "valg": [
+        {
+          "id": "send_senere",
+          "tekst": "Send kortet og forklar forsinkelsen",
+          "effekter": {
+            "flagg": {
+              "sendte_meldekortet": true,
+              "meldekort_sendt_sent": true
+            },
+            "meters": {
+              "energi": -2
+            }
+          },
+          "konsekvensTekst": "Det sene kortet er sendt. Du lover ikke deg selv at forsinkelsen er uten følge; NAV må avklare saken."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "utsatte_igjen": true,
+          "sendte_meldekortet": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d2_referansen_venter",
+      "threadId": "soknaden_og_hullet",
+      "fase": "formiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "bekjent",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 9,
+      "tittel": "Bekjenten svarer om referansen",
+      "tekst": "Du ba om referanse på dag 1 uten å sende redegjørelsen. Bekjenten sier ja til å bli kontaktet. Arbeidsgiveren venter fortsatt på svaret ditt.",
+      "valg": [
+        {
+          "id": "send_redegjorelse",
+          "tekst": "Send en ærlig redegjørelse med referansen",
+          "effekter": {
+            "flagg": {
+              "svarte_arbeidsgiveren": true,
+              "aerlig_om_hullet": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          },
+          "konsekvensTekst": "Du sender redegjørelsen nå. Arbeidsgiveren kan først svare på den etter dette."
+        },
+        {
+          "id": "vent",
+          "tekst": "Vent med redegjørelsen",
+          "effekter": {
+            "flagg": {
+              "redegjorelse_utsatt": true
+            },
+            "meters": {
+              "psyke": -1
+            }
+          },
+          "konsekvensTekst": "Bekjenten er tilgjengelig som referanse, men svaret til arbeidsgiveren er fortsatt ikke sendt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ba_om_referanse": true,
+          "svarte_arbeidsgiveren": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d3_soknad_uten_svar",
+      "threadId": "soknaden_og_hullet",
+      "fase": "formiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "bekjent",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Svaret ligger fortsatt hos deg",
+      "tekst": "Du har referansen, men valgte å vente med redegjørelsen. Det finnes derfor ikke noe nytt arbeidsgiversvar i dag. Utkastet ligger der du la det.",
+      "valg": [
+        {
+          "id": "send_na",
+          "tekst": "Send redegjørelsen nå",
+          "effekter": {
+            "flagg": {
+              "svarte_arbeidsgiveren": true,
+              "svar_sendt_dag3": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Redegjørelsen er sendt på dag 3. Det er for tidlig å kalle det et avslag eller et tilbud."
+        },
+        {
+          "id": "trekk",
+          "tekst": "Trekk akkurat denne søknaden",
+          "effekter": {
+            "flagg": {
+              "trakk_soknaden": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du trekker denne søknaden. Nye søknader og andre retninger er fortsatt åpne."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "svarte_arbeidsgiveren": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d2_en_retning",
+      "threadId": "ugens_retning",
+      "fase": "ettermiddag",
+      "dag": 2,
+      "visningstype": "samtale",
+      "avsender": "venn",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Hvem vil du møte videre?",
+      "tekst": "Jonas sender et lydklipp fra Mira: «Hun mangler noen å prøve denne med.» Samtidig skriver bekjenten om Amir og en liten undergrunnskveld. Du ser fra meldingene til lista på bordet. Hvilken samtale vil du begynne med?",
+      "valg": [
+        {
+          "id": "musikk",
+          "tekst": "Be Jonas sette deg i kontakt med Mira",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "musikken_og_mira",
+              "mira_samtale_avtalt": true
+            },
+            "threads": {
+              "musikken_og_mira": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "venn": 2
+            }
+          },
+          "konsekvensTekst": "Mira svarer: en kort telefonsamtale på dag 3, før noen prøve er avtalt.",
+          "livsstil": [
+            "culture",
+            "craft"
+          ]
+        },
+        {
+          "id": "miljo",
+          "tekst": "Be bekjenten introdusere deg for Amir",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "miljoet_og_amir",
+              "amir_pub_avtalt": true
+            },
+            "threads": {
+              "miljoet_og_amir": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "bekjent": 2
+            }
+          },
+          "konsekvensTekst": "Amir foreslår et møte på puben dag 3. Du har sagt ja til å møtes, ikke til en tjeneste.",
+          "livsstil": [
+            "street"
+          ]
+        },
+        {
+          "id": "kunnskap",
+          "tekst": "Behold lærings- og søknadssporet",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+            },
+            "threads": {
+              "kunnskapen_og_soknadene": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du setter av dag 4 til ett konkret kunnskapshull. Du lover ikke en fremtidig arbeidsgiver kompetanse du ennå ikke har.",
+          "livsstil": [
+            "craft",
+            "process"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3_mira_telefon",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira spør hva du faktisk spiller",
+      "tekst": "Mira ringer som avtalt. Du hører et keyboard i bakgrunnen før hun demper det. «Låta heter Siste buss. Jonas sier du kunne være interessert.» Hun foreslår en prøve i øvingsrommet i morgen klokka 14. Hun vet ennå ikke om dere passer sammen musikalsk.",
+      "valg": [
+        {
+          "id": "avtal_prove",
+          "tekst": "Avtal én låt og prøven klokka 14",
+          "effekter": {
+            "flagg": {
+              "mira_prove_avtalt": true,
+              "mira_samtale_gjennomfort": true
+            },
+            "meters": {
+              "psyke": 2
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          },
+          "konsekvensTekst": "Dere avtaler prøven på dag 4 klokka 14 i øvingsrommet."
+        },
+        {
+          "id": "lytte_forst",
+          "tekst": "Be om å få lytte før du forplikter deg",
+          "effekter": {
+            "flagg": {
+              "mira_vil_lytte": true,
+              "mira_samtale_gjennomfort": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Mira sender et opptak. Du har ikke avtalt oppmøte; på dag 4 kan dere snakke om det."
+        }
+      ]
+    },
+    {
+      "id": "d3_amir_pub",
+      "threadId": "miljoet_og_amir",
+      "fase": "ettermiddag",
+      "dag": 3,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "pub",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det første møtet med Amir",
+      "tekst": "Amir har funnet et bord innerst på puben. Han forteller om undergrunnskvelden på dag 5 og folkene som får den til å gå rundt. «Vi stiller opp for hverandre», sier han. Først når du spør om hjelp, merker du hvor lite han har sagt om selve oppgaven.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be om oppgavene før du lover noe",
+          "effekter": {
+            "flagg": {
+              "amir_ba_om_ramme": true,
+              "amir_pub_gjennomfort": true
+            },
+            "relasjoner": {
+              "amir": 2
+            }
+          },
+          "konsekvensTekst": "Amir lover å sende en konkret liste på dag 4. Du har ikke påtatt deg arbeid ennå.",
+          "livsstil": [
+            "process"
+          ]
+        },
+        {
+          "id": "ja_uten_ramme",
+          "tekst": "Si at du kan stille opp",
+          "effekter": {
+            "flagg": {
+              "amir_lovet_hjelp": true,
+              "amir_pub_gjennomfort": true
+            },
+            "relasjoner": {
+              "amir": 3
+            }
+          },
+          "konsekvensTekst": "Du lover å stille opp på dag 5 uten å kjenne omfanget. Amir forventer et ja når detaljene kommer.",
+          "livsstil": [
+            "opportunism",
+            "risk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4_nav_resten",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "nav_veileder",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 10,
+      "tittel": "Den ene oppgaven som står igjen",
+      "tekst": "Dokumentene ble liggende etter at bekreftelsen kom på dag 2. Du har fortsatt begge filene. Ingen har fått dem ved at dagene gikk.",
+      "valg": [
+        {
+          "id": "send",
+          "tekst": "Send dokumentene og behold kvitteringen",
+          "effekter": {
+            "flagg": {
+              "ryddet_dokumentasjon": true,
+              "dokumenter_mottatt": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Dokumentene er nå sendt, og mottaket er registrert. NAV-sporet kan ligge i bakgrunnen resten av uka."
+        },
+        {
+          "id": "be_om_hjelp",
+          "tekst": "Be veilederen hjelpe deg gjennom innsendingen",
+          "effekter": {
+            "flagg": {
+              "ryddet_dokumentasjon": true,
+              "dokumenter_mottatt": true
+            },
+            "threads": {
+              "nav_og_meldekortet": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            },
+            "relasjoner": {
+              "nav_veileder": 2
+            }
+          },
+          "konsekvensTekst": "Dere sender dokumentene i samtalen og får kvittering. Det løser denne oppgaven, ikke spørsmålet om ytelse."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "dokumenter_utsatt": true,
+          "dokumenter_mottatt": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d4_mira_proven",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "ovingsrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Én låt, som avtalt",
+      "tekst": "Klokka er 14. Mira har satt fram et ekstra stativ i øvingsrommet. Dere prøver Siste buss, stanser på samme overgang og prøver igjen. Etterpå sier hun at en booker trenger et kort sett på dag 6. «Skal jeg gi ham nummeret ditt?»",
+      "valg": [
+        {
+          "id": "send_nummer",
+          "tekst": "La bookeren kontakte deg om omfang og honorar",
+          "effekter": {
+            "flagg": {
+              "mira_prove_gjennomfort": true,
+              "booker_kontakt": true
+            },
+            "meters": {
+              "energi": -3
+            },
+            "relasjoner": {
+              "mira": 3
+            }
+          },
+          "konsekvensTekst": "Prøven er gjennomført. Mira gir bookeren nummeret ditt; dette er fortsatt en forespørsel."
+        },
+        {
+          "id": "bare_prove",
+          "tekst": "La det bli med prøven denne uka",
+          "effekter": {
+            "flagg": {
+              "mira_prove_gjennomfort": true,
+              "musikk_uten_booking": true
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          },
+          "konsekvensTekst": "Prøven er gjennomført, men du takker nei til bookerkontakt. Mira spør heller om dere kan spille sammen en annen gang."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_prove_avtalt": true
+        }
+      }
+    },
+    {
+      "id": "d4_mira_lyttingen",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Opptaket og det du trenger å øve på",
+      "tekst": "Opptaket Mira sendte i går stopper ved en uferdig overgang. Du spiller den av igjen. Så kommer meldingen: «Vil du prøve sammen på dag 6 klokka 14, eller trenger du mer tid?» Hun har ikke satt deg opp til noe ennå.",
+      "valg": [
+        {
+          "id": "prove_dag6",
+          "tekst": "Avtal prøven på dag 6",
+          "effekter": {
+            "flagg": {
+              "mira_prove_dag6": true
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          },
+          "konsekvensTekst": "Dere avtaler prøve på dag 6 klokka 14. Ingen booker er koblet inn."
+        },
+        {
+          "id": "vent",
+          "tekst": "Vent og øv hjemme først",
+          "effekter": {
+            "flagg": {
+              "musikk_hjemme": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Mira vet at du vil øve hjemme. Hun forventer ikke at du kommer på dag 6."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_vil_lytte": true
+        }
+      }
+    },
+    {
+      "id": "d4_amir_rammen",
+      "threadId": "miljoet_og_amir",
+      "fase": "formiddag",
+      "dag": 4,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lista Amir skulle sende",
+      "tekst": "Lista fra Amir kommer: plakater og rydding, oppmøte dag 5 klokka 17 i bakrommet. Adgangskontroll er ikke nevnt. Nederst står «vi finner ut av resten der». Du spør hva resten betyr; Amir sier at de to oppgavene er nok, og at dere må avklare betaling separat.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Bekreft plakater og rydding, med avtalt sluttid",
+          "effekter": {
+            "flagg": {
+              "amir_oppdrag_avtalt": true,
+              "amir_avgrenset": true
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          },
+          "konsekvensTekst": "Dere bekrefter plakater og rydding fra klokka 17 til 19 på dag 5. Du lar spørsmålet om betaling stå åpent; Amir vet at du ikke har tatt på deg adgangskontroll.",
+          "livsstil": [
+            "process"
+          ]
+        },
+        {
+          "id": "trekk_deg",
+          "tekst": "Si at du ikke vil ta oppdraget denne uka",
+          "effekter": {
+            "flagg": {
+              "amir_trakk_seg": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          },
+          "konsekvensTekst": "Du trekker deg før oppmøtet. Amir vet at du ikke kommer dag 5."
+        }
+      ]
+    },
+    {
+      "id": "d4_kunnskap",
+      "threadId": "kunnskapen_og_soknadene",
+      "fase": "formiddag",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "bibliotek",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arbeidsbordet og det konkrete hullet",
+      "tekst": "Du tar med lista fra dag 3 til bibliotekets arbeidsbord. Ved siden av deg sorterer noen notater til en eksamen. Du leser dine egne punkter igjen: hva kan du vise fram, og hva vil du lære først?",
+      "valg": [
+        {
+          "id": "ett_punkt",
+          "tekst": "Sett av tida til ett punkt på lista",
+          "effekter": {
+            "flagg": {
+              "kunnskap_ett_punkt": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          },
+          "konsekvensTekst": "Du velger ett læringspunkt og skriver hva du vil undersøke. Oppgaven er startet; et merke må fortsatt opptjenes i History Go.",
+          "livsstil": [
+            "craft"
+          ]
+        },
+        {
+          "id": "stilling",
+          "tekst": "Sammenlign lista med én konkret utlysning",
+          "effekter": {
+            "flagg": {
+              "kunnskap_utlysning": true
+            },
+            "meters": {
+              "synlighet": 1
+            }
+          },
+          "konsekvensTekst": "Du finner ett krav du kan vise til og ett som gjenstår. Du har ikke sendt en ny søknad ved å lese utlysningen.",
+          "livsstil": [
+            "process"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+        }
+      }
+    },
+    {
+      "id": "d5_booker",
+      "threadId": "musikken_og_mira",
+      "fase": "formiddag",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "booker",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Forespørselen før dag 6",
+      "tekst": "Bookeren ringer etter at Mira ga ham nummeret ditt i går. «Dag 6, klokka 19. Tjue minutter», sier han. Du spør om honorar og om det kommer en ekstra prøve. Han blar i noe i den andre enden. Du vil ha detaljene før du setter av kvelden.",
+      "valg": [
+        {
+          "id": "skriftlig",
+          "tekst": "Be om skriftlig omfang og honorar før du bekrefter",
+          "effekter": {
+            "flagg": {
+              "booking_bekreftet": true
+            },
+            "relasjoner": {
+              "booker": 2
+            }
+          },
+          "konsekvensTekst": "Bookeren sender dato, tjue minutters spilletid og honoraret skriftlig. Det er ingen ekstra prøve. Du bekrefter dag 6 klokka 19 og legger meldingen ved kalenderavtalen.",
+          "livsstil": [
+            "process"
+          ]
+        },
+        {
+          "id": "avsta",
+          "tekst": "Avstå fra denne bookingen",
+          "effekter": {
+            "flagg": {
+              "booking_avslaatt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du takker nei til dag 6. Bookeren sier han skal spørre noen andre. Du skriver til Mira, så hun hører det fra deg."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "booker_kontakt": true
+        }
+      }
+    },
+    {
+      "id": "d5_musikk_egen_tid",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira lar deg eie tida",
+      "tekst": "Mira sender en ny versjon av Siste buss. «Ingen hast med denne», skriver hun. Hun vil holde kontakten, men legger ikke til noen ny dato. Du kan svare eller be henne vente med flere forespørsler.",
+      "valg": [
+        {
+          "id": "hold_kontakt",
+          "tekst": "Svar og avtal at dere følger opp etter uka",
+          "effekter": {
+            "flagg": {
+              "musikk_kontakt_videre": true
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          },
+          "konsekvensTekst": "Mira vet at du vil fortsette kontakten. Ingen ny dato er fastsatt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Si at du trenger noen dager uten nye avtaler",
+          "effekter": {
+            "flagg": {
+              "musikk_pause": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du ber Mira vente med nye forespørsler noen dager. «Greit», svarer hun. Du har ikke avlyst noe dere allerede har avtalt."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "booker_kontakt": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d5_amir_oppmotet",
+      "threadId": "miljoet_og_amir",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "bakrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Klokka 17 i bakrommet",
+      "tekst": "Klokka er 17 når du kommer til bakrommet. Plakatene ligger på et bord; stolene må flyttes. Så rekker Amir deg en navneliste. «Kan du ta døra også?» Du minner ham om de to oppgavene dere avtalte i går. Utenfor står allerede de første gjestene.",
+      "valg": [
+        {
+          "id": "hold_rammen",
+          "tekst": "Hold deg til plakater og rydding",
+          "effekter": {
+            "flagg": {
+              "amir_oppdrag_gjennomfort": true,
+              "amir_grense_satt": true
+            },
+            "meters": {
+              "energi": -3
+            }
+          },
+          "konsekvensTekst": "Du henger opp plakatene og rydder som avtalt. Arrangøren tar døra. Klokka 19 sier du fra at du går; Amir nikker, men spør hvem som skal ta resten.",
+          "livsstil": [
+            "process"
+          ]
+        },
+        {
+          "id": "ga_hjem",
+          "tekst": "Avslutt når oppgaven blir endret",
+          "effekter": {
+            "flagg": {
+              "amir_oppdrag_avbrutt": true
+            },
+            "meters": {
+              "psyke": -1
+            }
+          },
+          "konsekvensTekst": "Du forklarer at tillegget ikke var avtalt og går. Du har møtt, men du har ikke gjennomført hele oppdraget.",
+          "livsstil": [
+            "security"
+          ]
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "amir_oppdrag_avtalt": true
+        }
+      }
+    },
+    {
+      "id": "d5_amir_uten_oppmote",
+      "threadId": "miljoet_og_amir",
+      "fase": "ettermiddag",
+      "dag": 5,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du sa at du ikke kom",
+      "tekst": "Amir skriver før undergrunnskvelden: «Skjønner at du ikke kommer. Kan vi ta en prat?» Du trakk deg i går, og han har visst det siden da. Du kan fortsatt møte ham uten å ta oppdraget.",
+      "valg": [
+        {
+          "id": "prat",
+          "tekst": "Si ja til en prat på dag 6",
+          "effekter": {
+            "flagg": {
+              "amir_prat_avtalt": true
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          },
+          "konsekvensTekst": "Dere avtaler en prat dag 6; det er ingen ny arbeidsavtale."
+        },
+        {
+          "id": "avstand",
+          "tekst": "Be om litt avstand fra miljøet",
+          "effekter": {
+            "flagg": {
+              "amir_avstand": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          },
+          "konsekvensTekst": "Amir har fått et tydelig svar. Du skal ikke møte til kveldens arrangement."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "amir_trakk_seg": true
+        }
+      }
+    },
+    {
+      "id": "d5_kunnskap",
+      "threadId": "kunnskapen_og_soknadene",
+      "fase": "formiddag",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du faktisk har gjort siden i går",
+      "tekst": "På bordet ligger lista du arbeidet med i går. Den har fått noen understrekninger og et spørsmål i margen. Før du bruker den i en søknad, vil du samle det du allerede kan vise fram i et kort notat.",
+      "valg": [
+        {
+          "id": "vis_arbeidet",
+          "tekst": "Skriv ned det du kan vise fram nå",
+          "effekter": {
+            "flagg": {
+              "kunnskap_notat": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du lager et kort notat med det arbeidet du faktisk har gjort. Det kan brukes i en søknad, men er ikke en ny kvalifikasjon i seg selv."
+        },
+        {
+          "id": "sporr",
+          "tekst": "Lag et kort notat og be bekjenten lese det",
+          "effekter": {
+            "flagg": {
+              "kunnskap_bekjent_leser": true
+            },
+            "relasjoner": {
+              "bekjent": 1
+            }
+          },
+          "konsekvensTekst": "Du sender notatet. «Skal se på det», svarer bekjenten. Du lar utkastet bli liggende til du har lest gjennom det selv også."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+        }
+      }
+    },
+    {
+      "id": "d6_spillejobben",
+      "threadId": "musikken_og_mira",
+      "fase": "kveld",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "booker",
+      "stedId": "bakrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det korte settet dere bekreftet",
+      "tekst": "Klokka er 19. Bookeren peker mot plassen der du skal spille; rammen er den dere bekreftet i går. Det korte settet får plass i tjue minutter. Etterpå sier han: «Kunne vi brukt deg igjen?» Du legger instrumentet ned før du svarer.",
+      "valg": [
+        {
+          "id": "folges_opp",
+          "tekst": "Be om at nye forespørsler kommer med dato og omfang",
+          "effekter": {
+            "flagg": {
+              "sett_gjennomfort": true
+            },
+            "meters": {
+              "energi": -3
+            },
+            "relasjoner": {
+              "booker": 2
+            }
+          },
+          "konsekvensTekst": "Du gjennomfører settet og ber om at hver ny booking avklares for seg. Bookeren kjenner nå både det du spiller og grensa for kalenderen din."
+        },
+        {
+          "id": "en_gang",
+          "tekst": "La dette være én spillejobb foreløpig",
+          "effekter": {
+            "flagg": {
+              "sett_gjennomfort": true,
+              "musikk_en_gang": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Settet er gjennomført. Du sier at du ikke vil holde kalenderen åpen på ubestemt tid."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "booking_bekreftet": true
+        }
+      }
+    },
+    {
+      "id": "d6_booking_avslaatt",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ingen konsert i kalenderen",
+      "tekst": "Du takket nei til bookingen i går. Mira spør om du vil spille sammen igjen uten en booker. Det er kontakten fra prøven på dag 4 dere følger opp.",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Hold døra åpen for en ny prøve senere",
+          "effekter": {
+            "flagg": {
+              "musikk_kontakt_videre": true
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          },
+          "konsekvensTekst": "Dere vil holde kontakten. Ingen dato er fastsatt."
+        },
+        {
+          "id": "pause",
+          "tekst": "Ta en pause fra nye avtaler",
+          "effekter": {
+            "flagg": {
+              "musikk_pause": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du har ingen avtale i kveld og har sagt fra om det."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "booking_avslaatt": true
+        }
+      }
+    },
+    {
+      "id": "d6_sen_prove",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "ovingsrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Prøven dere faktisk avtalte",
+      "tekst": "Klokka er 14 i øvingsrommet. Mira spiller starten på Siste buss, den du lyttet til hjemme før dere avtalte denne prøven på dag 4. Denne gangen kan dere stanse i overgangen sammen. Det er ingen konsert etterpå.",
+      "valg": [
+        {
+          "id": "prove",
+          "tekst": "Spill gjennom låta sammen",
+          "effekter": {
+            "flagg": {
+              "mira_prove_gjennomfort": true
+            },
+            "meters": {
+              "energi": -2
+            },
+            "relasjoner": {
+              "mira": 3
+            }
+          },
+          "konsekvensTekst": "Prøven er gjennomført på dag 6. Mira vil holde kontakten, men dere avtaler ingen betalt spillejobb."
+        },
+        {
+          "id": "kort_prove",
+          "tekst": "Gjør prøven kort og si hva du trenger å øve på",
+          "effekter": {
+            "flagg": {
+              "mira_prove_gjennomfort": true
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          },
+          "konsekvensTekst": "Du møter som avtalt, men avgrenser prøven og er tydelig om hva du trenger mer tid til."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_prove_dag6": true
+        }
+      }
+    },
+    {
+      "id": "d6_musikk_hjemme",
+      "threadId": "musikken_og_mira",
+      "fase": "ettermiddag",
+      "dag": 6,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Du avtalte å øve hjemme",
+      "tekst": "Mira forventer deg ikke i øvingsrommet. Du valgte å øve hjemme da dere snakket på dag 4. Opptaket ligger klart, men det er også plass til å la det ligge en dag.",
+      "valg": [
+        {
+          "id": "ov",
+          "tekst": "Bruk en avgrenset økt på opptaket",
+          "effekter": {
+            "flagg": {
+              "musikk_hjemme_ovd": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du har brukt tida på opptaket. Det er ikke en gjennomført prøve med Mira."
+        },
+        {
+          "id": "ro",
+          "tekst": "La det være en rolig dag",
+          "effekter": {
+            "flagg": {
+              "musikk_hjemme_ro": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du lukker opptaket og lar kvelden være rolig. Mira venter ikke på deg noe sted."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_hjemme": true
+        }
+      }
+    },
+    {
+      "id": "d6_amir_etterpa",
+      "threadId": "miljoet_og_amir",
+      "fase": "formiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En tjeneste er ikke et abonnement",
+      "tekst": "Amir skriver om gårsdagens arrangement, så kommer en ny melding: «Neste uke også?» Han sier ikke hva han trenger denne gangen. Du ser på svaret ditt fra før oppdraget. Vil du spørre om rammen igjen eller legge kontakten til side?",
+      "valg": [
+        {
+          "id": "sporr_omfang",
+          "tekst": "Be om omfang før du lover noe nytt",
+          "effekter": {
+            "flagg": {
+              "amir_ny_ramme": true
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          },
+          "konsekvensTekst": "Amir får ikke et generelt ja. Kontakten kan fortsette med konkrete avtaler."
+        },
+        {
+          "id": "trekk_ut",
+          "tekst": "Si at du ikke vil følge miljøsporet videre nå",
+          "effekter": {
+            "flagg": {
+              "amir_avstand": true
+            },
+            "threads": {
+              "miljoet_og_amir": {
+                "status": "dormant",
+                "stepDelta": 1
+              }
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          },
+          "konsekvensTekst": "Du sier fra og legger miljøsporet i bakgrunnen. Et tidligere møte gjør deg ikke forpliktet til nye tjenester."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "amir_oppdrag_avtalt": true
+        }
+      }
+    },
+    {
+      "id": "d6_amir_praten",
+      "threadId": "miljoet_og_amir",
+      "fase": "formiddag",
+      "dag": 6,
+      "visningstype": "samtale",
+      "avsender": "amir",
+      "stedId": "pub",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Praten uten et oppdrag",
+      "tekst": "Dere møtes på puben til praten avtalt i går. Amir spør hvorfor du sa nei til oppdraget. Du lar ham snakke ferdig før du svarer. Han hadde håpet på hjelp; du hadde trukket deg før kvelden begynte.",
+      "valg": [
+        {
+          "id": "forklar",
+          "tekst": "Forklar grensa og behold kontakten",
+          "effekter": {
+            "flagg": {
+              "amir_kontakt_videre": true,
+              "amir_prat_gjennomfort": true
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          },
+          "konsekvensTekst": "Dere kan fortsatt snakke sammen. Du har ikke tatt på deg et oppdrag."
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Avslutt kontakten for denne uka",
+          "effekter": {
+            "flagg": {
+              "amir_avstand": true,
+              "amir_prat_gjennomfort": true
+            },
+            "threads": {
+              "miljoet_og_amir": {
+                "status": "dormant",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Du har sagt fra om avstand. Kontakten legger ikke nye avtaler i kalenderen."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "amir_prat_avtalt": true
+        }
+      }
+    },
+    {
+      "id": "d6_amir_avstand",
+      "threadId": "ugens_retning",
+      "fase": "formiddag",
+      "dag": 6,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Avstanden du ba om",
+      "tekst": "Du ba Amir om avstand i går. Det er ingen avtale med ham i dag. Telefonen ligger stille på bordet, og du merker at du kan begynne på egne planer uten først å forklare deg for noen.",
+      "valg": [
+        {
+          "id": "egen_dag",
+          "tekst": "Bruk dagen på egne planer",
+          "effekter": {
+            "flagg": {
+              "amir_avstand_bekreftet": true
+            },
+            "threads": {
+              "miljoet_og_amir": {
+                "status": "dormant",
+                "stepDelta": 1
+              }
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du holder avstanden du ba om. Miljøsporet ligger i bakgrunnen."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "amir_avstand": true,
+          "amir_oppdrag_avtalt": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d6_kunnskap",
+      "threadId": "kunnskapen_og_soknadene",
+      "fase": "formiddag",
+      "dag": 6,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Notatet blir til en handling",
+      "tekst": "Du leser notatet fra i går en gang til. En setning kan brukes i en søknad; spørsmålet i margen peker mot en læringsoppgave. Du kan velge én av dem nå og la den andre vente.",
+      "valg": [
+        {
+          "id": "laer",
+          "tekst": "Følg opp læringspunktet i History Go",
+          "effekter": {
+            "flagg": {
+              "kunnskap_folgt_opp": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du følger opp punktet i History Go. Notatet peker ut hva du skal arbeide med; det er arbeidet og quizzene som viser hva du lærer.",
+          "handling": {
+            "type": "gaa_til_quiz"
+          }
+        },
+        {
+          "id": "sok",
+          "tekst": "Send én søknad med det dokumenterte grunnlaget",
+          "effekter": {
+            "flagg": {
+              "soknad_sendt_dag6": true
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          },
+          "konsekvensTekst": "Én ny søknad er sendt på dag 6. Det foreligger ingen tilbakemelding fra arbeidsgiveren denne uka."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+        }
+      }
+    },
+    {
+      "id": "d4_uka_ankeret",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "tittel": "En lapp ved kaffekoppen",
+      "tekst": "Du finner lappen fra de første dagene ved kaffekoppen. Ved siden av den ligger telefonen med samtalene du har begynt på. Før dagen fylles, vil du se hva du har satt av tid til.",
+      "valg": [
+        {
+          "id": "les_plan",
+          "tekst": "Les dagens avtaler og sett fram det du trenger",
+          "effekter": {
+            "flagg": {
+              "leste_plan_dag4": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du legger fram det du trenger og ser gjennom tidene du allerede har sagt ja til."
+        },
+        {
+          "id": "rolig",
+          "tekst": "Drikk kaffen før du bestemmer tempoet",
+          "effekter": {
+            "flagg": {
+              "rolig_start_dag4": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du gir deg selv en rolig start. Etterpå ser du på lappen igjen."
+        }
+      ]
+    },
+    {
+      "id": "d4_kveld_loggen",
+      "threadId": "ugens_retning",
+      "fase": "kveld",
+      "dag": 4,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Det som ble igjen på bordet",
+      "tekst": "Det er kveld. Du samler lappen, telefonen og tingene som ble liggende da du gikk i gang med dagen. Noe er gjort; annet venter på et svar. Du vil vite hva du møter i morgen.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Skriv ned det som fortsatt venter",
+          "effekter": {
+            "flagg": {
+              "noterte_dag4": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du skiller mellom det du venter svar på og det du selv må gjøre. Lappen ligger klar til i morgen."
+        },
+        {
+          "id": "hvil",
+          "tekst": "Rydd plass og la resten vente til morgen",
+          "effekter": {
+            "flagg": {
+              "hvilte_dag4": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du rydder en liten flate på bordet og legger telefonen bort. Det er nok for i kveld."
+        }
+      ]
+    },
+    {
+      "id": "d5_uka_ankeret",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "tittel": "Telefonen før dagen begynner",
+      "tekst": "Telefonen lyser mens du gjør klar frokosten. De siste dagene har brakt andre samtaler enn spørsmålet om du har fått jobb. Du trenger ikke svare på alt med én gang.",
+      "valg": [
+        {
+          "id": "les_plan",
+          "tekst": "Se hva som trenger et svar i dag",
+          "effekter": {
+            "flagg": {
+              "leste_plan_dag5": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du leser gjennom meldingene og finner det du vil svare på først."
+        },
+        {
+          "id": "rolig",
+          "tekst": "Spis ferdig før du åpner meldingene",
+          "effekter": {
+            "flagg": {
+              "rolig_start_dag5": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar telefonen ligge til frokosten er ferdig. Så tar du én melding om gangen."
+        }
+      ]
+    },
+    {
+      "id": "d5_kveld_loggen",
+      "threadId": "ugens_retning",
+      "fase": "kveld",
+      "dag": 5,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Et svar du kan stå for",
+      "tekst": "Sent på kvelden blar du gjennom dagens meldinger. Det var mulig å si ja, nei eller be om mer tid. Nå vil du la svarene stå, uten å love noe ekstra fordi det ble stille.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Legg neste avtale ved siden av dagens notater",
+          "effekter": {
+            "flagg": {
+              "noterte_dag5": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du legger neste avtale øverst. De gamle meldingene får bli liggende der de er."
+        },
+        {
+          "id": "hvil",
+          "tekst": "Lukk meldingene for kvelden",
+          "effekter": {
+            "flagg": {
+              "hvilte_dag5": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du lukker innboksen. Stillheten trenger ikke fylles med en ny avtale."
+        }
+      ]
+    },
+    {
+      "id": "d6_uka_ankeret",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 6,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "tittel": "Tida du allerede har satt av",
+      "tekst": "Du trekker fra gardinene og ser på klokka. Det er dag 6. Kalenderen viser hvor du skal være, hvis du har avtalt noe; den åpne tida tilhører deg.",
+      "valg": [
+        {
+          "id": "les_plan",
+          "tekst": "Gå gjennom tidene før du går i gang",
+          "effekter": {
+            "flagg": {
+              "leste_plan_dag6": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du ser gjennom kalenderen og lar det bli plass mellom punktene."
+        },
+        {
+          "id": "rolig",
+          "tekst": "Begynn med en rolig stund hjemme",
+          "effekter": {
+            "flagg": {
+              "rolig_start_dag6": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du begynner hjemme og lar dagen få et rolig tempo."
+        }
+      ]
+    },
+    {
+      "id": "d6_kveld_loggen",
+      "threadId": "ugens_retning",
+      "fase": "kveld",
+      "dag": 6,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 1,
+      "tittel": "Hjem igjen",
+      "tekst": "Kvelden ender hjemme. På bordet ligger fortsatt lista fra de første dagene, men du ser andre navn på telefonen nå. Du vil samle uka mens du husker hvordan samtalene var.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter det du vil huske fra dagen",
+          "effekter": {
+            "flagg": {
+              "noterte_dag6": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du skriver noen linjer om dagen og lar navnene stå ved siden av det dere snakket om."
+        },
+        {
+          "id": "hvil",
+          "tekst": "Legg fra deg telefonen og hvil",
+          "effekter": {
+            "flagg": {
+              "hvilte_dag6": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          },
+          "konsekvensTekst": "Du setter telefonen på lydløs. Det kan bli en ny samtale i morgen, men denne kvelden er over."
+        }
+      ]
+    },
+    {
+      "id": "d7_uka_ankeret",
+      "threadId": "ugens_retning",
+      "fase": "morgen",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "tittel": "Den siste morgenen i den første uka",
+      "tekst": "Det er dag 7. Du leser lappen du skrev da uka begynte. Noen punkter kan strykes; andre har blitt til spørsmål du ikke hadde da. Du vil velge hva som får plass etter denne uka.",
+      "valg": [
+        {
+          "id": "les_plan",
+          "tekst": "Les notatene fra uka før du velger videre",
+          "effekter": {
+            "flagg": {
+              "leste_plan_dag7": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du leser gjennom notatene fra begynnelsen. Du husker bedre hvorfor du svarte som du gjorde."
+        },
+        {
+          "id": "rolig",
+          "tekst": "La valget om veien videre vente til etter frokost",
+          "effekter": {
+            "flagg": {
+              "rolig_start_dag7": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du lar notatene ligge mens du spiser. Du vil tenke på neste uke uten å haste inn i den."
+        }
+      ]
+    },
+    {
+      "id": "d7_musikk_videre",
+      "threadId": "ugens_retning",
+      "fase": "formiddag",
+      "dag": 7,
+      "visningstype": "samtale",
+      "avsender": "mira",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Musikken har fått en egen tråd",
+      "tekst": "Du åpner samtalen med Mira. Der ligger opptaket, spørsmålene hennes og svarene dine fra uka. Uansett hvor langt dere kom, har musikken fått en plass som ikke begynner med «har du hørt noe om jobb?». Vil du følge den som Frilansmusiker eller la kontakten være nok foreløpig?",
+      "valg": [
+        {
+          "id": "rolleflaten",
+          "tekst": "Se Frilansmusiker blant livsposisjonene",
+          "effekter": {
+            "flagg": {
+              "musikk_rollebro_aapnet": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du åpner livsposisjonene for å se om Frilansmusiker passer retningen du vil følge. Mira og avtalene deres blir stående i historien.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_trad",
+          "tekst": "Behold musikken som en egen tråd uten å velge livsposisjon",
+          "effekter": {
+            "flagg": {
+              "musikk_egen_trad": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du trenger ikke en formell rolleetikett for å beholde Mira og historien deres."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "musikken_og_mira"
+        }
+      }
+    },
+    {
+      "id": "d7_miljo_videre",
+      "threadId": "ugens_retning",
+      "fase": "formiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Miljøet, grensene og ryktet",
+      "tekst": "Du leser meldingene med Amir fra begynnelsen. Det startet med et bord på puben; siden måtte du velge hva du ville stille opp til. Miljøet har sine egne forventninger til gjeld, rykte og hvem som holder ord. Vil du undersøke Gangster-sporet eller holde din egen avstand?",
+      "valg": [
+        {
+          "id": "rolleflaten",
+          "tekst": "Se Gangster blant livsposisjonene",
+          "effekter": {
+            "flagg": {
+              "miljo_rollebro_aapnet": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du åpner livsposisjonene og vurderer om Gangster beskriver miljøsporet du vil følge. Møtene med Amir innebærer ikke at du har valgt en kriminell livsbane.",
+          "handling": {
+            "type": "aapne_livsposisjoner"
+          }
+        },
+        {
+          "id": "egen_grense",
+          "tekst": "Behold erfaringene og velg din egen avstand",
+          "effekter": {
+            "flagg": {
+              "miljo_egen_grense": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Historien om Amir blir stående, også hvis du legger kontakten bak deg."
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "miljoet_og_amir"
+        }
+      }
+    },
+    {
+      "id": "d7_kunnskap_videre",
+      "threadId": "ugens_retning",
+      "fase": "formiddag",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Søknader og læring i riktig rekkefølge",
+      "tekst": "Du legger lista og notatet ved siden av hverandre. Nå er det lettere å se hva du kan vise fram og hva du vil arbeide mer med. Du kan se etter tilgjengelige jobbtilbud eller gå videre med læringspunktet. Det du eventuelt sendte i går, har du ennå ikke fått svar på.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Se hvilke faktiske jobbtilbud som er tilgjengelige",
+          "effekter": {
+            "flagg": {
+              "saa_faktiske_tilbud": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          },
+          "konsekvensTekst": "Du åpner karriereflaten og ser hva som faktisk tilbys. Søknadene du har sendt og det du fortsatt venter på, er bevart i historien.",
+          "handling": {
+            "type": "aapne_karriere"
+          }
+        },
+        {
+          "id": "laering",
+          "tekst": "Fortsett med læringspunktet i History Go",
+          "effekter": {
+            "flagg": {
+              "fortsetter_laeringspunkt": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          },
+          "konsekvensTekst": "Du går videre til de faktiske læringsoppgavene. Historien har ikke gitt deg et merke på forskudd.",
+          "handling": {
+            "type": "gaa_til_quiz"
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+        }
+      }
+    },
+    {
+      "id": "d7_uka_samlet",
+      "threadId": "ugens_retning",
+      "fase": "kveld",
+      "dag": 7,
+      "visningstype": "refleksjon",
+      "avsender": null,
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den første uka, samlet",
+      "tekst": "Du legger ukas papirer i én mappe. Kvitteringer, søknader og navnene du vil huske får ligge sammen. Det er fortsatt en uke uten formell jobb, men det er ikke det eneste som har skjedd. Hva vil du ta med deg ut av den?",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold historien og det du vil følge videre",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_uke_avsluttet": true
+            },
+            "threads": {
+              "ugens_retning": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            }
+          },
+          "konsekvensTekst": "Uka er avsluttet. Du beholder oversikten over pliktene du ryddet, svarene du venter på og menneskene du vil møte igjen."
+        },
+        {
+          "id": "ro",
+          "tekst": "Avslutt uka med en rolig kveld",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_uke_avsluttet": true
+            },
+            "threads": {
+              "ugens_retning": {
+                "status": "completed",
+                "stepDelta": 1
+              }
+            },
+            "meters": {
+              "energi": 1
+            }
+          },
+          "konsekvensTekst": "Du avslutter uka uten nye løfter. Historien om det som faktisk skjedde blir stående."
+        }
+      ]
+    },
+    {
+      "id": "d4_eldre_historie_videre",
+      "dag": 4,
+      "fase": "formiddag",
+      "threadId": "ugens_retning",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 12,
+      "tittel": "Fortsett fra historien du allerede har",
+      "tekst": "De tre første dagene er bevart. Du har ennå ikke valgt en av de nye kontakttrådene. Du kan fortsette med lærings- og søknadssporet uten å skrive nye møter inn i dagene som har gått.",
+      "conditions": {
+        "flagg": {
+          "arbeidsledig_hovedtraad": {
+            "finnes": false
+          }
+        }
+      },
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Bruk lista som utgangspunkt for resten av uka",
+          "konsekvensTekst": "Du fortsetter fra dag 4. Ingen tidligere valg eller avtaler er endret.",
+          "effekter": {
+            "flagg": {
+              "arbeidsledig_hovedtraad": "kunnskapen_og_soknadene"
+            },
+            "threads": {
+              "kunnskapen_og_soknadene": {
+                "status": "active",
+                "stepDelta": 1
+              }
+            }
+          }
         }
       ]
     }

@@ -29,6 +29,7 @@
     velg_bosted: "åpner nabolagsvalget",
     aapne_butikk: "åpner butikken",
     aapne_karriere: "åpner karrierepanelet",
+    aapne_livsposisjoner: "åpner livsposisjonene",
     gaa_til_quiz: "går til History GO",
     gaa_til_byen: "går ut i byen (History GO)",
     gaa_til_debatt: "går til debatten i History GO"
@@ -38,7 +39,8 @@
   const HANDLING_TO_CATEGORY = {
     velg_bosted: "personlig",
     aapne_butikk: "kommers",
-    aapne_karriere: "karriere"
+    aapne_karriere: "karriere",
+    aapne_livsposisjoner: "karriere"
   };
 
   /**
@@ -65,6 +67,16 @@
   function perform(handling) {
     const type = handling && typeof handling === "object" ? String(handling.type || "") : "";
     if (!type) return { utfoert: false, type: null };
+
+    if (type === "aapne_livsposisjoner") {
+      if (!openCategory(HANDLING_TO_CATEGORY[type])) return { utfoert: false, type };
+      // Livsprofilen eies av activeJobCard under Karriere og åpnes med
+      // seksjonens vanlige knapp. Ingen rolle eller jobb aktiveres her.
+      const btn = /** @type {any} */ (globalScope).document?.querySelector?.("#activeJobSection [data-civi-mini-open]");
+      if (!btn || typeof btn.click !== "function") return { utfoert: false, type };
+      btn.click();
+      return { utfoert: true, type };
+    }
 
     if (HANDLING_TO_CATEGORY[type]) {
       return { utfoert: openCategory(HANDLING_TO_CATEGORY[type]), type };

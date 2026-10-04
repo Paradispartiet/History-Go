@@ -200,6 +200,7 @@
           mail_family: norm(mail?.mail_family || familyId),
           life_pack_id: norm(pack?.id || packMeta?.id),
           life_context: norm(pack?.life_context || packMeta?.id),
+          cycle_policy: norm(pack?.cycle_policy || "repeat"),
           priority: Number(mail?.priority || packMeta?.priority || 1),
           choices: normalizeChoices(mail?.choices)
         });
@@ -267,14 +268,16 @@
     const consumed = new Set(getConsumedIds(state));
     let candidates = mails.filter(mail => !consumed.has(norm(mail.id)) || mail.repeatable === true);
 
-    // Ingen dead end: når en livspakke er brukt opp, åpner vi den på nytt i ny syklus.
-    if (!candidates.length && mails.length) {
-      candidates = mails;
+    // Repeterende pakker kan åpne en ny syklus. Forløp merket once
+    // beholder svarene sine og kommer aldri tilbake som nye oppgaver.
+    const recyclableMails = mails.filter(mail => mail.cycle_policy !== "once");
+    if (!candidates.length && recyclableMails.length) {
+      candidates = recyclableMails;
       const runtime = getRuntime(state);
       setState({
         [STATE_KEY]: {
           ...runtime,
-          consumed_ids: [],
+          consumed_ids: runtime.consumed_ids.filter(id => !recyclableMails.some(mail => norm(mail.id) === id)),
           cycle_count: Number(runtime.cycle_count || 0) + 1,
           updated_at: new Date().toISOString()
         }

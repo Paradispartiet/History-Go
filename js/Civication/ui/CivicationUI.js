@@ -783,6 +783,11 @@ async function renderCivication() {
       window.dispatchEvent(new Event("updateProfile"));
     });
   }
+
+  // Underpanelene bruker samme host. Gjenopprett dem etter at jobbkortet
+  // er erstattet, også når deres rAF-render kom før skallets render-sveip.
+  /** @type {any} */ (window).CivicationLifePositionUI?.render?.();
+  /** @type {any} */ (window).CivicationLivelihoodUI?.render?.();
 }
 
 

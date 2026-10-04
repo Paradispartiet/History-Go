@@ -51,6 +51,13 @@
     if (!sceneInfo) return null;
     const d = deps || {};
 
+    // Et fiktivt øvingsrom/pub er et fortellingssted, aldri et GPS-anker.
+    // Fjernmøter foregår fortsatt ved spillerens bosted.
+    const storyPlace = /** @type {any} */ (sceneInfo).sted;
+    if (!sceneInfo.dagFerdig && storyPlace?.type === "fiktivt_sted") {
+      return { kind: "hjem", label: storyPlace.navn, mapZone: null };
+    }
+
     if (!sceneInfo.dagFerdig && sceneInfo.threadType === "arbeidsliv") {
       const active = d.activePosition;
       const workplace = active && typeof active === "object"

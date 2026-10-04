@@ -51,7 +51,7 @@
    * bor. Utføres av CivicationLifestoryActions (UI-laget). Ukjent type =>
    * FAIL FAST.
    */
-  const HANDLING_TYPES = ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "aapne_karriere", "gaa_til_byen", "gaa_til_debatt"];
+  const HANDLING_TYPES = ["velg_bosted", "aapne_butikk", "gaa_til_quiz", "aapne_karriere", "aapne_livsposisjoner", "gaa_til_byen", "gaa_til_debatt"];
 
   /**
    * Gyldige livsstilstags på valg (valg.livsstil). Vokabularet er unionen av
@@ -125,7 +125,16 @@
       .concat(Array.isArray(raw.lifeThreads?.threads) ? raw.lifeThreads.threads : []);
     const scenes = []
       .concat(Array.isArray(raw.roleScenes?.scenes) ? raw.roleScenes.scenes : [])
-      .concat(Array.isArray(raw.lifeScenes?.scenes) ? raw.lifeScenes.scenes : []);
+      .concat(Array.isArray(raw.lifeScenes?.scenes) ? raw.lifeScenes.scenes : [])
+      .map((scene) => {
+        const text = role?.symposium?.sceneTekster?.[scene.id];
+        const consequences = role?.symposium?.valgKonsekvenser?.[scene.id];
+        if (text === undefined && !consequences) return scene;
+        const copy = Object.assign({}, scene);
+        if (text !== undefined) copy.tekst = text;
+        if (consequences) copy.valg = scene.valg.map((choice) => consequences[choice.id] === undefined ? choice : Object.assign({}, choice, { konsekvensTekst: consequences[choice.id] }));
+        return copy;
+      });
 
     const content = { role, faser, threads, scenes };
     validateContent(content);
@@ -170,6 +179,7 @@
       if (!thread.konflikt || !String(thread.konflikt).trim()) push(`tråd ${tid}: mangler konflikt (lov 4)`);
       if (!thread.tittel) push(`tråd ${tid}: mangler tittel`);
       if (thread.type !== "arbeidsliv" && thread.type !== "privatliv") push(`tråd ${tid}: ugyldig type "${thread.type}"`);
+      if (thread.startVedValg !== undefined && typeof thread.startVedValg !== "boolean") push(`tråd ${tid}: startVedValg må være boolsk`);
     }
 
     // Scener: lov 3 — ingen scene uten tråd. Lov 1+2 per valg.
@@ -267,6 +277,59 @@
     // peke på ekte signaler (kjente målere/relasjoner/tråder), og nøyaktig
     // én ending må være merket standard (fallback når ingenting scorer).
     errorsForEndings(role, startRelasjoner, threadIds, push);
+
+    if (role?.symposium) {
+      const book = role.symposium;
+      if (book.version !== 1 || !book.tittel || !book.hovedtraadFlagg) push("symposium: mangler versjon, tittel eller hovedtraadFlagg");
+      if (!Number.isInteger(book.sisteDag) || book.sisteDag < 1) push("symposium: ugyldig sisteDag");
+      if (!threadIds.has(book.standardTraad)) push("symposium: standardTraad finnes ikke");
+      for (const id of book.faseAvslutning || []) {
+        if (!sceneIds.has(id)) push("symposium: ukjent faseAvslutning");
+      }
+      for (const [id, text] of Object.entries(book.sceneTekster || {})) {
+        if (!sceneIds.has(id) || typeof text !== "string" || !text.trim()) push("symposium: ugyldig scenetekst");
+      }
+      for (const [id, consequences] of Object.entries(book.valgKonsekvenser || {})) {
+        const scene = scenes.find((s) => s.id === id);
+        if (!scene || !consequences || typeof consequences !== "object" || Array.isArray(consequences)) { push("symposium: ugyldig valgkonsekvens"); continue; }
+        for (const [choiceId, text] of Object.entries(consequences)) {
+          if (!scene.valg.some((c) => c.id === choiceId) || typeof text !== "string" || !text.trim()) push("symposium: ugyldig valgkonsekvens");
+        }
+      }
+      const personIds = new Set((role.personer || []).map((p) => p.id));
+      const placeIds = new Set();
+      for (const place of book.steder || []) {
+        if (!place.id || placeIds.has(place.id) || !place.navn || !["spillerens_bosted", "fjernmoete", "fiktivt_sted"].includes(place.type)) push("symposium: ugyldig eller duplisert sted");
+        placeIds.add(place.id);
+      }
+      for (const person of role.personer || []) {
+        if (typeof startRelasjoner[person.id] !== "number") push(`symposium: personen ${person.id} mangler relasjon`);
+      }
+      for (const scene of scenes) {
+        if (scene.stedId && !placeIds.has(scene.stedId)) push(`symposium: scene ${scene.id} har ukjent sted`);
+        if (scene.avsender && !personIds.has(scene.avsender)) push(`symposium: scene ${scene.id} har ukjent person`);
+        if (scene.dag > book.sisteDag) push(`symposium: scene ${scene.id} går forbi sisteDag`);
+        for (const choice of scene.valg || []) {
+          const foreground = choice.effekter?.flagg?.[book.hovedtraadFlagg];
+          if (foreground && !threadIds.has(foreground)) push(`symposium: scene ${scene.id} velger ukjent hovedtråd`);
+        }
+      }
+      for (const bridge of book.rollebroer || []) {
+        if (!threadIds.has(bridge.threadId) || !bridge.role_scope || !bridge.navn || !bridge.grense || !/^data\/Civication\/roleWorlds\/.+\.json$/.test(bridge.role_world || "") || !/^data\/Civication\/narratives\/.+\.json$/.test(bridge.narrative || "")) push("symposium: ugyldig rollebro");
+      }
+      const choiceFlags = new Set(scenes.flatMap((s) => (s.valg || []).flatMap((c) => Object.keys(c.effekter?.flagg || {}))));
+      const meetingIds = new Set();
+      for (const meeting of book.moter || []) {
+        if (!meeting.id || meetingIds.has(meeting.id) || !meeting.navn || !Number.isInteger(meeting.dag) || meeting.dag < 1 || meeting.dag > book.sisteDag || !faseIds.has(meeting.fase) || !placeIds.has(meeting.stedId) || !meeting.avtalt || !meeting.gjennomfort) push("symposium: ugyldig møte");
+        meetingIds.add(meeting.id);
+        for (const person of meeting.personer || []) {
+          if (!personIds.has(person)) push("symposium: møte har ukjent person");
+        }
+        for (const flag of [meeting.avtalt, meeting.gjennomfort, meeting.avslaatt, meeting.avbrutt].filter(Boolean)) {
+          if (!choiceFlags.has(flag)) push(`symposium: møte har ukjent hendelsesflagg ${flag}`);
+        }
+      }
+    }
 
     if (errors.length) {
       throw new Error("[LifestoryContent] innholdspakken er ugyldig:\n  - " + errors.join("\n  - "));

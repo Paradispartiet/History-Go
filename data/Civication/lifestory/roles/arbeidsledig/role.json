@@ -2,7 +2,7 @@
   "version": 1,
   "id": "arbeidsledig",
   "navn": "Arbeidsledig",
-  "kjernefantasi": "Du har ingen jobb — ennå. Dagene må bygges av deg selv: meldekort, søknader, rammer og det du faktisk kan. Kunnskap åpner dører.",
+  "kjernefantasi": "Du er uten formell jobb, men livet ditt består av mer enn venting. Den første uka følger søknaden, de praktiske pliktene og menneskene som kan åpne en annen retning. Det du har sagt og avtalt, følger deg videre.",
   "arbeidsoppgaver": [
     "holde meldekort og dokumentasjon i orden",
     "søke jobber og stå i selvpresentasjonen",
@@ -29,6 +29,21 @@
       "id": "familie",
       "navn": "Søsteren din",
       "beskrivelse": "Ringer om hverdagslige ting som aldri bare er hverdagslige."
+    },
+    {
+      "id": "mira",
+      "navn": "Mira",
+      "beskrivelse": "Jonas kjenner henne fra musikkmiljøet. Hun trenger en medspiller til en prøve, ikke en ansatt."
+    },
+    {
+      "id": "amir",
+      "navn": "Amir",
+      "beskrivelse": "Bekjentens gamle kjenning. Tilbyr plass i et miljø der tjenester og forventninger må avklares."
+    },
+    {
+      "id": "booker",
+      "navn": "Kveldens booker",
+      "beskrivelse": "Avklarer en mulig liten spillejobb. En forespørsel er ikke en bekreftet booking."
     }
   ],
   "hovedkonflikter": [
@@ -40,8 +55,8 @@
   "endings": [
     {
       "id": "kom_i_jobb",
-      "navn": "Kom i jobb",
-      "tekst": "Du sto på — søkte bredt, brukte nettverket, holdt selvpresentasjonen oppe. Det er sånn jobber kommer: ikke av å vente, men av å være i bevegelse når sjansen dukker opp.",
+      "navn": "Søknadssporet lever",
+      "tekst": "Du har sendt søknader og brukt nettverket. Det er fortsatt ikke en ansettelse: et faktisk jobbtilbud må komme gjennom karriereflaten og aksepteres der. Søknadssporet kan leve videre mens en annen historie tar mer plass.",
       "kriterier": {
         "meters": {
           "synlighet": {
@@ -57,8 +72,8 @@
     },
     {
       "id": "bygget_kompetanse",
-      "navn": "Bygget kompetanse",
-      "tekst": "Du kom ikke i jobb på tre dager, men du gjorde det som faktisk teller: bygde kompetanse. Merkene og kunnskapen du samlet er dokumentasjon arbeidsgivere ser etter — og de blir liggende, klare til neste sjanse.",
+      "navn": "En retning for læringen",
+      "tekst": "Du har valgt et kunnskapshull og satt av tid til å arbeide med det. Lista er mer konkret enn da uka begynte. Det er et arbeid du kan følge videre, selv mens du venter på svar fra arbeidsgivere.",
       "kriterier": {
         "meters": {
           "handlingsrom": {
@@ -92,7 +107,7 @@
     {
       "id": "sto_i_det",
       "navn": "Sto i det",
-      "tekst": "Ingen jobb ennå, men du sto i det. Meldekort levert, søknader ute, verdigheten i behold. Noen uker handler om å holde stand — og det gjorde du.",
+      "tekst": "Ingen formell jobb ennå. Du har kommet gjennom den første uka, tatt valg og møtt det som kom. Noe er ryddet, noe er fortsatt åpent. Du har et sted å fortsette fra.",
       "kriterier": {
         "flagg": {
           "sendte_meldekortet": true,
@@ -116,39 +131,204 @@
       "nav_veileder": 45,
       "bekjent": 50,
       "venn": 60,
-      "familie": 55
+      "familie": 55,
+      "mira": 40,
+      "amir": 40,
+      "booker": 40
     }
   },
   "dagsplan": {
-    "1": [
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": []
+  },
+  "symposium": {
+    "version": 1,
+    "tittel": "Den første uka uten jobb",
+    "sisteDag": 7,
+    "premiss": "Fiktiv spillerhistorie. Søknaden fra forrige uke eksisterer før dag 1. Meldekort og arbeidsdokumentasjon er to separate oppgaver. Uka gir kontakter og avtaler, ikke automatisk ansettelse, kunstnerstatus eller kriminalitet.",
+    "hovedtraadFlagg": "arbeidsledig_hovedtraad",
+    "standardTraad": "dagen_uten_ramme",
+    "steder": [
       {
-        "klokke": "09:00",
-        "tekst": "Meldekortfristen"
+        "id": "hjem",
+        "navn": "Hjemme",
+        "type": "spillerens_bosted"
       },
       {
-        "klokke": "11:00",
-        "tekst": "Søknaden"
+        "id": "nav_samtale",
+        "navn": "Avtalt telefonsamtale med NAV",
+        "type": "fjernmoete"
       },
       {
-        "klokke": "14:00",
-        "tekst": "Resten av dagen"
+        "id": "pub",
+        "navn": "Puben ved torget",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "ovingsrom",
+        "navn": "Miras øvingsrom",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "bakrom",
+        "navn": "Bakrommet ved undergrunnskvelden",
+        "type": "fiktivt_sted"
+      },
+      {
+        "id": "bibliotek",
+        "navn": "Bibliotekets arbeidsbord",
+        "type": "fiktivt_sted"
       }
     ],
-    "2": [
+    "rollebroer": [
       {
-        "klokke": "10:00",
-        "tekst": "Veien videre"
-      }
-    ],
-    "3": [
-      {
-        "klokke": "10:00",
-        "tekst": "Svar på søknaden"
+        "threadId": "musikken_og_mira",
+        "role_scope": "musikk_frilansmusiker",
+        "navn": "Frilansmusiker",
+        "role_world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+        "narrative": "data/Civication/narratives/leisure/musikk_frilansmusiker.json",
+        "grense": "Prøve, booking og honorar. Ingen automatisk jobb eller Badge-opplåsing."
       },
       {
-        "klokke": "14:00",
-        "tekst": "Det du kan"
+        "threadId": "miljoet_og_amir",
+        "role_scope": "subkultur_gangster",
+        "navn": "Gangster",
+        "role_world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+        "narrative": "data/Civication/narratives/leisure/subkultur_gangster.json",
+        "grense": "Tilhørighet, sosial gjeld, rykte og avgrensede oppdrag. Arbeidsledighet innebærer ikke kriminalitet."
       }
-    ]
+    ],
+    "faseAvslutning": [
+      "natt_01_paa_tide_aa_sove",
+      "d2_kveld_kroppen_sier_fra",
+      "natt_02_legg_deg_tidligere",
+      "d2_natt_oeyeblikk_foer_soevnen"
+    ],
+    "moter": [
+      {
+        "id": "nav_telefon",
+        "navn": "Telefonsamtalen med NAV",
+        "dag": 2,
+        "fase": "formiddag",
+        "stedId": "nav_samtale",
+        "personer": [
+          "nav_veileder"
+        ],
+        "avtalt": "nav_samtale_avtalt",
+        "gjennomfort": "nav_samtale_gjennomfort"
+      },
+      {
+        "id": "mira_samtale",
+        "navn": "Telefonsamtalen med Mira",
+        "dag": 3,
+        "fase": "ettermiddag",
+        "stedId": "hjem",
+        "personer": [
+          "mira"
+        ],
+        "avtalt": "mira_samtale_avtalt",
+        "gjennomfort": "mira_samtale_gjennomfort"
+      },
+      {
+        "id": "amir_pub",
+        "navn": "Det første møtet med Amir",
+        "dag": 3,
+        "fase": "ettermiddag",
+        "stedId": "pub",
+        "personer": [
+          "amir"
+        ],
+        "avtalt": "amir_pub_avtalt",
+        "gjennomfort": "amir_pub_gjennomfort"
+      },
+      {
+        "id": "mira_prove4",
+        "navn": "Prøven med Mira",
+        "dag": 4,
+        "fase": "ettermiddag",
+        "stedId": "ovingsrom",
+        "personer": [
+          "mira"
+        ],
+        "avtalt": "mira_prove_avtalt",
+        "gjennomfort": "mira_prove_gjennomfort"
+      },
+      {
+        "id": "amir_oppdrag",
+        "navn": "Undergrunnskvelden",
+        "dag": 5,
+        "fase": "ettermiddag",
+        "stedId": "bakrom",
+        "personer": [
+          "amir"
+        ],
+        "avtalt": "amir_oppdrag_avtalt",
+        "gjennomfort": "amir_oppdrag_gjennomfort",
+        "avbrutt": "amir_oppdrag_avbrutt",
+        "avslaatt": "amir_trakk_seg"
+      },
+      {
+        "id": "mira_prove6",
+        "navn": "Den senere prøven med Mira",
+        "dag": 6,
+        "fase": "ettermiddag",
+        "stedId": "ovingsrom",
+        "personer": [
+          "mira"
+        ],
+        "avtalt": "mira_prove_dag6",
+        "gjennomfort": "mira_prove_gjennomfort"
+      },
+      {
+        "id": "booking6",
+        "navn": "Det korte settet",
+        "dag": 6,
+        "fase": "kveld",
+        "stedId": "bakrom",
+        "personer": [
+          "booker"
+        ],
+        "avtalt": "booking_bekreftet",
+        "gjennomfort": "sett_gjennomfort",
+        "avslaatt": "booking_avslaatt"
+      },
+      {
+        "id": "amir_prat",
+        "navn": "Praten etter det avslåtte oppdraget",
+        "dag": 6,
+        "fase": "formiddag",
+        "stedId": "pub",
+        "personer": [
+          "amir"
+        ],
+        "avtalt": "amir_prat_avtalt",
+        "gjennomfort": "amir_prat_gjennomfort"
+      }
+    ],
+    "sceneTekster": {
+      "d3_ettermiddag_kroppen_vil_ut": "Tre dager med søknader, plikter og egne planer. Du kjenner etter hva kroppen trenger nå: bevegelse, frisk luft eller en rolig ettermiddag.",
+      "d2_ettermiddag_rommet_som_forsvant": "Du lot tida stå åpen på dag 1. Nå er det ettermiddag igjen. Se etter hva det faktisk ble plass til, og om du vil velge én ting mer bevisst i dag.",
+      "d2_ettermiddag_lista_moeter_veggen": "Du fylte lista på dag 1. Nå er det ettermiddag på dag 2, og du kan se gjennom det som fortsatt er relevant. Du trenger ikke gjennomføre alt for at planen skal være nyttig.",
+      "d2_venn_02_stille_kveld": "Du har ikke avtalt å møte Jonas i kveld. Et bilde dukker opp i feeden med folk samlet et annet sted. Hva vil du gjøre med kvelden du faktisk har?"
+    },
+    "valgKonsekvenser": {
+      "dag2_kveld_oppsummering": {
+        "eier_retningen": "Du legger fra deg telefonen. Det er lettere å lande kvelden når du vet hva du vil holde fast ved."
+      },
+      "natt_02_legg_deg_tidligere": {
+        "myk_landing": "Du demper lyset og gir deg selv en halvtime uten skjerm før du legger deg."
+      },
+      "d2_natt_oeyeblikk_foer_soevnen": {
+        "tre_ting_som_gikk": "Du finner tre små ting du vil ta med deg fra de to dagene. De trenger ikke være store for å telle."
+      },
+      "by_02_miljoeet_samles": {
+        "staa_over": "Du lar invitasjonen ligge. Kanskje ser du på bildene i morgen; i kveld vil du være hjemme."
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@
 import { spawn } from 'child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
+import verifyArbeidsledig from './verify-civication-arbeidsledig-browser.js';
 
 let playwright: any;
 try { playwright = require('playwright'); } catch { console.error('Playwright not installed'); process.exit(2); }
@@ -81,6 +82,8 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
+    report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
+    console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
   } finally {
     try { if (browser) await browser.close(); }
     finally {

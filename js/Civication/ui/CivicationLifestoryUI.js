@@ -127,8 +127,9 @@
     state = State.load();
     if (!state || state.rolle !== roleId) {
       state = State.createInitialState(content);
-      State.save(state);
     }
+    State.reconcileContent(state, content);
+    State.save(state);
     currentRoleId = roleId;
   }
 
@@ -420,10 +421,15 @@
    * @returns {string}
    */
   function renderPanelsHtml(view) {
+    const symposium = window.CivicationLifestoryRunner.getSymposium(state, content);
     const allThreads = Object.entries(state.threadState || {}).map(([id, ts]) => {
       const thread = content.threads.find((t) => t.id === id) || { id };
       return Object.assign({}, thread, { status: ts.status, step: ts.step });
     }).sort((a, b) => {
+      if (symposium?.hovedtraad) {
+        if (a.id === symposium.hovedtraad.id) return -1;
+        if (b.id === symposium.hovedtraad.id) return 1;
+      }
       const rank = { escalated: 0, active: 1, dormant: 2, completed: 3 };
       return (rank[a.status] ?? 9) - (rank[b.status] ?? 9);
     });
@@ -452,7 +458,29 @@
       + "<section><h4>Aktive tråder</h4><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></section>"
       + "<section><h4>Senere i dag</h4><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></section>"
       + "<section><h4>Arkiv / tidligere valg</h4><ul>" + arkivHtml + "</ul></section>"
+      + renderSymposiumHtml(symposium)
       + "</aside>";
+  }
+
+  /** Den fulle historien kan åpnes uten å fylle NÅ-flaten med metadata. */
+  function renderSymposiumHtml(book) {
+    if (!book) return "";
+    const timeline = book.tidslinje.map((e) => "<li><strong>Dag " + escapeHtml(e.dag) + " · " + escapeHtml(viewPhaseName(e.fase)) + " · " + escapeHtml(e.sceneTittel) + "</strong>"
+      + (e.sted ? "<br>" + escapeHtml(e.sted.navn) : "")
+      + (e.person ? " · " + escapeHtml(e.person.navn) : "")
+      + "<p>" + escapeHtml(e.valgTekst) + "</p>"
+      + (e.konsekvensTekst ? "<p>" + escapeHtml(e.konsekvensTekst) + "</p>" : "") + "</li>").join("");
+    const plans = book.avtaler.map((a) => "<li>Dag " + escapeHtml(a.dag) + " · " + escapeHtml(viewPhaseName(a.fase)) + ": " + escapeHtml(a.tittel) + (a.sted ? " · " + escapeHtml(a.sted.navn) : "") + "</li>").join("");
+    return "<section><details data-lifestory-symposium><summary>Historien så langt</summary>"
+      + "<h4>" + escapeHtml(book.tittel) + "</h4>"
+      + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
+      + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
+      + "<h4>Personer</h4><ul>" + book.personer.map((p) => "<li><strong>" + escapeHtml(p.navn) + "</strong>: " + escapeHtml(p.beskrivelse) + "</li>").join("") + "</ul>"
+      + "<h4>Møter og avtaler</h4><ul>" + (book.moter.map((m) => "<li>Dag " + escapeHtml(m.dag) + " · " + escapeHtml(m.navn) + " · " + escapeHtml(m.sted.navn) + ": " + escapeHtml(({ avtalt: "Avtalt", gjennomfort: "Gjennomført", avslaatt: "Avslått", avbrutt: "Avbrutt" })[m.status]) + "</li>").join("") || "<li>Ingen møter avtalt ennå.</li>") + "</ul>"
+      + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
+      + "<h4>Åpne scener</h4><ul>" + (plans || "<li>Ingen flere planlagte scener.</li>") + "</ul>"
+      + "<h4>Tidslinje</h4><ol>" + (timeline || "<li>Ingen valg tatt ennå.</li>") + "</ol>"
+      + "</details></section>";
   }
 
   /**
@@ -544,7 +572,8 @@
    * null før innholdet er lastet.
    * @returns {{ sceneId: string|null, tittel: string|null, fase: string,
    *   dagFerdig: boolean, threadId: string|null, threadType: string|null,
-   *   rolleNavn: string|null }|null}
+   *   rolleNavn: string|null,
+   *   sted: { id: string, navn: string, type?: string }|null }|null}
    */
   function getCurrentSceneInfo() {
     if (!content || !state) return null;
@@ -559,7 +588,8 @@
       dagFerdig: !!view.dagFerdig,
       threadId: thread ? thread.id : null,
       threadType: thread ? thread.type : null,
-      rolleNavn: content.role && content.role.navn ? String(content.role.navn) : null
+      rolleNavn: content.role && content.role.navn ? String(content.role.navn) : null,
+      sted: scene ? (content.role.symposium?.steder || []).find((p) => p.id === scene.stedId) || null : null
     };
   }
 
