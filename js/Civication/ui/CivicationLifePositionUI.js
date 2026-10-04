@@ -72,6 +72,7 @@
       : [];
     const primary = context?.primary_life_position || null;
     const suggestion = window.CivicationLifestoryUI?.getRoleSuggestion?.() || null;
+    const suggestedBadgeName = suggestion && window.BADGES?.find((badge) => badge.id === suggestion.badge_id)?.name;
     const suggestedPosition = suggestion && unlocked.find((position) =>
       position.badge_id === suggestion.badge_id && position.label === suggestion.navn);
     const suggestionIsActive = suggestion && (context.active_life_positions || []).some((position) =>
@@ -135,7 +136,7 @@
           <strong>Fra historien din: ${escapeHtml(suggestion.navn)}</strong>
           ${suggestionIsActive ? '<p>Denne livsposisjonen er allerede aktiv.</p>' : suggestedPosition
             ? `<p>Tilgjengelig. Du velger selv om den skal være aktiv.</p><button type="button" data-civi-life-suggestion-activate>Velg ${escapeHtml(suggestion.navn)}</button>`
-            : `<p>Ikke tilgjengelig ennå.${Number.isFinite(suggestion.threshold) ? ` Krever minst ${escapeHtml(suggestion.threshold)} poeng i ${escapeHtml(suggestion.badge_id)}.` : ' Fortsett med merkene for denne retningen.'} Du kan beholde kontakten og historien mens du bygger videre.</p>`}
+            : `<p>Ikke tilgjengelig ennå.${Number.isFinite(suggestion.threshold) ? ` Krever minst ${escapeHtml(suggestion.threshold)} poeng i ${escapeHtml(suggestedBadgeName || suggestion.badge_id)}.` : ' Fortsett med merkene for denne retningen.'} Du kan beholde kontakten og historien mens du bygger videre.</p>`}
         </div>
       ` : ""}
       ${unlocked.length ? `
