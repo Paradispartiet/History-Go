@@ -108,6 +108,7 @@
    * @returns {any[]}
    */
   function getCandidateScenes(state, content) {
+    if (isContinuationPaused(state, content)) return [];
     return content.scenes.filter((scene) =>
       scene.dag === state.dag &&
       scene.fase === state.fase &&
@@ -204,6 +205,7 @@
    * @returns {{ faseSkifte: boolean }}
    */
   function advance(state, content) {
+    if (isContinuationPaused(state, content)) return { faseSkifte: false };
     let faseSkifte = false;
     while (!getCandidateScenes(state, content).length) {
       const index = content.faser.findIndex((f) => f.id === state.fase);
@@ -239,6 +241,7 @@
    * @returns {any} state
    */
   function startNextDay(state, content) {
+    if (isContinuationPaused(state, content)) throw new Error("[LifestoryRunner] fortsettelsen er satt på pause");
     if (!state.dagFerdig) throw new Error("[LifestoryRunner] dagen er ikke ferdig — kan ikke starte neste dag");
     state.dag += 1;
     state.fase = content.faser[0].id;
@@ -339,7 +342,7 @@
   function getSymposium(state, content) {
     const book = content.role.symposium;
     if (!book) return null;
-    const selected = state.tidligereValg[book.hovedtraadFlagg];
+    const selected = content.fortsettelse?.hovedtraad || state.tidligereValg[book.hovedtraadFlagg];
     const foreground = content.threads.find((t) => t.id === (selected || book.standardTraad));
     const bridges = (book.rollebroer || []).filter((b) => b.threadId === foreground?.id);
     const selectedRole = book.rollevalgFlagg && state.tidligereValg[book.rollevalgFlagg];
@@ -357,6 +360,7 @@
       .map((s) => ({ id: s.id, dag: s.dag, fase: s.fase, tittel: s.tittel, sted: steder.find((p) => p.id === s.stedId) || null }));
     return {
       tittel: book.tittel,
+      kapitler: (state.kapittelArkiv || []).slice(),
       hovedtraad: foreground || null,
       rollebro: bridges.find((b) => b.role_scope === selectedRole) || (bridges.length === 1 ? bridges[0] : null),
       rollebroer: bridges,
@@ -372,7 +376,39 @@
     };
   }
 
+  /** The life-profile runtime owns identity, including Badge gates. */
+  function hasContinuationRole(content, next) {
+    const bridge = content.role.symposium?.rollebroer?.find((b) => b.role_scope === next.role_scope);
+    const primary = /** @type {any} */ (globalScope).CivicationLifePositions?.getLifeContext?.()?.primary_life_position;
+    return !!bridge && !!primary && primary.badge_id === bridge.badge_id && primary.label === bridge.navn;
+  }
+
+  function isContinuationPaused(state, content) {
+    return !!content.fortsettelse && state.dag > content.fortsettelse.etterDag && !hasContinuationRole(content, content.fortsettelse);
+  }
+
+  function canStartContinuation(state, content, next) {
+    return !!next && !state.fortsettelseId && !content.fortsettelse && state.dagFerdig
+      && state.dag === next.etterDag && state.tidligereValg[content.role.symposium.hovedtraadFlagg] === next.fraTraad
+      && hasContinuationRole(content, next);
+  }
+
+  /** Called after loading/validation, and rechecks identity after async IO. */
+  function startContinuation(state, baseContent, mergedContent, id, ending) {
+    const next = baseContent.role.symposium?.fortsettelser?.find((n) => n.id === id);
+    if (!canStartContinuation(state, baseContent, next) || mergedContent.fortsettelse?.id !== id || !ending) {
+      throw new Error("[LifestoryRunner] fortsettelsen er ikke tilgjengelig nå");
+    }
+    state.kapittelArkiv = [{ tittel: baseContent.role.symposium.tittel, fraDag: 1, tilDag: state.dag,
+      ending: JSON.parse(JSON.stringify(ending)) }];
+    state.fortsettelseId = id;
+    return startNextDay(state, mergedContent);
+  }
+
   const api = {
+    canStartContinuation,
+    startContinuation,
+    isContinuationPaused,
     conditionsMet,
     isThreadPlayable,
     getCandidateScenes,

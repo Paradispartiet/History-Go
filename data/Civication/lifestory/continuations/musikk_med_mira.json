@@ -1,0 +1,589 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_med_mira",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Musikken etter den første uka",
+  "sisteDag": 10,
+  "hovedtraad": "musikken_videre_med_mira",
+  "threads": [
+    {
+      "id": "musikken_videre_med_mira",
+      "tittel": "Musikken videre med Mira",
+      "type": "privatliv",
+      "startDag": 8,
+      "konflikt": "Ønske om å spille sammen vs tid, kapasitet og egne arbeidsmåter"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d8_mira_etter_settet",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter det korte settet",
+      "tekst": "Du spilte det korte settet på dag 6. Nå sender Mira en melding: «Jeg vil prøve en roligere åpning på en ny idé. Har du lyst til å spille sammen en time på dag 10 klokka 14?»",
+      "valg": [
+        {
+          "id": "prove",
+          "tekst": "Avtal en ny prøve med Mira på dag 10 klokka 14",
+          "konsekvensTekst": "Du svarer ja til en times prøve på dag 10 klokka 14. Mira bekrefter tidspunktet. Det er ingen booking eller avtale om betaling.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "prove",
+              "mira_ny_prove_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hjemme",
+          "tekst": "Svar at du vil arbeide med musikken hjemme først",
+          "konsekvensTekst": "Du skriver at du vil prøve noen ideer alene. Mira svarer at dere kan snakke senere. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "hjemme"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "Si at du trenger noen rolige dager uten nye avtaler",
+          "konsekvensTekst": "Du sier fra om at du trenger en pause. Mira takker for et tydelig svar. Kalenderen står åpen.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "pause"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sett_gjennomfort": true
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "d8_mira_uten_sett",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel fra Mira",
+      "tekst": "Det ble ikke noe kort sett for deg i den første uka. Nå sender Mira en ny melding: «Jeg vil prøve en roligere åpning på en idé. Har du lyst til å spille sammen en time på dag 10 klokka 14?» Du kan ta stilling til denne forespørselen uavhengig av det som ikke ble gjennomført.",
+      "valg": [
+        {
+          "id": "prove",
+          "tekst": "Avtal en ny prøve med Mira på dag 10 klokka 14",
+          "konsekvensTekst": "Du svarer ja til en times prøve på dag 10 klokka 14. Mira bekrefter tidspunktet. Det er ingen booking eller avtale om betaling.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "prove",
+              "mira_ny_prove_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hjemme",
+          "tekst": "Svar at du vil arbeide med musikken hjemme først",
+          "konsekvensTekst": "Du skriver at du vil prøve noen ideer alene. Mira svarer at dere kan snakke senere. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "hjemme"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "Si at du trenger noen rolige dager uten nye avtaler",
+          "konsekvensTekst": "Du sier fra om at du trenger en pause. Mira takker for et tydelig svar. Kalenderen står åpen.",
+          "effekter": {
+            "flagg": {
+              "musikk_videre_valg": "pause"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sett_gjennomfort": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "d9_mira_forberedelse",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva tar du med til prøven?",
+      "tekst": "Prøven med Mira er avtalt til i morgen klokka 14. Du har tid til å forberede litt, møte uten noe nytt eller avlyse før hun setter av mer av dagen.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Lag en kort melodi du kan prøve sammen med henne",
+          "konsekvensTekst": "Du spiller inn noen takter på telefonen og lagrer dem. Mira har ikke hørt opptaket ennå.",
+          "effekter": {
+            "flagg": {
+              "musikk_ny_melodi": true
+            },
+            "meters": {
+              "energi": -2,
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "uten_nytt",
+          "tekst": "Behold avtalen uten å lage nytt materiale",
+          "konsekvensTekst": "Du lar prøveavtalen stå. Du har ikke lovet å ta med nytt materiale.",
+          "effekter": {
+            "flagg": {
+              "musikk_prove_uten_nytt": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Send en melding og avlys prøven",
+          "konsekvensTekst": "Du avlyser før prøvedagen. Mira svarer at hun har sett meldingen. Dere lager ingen ny avtale nå.",
+          "effekter": {
+            "flagg": {
+              "mira_ny_prove_avbrutt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "prove"
+        }
+      }
+    },
+    {
+      "id": "d9_musikk_hjemme",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En halvtime med musikken",
+      "tekst": "Du valgte å arbeide hjemme før du gjør en ny avtale. Telefonen er stille, og du kan bruke en halvtime uten å måtte vise fram et ferdig resultat.",
+      "valg": [
+        {
+          "id": "skriv",
+          "tekst": "Prøv noen takter og lagre et enkelt opptak",
+          "konsekvensTekst": "Du lager et kort opptak og beholder det på telefonen. Det er en skisse, og du har ikke sendt den til noen.",
+          "effekter": {
+            "flagg": {
+              "musikk_hjemmeskisse": true
+            },
+            "meters": {
+              "energi": -1,
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "lytt",
+          "tekst": "Lytt og noter hva du vil prøve en annen dag",
+          "konsekvensTekst": "Du skriver ned to ting du vil lytte nærmere til. Du lager ikke noe nytt opptak i dag.",
+          "effekter": {
+            "flagg": {
+              "musikk_lyttenotat": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "hjemme"
+        }
+      }
+    },
+    {
+      "id": "d9_musikk_pause",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En dag uten prøveavtale",
+      "tekst": "Du har sagt fra til Mira om pausen. Ingen venter på deg i øvingsrommet. Nå kan du velge hva som hjelper deg gjennom dagen.",
+      "valg": [
+        {
+          "id": "tur",
+          "tekst": "Ta en kort tur før du lager mat",
+          "konsekvensTekst": "Du går en kort runde og lager mat når du kommer hjem. Du legger ikke inn noen ny avtale.",
+          "effekter": {
+            "flagg": {
+              "musikk_pause_tur": true
+            },
+            "meters": {
+              "psyke": 2
+            }
+          }
+        },
+        {
+          "id": "hvil",
+          "tekst": "Hvil hjemme og legg bort telefonen en stund",
+          "konsekvensTekst": "Du legger telefonen bort og hviler. Mira får ingen ny melding eller noe nytt løfte i dag.",
+          "effekter": {
+            "flagg": {
+              "musikk_pause_hvile": true
+            },
+            "meters": {
+              "energi": 3
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "pause"
+        }
+      }
+    },
+    {
+      "id": "d10_mira_proven",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "møte",
+      "stedId": "ovingsrom",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den nye prøven med Mira",
+      "tekst": "Klokka er 14, og du møter Mira i øvingsrommet slik dere avtalte. Hun spør om dere skal spille litt eller bruke timen på å snakke om hvordan dere vil arbeide sammen.",
+      "valg": [
+        {
+          "id": "spill",
+          "tekst": "Spill sammen og prøv ulike måter å begynne på",
+          "konsekvensTekst": "Dere spiller sammen i en time og prøver flere begynnelser. Dette var en prøve; dere avtaler ingen konsert eller betaling.",
+          "effekter": {
+            "flagg": {
+              "mira_ny_prove_gjennomfort": true,
+              "musikk_ny_prove_spilt": true
+            },
+            "meters": {
+              "energi": -3
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "snakk",
+          "tekst": "Bruk timen på å avklare arbeidsmåte og forventninger",
+          "konsekvensTekst": "Dere møtes og snakker om øving, tid og hva dere vil prøve. Du har gjennomført møtet, men dere spiller ikke i dag.",
+          "effekter": {
+            "flagg": {
+              "mira_ny_prove_gjennomfort": true,
+              "musikk_arbeidsmaate_avklart": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_ny_prove_avtalt": true,
+          "mira_ny_prove_avbrutt": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "d10_mira_avlyst",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Prøven ble avlyst",
+      "tekst": "Du avlyste prøven i går, og Mira har bekreftet at hun så meldingen. Klokka nærmer seg 14, og du er hjemme. Vil du sende en kort takk eller la den siste meldingen hennes avslutte samtalen foreløpig?",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Send en kort takk for at hun tok imot beskjeden",
+          "konsekvensTekst": "Du takker Mira for svaret. Det blir ingen ny avtale av denne meldingen.",
+          "effekter": {
+            "flagg": {
+              "musikk_avlyst_takk": true
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "la_sta",
+          "tekst": "La avlysningen stå uten en ny melding",
+          "konsekvensTekst": "Du lar avklaringen stå. Du lover ikke et nytt tidspunkt for å veie opp for avlysningen.",
+          "effekter": {
+            "flagg": {
+              "musikk_avlyst_avklart": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_ny_prove_avbrutt": true
+        }
+      }
+    },
+    {
+      "id": "d10_musikk_egen_tid",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du vil arbeide videre med",
+      "tekst": "Du har ikke avtalt en prøve med Mira. Du ser på musikken og notatene dine hjemme og vurderer hva du vil gjøre med dem nå.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Sett av tjue minutter til å prøve en idé",
+          "konsekvensTekst": "Du prøver en idé i tjue minutter. Arbeidet blir hjemme hos deg; du har ikke sendt materiale eller bedt noen om å svare.",
+          "effekter": {
+            "flagg": {
+              "musikk_egen_ovekt": true
+            },
+            "meters": {
+              "energi": -1,
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "rydd",
+          "tekst": "Samle notatene uten å legge en ny plan",
+          "konsekvensTekst": "Du samler notatene så de blir lette å finne igjen. Du beholder dem uten å gjøre dem til en ny frist.",
+          "effekter": {
+            "flagg": {
+              "musikk_egne_notater_ryddet": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "hjemme"
+        }
+      }
+    },
+    {
+      "id": "d10_musikk_fortsatt_pause",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Pausen trenger ikke en forklaring til",
+      "tekst": "Du har holdt kalenderen fri fra nye musikkavtaler disse dagene. Mira har allerede fått et tydelig svar. Ved kjøkkenbordet finner du en penn og et tomt ark. Vil du notere en mulig idé eller la musikken ligge litt til?",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold kalenderen fri i dag også",
+          "konsekvensTekst": "Du lar dagen være uten ny prøve, opptak eller spillejobb. Det er dette du faktisk velger nå.",
+          "effekter": {
+            "flagg": {
+              "musikk_pause_beholdt": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Skriv ned én ting du kanskje vil prøve senere",
+          "konsekvensTekst": "Du noterer en mulig idé. Du setter ingen dato og sender ikke en invitasjon.",
+          "effekter": {
+            "flagg": {
+              "musikk_pause_ide": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "pause"
+        }
+      }
+    },
+    {
+      "id": "d10_musikk_avslutning",
+      "threadId": "musikken_videre_med_mira",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva vil du ta med videre?",
+      "tekst": "Det er kveld på dag 10. Du legger bort det du har holdt på med og ser på kalenderen. Vil du notere at du kan ta kontakt med Mira senere, eller fortsette med musikken uten en ny avtale?",
+      "valg": [
+        {
+          "id": "kontakt_senere",
+          "tekst": "Noter at du vil ta kontakt med Mira når du har tid",
+          "konsekvensTekst": "Du skriver en påminnelse til deg selv. Du har ikke sendt den til Mira eller avtalt et nytt møte.",
+          "effekter": {
+            "flagg": {
+              "musikk_kapittel_avsluttet": true,
+              "musikk_kontakt_senere": true
+            },
+            "meters": {
+              "psyke": 1
+            },
+            "threads": {
+              "musikken_videre_med_mira": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "egen_rytme",
+          "tekst": "Behold musikken som noe du tar fram på egne premisser",
+          "konsekvensTekst": "Du legger telefonen fra deg. Musikken har en plass i livet ditt uten at kvelden må ende med en ny avtale.",
+          "effekter": {
+            "flagg": {
+              "musikk_kapittel_avsluttet": true,
+              "musikk_egen_rytme": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "musikken_videre_med_mira": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [
+    {
+      "id": "mira_ny_prove10",
+      "navn": "Den nye prøven med Mira",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "stedId": "ovingsrom",
+      "personer": [
+        "mira"
+      ],
+      "avtalt": "mira_ny_prove_avtalt",
+      "gjennomfort": "mira_ny_prove_gjennomfort",
+      "avbrutt": "mira_ny_prove_avbrutt"
+    }
+  ],
+  "endings": [
+    {
+      "id": "musikk_motte_mira",
+      "navn": "En ny time sammen",
+      "tekst": "Du møtte Mira slik dere avtalte. Dere brukte en time sammen, og du fikk prøvd enten samspillet eller en samtale om hvordan dere vil arbeide. Kalenderen er åpen for hva dere vil gjøre senere.",
+      "kriterier": {
+        "flagg": {
+          "mira_ny_prove_gjennomfort": true
+        }
+      }
+    },
+    {
+      "id": "musikk_avklarte_avlysningen",
+      "navn": "Avtalen ble avklart",
+      "tekst": "Du avlyste den nye prøven før møtedagen, og Mira tok imot beskjeden. Dere har ikke satt en ny dato. Kontakten er der fortsatt, uten at du må fylle kalenderen i kveld.",
+      "kriterier": {
+        "flagg": {
+          "mira_ny_prove_avbrutt": true
+        }
+      }
+    },
+    {
+      "id": "musikk_egen_tid",
+      "navn": "Musikk på egne premisser",
+      "tekst": "Du beholdt disse dagene uten en ny prøveavtale. Du valgte selv når musikken skulle få tid, og når du trengte hvile. Notatene og kontakten med Mira kan du ta fram igjen senere.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

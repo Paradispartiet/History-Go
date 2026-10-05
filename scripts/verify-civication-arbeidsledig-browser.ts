@@ -16,7 +16,9 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     { id: 'byhistorie_avslaatt', route: 'byhistorie', suggestion: 'Lokalhistoriker', choices: { d3_byhistorie_invitasjon: 'egen_tid', d7_byhistorie_videre: 'historie_lokalhistoriker' } },
     { id: 'utforsking_null', route: 'utforsking', suggestion: 'Folkeforsker', choices: { d4_utforsking_moetet: 'avgrens', d7_utforsking_videre: 'vitenskap_folkeforsker' } },
     { id: 'kultur_sen', route: 'kultur', suggestion: 'Filmklubbmenneske', choices: { d3_kultur_invitasjon: 'dag6', d7_kultur_videre: 'film_tv_filmklubbmenneske' } },
-    { id: 'prosjekt_valgt', route: 'prosjekt', suggestion: 'Sideprosjektbygger', activate: true, choices: { d7_prosjekt_videre: 'naeringsliv_sideprosjektbygger' } }
+    { id: 'prosjekt_valgt', route: 'prosjekt', suggestion: 'Sideprosjektbygger', activate: true, choices: { d7_prosjekt_videre: 'naeringsliv_sideprosjektbygger' } },
+    { id: 'mira_videre_spilt', route: 'musikk', suggestion: 'Frilansmusiker', activate: true, continue: true, choices: { d7_musikk_videre: 'rolleflaten' } },
+    { id: 'mira_videre_avlyst', route: 'musikk', suggestion: 'Frilansmusiker', activate: true, continue: true, choices: { d5_booker: 'avsta', d7_musikk_videre: 'rolleflaten', d9_mira_forberedelse: 'avlys' } }
   ];
   const reports: any[] = [];
   for (const scenario of cases) {
@@ -24,7 +26,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     if (scenario.activate) await context.addInitScript(() => {
       // Fixture data before boot; all role choices still use real UI/API.
       if (!localStorage.getItem('arbeidsledig_browser_merits_seeded')) {
-        localStorage.setItem('merits_by_category', JSON.stringify({ by: { points: 5 }, naeringsliv: { points: 10 } }));
+        localStorage.setItem('merits_by_category', JSON.stringify({ by: { points: 5 }, naeringsliv: { points: 10 }, musikk: { points: 85 } }));
         localStorage.setItem('arbeidsledig_browser_merits_seeded', '1');
       }
     });
@@ -88,13 +90,13 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
               await select.selectOption('by|Byvandrer');
               const activate = page.locator('#civiSectionPopup [data-civi-life-suggestion-activate]');
               await activate.click();
-              await page.waitForFunction(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position?.label === 'Sideprosjektbygger');
+              await page.waitForFunction((label: string) => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position?.label === label, scenario.suggestion);
               const life = await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext());
               assert.equal(life.employment.formal_status, 'no_formal_job');
               assert.ok(life.active_life_positions.some((p: any) => p.label === 'Byvandrer'));
-              assert.ok(life.active_life_positions.some((p: any) => p.label === 'Sideprosjektbygger'));
+              assert.ok(life.active_life_positions.some((p: any) => p.label === scenario.suggestion));
               const snapshot = await page.evaluate(() => (globalThis as any).CivicationNarrativeSceneSource.getActivationSnapshot({ active: null }));
-              assert.ok(snapshot.matched_stream_ids.includes('naeringsliv_sideprosjektbygger_stream'));
+              assert.ok(snapshot.matched_stream_ids.includes(scenario.continue ? 'musikk_frilansmusiker_stream' : 'naeringsliv_sideprosjektbygger_stream'));
             } else {
               assert.ok((await suggestion.innerText()).includes('Ikke tilgjengelig ennå'));
               assert.equal(await suggestion.locator('[data-civi-life-suggestion-activate]').count(), 0);
@@ -125,6 +127,67 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       if (scenario.id === 'kunnskap_referanse_utsatt') assert.ok(state.spilteScener.includes('d3_soknad_uten_svar') && !state.spilteScener.includes('d3_soknad_svar') && state.spilteScener.includes('d3_nav_etter_fristen'));
       if (scenario.id === 'byhistorie_avslaatt') assert.ok(!state.spilteScener.includes('d4_byhistorie_moetet') && !state.spilteScener.includes('d6_byhistorie_moetet') && !state.tidligereValg.byhistorie_mote_gjennomfort);
       if (scenario.id === 'skape_sen' || scenario.id === 'kultur_sen') assert.ok(!state.spilteScener.includes(`d4_${scenario.route}_moetet`) && state.spilteScener.includes(`d6_${scenario.route}_moetet`));
+      if (scenario.continue) {
+        const weekArchive = JSON.stringify(state.arkiv);
+        const archiveLength = state.arkiv.length;
+        await page.locator('[data-lifestory-continue="musikk_med_mira"]').click();
+        await page.waitForFunction(() => (globalThis as any).CivicationLifestoryState.load().dag === 8);
+        state = await readState();
+        const frozenEnding = JSON.stringify(state.kapittelArkiv[0]);
+        const pending = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
+        assert.equal(pending, scenario.id === 'mira_videre_spilt' ? 'd8_mira_etter_settet' : 'd8_mira_uten_sett');
+        assert.equal(JSON.stringify(state.arkiv), weekArchive);
+        // Change the primary life position through the real profile, reload
+        // while paused, then restore it through the same player control.
+        await page.locator('[data-lifestory-symposium] summary').click();
+        await page.locator('[data-lifestory-life-profile]').click();
+        await page.locator('#civiLifePositionSelect').selectOption('by|Byvandrer');
+        await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
+        await page.locator('.civi-footer button[data-category="minDag"]').click();
+        await page.locator('[data-lifestory-paused]').waitFor();
+        assert.equal(await page.locator('[data-lifestory-choice]').count(), 0);
+        const paused = JSON.stringify(await readState());
+        await page.reload({ waitUntil: 'load' });
+        await page.locator('[data-lifestory-paused]').waitFor();
+        await page.waitForFunction(() => !!(globalThis as any).CivicationLifePositions?.getLifeContext);
+        assert.equal(JSON.stringify(await readState()), paused);
+        await page.locator('[data-lifestory-paused] [data-lifestory-life-profile]').click();
+        await page.locator('#civiLifePositionSelect').selectOption('musikk|Frilansmusiker');
+        await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
+        await page.locator('.civi-footer button[data-category="minDag"]').click();
+        assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId), pending);
+        let nativeGuard = 0;
+        while (true) {
+          state = await readState();
+          if (state.dagFerdig) {
+            if (state.dag === 10) break;
+            await page.locator('[data-lifestory-next-day]').click();
+            continue;
+          }
+          const sceneId = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
+          const choices = page.locator(`[data-lifestory-scene="${sceneId}"]`);
+          const choiceId = scenario.choices[sceneId] || await choices.first().getAttribute('data-lifestory-choice');
+          await page.locator(`[data-lifestory-scene="${sceneId}"][data-lifestory-choice="${choiceId}"]`).click();
+          const after = await readState();
+          assert.equal(after.arkiv.length, state.arkiv.length + 1);
+          assert.equal(JSON.stringify(after.arkiv.slice(0, archiveLength)), weekArchive);
+          assert.equal(JSON.stringify(after.kapittelArkiv[0]), frozenEnding);
+          trace.push({ day: state.dag, phase: state.fase, sceneId, choiceId });
+          const beforeReload = JSON.stringify(after);
+          await page.reload({ waitUntil: 'load' });
+          await page.waitForFunction(() => {
+            const app = globalThis as any;
+            return app.CivicationLifestoryUI?.getCurrentSceneInfo?.() && app.CivicationLifePositions?.getLifeContext?.().primary_life_position?.label === 'Frilansmusiker'
+              && !app.document.querySelector('[data-lifestory-paused]');
+          });
+          assert.equal(JSON.stringify(await readState()), beforeReload);
+          assert.ok(++nativeGuard < 20);
+        }
+        assert.ok(state.tidligereValg.musikk_kapittel_avsluttet);
+        assert.equal(!!state.tidligereValg.mira_ny_prove_gjennomfort, scenario.id === 'mira_videre_spilt');
+        assert.equal(!!state.tidligereValg.mira_ny_prove_avbrutt, scenario.id === 'mira_videre_avlyst');
+        assert.equal(state.threadState.nav_og_meldekortet.status, 'completed');
+      }
       await page.locator('[data-lifestory-symposium] summary').click();
       const storyText = await page.locator('[data-lifestory-symposium]').innerText();
       assert.ok(storyText.includes('Tidslinje') && storyText.includes('Møter og avtaler'));
@@ -137,7 +200,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.locator('[data-lifestory-symposium] summary').click();
         await page.locator('[data-lifestory-life-profile]').click();
         await page.locator('#civiSectionPopup [data-civi-life-suggestion]').waitFor({ state: 'visible' });
-        if (scenario.activate) assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position.label), 'Sideprosjektbygger');
+        if (scenario.activate) assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifePositions.getLifeContext().primary_life_position.label), scenario.suggestion);
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
         await page.locator('.civi-footer button[data-category="minDag"]').click();
       }

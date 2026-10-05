@@ -329,6 +329,14 @@
         }
       }
       const choiceFlags = new Set(scenes.flatMap((s) => (s.valg || []).flatMap((c) => Object.keys(c.effekter?.flagg || {}))));
+      const continuationIds = new Set();
+      for (const next of book.fortsettelser || []) {
+        if (!/^[a-z0-9_]+$/.test(next.id || "") || continuationIds.has(next.id) || !next.navn || !bridgeScopes.has(next.role_scope)
+          || next.path !== `data/Civication/lifestory/continuations/${next.id}.json`
+          || !Number.isInteger(next.etterDag) || next.etterDag < 1 || next.etterDag > book.sisteDag
+          || !threadIds.has(next.fraTraad)) push("symposium: ugyldig fortsettelse");
+        continuationIds.add(next.id);
+      }
       const meetingIds = new Set();
       for (const meeting of book.moter || []) {
         if (!meeting.id || meetingIds.has(meeting.id) || !meeting.navn || !Number.isInteger(meeting.dag) || meeting.dag < 1 || meeting.dag > book.sisteDag || !faseIds.has(meeting.fase) || !placeIds.has(meeting.stedId) || !meeting.avtalt || !meeting.gjennomfort) push("symposium: ugyldig møte");
@@ -626,7 +634,41 @@
     return resolveRoleIdForRoleScope(manifest, scope);
   }
 
-  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
+  /** Append a declared chapter to the same runner; never mutate its source. */
+  function appendContinuation(content, pack) {
+    const next = content.role.symposium?.fortsettelser?.find((n) => n.id === pack?.id);
+    if (content.fortsettelse || !next || pack.schema !== "civication_lifestory_continuation_v1"
+      || pack.role_scope !== next.role_scope || !Number.isInteger(pack.sisteDag) || pack.sisteDag <= next.etterDag
+      || !pack.tittel || !Array.isArray(pack.scenes) || !pack.scenes.length || !Array.isArray(pack.threads) || !pack.threads.length
+      || !Array.isArray(pack.moter) || !Array.isArray(pack.endings) || !pack.endings.length) {
+      throw new Error("[LifestoryContent] ugyldig fortsettelsespakke");
+    }
+    if (pack.scenes.some((s) => s.dag <= next.etterDag || s.dag > pack.sisteDag)
+      || pack.threads.some((t) => !Number.isInteger(t.startDag) || t.startDag <= next.etterDag || t.startDag > pack.sisteDag)
+      || !pack.threads.some((t) => t.id === pack.hovedtraad)) {
+      throw new Error("[LifestoryContent] fortsettelse har ugyldig dag eller hovedtråd");
+    }
+    const merged = JSON.parse(JSON.stringify(content));
+    merged.fortsettelse = Object.assign({}, next, { hovedtraad: pack.hovedtraad });
+    merged.threads.push(...pack.threads);
+    merged.scenes.push(...pack.scenes);
+    merged.role.endings = pack.endings;
+    const book = merged.role.symposium;
+    book.tittel = pack.tittel;
+    book.sisteDag = pack.sisteDag;
+    book.moter.push(...pack.moter);
+    book.rollebroer.find((b) => b.role_scope === next.role_scope).threadId = pack.hovedtraad;
+    validateContent(merged);
+    return merged;
+  }
+
+  async function loadContinuation(content, id) {
+    const next = content.role.symposium?.fortsettelser?.find((n) => n.id === id);
+    if (!next) throw new Error("[LifestoryContent] ukjent fortsettelse");
+    return appendContinuation(content, await fetchJson(next.path));
+  }
+
+  const api = { METERS, SCENE_TYPES, THREAD_STATUSES, CONDITION_KEYS, SHELL_CONDITION_KEYS, HANDLING_TYPES, LIVSSTIL_TAGS, MANIFEST_PATH, buildContent, validateContent, loadContent, appendContinuation, loadContinuation, resolveRoleIdForRoleScope, resolveRoleIdForActivePosition };
   /** @type {any} */ (globalScope).CivicationLifestoryContent = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
