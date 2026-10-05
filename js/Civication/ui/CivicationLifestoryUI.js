@@ -52,6 +52,9 @@
   let currentRoleId = EXPLICIT_ROLE_ID || DEFAULT_ROLE_ID;
 
   /** @type {any} */ let content = null;
+  /** @type {any} */ let baseContent = null;
+  let continuing = false;
+  let continuationError = "";
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
@@ -123,11 +126,16 @@
   async function loadRole(roleId) {
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
-    content = await Content.loadContent(roleId);
-    state = State.load();
-    if (!state || state.rolle !== roleId) {
-      state = State.createInitialState(content);
+    const base = await Content.loadContent(roleId);
+    let saved = State.load();
+    if (!saved || saved.rolle !== roleId) {
+      saved = State.createInitialState(base);
     }
+    // Restore content before reconciliation, even before the shell has booted.
+    const restored = saved.fortsettelseId ? await Content.loadContinuation(base, saved.fortsettelseId) : base;
+    baseContent = base;
+    content = restored;
+    state = saved;
     State.reconcileContent(state, content);
     State.save(state);
     currentRoleId = roleId;
@@ -179,7 +187,7 @@
 
   // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
   // CivicationState); jobbaksept dispatcher updateProfile.
-  window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); });
+  window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); render(); });
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
@@ -245,11 +253,44 @@
 
   function onRestart() {
     const State = /** @type {any} */ (window).CivicationLifestoryState;
-    state = State.createInitialState(content);
+    content = baseContent;
+    state = State.createInitialState(baseContent);
+    continuationError = "";
     sisteKonsekvens = null;
     State.save(state);
     window.dispatchEvent(new Event("civi:lifestoryChanged"));
     render();
+  }
+
+  async function onContinue(id) {
+    if (continuing) return;
+    const previousState = state, previousContent = content;
+    const Content = /** @type {any} */ (window).CivicationLifestoryContent;
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    const State = /** @type {any} */ (window).CivicationLifestoryState;
+    const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
+    const next = content.role.symposium?.fortsettelser?.find((n) => n.id === id);
+    if (!Endings || !Runner.canStartContinuation(state, content, next)) return;
+    continuing = true;
+    continuationError = "";
+    render();
+    try {
+      const merged = await Content.loadContinuation(previousContent, id);
+      if (state !== previousState || content !== previousContent) return;
+      const advanced = JSON.parse(JSON.stringify(state));
+      Runner.startContinuation(advanced, previousContent, merged, id, Endings.resolveEnding(state, previousContent));
+      State.save(advanced);
+      content = merged;
+      state = advanced;
+      sisteKonsekvens = null;
+      window.dispatchEvent(new Event("civi:lifestoryChanged"));
+    } catch (error) {
+      console.error("[CivicationLifestoryUI] fortsettelsen kunne ikke lastes", error);
+      continuationError = "Fortsettelsen kunne ikke åpnes. Historien din er bevart. Prøv igjen.";
+    } finally {
+      continuing = false;
+      render();
+    }
   }
 
   /**
@@ -389,13 +430,19 @@
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
     const endingHtml = ending
       ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
-        + "<div class=\"civi-lifestory-section-label\">Slutten på uka</div>"
+        + "<div class=\"civi-lifestory-section-label\">" + (content.fortsettelse ? "Kapittelet er avsluttet" : "Slutten på uka") + "</div>"
         + "<h3>" + escapeHtml(ending.navn) + "</h3>"
         + (ending.tekst ? "<p>" + escapeHtml(ending.tekst) + "</p>" : "")
         + "</section>"
       : "";
+    const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+    const next = (content.role.symposium?.fortsettelser || []).find((n) => Runner.canStartContinuation?.(state, content, n));
+    const continuationHtml = next
+      ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
+      : "";
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
+        + continuationHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
@@ -412,6 +459,7 @@
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
       + "<h4>Viktige valg i dag</h4><ul>" + valgHtml + "</ul>"
       + endingHtml
+      + (continuationError ? '<p role="alert">' + escapeHtml(continuationError) + '</p>' : "")
       + handlingsHtml
       + "</section>";
   }
@@ -473,6 +521,7 @@
     const plans = book.avtaler.map((a) => "<li>Dag " + escapeHtml(a.dag) + " · " + escapeHtml(viewPhaseName(a.fase)) + ": " + escapeHtml(a.tittel) + (a.sted ? " · " + escapeHtml(a.sted.navn) : "") + "</li>").join("");
     return "<section><details data-lifestory-symposium><summary>Historien så langt</summary>"
       + "<h4>" + escapeHtml(book.tittel) + "</h4>"
+      + (book.kapitler?.length ? "<h4>Avsluttede kapitler</h4><ul>" + book.kapitler.map((k) => "<li><strong>" + escapeHtml(k.tittel) + "</strong> · dag " + escapeHtml(k.fraDag) + "–" + escapeHtml(k.tilDag) + "<p>" + escapeHtml(k.ending.navn) + "</p><p>" + escapeHtml(k.ending.tekst) + "</p></li>").join("") + "</ul>" : "")
       + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
       + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
       + (book.rollebroer?.length > 1 ? "<p>Mulige livsroller: " + book.rollebroer.map((b) => escapeHtml(b.navn)).join(" · ") + "</p>" : "")
@@ -529,7 +578,9 @@
     renderHeaderStatus(view);
     panel.innerHTML = renderStatusHtml(view)
       + renderKonsekvensHtml()
-      + (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : ""))
+      + (Runner.isContinuationPaused?.(state, content)
+        ? '<section data-lifestory-paused><h3>Musikkhistorien er satt på pause</h3><p>Velg Frilansmusiker som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
+        : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : "")))
       + renderPanelsHtml(view);
   }
 
@@ -547,6 +598,8 @@
         return;
       }
       if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
+      const continueBtn = target.closest("[data-lifestory-continue]");
+      if (continueBtn) { onContinue(continueBtn.getAttribute("data-lifestory-continue") || ""); return; }
       if (target.closest("[data-lifestory-life-profile]")) {
         /** @type {any} */ (window).CivicationLifestoryActions?.perform?.({ type: "aapne_livsposisjoner" });
         return;

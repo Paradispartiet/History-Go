@@ -738,6 +738,40 @@ narrativleveranse, gjenlasting og flere samtidige livsroller. Den faktiske
 nettleserflyten følger tolv forløp gjennom Civication.html, inkludert låste
 forslag og aktivering av en tilgjengelig rolle gjennom livsprofilen.
 
+### Første native videreføring: Mira, dag 8–10
+
+Et avsluttet Arbeidsledig-forløp med musikken i forgrunnen kan nå vise
+«Fortsett med Mira». Spilleren må først ha valgt Frilansmusiker som
+hovedlivsposisjon i den eksisterende livsprofilen; et rolleforslag, et møte
+eller en sekundær aktiv livsposisjon åpner ikke kapittelet alene.
+Badge-krav og aktivering eies fortsatt av livsposisjonsruntimen.
+
+`symposium.fortsettelser` deklarerer en konkret pakke i
+`data/Civication/lifestory/continuations/`. Pakken lastes først ved
+fortsettelsesvalget og valideres før den føyes til samme innhold og runner.
+Den første pakken inneholder ti scener og 23 valg over dag 8–10:
+en ny prøve med Mira, forberedelse eller avlysning, eget arbeid eller hvile.
+Morgenen på dag 8 skiller et faktisk gjennomført sett fra et forløp uten
+sett. Den nye prøveavtalen har egne flagg og endrer aldri de gamle avtalene.
+
+Samme Player State, relasjoner, målere og tidslinje fortsetter uten reset.
+De valgfrie v2-feltene `fortsettelseId` og `kapittelArkiv` lagrer pakketilhørighet
+og førsteukens faktiske avslutning. Ved reload lastes pakken før
+`reconcileContent`; arkivet beholdes også mens skallet booter.
+Bytter spilleren hovedlivsposisjon, pauses kapittelet uten scenevalg eller
+dagskifte. Å velge Frilansmusiker igjen gjenopptar samme scene.
+«Start livet på nytt» bruker alltid den opprinnelige grunnpakken.
+En mislykket pakkehenting viser en feil og lar lagret historie være urørt.
+
+Dette er én avgrenset videreføring i Min dag, ikke migrering av alle
+livsroller. De øvrige rollehistoriene og den eldre narrativkilden for
+Frilansmusiker følger fortsatt den eksisterende kompatibilitetsflyten.
+Det nye kapittelet tildeler ingen jobb, Badge, booking eller inntekt.
+Regresjonstesten `civication-lifestory-mira-continuation.test.js` spiller
+alle nye valg med reload og kontrollerer gating, avlysning, pause og
+atomisk lastefeil. Nettlesertesten følger to komplette forløp til dag 10
+gjennom ekte profil-, fortsettelses-, scene- og dagsknapper.
+
 Civication er ikke et mailspill. Civication er et livsfortellingsspill
 der hver stilling er en arbeidslivsfortelling, privatlivet går
 parallelt, dagen er spillbrettet, scener er gameplay og valg former
