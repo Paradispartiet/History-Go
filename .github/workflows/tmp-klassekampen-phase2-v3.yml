@@ -70,18 +70,26 @@ jobs:
           npm run audit:quiz-progression
           npm run audit:quiz-theory-binding
 
-      - name: Verify Phase 2 and owner-managed outputs
-        shell: bash
-        run: |
-          set -euo pipefail
-          node --test tests/klassekampen-redaksjon-place-production-v3.test.mjs
-          npm run place:verify -- klassekampen_redaksjon
-          npm run build:web:check
-          npm run places:index:check
-          npm run place-open:check
-          node scripts/build-place-production-v3-projections.mjs klassekampen_redaksjon --check
+      - name: Verify Klassekampen Phase 2 regression
+        run: node --test tests/klassekampen-redaksjon-place-production-v3.test.mjs
+
+      - name: Verify Place Production v3 contract
+        run: npm run place:verify -- klassekampen_redaksjon
+
+      - name: Verify web build parity
+        run: npm run build:web:check
+
+      - name: Verify places index parity
+        run: npm run places:index:check
+
+      - name: Verify place-open parity
+        run: npm run place-open:check
+
+      - name: Verify Place Production projections
+        run: node scripts/build-place-production-v3-projections.mjs klassekampen_redaksjon --check
 
       - name: Commit verified permanent materialization
+        if: ${{ false }}
         shell: bash
         run: |
           set -euo pipefail
