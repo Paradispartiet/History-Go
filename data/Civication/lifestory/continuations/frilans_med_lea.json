@@ -1,0 +1,491 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "frilans_med_lea",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "En forespørsel er ikke et oppdrag",
+  "sisteDag": 10,
+  "hovedtraad": "frilans_videre_med_lea",
+  "threads": [
+    {
+      "id": "frilans_videre_med_lea",
+      "tittel": "En forespørsel er ikke et oppdrag",
+      "type": "privatliv",
+      "startDag": 8,
+      "konflikt": "Mulig oppdrag vs uavklart omfang og kapasitet"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d8_frilans_etter_modellen",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Du og Lea prøvde den grove modellen i den første uka. Hun fant ett punkt der bruken var uklar. Lea har selv lyst på en oversiktlig skisse av en løs del i pappmodellen sin. Hun spør om dere kan snakke ved prosjektbordet på dag 10 klokka 14 om hva et slikt arbeid ville innebære. Ingen pris eller bestilling er avtalt.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "mote",
+              "frilans_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil tenke gjennom hva jeg kan tilby før vi snakker om et oppdrag.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": true,
+          "prosjekt_motevalg": "proev"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d8_frilans_etter_samtalen",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Dere møttes i den første uka og skrev spørsmål om hvem dere kunne spørre. Dere laget ingen modell i det møtet. Lea har selv lyst på en oversiktlig skisse av en løs del i pappmodellen sin. Hun spør om dere kan snakke ved prosjektbordet på dag 10 klokka 14 om hva et slikt arbeid ville innebære. Ingen pris eller bestilling er avtalt.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "mote",
+              "frilans_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil tenke gjennom hva jeg kan tilby før vi snakker om et oppdrag.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": true,
+          "prosjekt_motevalg": "avgrens"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d8_frilans_uten_mote",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Du takket nei til møtet i den første uka. Lea har ikke sett eller prøvd skissene dine. Lea har selv lyst på en oversiktlig skisse av en løs del i pappmodellen sin. Hun spør om dere kan snakke ved prosjektbordet på dag 10 klokka 14 om hva et slikt arbeid ville innebære. Ingen pris eller bestilling er avtalt.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "mote",
+              "frilans_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil tenke gjennom hva jeg kan tilby før vi snakker om et oppdrag.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "frilans_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d9_frilans_forberedelse",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva er det egentlig hun spør etter?",
+      "tekst": "En skisse kan være en rask tegning eller en tegning som skal brukes til å bygge noe. Før samtalen trenger du å vite hva du vil spørre Lea om.",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Skriv ned spørsmål om bruk, omfang og budsjett",
+          "konsekvensTekst": "Du lager tre spørsmål. Du har ikke sendt et pristilbud eller sagt ja til arbeid.",
+          "effekter": {
+            "flagg": {
+              "frilans_forberedt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Avlys samtalen og behold dagen til eget bruk",
+          "konsekvensTekst": "Du sier fra til Lea. Hun bekrefter avlysningen; hun venter deg ikke ved prosjektbordet.",
+          "effekter": {
+            "flagg": {
+              "frilans_mote_avbrutt": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_valg": "mote"
+        }
+      }
+    },
+    {
+      "id": "d9_frilans_egen_tid",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tid som et tilbud trenger",
+      "tekst": "Du prøver hjemme å anslå hvor mye tid en slik tegning kan ta. Lea har ikke bestilt noe, og du kjenner ennå ikke kravene.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Skriv et foreløpig anslag med tydelige forbehold",
+          "konsekvensTekst": "Du skriver et anslag til eget bruk. Det er ikke et tilbud eller en avtale med Lea.",
+          "effekter": {
+            "flagg": {
+              "frilans_eget_arbeid": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "hvile",
+          "tekst": "La arket ligge i dag",
+          "konsekvensTekst": "Du legger arket bort og tar dagen uten nytt prosjektarbeid.",
+          "effekter": {
+            "flagg": {
+              "frilans_hvile": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_valg": "egen_tid"
+        }
+      }
+    },
+    {
+      "id": "d10_frilans_mote",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "prosjektbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En samtale om en mulig skisse",
+      "tekst": "Lea møter deg ved prosjektbordet klokka 14. Hun sier at hun bare trenger en enkel oversikt til egen utprøving, men ennå ikke vet hvor mye hun kan bruke på den.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be henne avklare budsjett før du gir et tilbud",
+          "konsekvensTekst": "Du ber om en avklaring. Lea sier at hun må tenke. Du har ikke fått et oppdrag eller en betalingsavtale.",
+          "effekter": {
+            "flagg": {
+              "frilans_mote_gjennomfort": true,
+              "frilans_moteresultat": "avklart"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Si at du ikke vil tilby denne skissen nå",
+          "konsekvensTekst": "Du avslår å gi et tilbud nå. Lea takker for avklaringen; det finnes ingen bestilling å levere på.",
+          "effekter": {
+            "flagg": {
+              "frilans_mote_gjennomfort": true,
+              "frilans_moteresultat": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_mote_avtalt": true,
+          "frilans_mote_avbrutt": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d10_frilans_avlyst",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ettermiddag uten møte",
+      "tekst": "Du avlyste samtalen med Lea. Ingen venter deg ved prosjektbordet i dag. Kalenderen gir plass til en rolig stund.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter hva du vil la stå åpent",
+          "konsekvensTekst": "Du skriver én privat påminnelse. Du sender ikke et løfte til noen.",
+          "effekter": {
+            "flagg": {
+              "frilans_egen_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Ta ettermiddagen fri",
+          "konsekvensTekst": "Du legger arket til side og lar ettermiddagen være fri.",
+          "effekter": {
+            "flagg": {
+              "frilans_fri_ettermiddag": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_mote_avbrutt": true
+        }
+      }
+    },
+    {
+      "id": "d10_frilans_hjemme",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ettermiddag uten møte",
+      "tekst": "Du valgte eget arbeid framfor en ny samtale med Lea. Dere har ingen avtale i dag. Kalenderen gir plass til en rolig stund.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter hva du vil la stå åpent",
+          "konsekvensTekst": "Du skriver én privat påminnelse. Du sender ikke et løfte til noen.",
+          "effekter": {
+            "flagg": {
+              "frilans_egen_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Ta ettermiddagen fri",
+          "konsekvensTekst": "Du legger arket til side og lar ettermiddagen være fri.",
+          "effekter": {
+            "flagg": {
+              "frilans_fri_ettermiddag": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_valg": "egen_tid"
+        }
+      }
+    },
+    {
+      "id": "d10_frilans_avslutning",
+      "threadId": "frilans_videre_med_lea",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva skal stå åpent?",
+      "tekst": "Du kan arbeide videre med hvordan du beskriver et lite oppdrag, eller la muligheten ligge. Ingen har bestilt en leveranse.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Lag et utkast til en avgrenset tjeneste",
+          "konsekvensTekst": "Du skriver et utkast med omfang og forbehold. Utkastet er ikke sendt som tilbud.",
+          "effekter": {
+            "flagg": {
+              "frilans_kapittel_avsluttet": true,
+              "frilans_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "threads": {
+              "frilans_videre_med_lea": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "La dette tilbudet ligge",
+          "konsekvensTekst": "Du bestemmer at du ikke vil arbeide mer med et tilbud nå. Du har ingen faktura å sende.",
+          "effekter": {
+            "flagg": {
+              "frilans_kapittel_avsluttet": true,
+              "frilans_lagt_bort": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "frilans_videre_med_lea": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [
+    {
+      "id": "frilans_samtale10",
+      "navn": "Den korte samtalen med Lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "stedId": "prosjektbord",
+      "personer": [
+        "lea"
+      ],
+      "avtalt": "frilans_mote_avtalt",
+      "gjennomfort": "frilans_mote_gjennomfort",
+      "avbrutt": "frilans_mote_avbrutt"
+    }
+  ],
+  "endings": [
+    {
+      "id": "frilans_beholdt",
+      "navn": "Et utkast, ingen bestilling",
+      "tekst": "Du har skrevet et utkast til en avgrenset tjeneste. Omfang, betaling og en eventuell bestilling må fortsatt avtales.",
+      "kriterier": {
+        "flagg": {
+          "frilans_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "frilans_lagt_bort",
+      "navn": "Ingen leveranse å følge opp",
+      "tekst": "Du har lagt denne muligheten til side. Det er ingen bestilling, frist eller faktura som venter.",
+      "kriterier": {
+        "flagg": {
+          "frilans_lagt_bort": true
+        }
+      }
+    },
+    {
+      "id": "frilans_standard",
+      "navn": "En åpen mulighet",
+      "tekst": "Du har ikke lovet en ny leveranse eller betaling.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

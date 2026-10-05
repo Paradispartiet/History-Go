@@ -763,7 +763,7 @@ dagskifte. Å velge Frilansmusiker igjen gjenopptar samme scene.
 «Start livet på nytt» bruker alltid den opprinnelige grunnpakken.
 En mislykket pakkehenting viser en feil og lar lagret historie være urørt.
 
-Dette er én avgrenset videreføring i Min dag, ikke migrering av alle
+Dette er en avgrenset videreføring i Min dag, ikke migrering av alle
 livsroller. De øvrige rollehistoriene og den eldre narrativkilden for
 Frilansmusiker følger fortsatt den eksisterende kompatibilitetsflyten.
 Det nye kapittelet tildeler ingen jobb, Badge, booking eller inntekt.
@@ -771,6 +771,57 @@ Regresjonstesten `civication-lifestory-mira-continuation.test.js` spiller
 alle nye valg med reload og kontrollerer gating, avlysning, pause og
 atomisk lastefeil. Nettlesertesten følger to komplette forløp til dag 10
 gjennom ekte profil-, fortsettelses-, scene- og dagsknapper.
+
+### Leas prosjektroller og flere kapitler, dag 8–13
+
+Et avsluttet førsteforløp med `prosjektet_og_lea` i forgrunnen tilbyr et
+kapittel for hovedlivsposisjonen Sideprosjektbygger, Frilanser eller
+Gründerdrømmer. Rollevalget skjer i den eksisterende livsprofilen, med
+Badge-terskler 10, 40 og 85. Kapitlene bruker ulike konflikter: begrenset
+egenarbeid, en forespørsel før et tilbud, og spørsmål om et mulig behov.
+Åpningen skiller en faktisk prøvd modell fra et møte med bare spørsmål,
+og fra et avslått møte. En samtale på dag 10 kan avtales, avlyses eller
+utelates; bare et gjennomført møte får gjennomføringsflagg.
+
+Alle tre prosjektroller har også et eget kapittel på dag 11–13. Ved
+avslutningen av dag 10 kan spilleren velge en av de tre prosjektrollene
+som ny hovedlivsposisjon og åpne dens neste kapittel. Det tillater alle ni
+rollepar uten reset. Midt i et kapittel pauses historien ved rollebytte;
+en ferdig kapittelavslutning kan leses og brukes som overgang også etter
+at hovedrollen er byttet. Ingen av prosjektvalgene oppretter en jobb,
+kunde, bestilling, faktura, eierandel, finansiering eller et selskap.
+
+Mira-sporet fortsetter også på dag 11–13, med en ny spilleforespørsel.
+Åpningen husker gjennomført prøve, avlysning eller egen tid. Omfang,
+lydansvar og tid må avklares; en kort holdt dato fram til dag 14 klokka 12
+er uttrykkelig ingen booking. Ingen ny spillejobb eller inntekt tildeles.
+
+Etterfølgende deklarasjoner bruker `etterFortsettelser` med tillatte
+foregående pakke-ID-er og `etterDag` lik den forrige sluttdagen. Pakker
+føyes til i rekkefølge; ukjente, dupliserte, ombyttede eller uforenlige
+pakker avvises. Alle dager i en pakke må ha skrevet innhold. Runneren
+avviser dagskifte ved en kapittelgrense før neste pakke er åpnet.
+
+Player State v2 har nå også det valgfrie feltet `fortsettelser`, en ordnet
+liste av spilte pakke-ID-er; `fortsettelseId` er fortsatt siste ID. Gamle
+Mira-lagringer med bare én ID lastes som før og oppgraderes ved neste
+kapittel. Ved reload settes hele pakkerekkefølgen sammen før state
+reconciles eller lagres. `kapittelArkiv` vokser med forrige kapittels
+faktiske avslutning og dagintervall; eldre poster og hele tidslinjen
+beholdes. Feil under henting eller validering endrer ikke lagringen.
+Restart bruker alltid grunnpakken og fjerner kapittelmetadata.
+
+`civication-lifestory-project-continuations.test.js` spiller alle 109 nye
+valg over 264 kapittelforløp, med 1 056 gjenlastinger og alle ni prosjekt-
+rollepar. Den kontrollerer også gammel Mira-lagring, uriktige pakkekjeder,
+kapittelgrensen, pause, atomisk lastefeil og DOM-gjenlasting. Nettlesertesten
+har 17 faktiske brukerforløp; fem fortsetter til dag 13, og tre av disse
+bytter prosjektrolle gjennom den ekte livsprofilen. Motortesten gjenlaster
+etter hvert valg; nettlesertesten gjenlaster på hver ny dag og ved
+kapittelgrensene, samt etter hvert valg i det opprinnelige Mira-kapittelet.
+
+De nye pakkene er forfattede historier til dag 13. Motoren støtter flere
+deklarerte kapitler, men genererer ikke senere hendelser eller tomme dager.
 
 Civication er ikke et mailspill. Civication er et livsfortellingsspill
 der hver stilling er en arbeidslivsfortelling, privatlivet går

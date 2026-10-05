@@ -243,6 +243,7 @@
   function startNextDay(state, content) {
     if (isContinuationPaused(state, content)) throw new Error("[LifestoryRunner] fortsettelsen er satt på pause");
     if (!state.dagFerdig) throw new Error("[LifestoryRunner] dagen er ikke ferdig — kan ikke starte neste dag");
+    if (content.role.symposium && state.dag >= content.role.symposium.sisteDag) throw new Error("[LifestoryRunner] neste kapittel må åpnes før neste dag");
     state.dag += 1;
     state.fase = content.faser[0].id;
     state.dagFerdig = false;
@@ -384,12 +385,26 @@
   }
 
   function isContinuationPaused(state, content) {
-    return !!content.fortsettelse && state.dag > content.fortsettelse.etterDag && !hasContinuationRole(content, content.fortsettelse);
+    return !!content.fortsettelse && state.dag > content.fortsettelse.etterDag
+      && !(state.dagFerdig && state.dag === content.role.symposium.sisteDag) && !hasContinuationRole(content, content.fortsettelse);
+  }
+
+  /** Old saves contain one id; new saves keep the complete ordered chapter chain. */
+  function getContinuationIds(state) {
+    const ids = state.fortsettelser === undefined ? (state.fortsettelseId ? [state.fortsettelseId] : []) : state.fortsettelser;
+    if (!Array.isArray(ids) || ids.some((id) => typeof id !== "string" || !id) || new Set(ids).size !== ids.length
+      || (ids.length ? ids[ids.length - 1] !== state.fortsettelseId : !!state.fortsettelseId)) {
+      throw new Error("[LifestoryRunner] ugyldig kapittelrekkefølge");
+    }
+    return ids.slice();
   }
 
   function canStartContinuation(state, content, next) {
-    return !!next && !state.fortsettelseId && !content.fortsettelse && state.dagFerdig
-      && state.dag === next.etterDag && state.tidligereValg[content.role.symposium.hovedtraadFlagg] === next.fraTraad
+    const ids = getContinuationIds(state);
+    return !!next && !ids.includes(next.id) && state.dagFerdig && state.dag === content.role.symposium.sisteDag
+      && state.dag === next.etterDag
+      && (content.fortsettelse ? state.fortsettelseId === content.fortsettelse.id && next.etterFortsettelser?.includes(content.fortsettelse.id)
+        : !ids.length && !next.etterFortsettelser && state.tidligereValg[content.role.symposium.hovedtraadFlagg] === next.fraTraad)
       && hasContinuationRole(content, next);
   }
 
@@ -399,13 +414,16 @@
     if (!canStartContinuation(state, baseContent, next) || mergedContent.fortsettelse?.id !== id || !ending) {
       throw new Error("[LifestoryRunner] fortsettelsen er ikke tilgjengelig nå");
     }
-    state.kapittelArkiv = [{ tittel: baseContent.role.symposium.tittel, fraDag: 1, tilDag: state.dag,
-      ending: JSON.parse(JSON.stringify(ending)) }];
+    state.kapittelArkiv = (state.kapittelArkiv || []).concat([{ tittel: baseContent.role.symposium.tittel,
+      fraDag: baseContent.fortsettelse ? baseContent.fortsettelse.etterDag + 1 : 1, tilDag: state.dag,
+      ending: JSON.parse(JSON.stringify(ending)) }]);
+    state.fortsettelser = getContinuationIds(state).concat(id);
     state.fortsettelseId = id;
     return startNextDay(state, mergedContent);
   }
 
   const api = {
+    getContinuationIds,
     canStartContinuation,
     startContinuation,
     isContinuationPaused,
