@@ -176,7 +176,7 @@ fra det eksisterende arkivet, relasjonene, trådstatusene og tidligere valg.
 
 `startVedValg: true` på en tråd betyr at den bare startes av en eksplisitt
 `effekter.threads`-endring. Dagskifte eller gjenlasting åpner den ikke.
-Arbeidsledigs valg på dag 2 åpner musikken med Mira, miljøet med Amir eller
+Arbeidsledigs valg på dag 2 åpner musikken med Mira, miljøet med Arvid eller
 kunnskaps-/søknadssporet. NAV og dagsrytmen fortsetter som bakgrunnsplikter,
 ikke som en etikett som overstyrer alle andre historier.
 
@@ -698,7 +698,7 @@ ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ### Arbeidsledig: flere innganger til selvvalgte livsroller
 
-Den første uka har ni kontaktretninger. Musikk, Amirs miljø og læring/jobbsøk
+Den første uka har ni kontaktretninger. Musikk, Arvids miljø og læring/jobbsøk
 går sammen med seks nye spor: Leas prosjektbord, Elins skaperrom, Saras klubb
 og lokale initiativ, Ivars byvandring, Noras observasjonsøkt og Daniels
 kulturgruppe. Møtet velges på dag 3 og kan legges til dag 4, utsettes til
