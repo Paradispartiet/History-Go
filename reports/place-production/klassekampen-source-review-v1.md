@@ -335,3 +335,10 @@ Fase 1 er materialisert fail-closed fra låst base `458ab1e5ddea12c6035593bd3ee6
 - Ingen People-, Object-, Brand-, Production-/Kunstverk-collection, bilde/frontImage, quiz, QuizCard eller `place-open`-runtime er materialisert i denne fasen.
 
 Neste gate er Fase 2.
+
+
+## Phase 2 v3 materialisering — 2026-10-04
+
+People-samlingen bruker **Bjørgulv Braanen** fordi den canonicale personkoblingen kan lukkes med et dokumentarisk Commons-portrett av Tore Sætre under CC BY-SA 4.0. Mari Skurdal forblir canonicalt knyttet til stedet, men brukes ikke som Phase 2-medlem uten egen dokumentert bildeproveniens. Førsteutgaven 7. februar 1969 materialiseres som ett fysisk Object fra public-domain Commons-scan, mens Klassekampen-ordmerket brukes referensielt som Brand. Fire Publications/Productions får separate History-Go-tekstillustrasjoner uten kopierte kommersielle forsider.
+
+Media aktiveres samtidig i dagens governed quizproduksjonskjede. Quizzen er normal 4 × 7 med to normale åpningssett, 28 én-til-én kildeclaims, eksplisitt metode først i sluttsettet og én kildebelagt Tuchman-binding til organiserte nyhetsrutiner. Story-kandidaten fra 1997, before/after og endelig interaktiv UI-review forblir egne fail-closed gates.

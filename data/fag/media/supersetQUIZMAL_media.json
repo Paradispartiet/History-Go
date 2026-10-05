@@ -1,5 +1,5 @@
 {
-  "version": "2.0",
+  "version": "3.0",
   "status": "canonical_category_profile",
   "type": "category_quiz_profile",
   "categoryId": "media",
@@ -8,8 +8,10 @@
     "production_standard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
     "question_schema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
     "template_registry": "data/quiz/regler/QUIZ_TEMPLATE_REGISTRY_V2.json",
-    "authority": "category_content_only",
-    "may_override_global_rules": false
+    "authority": "category_content_and_orchestration",
+    "may_override_global_rules": false,
+    "package_schema": "data/quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "subject_manifest": "data/fag/fag_manifest.json"
   },
   "required_emne_prefix": "em_media_",
   "content_priorities": [
@@ -43,12 +45,127 @@
   ],
   "example_question": {
     "question": "Hva kalles det når en redaksjon velger hvilke sider av en sak som framheves?",
-    "options": ["Framing", "Kildevern", "Tekstarkiv"],
+    "options": [
+      "Framing",
+      "Kildevern",
+      "Tekstarkiv"
+    ],
     "answer": "Framing",
     "question_type": "concept",
     "knowledge": "Framing er innrammingen som påvirker hvordan en sak presenteres og forstås, uten nødvendigvis å endre de enkelte faktaene.",
     "emne_id": "em_media_<velg_gyldig_emne>",
-    "source": ["<konkret_kilde>"],
+    "source": [
+      "<konkret_kilde>"
+    ],
     "note": "Eksempelet viser konkret bruk av et fagbegrep. Det er ikke en ferdig produksjonsquiz."
+  },
+  "adaptive_profiles": {
+    "narrow": {
+      "sets": 3,
+      "questions_per_set": 7,
+      "use_when": "avgrenset mediemål med få uavhengige, sterke påstander"
+    },
+    "normal": {
+      "sets": 4,
+      "questions_per_set": 7,
+      "use_when": "mediemål med solid hovedhistorie og minst ett tydelig faglig broledd"
+    },
+    "rich": {
+      "sets_min": 5,
+      "sets_max": 8,
+      "questions_per_set": 7,
+      "use_when": "mediemål med flere kildebelagte perioder, formater eller redaksjonelle spor"
+    },
+    "major": {
+      "sets_min": 8,
+      "sets_max": 10,
+      "questions_per_set": 7,
+      "use_when": "stort mediehistorisk hovedmål med flere uavhengige progresjonsløp"
+    }
+  },
+  "profile_selection": {
+    "default": "normal",
+    "evidence_order": [
+      "uavhengige kildebelagte påstander",
+      "historisk og funksjonell bredde",
+      "dokumenterte publiseringsflater",
+      "stedlig forankrede emner",
+      "metode- og teorimuligheter med konkret anker"
+    ],
+    "never_pad_to_reach_profile": true,
+    "reduce_profile_when_evidence_is_thin": true
+  },
+  "relative_progression": {
+    "phase_sequences": {
+      "3": [
+        "opening",
+        "bridge",
+        "final"
+      ],
+      "4": [
+        "opening",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "5": [
+        "opening",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "6": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "final"
+      ],
+      "7": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "8": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "9": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ],
+      "10": [
+        "opening",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "middle",
+        "bridge",
+        "bridge",
+        "final"
+      ]
+    },
+    "absolute_theory_set_numbers_forbidden": true
   }
 }

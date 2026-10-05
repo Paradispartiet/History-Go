@@ -1,0 +1,470 @@
+{
+  "schema_version": "1.0",
+  "status": "reviewed",
+  "categoryId": "media",
+  "targetId": "klassekampen_redaksjon",
+  "reviewed_at": "2026-10-04",
+  "review_note": "28 påstander er kontrollert mot den eksisterende Klassekampen source-reviewen og de registrerte eksterne kildene før quizmaterialisering.",
+  "sources": {
+    "klassekampen_contact": {
+      "url": "https://klassekampen.no/kontakt",
+      "source_type": "official_institution",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for besøksadresse, ansvarlig redaktør og dokumenterte redaksjonelle funksjoner."
+    },
+    "klassekampen_eavis": {
+      "url": "https://ks.klassekampen.no/eavis/",
+      "source_type": "official_product_documentation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for e-avis, nettavis, app og forholdet mellom papir- og digitalutgave."
+    },
+    "klassekampen_subscription": {
+      "url": "https://ks.klassekampen.no/abonnement/info",
+      "source_type": "official_product_documentation",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for papir/digital distribusjon, Bokmagasinet, Musikkmagasinet og e-avisarkiv."
+    },
+    "klassekampen_books": {
+      "url": "https://klassekampen.no/magasiner/bokmagasinet",
+      "source_type": "official_publication",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Bokmagasinet som egen løpende litteraturpublikasjon."
+    },
+    "klassekampen_music": {
+      "url": "https://klassekampen.no/magasiner/musikkmagasinet",
+      "source_type": "official_publication",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Musikkmagasinet som egen løpende musikkpublikasjon."
+    },
+    "snl_klassekampen": {
+      "url": "https://snl.no/Klassekampen_-_avis",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for etablering, uavhengighet og redaktørhistorikk."
+    },
+    "oslo_byleksikon_klassekampen": {
+      "url": "https://oslobyleksikon.no/side/Klassekampen",
+      "source_type": "institutional_reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for Oslo-forankring og milepælene 1969, 1973, 1977, 1991 og 1996."
+    },
+    "snl_offentlighet": {
+      "url": "https://snl.no/offentlighet",
+      "source_type": "reputable_secondary",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert for offentlighet som åpne kanaler og arenaer for utveksling av informasjon, ideer og argumenter."
+    },
+    "tuchman_making_news": {
+      "url": "https://books.google.com/books?id=_OMkAQAAMAAJ",
+      "source_type": "scholarly_book_record",
+      "review_status": "reviewed",
+      "review_note": "Bibliografisk bokpost kontrollert for Gaye Tuchmans Making News (Free Press, 1978) og verkets dokumenterte fokus på newsroom/newsworkers/routines."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "presse_redaksjoner_avishus",
+      "offentlighet_ytringsfrihet_etikk",
+      "plattformer_algoritmer_distribusjon"
+    ],
+    "emne_ids": [
+      "em_media_avishus_offentlighetsrom",
+      "em_media_redaksjon_desk",
+      "em_media_kritikk_kommentar",
+      "em_media_digital_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "redaksjon_og_desk"
+    ],
+    "method_ids": [
+      "met_media_redaksjonsanalyse"
+    ],
+    "thinker_ids": [
+      "gaye_tuchman"
+    ],
+    "works": []
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/media",
+      "data/quiz/quiz_media_from_populaerkultur.json"
+    ],
+    "active_before": [],
+    "decisions": [
+      "No active canonical quiz package for klassekampen_redaksjon existed before this governed Media pilot; build fresh from current source review."
+    ],
+    "knowledge_migration": "No target-specific canonical Knowledge ownership is replaced by this package."
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "The reviewed source base supports 28 non-duplicated claims across newsroom/place facts, institution history, publication formats, source criticism, one method and one theory-bound final synthesis without padding."
+  },
+  "held_back_candidates": [
+    "1997 editor crisis remains under Stories governance",
+    "current circulation/traffic metrics",
+    "political affiliation questions",
+    "claims that 1969 is the move-in year for Grønland 4"
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_klassekampen_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Klassekampens offisielle kontaktside oppgir Grønland 4, 0188 Oslo som besøksadresse.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Klassekampens kontaktside oppgir Mari Skurdal som ansvarlig redaktør.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Klassekampens kontaktside dokumenterer desk som en av redaksjonens funksjoner.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Første nummer av dagens Klassekampen kom i februar 1969.",
+      "source_ids": [
+        "snl_klassekampen",
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Oslo byleksikon beskriver Klassekampen som månedsavis ved starten i 1969.",
+      "source_ids": [
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Klassekampen ble ukeavis i 1973.",
+      "source_ids": [
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Klassekampen ble dagsavis i 1977.",
+      "source_ids": [
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Klassekampen ble formelt uavhengig i 1991.",
+      "source_ids": [
+        "snl_klassekampen",
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Oslo byleksikon oppgir 1996 som året Klassekampen fikk nettavis.",
+      "source_ids": [
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Store norske leksikon oppgir at Bjørgulv Braanen ble redaktør i Klassekampen i 2002.",
+      "source_ids": [
+        "snl_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Store norske leksikon oppgir at Mari Skurdal overtok som sjefredaktør i 2018.",
+      "source_ids": [
+        "snl_klassekampen",
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Klassekampens egne kundesider dokumenterer både papiravis og digitale utgaver.",
+      "source_ids": [
+        "klassekampen_eavis",
+        "klassekampen_subscription"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Klassekampens e-avis er dokumentert som en digital gjengivelse av papiravisen.",
+      "source_ids": [
+        "klassekampen_eavis"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Bokmagasinet er en egen løpende Klassekampen-publikasjon med litteraturstoff og anmeldelser.",
+      "source_ids": [
+        "klassekampen_books",
+        "klassekampen_subscription"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Musikkmagasinet er en egen løpende Klassekampen-publikasjon med musikkstoff og anmeldelser.",
+      "source_ids": [
+        "klassekampen_music",
+        "klassekampen_subscription"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "fact",
+      "statement": "Klassekampens kundesider dokumenterer en app i tillegg til nettavis og e-avis.",
+      "source_ids": [
+        "klassekampen_eavis"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Grønland 4 er redaksjonens arbeidssted, mens papiravis, nettavis, e-avis og magasiner er dokumenterte publiserings- og distribusjonsflater.",
+      "source_ids": [
+        "klassekampen_contact",
+        "klassekampen_eavis",
+        "klassekampen_subscription"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Papiravis og e-avis er to dokumenterte distribusjonsformer knyttet til samme avisorganisasjon, uten at kildene begrunner at presentasjon og rytme alltid er identiske.",
+      "source_ids": [
+        "klassekampen_eavis",
+        "klassekampen_subscription"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Fasade, inngang og adresse kan brukes som direkte spor etter redaksjonens lokalisering, men dokumenterer ikke interne beslutninger eller individuelle standpunkter.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "1969 er dokumentert som avisens etableringsår, men det gjennomgåtte kildegrunnlaget dokumenterer ikke 1969 som innflyttingsår i Grønland 4.",
+      "source_ids": [
+        "snl_klassekampen",
+        "oslo_byleksikon_klassekampen",
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_avishus_offentlighetsrom"
+    },
+    {
+      "claim_id": "claim_klassekampen_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Dagens kontaktside dokumenterer nåværende adresse og roller, mens SNL og Oslo byleksikon dokumenterer historiske milepæler; kildene brukes til ulike tidslag.",
+      "source_ids": [
+        "klassekampen_contact",
+        "snl_klassekampen",
+        "oslo_byleksikon_klassekampen"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "context",
+      "statement": "Klassekampen distribuerer redaksjonelt innhold gjennom flere dokumenterte flater: papiravis, nettavis, e-avis, app og egne magasinpublikasjoner.",
+      "source_ids": [
+        "klassekampen_eavis",
+        "klassekampen_subscription",
+        "klassekampen_books",
+        "klassekampen_music"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_digital_offentlighet"
+    },
+    {
+      "claim_id": "claim_klassekampen_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "En redaksjonell profil kan beskrives gjennom dokumentert institusjonshistorie og publisering, men kan ikke uten egne kilder gjøres om til en påstand om at alle ansatte deler samme mening.",
+      "source_ids": [
+        "snl_klassekampen",
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Store norske leksikon beskriver offentlighet blant annet som åpne møteplasser og kanaler der informasjon, ideer, synspunkter og argumenter utveksles, og inkluderer massemedier som slike arenaer.",
+      "source_ids": [
+        "snl_offentlighet"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Klassekampens kontaktside dokumenterer en arbeidsdeling med redaksjonell ledelse, fagredaksjoner, desk, foto og andre funksjoner.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk"
+    },
+    {
+      "claim_id": "claim_klassekampen_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Interne redaksjonelle prosesser som ikke kan observeres utenfra må undersøkes gjennom åpne kilder og dokumenterte roller, ikke utledes fra fasaden alene.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_kritikk_kommentar"
+    },
+    {
+      "claim_id": "claim_klassekampen_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Klassekampens kontaktside dokumenterer flere redaksjonelle roller og funksjoner som kan sammenlignes systematisk uten å dikte interne arbeidsprosesser.",
+      "source_ids": [
+        "klassekampen_contact"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_media_redaksjon_desk",
+      "method_id": "met_media_redaksjonsanalyse"
+    },
+    {
+      "claim_id": "claim_klassekampen_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Klassekampens kontaktside dokumenterer organiserte redaksjonelle roller, mens Gaye Tuchmans Making News undersøker nyhetsarbeid, newsroom-praksiser og rutiner; sammen gir de et kildegrunnlag for å analysere nyhetsproduksjon som organisert arbeid.",
+      "source_ids": [
+        "klassekampen_contact",
+        "tuchman_making_news"
+      ],
+      "source_origin": "mixed_external",
+      "emne_id": "em_media_redaksjon_desk",
+      "topic_hook_id": "redaksjon_og_desk",
+      "thinker_id": "gaye_tuchman"
+    }
+  ]
+}

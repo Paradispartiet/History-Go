@@ -413,6 +413,30 @@
         "root": "media/populaerkultur_som_mediefelt",
         "rationale": "Populærkultur er en tverrgående analyse- og tagglinse, ikke et toppdomene. Fagpakken er bevart som mediefaglig delfelt."
       }
+    },
+    "quizPackageSchema": "../quiz/regler/QUIZ_PACKAGE_SCHEMA_V1.json",
+    "quizProduction": {
+      "status": "pilot",
+      "required_inputs": [
+        "pensum",
+        "emner",
+        "fagkart",
+        "methods",
+        "supersetQuizMal",
+        "quizStandard",
+        "quizQuestionSchema"
+      ],
+      "context_builder": "scripts/build-quiz-production-context.mjs",
+      "profile_system": "adaptive_relative_superset",
+      "package_schema": "quizPackageSchema",
+      "context_artifact_root": "data/quiz/production_context",
+      "targets": {
+        "klassekampen_redaksjon": {
+          "source_brief": "../quiz/production_briefs/media/klassekampen_redaksjon.json",
+          "context_artifact": "../quiz/production_context/media/klassekampen_redaksjon.json",
+          "quiz_file": "../quiz/media/klassekampen_redaksjon_sets.json"
+        }
+      }
     }
   },
   "musikk": {

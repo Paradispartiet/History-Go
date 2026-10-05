@@ -4,14 +4,24 @@
   "source": "data/places/workflow/klassekampen_redaksjon.json",
   "place_id": "klassekampen_redaksjon",
   "derived_state": "blocked",
-  "selected_collections": [],
+  "selected_collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
   "blockers": [
-    "Phase 2 canonical People, Object, Brand and Production entities with current place bindings and assets are not materialized.",
-    "Portrait/front image, canonical 4 x 7 quiz, QuizCard binding and final place-open runtime are not materialized."
+    "The 1997 editor crisis remains a Story candidate and has not passed Stories governance.",
+    "No licensed historical/current image pair with a sufficiently documented viewpoint and subject match has been established for before/after.",
+    "Final interactive UI review remains pending after Phase 2 data/runtime materialization."
   ],
   "manual_reviews": {
     "images": {
-      "status": "PENDING"
+      "status": "PASS",
+      "evidence": [
+        "data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json",
+        "reports/place-production/klassekampen-image-asset-audit-v1.md"
+      ]
     },
     "final_ui": {
       "status": "PENDING"
