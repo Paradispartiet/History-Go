@@ -1,0 +1,68 @@
+name: TEMP Klassekampen Knowledge sync
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase2-v3-20261004
+
+permissions:
+  contents: write
+
+concurrency:
+  group: klassekampen-knowledge-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase2-v3-20261004
+          fetch-depth: 0
+
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
+
+      - name: Materialize canonical Knowledge contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run build:scripts
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          node dist/scripts/knowledge-canonical-data.mjs --check
+          git status --short
+          changed="$(git status --porcelain | awk '{print $2}' | sort)"
+          allowed="$(printf '%s\n' \
+            'data/knowledge/knowledge_units.generated.json' \
+            'data/quiz/media/klassekampen_redaksjon_sets.json' \
+            'reports/knowledge-contract-audit.json' \
+            'reports/knowledge-id-backfill.json' | sort)"
+          if [ "$changed" != "$allowed" ]; then
+            echo 'Unexpected Knowledge materialization changes:'
+            printf '%s\n' "$changed"
+            exit 1
+          fi
+
+      - name: Verify Klassekampen and Knowledge contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test tests/klassekampen-redaksjon-place-production-v3.test.mjs
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+
+      - name: Commit generated Knowledge outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-klassekampen-knowledge-sync.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/knowledge/knowledge_units.generated.json data/quiz/media/klassekampen_redaksjon_sets.json reports/knowledge-contract-audit.json reports/knowledge-id-backfill.json .github/workflows/tmp-klassekampen-knowledge-sync.yml
+          git status --short
+          git commit -m 'Materialize canonical Knowledge IDs for Klassekampen'
+          git push origin HEAD:agent/klassekampen-phase2-v3-20261004
