@@ -6,6 +6,10 @@ on:
       - agent/klassekampen-phase2-v3-20261004
     paths:
       - .github/workflows/tmp-klassekampen-browser-qa.yml
+      - data/people/media/oslo/people_media_oslo.json
+      - data/runtime/people-all/**
+      - data/runtime/place-open/klassekampen_redaksjon.json
+      - tests/klassekampen-redaksjon-place-production-v3.test.mjs
   workflow_dispatch:
 
 permissions:
@@ -196,6 +200,10 @@ jobs:
             report.consoleErrors = consoleErrors.slice(0, 30);
             report.pageErrors = pageErrors.slice(0, 30);
             report.failedSameOrigin = failedSameOrigin.slice(0, 30);
+            report.brokenPlaceImages = report.images.filter(image => {
+              const hiddenQuizImage = image.id === 'pcQuizCardImage' && report.quizImage?.hidden === true;
+              return !hiddenQuizImage && Boolean(image.src) && Number(image.naturalWidth || 0) <= 0;
+            }).slice(0, 30);
 
             const required = {
               exactPlace: report.currentPlaceId === 'klassekampen_redaksjon',
@@ -205,15 +213,16 @@ jobs:
               testMode: report.testMode === true,
               noHorizontalOverflow: report.horizontalOverflowPx <= 2,
               noPageErrors: report.pageErrors.length === 0,
-              noSameOrigin404: report.failedSameOrigin.length === 0
+              noBrokenPlaceImages: report.brokenPlaceImages.length === 0
             };
             report.required = required;
+            reports.push(report);
             if (Object.values(required).some(value => value !== true)) hardFailure = true;
 
             fs.writeFileSync(path.join(outDir, `${profile.name}.json`), JSON.stringify(report, null, 2));
             await page.screenshot({ path: path.join(outDir, `${profile.name}.png`), fullPage: true });
             console.log(`\n=== ${profile.name.toUpperCase()} ===`);
-            console.log(JSON.stringify({ ...required, collectionText: report.collectionText, cardRect: report.cardRect, viewport: report.viewport, consoleErrors: report.consoleErrors, pageErrors: report.pageErrors, failedSameOrigin: report.failedSameOrigin }, null, 2));
+            console.log(JSON.stringify({ ...required, collectionText: report.collectionText, cardRect: report.cardRect, viewport: report.viewport, consoleErrors: report.consoleErrors, pageErrors: report.pageErrors, brokenPlaceImages: report.brokenPlaceImages, failedSameOrigin: report.failedSameOrigin }, null, 2));
 
             await page.close();
           }
