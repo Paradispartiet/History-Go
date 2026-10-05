@@ -156,7 +156,10 @@ for (const past of [{}, { d5_booker: 'avsta', d9_mira_forberedelse: 'avlys' }, {
     assert.deepEqual(now.arkiv.slice(0, before.arkiv.length), before.arkiv);
     assert.equal(now.meters.penger, before.meters.penger);
     assert.ok(!now.tidligereValg.musikk_foresporsel_booking);
-    if (now.tidligereValg.musikk_foresporsel_dato_frigjort) assert.ok(!now.tidligereValg.musikk_foresporsel_beholdt_hold);
+    if (now.tidligereValg.musikk_foresporsel_dato_frigjort) {
+      assert.ok(!now.tidligereValg.musikk_foresporsel_beholdt_hold);
+      assert.equal(now.tidligereValg.musikk_foresporsel_status, 'frigjort', 'released date cannot remain the current hold');
+    }
   });
 }
 for (const p of Object.values(packs).filter(p => p.id !== 'musikk_med_mira')) for (const scene of p.scenes) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
