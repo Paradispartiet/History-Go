@@ -108,8 +108,11 @@ for (const first of projects) for (const [index, past] of pasts.entries()) {
     for (const [key, value] of Object.entries(old.tidligereValg)) assert.deepEqual(now.tidligereValg[key], value);
   });
   savedFirst = finals[0];
-  for (const second of descriptors.filter(n => n.etterFortsettelser?.includes(first.id))) {
-    s = clone(savedFirst);
+  const prefix = first.id.replace('_med_lea', '');
+  const representativeEndings = ['beholdt', 'lagt_bort'].map(flag => finals.find(final => final.tidligereValg[prefix + '_' + flag]));
+  assert.ok(representativeEndings.every(Boolean));
+  for (const firstFinal of representativeEndings) for (const second of descriptors.filter(n => n.etterFortsettelser?.includes(first.id))) {
+    s = clone(firstFinal);
     const archive = clone(s.arkiv), priorChapter = clone(s.kapittelArkiv), priorEnding = E.resolveEnding(s, c);
     // A different primary role can take over at a completed chapter boundary.
     selectRole(second.role_scope);
@@ -117,6 +120,9 @@ for (const first of projects) for (const [index, past] of pasts.entries()) {
     assert.ok(R.canStartContinuation(s, c, second));
     const nextContent = C.appendContinuation(c, packs[second.id]);
     R.startContinuation(s, c, nextContent, second.id, priorEnding);
+    const secondPrefix = second.id.replace('_neste_steg', '');
+    const expectedOpening = 'd11_' + secondPrefix + '_' + (first.role_scope === second.role_scope ? firstFinal.tidligereValg[prefix + '_beholdt'] ? 'fortsatt' : 'parkert' : 'nytt_sporsmal');
+    assert.equal(R.selectNextScene(s, nextContent).id, expectedOpening, 'next chapter remembers retained or parked work; cross-role inquiry stays distinct');
     assert.deepEqual(s.fortsettelser, [first.id, second.id]);
     assert.deepEqual(s.kapittelArkiv.slice(0, 1), priorChapter);
     assert.deepEqual(s.kapittelArkiv[1], { tittel: c.role.symposium.tittel, fraDag: 8, tilDag: 10, ending: priorEnding });

@@ -54,7 +54,105 @@
           }
         }
       ],
-      "avsender": "lea"
+      "avsender": "lea",
+      "conditions": {
+        "flagg": {
+          "grunder_kapittel_avsluttet": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d11_grunder_fortsatt",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar fra én person",
+      "tekst": "Du beholdt ett spørsmål om et mulig behov i forrige kapittel. Lea tilbyr nå å beskrive hvordan hun mister de små pappdelene, uten å love å bruke eller kjøpe en løsning.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Be om én konkret hendelse, uten å selge en løsning",
+          "konsekvensTekst": "Du spør hva som skjedde sist hun mistet en del. Du ber ikke om et kjøpsløfte.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Takk og si at du lar ideen ligge nå",
+          "konsekvensTekst": "Du takker for tilbudet om å fortelle. Lea trenger ikke bruke tid på et intervju nå.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "avsender": "lea",
+      "conditions": {
+        "flagg": {
+          "grunder_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d11_grunder_parkert",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar fra én person",
+      "tekst": "Du parkerte ideen i forrige kapittel. Lea har ikke bedt deg om å starte den igjen. Vil du selv spørre om hennes erfaring med pappdelene, eller la ideen ligge videre?",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Be om én konkret hendelse, uten å selge en løsning",
+          "konsekvensTekst": "Du spør hva som skjedde sist hun mistet en del. Du ber ikke om et kjøpsløfte.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Takk og si at du lar ideen ligge nå",
+          "konsekvensTekst": "Du takker for tilbudet om å fortelle. Lea trenger ikke bruke tid på et intervju nå.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_lagt_bort": true
+        }
+      }
     },
     {
       "id": "d12_grunder_undersokelse",

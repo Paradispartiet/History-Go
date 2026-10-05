@@ -53,7 +53,104 @@
             }
           }
         }
-      ]
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_kapittel_avsluttet": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d11_sideprosjekt_fortsatt",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter lysten til å bygge",
+      "tekst": "Du beholdt en time til sideprosjektet i forrige kapittel. Nå vurderer du hva den tiden skal brukes på, før du legger til flere funksjoner.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Se på én konkret brukssituasjon hjemme",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La prosjektet ligge denne runden",
+          "konsekvensTekst": "Du beholder notatene og lar prosjektet ligge. Du har ikke en bruker som venter på en oppdatering.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d11_sideprosjekt_parkert",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter lysten til å bygge",
+      "tekst": "Du lot prosjektet hvile i forrige kapittel. Ingen ny frist har dukket opp. Vil du selv ta fram arket til en liten gjennomgang, eller la det ligge videre?",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Se på én konkret brukssituasjon hjemme",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La prosjektet ligge denne runden",
+          "konsekvensTekst": "Du beholder notatene og lar prosjektet ligge. Du har ikke en bruker som venter på en oppdatering.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_lagt_bort": true
+        }
+      }
     },
     {
       "id": "d12_sideprosjekt_undersokelse",

@@ -811,9 +811,10 @@ faktiske avslutning og dagintervall; eldre poster og hele tidslinjen
 beholdes. Feil under henting eller validering endrer ikke lagringen.
 Restart bruker alltid grunnpakken og fjerner kapittelmetadata.
 
-`civication-lifestory-project-continuations.test.js` spiller alle 109 nye
-valg over 264 kapittelforløp, med 1 056 gjenlastinger og alle ni prosjekt-
-rollepar. Den kontrollerer også gammel Mira-lagring, uriktige pakkekjeder,
+`civication-lifestory-project-continuations.test.js` spiller alle 121 nye
+valg over 426 kapittelforløp, med 1 704 gjenlastinger og alle ni prosjekt-
+rollepar, med både beholdt og parkert arbeid før neste kapittel. Den
+kontrollerer også gammel Mira-lagring, uriktige pakkekjeder,
 kapittelgrensen, pause, atomisk lastefeil og DOM-gjenlasting. Nettlesertesten
 har 17 faktiske brukerforløp; fem fortsetter til dag 13, og tre av disse
 bytter prosjektrolle gjennom den ekte livsprofilen. Motortesten gjenlaster
