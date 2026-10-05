@@ -48,7 +48,7 @@ for (const past of pasts) {
   while (queue.length) {
     const overrides = queue.shift(), actual = {};
     let state = week(past.choices);
-    const archive = clone(state.arkiv), meters = clone(state.meters), relations = clone(state.relasjoner);
+    const archive = clone(state.arkiv), meters = clone(state.meters), relations = clone(state.relasjoner), flags = clone(state.tidligereValg);
     const firstEnding = E.resolveEnding(state, base);
     assert.ok(R.canStartContinuation(state, base, next));
     R.startContinuation(state, base, content, pack.id, firstEnding);
@@ -56,6 +56,7 @@ for (const past of pasts) {
     assert.deepEqual(state.arkiv, archive);
     assert.deepEqual(state.meters, meters);
     assert.deepEqual(state.relasjoner, relations);
+    assert.deepEqual(state.tidligereValg, flags);
     assert.equal(state.threadState.nav_og_meldekortet.status, "completed");
     assert.ok(!R.canStartContinuation(state, content, next));
     assert.equal(R.selectNextScene(state, content).id, past.name === "spilt" ? "d8_mira_etter_settet" : "d8_mira_uten_sett");
@@ -190,7 +191,7 @@ async function uiTest() {
   reload.panel.querySelector("[data-lifestory-restart]").click();
   const reset = reload.w.CivicationLifestoryState.load();
   assert.equal(reset.dag, 1); assert.equal(reset.fortsettelseId, undefined); assert.equal(reset.arkiv.length, 0);
-  assert.equal(reload.w.CivicationLifestoryUI.getCurrentSceneInfo().sceneId, "meldekort_01_fristen");
+  assert.equal(reload.w.CivicationLifestoryUI.getCurrentSceneInfo().sceneId, "privat_morgen_start");
   assert.equal(reload.errors.length, 0);
   reload.dom.window.close();
   console.log(`Mira continuation: ${runs} full ten-day paths, ${seen.size} new choices; DOM, reload, pause, cancellation and atomic load failure pass`);
