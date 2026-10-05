@@ -158,7 +158,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         await page.waitForFunction(() => !!(globalThis as any).CivicationLifePositions?.getLifeContext);
         assert.equal(JSON.stringify(await readState()), paused);
         await page.locator('[data-lifestory-paused] [data-lifestory-life-profile]').click();
-        await page.locator('#civiLifePositionSelect').selectOption(`${badge}|${roleLabel}`);
+        await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(roleLabel)}`);
         await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
         await page.locator('.civi-footer button[data-category="minDag"]').click();
         assert.equal(await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId), pending);
@@ -211,7 +211,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         if (secondRole !== roleLabel) {
           await page.locator('[data-lifestory-symposium] summary').click();
           await page.locator('[data-lifestory-life-profile]').click();
-          await page.locator('#civiLifePositionSelect').selectOption(`${badge}|${secondRole}`);
+          await page.locator('#civiLifePositionSelect').selectOption(`${encodeURIComponent(badge)}|${encodeURIComponent(secondRole)}`);
           await page.locator('#civiSectionPopup button[data-civi-popup-close]').click();
           await page.locator('.civi-footer button[data-category="minDag"]').click();
           assert.equal(await page.locator('[data-lifestory-paused]').count(), 0);
