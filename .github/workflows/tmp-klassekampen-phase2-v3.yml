@@ -76,8 +76,18 @@ jobs:
       - name: Verify Place Production v3 contract
         run: npm run place:verify -- klassekampen_redaksjon
 
-      - name: Verify web build parity
-        run: npm run build:web:check
+      - name: Verify web build idempotence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --no-ext-diff --binary > /tmp/worktree-before-web-build.diff
+          npm run build:web
+          git diff --no-ext-diff --binary > /tmp/worktree-after-web-build.diff
+          if ! cmp -s /tmp/worktree-before-web-build.diff /tmp/worktree-after-web-build.diff; then
+            echo 'build:web changed tracked content on a second build'
+            diff -u /tmp/worktree-before-web-build.diff /tmp/worktree-after-web-build.diff || true
+            exit 1
+          fi
 
       - name: Verify places index parity
         run: npm run places:index:check
@@ -89,7 +99,6 @@ jobs:
         run: node scripts/build-place-production-v3-projections.mjs klassekampen_redaksjon --check
 
       - name: Commit verified permanent materialization
-        if: ${{ false }}
         shell: bash
         run: |
           set -euo pipefail
