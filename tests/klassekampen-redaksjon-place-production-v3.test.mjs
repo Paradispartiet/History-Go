@@ -208,3 +208,24 @@ test('Klassekampen factuality and language records retain the verified Phase 1 b
 
   assert.equal(fs.existsSync('reports/place-production/klassekampen-source-review-v1.md'), true);
 });
+
+
+test('Klassekampen-related people never point at missing local image assets', () => {
+  const people = readJson('data/people/media/oslo/people_media_oslo.json');
+  const relatedPeople = people.filter((person) =>
+    person.placeId === PLACE_ID || person.places?.includes(PLACE_ID)
+  );
+  assert.ok(relatedPeople.length >= 2, 'expected canonical Klassekampen people');
+
+  for (const person of relatedPeople) {
+    for (const field of ['image', 'cardImage']) {
+      const imagePath = String(person[field] || '').trim();
+      if (!imagePath || /^https?:\/\//.test(imagePath)) continue;
+      assert.equal(
+        fs.existsSync(imagePath),
+        true,
+        `${person.id}.${field} points to a missing local asset: ${imagePath}`
+      );
+    }
+  }
+});
