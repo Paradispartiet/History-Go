@@ -1,0 +1,398 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "sideprosjekt_neste_steg",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "tittel": "Etter lysten til å bygge",
+  "sisteDag": 13,
+  "hovedtraad": "sideprosjekt_etter_forste_kapittel",
+  "threads": [
+    {
+      "id": "sideprosjekt_etter_forste_kapittel",
+      "tittel": "Etter lysten til å bygge",
+      "type": "privatliv",
+      "startDag": 11,
+      "konflikt": "Bruk av et lite prosjekt vs tid til vedlikehold"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d11_sideprosjekt_nytt_sporsmal",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter lysten til å bygge",
+      "tekst": "Du tar fram prosjektarket. Det du gjorde tidligere, står i historieboka. Nå lurer du på om du vil sjekke hva du faktisk bruker, før du bygger mer.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Se på én konkret brukssituasjon hjemme",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La prosjektet ligge denne runden",
+          "konsekvensTekst": "Du beholder notatene og lar prosjektet ligge. Du har ikke en bruker som venter på en oppdatering.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_kapittel_avsluttet": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d11_sideprosjekt_fortsatt",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter lysten til å bygge",
+      "tekst": "Du beholdt en time til sideprosjektet i forrige kapittel. Nå vurderer du hva den tiden skal brukes på, før du legger til flere funksjoner.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Se på én konkret brukssituasjon hjemme",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La prosjektet ligge denne runden",
+          "konsekvensTekst": "Du beholder notatene og lar prosjektet ligge. Du har ikke en bruker som venter på en oppdatering.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d11_sideprosjekt_parkert",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Etter lysten til å bygge",
+      "tekst": "Du lot prosjektet hvile i forrige kapittel. Ingen ny frist har dukket opp. Vil du selv ta fram arket til en liten gjennomgang, eller la det ligge videre?",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Se på én konkret brukssituasjon hjemme",
+          "konsekvensTekst": "Du velger å bruke neste dag på å se hva du selv gjør med arket. Du ber ikke Lea om en ny test.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La prosjektet ligge denne runden",
+          "konsekvensTekst": "Du beholder notatene og lar prosjektet ligge. Du har ikke en bruker som venter på en oppdatering.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_lagt_bort": true
+        }
+      }
+    },
+    {
+      "id": "d12_sideprosjekt_undersokelse",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et ark som ikke åpner seg selv",
+      "tekst": "Du setter deg hjemme og prøver å følge den ene bruken du hadde i tankene. Arket hjelper deg å huske en idé, men du må fortsatt lete blant notatene for å finne den.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Skriv én enkel overskrift, og stopp der",
+          "konsekvensTekst": "Du gir arket en overskrift og legger det bort. Du har gjort én liten endring, uten å love support.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_notert": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Behold det som et uferdig notat",
+          "konsekvensTekst": "Du lar arket være et notat. Det trenger ingen lansering eller oppdateringsplan.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_avgrenset": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_neste_valg": "undersok"
+        }
+      }
+    },
+    {
+      "id": "d12_sideprosjekt_fri",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ingen prosjektavtale i dag",
+      "tekst": "Du valgte å la denne muligheten ligge. Du har ingen ny avtale med Lea eller noen leveranse som venter.",
+      "valg": [
+        {
+          "id": "fri",
+          "tekst": "Ta dagen til noe annet",
+          "konsekvensTekst": "Du lar prosjektet ligge og bruker dagen uten nye prosjektavtaler.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_fri": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "notat",
+          "tekst": "Behold en privat notis til senere",
+          "konsekvensTekst": "Du beholder en privat notis, uten å sende et løfte eller endre avtalen med noen.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_privat_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d13_sideprosjekt_vurdering",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En liten endring får en pris i tid",
+      "tekst": "Du ser på tiden den lille gjennomgangen tok. Vil du gi prosjektet et fast, lite tidsrom, eller bare ta det fram når du trenger det?",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Sett av en halvtime, med en slutt på økten",
+          "konsekvensTekst": "Du setter av en halvtime til eget arbeid. Andre deler av dagen beholder plassen sin.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Ta det fram ved behov",
+          "konsekvensTekst": "Du velger å bruke notatene ved behov, uten et fast vedlikeholdsløfte.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_avsluttet": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_neste_valg": "undersok"
+        }
+      }
+    },
+    {
+      "id": "d13_sideprosjekt_uten_nytt_arbeid",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En mulighet som får ligge",
+      "tekst": "Denne runden tok du ikke opp nytt prosjektarbeid. Notatene finnes fortsatt, uten en ny frist.",
+      "valg": [
+        {
+          "id": "behold_notat",
+          "tekst": "Behold notatene uten en ny frist",
+          "konsekvensTekst": "Du beholder notatene. Ingen andre har fått en ny avtale.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "Legg notatene bort",
+          "konsekvensTekst": "Du legger notatene bort og avslutter denne runden uten nye løfter.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d13_sideprosjekt_kapittel_slutt",
+      "threadId": "sideprosjekt_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Dette står i historieboka",
+      "tekst": "Du legger bort prosjektarket for kvelden. Både denne runden og de tidligere kapitlene ligger i historieboka.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Lukk arket for kvelden",
+          "konsekvensTekst": "Du avslutter kapittelet. Kalenderen får ingen nye avtaler av dette valget.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_neste_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "sideprosjekt_etter_forste_kapittel": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "sideprosjekt_neste_beholdt",
+      "navn": "Et eget arbeidsrom i dagen",
+      "tekst": "Du har beholdt notatene og bestemt hvordan du vil ta dem fram. Sideprosjektet har ingen ekstern leveransefrist eller supportavtale.",
+      "kriterier": {
+        "flagg": {
+          "sideprosjekt_neste_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "sideprosjekt_neste_avsluttet",
+      "navn": "Prosjektarket er lagt bort",
+      "tekst": "Du legger prosjektarket bort etter denne runden. Notatene og tidligere kapitler er fortsatt bevart.",
+      "kriterier": {
+        "flagg": {
+          "sideprosjekt_neste_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "sideprosjekt_neste_standard",
+      "navn": "Et avsluttet kapittel",
+      "tekst": "Prosjekthistorien er bevart uten nye formelle avtaler.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

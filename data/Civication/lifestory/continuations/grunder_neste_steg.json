@@ -1,0 +1,401 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "grunder_neste_steg",
+  "role_scope": "naeringsliv_grunderdrommer",
+  "tittel": "Et svar fra én person",
+  "sisteDag": 13,
+  "hovedtraad": "grunder_etter_forste_kapittel",
+  "threads": [
+    {
+      "id": "grunder_etter_forste_kapittel",
+      "tittel": "Et svar fra én person",
+      "type": "privatliv",
+      "startDag": 11,
+      "konflikt": "Læring om et behov vs ønsket om å finne et marked"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d11_grunder_nytt_sporsmal",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar fra én person",
+      "tekst": "Lea skriver: «Hvis du fortsatt vil undersøke problemet, kan jeg beskrive hvordan jeg mister de små pappdelene.» Hun tilbyr en erfaring, uten å love å bruke eller kjøpe en løsning.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Be om én konkret hendelse, uten å selge en løsning",
+          "konsekvensTekst": "Du spør hva som skjedde sist hun mistet en del. Du ber ikke om et kjøpsløfte.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Takk og si at du lar ideen ligge nå",
+          "konsekvensTekst": "Du takker for tilbudet om å fortelle. Lea trenger ikke bruke tid på et intervju nå.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "avsender": "lea",
+      "conditions": {
+        "flagg": {
+          "grunder_kapittel_avsluttet": {
+            "finnes": false
+          }
+        }
+      }
+    },
+    {
+      "id": "d11_grunder_fortsatt",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar fra én person",
+      "tekst": "Du beholdt ett spørsmål om et mulig behov i forrige kapittel. Lea tilbyr nå å beskrive hvordan hun mister de små pappdelene, uten å love å bruke eller kjøpe en løsning.",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Be om én konkret hendelse, uten å selge en løsning",
+          "konsekvensTekst": "Du spør hva som skjedde sist hun mistet en del. Du ber ikke om et kjøpsløfte.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Takk og si at du lar ideen ligge nå",
+          "konsekvensTekst": "Du takker for tilbudet om å fortelle. Lea trenger ikke bruke tid på et intervju nå.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "avsender": "lea",
+      "conditions": {
+        "flagg": {
+          "grunder_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d11_grunder_parkert",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar fra én person",
+      "tekst": "Du parkerte ideen i forrige kapittel. Lea har ikke bedt deg om å starte den igjen. Vil du selv spørre om hennes erfaring med pappdelene, eller la ideen ligge videre?",
+      "valg": [
+        {
+          "id": "undersok",
+          "tekst": "Be om én konkret hendelse, uten å selge en løsning",
+          "konsekvensTekst": "Du spør hva som skjedde sist hun mistet en del. Du ber ikke om et kjøpsløfte.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "undersok"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "La ideen ligge videre",
+          "konsekvensTekst": "Du lar ideen ligge videre. Du ber ikke Lea om et intervju eller nye innspill.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_valg": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_lagt_bort": true
+        }
+      }
+    },
+    {
+      "id": "d12_grunder_undersokelse",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den lille delen under bordet",
+      "tekst": "Lea forteller at hun sist fant en liten pappdel under bordet etter å ha ryddet. Hun legger til at det skjer sjelden og at en enkel eske stort sett fungerer.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter både problemet og at det skjer sjelden",
+          "konsekvensTekst": "Du skriver ned begge deler. Ett svar fra Lea gir ikke et marked eller dokumentert betalingsvilje.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_notert": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Legg bort løsningen du hadde tenkt på",
+          "konsekvensTekst": "Du lar den foreslåtte løsningen ligge. Lea har ikke bedt deg om å bygge noe.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_avgrenset": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_valg": "undersok"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d12_grunder_fri",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ingen prosjektavtale i dag",
+      "tekst": "Du valgte å la denne muligheten ligge. Du har ingen ny avtale med Lea eller noen leveranse som venter.",
+      "valg": [
+        {
+          "id": "fri",
+          "tekst": "Ta dagen til noe annet",
+          "konsekvensTekst": "Du lar prosjektet ligge og bruker dagen uten nye prosjektavtaler.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_fri": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "notat",
+          "tekst": "Behold en privat notis til senere",
+          "konsekvensTekst": "Du beholder en privat notis, uten å sende et løfte eller endre avtalen med noen.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_privat_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d13_grunder_vurdering",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva endret svaret?",
+      "tekst": "Du har anledning til å formulere et nytt spørsmål eller parkere denne ideen. Det krever ingen selskapsrolle eller investering.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Skriv hva du må lære før du bygger mer",
+          "konsekvensTekst": "Du formulerer ett åpent spørsmål. Du har ikke rekruttert noen, hentet penger eller avtalt et samarbeid.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Parker denne ideen",
+          "konsekvensTekst": "Du parkerer ideen. Erfaringen blir i notatene, uten et løfte om å starte en virksomhet.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_avsluttet": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_valg": "undersok"
+        }
+      }
+    },
+    {
+      "id": "d13_grunder_uten_nytt_arbeid",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En mulighet som får ligge",
+      "tekst": "Denne runden tok du ikke opp nytt prosjektarbeid. Notatene finnes fortsatt, uten en ny frist.",
+      "valg": [
+        {
+          "id": "behold_notat",
+          "tekst": "Behold notatene uten en ny frist",
+          "konsekvensTekst": "Du beholder notatene. Ingen andre har fått en ny avtale.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "Legg notatene bort",
+          "konsekvensTekst": "Du legger notatene bort og avslutter denne runden uten nye løfter.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d13_grunder_kapittel_slutt",
+      "threadId": "grunder_etter_forste_kapittel",
+      "dag": 13,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Dette står i historieboka",
+      "tekst": "Du legger bort prosjektarket for kvelden. Både denne runden og de tidligere kapitlene ligger i historieboka.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Lukk arket for kvelden",
+          "konsekvensTekst": "Du avslutter kapittelet. Kalenderen får ingen nye avtaler av dette valget.",
+          "effekter": {
+            "flagg": {
+              "grunder_neste_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "grunder_etter_forste_kapittel": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "grunder_neste_beholdt",
+      "navn": "Et spørsmål uten markedsløfte",
+      "tekst": "Du beholder notatene om et mulig behov. De gir verken dokumentert betalingsvilje, kunder eller finansiering.",
+      "kriterier": {
+        "flagg": {
+          "grunder_neste_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "grunder_neste_avsluttet",
+      "navn": "Denne ideen får ligge",
+      "tekst": "Du har parkert denne runden med idéarbeid. Erfaringen ligger i historieboka uten et løfte om selskap eller investering.",
+      "kriterier": {
+        "flagg": {
+          "grunder_neste_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "grunder_neste_standard",
+      "navn": "Et avsluttet kapittel",
+      "tekst": "Prosjekthistorien er bevart uten nye formelle avtaler.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

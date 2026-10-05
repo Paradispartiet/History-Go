@@ -331,10 +331,14 @@
       const choiceFlags = new Set(scenes.flatMap((s) => (s.valg || []).flatMap((c) => Object.keys(c.effekter?.flagg || {}))));
       const continuationIds = new Set();
       for (const next of book.fortsettelser || []) {
+        const parents = next.etterFortsettelser;
+        const chained = Array.isArray(parents) && parents.length > 0;
         if (!/^[a-z0-9_]+$/.test(next.id || "") || continuationIds.has(next.id) || !next.navn || !bridgeScopes.has(next.role_scope)
           || next.path !== `data/Civication/lifestory/continuations/${next.id}.json`
-          || !Number.isInteger(next.etterDag) || next.etterDag < 1 || next.etterDag > book.sisteDag
-          || !threadIds.has(next.fraTraad)) push("symposium: ugyldig fortsettelse");
+          || !Number.isInteger(next.etterDag) || next.etterDag < 1
+          || (chained ? next.fraTraad !== undefined || new Set(parents).size !== parents.length
+            || parents.some((id) => !(book.fortsettelser || []).some((p) => p.id === id && p.etterDag < next.etterDag))
+            : parents !== undefined || next.etterDag > book.sisteDag || !threadIds.has(next.fraTraad))) push("symposium: ugyldig fortsettelse");
         continuationIds.add(next.id);
       }
       const meetingIds = new Set();
@@ -637,13 +641,16 @@
   /** Append a declared chapter to the same runner; never mutate its source. */
   function appendContinuation(content, pack) {
     const next = content.role.symposium?.fortsettelser?.find((n) => n.id === pack?.id);
-    if (content.fortsettelse || !next || pack.schema !== "civication_lifestory_continuation_v1"
+    const followsCurrent = next && content.role.symposium.sisteDag === next.etterDag
+      && (content.fortsettelse ? next.etterFortsettelser?.includes(content.fortsettelse.id) : !next.etterFortsettelser);
+    if (!followsCurrent || !next || pack.schema !== "civication_lifestory_continuation_v1"
       || pack.role_scope !== next.role_scope || !Number.isInteger(pack.sisteDag) || pack.sisteDag <= next.etterDag
       || !pack.tittel || !Array.isArray(pack.scenes) || !pack.scenes.length || !Array.isArray(pack.threads) || !pack.threads.length
       || !Array.isArray(pack.moter) || !Array.isArray(pack.endings) || !pack.endings.length) {
       throw new Error("[LifestoryContent] ugyldig fortsettelsespakke");
     }
     if (pack.scenes.some((s) => s.dag <= next.etterDag || s.dag > pack.sisteDag)
+      || Array.from({ length: pack.sisteDag - next.etterDag }, (_, i) => next.etterDag + i + 1).some((day) => !pack.scenes.some((s) => s.dag === day))
       || pack.threads.some((t) => !Number.isInteger(t.startDag) || t.startDag <= next.etterDag || t.startDag > pack.sisteDag)
       || !pack.threads.some((t) => t.id === pack.hovedtraad)) {
       throw new Error("[LifestoryContent] fortsettelse har ugyldig dag eller hovedtråd");

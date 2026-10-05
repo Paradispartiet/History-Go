@@ -132,7 +132,11 @@
       saved = State.createInitialState(base);
     }
     // Restore content before reconciliation, even before the shell has booted.
-    const restored = saved.fortsettelseId ? await Content.loadContinuation(base, saved.fortsettelseId) : base;
+    let restored = base;
+    if (saved.fortsettelseId || saved.fortsettelser) {
+      const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
+      for (const id of Runner.getContinuationIds(saved)) restored = await Content.loadContinuation(restored, id);
+    }
     baseContent = base;
     content = restored;
     state = saved;
@@ -525,7 +529,7 @@
       + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
       + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
       + (book.rollebroer?.length > 1 ? "<p>Mulige livsroller: " + book.rollebroer.map((b) => escapeHtml(b.navn)).join(" · ") + "</p>" : "")
-      + (getRoleSuggestion() ? '<button type="button" data-lifestory-life-profile>Åpne livsprofilen igjen</button>' : "")
+      + (getRoleSuggestion() || content.fortsettelse ? '<button type="button" data-lifestory-life-profile>Åpne livsprofilen igjen</button>' : "")
       + "<h4>Personer</h4><ul>" + book.personer.map((p) => "<li><strong>" + escapeHtml(p.navn) + "</strong>: " + escapeHtml(p.beskrivelse) + "</li>").join("") + "</ul>"
       + "<h4>Møter og avtaler</h4><ul>" + (book.moter.map((m) => "<li>Dag " + escapeHtml(m.dag) + " · " + escapeHtml(m.navn) + " · " + escapeHtml(m.sted.navn) + ": " + escapeHtml(({ avtalt: "Avtalt", gjennomfort: "Gjennomført", avslaatt: "Avslått", avbrutt: "Avbrutt" })[m.status]) + "</li>").join("") || "<li>Ingen møter avtalt ennå.</li>") + "</ul>"
       + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
@@ -574,12 +578,13 @@
 
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const view = Runner.getView(state, content);
+    const continuationRole = content.role.symposium?.rollebroer?.find((b) => b.role_scope === content.fortsettelse?.role_scope)?.navn || "kapittelets rolle";
 
     renderHeaderStatus(view);
     panel.innerHTML = renderStatusHtml(view)
       + renderKonsekvensHtml()
       + (Runner.isContinuationPaused?.(state, content)
-        ? '<section data-lifestory-paused><h3>Musikkhistorien er satt på pause</h3><p>Velg Frilansmusiker som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
+        ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : "")))
       + renderPanelsHtml(view);
   }

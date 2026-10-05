@@ -1,0 +1,546 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_foresporselen",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Omfanget før spillejobben",
+  "sisteDag": 13,
+  "hovedtraad": "musikk_omfang_og_tid",
+  "threads": [
+    {
+      "id": "musikk_omfang_og_tid",
+      "tittel": "Omfanget før spillejobben",
+      "type": "privatliv",
+      "startDag": 11,
+      "konflikt": "Mulig spillejobb vs uavklart ansvar, tid og betaling"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d11_musikk_etter_proven",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel, med åpne spørsmål",
+      "tekst": "Du møtte Mira i forrige kapittel. Prøven eller samtalen dere hadde, ligger i historieboka. Nå skriver bookeren direkte til deg: «Kan du spille et kort sett på dag 16 klokka 20?» Meldingen sier ikke noe om betaling eller hvem som ordner lyd. Forespørselen er ikke en booking.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be om omfang før du svarer",
+          "konsekvensTekst": "Du spør hvor lenge settet skal vare, og hvem som ordner lyd. Du har ikke bekreftet dato, pris eller jobb.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Avslå denne forespørselen",
+          "konsekvensTekst": "Du svarer at du ikke tar denne spillejobben. Bookeren bekrefter at datoen ikke holdes for deg.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Be om tid uten å holde datoen",
+          "konsekvensTekst": "Du sier at du trenger tid. Bookeren skriver at datoen fortsatt er åpen for andre musikere.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "vent"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_ny_prove_gjennomfort": true
+        }
+      },
+      "avsender": "booker"
+    },
+    {
+      "id": "d11_musikk_etter_avlysningen",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel, med åpne spørsmål",
+      "tekst": "Du avlyste den nye prøven med Mira. Den står fortsatt som avbrutt i historieboka. Nå skriver bookeren direkte til deg: «Kan du spille et kort sett på dag 16 klokka 20?» Meldingen sier ikke noe om betaling eller hvem som ordner lyd. Forespørselen er ikke en booking.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be om omfang før du svarer",
+          "konsekvensTekst": "Du spør hvor lenge settet skal vare, og hvem som ordner lyd. Du har ikke bekreftet dato, pris eller jobb.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Avslå denne forespørselen",
+          "konsekvensTekst": "Du svarer at du ikke tar denne spillejobben. Bookeren bekrefter at datoen ikke holdes for deg.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Be om tid uten å holde datoen",
+          "konsekvensTekst": "Du sier at du trenger tid. Bookeren skriver at datoen fortsatt er åpen for andre musikere.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "vent"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_ny_prove_avbrutt": true
+        }
+      },
+      "avsender": "booker"
+    },
+    {
+      "id": "d11_musikk_uten_avtale",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel, med åpne spørsmål",
+      "tekst": "Du valgte egen tid uten et nytt møte med Mira. Det er fortsatt ingen ny prøveavtale. Nå skriver bookeren direkte til deg: «Kan du spille et kort sett på dag 16 klokka 20?» Meldingen sier ikke noe om betaling eller hvem som ordner lyd. Forespørselen er ikke en booking.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be om omfang før du svarer",
+          "konsekvensTekst": "Du spør hvor lenge settet skal vare, og hvem som ordner lyd. Du har ikke bekreftet dato, pris eller jobb.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Avslå denne forespørselen",
+          "konsekvensTekst": "Du svarer at du ikke tar denne spillejobben. Bookeren bekrefter at datoen ikke holdes for deg.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Be om tid uten å holde datoen",
+          "konsekvensTekst": "Du sier at du trenger tid. Bookeren skriver at datoen fortsatt er åpen for andre musikere.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_valg": "vent"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira_ny_prove_avtalt": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "booker"
+    },
+    {
+      "id": "d12_musikk_omfang",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lyd er mer enn et halvtimes sett",
+      "tekst": "Bookeren svarer at settet er på 30 minutter, men spør også om du kan rigge lyd før og etter. Ingen pris er avtalt. Vil du holde datoen kort mens omfanget avklares?",
+      "valg": [
+        {
+          "id": "hold",
+          "tekst": "Hold datoen fram til dag 14 klokka 12, med forbehold",
+          "konsekvensTekst": "Dere blir enige om å holde datoen fram til dag 14 klokka 12 mens vilkårene avklares. Dette er fortsatt ingen bekreftet spillejobb.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "hold",
+              "musikk_foresporsel_dato_holdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Si nei til omfanget",
+          "konsekvensTekst": "Du sier nei til denne forespørselen. Bookeren bekrefter at datoen er fri.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_valg": "avklar"
+        }
+      },
+      "avsender": "booker"
+    },
+    {
+      "id": "d12_musikk_avsta",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kalenderen har ingen booking",
+      "tekst": "Du avslo forespørselen. Bookeren har bekreftet at datoen ikke holdes for deg.",
+      "valg": [
+        {
+          "id": "fri",
+          "tekst": "Behold dagen uten ny avtale",
+          "konsekvensTekst": "Du lar kalenderen stå uten en booking og legger telefonen bort.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "avsta"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Noter ett spørsmål til framtidige forespørsler",
+          "konsekvensTekst": "Du noterer at omfang og lyd må avklares. Du sender ikke et ja til bookeren.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "avsta",
+              "musikk_foresporsel_privat_sporsmal": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_valg": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d12_musikk_vent",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kalenderen har ingen booking",
+      "tekst": "Du ba om tid uten å holde datoen. Det er ingen avtale om at bookeren skal vente på deg.",
+      "valg": [
+        {
+          "id": "fri",
+          "tekst": "Behold dagen uten ny avtale",
+          "konsekvensTekst": "Du lar kalenderen stå uten en booking og legger telefonen bort.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "vent"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Noter ett spørsmål til framtidige forespørsler",
+          "konsekvensTekst": "Du noterer at omfang og lyd må avklares. Du sender ikke et ja til bookeren.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_status": "vent",
+              "musikk_foresporsel_privat_sporsmal": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_valg": "vent"
+        }
+      }
+    },
+    {
+      "id": "d13_musikk_holdt_dato",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En holdt dato er ikke en spillejobb",
+      "tekst": "Datoen er holdt fram til i morgen klokka 12. Betaling, lydansvar og endelig bekreftelse er fortsatt åpne. Du skal ikke spille noe sett i dag.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold det korte forbeholdet til fristen",
+          "konsekvensTekst": "Du beholder datoen fram til den avtalte fristen. Ingen booking eller inntekt er registrert.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_beholdt_hold": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "frigjor",
+          "tekst": "Frigjør datoen nå",
+          "konsekvensTekst": "Du sier fra, og bookeren bekrefter at datoen er fri. Det blir ingen spillejobb av denne forespørselen nå.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_avslatt": true,
+              "musikk_foresporsel_dato_frigjort": true,
+              "musikk_foresporsel_status": "frigjort"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_status": "hold"
+        }
+      }
+    },
+    {
+      "id": "d13_musikk_avsta",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du faktisk har svart",
+      "tekst": "Du har sagt nei til denne forespørselen. Datoen er fri for bookeren.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Ta med avklaringen i notatene",
+          "konsekvensTekst": "Du noterer hva du faktisk svarte. Det opprettes ingen booking eller betaling.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_avslatt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Legg telefonen bort for kvelden",
+          "konsekvensTekst": "Du legger telefonen bort. Svaret ditt og kalenderen endres ikke av det.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_avslatt": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_status": "avsta"
+        }
+      }
+    },
+    {
+      "id": "d13_musikk_vent",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du faktisk har svart",
+      "tekst": "Du har ikke gitt et svar som holder eller bekrefter datoen. Forespørselen står fortsatt åpen.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Ta med avklaringen i notatene",
+          "konsekvensTekst": "Du noterer hva du faktisk svarte. Det opprettes ingen booking eller betaling.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_uavklart": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Legg telefonen bort for kvelden",
+          "konsekvensTekst": "Du legger telefonen bort. Svaret ditt og kalenderen endres ikke av det.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_uavklart": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_status": "vent"
+        }
+      }
+    },
+    {
+      "id": "d13_musikk_foresporsel_slutt",
+      "threadId": "musikk_omfang_og_tid",
+      "dag": 13,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En forespørsel i historieboka",
+      "tekst": "Du ser over meldingen og svaret ditt. Historieboka tar vare på det som faktisk ble avklart, sammen med musikken i de tidligere kapitlene.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kvelden",
+          "konsekvensTekst": "Du avslutter kapittelet uten å legge til en booking eller gjennomført spillejobb.",
+          "effekter": {
+            "flagg": {
+              "musikk_foresporsel_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "musikk_omfang_og_tid": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "musikk_foresporsel_hold",
+      "navn": "En dato med forbehold",
+      "tekst": "Datoen er holdt fram til dag 14 klokka 12. Omfang, betaling og bekreftelse mangler fortsatt; det er ingen gjennomført eller bekreftet spillejobb.",
+      "kriterier": {
+        "flagg": {
+          "musikk_foresporsel_beholdt_hold": true
+        }
+      }
+    },
+    {
+      "id": "musikk_foresporsel_avsta",
+      "navn": "Forespørselen er avslått",
+      "tekst": "Du har avslått forespørselen eller frigjort den holdte datoen. Denne spillejobben er ikke gjennomført.",
+      "kriterier": {
+        "flagg": {
+          "musikk_foresporsel_avslatt": true
+        }
+      }
+    },
+    {
+      "id": "musikk_foresporsel_vent",
+      "navn": "Et åpent spørsmål",
+      "tekst": "Du har ikke holdt eller bekreftet datoen. Forespørselen kan ikke regnes som en booking.",
+      "kriterier": {
+        "flagg": {
+          "musikk_foresporsel_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "musikk_foresporsel_standard",
+      "navn": "En forespørsel uten booking",
+      "tekst": "Ingen spillejobb eller betaling er registrert.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

@@ -1,0 +1,491 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "sideprosjekt_med_lea",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "tittel": "Et prosjekt som får være lite",
+  "sisteDag": 10,
+  "hovedtraad": "sideprosjekt_videre_med_lea",
+  "threads": [
+    {
+      "id": "sideprosjekt_videre_med_lea",
+      "tittel": "Et prosjekt som får være lite",
+      "type": "privatliv",
+      "startDag": 8,
+      "konflikt": "Byggelyst vs tid til resten av livet"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d8_sideprosjekt_etter_modellen",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Du og Lea prøvde den grove modellen i den første uka. Hun fant ett punkt der bruken var uklar. Lea spør om dere skal bruke en halvtime ved prosjektbordet på dag 10 klokka 14 for å finne den minste versjonen du har lyst til å beholde.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "mote",
+              "sideprosjekt_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil bruke én time hjemme på å finne det jeg faktisk har lyst til å lage.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": true,
+          "prosjekt_motevalg": "proev"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d8_sideprosjekt_etter_samtalen",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Dere møttes i den første uka og skrev spørsmål om hvem dere kunne spørre. Dere laget ingen modell i det møtet. Lea spør om dere skal bruke en halvtime ved prosjektbordet på dag 10 klokka 14 for å finne den minste versjonen du har lyst til å beholde.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "mote",
+              "sideprosjekt_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil bruke én time hjemme på å finne det jeg faktisk har lyst til å lage.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": true,
+          "prosjekt_motevalg": "avgrens"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d8_sideprosjekt_uten_mote",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 8,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nytt spørsmål fra Lea",
+      "tekst": "Du takket nei til møtet i den første uka. Lea har ikke sett eller prøvd skissene dine. Lea spør om dere skal bruke en halvtime ved prosjektbordet på dag 10 klokka 14 for å finne den minste versjonen du har lyst til å beholde.",
+      "valg": [
+        {
+          "id": "mote",
+          "tekst": "Avtal en halvtime på dag 10 klokka 14",
+          "konsekvensTekst": "Du foreslår tiden, og Lea bekrefter en halvtime ved prosjektbordet. Dette er en samtale, uten bestilling eller betaling.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "mote",
+              "sideprosjekt_mote_avtalt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Arbeid alene før en ny samtale",
+          "konsekvensTekst": "Du svarer: «Jeg vil bruke én time hjemme på å finne det jeg faktisk har lyst til å lage.» Lea svarer at det er greit. Dere har ikke avtalt et møte.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_valg": "egen_tid"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "prosjekt_mote_gjennomfort": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d9_sideprosjekt_forberedelse",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Én funksjon på arket",
+      "tekst": "Du ser på listen over mulige funksjoner. Alt kan virke lite hver for seg, men listen kan fylle flere uker. Hva vil du ta med til den korte samtalen?",
+      "valg": [
+        {
+          "id": "forbered",
+          "tekst": "Ring rundt én funksjon du vil diskutere",
+          "konsekvensTekst": "Du ringer rundt én funksjon. Resten blir stående som muligheter, uten frister.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_forberedt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Avlys samtalen og behold dagen til eget bruk",
+          "konsekvensTekst": "Du sier fra til Lea. Hun bekrefter avlysningen; hun venter deg ikke ved prosjektbordet.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_mote_avbrutt": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_valg": "mote"
+        }
+      }
+    },
+    {
+      "id": "d9_sideprosjekt_egen_tid",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 9,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En time som ikke blir en hel dag",
+      "tekst": "Du setter fram arket hjemme. Du har sagt at du vil bruke én time, men får lyst til å tegne tre nye varianter.",
+      "valg": [
+        {
+          "id": "arbeid",
+          "tekst": "Bruk timen på én enkel skisse",
+          "konsekvensTekst": "Du tegner én avgrenset skisse og legger den bort når timen er over.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_eget_arbeid": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "hvile",
+          "tekst": "La arket ligge i dag",
+          "konsekvensTekst": "Du legger arket bort og tar dagen uten nytt prosjektarbeid.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_hvile": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_valg": "egen_tid"
+        }
+      }
+    },
+    {
+      "id": "d10_sideprosjekt_mote",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "prosjektbord",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvor liten kan den være?",
+      "tekst": "Du møter Lea ved prosjektbordet klokka 14. Hun legger sin egen pappmodell til side og spør hvilken del av din idé du fortsatt vil holde på med.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Velg én funksjon og en timegrense",
+          "konsekvensTekst": "Dere skriver ned én funksjon og hvor mye tid du vil bruke. Samtalen har ikke testet en ny modell.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_mote_gjennomfort": true,
+              "sideprosjekt_moteresultat": "avklart"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Si at du vil la prosjektet ligge litt",
+          "konsekvensTekst": "Du sier at prosjektet får ligge. Lea svarer at arket ikke trenger å bli en leveranse.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_mote_gjennomfort": true,
+              "sideprosjekt_moteresultat": "avsta"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_mote_avtalt": true,
+          "sideprosjekt_mote_avbrutt": {
+            "finnes": false
+          }
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "d10_sideprosjekt_avlyst",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ettermiddag uten møte",
+      "tekst": "Du avlyste samtalen med Lea. Ingen venter deg ved prosjektbordet i dag. Kalenderen gir plass til en rolig stund.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter hva du vil la stå åpent",
+          "konsekvensTekst": "Du skriver én privat påminnelse. Du sender ikke et løfte til noen.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_egen_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Ta ettermiddagen fri",
+          "konsekvensTekst": "Du legger arket til side og lar ettermiddagen være fri.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_fri_ettermiddag": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_mote_avbrutt": true
+        }
+      }
+    },
+    {
+      "id": "d10_sideprosjekt_hjemme",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ettermiddag uten møte",
+      "tekst": "Du valgte eget arbeid framfor en ny samtale med Lea. Dere har ingen avtale i dag. Kalenderen gir plass til en rolig stund.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Noter hva du vil la stå åpent",
+          "konsekvensTekst": "Du skriver én privat påminnelse. Du sender ikke et løfte til noen.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_egen_notis": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Ta ettermiddagen fri",
+          "konsekvensTekst": "Du legger arket til side og lar ettermiddagen være fri.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_fri_ettermiddag": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_valg": "egen_tid"
+        }
+      }
+    },
+    {
+      "id": "d10_sideprosjekt_avslutning",
+      "threadId": "sideprosjekt_videre_med_lea",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En plass på skrivebordet",
+      "tekst": "Du ser på tiden prosjektet tar. Vil du beholde et lite tidsrom til det, eller legge det bort uten ny frist?",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold én time i kalenderen",
+          "konsekvensTekst": "Du reserverer én time til eget prosjektarbeid. Ingen andre venter en leveranse.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_kapittel_avsluttet": true,
+              "sideprosjekt_beholdt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "threads": {
+              "sideprosjekt_videre_med_lea": {
+                "status": "completed"
+              }
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "Legg arket bort til du får lyst igjen",
+          "konsekvensTekst": "Du legger arket bort. Prosjektet får hvile uten at du lover en ny versjon.",
+          "effekter": {
+            "flagg": {
+              "sideprosjekt_kapittel_avsluttet": true,
+              "sideprosjekt_lagt_bort": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "sideprosjekt_videre_med_lea": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [
+    {
+      "id": "sideprosjekt_samtale10",
+      "navn": "Den korte samtalen med Lea",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "stedId": "prosjektbord",
+      "personer": [
+        "lea"
+      ],
+      "avtalt": "sideprosjekt_mote_avtalt",
+      "gjennomfort": "sideprosjekt_mote_gjennomfort",
+      "avbrutt": "sideprosjekt_mote_avbrutt"
+    }
+  ],
+  "endings": [
+    {
+      "id": "sideprosjekt_beholdt",
+      "navn": "Et lite tidsrom",
+      "tekst": "Du har beholdt et avgrenset tidsrom til prosjektet. Det er eget arbeid, med rom for resten av livet.",
+      "kriterier": {
+        "flagg": {
+          "sideprosjekt_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "sideprosjekt_lagt_bort",
+      "navn": "Prosjektet får hvile",
+      "tekst": "Du har lagt prosjektet bort uten ny frist eller leveranseavtale.",
+      "kriterier": {
+        "flagg": {
+          "sideprosjekt_lagt_bort": true
+        }
+      }
+    },
+    {
+      "id": "sideprosjekt_standard",
+      "navn": "En åpen mulighet",
+      "tekst": "Du har ikke lovet en ny leveranse eller betaling.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
