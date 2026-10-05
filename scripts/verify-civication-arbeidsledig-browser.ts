@@ -21,7 +21,10 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     { id: 'lea_sideprosjekt_videre', route: 'prosjekt', suggestion: 'Sideprosjektbygger', activate: true, continue: true, continuation: 'sideprosjekt_med_lea', nextContinuation: 'frilans_neste_steg', nextRole: 'Frilanser', expectedOpening: 'd8_sideprosjekt_uten_mote', choices: { d3_prosjekt_invitasjon: 'egen_tid', d7_prosjekt_videre: 'naeringsliv_sideprosjektbygger', d8_sideprosjekt_uten_mote: 'egen_tid' } },
     { id: 'lea_frilans_videre', route: 'prosjekt', suggestion: 'Frilanser', activate: true, continue: true, continuation: 'frilans_med_lea', nextContinuation: 'grunder_neste_steg', nextRole: 'Gründerdrømmer', expectedOpening: 'd8_frilans_etter_samtalen', choices: { d3_prosjekt_invitasjon: 'dag6', d6_prosjekt_moetet: 'avgrens', d7_prosjekt_videre: 'naeringsliv_frilanser', d9_frilans_forberedelse: 'avlys', d11_grunder_nytt_sporsmal: 'avsta' } },
     { id: 'lea_grunder_videre', route: 'prosjekt', suggestion: 'Gründerdrømmer', activate: true, continue: true, continuation: 'grunder_med_lea', nextContinuation: 'sideprosjekt_neste_steg', nextRole: 'Sideprosjektbygger', expectedOpening: 'd8_grunder_etter_modellen', choices: { d7_prosjekt_videre: 'naeringsliv_grunderdrommer' } },
-    { id: 'mira_videre_avlyst', route: 'musikk', suggestion: 'Frilansmusiker', activate: true, continue: true, choices: { d5_booker: 'avsta', d7_musikk_videre: 'rolleflaten', d9_mira_forberedelse: 'avlys' } }
+    { id: 'mira_videre_avlyst', route: 'musikk', suggestion: 'Frilansmusiker', activate: true, continue: true, choices: { d5_booker: 'avsta', d7_musikk_videre: 'rolleflaten', d9_mira_forberedelse: 'avlys' } },
+    { id: 'arvid_videre_gjennomfort', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_oppdraget', choices: { d7_miljo_videre: 'rolleflaten', d9_arvid_praten: 'lov', d10_arvid_loftet: 'rett', d11_arvid_med_kontakt: 'navn', d12_arvid_navnet: 'la_staa', d13_arvid_forventningen: 'rett' } },
+    { id: 'arvid_videre_avbrutt', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avbruddet', choices: { d5_amir_oppmotet: 'ga_hjem', d7_miljo_videre: 'rolleflaten', d9_arvid_praten: 'ga', d10_arvid_etter_praten: 'avstand', d11_arvid_med_avstand: 'kontakt', d12_arvid_avklaringen: 'nei' } },
+    { id: 'arvid_videre_avstand', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avstanden', choices: { d4_amir_rammen: 'trekk_deg', d5_amir_uten_oppmote: 'avstand', d7_miljo_videre: 'rolleflaten', d8_arvid_etter_avstanden: 'avstand', d10_arvid_uten_prat: 'avstand', d11_arvid_med_avstand: 'avstand' } }
   ];
   const reports: any[] = [];
   for (const scenario of cases) {
@@ -29,7 +32,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     if (scenario.activate) await context.addInitScript(() => {
       // Fixture data before boot; all role choices still use real UI/API.
       if (!localStorage.getItem('arbeidsledig_browser_merits_seeded')) {
-        localStorage.setItem('merits_by_category', JSON.stringify({ by: { points: 5 }, naeringsliv: { points: 85 }, musikk: { points: 85 } }));
+        localStorage.setItem('merits_by_category', JSON.stringify({ by: { points: 5 }, naeringsliv: { points: 85 }, musikk: { points: 85 }, subkultur: { points: 60 } }));
         localStorage.setItem('arbeidsledig_browser_merits_seeded', '1');
       }
     });
@@ -99,7 +102,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
               assert.ok(life.active_life_positions.some((p: any) => p.label === 'Byvandrer'));
               assert.ok(life.active_life_positions.some((p: any) => p.label === scenario.suggestion));
               const snapshot = await page.evaluate(() => (globalThis as any).CivicationNarrativeSceneSource.getActivationSnapshot({ active: null }));
-              assert.ok(snapshot.matched_stream_ids.includes(scenario.route === 'musikk' ? 'musikk_frilansmusiker_stream' : scenario.suggestion === 'Frilanser' ? 'naeringsliv_frilanser_stream' : scenario.suggestion === 'Gründerdrømmer' ? 'naeringsliv_grunderdrommer_stream' : 'naeringsliv_sideprosjektbygger_stream'));
+              assert.ok(snapshot.matched_stream_ids.includes(scenario.route === 'musikk' ? 'musikk_frilansmusiker_stream' : scenario.route === 'miljo' ? 'subkultur_gangster_stream' : scenario.suggestion === 'Frilanser' ? 'naeringsliv_frilanser_stream' : scenario.suggestion === 'Gründerdrømmer' ? 'naeringsliv_grunderdrommer_stream' : 'naeringsliv_sideprosjektbygger_stream'));
             } else {
               assert.ok((await suggestion.innerText()).includes('Ikke tilgjengelig ennå'));
               assert.equal(await suggestion.locator('[data-civi-life-suggestion-activate]').count(), 0);
@@ -134,7 +137,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         const weekArchive = JSON.stringify(state.arkiv);
         const archiveLength = state.arkiv.length;
         const chapterId = scenario.continuation || 'musikk_med_mira';
-        const badge = scenario.route === 'prosjekt' ? 'naeringsliv' : 'musikk';
+        const badge = scenario.route === 'prosjekt' ? 'naeringsliv' : scenario.route === 'miljo' ? 'subkultur' : 'musikk';
         const roleLabel = scenario.suggestion;
         await page.locator(`[data-lifestory-continue="${chapterId}"]`).click();
         await page.waitForFunction(() => (globalThis as any).CivicationLifestoryState.load().dag === 8);
@@ -197,6 +200,10 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
           assert.ok(state.tidligereValg.musikk_kapittel_avsluttet);
           assert.equal(!!state.tidligereValg.mira_ny_prove_gjennomfort, scenario.id === 'mira_videre_spilt');
           assert.equal(!!state.tidligereValg.mira_ny_prove_avbrutt, scenario.id === 'mira_videre_avlyst');
+        } else if (scenario.route === 'miljo') {
+          assert.ok(state.tidligereValg.arvid_kapittel10_avsluttet);
+          if (scenario.id === 'arvid_videre_avbrutt') assert.ok(state.tidligereValg.amir_oppdrag_avbrutt && state.tidligereValg.arvid_prat9_avbrutt && !state.tidligereValg.arvid_prat9_gjennomfort);
+          if (scenario.id === 'arvid_videre_avstand') assert.ok(state.tidligereValg.amir_trakk_seg && !state.tidligereValg.arvid_prat9_avtalt && !state.spilteScener.includes('d9_arvid_praten'));
         } else {
           const prefix = chapterId.replace('_med_lea', '');
           assert.ok(state.tidligereValg[prefix + '_kapittel_avsluttet']);
@@ -255,7 +262,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         assert.equal(secondReloadDays.size, 3);
         assert.equal(await page.locator('[data-lifestory-continue]').count(), 0);
         assert.equal(await page.locator('[data-lifestory-next-day]').count(), 0);
-        assert.ok(state.threadState[scenario.route === 'musikk' ? 'musikk_omfang_og_tid' : secondId.replace('_neste_steg', '_etter_forste_kapittel')].status === 'completed');
+        assert.ok(state.threadState[scenario.route === 'musikk' ? 'musikk_omfang_og_tid' : scenario.route === 'miljo' ? 'arvid_navnet_pa_invitasjonen' : secondId.replace('_neste_steg', '_etter_forste_kapittel')].status === 'completed');
+        if (scenario.route === 'miljo') {
+          assert.ok(state.tidligereValg.arvid_kapittel13_avsluttet);
+          if (scenario.id === 'arvid_videre_gjennomfort') assert.ok(state.tidligereValg.arvid_rettet_loftet && state.tidligereValg.arvid_retning13 === 'kontakt');
+          if (scenario.id === 'arvid_videre_avstand') assert.ok(state.tidligereValg.arvid_retning13 === 'avstand' && !state.spilteScener.includes('d12_arvid_avklaringen'));
+        }
         assert.equal(state.threadState.nav_og_meldekortet.status, 'completed');
       }
       await page.locator('[data-lifestory-symposium] summary').click();

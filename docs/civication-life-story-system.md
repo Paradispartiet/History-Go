@@ -821,6 +821,43 @@ bytter prosjektrolle gjennom den ekte livsprofilen. Motortesten gjenlaster
 etter hvert valg; nettlesertesten gjenlaster på hver ny dag og ved
 kapittelgrensene, samt etter hvert valg i det opprinnelige Mira-kapittelet.
 
+### Arvids miljøspor, dag 8–13
+
+Med `miljoet_og_amir` som førsteforløp og Gangster som faktisk
+hovedlivsposisjon kan spilleren åpne «Fortsett med Arvid». Gangster krever
+60 Subkultur-poeng og eksplisitt aktivering i den eksisterende livsprofilen.
+Gamle person-, tråd- og møte-ID-er med `amir` beholdes av hensyn til lagringer;
+navnet i det nye innholdet er Arvid. Den eldre Gangster-kilden godtar også
+det kanoniske rollenavnet som aktiveringstag, siden denne livsposisjonen
+har `id: null`. Rolleverdenstesten kontrollerer faktisk narrativleveranse
+etter aktivering ved 60 poeng, og at 59 poeng fortsatt er låst.
+
+`miljo_med_arvid` dekker dag 8–10. Åpningen skiller gjennomført oppdrag,
+avbrutt oppdrag, avslått oppdrag med videre kontakt og en valgt pause.
+Spilleren kan avtale en ny prat eller la kontakten ligge. På puben ber Arvid
+spilleren få bekjenten tilbake til miljøet. Et løfte på bekjentens vegne kan
+rettes eller bli til press; bekjentens nei blir ikke gjort om til et oppmøte.
+Den nye praten har egne avtale-, gjennomførings- og avbruddsflagg.
+Å la kontakten ligge oppretter ikke et møte i historieboka.
+
+`miljo_navnet_ditt` dekker dag 11–13 og leser den faktiske avslutningen på
+dag 10. Arvid kan be om spillerens navn som kontakt på en invitasjon. Et
+avgrenset ja, et uavgrenset ja og en pause fører til ulike scener: konkrete
+programspørsmål, forventninger om adgang eller egen tid uten miljøkontakt.
+Spilleren kan rette invitasjonen, trekke navnet eller la forventningen stå
+uavklart. En valgt pause åpner aldri meldinger fra Arvid før spilleren selv
+tar initiativ. Ingen scene gjennomfører arrangementet på dag 16.
+
+De to pakkene inneholder 23 scener og 47 valg. De bruker samme runner,
+lagring, rolleport og ordnede kapittelarkiv som Lea og Mira. Gamle avtaler
+bevares, og ingen nye valg gir jobb, inntekt, Badge-poeng eller myndighet over
+adgang. `civication-lifestory-arvid-continuation.test.js` prøver alle nye
+valgkombinasjoner fra 14 førsteforløp: 1 596 kapittelforløp, 4 382
+gjenlastinger, fire åpninger og seks avslutninger. DOM-testen kontrollerer
+atomisk lastefeil, pause, gjenopptakelse, hele lagringskjeden og restart.
+Nettlesertesten har tre nye Arvid-forløp til dag 13 gjennom ekte aktivering,
+profilbytte, pause, gjenlasting og kapittelknapper; totalt 20 forløp.
+
 De nye pakkene er forfattede historier til dag 13. Motoren støtter flere
 deklarerte kapitler, men genererer ikke senere hendelser eller tomme dager.
 

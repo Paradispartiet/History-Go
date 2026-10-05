@@ -162,7 +162,7 @@ for (const past of [{}, { d5_booker: 'avsta', d9_mira_forberedelse: 'avlys' }, {
     }
   });
 }
-for (const p of Object.values(packs).filter(p => p.id !== 'musikk_med_mira')) for (const scene of p.scenes) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
+for (const p of Object.values(packs).filter(p => (p.role_scope.startsWith('naeringsliv_') || p.id === 'musikk_foresporselen'))) for (const scene of p.scenes) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
 // Unknown, reordered, duplicate and impossible chains fail before any save.
 for (const bad of [ { fortsettelser: ['x'], fortsettelseId: 'y' }, { fortsettelser: ['x', 'x'], fortsettelseId: 'x' }, { fortsettelser: [], fortsettelseId: 'x' }, { fortsettelser: 'x', fortsettelseId: 'x' } ]) assert.throws(() => R.getContinuationIds(bad), /kapittelrekkefølge/);
 assert.throws(() => restore({ ...savedSecond, fortsettelser: [...savedSecond.fortsettelser].reverse(), fortsettelseId: savedSecond.fortsettelser[0] }), /ugyldig/);
