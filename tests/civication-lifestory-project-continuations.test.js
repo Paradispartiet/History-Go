@@ -195,7 +195,10 @@ async function uiTest() {
     return { dom,w,panel:w.document.getElementById('civiLifestoryPanel'),fail(v){fail=v;},role(v){role=v;w.dispatchEvent(new w.Event('updateProfile'));} };
   }
   const selected = { badge_id:'naeringsliv',label:'Frilanser' };
-  const ui = await boot(savedFirst, selected);
+  const withoutSuggestion = clone(savedFirst);
+  delete withoutSuggestion.tidligereValg.arbeidsledig_rolleforslag;
+  const ui = await boot(withoutSuggestion, selected);
+  assert.ok(ui.panel.querySelector('[data-lifestory-life-profile]'), 'chapter profile remains reachable without a first-week suggestion');
   assert.equal(ui.panel.querySelector('[data-lifestory-paused]'), null, 'completed boundary can hand off');
   const next = ui.panel.querySelector('[data-lifestory-continue="frilans_neste_steg"]');
   assert.ok(next);

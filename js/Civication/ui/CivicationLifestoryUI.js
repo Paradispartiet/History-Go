@@ -529,7 +529,7 @@
       + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
       + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
       + (book.rollebroer?.length > 1 ? "<p>Mulige livsroller: " + book.rollebroer.map((b) => escapeHtml(b.navn)).join(" · ") + "</p>" : "")
-      + (getRoleSuggestion() ? '<button type="button" data-lifestory-life-profile>Åpne livsprofilen igjen</button>' : "")
+      + (getRoleSuggestion() || content.fortsettelse ? '<button type="button" data-lifestory-life-profile>Åpne livsprofilen igjen</button>' : "")
       + "<h4>Personer</h4><ul>" + book.personer.map((p) => "<li><strong>" + escapeHtml(p.navn) + "</strong>: " + escapeHtml(p.beskrivelse) + "</li>").join("") + "</ul>"
       + "<h4>Møter og avtaler</h4><ul>" + (book.moter.map((m) => "<li>Dag " + escapeHtml(m.dag) + " · " + escapeHtml(m.navn) + " · " + escapeHtml(m.sted.navn) + ": " + escapeHtml(({ avtalt: "Avtalt", gjennomfort: "Gjennomført", avslaatt: "Avslått", avbrutt: "Avbrutt" })[m.status]) + "</li>").join("") || "<li>Ingen møter avtalt ennå.</li>") + "</ul>"
       + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
