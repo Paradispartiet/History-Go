@@ -1,0 +1,73 @@
+name: TEMP PR6130 repair stale Mari image pointer
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase2-v3-20261004
+    paths:
+      - .github/workflows/tmp-pr6130-repair-mari.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase2-v3-20261004
+          fetch-depth: 0
+
+      - name: Remove stale Mari Skurdal local image pointer
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          stale = 'bilder/kort/people/mari_skurdal.PNG'
+          targets = [
+              Path('data/people/media/oslo/people_media_oslo.json'),
+              Path('data/runtime/people-all/part-004.json'),
+              Path('data/runtime/place-open/klassekampen_redaksjon.json'),
+          ]
+
+          for path in targets:
+              text = path.read_text(encoding='utf-8')
+              count = text.count(stale)
+              if count != 2:
+                  raise SystemExit(f'{path}: expected exactly 2 stale Mari pointers, found {count}')
+              text = text.replace(stale, '')
+              path.write_text(text, encoding='utf-8')
+
+          test_path = Path('tests/klassekampen-redaksjon-place-production-v3.test.mjs')
+          test_text = test_path.read_text(encoding='utf-8')
+          marker = "Klassekampen-related people never point at missing local image assets"
+          if marker not in test_text:
+              test_text += '''\n\ntest('Klassekampen-related people never point at missing local image assets', () => {\n  const people = readJson('data/people/media/oslo/people_media_oslo.json');\n  const relatedPeople = people.filter((person) =>\n    person.placeId === PLACE_ID || person.places?.includes(PLACE_ID)\n  );\n  assert.ok(relatedPeople.length >= 2, 'expected canonical Klassekampen people');\n\n  for (const person of relatedPeople) {\n    for (const field of ['image', 'cardImage']) {\n      const imagePath = String(person[field] || '').trim();\n      if (!imagePath || /^https?:\\/\\//.test(imagePath)) continue;\n      assert.equal(\n        fs.existsSync(imagePath),\n        true,\n        `${person.id}.${field} points to a missing local asset: ${imagePath}`\n      );\n    }\n  }\n});\n'''
+              test_path.write_text(test_text, encoding='utf-8')
+          PY
+
+          node --test tests/klassekampen-redaksjon-place-production-v3.test.mjs
+
+      - name: Commit repaired contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/people/media/oslo/people_media_oslo.json \
+            data/runtime/people-all/part-004.json \
+            data/runtime/place-open/klassekampen_redaksjon.json \
+            tests/klassekampen-redaksjon-place-production-v3.test.mjs
+          if git diff --cached --quiet; then
+            echo "No repair changes to commit"
+            exit 0
+          fi
+          git commit -m "Fix Klassekampen person image fallback contract"
+          git push origin HEAD:agent/klassekampen-phase2-v3-20261004
