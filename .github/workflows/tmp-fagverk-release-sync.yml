@@ -1,0 +1,61 @@
+name: TEMP Fagverk release sync
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-phase2-v3-20261004
+
+permissions:
+  contents: write
+
+concurrency:
+  group: klassekampen-fagverk-release-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+        with:
+          ref: agent/klassekampen-phase2-v3-20261004
+          fetch-depth: 0
+
+      - name: Setup cached Node workspace
+        uses: ./.github/actions/setup-node-npm
+
+      - name: Regenerate Fagverk release manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          changed="$(git status --porcelain | awk '{print $2}' | sort | tr '\n' ' ')"
+          if [ "$changed" != "data/fagverk/fagverk_release.json " ]; then
+            echo "Unexpected generated changes: $changed"
+            git status --short
+            exit 1
+          fi
+
+      - name: Verify shared and Media Fagverk contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audit-fagverk-general-engine.mjs
+          node scripts/audit-fagverk-media-complete.mjs
+          node tools/audit-media-theory-integrity.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node --test tests/fagverk-release-manifest.test.mjs
+
+      - name: Commit generated release manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-fagverk-release-sync.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/fagverk/fagverk_release.json .github/workflows/tmp-fagverk-release-sync.yml
+          git status --short
+          git commit -m 'Regenerate Fagverk release after Media quiz registration'
+          git push origin HEAD:agent/klassekampen-phase2-v3-20261004
