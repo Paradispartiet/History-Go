@@ -26,9 +26,24 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     { id: 'arvid_videre_avbrutt', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avbruddet', choices: { d5_amir_oppmotet: 'ga_hjem', d7_miljo_videre: 'rolleflaten', d9_arvid_praten: 'ga', d10_arvid_etter_praten: 'avstand', d11_arvid_med_avstand: 'kontakt', d12_arvid_avklaringen: 'nei' } },
     { id: 'arvid_videre_avstand', route: 'miljo', suggestion: 'Gangster', activate: true, continue: true, continuation: 'miljo_med_arvid', nextContinuation: 'miljo_navnet_ditt', expectedOpening: 'd8_arvid_etter_avstanden', choices: { d4_amir_rammen: 'trekk_deg', d5_amir_uten_oppmote: 'avstand', d7_miljo_videre: 'rolleflaten', d8_arvid_etter_avstanden: 'avstand', d10_arvid_uten_prat: 'avstand', d11_arvid_med_avstand: 'avstand' } }
   ];
+  const representatives: Record<string, any> = {
+    lea_sideprosjekt_videre: { type: 'lea', id: 'jens_jacob_jensen_myrens', name: 'Jens Jacob Jensen' },
+    lea_frilans_videre: { type: 'lea', id: 'peter_emil_steen', name: 'Peter Emil Steen' },
+    mira_videre_spilt: { type: 'mira', id: 'bugge_wesseltoft', name: 'Bugge Wesseltoft' },
+    mira_videre_avlyst: { type: 'mira', id: 'mari_boine', name: 'Mari Boine' },
+    arvid_videre_gjennomfort: { type: 'amir', id: 'attila_horvath', name: 'Attila Horvath' },
+    arvid_videre_avbrutt: { type: 'amir', id: 'sossen_krohg', name: 'Sossen Krohg' }
+  };
   const reports: any[] = [];
   for (const scenario of cases) {
+    const representative = representatives[scenario.id];
     const context = await browser.newContext({ viewport: scenario.id === 'musikk_booket' ? { width: 1024, height: 768 } : { width: 390, height: 844 } });
+    if (representative) await context.addInitScript((person: any) => {
+      if (!localStorage.getItem('arbeidsledig_browser_people_seeded')) {
+        localStorage.setItem('people_collected', JSON.stringify({ [person.id]: true }));
+        localStorage.setItem('arbeidsledig_browser_people_seeded', '1');
+      }
+    }, representative);
     if (scenario.activate) await context.addInitScript(() => {
       // Fixture data before boot; all role choices still use real UI/API.
       if (!localStorage.getItem('arbeidsledig_browser_merits_seeded')) {
@@ -49,6 +64,11 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       });
       const readState = () => page.evaluate(() => (globalThis as any).CivicationLifestoryState.load());
       let state: any = await readState();
+      if (representative) {
+        await page.waitForFunction((person: any) => (globalThis as any).CivicationLifestoryState.load().personRepresentanter?.[person.type]?.personId === person.id, representative);
+        state = await readState();
+        assert.equal(state.personRepresentanter[representative.type].navn, representative.name);
+      }
       assert.equal(state.rolle, 'arbeidsledig');
       assert.equal(state.dag, 1);
       let guard = 0;
@@ -272,6 +292,18 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       }
       await page.locator('[data-lifestory-symposium] summary').click();
       const storyText = await page.locator('[data-lifestory-symposium]').innerText();
+      if (representative) {
+        assert.ok(storyText.includes(representative.name));
+        assert.ok(!/\b(?:Lea|Mira|Arvid)\b/.test(storyText));
+        assert.ok(state.arkiv.some((e: any) => e.personRepresentanter?.[representative.type]?.personId === representative.id));
+        const cast = JSON.stringify(state.personRepresentanter[representative.type]);
+        // Collection changes after the meeting cannot change this story's cast.
+        await page.evaluate(() => localStorage.setItem('people_collected', '{}'));
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForFunction(() => !!(globalThis as any).CivicationLifestoryUI?.getCurrentSceneInfo?.());
+        assert.equal(JSON.stringify((await readState()).personRepresentanter[representative.type]), cast);
+        await page.locator('[data-lifestory-symposium] summary').click();
+      }
       assert.ok(storyText.includes('Tidslinje') && storyText.includes('Møter og avtaler'));
       assert.ok(storyText.includes(state.arkiv[0].valgTekst));
       assert.ok(storyText.includes(state.arkiv.at(-1).valgTekst));
@@ -288,7 +320,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       }
       assert.equal(errors.length, 0, `${scenario.id}: no page errors`);
       await page.screenshot({ path: join(outputDir, `arbeidsledig-${scenario.id}.png`), fullPage: true });
-      reports.push({ id: scenario.id, days: state.dag, reloadedDays: Array.from(reloadedDays), trace, pageErrors: errors });
+      reports.push({ id: scenario.id, days: state.dag, representative: representative || null, reloadedDays: Array.from(reloadedDays), trace, pageErrors: errors });
     } catch (error) {
       const snapshot = await page.evaluate(() => {
         const app = globalThis as any, doc = app.document;

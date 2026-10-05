@@ -304,7 +304,15 @@
       }
       for (const person of role.personer || []) {
         if (typeof startRelasjoner[person.id] !== "number") push(`symposium: personen ${person.id} mangler relasjon`);
+        if (person.persontype) {
+          const type = person.persontype;
+          if (!/^[a-z0-9_]+$/.test(type.id || "") || !Array.isArray(type.representanter) || type.representanter.length < 2
+            || type.representanter.some(id => typeof id !== "string" || !/^[a-z0-9_]+$/.test(id))
+            || new Set(type.representanter).size !== type.representanter.length) push(`symposium: ugyldig persontype ${person.id}`);
+        }
       }
+      const typeIds = (role.personer || []).filter(p => p.persontype).map(p => p.persontype.id);
+      if (new Set(typeIds).size !== typeIds.length) push("symposium: duplisert persontype");
       for (const scene of scenes) {
         if (scene.stedId && !placeIds.has(scene.stedId)) push(`symposium: scene ${scene.id} har ukjent sted`);
         if (scene.avsender && !personIds.has(scene.avsender)) push(`symposium: scene ${scene.id} har ukjent person`);
