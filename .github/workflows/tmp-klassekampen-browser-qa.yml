@@ -28,7 +28,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node dist/scripts/build-civication-history-people-index.mjs
+          npm run civication:history-people:build
           if git diff --quiet -- data/Civication/historyPeople_index.json; then
             echo "Civication people index already in sync"
             exit 0
