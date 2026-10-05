@@ -1,0 +1,634 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_navnet_ditt",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Hvem får snakke for deg?",
+  "sisteDag": 13,
+  "hovedtraad": "arvid_navnet_pa_invitasjonen",
+  "threads": [
+    {
+      "id": "arvid_navnet_pa_invitasjonen",
+      "tittel": "Hvem får snakke for deg?",
+      "type": "privatliv",
+      "startDag": 11,
+      "konflikt": "Synlighet i miljøet møter andres forventninger til tilgang og løfter du kan stå for."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d11_arvid_med_kontakt",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Navnet ditt på invitasjonen",
+      "tekst": "Arvid sender utkastet til invitasjonen for undergrunnskvelden på dag 16. Nederst er det et tomt felt: «Kontakt». «Kan jeg sette deg der?» spør han. Ingen oppgave eller arbeidstid er avtalt.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Spør hva folk skal kunne kontakte deg om",
+          "konsekvensTekst": "Du spør om navnet betyr hjelp med informasjon eller løfter om adgang. Du har ikke godkjent invitasjonen.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "navn",
+          "tekst": "La ham bruke navnet ditt som kontakt",
+          "konsekvensTekst": "Du sier ja uten å avgrense hva kontakten gjelder. Arvid publiserer invitasjonen med navnet ditt under «Kontakt».",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "navn"
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Si nei til navnet og be om en pause",
+          "konsekvensTekst": "Du ber ham la navnet være ute og ta en pause fra kontakten. Arvid bekrefter begge deler.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avstand"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_retning10": "kontakt"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "d11_arvid_etter_presset",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lista er ikke avklart",
+      "tekst": "Bekjenten sa nei også da du ba ham komme likevel. Arvid har ikke fjernet navnet hans fra arbeidslista. Nå sender Arvid et nytt spørsmål: Kan navnet ditt stå som kontakt på invitasjonen for dag 16? Det er et annet løfte enn det du ga om bekjenten.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Spør hva folk skal kunne kontakte deg om",
+          "konsekvensTekst": "Du spør om navnet betyr hjelp med informasjon eller løfter om adgang. Du har ikke godkjent invitasjonen.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "navn",
+          "tekst": "La ham bruke navnet ditt som kontakt",
+          "konsekvensTekst": "Du sier ja uten å avgrense hva kontakten gjelder. Arvid publiserer invitasjonen med navnet ditt under «Kontakt».",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "navn"
+            },
+            "meters": {
+              "synlighet": 2
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Si nei til navnet og be om en pause",
+          "konsekvensTekst": "Du ber ham la navnet være ute og ta en pause fra kontakten. Arvid bekrefter begge deler.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avstand"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_retning10": "press"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "d11_arvid_med_avstand",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 11,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ingen ny melding",
+      "tekst": "Du avsluttet forrige kapittel med en pause fra Arvid. Telefonen er stille. Hvis du vil ta opp kontakten, må initiativet komme fra deg.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Spør hvordan det går med neste kveld",
+          "konsekvensTekst": "Du skriver selv. Arvid sender et utkast til invitasjonen for dag 16 og spør om navnet ditt kan stå som kontakt. Du ber ham forklare hva det innebærer først.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Behold pausen og bruk dagen hjemme",
+          "konsekvensTekst": "Du lar kontakten ligge og finner fram et eget prosjekt. Ingen invitasjon eller avtale kommer inn i historien din.",
+          "effekter": {
+            "flagg": {
+              "arvid_valg11": "avstand"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_retning10": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d12_arvid_avklaringen",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem svarer om adgang?",
+      "tekst": "Arvid forklarer at folk vanligvis spør kontakten om navn på gjestelista og om noen kan slippe inn gratis. Det er arrangøren som bestemmer begge deler. Utkastet er ikke publisert med navnet ditt.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Svar bare om programmet og vis adgangsspørsmål videre",
+          "konsekvensTekst": "Arvid endrer teksten til «Spørsmål om program: kontakt her. Adgang og gjesteliste: arrangøren.» Du godkjenner den avgrensede kontakten, og han publiserer teksten.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "avgrenset"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Be ham utelate navnet ditt",
+          "konsekvensTekst": "Arvid lar navnefeltet stå tomt og bruker arrangørens kontakt. Han publiserer invitasjonen uten deg.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "trukket"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_valg11": "avklar"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "d12_arvid_navnet",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 12,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Folk har lest invitasjonen",
+      "tekst": "Invitasjonen er publisert med navnet ditt som kontakt. En person du ikke kjenner skriver: «Arvid sier du ordner navn. Kan du få oss inn på dag 16?» Du har ikke fått noe mandat fra arrangøren.",
+      "valg": [
+        {
+          "id": "rett",
+          "tekst": "Svar at du ikke styrer adgang, og få teksten rettet",
+          "konsekvensTekst": "Du svarer at arrangøren avgjør adgang. Arvid retter invitasjonen og skriver under den at navnet ditt bare gjelder spørsmål om programmet.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "rettet"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "la_staa",
+          "tekst": "La meldingen ligge og navnet stå",
+          "konsekvensTekst": "Du svarer ikke. Invitasjonen står fortsatt med navnet ditt under «Kontakt», og personen venter på hjelp med adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "aapent"
+            },
+            "meters": {
+              "psyke": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_valg11": "navn"
+        }
+      }
+    },
+    {
+      "id": "d12_arvid_pausesporet",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Planer som er dine",
+      "tekst": "Du har valgt å la kontakten med Arvid ligge. Jonas spør om du vil hjelpe ham å velge bilder til et lite album, hjemme hos ham. Det er ingen forbindelse til undergrunnskvelden.",
+      "valg": [
+        {
+          "id": "bilder",
+          "tekst": "Se på bildene sammen med Jonas",
+          "konsekvensTekst": "Dere sorterer bildene ved kjøkkenbordet. Jonas lar deg ta med et bilde fra en tur dere gikk for lenge siden.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "avstand",
+              "arvid_bilder_med_jonas": true
+            },
+            "meters": {
+              "psyke": 1
+            },
+            "relasjoner": {
+              "venn": 2
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Behold dagen til ditt eget arbeid",
+          "konsekvensTekst": "Du svarer Jonas at du vil være hjemme i dag. Han sier at bildene kan vente, og du fortsetter med ditt eget arbeid.",
+          "effekter": {
+            "flagg": {
+              "arvid_utkast12": "avstand"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_valg11": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d13_arvid_avgrenset",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Spørsmålet du kan svare på",
+      "tekst": "En melding kommer om når programmet begynner. Du finner tidspunktet i invitasjonen og sender lenken. Ingen har bedt deg bestemme hvem som kommer inn. Arvid spør om du fortsatt vil stå som programkontakt.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold den avgrensede kontakten",
+          "konsekvensTekst": "Du bekrefter programkontakten. Arrangøren svarer fortsatt på adgang, og du har ikke påtatt deg arbeid på kvelden.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "kontakt",
+              "arvid13_kontakt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "trekk",
+          "tekst": "Be om å bli fjernet som kontakt",
+          "konsekvensTekst": "Du sier fra til Arvid. Han fjerner navnet ditt og setter arrangørens kontakt også ved programspørsmålene.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "avstand",
+              "arvid13_avstand": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_utkast12": "avgrenset"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "d13_arvid_rettet",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Rettingen blir lest",
+      "tekst": "Personen som ba om hjelp med adgang, har sett rettingen: «Så du kan ikke få oss inn?» Navnet ditt står fortsatt ved programspørsmålene. Det er lettere å gi et presist svar enn da invitasjonen først kom.",
+      "valg": [
+        {
+          "id": "presist",
+          "tekst": "Svar at arrangøren bestemmer adgang",
+          "konsekvensTekst": "Du sender arrangørens kontakt og sier at du bare svarer om programmet. Personen får vite hvem som faktisk kan gi et svar.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "kontakt",
+              "arvid13_kontakt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "trekk",
+          "tekst": "Svar nei og få navnet ditt fjernet helt",
+          "konsekvensTekst": "Du svarer nei og ber Arvid fjerne navnet ditt. Han oppdaterer invitasjonen med arrangørens kontakt.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "avstand",
+              "arvid13_avstand": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_utkast12": "rettet"
+        }
+      }
+    },
+    {
+      "id": "d13_arvid_uten_navn",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Invitasjonen uten deg",
+      "tekst": "Arvid sender den publiserte invitasjonen. Navnet ditt er utelatt slik du ba om. «Da tar arrangøren spørsmålene», skriver han. Det er ingen avtale om at du skal møte på dag 16.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Takk for at navnet er utelatt, og behold kontakten",
+          "konsekvensTekst": "Du takker for at han fulgte svaret ditt. Dere kan fortsette å snakke uten at navnet ditt står på invitasjonen.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "kontakt",
+              "arvid13_kontakt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Si at du vil la kontakten ligge nå",
+          "konsekvensTekst": "Du sier fra om en pause. Arvid svarer at han lar deg være.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "avstand",
+              "arvid13_avstand": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_utkast12": "trukket"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "d13_arvid_forventningen",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Noen venter på et svar",
+      "tekst": "Personen som spurte om adgang, skriver igjen: «Skal vi bare oppgi navnet ditt?» Du lot den første meldingen ligge. Invitasjonen gir fortsatt inntrykk av at du kan ordne mer enn du faktisk kan.",
+      "valg": [
+        {
+          "id": "rett",
+          "tekst": "Svar tydelig og få Arvid til å rette invitasjonen",
+          "konsekvensTekst": "Du svarer at navnet ditt ikke gir adgang. Arvid retter invitasjonen til programkontakt og skriver en avklaring under den. Personen vet nå at arrangøren bestemmer.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "kontakt",
+              "arvid13_kontakt": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "Skyv svaret til i morgen",
+          "konsekvensTekst": "Du lar meldingen ligge igjen. Personen har ikke fått noe ja, men forventningen og den uklare invitasjonen står fortsatt der.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "uavklart",
+              "arvid13_uavklart": true
+            },
+            "meters": {
+              "psyke": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_utkast12": "aapent"
+        }
+      }
+    },
+    {
+      "id": "d13_arvid_fortsatt_pause",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En kveld uten miljøet",
+      "tekst": "Du har fortsatt ingen ny avtale med Arvid. Resten av dagen er din. Du kan ringe Jonas eller legge telefonen bort; ingen skal vente på et svar om arrangementet.",
+      "valg": [
+        {
+          "id": "venn",
+          "tekst": "Ring Jonas om helgeplanene",
+          "konsekvensTekst": "Dere avtaler en tur sammen til helga. Samtalen oppretter ingen kontakt med Arvid.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "avstand",
+              "arvid13_avstand": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "Legg telefonen bort og ta en rolig kveld",
+          "konsekvensTekst": "Du legger telefonen bort og avslutter ditt eget arbeid for dagen. Pausen fra miljøet varer videre.",
+          "effekter": {
+            "flagg": {
+              "arvid_retning13": "avstand",
+              "arvid13_avstand": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid_utkast12": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d13_arvid_slutt",
+      "threadId": "arvid_navnet_pa_invitasjonen",
+      "dag": 13,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Navnet og svaret ditt",
+      "tekst": "Du ser gjennom valgene fra de siste dagene. Historieboka bevarer det du svarte, det du rettet og kontakten du valgte å la ligge.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapittelet",
+          "konsekvensTekst": "Du lukker historieboka for kvelden. De gamle møtene og alle valgene dine blir stående sammen med det nye kapittelet.",
+          "effekter": {
+            "flagg": {
+              "arvid_kapittel13_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_navnet_pa_invitasjonen": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "arvid13_kontakt",
+      "navn": "En kontakt du kan stå for",
+      "tekst": "Du har beholdt kontakten med Arvid. Navnet ditt gir ingen adgang; eventuelle spørsmål om gjestelista går til arrangøren.",
+      "kriterier": {
+        "flagg": {
+          "arvid13_kontakt": true
+        }
+      }
+    },
+    {
+      "id": "arvid13_avstand",
+      "navn": "Navnet er ute, pausen fortsetter",
+      "tekst": "Du har valgt avstand og står ikke som kontakt på invitasjonen. Ingen ny avtale med Arvid er opprettet.",
+      "kriterier": {
+        "flagg": {
+          "arvid13_avstand": true
+        }
+      }
+    },
+    {
+      "id": "arvid13_uavklart",
+      "navn": "Et navn med åpne forventninger",
+      "tekst": "Invitasjonen står med navnet ditt som kontakt, og spørsmålet om adgang er ennå ubesvart. Det er ikke et løfte om å slippe noen inn.",
+      "kriterier": {
+        "flagg": {
+          "arvid13_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "arvid13_standard",
+      "navn": "Hvem får snakke for deg?",
+      "tekst": "Invitasjonen og dine faktiske svar står i historieboka.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

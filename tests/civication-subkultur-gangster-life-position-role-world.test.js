@@ -95,3 +95,38 @@ const money = stream.storylets.find((x)=>x.id==='pengene_som_ma_vaere_forklarlig
 assert.match(money.situation.join(' '), /lovlig|forklare|avtalte oppdraget/i);
 
 console.log('civication Subkultur Gangster Role World ok: 56/56 / 14 anchors / 105 total / 20 life-position worlds');
+
+// Canonical Gangster has a null id. Real activation emits its label, not
+// the qualified id tag; the declared source must still deliver a scene.
+async function activationTest() {
+  const vm = require('node:vm'), storage = new Map();
+  const window = {
+    CIVI_LIFE_POSITION_CATALOG: readJson('data/Civication/lifePositionCatalog.json'),
+    BADGES: [readJson('data/badges/subkultur.json')],
+    CivicationState: { getActivePosition() { return null; } },
+    CivicationJsonStore: { async fetchJson(p) {
+      if (p === 'data/Civication/narratives/manifest.json') return readJson(p);
+      return p === narrativePath ? stream : null;
+    } },
+    dispatchEvent() {}, addEventListener() {}, setTimeout() {}
+  };
+  const sandbox = vm.createContext({ window, console, Event: class {}, localStorage: {
+    getItem(k) { return storage.get(k) || null; }, setItem(k, v) { storage.set(k, v); }
+  } });
+  for (const p of ['js/Civication/systems/civicationLifePositionRuntime.js', 'js/Civication/systems/civicationNarrativeSceneSource.js']) {
+    vm.runInContext(fs.readFileSync(path.join(ROOT, p), 'utf8'), sandbox);
+  }
+  const life = window.CivicationLifePositions, narrative = window.CivicationNarrativeSceneSource;
+  storage.set('merits_by_category', JSON.stringify({ subkultur: { points: 59 } }));
+  assert.equal(life.activate('subkultur', 'Gangster').reason, 'life_position_locked');
+  assert.equal((await narrative.getActivationSnapshot({ state: {}, active: null })).matched_stream_ids.length, 0);
+  storage.set('merits_by_category', JSON.stringify({ subkultur: { points: 60 } }));
+  assert.equal(life.activate('subkultur', 'Gangster').ok, true);
+  assert.equal(life.getLifeContext().primary_life_position.id, null);
+  assert.equal(life.getLifeContext().employment.formal_status, 'no_formal_job');
+  assert.ok((await narrative.getActivationSnapshot({ state: {}, active: null })).matched_stream_ids.includes(stream.id));
+  const events = await narrative.getSourceScenes({ state: {}, active: null, phaseId: 'afternoon', candidate_stream_ids: [stream.id] });
+  assert.ok(events.length && events[0].narrative_stream_id === stream.id);
+  console.log('Gangster null-id activation: threshold gate, canonical label and actual narrative delivery passed.');
+}
+activationTest().catch(error => { console.error(error); process.exitCode = 1; });
