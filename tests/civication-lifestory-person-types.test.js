@@ -162,5 +162,55 @@ function play(type, id, b) {
   assert.equal(fresh.arkiv.length, 0);
   assert.equal(fresh.personRepresentanter.mira.personId, 'mari_boine', 'restart binds the current collection again');
   dom.window.close(); delete globalThis.CivicationLifePositions;
+  // Real choice-only references from the review: display their disclosure
+  // before selecting, in feedback and in the summary after reloading.
+  // Choosing the other option must not invent a person event.
+  for (const fixture of [
+    { chapters: ['frilans_med_lea', 'frilans_neste_steg'], scene: 'd13_frilans_vurdering', choice: 'avslutt',
+      type: 'lea', person: 'peter_emil_steen', flag: 'frilans_neste_valg', value: 'undersok' },
+    { chapters: ['miljo_med_arvid', 'miljo_navnet_ditt'], scene: 'd13_arvid_rettet', choice: 'trekk',
+      type: 'amir', person: 'sossen_krohg', flag: 'arvid_utkast12', value: 'rettet' }
+  ]) {
+    let active = base;
+    for (const id of fixture.chapters) active = C.appendContinuation(active, read(base.role.symposium.fortsettelser.find(p => p.id === id).path));
+    const scene = active.scenes.find(s => s.id === fixture.scene), type = types.find(p => p.id === fixture.type);
+    assert.equal(S.sceneMentionsPerson(scene, type), false);
+    assert.equal(S.sceneMentionsPerson(scene, type, scene.valg.find(c => c.id === fixture.choice)), true);
+    for (const choice of scene.valg) {
+      const fixtureState = S.createInitialState(active), fixtureBridge = bridge([fixture.person]);
+      await fixtureBridge.load(); S.bindPersonTypes(fixtureState, active, fixtureBridge);
+      Object.assign(fixtureState, { dag: 13, fase: scene.fase, fortsettelser: fixture.chapters,
+        fortsettelseId: fixture.chapters.at(-1), spilteScener: active.scenes.filter(s => s.id !== scene.id).map(s => s.id) });
+      fixtureState.tidligereValg[fixture.flag] = fixture.value;
+      fixtureState.threadState[scene.threadId] = { status: 'active', step: 0, lastSceneId: null };
+      const role = active.role.symposium.rollebroer.find(p => p.role_scope === active.fortsettelse.role_scope);
+      async function boot(savedState) {
+        const d = new JSDOM('<section id="civiLifestoryPanel"></section>', { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
+        const win = d.window;
+        win.localStorage.setItem(S.STORAGE_KEY, JSON.stringify(savedState));
+        win.CivicationLifePositions = { getLifeContext: () => ({ primary_life_position: { label: role.navn, badge_id: role.badge_id } }) };
+        win.fetch = async url => ({ ok: true, json: async () => read(String(url)) });
+        for (const file of ['lifestoryContent', 'lifestoryState', 'lifestoryRunner', 'lifestoryEndings']) win.eval(fs.readFileSync(path.join(root, 'js/Civication/lifestory/' + file + '.js'), 'utf8'));
+        win.eval(fs.readFileSync(path.join(root, 'js/Civication/ui/CivicationLifestoryUI.js'), 'utf8'));
+        win.document.dispatchEvent(new win.Event('DOMContentLoaded'));
+        for (let i = 0; i < 100 && !win.CivicationLifestoryUI.getCurrentSceneInfo(); i++) await tick();
+        return d;
+      }
+      const d = await boot(fixtureState), win = d.window, p = win.document.getElementById('civiLifestoryPanel');
+      assert.equal(win.CivicationLifestoryUI.getCurrentSceneInfo().sceneId, scene.id);
+      assert.ok(p.querySelector('.civi-lifestory-scene [data-lifestory-dramatized]'), 'choice-only reference is disclosed before selection');
+      p.querySelector('[data-lifestory-choice="' + choice.id + '"]').click();
+      const namesPerson = choice.id === fixture.choice;
+      assert.equal(!!p.querySelector('.civi-lifestory-konsekvens [data-lifestory-dramatized]'), namesPerson);
+      assert.equal(!!p.querySelector('.civi-lifestory-summary [data-lifestory-dramatized]'), namesPerson);
+      const saved = win.CivicationLifestoryState.load();
+      assert.equal(!!saved.arkiv.at(-1).personRepresentanter?.[fixture.type], namesPerson, 'unchosen references are not archived');
+      if (namesPerson) assert.ok(p.querySelector('.civi-lifestory-konsekvens').textContent.includes(people.get(fixture.person).name));
+      d.window.close();
+      const reloaded = await boot(saved);
+      assert.equal(!!reloaded.window.document.querySelector('.civi-lifestory-summary [data-lifestory-dramatized]'), namesPerson, 'summary disclosure survives reload');
+      reloaded.window.close();
+    }
+  }
   console.log(`Person types: 6 canonical representatives, 9 complete day-13 journeys, ${played} choices; frozen cast, legacy archives and actual DOM verified.`);
 })().catch(error => { console.error(error); process.exitCode = 1; });

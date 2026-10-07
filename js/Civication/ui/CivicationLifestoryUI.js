@@ -58,7 +58,7 @@
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
-  /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }> }|null} */ let sisteKonsekvens = null;
+  /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
   /**
    * @param {unknown} value
@@ -237,7 +237,7 @@
       const result = Runner.applyChoice(state, content, sceneId, choiceId);
       const deltas = diffMetersAndRelations(before);
       sisteKonsekvens = result.konsekvensTekst || deltas.length
-        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas }
+        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
       State.save(state);
       // Énveis konsekvensbro: faktiske meter-endringer (etter clamping)
@@ -379,8 +379,7 @@
       + "<p>" + escapeHtml(scene.tekst) + "</p>"
       + (representative?.personId && representative.beskrivelse
         ? '<p class="muted"><strong>Fra History Go:</strong> ' + escapeLiteral(representative.beskrivelse) + '</p>' : "")
-      + ((content.role.personer || []).some(p => state.personRepresentanter?.[p.id]?.personId && window.CivicationLifestoryState.sceneMentionsPerson(scene, p))
-        ? '<p class="muted">Dramatisert historie med History Go-personer. Dialog og handling er skrevet for spillet.</p>' : "")
+      + dramatizationNote(sceneHasRepresentative(scene))
       + "<div class=\"civi-lifestory-threadline\">Tråd: <strong>" + escapeHtml(formatThreadTitle(thread || { id: scene.threadId })) + "</strong>" + (ts ? " <span class=\"civi-thread-badge is-" + escapeHtml(ts.status) + "\">" + escapeHtml(formatThreadStatus(ts.status)) + "</span>" : "") + "</div>"
       + "<div class=\"civi-lifestory-choices\" aria-label=\"Valg\">" + valgHtml + "</div>"
       + "</article>";
@@ -393,6 +392,16 @@
   function viewPhaseName(phaseId) {
     const phase = (content?.faser || []).find((f) => f.id === phaseId);
     return phase ? phase.navn : humanizeId(phaseId);
+  }
+
+  /** @param {any} scene @param {any} [choice] @returns {boolean} */
+  function sceneHasRepresentative(scene, choice) {
+    return !!scene && (content.role.personer || []).some(p => state.personRepresentanter?.[p.id]?.personId
+      && (choice ? [choice] : scene.valg || [null]).some(c => window.CivicationLifestoryState.sceneMentionsPerson(scene, p, c)));
+  }
+
+  function dramatizationNote(enabled) {
+    return enabled ? '<p class="muted" data-lifestory-dramatized>Dramatisert historie med History Go-personer. Dialog og handling er skrevet for spillet.</p>' : "";
   }
 
   function personNavn(personId) {
@@ -414,6 +423,7 @@
       + "<div class=\"civi-lifestory-section-label\">Konsekvens</div>"
       + (sisteKonsekvens.valgTekst ? "<div class=\"muted\">Etter «" + escapeHtml(sisteKonsekvens.valgTekst) + "»</div>" : "")
       + "<p>" + escapeHtml(sisteKonsekvens.tekst) + "</p>"
+      + dramatizationNote(sisteKonsekvens.dramatisert)
       + (chips ? "<div class=\"civi-lifestory-deltas\">" + chips + "</div>" : "")
       + "</section>";
   }
@@ -490,6 +500,7 @@
       + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
       + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
+      + dramatizationNote(summary.valg.some(entry => Object.keys(entry.personRepresentanter || {}).some(id => entry.personRepresentanter[id]?.personId)))
       + stampHtml
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
