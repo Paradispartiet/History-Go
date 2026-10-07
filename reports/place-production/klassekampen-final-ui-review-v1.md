@@ -70,6 +70,15 @@ Collection counts i den endelige kjøringen:
 
 Popup-evidence bekreftet blant annet Bjørgulv Braanen, førsteutgaven av Klassekampen, Klassekampen-brandet, Bokmagasinet, Musikkmagasinet og Klassekampen e-avis.
 
+## Derived cleanup etter UI-review
+
+Den avsluttende CI-kontrollen identifiserte to stale, deterministisk genererte artefakter etter story/runtime-materialiseringen:
+
+- `data/epoker/epoke-place-index.json`
+- `data/quiz/production_context/media/klassekampen_redaksjon.json`
+
+Begge ble regenerert fra canonical data i den scope-låste workflowen `TEMP Klassekampen generated cleanup`, run `37674191349`. Scope-gaten bekreftet at generatorene bare endret disse to filene, og både `epoker:places:check` og `audit:quiz-production-context` var grønne før commit.
+
 ## Governance-konklusjon
 
 `manual_reviews.final_ui` kan settes til **PASS** med denne reviewen som permanent evidence.
