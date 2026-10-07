@@ -209,6 +209,10 @@ try {
         title: popup?.title || '',
         hasContent: String(popup?.html || '').trim().length > 20,
       });
+
+      const popupRoot = page.locator('.hg-popup.placecard-round-popup.visible');
+      await popupRoot.locator('[data-close-popup]').click();
+      await popupRoot.waitFor({ state: 'detached', timeout: 10_000 });
     }
 
     const beforeFlipText = await page.locator('#pcQuizCardContent').innerText();
