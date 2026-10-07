@@ -64,6 +64,7 @@ function runDerivedStep(step, mode, repoRoot) {
 export function printPlan(record) {
   const selected = deriveSelectedCollections(record);
   const blocked = blockedLabels(record);
+  const derivedSteps = placeDerivedArtifactPlan(record).map((step) => step.id);
   const lines = [
     `Place: ${record.place_id}`,
     `Profile: ${record.profile.id} (${record.profile.status})`,
@@ -71,6 +72,7 @@ export function printPlan(record) {
     `Collections: ${selected.length ? selected.join(', ') : 'none'}`,
     `Blocked: ${blocked.length ? blocked.join(', ') : 'none'}`,
     `Factuality: ${record.sources.factuality_record}`,
+    `Derived pipeline: ${derivedSteps.join(' -> ')} -> i18n-freshness`,
   ];
   process.stdout.write(`${lines.join('\n')}\n`);
 }
