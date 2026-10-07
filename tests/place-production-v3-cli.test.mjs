@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
-import { V3_BUILD_STEPS, validateWorkflowRecord } from '../scripts/place-production-v3-lib.mjs';
+import { placeDerivedArtifactPlan, validateWorkflowRecord } from '../scripts/place-production-v3-lib.mjs';
 
 function run(...args) {
   return spawnSync(process.execPath, ['scripts/place-production-v3.mjs', ...args], {
@@ -20,12 +20,22 @@ test('plan prints deterministic Akershus slott summary', () => {
   assert.match(result.stdout, /^Factuality: data\/places\/production\/akershus_slott\.json$/m);
 });
 
-test('build steps are explicit argument arrays, never shell strings', () => {
-  assert.deepEqual(V3_BUILD_STEPS, [
-    ['npm', ['run', 'places:index:build']],
-    ['npm', ['run', 'place-open:build']],
-    ['node', ['scripts/build-place-production-v3-projections.mjs']],
+test('derived build steps are explicit argument arrays, never shell strings', () => {
+  const steps = placeDerivedArtifactPlan({ place_id: 'fixture_place', modules: {} });
+  assert.deepEqual(steps.map((step) => step.id), [
+    'places-index',
+    'place-open',
+    'epoke-place-index',
+    'v3-projections',
   ]);
+  for (const step of steps) {
+    assert.equal(Array.isArray(step.build), true);
+    assert.equal(typeof step.build[0], 'string');
+    assert.equal(Array.isArray(step.build[1]), true);
+    assert.equal(Array.isArray(step.verify), true);
+    assert.equal(typeof step.verify[0], 'string');
+    assert.equal(Array.isArray(step.verify[1]), true);
+  }
 });
 
 test('validator rejects a complete claim with a BLOCKED decision', () => {
