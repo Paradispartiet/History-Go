@@ -7,6 +7,9 @@ on:
       - agent/klassekampen-final-ui-closeout-20261007
     paths:
       - .github/workflows/tmp-klassekampen-final-ui-qa.yml
+      - data/i18n/content/places/en.json
+      - data/i18n/content/places/es.json
+      - data/i18n/content/places/pt.json
   workflow_dispatch:
 
 permissions:
@@ -19,6 +22,17 @@ jobs:
     steps:
       - name: Check out exact branch head
         uses: actions/checkout@v4
+
+      - name: Verify place translations
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run build:scripts
+          node dist/scripts/i18n-audit-places.js en es pt
+          node dist/scripts/i18n-quality-places.js en
+          node dist/scripts/i18n-quality-places.js es
+          node dist/scripts/i18n-quality-places.js pt
 
       - name: Prepare Chrome harness
         shell: bash
@@ -234,6 +248,7 @@ jobs:
                 .filter(img => img.width > 0 && img.height > 0 && Boolean(img.src));
               return {
                 title: (document.getElementById('pcTitle')?.textContent || '').trim(),
+                cardText: (card?.innerText || '').trim(),
                 currentPlaceId: card?.dataset?.currentPlaceId || '',
                 visible,
                 collectionMode: card?.dataset?.collectionMode || '',
@@ -256,7 +271,8 @@ jobs:
 
             const required = {
               exactPlace: base.currentPlaceId === 'klassekampen_redaksjon',
-              title: /Klassekampen/i.test(base.title),
+              title: base.title === 'Klassekampen editorial office',
+              noLegacyHausmann: !/Hausmanns?/i.test(base.title + '\n' + base.cardText + '\n' + popupChecks.map(item => item.title).join('\n')),
               visible: base.visible === true,
               canonicalCollectionMode: base.collectionMode === 'place-card-collections-v2',
               fourCollections: base.collectionCount === 4,
