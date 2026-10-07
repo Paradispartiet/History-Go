@@ -69,7 +69,7 @@ test("special profiles stay owner-backed without popup embedding or synthetic ta
   assert.match(queueSource, /placeSheetSectionApplies\(id, placeId\)/);
   assert.match(queueSource, /id === "sources" \|\| id === "special"/);
   assert.match(shellSource, /sections\/special-sections/);
-  assert.match(shellSource, /data-hg-place-sheet-onsite/);
+  assert.match(shellSource, /data-hg-place-sheet-nav/);
   assert.match(shellSource, /pcEventsBox/);
 });
 

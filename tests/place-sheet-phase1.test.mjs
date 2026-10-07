@@ -10,18 +10,17 @@ const css = fs.readFileSync("css/place-sheet.css", "utf8");
 const collectionsSource = fs.readFileSync("js/ui/place-rounds-visual-collections.js", "utf8");
 
 test("Phase 1 shell reuses existing PlaceCard nodes instead of cloning them", () => {
-  assert.match(shellSource, /appendChild\(front\)/);
+  assert.match(shellSource, /media\.prepend\(front\)/);
   assert.match(shellSource, /copy\.prepend\(textBlock\)/);
-  assert.match(shellSource, /appendChild\(sideStack\)/);
-  assert.match(shellSource, /appendChild\(events\)/);
+  assert.match(shellSource, /insertAfter\?\.after\(sideStack\)/);
+  assert.match(shellSource, /insertAfter\?\.after\(events\)/);
   assert.doesNotMatch(shellSource, /cloneNode/);
   assert.match(shellSource, /restoreLegacyPlaceCardStructure/);
   assert.match(shellSource, /pc-sheet-canonical-about/);
 });
 
-test("Phase 1 styling keeps portrait hero and four editorial collection cards", () => {
-  assert.match(css, /grid-template-columns:\s*minmax\(230px,\s*\.78fr\)\s+minmax\(0,\s*1\.42fr\)/);
-  assert.match(css, /\.pc-sheet-explore-grid[\s\S]*grid-template-columns:\s*repeat\(2,\s*minmax\(0,\s*1fr\)\)/);
+test("Phase 1 styling is single-column while canonical collections stay reusable", () => {
+  assert.match(css, /\.pc-sheet-hero\{[\s\S]*?display:\s*block;/);
   assert.match(css, /data-collection-shape="circle"[\s\S]*border-radius:\s*50%/);
   assert.match(css, /data-collection-shape="rectangle"[\s\S]*border-radius:\s*22px/);
   assert.match(css, /content:\s*attr\(aria-label\)\s*" · "\s*attr\(data-collection-item-count\)/);
@@ -96,8 +95,13 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   assert.equal(card.classList.contains("is-place-sheet-phase1"), true);
   assert.equal(window.document.getElementById("pcFrontCardFlip").parentElement?.classList.contains("pc-sheet-hero-media"), true);
   assert.equal(window.document.querySelector(".pc-text")?.parentElement?.classList.contains("pc-sheet-hero-copy"), true);
-  assert.ok(shell.querySelector(".pc-sheet-explore-grid .pc-side-stack"));
-  assert.ok(shell.querySelector(".pc-sheet-onsite #pcEventsBox"));
+  const nav = shell.querySelector('[data-hg-place-sheet-nav="1"]');
+  const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
+  const sideStack = nav?.querySelector(".pc-side-stack");
+  const eventsBox = nav?.querySelector("#pcEventsBox");
+  assert.ok(nav && aboutButton && sideStack && eventsBox);
+  assert.equal(aboutButton.nextElementSibling, sideStack);
+  assert.equal(sideStack.nextElementSibling, eventsBox);
   assert.match(shell.querySelector(".pc-sheet-canonical-about")?.textContent || "", /Lang canonical omtekst/);
   assert.equal(popupCalls, 0, "standard Place must not invoke the legacy popup renderer");
   assert.equal(card.querySelector('.hg-popup .hg-place-about-section'), null, "canonical popupDesc node must have one visual owner");
