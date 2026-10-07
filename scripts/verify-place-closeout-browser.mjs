@@ -98,7 +98,11 @@ const reports = [];
 let failed = false;
 
 try {
-  browser = await chromium.launch({ headless: true });
+  browser = await chromium.launch({
+    headless: true,
+    executablePath: process.env.CHROME_BIN || undefined,
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
 
   for (const profile of profiles) {
     const context = await browser.newContext({
