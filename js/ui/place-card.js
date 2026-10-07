@@ -757,7 +757,8 @@ const PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS = Object.freeze([
   "data/quizcards/by/manifest.json",
   "data/quizcards/historie/manifest.json",
   "data/quizcards/litteratur/manifest.json",
-  "data/quizcards/scenekunst/manifest.json"
+  "data/quizcards/scenekunst/manifest.json",
+  "data/quizcards/media/manifest.json"
 ]);
 const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
   "by/topp10_by_kort_batch1.json",

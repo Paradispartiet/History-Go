@@ -1,0 +1,1222 @@
+{
+  "targetId": "klassekampen_redaksjon",
+  "categoryId": "media",
+  "sources": {
+    "klassekampen_contact": "https://klassekampen.no/kontakt",
+    "klassekampen_eavis": "https://ks.klassekampen.no/eavis/",
+    "klassekampen_subscription": "https://ks.klassekampen.no/abonnement/info",
+    "klassekampen_books": "https://klassekampen.no/magasiner/bokmagasinet",
+    "klassekampen_music": "https://klassekampen.no/magasiner/musikkmagasinet",
+    "snl_klassekampen": "https://snl.no/Klassekampen_-_avis",
+    "oslo_byleksikon_klassekampen": "https://oslobyleksikon.no/side/Klassekampen",
+    "snl_offentlighet": "https://snl.no/offentlighet",
+    "tuchman_making_news": "https://books.google.com/books?id=_OMkAQAAMAAJ"
+  },
+  "production_context": {
+    "standard_version": "3.4",
+    "manifest_category": "media",
+    "source_brief": "data/quiz/production_briefs/media/klassekampen_redaksjon.json",
+    "context_artifact": "data/quiz/production_context/media/klassekampen_redaksjon.json",
+    "source_review_status": "reviewed",
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "resolved_files": {
+      "pensum": "data/fag/media/mediapensum_canonical_v4_5.json",
+      "emner": "data/fag/media/emner_media_canonical_v4_5.json",
+      "fagkart": "data/fag/media/fagkart_media_canonical_v4_5.json",
+      "methods": "data/fag/media/methods_media_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/media/supersetQUIZMAL_media.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "pensum_module_ids": [
+      "presse_redaksjoner_avishus",
+      "offentlighet_ytringsfrihet_etikk",
+      "plattformer_algoritmer_distribusjon"
+    ],
+    "emne_ids": [
+      "em_media_avishus_offentlighetsrom",
+      "em_media_redaksjon_desk",
+      "em_media_kritikk_kommentar",
+      "em_media_digital_offentlighet"
+    ],
+    "topic_hook_ids": [
+      "redaksjon_og_desk"
+    ],
+    "method_ids": [
+      "met_media_redaksjonsanalyse"
+    ],
+    "thinker_ids": [
+      "gaye_tuchman"
+    ],
+    "works": [],
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/media",
+        "data/quiz/quiz_media_from_populaerkultur.json"
+      ],
+      "active_before": [],
+      "decisions": [
+        "No active canonical quiz package for klassekampen_redaksjon existed before this governed Media pilot; build fresh from current source review."
+      ],
+      "knowledge_migration": "No target-specific canonical Knowledge ownership is replaced by this package."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "The reviewed source base supports 28 non-duplicated claims across newsroom/place facts, institution history, publication formats, source criticism, one method and one theory-bound final synthesis without padding."
+    },
+    "held_back_candidates": [
+      "1997 editor crisis remains under Stories governance",
+      "current circulation/traffic metrics",
+      "political affiliation questions",
+      "claims that 1969 is the move-in year for Grønland 4"
+    ],
+    "profile": "normal_4x7",
+    "theory_start_phase": "final",
+    "method_start_phase": "final"
+  },
+  "sets": [
+    {
+      "set_id": "media_klassekampen_redaksjon_set_1",
+      "level": 1,
+      "order": 1,
+      "xp": 50,
+      "phase": "opening",
+      "mode": "newsroom_and_place",
+      "questions": [
+        {
+          "id": "klassekampen_q01",
+          "quiz_id": "media_klassekampen_redaksjon_q01",
+          "claim_id": "claim_klassekampen_01",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva er Klassekampen-redaksjonens dokumenterte besøksadresse?",
+          "options": [
+            "Grønland 4",
+            "Akersgata 55",
+            "Hausmanns gate 16"
+          ],
+          "answer": "Grønland 4",
+          "answerIndex": 0,
+          "knowledge": "Klassekampens offisielle kontaktside oppgir Grønland 4, 0188 Oslo som besøksadresse.",
+          "claim_basis": "Klassekampens offisielle kontaktside oppgir Grønland 4, 0188 Oslo som besøksadresse.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_offisielle_8c4f679ceb",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_offisielle_8c4f679ceb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q02",
+          "quiz_id": "media_klassekampen_redaksjon_q02",
+          "claim_id": "claim_klassekampen_02",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvem oppgis som ansvarlig redaktør på Klassekampens kontaktside?",
+          "options": [
+            "Bjørgulv Braanen",
+            "Mari Skurdal",
+            "Harald Fougner"
+          ],
+          "answer": "Mari Skurdal",
+          "answerIndex": 1,
+          "knowledge": "Klassekampens kontaktside oppgir Mari Skurdal som ansvarlig redaktør.",
+          "claim_basis": "Klassekampens kontaktside oppgir Mari Skurdal som ansvarlig redaktør.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kontaktsid_ad73c0380c",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kontaktsid_ad73c0380c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q03",
+          "quiz_id": "media_klassekampen_redaksjon_q03",
+          "claim_id": "claim_klassekampen_03",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilken funksjon er eksplisitt oppført som del av redaksjonen?",
+          "options": [
+            "Seddeltrykkeri",
+            "Museumskonservering",
+            "Desk"
+          ],
+          "answer": "Desk",
+          "answerIndex": 2,
+          "knowledge": "Klassekampens kontaktside dokumenterer desk som en av redaksjonens funksjoner.",
+          "claim_basis": "Klassekampens kontaktside dokumenterer desk som en av redaksjonens funksjoner.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kontaktsid_b2e639f1a5",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kontaktsid_b2e639f1a5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q04",
+          "quiz_id": "media_klassekampen_redaksjon_q04",
+          "claim_id": "claim_klassekampen_04",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Når kom første nummer av dagens Klassekampen?",
+          "options": [
+            "Februar 1969",
+            "Januar 1973",
+            "Mai 1977"
+          ],
+          "answer": "Februar 1969",
+          "answerIndex": 0,
+          "knowledge": "Første nummer av dagens Klassekampen kom i februar 1969.",
+          "claim_basis": "Første nummer av dagens Klassekampen kom i februar 1969.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen",
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_f_rste_nummer_av_dagens__bde3a47605",
+          "knowledge_unit_ids": [
+            "ku_media_f_rste_nummer_av_dagens__bde3a47605"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q05",
+          "quiz_id": "media_klassekampen_redaksjon_q05",
+          "claim_id": "claim_klassekampen_05",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvor ofte kom Klassekampen ut ved starten i 1969?",
+          "options": [
+            "Daglig",
+            "Månedlig",
+            "Ukentlig"
+          ],
+          "answer": "Månedlig",
+          "answerIndex": 1,
+          "knowledge": "Oslo byleksikon beskriver Klassekampen som månedsavis ved starten i 1969.",
+          "claim_basis": "Oslo byleksikon beskriver Klassekampen som månedsavis ved starten i 1969.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_oslo_byleksikon_beskrive_054fd6ea9d",
+          "knowledge_unit_ids": [
+            "ku_media_oslo_byleksikon_beskrive_054fd6ea9d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q06",
+          "quiz_id": "media_klassekampen_redaksjon_q06",
+          "claim_id": "claim_klassekampen_06",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Når ble Klassekampen ukeavis?",
+          "options": [
+            "1969",
+            "1977",
+            "1973"
+          ],
+          "answer": "1973",
+          "answerIndex": 2,
+          "knowledge": "Klassekampen ble ukeavis i 1973.",
+          "claim_basis": "Klassekampen ble ukeavis i 1973.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_klassekampen_ble_ukeavis_2d9619839b",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampen_ble_ukeavis_2d9619839b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q07",
+          "quiz_id": "media_klassekampen_redaksjon_q07",
+          "claim_id": "claim_klassekampen_07",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Når ble Klassekampen dagsavis?",
+          "options": [
+            "1977",
+            "1991",
+            "1996"
+          ],
+          "answer": "1977",
+          "answerIndex": 0,
+          "knowledge": "Klassekampen ble dagsavis i 1977.",
+          "claim_basis": "Klassekampen ble dagsavis i 1977.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_klassekampen_ble_dagsavi_5636493bab",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampen_ble_dagsavi_5636493bab"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_klassekampen_redaksjon_set_2",
+      "level": 2,
+      "order": 2,
+      "xp": 60,
+      "phase": "middle",
+      "mode": "institution_history",
+      "questions": [
+        {
+          "id": "klassekampen_q08",
+          "quiz_id": "media_klassekampen_redaksjon_q08",
+          "claim_id": "claim_klassekampen_08",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilket år ble Klassekampen formelt uavhengig?",
+          "options": [
+            "1977",
+            "1991",
+            "1996"
+          ],
+          "answer": "1991",
+          "answerIndex": 1,
+          "knowledge": "Klassekampen ble formelt uavhengig i 1991.",
+          "claim_basis": "Klassekampen ble formelt uavhengig i 1991.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen",
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_klassekampen_ble_formelt_80e51463cd",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampen_ble_formelt_80e51463cd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q09",
+          "quiz_id": "media_klassekampen_redaksjon_q09",
+          "claim_id": "claim_klassekampen_09",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Når fikk Klassekampen nettavis ifølge Oslo byleksikon?",
+          "options": [
+            "1991",
+            "2002",
+            "1996"
+          ],
+          "answer": "1996",
+          "answerIndex": 2,
+          "knowledge": "Oslo byleksikon oppgir 1996 som året Klassekampen fikk nettavis.",
+          "claim_basis": "Oslo byleksikon oppgir 1996 som året Klassekampen fikk nettavis.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_oslo_byleksikon_oppgir_1_18c11ef1b8",
+          "knowledge_unit_ids": [
+            "ku_media_oslo_byleksikon_oppgir_1_18c11ef1b8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q10",
+          "quiz_id": "media_klassekampen_redaksjon_q10",
+          "claim_id": "claim_klassekampen_10",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvem ble redaktør i Klassekampen i 2002?",
+          "options": [
+            "Bjørgulv Braanen",
+            "Mari Skurdal",
+            "Harald Fougner"
+          ],
+          "answer": "Bjørgulv Braanen",
+          "answerIndex": 0,
+          "knowledge": "Store norske leksikon oppgir at Bjørgulv Braanen ble redaktør i Klassekampen i 2002.",
+          "claim_basis": "Store norske leksikon oppgir at Bjørgulv Braanen ble redaktør i Klassekampen i 2002.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_store_norske_leksikon_op_38908100cb",
+          "knowledge_unit_ids": [
+            "ku_media_store_norske_leksikon_op_38908100cb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q11",
+          "quiz_id": "media_klassekampen_redaksjon_q11",
+          "claim_id": "claim_klassekampen_11",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvem overtok som sjefredaktør i 2018?",
+          "options": [
+            "Bjørgulv Braanen",
+            "Mari Skurdal",
+            "Torry Pedersen"
+          ],
+          "answer": "Mari Skurdal",
+          "answerIndex": 1,
+          "knowledge": "Store norske leksikon oppgir at Mari Skurdal overtok som sjefredaktør i 2018.",
+          "claim_basis": "Store norske leksikon oppgir at Mari Skurdal overtok som sjefredaktør i 2018.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen",
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_store_norske_leksikon_op_434d2bd296",
+          "knowledge_unit_ids": [
+            "ku_media_store_norske_leksikon_op_434d2bd296"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q12",
+          "quiz_id": "media_klassekampen_redaksjon_q12",
+          "claim_id": "claim_klassekampen_12",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilken kombinasjon av distribusjonsformer dokumenterer Klassekampens egne kundesider?",
+          "options": [
+            "Bare papiravis",
+            "Bare nettavis",
+            "Papiravis og digitale utgaver"
+          ],
+          "answer": "Papiravis og digitale utgaver",
+          "answerIndex": 2,
+          "knowledge": "Klassekampens egne kundesider dokumenterer både papiravis og digitale utgaver.",
+          "claim_basis": "Klassekampens egne kundesider dokumenterer både papiravis og digitale utgaver.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_eavis",
+            "klassekampen_subscription"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_egne_kunde_2f91895182",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_egne_kunde_2f91895182"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q13",
+          "quiz_id": "media_klassekampen_redaksjon_q13",
+          "claim_id": "claim_klassekampen_13",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva er e-avisen beskrevet som?",
+          "options": [
+            "En digital gjengivelse av papiravisen",
+            "En separat radiokanal",
+            "Et internt redaksjonsarkiv uten lesertilgang"
+          ],
+          "answer": "En digital gjengivelse av papiravisen",
+          "answerIndex": 0,
+          "knowledge": "Klassekampens e-avis er dokumentert som en digital gjengivelse av papiravisen.",
+          "claim_basis": "Klassekampens e-avis er dokumentert som en digital gjengivelse av papiravisen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_eavis"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_e_avis_er__4659d411d3",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_e_avis_er__4659d411d3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q14",
+          "quiz_id": "media_klassekampen_redaksjon_q14",
+          "claim_id": "claim_klassekampen_14",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilken publikasjon er Klassekampens dokumenterte litteraturmagasin?",
+          "options": [
+            "Musikkmagasinet",
+            "Bokmagasinet",
+            "Utgaven"
+          ],
+          "answer": "Bokmagasinet",
+          "answerIndex": 1,
+          "knowledge": "Bokmagasinet er en egen løpende Klassekampen-publikasjon med litteraturstoff og anmeldelser.",
+          "claim_basis": "Bokmagasinet er en egen løpende Klassekampen-publikasjon med litteraturstoff og anmeldelser.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_books",
+            "klassekampen_subscription"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_bokmagasinet_er_en_egen__1ac3b4d073",
+          "knowledge_unit_ids": [
+            "ku_media_bokmagasinet_er_en_egen__1ac3b4d073"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_klassekampen_redaksjon_set_3",
+      "level": 3,
+      "order": 3,
+      "xp": 70,
+      "phase": "bridge",
+      "mode": "formats_and_source_work",
+      "questions": [
+        {
+          "id": "klassekampen_q15",
+          "quiz_id": "media_klassekampen_redaksjon_q15",
+          "claim_id": "claim_klassekampen_15",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilken publikasjon er Klassekampens dokumenterte musikkmagasin?",
+          "options": [
+            "Bokmagasinet",
+            "E-avisen",
+            "Musikkmagasinet"
+          ],
+          "answer": "Musikkmagasinet",
+          "answerIndex": 2,
+          "knowledge": "Musikkmagasinet er en egen løpende Klassekampen-publikasjon med musikkstoff og anmeldelser.",
+          "claim_basis": "Musikkmagasinet er en egen løpende Klassekampen-publikasjon med musikkstoff og anmeldelser.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_music",
+            "klassekampen_subscription"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_musikkmagasinet_er_en_eg_bb4e31558d",
+          "knowledge_unit_ids": [
+            "ku_media_musikkmagasinet_er_en_eg_bb4e31558d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q16",
+          "quiz_id": "media_klassekampen_redaksjon_q16",
+          "claim_id": "claim_klassekampen_16",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvilken digital distribusjonsflate er dokumentert i tillegg til nettavis og e-avis?",
+          "options": [
+            "App",
+            "Lineær TV-kanal",
+            "FM-radiokanal"
+          ],
+          "answer": "App",
+          "answerIndex": 0,
+          "knowledge": "Klassekampens kundesider dokumenterer en app i tillegg til nettavis og e-avis.",
+          "claim_basis": "Klassekampens kundesider dokumenterer en app i tillegg til nettavis og e-avis.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_eavis"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kundesider_8239150957",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kundesider_8239150957"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q17",
+          "quiz_id": "media_klassekampen_redaksjon_q17",
+          "claim_id": "claim_klassekampen_17",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva er den mest presise forskjellen mellom redaksjonen i Grønland 4 og avisen som publisert produkt?",
+          "options": [
+            "De er to navn på samme bygning",
+            "Redaksjonen er arbeidsorganisasjonen, mens avisen er et publisert produkt",
+            "Avisen er bare den digitale utgaven"
+          ],
+          "answer": "Redaksjonen er arbeidsorganisasjonen, mens avisen er et publisert produkt",
+          "answerIndex": 1,
+          "knowledge": "Grønland 4 er redaksjonens arbeidssted, mens papiravis, nettavis, e-avis og magasiner er dokumenterte publiserings- og distribusjonsflater.",
+          "claim_basis": "Grønland 4 er redaksjonens arbeidssted, mens papiravis, nettavis, e-avis og magasiner er dokumenterte publiserings- og distribusjonsflater.",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact",
+            "klassekampen_eavis",
+            "klassekampen_subscription"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_gr_nland_4_er_redaksjone_5c1745ac1f",
+          "knowledge_unit_ids": [
+            "ku_media_gr_nland_4_er_redaksjone_5c1745ac1f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q18",
+          "quiz_id": "media_klassekampen_redaksjon_q18",
+          "claim_id": "claim_klassekampen_18",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva kan du sikkert dokumentere ved å sammenligne papiravis og e-avis?",
+          "options": [
+            "At redaksjonen bruker to dokumenterte distribusjonsformer",
+            "At alt innhold alltid vises identisk",
+            "At de produseres av to helt separate redaksjoner"
+          ],
+          "answer": "At redaksjonen bruker to dokumenterte distribusjonsformer",
+          "answerIndex": 0,
+          "knowledge": "Papiravis og e-avis er to dokumenterte distribusjonsformer knyttet til samme avisorganisasjon, uten at kildene begrunner at presentasjon og rytme alltid er identiske.",
+          "claim_basis": "Papiravis og e-avis er to dokumenterte distribusjonsformer knyttet til samme avisorganisasjon, uten at kildene begrunner at presentasjon og rytme alltid er identiske.",
+          "difficulty": 2,
+          "question_type": "comparison",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_eavis",
+            "klassekampen_subscription"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_papiravis_og_e_avis_er_t_f9145a3d0e",
+          "knowledge_unit_ids": [
+            "ku_media_papiravis_og_e_avis_er_t_f9145a3d0e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q19",
+          "quiz_id": "media_klassekampen_redaksjon_q19",
+          "claim_id": "claim_klassekampen_19",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva kan fasaden og inngangen i Grønland 4 dokumentere direkte?",
+          "options": [
+            "Hvilke saker desk diskuterer inne",
+            "At alle ansatte har samme politiske syn",
+            "At stedet fungerer som dokumentert redaksjonsadresse"
+          ],
+          "answer": "At stedet fungerer som dokumentert redaksjonsadresse",
+          "answerIndex": 2,
+          "knowledge": "Fasade, inngang og adresse kan brukes som direkte spor etter redaksjonens lokalisering, men dokumenterer ikke interne beslutninger eller individuelle standpunkter.",
+          "claim_basis": "Fasade, inngang og adresse kan brukes som direkte spor etter redaksjonens lokalisering, men dokumenterer ikke interne beslutninger eller individuelle standpunkter.",
+          "difficulty": 2,
+          "question_type": "observation",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_fasade_inngang_og_adress_26726a3021",
+          "knowledge_unit_ids": [
+            "ku_media_fasade_inngang_og_adress_26726a3021"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q20",
+          "quiz_id": "media_klassekampen_redaksjon_q20",
+          "claim_id": "claim_klassekampen_20",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva kan årstallet 1969 ikke brukes som bevis for?",
+          "options": [
+            "At avisen ble etablert dette året",
+            "At redaksjonen flyttet inn i Grønland 4 dette året",
+            "At avisen har en historie før nettavisen"
+          ],
+          "answer": "At redaksjonen flyttet inn i Grønland 4 dette året",
+          "answerIndex": 1,
+          "knowledge": "1969 er dokumentert som avisens etableringsår, men det gjennomgåtte kildegrunnlaget dokumenterer ikke 1969 som innflyttingsår i Grønland 4.",
+          "claim_basis": "1969 er dokumentert som avisens etableringsår, men det gjennomgåtte kildegrunnlaget dokumenterer ikke 1969 som innflyttingsår i Grønland 4.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen",
+            "oslo_byleksikon_klassekampen",
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "primary_knowledge_unit_id": "ku_media_1969_er_dokumentert_som__1f82401707",
+          "knowledge_unit_ids": [
+            "ku_media_1969_er_dokumentert_som__1f82401707"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q21",
+          "quiz_id": "media_klassekampen_redaksjon_q21",
+          "claim_id": "claim_klassekampen_21",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvorfor brukes både dagens kontaktside og historiske oppslagsverk i dette stedssporet?",
+          "options": [
+            "De dokumenterer ulike tidslag: nåværende arbeidssted og institusjonshistorie",
+            "Fordi kontaktsiden alene dokumenterer alle historiske år",
+            "Fordi oppslagsverkene alene dokumenterer dagens interne arbeidsplan"
+          ],
+          "answer": "De dokumenterer ulike tidslag: nåværende arbeidssted og institusjonshistorie",
+          "answerIndex": 0,
+          "knowledge": "Dagens kontaktside dokumenterer nåværende adresse og roller, mens SNL og Oslo byleksikon dokumenterer historiske milepæler; kildene brukes til ulike tidslag.",
+          "claim_basis": "Dagens kontaktside dokumenterer nåværende adresse og roller, mens SNL og Oslo byleksikon dokumenterer historiske milepæler; kildene brukes til ulike tidslag.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "question_layer": "bridge",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact",
+            "snl_klassekampen",
+            "oslo_byleksikon_klassekampen"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_dagens_kontaktside_dokum_7901f96fbd",
+          "knowledge_unit_ids": [
+            "ku_media_dagens_kontaktside_dokum_7901f96fbd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_klassekampen_redaksjon_set_4",
+      "level": 4,
+      "order": 4,
+      "xp": 80,
+      "phase": "final",
+      "mode": "method_and_theory",
+      "questions": [
+        {
+          "id": "klassekampen_q22",
+          "quiz_id": "media_klassekampen_redaksjon_q22",
+          "claim_id": "claim_klassekampen_22",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva viser papiravis, nettavis, e-avis og magasiner samlet om redaksjonen?",
+          "options": [
+            "At alle formatene må ha identisk innhold",
+            "At redaksjonelt arbeid distribueres gjennom flere dokumenterte publiseringsflater",
+            "At bare papiravisen er et redaksjonelt produkt"
+          ],
+          "answer": "At redaksjonelt arbeid distribueres gjennom flere dokumenterte publiseringsflater",
+          "answerIndex": 1,
+          "knowledge": "Klassekampen distribuerer redaksjonelt innhold gjennom flere dokumenterte flater: papiravis, nettavis, e-avis, app og egne magasinpublikasjoner.",
+          "claim_basis": "Klassekampen distribuerer redaksjonelt innhold gjennom flere dokumenterte flater: papiravis, nettavis, e-avis, app og egne magasinpublikasjoner.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_eavis",
+            "klassekampen_subscription",
+            "klassekampen_books",
+            "klassekampen_music"
+          ],
+          "emne_id": "em_media_digital_offentlighet",
+          "primary_knowledge_unit_id": "ku_media_klassekampen_distribuere_a0eb1e2da9",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampen_distribuere_a0eb1e2da9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q23",
+          "quiz_id": "media_klassekampen_redaksjon_q23",
+          "claim_id": "claim_klassekampen_23",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva er en kildekritisk grense når du beskriver Klassekampens redaksjonelle profil?",
+          "options": [
+            "Å skille dokumenterte prioriteringer og publisering fra påstander om hva hver enkelt ansatt mener",
+            "Å anta at alle ansatte mener det samme",
+            "Å bruke byggets fasade som bevis for politiske standpunkter"
+          ],
+          "answer": "Å skille dokumenterte prioriteringer og publisering fra påstander om hva hver enkelt ansatt mener",
+          "answerIndex": 0,
+          "knowledge": "En redaksjonell profil kan beskrives gjennom dokumentert institusjonshistorie og publisering, men kan ikke uten egne kilder gjøres om til en påstand om at alle ansatte deler samme mening.",
+          "claim_basis": "En redaksjonell profil kan beskrives gjennom dokumentert institusjonshistorie og publisering, men kan ikke uten egne kilder gjøres om til en påstand om at alle ansatte deler samme mening.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_klassekampen",
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_en_redaksjonell_profil_k_bad7264cda",
+          "knowledge_unit_ids": [
+            "ku_media_en_redaksjonell_profil_k_bad7264cda"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q24",
+          "quiz_id": "media_klassekampen_redaksjon_q24",
+          "claim_id": "claim_klassekampen_24",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva betyr «offentlighet» mest presist i denne mediekonteksten?",
+          "options": [
+            "En lukket intern arbeidsgruppe",
+            "Bare statlige institusjoner",
+            "Åpne kanaler og arenaer der informasjon, ideer og argumenter kan utveksles"
+          ],
+          "answer": "Åpne kanaler og arenaer der informasjon, ideer og argumenter kan utveksles",
+          "answerIndex": 2,
+          "knowledge": "Store norske leksikon beskriver offentlighet blant annet som åpne møteplasser og kanaler der informasjon, ideer, synspunkter og argumenter utveksles, og inkluderer massemedier som slike arenaer.",
+          "claim_basis": "Store norske leksikon beskriver offentlighet blant annet som åpne møteplasser og kanaler der informasjon, ideer, synspunkter og argumenter utveksles, og inkluderer massemedier som slike arenaer.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "snl_offentlighet"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_store_norske_leksikon_be_36a72635a0",
+          "knowledge_unit_ids": [
+            "ku_media_store_norske_leksikon_be_36a72635a0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q25",
+          "quiz_id": "media_klassekampen_redaksjon_q25",
+          "claim_id": "claim_klassekampen_25",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva kjennetegner en redaksjon som organisert arbeidsenhet i dette kildegrunnlaget?",
+          "options": [
+            "Flere dokumenterte roller og funksjoner som ledelse, fagredaksjoner, desk og foto",
+            "Én enkelt journalist som gjør alle oppgaver",
+            "Bare bygningens gateadresse"
+          ],
+          "answer": "Flere dokumenterte roller og funksjoner som ledelse, fagredaksjoner, desk og foto",
+          "answerIndex": 0,
+          "knowledge": "Klassekampens kontaktside dokumenterer en arbeidsdeling med redaksjonell ledelse, fagredaksjoner, desk, foto og andre funksjoner.",
+          "claim_basis": "Klassekampens kontaktside dokumenterer en arbeidsdeling med redaksjonell ledelse, fagredaksjoner, desk, foto og andre funksjoner.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kontaktsid_8cd283bd20",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kontaktsid_8cd283bd20"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q26",
+          "quiz_id": "media_klassekampen_redaksjon_q26",
+          "claim_id": "claim_klassekampen_26",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva er den sikreste måten å undersøke en intern redaksjonell arbeidsprosess du ikke kan observere fra gaten?",
+          "options": [
+            "Anta prosessen ut fra fasaden",
+            "Bruke åpne kilder som dokumenterer roller og publisering",
+            "Tilskrive ansatte samme arbeidsrutine uten kilde"
+          ],
+          "answer": "Bruke åpne kilder som dokumenterer roller og publisering",
+          "answerIndex": 1,
+          "knowledge": "Interne redaksjonelle prosesser som ikke kan observeres utenfra må undersøkes gjennom åpne kilder og dokumenterte roller, ikke utledes fra fasaden alene.",
+          "claim_basis": "Interne redaksjonelle prosesser som ikke kan observeres utenfra må undersøkes gjennom åpne kilder og dokumenterte roller, ikke utledes fra fasaden alene.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_kritikk_kommentar",
+          "primary_knowledge_unit_id": "ku_media_interne_redaksjonelle_pr_4c2cdb8b66",
+          "knowledge_unit_ids": [
+            "ku_media_interne_redaksjonelle_pr_4c2cdb8b66"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q27",
+          "quiz_id": "media_klassekampen_redaksjon_q27",
+          "claim_id": "claim_klassekampen_27",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hvordan kan du systematisk undersøke arbeidsdelingen mellom nyhetsledelse, fagredaksjoner, desk og foto?",
+          "options": [
+            "Ved å telle vinduer i fasaden",
+            "Ved å måle avstanden til Oslo S",
+            "Ved å sammenligne de dokumenterte redaksjonsrollene og funksjonene"
+          ],
+          "answer": "Ved å sammenligne de dokumenterte redaksjonsrollene og funksjonene",
+          "answerIndex": 2,
+          "knowledge": "Klassekampens kontaktside dokumenterer flere redaksjonelle roller og funksjoner som kan sammenlignes systematisk uten å dikte interne arbeidsprosesser.",
+          "claim_basis": "Klassekampens kontaktside dokumenterer flere redaksjonelle roller og funksjoner som kan sammenlignes systematisk uten å dikte interne arbeidsprosesser.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "method_id": "met_media_redaksjonsanalyse",
+          "guidance_basis": [
+            "data/fag/media/methods_media_canonical_v4_5.json"
+          ],
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kontaktsid_39ec144ee8",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kontaktsid_39ec144ee8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "klassekampen_q28",
+          "quiz_id": "media_klassekampen_redaksjon_q28",
+          "claim_id": "claim_klassekampen_28",
+          "categoryId": "media",
+          "placeId": "klassekampen_redaksjon",
+          "targetId": "klassekampen_redaksjon",
+          "question_scope": "place",
+          "question": "Hva kan Gaye Tuchmans perspektiv på nyhetsrutiner hjelpe deg å undersøke ved en redaksjon?",
+          "options": [
+            "Hvordan organiserte rutiner og redaksjonelle roller former nyhetsproduksjonen",
+            "Hvilket år Grønland 4 ble oppført",
+            "Hvor mange abonnenter avisen har akkurat i dag"
+          ],
+          "answer": "Hvordan organiserte rutiner og redaksjonelle roller former nyhetsproduksjonen",
+          "answerIndex": 0,
+          "knowledge": "Klassekampens kontaktside dokumenterer organiserte redaksjonelle roller, mens Gaye Tuchmans Making News undersøker nyhetsarbeid, newsroom-praksiser og rutiner; sammen gir de et kildegrunnlag for å analysere nyhetsproduksjon som organisert arbeid.",
+          "claim_basis": "Klassekampens kontaktside dokumenterer organiserte redaksjonelle roller, mens Gaye Tuchmans Making News undersøker nyhetsarbeid, newsroom-praksiser og rutiner; sammen gir de et kildegrunnlag for å analysere nyhetsproduksjon som organisert arbeid.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "klassekampen",
+            "media"
+          ],
+          "source": [
+            "klassekampen_contact",
+            "tuchman_making_news"
+          ],
+          "emne_id": "em_media_redaksjon_desk",
+          "topic_hook_id": "redaksjon_og_desk",
+          "thinker_id": "gaye_tuchman",
+          "theory_ref": {
+            "topic_hook_id": "redaksjon_og_desk",
+            "why_it_helps": "Tuchmans perspektiv retter oppmerksomheten mot rutiner og organisatorisk nyhetsarbeid, som kan undersøkes mot de dokumenterte rollene ved Klassekampen."
+          },
+          "primary_knowledge_unit_id": "ku_media_klassekampens_kontaktsid_32b0c4f77b",
+          "knowledge_unit_ids": [
+            "ku_media_klassekampens_kontaktsid_32b0c4f77b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

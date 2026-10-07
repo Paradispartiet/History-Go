@@ -48,31 +48,29 @@
   },
   "collections": {
     "people": {
-      "status": "BLOCKED",
-      "reason": "The source review qualifies Mari Skurdal, but no current canonical People entity with complete PlaceCard binding and asset has been materialized for this place.",
+      "status": "PASS",
       "refs": [
-        "reports/place-production/klassekampen-source-review-v1.md"
+        "data/people/media/oslo/people_media_oslo.json",
+        "data/people/people_image_attributions.json"
       ]
     },
     "objects": {
-      "status": "BLOCKED",
-      "reason": "The 1969 first issue is source-qualified, but the canonical Object entity, local asset and place membership have not been materialized on current main.",
+      "status": "PASS",
       "refs": [
-        "reports/place-production/klassekampen-source-review-v1.md"
+        "data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json"
       ]
     },
     "brands": {
-      "status": "BLOCKED",
-      "reason": "Klassekampen is source-qualified as the place brand, but the canonical Brand entity, local asset and place membership have not been materialized on current main.",
+      "status": "PASS",
       "refs": [
-        "reports/place-production/klassekampen-source-review-v1.md"
+        "data/brands/brands_master.json",
+        "data/brands/brands_by_place.json"
       ]
     },
     "productions": {
-      "status": "BLOCKED",
-      "reason": "The newspaper, Bokmagasinet, Musikkmagasinet and digital edition are source-qualified, but canonical Production entities and place memberships have not been materialized on current main.",
+      "status": "PASS",
       "refs": [
-        "reports/place-production/klassekampen-source-review-v1.md"
+        "data/places/media/oslo/places_oslo_media/klassekampen_redaksjon.json"
       ]
     }
   },
@@ -96,15 +94,20 @@
       ]
     },
     "quiz": {
-      "status": "BLOCKED",
-      "reason": "The source review defines a normal 4 x 7 quiz profile, but no canonical 28-question quiz or QuizCard manifest binding has been materialized on current main.",
+      "status": "PASS",
       "refs": [
-        "reports/place-production/klassekampen-source-review-v1.md"
+        "data/quiz/media/klassekampen_redaksjon_sets.json",
+        "data/quiz/production_briefs/media/klassekampen_redaksjon.json",
+        "data/quiz/production_context/media/klassekampen_redaksjon.json",
+        "data/quizcards/media/manifest.json",
+        "data/quizcards/media/klassekampen_redaksjon_quizkort_v1.json"
       ]
     },
     "runtime": {
-      "status": "BLOCKED",
-      "reason": "Place-open runtime must be regenerated only after the Phase 2 collection and quiz surfaces are canonical on current main."
+      "status": "PASS",
+      "refs": [
+        "data/runtime/place-open/klassekampen_redaksjon.json"
+      ]
     },
     "stories": {
       "status": "BLOCKED",
@@ -129,8 +132,9 @@
     }
   },
   "blockers": [
-    "Phase 2 canonical People, Object, Brand and Production entities with current place bindings and assets are not materialized.",
-    "Canonical 4 x 7 quiz, QuizCard binding and final place-open runtime are not materialized."
+    "The 1997 editor crisis remains a Story candidate and has not passed Stories governance.",
+    "No licensed historical/current image pair with a sufficiently documented viewpoint and subject match has been established for before/after.",
+    "Final interactive UI review remains pending after Phase 2 data/runtime materialization."
   ],
   "manual_reviews": {
     "images": {
