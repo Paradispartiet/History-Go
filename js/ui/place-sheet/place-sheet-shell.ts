@@ -97,16 +97,7 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
     shell.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-          <section class="pc-sheet-explore" aria-label="Utforsk stedet">
-            <div class="pc-sheet-section-head">
-              <span class="pc-sheet-section-eyebrow">Utforsk</span>
-              <h2>Fire samlinger</h2>
-            </div>
-            <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-          </section>
-          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og møter"></section>
-        </div>
+        <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -129,8 +120,7 @@ function movePrimaryNodes(shell: HTMLElement): void {
 
   const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
   const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
-  const collections = shell.querySelector<HTMLElement>("[data-hg-place-sheet-collections]");
-  const onsite = shell.querySelector<HTMLElement>("[data-hg-place-sheet-onsite]");
+  const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
 
   const front = root.querySelector<HTMLElement>(".pc-frontcard");
   const textBlock = root.querySelector<HTMLElement>(".pc-text");
@@ -139,8 +129,18 @@ function movePrimaryNodes(shell: HTMLElement): void {
 
   if (front && media && front.parentElement !== media) media.prepend(front);
   if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
-  if (sideStack && collections && sideStack.parentElement !== collections) collections.appendChild(sideStack);
-  if (events instanceof HTMLElement && onsite && events.parentElement !== onsite) onsite.appendChild(events);
+
+  const aboutButton = nav?.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
+  let insertAfter: Element | null = aboutButton || null;
+  if (sideStack instanceof HTMLElement && nav && sideStack.parentElement !== nav) {
+    insertAfter?.after(sideStack);
+    if (!insertAfter) nav.prepend(sideStack);
+  }
+  if (sideStack instanceof HTMLElement && sideStack.parentElement === nav) insertAfter = sideStack;
+  if (events instanceof HTMLElement && nav && events.parentElement !== nav) {
+    insertAfter?.after(events);
+    if (!insertAfter) nav.prepend(events);
+  }
 
   const legacyGrid = root.querySelector<HTMLElement>(".pc-grid");
   if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
