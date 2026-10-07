@@ -31,7 +31,7 @@ export function workflowPath(placeId, repoRoot = DEFAULT_REPO_ROOT) {
 }
 
 function normalizedRepoPath(value) {
-  return String(value || '').replaceAll('\\\\', '/').replace(/^\.\//, '').trim();
+  return String(value || '').split(path.win32.sep).join('/').replace(/^\.\//, '').trim();
 }
 
 function quizProductionContext(record) {
