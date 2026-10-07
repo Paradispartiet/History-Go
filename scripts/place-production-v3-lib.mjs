@@ -8,12 +8,6 @@ export const DECISION_STATUSES = new Set(['PASS', 'BEGRUNNET_NA', 'BLOCKED']);
 export const PRODUCTION_PROFILES = new Set(['major', 'standard', 'focused', 'micro']);
 export const PROFILE_STATUSES = new Set(['confirmed', 'provisional']);
 export const MANUAL_REVIEW_STATUSES = new Set(['PENDING', 'PASS']);
-export const V3_BUILD_STEPS = [
-  ['npm', ['run', 'places:index:build']],
-  ['npm', ['run', 'place-open:build']],
-  ['node', ['scripts/build-place-production-v3-projections.mjs']],
-];
-
 const REQUIRED_KEYS = [
   'schema',
   'place_id',
@@ -34,6 +28,88 @@ export const DEFAULT_REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.
 
 export function workflowPath(placeId, repoRoot = DEFAULT_REPO_ROOT) {
   return path.join(repoRoot, 'data', 'places', 'workflow', `${placeId}.json`);
+}
+
+function normalizedRepoPath(value) {
+  return String(value || '').split(path.win32.sep).join('/').replace(/^\.\//, '').trim();
+}
+
+function quizProductionContext(record) {
+  const refs = Array.isArray(record?.modules?.quiz?.refs) ? record.modules.quiz.refs : [];
+  const matches = refs
+    .map(normalizedRepoPath)
+    .filter((value) => /^data\/quiz\/production_context\/[^/]+\/[^/]+\.json$/u.test(value));
+
+  if (matches.length > 1) {
+    throw new Error(`Place Production v3 has multiple quiz production contexts for ${record.place_id}: ${matches.join(', ')}`);
+  }
+  if (!matches.length) return null;
+
+  const outputPath = matches[0];
+  const segments = outputPath.split('/');
+  const categoryId = segments.at(-2);
+  const targetId = path.basename(outputPath, '.json');
+  if (targetId !== record.place_id) {
+    throw new Error(`Quiz production context target ${targetId} does not match workflow place_id ${record.place_id}`);
+  }
+  return { categoryId, targetId, outputPath };
+}
+
+export function placeDerivedArtifactPlan(record) {
+  const quizContext = quizProductionContext(record);
+  const placeId = record.place_id;
+  const steps = [
+    {
+      id: 'places-index',
+      build: ['npm', ['run', 'places:index:build']],
+      verify: ['npm', ['run', 'places:index:check']],
+    },
+    {
+      id: 'place-open',
+      build: ['npm', ['run', 'place-open:build']],
+      verify: ['npm', ['run', 'place-open:check']],
+    },
+  ];
+
+  if (quizContext) {
+    const args = [
+      'scripts/build-quiz-production-context.mjs',
+      '--category', quizContext.categoryId,
+      '--target', quizContext.targetId,
+      '--output', quizContext.outputPath,
+    ];
+    steps.push({
+      id: 'quiz-production-context',
+      build: ['node', args],
+      verify: ['node', [...args, '--check']],
+      owned_paths: [quizContext.outputPath],
+    });
+  }
+
+  steps.push(
+    {
+      id: 'epoke-place-index',
+      build: ['npm', ['run', 'epoker:places:build']],
+      verify: ['npm', ['run', 'epoker:places:check']],
+      owned_paths: ['data/epoker/epoke-place-index.json'],
+    },
+    {
+      id: 'v3-projections',
+      build: ['node', ['scripts/build-place-production-v3-projections.mjs', placeId]],
+      verify: ['node', ['scripts/build-place-production-v3-projections.mjs', placeId, '--check']],
+    },
+  );
+
+  return steps;
+}
+
+export function placeVerifyOnlySteps(record) {
+  return [
+    {
+      id: 'i18n-freshness',
+      verify: ['node', ['scripts/check-place-i18n-freshness.mjs', record.place_id]],
+    },
+  ];
 }
 
 export function deriveSelectedCollections(record) {

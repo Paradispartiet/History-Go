@@ -12,17 +12,22 @@ on:
       - 'scripts/place-production-v3-lib.mjs'
       - 'scripts/place-production-v3.mjs'
       - 'scripts/build-place-production-v3-projections.mjs'
+      - 'scripts/build-quiz-production-context.mjs'
+      - 'scripts/check-place-i18n-freshness.mjs'
+      - 'scripts/verify-place-closeout-browser.mjs'
       - 'scripts/place-production-routing-v2-lib.mjs'
       - 'scripts/place-production-routing-v2.mjs'
       - 'scripts/run-place-regressions-v1.mjs'
       - 'scripts/audit-ci-workflow-routing.mjs'
       - 'tests/place-production-v3-*.test.mjs'
+      - 'tests/place-production-v3-orchestrator.test.mjs'
       - 'tests/place-production-routing-v2.test.mjs'
       - 'tests/run-place-regressions-v2-routing.test.mjs'
       - 'tests/akershus-slott-place-production-v3.test.mjs'
       - 'reports/place-production/*-workcard-current.json'
       - 'reports/place-production/*-quality-gate-current.json'
       - '.github/workflows/place-production-v3.yml'
+      - '.github/workflows/place-production-closeout.yml'
   workflow_dispatch:
 
 permissions:
@@ -50,6 +55,7 @@ jobs:
           node --test \
             tests/place-production-v3-workflow.test.mjs \
             tests/place-production-v3-projections.test.mjs \
+            tests/place-production-v3-orchestrator.test.mjs \
             tests/akershus-slott-place-production-v3.test.mjs \
             tests/place-production-routing-v2.test.mjs \
             tests/run-place-regressions-v2-routing.test.mjs \

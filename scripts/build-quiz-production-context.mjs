@@ -13,6 +13,25 @@ function valueAfter(args, flag) {
   return index >= 0 ? args[index + 1] : undefined;
 }
 
+function serialized(value) {
+  return `${JSON.stringify(value, null, 2)}\n`;
+}
+
+async function verifyOutput(root, outputPath, context) {
+  if (!outputPath) throw new Error("--check krever --output for et målrettet context");
+  const absolutePath = path.resolve(root, outputPath);
+  let current;
+  try {
+    current = await fs.readFile(absolutePath, "utf8");
+  } catch {
+    throw new Error(`${outputPath} mangler; kjør quiz-context builder uten --check`);
+  }
+  const expected = serialized(context);
+  if (current !== expected) {
+    throw new Error(`${outputPath} avviker fra deterministisk rebuild; kjør quiz-context builder uten --check`);
+  }
+}
+
 async function existingProductionTargets(root) {
   const baseDir = path.join(root, "data/quiz/production_context");
   const categoryEntries = await fs.readdir(baseDir, { withFileTypes: true });
@@ -56,14 +75,25 @@ async function main() {
   const categoryId = valueAfter(args, "--category");
   const targetId = valueAfter(args, "--target");
   const outputPath = valueAfter(args, "--output");
+  const check = args.includes("--check");
 
   if (!categoryId && !targetId) {
     const targets = await existingProductionTargets(process.cwd());
     for (const target of targets) {
-      await runBuildQuizProductionContext({ root: process.cwd(), ...target });
-      console.log(`Skrev ${target.outputPath}`);
+      const context = await runBuildQuizProductionContext({
+        root: process.cwd(),
+        categoryId: target.categoryId,
+        targetId: target.targetId,
+        outputPath: check ? undefined : target.outputPath
+      });
+      if (check) {
+        await verifyOutput(process.cwd(), target.outputPath, context);
+        console.log(`Verifiserte ${target.outputPath}`);
+      } else {
+        console.log(`Skrev ${target.outputPath}`);
+      }
     }
-    console.log(`Gjenbygde ${targets.length} produksjonskontekster.`);
+    console.log(`${check ? "Verifiserte" : "Gjenbygde"} ${targets.length} produksjonskontekster.`);
     return;
   }
 
@@ -75,10 +105,13 @@ async function main() {
     root: process.cwd(),
     categoryId,
     targetId,
-    outputPath
+    outputPath: check ? undefined : outputPath
   });
 
-  if (outputPath) {
+  if (check) {
+    await verifyOutput(process.cwd(), outputPath, context);
+    console.log(`Verifiserte ${path.relative(process.cwd(), path.resolve(outputPath))}`);
+  } else if (outputPath) {
     console.log(`Skrev ${path.relative(process.cwd(), path.resolve(outputPath))}`);
   } else {
     console.log(JSON.stringify(context, null, 2));

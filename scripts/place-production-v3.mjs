@@ -6,10 +6,11 @@ import process from 'node:process';
 import { spawnSync } from 'node:child_process';
 import {
   DEFAULT_REPO_ROOT,
-  V3_BUILD_STEPS,
   deriveSelectedCollections,
   deriveWorkflowState,
   loadWorkflowRecord,
+  placeDerivedArtifactPlan,
+  placeVerifyOnlySteps,
 } from './place-production-v3-lib.mjs';
 import {
   runSelectedPlaceRegressions,
@@ -34,9 +35,36 @@ function run(command, args, repoRoot = DEFAULT_REPO_ROOT) {
   return result.status ?? 1;
 }
 
+function commandLabel([command, args]) {
+  return [command, ...args].join(' ');
+}
+
+function dirtyPaths(repoRoot = DEFAULT_REPO_ROOT) {
+  const result = spawnSync('git', ['status', '--porcelain=v1'], { cwd: repoRoot, encoding: 'utf8' });
+  if (result.status !== 0) return new Set();
+  return new Set(result.stdout
+    .split(/\r?\n/u)
+    .map((line) => line.slice(3).trim())
+    .filter(Boolean)
+    .map((value) => value.includes(' -> ') ? value.split(' -> ').at(-1) : value));
+}
+
+function runDerivedStep(step, mode, repoRoot) {
+  const command = step[mode];
+  if (!command) return 0;
+  console.log(`[place:${mode}] ${step.id}: ${commandLabel(command)}`);
+  const status = run(command[0], command[1], repoRoot);
+  if (status !== 0) {
+    const remediation = step.build ? commandLabel(step.build) : null;
+    console.error(`[place:${mode}] ${step.id} failed.${mode === 'verify' && remediation ? ` Regenerate with: ${remediation}` : ''}`);
+  }
+  return status;
+}
+
 export function printPlan(record) {
   const selected = deriveSelectedCollections(record);
   const blocked = blockedLabels(record);
+  const derivedSteps = placeDerivedArtifactPlan(record).map((step) => step.id);
   const lines = [
     `Place: ${record.place_id}`,
     `Profile: ${record.profile.id} (${record.profile.status})`,
@@ -44,17 +72,26 @@ export function printPlan(record) {
     `Collections: ${selected.length ? selected.join(', ') : 'none'}`,
     `Blocked: ${blocked.length ? blocked.join(', ') : 'none'}`,
     `Factuality: ${record.sources.factuality_record}`,
+    `Derived pipeline: ${derivedSteps.join(' -> ')} -> i18n-freshness`,
   ];
   process.stdout.write(`${lines.join('\n')}\n`);
 }
 
 export function buildPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
-  loadWorkflowRecord(placeId, repoRoot);
-  for (const [command, baseArgs] of V3_BUILD_STEPS) {
-    const args = [...baseArgs];
-    if (baseArgs[0] === 'scripts/build-place-production-v3-projections.mjs') args.push(placeId);
-    const status = run(command, args, repoRoot);
+  const record = loadWorkflowRecord(placeId, repoRoot);
+  const before = dirtyPaths(repoRoot);
+  for (const step of placeDerivedArtifactPlan(record)) {
+    const status = runDerivedStep(step, 'build', repoRoot);
     if (status !== 0) return status;
+  }
+
+  const after = dirtyPaths(repoRoot);
+  const generatedChanges = [...after].filter((value) => !before.has(value)).sort();
+  if (generatedChanges.length) {
+    console.log('[place:build] Derived files changed and must be committed before closeout:');
+    for (const file of generatedChanges) console.log(`- ${file}`);
+  } else {
+    console.log('[place:build] No newly dirty derived files.');
   }
   return 0;
 }
@@ -67,8 +104,11 @@ export function verifyPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
     return 1;
   }
 
-  let status = run('node', ['scripts/build-place-production-v3-projections.mjs', placeId, '--check'], repoRoot);
-  if (status !== 0) return status;
+  let status = 0;
+  for (const step of [...placeDerivedArtifactPlan(record), ...placeVerifyOnlySteps(record)]) {
+    status = runDerivedStep(step, 'verify', repoRoot);
+    if (status !== 0) return status;
+  }
 
   status = run('bash', ['scripts/check-places.sh'], repoRoot);
   if (status !== 0) return status;
@@ -85,13 +125,19 @@ export function verifyPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
   return 0;
 }
 
+export function closeoutPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
+  const verifyStatus = verifyPlace(placeId, repoRoot);
+  if (verifyStatus !== 0) return verifyStatus;
+  return run('node', ['scripts/verify-place-closeout-browser.mjs', placeId], repoRoot);
+}
+
 function usage() {
-  console.error('Usage: node scripts/place-production-v3.mjs <plan|build|verify> <place_id>');
+  console.error('Usage: node scripts/place-production-v3.mjs <plan|build|verify|closeout> <place_id>');
 }
 
 function main() {
   const [command, placeId] = process.argv.slice(2);
-  if (!command || !placeId || !['plan', 'build', 'verify'].includes(command)) {
+  if (!command || !placeId || !['plan', 'build', 'verify', 'closeout'].includes(command)) {
     usage();
     process.exit(2);
   }
@@ -101,7 +147,11 @@ function main() {
       printPlan(loadWorkflowRecord(placeId));
       return;
     }
-    const status = command === 'build' ? buildPlace(placeId) : verifyPlace(placeId);
+    const status = command === 'build'
+      ? buildPlace(placeId)
+      : command === 'verify'
+        ? verifyPlace(placeId)
+        : closeoutPlace(placeId);
     process.exit(status);
   } catch (error) {
     console.error(error.message);

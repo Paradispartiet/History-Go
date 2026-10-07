@@ -1,0 +1,154 @@
+name: Place production closeout
+
+on:
+  pull_request:
+    paths:
+      - 'data/places/workflow/**'
+      - 'data/places/**'
+      - 'data/i18n/content/places/**'
+      - 'data/runtime/place-open/**'
+      - 'data/runtime/stories-all/**'
+      - 'data/quiz/**'
+      - 'data/quizcards/**'
+      - 'js/ui/place-card.js'
+      - 'js/ui/place-rounds-visual-collections.js'
+      - 'js/ui/place-rounds-fill-layout.js'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'js/ui/placeQuizCards.ts'
+      - 'css/place-rounds-fill-layout.css'
+      - 'scripts/place-production-v3-lib.mjs'
+      - 'scripts/place-production-v3.mjs'
+      - 'scripts/verify-place-closeout-browser.mjs'
+      - '.github/ci/place-production-routing-v2.json'
+      - '.github/workflows/place-production-closeout.yml'
+  workflow_dispatch:
+    inputs:
+      place_id:
+        description: 'Place ID to verify'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: place-production-closeout-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    name: Discover Place closeout targets
+    runs-on: ubuntu-latest
+    outputs:
+      places: ${{ steps.targets.outputs.places }}
+      has_targets: ${{ steps.targets.outputs.has_targets }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: targets
+        name: Resolve affected v3 Places
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          DISPATCH_PLACE_ID: ${{ inputs.place_id }}
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE' >> "$GITHUB_OUTPUT"
+          import fs from 'node:fs';
+          import { execFileSync } from 'node:child_process';
+
+          const targets = new Set();
+          const dispatch = String(process.env.DISPATCH_PLACE_ID || '').trim();
+          if (dispatch) {
+            targets.add(dispatch);
+          } else {
+            const base = process.env.BASE_SHA;
+            const head = process.env.HEAD_SHA;
+            const changed = execFileSync('git', ['diff', '--name-only', base, head], { encoding: 'utf8' })
+              .split(/\r?\n/u)
+              .map((value) => value.trim())
+              .filter(Boolean);
+            const registry = JSON.parse(fs.readFileSync('.github/ci/place-production-routing-v2.json', 'utf8'));
+
+            for (const file of changed) {
+              const workflowMatch = file.match(/^data\/places\/workflow\/([^/]+)\.json$/u);
+              if (workflowMatch) targets.add(workflowMatch[1]);
+
+              const lower = file.toLowerCase();
+              for (const place of registry.places || []) {
+                if ((place.match || []).some((needle) => lower.includes(String(needle).toLowerCase()))) {
+                  targets.add(place.id);
+                }
+              }
+            }
+
+            const sharedCloseoutChange = changed.some((file) => [
+              'scripts/place-production-v3-lib.mjs',
+              'scripts/place-production-v3.mjs',
+              'scripts/verify-place-closeout-browser.mjs',
+              '.github/workflows/place-production-closeout.yml',
+            ].includes(file));
+            if (sharedCloseoutChange && targets.size === 0) targets.add('klassekampen_redaksjon');
+          }
+
+          const existing = [...targets]
+            .filter((id) => fs.existsSync(`data/places/workflow/${id}.json`))
+            .sort();
+
+          console.log(`places=${JSON.stringify(existing)}`);
+          console.log(`has_targets=${existing.length ? 'true' : 'false'}`);
+          NODE
+
+  browser-closeout:
+    name: Browser closeout — ${{ matrix.place }}
+    needs: discover
+    if: needs.discover.outputs.has_targets == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        place: ${{ fromJSON(needs.discover.outputs.places) }}
+    steps:
+      - name: Check out exact PR head
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Resolve runner Chrome
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            echo "::error::Chrome/Chromium is not installed on this runner"
+            exit 1
+          fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+
+      - name: Verify deterministic Place outputs first
+        run: npm run place:verify -- "${{ matrix.place }}"
+
+      - name: Run desktop and mobile closeout
+        run: node scripts/verify-place-closeout-browser.mjs "${{ matrix.place }}"
+
+      - name: Upload closeout evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: place-closeout-${{ matrix.place }}-${{ github.sha }}
+          path: artifacts/place-closeout/${{ matrix.place }}
+          if-no-files-found: ignore
+          retention-days: 14
