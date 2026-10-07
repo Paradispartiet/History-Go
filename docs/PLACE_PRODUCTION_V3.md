@@ -89,7 +89,15 @@ Viser profil, avledet state, ferdige samlinger, blockers og factuality-kilden. I
 npm run place:build -- <place_id>
 ```
 
-Kjører bare registrerte deterministiske eiere/buildere og regenererer V3-projeksjoner. Ukjent nødvendig builder skal feile lukket i stedet for å gjettes.
+Kjører den registrerte, ordnede avhengighetskjeden for stedet. Per nå er rekkefølgen canonical:
+
+1. `places:index:build`;
+2. `place-open:build`;
+3. stedets `quiz production_context` når workflow-recorden faktisk refererer en slik canonical artefakt;
+4. `epoker:places:build`;
+5. V3-projeksjonene.
+
+Rekkefølgen er viktig: epokeindeksen leser blant annet runtime Stories, og skal derfor bygges etter place-open/runtime-materialiseringen. Build skriver ikke oversettelser automatisk. Eksisterende oversettelser er redaksjonelt innhold og freshness-kontrolleres i verify. Etter build listes nye dirty genererte filer eksplisitt slik at de kan committes før closeout. Ukjent nødvendig builder skal feile lukket i stedet for å gjettes.
 
 ### Verify
 
@@ -97,7 +105,15 @@ Kjører bare registrerte deterministiske eiere/buildere og regenererer V3-projek
 npm run place:verify -- <place_id>
 ```
 
-Validerer workflow-record, factuality-referanse, projection freshness, generiske Place-gater, relevante place-regresjoner og at deklarert state er lik avledet state.
+Speiler build-kjeden med deterministiske `--check`-/sync-kontroller før generiske Place-gater kjøres. Verify stopper dermed tidlig og med eiernavn dersom places-index, place-open/runtime, stedets quiz production context, epokeindeks eller V3-projeksjoner er stale. Deretter kontrolleres eksisterende Place-oversettelser mot canonical source hash, generiske Place-gater, relevante place-regresjoner og at deklarert state er lik avledet state.
+
+Et sted som har `manual_reviews.final_ui.status: PASS` skal i tillegg gjennom den permanente browser-closeouten:
+
+```bash
+npm run place:closeout -- <place_id>
+```
+
+PR-workflowen `.github/workflows/place-production-closeout.yml` finner berørte V3-steder og kjører først `place:verify`, deretter desktop-/mobil-QA av PlaceCard-samlinger, popupene, QuizCard-flip, quizinngang, overflow, sidefeil og synlige bilder.
 
 ## CI-ruting
 
