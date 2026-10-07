@@ -32,7 +32,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: place-production-closeout-\${{ github.event.pull_request.number || github.ref }}
+  group: place-production-closeout-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -40,8 +40,8 @@ jobs:
     name: Discover Place closeout targets
     runs-on: ubuntu-latest
     outputs:
-      places: \${{ steps.targets.outputs.places }}
-      has_targets: \${{ steps.targets.outputs.has_targets }}
+      places: ${{ steps.targets.outputs.places }}
+      has_targets: ${{ steps.targets.outputs.has_targets }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -52,9 +52,9 @@ jobs:
         name: Resolve affected v3 Places
         shell: bash
         env:
-          BASE_SHA: \${{ github.event.pull_request.base.sha }}
-          HEAD_SHA: \${{ github.event.pull_request.head.sha }}
-          DISPATCH_PLACE_ID: \${{ inputs.place_id }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          DISPATCH_PLACE_ID: ${{ inputs.place_id }}
         run: |
           set -euo pipefail
           node --input-type=module <<'NODE' >> "$GITHUB_OUTPUT"
@@ -96,15 +96,15 @@ jobs:
           }
 
           const existing = [...targets]
-            .filter((id) => fs.existsSync(\`data/places/workflow/\${id}.json\`))
+            .filter((id) => fs.existsSync(`data/places/workflow/${id}.json`))
             .sort();
 
-          console.log(\`places=\${JSON.stringify(existing)}\`);
-          console.log(\`has_targets=\${existing.length ? 'true' : 'false'}\`);
+          console.log(`places=${JSON.stringify(existing)}`);
+          console.log(`has_targets=${existing.length ? 'true' : 'false'}`);
           NODE
 
   browser-closeout:
-    name: Browser closeout — \${{ matrix.place }}
+    name: Browser closeout — ${{ matrix.place }}
     needs: discover
     if: needs.discover.outputs.has_targets == 'true'
     runs-on: ubuntu-latest
@@ -112,7 +112,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        place: \${{ fromJSON(needs.discover.outputs.places) }}
+        place: ${{ fromJSON(needs.discover.outputs.places) }}
     steps:
       - name: Check out exact PR head
         uses: actions/checkout@v4
@@ -130,16 +130,16 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Verify deterministic Place outputs first
-        run: npm run place:verify -- "\${{ matrix.place }}"
+        run: npm run place:verify -- "${{ matrix.place }}"
 
       - name: Run desktop and mobile closeout
-        run: node scripts/verify-place-closeout-browser.mjs "\${{ matrix.place }}"
+        run: node scripts/verify-place-closeout-browser.mjs "${{ matrix.place }}"
 
       - name: Upload closeout evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: place-closeout-\${{ matrix.place }}-\${{ github.sha }}
-          path: artifacts/place-closeout/\${{ matrix.place }}
+          name: place-closeout-${{ matrix.place }}-${{ github.sha }}
+          path: artifacts/place-closeout/${{ matrix.place }}
           if-no-files-found: ignore
           retention-days: 14
