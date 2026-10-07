@@ -24,6 +24,12 @@ jobs:
       - name: Check out exact branch head
         uses: actions/checkout@v4
 
+      - name: Install repository dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+
       - name: Sync generated Civication people index
         shell: bash
         run: |
