@@ -1812,6 +1812,16 @@
       nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
       nav.addEventListener("click", (event) => {
         var _a, _b, _c;
+        const collectionButton = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-collection-link]") : null;
+        if (collectionButton instanceof HTMLElement && (nav == null ? void 0 : nav.contains(collectionButton))) {
+          const collectionId = text15(collectionButton.dataset.hgPlaceSheetCollectionLink);
+          if (!collectionId) return;
+          event.preventDefault();
+          const root2 = card();
+          const collection = root2 ? Array.from(root2.querySelectorAll(".pc-collection")).find((node) => text15(node.dataset.collectionId) === collectionId) : null;
+          collection == null ? void 0 : collection.click();
+          return;
+        }
         const button = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-jump]") : null;
         if (!(button instanceof HTMLElement) || !(nav == null ? void 0 : nav.contains(button))) return;
         const target = text15(button.dataset.hgPlaceSheetJump);
@@ -1830,6 +1840,33 @@
     nav.dataset.placeId = text15(place.id);
     return nav;
   }
+  function syncCollectionNav(nav, place, sideStack) {
+    var _a, _b;
+    nav.querySelectorAll("[data-hg-place-sheet-collection-link]").forEach((button) => button.remove());
+    const configured = ((_b = (_a = runtime16.HGPlaceCardCollections) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, place)) || [];
+    const fallback = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).filter((node) => !node.hidden && text15(node.dataset.collectionId)).map((node) => ({
+      id: text15(node.dataset.collectionId),
+      label: text15(node.getAttribute("aria-label") || node.title)
+    })) : [];
+    const source = configured.length ? configured : fallback;
+    const seen = /* @__PURE__ */ new Set();
+    let insertAfter = nav.querySelector('[data-hg-place-sheet-jump="about"]');
+    for (const item of source) {
+      const id = text15(item == null ? void 0 : item.id);
+      const label = text15(item == null ? void 0 : item.label);
+      if (!id || !label || seen.has(id)) continue;
+      seen.add(id);
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "pc-sheet-collection-link";
+      button.dataset.hgPlaceSheetCollectionLink = id;
+      button.textContent = label;
+      insertAfter == null ? void 0 : insertAfter.after(button);
+      if (!insertAfter) nav.prepend(button);
+      insertAfter = button;
+    }
+    return insertAfter;
+  }
   function ensureShell(place) {
     if (isMicro2(place)) return null;
     const root2 = card();
@@ -1843,7 +1880,9 @@
       shell4.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
+          <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
+        </div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -1858,11 +1897,12 @@
     root2.classList.add("is-place-sheet-phase1", "is-place-sheet-direct");
     return shell4;
   }
-  function movePrimaryNodes(shell4) {
+  function movePrimaryNodes(shell4, place) {
     const root2 = card();
     if (!(root2 instanceof HTMLElement)) return;
     const media = shell4.querySelector("[data-hg-place-sheet-media]");
     const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
+    const collections = shell4.querySelector("[data-hg-place-sheet-collections]");
     const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const front = root2.querySelector(".pc-frontcard");
     const textBlock = root2.querySelector(".pc-text");
@@ -1870,14 +1910,11 @@
     const events = document.getElementById("pcEventsBox");
     if (front && media && front.parentElement !== media) media.prepend(front);
     if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
-    const aboutButton = nav == null ? void 0 : nav.querySelector('[data-hg-place-sheet-jump="about"]');
-    let insertAfter = aboutButton || null;
-    if (sideStack instanceof HTMLElement && nav && sideStack.parentElement !== nav) {
-      insertAfter == null ? void 0 : insertAfter.after(sideStack);
-      if (!insertAfter) nav.prepend(sideStack);
+    if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
+      collections.appendChild(sideStack);
     }
-    if (sideStack instanceof HTMLElement && sideStack.parentElement === nav) insertAfter = sideStack;
-    if (events instanceof HTMLElement && nav && events.parentElement !== nav) {
+    const insertAfter = nav ? syncCollectionNav(nav, place, sideStack) : null;
+    if (events instanceof HTMLElement && nav) {
       insertAfter == null ? void 0 : insertAfter.after(events);
       if (!insertAfter) nav.prepend(events);
     }
@@ -1935,7 +1972,7 @@
     if (!place || isMicro2(place)) return null;
     const shell4 = ensureShell(place);
     if (!(shell4 instanceof HTMLElement)) return null;
-    movePrimaryNodes(shell4);
+    movePrimaryNodes(shell4, place);
     const aboutSlot = ensureAboutSlot(shell4);
     if (aboutSlot) (_a = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })) == null ? void 0 : _a.classList.add("pc-sheet-canonical-about");
     const historySlot = ensureHistorySlot(shell4);
