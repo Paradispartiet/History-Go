@@ -202,13 +202,18 @@ function play(type, id, b) {
       p.querySelector('[data-lifestory-choice="' + choice.id + '"]').click();
       const namesPerson = choice.id === fixture.choice;
       assert.equal(!!p.querySelector('.civi-lifestory-konsekvens [data-lifestory-dramatized]'), namesPerson);
-      assert.equal(!!p.querySelector('.civi-lifestory-summary [data-lifestory-dramatized]'), namesPerson);
+      assert.equal(!!p.querySelector('.civi-lifestory-summary > [data-lifestory-dramatized]'), namesPerson);
       const saved = win.CivicationLifestoryState.load();
       assert.equal(!!saved.arkiv.at(-1).personRepresentanter?.[fixture.type], namesPerson, 'unchosen references are not archived');
+      const ending = win.CivicationLifestoryEndings.resolveEnding(saved, active);
+      const authoredEnding = active.role.endings.find(e => e.id === ending.id);
+      const endingNamesPerson = S.sceneMentionsPerson({ tittel: authoredEnding.navn, tekst: authoredEnding.tekst }, type);
+      assert.equal(!!p.querySelector('.civi-lifestory-ending [data-lifestory-dramatized]'), endingNamesPerson, 'the ending discloses its own person references');
       if (namesPerson) assert.ok(p.querySelector('.civi-lifestory-konsekvens').textContent.includes(people.get(fixture.person).name));
       d.window.close();
       const reloaded = await boot(saved);
-      assert.equal(!!reloaded.window.document.querySelector('.civi-lifestory-summary [data-lifestory-dramatized]'), namesPerson, 'summary disclosure survives reload');
+      assert.equal(!!reloaded.window.document.querySelector('.civi-lifestory-summary > [data-lifestory-dramatized]'), namesPerson, 'summary disclosure survives reload');
+      assert.equal(!!reloaded.window.document.querySelector('.civi-lifestory-ending [data-lifestory-dramatized]'), endingNamesPerson, 'ending disclosure survives reload');
       reloaded.window.close();
     }
   }

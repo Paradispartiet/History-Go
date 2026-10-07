@@ -474,11 +474,13 @@
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const endingHtml = ending
       ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
         + "<div class=\"civi-lifestory-section-label\">" + (content.fortsettelse ? "Kapittelet er avsluttet" : "Slutten på uka") + "</div>"
         + "<h3>" + escapeHtml(ending.navn) + "</h3>"
         + (ending.tekst ? "<p>" + escapeHtml(ending.tekst) + "</p>" : "")
+        + dramatizationNote(authoredEnding && sceneHasRepresentative({ tittel: authoredEnding.navn, tekst: authoredEnding.tekst }))
         + "</section>"
       : "";
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
