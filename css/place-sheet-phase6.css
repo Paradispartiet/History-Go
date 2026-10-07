@@ -6,9 +6,11 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
   display:flex;
   gap:8px;
   overflow-x:auto;
-  margin:20px 0 8px;
-  padding:10px 2px;
-  background:rgba(6,9,15,.92);
+  margin:-22px -22px 20px;
+  padding:12px 22px 10px;
+  border-bottom:1px solid rgba(255,255,255,.10);
+  background:rgba(6,9,15,.96);
+  box-shadow:0 10px 24px rgba(0,0,0,.22);
   backdrop-filter:blur(14px);
   scrollbar-width:none;
 }
@@ -41,4 +43,11 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-pla
 }
 @media (prefers-reduced-motion:reduce){
   body.hg-app #placeCard.is-place-sheet-direct *{scroll-behavior:auto!important;}
+}
+
+@media (max-width:720px){
+  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav{
+    margin:-18px -16px 18px;
+    padding:10px 16px 9px;
+  }
 }
