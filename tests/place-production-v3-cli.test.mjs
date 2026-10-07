@@ -25,6 +25,7 @@ test('derived build steps are explicit argument arrays, never shell strings', ()
   assert.deepEqual(steps.map((step) => step.id), [
     'places-index',
     'place-open',
+    'fagverk-release',
     'epoke-place-index',
     'v3-projections',
   ]);

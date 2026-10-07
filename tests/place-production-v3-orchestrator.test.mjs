@@ -28,6 +28,7 @@ test('Place v3 derived artifact plan preserves dependency order', () => {
     'places-index',
     'place-open',
     'quiz-production-context',
+    'fagverk-release',
     'epoke-place-index',
     'v3-projections',
   ]);

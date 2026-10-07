@@ -88,6 +88,12 @@ export function placeDerivedArtifactPlan(record) {
 
   steps.push(
     {
+      id: 'fagverk-release',
+      build: ['node', ['scripts/build-fagverk-release-manifest.mjs']],
+      verify: ['node', ['scripts/build-fagverk-release-manifest.mjs', '--check']],
+      owned_paths: ['data/fagverk/fagverk_release.json'],
+    },
+    {
       id: 'epoke-place-index',
       build: ['npm', ['run', 'epoker:places:build']],
       verify: ['npm', ['run', 'epoker:places:check']],
