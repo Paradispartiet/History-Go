@@ -223,8 +223,8 @@ jobs:
             report.pageErrors = pageErrors.slice(0, 30);
             report.failedSameOrigin = failedSameOrigin.slice(0, 30);
             report.brokenPlaceImages = report.images.filter(image => {
-              const hiddenQuizImage = image.id === 'pcQuizCardImage' && report.quizImage?.hidden === true;
-              return !hiddenQuizImage && Boolean(image.src) && Number(image.naturalWidth || 0) <= 0;
+              const rendered = Number(image.rect?.width || 0) > 0 && Number(image.rect?.height || 0) > 0;
+              return rendered && Boolean(image.src) && Number(image.naturalWidth || 0) <= 0;
             }).slice(0, 30);
 
             const required = {
