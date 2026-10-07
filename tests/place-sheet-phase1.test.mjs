@@ -12,7 +12,8 @@ const collectionsSource = fs.readFileSync("js/ui/place-rounds-visual-collections
 test("Phase 1 shell reuses existing PlaceCard nodes instead of cloning them", () => {
   assert.match(shellSource, /media\.prepend\(front\)/);
   assert.match(shellSource, /copy\.prepend\(textBlock\)/);
-  assert.match(shellSource, /insertAfter\?\.after\(sideStack\)/);
+  assert.match(shellSource, /collections\.appendChild\(sideStack\)/);
+  assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
   assert.match(shellSource, /insertAfter\?\.after\(events\)/);
   assert.doesNotMatch(shellSource, /cloneNode/);
   assert.match(shellSource, /restoreLegacyPlaceCardStructure/);
@@ -42,10 +43,10 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
       <div class="pc-grid">
         <div class="pc-frontcard" id="pcFrontCardFlip"><img id="pcFrontImage" alt=""></div>
         <div class="pc-side-stack"><div class="pc-icons-quad" data-collection-count="4">
-          <div id="pcPeopleIcon" class="pc-round pc-collection" data-collection-shape="circle"></div>
-          <div id="pcObjectsIcon" class="pc-round pc-collection" data-collection-shape="rectangle"></div>
-          <div id="pcBrandsIcon" class="pc-round pc-collection" data-collection-shape="rectangle"></div>
-          <div id="pcCategoryCollectionIcon" class="pc-round pc-collection" data-collection-shape="rectangle"></div>
+          <div id="pcPeopleIcon" class="pc-round pc-collection" data-collection-id="people" data-collection-shape="circle" aria-label="Personer"></div>
+          <div id="pcObjectsIcon" class="pc-round pc-collection" data-collection-id="objects" data-collection-shape="rectangle" aria-label="Gjenstander"></div>
+          <div id="pcBrandsIcon" class="pc-round pc-collection" data-collection-id="brands" data-collection-shape="rectangle" aria-label="Brands"></div>
+          <div id="pcCategoryCollectionIcon" class="pc-round pc-collection" data-collection-id="productions" data-collection-shape="rectangle" aria-label="Produksjoner"></div>
         </div></div>
         <div id="pcEventsBox" class="pc-events-quad"></div>
       </div>
@@ -97,11 +98,14 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   assert.equal(window.document.querySelector(".pc-text")?.parentElement?.classList.contains("pc-sheet-hero-copy"), true);
   const nav = shell.querySelector('[data-hg-place-sheet-nav="1"]');
   const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
-  const sideStack = nav?.querySelector(".pc-side-stack");
+  const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
+  const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
   const eventsBox = nav?.querySelector("#pcEventsBox");
   assert.ok(nav && aboutButton && sideStack && eventsBox);
-  assert.equal(aboutButton.nextElementSibling, sideStack);
-  assert.equal(sideStack.nextElementSibling, eventsBox);
+  assert.equal(collectionLinks.length, 4);
+  assert.equal(aboutButton.nextElementSibling, collectionLinks[0]);
+  assert.equal(collectionLinks.at(-1)?.nextElementSibling, eventsBox);
+  assert.equal(sideStack.parentElement?.classList.contains("pc-sheet-explore-grid"), true);
   assert.match(shell.querySelector(".pc-sheet-canonical-about")?.textContent || "", /Lang canonical omtekst/);
   assert.equal(popupCalls, 0, "standard Place must not invoke the legacy popup renderer");
   assert.equal(card.querySelector('.hg-popup .hg-place-about-section'), null, "canonical popupDesc node must have one visual owner");
