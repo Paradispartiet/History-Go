@@ -18,23 +18,21 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-shell{
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
-  display: grid;
-  grid-template-columns: minmax(230px, .78fr) minmax(0, 1.42fr);
-  gap: clamp(20px, 3vw, 34px);
-  align-items: start;
+  display: block;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
   min-width: 0;
+  margin-top: 24px;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-  width: 100%;
+  width: min(100%, 330px);
   max-width: 330px;
   max-height: none;
   aspect-ratio: 3 / 4;
-  margin: 0;
-  justify-self: start;
+  margin: 0 auto;
+  justify-self: center;
   border-radius: 24px;
   border: 1px solid rgba(255,255,255,.12);
   box-shadow: 0 20px 48px rgba(0,0,0,.42);
@@ -149,7 +147,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad{
   display: grid;
-  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   grid-auto-rows: minmax(148px, auto);
   width: 100%;
   max-width: none;
@@ -290,8 +288,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
-    grid-template-columns: minmax(145px, .72fr) minmax(0, 1.28fr);
-    gap: 16px;
+    display: block;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
@@ -313,6 +310,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad{
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 13px;
     grid-auto-rows: minmax(130px, auto);
   }
@@ -333,10 +331,6 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 }
 
 @media (max-width: 520px){
-  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
-    grid-template-columns: 1fr;
-  }
-
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
     width: min(76vw, 290px);
     justify-self: center;
