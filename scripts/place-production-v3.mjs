@@ -125,13 +125,19 @@ export function verifyPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
   return 0;
 }
 
+export function closeoutPlace(placeId, repoRoot = DEFAULT_REPO_ROOT) {
+  const verifyStatus = verifyPlace(placeId, repoRoot);
+  if (verifyStatus !== 0) return verifyStatus;
+  return run('node', ['scripts/verify-place-closeout-browser.mjs', placeId], repoRoot);
+}
+
 function usage() {
-  console.error('Usage: node scripts/place-production-v3.mjs <plan|build|verify> <place_id>');
+  console.error('Usage: node scripts/place-production-v3.mjs <plan|build|verify|closeout> <place_id>');
 }
 
 function main() {
   const [command, placeId] = process.argv.slice(2);
-  if (!command || !placeId || !['plan', 'build', 'verify'].includes(command)) {
+  if (!command || !placeId || !['plan', 'build', 'verify', 'closeout'].includes(command)) {
     usage();
     process.exit(2);
   }
@@ -141,7 +147,11 @@ function main() {
       printPlan(loadWorkflowRecord(placeId));
       return;
     }
-    const status = command === 'build' ? buildPlace(placeId) : verifyPlace(placeId);
+    const status = command === 'build'
+      ? buildPlace(placeId)
+      : command === 'verify'
+        ? verifyPlace(placeId)
+        : closeoutPlace(placeId);
     process.exit(status);
   } catch (error) {
     console.error(error.message);
