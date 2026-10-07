@@ -1810,9 +1810,6 @@
       nav.setAttribute("data-hg-place-sheet-nav", "1");
       nav.setAttribute("aria-label", "Hopp til del av stedet");
       nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
-      const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
-      if (hero == null ? void 0 : hero.nextSibling) shell4.insertBefore(nav, hero.nextSibling);
-      else shell4.appendChild(nav);
       nav.addEventListener("click", (event) => {
         var _a, _b, _c;
         const button = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-jump]") : null;
@@ -1829,6 +1826,7 @@
         }
       });
     }
+    if (shell4.firstElementChild !== nav) shell4.prepend(nav);
     nav.dataset.placeId = text15(place.id);
     return nav;
   }
@@ -1844,17 +1842,8 @@
       shell4.setAttribute(SHELL_ATTR, "1");
       shell4.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-          <section class="pc-sheet-explore" aria-label="Utforsk stedet">
-            <div class="pc-sheet-section-head">
-              <span class="pc-sheet-section-eyebrow">Utforsk</span>
-              <h2>Fire samlinger</h2>
-            </div>
-            <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-          </section>
-          <section class="pc-sheet-onsite" data-hg-place-sheet-onsite aria-label="Events og m\xF8ter"></section>
-        </div>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
+        <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -1874,29 +1863,37 @@
     if (!(root2 instanceof HTMLElement)) return;
     const media = shell4.querySelector("[data-hg-place-sheet-media]");
     const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
-    const collections = shell4.querySelector("[data-hg-place-sheet-collections]");
-    const onsite = shell4.querySelector("[data-hg-place-sheet-onsite]");
+    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const front = root2.querySelector(".pc-frontcard");
     const textBlock = root2.querySelector(".pc-text");
     const sideStack = root2.querySelector(".pc-side-stack");
     const events = document.getElementById("pcEventsBox");
     if (front && media && front.parentElement !== media) media.prepend(front);
     if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
-    if (sideStack && collections && sideStack.parentElement !== collections) collections.appendChild(sideStack);
-    if (events instanceof HTMLElement && onsite && events.parentElement !== onsite) onsite.appendChild(events);
+    const aboutButton = nav == null ? void 0 : nav.querySelector('[data-hg-place-sheet-jump="about"]');
+    let insertAfter = aboutButton || null;
+    if (sideStack instanceof HTMLElement && nav && sideStack.parentElement !== nav) {
+      insertAfter == null ? void 0 : insertAfter.after(sideStack);
+      if (!insertAfter) nav.prepend(sideStack);
+    }
+    if (sideStack instanceof HTMLElement && sideStack.parentElement === nav) insertAfter = sideStack;
+    if (events instanceof HTMLElement && nav && events.parentElement !== nav) {
+      insertAfter == null ? void 0 : insertAfter.after(events);
+      if (!insertAfter) nav.prepend(events);
+    }
     const legacyGrid = root2.querySelector(".pc-grid");
     if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
   }
   function ensureAboutSlot(shell4) {
-    const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
-    if (!(copy instanceof HTMLElement)) return null;
-    let aboutSlot = copy.querySelector("[data-hg-place-sheet-about]");
+    let aboutSlot = shell4.querySelector("[data-hg-place-sheet-about]");
     if (!(aboutSlot instanceof HTMLElement)) {
-      aboutSlot = document.createElement("div");
+      aboutSlot = document.createElement("section");
       aboutSlot.className = "pc-sheet-about";
       aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-      copy.appendChild(aboutSlot);
+      const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
+      if (hero == null ? void 0 : hero.nextSibling) shell4.insertBefore(aboutSlot, hero.nextSibling);
+      else shell4.appendChild(aboutSlot);
     }
     return aboutSlot;
   }
