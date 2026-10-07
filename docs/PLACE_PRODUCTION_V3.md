@@ -110,7 +110,7 @@ Speiler build-kjeden med deterministiske `--check`-/sync-kontroller før generis
 Et sted som har `manual_reviews.final_ui.status: PASS` skal i tillegg gjennom den permanente browser-closeouten:
 
 ```bash
-npm run place:closeout -- <place_id>
+node scripts/place-production-v3.mjs closeout <place_id>
 ```
 
 PR-workflowen `.github/workflows/place-production-closeout.yml` finner berørte V3-steder og kjører først `place:verify`, deretter desktop-/mobil-QA av PlaceCard-samlinger, popupene, QuizCard-flip, quizinngang, overflow, sidefeil og synlige bilder.
