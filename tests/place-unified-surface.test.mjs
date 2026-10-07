@@ -58,12 +58,13 @@ test("unified renderer is critical runtime while Phase 6 adds direct Place Sheet
   assert.match(phase6Css, /is-place-sheet-direct/);
 });
 
-test("Place Sheet source locks Events/Møtes under Explore in the left column", () => {
-  const exploreIndex = shellSource.indexOf('<section class="pc-sheet-explore"');
-  const onsiteIndex = shellSource.indexOf('<section class="pc-sheet-onsite"');
-  const copyIndex = shellSource.indexOf('<div class="pc-sheet-hero-copy"');
-  assert.ok(exploreIndex >= 0 && onsiteIndex > exploreIndex && copyIndex > onsiteIndex);
-  assert.match(sheetCss, /pc-sheet-hero-media > \.pc-sheet-onsite/);
+test("Place Sheet source mounts rounds plus Events/Møtes in the sticky header after Om", () => {
+  assert.match(shellSource, /querySelector<HTMLElement>\('\[data-hg-place-sheet-jump="about"\]'\)/);
+  assert.match(shellSource, /insertAfter\?\.after\(sideStack\)/);
+  assert.match(shellSource, /insertAfter = sideStack/);
+  assert.match(shellSource, /insertAfter\?\.after\(events\)/);
+  assert.doesNotMatch(shellSource, /pc-sheet-explore/);
+  assert.doesNotMatch(shellSource, /pc-sheet-onsite/);
   assert.match(source, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
   assert.match(runtime, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
 });
@@ -154,14 +155,15 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   assert.ok(card.querySelector('.pc-sheet-section-nav'));
 
   const mediaColumn = card.querySelector('[data-hg-place-sheet-media]');
-  const explore = card.querySelector('.pc-sheet-explore');
-  const onsite = card.querySelector('[data-hg-place-sheet-onsite]');
-  const eventsBox = card.querySelector('#pcEventsBox');
-  assert.ok(mediaColumn && explore && onsite && eventsBox);
-  assert.equal(onsite.parentElement, mediaColumn, "Events/Møtes host must stay in PlaceCard left media column");
-  assert.equal(eventsBox.parentElement, onsite, "pcEventsBox must be owned by the onsite slot");
-  const mediaChildren = Array.from(mediaColumn.children);
-  assert.ok(mediaChildren.indexOf(onsite) > mediaChildren.indexOf(explore), "Events/Møtes must sit below Utforsk collections");
+  const nav = card.querySelector('[data-hg-place-sheet-nav="1"]');
+  const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
+  const sideStack = nav?.querySelector('.pc-side-stack');
+  const eventsBox = nav?.querySelector('#pcEventsBox');
+  assert.ok(mediaColumn && nav && aboutButton && sideStack && eventsBox);
+  assert.equal(aboutButton.nextElementSibling, sideStack, "canonical rounds must follow Om in the PlaceCard header");
+  assert.equal(sideStack.nextElementSibling, eventsBox, "Events/Møtes must follow the canonical rounds");
+  assert.equal(card.querySelector('.pc-sheet-explore'), null, "legacy Explore block must be gone");
+  assert.equal(card.querySelector('[data-hg-place-sheet-onsite]'), null, "legacy onsite slot must be gone");
 
   assert.equal(typeof window.HGPlacePopupTabs.openTab, "function", "legacy entry point must route into Place Sheet for standard Places");
 
