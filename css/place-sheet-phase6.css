@@ -51,3 +51,102 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-language-compat > .hg-pla
     padding:10px 16px 9px;
   }
 }
+
+/* Canonical PlaceCard controls live directly in the sticky header after Om. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack{
+  flex:0 0 auto;
+  display:flex;
+  align-items:center;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  height:38px;
+  min-height:38px;
+  margin:0;
+  align-self:center;
+  justify-self:auto;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack .pc-icons-quad{
+  display:flex !important;
+  flex-direction:row;
+  align-items:center;
+  justify-content:flex-start;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  height:38px;
+  min-height:38px;
+  gap:6px;
+  margin:0;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack .pc-round:not([hidden]){
+  flex:0 0 38px;
+  width:38px;
+  min-width:38px;
+  max-width:38px;
+  height:38px;
+  min-height:38px;
+  max-height:38px;
+  border-radius:999px;
+  box-shadow:none;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack .pc-round::after{
+  display:none;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack .pc-round-emoji{
+  font-size:17px;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > .pc-side-stack .pc-round-count{
+  font-size:9px;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox{
+  flex:0 0 auto;
+  display:block;
+  width:auto;
+  min-width:0;
+  max-width:none;
+  min-height:38px;
+  height:38px;
+  padding:0;
+  margin:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox .pc-onsite-surface{
+  width:auto;
+  height:38px;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox .pc-onsite-actions{
+  display:flex;
+  grid-template-columns:none;
+  align-items:center;
+  gap:8px;
+  width:auto;
+  height:38px;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox .pc-onsite-action{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  width:auto;
+  min-width:0;
+  min-height:38px;
+  height:38px;
+  padding:0 13px;
+  border-width:1px;
+  border-radius:999px;
+  box-shadow:none;
+  overflow:visible;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox .pc-onsite-action-icon{
+  width:auto;
+  height:auto;
+  font-size:15px;
+}
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-section-nav > #pcEventsBox .pc-onsite-action-label{
+  font-size:12px;
+}
