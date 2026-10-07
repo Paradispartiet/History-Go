@@ -22,6 +22,9 @@ type PlaceSheetShellRuntime = Window & typeof globalThis & {
     open?: (place: unknown, target?: unknown) => Promise<boolean> | boolean;
     scrollToSection?: (target: unknown, options?: { instant?: boolean; focus?: boolean }) => boolean;
   };
+  HGPlaceCardCollections?: {
+    get?: (place: PlaceSheetPlace) => Array<{ id?: string; label?: string }>;
+  };
 };
 
 const runtime = window as PlaceSheetShellRuntime;
@@ -64,6 +67,22 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
     nav.setAttribute("aria-label", "Hopp til del av stedet");
     nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
     nav.addEventListener("click", event => {
+      const collectionButton = event.target instanceof Element
+        ? event.target.closest<HTMLElement>("[data-hg-place-sheet-collection-link]")
+        : null;
+      if (collectionButton instanceof HTMLElement && nav?.contains(collectionButton)) {
+        const collectionId = text(collectionButton.dataset.hgPlaceSheetCollectionLink);
+        if (!collectionId) return;
+        event.preventDefault();
+        const root = card();
+        const collection = root
+          ? Array.from(root.querySelectorAll<HTMLElement>(".pc-collection"))
+              .find(node => text(node.dataset.collectionId) === collectionId)
+          : null;
+        collection?.click();
+        return;
+      }
+
       const button = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-hg-place-sheet-jump]") : null;
       if (!(button instanceof HTMLElement) || !nav?.contains(button)) return;
       const target = text(button.dataset.hgPlaceSheetJump);
@@ -83,6 +102,40 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
   return nav;
 }
 
+function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: HTMLElement | null): Element | null {
+  nav.querySelectorAll<HTMLElement>("[data-hg-place-sheet-collection-link]").forEach(button => button.remove());
+
+  const configured = runtime.HGPlaceCardCollections?.get?.(place) || [];
+  const fallback = sideStack
+    ? Array.from(sideStack.querySelectorAll<HTMLElement>(".pc-collection"))
+        .filter(node => !node.hidden && text(node.dataset.collectionId))
+        .map(node => ({
+          id: text(node.dataset.collectionId),
+          label: text(node.getAttribute("aria-label") || node.title)
+        }))
+    : [];
+  const source = configured.length ? configured : fallback;
+  const seen = new Set<string>();
+  let insertAfter = nav.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
+
+  for (const item of source) {
+    const id = text(item?.id);
+    const label = text(item?.label);
+    if (!id || !label || seen.has(id)) continue;
+    seen.add(id);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "pc-sheet-collection-link";
+    button.dataset.hgPlaceSheetCollectionLink = id;
+    button.textContent = label;
+    insertAfter?.after(button);
+    if (!insertAfter) nav.prepend(button);
+    insertAfter = button;
+  }
+
+  return insertAfter;
+}
+
 function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
   if (isMicro(place)) return null;
   const root = card();
@@ -97,7 +150,9 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
     shell.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
+        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
+          <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
+        </div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -114,12 +169,13 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
   return shell;
 }
 
-function movePrimaryNodes(shell: HTMLElement): void {
+function movePrimaryNodes(shell: HTMLElement, place: PlaceSheetPlace): void {
   const root = card();
   if (!(root instanceof HTMLElement)) return;
 
   const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
   const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
+  const collections = shell.querySelector<HTMLElement>("[data-hg-place-sheet-collections]");
   const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
 
   const front = root.querySelector<HTMLElement>(".pc-frontcard");
@@ -129,15 +185,12 @@ function movePrimaryNodes(shell: HTMLElement): void {
 
   if (front && media && front.parentElement !== media) media.prepend(front);
   if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
-
-  const aboutButton = nav?.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
-  let insertAfter: Element | null = aboutButton || null;
-  if (sideStack instanceof HTMLElement && nav && sideStack.parentElement !== nav) {
-    insertAfter?.after(sideStack);
-    if (!insertAfter) nav.prepend(sideStack);
+  if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
+    collections.appendChild(sideStack);
   }
-  if (sideStack instanceof HTMLElement && sideStack.parentElement === nav) insertAfter = sideStack;
-  if (events instanceof HTMLElement && nav && events.parentElement !== nav) {
+
+  const insertAfter = nav ? syncCollectionNav(nav, place, sideStack) : null;
+  if (events instanceof HTMLElement && nav) {
     insertAfter?.after(events);
     if (!insertAfter) nav.prepend(events);
   }
@@ -201,7 +254,7 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   const shell = ensureShell(place);
   if (!(shell instanceof HTMLElement)) return null;
 
-  movePrimaryNodes(shell);
+  movePrimaryNodes(shell, place);
   const aboutSlot = ensureAboutSlot(shell);
   if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
   const historySlot = ensureHistorySlot(shell);
