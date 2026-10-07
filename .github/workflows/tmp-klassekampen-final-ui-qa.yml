@@ -10,6 +10,9 @@ on:
       - data/i18n/content/places/en.json
       - data/i18n/content/places/es.json
       - data/i18n/content/places/pt.json
+      - data/stories/stories_klassekampen_redaksjon.json
+      - data/runtime/place-open/klassekampen_redaksjon.json
+      - data/runtime/stories-all/**
   workflow_dispatch:
 
 permissions:
@@ -281,9 +284,11 @@ jobs:
                   };
                 })
                 .filter(img => img.width > 0 && img.height > 0 && Boolean(img.src));
+              const nonQuizClone = card?.cloneNode?.(true);
+              nonQuizClone?.querySelector?.('#pcQuizCardBack')?.remove();
               return {
                 title: (document.getElementById('pcTitle')?.textContent || '').trim(),
-                cardText: (card?.innerText || '').trim(),
+                nonQuizText: (nonQuizClone?.textContent || '').trim(),
                 currentPlaceId: card?.dataset?.currentPlaceId || '',
                 visible,
                 collectionMode: card?.dataset?.collectionMode || '',
@@ -307,7 +312,8 @@ jobs:
             const required = {
               exactPlace: base.currentPlaceId === 'klassekampen_redaksjon',
               title: base.title === 'Klassekampen editorial office',
-              noLegacyHausmann: !/Hausmanns?/i.test(base.title + '\n' + base.cardText + '\n' + popupChecks.map(item => item.title).join('\n')),
+              noLegacyHausmann: !/Hausmanns?/i.test(base.title + '\n' + base.nonQuizText + '\n' + popupChecks.map(item => item.title).join('\n')),
+              canonicalAddressVisible: /Grønland 4/i.test(base.nonQuizText),
               visible: base.visible === true,
               canonicalCollectionMode: base.collectionMode === 'place-card-collections-v2',
               fourCollections: base.collectionCount === 4,
