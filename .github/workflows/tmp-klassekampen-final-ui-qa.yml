@@ -1,0 +1,315 @@
+# One-shot exact-head interactive closeout QA for Klassekampen.
+name: TEMP Klassekampen final UI QA
+
+on:
+  push:
+    branches:
+      - agent/klassekampen-final-ui-closeout-20261007
+    paths:
+      - .github/workflows/tmp-klassekampen-final-ui-qa.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  final-ui-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact branch head
+        uses: actions/checkout@v4
+
+      - name: Prepare Chrome harness
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            echo "::error::Chrome/Chromium is not installed on this runner"
+            exit 1
+          fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+          rm -rf /tmp/hg-final-ui-qa
+          mkdir -p /tmp/hg-final-ui-qa "$GITHUB_WORKSPACE/artifacts/klassekampen-final-ui"
+          cd /tmp/hg-final-ui-qa
+          npm init -y >/dev/null
+          npm install --no-save --package-lock=false --no-audit --no-fund puppeteer-core@24.2.0
+
+      - name: Start exact-head History Go server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8080 --bind 127.0.0.1 --directory "$GITHUB_WORKSPACE" > /tmp/hg-final-ui-qa/server.log 2>&1 &
+          echo $! > /tmp/hg-final-ui-qa/server.pid
+          for i in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:8080/index.html >/dev/null; then
+              exit 0
+            fi
+            sleep 0.25
+          done
+          cat /tmp/hg-final-ui-qa/server.log
+          exit 1
+
+      - name: Run desktop and mobile interactive closeout
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > /tmp/hg-final-ui-qa/qa.mjs <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import puppeteer from 'puppeteer-core';
+
+          const workspace = process.env.GITHUB_WORKSPACE;
+          const outDir = path.join(workspace, 'artifacts', 'klassekampen-final-ui');
+          const url = 'http://127.0.0.1:8080/index.html?hgTest=1#/place/klassekampen_redaksjon';
+          const expectedCollections = [
+            { iconId: 'pcPeopleIcon', id: 'people', kind: 'people', snippets: ['Bjørgulv Braanen'] },
+            { iconId: 'pcObjectsIcon', id: 'objects', kind: 'objects', snippets: ['Førsteutgaven av Klassekampen'] },
+            { iconId: 'pcBrandsIcon', id: 'brands', kind: 'brands', snippets: ['Klassekampen'] },
+            { iconId: 'pcCategoryCollectionIcon', id: 'productions', kind: 'productions', snippets: ['Bokmagasinet', 'Musikkmagasinet', 'Klassekampen e-avis'] }
+          ];
+          const profiles = [
+            { name: 'desktop', viewport: { width: 1440, height: 1000, deviceScaleFactor: 1 } },
+            { name: 'mobile', viewport: { width: 390, height: 844, deviceScaleFactor: 1, isMobile: true, hasTouch: true } }
+          ];
+
+          const browser = await puppeteer.launch({
+            executablePath: process.env.CHROME_BIN,
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+          });
+
+          const reports = [];
+          let hardFailure = false;
+
+          for (const profile of profiles) {
+            const page = await browser.newPage();
+            await page.setViewport(profile.viewport);
+
+            const pageErrors = [];
+            page.on('pageerror', error => pageErrors.push(String(error?.stack || error)));
+
+            await page.evaluateOnNewDocument(() => {
+              try {
+                localStorage.setItem('hg_onboarding_shown_v1', '1');
+                localStorage.setItem('HG_TEST_MODE', '1');
+              } catch {}
+            });
+
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+            await page.waitForFunction(
+              () => window.__HG_APP_READY__ === true && window.__HG_ROUTER_STARTED__ === true,
+              { timeout: 90_000 }
+            );
+            await page.waitForFunction(
+              () => document.getElementById('placeCard')?.dataset?.currentPlaceId === 'klassekampen_redaksjon',
+              { timeout: 60_000 }
+            );
+            await page.waitForFunction(
+              () => {
+                const card = document.getElementById('placeCard');
+                const image = document.getElementById('pcFrontImage');
+                return card?.dataset?.collectionMode === 'place-card-collections-v2'
+                  && card?.dataset?.collectionCount === '4'
+                  && image instanceof HTMLImageElement
+                  && image.complete
+                  && image.naturalWidth > 0;
+              },
+              { timeout: 60_000 }
+            );
+            await page.waitForFunction(
+              () => {
+                const flip = document.getElementById('pcFrontCardFlip');
+                const content = document.getElementById('pcQuizCardContent');
+                return flip?.classList.contains('has-quiz-card')
+                  && content instanceof HTMLElement
+                  && content.hidden === false
+                  && (content.innerText || '').trim().length > 40;
+              },
+              { timeout: 60_000 }
+            );
+            await page.waitForFunction(
+              () => typeof window.showPlaceCardRoundPopup === 'function',
+              { timeout: 30_000 }
+            );
+
+            await page.evaluate(() => {
+              const original = window.showPlaceCardRoundPopup;
+              window.__HG_FINAL_UI_POPUPS__ = [];
+              window.showPlaceCardRoundPopup = function(options = {}) {
+                window.__HG_FINAL_UI_POPUPS__.push({
+                  kind: String(options?.kind || ''),
+                  title: String(options?.title || ''),
+                  subtitle: String(options?.subtitle || ''),
+                  html: String(options?.html || '')
+                });
+                return original.apply(this, arguments);
+              };
+            });
+
+            await page.waitForFunction((ids) => ids.every(({ iconId, id }) => {
+              const el = document.getElementById(iconId);
+              if (!(el instanceof HTMLElement)) return false;
+              const rect = el.getBoundingClientRect();
+              return el.hidden !== true
+                && el.getAttribute('aria-hidden') !== 'true'
+                && rect.width > 0
+                && rect.height > 0
+                && el.dataset.collectionId === id;
+            }), { timeout: 30_000 }, expectedCollections);
+
+            const collectionState = await page.evaluate((expected) => expected.map(({ iconId, id }) => {
+              const el = document.getElementById(iconId);
+              const img = el?.querySelector(':scope > img.pc-person-img');
+              return {
+                iconId,
+                expectedId: id,
+                actualId: el?.dataset?.collectionId || '',
+                position: el?.dataset?.collectionPosition || '',
+                itemCount: Number(el?.dataset?.collectionItemCount || 0),
+                previewStatus: el?.dataset?.previewStatus || '',
+                previewLoaded: img instanceof HTMLImageElement ? (img.complete && img.naturalWidth > 0) : false,
+                label: el?.getAttribute('aria-label') || ''
+              };
+            }), expectedCollections);
+
+            const popupChecks = [];
+            for (const expected of expectedCollections) {
+              const beforeCount = await page.evaluate(() => window.__HG_FINAL_UI_POPUPS__?.length || 0);
+              await page.evaluate((id) => document.getElementById(id)?.click(), expected.iconId);
+              await page.waitForFunction(
+                (count) => (window.__HG_FINAL_UI_POPUPS__?.length || 0) > count,
+                { timeout: 10_000 },
+                beforeCount
+              );
+              await new Promise(resolve => setTimeout(resolve, 250));
+              const popup = await page.evaluate(() => window.__HG_FINAL_UI_POPUPS__.at(-1));
+              popupChecks.push({
+                iconId: expected.iconId,
+                expectedKind: expected.kind,
+                actualKind: popup?.kind || '',
+                title: popup?.title || '',
+                snippets: Object.fromEntries(expected.snippets.map(text => [text, String(popup?.html || '').includes(text)]))
+              });
+            }
+
+            const quizBefore = await page.evaluate(() => ({
+              text: (document.getElementById('pcQuizCardContent')?.innerText || '').trim(),
+              flipped: document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') === true
+            }));
+            await page.evaluate(() => document.getElementById('pcFrontCardFlip')?.click());
+            await page.waitForFunction(
+              () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') === true,
+              { timeout: 10_000 }
+            );
+            const flipWorked = await page.evaluate(() =>
+              document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') === true
+            );
+            await page.evaluate(() => document.getElementById('pcFrontCardFlip')?.click());
+            await page.waitForFunction(
+              () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') !== true,
+              { timeout: 10_000 }
+            );
+
+            const base = await page.evaluate(() => {
+              const card = document.getElementById('placeCard');
+              const rect = card?.getBoundingClientRect?.();
+              const visible = Boolean(card && rect && rect.width > 0 && rect.height > 0
+                && getComputedStyle(card).display !== 'none'
+                && getComputedStyle(card).visibility !== 'hidden'
+                && card.getAttribute('aria-hidden') !== 'true');
+              const visibleImages = Array.from(card?.querySelectorAll?.('img') || [])
+                .map(img => {
+                  const r = img.getBoundingClientRect();
+                  return {
+                    id: img.id || '',
+                    src: img.currentSrc || img.src || '',
+                    width: r.width,
+                    height: r.height,
+                    naturalWidth: img.naturalWidth
+                  };
+                })
+                .filter(img => img.width > 0 && img.height > 0 && Boolean(img.src));
+              return {
+                title: (document.getElementById('pcTitle')?.textContent || '').trim(),
+                currentPlaceId: card?.dataset?.currentPlaceId || '',
+                visible,
+                collectionMode: card?.dataset?.collectionMode || '',
+                collectionCount: Number(card?.dataset?.collectionCount || 0),
+                horizontalOverflowPx: Math.max(0, document.documentElement.scrollWidth - document.documentElement.clientWidth),
+                visibleImages
+              };
+            });
+
+            await page.screenshot({ path: path.join(outDir, profile.name + '-placecard.png'), fullPage: true });
+
+            await page.evaluate(() => document.getElementById('pcQuiz')?.click());
+            await page.waitForFunction(
+              () => location.hash.startsWith('#/quiz/klassekampen_redaksjon'),
+              { timeout: 15_000 }
+            );
+            await new Promise(resolve => setTimeout(resolve, 750));
+            const quizHash = await page.evaluate(() => location.hash);
+            await page.screenshot({ path: path.join(outDir, profile.name + '-quiz.png'), fullPage: true });
+
+            const required = {
+              exactPlace: base.currentPlaceId === 'klassekampen_redaksjon',
+              title: /Klassekampen/i.test(base.title),
+              visible: base.visible === true,
+              canonicalCollectionMode: base.collectionMode === 'place-card-collections-v2',
+              fourCollections: base.collectionCount === 4,
+              collectionIdsAndOrder: collectionState.every((item, index) =>
+                item.actualId === expectedCollections[index].id && Number(item.position) === index
+              ),
+              collectionCounts: collectionState[0]?.itemCount >= 1
+                && collectionState[1]?.itemCount === 1
+                && collectionState[2]?.itemCount === 1
+                && collectionState[3]?.itemCount === 4,
+              collectionPreviewsLoaded: collectionState.every(item => item.previewLoaded === true),
+              collectionPopups: popupChecks.every(item =>
+                item.actualKind === item.expectedKind && Object.values(item.snippets).every(Boolean)
+              ),
+              quizCardMaterialized: quizBefore.text.length > 40,
+              quizCardFlip: flipWorked === true,
+              quizEntry: quizHash.startsWith('#/quiz/klassekampen_redaksjon'),
+              noHorizontalOverflow: base.horizontalOverflowPx <= 2,
+              noPageErrors: pageErrors.length === 0,
+              noBrokenVisibleImages: base.visibleImages.every(img => Number(img.naturalWidth || 0) > 0)
+            };
+
+            if (Object.values(required).some(value => value !== true)) hardFailure = true;
+            const report = {
+              profile: profile.name,
+              headSha: process.env.GITHUB_SHA,
+              required,
+              base,
+              collectionState,
+              popupChecks,
+              quizCardText: quizBefore.text,
+              quizHash,
+              pageErrors
+            };
+            reports.push(report);
+            fs.writeFileSync(path.join(outDir, profile.name + '.json'), JSON.stringify(report, null, 2));
+            console.log('\n=== ' + profile.name.toUpperCase() + ' ===');
+            console.log(JSON.stringify(report, null, 2));
+
+            await page.close();
+          }
+
+          await browser.close();
+          fs.writeFileSync(path.join(outDir, 'summary.json'), JSON.stringify(reports, null, 2));
+          if (hardFailure) process.exit(1);
+          NODE
+          node /tmp/hg-final-ui-qa/qa.mjs
+
+      - name: Upload final UI evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: klassekampen-final-ui-${{ github.sha }}
+          path: artifacts/klassekampen-final-ui
+          if-no-files-found: error
+          retention-days: 14
