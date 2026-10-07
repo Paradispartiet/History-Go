@@ -32,13 +32,27 @@
     },
     {
       "id": "mira",
-      "navn": "Mira",
-      "beskrivelse": "Jonas kjenner henne fra musikkmiljøet. Hun trenger en medspiller til en prøve, ikke en ansatt."
+      "navn": "Medmusikeren",
+      "beskrivelse": "Jonas kjenner medmusikeren fra musikkmiljøet. Medmusikeren trenger en medspiller til en prøve, ikke en ansatt.",
+      "persontype": {
+        "id": "medmusiker",
+        "representanter": [
+          "bugge_wesseltoft",
+          "mari_boine"
+        ]
+      }
     },
     {
       "id": "amir",
-      "navn": "Arvid",
-      "beskrivelse": "Bekjentens gamle kjenning. Tilbyr plass i et miljø der tjenester og forventninger må avklares."
+      "navn": "Miljøkontakten",
+      "beskrivelse": "Bekjentens gamle kjenning. Tilbyr plass i et miljø der tjenester og forventninger må avklares.",
+      "persontype": {
+        "id": "miljokontakt",
+        "representanter": [
+          "attila_horvath",
+          "sossen_krohg"
+        ]
+      }
     },
     {
       "id": "booker",
@@ -47,8 +61,15 @@
     },
     {
       "id": "lea",
-      "navn": "Lea",
-      "beskrivelse": "Bygger små prototyper på biblioteket. Spør etter én ting som kan prøves, og tåler at et prosjekt foreløpig ikke skal selges."
+      "navn": "Prosjektbyggeren",
+      "beskrivelse": "Bygger små prototyper på biblioteket. Spør etter én ting som kan prøves, og tåler at et prosjekt foreløpig ikke skal selges.",
+      "persontype": {
+        "id": "prosjektbygger",
+        "representanter": [
+          "jens_jacob_jensen_myrens",
+          "peter_emil_steen"
+        ]
+      }
     },
     {
       "id": "elin",
@@ -207,7 +228,7 @@
       },
       {
         "id": "ovingsrom",
-        "navn": "Miras øvingsrom",
+        "navn": "Medmusikerens øvingsrom",
         "type": "fiktivt_sted"
       },
       {
@@ -482,7 +503,7 @@
       },
       {
         "id": "mira_samtale",
-        "navn": "Telefonsamtalen med Mira",
+        "navn": "Telefonsamtalen med medmusikeren",
         "dag": 3,
         "fase": "ettermiddag",
         "stedId": "hjem",
@@ -494,7 +515,7 @@
       },
       {
         "id": "amir_pub",
-        "navn": "Det første møtet med Arvid",
+        "navn": "Det første møtet med miljøkontakten",
         "dag": 3,
         "fase": "ettermiddag",
         "stedId": "pub",
@@ -506,7 +527,7 @@
       },
       {
         "id": "mira_prove4",
-        "navn": "Prøven med Mira",
+        "navn": "Prøven med medmusikeren",
         "dag": 4,
         "fase": "ettermiddag",
         "stedId": "ovingsrom",
@@ -532,7 +553,7 @@
       },
       {
         "id": "mira_prove6",
-        "navn": "Den senere prøven med Mira",
+        "navn": "Den senere prøven med medmusikeren",
         "dag": 6,
         "fase": "ettermiddag",
         "stedId": "ovingsrom",
@@ -569,7 +590,7 @@
       },
       {
         "id": "prosjekt_mote4",
-        "navn": "Møtet med Lea",
+        "navn": "Møtet med prosjektbyggeren",
         "dag": 4,
         "fase": "ettermiddag",
         "stedId": "prosjektbord",
@@ -581,7 +602,7 @@
       },
       {
         "id": "prosjekt_mote6",
-        "navn": "Møtet med Lea",
+        "navn": "Møtet med prosjektbyggeren",
         "dag": 6,
         "fase": "ettermiddag",
         "stedId": "prosjektbord",
@@ -736,7 +757,7 @@
     "fortsettelser": [
       {
         "id": "musikk_med_mira",
-        "navn": "Fortsett med Mira",
+        "navn": "Fortsett med medmusikeren",
         "path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
         "role_scope": "musikk_frilansmusiker",
         "etterDag": 7,
@@ -744,7 +765,7 @@
       },
       {
         "id": "sideprosjekt_med_lea",
-        "navn": "Fortsett med Lea som Sideprosjektbygger",
+        "navn": "Fortsett med prosjektbyggeren som Sideprosjektbygger",
         "path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
         "role_scope": "naeringsliv_sideprosjektbygger",
         "etterDag": 7,
@@ -752,7 +773,7 @@
       },
       {
         "id": "frilans_med_lea",
-        "navn": "Fortsett med Lea som Frilanser",
+        "navn": "Fortsett med prosjektbyggeren som Frilanser",
         "path": "data/Civication/lifestory/continuations/frilans_med_lea.json",
         "role_scope": "naeringsliv_frilanser",
         "etterDag": 7,
@@ -760,7 +781,7 @@
       },
       {
         "id": "grunder_med_lea",
-        "navn": "Fortsett med Lea som Gründerdrømmer",
+        "navn": "Fortsett med prosjektbyggeren som Gründerdrømmer",
         "path": "data/Civication/lifestory/continuations/grunder_med_lea.json",
         "role_scope": "naeringsliv_grunderdrommer",
         "etterDag": 7,
@@ -814,7 +835,7 @@
       },
       {
         "id": "miljo_med_arvid",
-        "navn": "Fortsett med Arvid",
+        "navn": "Fortsett med miljøkontakten",
         "path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
         "role_scope": "subkultur_gangster",
         "etterDag": 7,

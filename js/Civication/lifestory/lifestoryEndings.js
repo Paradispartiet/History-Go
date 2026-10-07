@@ -84,10 +84,18 @@
       if (flagHits > 0 && (!best || score > best.score)) best = { ending: e, score };
     }
     if (best) {
-      return { id: best.ending.id, navn: best.ending.navn, tekst: best.ending.tekst, score: best.score, standard: false };
+      return presentEnding(best.ending, best.score, false, state, content);
     }
     const std = endings.find((e) => e.standard) || endings[0];
-    return { id: std.id, navn: std.navn, tekst: std.tekst, score: 0, standard: true };
+    return presentEnding(std, 0, true, state, content);
+  }
+
+  function presentEnding(ending, score, standard, state, content) {
+    const State = /** @type {any} */ (globalScope).CivicationLifestoryState
+      || (typeof require === "function" ? require("./lifestoryState.js") : null);
+    return { id: ending.id, navn: State?.presentText ? State.presentText(state, content, ending.navn) : ending.navn,
+      tekst: ending.tekst === undefined ? undefined : State?.presentText ? State.presentText(state, content, ending.tekst) : ending.tekst,
+      score, standard };
   }
 
   const api = { WEIGHTS, scoreEnding, isFinalDay, resolveEnding };

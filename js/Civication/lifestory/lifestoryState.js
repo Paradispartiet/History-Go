@@ -219,7 +219,76 @@
     getStorage()?.remove(STORAGE_KEY);
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset };
+  /** A story type owns its relationship; a collected History Go person can
+   * represent it. Bind once, including a type-only fallback after an encounter.
+   * Canonical identity is snapshotted so later collection/index changes cannot
+   * recast somebody the player has already met. No History Go state is written.
+   * @param {any} state @param {any} content @param {any} bridge
+   */
+  function bindPersonTypes(state, content, bridge) {
+    const cast = state.personRepresentanter || {};
+    for (const person of content.role.personer || []) {
+      if (!person.persontype || cast[person.id]) continue;
+      // An old save must never retroactively attribute fictional acts to a
+      // newly collected real person. New archive entries carry their own cast.
+      const encountered = (state.spilteScener || []).some(id => {
+        const scene = content.scenes.find(s => s.id === id);
+        const entry = state.arkiv.find(e => e.sceneId === id);
+        const choice = scene?.valg?.find(c => c.id === entry?.valgId);
+        return scene && sceneMentionsPerson(scene, person, choice);
+      });
+      const candidates = encountered ? [] : bridge?.getCollectedByIds?.(person.persontype.representanter) || [];
+      const selected = candidates.slice().sort((a, b) => a.id.localeCompare(b.id))[0];
+      if (selected) {
+        cast[person.id] = { typeId: person.persontype.id, personId: selected.id, navn: selected.name,
+          placeId: selected.placeId || null, beskrivelse: selected.desc || "" };
+      } else if (encountered) {
+        cast[person.id] = { typeId: person.persontype.id, personId: null, navn: person.navn, placeId: null, beskrivelse: "" };
+      }
+    }
+    if (Object.keys(cast).length) state.personRepresentanter = cast;
+    return state;
+  }
+
+  /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
+  function sceneMentionsPerson(scene, person, choice) {
+    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
+  }
+
+  /** Snapshot the types actually present in this scene before archiving it.
+   * @param {any} state @param {any} content @param {any} scene @param {any} choice @returns {any}
+   */
+  function lockScenePeople(state, content, scene, choice) {
+    const cast = {};
+    for (const person of content.role.personer || []) {
+      if (!person.persontype || !sceneMentionsPerson(scene, person, choice)) continue;
+      state.personRepresentanter ||= {};
+      state.personRepresentanter[person.id] ||= { typeId: person.persontype.id, personId: null,
+        navn: person.navn, placeId: null, beskrivelse: "" };
+      cast[person.id] = Object.assign({}, state.personRepresentanter[person.id]);
+    }
+    return cast;
+  }
+
+  /** Resolve authored type names, never legacy archive names or technical IDs.
+   * @param {any} state @param {any} content @param {any} value @returns {string}
+   */
+  function presentText(state, content, value) {
+    let text = String(value == null ? "" : value);
+    for (const person of content?.role?.personer || []) {
+      const cast = state?.personRepresentanter?.[person.id];
+      if (!person.persontype || !cast?.personId) continue;
+      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      // Norwegian type names contain letters outside ASCII \b, so delimit
+      // explicitly. Replace possessives before the plain name.
+      const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
+      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
+        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
+    }
+    return text;
+  }
+
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);

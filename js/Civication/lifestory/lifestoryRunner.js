@@ -159,6 +159,7 @@
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
+    const people = State.lockScenePeople(state, content, scene, choice);
     State.applyEffects(state, choice.effekter);
 
     // Runneren fører trådens spor: siste scene. Steg (step) endres kun
@@ -179,12 +180,13 @@
       dag: state.dag,
       fase: state.fase,
       sceneId: scene.id,
-      sceneTittel: scene.tittel,
+      sceneTittel: State.presentText(state, content, scene.tittel),
       threadId: scene.threadId,
       valgId: choice.id,
-      valgTekst: choice.tekst
+      valgTekst: State.presentText(state, content, choice.tekst)
     };
-    if (choice.konsekvensTekst) entry.konsekvensTekst = choice.konsekvensTekst;
+    if (Object.keys(people).length) entry.personRepresentanter = people;
+    if (choice.konsekvensTekst) entry.konsekvensTekst = State.presentText(state, content, choice.konsekvensTekst);
     state.arkiv.push(entry);
 
     const progress = advance(state, content);
@@ -193,7 +195,7 @@
       laasteOpp,
       faseSkifte: progress.faseSkifte,
       dagFerdig: state.dagFerdig,
-      konsekvensTekst: choice.konsekvensTekst || null
+      konsekvensTekst: choice.konsekvensTekst ? State.presentText(state, content, choice.konsekvensTekst) : null
     };
   }
 
@@ -351,7 +353,9 @@
     const timeline = state.arkiv.map((entry) => {
       const scene = content.scenes.find((s) => s.id === entry.sceneId);
       const sted = steder.find((p) => p.id === scene?.stedId) || null;
-      const person = content.role.personer.find((p) => p.id === scene?.avsender) || null;
+      const authoredPerson = content.role.personer.find((p) => p.id === scene?.avsender) || null;
+      const cast = entry.personRepresentanter?.[authoredPerson?.id];
+      const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.navn }) : null;
       return Object.assign({}, entry, { sted, person });
     });
     const avtaler = content.scenes.filter((s) =>
@@ -414,7 +418,7 @@
     if (!canStartContinuation(state, baseContent, next) || mergedContent.fortsettelse?.id !== id || !ending) {
       throw new Error("[LifestoryRunner] fortsettelsen er ikke tilgjengelig nå");
     }
-    state.kapittelArkiv = (state.kapittelArkiv || []).concat([{ tittel: baseContent.role.symposium.tittel,
+    state.kapittelArkiv = (state.kapittelArkiv || []).concat([{ tittel: State.presentText(state, baseContent, baseContent.role.symposium.tittel),
       fraDag: baseContent.fortsettelse ? baseContent.fortsettelse.etterDag + 1 : 1, tilDag: state.dag,
       ending: JSON.parse(JSON.stringify(ending)) }]);
     state.fortsettelser = getContinuationIds(state).concat(id);

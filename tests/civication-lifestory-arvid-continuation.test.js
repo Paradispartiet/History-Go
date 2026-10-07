@@ -167,7 +167,7 @@ async function uiTest() {
   }
   const role = { badge_id: 'subkultur', label: 'Gangster' }, prior = week({});
   const ui = await boot(prior, role), before = ui.w.localStorage.getItem('civication_lifestory_v1');
-  assert.ok(ui.panel.textContent.includes('Arvid'));
+  assert.ok(ui.panel.textContent.includes('Miljøkontakten'));
   ui.fail(true); ui.panel.querySelector('[data-lifestory-continue="miljo_med_arvid"]').click();
   await new Promise(r => setTimeout(r, 20));
   assert.equal(ui.w.localStorage.getItem('civication_lifestory_v1'), before);

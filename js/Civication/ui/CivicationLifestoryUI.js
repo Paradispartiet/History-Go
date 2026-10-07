@@ -58,13 +58,18 @@
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
-  /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }> }|null} */ let sisteKonsekvens = null;
+  /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
   /**
    * @param {unknown} value
    * @returns {string}
    */
   function escapeHtml(value) {
+    const State = /** @type {any} */ (window).CivicationLifestoryState;
+    return escapeLiteral(State?.presentText && content && state ? State.presentText(state, content, value) : value);
+  }
+
+  function escapeLiteral(value) {
     return String(value == null ? "" : value)
       .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
@@ -141,8 +146,29 @@
     content = restored;
     state = saved;
     State.reconcileContent(state, content);
+    State.bindPersonTypes?.(state, content, null);
     State.save(state);
     currentRoleId = roleId;
+    await refreshPersonTypes();
+  }
+
+  /** The existing History Go bridge owns collection and canonical identity.
+   * This UI binds the authored type pool once; render itself stays read-only.
+   */
+  async function refreshPersonTypes() {
+    const bridge = /** @type {any} */ (window).CivicationHistoryPeopleBridge;
+    if (!state || !content || !bridge || !content.role.personer?.some(p => p.persontype)) return;
+    const currentState = state, currentContent = content;
+    try {
+      await bridge.load();
+      if (state !== currentState || content !== currentContent) return;
+      const State = /** @type {any} */ (window).CivicationLifestoryState;
+      State.bindPersonTypes(state, content, bridge);
+      State.save(state);
+      render();
+    } catch (error) {
+      console.warn("[CivicationLifestoryUI] History Go-personer kunne ikke lastes", error);
+    }
   }
 
   async function ensureLoaded() {
@@ -191,11 +217,11 @@
 
   // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
   // CivicationState); jobbaksept dispatcher updateProfile.
-  window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); render(); });
+  window.addEventListener("civi:booted", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
-  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); render(); });
+  window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
 
   /**
    * @param {string} sceneId
@@ -211,7 +237,7 @@
       const result = Runner.applyChoice(state, content, sceneId, choiceId);
       const deltas = diffMetersAndRelations(before);
       sisteKonsekvens = result.konsekvensTekst || deltas.length
-        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas }
+        ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
       State.save(state);
       // Énveis konsekvensbro: faktiske meter-endringer (etter clamping)
@@ -262,6 +288,7 @@
     continuationError = "";
     sisteKonsekvens = null;
     State.save(state);
+    refreshPersonTypes();
     window.dispatchEvent(new Event("civi:lifestoryChanged"));
     render();
   }
@@ -334,6 +361,7 @@
   function renderSceneHtml(scene) {
     const thread = content.threads.find((t) => t.id === scene.threadId);
     const ts = state.threadState[scene.threadId];
+    const representative = state.personRepresentanter?.[scene.avsender];
     const valgHtml = (scene.valg || []).map((valg) =>
       "<button class=\"civi-lifestory-choice\" type=\"button\" data-lifestory-scene=\"" + escapeHtml(scene.id) + "\""
       + " data-lifestory-choice=\"" + escapeHtml(valg.id) + "\">"
@@ -349,6 +377,9 @@
       + "<div class=\"civi-lifestory-kicker\"><span>NÅ</span><span>" + escapeHtml(viewPhaseName(scene.fase)) + "</span><span>" + escapeHtml(scene.visningstype) + "</span>" + (scene.avsender ? "<span>Fra " + escapeHtml(personNavn(scene.avsender)) + "</span>" : "") + "</div>"
       + "<h3>" + escapeHtml(scene.tittel) + "</h3>"
       + "<p>" + escapeHtml(scene.tekst) + "</p>"
+      + (representative?.personId && representative.beskrivelse
+        ? '<p class="muted"><strong>Fra History Go:</strong> ' + escapeLiteral(representative.beskrivelse) + '</p>' : "")
+      + dramatizationNote(sceneHasRepresentative(scene))
       + "<div class=\"civi-lifestory-threadline\">Tråd: <strong>" + escapeHtml(formatThreadTitle(thread || { id: scene.threadId })) + "</strong>" + (ts ? " <span class=\"civi-thread-badge is-" + escapeHtml(ts.status) + "\">" + escapeHtml(formatThreadStatus(ts.status)) + "</span>" : "") + "</div>"
       + "<div class=\"civi-lifestory-choices\" aria-label=\"Valg\">" + valgHtml + "</div>"
       + "</article>";
@@ -361,6 +392,16 @@
   function viewPhaseName(phaseId) {
     const phase = (content?.faser || []).find((f) => f.id === phaseId);
     return phase ? phase.navn : humanizeId(phaseId);
+  }
+
+  /** @param {any} scene @param {any} [choice] @returns {boolean} */
+  function sceneHasRepresentative(scene, choice) {
+    return !!scene && (content.role.personer || []).some(p => state.personRepresentanter?.[p.id]?.personId
+      && (choice ? [choice] : scene.valg || [null]).some(c => window.CivicationLifestoryState.sceneMentionsPerson(scene, p, c)));
+  }
+
+  function dramatizationNote(enabled) {
+    return enabled ? '<p class="muted" data-lifestory-dramatized>Dramatisert historie med History Go-personer. Dialog og handling er skrevet for spillet.</p>' : "";
   }
 
   function personNavn(personId) {
@@ -382,6 +423,7 @@
       + "<div class=\"civi-lifestory-section-label\">Konsekvens</div>"
       + (sisteKonsekvens.valgTekst ? "<div class=\"muted\">Etter «" + escapeHtml(sisteKonsekvens.valgTekst) + "»</div>" : "")
       + "<p>" + escapeHtml(sisteKonsekvens.tekst) + "</p>"
+      + dramatizationNote(sisteKonsekvens.dramatisert)
       + (chips ? "<div class=\"civi-lifestory-deltas\">" + chips + "</div>" : "")
       + "</section>";
   }
@@ -432,11 +474,13 @@
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     const sisteDag = !!(Endings && Endings.isFinalDay(state, content));
     const ending = sisteDag ? Endings.resolveEnding(state, content) : null;
+    const authoredEnding = ending && (content.role.endings || []).find(e => e.id === ending.id);
     const endingHtml = ending
       ? "<section class=\"civi-lifestory-ending\" aria-label=\"Ukas slutt\">"
         + "<div class=\"civi-lifestory-section-label\">" + (content.fortsettelse ? "Kapittelet er avsluttet" : "Slutten på uka") + "</div>"
         + "<h3>" + escapeHtml(ending.navn) + "</h3>"
         + (ending.tekst ? "<p>" + escapeHtml(ending.tekst) + "</p>" : "")
+        + dramatizationNote(authoredEnding && sceneHasRepresentative({ tittel: authoredEnding.navn, tekst: authoredEnding.tekst }))
         + "</section>"
       : "";
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
@@ -458,6 +502,7 @@
       + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
       + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
+      + dramatizationNote(summary.valg.some(entry => Object.keys(entry.personRepresentanter || {}).some(id => entry.personRepresentanter[id]?.personId)))
       + stampHtml
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
       + (traadHtml ? "<h4>Tråder som endret status</h4><ul>" + traadHtml + "</ul>" : "")
@@ -530,7 +575,17 @@
       + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
       + (book.rollebroer?.length > 1 ? "<p>Mulige livsroller: " + book.rollebroer.map((b) => escapeHtml(b.navn)).join(" · ") + "</p>" : "")
       + (getRoleSuggestion() || content.fortsettelse ? '<button type="button" data-lifestory-life-profile>Åpne livsprofilen igjen</button>' : "")
-      + "<h4>Personer</h4><ul>" + book.personer.map((p) => "<li><strong>" + escapeHtml(p.navn) + "</strong>: " + escapeHtml(p.beskrivelse) + "</li>").join("") + "</ul>"
+      + "<h4>Personer</h4>"
+      + (book.personer.some(p => p.persontype) ? '<p class="muted">Persontypene beskriver funksjoner i historien. Samlede History Go-personer kan representere dem. Relasjoner, dialog og handling er dramatisert.</p>' : "")
+      + "<ul>" + book.personer.map((p) => {
+        const cast = state.personRepresentanter?.[p.id];
+        return "<li><strong>" + escapeHtml(p.navn) + "</strong>"
+          + (p.persontype ? " <small>· Type: " + escapeLiteral(p.navn) + "</small>" : "")
+          + ": " + escapeHtml(p.beskrivelse)
+          + (cast?.personId && cast.beskrivelse ? "<p>Fra History Go: " + escapeLiteral(cast.beskrivelse) + "</p>" : "")
+          + (p.persontype && !cast ? '<p class="muted">Denne typen kan representeres av en relevant person du har samlet i History Go.</p>' : "")
+          + "</li>";
+      }).join("") + "</ul>"
       + "<h4>Møter og avtaler</h4><ul>" + (book.moter.map((m) => "<li>Dag " + escapeHtml(m.dag) + " · " + escapeHtml(m.navn) + " · " + escapeHtml(m.sted.navn) + ": " + escapeHtml(({ avtalt: "Avtalt", gjennomfort: "Gjennomført", avslaatt: "Avslått", avbrutt: "Avbrutt" })[m.status]) + "</li>").join("") || "<li>Ingen møter avtalt ennå.</li>") + "</ul>"
       + "<h4>Steder</h4><ul>" + book.steder.map((p) => "<li>" + escapeHtml(p.navn) + "</li>").join("") + "</ul>"
       + "<h4>Åpne scener</h4><ul>" + (plans || "<li>Ingen flere planlagte scener.</li>") + "</ul>"
@@ -647,7 +702,7 @@
     const thread = scene ? (content.threads || []).find((t) => t.id === scene.threadId) : null;
     return {
       sceneId: scene ? scene.id : null,
-      tittel: scene ? scene.tittel : null,
+      tittel: scene ? window.CivicationLifestoryState.presentText(state, content, scene.tittel) : null,
       fase: state.fase,
       dagFerdig: !!view.dagFerdig,
       threadId: thread ? thread.id : null,

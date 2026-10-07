@@ -176,7 +176,7 @@ fra det eksisterende arkivet, relasjonene, trådstatusene og tidligere valg.
 
 `startVedValg: true` på en tråd betyr at den bare startes av en eksplisitt
 `effekter.threads`-endring. Dagskifte eller gjenlasting åpner den ikke.
-Arbeidsledigs valg på dag 2 åpner musikken med Mira, miljøet med Arvid eller
+Arbeidsledigs valg på dag 2 åpner musikken med Medmusikeren, miljøet med Miljøkontakten eller
 kunnskaps-/søknadssporet. NAV og dagsrytmen fortsetter som bakgrunnsplikter,
 ikke som en etikett som overstyrer alle andre historier.
 
@@ -698,8 +698,8 @@ ble en kassadifferanse. Dag 3+ er uskrevet; en tom dag avsluttes trygt.
 
 ### Arbeidsledig: flere innganger til selvvalgte livsroller
 
-Den første uka har ni kontaktretninger. Musikk, Arvids miljø og læring/jobbsøk
-går sammen med seks nye spor: Leas prosjektbord, Elins skaperrom, Saras klubb
+Den første uka har ni kontaktretninger. Musikk, Miljøkontaktens miljø og læring/jobbsøk
+går sammen med seks nye spor: Prosjektbyggerens prosjektbord, Elins skaperrom, Saras klubb
 og lokale initiativ, Ivars byvandring, Noras observasjonsøkt og Daniels
 kulturgruppe. Møtet velges på dag 3 og kan legges til dag 4, utsettes til
 dag 6 eller avslås. Bare et gjennomført møtescenevalg skriver gjennomføring
@@ -738,10 +738,65 @@ narrativleveranse, gjenlasting og flere samtidige livsroller. Den faktiske
 nettleserflyten følger tolv forløp gjennom Civication.html, inkludert låste
 forslag og aktivering av en tilgjengelig rolle gjennom livsprofilen.
 
-### Første native videreføring: Mira, dag 8–10
+### Persontyper og History Go-representanter
+
+De tidligere kontaktene Lea, Mira og Arvid er nå persontyper, ikke faste personidentiteter:
+Prosjektbyggeren (`lea`), Medmusikeren (`mira`) og Miljøkontakten (`amir`).
+De eksisterende relasjons-, scene-, tråd-, møte- og kapittel-ID-ene beholdes.
+Nye tekster bruker typebetegnelser; gamle arkivtekster omskrives ikke.
+
+`role.personer[].persontype` deklarerer en unik type-ID og en eksplisitt
+liste `representanter` med canonical History Go-person-ID-er. Listen har
+minst to ulike personer. Ingen kategori eller tilfeldig arketype brukes
+som reservekilde for relevans. Første utvalg er:
+
+| Type | History Go-representanter |
+| --- | --- |
+| Prosjektbyggeren | Jens Jacob Jensen (`jens_jacob_jensen_myrens`), Peter Emil Steen (`peter_emil_steen`) |
+| Medmusikeren | Bugge Wesseltoft (`bugge_wesseltoft`), Mari Boine (`mari_boine`) |
+| Miljøkontakten | Attila Horvath (`attila_horvath`), Sossen Krohg (`sossen_krohg`) |
+
+Representantene gjenbruker canonical oppfinner-/gründervirksomhet,
+musikalsk samspill eller miljøbygging som inspirasjon til typen. Dette
+tilskriver dem ikke figurens biografi, vennskap, dialog, temperament eller
+handlinger. UI merker slike scener og historieboka som dramatisert.
+Det opprettes ingen nye People-records eller historiske stedspåstander.
+
+`CivicationHistoryPeopleBridge.getCollectedByIds()` leser bare innsamlede
+personer fra det eksplisitte utvalget. Første tilgjengelige ID i sortert
+rekkefølge representerer typen. Uten en slik person vises typebetegnelsen.
+`State.bindPersonTypes()` lagrer et stabilt snapshot i det valgfrie v2-feltet
+`personRepresentanter`: type-ID, canonical person-ID, navn, primært
+History Go-stedsanker og canonical kortbeskrivelse. Ny innsamling, tapt
+samling, reload, rollebytte eller kapittelbytte ombesetter ikke en etablert
+figur. Historien skriver aldri til `people_collected` eller andre History
+Go-data.
+
+Ved scenevalget låses de typene som faktisk nevnes i scenen eller det valgte
+svaret. Runneren lagrer representantsnapshot og ferdig oppløste tekster i
+arkivet. Et ubesvart alternativ skaper ingen personhendelse. En eldre
+lagring uten representantsnapshot beholder typeidentitet for tidligere
+omtalt kontakt; historiske spillhandlinger tilskrives ikke en nylig samlet
+person. Identitetsbindingen har ingen effekter på valg, avtaler, trådstatus,
+relasjoner, målere eller rolleporter.
+
+Stedsankeret følger representanten som kontekst. Førsteukens fiktive
+fortellingssteder er fortsatt fiktive og gir ingen GPS- eller besøksbevis.
+En senere besøksutløst møtescene må deklarere et dokumentert History
+Go-sted og bruke besøksbevis fra History Go, ikke bare at representanten er
+valgt. Innsamling og besøk gir ikke automatisk et gjennomført Civication-møte.
+
+`civication-lifestory-person-types.test.js` kontrollerer alle seks
+representanter, ni komplette forløp til dag 13, identitetsbinding,
+uforandret spillmekanikk, legacy-arkiv, reload og den faktiske DOM-rendereren.
+Den eksisterende native nettlesertesten bruker seks av sine 20 forløp til
+å verifisere de seks representantene gjennom dag 13, pause, gjenlasting og
+kapittelbytte. Endret innsamling etter møtet kan ikke bytte representanten.
+
+### Første native videreføring: Medmusikeren, dag 8–10
 
 Et avsluttet Arbeidsledig-forløp med musikken i forgrunnen kan nå vise
-«Fortsett med Mira». Spilleren må først ha valgt Frilansmusiker som
+«Fortsett med Medmusikeren». Spilleren må først ha valgt Frilansmusiker som
 hovedlivsposisjon i den eksisterende livsprofilen; et rolleforslag, et møte
 eller en sekundær aktiv livsposisjon åpner ikke kapittelet alene.
 Badge-krav og aktivering eies fortsatt av livsposisjonsruntimen.
@@ -750,7 +805,7 @@ Badge-krav og aktivering eies fortsatt av livsposisjonsruntimen.
 `data/Civication/lifestory/continuations/`. Pakken lastes først ved
 fortsettelsesvalget og valideres før den føyes til samme innhold og runner.
 Den første pakken inneholder ti scener og 23 valg over dag 8–10:
-en ny prøve med Mira, forberedelse eller avlysning, eget arbeid eller hvile.
+en ny prøve med Medmusikeren, forberedelse eller avlysning, eget arbeid eller hvile.
 Morgenen på dag 8 skiller et faktisk gjennomført sett fra et forløp uten
 sett. Den nye prøveavtalen har egne flagg og endrer aldri de gamle avtalene.
 
@@ -772,7 +827,7 @@ alle nye valg med reload og kontrollerer gating, avlysning, pause og
 atomisk lastefeil. Nettlesertesten følger to komplette forløp til dag 10
 gjennom ekte profil-, fortsettelses-, scene- og dagsknapper.
 
-### Leas prosjektroller og flere kapitler, dag 8–13
+### Prosjektbyggerens prosjektroller og flere kapitler, dag 8–13
 
 Et avsluttet førsteforløp med `prosjektet_og_lea` i forgrunnen tilbyr et
 kapittel for hovedlivsposisjonen Sideprosjektbygger, Frilanser eller
@@ -791,7 +846,7 @@ en ferdig kapittelavslutning kan leses og brukes som overgang også etter
 at hovedrollen er byttet. Ingen av prosjektvalgene oppretter en jobb,
 kunde, bestilling, faktura, eierandel, finansiering eller et selskap.
 
-Mira-sporet fortsetter også på dag 11–13, med en ny spilleforespørsel.
+Medmusikeren-sporet fortsetter også på dag 11–13, med en ny spilleforespørsel.
 Åpningen husker gjennomført prøve, avlysning eller egen tid. Omfang,
 lydansvar og tid må avklares; en kort holdt dato fram til dag 14 klokka 12
 er uttrykkelig ingen booking. Ingen ny spillejobb eller inntekt tildeles.
@@ -804,7 +859,7 @@ avviser dagskifte ved en kapittelgrense før neste pakke er åpnet.
 
 Player State v2 har nå også det valgfrie feltet `fortsettelser`, en ordnet
 liste av spilte pakke-ID-er; `fortsettelseId` er fortsatt siste ID. Gamle
-Mira-lagringer med bare én ID lastes som før og oppgraderes ved neste
+Medmusikeren-lagringer med bare én ID lastes som før og oppgraderes ved neste
 kapittel. Ved reload settes hele pakkerekkefølgen sammen før state
 reconciles eller lagres. `kapittelArkiv` vokser med forrige kapittels
 faktiske avslutning og dagintervall; eldre poster og hele tidslinjen
@@ -814,48 +869,48 @@ Restart bruker alltid grunnpakken og fjerner kapittelmetadata.
 `civication-lifestory-project-continuations.test.js` spiller alle 121 nye
 valg over 426 kapittelforløp, med 1 704 gjenlastinger og alle ni prosjekt-
 rollepar, med både beholdt og parkert arbeid før neste kapittel. Den
-kontrollerer også gammel Mira-lagring, uriktige pakkekjeder,
+kontrollerer også gammel Medmusikeren-lagring, uriktige pakkekjeder,
 kapittelgrensen, pause, atomisk lastefeil og DOM-gjenlasting. Nettlesertesten
 har 17 faktiske brukerforløp; fem fortsetter til dag 13, og tre av disse
 bytter prosjektrolle gjennom den ekte livsprofilen. Motortesten gjenlaster
 etter hvert valg; nettlesertesten gjenlaster på hver ny dag og ved
-kapittelgrensene, samt etter hvert valg i det opprinnelige Mira-kapittelet.
+kapittelgrensene, samt etter hvert valg i det opprinnelige Medmusikeren-kapittelet.
 
-### Arvids miljøspor, dag 8–13
+### Miljøkontaktens miljøspor, dag 8–13
 
 Med `miljoet_og_amir` som førsteforløp og Gangster som faktisk
-hovedlivsposisjon kan spilleren åpne «Fortsett med Arvid». Gangster krever
+hovedlivsposisjon kan spilleren åpne «Fortsett med Miljøkontakten». Gangster krever
 60 Subkultur-poeng og eksplisitt aktivering i den eksisterende livsprofilen.
 Gamle person-, tråd- og møte-ID-er med `amir` beholdes av hensyn til lagringer;
-navnet i det nye innholdet er Arvid. Den eldre Gangster-kilden godtar også
+navnet i det nye innholdet er Miljøkontakten. Den eldre Gangster-kilden godtar også
 det kanoniske rollenavnet som aktiveringstag, siden denne livsposisjonen
 har `id: null`. Rolleverdenstesten kontrollerer faktisk narrativleveranse
 etter aktivering ved 60 poeng, og at 59 poeng fortsatt er låst.
 
 `miljo_med_arvid` dekker dag 8–10. Åpningen skiller gjennomført oppdrag,
 avbrutt oppdrag, avslått oppdrag med videre kontakt og en valgt pause.
-Spilleren kan avtale en ny prat eller la kontakten ligge. På puben ber Arvid
+Spilleren kan avtale en ny prat eller la kontakten ligge. På puben ber Miljøkontakten
 spilleren få bekjenten tilbake til miljøet. Et løfte på bekjentens vegne kan
 rettes eller bli til press; bekjentens nei blir ikke gjort om til et oppmøte.
 Den nye praten har egne avtale-, gjennomførings- og avbruddsflagg.
 Å la kontakten ligge oppretter ikke et møte i historieboka.
 
 `miljo_navnet_ditt` dekker dag 11–13 og leser den faktiske avslutningen på
-dag 10. Arvid kan be om spillerens navn som kontakt på en invitasjon. Et
+dag 10. Miljøkontakten kan be om spillerens navn som kontakt på en invitasjon. Et
 avgrenset ja, et uavgrenset ja og en pause fører til ulike scener: konkrete
 programspørsmål, forventninger om adgang eller egen tid uten miljøkontakt.
 Spilleren kan rette invitasjonen, trekke navnet eller la forventningen stå
-uavklart. En valgt pause åpner aldri meldinger fra Arvid før spilleren selv
+uavklart. En valgt pause åpner aldri meldinger fra Miljøkontakten før spilleren selv
 tar initiativ. Ingen scene gjennomfører arrangementet på dag 16.
 
 De to pakkene inneholder 23 scener og 47 valg. De bruker samme runner,
-lagring, rolleport og ordnede kapittelarkiv som Lea og Mira. Gamle avtaler
+lagring, rolleport og ordnede kapittelarkiv som Prosjektbyggeren og Medmusikeren. Gamle avtaler
 bevares, og ingen nye valg gir jobb, inntekt, Badge-poeng eller myndighet over
 adgang. `civication-lifestory-arvid-continuation.test.js` prøver alle nye
 valgkombinasjoner fra 14 førsteforløp: 1 596 kapittelforløp, 4 382
 gjenlastinger, fire åpninger og seks avslutninger. DOM-testen kontrollerer
 atomisk lastefeil, pause, gjenopptakelse, hele lagringskjeden og restart.
-Nettlesertesten har tre nye Arvid-forløp til dag 13 gjennom ekte aktivering,
+Nettlesertesten har tre nye Miljøkontakten-forløp til dag 13 gjennom ekte aktivering,
 profilbytte, pause, gjenlasting og kapittelknapper; totalt 20 forløp.
 
 De nye pakkene er forfattede historier til dag 13. Motoren støtter flere
