@@ -23,7 +23,11 @@ jobs:
       - name: Build canonical Knowledge tooling
         run: npm run build:scripts
       - name: Synchronize canonical Knowledge indices
-        run: node dist/scripts/knowledge-canonical-data.mjs --write
+        run: |
+          node dist/scripts/knowledge-canonical-data.mjs --write || {
+            node -e 'const r=require("./reports/knowledge-contract-audit.json"); console.log("Knowledge failures", JSON.stringify(r.failures.slice(0,40),null,2))'
+            exit 1
+          }
       - name: Verify manifest contract
         run: npm run audit:quiz-manifest:v2
       - name: Verify registration fixture
