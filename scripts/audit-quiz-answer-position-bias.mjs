@@ -35,7 +35,6 @@ export function collectQuestions(value, out = []) {
 
 export function auditQuestionCollection(questions, label = "quiz") {
   const errors = [];
-  const indexes = [];
 
   for (const [offset, question] of questions.entries()) {
     const options = questionOptions(question);
@@ -53,20 +52,12 @@ export function auditQuestionCollection(questions, label = "quiz") {
     if (question.answer !== undefined && options[idx] !== question.answer) {
       errors.push(`${label}: ${id} answerIndex does not point to answer`);
     }
-    indexes.push(idx);
   }
 
-  if (indexes.length >= 4 && new Set(indexes).size < 2) {
-    errors.push(`${label}: all ${indexes.length} correct answers use the same stored position (${indexes[0]}); distribute correct-answer positions`);
-  }
-  if (indexes.length >= 8) {
-    const counts = new Map();
-    for (const idx of indexes) counts.set(idx, (counts.get(idx) || 0) + 1);
-    const max = Math.max(...counts.values());
-    if (max / indexes.length > 0.75) {
-      errors.push(`${label}: ${max}/${indexes.length} correct answers use one stored position; positional bias exceeds 75%`);
-    }
-  }
+  // Stored index is a source pointer, not a displayed answer position.
+  // QuizEngine calls HGQuizAnswerShuffle.shuffleQuestion() before rendering
+  // (tested by quiz-answer-shuffle-runtime.test.mjs), so source-index
+  // distribution is not a user-facing quality signal.
   return errors;
 }
 
