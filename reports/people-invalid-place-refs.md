@@ -1,15 +1,15 @@
 # People invalid place refs audit
 
-Generated: 2026-10-08T06:26:10.782Z
+Generated: 2026-09-03T05:35:01.737Z
 
 ## Sammendrag
-- People-filer lest: **779**
-- People lest: **1435**
-- People med ugyldige refs: **63**
+- People-filer lest: **768**
+- People lest: **1430**
+- People med ugyldige refs: **62**
 - Ugyldige refs: **340**
 - Unike ugyldige placeId-er: **116**
 - People uten gyldig sted: **0**
-- Duplikate interne place-referanser: **1489**
+- Duplikate interne place-referanser: **1483**
 
 ## Ugyldige refs gruppert per fil/person
 ### data/people/by/oslo/gamle_radhus/lars_backer.json
@@ -421,6 +421,7 @@ Generated: 2026-10-08T06:26:10.782Z
 ### data/people/naeringsliv/oslo/freia_fabrikken/johan_thrane_holst_freia.json
 - **johan_thrane_holst_freia** (Johan Throne Holst)
   - Kristiania @ `works[2].place`
+  - Rodeløkka, Oslo @ `works[0].place`
   - Sverige @ `works[1].place`
 ### data/people/naeringsliv/oslo/lilleborg_fabrikker/peter_wessel_wind_kildal_lilleborg.json
 - **peter_wessel_wind_kildal_lilleborg** (Peter Wessel Wind Kildal)
@@ -430,9 +431,6 @@ Generated: 2026-10-08T06:26:10.782Z
 - **jens_jacob_jensen_myrens** (Jens Jacob Jensen)
   - Fredrikstad @ `works[1].place`
   - Kristiania @ `works[0].place`
-### data/people/naeringsliv/oslo/oslo_posthus/rudolf_emanuel_jacobsen.json
-- **rudolf_emanuel_jacobsen** (Rudolf Emanuel Jacobsen)
-  - Dronningens gate 15, Oslo @ `works[0].place`
 ### data/people/naeringsliv/oslo/ovre_foss/halvor_schou.json
 - **halvor_schou** (Halvor Schou)
   - Christiania @ `works[1].place`
@@ -606,8 +604,6 @@ Generated: 2026-10-08T06:26:10.782Z
   - det_norske_teatret (confidence: medium)
 - **Det Nye Teater** (needs_manual_review, 1 treff)
   - oslo_nye_teater_hovedscenen (confidence: low)
-- **Dronningens gate 15, Oslo** (missing_place_candidate, 1 treff)
-  - missing_place_candidate
 - **Eidsvollsbygningen** (likely_rename_to_existing_place, 1 treff)
   - eidsvollsbygningen (confidence: high)
 - **Elverum og Nybergsund** (missing_place_candidate, 1 treff)
@@ -738,6 +734,8 @@ Generated: 2026-10-08T06:26:10.782Z
   - brannmuseet_oslo (confidence: low)
   - cinemateket_oslo (confidence: low)
   - fyrlyset_oslo (confidence: low)
+- **Rodeløkka, Oslo** (missing_place_candidate, 1 treff)
+  - missing_place_candidate
 - **Sachsen-Meiningens selskap** (missing_place_candidate, 1 treff)
   - missing_place_candidate
 - **Sagene** (likely_rename_to_existing_place, 1 treff)
@@ -816,6 +814,7 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> stensparken x2
 - data/people/by/oslo/people_by_oslo.json :: harald_aars (Harald Aars) -> Oslo x5
 - data/people/by/oslo/people_by_oslo.json :: sverre_pedersen (Sverre Pedersen) -> oslo_radhus x2
+- data/people/by/oslo/people_by_oslo.json :: christian_norberg_schulz (Christian Norberg-Schulz) -> gamle_deichman x2
 - data/people/by/oslo/people_by_oslo.json :: geir_grung (Geir Grung) -> tjuvholmen x2
 - data/people/by/oslo/people_by_oslo.json :: fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park x2
 - data/people/by/oslo/people_by_oslo.json :: kjetil_traedal_thorsen (Kjetil Trædal Thorsen) -> bjorvika x2
@@ -917,7 +916,7 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/historie/oslo/people_historie_oslo.json :: anna_sethne (Anna Sethne) -> sagene_skole x2
 - data/people/historie/oslo/people_historie_oslo.json :: alexis_de_chateauneuf (Alexis de Chateauneuf) -> trefoldighetskirken x2
 - data/people/historie/oslo/people_historie_oslo.json :: wilhelm_von_hanno (Wilhelm von Hanno) -> gronland_kirke x2
-- data/people/historie/oslo/people_historie_oslo.json :: haakon_nyhuus (Haakon Nyhuus) -> bjorvika x2
+- data/people/historie/oslo/people_historie_oslo.json :: haakon_nyhuus (Haakon Nyhuus) -> gamle_deichman x2
 - data/people/historie/oslo/people_historie_oslo.json :: petter_moen (Petter Moen) -> mollergata_19 x2
 - data/people/historie/oslo/people_historie_oslo.json :: biskop_nikolas_arnason (Biskop Nikolas Arnesson) -> oslo_domkirke x2
 - data/people/historie/oslo/people_historie_oslo.json :: eufemia_av_rugen (Eufemia av Rügen) -> akershus_festning x2
@@ -981,13 +980,19 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: gro_dahle (Gro Dahle) -> tronsmo_bokhandel x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: helene_uri (Helene Uri) -> eldorado_bokhandel x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: ingvar_ambjornsen (Ingvar Ambjørnsen) -> deichman_grunerlokka x2
-- data/people/litteratur/oslo/people_litteratur_oslo.json :: jan_erik_vold (Jan Erik Vold) -> litteraturhuset x2
-- data/people/litteratur/oslo/people_litteratur_oslo.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> litteraturhuset x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: jan_erik_vold (Jan Erik Vold) -> kulturkirken_jakob_litteratur x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: pedro_carmona_alvarez (Pedro Carmona-Alvarez) -> kulturkirken_jakob_litteratur x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: lars_saabye_christensen (Lars Saabye Christensen) -> norli_universitetsgata x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: jonas_collett (Jonas Collett) -> camilla_collett_statue x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: ruth_maier (Ruth Maier) -> ruth_maier_minne x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: cecilie_loveid (Cecilie Løveid) -> sofienbergparken x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: oskar_braaten (Oskar Braaten) -> oscar_braaten_statuen x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: vogt (Nils Collett Vogt) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: andersen (Tryggve Andersen) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: krag (Vilhelm Krag) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: obstfelder (Sigbjørn Obstfelder) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: hamsun (Knut Hamsun) -> gamle_deichman x2
+- data/people/litteratur/oslo/people_litteratur_oslo.json :: garborg (Arne Garborg) -> gamle_deichman x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: sigrid_undset (Sigrid Undset) -> stensparken x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: andre_bjerke (André Bjerke) -> grotta x2
 - data/people/litteratur/oslo/people_litteratur_oslo.json :: jon_fosse (Jon Fosse) -> grotta x2
@@ -1220,7 +1225,7 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: niels_onstad (Niels Onstad) -> astrup_fearnley x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: institusjonen_fritt_ord (Institusjonen Fritt Ord) -> stortinget x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: sparebankstiftelsen_dnb (Sparebankstiftelsen DNB) -> nasjonalmuseet x2
-- data/people/filantroper/oslo/people_filantroper_oslo.json :: eckbos_legat (Eckbos Legat) -> oslo_radhus x2
+- data/people/filantroper/oslo/people_filantroper_oslo.json :: eckbos_legat (Eckbos Legat) -> gamle_deichman x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: olav_thon (Olav Thon) -> universitetets_gamle_hovedbygning x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: fred_kavli (Fred Kavli) -> universitetets_gamle_hovedbygning x2
 - data/people/filantroper/oslo/people_filantroper_oslo.json :: anders_jahre (Anders Jahre) -> universitetets_gamle_hovedbygning x2
@@ -1684,7 +1689,7 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/media/oslo/people_media_oslo.json :: fredrik_skavlan (Fredrik Skavlan) -> nrk_huset_marienlyst x2
 - data/people/media/oslo/people_media_oslo.json :: erik_bye (Erik Bye) -> nrk_huset_marienlyst x2
 - data/people/media/oslo/people_media_oslo.json :: anne_grosvold (Anne Grosvold) -> nrk_huset_marienlyst x2
-- data/people/media/oslo/people_media_oslo.json :: trine_eilertsen (Trine Eilertsen) -> vg_huset x2
+- data/people/media/oslo/people_media_oslo.json :: trine_eilertsen (Trine Eilertsen) -> aftenposten_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: harald_stanghelle (Harald Stanghelle) -> aftenposten_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: john_olav_egeland (John Olav Egeland) -> dagbladet_akersgata x2
 - data/people/media/oslo/people_media_oslo.json :: frode_hansen (Frode Hansen) -> dagbladet_akersgata x2
@@ -2258,7 +2263,6 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: mikael_oscar_loum_johansen (Mikael Oscar Loum Johansen) -> brugata_storgata_rusmiljo x2
 - data/people/subkultur/oslo/people_brugata_storgata_rusmiljo.json :: iris_roise_aasebo (Iris Røise Aasebø) -> brugata_storgata_rusmiljo x2
 - data/people/naeringsliv/oslo/freia_fabrikken/johan_thrane_holst_freia.json :: johan_thrane_holst_freia (Johan Throne Holst) -> freia_fabrikken x2
-- data/people/naeringsliv/oslo/freia_fabrikken/johan_thrane_holst_freia.json :: johan_thrane_holst_freia (Johan Throne Holst) -> rodelokka x2
 - data/people/naeringsliv/oslo/myrens_verksted/jens_jacob_jensen_myrens.json :: jens_jacob_jensen_myrens (Jens Jacob Jensen) -> myrens_verksted x2
 - data/people/naeringsliv/oslo/alunverket/peter_collett_alunverket.json :: peter_collett_alunverket (Peter Collett) -> alunverket x2
 - data/people/naeringsliv/oslo/alunverket/peter_collett_alunverket.json :: peter_collett_alunverket (Peter Collett) -> Christiania x2
@@ -2278,18 +2282,6 @@ Generated: 2026-10-08T06:26:10.782Z
 - data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json :: christian_fredrik_morgenstierne (Christian Fredrik von Munthe af Morgenstierne) -> hammersborg_torg x2
 - data/people/by/oslo/hammersborg_torg/people_hammersborg_torg.json :: peter_hoier_holtermann (Peter Høier Holtermann) -> hammersborg_torg x2
 - data/people/kunst/oslo/toyen_torg/mari_meen_halsoy.json :: mari_meen_halsoy (Mari Meen Halsøy) -> toyen_torg x2
-- data/people/by/oslo/vaalerenga/synnove_finden.json :: synnove_finden (Synnøve Finden) -> vaalerenga x2
-- data/people/by/oslo/vinderen/rasmus_winderen.json :: rasmus_winderen (Rasmus Winderen) -> vinderen x2
-- data/people/by/oslo/ullern/eilif_peterssen.json :: eilif_peterssen (Eilif Peterssen) -> ullern x2
-- data/people/litteratur/oslo/gamle_deichman/nils_reiersen.json :: nils_reiersen (Nils Reiersen) -> gamle_deichman x2
-- data/people/historie/oslo/peststotten_krist_kirkegard/people_peststotten_krist_kirkegard.json :: andreas_samuel_krebs (Andreas Samuel Krebs) -> peststotten_krist_kirkegard x2
-- data/people/historie/oslo/peststotten_krist_kirkegard/people_peststotten_krist_kirkegard.json :: niels_treschow (Niels Treschow) -> peststotten_krist_kirkegard x2
-- data/people/naeringsliv/oslo/oslo_posthus/rudolf_emanuel_jacobsen.json :: rudolf_emanuel_jacobsen (Rudolf Emanuel Jacobsen) -> oslo_posthus x2
-- data/people/by/oslo/stortorget/people_stortorget.json :: carl_ludvig_jacobsen (Carl Ludvig Jacobsen) -> stortorget x2
-- data/people/naeringsliv/oslo/tollpakkhuset/johan_henrik_nebelong.json :: johan_henrik_nebelong (Johan Henrik Nebelong) -> tollpakkhuset x3
-- data/people/naeringsliv/oslo/tollboden/adolf_schirmer.json :: adolf_schirmer (Adolf Schirmer) -> tollboden_oslo x3
-- data/people/scenekunst/oslo/dramatikkens_hus/kristin_auestad_danielsen.json :: kristin_auestad_danielsen (Kristin Auestad Danielsen) -> dramatikkens_hus x2
-- data/people/naeringsliv/oslo/norges_bank_bankplassen_4/karl_gether_bomhoff.json :: karl_gether_bomhoff (Karl Gether Bomhoff) -> norges_bank_bankplassen_4 x3
 
 ## Anbefalt neste ryddebatch
 - Nationaltheatret (likely_rename_to_existing_place, 122 treff)

@@ -1,20 +1,20 @@
 # People-place coverage audit
 
-Generert: 2026-10-08T06:26:11.142Z
+Generert: 2026-09-03T05:35:02.067Z
 
 ## Sammendrag
 
-- People totalt: **1449**
+- People totalt: **1444**
 - Places totalt: **0**
 - Places med people: **0**
 - Places uten people: **0**
 - People-place-lenker: **0**
 - People koblet til flere gyldige steder: **0**
-- People uten gyldig sted: **1449**
-- Ugyldige place-referanser: **1695**
-- Duplikate place-referanser inne på people: **1287**
-- People uten image: **1043**
-- People uten cardImage: **1050**
+- People uten gyldig sted: **1444**
+- Ugyldige place-referanser: **1690**
+- Duplikate place-referanser inne på people: **1282**
+- People uten image: **1048**
+- People uten cardImage: **1052**
 - People uten popupDesc: **181**
 
 ## Dekning per place-kategori
@@ -24,20 +24,20 @@ Generert: 2026-10-08T06:26:11.142Z
 
 ## People tags
 
-- historie: 267
+- historie: 265
 - sport: 246
-- scenekunst: 207
+- scenekunst: 206
 - teater: 194
-- litteratur: 176
+- litteratur: 181
 - politikk: 146
 - skuespiller: 139
 - musikk: 119
 - holmenkollen: 105
-- kunst: 94
+- kunst: 93
 - holmenkollrennet: 80
-- naeringsliv: 80
-- arkitektur: 71
-- by: 58
+- naeringsliv: 76
+- arkitektur: 67
+- by: 59
 - regissor: 57
 - film: 54
 - ibsen: 54
@@ -57,9 +57,9 @@ Generert: 2026-10-08T06:26:11.142Z
 - holmenkollmedaljen: 29
 - friidrett: 28
 - media: 28
-- offentlig_kunst: 28
 - skihopping: 28
 - bislett_games: 27
+- offentlig_kunst: 27
 - akershus_festning: 26
 - modernisme: 26
 - natur: 26
@@ -115,6 +115,7 @@ Generert: 2026-10-08T06:26:11.142Z
 - sverre_pedersen (Sverre Pedersen) -> oslo_radhus
 - sverre_pedersen (Sverre Pedersen) -> carl_berner_plass
 - sverre_pedersen (Sverre Pedersen) -> ullevål_hageby
+- christian_norberg_schulz (Christian Norberg-Schulz) -> gamle_deichman
 - geir_grung (Geir Grung) -> tjuvholmen
 - geir_grung (Geir Grung) -> aker_brygge
 - fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park
@@ -179,8 +180,7 @@ Generert: 2026-10-08T06:26:11.142Z
 - nikolas_arnesson (Nikolas Arnesson) -> hallvardskirken_oslo
 - inga_fra_varteig (Inga fra Varteig) -> varteig_kirke
 - inga_fra_varteig (Inga fra Varteig) -> nidaros_erkebispegarden
-- inga_fra_varteig (Inga fra Varteig) -> kristkirken_bergenhus
-- ... 1595 flere
+- ... 1590 flere
 
 ## Duplikate place-referanser inne på people
 
@@ -197,6 +197,7 @@ Generert: 2026-10-08T06:26:11.142Z
 - ove_bang (Ove Bang) -> ullevål_hageby
 - harald_aars (Harald Aars) -> stensparken
 - sverre_pedersen (Sverre Pedersen) -> oslo_radhus
+- christian_norberg_schulz (Christian Norberg-Schulz) -> gamle_deichman
 - geir_grung (Geir Grung) -> tjuvholmen
 - fritz_heinrich_frolich (Fritz Heinrich Frølich) -> st_hanshaugen_park
 - kjetil_traedal_thorsen (Kjetil Trædal Thorsen) -> bjorvika
@@ -283,11 +284,8 @@ Generert: 2026-10-08T06:26:11.142Z
 - marcus_thrane (Marcus Thrane) -> var_frelsers_gravlund
 - martin_tranmael (Martin Tranmæl) -> var_frelsers_gravlund
 - cj_hambro (C.J. Hambro) -> var_frelsers_gravlund
-- viggo_hansteen (Viggo Hansteen) -> var_frelsers_gravlund
-- ... 1187 flere
+- ... 1182 flere
 
 ## Anbefalt første people-batch
 
 Første 50 steder uten people, sortert etter worklist-prioritet og videre innholdsklarhet.
-
-

@@ -97,7 +97,7 @@ Trine-koblingen er ikke en ny endring i dagens People-fil; den er identisk med d
 
 Fullproduksjonsprofil og endelig innholdsplan bestemmes etter komplett gjeldende READ-FIRST-gate; denne avgrensede kildekontrollen erstatter ikke kandidat-/assetresearch for alle samlinger.
 
-## Kvalitet og verifikasjon
+## Innledende kvalitetsvurdering før rettelsen
 
 Denne vurderingen gjelder kildekontrollen for R01–R14 og de tre eksisterende personkoblingene, ikke hele Aftenposten-produksjonen.
 
@@ -106,7 +106,7 @@ Denne vurderingen gjelder kildekontrollen for R01–R14 og de tre eksisterende p
 | Korrekthet og evidens | 5/5 | Ti åpnete kilder; hver researchpåstand har kilde og konkret lokalisering; motstridende årstall og kildeperspektiver er synlige. |
 | Dekning og ferdigstillelse | 4/5 | Alle 14 oppførte påstander og alle tre eksisterende personkoblinger vurdert; bilde-/samlingsresearch, full tekstaudit og fysisk slutt-QA ligger utenfor dette scope. |
 | Faglig/redaksjonell kvalitet | 5/5 | Stoff om adresse, presse, produksjon og okkupasjon er tids- og stedsavgrenset; metode følger faktisk historisk materiale. |
-| Teknisk integritet | 4/5 | Ren rapport; ingen canonical data, runtime eller registerendring. Rapportens innhold og endringsscope må leses tilbake på faktisk PR-head. Ingen browser-/place-build kjørt. |
+| Teknisk integritet | 4/5 | Innledende ren rapportfase uten canonical data, runtime eller registerendring. Rapportens innhold og endringsscope må leses tilbake på faktisk PR-head. Ingen browser-/place-build kjørt. |
 | Sikkerhet og ansvarlighet | 5/5 | Dokumentert personfeil synlig; ingen oppdiktet arbeidstilknytning, bruksrett, publikumseffekt eller ferdigstatus. |
 | Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Stabile research-ID-er, konkrete URLs, kildeplasseringer, merge-SHA-er og canonical gjenbruks-ID-er. |
 
@@ -129,4 +129,37 @@ Den eksisterende, urelaterte People-auditfeilen for Kristin Auestad Danielsen er
 
 ### Kjørbar verifikasjon
 
-Avventer bygg og kontroller på rettelsens faktiske PR-head. Midlertidig genereringsworkflow skal fjernes før slutt-diff og merge.
+Generert på `047cfccdf7a7306e9f2591ceca996b9d9b12fb13` mot main `be7a1cd6a61c0464668216b26d1dfa1474fc88eb`; avledninger committet i `4faf6517643a0a1a9276a26a3467d42d80001f87`. [Kjørbart bevis](https://github.com/Paradispartiet/History-Go/actions/runs/37737403143).
+
+- `bash scripts/check-people.sh`: PASS.
+- `npm run test:factuality-contract`: 20/20.
+- `npm run audit:people-profile-canonical`: PASS, 99 claims-filer.
+- `npm run audit:people-of-places`: PASS. Gjeldende manifestbaserte status-audit: 779 filer, 1435 unike personer, 0 duplikate person-ID-er, 0 ugyldige stedskoblinger, 0 manglende primærankere og 0 tomme places-arrays.
+- `npm run check:stories` og `npm run test:stories-manifest`: PASS.
+- `npm run place-open:check`: 1533 payloads synkrone; `npm run test:place-open`: 6/6.
+- `npm run civication:history-people:check`: indeks synkron, 16 kategorier.
+- Full parsed-sammenligning: 1435 runtime-personer og 551 historier gjennomgått; alle andre personer og historier er uendret. De fire People-shard-endringene omfatter også deterministisk flytting mellom shardgrenser, ikke omskriving av andre personer.
+- Begge berørte stedspayloads lest tilbake. Alle felt utenom Eilertsen og den ene Story-relasjonen er parsed-identiske med main.
+
+| Berørt sted | Personer før | Personer etter | Dokumentert endring |
+| --- | --- | --- | --- |
+| `aftenposten_akersgata` | 3 | 2 | Eilertsen fjernet; Stanghelle og Hegge videreført. |
+| `vg_huset` | 5 | 6 | Eilertsen lagt til gjennom Aftenpostens dokumenterte institusjonstilknytning til bygget. |
+
+De eldre globale snapshotrapportene er generert under kontrollkjøringen, men ikke brukt eller oppdatert som batchens dekningsfasit. `audit-people-place-coverage.mts` leser ikke dagens split-place-format og rapporterte 0 steder / 1449 rå personoppføringer, mens den gjeldende manifestbaserte gaten og runtime-builderen leser 1533 steder / 1435 unike personer. Det eldre invalid-refs-verktøyet behandler også fritekst i works som place-ID-er. Disse metodiske avvikene ligger utenfor personrettelsen; gammel global snapshot-refresh er tatt ut av slutt-diffen. Tabellen over og den gjeldende status-auditen dokumenterer batchens faktiske dekning.
+
+Midlertidig genereringsworkflow er fjernet. Slutt-CI på den rensede PR-head og post-merge integrity kontrolleres separat i PR-arbeidsløpet. Ingen ny browser- eller portrett-QA er attestert.
+
+### Kvalitetsvurdering av personrettelsen
+
+| Dimensjon | Score | Evidens |
+| --- | --- | --- |
+| Korrekthet og evidens | 5/5 | Tre kontrollerte claims; alle endrede faktiske felt og begge popupsetninger er mappet. S09/S10 dokumenterer ansettelsen, S01 dokumenterer Aftenpostens redaksjon i nummer 55. |
+| Dekning og ferdigstillelse | 5/5 | Canonical person, avhengig Story-relasjon, Civication-indeks, People-/Story-shards, begge stedspayloads og avgrenset batchrapport synkronisert. |
+| Faglig/redaksjonell kvalitet | 5/5 | Historisk, konkret tekst skiller Aftenposten fra VG og nummer 51 fra nummer 55; generiske vurderinger og gammel nåtidsrolle fjernet. |
+| Teknisk integritet | 4/5 | People-/claims-/Story-/runtime-gater og full semantisk sammenligning bestod; ny browser-/portrett-QA er ikke utført i denne metadata-/tekstrettelsen. |
+| Sikkerhet og ansvarlighet | 5/5 | Ingen oppdiktet VG-ansettelse, individuell tilstedeværelsesdato eller ny bildeattestasjon; profilen er fortsatt legacy_unreviewed. |
+| Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Canonical claims-fil, konkret kildeplassering, felt-/setningsmapping, fersk main-komposisjon og generatorbevis; midlertidig workflow fjernet før merge. |
+
+Sum: **29/30**. Alle dimensjoner er minst 4/5. Denne vurderingen gjelder den gjennomførte person-/relasjonsrettelsen, ikke fullproduksjon av Aftenposten eller full godkjenning av Eilertsens bilder/profil.
+
