@@ -414,6 +414,10 @@ Hvis ikke, hører stoffet i chronology/leksikon i stedet. Et Focused Place kan v
 
 Quiz følger bare `data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md`.
 
+**Arbeidsdeling:** Selve produksjonen og revisjonen av quizsett skjer i et eget, kildeledet produksjonsløp etter `docs/QUIZ_PRODUCTION_PIPELINE.md`, normalt i egen quiz-PR. Stedsproduksjonen skal overlevere korrekt `categoryId`/`targetId`, source- og Badge-grunnlag og eksisterende quizstatus; den skal ikke skrive spørsmål eller sett bare for å lukke en stedsfase. Quizproduksjonen eier påstandsbank, sett, distraktorer, progresjon, quizdata, Knowledge-synkronisering og quizfaglig QA.
+
+Et sted kan avslutte checkpoint for **canonical stedsinnhold** mens quizarbeidet foregår separat. Dette er **ikke** det samme som `SLUTTFØRT`: ordinær endelig closeout beholder kravene om relevant fullført quiz, dedikert QuizCard, korrekt runtime-kobling og reell flip-/quiztest. Manglende quiz skal rapporteres åpent, aldri skjules som `BEGRUNNET N/A` for en obligatorisk brukerhandling.
+
 Eksisterende aktive, arkiverte og alternative quizfiler auditeres før profilvalg.
 
 Quiz-auditen omfatter også den synlige QuizCard-flaten. Før nytt kort lages skal eksisterende `bilder/QuizCards/**`, tidligere quizkort og runtime-binding for `targetId` kontrolleres. Et eksisterende godt QuizCard gjenbrukes. Hvis kort mangler, produseres et dedikert stedsspesifikt QuizCard og bindes til PlaceCard-flippen; quizproduksjon er ikke closeout-klar før både quizdata og QuizCard-runtime er operative.
@@ -585,7 +589,9 @@ Typiske grenser:
 - popup-/leksikon-/språkinnhold;
 - chronology;
 - relevante People/Objects/Brands/kategorisamlinger;
-- relevante Stories/Quiz/Knowledge/Før-etter/Nyheter/Lesespor.
+- relevante Stories/Knowledge/Før-etter/Nyheter/Lesespor.
+
+Quizspørsmål og quizpakker går i separat quizløp/quiz-PR etter quizkontrakten. Arbeidsdelingen endrer ikke steds-PR-ens ansvar for identitet, kilder, QuizCard-flip og integrasjonsstatus.
 
 ### C. Integrasjon/slutt-QA
 
@@ -705,6 +711,7 @@ Grønn CI kan aldri overstyre et dokumentert stygt, kunstig eller ufullstendig P
 9. People, Objects, Brands og kategoriuttrykk skal kandidatauditeres når relevante, men kan ende `BEGRUNNET N/A`; Related er aldri en samling;
 10. stedsprofil og Quiz-profil er separate beslutninger;
 11. hvert ordinært fullprodusert Place har et eget operativt QuizCard som flip-bakside til `frontImage`; eksisterende QuizCards auditeres og gjenbrukes før ny produksjon, og `bilder/QuizCards/**` brukes aldri som ordinært Place-bilde.
+12. selve quizsettene produseres og forbedres i separat quizløp; stedschecklisten beholder quizstatus, identitets-/koblingskontroll og fullført brukeropplevelse som closeout-gate.
 
 Ved konflikt med eldre formulering om fast firefelts-fullness, universell Brands/People/Objects-/kategoriuttrykk-plikt, separat senere Fagverk-produksjon eller obligatorisk materialisering av et irrelevant subsystem gjelder denne v2.6-sjekklisten.
 
