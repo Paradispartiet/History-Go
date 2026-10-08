@@ -87,7 +87,7 @@ Filbaner:
 
 | Person | Nåværende kobling | Resultat av source review | Beslutning for videre fase |
 | --- | --- | --- | --- |
-| Trine Eilertsen | `placeId` og `places[]` peker til `aftenposten_akersgata`; teksten bruker institusjonstilknytning som stedsbegrunnelse | R14 begynner i 2014, mens R05 avslutter nummer 51 i 2003. Dette er konkret evidens på at begrunnelsen ikke bærer dette historiske stedet. | Rettet etter selvstendig kontrakt- og kildekontroll: `vg_huset` brukes som bygningens adresseanker Akersgata 55. S01 dokumenterer Aftenposten som egen redaksjon i samme bygg fra 2014; S09/S10 dokumenterer Eilertsens ansettelse. Ingen VG-ansettelse tilskrives henne. |
+| Trine Eilertsen | `placeId` og `places[]` peker til `aftenposten_akersgata`; teksten bruker institusjonstilknytning som stedsbegrunnelse | R14 begynner i 2014, mens R05 avslutter nummer 51 i 2003. Dette er konkret evidens på at begrunnelsen ikke bærer dette historiske stedet. | Rettet etter selvstendig kontrakt- og kildekontroll: `vg_huset` brukes som bygningens adresseanker Akersgata 55. S01/S02 dokumenterer Aftenposten som egen redaksjon i samme bygg fra 2014; S09/S10 dokumenterer Eilertsens ansettelse. Ingen VG-ansettelse tilskrives henne. |
 | Harald Stanghelle | Samme historiske place-ID | R12 bærer institusjonstilknytning i relevante perioder. Det er ikke påvist en tidskonflikt. | Behold som kildebåret kandidat for perioden; ny People-produksjon/asset-/preview-PASS er ikke attestert. |
 | Per Egil Hegge | Samme historiske place-ID | R13 gir relevant tidsmessig overlapp, med særskilte korrespondentperioder. | Behold som kildebåret kandidat; avgrens fysisk sted fra utenriksarbeid og senere språkspalte. Bilde/proveniens gjenstår. |
 
@@ -114,7 +114,7 @@ Sum: 28/30 for den innledende kildekontrollen. Rettelsens separate kvalitetsvurd
 
 ## Canonical personretting og avgrensning
 
-Gjeldende People-profilstandard, relevansmetode, faktisitetskontrakt og Stories-governance er lest før endringen. `vg_huset` er en eksisterende building-record for Akersgata 55. Den fysiske koblingen bygger på to kontrollerte forhold: Eilertsens ansettelse i Aftenposten i 2014 (S09/S10) og Aftenpostens redaksjon i bygget samme år (S01). Dette er en dokumentert institusjonstilknytning til bygningen, ikke en påstand om arbeid for VG eller en individuell tilstedeværelsesdato.
+Gjeldende People-profilstandard, relevansmetode, faktisitetskontrakt og Stories-governance er lest før endringen. `vg_huset` er en eksisterende building-record for Akersgata 55. Den fysiske koblingen bygger på to kontrollerte forhold: Eilertsens ansettelse i Aftenposten i 2014 (S09/S10) og Aftenpostens redaksjon i bygget samme år (S01/S02). Dette er en dokumentert institusjonstilknytning til bygningen, ikke en påstand om arbeid for VG eller en individuell tilstedeværelsesdato.
 
 - `placeId` og `places[]` flyttes fra nummer 51 til `vg_huset`; `year` settes til det dokumenterte ansettelsesåret 2014.
 - Korttekst og popup bruker historiske, kildebelagte formuleringer. Gammel nåtidsrolle og generisk begrunnelse fjernes.
@@ -126,6 +126,8 @@ Gjeldende People-profilstandard, relevansmetode, faktisitetskontrakt og Stories-
 ### Fresh-main replay
 
 Den eksisterende, urelaterte People-auditfeilen for Kristin Auestad Danielsen er reparert separat i [#6146](https://github.com/Paradispartiet/History-Go/pull/6146). To metadatafelt og deres to runtime-projeksjoner ble rettet; alle final-head CI-gater bestod. Aftenposten-rettelsen er deretter komponert på main `be7a1cd6a61c0464668216b26d1dfa1474fc88eb` og kontrolleres uten å endre andre personprofiler.
+
+S02 er åpnet på nytt ved sluttkontrollen: Historikk-avsnittet bekrefter gjennomført flytting til VG-huset i 2014. Claims-filen kombinerer derfor S01s samtidige adresse-/etasjedokumentasjon med S02s retrospektive bekreftelse; en flytteplan brukes ikke alene som bevis på en gjennomført hendelse.
 
 ### Kjørbar verifikasjon
 
@@ -154,7 +156,7 @@ Midlertidig genereringsworkflow er fjernet. Slutt-CI på den rensede PR-head og 
 
 | Dimensjon | Score | Evidens |
 | --- | --- | --- |
-| Korrekthet og evidens | 5/5 | Tre kontrollerte claims; alle endrede faktiske felt og begge popupsetninger er mappet. S09/S10 dokumenterer ansettelsen, S01 dokumenterer Aftenpostens redaksjon i nummer 55. |
+| Korrekthet og evidens | 5/5 | Tre kontrollerte claims; alle endrede faktiske felt og begge popupsetninger er mappet. S09/S10 dokumenterer ansettelsen, S01/S02 dokumenterer Aftenpostens redaksjon i nummer 55. |
 | Dekning og ferdigstillelse | 5/5 | Canonical person, avhengig Story-relasjon, Civication-indeks, People-/Story-shards, begge stedspayloads og avgrenset batchrapport synkronisert. |
 | Faglig/redaksjonell kvalitet | 5/5 | Historisk, konkret tekst skiller Aftenposten fra VG og nummer 51 fra nummer 55; generiske vurderinger og gammel nåtidsrolle fjernet. |
 | Teknisk integritet | 4/5 | People-/claims-/Story-/runtime-gater og full semantisk sammenligning bestod; ny browser-/portrett-QA er ikke utført i denne metadata-/tekstrettelsen. |
