@@ -31,7 +31,7 @@ jobs:
       - name: Verify manifest contract
         run: |
           npm run audit:quiz-manifest:v2 || {
-            node -e 'const r=require("./reports/quiz_manifest_v2_audit_report.json"); console.log("Audit failures",JSON.stringify({missingFiles:r.missingFiles.slice(0,8),missingSetIds:r.missingSetIds.slice(0,8),invalidQuestions:r.invalidQuestions.slice(0,15),targetMismatchQuestions:r.targetMismatchQuestions.slice(0,12),duplicateQuizItemIds:r.duplicateQuizItemIds.slice(0,8),duplicateSetKeys:r.duplicateSetKeys.slice(0,8),counts:{invalidQuestions:r.invalidQuestions.length,targetMismatchQuestions:r.targetMismatchQuestions.length,duplicateSetKeys:r.duplicateSetKeys.length,missingSetIds:r.missingSetIds.length,duplicateQuizItemIds:r.duplicateQuizItemIds.length}},null,2))'
+            node -e 'const r=require("./reports/quiz_manifest_v2_audit_report.json"); console.log("Audit failures",JSON.stringify({missingFiles:r.missingFiles.slice(0,8),missingSetIds:r.missingSetIds.slice(0,8),invalidQuestions:r.invalidQuestions.slice(0,15),targetMismatchQuestions:r.targetMismatchQuestions.slice(0,12),duplicateQuizItemIds:r.duplicateQuizItemIds.slice(0,8),duplicateSetKeys:r.duplicateSetKeys.slice(0,8),reasonCounts:Object.fromEntries([...new Set(r.invalidQuestions.map(x=>x.reason))].map(t=>[t,r.invalidQuestions.filter(x=>x.reason===t).length])),counts:{invalidQuestions:r.invalidQuestions.length,targetMismatchQuestions:r.targetMismatchQuestions.length,duplicateSetKeys:r.duplicateSetKeys.length,missingSetIds:r.missingSetIds.length,duplicateQuizItemIds:r.duplicateQuizItemIds.length}},null,2))'
             exit 1
           }
       - name: Verify registration fixture
