@@ -103,6 +103,8 @@ export async function auditQuizWiring({ root = process.cwd() } = {}) {
   }
   const files = [];
   for (const file of (await walk(root, QUIZ_ROOT)).sort()) {
+    // The manifest itself has a sets[] metadata list, not quiz question blocks.
+    if (file === "data/quiz/manifest.json") continue;
     let data;
     try {
       data = await jsonAt(root, file);
