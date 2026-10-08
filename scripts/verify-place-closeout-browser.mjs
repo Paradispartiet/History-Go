@@ -244,6 +244,7 @@ try {
             width: box.width,
             height: box.height,
             naturalWidth: img.naturalWidth,
+            complete: img.complete,
           };
         })
         .filter((img) => img.width > 0 && img.height > 0 && img.src);
@@ -284,7 +285,9 @@ try {
       quizEntry: quizHash.startsWith(`#/quiz/${placeId}`),
       noHorizontalOverflow: base.horizontalOverflowPx <= 2,
       noPageErrors: pageErrors.length === 0,
-      noBrokenVisibleImages: base.images.every((image) => Number(image.naturalWidth || 0) > 0),
+      // A lazy/offscreen image with complete=false is still pending, not broken.
+      // Broken requests have complete=true but naturalWidth=0.
+      noBrokenVisibleImages: base.images.every((image) => !image.complete || Number(image.naturalWidth || 0) > 0),
     };
 
     const report = {

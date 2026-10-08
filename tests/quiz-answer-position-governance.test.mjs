@@ -13,9 +13,9 @@ test("recursive collector finds questions inside sets", () => {
   assert.equal(collectQuestions({ sets: [{ questions: [q(0), q(1)] }] }).length, 2);
 });
 
-test("a fixed first-slot quiz is rejected", () => {
-  const errors = auditQuestionCollection(Array.from({ length: 7 }, () => q(0)), "fixture");
-  assert.ok(errors.some((error) => error.includes("same stored position")));
+test("fixed source positions pass because the runtime shuffles displayed answers", () => {
+  const questions = Array.from({ length: 7 }, () => q(0));
+  assert.deepEqual(auditQuestionCollection(questions, "fixture"), []);
 });
 
 test("distributed correct-answer positions pass", () => {
