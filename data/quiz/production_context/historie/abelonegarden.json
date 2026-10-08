@@ -1,12 +1,92 @@
 {
   "schema_version": "1.0",
+  "generator_version": "1.0",
   "categoryId": "historie",
   "targetId": "abelonegarden",
-  "scope": "place",
-  "status": "reviewed",
-  "reviewed_at": "2026-10-08",
-  "review_note": "21 etterprøvbare og distinkte historiske påstander, normal åpning 2×7; fasene er opening/bridge/final for narrow 3×7. Senere teoribinding og metodespørsmål ligger kun i sett 3. Motstrid om soning er holdt tilbake.",
-  "sources": {
+  "profile": "narrow_3x7",
+  "manifest": {
+    "path": "data/fag/fag_manifest.json",
+    "matches": 1,
+    "selection_bytes": 1777,
+    "selection_sha256": "b00db8c06939a0b6652a9ca8951071458f6a6867159366caa24718af3e0cb0de",
+    "category_id": "historie",
+    "target_id": "abelonegarden"
+  },
+  "resolved_files": {
+    "pensum": {
+      "path": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "bytes": 93945,
+      "sha256": "37abfe99b9f3f1db23bb0cb307b2076407076a405c15868b0524ef5b9e31c72d",
+      "format": "json"
+    },
+    "emner": {
+      "path": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "bytes": 2142053,
+      "sha256": "bcb20665e0a013c4f57e17719b610224874552b942b9bcd7421a7239463931ec",
+      "format": "json"
+    },
+    "fagkart": {
+      "path": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "bytes": 1127330,
+      "sha256": "6db315c9b911fc04b99dd7609e493e744f919448668cf35fe3c72d3dabff59b1",
+      "format": "json"
+    },
+    "methods": {
+      "path": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "bytes": 252328,
+      "sha256": "9462f9fc4a07c9c08593abaa75e4ee1bddd6af9e45a87304b52df66bcdb654be",
+      "format": "json"
+    },
+    "supersetQuizMal": {
+      "path": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "bytes": 6935,
+      "sha256": "162f166d3c5be89d77b7529ba9186a552b791e9dbd04a590a01fdaad28944098",
+      "format": "json"
+    },
+    "quizStandard": {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "bytes": 18213,
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd",
+      "format": "text"
+    },
+    "quizQuestionSchema": {
+      "path": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json",
+      "bytes": 4197,
+      "sha256": "082640c491511aa4848b924a107831036a1ebaf33be2009cc0ba5d81b635a350",
+      "format": "json"
+    }
+  },
+  "required_inputs_loaded": [
+    "pensum",
+    "emner",
+    "fagkart",
+    "methods",
+    "supersetQuizMal",
+    "quizStandard",
+    "quizQuestionSchema"
+  ],
+  "source_files": {
+    "brief": {
+      "path": "data/quiz/production_briefs/historie/abelonegarden.json",
+      "bytes": 11955,
+      "sha256": "f8a288817ef61f27e43c885a500911f3509f3d41e6f52b1f4183daf0a1ef60dd"
+    },
+    "target": {
+      "path": "data/places/historie/oslo/places_historie/abelonegarden.json",
+      "bytes": 4968,
+      "sha256": "d1e58f713822e182213f25eda1ed5dd8c6bd30301900ae3c7b7eedde08053589"
+    },
+    "target_index": {
+      "path": "data/places/places_index.json",
+      "matches": 1,
+      "selection_bytes": 1200,
+      "selection_sha256": "ca2269ec411286baef07738cc2b0280f4cf3fb83d445f31dba72040e52532f04"
+    },
+    "relations": [],
+    "stories": []
+  },
+  "planned_quiz_file": "data/quiz/historie/abelonegarden_sets.json",
+  "source_registry": {
     "local_place": {
       "url": "https://lokalhistoriewiki.no/Abeloneg%C3%A5rden",
       "source_type": "local_heritage",
@@ -32,37 +112,7 @@
       "review_note": "Gjennomgått Nasjonalbibliotekets historiefortelling og manus for vertshusets bruk og miljø. Dramatiserte eller omstridte årsaksforklaringer tas ikke som selvstendig bevis."
     }
   },
-  "selected_curriculum": {
-    "emne_ids": [
-      "em_his_sosialhistorie_hverdagsliv",
-      "em_his_historiske_lag_i_byrom",
-      "em_his_kildekritikk_arkiv_spor",
-      "em_his_minnesteder_historiebruk"
-    ],
-    "topic_hook_ids": [
-      "his_kildekritikk"
-    ],
-    "method_ids": [
-      "met_kildekritikk",
-      "met_minneanalyse"
-    ],
-    "thinker_ids": [
-      "marc_bloch"
-    ],
-    "works": [
-      "The Historian's Craft"
-    ],
-    "module_ids": [
-      "his_kilder_arkiv_spor",
-      "his_minne_kulturarv_historiebruk"
-    ]
-  },
-  "profile_decision": {
-    "profile": "narrow",
-    "set_count": 3,
-    "questions_per_set": 7,
-    "justification": "Avgrenset historisk tomt med tre kildebårne læringsjobber: bygningen og Vaterland, Abelonesaken og rettsoppgjøret, sanering og ettertid. Ingen emnebasert filler for å øke settantallet."
-  },
+  "source_review_status": "reviewed",
   "existing_quiz_audit": {
     "searched_paths": [
       "data/quiz/manifest.json",
@@ -84,13 +134,113 @@
       "retained_rule": "Ingen eksisterende abelonegarden-quiz eller Knowledge-koblinger å migrere."
     }
   },
+  "profile_decision": {
+    "profile": "narrow",
+    "set_count": 3,
+    "questions_per_set": 7,
+    "justification": "Avgrenset historisk tomt med tre kildebårne læringsjobber: bygningen og Vaterland, Abelonesaken og rettsoppgjøret, sanering og ettertid. Ingen emnebasert filler for å øke settantallet."
+  },
   "held_back_candidates": [
     "SNL oppgir 15 dagers straff mens Lokalhistoriewiki beskriver et lengre soningsforløp i 1894; ikke still soningslengde-spørsmål før primærkildene er forlikt.",
     "Rettsavgjørelsens versjon av hendelsesforløpet skal ikke gjengis som ubestridt årsaksforklaring; flere forklaringer forekom.",
     "Sensasjonaliserende eller romantiserende karakteristikker av prostitusjon, fattigdom og kriminalitet.",
     "Forveksling av historisk Karl XIIs gate 15 med Abelones senere adresse i nr. 30."
   ],
-  "claims": [
+  "considered_curriculum": {
+    "counts": {
+      "pensum_modules": 23,
+      "emner": 230,
+      "topic_hooks": 230,
+      "methods": 105
+    },
+    "candidate_emner": [
+      {
+        "id": "em_his_historiske_lag_i_byrom",
+        "title": "Historiske lag i byrom",
+        "score": 100
+      },
+      {
+        "id": "em_his_kildekritikk_arkiv_spor",
+        "title": "Kildekritikk, arkiv og spor",
+        "score": 100
+      },
+      {
+        "id": "em_his_minnesteder_historiebruk",
+        "title": "Minnesteder, ritual og offentlig historiebruk",
+        "score": 100
+      },
+      {
+        "id": "em_his_sosialhistorie_hverdagsliv",
+        "title": "Sosialhistorie og hverdagsliv",
+        "score": 100
+      }
+    ],
+    "candidate_topic_hooks": [
+      {
+        "id": "his_arbeiderbolig_hushold_livsvilkar",
+        "title": "Arbeiderbolig, hushold og livsvilkår",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_arbeidstid_lonn_ferdighet",
+        "title": "Arbeidstid, lønn og ferdighet",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_kildekritikk",
+        "title": "Kildekritikk, opphav og formål",
+        "category_id": "his_kilder_arkiv_spor",
+        "score": 10
+      },
+      {
+        "id": "his_kjonn_arbeidsdeling_lonn",
+        "title": "Kjønn, arbeidsdeling og lønn",
+        "category_id": "his_industri_arbeid_sosialhistorie",
+        "score": 10
+      },
+      {
+        "id": "his_minnested_ritual_offentlig_sorg",
+        "title": "Minnested, ritual og offentlig sorg",
+        "category_id": "his_minne_kulturarv_historiebruk",
+        "score": 10
+      },
+      {
+        "id": "his_tidslag_samtidighet",
+        "title": "Tidslag og samtidighet i sted",
+        "category_id": "his_tid_periodisering",
+        "score": 10
+      }
+    ],
+    "note": "Alle autoritative filer er lest i sin helhet. Kandidatlistene viser treff; bare selected_curriculum er valgt for synlig bruk."
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
+  },
+  "claim_bank": [
     {
       "claim_id": "claim_abelonegarden_01",
       "order": 1,
@@ -343,5 +493,69 @@
       "source_origin": "external",
       "emne_id": "em_his_minnesteder_historiebruk"
     }
-  ]
+  ],
+  "story_units": [],
+  "set_plan": [
+    {
+      "set_id": "historie_abelonegarden_set_1",
+      "order": 1,
+      "phase": "opening",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_abelonegarden_01",
+        "claim_abelonegarden_02",
+        "claim_abelonegarden_03",
+        "claim_abelonegarden_04",
+        "claim_abelonegarden_05",
+        "claim_abelonegarden_06",
+        "claim_abelonegarden_07"
+      ]
+    },
+    {
+      "set_id": "historie_abelonegarden_set_2",
+      "order": 2,
+      "phase": "bridge",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_abelonegarden_08",
+        "claim_abelonegarden_09",
+        "claim_abelonegarden_10",
+        "claim_abelonegarden_11",
+        "claim_abelonegarden_12",
+        "claim_abelonegarden_13",
+        "claim_abelonegarden_14"
+      ]
+    },
+    {
+      "set_id": "historie_abelonegarden_set_3",
+      "order": 3,
+      "phase": "final",
+      "planned_questions": 7,
+      "questions_per_set": 7,
+      "claim_ids": [
+        "claim_abelonegarden_15",
+        "claim_abelonegarden_16",
+        "claim_abelonegarden_17",
+        "claim_abelonegarden_18",
+        "claim_abelonegarden_19",
+        "claim_abelonegarden_20",
+        "claim_abelonegarden_21"
+      ]
+    }
+  ],
+  "question_balance": {
+    "total": 21,
+    "counts": {
+      "fact": 12,
+      "context": 5,
+      "concept_theory": 4
+    },
+    "ratios": {
+      "fact": 0.571,
+      "context": 0.238,
+      "concept_theory": 0.19
+    }
+  }
 }
