@@ -25,13 +25,356 @@
       "xp": 50,
       "mode": "place_intro_story",
       "questions": [
-        {"id":"kuba_parken_s1_q1","quiz_id":"natur_kuba_parken_set_1_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva gjør Kuba-parken til mer enn en vanlig parkflate?","options":["Den viser hvordan Akerselva, parkdrag og byliv møtes","Den ligger uten forbindelse til elva","Den er bare en lukket bakgård"],"answer":"Den viser hvordan Akerselva, parkdrag og byliv møtes","answerIndex":0,"knowledge":"Kuba-parken er et elvenært byrom der vann, grøntdrag, ferdsel og opphold kan leses sammen.","difficulty":1,"question_type":"scene","question_layer":"intro_story","tags":["kuba_parken","akerselva","parkdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q2","quiz_id":"natur_kuba_parken_set_1_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva bør spilleren se etter først i Kuba-parken?","options":["Elvekant, stier, åpne flater og hvordan folk bruker parken","Bare skilt med gatenavn","Kun butikkvinduer"],"answer":"Elvekant, stier, åpne flater og hvordan folk bruker parken","answerIndex":0,"knowledge":"En park langs Akerselva leses både gjennom naturtrekk og menneskelig bruk.","difficulty":1,"question_type":"visuell_hook","question_layer":"intro_story","tags":["observasjon","elvekant"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q3","quiz_id":"natur_kuba_parken_set_1_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hvorfor passer Kuba-parken godt i en Akerselva-rute?","options":["Den viser overgangen mellom elv, park og tett by","Den bryter all kontakt med elva","Den handler bare om biltrafikk"],"answer":"Den viser overgangen mellom elv, park og tett by","answerIndex":0,"knowledge":"Kuba-parken er et sted der Akerselva-korridoren blir sosialt og fysisk tilgjengelig.","difficulty":1,"question_type":"rutekobling","question_layer":"intro_story","tags":["rute","grøntdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q4","quiz_id":"natur_kuba_parken_set_1_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva er den beste korte forklaringen på Kuba-parken?","options":["En elvenær bypark der bynatur, ferdsel og byomforming møtes","Et isolert fjellområde","En ren industrihall uten uteområde"],"answer":"En elvenær bypark der bynatur, ferdsel og byomforming møtes","answerIndex":0,"knowledge":"Kuba-parken fungerer som bynatur og hverdagsrom i en tett del av byen.","difficulty":1,"question_type":"saertrekk","question_layer":"intro_story","tags":["bynatur","byrom"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q5","quiz_id":"natur_kuba_parken_set_1_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva viser at parken er del av et større grøntdrag?","options":["Stier, elvekant og koblinger videre langs Akerselva","At parken stopper all ferdsel","At området mangler vann"],"answer":"Stier, elvekant og koblinger videre langs Akerselva","answerIndex":0,"knowledge":"Grøntdrag fungerer som sammenheng, ikke bare som enkeltpark.","difficulty":1,"question_type":"gjenkjenning","question_layer":"intro_story","tags":["grøntdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q6","quiz_id":"natur_kuba_parken_set_1_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva er et godt første spørsmål når du står i parken?","options":["Hvordan binder parken elva til hverdagsbruk i byen?","Hvorfor finnes ingen mennesker i parker?","Hvordan fjerner vi elva fra byen?"],"answer":"Hvordan binder parken elva til hverdagsbruk i byen?","answerIndex":0,"knowledge":"Kuba-parken gjør Akerselva til et sted for ferdsel, opphold og observasjon.","difficulty":1,"question_type":"observasjon","question_layer":"intro_story","tags":["hverdagsbruk"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s1_q7","quiz_id":"natur_kuba_parken_set_1_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva binder Kuba-parken til Nedre Foss og Vulkan?","options":["Alle viser ulike sider av Akerselva-korridoren","Alle er kongelige parker","Alle handler bare om sport"],"answer":"Alle viser ulike sider av Akerselva-korridoren","answerIndex":0,"knowledge":"Nedre Foss, Vulkan og Kuba-parken viser kraft, transformasjon og bynatur langs samme elv.","difficulty":1,"question_type":"rutekobling","question_layer":"intro_story","tags":["akerselva","rute"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"}
+        {
+          "id": "kuba_parken_s1_q1",
+          "quiz_id": "natur_kuba_parken_set_1_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva gjør Kuba-parken til mer enn en vanlig parkflate?",
+          "options": [
+            "Den viser hvordan Akerselva, parkdrag og byliv møtes",
+            "Den ligger uten forbindelse til elva",
+            "Den er bare en lukket bakgård"
+          ],
+          "answer": "Den viser hvordan Akerselva, parkdrag og byliv møtes",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken er et elvenært byrom der vann, grøntdrag, ferdsel og opphold kan leses sammen.",
+          "difficulty": 1,
+          "question_type": "scene",
+          "question_layer": "intro_story",
+          "tags": [
+            "kuba_parken",
+            "akerselva",
+            "parkdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_urban_okologi_byrom"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "vann",
+              "byrom",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_er_et_elven__08c954ecee",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_er_et_elven__08c954ecee"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s1_q2",
+          "quiz_id": "natur_kuba_parken_set_1_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva bør spilleren se etter først i Kuba-parken?",
+          "options": [
+            "Elvekant, stier, åpne flater og hvordan folk bruker parken",
+            "Bare skilt med gatenavn",
+            "Kun butikkvinduer"
+          ],
+          "answer": "Elvekant, stier, åpne flater og hvordan folk bruker parken",
+          "answerIndex": 0,
+          "knowledge": "En park langs Akerselva leses både gjennom naturtrekk og menneskelig bruk.",
+          "difficulty": 1,
+          "question_type": "visuell_hook",
+          "question_layer": "intro_story",
+          "tags": [
+            "observasjon",
+            "elvekant"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_kyst_okosystemer"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.84,
+            "score": 9,
+            "matched": [
+              "bruk",
+              "menneskelig bruk"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_en_park_langs_akerselva__3ab60d77b5",
+          "knowledge_unit_ids": [
+            "ku_natur_en_park_langs_akerselva__3ab60d77b5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s1_q3",
+          "quiz_id": "natur_kuba_parken_set_1_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hvorfor passer Kuba-parken godt i en Akerselva-rute?",
+          "options": [
+            "Den viser overgangen mellom elv, park og tett by",
+            "Den bryter all kontakt med elva",
+            "Den handler bare om biltrafikk"
+          ],
+          "answer": "Den viser overgangen mellom elv, park og tett by",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken er et sted der Akerselva-korridoren blir sosialt og fysisk tilgjengelig.",
+          "difficulty": 1,
+          "question_type": "rutekobling",
+          "question_layer": "intro_story",
+          "tags": [
+            "rute",
+            "grøntdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_sosial_naturforvaltning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "sosial",
+              "park",
+              "korridor"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_er_et_sted_d_6c2aa50045",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_er_et_sted_d_6c2aa50045"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s1_q4",
+          "quiz_id": "natur_kuba_parken_set_1_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva er den beste korte forklaringen på Kuba-parken?",
+          "options": [
+            "En elvenær bypark der bynatur, ferdsel og byomforming møtes",
+            "Et isolert fjellområde",
+            "En ren industrihall uten uteområde"
+          ],
+          "answer": "En elvenær bypark der bynatur, ferdsel og byomforming møtes",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken fungerer som bynatur og hverdagsrom i en tett del av byen.",
+          "difficulty": 1,
+          "question_type": "saertrekk",
+          "question_layer": "intro_story",
+          "tags": [
+            "bynatur",
+            "byrom"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_urban_okologi_byrom"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "byrom",
+              "bynatur",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_fungerer_som_c0fffac6ce",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_fungerer_som_c0fffac6ce"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s1_q5",
+          "quiz_id": "natur_kuba_parken_set_1_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva viser at parken er del av et større grøntdrag?",
+          "options": [
+            "Stier, elvekant og koblinger videre langs Akerselva",
+            "At parken stopper all ferdsel",
+            "At området mangler vann"
+          ],
+          "answer": "Stier, elvekant og koblinger videre langs Akerselva",
+          "answerIndex": 0,
+          "knowledge": "Grøntdrag fungerer som sammenheng, ikke bare som enkeltpark.",
+          "difficulty": 1,
+          "question_type": "gjenkjenning",
+          "question_layer": "intro_story",
+          "tags": [
+            "grøntdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_gr_ntdrag_fungerer_som_s_5800f66f23",
+          "knowledge_unit_ids": [
+            "ku_natur_gr_ntdrag_fungerer_som_s_5800f66f23"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_marka_skog_bygrense",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_natur_som_aktor",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s1_q6",
+          "quiz_id": "natur_kuba_parken_set_1_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva er et godt første spørsmål når du står i parken?",
+          "options": [
+            "Hvordan binder parken elva til hverdagsbruk i byen?",
+            "Hvorfor finnes ingen mennesker i parker?",
+            "Hvordan fjerner vi elva fra byen?"
+          ],
+          "answer": "Hvordan binder parken elva til hverdagsbruk i byen?",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken gjør Akerselva til et sted for ferdsel, opphold og observasjon.",
+          "difficulty": 1,
+          "question_type": "observasjon",
+          "question_layer": "intro_story",
+          "tags": [
+            "hverdagsbruk"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_friluftsliv_helse"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.81,
+            "score": 6,
+            "matched": [
+              "bruk",
+              "hverdagsbruk"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_gj_r_akersel_72b5e954bb",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_gj_r_akersel_72b5e954bb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s1_q7",
+          "quiz_id": "natur_kuba_parken_set_1_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva binder Kuba-parken til Nedre Foss og Vulkan?",
+          "options": [
+            "Alle viser ulike sider av Akerselva-korridoren",
+            "Alle er kongelige parker",
+            "Alle handler bare om sport"
+          ],
+          "answer": "Alle viser ulike sider av Akerselva-korridoren",
+          "answerIndex": 0,
+          "knowledge": "Nedre Foss, Vulkan og Kuba-parken viser kraft, transformasjon og bynatur langs samme elv.",
+          "difficulty": 1,
+          "question_type": "rutekobling",
+          "question_layer": "intro_story",
+          "tags": [
+            "akerselva",
+            "rute"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_nedre_foss_vulkan_og_kub_f2202f916a",
+          "knowledge_unit_ids": [
+            "ku_natur_nedre_foss_vulkan_og_kub_f2202f916a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_marka_skog_bygrense",
+                "score": 6
+              }
+            ]
+          }
+        }
       ]
     },
     {
@@ -41,13 +384,366 @@
       "xp": 60,
       "mode": "place_life_people_events",
       "questions": [
-        {"id":"kuba_parken_s2_q1","quiz_id":"natur_kuba_parken_set_2_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva slags stedsliv kan leses i Kuba-parken?","options":["Ferdsel, opphold, møteplass og kontakt med elva","Bare lukket fabrikkdrift","Kun motorvei"],"answer":"Ferdsel, opphold, møteplass og kontakt med elva","answerIndex":0,"knowledge":"Byparker er sosiale landskap. Kuba-parken kan leses gjennom måten folk beveger seg og stopper på.","difficulty":1,"question_type":"bruk","question_layer":"place_life","tags":["stedsliv"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s2_q2","quiz_id":"natur_kuba_parken_set_2_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva forteller åpne flater i en bypark?","options":["At parken kan romme opphold, lek, passasje og samling","At ingen kan bruke stedet","At natur og by aldri møtes"],"answer":"At parken kan romme opphold, lek, passasje og samling","answerIndex":0,"knowledge":"Åpne parkflater gjør rommet fleksibelt for mange typer hverdagsbruk.","difficulty":1,"question_type":"bruk_stemning","question_layer":"place_life","tags":["parkbruk"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s2_q3","quiz_id":"natur_kuba_parken_set_2_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva gjør elvekanten viktig for stedslivet?","options":["Den gir lyd, retning, kantsoner og opplevelse av natur i byen","Den stenger parken helt","Den gjør parken usynlig"],"answer":"Den gir lyd, retning, kantsoner og opplevelse av natur i byen","answerIndex":0,"knowledge":"Elvekanten gjør parken til mer enn grønn flate; den gir sanselig kontakt med vannlandskapet.","difficulty":1,"question_type":"fysisk_trekk","question_layer":"place_life","tags":["elvekant","vann"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s2_q4","quiz_id":"natur_kuba_parken_set_2_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva er en trygg måte å beskrive naturen her uten artsliste?","options":["Kantvegetasjon, vannkontakt og byøkologisk variasjon","Eksakte sjeldne arter uten kilde","At parken ikke har natur"],"answer":"Kantvegetasjon, vannkontakt og byøkologisk variasjon","answerIndex":0,"knowledge":"Uten sikre artsfunn bør quizzen bruke trygge observasjonskategorier, ikke påstå konkrete arter.","difficulty":1,"question_type":"kildekritikk","question_layer":"place_life","tags":["holdback","biodiversitet"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"kuba_parken_s2_q5","quiz_id":"natur_kuba_parken_set_2_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva viser parken om byomforming langs Akerselva?","options":["Elvenære randsoner kan bli offentlige grønt- og oppholdsrom","Elverom kan aldri endre bruk","Parkdrag har ingen byhistorie"],"answer":"Elvenære randsoner kan bli offentlige grønt- og oppholdsrom","answerIndex":0,"knowledge":"Akerselva har gått fra produksjonsnære soner til viktige offentlige rom mange steder.","difficulty":1,"question_type":"hendelse","question_layer":"place_life","tags":["byomforming"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s2_q6","quiz_id":"natur_kuba_parken_set_2_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva kan broer og stier fortelle her?","options":["Hvordan parken kobler bydel, elv og ferdsel","At forbindelser er uviktige","At parken er en blindgate"],"answer":"Hvordan parken kobler bydel, elv og ferdsel","answerIndex":0,"knowledge":"Stier og broer gjør grøntdraget praktisk og sosialt tilgjengelig.","difficulty":1,"question_type":"stedskobling","question_layer":"place_life","tags":["forbindelser"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s2_q7","quiz_id":"natur_kuba_parken_set_2_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva gir Kuba-parken sin History Go-stemning?","options":["Møtet mellom elvelyd, grønt rom, byliv og eldre bylag","At stedet mangler sanselige trekk","At parken ikke brukes"],"answer":"Møtet mellom elvelyd, grønt rom, byliv og eldre bylag","answerIndex":0,"knowledge":"Stedets styrke ligger i lagene: vann, grøntdrag, ferdsel, opphold og byhistorie.","difficulty":1,"question_type":"bruk_stemning","question_layer":"place_life","tags":["sansning","historiske_lag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"}
+        {
+          "id": "kuba_parken_s2_q1",
+          "quiz_id": "natur_kuba_parken_set_2_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva slags stedsliv kan leses i Kuba-parken?",
+          "options": [
+            "Ferdsel, opphold, møteplass og kontakt med elva",
+            "Bare lukket fabrikkdrift",
+            "Kun motorvei"
+          ],
+          "answer": "Ferdsel, opphold, møteplass og kontakt med elva",
+          "answerIndex": 0,
+          "knowledge": "Byparker er sosiale landskap. Kuba-parken kan leses gjennom måten folk beveger seg og stopper på.",
+          "difficulty": 1,
+          "question_type": "bruk",
+          "question_layer": "place_life",
+          "tags": [
+            "stedsliv"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_sosial_naturforvaltning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "landskap",
+              "sosial",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_byparker_er_sosiale_land_7d5032f646",
+          "knowledge_unit_ids": [
+            "ku_natur_byparker_er_sosiale_land_7d5032f646",
+            "ku_natur_kuba_parken_kan_leses_gj_d4c2b9fb87"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s2_q2",
+          "quiz_id": "natur_kuba_parken_set_2_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva forteller åpne flater i en bypark?",
+          "options": [
+            "At parken kan romme opphold, lek, passasje og samling",
+            "At ingen kan bruke stedet",
+            "At natur og by aldri møtes"
+          ],
+          "answer": "At parken kan romme opphold, lek, passasje og samling",
+          "answerIndex": 0,
+          "knowledge": "Åpne parkflater gjør rommet fleksibelt for mange typer hverdagsbruk.",
+          "difficulty": 1,
+          "question_type": "bruk_stemning",
+          "question_layer": "place_life",
+          "tags": [
+            "parkbruk"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_friluftsliv_helse"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.81,
+            "score": 6,
+            "matched": [
+              "bruk",
+              "hverdagsbruk"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_apne_parkflater_gj_r_rom_6103f94548",
+          "knowledge_unit_ids": [
+            "ku_natur_apne_parkflater_gj_r_rom_6103f94548"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s2_q3",
+          "quiz_id": "natur_kuba_parken_set_2_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva gjør elvekanten viktig for stedslivet?",
+          "options": [
+            "Den gir lyd, retning, kantsoner og opplevelse av natur i byen",
+            "Den stenger parken helt",
+            "Den gjør parken usynlig"
+          ],
+          "answer": "Den gir lyd, retning, kantsoner og opplevelse av natur i byen",
+          "answerIndex": 0,
+          "knowledge": "Elvekanten gjør parken til mer enn grønn flate; den gir sanselig kontakt med vannlandskapet.",
+          "difficulty": 1,
+          "question_type": "fysisk_trekk",
+          "question_layer": "place_life",
+          "tags": [
+            "elvekant",
+            "vann"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_elvekanten_gj_r_parken_t_e201cce6b0",
+          "knowledge_unit_ids": [
+            "ku_natur_elvekanten_gj_r_parken_t_e201cce6b0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 9
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 9
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 9
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s2_q4",
+          "quiz_id": "natur_kuba_parken_set_2_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva er en trygg måte å beskrive naturen her uten artsliste?",
+          "options": [
+            "Kantvegetasjon, vannkontakt og byøkologisk variasjon",
+            "Eksakte sjeldne arter uten kilde",
+            "At parken ikke har natur"
+          ],
+          "answer": "Kantvegetasjon, vannkontakt og byøkologisk variasjon",
+          "answerIndex": 0,
+          "knowledge": "Uten sikre artsfunn bør quizzen bruke trygge observasjonskategorier, ikke påstå konkrete arter.",
+          "difficulty": 1,
+          "question_type": "kildekritikk",
+          "question_layer": "place_life",
+          "tags": [
+            "holdback",
+            "biodiversitet"
+          ],
+          "source": [
+            "manual_production_notes"
+          ],
+          "claim_basis": "holdback_rule",
+          "primary_knowledge_unit_id": "ku_natur_uten_sikre_artsfunn_b_r__83f7db132c",
+          "knowledge_unit_ids": [
+            "ku_natur_uten_sikre_artsfunn_b_r__83f7db132c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_biodiversitet_resiliens",
+                "score": 11
+              },
+              {
+                "emne_id": "em_natur_natur_som_aktor",
+                "score": 10
+              },
+              {
+                "emne_id": "em_natur_arter_habitat_mangfold",
+                "score": 8
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s2_q5",
+          "quiz_id": "natur_kuba_parken_set_2_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva viser parken om byomforming langs Akerselva?",
+          "options": [
+            "Elvenære randsoner kan bli offentlige grønt- og oppholdsrom",
+            "Elverom kan aldri endre bruk",
+            "Parkdrag har ingen byhistorie"
+          ],
+          "answer": "Elvenære randsoner kan bli offentlige grønt- og oppholdsrom",
+          "answerIndex": 0,
+          "knowledge": "Akerselva har gått fra produksjonsnære soner til viktige offentlige rom mange steder.",
+          "difficulty": 1,
+          "question_type": "hendelse",
+          "question_layer": "place_life",
+          "tags": [
+            "byomforming"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_akerselva_har_gatt_fra_p_031ca08518",
+          "knowledge_unit_ids": [
+            "ku_natur_akerselva_har_gatt_fra_p_031ca08518"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_fugler_pattedyr",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s2_q6",
+          "quiz_id": "natur_kuba_parken_set_2_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva kan broer og stier fortelle her?",
+          "options": [
+            "Hvordan parken kobler bydel, elv og ferdsel",
+            "At forbindelser er uviktige",
+            "At parken er en blindgate"
+          ],
+          "answer": "Hvordan parken kobler bydel, elv og ferdsel",
+          "answerIndex": 0,
+          "knowledge": "Stier og broer gjør grøntdraget praktisk og sosialt tilgjengelig.",
+          "difficulty": 1,
+          "question_type": "stedskobling",
+          "question_layer": "place_life",
+          "tags": [
+            "forbindelser"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_stier_og_broer_gj_r_gr_n_5b9703260a",
+          "knowledge_unit_ids": [
+            "ku_natur_stier_og_broer_gj_r_gr_n_5b9703260a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_sosial_naturforvaltning",
+                "score": 4
+              },
+              {
+                "emne_id": "em_natur_sanser_nervesystem_bevegelse",
+                "score": 1
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s2_q7",
+          "quiz_id": "natur_kuba_parken_set_2_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva gir Kuba-parken sin History Go-stemning?",
+          "options": [
+            "Møtet mellom elvelyd, grønt rom, byliv og eldre bylag",
+            "At stedet mangler sanselige trekk",
+            "At parken ikke brukes"
+          ],
+          "answer": "Møtet mellom elvelyd, grønt rom, byliv og eldre bylag",
+          "answerIndex": 0,
+          "knowledge": "Stedets styrke ligger i lagene: vann, grøntdrag, ferdsel, opphold og byhistorie.",
+          "difficulty": 1,
+          "question_type": "bruk_stemning",
+          "question_layer": "place_life",
+          "tags": [
+            "sansning",
+            "historiske_lag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_stedets_styrke_ligger_i__804a632e1f",
+          "knowledge_unit_ids": [
+            "ku_natur_stedets_styrke_ligger_i__804a632e1f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_lang_tid_klima_historie",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_marka_skog_bygrense",
+                "score": 6
+              }
+            ]
+          }
+        }
       ]
     },
     {
@@ -57,13 +753,305 @@
       "xp": 70,
       "mode": "emne_based_foundation",
       "questions": [
-        {"id":"kuba_parken_s3_q1","quiz_id":"natur_kuba_parken_set_3_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva betyr bynatur?","options":["Natur som finnes og virker inne i byen","Natur som bare finnes langt fra mennesker","Et ord for asfalt"],"answer":"Natur som finnes og virker inne i byen","answerIndex":0,"knowledge":"Kuba-parken viser bynatur fordi vann, planter, ferdsel og byliv virker sammen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["bynatur"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q2","quiz_id":"natur_kuba_parken_set_3_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva er et grøntdrag?","options":["En sammenhengende grønn struktur for natur, ferdsel og opphold","Et enkelt tre uten kobling","En lukket bygning"],"answer":"En sammenhengende grønn struktur for natur, ferdsel og opphold","answerIndex":0,"knowledge":"Akerselva fungerer som grøntdrag når steder, stier og elverom binder byen sammen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["grøntdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q3","quiz_id":"natur_kuba_parken_set_3_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva er en kantsone?","options":["Overgangen mellom vann, vegetasjon, sti og byrom","Midten av en motorvei","Et rom uten kontaktflater"],"answer":"Overgangen mellom vann, vegetasjon, sti og byrom","answerIndex":0,"knowledge":"Kantsoner er viktige i byøkologi fordi mye skjer i overgangene.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["kantsone"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q4","quiz_id":"natur_kuba_parken_set_3_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva betyr offentlig rom i denne sammenhengen?","options":["Et byrom som kan brukes av mange til ferdsel og opphold","Et privat lukket rom","Et sted uten adgang"],"answer":"Et byrom som kan brukes av mange til ferdsel og opphold","answerIndex":0,"knowledge":"Kuba-parken fungerer som offentlig rom fordi den brukes til passasje, stopp og møte.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["offentlig_rom"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q5","quiz_id":"natur_kuba_parken_set_3_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva betyr rekreasjon i en bypark?","options":["Bruk for pause, opphold, lek, gange og naturkontakt","Kun industriell produksjon","Bare bilparkering"],"answer":"Bruk for pause, opphold, lek, gange og naturkontakt","answerIndex":0,"knowledge":"Rekreasjon er en del av byparkens funksjon og gjør naturkontakt mulig i hverdagen.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["rekreasjon"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q6","quiz_id":"natur_kuba_parken_set_3_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva betyr blågrønn struktur?","options":["Sammenheng mellom vann, vegetasjon og byrom","En fargekode uten innhold","En type innendørs rom"],"answer":"Sammenheng mellom vann, vegetasjon og byrom","answerIndex":0,"knowledge":"Kuba-parken kan leses som blågrønn struktur fordi elv og park virker sammen.","difficulty":2,"question_type":"begrep","question_layer":"foundation","tags":["blågrønn_struktur"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s3_q7","quiz_id":"natur_kuba_parken_set_3_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva betyr byøkologi?","options":["Samspillet mellom natur, mennesker og bygde omgivelser i byen","Natur uten mennesker og uten by","Kun økonomi"],"answer":"Samspillet mellom natur, mennesker og bygde omgivelser i byen","answerIndex":0,"knowledge":"Byøkologi hjelper oss å forstå parker som levende systemer i en tett by.","difficulty":2,"question_type":"definition","question_layer":"foundation","tags":["byøkologi"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"}
+        {
+          "id": "kuba_parken_s3_q1",
+          "quiz_id": "natur_kuba_parken_set_3_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva betyr bynatur?",
+          "options": [
+            "Natur som finnes og virker inne i byen",
+            "Natur som bare finnes langt fra mennesker",
+            "Et ord for asfalt"
+          ],
+          "answer": "Natur som finnes og virker inne i byen",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken viser bynatur fordi vann, planter, ferdsel og byliv virker sammen.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "bynatur"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_viser_bynatu_7b91e527b7",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_viser_bynatu_7b91e527b7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q2",
+          "quiz_id": "natur_kuba_parken_set_3_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva er et grøntdrag?",
+          "options": [
+            "En sammenhengende grønn struktur for natur, ferdsel og opphold",
+            "Et enkelt tre uten kobling",
+            "En lukket bygning"
+          ],
+          "answer": "En sammenhengende grønn struktur for natur, ferdsel og opphold",
+          "answerIndex": 0,
+          "knowledge": "Akerselva fungerer som grøntdrag når steder, stier og elverom binder byen sammen.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "grøntdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.8200000000000001,
+            "score": 7,
+            "matched": [
+              "elver",
+              "elv"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_akerselva_fungerer_som_g_e5e515bab7",
+          "knowledge_unit_ids": [
+            "ku_natur_akerselva_fungerer_som_g_e5e515bab7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q3",
+          "quiz_id": "natur_kuba_parken_set_3_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva er en kantsone?",
+          "options": [
+            "Overgangen mellom vann, vegetasjon, sti og byrom",
+            "Midten av en motorvei",
+            "Et rom uten kontaktflater"
+          ],
+          "answer": "Overgangen mellom vann, vegetasjon, sti og byrom",
+          "answerIndex": 0,
+          "knowledge": "Kantsoner er viktige i byøkologi fordi mye skjer i overgangene.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "kantsone"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_kantsoner_er_viktige_i_b_37c2f78021",
+          "knowledge_unit_ids": [
+            "ku_natur_kantsoner_er_viktige_i_b_37c2f78021"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q4",
+          "quiz_id": "natur_kuba_parken_set_3_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva betyr offentlig rom i denne sammenhengen?",
+          "options": [
+            "Et byrom som kan brukes av mange til ferdsel og opphold",
+            "Et privat lukket rom",
+            "Et sted uten adgang"
+          ],
+          "answer": "Et byrom som kan brukes av mange til ferdsel og opphold",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken fungerer som offentlig rom fordi den brukes til passasje, stopp og møte.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "offentlig_rom"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_fungerer_som_c27316f924",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_fungerer_som_c27316f924"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q5",
+          "quiz_id": "natur_kuba_parken_set_3_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva betyr rekreasjon i en bypark?",
+          "options": [
+            "Bruk for pause, opphold, lek, gange og naturkontakt",
+            "Kun industriell produksjon",
+            "Bare bilparkering"
+          ],
+          "answer": "Bruk for pause, opphold, lek, gange og naturkontakt",
+          "answerIndex": 0,
+          "knowledge": "Rekreasjon er en del av byparkens funksjon og gjør naturkontakt mulig i hverdagen.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "rekreasjon"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_rekreasjon_er_en_del_av__d60eb264dd",
+          "knowledge_unit_ids": [
+            "ku_natur_rekreasjon_er_en_del_av__d60eb264dd"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q6",
+          "quiz_id": "natur_kuba_parken_set_3_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva betyr blågrønn struktur?",
+          "options": [
+            "Sammenheng mellom vann, vegetasjon og byrom",
+            "En fargekode uten innhold",
+            "En type innendørs rom"
+          ],
+          "answer": "Sammenheng mellom vann, vegetasjon og byrom",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken kan leses som blågrønn struktur fordi elv og park virker sammen.",
+          "difficulty": 2,
+          "question_type": "begrep",
+          "question_layer": "foundation",
+          "tags": [
+            "blågrønn_struktur"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_kan_leses_so_acff299687",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_kan_leses_so_acff299687"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s3_q7",
+          "quiz_id": "natur_kuba_parken_set_3_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva betyr byøkologi?",
+          "options": [
+            "Samspillet mellom natur, mennesker og bygde omgivelser i byen",
+            "Natur uten mennesker og uten by",
+            "Kun økonomi"
+          ],
+          "answer": "Samspillet mellom natur, mennesker og bygde omgivelser i byen",
+          "answerIndex": 0,
+          "knowledge": "Byøkologi hjelper oss å forstå parker som levende systemer i en tett by.",
+          "difficulty": 2,
+          "question_type": "definition",
+          "question_layer": "foundation",
+          "tags": [
+            "byøkologi"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_elver_bekker_vassdrag"
+          ],
+          "knowledge_link_evidence": {
+            "method": "single_explicit_emne_in_set",
+            "confidence": 0.98
+          },
+          "primary_knowledge_unit_id": "ku_natur_by_kologi_hjelper_oss_a__1e26bf6cc5",
+          "knowledge_unit_ids": [
+            "ku_natur_by_kologi_hjelper_oss_a__1e26bf6cc5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
       ]
     },
     {
@@ -73,13 +1061,369 @@
       "xp": 80,
       "mode": "place_concrete_advanced",
       "questions": [
-        {"id":"kuba_parken_s4_q1","quiz_id":"natur_kuba_parken_set_4_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva er en avansert observasjon i Kuba-parken?","options":["Å se hvordan vann, vegetasjon, stier og opphold virker sammen","Å bare telle søppelbøtter","Å ignorere elva"],"answer":"Å se hvordan vann, vegetasjon, stier og opphold virker sammen","answerIndex":0,"knowledge":"Avansert stedlesning kobler flere trekk: økologi, bruk og romlig struktur.","difficulty":2,"question_type":"analyse","question_layer":"advanced_place","tags":["stedlesning"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s4_q2","quiz_id":"natur_kuba_parken_set_4_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva bør holdes ute av Kuba-quizzen foreløpig?","options":["Eksakte artsfunn uten kilde og tidssensitive arrangementer","Begrepet bynatur","Observasjon av elvekant"],"answer":"Eksakte artsfunn uten kilde og tidssensitive arrangementer","answerIndex":0,"knowledge":"Uten sikre kilder bør quizzen ikke gjøre konkrete arter eller arrangementer til hard data.","difficulty":2,"question_type":"kildekritikk","question_layer":"advanced_place","tags":["holdback"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"kuba_parken_s4_q3","quiz_id":"natur_kuba_parken_set_4_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hvordan kan spilleren lese parkens grense mot byen?","options":["Ved å se overganger mellom gater, stier, flater, vegetasjon og elv","Ved å anta at parken er isolert","Ved å ignorere folk"],"answer":"Ved å se overganger mellom gater, stier, flater, vegetasjon og elv","answerIndex":0,"knowledge":"Byparker forstås gjennom overganger: fra gate til grønt rom, fra sti til elv, fra passasje til opphold.","difficulty":2,"question_type":"stedskonkret","question_layer":"advanced_place","tags":["overganger"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s4_q4","quiz_id":"natur_kuba_parken_set_4_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva gjør Kuba-parken til et godt stopp etter Vulkan?","options":["Vulkan viser transformasjon; Kuba viser hvordan elverommet blir park og hverdagsrom","Stedene har ingen sammenheng","Begge handler bare om konger"],"answer":"Vulkan viser transformasjon; Kuba viser hvordan elverommet blir park og hverdagsrom","answerIndex":0,"knowledge":"Ruten går fra industri og transformasjon til bynatur og offentlig rom langs samme elv.","difficulty":2,"question_type":"rutekobling","question_layer":"advanced_place","tags":["rute","vulkan"],"source":["History Go leksikon: vulkan_industriomrade","History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s4_q5","quiz_id":"natur_kuba_parken_set_4_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva kan parkbruk fortelle om bynatur?","options":["At natur i byen også formes av ferdsel, opphold og slitasje","At mennesker ikke påvirker parker","At natur alltid er utenfor byen"],"answer":"At natur i byen også formes av ferdsel, opphold og slitasje","answerIndex":0,"knowledge":"Bynatur er ikke urørt natur; den påvirkes av bruk, skjøtsel og bystruktur.","difficulty":2,"question_type":"kritisk_analyse","question_layer":"advanced_place","tags":["bynatur","bruk"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s4_q6","quiz_id":"natur_kuba_parken_set_4_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva kan elvelyden bidra med i stedlesningen?","options":["Den gjør vannlandskapet sanselig og gir parken retning","Den betyr at stedet er historieløst","Den fjerner byens bruk"],"answer":"Den gjør vannlandskapet sanselig og gir parken retning","answerIndex":0,"knowledge":"Lyd er en del av observasjon. Elva kan høres, ikke bare sees.","difficulty":2,"question_type":"sansning","question_layer":"advanced_place","tags":["sansning","vann"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"safe_leksikon_data"},
-        {"id":"kuba_parken_s4_q7","quiz_id":"natur_kuba_parken_set_4_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"place","question":"Hva bør en god Kuba-parken-quiz trene spilleren i?","options":["Å lese bynatur, parkbruk og Akerselva-korridor sammen","Å overse stedet","Å velge svar uten observasjon"],"answer":"Å lese bynatur, parkbruk og Akerselva-korridor sammen","answerIndex":0,"knowledge":"En god stedsquiz gjør spilleren bedre til å forstå stedet de står i.","difficulty":2,"question_type":"meta","question_layer":"advanced_place","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "kuba_parken_s4_q1",
+          "quiz_id": "natur_kuba_parken_set_4_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva er en avansert observasjon i Kuba-parken?",
+          "options": [
+            "Å se hvordan vann, vegetasjon, stier og opphold virker sammen",
+            "Å bare telle søppelbøtter",
+            "Å ignorere elva"
+          ],
+          "answer": "Å se hvordan vann, vegetasjon, stier og opphold virker sammen",
+          "answerIndex": 0,
+          "knowledge": "Avansert stedlesning kobler flere trekk: økologi, bruk og romlig struktur.",
+          "difficulty": 2,
+          "question_type": "analyse",
+          "question_layer": "advanced_place",
+          "tags": [
+            "stedlesning"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "emne_ids": [
+            "em_natur_urban_okologi_byrom"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.83,
+            "score": 8,
+            "matched": [
+              "kologi",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_avansert_stedlesning_kob_e3ca67f8ec",
+          "knowledge_unit_ids": [
+            "ku_natur_avansert_stedlesning_kob_e3ca67f8ec"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s4_q2",
+          "quiz_id": "natur_kuba_parken_set_4_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva bør holdes ute av Kuba-quizzen foreløpig?",
+          "options": [
+            "Eksakte artsfunn uten kilde og tidssensitive arrangementer",
+            "Begrepet bynatur",
+            "Observasjon av elvekant"
+          ],
+          "answer": "Eksakte artsfunn uten kilde og tidssensitive arrangementer",
+          "answerIndex": 0,
+          "knowledge": "Uten sikre kilder bør quizzen ikke gjøre konkrete arter eller arrangementer til hard data.",
+          "difficulty": 2,
+          "question_type": "kildekritikk",
+          "question_layer": "advanced_place",
+          "tags": [
+            "holdback"
+          ],
+          "source": [
+            "manual_production_notes"
+          ],
+          "claim_basis": "holdback_rule",
+          "primary_knowledge_unit_id": "ku_natur_uten_sikre_kilder_b_r_qu_3a5c374d30",
+          "knowledge_unit_ids": [
+            "ku_natur_uten_sikre_kilder_b_r_qu_3a5c374d30"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_arter_habitat_mangfold",
+                "score": 8
+              },
+              {
+                "emne_id": "em_natur_fremmede_arter_forstyrrelse",
+                "score": 8
+              },
+              {
+                "emne_id": "em_natur_biodiversitet_resiliens",
+                "score": 7
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s4_q3",
+          "quiz_id": "natur_kuba_parken_set_4_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hvordan kan spilleren lese parkens grense mot byen?",
+          "options": [
+            "Ved å se overganger mellom gater, stier, flater, vegetasjon og elv",
+            "Ved å anta at parken er isolert",
+            "Ved å ignorere folk"
+          ],
+          "answer": "Ved å se overganger mellom gater, stier, flater, vegetasjon og elv",
+          "answerIndex": 0,
+          "knowledge": "Byparker forstås gjennom overganger: fra gate til grønt rom, fra sti til elv, fra passasje til opphold.",
+          "difficulty": 2,
+          "question_type": "stedskonkret",
+          "question_layer": "advanced_place",
+          "tags": [
+            "overganger"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_byparker_forstas_gjennom_45cb35ed5e",
+          "knowledge_unit_ids": [
+            "ku_natur_byparker_forstas_gjennom_45cb35ed5e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s4_q4",
+          "quiz_id": "natur_kuba_parken_set_4_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva gjør Kuba-parken til et godt stopp etter Vulkan?",
+          "options": [
+            "Vulkan viser transformasjon; Kuba viser hvordan elverommet blir park og hverdagsrom",
+            "Stedene har ingen sammenheng",
+            "Begge handler bare om konger"
+          ],
+          "answer": "Vulkan viser transformasjon; Kuba viser hvordan elverommet blir park og hverdagsrom",
+          "answerIndex": 0,
+          "knowledge": "Ruten går fra industri og transformasjon til bynatur og offentlig rom langs samme elv.",
+          "difficulty": 2,
+          "question_type": "rutekobling",
+          "question_layer": "advanced_place",
+          "tags": [
+            "rute",
+            "vulkan"
+          ],
+          "source": [
+            "History Go leksikon: vulkan_industriomrade",
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_ruten_gar_fra_industri_o_e7eab1a7e0",
+          "knowledge_unit_ids": [
+            "ku_natur_ruten_gar_fra_industri_o_e7eab1a7e0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_marka_skog_bygrense",
+                "score": 6
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s4_q5",
+          "quiz_id": "natur_kuba_parken_set_4_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva kan parkbruk fortelle om bynatur?",
+          "options": [
+            "At natur i byen også formes av ferdsel, opphold og slitasje",
+            "At mennesker ikke påvirker parker",
+            "At natur alltid er utenfor byen"
+          ],
+          "answer": "At natur i byen også formes av ferdsel, opphold og slitasje",
+          "answerIndex": 0,
+          "knowledge": "Bynatur er ikke urørt natur; den påvirkes av bruk, skjøtsel og bystruktur.",
+          "difficulty": 2,
+          "question_type": "kritisk_analyse",
+          "question_layer": "advanced_place",
+          "tags": [
+            "bynatur",
+            "bruk"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_bynatur_er_ikke_ur_rt_na_bdccf959a4",
+          "knowledge_unit_ids": [
+            "ku_natur_bynatur_er_ikke_ur_rt_na_bdccf959a4"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_marka_skog_bygrense",
+                "score": 6
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s4_q6",
+          "quiz_id": "natur_kuba_parken_set_4_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva kan elvelyden bidra med i stedlesningen?",
+          "options": [
+            "Den gjør vannlandskapet sanselig og gir parken retning",
+            "Den betyr at stedet er historieløst",
+            "Den fjerner byens bruk"
+          ],
+          "answer": "Den gjør vannlandskapet sanselig og gir parken retning",
+          "answerIndex": 0,
+          "knowledge": "Lyd er en del av observasjon. Elva kan høres, ikke bare sees.",
+          "difficulty": 2,
+          "question_type": "sansning",
+          "question_layer": "advanced_place",
+          "tags": [
+            "sansning",
+            "vann"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "safe_leksikon_data",
+          "primary_knowledge_unit_id": "ku_natur_lyd_er_en_del_av_observa_2cfeabe00a",
+          "knowledge_unit_ids": [
+            "ku_natur_lyd_er_en_del_av_observa_2cfeabe00a",
+            "ku_natur_elva_kan_h_res_ikke_bare_65261fbca3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_kjemiske_balanser",
+                "score": 6
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s4_q7",
+          "quiz_id": "natur_kuba_parken_set_4_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "place",
+          "question": "Hva bør en god Kuba-parken-quiz trene spilleren i?",
+          "options": [
+            "Å lese bynatur, parkbruk og Akerselva-korridor sammen",
+            "Å overse stedet",
+            "Å velge svar uten observasjon"
+          ],
+          "answer": "Å lese bynatur, parkbruk og Akerselva-korridor sammen",
+          "answerIndex": 0,
+          "knowledge": "En god stedsquiz gjør spilleren bedre til å forstå stedet de står i.",
+          "difficulty": 2,
+          "question_type": "meta",
+          "question_layer": "advanced_place",
+          "tags": [
+            "stedbasert_læring"
+          ],
+          "source": [
+            "data/quiz/regler/SET_MAL_README_v3.md"
+          ],
+          "claim_basis": "generator_rule",
+          "emne_ids": [
+            "em_natur_dyreatferd_formering_tilpasning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.81,
+            "score": 6,
+            "matched": [
+              "l ring"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_en_god_stedsquiz_gj_r_sp_1f6ced284d",
+          "knowledge_unit_ids": [
+            "ku_natur_en_god_stedsquiz_gj_r_sp_1f6ced284d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
       ]
     },
     {
@@ -89,13 +1433,357 @@
       "xp": 90,
       "mode": "emne_based_advanced",
       "questions": [
-        {"id":"kuba_parken_s5_q1","quiz_id":"natur_kuba_parken_set_5_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva er den dypere læringen i Kuba-parken?","options":["Bynatur er både økologi, infrastruktur, bruk og sosialt rom","Parker er bare pynt","Elverom har ingen byfunksjon"],"answer":"Bynatur er både økologi, infrastruktur, bruk og sosialt rom","answerIndex":0,"knowledge":"Kuba-parken viser at grøntområder i byen har flere funksjoner samtidig.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["bynatur"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s5_q2","quiz_id":"natur_kuba_parken_set_5_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hvorfor er grøntdrag mer enn rekreasjon?","options":["Det kan også gi økologisk sammenheng, ferdselsstruktur og byidentitet","Det er bare dekor","Det har ingen funksjon"],"answer":"Det kan også gi økologisk sammenheng, ferdselsstruktur og byidentitet","answerIndex":0,"knowledge":"Grøntdrag kan binde sammen natur, mennesker og steder gjennom byen.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["grøntdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s5_q3","quiz_id":"natur_kuba_parken_set_5_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva er forskjellen på park som landskap og park som sosialt rom?","options":["Landskap handler om form og natur; sosialt rom handler om bruk og møter","Det finnes ingen forskjell","Park er bare gress"],"answer":"Landskap handler om form og natur; sosialt rom handler om bruk og møter","answerIndex":0,"knowledge":"Kuba-parken må leses både fysisk og sosialt.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["offentlig_rom"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s5_q4","quiz_id":"natur_kuba_parken_set_5_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva kan være en konflikt i bynære grøntområder?","options":["Balansen mellom bruk, slitasje, naturhensyn og tilgjengelighet","At ingen bruker dem","At natur og by aldri møtes"],"answer":"Balansen mellom bruk, slitasje, naturhensyn og tilgjengelighet","answerIndex":0,"knowledge":"Populære byparker må ofte balansere rekreasjon, økologi og vedlikehold.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["forvaltning","slitasje"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s5_q5","quiz_id":"natur_kuba_parken_set_5_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hvordan kan Akerselva fungere som læringsstruktur her?","options":["Elva binder flere steder sammen slik at hvert stopp forklarer en ny side av byen","Elva gjør steder isolerte","Elva kan ikke brukes til læring"],"answer":"Elva binder flere steder sammen slik at hvert stopp forklarer en ny side av byen","answerIndex":0,"knowledge":"Akerselva-ruta fungerer fordi vannet skaper fysisk og tematisk sammenheng.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["stedslæring","rute"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s5_q6","quiz_id":"natur_kuba_parken_set_5_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva er viktig for å lage trygg naturquiz i byen?","options":["Bruke sikre observasjoner og unngå usikre arts- eller detaljpåstander","Finne på sjeldne arter","Spørre bare om reklame"],"answer":"Bruke sikre observasjoner og unngå usikre arts- eller detaljpåstander","answerIndex":0,"knowledge":"Trygg naturdata skiller mellom observerbare trekk og kildekrevende artsfunn.","difficulty":3,"question_type":"kildekritikk","question_layer":"advanced_emne","tags":["kildekritikk"],"source":["manual_production_notes"],"claim_basis":"holdback_rule"},
-        {"id":"kuba_parken_s5_q7","quiz_id":"natur_kuba_parken_set_5_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"emne","question":"Hva gjør Kuba-parken til god History Go-læring?","options":["Den lar spilleren forstå natur, sosial bruk og bystruktur på samme sted","Den krever at man ignorerer stedet","Den handler bare om løsrevne fakta"],"answer":"Den lar spilleren forstå natur, sosial bruk og bystruktur på samme sted","answerIndex":0,"knowledge":"Stedsbasert læring er sterk når observasjon åpner større begreper.","difficulty":3,"question_type":"emne_avansert","question_layer":"advanced_emne","tags":["stedbasert_læring"],"source":["data/quiz/regler/SET_MAL_README_v3.md"],"claim_basis":"generator_rule"}
+        {
+          "id": "kuba_parken_s5_q1",
+          "quiz_id": "natur_kuba_parken_set_5_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva er den dypere læringen i Kuba-parken?",
+          "options": [
+            "Bynatur er både økologi, infrastruktur, bruk og sosialt rom",
+            "Parker er bare pynt",
+            "Elverom har ingen byfunksjon"
+          ],
+          "answer": "Bynatur er både økologi, infrastruktur, bruk og sosialt rom",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken viser at grøntområder i byen har flere funksjoner samtidig.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "bynatur"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_viser_at_gr__83b887e806",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_viser_at_gr__83b887e806"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_dyreatferd_formering_tilpasning",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 6
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s5_q2",
+          "quiz_id": "natur_kuba_parken_set_5_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hvorfor er grøntdrag mer enn rekreasjon?",
+          "options": [
+            "Det kan også gi økologisk sammenheng, ferdselsstruktur og byidentitet",
+            "Det er bare dekor",
+            "Det har ingen funksjon"
+          ],
+          "answer": "Det kan også gi økologisk sammenheng, ferdselsstruktur og byidentitet",
+          "answerIndex": 0,
+          "knowledge": "Grøntdrag kan binde sammen natur, mennesker og steder gjennom byen.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "grøntdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_gr_ntdrag_kan_binde_samm_37b6ce8a31",
+          "knowledge_unit_ids": [
+            "ku_natur_gr_ntdrag_kan_binde_samm_37b6ce8a31"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 5
+              },
+              {
+                "emne_id": "em_natur_natur_som_aktor",
+                "score": 4
+              },
+              {
+                "emne_id": "em_natur_friluftsliv_helse",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s5_q3",
+          "quiz_id": "natur_kuba_parken_set_5_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva er forskjellen på park som landskap og park som sosialt rom?",
+          "options": [
+            "Landskap handler om form og natur; sosialt rom handler om bruk og møter",
+            "Det finnes ingen forskjell",
+            "Park er bare gress"
+          ],
+          "answer": "Landskap handler om form og natur; sosialt rom handler om bruk og møter",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken må leses både fysisk og sosialt.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "offentlig_rom"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_sosial_naturforvaltning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "landskap",
+              "sosial",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_ma_leses_bad_3db1071c1a",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_ma_leses_bad_3db1071c1a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s5_q4",
+          "quiz_id": "natur_kuba_parken_set_5_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva kan være en konflikt i bynære grøntområder?",
+          "options": [
+            "Balansen mellom bruk, slitasje, naturhensyn og tilgjengelighet",
+            "At ingen bruker dem",
+            "At natur og by aldri møtes"
+          ],
+          "answer": "Balansen mellom bruk, slitasje, naturhensyn og tilgjengelighet",
+          "answerIndex": 0,
+          "knowledge": "Populære byparker må ofte balansere rekreasjon, økologi og vedlikehold.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "forvaltning",
+            "slitasje"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_urban_okologi_byrom"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.89,
+            "score": 14,
+            "matched": [
+              "forvaltning",
+              "kologi",
+              "park",
+              "rekreasjon"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_popul_re_byparker_ma_oft_664cedcd19",
+          "knowledge_unit_ids": [
+            "ku_natur_popul_re_byparker_ma_oft_664cedcd19"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s5_q5",
+          "quiz_id": "natur_kuba_parken_set_5_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hvordan kan Akerselva fungere som læringsstruktur her?",
+          "options": [
+            "Elva binder flere steder sammen slik at hvert stopp forklarer en ny side av byen",
+            "Elva gjør steder isolerte",
+            "Elva kan ikke brukes til læring"
+          ],
+          "answer": "Elva binder flere steder sammen slik at hvert stopp forklarer en ny side av byen",
+          "answerIndex": 0,
+          "knowledge": "Akerselva-ruta fungerer fordi vannet skaper fysisk og tematisk sammenheng.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "stedslæring",
+            "rute"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_akerselva_ruta_fungerer__db394dcef9",
+          "knowledge_unit_ids": [
+            "ku_natur_akerselva_ruta_fungerer__db394dcef9"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_dyreatferd_formering_tilpasning",
+                "score": 6
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 6
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s5_q6",
+          "quiz_id": "natur_kuba_parken_set_5_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva er viktig for å lage trygg naturquiz i byen?",
+          "options": [
+            "Bruke sikre observasjoner og unngå usikre arts- eller detaljpåstander",
+            "Finne på sjeldne arter",
+            "Spørre bare om reklame"
+          ],
+          "answer": "Bruke sikre observasjoner og unngå usikre arts- eller detaljpåstander",
+          "answerIndex": 0,
+          "knowledge": "Trygg naturdata skiller mellom observerbare trekk og kildekrevende artsfunn.",
+          "difficulty": 3,
+          "question_type": "kildekritikk",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "kildekritikk"
+          ],
+          "source": [
+            "manual_production_notes"
+          ],
+          "claim_basis": "holdback_rule",
+          "emne_ids": [
+            "em_natur_natur_som_aktor"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.8200000000000001,
+            "score": 7,
+            "matched": [
+              "art",
+              "natur"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_trygg_naturdata_skiller__14c1c8fdae",
+          "knowledge_unit_ids": [
+            "ku_natur_trygg_naturdata_skiller__14c1c8fdae"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s5_q7",
+          "quiz_id": "natur_kuba_parken_set_5_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "emne",
+          "question": "Hva gjør Kuba-parken til god History Go-læring?",
+          "options": [
+            "Den lar spilleren forstå natur, sosial bruk og bystruktur på samme sted",
+            "Den krever at man ignorerer stedet",
+            "Den handler bare om løsrevne fakta"
+          ],
+          "answer": "Den lar spilleren forstå natur, sosial bruk og bystruktur på samme sted",
+          "answerIndex": 0,
+          "knowledge": "Stedsbasert læring er sterk når observasjon åpner større begreper.",
+          "difficulty": 3,
+          "question_type": "emne_avansert",
+          "question_layer": "advanced_emne",
+          "tags": [
+            "stedbasert_læring"
+          ],
+          "source": [
+            "data/quiz/regler/SET_MAL_README_v3.md"
+          ],
+          "claim_basis": "generator_rule",
+          "emne_ids": [
+            "em_natur_dyreatferd_formering_tilpasning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.81,
+            "score": 6,
+            "matched": [
+              "l ring"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_stedsbasert_l_ring_er_st_68416d8526",
+          "knowledge_unit_ids": [
+            "ku_natur_stedsbasert_l_ring_er_st_68416d8526"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
       ]
     },
     {
@@ -105,13 +1793,369 @@
       "xp": 100,
       "mode": "concept_based",
       "questions": [
-        {"id":"kuba_parken_s6_q1","quiz_id":"natur_kuba_parken_set_6_q1","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hvilket begrep beskriver natur i en tett by?","options":["Bynatur","Høyfjell","Privat reklame"],"answer":"Bynatur","answerIndex":0,"knowledge":"Bynatur beskriver natur som finnes og virker inne i urbane omgivelser.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["bynatur"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q2","quiz_id":"natur_kuba_parken_set_6_q2","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hvilket begrep beskriver en sammenhengende grønn struktur gjennom byen?","options":["Grøntdrag","Blindgate","Takstein"],"answer":"Grøntdrag","answerIndex":0,"knowledge":"Akerselva er et godt eksempel på grøntdrag når parker og stier binder steder sammen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["grøntdrag"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q3","quiz_id":"natur_kuba_parken_set_6_q3","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hvilket begrep beskriver overgangen mellom elv, vegetasjon og sti?","options":["Kantsone","Flyplass","Slottsakse"],"answer":"Kantsone","answerIndex":0,"knowledge":"Kantsoner er viktige overganger der mange økologiske og sosiale funksjoner møtes.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["kantsone"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q4","quiz_id":"natur_kuba_parken_set_6_q4","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hva betyr blågrønn struktur?","options":["Sammenheng mellom vann, vegetasjon og byrom","Et tilfeldig fargevalg","Et rent innendørs system"],"answer":"Sammenheng mellom vann, vegetasjon og byrom","answerIndex":0,"knowledge":"Kuba-parken viser blågrønn struktur fordi elva og parken virker sammen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["blågrønn_struktur"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q5","quiz_id":"natur_kuba_parken_set_6_q5","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hva betyr offentlig rom?","options":["Et rom mange kan bruke til ferdsel, opphold og møte","Et helt privat lager","Et sted uten adgang"],"answer":"Et rom mange kan bruke til ferdsel, opphold og møte","answerIndex":0,"knowledge":"Kuba-parken fungerer som offentlig rom når mange bruker den i hverdagen.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["offentlig_rom"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q6","quiz_id":"natur_kuba_parken_set_6_q6","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hva betyr rekreasjon i bynatur?","options":["Pause, bevegelse, lek, opphold og naturkontakt i hverdagen","Kun tung industri","Bare privat kontorbruk"],"answer":"Pause, bevegelse, lek, opphold og naturkontakt i hverdagen","answerIndex":0,"knowledge":"Rekreasjon gjør grønne byrom viktige for hverdagsliv og folkehelse.","difficulty":3,"question_type":"concept","question_layer":"concept","tags":["rekreasjon"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"},
-        {"id":"kuba_parken_s6_q7","quiz_id":"natur_kuba_parken_set_6_q7","categoryId":"natur","placeId":"kuba_parken","targetId":"kuba_parken","question_scope":"concept","question":"Hvilket begrepspar forklarer Kuba-parken best?","options":["Bynatur og offentlig rom","Kongebolig og slagmark","Flyplass og havn"],"answer":"Bynatur og offentlig rom","answerIndex":0,"knowledge":"Kuba-parken blir tydelig når man kobler naturfunksjon med sosial bruk.","difficulty":3,"question_type":"concept_pair","question_layer":"concept","tags":["bynatur","offentlig_rom"],"source":["History Go leksikon: kuba_parken"],"claim_basis":"conceptual_safe"}
+        {
+          "id": "kuba_parken_s6_q1",
+          "quiz_id": "natur_kuba_parken_set_6_q1",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver natur i en tett by?",
+          "options": [
+            "Bynatur",
+            "Høyfjell",
+            "Privat reklame"
+          ],
+          "answer": "Bynatur",
+          "answerIndex": 0,
+          "knowledge": "Bynatur beskriver natur som finnes og virker inne i urbane omgivelser.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "bynatur"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_bynatur_beskriver_natur__2843e5c16f",
+          "knowledge_unit_ids": [
+            "ku_natur_bynatur_beskriver_natur__2843e5c16f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_urban_okologi_byrom",
+                "score": 8
+              },
+              {
+                "emne_id": "em_natur_natur_som_aktor",
+                "score": 7
+              },
+              {
+                "emne_id": "em_natur_naturopplevelse_folkehelse",
+                "score": 5
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s6_q2",
+          "quiz_id": "natur_kuba_parken_set_6_q2",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver en sammenhengende grønn struktur gjennom byen?",
+          "options": [
+            "Grøntdrag",
+            "Blindgate",
+            "Takstein"
+          ],
+          "answer": "Grøntdrag",
+          "answerIndex": 0,
+          "knowledge": "Akerselva er et godt eksempel på grøntdrag når parker og stier binder steder sammen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "grøntdrag"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_akerselva_er_et_godt_eks_9a02b6c950",
+          "knowledge_unit_ids": [
+            "ku_natur_akerselva_er_et_godt_eks_9a02b6c950"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s6_q3",
+          "quiz_id": "natur_kuba_parken_set_6_q3",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hvilket begrep beskriver overgangen mellom elv, vegetasjon og sti?",
+          "options": [
+            "Kantsone",
+            "Flyplass",
+            "Slottsakse"
+          ],
+          "answer": "Kantsone",
+          "answerIndex": 0,
+          "knowledge": "Kantsoner er viktige overganger der mange økologiske og sosiale funksjoner møtes.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "kantsone"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_kantsoner_er_viktige_ove_6dc0d74cf0",
+          "knowledge_unit_ids": [
+            "ku_natur_kantsoner_er_viktige_ove_6dc0d74cf0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_sosial_naturforvaltning",
+                "score": 5
+              },
+              {
+                "emne_id": "em_natur_urban_okologi_byrom",
+                "score": 5
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 4
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s6_q4",
+          "quiz_id": "natur_kuba_parken_set_6_q4",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hva betyr blågrønn struktur?",
+          "options": [
+            "Sammenheng mellom vann, vegetasjon og byrom",
+            "Et tilfeldig fargevalg",
+            "Et rent innendørs system"
+          ],
+          "answer": "Sammenheng mellom vann, vegetasjon og byrom",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken viser blågrønn struktur fordi elva og parken virker sammen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "blågrønn_struktur"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_viser_blagr__1c7fcbb238",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_viser_blagr__1c7fcbb238"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_bekkeapning_overvann",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_elver_bekker_vassdrag",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s6_q5",
+          "quiz_id": "natur_kuba_parken_set_6_q5",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hva betyr offentlig rom?",
+          "options": [
+            "Et rom mange kan bruke til ferdsel, opphold og møte",
+            "Et helt privat lager",
+            "Et sted uten adgang"
+          ],
+          "answer": "Et rom mange kan bruke til ferdsel, opphold og møte",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken fungerer som offentlig rom når mange bruker den i hverdagen.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "offentlig_rom"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_fungerer_som_bb592ac85a",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_fungerer_som_bb592ac85a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "editorial_review_required",
+          "knowledge_link_evidence": {
+            "method": "unresolved",
+            "confidence": 0,
+            "top": [
+              {
+                "emne_id": "em_natur_friluftsliv_helse",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_gronnstruktur_korridorer",
+                "score": 3
+              },
+              {
+                "emne_id": "em_natur_kyst_okosystemer",
+                "score": 3
+              }
+            ]
+          }
+        },
+        {
+          "id": "kuba_parken_s6_q6",
+          "quiz_id": "natur_kuba_parken_set_6_q6",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hva betyr rekreasjon i bynatur?",
+          "options": [
+            "Pause, bevegelse, lek, opphold og naturkontakt i hverdagen",
+            "Kun tung industri",
+            "Bare privat kontorbruk"
+          ],
+          "answer": "Pause, bevegelse, lek, opphold og naturkontakt i hverdagen",
+          "answerIndex": 0,
+          "knowledge": "Rekreasjon gjør grønne byrom viktige for hverdagsliv og folkehelse.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "question_layer": "concept",
+          "tags": [
+            "rekreasjon"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_naturopplevelse_folkehelse"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.91,
+            "score": 16,
+            "matched": [
+              "folkehelse",
+              "bynatur",
+              "rekreasjon",
+              "natur rekreasjon"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_rekreasjon_gj_r_gr_nne_b_bb82640860",
+          "knowledge_unit_ids": [
+            "ku_natur_rekreasjon_gj_r_gr_nne_b_bb82640860"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "kuba_parken_s6_q7",
+          "quiz_id": "natur_kuba_parken_set_6_q7",
+          "categoryId": "natur",
+          "placeId": "kuba_parken",
+          "targetId": "kuba_parken",
+          "question_scope": "concept",
+          "question": "Hvilket begrepspar forklarer Kuba-parken best?",
+          "options": [
+            "Bynatur og offentlig rom",
+            "Kongebolig og slagmark",
+            "Flyplass og havn"
+          ],
+          "answer": "Bynatur og offentlig rom",
+          "answerIndex": 0,
+          "knowledge": "Kuba-parken blir tydelig når man kobler naturfunksjon med sosial bruk.",
+          "difficulty": 3,
+          "question_type": "concept_pair",
+          "question_layer": "concept",
+          "tags": [
+            "bynatur",
+            "offentlig_rom"
+          ],
+          "source": [
+            "History Go leksikon: kuba_parken"
+          ],
+          "claim_basis": "conceptual_safe",
+          "emne_ids": [
+            "em_natur_sosial_naturforvaltning"
+          ],
+          "knowledge_link_evidence": {
+            "method": "unique_lexical_emne_match",
+            "confidence": 0.85,
+            "score": 10,
+            "matched": [
+              "sosial",
+              "bynatur",
+              "park"
+            ]
+          },
+          "primary_knowledge_unit_id": "ku_natur_kuba_parken_blir_tydelig_a198123009",
+          "knowledge_unit_ids": [
+            "ku_natur_kuba_parken_blir_tydelig_a198123009"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
       ]
     }
   ]
