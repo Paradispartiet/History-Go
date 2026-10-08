@@ -123,6 +123,10 @@ Gjeldende People-profilstandard, relevansmetode, faktisitetskontrakt og Stories-
 - Andre personer, canonical Place-data, koordinater, quiz og bilder er uendret.
 - Eksisterende bildeidentitet, rettigheter og attribusjon er ikke nyverifisert. Profil og claims beholder derfor `legacy_unreviewed`, og helprofilens faktareview står `pending`. De tre registrerte tekst-/tilknytningspåstandene er kontrollert, men dette gir ikke full People-readiness.
 
+### Fresh-main replay
+
+Den eksisterende, urelaterte People-auditfeilen for Kristin Auestad Danielsen er reparert separat i [#6146](https://github.com/Paradispartiet/History-Go/pull/6146). To metadatafelt og deres to runtime-projeksjoner ble rettet; alle final-head CI-gater bestod. Aftenposten-rettelsen er deretter komponert på main `be7a1cd6a61c0464668216b26d1dfa1474fc88eb` og kontrolleres uten å endre andre personprofiler.
+
 ### Kjørbar verifikasjon
 
 Avventer bygg og kontroller på rettelsens faktiske PR-head. Midlertidig genereringsworkflow skal fjernes før slutt-diff og merge.

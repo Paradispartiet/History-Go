@@ -6,10 +6,15 @@ on:
       - 'data/people/media/oslo/people_media_oslo.json'
       - '.github/workflows/tmp-aftenposten-people-sync.yml'
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: tmp-aftenposten-people-sync-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 jobs:
   synchronize:
     if: github.event.pull_request.number == 6144 && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -36,7 +41,7 @@ jobs:
           import fs from 'node:fs';
           import {execFileSync} from 'node:child_process';
           import assert from 'node:assert/strict';
-          const base='4c6ee9b8e6e3ba042999ae3e5e46fd7ba14a0a07';
+          const base='be7a1cd6a61c0464668216b26d1dfa1474fc88eb';
           const read=(file)=>JSON.parse(fs.readFileSync(file,'utf8'));
           const old=(file)=>JSON.parse(execFileSync('git',['show',base+':'+file],{encoding:'utf8',maxBuffer:20*1024*1024}));
           const changed=execFileSync('git',['diff','--name-only'],{encoding:'utf8'}).trim().split('\n').filter(Boolean);
