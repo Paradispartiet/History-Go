@@ -6,7 +6,7 @@ const shellSource = fs.readFileSync("js/ui/place-sheet/place-sheet-shell.ts", "u
 const css = fs.readFileSync("css/place-sheet.css", "utf8");
 const phase6Css = fs.readFileSync("css/place-sheet-phase6.css", "utf8");
 
-test("Place Sheet keeps title and popup description before the front image and collection rounds", () => {
+test("Place Sheet keeps title and popup description above frontImage with collection rounds to its right", () => {
   assert.match(
     shellSource,
     /<div class="pc-sheet-hero"[^>]*>[\s\S]*?<div class="pc-sheet-hero-copy"[^>]*><\/div>[\s\S]*?<div class="pc-sheet-hero-media"[^>]*>[\s\S]*?data-hg-place-sheet-collections/,
@@ -14,8 +14,13 @@ test("Place Sheet keeps title and popup description before the front image and c
   );
   assert.match(shellSource, /media\.prepend\(front\)/, "frontImage remains owned by hero-media");
   assert.match(shellSource, /collections\.appendChild\(sideStack\)/, "visual collection rounds remain in PlaceCard media");
-  assert.match(css, /\.pc-sheet-hero\{[\s\S]*?display:\s*block;/);
-  assert.match(css, /\.pc-sheet-explore-grid\{[\s\S]*?margin-top:24px/);
+  assert.match(css, /\.pc-sheet-hero-media\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(0,330px\) minmax\(0,1fr\)/);
+  assert.match(css, /\.pc-sheet-explore-grid\{[\s\S]*?margin:0;[\s\S]*?background:transparent/);
+});
+
+test("Place Sheet collection visuals have no dark background box", () => {
+  assert.match(css, /\.pc-sheet-explore-grid \.pc-collection:not\(\[hidden\]\)\{[\s\S]*?border:0;[\s\S]*?background:transparent;[\s\S]*?box-shadow:none/);
+  assert.match(css, /\.pc-sheet-explore-grid \.pc-collection\[data-collection-shape="rectangle"\]::before\{[\s\S]*?display:none/);
 });
 
 test("Place Sheet header uses collection text links after Om while Events and Meet stay in the header", () => {

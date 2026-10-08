@@ -22,21 +22,25 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
-  min-width: 0;
-  margin-top: 24px;
+  display:grid;
+  grid-template-columns:minmax(0,330px) minmax(0,1fr);
+  gap:clamp(18px,3vw,32px);
+  align-items:start;
+  min-width:0;
+  margin-top:24px;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-  width: min(100%, 330px);
-  max-width: 330px;
-  max-height: none;
-  aspect-ratio: 3 / 4;
-  margin: 0 auto;
-  justify-self: center;
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 20px 48px rgba(0,0,0,.42);
-  background: linear-gradient(145deg, #1d2938, #080d14);
+  width:100%;
+  max-width:330px;
+  max-height:none;
+  aspect-ratio:3 / 4;
+  margin:0;
+  justify-self:start;
+  border-radius:24px;
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 48px rgba(0,0,0,.42);
+  background:linear-gradient(145deg, #1d2938, #080d14);
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard img{
@@ -139,51 +143,52 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-section-
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid{
   width:100%;
-  margin-top:24px;
-  padding-top:18px;
-  border-top:1px solid rgba(255,255,255,.10);
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
   box-sizing:border-box;
+  align-self:start;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-side-stack{
-  display: block;
-  width: 100%;
-  max-width: none;
-  height: auto;
-  min-height: 0;
+  display:block;
+  width:100%;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  background:transparent;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad{
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  grid-auto-rows: minmax(148px, auto);
-  width: 100%;
-  max-width: none;
-  height: auto;
-  min-height: 0;
-  gap: 16px;
-  align-items: center;
-  justify-items: stretch;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  grid-auto-rows:auto;
+  width:100%;
+  max-width:none;
+  height:auto;
+  min-height:0;
+  gap:18px;
+  align-items:start;
+  justify-items:center;
+  background:transparent;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection:not([hidden]){
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background:
-    radial-gradient(circle at 22% 18%, rgba(246,200,0,.11), transparent 42%),
-    linear-gradient(145deg, rgba(29,38,52,.98), rgba(8,12,19,.98));
-  box-shadow: 0 14px 34px rgba(0,0,0,.30), inset 0 1px 0 rgba(255,255,255,.05);
-  transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  transition:transform .16s ease;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection:not([hidden]):hover,
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection:not([hidden]):focus-visible{
-  transform: translateY(-2px);
-  border-color: rgba(246,200,0,.42);
-  box-shadow: 0 18px 42px rgba(0,0,0,.38), 0 0 0 1px rgba(246,200,0,.10) inset;
-  outline: none;
+  transform:translateY(-2px);
+  outline:none;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="rectangle"]:not([hidden]){
@@ -220,13 +225,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="rectangle"]::before{
-  content: "";
-  position: absolute;
-  z-index: 2;
-  inset: 0;
-  pointer-events: none;
-  border-radius: inherit;
-  background: linear-gradient(180deg, transparent 42%, rgba(1,4,8,.82) 100%);
+  display:none;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection::after{
@@ -292,15 +291,20 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 
 @media (max-width: 720px){
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-shell{
-    padding: 18px 16px 6px;
+    padding:18px 16px 6px;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero{
-    display: block;
+    display:block;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
+    grid-template-columns:minmax(128px,.86fr) minmax(0,1.14fr);
+    gap:12px;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-    border-radius: 19px;
+    border-radius:19px;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy #pcTitle{
@@ -318,9 +322,9 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-icons-quad{
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 13px;
-    grid-auto-rows: minmax(130px, auto);
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px;
+    grid-auto-rows:auto;
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="rectangle"]:not([hidden]){
@@ -339,14 +343,33 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 }
 
 @media (max-width: 520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
+    grid-template-columns:minmax(120px,.82fr) minmax(0,1.18fr);
+    gap:10px;
+  }
+
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard{
-    width: min(76vw, 290px);
-    justify-self: center;
-    margin-inline: auto;
+    width:100%;
+    justify-self:start;
+    margin:0;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="rectangle"]:not([hidden]){
+    height:88px;
+    min-height:88px;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-shape="circle"]:not([hidden]){
+    width:clamp(74px,21vw,96px);
+    height:clamp(74px,21vw,96px);
+    min-width:clamp(74px,21vw,96px);
+    min-height:clamp(74px,21vw,96px);
+    max-width:clamp(74px,21vw,96px);
+    max-height:clamp(74px,21vw,96px);
   }
 
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy{
-    padding-top: 2px;
+    padding-top:2px;
   }
 }
 

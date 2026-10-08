@@ -6,7 +6,7 @@ Kontrollert main: `4c6ee9b8e6e3ba042999ae3e5e46fd7ba14a0a07`
 PR-branch: `agent/aftenposten-prior-work-20261008`
 Foregående PR-head: `1b46502cba6689d08a23693a28f71e31338d14b4`
 
-Status: kildegrunnlag for historisk identitet, utvalgte tidsankere og de tre eksisterende People-koblingene dokumentert. Dette er research, ikke canonical produksjonsdata eller fullproduksjons-PASS.
+Status: kildekontroll dokumentert og den tidsmessig feilaktige Trine Eilertsen-koblingen korrigert i canonical People-data og direkte avhengig Story-metadata. Generering og tekniske kontroller registreres nedenfor. Dette er ikke fullproduksjons-PASS for stedet.
 
 ## Leste kilder
 
@@ -87,15 +87,15 @@ Filbaner:
 
 | Person | Nåværende kobling | Resultat av source review | Beslutning for videre fase |
 | --- | --- | --- | --- |
-| Trine Eilertsen | `placeId` og `places[]` peker til `aftenposten_akersgata`; teksten bruker institusjonstilknytning som stedsbegrunnelse | R14 begynner i 2014, mens R05 avslutter nummer 51 i 2003. Dette er konkret evidens på at begrunnelsen ikke bærer dette historiske stedet. | REGRESJON SOM SKAL RETTES i koblingens semantikk etter stedets historiske avgrensning. Ingen automatisk overføring til `vg_huset`; korrekt alternativt anker må bestå egen People-kontrakt. |
+| Trine Eilertsen | `placeId` og `places[]` peker til `aftenposten_akersgata`; teksten bruker institusjonstilknytning som stedsbegrunnelse | R14 begynner i 2014, mens R05 avslutter nummer 51 i 2003. Dette er konkret evidens på at begrunnelsen ikke bærer dette historiske stedet. | Rettet etter selvstendig kontrakt- og kildekontroll: `vg_huset` brukes som bygningens adresseanker Akersgata 55. S01 dokumenterer Aftenposten som egen redaksjon i samme bygg fra 2014; S09/S10 dokumenterer Eilertsens ansettelse. Ingen VG-ansettelse tilskrives henne. |
 | Harald Stanghelle | Samme historiske place-ID | R12 bærer institusjonstilknytning i relevante perioder. Det er ikke påvist en tidskonflikt. | Behold som kildebåret kandidat for perioden; ny People-produksjon/asset-/preview-PASS er ikke attestert. |
 | Per Egil Hegge | Samme historiske place-ID | R13 gir relevant tidsmessig overlapp, med særskilte korrespondentperioder. | Behold som kildebåret kandidat; avgrens fysisk sted fra utenriksarbeid og senere språkspalte. Bilde/proveniens gjenstår. |
 
-Trine-koblingen er ikke en ny endring i dagens People-fil; den er identisk med den tidligere mergete versjonen. Konflikten ligger mellom en eldre institusjonskobling og stedets senere, eksplisitte historiske adresseavgrensning. Denne rapporten dokumenterer feilen, men endrer ikke canonical People-data eller runtime.
+Trine-koblingen er ikke en ny endring i dagens People-fil; den er identisk med den tidligere mergete versjonen. Konflikten ligger mellom en eldre institusjonskobling og stedets senere, eksplisitte historiske adresseavgrensning. Rettelsen følger nå feilen i canonical People-data; genererte projeksjoner bygges fra disse dataene.
 
 ## Neste avgrensede arbeid
 
-Korriger den dokumenterte Trine-koblingen gjennom People-eieren og regenerer berørte avledninger etter at gjeldende personkontrakt og alternative ankre er kontrollert. Fullproduksjonsprofil og endelig innholdsplan bestemmes etter komplett gjeldende READ-FIRST-gate; denne avgrensede kildekontrollen erstatter ikke kandidat-/assetresearch for alle samlinger.
+Fullproduksjonsprofil og endelig innholdsplan bestemmes etter komplett gjeldende READ-FIRST-gate; denne avgrensede kildekontrollen erstatter ikke kandidat-/assetresearch for alle samlinger.
 
 ## Kvalitet og verifikasjon
 
@@ -110,4 +110,19 @@ Denne vurderingen gjelder kildekontrollen for R01–R14 og de tre eksisterende p
 | Sikkerhet og ansvarlighet | 5/5 | Dokumentert personfeil synlig; ingen oppdiktet arbeidstilknytning, bruksrett, publikumseffekt eller ferdigstatus. |
 | Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Stabile research-ID-er, konkrete URLs, kildeplasseringer, merge-SHA-er og canonical gjenbruks-ID-er. |
 
-Sum: 28/30 for avgrenset research. Den dokumenterte personkoblingsfeilen er fortsatt uløst i appen. Stedet er ikke fullprodusert.
+Sum: 28/30 for den innledende kildekontrollen. Rettelsens separate kvalitetsvurdering og kjørbare verifikasjon står nedenfor. Stedet er ikke fullprodusert.
+
+## Canonical personretting og avgrensning
+
+Gjeldende People-profilstandard, relevansmetode, faktisitetskontrakt og Stories-governance er lest før endringen. `vg_huset` er en eksisterende building-record for Akersgata 55. Den fysiske koblingen bygger på to kontrollerte forhold: Eilertsens ansettelse i Aftenposten i 2014 (S09/S10) og Aftenpostens redaksjon i bygget samme år (S01). Dette er en dokumentert institusjonstilknytning til bygningen, ikke en påstand om arbeid for VG eller en individuell tilstedeværelsesdato.
+
+- `placeId` og `places[]` flyttes fra nummer 51 til `vg_huset`; `year` settes til det dokumenterte ansettelsesåret 2014.
+- Korttekst og popup bruker historiske, kildebelagte formuleringer. Gammel nåtidsrolle og generisk begrunnelse fjernes.
+- Tre claims i `data/people/claims/media/oslo/redaksjoner/trine_eilertsen.claims.json` dekker navn, rolle, startår, begge tekstsetninger og stedskoblingen.
+- Storyen `st_aftenposten_akersgata_schibsted_presseakse_1860` slutter i 2003. Eilertsen tas derfor ut av `related_people`. Storyteksten og Harald Stanghelle-koblingen videreføres; dette er en metadataretting, ikke en ny eller vesentlig omskrevet episode.
+- Andre personer, canonical Place-data, koordinater, quiz og bilder er uendret.
+- Eksisterende bildeidentitet, rettigheter og attribusjon er ikke nyverifisert. Profil og claims beholder derfor `legacy_unreviewed`, og helprofilens faktareview står `pending`. De tre registrerte tekst-/tilknytningspåstandene er kontrollert, men dette gir ikke full People-readiness.
+
+### Kjørbar verifikasjon
+
+Avventer bygg og kontroller på rettelsens faktiske PR-head. Midlertidig genereringsworkflow skal fjernes før slutt-diff og merge.
