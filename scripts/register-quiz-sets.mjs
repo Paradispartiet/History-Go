@@ -86,6 +86,11 @@ for(const file of allFiles.sort()){
   if(active.has(file)||file==="data/quiz/manifest.json")continue;
   const data=await load(file);
   if(!data){skipped.push({file,reason:"unreadable_json"});continue}
+  // Literature has a canonical assessment pathway: retired legacy banks must stay inactive.
+  if (file === "data/quiz/quiz_litteratur_from_populaerkultur.json") {
+    skipped.push({file,reason:"retired_literature_legacy_bank"});
+    continue;
+  }
   // Standalone legacy banks only when no ID conflicts and every question is playable.
   if(Array.isArray(data)&&data.length&&data.every(q=>good(q?.question)&&Array.isArray(q.options))){
     const ids=new Set();let failure=null;
