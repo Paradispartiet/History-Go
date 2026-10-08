@@ -58,11 +58,11 @@ function validateQuestion(q, { file, scope, entryTargetId, entryTargetKind }) {
     report.targetMismatchQuestions.push({ file, id: id || null, entryTargetId, questionTargets: targets });
   }
   // Target ownership is verified above by targetId/placeId/personId.
-  // 'emne' and 'concept' label question focus, not a different place/person target.
-  if (entryTargetKind === 'place' && hasText(q?.question_scope) && !['place', 'emne', 'concept'].includes(String(q.question_scope))) {
+  // 'emne', 'concept' and 'synthesis' label question focus, not a different place/person target.
+  if (entryTargetKind === 'place' && hasText(q?.question_scope) && !['place', 'emne', 'concept', 'synthesis'].includes(String(q.question_scope))) {
     addInvalid(scope, file, id, 'invalid place question_scope');
   }
-  if (entryTargetKind === 'person' && hasText(q?.question_scope) && !['person', 'people', 'emne', 'concept'].includes(String(q.question_scope))) {
+  if (entryTargetKind === 'person' && hasText(q?.question_scope) && !['person', 'people', 'emne', 'concept', 'synthesis'].includes(String(q.question_scope))) {
     addInvalid(scope, file, id, 'invalid person question_scope');
   }
 }
