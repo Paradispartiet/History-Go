@@ -28,6 +28,7 @@ jobs:
             node -e 'const r=require("./reports/knowledge-contract-audit.json"); console.log("Knowledge failures", JSON.stringify(r.failures.slice(0,40),null,2))'
             exit 1
           }
+      # Question focus may be place, emne, concept or synthesis.
       - name: Verify manifest contract
         run: |
           npm run audit:quiz-manifest:v2 || {
