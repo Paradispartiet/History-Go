@@ -140,6 +140,7 @@ Generert på `047cfccdf7a7306e9f2591ceca996b9d9b12fb13` mot main `be7a1cd6a61c04
 - `npm run check:stories` og `npm run test:stories-manifest`: PASS.
 - `npm run place-open:check`: 1533 payloads synkrone; `npm run test:place-open`: 6/6.
 - `npm run civication:history-people:check`: indeks synkron, 16 kategorier.
+- Civication-scenariokatalogen er også regenerert i `d25c1c2979c6141d77eea53a2fd9e98a9857882b`; [scenario-kontroller](https://github.com/Paradispartiet/History-Go/actions/runs/37738260087) bestod. Full katalogsammenligning bekrefter at bare Eilertsens `place_id` og `year` er endret i Media-poolen. Scenario-synksjekk og invariants-tester bestod; global People Profile Canonical-audit bestod med 99 claims-filer etter den siste kildepresiseringen.
 - Full parsed-sammenligning: 1435 runtime-personer og 551 historier gjennomgått; alle andre personer og historier er uendret. De fire People-shard-endringene omfatter også deterministisk flytting mellom shardgrenser, ikke omskriving av andre personer.
 - Begge berørte stedspayloads lest tilbake. Alle felt utenom Eilertsen og den ene Story-relasjonen er parsed-identiske med main.
 
@@ -157,7 +158,7 @@ Midlertidig genereringsworkflow er fjernet. Slutt-CI på den rensede PR-head og 
 | Dimensjon | Score | Evidens |
 | --- | --- | --- |
 | Korrekthet og evidens | 5/5 | Tre kontrollerte claims; alle endrede faktiske felt og begge popupsetninger er mappet. S09/S10 dokumenterer ansettelsen, S01/S02 dokumenterer Aftenpostens redaksjon i nummer 55. |
-| Dekning og ferdigstillelse | 5/5 | Canonical person, avhengig Story-relasjon, Civication-indeks, People-/Story-shards, begge stedspayloads og avgrenset batchrapport synkronisert. |
+| Dekning og ferdigstillelse | 5/5 | Canonical person, avhengig Story-relasjon, Civication-indeks og Media-scenariopool, People-/Story-shards, begge stedspayloads og avgrenset batchrapport synkronisert. |
 | Faglig/redaksjonell kvalitet | 5/5 | Historisk, konkret tekst skiller Aftenposten fra VG og nummer 51 fra nummer 55; generiske vurderinger og gammel nåtidsrolle fjernet. |
 | Teknisk integritet | 4/5 | People-/claims-/Story-/runtime-gater og full semantisk sammenligning bestod; ny browser-/portrett-QA er ikke utført i denne metadata-/tekstrettelsen. |
 | Sikkerhet og ansvarlighet | 5/5 | Ingen oppdiktet VG-ansettelse, individuell tilstedeværelsesdato eller ny bildeattestasjon; profilen er fortsatt legacy_unreviewed. |
