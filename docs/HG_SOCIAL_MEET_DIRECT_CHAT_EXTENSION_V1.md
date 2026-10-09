@@ -25,7 +25,7 @@ Når chatten er åpnet etter møte, er brukerne **kontakter**, ikke venner. AHA 
 
 ## Utrullingsporter
 
-1. AHA-migrasjonen `20261009162000_aha_social_meet_direct_chat_bridge_v1.sql` må være testet og lagt til i rett produksjonsdatabase.
+1. AHA-migrasjonen `supabase/social-meet-direct-chat.sql` må være testet og lagt til i rett produksjonsdatabase.
 2. AHA-PR må være merget og publisert før History Go-PR åpnes for reelle brukere.
 3. Både AHA og History Go CI må være grønne på respektive eksakte head.
 4. Ekstern flerkontotest med innlogget AHA + History Go, blokkering og kansellering må gjennomføres før allmenn markedsføring. Ingen test uten påloggede kontoer kan dokumentere full produksjonsflyt.
