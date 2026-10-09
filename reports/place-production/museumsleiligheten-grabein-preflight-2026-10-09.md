@@ -26,13 +26,13 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 |---|---|---|
 | Canonical ID, tekst og koordinat | PASS | Place-kilde og offisiell adresse |
 | Hovedbadge, underbadges, produksjonsprofil | PASS | Place-kilde og denne kilderapporten |
-| Fagverk sted | PASS, kode-/UI-QA kreves | Place-eid kuratert standardartikkel, fire linser, fem spørsmål, to spor, Fire kilder, registry |
-| Språkleksikon | PASS, runtime-QA kreves | Fire stedsspesifikke oppføringer og canonical språkmanifest |
-| Kronologi/epoker | PASS, generator-/UI-QA kreves | 1888, 1891, 1919, perioden 1981–83, 1987, 1990 |
+| Fagverk sted | PASS teknisk, manuell UI-QA gjenstår | Place-eid kuratert standardartikkel, fire linser, fem spørsmål, to spor, Fire kilder, registry |
+| Språkleksikon | PASS teknisk, manuell UI-QA gjenstår | Fire stedsspesifikke oppføringer og canonical språkmanifest |
+| Kronologi/epoker | PASS teknisk, manuell UI-QA gjenstår | 1888, 1891, 1919, perioden 1981–83, 1987, 1990 |
 | Quiz | PASS | PR #6159, ingen omproduksjon |
-| Bilder (`image`, stående `frontImage`) | BLOCKED | CC BY 4.0-original identifisert. Lokal produksjon, dimensjonstest og bilde-QA gjenstår |
-| QuizCard + flip | BLOCKED | 28 spørsmål er klare, men dedikert QuizCard og faktisk PlaceCard-flip må produseres og testes |
-| PlaceCard-samlinger | BLOCKED | Ingen ferdige billedsikrede canonical medlemmer; `place_card_profile` skal ikke settes før disse er avklart |
+| Bilder (`image`, stående `frontImage`) | PASS teknisk, manuell UI-QA gjenstår | To lokale, separate WebP-varianter fra rettighetsklarert Commons-original; portrett dimensjonskontrollert og bildekontroll bestått |
+| QuizCard + flip | PASS manifest, browser-QA gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
+| PlaceCard-samlinger | DELVIS PASS, avsluttende visuell QA mangler | Én kildebåret historisk hendelse (oppføring 1888) har bildesikret medlem, merket 2022-foto. Andre kandidatfamilier er særskilt uferdige. |
 | People | BLOCKED | Bjørklund-familien er dokumentert, men ikke tilstrekkelig individualisert til People-profil; Ole Olsen/Haeselich må auditeres mot eksisterende kanoniske personer og stedskrav |
 | Objects | BLOCKED | Museets symaskin, seng m.m. er fotografert, men konkrete museumsobjekters proveniens og eierskap er ikke verifisert |
 | Brands | BLOCKED | Oslo Museum/Tøyenhagen og «Gråbein» må testes mot Brand-kontrakten før N/A eller PASS |
@@ -44,4 +44,4 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Kilder / Fagverk-lenker | PASS, UI-QA kreves | Navngitte kildehenvisninger i Place-data |
 | Browser, plassering av Rundingene, bilder og mobil | PENDING | Full visuell slutt-QA og image preview på eksakt PR-head kreves |
 
-**Sluttstatus: IKKE SLUTTFØRT.** Ingen modul markeres ferdig bare fordi registreringen består JSON- eller CI-validering. Rester skal lukkes før steds-PR-en merges som `SLUTTFØRT`.
+**Sluttstatus: IKKE SLUTTFØRT.** Bilder, språk, Fagverk, kronologi og QuizCard er nå teknisk materialisert. People-, Object- og Brand-kandidater, Før/etter, lesespor og faktisk visuell Playwright-QA er fortsatt åpne porter. Dette er en bevisst delvis produksjon; `production_status=complete` må ikke settes før de reelle manglene er avklart.
