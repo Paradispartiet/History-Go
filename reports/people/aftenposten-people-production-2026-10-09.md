@@ -25,6 +25,7 @@ Begge fotografiene er visuelt kontrollert, identifisert i Commons-metadata og la
 - `node scripts/build-place-open-payloads.mjs --check`: PASS, 1533 payloads.
 - `node dist/scripts/build-civication-history-people-index.mjs --check`: PASS, 16 kategorier.
 - `node dist/tools/check-people-of-places-gate.mjs`: PASS.
+- Civication Scenario People ble regenerert etter at CI identifiserte den avledede grensen; deterministisk `--check` og alle 7 scenario-invarianttester: PASS. Kun Media-poolen og indeksens avledede summer endres.
 - Kjørbar People-dekningsaudit: 1435 unike personer, null ugyldige stedsreferanser og null duplikater. Den globale rapporten var foreldet fra før; den er ikke tatt med som en omfattende sideendring. Denne rapporten registrerer det faktisk kjørte resultatet.
 - Semantisk diff mot `e67914e217c2d3aa303ab280ad201483eb7f01ef`: samtlige andre People-profiler, attribusjonsrader og Civication-personer er uendret. Genererte runtime-shards og Place-open-payload er synkronisert fra canonical People-data.
 - `git diff --check`: PASS.
