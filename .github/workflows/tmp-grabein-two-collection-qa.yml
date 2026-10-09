@@ -1,0 +1,55 @@
+name: Gråbein two collection verification (temporary)
+on:
+  push:
+    branches:
+      - place/museumsleiligheten-grabein-production-20261009
+permissions:
+  contents: read
+concurrency:
+  group: tmp-grabein-rounds-push
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Contract tests
+        run: node --test tests/museumsleiligheten-grabein-collections.test.mjs
+      - name: Rebuild and verify source projections
+        run: |
+          node scripts/build-place-open-payloads.mjs --check
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json --check
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Emit canonical regenerated artifacts
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          for(const [key,file] of [
+            ['QUIZ','data/quiz/production_context/historie/museumsleiligheten_grabein.json'],
+            ['RELEASE','data/fagverk/fagverk_release.json']]) {
+            const value=fs.readFileSync(file,'utf8'),n=Math.ceil(value.length/1200);
+            console.log('HG_GEN_START '+key+' '+n);
+            for(let i=0;i<n;i++)console.log('HG_GEN_CHUNK '+key+' '+i+' '+JSON.stringify(value.slice(i*1200,(i+1)*1200)));
+            console.log('HG_GEN_END '+key+' '+n);
+          }
+          NODE
+      - name: Chrome desktop and mobile on actual Gråbein
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          export CHROME_BIN
+          node scripts/tmp-grabein-two-collection-qa.mjs
+      - name: Screenshots for visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grabein-two-collections-20261009
+          path: grabein-two-collections-*.png
+          if-no-files-found: ignore

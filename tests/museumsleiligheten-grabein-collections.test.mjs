@@ -9,7 +9,7 @@ const lesespor = JSON.parse(fs.readFileSync('data/lesespor/oslo/lesespor_oslo_hi
 test('Gråbein owns a source-backed historical event, not a legacy production', () => {
   for (const place of [source, runtime.place]) {
     assert.equal(place.id, 'museumsleiligheten_grabein');
-    assert.deepEqual(place.place_card_profile.collection_ids, ['historical_events']);
+    assert.deepEqual(place.place_card_profile.collection_ids, ['brands', 'historical_events']);
     assert.equal(Object.hasOwn(place, 'productions'), false);
     assert.equal(place.historical_events.length, 1);
     const event = place.historical_events[0];
@@ -31,4 +31,21 @@ test('Gråbein Lesespor references open read-only sources and does not claim fic
   assert.ok(roman);
   assert.match(roman.relevance, /ikke som dokumentasjon/i);
   assert.equal(source.module_audit.reading_tracks.status, 'produced');
+});
+
+test('Gråbein includes only the source-backed Oslo Museum Brand with authentic wordmark', () => {
+  const master = JSON.parse(fs.readFileSync('data/brands/brands_master.json','utf8'));
+  const mapping = JSON.parse(fs.readFileSync('data/brands/brands_by_place.json','utf8'));
+  const brand = master.find(item=>item.id==='oslo_museum');
+  assert.ok(brand);
+  assert.deepEqual(mapping.museumsleiligheten_grabein, ['oslo_museum']);
+  assert.deepEqual(runtime.brands.map(item=>item.id), ['oslo_museum']);
+  assert.equal(brand.logo, 'bilder/kort/brands/oslo_museum.svg');
+  assert.equal(brand.imageMeta.sourceSha256, '233b047cf217e90fa233372ebcc1518c432f8d9af7646bd65ab80f248d7b4dc0');
+  const asset = fs.readFileSync(brand.logo,'utf8');
+  assert.match(asset, /<svg/);
+  assert.doesNotMatch(asset, /<script|javascript:|<foreignObject/i);
+  assert.ok(brand.source_urls.includes('https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/'));
+  assert.equal(brand.imageMeta.generated, false);
+  assert.equal(brand.imageMeta.noEndorsement, true);
 });
