@@ -1,0 +1,51 @@
+name: Gråbein generated-data verification (temporary)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/tmp-grabein-regenerate-20261009.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tmp-grabein-regenerate-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout PR source
+        uses: actions/checkout@v4
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check deterministic Place-open data
+        run: node scripts/build-place-open-payloads.mjs --check
+      - name: Build target quiz context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+      - name: Validate target context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json --check
+      - name: Build and verify Fagverk release
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Export deterministic generated files
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          for (const [id, path] of [
+            ['QUIZ', 'data/quiz/production_context/historie/museumsleiligheten_grabein.json'],
+            ['RELEASE', 'data/fagverk/fagverk_release.json'],
+          ]) {
+            const value = fs.readFileSync(path, 'utf8');
+            const stride = 1200;
+            const n = Math.ceil(value.length / stride);
+            console.log('HG_GEN_START ' + id + ' ' + n);
+            for (let i=0;i<n;i++) console.log('HG_GEN_CHUNK ' + id + ' ' + i + ' ' + JSON.stringify(value.slice(i*stride, (i+1)*stride)));
+            console.log('HG_GEN_END ' + id + ' ' + n);
+          }
+          NODE
