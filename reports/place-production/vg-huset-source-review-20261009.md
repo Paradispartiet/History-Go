@@ -96,3 +96,16 @@ Husk lokal asset-fil, kreditering, original-URL, lisens, transformasjonsstatus o
 7. Kjør V3 build/verify, faktakontroller, samlings-/bildeprøver, språk/Fagverk-tester og faktisk PlaceCard-test mobil/desktop med flip og kilde/epoke/popup/navigasjon. Full quality gate: alle seks dimensjoner ≥4/5 og totalt ≥27/30. Ingen ferdigpåstand uten dette.
 
 **Sluttstatus for denne rapporten: source review gjennomført, produksjonsprofil major bekreftet; stedet ikke produksjonsklart, ikke full QA, ikke publisert gjennom denne grenen.**
+
+
+## 6. Etterfølgende faktisk bildeproduksjon (2026-10-09)
+
+De opprinnelig kartlagte motivkandidatene er revidert. Et nyere og bedre dokumentert **liggende** motiv fra 2026 ble valgt framfor Ssus 2023-foto; dette er et eksplisitt kandidatbytte etter selvstendig bildekontroll, ikke et krav om at alle bilder må være samtidige.
+
+- `image`: `bilder/places/vg_huset_akersgata_55_2026.webp`. Originalen `File:Akersgata 55 med VG og Aftenposten i 2026.jpg`, fotograf Helge Høifødt, 1. juli 2026, 5568×3712, CC BY-SA 4.0. Kildeside: https://commons.wikimedia.org/wiki/File:Akersgata_55_med_VG_og_Aftenposten_i_2026.jpg
+- `frontImage`: `bilder/places/vg_huset_front_2007.webp`. En **annen selvstendig original** `File:Verdens Gang Akersgata.jpg`, fotograf Bjørn Erik Pedersen, 10. februar 2007, 2592×3872, CC BY-SA 3.0. Kildeside: https://commons.wikimedia.org/wiki/File:Verdens_Gang_Akersgata.jpg
+- Fotografier, historiske opptaksdatoer, lisenslenker og reduksjon til WebP uten beskjæring er materialisert på den canonicale stedskilden med separate `imageMeta` og `frontImageMeta`.
+- [Bildeimport, grønn GitHub Actions](https://github.com/Paradispartiet/History-Go/actions/runs/37978870510): nedlastede originaler inspeksjonert for JPEG-format, minimumsstørrelse, motstående orienteringer og ulike SHA-256; to egne WebP-filer ble kontrollert på nytt og committet.
+- [Avledet generator, grønn GitHub Actions](https://github.com/Paradispartiet/History-Go/actions/runs/37979068005): canonical places-index, place-open, Fagverk release, epoke og Fagverk coverage kjørt med streng endringsliste. Brukerrettet PNG/WebP blir ikke erstattet av illustrasjon eller falskt preview. Midlertidige arbeidsworkflows er fjernet fra PR-branchen.
+
+**Bildestatus:** `image` og `frontImage` er importert og koblet. Riktig filformat/orientering og lisensproveniens er kontrollert. Ekte mobil-/desktop-PlaceCard QA og de stedsavhengige medlemsbildene gjenstår; dette er fremdeles **ikke** fullført Place-produksjon.
