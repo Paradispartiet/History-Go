@@ -119,7 +119,7 @@ function ensureStylesheet(): void {
   if (document.querySelector('link[data-hg-place-sheet-special-style="1"]')) return;
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "css/place-sheet-special.css?v=20261009-type-scale1";
+  link.href = "css/place-sheet-special.css";
   link.setAttribute("data-hg-place-sheet-special-style", "1");
   document.head.appendChild(link);
 }
