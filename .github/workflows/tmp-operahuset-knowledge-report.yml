@@ -1,0 +1,47 @@
+name: Temporary Operahuset Knowledge Report Refresh
+
+on:
+  push:
+    branches:
+      - quiz/operahuset-scenekunst-4x7-20261009
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-operahuset-knowledge-report-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install tooling
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate Knowledge IDs and backfill report
+        run: npm run knowledge:canonical:write
+      - name: Verify exact canonical Knowledge contract
+        run: npm run knowledge:canonical:check
+      - name: Enforce diagnostic report size policy
+        run: |
+          test "$(wc -c < reports/knowledge-id-backfill.json)" -le 512000
+      - name: Remove temporary workflow
+        run: rm .github/workflows/tmp-operahuset-knowledge-report.yml
+      - name: Commit just regenerated small report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- reports/knowledge-id-backfill.json .github/workflows/tmp-operahuset-knowledge-report.yml
+          git diff --cached --stat
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Refresh canonical Knowledge backfill report for Operahuset quiz"
+          git push origin HEAD:quiz/operahuset-scenekunst-4x7-20261009
