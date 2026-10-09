@@ -75,12 +75,11 @@ jobs:
         run: |
           set -euo pipefail
           npm run places:index:build
-          npm run place-open:build
-          node scripts/build-fagverk-release-manifest.mjs
           npm run epoker:places:build
           node scripts/audit-fagverk-place-pages.mjs --write
-          node scripts/build-fagverk-release-manifest.mjs
           npm run quiz:context -- --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
       - name: Review deterministic changed-path scope
         shell: bash
         run: |
