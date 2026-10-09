@@ -57,6 +57,19 @@ jobs:
         run: |
           mkdir -p reports/place-production
           node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/museumsleiligheten-grabein-workcard-current.json --place-id museumsleiligheten_grabein --category historie
+      - name: Synchronize canonical factuality text hashes
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs=require('node:fs'),crypto=require('node:crypto');
+          const pf='data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json';
+          const cf='data/places/production/museumsleiligheten_grabein.json';
+          const place=JSON.parse(fs.readFileSync(pf,'utf8'));
+          const packet=JSON.parse(fs.readFileSync(cf,'utf8'));
+          packet.textHashes={algorithm:'sha256',desc:crypto.createHash('sha256').update(place.desc,'utf8').digest('hex'),popupDesc:crypto.createHash('sha256').update(place.popupDesc,'utf8').digest('hex')};
+          fs.writeFileSync(cf,JSON.stringify(packet,null,2)+'\\n');
+          console.log('Synchronized 4.2 factuality text hashes');
+          NODE
       - name: Generate all derived canonical data
         shell: bash
         run: |
@@ -78,7 +91,7 @@ jobs:
           const rows=execFileSync('git',['status','--porcelain','-uall'],{encoding:'utf8'}).split('\n').filter(Boolean).map(x=>x.slice(3));
           const safe=p=>p.startsWith('data/runtime/') || p.startsWith('data/epoker/') ||
             p.startsWith('data/fagverk/') || p.startsWith('reports/fagverk/') ||
-            p.startsWith('reports/place-production/') || p.startsWith('data/quiz/production_context/') ||
+            p.startsWith('reports/place-production/') || p==='data/places/production/museumsleiligheten_grabein.json' || p.startsWith('data/quiz/production_context/') ||
             p.startsWith('data/places/places_index') || p.startsWith('data/places/index') ||
             p==='bilder/places/museumsleiligheten_grabein.webp' ||
             p==='bilder/places/museumsleiligheten_grabein_front_portrait.webp';
@@ -94,7 +107,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- bilder/places/museumsleiligheten_grabein*.webp data/runtime/ data/epoker/ data/fagverk/ reports/fagverk/ reports/place-production/ data/quiz/production_context/
+          git add -- data/places/production/museumsleiligheten_grabein.json bilder/places/museumsleiligheten_grabein*.webp data/runtime/ data/epoker/ data/fagverk/ reports/fagverk/ reports/place-production/ data/quiz/production_context/
           if ! git diff --cached --quiet; then
             git commit -m "Materialize Grabein imagery and canonical place derivatives"
             git push origin "HEAD:$BRANCH"
