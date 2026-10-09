@@ -1,0 +1,31 @@
+name: VG-huset People QA (temporary)
+
+on:
+  push:
+    branches:
+      - agent/vg-huset-source-preflight-20261009
+    paths:
+      - '.github/workflows/vg-huset-people-audit-temp.yml'
+permissions:
+  contents: read
+jobs:
+  people:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Canonical People profile and regression suite
+        run: |
+          npm run audit:people-profile-canonical
+          npm run test:people-profile-canonical
+      - name: People reference and image checks
+        run: |
+          npm run audit:people-of-places
+          npm run people:images:audit
+      - name: Verify derived place surface
+        run: npm run place-open:check
