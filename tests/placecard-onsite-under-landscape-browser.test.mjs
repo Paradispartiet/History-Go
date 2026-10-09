@@ -116,7 +116,8 @@ try {
         "Events/Møtes bottom must align with frontImage bottom at "+width+": "+
         JSON.stringify({frontBottom:layout.front.bottom,controlsBottom:layout.controls.bottom,roundsBottom:layout.rounds.bottom,rightHeight:layout.rightHeight}));
       assert.ok(layout.controls.y - layout.rounds.bottom >= 7,
-        "Events/Møtes must not overlap collections at "+width);
+        "Events/Møtes must not overlap collections at "+width+": "+
+        JSON.stringify({front:layout.front,rounds:layout.rounds,controls:layout.controls,competitions:layout.competitions,right:layout.rightColumn}));
     }
     if (width <= 700) {
       assert.ok(layout.events.bottom <= layout.meet.y + 1,
