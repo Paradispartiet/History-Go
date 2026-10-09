@@ -27,7 +27,7 @@ const fixture = [
   '</head><body class="hg-app">',
   '<div id="mapLayer"></div>',
   '<header class="site-header"><span>History Go</span></header>',
-  '<div id="placeCard" class="is-hidden"></div>',
+  '<div id="placeCard" class="is-open"></div>',
   footer,
   '<script>',
   'document.body.classList.toggle("hg-phone", innerWidth <= 520);',
