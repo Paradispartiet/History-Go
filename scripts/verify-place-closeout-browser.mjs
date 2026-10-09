@@ -8,10 +8,15 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
-const [placeId] = process.argv.slice(2);
+const [placeId, ...flags] = process.argv.slice(2);
+const partialQA = flags.length === 1 && flags[0] === '--partial-placecard-qa';
+if (flags.length && !partialQA) {
+  console.error('Unknown closeout QA options:', flags.join(', '));
+  process.exit(2);
+}
 
 if (!placeId) {
-  console.error('Usage: node scripts/verify-place-closeout-browser.mjs <place_id>');
+  console.error('Usage: node scripts/verify-place-closeout-browser.mjs <place_id> [--partial-placecard-qa]');
   process.exit(2);
 }
 
@@ -19,8 +24,8 @@ function readJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(root, relativePath), 'utf8'));
 }
 
-const workflow = readJson(`data/places/workflow/${placeId}.json`);
-if (workflow.manual_reviews?.final_ui?.status !== 'PASS') {
+const workflow = partialQA ? null : readJson(`data/places/workflow/${placeId}.json`);
+if (!partialQA && workflow.manual_reviews?.final_ui?.status !== 'PASS') {
   console.log(`Place closeout browser QA skipped for ${placeId}: manual_reviews.final_ui is not PASS.`);
   process.exit(0);
 }
@@ -30,9 +35,11 @@ const place = runtime.place;
 assert.equal(place?.id, placeId, `runtime place-open payload does not resolve ${placeId}`);
 assert.equal(place?.place_card_profile?.schema, 'history_go_place_card_profile_v2', 'closeout requires place_card_profile_v2');
 
-const expectedCollections = Object.entries(workflow.collections || {})
-  .filter(([, value]) => value?.status === 'PASS')
-  .map(([id]) => id);
+const expectedCollections = partialQA
+  ? place.place_card_profile.collection_ids
+  : Object.entries(workflow.collections || {})
+      .filter(([, value]) => value?.status === 'PASS')
+      .map(([id]) => id);
 assert.ok(expectedCollections.length >= 1 && expectedCollections.length <= 4, 'closeout expects 1-4 PASS collections');
 assert.deepEqual(
   place.place_card_profile.collection_ids,
@@ -293,6 +300,7 @@ try {
     const report = {
       placeId,
       profile: profile.name,
+      qaMode: partialQA ? 'partial-placecard-qa' : 'full-production-closeout',
       expectedCollections,
       required,
       base,
