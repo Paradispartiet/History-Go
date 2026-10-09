@@ -1,0 +1,76 @@
+name: VG-huset remaining portraits metadata staging (temporary)
+on:
+  push:
+    branches: [agent/vg-huset-source-preflight-20261009]
+    paths: ['.github/workflows/vg-huset-remaining-stage-temp.yml']
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Refresh Commons metadata and stage three source-reviewed but unapproved candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp data/people/people_image_candidates.json /tmp/people-candidates-existing.json
+          npm run people:images:candidates -- --ids=torry_pedersen,bernt_olufsen,trine_eilertsen --limit=3 --max-candidates-per-person=4
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const old=JSON.parse(fs.readFileSync('/tmp/people-candidates-existing.json','utf8'));
+          const found=JSON.parse(fs.readFileSync('data/people/people_image_candidates.json','utf8'));
+          const chosen={
+            torry_pedersen:'torry_pedersen__torry_pedersen_190633_jpg',
+            bernt_olufsen:'bernt_olufsen__bernt_olufsen_mediedagene_2010_jpg',
+            trine_eilertsen:'trine_eilertsen__trine_eilertsen_192054_jpg'
+          };
+          if(!Array.isArray(old)||!Array.isArray(found)||old.length!==24)throw new Error('Previous candidate store changed');
+          if(old.some(x=>Object.hasOwn(chosen,x.personId)))throw new Error('Chosen person already has candidate in store');
+          const selected=Object.entries(chosen).map(([id,cid])=>{
+            const matches=found.filter(x=>x.personId===id&&x.candidateId===cid);
+            if(matches.length!==1)throw new Error('Missing exact Commons candidate for '+id);
+            const c=matches[0];
+            if(c.approved!==false||c.quality?.analysisStatus!=='complete'||c.quality?.hardErrors?.length)throw new Error('Uninspected or bad image');
+            if(!['strong','review'].includes(c.identity?.status))throw new Error('Identity blocked');
+            if(id==='torry_pedersen'){
+              if(c.license!=='CC BY-SA 4.0'||c.creator!=='Tore Sætre')throw new Error('Torry source mismatch');
+              c.credit='Foto: Tore Sætre / Wikimedia Commons';
+            }
+            if(id==='bernt_olufsen'){
+              if(c.license!=='CC BY-SA 2.0'||c.creator!=='Nordiske Mediedager')throw new Error('Bernt source mismatch');
+              c.creator='Hildegunn Holtet';
+              c.credit='Foto: Hildegunn Holtet / Nordiske Mediedager / Wikimedia Commons';
+            }
+            if(id==='trine_eilertsen'){
+              if(c.license!=='CC BY-SA 4.0'||c.creator!=='Tore Sætre')throw new Error('Trine source mismatch');
+              c.credit='Foto: Tore Sætre / Wikimedia Commons';
+            }
+            c.approved=false;
+            return c;
+          });
+          const merged=[...old,...selected];
+          fs.writeFileSync('data/people/people_image_candidates.json',JSON.stringify(merged,null,2)+'\n');
+          console.log(JSON.stringify({preserved:old.length,newUnapproved:selected.map(x=>({
+            personId:x.personId,candidateId:x.candidateId,commonsFileName:x.commonsFileName,
+            creator:x.creator,credit:x.credit,license:x.license,identity:x.identity?.status,quality:x.quality?.tier
+          }))},null,2));
+          NODE
+      - name: Preserve all other candidate data
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git diff --name-only)" = "data/people/people_image_candidates.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/people_image_candidates.json
+          git commit -m "data(vg-huset): stage three rights-reviewed portrait candidates"
+          git push origin HEAD:agent/vg-huset-source-preflight-20261009
