@@ -67,6 +67,12 @@ try{
   assert.ok(visible.opacity!=='0'&&visible.visibility==='visible'&&visible.insideCard,profile+' PlaceCard visibly overlays map');
   assert.ok(visible.rect.top>=0&&visible.rect.bottom<=viewport.height+2,profile+' card fits viewport after animation');
   assert.ok(pos.frontImage.loaded,profile+' front image loads');
+  await page.waitForFunction(()=>{
+    const card=document.getElementById('placeCard'),box=document.getElementById('pcEventsBox');
+    return card?.classList.contains('is-place-sheet-direct')
+      && box?.parentElement?.classList.contains('pc-sheet-explore-grid');
+  },null,{timeout:30000});
+  await page.waitForTimeout(300);
   const layout=await page.evaluate(()=>{
     const box=selector=>{const e=document.querySelector(selector);if(!e)return null;const r=e.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};};
     const title=document.querySelector('#pcTitle');
@@ -86,7 +92,13 @@ try{
     const overlapWords=pieces.filter(r=>intersects(r,people)||intersects(r,badges)).map(r=>r.word);
     return {title:box('#pcTitle'),people,badges,meta:box('#pcMeta'),hero:box('.pc-heading-hero'),front:box('.pc-frontcard'),collection:box('.pc-side-stack'),events:box('#pcEventsBox'),
       lastCollectionBottom:Math.max(...[...document.querySelectorAll('.pc-side-stack .pc-collection:not([hidden])')].map(e=>e.getBoundingClientRect().bottom)),
-      documentOverflow:document.documentElement.scrollWidth-innerWidth,overlapWords};
+      documentOverflow:document.documentElement.scrollWidth-innerWidth,overlapWords,
+      eventParent:document.querySelector('#pcEventsBox')?.parentElement?.className,
+      cardClasses:document.getElementById('placeCard')?.className,
+      roundsStyle:((e)=>e?{height:getComputedStyle(e).height,minHeight:getComputedStyle(e).minHeight,display:getComputedStyle(e).display,alignSelf:getComputedStyle(e).alignSelf}:null)(document.querySelector('.pc-sheet-explore-grid > .pc-side-stack')),
+      iconsStyle:((e)=>e?{height:getComputedStyle(e).height,minHeight:getComputedStyle(e).minHeight,gridTemplateRows:getComputedStyle(e).gridTemplateRows,alignContent:getComputedStyle(e).alignContent,alignItems:getComputedStyle(e).alignItems}:null)(document.querySelector('.pc-sheet-explore-grid .pc-icons-quad')),
+      columnStyle:((e)=>e?{height:getComputedStyle(e).height,minHeight:getComputedStyle(e).minHeight,alignSelf:getComputedStyle(e).alignSelf,display:getComputedStyle(e).display}:null)(document.querySelector('.pc-sheet-explore-grid'))
+    };
   });
   console.log('HG_GRABEIN_LAYOUT '+JSON.stringify({profile,layout}));
   assert.ok(layout.front.height <= layout.front.width * 1.45, profile+' 3:4 frontImage must not stretch with the right column');
