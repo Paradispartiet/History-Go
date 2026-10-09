@@ -419,6 +419,17 @@
     0 0 0 1px rgba(0,0,0,.4) inset;
 }
 
+#placeCard .pc-icons-quad .pc-round > img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
 /* Datastyrte rundinger: skjulte ikoner tar ikke plass i grid-et.
    Nødvendig fordi .pc-round setter display:flex og ellers overstyrer [hidden]. */
 .pc-round[hidden]{
@@ -672,12 +683,16 @@ body.hg-app.hg-phone #placeCard .pc-heading-hero:not(.has-photo-source) .pc-head
   padding: 4px 0 0;
 }
 
+body.hg-app.hg-phone #placeCard .pc-round-label{
+  gap: 2px;
+}
+
 body.hg-app.hg-phone #placeCard .pc-round-emoji{
-  font-size: 24px;
+  font-size: clamp(16px, 5vw, 24px);
 }
 
 body.hg-app.hg-phone #placeCard .pc-round-count{
-  font-size: 12px;
+  font-size: clamp(10px, 2.8vw, 12px);
 }
 
 body.hg-app.hg-phone #placeCard #pcTitle{
