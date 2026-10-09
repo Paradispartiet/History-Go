@@ -330,14 +330,22 @@ test("removes quiz action and empty sections when data is absent", async () => {
   assert.equal(quizButton.removed, true);
 });
 
-test("dedicated CSS keeps the popup inset and the quiz compact", () => {
+test("person surface follows PlaceCard framing while quiz stays compact", () => {
   const css = fs.readFileSync(
     path.join(__dirname, "..", "css", "person-popup-v2.css"),
     "utf8"
   );
+  const html = fs.readFileSync(path.join(__dirname, "..", "index.html"), "utf8");
 
-  assert.match(css, /padding:\s*clamp\(18px, 4vw, 48px\)/);
-  assert.match(css, /width:\s*min\(820px, calc\(100vw - 64px\)\)/);
+  assert.match(html, /href="css\/person-popup-v2\.css/);
+  assert.match(css, /\.hg-popup\.person-popup\.person-popup-v2\{[\s\S]*?position:\s*fixed/);
+  assert.match(css, /top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 12px\)/);
+  assert.match(css, /bottom:\s*calc\(var\(--hg-bottom-nav-height, 72px\) \+ 12px\)/);
+  assert.match(css, /max-width:\s*760px/);
+  assert.match(css, /z-index:\s*var\(--hg-z-placecard, 100\)/);
+  assert.match(css, /background:\s*transparent/);
+  assert.match(css, /backdrop-filter:\s*none/);
+  assert.match(css, /\.hg-popup-inner\{[\s\S]*?border-radius:\s*var\(--pc-radius, 22px\)/);
   assert.match(css, /hg-person-quiz-btn\.hg-quiz-btn\{[\s\S]*?width:\s*auto/);
   assert.doesNotMatch(css, /hg-person-quiz-btn\.hg-quiz-btn\{[\s\S]*?background:\s*#FFD600/);
 });
