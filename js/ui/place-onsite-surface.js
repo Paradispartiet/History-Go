@@ -168,7 +168,24 @@
     return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Stedsfunksjoner">${buttons.join("")}</div></div>`;
   }
 
+  function ensureBelowLandscape() {
+    const card = document.getElementById("placeCard");
+    const box = document.getElementById("pcEventsBox");
+    // Standard Place Sheet moves the canonical box into the sticky tab rail.
+    // Return the *same node* to the landscape hero: the delegated event and
+    // meeting actions remain intact. Micro Places keep their legacy layout.
+    if (!card?.classList.contains("is-place-sheet-direct") || !box || !card.contains(box)) return;
+    const hero = card.querySelector(".pc-text > #pcHeaderHero");
+    if (hero) {
+      if (hero.nextElementSibling !== box) hero.after(box);
+      return;
+    }
+    const textBlock = card.querySelector(".pc-sheet-hero-copy > .pc-text");
+    if (textBlock && box.parentElement !== textBlock) textBlock.appendChild(box);
+  }
+
   function decorate(force = false) {
+    ensureBelowLandscape();
     const box = document.getElementById("pcEventsBox");
     const place = currentPlace();
     if (!box || !place) return;
@@ -264,8 +281,16 @@
   function observe() {
     const card = document.getElementById("placeCard");
     if (!card || observer) return;
+    // Place Sheet can mount or re-mount its navigation after on-site actions
+    // render. Watch node moves as well as place switches, then put the one
+    // canonical box back under the hero. Already-correct nodes do not move.
     observer = new MutationObserver(() => decorate());
-    observer.observe(card, { attributes:true, attributeFilter:["data-current-place-id"] });
+    observer.observe(card, {
+      attributes: true,
+      attributeFilter: ["data-current-place-id"],
+      childList: true,
+      subtree: true
+    });
   }
 
   function init() {
