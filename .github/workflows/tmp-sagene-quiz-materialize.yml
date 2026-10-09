@@ -1,0 +1,91 @@
+name: Temporary Sagene quiz materialization
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'data/quiz/historie/sagene_skole_sets.json'
+      - 'data/quiz/production_briefs/historie/sagene_skole.json'
+      - 'data/quiz/manifest.json'
+      - 'data/fag/fag_manifest.json'
+      - '.github/workflows/tmp-sagene-quiz-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-sagene-materialize-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: >-
+      github.event.pull_request.number == 6158 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'quiz/sagene-skole-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install pinned dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build Sagene production context from canonical source files
+        run: npm run quiz:context -- --category historie --target sagene_skole --output data/quiz/production_context/historie/sagene_skole.json
+      - name: Regenerate canonical Knowledge links and registries
+        run: npm run knowledge:canonical:write
+      - name: Rebuild deterministic Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Check generated change scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          node - <<'NODE'
+          const fs = require('fs');
+          const { execFileSync } = require('child_process');
+          const paths = execFileSync('git', ['status','--porcelain','-uall'], { encoding:'utf8' }).split('\n').filter(Boolean).map(x => x.slice(3));
+          const allowed = paths.filter(p => (
+            p === 'data/quiz/production_context/historie/sagene_skole.json' ||
+            p === 'data/quiz/historie/sagene_skole_sets.json' ||
+            p === 'data/fagverk/fagverk_release.json' ||
+            p === 'reports/knowledge-id-backfill.json' ||
+            p.startsWith('data/knowledge/')
+          ));
+          const disallowed = paths.filter(p => !allowed.includes(p));
+          if (disallowed.length) { console.error('Unexpected generator changes:', disallowed); process.exit(1); }
+          console.log('Scope-checked generated files:', allowed.length);
+          NODE
+      - name: Commit only generated outputs to the exact PR branch
+        shell: bash
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/quiz/production_context/historie/sagene_skole.json data/quiz/historie/sagene_skole_sets.json data/fagverk/fagverk_release.json reports/knowledge-id-backfill.json data/knowledge/
+          if ! git diff --cached --quiet; then
+            git commit -m "Build Sagene quiz context and Knowledge artifacts"
+            git push origin "HEAD:$BRANCH"
+          fi
+      - name: Canonical quiz and knowledge audits
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify production context reproducibility
+        run: npm run quiz:context -- --category historie --target sagene_skole --output data/quiz/production_context/historie/sagene_skole.json --check
