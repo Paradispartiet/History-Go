@@ -42,7 +42,10 @@ test("index laster de faktiske Events-, Social Meet- og PlaceCard-runtimene", ()
   assert.match(app, /dist\/web\/left-panel\.js\?v=20260912-live-surfaces2/);
   assert.match(app, /js\/ui\/place-card-status-surface\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /js\/config\.js\?v=20260913-social-fastapi-prod1/);
-  assert.match(index, /css\/place-onsite-surface\.css\?v=20260912-live-surfaces2/);
+  const onsiteCss = index.match(/css\/place-onsite-surface\.css\?v=([0-9]{8}-[a-z0-9-]+)/)?.[0];
+  assert.ok(onsiteCss, "PlaceCard loads a versioned on-site stylesheet");
+  assert.ok(read("js/ui/place-card-status-surface.js").includes(onsiteCss),
+    "HTML and dynamic PlaceCard loader must agree on the stylesheet version");
   assert.match(index, /js\/ui\/header-menu\.js\?v=20260912-onsite-under-explore1/);
   assert.match(index, /js\/app\.js\?v=[0-9]{8}-[a-z0-9-]+/);
 });
