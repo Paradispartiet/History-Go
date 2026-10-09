@@ -1,65 +1,50 @@
-# Aftenposten – produksjonsaudit 9. oktober 2026
+# Aftenposten – gjeldende produksjonsaudit 9. oktober 2026
 
-Input: main 6d4d262eaaf7a85663bdc8a21a2eb9df698507e3. Forrige rettelse: PR #6144, merge a70e319e71cb843deb8e35b82f48038cd0fae9ef. Dette er en produksjonsbranch, ikke et sluttført/live sted.
+Dette er den videre stedsproduksjonen etter kilde-/personrettelsen i #6144. Bekreftet profil: **major**, Media med aviser, nettaviser, journalistikk og mediehus_og_redaksjoner. Stedseier er Akersgata 51 i perioden 1876–2003. Linderud er trykkestedskontekst og nummer 55 i 2014 er en annen adresse. Koordinatene og Eilertsens vg_huset-anker er bevart. READ-FIRST er gjennomført med gjeldende regler, og hashparitet er kontrollert gjennom alle fresh-main replay. Gjeldende integrasjonsbase er bdcf9a192fae39d977e5b3bef8406cfc7ae75149.
 
-## Profil og stedseier
+## Tekst, kilder og eierflater
 
-Media; underbadges aviser, nettaviser, journalistikk og mediehus_og_redaksjoner. Bekreftet major fordi perioden 1876–2003 har flere selvstendige, kildebelagte spor. Stedseier er Akersgata 51. Nr. 55 i 2014 og Linderud er tidsmerket kontekst, ikke samme fysiske sted. Koordinater og Eilertsen-rettelsen er bevart.
+20 påstander, separat faktareview og redaksjonell review, 19 popupsetninger og ni direkte readiness-spørsmål. Readiness er ikke quizsett. Den nye pressen i 1876 hadde kapasitet 3000 aviser/time; kilden beskriver ikke typen som rotasjonspresse, og kapasitet gjøres ikke til opplag. EN/ES/PT er faktisk oversatt fra revidert tekst; teksthashene følger faktisk innhold.
 
-## Åpnede kilder og kildegrenser
+Full place-eid Fagverk: fem avsnitt, fire linser, fem veiledende spørsmål, åtte begreper og to observerbare spor. Fire Leksikon-oppføringer og åtte eksakte, kildebelagte milepæler fra 1876 til 2003. Opphav i 1860/1861 er institusjonskontekst, ikke lokale adressehendelser. Språk har tre selvstendige oppføringer: avisnavnet, tanta og fotosats; tanta-etymologien har eksplisitt usikkerhet og ingen konstruert lokal dialekt.
 
-- [Tanta flytter hjem](https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem), Liv Berit Tessem, publisert 16.08.2014, oppdatert 18.08.2014: adresseperiode, familiens bolig og bakhage, utvidelsen i 1923, pressehall/vinterhage, flytting til nr. 55. Brødteksten er lest. Bildeteksten «1963 / to år gamle» strider mot artikkelens 1964-opplysning; den brukes ikke som byggeårbevis.
-- [Oslo byleksikon – Aftenposten](https://oslobyleksikon.no/side/Aftenposten): Finn Bryn/1964, utgaver, A-magasinet, offsettrykk, fotosats og radiolink fra setteriet i nr. 51 til Linderud. Brødteksten er lest.
-- [125 år med Aftenposten](https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten): den nye pressen i 1876 kunne trykke 3000 aviser i timen. Dette er kapasitet, ikke opplag.
-- [SNL – Aftenposten](https://snl.no/Aftenposten): sensur/direktiver under okkupasjonen og nettavis i 1995. Institusjonshistorie tilskrives ikke automatisk enkeltansatte.
-- [SNL – fotosats/fotosetting](https://snl.no/fotosats/fotosetting): presis fagdefinisjon. Dette er ikke lokal dialekt.
-- [SNL – Harald Stanghelle](https://snl.no/Harald_Stanghelle) og [Aftenpostens biografi](https://www.aftenposten.no/meninger/i/Py5pX/harald-stanghelle): 1991 ansettelse, 1994–1995 nyhetsredaktør, 1995–2000 Dagbladet, retur som politisk redaktør i 2000. Profilen er fortsatt legacy og ikke omskrevet i denne stedspakken.
-- [SNL – Per Egil Hegge](https://snl.no/Per_Egil_Hegge): Aftenposten 1962–2005 med korrespondentperioder i utlandet; ansettelse betyr ikke kontinuerlig fysisk opphold i nr. 51. Bildet på SNL har begrenset gjenbruk og er ikke kopiert.
+Story-ID er bevart som «Da pressesalen ble en vinterhage», med episodeanker 1976, dokumenterte aktører og funksjonsendring. Kilden daterer ikke vinterhagen, så et oppdiktet ombyggingsår er ikke lagt til. To direkte lesbare Lesespor er link_only, med riktig place-eierskap. Nyheter er begrunnet N/A etter søk: Place representerer en avsluttet redaksjonsperiode, og nyere nummer-55-saker kan ikke gjøres til drift i nummer 51.
 
-## Materialisert innhold
+Kildene er lest med konkrete grenser: [Tanta flytter hjem](https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem), [Oslo byleksikon](https://oslobyleksikon.no/side/Aftenposten), [125 år med Aftenposten](https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten), [SNL Aftenposten](https://snl.no/Aftenposten) og [SNL fotosats](https://snl.no/fotosats/fotosetting). Motstridende fotobildetekst fra Tanta brukes ikke som byggeår. Okkupasjonens institusjonshistorie tilskrives ikke alle medarbeideres personlige holdninger.
 
-20 stedspåstander med sourceLocation, faktareview og separat redaksjonell pass; 19 popupsetninger og 9 direkte spørsmål som tekstens readiness-kontroll. Readiness-spørsmålene er ikke quizsett. Full, place-eid Fagverk-blokk: fem avsnitt, fire lenses, fem veiledende spørsmål, åtte konsepter og to observerbare spor. Tre språkoppføringer: avisnavn, tanta og fotosats. Britisk opphav til tanta er eksplisitt usikkert. Fire Leksikon-oppføringer er revidert uten endring i andre steders data; åtte daterte milepæler fra den historiske perioden er lagt inn. To direkte lesbare Lesespor er godkjent som link_only. EN/ES/PT er faktisk nyoversatt; hash alene er ikke oppdatert.
+## Fire faktiske samlinger
 
-Den eksisterende Story-ID-en er bevart, men innholdet er konsolidert til «Da pressesalen ble en vinterhage», med episodeanker 1976. Narrativt spørsmål: hva skjer med et avishus når trykkingen forlater bygget? Drivkraft: dokumentert funksjonsforvandling, med lyd-/arbeidsvitnesbyrd fra Harberg og senere bruk av pressesalen. Storyen har en fysisk avslutning og gir mer enn en årstallsliste. Kilden daterer ikke vinterhagen, og dette er angitt. Den aktive scoringmotorens resultat brukes uendret; scoren er ikke blåst opp til tidligere manuelle 22. Institusjonens opphav i 1860/1861 er bevart som Leksikon-kontekst, ikke som lokal 51-milepæl.
+| Samling | Innhold og dokumentasjon |
+|---|---|
+| People | Harald Stanghelle og Per Egil Hegge, ferdige v1-claims, utdanning/verk og lisensierte originalportretter. #6155 er merget. Ansettelse og korrespondentarbeid gjøres ikke til kontinuerlig fysisk opphold i avishuset. |
+| Objects | Det konkrete aviseksemplaret nr. 1, 2. januar 1879; dato og ekspedisjonsadresse Akersgaden 51 er visuelt lest. |
+| Brands | Eksisterende Aftenposten-ID med autentisk historisk avishode fra samme 1879-utgave; ingen nytegnet logo eller endorsement. |
+| Utgivelser | Papiravisfamilien og den identifiserbare trykksaken Hybelmat, merket For A-magasinet, av Ingeborg Bonde Moe, katalogført 1938–1939. |
 
-## Samlingsaudit
+Ny kilde endret den konkrete utgivelsesplanen: [Oslo Museums katalogpost OB.11545.A–O](https://digitaltmuseum.no/011024261615/trykksak) identifiserer Hybelmat og forfatteren, daterer gruppen til 1938–1939 og lisensierer akkurat dette bildet med CC BY-SA 4.0. Hele publiserte fotoet (1037×703, asset 022sA3s6Gq7o) er sett, lisensdata lest og filhash lagret i `aftenposten-hybelmat-asset-proof-20261009.json`. Forsiden viser selv merkingen For A-magasinet. Fotograf er ikke oppgitt; Oslo Museum krediteres, og museets publiserte kreditering i filen er bevart. Det er en trykksak, ikke en magasinutgave, og intet bestemt trykkeri eller fysisk opphold i nummer 51 hevdes.
 
-| Samling | Resultat | Avgrensning |
-|---|---|---|
-| People | BLOCKED | Stanghelle og Hegge er relevante. Claims og lovlige, ferdig kontrollerte portretter mangler. Ingen ny perifer person er opprettet. |
-| Objects | PASS | Ett konkret aviseksemplar: nr. 1, 2. januar 1879. Samtidig avishode oppgir Akersgaden nr. 51. Det er ikke den abstrakte «forsiden» fra Wonderkammer. |
-| Brands | PASS | Eksisterende Aftenposten-ID gjenbrukt, med autentisk historisk ordmerke fra 1879 og tidsmerking. |
-| Utgivelser | BLOCKED | Papiravisen er materialisert. Morgen-/aftenutgaver og A-magasinet må ferdig avgrenses og få egne dokumenterte assets. |
+Papiravisens morgen-/aftenversjoner fra 1885 forklares innenfor én utgivelsesfamilie. 1879-bildet er tydelig datert og utgis ikke for å avbilde de senere versjonene. De er ikke blitt ekstra medlemmer med duplisert eller feil tidsbilde. Samlingen representerer konkrete dokumenterte publikasjoner, ikke en uttømmende bibliografi. Dette er en positiv, kildeledet planendring med et nytt faktisk medlem, ingen antallskvote eller filler. A-magasinets første cover fra 1926 er fortsatt en asset-holdback: publisert nettilgjengelighet alene gir ikke gjenbruksrett. Den holdbacken brukes ikke til å slette magasinets historie eller late som Hybelmat er coveret.
 
-Bare Objects og Brands er valgt i collection_ids. Legacy Wonderkammer er ikke massekonvertert til Objects. Related er ikke en samling. Ingen bilder eller Badges er lagt inn som rundinger.
+## Bildene og før/etter
 
-## Bildekontroll
+Hovedbilde og frontbilde er to forskjellige originale fotografier av Jan-Tore Egge, 7. mai 2025, CC BY-SA 4.0: [foto I](https://commons.wikimedia.org/wiki/File:Akersgata_51_(I).jpg) og [foto II](https://commons.wikimedia.org/wiki/File:Akersgata_51_(II).jpg). Frontbildet er separat stående original, ikke en avledning av hovedbildet. Begge er nedskalert til WebP uten ny beskjæring og viser etterbruk, ikke Aftenposten-drift i 2025. Objects- og Brand-bilder er uendrede public-domain-originaler fra 1879. People-portrettene er dokumentert separat i #6155.
 
-- image: [Akersgata 51 (I)](https://commons.wikimedia.org/wiki/File:Akersgata_51_(I).jpg), Jan-Tore Egge, 07.05.2025, CC BY-SA 4.0, original 2702×2798. Fasade og adresseskilt er visuelt kontrollert. Lokal WebP er bare nedskalert.
-- frontImage: [Akersgata 51 (II)](https://commons.wikimedia.org/wiki/File:Akersgata_51_(II).jpg), samme fotograf/dato/lisens, original 2628×2974. Separat stående kildefoto; ikke kopiert eller avledet fra image. Fotoet viser etterbruken av huset, ikke redaksjon i 2025.
-- Object: [Forsiden 2. januar 1879](https://commons.wikimedia.org/wiki/File:Aftenposten_2._januar_1879-_framside.JPG), Aftenposten / Nasjonalbiblioteket, 599×887, public domain. Dato, nr. 1 og adresselinje er visuelt kontrollert. Lokal JPEG er uendret.
-- Brand: [Avishodet fra samme utgave](https://commons.wikimedia.org/wiki/File:Aftenposten_2._januar_1879-_topp.JPG), 939×229, public domain. Uendret publisert utsnitt; ingen tegning, ny logo eller rekonstruksjon. Referensiell identifikasjon, noEndorsement. En moderne Commons-SVG med logoaggregator som opphav ble ikke brukt som historisk logo.
+Før/etter har [Thorkel Jens Thorkelsens arkivfoto](https://commons.wikimedia.org/wiki/File:Akersgata_51_OB.F14680bj.jpg), Oslo Museum OB.F14680bj, 1890–1900, public domain, 1200×875. Hele publiserte originalfilen er inspisert og SHA-1 3588c196d2ecd4ee6cf2d5d02a4509e8d49a37c0 verifisert. Commons-opplasterens tidligere 6 % beskjæring er oppgitt; prosjektet har ikke beskåret filen. Oslo Museum er proveniens, men DigitaltMuseum-arkivsiden for akkurat dette fotoet er ikke attestert direkte lest.
 
-Bilde-PASS gjelder disse publiserte sted-/Objects-/Brand-assetsene. People-bilder har egen åpen blocker. Kandidat til før/etter: «Avislesere ved Aftenpostens gård», Ruth Raabe/Oslo Museum, 06.06.1931, OMu.F26632. Kildesiden kunne ikke inspiseres tilstrekkelig i denne kontrollen; derfor er kandidatens rettigheter, motivparitet og et meningsfullt sammenligningspar fortsatt BLOCKED. Foto I/II fra 2025 brukes ikke som falskt før/etter-par.
+Paret viser samme katalogførte hovedadresse og sammenlignbare skrå gatefasader med venstre side nærmest. Husnummer 51, gammel toetasjesgård, oppslagsskap og avisskilt er synlige i arkivfotoet; det nyere, høyere bygningskompleksets fasade vises i det tydelig daterte etterbildet fra 2025. Forskjellig fasadeutstrekning, format og fotopunkt er eksplisitte grenser: ingen optisk eksakt kameramatch, metrisk høyde/bredde eller nåtidsleietakere i 2026 hevdes. Bildene brukes ikke som bevis for historiske romfunksjoner. 1931-motivet fra et annet utsnitt er ikke valgt som primærpar.
 
-## Quizoverlevering
+## Quiz og QuizCard
 
-categoryId=media; targetId=aftenposten_akersgata. Aktiv manifest-loadet fil: data/quiz/media/aftenposten_akersgata_sets.json. 6 sett med størrelser 3, 3, 3, 3, 3, 3; 18 spørsmål. Fasitfordeling: {"0":18,"1":0,"2":0,"3":0}. Interne Story-/regelreferanser er ikke selvstendige faktakilder. Eksisterende spørsmål må også gjennomgås etter at den generelle legacy-Storyen er omskrevet. Det ble ikke funnet et eksisterende stedsspesifikt QuizCard i canonical assets eller quizkort-manifest. Ingen nye quizsett, distraktorer eller quizprofil er valgt for å få stedsfasen grønn. Påstandsbanken og Badge-grunnlaget finnes nå som kildeledet inngang til eget quizløp.
+#6181 er merget med normal 4×7: kildebank før spørsmål, 28 individuelt gjennomgåtte spørsmål, svarfordeling 10/9/9, nye stabile sett- og spørsmåls-ID-er, full Knowledge-synk og ekte kilde-URL-er. To faktiske komplette mobil-/desktop-gjennomspill består: alle 28 svar, fire sett, fire læringshendelser, én premie og ingen fysisk besøksregistrering. Final head 3831bfda13cfd50dadb843a06e455a323ca356da har åtte relevante grønne workflow-runs; merge bdcf9a19 har samme tree som kontrollert final head. Se `reports/quiz-aftenposten-source-audit-2026-10-09.md`.
 
-## Sluttstatus og kvalitetsgate
+QuizCard er native canonical JSON, med ti avledede spørsmål og fasit, registrert i Media-manifestet. Kortets spørsmål, alternativer, svar, emner og kilde-ID-er er kopiert fra canonical quiz, ingen nye sett er produsert i Place-PR-en.
 
-Dette er ikke SLUTTFØRT. People, Utgivelser, historisk før/etter og quiz/QuizCard står åpne. Mobil/desktop og faktisk flip må kontrolleres på aktuell PR-head. Ingen merge eller live-status er attestert.
+## Runtime-funn, kontroller og åpen sluttgate
 
-Foreløpig helstedsgate (før runtime-/UI-QA): korrekthet/evidens 5, dekning 2, redaksjonell kvalitet 4, teknikk 3, sikkerhet 5, vedlikeholdbarhet 4 = **23/30**. Dekning og teknikk er under 4; minstekravet 27/30 er ikke oppfylt. Dette er en ærlig sperre, ikke en ferdigmelding. Valideringsresultater føres inn etter faktisk kjøring.
+Canonical place:build/place:verify har bestått og generert indeks, runtime, Fagverk-release og epokeindex. Fire målrettede Aftenposten-regresjoner består. Den første ekte Place-nettleserkontrollen fant en reell manglende kobling: Historie renderer history_layers, men hentet ikke Leksikon-eid chronology. En separat chronology-renderer er derfor koblet til Historie-slotten. Den leser eksisterende canonical Leksikon-data; den oppretter ingen lokal parallell tidslinje og endrer ikke history_layers-rendererens eiergrense. Regresjonen kontrollerer åtte ekte Aftenposten-milepæler, kilde-URL-er, eksklusjon av 2014, idempotens og annen-place-isolasjon. Åtte History/Place Sheet-tester består.
 
-## Utført verifikasjon
+To eksisterende fixture-tester fra Storgata/Youngstorget var ikke oppdatert etter main sin flytting av People til heroen. De er rettet til å kontrollere tre nedre celler **og** en synlig, canonical People-flate ved Badge; fortsatt fire faktiske samlinger. Ingen samlings- eller eierskapskrav er svekket.
 
-Rebaset på main e67914e217c2d3aa303ab280ad201483eb7f01ef (nyere Akershus-quizendring). `npm run place:build -- aftenposten_akersgata` og `npm run place:verify -- aftenposten_akersgata` består; READ-FIRST-/routingporter, indeks, koordinater, avledet runtime og stedets regresjoner er kontrollert. Fagverk-audit, Story-integritet, Lesespor-validator og EN/ES/PT-ferskhet består. Lesespor rapporterer 17 eksisterende duplikatadvarsler utenfor denne stedspakken.
+Faktisk sluttkontroll av alle fire samlinger/popuper/medlemsbilder, ti QuizCard-spørsmål, mus/touch/tastatur-flip, samtlige kunnskapsseksjoner, epokeviser, Fagverk-side, bilder og overflow gjentas på aktuell PR-head. UI-status er PENDING frem til beviset foreligger. Midlertidig candidate-workflow endrer ikke canonical final_ui-gaten og fjernes etter kontrollen.
 
-Regresjonskontrollen fant at en korrekt opplysning om returen til nr. 55 i 2014 ble materialisert som en lokal nr. 51-milepæl. Setningen, påstanden og readiness-spørsmålet er derfor fjernet fra stedsproduksjonspakken, og tidslinjen er regenerert fra kildedata. Returen er bevart som eksplisitt ekskludert identitet og ekstern Leksikon-kontekst. En test kontrollerer nå alle avledede tidslinjers hendelser for nr. 51, ikke bare Leksikon-ankrene. Ingen generatorpolicy er svekket.
-
-Nettleserinstallasjon med Playwright feilet ved nedlasting av Chromium. Faktisk mobil-/desktop-, samlingspopup-, epokeviser- og flip-QA er derfor fortsatt PENDING. Automatiske datakontroller kan ikke erstatte denne kontrollen.
-
-## Fortsettelse mot main 034c7438
-
-People er ferdig materialisert og merget i #6155 (d3d77d9e). Samlingen er nå PASS og valgt sammen med Objects og Brands. Jubileumsartikkelens 1876-avsnitt dokumenterer en ny presse med kapasitet 3000 aviser i timen, ikke typen rotasjonspresse. Stedstekst, claim/sourceLocation, readiness-spørsmål og EN/ES/PT er presisert; hashene er beregnet fra faktisk endret tekst. Alle READ-FIRST-filers innhold er identisk med forrige registrerte preflight, kontrollert med git diff mot fersk main. De øvrige åpne portene er fortsatt reelle.
+Kvalitetsvurdering før denne re-QA: korrekthet/evidens 5, dekning 4, faglig/redaksjonell kvalitet 4, teknisk integritet 3, sikkerhet/ansvarlighet 5, vedlikeholdbarhet/etterprøvbarhet 5 = **26/30, BLOCKED**. Teknikk er under 4, og stedet hevdes ikke ferdig. Green CI kan ikke erstatte faktisk kontroll av brukerflaten.

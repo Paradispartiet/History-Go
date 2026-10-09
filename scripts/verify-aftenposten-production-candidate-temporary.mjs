@@ -214,6 +214,14 @@ try {
       });
 
       const popupRoot = page.locator('.hg-popup.placecard-round-popup.visible');
+      const memberImages = popupRoot.locator('img');
+      assert.ok(await memberImages.count() >= 1, `Member images required in ${expected.id}`);
+      for (let i=0; i<await memberImages.count(); i++) {
+        await memberImages.nth(i).scrollIntoViewIfNeeded();
+        await memberImages.nth(i).evaluate(img => img.decode());
+        assert.ok(await memberImages.nth(i).evaluate(img => img.naturalWidth > 0), `Loaded member image ${expected.id}:${i}`);
+      }
+      await page.screenshot({path:path.join(outDir,`${profile.name}-${expected.id}.png`),fullPage:true});
       await popupRoot.locator('[data-close-popup]').click();
       await popupRoot.waitFor({ state: 'detached', timeout: 10_000 });
     }
@@ -259,6 +267,17 @@ try {
     assert.match(sections.language, /fotosats/i);
     assert.match(sections.learning, /Aftenposten|produksjonskjeden|redaksjon/i);
     await page.locator('[data-hg-place-sheet-jump="about"]').click();
+    await page.evaluate(async id => {
+      const place = window.PLACES.find(p => p.id === id);
+      await window.HGEpokeViewer.open({place, historyMode:'none'});
+    }, placeId);
+    const epoch = page.locator('#hgEpokeViewer');
+    await epoch.waitFor({state:'visible',timeout:30000});
+    assert.match(await epoch.innerText(), /Aftenposten/);
+    assert.match(await epoch.innerText(), /1876/);
+    await page.screenshot({path:path.join(outDir,`${profile.name}-epoch.png`),fullPage:true});
+    await epoch.locator('.hg-epoke-viewer__close').click();
+    await epoch.waitFor({state:'detached'});
     const fag = await context.newPage();
     const fagErrors = [];fag.on('pageerror',e=>fagErrors.push(String(e)));
     await fag.goto(`${baseUrl}/fagverk-sted.html?place=${placeId}`, {waitUntil:'domcontentloaded'});
