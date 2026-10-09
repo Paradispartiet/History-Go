@@ -79,8 +79,9 @@ try {
     assert.ok(Math.abs(actual.footer.bottom - height) < 1, `footer anchored at ${width}`);
     assert.ok(Math.abs(actual.footer.height - ((isPhone ? 60 : 72) + actual.safeBottom)) < 1.5,
       `no unused extra footer height at ${width}`);
-    assert.ok(actual.buttons.every(b => Math.abs(b.top - actual.buttons[0].top) < 1),
-      `footer buttons stay on one row at ${width}`);
+    assert.ok(actual.buttons.every(b => Math.abs(
+      (b.top + b.bottom) / 2 - (actual.buttons[0].top + actual.buttons[0].bottom) / 2
+    ) < 1), `footer buttons stay vertically centered in one row at ${width}`);
     assert.ok(actual.mini.height <= (isPhone ? 48 : 56), `mini fits row at ${width}`);
     assert.ok(actual.actionsScroll.scrollWidth >= actual.actionsScroll.clientWidth,
       `actions are horizontally scrollable at ${width}`);
