@@ -151,9 +151,9 @@ body.hg-app .app-footer{
 #nearbyListContainer{
   position: fixed;
 
-  /* Keep a visible strip of map on all four sides of the Explore surface.
-     The toggle stays above the panel, and footer safe areas remain clear. */
-  top: calc(var(--hg-visual-header-height, 74px) + 56px);
+  /* The toggle now lives inside the header: preserve the map frame,
+     without a second empty control strip above Explore. */
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
   right: calc(16px + env(safe-area-inset-right, 0px));
   bottom: calc(var(--hg-bottom-nav-height) + 16px);
   left: calc(16px + env(safe-area-inset-left, 0px));
@@ -278,7 +278,7 @@ body.hg-app.hg-phone #placesLoadingIndicator{
 
 /* ============================================================
    PLACE CARD LAYER
-   PlaceCard starter alltid rett under Utforsk-knappen, men skal ikke
+   PlaceCard starter rett under headeren med Utforsk-knappen, men skal ikke
    strekkes ned til footeren. Normaltilstanden følger innholdshøyden.
    Hvis kortet blir høyere enn den tilgjengelige viewporten, begrenser
    max-height kortet og .pc-body tar den interne scrollen. Det skal alltid
@@ -292,20 +292,19 @@ body.hg-app #placeCard{
   position: fixed;
   left: calc(12px + env(safe-area-inset-left, 0px));
   right: calc(12px + env(safe-area-inset-right, 0px));
-  /* Utforsk starter 10px under headeren og er omtrent 38px høy.
-     58px gir en liten, stabil luftstripe under knappen. */
-  top: calc(var(--hg-visual-header-height, 74px) + 58px);
+  /* Headeren eier Utforsk-knappen, så PlaceCard trenger ingen knappstripe. */
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
   bottom: auto;
   height: auto;
   max-height: calc(
     100vh -
-    var(--hg-visual-header-height, 74px) - 58px -
+    var(--hg-visual-header-height, 74px) - 12px -
     var(--hg-bottom-nav-height) -
     var(--hg-place-card-footer-gap)
   );
   max-height: calc(
     100dvh -
-    var(--hg-visual-header-height, 74px) - 58px -
+    var(--hg-visual-header-height, 74px) - 12px -
     var(--hg-bottom-nav-height) -
     var(--hg-place-card-footer-gap)
   );
