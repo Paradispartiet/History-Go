@@ -1,0 +1,25 @@
+# VG-huset — People-kandidatkontroll, fase 3
+
+Dato: 2026-10-09 · Place: `vg_huset` · Hovedbadge: `media` · Status: **BLOCKED, ikke medlemssamling-PASS**.
+
+## Kontroll mot faktisk canonical People-data
+
+Kilden er `data/people/media/oslo/people_media_oslo.json`. Seks tidligere personer er knyttet til `vg_huset`. Ingen av de seks har personspesifikk treff i den eksisterende `data/people/people_image_attributions.json` (87 registreringer). Deres lokale `bilder/kort/people/*.PNG`-referanser er dermed **ikke dokumentasjon på klarert lisens/identitet eller medlemspreview**. Det er ikke kontrollert at filene faktisk eksisterer eller er visuelt egnet; ingen bildefil er erstattet.
+
+| Person | Eksisterende relation | Funn og kilde | Fase-3-beslutning |
+| --- | --- | --- | --- |
+| `gard_steiro` | VG ansvarlig redaktør fra 2017 | VGs [offisielle kontaktside](https://www.vg.no/informasjon/kontakt-oss) lister ham som ansvarlig redaktør/adm. direktør og Akersgata 55 som besøksadresse. Samtidig er dette en **institusjons-/arbeidsadressekobling**, ikke bevis for hvert internt rom eller oppmøte. | **BLOCKED** inntil canonical People Profile, bildekilde og faktisk preview er kontrollert. |
+| `torry_pedersen` | VGs tidligere ansvarlige redaktør | [Lokalhistoriewiki](https://lokalhistoriewiki.no/wiki/Verdens_Gang) oppgir ansvarlig redaktør 2011–2017, etter flyttingen til nr. 55 i 1994. Stedlig relasjon er plausibel gjennom dokumentert avisadresse, men mangler person-eid kilde- og bildepakke. | **BLOCKED** inntil person-eid claim og foto. |
+| `bernt_olufsen` | VG-redaktør 1994–2011 | [Lokalhistoriewiki](https://lokalhistoriewiki.no/wiki/Verdens_Gang) oppgir hans redaktørperiode 1994–2011, mens VG allerede hadde etablert nr. 55. Eksakt tittel og periodisering i nåværende `desc` må behandles separat, ikke avledes fra et gammelt redaktørfoto. | **BLOCKED** inntil personprofil og foto er dokumentert. |
+| `hanne_skartveit` | Politisk redaktør (nåværende ordlyd) | [VG 03.11.2023](https://www.vg.no/nyheter/i/BWLMXQ/hanne-skartveit-slutter-som-politisk-redaktoer-i-vg-jeg-velger-kjaerligheten) dokumenterer at hun sluttet som politisk redaktør og gikk til en fristilt redaktørstilling. Dagens `desc` er derfor foreldet i nåtidsform; VG har fortsatt en forfatterside, men ikke samme tittel. | **BLOCKED – konkret tekst- og kilderegresjon**, rett med kontrollert People Profile/claim og bildebevis, ikke stilltiende i Place-rekorden. |
+| `trine_eilertsen` | Aftenpostens politiske redaktør fra 2014 | Eksisterende `trine_eilertsen.claims.json` knytter til Aftenpostens flytting til nr. 55 i 2014, men feltet `completion.fact_review` er `pending` og personstatus `legacy_unreviewed`. Det er ikke riktig å regne henne som ferdig bare fordi relasjonen finnes. | **BLOCKED** til fact review og bildeproveniens er godkjent. |
+| `kare_valebrokk` | Primær `vg_huset`, `year:1980` | [VGs minneord «En journalistisk entreprenør»](https://www.vg.no/nyheter/i/6LppL/en-journalistisk-entreprenoer) viser Valebrokk i **det gamle VG-huset** sammen med Bernt Olufsen. Dagens hus er dokumentert oppført først i 1994. Generell tabloid-/VG-tilknytning er ikke tilstrekkelig til person–**nybygg**-kobling. Personen mangler også bilde. | **AVVIS SOM AKTUELL VG-HUSET-MEDLEM**. Egen retting må finne korrekt historisk primæranker eller lovlig modell for person uten feilaktig sted. Ikke gi ham `PASS` her. |
+
+## Metode og avgrensning
+
+- Bindende kontrakter: `docs/people-of-places-method.md`, `docs/PEOPLE_PROFILE_CANONICAL.md`, `docs/PEOPLE_IMAGES.md`, `data/places/README_place_rounds.md`.
+- Ingen av disse kan opptas i `place_card_profile.collection_ids` før minst én relevant person har ferdig kilde-/profilreview **og** lokalt, lovlig, lastbart portrett med identitets- og rettighetsproveniens.
+- Personen skal være knyttet til det fysiske stedet i rett periode. VGs grunnleggelse i Akersgata 34 er ikke automatisk VG-huset fra 1994.
+- Behold eksisterende People-filer uendret i denne kandidaten-auditen. De skal korrigeres gjennom egen kontrollert People-produksjon, ikke ved å fjerne relasjoner og etterlate ugyldige tomme `places`-arrays.
+
+**Faseavgjørelse:** People er en reell kandidatsamling, men **BLOCKED**. Neste arbeid er retting av Valebrokks historiske anker, Skartveits utdaterte nåtidstittel og kilde-/bildeproveniens for høyt prioriterte representanter. Images/Objects/Brands/Productions, QuizCard og endelig PlaceCard følger etter dette. Ingen ferdigstatus eller merge.
