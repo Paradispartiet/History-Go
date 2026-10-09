@@ -8,6 +8,7 @@ const unifiedSource = fs.readFileSync("js/ui/place-unified-surface.ts", "utf8");
 const runtime = fs.readFileSync("dist/web/place-unified-surface.js", "utf8");
 const css = fs.readFileSync("css/place-sheet.css", "utf8");
 const collectionsSource = fs.readFileSync("js/ui/place-rounds-visual-collections.js", "utf8");
+const onsiteSource = fs.readFileSync("js/ui/place-onsite-surface.js", "utf8");
 
 test("Phase 1 shell reuses existing PlaceCard nodes instead of cloning them", () => {
   assert.match(shellSource, /media\.prepend\(front\)/);
@@ -100,12 +101,25 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
   const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
-  const eventsBox = nav?.querySelector("#pcEventsBox");
-  assert.ok(nav && aboutButton && sideStack && eventsBox);
+  assert.ok(nav && aboutButton && sideStack);
   assert.equal(collectionLinks.length, 4);
   assert.equal(aboutButton.nextElementSibling, collectionLinks[0]);
-  assert.equal(collectionLinks.at(-1)?.nextElementSibling, eventsBox);
   assert.equal(sideStack.parentElement?.classList.contains("pc-sheet-explore-grid"), true);
+
+  // The on-site owner relocates the same canonical node after the shell has
+  // initially mounted it in the nav. No Events/Møtes copy is introduced.
+  window.HGEvents = { ready:true, getUpcomingByPlace: () => [] };
+  window.fetch = async () => ({ ok:false });
+  window.eval(onsiteSource);
+  window.HGPlaceOnSiteSurface.decorate(true);
+  const eventsBox = shell.querySelector(".pc-sheet-hero-copy > .pc-text > #pcEventsBox");
+  assert.ok(eventsBox);
+  assert.equal(nav.querySelector("#pcEventsBox"), null);
+  assert.equal(card.querySelectorAll("#pcEventsBox").length, 1);
+  assert.deepEqual(
+    [...eventsBox.querySelectorAll("[data-hg-onsite-action]")].map(button => button.dataset.hgOnsiteAction),
+    ["events", "meet"]
+  );
   assert.match(shell.querySelector(".pc-sheet-canonical-about")?.textContent || "", /Lang canonical omtekst/);
   assert.equal(popupCalls, 0, "standard Place must not invoke the legacy popup renderer");
   assert.equal(card.querySelector('.hg-popup .hg-place-about-section'), null, "canonical popupDesc node must have one visual owner");
