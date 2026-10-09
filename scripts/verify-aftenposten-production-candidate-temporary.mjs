@@ -272,7 +272,8 @@ try {
     }
     assert.match(sections.history, /1964/);
     assert.match(sections.language, /fotosats/i);
-    assert.match(sections.learning, /Aftenposten|produksjonskjeden|redaksjon/i);
+    assert.match(sections.learning, /Åpne stedets fagverkside/);
+    assert.match(await page.locator('[data-hg-place-sheet-section="learning"] a').first().getAttribute('href'), new RegExp(`fagverk-sted\\.html\\?place=${placeId}`));
     await page.locator('[data-hg-place-sheet-jump="about"]').click();
     await page.evaluate(async id => {
       const place = window.PLACES.find(p => p.id === id);

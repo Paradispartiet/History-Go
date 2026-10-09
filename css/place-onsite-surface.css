@@ -211,3 +211,64 @@ body.hg-app .pc-onsite-meet-choice small{
     font-size:8px;
   }
 }
+
+/* The canonical Events + Møtes surface sits between the landscape photo
+   (with People/Merker rounds) and the description, not in the sticky nav.
+   The two actions use the same runtime and keep their existing click paths. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox{
+  display:block;
+  order:1;
+  grid-column:auto;
+  grid-row:auto;
+  width:100%;
+  max-width:100%;
+  min-height:0;
+  max-height:none;
+  height:auto;
+  margin:10px 0 8px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  box-sizing:border-box;
+  overflow:visible;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox[hidden]{
+  display:none !important;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox .pc-onsite-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  width:100%;
+  align-items:stretch;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox .pc-onsite-action{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  padding:9px 12px;
+  border-radius:12px;
+  box-sizing:border-box;
+}
+
+@media(max-width:520px){
+  body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox{
+    margin:7px 0 6px;
+  }
+  body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox .pc-onsite-actions{
+    gap:6px;
+  }
+  body.hg-app #placeCard.is-place-sheet-direct .pc-text > #pcEventsBox .pc-onsite-action{
+    min-height:40px;
+    padding:7px 9px;
+  }
+}

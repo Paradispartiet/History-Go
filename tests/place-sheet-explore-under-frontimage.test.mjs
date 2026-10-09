@@ -5,6 +5,8 @@ import fs from "node:fs";
 const shellSource = fs.readFileSync("js/ui/place-sheet/place-sheet-shell.ts", "utf8");
 const css = fs.readFileSync("css/place-sheet.css", "utf8");
 const phase6Css = fs.readFileSync("css/place-sheet-phase6.css", "utf8");
+const onsiteRuntime = fs.readFileSync("js/ui/place-onsite-surface.js", "utf8");
+const onsiteCss = fs.readFileSync("css/place-onsite-surface.css", "utf8");
 
 test("Place Sheet keeps title and popup description above frontImage with collection rounds to its right", () => {
   assert.match(
@@ -23,10 +25,12 @@ test("Place Sheet collection visuals have no dark background box", () => {
   assert.match(css, /\.pc-sheet-explore-grid \.pc-collection\[data-collection-shape="rectangle"\]::before\{[\s\S]*?display:none/);
 });
 
-test("Place Sheet header uses collection text links after Om while Events and Meet stay in the header", () => {
+test("Place Sheet keeps collection text links, but restores Events and Møtes below the landscape", () => {
   assert.match(shellSource, /data-hg-place-sheet-collection-link/);
   assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
-  assert.match(shellSource, /insertAfter\?\.after\(events\)/);
+  assert.match(onsiteRuntime, /hero\.after\(box\)/);
+  assert.match(onsiteRuntime, /ensureBelowLandscape\(\)/);
+  assert.match(onsiteRuntime, /childList: true/);
   assert.doesNotMatch(shellSource, /insertAfter\?\.after\(sideStack\)/);
 });
 
@@ -34,6 +38,7 @@ test("Place Sheet header scrolls horizontally without moving collection images i
   assert.match(shellSource, /if \(shell\.firstElementChild !== nav\) shell\.prepend\(nav\)/);
   assert.match(phase6Css, /\.pc-sheet-section-nav\{[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?overflow-x:auto;/);
   assert.doesNotMatch(phase6Css, /> \.pc-side-stack/);
-  assert.match(phase6Css, /> #pcEventsBox[\s\S]*?height:38px/);
-  assert.match(phase6Css, /#pcEventsBox \.pc-onsite-actions\{[\s\S]*?display:flex/);
+  assert.doesNotMatch(phase6Css, /> #pcEventsBox/);
+  assert.match(onsiteCss, /\.pc-text > #pcEventsBox\{/);
+  assert.match(onsiteCss, /\.pc-text > #pcEventsBox \.pc-onsite-actions\{[\s\S]*?grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
 });
