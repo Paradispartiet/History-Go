@@ -53,6 +53,14 @@ try{
       viewport:{width:innerWidth,height:innerHeight}};
   });
   console.log('HG_GRABEIN_OPEN_CARD '+JSON.stringify({profile,pos}));
+  await page.waitForTimeout(750);
+  const visible=await page.evaluate(()=>{
+    const pc=document.getElementById('placeCard'),r=pc.getBoundingClientRect(),st=getComputedStyle(pc);
+    const at=document.elementFromPoint(Math.min(innerWidth-1,r.left+35),Math.min(innerHeight-1,r.top+150));
+    return {classes:pc.className,ariaHidden:pc.getAttribute('aria-hidden'),display:st.display,visibility:st.visibility,opacity:st.opacity,transform:st.transform,zIndex:st.zIndex,atPoint:at?.id||at?.className||at?.tagName,insideCard:!!at&&pc.contains(at)};
+  });
+  console.log('HG_GRABEIN_VISUAL_STATE '+JSON.stringify({profile,visible}));
+  assert.ok(visible.opacity!=='0'&&visible.visibility==='visible'&&visible.insideCard,profile+' PlaceCard visibly overlays map');
   assert.ok(pos.cardRect.top>=0&&pos.cardRect.bottom<=viewport.height+2,profile+' card fits viewport');
   assert.ok(pos.frontImage.loaded,profile+' front image loads');
   await page.screenshot({path:'grabein-two-collections-'+profile+'-before-popup.png',fullPage:true});
