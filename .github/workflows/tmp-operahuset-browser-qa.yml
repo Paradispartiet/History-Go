@@ -1,0 +1,55 @@
+name: Temporary Operahuset Browser Playthrough
+
+on:
+  push:
+    branches:
+      - quiz/operahuset-scenekunst-4x7-20261009
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-operahuset-browser-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  playthrough:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install tooling
+        run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Play through all Operahuset quiz sets
+        run: node scripts/verify-place-quiz-browser.mjs operahuset
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: operahuset-quiz-browser-evidence
+          path: artifacts/place-quiz/operahuset/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Remove this temporary QA workflow
+        run: rm .github/workflows/tmp-operahuset-browser-qa.yml
+      - name: Commit temporary workflow removal
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- .github/workflows/tmp-operahuset-browser-qa.yml
+          git commit -m "Remove temporary Operahuset browser QA after passing"
+          git push origin HEAD:quiz/operahuset-scenekunst-4x7-20261009
