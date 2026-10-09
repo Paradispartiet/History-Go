@@ -32,11 +32,11 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Quiz | PASS | PR #6159, ingen omproduksjon |
 | Bilder (`image`, stående `frontImage`) | PASS teknisk, manuell UI-QA gjenstår | To lokale, separate WebP-varianter fra rettighetsklarert Commons-original; portrett dimensjonskontrollert og bildekontroll bestått |
 | QuizCard + flip | PASS automatisk browser-QA, manuell skjermbildegjennomgang gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
-| PlaceCard-samlinger | DELVIS PASS, ny visuell QA kreves | Ett kildebåret medlem er nå plassert under `historical_events` (ikke legacy `productions`). 2022-fotografiet av 1888-bygningen har eksplisitt moderne datering. People, Objects og Brands er fortsatt under egen kandidatvurdering. |
+| PlaceCard-samlinger | PASS teknisk for én samling; manuell visuell QA gjenstår | Ett kildebåret medlem er nå plassert under `historical_events` (ikke legacy `productions`). 2022-fotografiet av 1888-bygningen har eksplisitt moderne datering. People, Objects og Brands er fortsatt under egen kandidatvurdering. |
 | People | BLOCKED | Bjørklund-familien er dokumentert, men ikke tilstrekkelig individualisert til People-profil; Ole Olsen/Haeselich må auditeres mot eksisterende kanoniske personer og stedskrav |
 | Objects | BLOCKED | Museets symaskin, seng m.m. er fotografert, men konkrete museumsobjekters proveniens og eierskap er ikke verifisert |
 | Brands | BLOCKED | Oslo Museum/Tøyenhagen og «Gråbein» må testes mot Brand-kontrakten før N/A eller PASS |
-| Historiske hendelser | PASS datamodell, ny UI-QA kreves | Oppføringen av akkurat Tøyengata 38B i 1888 er registrert under canonical `historical_events` med kilde og bilde av den bevarte bygningen fra 2022. Innflytting 1891 og tilbakeføring 1987 forblir tidsankere; de løftes ikke automatisk til samlingsmedlemmer. |
+| Historiske hendelser | PASS automatisert browser-QA, manuell bilde-QA gjenstår | Oppføringen av akkurat Tøyengata 38B i 1888 er registrert under canonical `historical_events` med kilde og bilde av den bevarte bygningen fra 2022. Innflytting 1891 og tilbakeføring 1987 forblir tidsankere; de løftes ikke automatisk til samlingsmedlemmer. |
 | Stories | BEGRUNNET N/A foreløpig | Ingen uavhengig narrativ utover beboerhistorikk/kronologi bekreftet |
 | Før/etter | BLOCKED | Behov for stedstro historisk bildepar før det kan godkjennes |
 | Nyheter | BEGRUNNET N/A foreløpig | Ikke konstruer samtidige hendelser fra tidligere museumsarrangementer |
@@ -83,3 +83,16 @@ Kilder kontrollert:
 ## Canonical kategoriuttrykk — korrigert 9. oktober 2026
 
 Historie-kontrakten for nye/vesentlig reviderte steder krever `historical_events`. Gråbeins tidligere `productions` var et legacy-avvik. Den ene stedsspesifikke 1888-hendelsen er derfor flyttet **uten å lage en ny hendelse eller endre quiz**. `place_card_profile.collection_ids` peker til `historical_events`, som støttes av `js/ui/place-rounds-visual-collections.js`. Avledet Place-open og quiz-kontekst må være kontrollert på eksakt PR-head. Ny browser-QA kreves fordi tidligere gjennomspilling testet den gamle kategorinøkkelen.
+
+## Historisk hendelse — faktisk browser-QA på migrert datamodell
+
+- Kjøring: https://github.com/Paradispartiet/History-Go/actions/runs/37954630937
+- Desktop 1440×1000 og mobil 390×844: `historical_events` med nøyaktig ett medlem, synlig og lastet fotografi, aktiv popup med år 1888 og korrekt Tøyengata-tekst, 0 px horisontalt overløp og ingen JavaScript-feil. **PASS automatisk**, ikke manuelt designreview.
+- To source/runtime-regresjonstester er også grønne: `tests/museumsleiligheten-grabein-collections.test.mjs` (samlingens eiergrense og Lesespor-lenker).
+- Genererte quiz-kontekst og Fagverk-release er produsert med canonical generator på migrert source, uten quizspørsmålsendring.
+
+## Historiske fotokandidater etter videre arkivsøk
+
+- Oslo Museum / Oslobilder, `OB.A6017`: fotograf Rune Aakvik, gårdsinteriør/hage/lekeplass ved Tøyengata 38 i **1993**. https://oslobilder.no/OMU/OB.A6017
+- Oslo Museum / Oslobilder, `OB.F29508`: fotograf Heidi Bakke, kjøkken i Museumsleiligheten Tøyengata 38B i **1996**. https://oslobilder.no/OMU/OB.F29508
+- Begge er relevante kilder for restaurert bruk, men **ikke dokumentasjon på interiøret før 1987**. Verken kamerastandpunktparitet eller publiserbar fotorett er ferdig kontrollert. Ingen av dem materialiseres som `for_na` nå.
