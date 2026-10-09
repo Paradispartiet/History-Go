@@ -717,10 +717,37 @@ body.hg-app #btnExitMap:hover{
 
 .header-menu-intro{
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   margin: 0 2px 12px;
+}
+
+.header-menu-heading-tools{
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+}
+
+.header-menu-language{
+  flex: 0 0 52px;
+  width: 52px;
+  height: 36px;
+  padding: 3px 5px;
+  border: 1px solid rgba(255,255,255,.24);
+  border-radius: 10px;
+  background: rgba(255,255,255,.09);
+  color: #fff;
+  color-scheme: dark;
+  font: 19px/1 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.header-menu-language:focus-visible{
+  outline: 2px solid #f6d15a;
+  outline-offset: 2px;
 }
 
 .header-menu-intro strong{
