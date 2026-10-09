@@ -81,7 +81,7 @@
     "source_review": "reports/place-production/vg-huset-source-review-20261009.md"
   },
   "blockers": [
-    "Asset byte/import/orientation verified for separate licensed image/frontImage; real PlaceCard mobile/desktop image QA still outstanding",
+    "PlaceCard content collections/QuizCard/full popup and editorial mobile layout QA still outstanding; photo-only Chromium QA passed",
     "No source- and asset-approved PlaceCard member collections",
     "Quiz and QuizCard not verified for current full-production gate",
     "Fagverk and language not browser-verified",
@@ -89,7 +89,7 @@
   ],
   "media_assets": {
     "image": {
-      "status": "IMPORTED_NOT_BROWSER_QA",
+      "status": "PASS_BROWSER_MEDIA_ONLY",
       "file": "bilder/places/vg_huset_akersgata_55_2026.webp",
       "source": "https://commons.wikimedia.org/wiki/File:Akersgata_55_med_VG_og_Aftenposten_i_2026.jpg",
       "creator": "Helge Høifødt",
@@ -98,7 +98,7 @@
       "taken": "2026-07-01"
     },
     "frontImage": {
-      "status": "IMPORTED_NOT_BROWSER_QA",
+      "status": "PASS_BROWSER_MEDIA_ONLY",
       "file": "bilder/places/vg_huset_front_2007.webp",
       "source": "https://commons.wikimedia.org/wiki/File:Verdens_Gang_Akersgata.jpg",
       "creator": "Bjørn Erik Pedersen",
@@ -107,6 +107,26 @@
       "taken": "2007-02-10"
     },
     "import_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37978870510",
-    "generator_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37979068005"
+    "generator_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37979068005",
+    "browser_qa_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37979568851",
+    "browser_qa_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/37979568851/artifacts/11639997073",
+    "browser_qa_evidence": {
+      "profiles": [
+        "desktop_1440x900",
+        "mobile_touch_390x844"
+      ],
+      "frontImageNatural": {
+        "width": 1272,
+        "height": 1900
+      },
+      "imageNatural": {
+        "width": 1900,
+        "height": 1267
+      },
+      "loaded": true,
+      "horizontalOverflowPixels": 0,
+      "pageErrors": 0,
+      "note": "Automated Chromium photo-only QA with real local app, not end-to-end canonical PlaceCard closeout or native iPad Safari QA."
+    }
   }
 }
