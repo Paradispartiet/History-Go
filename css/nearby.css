@@ -20,42 +20,37 @@
    ============================================================ */
 
 #nearbyListContainer{
-  background: rgba(10,10,10,0.96);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 18px;
+  background: rgba(10,10,12,0.96);
+  border: 1px solid rgba(255,255,255,0.19);
+  border-radius: 20px;
   box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+  padding: clamp(12px, 1.6vw, 22px);
 }
 
-/* Mobil-overlay: kant-til-kant, ingen «liten popover»-look */
 body.hg-app.hg-phone #nearbyListContainer{
-  border-radius: 0;
-  border-left: 0;
-  border-right: 0;
+  border-radius: 16px;
+  padding: 10px;
 }
 
-/* Utforsk-toggle: liten pill under header som åpner/lukker draweren */
+/* Eneste Utforsk-toggle: ordinær header-knapp, ikke et flytende kartlag. */
 #nearbyExploreToggle{
-  position: fixed;
-  top: calc(var(--hg-visual-header-height, 74px) + 10px);
-  right: max(12px, env(safe-area-inset-right));
-  z-index: 85;
-
+  position: static;
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-
-  padding: 9px 14px;
+  justify-content: center;
+  gap: 5px;
+  min-height: 34px;
+  padding: 6px 10px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(10,10,10,0.92);
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
   color: #fff;
-
   font-weight: 800;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1;
+  white-space: nowrap;
   cursor: pointer;
-
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
 }
 
 #nearbyExploreToggle:active{ transform: scale(0.98); }
@@ -63,6 +58,41 @@ body.hg-app.hg-phone #nearbyListContainer{
 #nearbyExploreToggle[aria-expanded="true"]{
   background: rgb(0,95,200);
   border-color: rgba(255,255,255,0.2);
+}
+
+/* Plass til hele headeren på mobil, uten en ekstra rad. */
+@media (max-width: 520px){
+  #nearbyExploreToggle{
+    min-height: 32px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+  }
+  #nearbyExploreToggle .nearby-explore-icon{
+    display: none;
+  }
+}
+
+/* På de smaleste telefonene bevares knappen som ikon med tilgjengelig navn. */
+@media (max-width: 380px){
+  #nearbyExploreToggle{
+    width: 32px;
+    padding: 0;
+  }
+  #nearbyExploreToggle .nearby-explore-icon{
+    display: inline;
+  }
+  #nearbyExploreToggle .nearby-explore-label{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
 }
 
 /* Kartmodus skal være rent kart: skjul toggle-knappen.
@@ -75,12 +105,14 @@ body.hg-app.map-only #nearbyExploreToggle{
 /* Head */
 #nearbyListContainer .leftpanel-head{
   display: flex;
+  flex: 1;
+  min-height: 0;
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
 
   gap: 10px;
-  padding: 2px 4px;
+  padding: 0;
   width: 100%;
 
   position: relative;
@@ -385,43 +417,6 @@ body.hg-app.hg-phone #nearbyListContainer .nearby-tab{
   flex: 0 0 auto;
 }
 
-body.hg-app.hg-phone .nearby-row2{
-  height: 140px;
-  margin-top: 8px;
-}
-
-body.hg-app.hg-phone #nearbyList.nearby-strip .nearby-item{
-  width: 180px;
-  height: 128px;
-}
-
-/* Mobil-overlay: draweren fyller flaten mellom header og footer.
-   Listene bryter da til rader og scroller vertikalt internt i
-   stedet for å være en lav horisontal strip. */
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .leftpanel-head{
-  flex: 1;
-  min-height: 0;
-}
-
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-row2{
-  flex: 1;
-  min-height: 0;
-  height: auto;
-  align-items: stretch;
-}
-
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
-  height: 100%;
-
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: center;
-
-  overflow-x: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
 /* Farger per tab (bakgrunn = farge) */
 .nearby-tab[data-leftmode="nearby"]{ background: rgb(0,72,150); }  /* blå */
 .nearby-tab[data-leftmode="routes"]{ background: rgb(26,120,55); }  /* grønn */
@@ -479,11 +474,13 @@ body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .nearby-strip{
    ============================================================ */
 
 .nearby-row2{
-  margin-top: 12px;   /* eller 8px, 14px osv */
-  height: 160px;
-  padding: 0 8px 6px;
   display: flex;
-  align-items: flex-end;
+  flex: 1;
+  min-height: 0;
+  height: auto;
+  margin-top: 8px;
+  padding: 0;
+  align-items: stretch;
 }
 
 /* Horisontal strip fyller hele row2 */
@@ -854,20 +851,95 @@ button.hg-explore-card:focus-visible{
   text-align:center;
 }
 
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open #leftEventsList,
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open #leftSocialList{
-  height:100%;
-  flex-direction:column;
-  flex-wrap:nowrap;
-  align-items:stretch;
-  overflow-x:hidden;
-  overflow-y:auto;
-  padding:8px;
+
+
+/* ============================================================
+   UTFORSK — FULL-HØYDE RUTENETT
+   Samme kortflate for Steder, Folk, Natur, Ruter og Merker.
+   Scrolling skjer inne i listen; panelet beholder kartrammen.
+   Den ekstra .is-drawer-open-spesifisiteten overstyrer legacy
+   horisontale strips i css/people.css og css/nature.css.
+   ============================================================ */
+
+#nearbyListContainer.is-drawer-open .nearby-strip,
+#nearbyListContainer.is-drawer-open #leftEventsList,
+#nearbyListContainer.is-drawer-open #leftSocialList{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+  grid-auto-rows: clamp(165px, 22vh, 220px);
+  align-content: start;
+  align-items: stretch;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 2px 2px 12px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
-body.hg-app.hg-phone #nearbyListContainer.is-drawer-open .hg-explore-card{
-  flex:0 0 auto;
-  width:100%;
-  min-height:118px;
+#nearbyListContainer.is-drawer-open .nearby-strip[hidden],
+#nearbyListContainer.is-drawer-open #leftEventsList[hidden],
+#nearbyListContainer.is-drawer-open #leftSocialList[hidden]{
+  display: none;
 }
 
+#nearbyListContainer.is-drawer-open .nearby-strip .nearby-item{
+  flex: none;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#nearbyListContainer.is-drawer-open #nearbyList.nearby-strip .nearby-item::after{
+  display: block;
+  background: linear-gradient(to bottom, transparent 42%, rgba(0,0,0,.76) 100%);
+}
+
+#nearbyListContainer.is-drawer-open #nearbyList.nearby-strip .nearby-content .nearby-title{
+  font-size: 16px;
+  line-height: 1.2;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#nearbyListContainer.is-drawer-open #nearbyList.nearby-strip .nearby-content .nearby-meta{
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+#nearbyListContainer.is-drawer-open #leftEventsList,
+#nearbyListContainer.is-drawer-open #leftSocialList{
+  grid-auto-rows: minmax(145px, auto);
+}
+
+#nearbyListContainer.is-drawer-open .hg-explore-card{
+  flex: none;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px){
+  #nearbyListContainer.is-drawer-open .nearby-strip,
+  #nearbyListContainer.is-drawer-open #leftEventsList,
+  #nearbyListContainer.is-drawer-open #leftSocialList{
+    grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+    grid-auto-rows: clamp(150px, 22dvh, 200px);
+    gap: 9px;
+    padding: 2px 1px 10px;
+  }
+
+  #nearbyListContainer.is-drawer-open #leftEventsList,
+  #nearbyListContainer.is-drawer-open #leftSocialList{
+    grid-auto-rows: minmax(140px, auto);
+  }
+}

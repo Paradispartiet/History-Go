@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/search.css">
-  <link rel="stylesheet" href="css/nearby.css?v=20260912-live-surfaces2">
+  <link rel="stylesheet" href="css/nearby.css?v=20261009-nearby-map-frame1">
   <link rel="stylesheet" href="css/miniProfile.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="css/merits.css">
@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/map.css">
-  <link rel="stylesheet" href="css/placeCard.css">
+  <link rel="stylesheet" href="css/placeCard.css?v=20261009-people-on-hero1">
   <link rel="stylesheet" href="css/place-onsite-surface.css?v=20260912-live-surfaces2">
   <link rel="stylesheet" href="css/wonderkammer.css">
   <link rel="stylesheet" href="css/footer.css">
@@ -60,6 +60,7 @@
   <link rel="stylesheet" href="css/popup-polish.css">
   <link rel="stylesheet" href="css/place-popup-v2.css">
   <link rel="stylesheet" href="css/place-popup-tabs.css">
+  <link rel="stylesheet" href="css/person-popup-v2.css?v=20261009-placecard-frame1">
 
   <!-- Console CSS -->
   <link rel="stylesheet" href="js/console/console.css">
@@ -88,12 +89,7 @@
    
   <div class="top-actions">
 
-    <select id="languageSelect" class="top-lang-select" aria-label="Language" title="Språk" data-hg-i18n-aria-label="ui.attr.language" data-hg-i18n-title="ui.language.label" style="max-width:120px; font-size:1.15rem; padding:4px 8px;">
-      <option value="nb" aria-label="Norsk" title="Norsk">🇳🇴</option>
-      <option value="en" aria-label="English" title="English">🇬🇧</option>
-      <option value="es" aria-label="Español" title="Español">🇪🇸</option>
-      <option value="pt" aria-label="Português" title="Português">🇧🇷🇵🇹</option>
-    </select>
+
 
     <a id="miniProfile" class="miniProfileTop" href="profile.html" aria-label="Profil" data-hg-i18n-aria-label="ui.attr.profile">
       <span id="miniName" class="mpt-name">Logg inn</span>
@@ -133,7 +129,15 @@
       <div id="headerMenuPanel" class="header-menu-panel" role="menu" aria-label="Headerverktøy" hidden>
         <div class="header-menu-intro">
           <span class="header-menu-eyebrow">History Go</span>
-          <strong>Hurtigmeny</strong>
+          <div class="header-menu-heading-tools">
+            <strong>Hurtigmeny</strong>
+            <select id="languageSelect" class="header-menu-language" aria-label="Language" title="Språk" data-hg-i18n-aria-label="ui.attr.language" data-hg-i18n-title="ui.language.label">
+              <option value="nb" aria-label="Norsk" title="Norsk">🇳🇴</option>
+              <option value="en" aria-label="English" title="English">🇬🇧</option>
+              <option value="es" aria-label="Español" title="Español">🇪🇸</option>
+              <option value="pt" aria-label="Português" title="Português">🇧🇷🇵🇹</option>
+            </select>
+          </div>
         </div>
 
         <div class="header-menu-search">
@@ -196,17 +200,18 @@
       </div>
     </div>
 
+    <button id="nearbyExploreToggle"
+            type="button"
+            aria-label="Utforsk"
+            data-hg-i18n-aria-label="ui.static.explore"
+            aria-controls="nearbyListContainer"
+            aria-expanded="false">
+      <span class="nearby-explore-icon" aria-hidden="true">🧭</span>
+      <span class="nearby-explore-label" data-i18n="ui.static.explore">Utforsk</span>
+    </button>
   </div>
 
 </header>
-
-  <button id="nearbyExploreToggle"
-          type="button"
-          aria-controls="nearbyListContainer"
-          aria-expanded="false">
-    <span aria-hidden="true">🧭</span>
-    <span data-i18n="ui.static.explore">Utforsk</span>
-  </button>
 
   <div id="nearbyListContainer" class="leftpanel is-drawer-closed">
 
@@ -254,8 +259,13 @@
 
   <div class="pc-body">
     <div class="pc-text">
-      <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
-      <div id="pcMeta" class="pc-meta"></div>
+      <div id="pcHeaderHero" class="pc-heading-hero">
+        <img id="pcHeaderImage" class="pc-heading-image" alt="" aria-hidden="true">
+        <div class="pc-heading-content">
+          <div id="pcMeta" class="pc-meta"></div>
+          <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
+        </div>
+      </div>
       <p id="pcDesc" class="pc-desc"></p>
     </div>
 
@@ -355,6 +365,6 @@
     }, { once: true });
   </script>
 
-  <script type="module" src="./js/app.js?v=20260913-place-status1"></script>
+  <script type="module" src="./js/app.js?v=20261009-placecard-media1"></script>
 </body>
 </html>

@@ -9,9 +9,9 @@ const place = JSON.parse(fs.readFileSync("data/places/by/oslo/places/bankplassen
 const related = place.related_place_ids.map(id => ({ id, name: id.replaceAll("_", " ") }));
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><style>
-  :root{--pc-round-gap:12px;--place-card-orb-size:120px}body{margin:0;font-family:sans-serif}.pc-grid{display:grid;grid-template-columns:280px 360px;gap:16px;width:656px;margin:24px}.pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack{height:300px}.pc-icons-quad{display:grid;height:300px}.pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}.pc-round[hidden]{display:none!important}#pcQuiz{margin:0 24px;padding:12px 22px}.pc-action-primary{font-weight:700;background:#ffd85b}@media(max-width:700px){.pc-grid{grid-template-columns:1fr;width:auto;margin:12px}.pc-media{height:180px}.pc-side-stack,.pc-icons-quad{height:260px}}
+  :root{--pc-round-gap:12px;--place-card-orb-size:120px}.pc-title-row{display:flex;align-items:center;gap:8px}.pc-title-row .pc-round{width:52px;height:52px;flex:0 0 52px}body{margin:0;font-family:sans-serif}.pc-grid{display:grid;grid-template-columns:280px 360px;gap:16px;width:656px;margin:24px}.pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack{height:300px}.pc-icons-quad{display:grid;height:300px}.pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}.pc-round[hidden]{display:none!important}#pcQuiz{margin:0 24px;padding:12px 22px}.pc-action-primary{font-weight:700;background:#ffd85b}@media(max-width:700px){.pc-grid{grid-template-columns:1fr;width:auto;margin:12px}.pc-media{height:180px}.pc-side-stack,.pc-icons-quad{height:260px}}
   </style></head><body><div id="placeCard" data-current-place-id="bankplassen"><div class="pc-body"><div class="pc-title-row"><h2>Bankplassen</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div class="pc-grid"><div class="pc-media">frontImage-/medieflate</div><div class="pc-side-stack"><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round">People</div><div id="pcBrandsIcon" class="pc-round">Brands</div></div></div></div><div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div><button id="pcQuiz" hidden>Ta quiz</button><div id="capture"></div>
-  <script>window.PLACES=${JSON.stringify([place, ...related])};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script><script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script><script>window.addEventListener('DOMContentLoaded',()=>{window.HGPlaceCardCollections.apply(window.PLACES[0]).then(()=>{window.__auditReady=true}).catch(error=>{window.__auditError=String(error&&error.stack||error)})})</script></body></html>`;
+  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"johannes_brun",name:"Johannes Brun"}];window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script><script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script><script>window.addEventListener('DOMContentLoaded',()=>{window.HGPlaceCardCollections.apply(window.PLACES[0]).then(()=>{window.__auditReady=true}).catch(error=>{window.__auditError=String(error&&error.stack||error)})})</script></body></html>`;
 
 const mime = { ".html":"text/html; charset=utf-8", ".js":"text/javascript; charset=utf-8", ".css":"text/css; charset=utf-8" };
 const server = http.createServer((request, response) => {
@@ -33,9 +33,10 @@ try {
   await page.waitForFunction(() => window.__auditReady === true);
 
   const verify = async expectedWidth => {
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "4");
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "3");
+    assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden])").count(), 1);
     assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
     assert.equal(await page.locator("#pcPeopleIcon").isVisible(), true);
     assert.equal(await page.locator("#pcBrandsIcon").isVisible(), true);
     assert.equal(await page.locator("#pcQuiz").isVisible(), true);
@@ -44,9 +45,10 @@ try {
       const box = element => { const rect = element.getBoundingClientRect(); return { x:rect.x, y:rect.y, width:rect.width, height:rect.height }; };
       const gridElement = document.querySelector(".pc-icons-quad");
       const style = getComputedStyle(gridElement);
-      return { people:box(document.getElementById("pcPeopleIcon")), objects:box(document.getElementById("pcObjectsIcon")), brands:box(document.getElementById("pcBrandsIcon")), category:box(document.getElementById("pcCategoryCollectionIcon")), grid:box(gridElement), columns:style.gridTemplateColumns, rows:style.gridTemplateRows };
+      return { people:box(document.getElementById("pcPeopleIcon")), badge:box(document.getElementById("pcBadgesIcon")), objects:box(document.getElementById("pcObjectsIcon")), brands:box(document.getElementById("pcBrandsIcon")), category:box(document.getElementById("pcCategoryCollectionIcon")), grid:box(gridElement), columns:style.gridTemplateColumns, rows:style.gridTemplateRows };
     });
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
+    assert.ok(geometry.people.x + geometry.people.width <= geometry.badge.x + 1, "People is beside Merker");
     assert.ok(geometry.objects.width > geometry.objects.height);
     assert.ok(geometry.brands.width > geometry.brands.height);
     assert.ok(geometry.category.width > geometry.category.height);

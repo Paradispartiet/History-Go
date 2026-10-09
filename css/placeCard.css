@@ -35,11 +35,12 @@
 
 
 #placeCard{
-  --place-card-media-width: clamp(150px, 32vw, 320px);
+  /* A 3:4 frontImage alongside 3 x 4 equal-size circles. */
+  --place-card-media-width: min(320px, calc((100vw - 56px) / 2));
   --place-card-media-height: calc(var(--place-card-media-width) * 4 / 3);
-  --place-card-media-gap: clamp(12px, 2vw, 20px);
-  --pc-round-gap: clamp(12px, calc(var(--place-card-media-width) * 0.075), 24px);
-  --place-card-orb-size: calc((var(--place-card-media-height) - (2 * var(--pc-round-gap))) / 3);
+  --place-card-media-gap: clamp(8px, 1.8vw, 14px);
+  --pc-round-gap: clamp(5px, 1vw, 9px);
+  --place-card-orb-size: calc((var(--place-card-media-width) - var(--pc-round-gap) - var(--pc-round-gap)) / 3);
   --pc-round-size: var(--place-card-orb-size);
   --pc-popout-right: calc(12px + var(--pc-round-size) + 10px);
   --pc-popout-step: calc(var(--pc-round-size) + var(--pc-round-gap));
@@ -52,7 +53,7 @@
   /* Fast topp rett under Utforsk og fast bunn mot footeren.
      Posisjon/lag styres autoritativt i css/layout.css
      (body.hg-app #placeCard); verdiene her er robust fallback. */
-  top: calc(var(--hg-visual-header-height, 74px) + 58px);
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
   bottom: var(
     --hg-bottom-nav-height,
     calc(72px + env(safe-area-inset-bottom, 0px))
@@ -107,44 +108,36 @@
 
 #placeCard::before{
   content:"";
-  display:none;                     /* fjern “handle” */
+  display:none;
 }
 
-/* ===================================================== */
-/* Innhold: bilde venstre – tekst høyre                   */
-/* ===================================================== */
-
-
-/* Grid */
+/* Portrait card and 12 round previews form one responsive media grid. */
 #placeCard .pc-grid{
   display: grid;
-  grid-template-columns: var(--place-card-media-width) minmax(var(--place-card-media-width), 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: auto auto;
-
   column-gap: var(--place-card-media-gap);
   row-gap: 12px;
-
-  width: 100%;
+  width: min(100%, 680px);
   max-width: 100%;
-  padding: 22px 12px 12px;
+  margin-inline: auto;
+  padding: 18px 12px 12px;
   box-sizing: border-box;
 }
 
 .pc-frontcard{
-  grid-column:1;
-  grid-row:1;
-
-  width: var(--place-card-media-width);
-  max-width: var(--place-card-media-width);
-  justify-self: start;
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
   aspect-ratio: 3 / 4;
-  /* Hindrer at kortet vokser forbi skjermen på lave/landskaps-viewporter,
-     slik at vi slipper intern scroll. */
-  max-height: 46vh;
-  overflow:hidden;
-  border-radius:16px;
-  background:#000;
-  box-shadow: 0 10px 30px rgba(0,0,0,.55);
+  height: auto;
+  max-height: none;
+  overflow: hidden;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: 0 8px 24px rgba(0,0,0,.24);
   margin-top: 0;
   perspective: 1200px;
   position: relative;
@@ -287,40 +280,38 @@
   gap: 10px;
 }
 
-/* Media-kolonne: rundingområdet ved siden av frontImage */
+/* All 12 PlaceCard rounds fit beside frontImage: 3 columns and 4 rows.
+   Grid tracks stretch with the portrait card instead of overflowing onto a
+   dark blank area on small screens. Hidden rounds leave no occupied cell. */
 .pc-side-stack{
   grid-column: 2;
   grid-row: 1;
-
-  display: flex;
-  align-items: flex-end;
-
-  justify-self: end;
-  align-self: end;
-  justify-content: flex-end;
-  width: max-content;
+  display: block;
+  align-self: stretch;
+  justify-self: stretch;
+  width: 100%;
   min-width: 0;
-  max-width: none;
-  height: var(--place-card-media-height);
-  min-height: var(--place-card-media-height);
+  max-width: 100%;
+  height: auto;
+  min-height: 0;
+  background: transparent;
 }
 
-/* Ikon-kvadratet (rundingene) */
 .pc-icons-quad{
   display: grid;
-  grid-template-columns: repeat(3, var(--place-card-orb-size));
-  grid-template-rows: repeat(3, var(--place-card-orb-size));
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   gap: var(--pc-round-gap);
-
-  width: max-content;
+  width: 100%;
   min-width: 0;
-  max-width: none;
-  height: var(--place-card-media-height);
-  justify-content: end;
-  align-content: end;
+  max-width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+  min-height: 0;
+  align-content: stretch;
+  justify-content: stretch;
   transform: none;
-  margin-top: 0;
+  margin: 0;
 }
 
 .pc-events-quad{
@@ -396,14 +387,13 @@
 
 /* Rundinger – jevne, runde "tokens" */
 .pc-round{
-  width: var(--place-card-orb-size);
-  height: var(--place-card-orb-size);
-  min-width: var(--place-card-orb-size);
-  min-height: var(--place-card-orb-size);
-  max-width: var(--place-card-orb-size);
-  max-height: var(--place-card-orb-size);
-  flex: 0 0 var(--place-card-orb-size);
-
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  box-sizing: border-box;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background:
@@ -411,13 +401,11 @@
     #1d1b16;
   border: 1px solid rgba(255,255,255,.16);
   box-shadow:
-    0 8px 22px rgba(0,0,0,.5),
-    0 0 0 1px rgba(0,0,0,.4) inset;
-
+    0 4px 12px rgba(0,0,0,.28),
+    0 0 0 1px rgba(0,0,0,.3) inset;
   display: flex;
   align-items: center;
   justify-content: center;
-
   overflow: hidden;
   cursor: pointer;
   transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
@@ -429,6 +417,17 @@
   box-shadow:
     0 12px 28px rgba(0,0,0,.55),
     0 0 0 1px rgba(0,0,0,.4) inset;
+}
+
+#placeCard .pc-icons-quad .pc-round > img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
 }
 
 /* Datastyrte rundinger: skjulte ikoner tar ikke plass i grid-et.
@@ -470,6 +469,85 @@
     Helvetica,
     Arial,
     sans-serif;
+}
+
+/* Landscape place.image sits behind the heading, not behind the collectible card.
+   The photo is optional: no empty black hero remains when no image exists. */
+#placeCard .pc-heading-hero{
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: transparent;
+}
+
+#placeCard .pc-heading-hero.has-photo-source{
+  min-height: clamp(148px, 25vw, 205px);
+  background: #252621;
+}
+
+#placeCard .pc-heading-image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  display: block;
+  transition: opacity 180ms ease;
+}
+
+#placeCard .pc-heading-hero.has-image .pc-heading-image{
+  opacity: 1;
+}
+
+#placeCard .pc-heading-hero.has-photo-source::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.35) 38%, rgba(0,0,0,.83) 100%);
+}
+
+#placeCard .pc-heading-content{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 5px;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 15px;
+  box-sizing: border-box;
+}
+
+#placeCard .pc-heading-hero:not(.has-photo-source) .pc-heading-content{
+  padding: 4px 0 0;
+}
+
+#placeCard .pc-heading-content #pcMeta{
+  order: 0;
+  margin: 0;
+}
+
+#placeCard .pc-heading-content .pc-title-row{
+  order: 1;
+}
+
+#placeCard .pc-heading-content .pc-title-row #pcTitle{
+  order: 0;
+}
+
+#placeCard .pc-heading-content .pc-favorite-btn{
+  order: 1;
 }
 
 /* Fjern default margins */
@@ -563,110 +641,76 @@
   overflow: hidden;
 }
 
-/* Mobil: frontbildet og Rundingene deler ett ekte grid. Skjulte
-   rundinger fjernes av [hidden] og resten pakker seg automatisk. */
-@media (max-width: 600px){
-  body.hg-app #placeCard{
-    --pc-text-inset: 8px;
-    --pc-text-h: 184px;
-    --pc-round-gap: clamp(5px, 1.5vw, 8px);
-    --pc-round-size: clamp(38px, calc((100vw - 78px) / 6), 60px);
-  }
-
-  body.hg-app #placeCard .pc-grid{
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: none;
-    grid-auto-rows: auto;
-    grid-auto-flow: row dense;
-    gap: var(--pc-round-gap);
-    padding: 12px 10px 10px;
-    align-items: start;
-  }
-
-  body.hg-app #placeCard .pc-frontcard{
-    grid-column: 1 / span 3;
-    grid-row: 1 / span 3;
-    width: 100%;
-    max-width: none;
-    max-height: none;
-    min-width: 0;
-    aspect-ratio: 1 / 1;
-    height: auto;
-    margin: 0;
-    border-radius: 12px;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  /* Behold bilde-fallback og quizkortbakside, men ikke sorte letterbox-felt
-     rundt et faktisk innlastet stedsfoto. */
-  body.hg-app #placeCard .pc-card-face-front[data-media-state="ready"]{
-    background: transparent;
-  }
-  body.hg-app #placeCard .pc-card-face-front[data-media-state="ready"] img{
-    object-fit: cover;
-    object-position: center;
-  }
-
-  /* Wrapperne deltar ikke med egne bokser: hver synlig runding blir
-     en egen celle ved siden av, og ved behov under, frontbildet. */
-  body.hg-app #placeCard .pc-side-stack,
-  body.hg-app #placeCard .pc-icons-quad{
-    display: contents;
-  }
-
-  body.hg-app #placeCard .pc-round{
-    width: 100%;
-    height: auto;
-    min-width: 0;
-    min-height: 0;
-    max-width: none;
-    max-height: none;
-    flex: none;
-    aspect-ratio: 1 / 1;
-    box-sizing: border-box;
-    box-shadow: 0 3px 10px rgba(0,0,0,.22);
-  }
-
-  body.hg-app #placeCard .pc-round .pc-person-img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  body.hg-app #placeCard .pc-round-label{
-    gap: 2px;
-  }
-  body.hg-app #placeCard .pc-round-emoji{
-    font-size: clamp(18px, 4.5vw, 24px);
-  }
-  body.hg-app #placeCard .pc-round-count{
-    font-size: clamp(9px, 2.5vw, 12px);
-  }
-
-  body.hg-app #placeCard .pc-events-quad{
-    grid-column: 1 / -1;
-    grid-row: auto;
-    min-height: 44px;
-    max-height: none;
-    padding: 8px 10px;
-    margin-top: 6px;
-  }
-
-  body.hg-app #placeCard #pcTitle{
-    font-size: 25px;
-  }
-  body.hg-app #placeCard #pcMeta{
-    font-size: 11px;
-    margin-bottom: 8px;
-  }
-  body.hg-app #placeCard #pcDesc{
-    font-size: 16px;
-    line-height: 1.36;
-    -webkit-line-clamp: 4;
-  }
+body.hg-app.hg-phone #placeCard{
+  --place-card-media-gap: 8px;
+  --pc-round-gap: 5px;
+  --pc-text-inset: 8px;
+  --pc-text-h: 184px;
 }
+
+body.hg-app.hg-phone #placeCard .pc-grid{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--place-card-media-gap);
+  row-gap: 10px;
+  padding: 12px 8px 10px;
+}
+
+body.hg-app.hg-phone .pc-frontcard{
+  border-radius: 12px;
+}
+
+body.hg-app.hg-phone .pc-side-stack,
+body.hg-app.hg-phone .pc-icons-quad{
+  transform: none;
+  width: 100%;
+}
+
+body.hg-app.hg-phone .pc-events-quad{
+  min-height: 44px;
+  max-height: 56px;
+  padding: 8px 10px;
+}
+
+body.hg-app.hg-phone #placeCard .pc-heading-hero{
+  border-radius: 12px;
+}
+
+body.hg-app.hg-phone #placeCard .pc-heading-content{
+  padding: 12px;
+}
+
+body.hg-app.hg-phone #placeCard .pc-heading-hero:not(.has-photo-source) .pc-heading-content{
+  padding: 4px 0 0;
+}
+
+body.hg-app.hg-phone #placeCard .pc-round-label{
+  gap: 2px;
+}
+
+body.hg-app.hg-phone #placeCard .pc-round-emoji{
+  font-size: clamp(16px, 5vw, 24px);
+}
+
+body.hg-app.hg-phone #placeCard .pc-round-count{
+  font-size: clamp(10px, 2.8vw, 12px);
+}
+
+body.hg-app.hg-phone #placeCard #pcTitle{
+  font-size: 25px;
+}
+
+body.hg-app.hg-phone #placeCard #pcMeta{
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+body.hg-app.hg-phone #placeCard #pcDesc{
+  font-size: 16px;
+  line-height: 1.36;
+  -webkit-line-clamp: 4;
+}
+
+
 
 
 /* ===================================================== */
@@ -1533,6 +1577,57 @@
 #placeCard .pc-title-row #pcTitle {
   flex: 1 1 auto;
   min-width: 0;
+}
+
+/* PlaceCard hero: Personer is the same live round as before, relocated
+   next to Merker. Keep both circles on the landscape heading image. */
+#placeCard .pc-title-row > #pcPeopleIcon,
+#placeCard .pc-title-row > #pcBadgesIcon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  max-width: 52px;
+  max-height: 52px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+}
+
+#placeCard .pc-title-row > #pcPeopleIcon {
+  order: 2;
+}
+
+#placeCard .pc-title-row > #pcBadgesIcon {
+  order: 3;
+}
+
+#placeCard .pc-title-row > #pcPeopleIcon > img,
+#placeCard .pc-title-row > #pcBadgesIcon > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media (max-width: 520px) {
+  #placeCard .pc-title-row {
+    gap: 6px;
+  }
+
+  #placeCard .pc-title-row > #pcPeopleIcon,
+  #placeCard .pc-title-row > #pcBadgesIcon {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+  }
 }
 
 #placeCard .pc-favorite-btn {
