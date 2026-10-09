@@ -14,7 +14,7 @@ const ordinaryCategories = [
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="/css/layout.css"><link rel="stylesheet" href="/css/nearby.css"><link rel="stylesheet" href="/css/placeCard.css"><link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><link rel="stylesheet" href="/css/place-popup-shortcuts.css">
 <style>:root{--pc-round-gap:12px;--place-card-media-height:260px;--place-card-orb-size:110px;--hg-visual-header-height:74px;--hg-visual-footer-height:72px;--hg-bottom-nav-height:72px}body{margin:0;background:#111}#placeCard .pc-grid{display:grid;grid-template-columns:220px 360px;grid-template-rows:auto auto auto;width:580px;margin:20px}.pc-frontcard{width:220px;height:260px}.pc-side-stack{height:260px}.pc-icons-quad{display:grid;min-height:0}.pc-round{box-sizing:border-box;background:#29343b;color:white;border:1px solid #ddd;display:grid;place-items:center}#pcQuiz{display:block}@media(max-width:700px){#placeCard .pc-grid{grid-template-columns:220px 360px;width:580px;margin:10px}.pc-side-stack{height:250px}}</style></head><body class="hg-app">
-<button id="nearbyExploreToggle" type="button"><span>🧭</span><span>Utforsk</span></button>
+<header class="site-header" style="height:74px"><button id="nearbyExploreToggle" type="button"><span>🧭</span><span>Utforsk</span></button></header>
 <div id="placeCard" data-current-place-id="audit"><div class="pc-body"><div class="pc-text"><div class="pc-title-row"><h2 id="pcTitle">Audit</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div id="pcMeta"><button type="button" class="pc-category-meta">Politikk &amp; samfunn · 1950–1979</button><button type="button" class="pc-epoke">Epoke: Velferdsstat, korporatisme og planlegging</button><button type="button" class="pc-progress-status-line">Status: Ikke fullført · Gjenstår: Ta quiz</button></div><p id="pcDesc">Kort beskrivelse</p></div><div class="pc-grid">
 <div class="pc-frontcard"><div class="pc-card-face pc-card-face-front" data-media-state="fallback"><img id="pcFrontImage" alt=""></div></div>
 <div class="pc-side-stack"><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round"></div><div id="pcBrandsIcon" class="pc-round"></div></div></div><div class="pc-events-quad"></div></div>
@@ -41,8 +41,10 @@ try {
   const verify = async (category, expectedShapes) => {
     await page.goto(`http://127.0.0.1:${port}/__audit__/fullness.html?category=${category}`, { waitUntil:"networkidle" });
     await page.waitForFunction(() => window.__ready === true);
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4, category);
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "4", category);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), expectedShapes.length, category);
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), String(expectedShapes.length), category);
+    assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon").count(), 1, category);
+    assert.equal(await page.locator(".pc-icons-quad > #pcPeopleIcon").count(), 0, category);
     assert.deepEqual(await page.locator(".pc-icons-quad .pc-round:not([hidden])").evaluateAll(nodes => nodes.sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(node => node.dataset.collectionShape)), expectedShapes, category);
     const cells = await page.locator(".pc-icons-quad .pc-round:not([hidden])").evaluateAll(nodes => nodes.sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(node => { const r=node.getBoundingClientRect(); return { x:r.x, y:r.y, w:r.width, h:r.height }; }));
     assert.equal(new Set(cells.map(cell => Math.round(cell.y))).size, 2, category);
@@ -65,8 +67,12 @@ try {
       page.locator(".app-footer").boundingBox()
     ]);
     assert.ok(placeCardRect && exploreRect && titleRect && footerRect, `${category} anchored card geometry`);
-    const exploreGap = placeCardRect.y - (exploreRect.y + exploreRect.height);
-    assert.ok(exploreGap >= 4 && exploreGap <= 16, `${category} PlaceCard starts just below Utforsk`);
+    const headerRect = await page.locator(".site-header").boundingBox();
+    assert.ok(headerRect, `${category} header exists`);
+    assert.ok(exploreRect.y >= headerRect.y && exploreRect.y + exploreRect.height <= headerRect.y + headerRect.height + 1,
+      `${category} Utforsk stays inside the header`);
+    assert.ok(Math.abs(placeCardRect.y - (headerRect.y + headerRect.height + 12)) <= 2,
+      `${category} PlaceCard starts 12px below the header`);
     const footerGap = footerRect.y - (placeCardRect.y + placeCardRect.height);
     assert.ok(footerGap >= 10, `${category} PlaceCard keeps a visible footer gap`);
     assert.ok(titleRect.y - placeCardRect.y >= 8 && titleRect.y - placeCardRect.y <= 24, `${category} title stays at card top with breathing room`);
@@ -74,10 +80,10 @@ try {
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
     assert.match(await page.locator(".pc-card-face-front").evaluate(node => getComputedStyle(node, "::before").content), /HISTORY GO/, category);
   };
-  for (const category of ordinaryCategories) await verify(category, ["circle", "rectangle", "rectangle", "rectangle"]);
+  for (const category of ordinaryCategories) await verify(category, ["rectangle", "rectangle", "rectangle"]);
   await verify("natur", ["circle", "circle", "rectangle", "rectangle"]);
   await page.setViewportSize({ width:390, height:844 });
-  await verify("by", ["circle", "rectangle", "rectangle", "rectangle"]);
+  await verify("by", ["rectangle", "rectangle", "rectangle"]);
   await verify("natur", ["circle", "circle", "rectangle", "rectangle"]);
   assert.equal(await page.evaluate(() => window.__error || null), null);
   console.log("PlaceCard full-grid all-category browser audit OK");
