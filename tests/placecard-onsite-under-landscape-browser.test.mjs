@@ -10,7 +10,8 @@ const styles = [
   "/css/place-unified-surface.css",
   "/css/place-sheet.css",
   "/css/place-sheet-phase6.css",
-  "/css/place-onsite-surface.css"
+  "/css/place-onsite-surface.css",
+  "/css/place-rounds-fill-layout.css"
 ];
 const body = [
   '<!doctype html><html lang="nb"><head><meta charset="utf-8">',
@@ -36,7 +37,7 @@ const body = [
    '<div class="pc-card-face pc-card-face-front"><img id="pcFrontImage" alt="" /></div>',
    '</div></div>',
   '<div class="pc-sheet-explore-grid"><div class="pc-side-stack">',
-  '<div class="pc-icons-quad">',
+  '<div class="pc-icons-quad" data-collection-count="4">',
   '<div class="pc-collection" data-collection-id="objects" data-collection-shape="rectangle" aria-label="Gjenstander"></div>',
   '<div class="pc-collection" data-collection-id="brands" data-collection-shape="rectangle" aria-label="Brands"></div>',
   '<div class="pc-collection" data-collection-id="competitions" data-collection-shape="rectangle" aria-label="Kamper og konkurranser"></div>',
