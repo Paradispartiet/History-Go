@@ -40,6 +40,21 @@ try{
   assert.equal(state.count,'2');assert.equal(state.brand.source,'brands');assert.equal(state.brand.loaded,true);
   assert.match(state.brand.path,/oslo_museum\.svg/);assert.equal(state.event.source,'historical_events');assert.equal(state.event.loaded,true);
   assert.equal(state.brand.hidden,false);assert.equal(state.event.hidden,false);assert.ok(state.overflow<=2);
+  await page.evaluate(()=>window.expandPlaceCard());
+  await page.waitForFunction(()=>{
+    const pc=document.getElementById('placeCard');return !!pc&&pc.classList.contains('is-open')&&!pc.classList.contains('is-hidden')&&
+      pc.getBoundingClientRect().width>100&&pc.getBoundingClientRect().height>120&&getComputedStyle(pc).display!=='none';
+  },{timeout:25000});
+  const pos=await page.evaluate(()=>{
+    const pc=document.getElementById('placeCard'),r=pc.getBoundingClientRect(),front=document.getElementById('pcFrontImage');
+    const p=front?.getBoundingClientRect();
+    return {cardClasses:pc.className,cardRect:{top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height},
+      frontImage:{loaded:!!front&&front.complete&&front.naturalWidth>0,top:p?.top,width:p?.width,height:p?.height},
+      viewport:{width:innerWidth,height:innerHeight}};
+  });
+  console.log('HG_GRABEIN_OPEN_CARD '+JSON.stringify({profile,pos}));
+  assert.ok(pos.cardRect.top>=0&&pos.cardRect.bottom<=viewport.height+2,profile+' card fits viewport');
+  assert.ok(pos.frontImage.loaded,profile+' front image loads');
   await page.screenshot({path:'grabein-two-collections-'+profile+'-before-popup.png',fullPage:true});
   await page.locator('#pcBrandsIcon').click();
   const popup=page.locator('.hg-popup.placecard-round-popup.visible');
