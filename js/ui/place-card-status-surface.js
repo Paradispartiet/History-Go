@@ -142,8 +142,10 @@
 
   function renderStatus(place) {
     const reader = getReader();
-    const metaEl = document.getElementById("pcMeta");
-    if (!reader || !metaEl || !place) return null;
+    // A standalone status row lives immediately above the landscape hero.
+    // Retain pcMeta as a fallback for older standalone fixtures.
+    const statusHost = document.getElementById("pcStatusBar") || document.getElementById("pcMeta");
+    if (!reader || !statusHost || !place) return null;
 
     currentPlace = place;
     const placeId = safeText(place.id || place.placeId);
@@ -156,13 +158,13 @@
     if (summary.favorite) parts.push("Favoritt");
     parts.push(remainingActionLabel(summary));
 
-    let row = /** @type {HTMLButtonElement|null} */ (metaEl.querySelector(`[${ROW_ATTR}]`));
+    let row = /** @type {HTMLButtonElement|null} */ (statusHost.querySelector(`[${ROW_ATTR}]`));
     if (!row) {
       row = document.createElement("button");
       row.type = "button";
       row.setAttribute(ROW_ATTR, "1");
       row.className = "pc-progress-status-line";
-      metaEl.appendChild(row);
+      statusHost.appendChild(row);
     }
     row.textContent = `Status: ${parts.join(" · ")}`;
     row.setAttribute("aria-label", `${row.textContent}. Åpne neste handling.`);
