@@ -32,11 +32,11 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Quiz | PASS | PR #6159, ingen omproduksjon |
 | Bilder (`image`, stående `frontImage`) | PASS teknisk, manuell UI-QA gjenstår | To lokale, separate WebP-varianter fra rettighetsklarert Commons-original; portrett dimensjonskontrollert og bildekontroll bestått |
 | QuizCard + flip | PASS automatisk browser-QA, manuell skjermbildegjennomgang gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
-| PlaceCard-samlinger | DELVIS PASS, avsluttende visuell QA mangler | Én kildebåret historisk hendelse (oppføring 1888) har bildesikret medlem, merket 2022-foto. Andre kandidatfamilier er særskilt uferdige. |
+| PlaceCard-samlinger | DELVIS PASS, ny visuell QA kreves | Ett kildebåret medlem er nå plassert under `historical_events` (ikke legacy `productions`). 2022-fotografiet av 1888-bygningen har eksplisitt moderne datering. People, Objects og Brands er fortsatt under egen kandidatvurdering. |
 | People | BLOCKED | Bjørklund-familien er dokumentert, men ikke tilstrekkelig individualisert til People-profil; Ole Olsen/Haeselich må auditeres mot eksisterende kanoniske personer og stedskrav |
 | Objects | BLOCKED | Museets symaskin, seng m.m. er fotografert, men konkrete museumsobjekters proveniens og eierskap er ikke verifisert |
 | Brands | BLOCKED | Oslo Museum/Tøyenhagen og «Gråbein» må testes mot Brand-kontrakten før N/A eller PASS |
-| Historiske hendelser | BLOCKED | Byggeri 1888, innflytting 1891 og bevaring 1987 har tidsankere; særskilt hendelsesmedlem krever egen audit |
+| Historiske hendelser | PASS datamodell, ny UI-QA kreves | Oppføringen av akkurat Tøyengata 38B i 1888 er registrert under canonical `historical_events` med kilde og bilde av den bevarte bygningen fra 2022. Innflytting 1891 og tilbakeføring 1987 forblir tidsankere; de løftes ikke automatisk til samlingsmedlemmer. |
 | Stories | BEGRUNNET N/A foreløpig | Ingen uavhengig narrativ utover beboerhistorikk/kronologi bekreftet |
 | Før/etter | BLOCKED | Behov for stedstro historisk bildepar før det kan godkjennes |
 | Nyheter | BEGRUNNET N/A foreløpig | Ikke konstruer samtidige hendelser fra tidligere museumsarrangementer |
@@ -53,7 +53,7 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 - Desktop 1440 × 1000 og mobil 390 × 844: PASS på riktig sted og tittel, `place-card-collections-v2`, én materiell historisk hendelse med bilde og popup, QuizCard-tekst, front/bak-vending i begge retninger, quizrute, synlige bildeforespørsler, fravær av horisontal overflow og feil fra siden.
 - Første diagnostiske forsøk stoppet på bekreftelse av tilbakevending; andre komplette gjennomspilling verifiserte begge faktiske klikkhendelser og kortretninger, uten produktkodeendring. Denne første kjøringen gir grunn til å beholde regresjonsdekning, men er ikke alene bevis for en permanent feil.
 - Bevis: `grabein-placecard-mobile-desktop`-artefakt med desktop- og mobilskjermbilder og maskinlesbare tester fra kjøringen. Skjermbildene er **ikke manuelt designreviewet**.
-- Dette er teknisk QA for nåværende delvis produserte samlinger, **ikke** bekreftelse på full stedsproduksjon. People, Objects, Brands, Før/etter og Lesespor er fortsatt ikke lukket.
+- Denne QA-kjøringen gjaldt den tidligere `productions`-registreringen og dokumenterer ikke senere migrasjon til `historical_events`. People, Objects, Brands og Før/etter er ikke lukket; Lesespor er kildekontrollert og materialisert.
 
 ## Kandidataudit: People, Objects, Brands og Før/etter — 9. oktober 2026
 
@@ -79,3 +79,7 @@ Kilder kontrollert:
 - Commons om 2022-fotografiet: https://commons.wikimedia.org/wiki/File:T%C3%B8yengata_38_fra_KMS.jpg
 
 **Eiergrense:** Lesespor er publiserbare lenker, ikke en People-person, Object eller Story. Opplysningene om senere møblering betyr at påstander om Bjørklund-familiens spesifikke møbler må avvises. Lesespor er nå teknisk produsert; all annen oppført BLOCKED-status og manuell slutt-QA forblir åpen.
+
+## Canonical kategoriuttrykk — korrigert 9. oktober 2026
+
+Historie-kontrakten for nye/vesentlig reviderte steder krever `historical_events`. Gråbeins tidligere `productions` var et legacy-avvik. Den ene stedsspesifikke 1888-hendelsen er derfor flyttet **uten å lage en ny hendelse eller endre quiz**. `place_card_profile.collection_ids` peker til `historical_events`, som støttes av `js/ui/place-rounds-visual-collections.js`. Avledet Place-open og quiz-kontekst må være kontrollert på eksakt PR-head. Ny browser-QA kreves fordi tidligere gjennomspilling testet den gamle kategorinøkkelen.
