@@ -27,7 +27,7 @@ function ensureStylesheet(): void {
   if (document.querySelector('link[data-hg-place-sheet-learning-style="1"]')) return;
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "css/place-sheet-learning.css";
+  link.href = "css/place-sheet-learning.css?v=20261009-type-scale1";
   link.setAttribute("data-hg-place-sheet-learning-style", "1");
   document.head.appendChild(link);
 }
