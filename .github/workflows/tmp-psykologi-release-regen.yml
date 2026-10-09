@@ -1,0 +1,39 @@
+name: Temporary psychology Fagverk release regeneration
+
+on:
+  push:
+    branches:
+      - codex/psykologi-correct-norms-source-20261009
+    paths:
+      - .github/workflows/tmp-psykologi-release-regen.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-and-remove-workflow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Regenerate and verify canonical Fagverk release
+        run: |
+          set -euo pipefail
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+          test "$(git diff --name-only | tr '\n' ' ')" = "data/fagverk/fagverk_release.json "
+      - name: Remove temporary workflow and commit only source-derived release
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-psykologi-release-regen.yml
+          git add -- data/fagverk/fagverk_release.json .github/workflows/tmp-psykologi-release-regen.yml
+          test "$(git diff --cached --name-only | sort | tr '\n' ' ')" = ".github/workflows/tmp-psykologi-release-regen.yml data/fagverk/fagverk_release.json "
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build(fagverk): regenerate release for corrected psychology source"
+          git push origin HEAD:codex/psykologi-correct-norms-source-20261009
