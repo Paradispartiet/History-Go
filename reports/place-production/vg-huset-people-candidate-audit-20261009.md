@@ -23,3 +23,15 @@ Kilden er `data/people/media/oslo/people_media_oslo.json`. Seks tidligere person
 - Behold eksisterende People-filer uendret i denne kandidaten-auditen. De skal korrigeres gjennom egen kontrollert People-produksjon, ikke ved å fjerne relasjoner og etterlate ugyldige tomme `places`-arrays.
 
 **Faseavgjørelse:** People er en reell kandidatsamling, men **BLOCKED**. Neste arbeid er retting av Valebrokks historiske anker, Skartveits utdaterte nåtidstittel og kilde-/bildeproveniens for høyt prioriterte representanter. Images/Objects/Brands/Productions, QuizCard og endelig PlaceCard følger etter dette. Ingen ferdigstatus eller merge.
+
+## Fase 3A – korrigerende datamerge 2026-10-09
+
+**Endringene gjelder fem manglende bildebaner og én utdatert personbeskrivelse. Samlingen er fortsatt BLOCKED.**
+
+- Direkte GitHub-filoppslag for `bilder/kort/people/{torry_pedersen,gard_steiro,hanne_skartveit,bernt_olufsen,trine_eilertsen}.PNG` ga 404. Navnelisten for både `bilder/kort/people/` (151 filer) og `bilder/people/` (29 filer) har ingen tilsvarende fil. Dette bekrefter et faktisk runtime-manglende asset, ikke bare en ufullstendig attribusjonsregistrering.
+- For disse fem personene er `image` og `cardImage` derfor satt til tom streng i canonical `data/people/media/oslo/people_media_oslo.json`, slik at appen kan bruke sin eksisterende initial-/placeholdermekanisme fremfor å be nettleseren laste bilder som ikke finnes. **Ingen nye portretter eller lisenser er laget eller godkjent.**
+- `hanne_skartveit` er korrigert til politisk redaktør **2009–2023**, deretter overgang til fristilt redaktørstilling i november 2023. `year` ble satt til kildebelagt **2009** i stedet for **2014**. [VGs eget intervju 3. november 2023](https://www.vg.no/nyheter/i/BWLMXQ/hanne-skartveit-slutter-som-politisk-redaktoer-i-vg-jeg-velger-kjaerligheten) gir datoene. [VGs besøksadresse](https://www.vg.no/informasjon/kontakt-oss) begrunner organisasjonsankeret, men er ikke bevis for hvilket fysisk kontor Skartveit satt på.
+- Ny source-/field-/sentence-mappet claimbank: `data/people/claims/media/oslo/redaksjoner/hanne_skartveit.claims.json`, `3/3` verified claims. Profilen har status `blocked_insufficient_sources` inntil portrett/proveniens og ferdig People-presentasjon er godkjent; ingen `ready_people_v1` erklæres.
+- Kåre Valebrokk og øvrige kandidaters uavklarte historiske stedskoblinger er ikke forsøkt «fikset» med tilfeldig anker. Eksisterende plassreferanse beholdes under **BLOCKED** til korrekt fysisk sted er dokumentert.
+
+Den siste ferdigstatusen krever separate godkjente People-portretter og faktisk PlaceCard-medlems-/popup-QA. Ingen samlingsreferanse er materialisert på dette grunnlaget.
