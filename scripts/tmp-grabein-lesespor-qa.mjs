@@ -35,7 +35,14 @@ try{
   console.log('HG_GRABEIN_READING_DIAGNOSTIC '+JSON.stringify({profile,diagnostic,errors}));
   await page.waitForFunction(()=>typeof window.showPlacePopup==='function'&&typeof window.HGPlacePopupTabs?.resolveLesespor==='function',{timeout:10000});
   await page.evaluate(async key=>{await window.showPlacePopup(key)},id);
-  await page.waitForFunction(()=>document.querySelector('#hg-place-panel-reading .hg-place-reading-card')!==null,{timeout:45000});
+  const diagAfter=await page.evaluate(async key=>{
+    const records=await window.HGPlacePopupTabs.resolveLesespor(key);
+    const popup=[...document.querySelectorAll('.hg-popup')].map(x=>({classes:x.className,connected:x.isConnected,hasTabs:!!x.querySelector('.hg-place-tabs'),placeTitle:x.querySelector('.hg-popup-title')?.textContent}));
+    const panels=[...document.querySelectorAll('[data-place-panel]')].map(el=>({id:el.dataset.placePanel,hidden:el.hidden,cardCount:el.querySelectorAll('.hg-place-reading-card').length,preview:el.textContent.slice(0,80)}));
+    return {resolvedRecords:records.filter(x=>x.place_ids?.includes(key)).length,placeOpenRecords:window.HGPlaceOpen?.get?.(key)?.lesespor?.length,popup,panels,rawPlaceholder:document.getElementById('pcLesespor')?.textContent?.slice(0,120)};
+  },id);
+  console.log('HG_GRABEIN_READING_AFTER_OPEN '+JSON.stringify({profile,diagAfter,errors}));
+  await page.waitForFunction(()=>document.querySelector('#hg-place-panel-reading .hg-place-reading-card')!==null,{timeout:8000});
   const state=await page.evaluate(()=>{
    const tab=document.querySelector('[data-place-tab="reading"]'),panel=document.getElementById('hg-place-panel-reading');
    tab?.click();
