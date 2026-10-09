@@ -39,7 +39,32 @@
     return script;
   }
 
+  // Preload versioned Place Sheet styles and mark the canonical owner flags.
+  // The existing owners then reuse these links instead of re-inserting stale
+  // unversioned CSS after the larger PlaceCard typography has loaded.
+  function loadPlaceSheetTypographyStyles() {
+    const version = "20261009-type-scale1";
+    const styles = [
+      ["data-hg-place-unified-style", "css/place-unified-surface.css"],
+      ["data-hg-place-sheet-style", "css/place-sheet.css"],
+      ["data-hg-place-sheet-phase6-style", "css/place-sheet-phase6.css"],
+      ["data-hg-place-sheet-reading-style", "css/place-sheet-reading.css"],
+      ["data-hg-place-sheet-sources-style", "css/place-sheet-sources.css"],
+      ["data-hg-place-sheet-learning-style", "css/place-sheet-learning.css"],
+      ["data-hg-place-sheet-special-style", "css/place-sheet-special.css"]
+    ];
+    for (const [flag, path] of styles) {
+      if (document.querySelector(`link[${flag}="1"]`)) continue;
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = `${path}?v=${version}`;
+      link.setAttribute(flag, "1");
+      document.head.appendChild(link);
+    }
+  }
+
   function loadPlacePopupV2() {
+    loadPlaceSheetTypographyStyles();
     ensureStylesheet("css/place-popup-v2.css");
     if (!global.__HG_PLACE_POPUP_V2_INSTALLED__) ensureScript("js/ui/place-popup-v2.js");
     ensureScript("js/ui/place-popup-sport-training.js");
@@ -58,7 +83,7 @@
     ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-popup-shortcuts.css");
     ensureScript("js/ui/place-popup-shortcuts.js");
-    ensureStylesheet("css/place-onsite-surface.css?v=20261009-align-front-bottom3");
+    ensureStylesheet("css/place-onsite-surface.css?v=20261009-type-scale1");
     ensureScript("js/ui/place-onsite-surface.js?v=20261009-right-collections2");
   }
 

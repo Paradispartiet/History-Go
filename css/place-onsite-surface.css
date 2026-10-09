@@ -54,7 +54,7 @@ body.hg-app #placeCard .pc-onsite-action{
   background:rgba(255,255,255,.075);
   color:#fff;
   font:inherit;
-  font-size:12px;
+  font-size:13px;
   line-height:1.1;
   font-weight:850;
   text-align:left;
@@ -78,7 +78,7 @@ body.hg-app #placeCard .pc-onsite-action-icon{
   width:22px;
   height:22px;
   margin:0;
-  font-size:17px;
+  font-size:18px;
   line-height:1;
 }
 
@@ -86,7 +86,7 @@ body.hg-app #placeCard .pc-onsite-action-label{
   min-width:0;
   margin:0;
   color:#fff;
-  font-size:12px;
+  font-size:13px;
   font-weight:850;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -103,7 +103,7 @@ body.hg-app #placeCard .pc-onsite-action-count{
   border-radius:999px;
   background:rgba(255,255,255,.13);
   color:#fff;
-  font-size:10px;
+  font-size:11px;
   font-weight:900;
 }
 
@@ -140,7 +140,7 @@ body.hg-app .pc-onsite-event strong{
 
 body.hg-app .pc-onsite-event span{
   color:rgba(255,255,255,.66);
-  font-size:11px;
+  font-size:12px;
 }
 
 body.hg-app .pc-onsite-meet-choice{
@@ -161,7 +161,7 @@ body.hg-app .pc-onsite-meet-choice{
 }
 
 body.hg-app .pc-onsite-meet-choice > span:first-child{
-  font-size:20px;
+  font-size:21px;
 }
 
 body.hg-app .pc-onsite-meet-choice > span:last-child{
@@ -170,12 +170,12 @@ body.hg-app .pc-onsite-meet-choice > span:last-child{
 }
 
 body.hg-app .pc-onsite-meet-choice strong{
-  font-size:13px;
+  font-size:14px;
 }
 
 body.hg-app .pc-onsite-meet-choice small{
   color:rgba(255,255,255,.65);
-  font-size:11px;
+  font-size:12px;
   line-height:1.25;
 }
 
@@ -197,18 +197,18 @@ body.hg-app .pc-onsite-meet-choice small{
   body.hg-app #placeCard .pc-onsite-action-icon{
     width:16px;
     height:16px;
-    font-size:14px;
+    font-size:15px;
   }
 
   body.hg-app #placeCard .pc-onsite-action-label{
-    font-size:10px;
+    font-size:11px;
   }
 
   body.hg-app #placeCard .pc-onsite-action-count{
     min-width:16px;
     height:16px;
     padding:0 3px;
-    font-size:8px;
+    font-size:9px;
   }
 }
 
@@ -229,6 +229,17 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid > .pc-side-stack{
   flex:0 0 auto;
+}
+
+/* The legacy PlaceCard collection grid reserves a 3:4 aspect ratio AND
+   four explicit rows. Place Sheet shows up to four collections in two
+   columns, so the unused rows otherwise stretch the portrait itself.
+   Keep the existing column/row gaps, but size only the occupied rows.
+   Events/Møtes can then align with the natural 3:4 frontImage bottom. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-hero-media > .pc-sheet-explore-grid .pc-icons-quad{
+  aspect-ratio:auto;
+  /* Override the legacy count-specific minmax(190px) rows loaded later. */
+  grid-template-rows:none !important;
 }
 
 /* Place Sheet: Events and Møtes belong BELOW the collection tiles in the
