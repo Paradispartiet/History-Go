@@ -1,0 +1,33 @@
+name: Nearby framed layout browser audit
+
+on:
+  pull_request:
+    paths:
+      - 'css/layout.css'
+      - 'css/nearby.css'
+      - 'css/people.css'
+      - 'css/nature.css'
+      - 'index.html'
+      - 'tests/nearby-framed-layout-browser.test.mjs'
+      - '.github/workflows/nearby-framed-layout-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nearby-framed-layout-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Audit framed Nearby layout on phone, tablet and desktop
+        run: node tests/nearby-framed-layout-browser.test.mjs
