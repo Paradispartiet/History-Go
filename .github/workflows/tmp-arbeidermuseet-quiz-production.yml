@@ -1,0 +1,76 @@
+name: Temporary Arbeidermuseet Quiz Production and Browser QA
+
+on:
+  push:
+    branches:
+      - quiz/arbeidermuseet-4x7-20261009
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temp-arbeidermuseet-quiz-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize-and-play:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical tools
+        run: npm ci --no-audit --no-fund
+      - name: Build History quiz context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target arbeidermuseet --output data/quiz/production_context/historie/arbeidermuseet.json
+      - name: Validate quiz contracts
+        run: |
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:quiz-content
+      - name: Materialize canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Regenerate Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify canonical data
+        run: |
+          npm run knowledge:canonical:check
+          node scripts/build-quiz-production-context.mjs --category historie --target arbeidermuseet --output data/quiz/production_context/historie/arbeidermuseet.json --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run audit:quiz-wiring
+          test "$(wc -c < reports/knowledge-id-backfill.json)" -le 512000
+      - name: Resolve system browser
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Play entire quiz on desktop and mobile
+        run: node scripts/verify-place-quiz-browser.mjs arbeidermuseet
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arbeidermuseet-quiz-evidence
+          path: artifacts/place-quiz/arbeidermuseet/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Remove temporary workflow
+        run: rm .github/workflows/tmp-arbeidermuseet-quiz-production.yml
+      - name: Commit only canonical outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data/quiz/historie/arbeidermuseet_sets.json data/quiz/production_context/historie/arbeidermuseet.json data/knowledge/knowledge_units.generated.json reports/knowledge-id-backfill.json data/fagverk/fagverk_release.json .github/workflows/tmp-arbeidermuseet-quiz-production.yml
+          git diff --cached --stat
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Materialize and browser-verify Arbeidermuseet quiz and Knowledge"
+          git push origin HEAD:quiz/arbeidermuseet-4x7-20261009
