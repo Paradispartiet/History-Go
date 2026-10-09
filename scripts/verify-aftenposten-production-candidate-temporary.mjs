@@ -248,6 +248,8 @@ try {
     await flip.focus();
     await flip.press('Enter');
     await page.waitForFunction(() => document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'));
+    await page.waitForFunction(() => new DOMMatrix(getComputedStyle(document.querySelector('#pcFrontCardFlip .pc-card-flip-inner')).transform).m11 < -0.999);
+    await flip.scrollIntoViewIfNeeded();
     await page.screenshot({path:path.join(outDir, `${profile.name}-quizcard.png`),fullPage:true});
     await flip.press('Space');
     await page.waitForFunction(() => !document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'));
@@ -275,10 +277,7 @@ try {
     assert.match(sections.learning, /Åpne stedets fagverkside/);
     assert.match(await page.locator('[data-hg-place-sheet-section="learning"] a').first().getAttribute('href'), new RegExp(`fagverk-sted\\.html\\?place=${placeId}`));
     await page.locator('[data-hg-place-sheet-jump="about"]').click();
-    await page.evaluate(async id => {
-      const place = window.PLACES.find(p => p.id === id);
-      await window.HGEpokeViewer.open({place, historyMode:'none'});
-    }, placeId);
+    await page.locator('#pcMeta .pc-epoke').click();
     const epoch = page.locator('#hgEpokeViewer');
     await epoch.waitFor({state:'visible',timeout:30000});
     assert.match(await epoch.innerText(), /Aftenposten/);
