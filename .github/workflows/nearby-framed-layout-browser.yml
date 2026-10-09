@@ -15,6 +15,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: nearby-frame-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   nearby-framed-layout-browser:
     runs-on: ubuntu-latest
