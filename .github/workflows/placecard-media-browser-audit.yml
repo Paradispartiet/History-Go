@@ -1,0 +1,36 @@
+name: PlaceCard media browser audit
+
+on:
+  pull_request:
+    paths:
+      - 'css/placeCard.css'
+      - 'index.html'
+      - 'js/ui/place-card.js'
+      - 'js/app.js'
+      - 'tests/placecard-media-hero-responsive-browser.test.mjs'
+      - '.github/workflows/placecard-media-browser-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: placecard-media-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  placecard-media-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Audit compact PlaceCard at mobile and desktop widths
+        run: node tests/placecard-media-hero-responsive-browser.test.mjs
