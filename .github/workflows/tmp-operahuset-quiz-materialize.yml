@@ -1,0 +1,58 @@
+name: Temporary Operahuset Quiz Materialization
+
+on:
+  push:
+    branches:
+      - quiz/operahuset-scenekunst-4x7-20261009
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temporary-operahuset-quiz-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install canonical tooling
+        run: npm ci --no-audit --no-fund
+      - name: Build canonical Scenekunst context
+        run: node scripts/build-quiz-production-context.mjs --category scenekunst --target operahuset --output data/quiz/production_context/scenekunst/operahuset.json
+      - name: Validate quiz contracts
+        run: |
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:quiz-content
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Update canonical release manifest
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify derived outputs
+        run: |
+          node scripts/build-quiz-production-context.mjs --category scenekunst --target operahuset --output data/quiz/production_context/scenekunst/operahuset.json --check
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run audit:quiz-wiring
+      - name: Clean up temporary workflow
+        run: rm .github/workflows/tmp-operahuset-quiz-materialize.yml
+      - name: Commit source-derived artifacts only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data/quiz/scenekunst/operahuset_sets.json data/quiz/production_context/scenekunst/operahuset.json data/knowledge data/fagverk/fagverk_release.json .github/workflows/tmp-operahuset-quiz-materialize.yml
+          git diff --cached --stat
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Materialize Operahuset Scenekunst quiz, Knowledge and release"
+          git push origin HEAD:quiz/operahuset-scenekunst-4x7-20261009
