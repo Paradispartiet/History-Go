@@ -1,0 +1,47 @@
+name: Temporary Akershus Quiz Release Regeneration
+
+on:
+  push:
+    branches:
+      - quiz/akershus-slott-normalapning-20261008
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-akershus-quiz-release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install tooling
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Verify release and quiz content
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run audit:quiz-content
+          npm run audit:quiz-progression
+      - name: Remove temporary workflow
+        run: rm .github/workflows/tmp-akershus-quiz-release.yml
+      - name: Commit generated release change only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/fagverk/fagverk_release.json .github/workflows/tmp-akershus-quiz-release.yml
+          git diff --cached --stat
+          test -n "$(git diff --cached --name-only)"
+          git commit -m "Regenerate Fagverk release for Akershus quiz improvements"
+          git push origin HEAD:quiz/akershus-slott-normalapning-20261008
