@@ -1,0 +1,101 @@
+name: Temporary Grabein quiz materialization
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'data/quiz/historie/museumsleiligheten_grabein_sets.json'
+      - 'data/quiz/production_briefs/historie/museumsleiligheten_grabein.json'
+      - 'data/quiz/manifest.json'
+      - 'data/fag/fag_manifest.json'
+      - '.github/workflows/tmp-grabein-quiz-materialize.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-grabein-materialize-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'quiz/museumsleiligheten-grabein-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: true
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Build exact canonical quiz context
+        run: npm run quiz:context -- --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+      - name: Generate canonical Knowledge
+        run: npm run knowledge:canonical:write
+      - name: Regenerate Fagverk release
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Scope generated changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          node - <<'NODE'
+          const { execFileSync } = require('node:child_process');
+          const paths=execFileSync('git',['status','--porcelain','-uall'],{encoding:'utf8'}).split('\n').filter(Boolean).map(x=>x.slice(3));
+          const allowed = paths.filter(p=>p==='data/quiz/production_context/historie/museumsleiligheten_grabein.json'||
+            p==='data/quiz/historie/museumsleiligheten_grabein_sets.json' ||
+            p==='data/fagverk/fagverk_release.json' ||
+            p==='reports/knowledge-id-backfill.json' ||
+            p==='reports/knowledge-contract-audit.json' ||
+            p.startsWith('data/knowledge/'));
+          const unexpected=paths.filter(p=>!allowed.includes(p));
+          if(unexpected.length){console.error('Unapproved derived changes',unexpected);process.exit(1)}
+          console.log('Permitted generated files:',allowed.length);
+          NODE
+      - name: Commit deterministic generated artifacts
+        shell: bash
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/quiz/production_context/historie/museumsleiligheten_grabein.json data/quiz/historie/museumsleiligheten_grabein_sets.json data/fagverk/fagverk_release.json reports/knowledge-id-backfill.json data/knowledge/
+          if ! git diff --cached --quiet; then
+            git commit -m "Materialize Grabein quiz and canonical Knowledge data"
+            git push origin "HEAD:$BRANCH"
+          fi
+      - name: Audit quiz and canonical Knowledge
+        run: |
+          npm run audit:quiz-content
+          npm run audit:quiz-templates
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run test:quiz-content-audit
+          npm run knowledge:canonical:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Verify context derivation
+        run: npm run quiz:context -- --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json --check
+      - name: Find browser
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - name: Play through all quiz sets on desktop and mobile
+        run: node scripts/verify-place-quiz-browser.mjs museumsleiligheten_grabein
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grabein-quiz-browser-evidence
+          path: artifacts/place-quiz/museumsleiligheten_grabein/
+          if-no-files-found: ignore
+          retention-days: 14
