@@ -1,0 +1,52 @@
+name: Place quiz browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/verify-place-quiz-browser.mjs'
+      - '.github/workflows/place-quiz-browser.yml'
+  workflow_dispatch:
+    inputs:
+      place_id:
+        description: Canonical place ID to play through
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: place-quiz-browser-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  playthrough:
+    name: Full place quiz — desktop and mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Resolve Chrome
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Play quiz to completion
+        env:
+          PLACE_ID: ${{ inputs.place_id || 'abelonegarden' }}
+        run: node scripts/verify-place-quiz-browser.mjs "$PLACE_ID"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: place-quiz-browser-evidence
+          path: artifacts/place-quiz/
+          if-no-files-found: ignore
+          retention-days: 14

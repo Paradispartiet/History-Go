@@ -431,6 +431,8 @@ dlog("loaded sets:", _byTargetSets.size);
   // UI
   // ============================================================
   let _escWired = false;
+  let _quizCloseTimer = null;
+  let _quizSummaryCloseTimer = null;
 
   function ensureQuizUI() {
     if (document.getElementById("quizModal")) return;
@@ -504,6 +506,10 @@ dlog("loaded sets:", _byTargetSets.size);
   }
 
   function openQuizSummary({ title = tt("ui.quiz.title", "Quiz"), lead = "", meta = "", primaryText = tt("ui.quiz.next", "Neste"), onPrimary = null, secondaryText = "", onSecondary = null }) {
+    if (_quizSummaryCloseTimer !== null) {
+      clearTimeout(_quizSummaryCloseTimer);
+      _quizSummaryCloseTimer = null;
+    }
     ensureQuizSummaryUI();
 
     const modal = document.getElementById("quizSummaryModal");
@@ -541,11 +547,19 @@ dlog("loaded sets:", _byTargetSets.size);
   function closeQuizSummary() {
     const modal = document.getElementById("quizSummaryModal");
     if (!modal) return;
+    if (_quizSummaryCloseTimer !== null) clearTimeout(_quizSummaryCloseTimer);
     modal.classList.add("fade-out");
-    setTimeout(() => modal.remove(), 450);
+    _quizSummaryCloseTimer = setTimeout(() => {
+      if (modal.classList.contains("fade-out")) modal.remove();
+      _quizSummaryCloseTimer = null;
+    }, 450);
   }
 
   function openQuiz() {
+    if (_quizCloseTimer !== null) {
+      clearTimeout(_quizCloseTimer);
+      _quizCloseTimer = null;
+    }
     ensureQuizUI();
     const modal = document.getElementById("quizModal");
     modal.style.display = "flex";
@@ -555,8 +569,12 @@ dlog("loaded sets:", _byTargetSets.size);
   function closeQuiz() {
     const modal = document.getElementById("quizModal");
     if (!modal) return;
+    if (_quizCloseTimer !== null) clearTimeout(_quizCloseTimer);
     modal.classList.add("fade-out");
-    setTimeout(() => modal.remove(), 450);
+    _quizCloseTimer = setTimeout(() => {
+      if (modal.classList.contains("fade-out")) modal.remove();
+      _quizCloseTimer = null;
+    }, 450);
   }
 
   function markQuizAsDone(targetId) {
