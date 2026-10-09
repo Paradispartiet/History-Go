@@ -11,6 +11,13 @@ on:
       - '.github/workflows/placecard-media-browser-audit.yml'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: placecard-media-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   placecard-media-browser:
     runs-on: ubuntu-latest
