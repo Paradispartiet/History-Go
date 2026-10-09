@@ -42,7 +42,7 @@ jobs:
           node --input-type=module <<'NODE'
           import { execFileSync } from 'node:child_process';
           const files=execFileSync('git',['status','--porcelain','--untracked-files=all'],{encoding:'utf8'})
-            .trim().split(/\r?\n/u).filter(Boolean).map(line=>line.slice(3));
+            .trimEnd().split(/\r?\n/u).filter(Boolean).map(line=>line.slice(3));
           const allowed=new Set([
             'data/places/places_index.json',
             'data/runtime/place-open/vg_huset.json',
