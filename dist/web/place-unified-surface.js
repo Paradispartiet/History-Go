@@ -135,46 +135,81 @@
     history: historyApi
   };
 
-  // js/ui/place-sheet/sections/stories.ts
+  // js/ui/place-sheet/sections/chronology.ts
   var runtime3 = window;
-  function text3(value) {
+  var ownerSelector = '[data-hg-place-sheet-owner="chronology"]';
+  var text3 = (value) => String(value != null ? value : "").trim();
+  var escapeHtml3 = (value) => text3(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+  function mountCanonicalChronology(container, place) {
+    var _a;
+    container.querySelectorAll(ownerSelector).forEach((node) => node.remove());
+    const placeId2 = text3(place == null ? void 0 : place.id);
+    const articles = ((_a = runtime3.LEKSIKON_BY_PLACE) == null ? void 0 : _a[placeId2]) || [];
+    const seen = /* @__PURE__ */ new Set();
+    const rows2 = articles.filter((article) => !text3(article.place_id || article.place) || text3(article.place_id || article.place) === placeId2).flatMap((article) => Array.isArray(article.chronology) ? article.chronology : []).filter((row) => row && typeof row === "object" && !Array.isArray(row)).filter((row) => {
+      const key = [row.year || row.date || row.period, row.title || row.text || row.event].map(text3).join("|");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    }).sort((a, b) => (Number(a.year) || 0) - (Number(b.year) || 0));
+    if (!rows2.length) return null;
+    const html = rows2.map((row) => {
+      const title = text3(row.title || row.text || row.event);
+      const summary = text3(row.summary || row.description || row.text);
+      const sources = Array.isArray(row.sources) ? row.sources : [];
+      const links = sources.map((source) => {
+        const item = typeof source === "string" ? { url: source, title: "Kilde" } : source;
+        const url = text3(item == null ? void 0 : item.url);
+        if (!/^https:\/\//.test(url)) return "";
+        return `<a href="${escapeHtml3(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml3(item.title || "Kilde")} \u2197</a>`;
+      }).filter(Boolean).join(" \xB7 ");
+      return `<article class="hg-place-timeline-item"><span class="hg-place-timeline-marker" aria-hidden="true"></span><div class="hg-place-timeline-copy"><span class="hg-place-timeline-period">${escapeHtml3(row.period || row.year || row.date)}</span><strong>${escapeHtml3(title)}</strong>${summary && summary !== title ? `<p>${escapeHtml3(summary)}</p>` : ""}${links ? `<p>${links}</p>` : ""}</div></article>`;
+    }).join("");
+    container.hidden = false;
+    container.insertAdjacentHTML("beforeend", `<section class="hg-section hg-place-section hg-place-history-section" data-hg-place-sheet-owner="chronology"><h3>Kronologi</h3><div class="hg-place-timeline">${html}</div></section>`);
+    return container.querySelector(ownerSelector);
+  }
+
+  // js/ui/place-sheet/sections/stories.ts
+  var runtime4 = window;
+  function text4(value) {
     return String(value == null ? "" : value).trim();
   }
-  function escapeHtml3(value) {
+  function escapeHtml4(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function safeHttpUrl(value) {
-    const candidate = text3(value);
+    const candidate = text4(value);
     return /^https?:\/\/[^\s]+$/i.test(candidate) ? candidate : "";
   }
   function people() {
-    return Array.isArray(runtime3.PEOPLE) ? runtime3.PEOPLE : [];
+    return Array.isArray(runtime4.PEOPLE) ? runtime4.PEOPLE : [];
   }
   function places() {
-    return Array.isArray(runtime3.PLACES) ? runtime3.PLACES : [];
+    return Array.isArray(runtime4.PLACES) ? runtime4.PLACES : [];
   }
   function personLabel(id) {
-    const key = text3(id);
-    const person = people().find((row) => text3(row == null ? void 0 : row.id) === key);
-    return text3(person == null ? void 0 : person.name) || key;
+    const key = text4(id);
+    const person = people().find((row) => text4(row == null ? void 0 : row.id) === key);
+    return text4(person == null ? void 0 : person.name) || key;
   }
   function placeLabel(id) {
-    const key = text3(id);
-    const place = places().find((row) => text3(row == null ? void 0 : row.id) === key);
-    return text3((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title)) || key;
+    const key = text4(id);
+    const place = places().find((row) => text4(row == null ? void 0 : row.id) === key);
+    return text4((place == null ? void 0 : place.name) || (place == null ? void 0 : place.title)) || key;
   }
   function relatedChip(kind, id) {
-    const key = text3(id);
+    const key = text4(id);
     if (!key) return "";
     const label = kind === "person" ? personLabel(key) : placeLabel(key);
-    return `<button type="button" class="pc-story-chip" data-${kind}="${escapeHtml3(key)}">${escapeHtml3(label)}</button>`;
+    return `<button type="button" class="pc-story-chip" data-${kind}="${escapeHtml4(key)}">${escapeHtml4(label)}</button>`;
   }
   function canonicalStoriesForPlace(place) {
     var _a;
-    const id = text3(place == null ? void 0 : place.id);
-    if (!id || typeof ((_a = runtime3.HGStories) == null ? void 0 : _a.getByPlace) !== "function") return [];
+    const id = text4(place == null ? void 0 : place.id);
+    if (!id || typeof ((_a = runtime4.HGStories) == null ? void 0 : _a.getByPlace) !== "function") return [];
     try {
-      const rows2 = runtime3.HGStories.getByPlace(id);
+      const rows2 = runtime4.HGStories.getByPlace(id);
       return Array.isArray(rows2) ? rows2.filter((row) => Boolean(row && typeof row === "object" && !Array.isArray(row))) : [];
     } catch {
       return [];
@@ -184,33 +219,33 @@
     const rows2 = Array.isArray(stories) ? stories : [];
     if (!rows2.length) return "";
     const items = rows2.map((story) => {
-      const fullStory = text3(story == null ? void 0 : story.story);
-      const summary = text3(story == null ? void 0 : story.summary);
+      const fullStory = text4(story == null ? void 0 : story.story);
+      const summary = text4(story == null ? void 0 : story.summary);
       const hasBoth = Boolean(fullStory && summary && summary !== fullStory);
       const bodyText = fullStory || summary;
-      const year = text3(story == null ? void 0 : story.year);
+      const year = text4(story == null ? void 0 : story.year);
       const related = [
         ...Array.isArray(story == null ? void 0 : story.related_people) ? story.related_people.map((id) => relatedChip("person", id)) : [],
         ...Array.isArray(story == null ? void 0 : story.related_places) ? story.related_places.map((id) => relatedChip("place", id)) : []
       ].filter(Boolean);
-      const tags = Array.isArray(story == null ? void 0 : story.tags) ? story.tags.map(text3).filter(Boolean) : [];
+      const tags = Array.isArray(story == null ? void 0 : story.tags) ? story.tags.map(text4).filter(Boolean) : [];
       const sources = Array.isArray(story == null ? void 0 : story.sources) ? story.sources.slice(0, 3) : [];
       const sourceLinks = sources.map((source) => {
         const url = safeHttpUrl(source == null ? void 0 : source.url);
-        const title = text3((source == null ? void 0 : source.title) || (source == null ? void 0 : source.author) || (source == null ? void 0 : source.url));
+        const title = text4((source == null ? void 0 : source.title) || (source == null ? void 0 : source.author) || (source == null ? void 0 : source.url));
         if (!title && !url) return "";
-        return url ? `<a href="${escapeHtml3(url)}" target="_blank" rel="noopener" class="pc-story-source">${escapeHtml3(title || url)}</a>` : `<span class="pc-story-source">${escapeHtml3(title)}</span>`;
+        return url ? `<a href="${escapeHtml4(url)}" target="_blank" rel="noopener" class="pc-story-source">${escapeHtml4(title || url)}</a>` : `<span class="pc-story-source">${escapeHtml4(title)}</span>`;
       }).filter(Boolean).join(" \xB7 ");
       return `
-      <article class="pc-story" data-story-id="${escapeHtml3(story == null ? void 0 : story.id)}">
+      <article class="pc-story" data-story-id="${escapeHtml4(story == null ? void 0 : story.id)}">
         <header class="pc-story-header">
-          ${year ? `<div class="pc-story-year-badge">${escapeHtml3(year)}</div>` : ""}
-          <h4 class="pc-story-title">${escapeHtml3(story == null ? void 0 : story.title)}</h4>
+          ${year ? `<div class="pc-story-year-badge">${escapeHtml4(year)}</div>` : ""}
+          <h4 class="pc-story-title">${escapeHtml4(story == null ? void 0 : story.title)}</h4>
         </header>
-        ${hasBoth ? `<p class="pc-story-lede">${escapeHtml3(summary)}</p>` : ""}
-        <div class="pc-story-body">${escapeHtml3(bodyText)}</div>
+        ${hasBoth ? `<p class="pc-story-lede">${escapeHtml4(summary)}</p>` : ""}
+        <div class="pc-story-body">${escapeHtml4(bodyText)}</div>
         ${related.length ? `<div class="pc-story-related">${related.join("")}</div>` : ""}
-        ${tags.length ? `<div class="pc-story-tags">${tags.map((tag) => `<span class="pc-story-tag">#${escapeHtml3(tag)}</span>`).join("")}</div>` : ""}
+        ${tags.length ? `<div class="pc-story-tags">${tags.map((tag) => `<span class="pc-story-tag">#${escapeHtml4(tag)}</span>`).join("")}</div>` : ""}
         ${sourceLinks ? `<footer class="pc-story-sources">${sourceLinks}</footer>` : ""}
       </article>
     `;
@@ -228,16 +263,16 @@
   function bindRelatedTargets(container) {
     container.querySelectorAll("[data-person]").forEach((button) => {
       button.onclick = () => {
-        const id = text3(button.dataset.person);
-        const person = people().find((row) => text3(row == null ? void 0 : row.id) === id);
-        if (person && typeof runtime3.showPersonPopup === "function") runtime3.showPersonPopup(person);
+        const id = text4(button.dataset.person);
+        const person = people().find((row) => text4(row == null ? void 0 : row.id) === id);
+        if (person && typeof runtime4.showPersonPopup === "function") runtime4.showPersonPopup(person);
       };
     });
     container.querySelectorAll("[data-place]").forEach((button) => {
       button.onclick = () => {
-        const id = text3(button.dataset.place);
-        const place = places().find((row) => text3(row == null ? void 0 : row.id) === id);
-        if (place && typeof runtime3.showPlacePopup === "function") runtime3.showPlacePopup(place);
+        const id = text4(button.dataset.place);
+        const place = places().find((row) => text4(row == null ? void 0 : row.id) === id);
+        if (place && typeof runtime4.showPlacePopup === "function") runtime4.showPlacePopup(place);
       };
     });
   }
@@ -259,49 +294,49 @@
     renderPlaceHtml: renderPlaceStoriesHtml,
     mount: mountCanonicalStories
   };
-  runtime3.HGPlaceSheetSections = {
-    ...runtime3.HGPlaceSheetSections || {},
+  runtime4.HGPlaceSheetSections = {
+    ...runtime4.HGPlaceSheetSections || {},
     stories: storiesApi
   };
 
   // js/ui/place-sheet/sections/before-after.ts
-  var runtime4 = window;
-  function text4(value) {
+  var runtime5 = window;
+  function text5(value) {
     return String(value == null ? "" : value).trim();
   }
   function localize3(place) {
     var _a, _b;
     try {
-      return ((_b = (_a = runtime4.HG_I18N) == null ? void 0 : _a.localizePlace) == null ? void 0 : _b.call(_a, place)) || place;
+      return ((_b = (_a = runtime5.HG_I18N) == null ? void 0 : _a.localizePlace) == null ? void 0 : _b.call(_a, place)) || place;
     } catch {
       return place;
     }
   }
-  function escapeHtml4(value) {
+  function escapeHtml5(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function safeHttpsUrl(value) {
     var _a;
-    const raw = text4(value);
+    const raw = text5(value);
     if (!raw) return "";
     try {
-      const parsed = new URL(raw, ((_a = runtime4.location) == null ? void 0 : _a.origin) || void 0);
+      const parsed = new URL(raw, ((_a = runtime5.location) == null ? void 0 : _a.origin) || void 0);
       return parsed.protocol === "https:" ? parsed.href : "";
     } catch {
       return "";
     }
   }
   function safeImageUrl(value) {
-    const raw = text4(value);
+    const raw = text5(value);
     if (!raw) return "";
     if (raw.startsWith("bilder/") || raw.startsWith("assets/")) return raw;
     return safeHttpsUrl(raw);
   }
   function strings(value) {
-    return Array.isArray(value) ? value.map(text4).filter(Boolean) : [];
+    return Array.isArray(value) ? value.map(text5).filter(Boolean) : [];
   }
   function detailSection(title, body2) {
-    return body2 ? `<section class="hg-section hg-place-section hg-place-tab-section"><h3>${escapeHtml4(title)}</h3>${body2}</section>` : "";
+    return body2 ? `<section class="hg-section hg-place-section hg-place-tab-section"><h3>${escapeHtml5(title)}</h3>${body2}</section>` : "";
   }
   function canonicalBeforeAfterData(inputPlace) {
     const place = localize3(inputPlace || {});
@@ -314,30 +349,30 @@
     if (!data) return "";
     const images = [
       {
-        label: text4(data.beforeImageLabel || data.before_image_label || "F\xF8r"),
+        label: text5(data.beforeImageLabel || data.before_image_label || "F\xF8r"),
         url: safeImageUrl(data.beforeImage || data.before_image || data.imageBefore),
         meta: data.beforeImageMeta || data.before_image_meta
       },
       {
-        label: text4(data.nowImageLabel || data.now_image_label || "N\xE5"),
+        label: text5(data.nowImageLabel || data.now_image_label || "N\xE5"),
         url: safeImageUrl(data.nowImage || data.now_image || data.imageNow),
         meta: data.nowImageMeta || data.now_image_meta
       }
     ].filter((item) => item.url);
     const imageHtml = images.length ? `<div class="hg-place-before-after-media">${images.map((item) => {
       var _a, _b, _c, _d, _e;
-      const credit = text4(((_a = item.meta) == null ? void 0 : _a.credit) || ((_b = item.meta) == null ? void 0 : _b.author));
-      const license = text4((_c = item.meta) == null ? void 0 : _c.license);
+      const credit = text5(((_a = item.meta) == null ? void 0 : _a.credit) || ((_b = item.meta) == null ? void 0 : _b.author));
+      const license = text5((_c = item.meta) == null ? void 0 : _c.license);
       const sourcePage = safeHttpsUrl(((_d = item.meta) == null ? void 0 : _d.sourcePage) || ((_e = item.meta) == null ? void 0 : _e.sourceUrl));
       const attribution = [credit, license].filter(Boolean).join(" \xB7 ");
-      return `<figure><img src="${escapeHtml4(item.url)}" alt="${escapeHtml4(item.label)}: ${escapeHtml4((place == null ? void 0 : place.name) || "stedet")}" loading="lazy"><figcaption><strong>${escapeHtml4(item.label)}</strong>${attribution ? `<span>${escapeHtml4(attribution)}</span>` : ""}${sourcePage ? `<a href="${escapeHtml4(sourcePage)}" target="_blank" rel="noopener noreferrer">Bildekilde \u2197</a>` : ""}</figcaption></figure>`;
+      return `<figure><img src="${escapeHtml5(item.url)}" alt="${escapeHtml5(item.label)}: ${escapeHtml5((place == null ? void 0 : place.name) || "stedet")}" loading="lazy"><figcaption><strong>${escapeHtml5(item.label)}</strong>${attribution ? `<span>${escapeHtml5(attribution)}</span>` : ""}${sourcePage ? `<a href="${escapeHtml5(sourcePage)}" target="_blank" rel="noopener noreferrer">Bildekilde \u2197</a>` : ""}</figcaption></figure>`;
     }).join("")}</div>` : "";
     const lookFor = strings(data.lookFor || data.look_for || data.observe || data.observer);
     return imageHtml + [
-      text4(data.before) ? detailSection("F\xF8r", `<p>${escapeHtml4(data.before)}</p>`) : "",
-      text4(data.now) ? detailSection("N\xE5", `<p>${escapeHtml4(data.now)}</p>`) : "",
-      text4(data.change) ? detailSection("Endring", `<p>${escapeHtml4(data.change)}</p>`) : "",
-      lookFor.length ? detailSection("Se etter i dag", `<ul>${lookFor.map((item) => `<li>${escapeHtml4(item)}</li>`).join("")}</ul>`) : ""
+      text5(data.before) ? detailSection("F\xF8r", `<p>${escapeHtml5(data.before)}</p>`) : "",
+      text5(data.now) ? detailSection("N\xE5", `<p>${escapeHtml5(data.now)}</p>`) : "",
+      text5(data.change) ? detailSection("Endring", `<p>${escapeHtml5(data.change)}</p>`) : "",
+      lookFor.length ? detailSection("Se etter i dag", `<ul>${lookFor.map((item) => `<li>${escapeHtml5(item)}</li>`).join("")}</ul>`) : ""
     ].join("");
   }
   function renderCanonicalBeforeAfterHtml(place) {
@@ -367,32 +402,32 @@
     renderHtml: renderCanonicalBeforeAfterHtml,
     mount: mountCanonicalBeforeAfter
   };
-  runtime4.HGPlaceSheetSections = {
-    ...runtime4.HGPlaceSheetSections || {},
+  runtime5.HGPlaceSheetSections = {
+    ...runtime5.HGPlaceSheetSections || {},
     beforeAfter: beforeAfterApi
   };
 
   // js/ui/place-sheet/place-section-context.ts
-  var runtime5 = window;
+  var runtime6 = window;
   var cache = /* @__PURE__ */ new Map();
-  function text5(value) {
+  function text6(value) {
     return String(value == null ? "" : value).trim();
   }
   function list(value) {
     return Array.isArray(value) ? value.filter(Boolean) : [];
   }
   function strings2(value) {
-    return list(value).map(text5).filter(Boolean);
+    return list(value).map(text6).filter(Boolean);
   }
   function mainArticle(articles, place) {
     const rows2 = list(articles);
-    const placeName = text5(place == null ? void 0 : place.name).toLowerCase();
-    return rows2.find((article) => text5((article == null ? void 0 : article.title) || (article == null ? void 0 : article.name)).toLowerCase() === placeName) || rows2.find((article) => /hoved|main|primary/.test([article == null ? void 0 : article.id, article == null ? void 0 : article.type, article == null ? void 0 : article.kind].map((value) => text5(value).toLowerCase()).join(" "))) || rows2[0] || null;
+    const placeName = text6(place == null ? void 0 : place.name).toLowerCase();
+    return rows2.find((article) => text6((article == null ? void 0 : article.title) || (article == null ? void 0 : article.name)).toLowerCase() === placeName) || rows2.find((article) => /hoved|main|primary/.test([article == null ? void 0 : article.id, article == null ? void 0 : article.type, article == null ? void 0 : article.kind].map((value) => text6(value).toLowerCase()).join(" "))) || rows2[0] || null;
   }
   function visibleArticlesForPlace(articles, main) {
     const rows2 = list(articles);
     if ((main == null ? void 0 : main.suppress_untitled_legacy_articles) !== true) return rows2;
-    return rows2.filter((article) => article === main || Boolean(text5((article == null ? void 0 : article.title) || (article == null ? void 0 : article.name) || (article == null ? void 0 : article.label))));
+    return rows2.filter((article) => article === main || Boolean(text6((article == null ? void 0 : article.title) || (article == null ? void 0 : article.name) || (article == null ? void 0 : article.label))));
   }
   function classifyArticle(article) {
     var _a, _b;
@@ -407,7 +442,7 @@
       (_a = article == null ? void 0 : article.summary) == null ? void 0 : _a.one_liner,
       ...strings2(article == null ? void 0 : article.tags),
       ...strings2((_b = article == null ? void 0 : article.summary) == null ? void 0 : _b.themes)
-    ].map((value) => text5(value).toLowerCase()).join(" ");
+    ].map((value) => text6(value).toLowerCase()).join(" ");
     const has = (terms) => terms.some((term) => signals.includes(term));
     if (has(["historical_news", "gamle_nyheter", "gamle nyheter", "avisnotis", "newspaper", "moralpanikk", "old_news"])) return "historical_news";
     if (has(["news_note", "nyere_notis", "nyere notis", "incident", "brann", "politi", "drap"])) return "news_notes";
@@ -417,28 +452,28 @@
   }
   async function loadArticles(placeId2) {
     var _a, _b, _c, _d;
-    if (Object.prototype.hasOwnProperty.call(runtime5.LEKSIKON_BY_PLACE || {}, placeId2)) {
-      return list((_a = runtime5.LEKSIKON_BY_PLACE) == null ? void 0 : _a[placeId2]);
+    if (Object.prototype.hasOwnProperty.call(runtime6.LEKSIKON_BY_PLACE || {}, placeId2)) {
+      return list((_a = runtime6.LEKSIKON_BY_PLACE) == null ? void 0 : _a[placeId2]);
     }
     try {
-      await ((_c = (_b = runtime5.HGLeksikon) == null ? void 0 : _b.init) == null ? void 0 : _c.call(_b));
+      await ((_c = (_b = runtime6.HGLeksikon) == null ? void 0 : _b.init) == null ? void 0 : _c.call(_b));
     } catch {
     }
-    return list((_d = runtime5.LEKSIKON_BY_PLACE) == null ? void 0 : _d[placeId2]);
+    return list((_d = runtime6.LEKSIKON_BY_PLACE) == null ? void 0 : _d[placeId2]);
   }
   function recordReads(place, context) {
     var _a;
-    if (!context.visibleArticles.length || typeof ((_a = runtime5.HGLeksikon) == null ? void 0 : _a.leksikonReadRecordsForPlace) !== "function") return;
+    if (!context.visibleArticles.length || typeof ((_a = runtime6.HGLeksikon) == null ? void 0 : _a.leksikonReadRecordsForPlace) !== "function") return;
     try {
-      runtime5.HGLeksikon.leksikonReadRecordsForPlace(place, context.placeId).forEach((record) => {
+      runtime6.HGLeksikon.leksikonReadRecordsForPlace(place, context.placeId).forEach((record) => {
         var _a2, _b;
-        return (_b = (_a2 = runtime5.HGReads) == null ? void 0 : _a2.recordLeksikon) == null ? void 0 : _b.call(_a2, record);
+        return (_b = (_a2 = runtime6.HGReads) == null ? void 0 : _a2.recordLeksikon) == null ? void 0 : _b.call(_a2, record);
       });
     } catch {
     }
   }
   function resolvePlaceKnowledgeContext(place) {
-    const placeId2 = text5(place == null ? void 0 : place.id);
+    const placeId2 = text6(place == null ? void 0 : place.id);
     if (!placeId2) return Promise.resolve({
       placeId: "",
       articles: [],
@@ -465,23 +500,23 @@
   }
 
   // js/ui/place-sheet/sections/news.ts
-  var runtime6 = window;
+  var runtime7 = window;
   var hydrationGeneration = 0;
-  function text6(value) {
+  function text7(value) {
     return String(value == null ? "" : value).trim();
   }
   function rows(value) {
     return Array.isArray(value) ? value.filter((item) => Boolean(item && typeof item === "object" && !Array.isArray(item))) : [];
   }
-  function escapeHtml5(value) {
+  function escapeHtml6(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function safeHttpsUrl2(value) {
     var _a;
-    const raw = text6(value);
+    const raw = text7(value);
     if (!raw) return "";
     try {
-      const parsed = new URL(raw, ((_a = runtime6.location) == null ? void 0 : _a.origin) || void 0);
+      const parsed = new URL(raw, ((_a = runtime7.location) == null ? void 0 : _a.origin) || void 0);
       return parsed.protocol === "https:" ? parsed.href : "";
     } catch {
       return "";
@@ -492,17 +527,17 @@
     if (!values.length) return "";
     return `<div class="hg-place-tab-card-list pc-sheet-news-list">${values.map((item) => {
       var _a;
-      const title = text6((item == null ? void 0 : item.title) || (item == null ? void 0 : item.name) || (item == null ? void 0 : item.id) || "Notis");
-      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), (item == null ? void 0 : item.category) || (item == null ? void 0 : item.type)].map(text6).filter(Boolean).join(" \xB7 ");
-      const summary = text6(((_a = item == null ? void 0 : item.summary) == null ? void 0 : _a.one_liner) || (item == null ? void 0 : item.popupDesc) || (item == null ? void 0 : item.desc) || (item == null ? void 0 : item.description));
+      const title = text7((item == null ? void 0 : item.title) || (item == null ? void 0 : item.name) || (item == null ? void 0 : item.id) || "Notis");
+      const meta = [(item == null ? void 0 : item.date) || (item == null ? void 0 : item.year) || (item == null ? void 0 : item.period), (item == null ? void 0 : item.category) || (item == null ? void 0 : item.type)].map(text7).filter(Boolean).join(" \xB7 ");
+      const summary = text7(((_a = item == null ? void 0 : item.summary) == null ? void 0 : _a.one_liner) || (item == null ? void 0 : item.popupDesc) || (item == null ? void 0 : item.desc) || (item == null ? void 0 : item.description));
       const rawSource = Array.isArray(item == null ? void 0 : item.sources) ? item.sources[0] : null;
       const sourceUrl = safeHttpsUrl2(typeof rawSource === "string" ? rawSource : rawSource == null ? void 0 : rawSource.url);
-      const sourceLabel = text6(typeof rawSource === "string" ? "Offisiell kilde" : (rawSource == null ? void 0 : rawSource.label) || (rawSource == null ? void 0 : rawSource.title) || "Offisiell kilde");
-      return `<article class="hg-place-tab-card pc-sheet-news-card"><strong>${escapeHtml5(title)}</strong>${meta ? `<span>${escapeHtml5(meta)}</span>` : ""}${summary ? `<p>${escapeHtml5(summary)}</p>` : ""}${sourceUrl ? `<a class="hg-place-news-source" href="${escapeHtml5(sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml5(sourceLabel)} \u2197</a>` : ""}</article>`;
+      const sourceLabel = text7(typeof rawSource === "string" ? "Offisiell kilde" : (rawSource == null ? void 0 : rawSource.label) || (rawSource == null ? void 0 : rawSource.title) || "Offisiell kilde");
+      return `<article class="hg-place-tab-card pc-sheet-news-card"><strong>${escapeHtml6(title)}</strong>${meta ? `<span>${escapeHtml6(meta)}</span>` : ""}${summary ? `<p>${escapeHtml6(summary)}</p>` : ""}${sourceUrl ? `<a class="hg-place-news-source" href="${escapeHtml6(sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml6(sourceLabel)} \u2197</a>` : ""}</article>`;
     }).join("")}</div>`;
   }
   function detailSection2(title, body2) {
-    return body2 ? `<section class="hg-section hg-place-section hg-place-tab-section"><h3>${escapeHtml5(title)}</h3>${body2}</section>` : "";
+    return body2 ? `<section class="hg-section hg-place-section hg-place-tab-section"><h3>${escapeHtml6(title)}</h3>${body2}</section>` : "";
   }
   function renderNewsContentHtml(historicalNews, newsNotes) {
     const oldRows = rows(historicalNews);
@@ -536,14 +571,14 @@
   }
   function placeFor(placeId2) {
     var _a, _b;
-    const id = text6(placeId2);
+    const id = text7(placeId2);
     if (!id) return null;
     try {
-      const resolved = (_b = (_a = runtime6.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      const resolved = (_b = (_a = runtime7.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
       if (resolved && typeof resolved === "object") return resolved;
     } catch {
     }
-    return (Array.isArray(runtime6.PLACES) ? runtime6.PLACES : []).find((place) => text6(place == null ? void 0 : place.id) === id) || null;
+    return (Array.isArray(runtime7.PLACES) ? runtime7.PLACES : []).find((place) => text7(place == null ? void 0 : place.id) === id) || null;
   }
   function slot() {
     return document.querySelector('#placeCard [data-hg-place-sheet-section="news"]');
@@ -555,7 +590,7 @@
   }
   async function hydrate(placeId2) {
     var _a;
-    const id = text6(placeId2);
+    const id = text7(placeId2);
     const place = placeFor(id);
     const target = slot();
     if (!id || !place || !(target instanceof HTMLElement)) return;
@@ -563,39 +598,39 @@
     invalidate(target);
     const context = await resolvePlaceKnowledgeContext(place);
     if (generation !== hydrationGeneration || !target.isConnected) return;
-    const shellId = text6((_a = target.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
+    const shellId = text7((_a = target.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
     if (shellId && shellId !== id) return;
     const mounted = mountCanonicalNews(target, context.buckets.historical_news, context.buckets.news_notes);
     if (mounted) target.dataset.placeId = id;
   }
   function adoptCanonicalNews(placeId2) {
-    const id = text6(placeId2);
+    const id = text7(placeId2);
     const target = slot();
     if (!id || !(target instanceof HTMLElement)) return null;
     const owner = target.querySelector('[data-hg-place-sheet-owner="news"]');
-    if (!target.hidden && text6(target.dataset.placeId) === id && owner instanceof HTMLElement) return target;
+    if (!target.hidden && text7(target.dataset.placeId) === id && owner instanceof HTMLElement) return target;
     void hydrate(id);
     return null;
   }
   function onUnifiedReady(event) {
     var _a;
-    const id = text6((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text7((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalNews(id);
   }
-  runtime6.addEventListener("hg:place-unified-ready", onUnifiedReady);
+  runtime7.addEventListener("hg:place-unified-ready", onUnifiedReady);
   var newsApi = {
     renderContentHtml: renderNewsContentHtml,
     renderHtml: renderCanonicalNewsHtml,
     mount: mountCanonicalNews,
     adopt: adoptCanonicalNews
   };
-  runtime6.HGPlaceSheetSections = {
-    ...runtime6.HGPlaceSheetSections || {},
+  runtime7.HGPlaceSheetSections = {
+    ...runtime7.HGPlaceSheetSections || {},
     news: newsApi
   };
 
   // js/ui/place-sheet/sections/reading.ts
-  var runtime7 = window;
+  var runtime8 = window;
   var PAYWALL_TERMS = [
     "paywall",
     "subscription",
@@ -604,21 +639,21 @@
     "betalingsmur",
     "krever abonnement"
   ];
-  function text7(value) {
+  function text8(value) {
     return String(value == null ? "" : value).trim();
   }
   function list2(value) {
     return Array.isArray(value) ? value : [];
   }
-  function escapeHtml6(value) {
+  function escapeHtml7(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function safeHttpsUrl3(value) {
     var _a;
-    const raw = text7(value);
+    const raw = text8(value);
     if (!raw) return "";
     try {
-      const parsed = new URL(raw, ((_a = runtime7.location) == null ? void 0 : _a.origin) || void 0);
+      const parsed = new URL(raw, ((_a = runtime8.location) == null ? void 0 : _a.origin) || void 0);
       return parsed.protocol === "https:" ? parsed.href : "";
     } catch {
       return "";
@@ -627,7 +662,7 @@
   function uniqueBy(items) {
     const seen = /* @__PURE__ */ new Set();
     return items.filter((item) => {
-      const key = text7(item == null ? void 0 : item.id) || [item == null ? void 0 : item.title, item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date)].map(text7).join("|");
+      const key = text8(item == null ? void 0 : item.id) || [item == null ? void 0 : item.title, item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date)].map(text8).join("|");
       if (!key || seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -637,20 +672,20 @@
     return Number((item == null ? void 0 : item.year) || String((item == null ? void 0 : item.date) || "").slice(0, 4)) || 0;
   }
   function isOpenReading(item) {
-    const access = [item == null ? void 0 : item.access, item == null ? void 0 : item.access_note, item == null ? void 0 : item.note].map((value) => text7(value).toLowerCase()).join(" ");
+    const access = [item == null ? void 0 : item.access, item == null ? void 0 : item.access_note, item == null ? void 0 : item.note].map((value) => text8(value).toLowerCase()).join(" ");
     return !PAYWALL_TERMS.some((term) => access.includes(term));
   }
   function filterReadingForPlace(items, placeId2) {
-    const id = text7(placeId2);
+    const id = text8(placeId2);
     if (!id) return [];
-    return uniqueBy(list2(items).filter((item) => list2(item == null ? void 0 : item.place_ids).map(text7).includes(id) && isOpenReading(item))).sort((a, b) => sortYear(b) - sortYear(a));
+    return uniqueBy(list2(items).filter((item) => list2(item == null ? void 0 : item.place_ids).map(text8).includes(id) && isOpenReading(item))).sort((a, b) => sortYear(b) - sortYear(a));
   }
   function readingCards(rows2) {
     return `<div class="hg-place-reading-list pc-sheet-reading-list">${rows2.map((item) => {
       const url = safeHttpsUrl3(item == null ? void 0 : item.url);
-      const meta = [item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date), item == null ? void 0 : item.type].map(text7).filter(Boolean).join(" \xB7 ");
-      const relevance = text7(item == null ? void 0 : item.relevance);
-      return `<article class="hg-place-reading-card pc-sheet-reading-card"><strong>${escapeHtml6((item == null ? void 0 : item.title) || "Uten tittel")}</strong>${meta ? `<span>${escapeHtml6(meta)}</span>` : ""}${relevance ? `<p>${escapeHtml6(relevance)}</p>` : ""}${url ? `<a href="${escapeHtml6(url)}" target="_blank" rel="noopener noreferrer">Les teksten \u2197</a>` : ""}</article>`;
+      const meta = [item == null ? void 0 : item.author, item == null ? void 0 : item.publication, (item == null ? void 0 : item.year) || (item == null ? void 0 : item.date), item == null ? void 0 : item.type].map(text8).filter(Boolean).join(" \xB7 ");
+      const relevance = text8(item == null ? void 0 : item.relevance);
+      return `<article class="hg-place-reading-card pc-sheet-reading-card"><strong>${escapeHtml7((item == null ? void 0 : item.title) || "Uten tittel")}</strong>${meta ? `<span>${escapeHtml7(meta)}</span>` : ""}${relevance ? `<p>${escapeHtml7(relevance)}</p>` : ""}${url ? `<a href="${escapeHtml7(url)}" target="_blank" rel="noopener noreferrer">Les teksten \u2197</a>` : ""}</article>`;
     }).join("")}</div>`;
   }
   function renderReadingContentHtml(items, placeId2) {
@@ -681,16 +716,16 @@
   }
   function canonicalReading(placeId2) {
     var _a, _b, _c;
-    return list2((_c = (_b = (_a = runtime7.HGPlaceOpen) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, placeId2)) == null ? void 0 : _c.lesespor);
+    return list2((_c = (_b = (_a = runtime8.HGPlaceOpen) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, placeId2)) == null ? void 0 : _c.lesespor);
   }
   async function resolveReading(placeId2) {
     var _a, _b;
-    const id = text7(placeId2);
+    const id = text8(placeId2);
     if (!id) return [];
     const canonical = canonicalReading(id);
     if (canonical.length) return canonical;
     try {
-      const value = await ((_b = (_a = runtime7.DataHub) == null ? void 0 : _a.loadLesespor) == null ? void 0 : _b.call(_a, { cache: "default" }));
+      const value = await ((_b = (_a = runtime8.DataHub) == null ? void 0 : _a.loadLesespor) == null ? void 0 : _b.call(_a, { cache: "default" }));
       const aggregate = Array.isArray(value == null ? void 0 : value.items) ? value.items : list2(value);
       return uniqueBy([...aggregate, ...canonicalReading(id)]);
     } catch {
@@ -730,7 +765,7 @@
   }
   async function hydrateUnifiedReading(placeId2) {
     var _a;
-    const id = text7(placeId2);
+    const id = text8(placeId2);
     if (!id) return;
     const generation = ++hydrationGeneration2;
     const slot2 = ensureReadingSlot();
@@ -738,27 +773,27 @@
     invalidate2(slot2);
     const items = await resolveReading(id);
     if (generation !== hydrationGeneration2 || !slot2.isConnected) return;
-    const shellId = text7((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
+    const shellId = text8((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
     if (shellId && shellId !== id) return;
     const mounted = mountCanonicalReading(slot2, items, id);
     if (mounted) slot2.dataset.placeId = id;
   }
   function adoptCanonicalReading(placeId2) {
-    const id = text7(placeId2);
+    const id = text8(placeId2);
     const slot2 = ensureReadingSlot();
     if (!id || !(slot2 instanceof HTMLElement)) return null;
     const owner = slot2.querySelector('[data-hg-place-sheet-owner="reading"]');
-    if (!slot2.hidden && text7(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
+    if (!slot2.hidden && text8(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
     void hydrateUnifiedReading(id);
     return null;
   }
   function onUnifiedReady2(event) {
     var _a;
-    const id = text7((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text8((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalReading(id);
   }
   ensureStylesheet();
-  runtime7.addEventListener("hg:place-unified-ready", onUnifiedReady2);
+  runtime8.addEventListener("hg:place-unified-ready", onUnifiedReady2);
   var readingApi = {
     filterForPlace: filterReadingForPlace,
     renderContentHtml: renderReadingContentHtml,
@@ -767,15 +802,15 @@
     resolve: resolveReading,
     adopt: adoptCanonicalReading
   };
-  runtime7.HGPlaceSheetSections = {
-    ...runtime7.HGPlaceSheetSections || {},
+  runtime8.HGPlaceSheetSections = {
+    ...runtime8.HGPlaceSheetSections || {},
     reading: readingApi
   };
 
   // js/ui/place-sheet/sections/language.ts
-  var runtime8 = window;
+  var runtime9 = window;
   var hydrationGeneration3 = 0;
-  function text8(value) {
+  function text9(value) {
     return String(value == null ? "" : value).trim();
   }
   function ensureStylesheet2() {
@@ -810,14 +845,14 @@
   }
   function placeFor2(placeId2) {
     var _a, _b;
-    const id = text8(placeId2);
+    const id = text9(placeId2);
     if (!id) return null;
     try {
-      const resolved = (_b = (_a = runtime8.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      const resolved = (_b = (_a = runtime9.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
       if (resolved && typeof resolved === "object") return resolved;
     } catch {
     }
-    return (Array.isArray(runtime8.PLACES) ? runtime8.PLACES : []).find((place) => text8(place == null ? void 0 : place.id) === id) || null;
+    return (Array.isArray(runtime9.PLACES) ? runtime9.PLACES : []).find((place) => text9(place == null ? void 0 : place.id) === id) || null;
   }
   function directScaffold() {
     const compat = document.createElement("div");
@@ -838,10 +873,10 @@
   }
   async function hydrate2(placeId2) {
     var _a, _b;
-    const id = text8(placeId2);
+    const id = text9(placeId2);
     const place = placeFor2(id);
     const slot2 = ensureLanguageSlot();
-    const decorate = (_a = runtime8.HGLanguageLayer) == null ? void 0 : _a.decoratePopup;
+    const decorate = (_a = runtime9.HGLanguageLayer) == null ? void 0 : _a.decoratePopup;
     if (!id || !place || !(slot2 instanceof HTMLElement) || typeof decorate !== "function") return;
     const generation = ++hydrationGeneration3;
     slot2.hidden = true;
@@ -856,7 +891,7 @@
     } catch {
     }
     if (generation !== hydrationGeneration3 || !slot2.isConnected) return;
-    const shellId = text8((_b = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _b.dataset.placeId);
+    const shellId = text9((_b = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _b.dataset.placeId);
     if (shellId && shellId !== id) return;
     const panel = compat.querySelector('.hg-place-language-panel[data-place-panel="language"]');
     if (!(panel instanceof HTMLElement)) {
@@ -876,48 +911,48 @@
     slot2.hidden = false;
   }
   function adoptCanonicalLanguage(placeId2) {
-    const id = text8(placeId2);
+    const id = text9(placeId2);
     if (!id) return null;
     const slot2 = ensureLanguageSlot();
     if (!(slot2 instanceof HTMLElement)) return null;
     const owner = slot2.querySelector('[data-hg-place-sheet-owner="language"]');
-    if (!slot2.hidden && text8(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
+    if (!slot2.hidden && text9(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
     void hydrate2(id);
     return null;
   }
   function onUnifiedReady3(event) {
     var _a;
-    const id = text8((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text9((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalLanguage(id);
   }
   ensureStylesheet2();
-  runtime8.addEventListener("hg:place-unified-ready", onUnifiedReady3);
-  runtime8.HGPlaceSheetSections = {
-    ...runtime8.HGPlaceSheetSections || {},
+  runtime9.addEventListener("hg:place-unified-ready", onUnifiedReady3);
+  runtime9.HGPlaceSheetSections = {
+    ...runtime9.HGPlaceSheetSections || {},
     language: { adopt: adoptCanonicalLanguage }
   };
 
   // js/ui/place-sheet/sections/sources.ts
-  var runtime9 = window;
+  var runtime10 = window;
   var hydrationGeneration4 = 0;
-  function text9(value) {
+  function text10(value) {
     return String(value == null ? "" : value).trim();
   }
   function list3(value) {
     return Array.isArray(value) ? value.filter(Boolean) : [];
   }
   function strings3(value) {
-    return list3(value).map(text9).filter(Boolean);
+    return list3(value).map(text10).filter(Boolean);
   }
-  function escapeHtml7(value) {
+  function escapeHtml8(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function safeHttpsUrl4(value) {
     var _a;
-    const raw = text9(value);
+    const raw = text10(value);
     if (!raw) return "";
     try {
-      const parsed = new URL(raw, ((_a = runtime9.location) == null ? void 0 : _a.origin) || void 0);
+      const parsed = new URL(raw, ((_a = runtime10.location) == null ? void 0 : _a.origin) || void 0);
       return parsed.protocol === "https:" ? parsed.href : "";
     } catch {
       return "";
@@ -933,7 +968,7 @@
     });
   }
   function humanize(value) {
-    const raw = text9(value).replace(/_/g, " ").replace(/\s+/g, " ");
+    const raw = text10(value).replace(/_/g, " ").replace(/\s+/g, " ");
     return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "";
   }
   function renderCanonicalSourcesHtml(place, articles = []) {
@@ -941,21 +976,21 @@
     const sourceProfile = (place == null ? void 0 : place.source_summary) && typeof place.source_summary === "object" ? place.source_summary : (place == null ? void 0 : place.sourceSummary) || {};
     const labels = uniqueBy2(strings3((sourceProfile == null ? void 0 : sourceProfile.safe_sources) || (sourceProfile == null ? void 0 : sourceProfile.sources)), (value) => value);
     const configuredLinks = [place, ...list3(articles)].flatMap((value) => list3(value == null ? void 0 : value.externalLinks)).map((link) => ({
-      type: text9((link == null ? void 0 : link.type) || "source"),
-      label: text9((link == null ? void 0 : link.label) || (link == null ? void 0 : link.title)),
+      type: text10((link == null ? void 0 : link.type) || "source"),
+      label: text10((link == null ? void 0 : link.label) || (link == null ? void 0 : link.title)),
       url: safeHttpsUrl4(link == null ? void 0 : link.url)
     }));
     const beforeAfterLinks = [
       ...strings3(((_a = place == null ? void 0 : place.for_na) == null ? void 0 : _a.sources) || ((_b = place == null ? void 0 : place.for_na) == null ? void 0 : _b.kilder) || ((_c = place == null ? void 0 : place.for_na) == null ? void 0 : _c.source)),
-      text9(((_e = (_d = place == null ? void 0 : place.for_na) == null ? void 0 : _d.beforeImageMeta) == null ? void 0 : _e.sourcePage) || ((_g = (_f = place == null ? void 0 : place.for_na) == null ? void 0 : _f.before_image_meta) == null ? void 0 : _g.sourcePage)),
-      text9(((_i = (_h = place == null ? void 0 : place.for_na) == null ? void 0 : _h.nowImageMeta) == null ? void 0 : _i.sourcePage) || ((_k = (_j = place == null ? void 0 : place.for_na) == null ? void 0 : _j.now_image_meta) == null ? void 0 : _k.sourcePage))
+      text10(((_e = (_d = place == null ? void 0 : place.for_na) == null ? void 0 : _d.beforeImageMeta) == null ? void 0 : _e.sourcePage) || ((_g = (_f = place == null ? void 0 : place.for_na) == null ? void 0 : _f.before_image_meta) == null ? void 0 : _g.sourcePage)),
+      text10(((_i = (_h = place == null ? void 0 : place.for_na) == null ? void 0 : _h.nowImageMeta) == null ? void 0 : _i.sourcePage) || ((_k = (_j = place == null ? void 0 : place.for_na) == null ? void 0 : _j.now_image_meta) == null ? void 0 : _k.sourcePage))
     ].map((url) => ({ type: "image_source", label: "Bilde- og sammenligningskilde", url: safeHttpsUrl4(url) }));
     const links = uniqueBy2([...configuredLinks, ...beforeAfterLinks].filter((link) => link.url), (link) => link.url);
     return `
     <section class="hg-section hg-place-sources-section pc-sheet-canonical-sources" data-hg-place-sheet-owner="sources">
       <h3>Kilder</h3>
-      ${labels.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder i stedprofilen</h4><ul class="hg-place-source-list">${labels.map((label) => `<li>${escapeHtml7(label)}</li>`).join("")}</ul></section>` : ""}
-      ${links.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder og eksterne oppslag</h4><div class="hg-place-source-link-list">${links.map((link) => `<a href="${escapeHtml7(link.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml7(link.label || link.url)}</strong><span>${escapeHtml7(humanize(link.type))} \u2197</span></a>`).join("")}</div></section>` : ""}
+      ${labels.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder i stedprofilen</h4><ul class="hg-place-source-list">${labels.map((label) => `<li>${escapeHtml8(label)}</li>`).join("")}</ul></section>` : ""}
+      ${links.length ? `<section class="hg-section hg-place-section hg-place-tab-section"><h4>Kilder og eksterne oppslag</h4><div class="hg-place-source-link-list">${links.map((link) => `<a href="${escapeHtml8(link.url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml8(link.label || link.url)}</strong><span>${escapeHtml8(humanize(link.type))} \u2197</span></a>`).join("")}</div></section>` : ""}
       ${!labels.length && !links.length ? '<div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert for dette stedet enn\xE5.</div>' : ""}
     </section>
   `;
@@ -993,14 +1028,14 @@
   }
   function placeFor3(placeId2) {
     var _a, _b;
-    const id = text9(placeId2);
+    const id = text10(placeId2);
     if (!id) return null;
     try {
-      const resolved = (_b = (_a = runtime9.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      const resolved = (_b = (_a = runtime10.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
       if (resolved && typeof resolved === "object") return resolved;
     } catch {
     }
-    return (Array.isArray(runtime9.PLACES) ? runtime9.PLACES : []).find((place) => text9(place == null ? void 0 : place.id) === id) || null;
+    return (Array.isArray(runtime10.PLACES) ? runtime10.PLACES : []).find((place) => text10(place == null ? void 0 : place.id) === id) || null;
   }
   function invalidate3(slot2) {
     slot2.replaceChildren();
@@ -1009,7 +1044,7 @@
   }
   async function hydrate3(placeId2) {
     var _a;
-    const id = text9(placeId2);
+    const id = text10(placeId2);
     const place = placeFor3(id);
     const slot2 = ensureSlot();
     if (!id || !place || !(slot2 instanceof HTMLElement)) return;
@@ -1017,37 +1052,37 @@
     invalidate3(slot2);
     const context = await resolvePlaceKnowledgeContext(place);
     if (generation !== hydrationGeneration4 || !slot2.isConnected) return;
-    const shellId = text9((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
+    const shellId = text10((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
     if (shellId && shellId !== id) return;
     slot2.innerHTML = renderCanonicalSourcesHtml(place, context.visibleArticles);
     slot2.dataset.placeId = id;
     slot2.hidden = false;
   }
   function adoptCanonicalSources(placeId2) {
-    const id = text9(placeId2);
+    const id = text10(placeId2);
     const slot2 = ensureSlot();
     if (!id || !(slot2 instanceof HTMLElement)) return null;
     const owner = slot2.querySelector('[data-hg-place-sheet-owner="sources"]');
-    if (!slot2.hidden && text9(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
+    if (!slot2.hidden && text10(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
     void hydrate3(id);
     return null;
   }
   function onUnifiedReady4(event) {
     var _a;
-    const id = text9((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text10((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalSources(id);
   }
   ensureStylesheet3();
-  runtime9.addEventListener("hg:place-unified-ready", onUnifiedReady4);
-  runtime9.HGPlaceSheetSections = {
-    ...runtime9.HGPlaceSheetSections || {},
+  runtime10.addEventListener("hg:place-unified-ready", onUnifiedReady4);
+  runtime10.HGPlaceSheetSections = {
+    ...runtime10.HGPlaceSheetSections || {},
     sources: { renderHtml: renderCanonicalSourcesHtml, adopt: adoptCanonicalSources }
   };
 
   // js/ui/place-sheet/sections/learning.ts
-  var runtime10 = window;
+  var runtime11 = window;
   var hydrationGeneration5 = 0;
-  function text10(value) {
+  function text11(value) {
     return String(value == null ? "" : value).trim();
   }
   function ensureStylesheet4() {
@@ -1082,14 +1117,14 @@
   }
   function placeFor4(placeId2) {
     var _a, _b;
-    const id = text10(placeId2);
+    const id = text11(placeId2);
     if (!id) return null;
     try {
-      const resolved = (_b = (_a = runtime10.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      const resolved = (_b = (_a = runtime11.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
       if (resolved && typeof resolved === "object") return resolved;
     } catch {
     }
-    return (Array.isArray(runtime10.PLACES) ? runtime10.PLACES : []).find((place) => text10(place == null ? void 0 : place.id) === id) || null;
+    return (Array.isArray(runtime11.PLACES) ? runtime11.PLACES : []).find((place) => text11(place == null ? void 0 : place.id) === id) || null;
   }
   function invalidate4(slot2) {
     slot2.replaceChildren();
@@ -1098,10 +1133,10 @@
   }
   async function hydrate4(placeId2) {
     var _a;
-    const id = text10(placeId2);
+    const id = text11(placeId2);
     const place = placeFor4(id);
     const slot2 = ensureSlot2();
-    const api = runtime10.HGPlaceLearningSurface;
+    const api = runtime11.HGPlaceLearningSurface;
     if (!id || !place || !(slot2 instanceof HTMLElement) || typeof (api == null ? void 0 : api.loadRegistry) !== "function" || typeof (api == null ? void 0 : api.renderLearningSection) !== "function") return;
     const generation = ++hydrationGeneration5;
     invalidate4(slot2);
@@ -1111,11 +1146,11 @@
     } catch {
     }
     if (generation !== hydrationGeneration5 || !slot2.isConnected || !registry) return;
-    const shellId = text10((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
+    const shellId = text11((_a = slot2.closest('[data-hg-place-sheet-shell="1"]')) == null ? void 0 : _a.dataset.placeId);
     if (shellId && shellId !== id) return;
     let rendered = "";
     try {
-      rendered = text10(api.renderLearningSection(registry, place));
+      rendered = text11(api.renderLearningSection(registry, place));
     } catch {
     }
     if (!rendered) return;
@@ -1128,29 +1163,29 @@
     slot2.hidden = false;
   }
   function adoptCanonicalLearning(placeId2) {
-    const id = text10(placeId2);
+    const id = text11(placeId2);
     const slot2 = ensureSlot2();
     if (!id || !(slot2 instanceof HTMLElement)) return null;
     const owner = slot2.querySelector('[data-hg-place-sheet-owner="learning"]');
-    if (!slot2.hidden && text10(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
+    if (!slot2.hidden && text11(slot2.dataset.placeId) === id && owner instanceof HTMLElement) return slot2;
     void hydrate4(id);
     return null;
   }
   function onUnifiedReady5(event) {
     var _a;
-    const id = text10((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text11((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id) adoptCanonicalLearning(id);
   }
   ensureStylesheet4();
-  runtime10.addEventListener("hg:place-unified-ready", onUnifiedReady5);
-  runtime10.HGPlaceSheetSections = {
-    ...runtime10.HGPlaceSheetSections || {},
+  runtime11.addEventListener("hg:place-unified-ready", onUnifiedReady5);
+  runtime11.HGPlaceSheetSections = {
+    ...runtime11.HGPlaceSheetSections || {},
     learning: { adopt: adoptCanonicalLearning }
   };
 
   // js/ui/place-sheet/sections/special-sections.ts
-  var runtime11 = window;
-  function text11(value) {
+  var runtime12 = window;
+  function text12(value) {
     return String(value == null ? "" : value).trim();
   }
   function list4(value) {
@@ -1159,20 +1194,20 @@
   function object(value) {
     return value && typeof value === "object" && !Array.isArray(value) ? value : {};
   }
-  function escapeHtml8(value) {
+  function escapeHtml9(value) {
     return String(value == null ? "" : value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
   }
   function humanize2(value) {
-    const raw = text11(value).replace(/_/g, " ").replace(/\s+/g, " ");
+    const raw = text12(value).replace(/_/g, " ").replace(/\s+/g, " ");
     return raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : "";
   }
   function unique(values) {
-    return [...new Set(values.map(text11).filter(Boolean))];
+    return [...new Set(values.map(text12).filter(Boolean))];
   }
   function chips(values, maxItems = 18) {
     const items = unique(list4(values)).slice(0, maxItems);
     if (!items.length) return "";
-    return `<div class="hg-place-chip-list">${items.map((item) => `<span class="hg-place-chip">${escapeHtml8(humanize2(item))}</span>`).join("")}</div>`;
+    return `<div class="hg-place-chip-list">${items.map((item) => `<span class="hg-place-chip">${escapeHtml9(humanize2(item))}</span>`).join("")}</div>`;
   }
   function renderNature(place) {
     const profile = object((place == null ? void 0 : place.nature_profile) || (place == null ? void 0 : place.natureProfile));
@@ -1182,12 +1217,12 @@
     const habitats = list4(profile.habitats || profile.habitat_types || profile.nature_types);
     const species = list4(birding.notable_species || profile.notable_species || profile.species);
     const seasons = list4(birding.seasonal_focus || profile.seasonal_focus);
-    const summary = text11(profile.summary || profile.description);
+    const summary = text12(profile.summary || profile.description);
     if (!terrain.length && !habitats.length && !species.length && !seasons.length && !summary) return "";
     return `
     <section class="hg-section hg-place-section hg-place-nature-section" data-hg-place-sheet-special-owner="nature-landscape">
       <h3>Natur og landskap</h3>
-      ${summary ? `<p class="hg-place-nature-summary">${escapeHtml8(summary)}</p>` : ""}
+      ${summary ? `<p class="hg-place-nature-summary">${escapeHtml9(summary)}</p>` : ""}
       <div class="hg-place-nature-grid">
         ${terrain.length || habitats.length ? `<div class="hg-place-nature-block"><h4>Terreng og naturtyper</h4>${chips([...terrain, ...habitats])}</div>` : ""}
         ${species.length ? `<div class="hg-place-nature-block"><h4>Artsliv <span>${species.length}</span></h4>${chips(species)}</div>` : ""}
@@ -1201,22 +1236,22 @@
     if (!place) return false;
     const profile = object(place == null ? void 0 : place.training_profile);
     if (!Object.keys(profile).length) return false;
-    const hasContent = Boolean(text11(profile.summary) || text11(profile.safety) || list4(profile.exercises).filter(Boolean).length);
+    const hasContent = Boolean(text12(profile.summary) || text12(profile.safety) || list4(profile.exercises).filter(Boolean).length);
     if (!hasContent) return false;
     try {
-      if (typeof ((_a = runtime11.HGPlacePopupSportTraining) == null ? void 0 : _a.isSportsPlace) === "function") {
-        return runtime11.HGPlacePopupSportTraining.isSportsPlace(place) === true;
+      if (typeof ((_a = runtime12.HGPlacePopupSportTraining) == null ? void 0 : _a.isSportsPlace) === "function") {
+        return runtime12.HGPlacePopupSportTraining.isSportsPlace(place) === true;
       }
     } catch {
     }
-    const category = text11((place == null ? void 0 : place.category) || (place == null ? void 0 : place.categoryId)).toLowerCase();
+    const category = text12((place == null ? void 0 : place.category) || (place == null ? void 0 : place.categoryId)).toLowerCase();
     return category === "sport" || Boolean(Object.keys(object(place == null ? void 0 : place.sport_profile)).length);
   }
   function renderTraining(place) {
     var _a, _b;
     if (!hasTrainingContent(place)) return "";
     try {
-      const html = text11((_b = (_a = runtime11.HGPlacePopupSportTraining) == null ? void 0 : _a.render) == null ? void 0 : _b.call(_a, place));
+      const html = text12((_b = (_a = runtime12.HGPlacePopupSportTraining) == null ? void 0 : _a.render) == null ? void 0 : _b.call(_a, place));
       if (html) return html.replace('data-hg-sport-training="1"', 'data-hg-sport-training="1" data-hg-place-sheet-special-owner="sport-training"');
     } catch {
     }
@@ -1227,14 +1262,14 @@
   }
   function placeFor5(placeId2) {
     var _a, _b;
-    const id = text11(placeId2);
+    const id = text12(placeId2);
     if (!id) return null;
     try {
-      const resolved = (_b = (_a = runtime11.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
+      const resolved = (_b = (_a = runtime12.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, id);
       if (resolved && typeof resolved === "object") return resolved;
     } catch {
     }
-    return list4(runtime11.PLACES).find((place) => text11(place == null ? void 0 : place.id) === id) || null;
+    return list4(runtime12.PLACES).find((place) => text12(place == null ? void 0 : place.id) === id) || null;
   }
   function ensureStylesheet5() {
     if (document.querySelector('link[data-hg-place-sheet-special-style="1"]')) return;
@@ -1258,7 +1293,7 @@
       if (sources == null ? void 0 : sources.nextSibling) root2.insertBefore(slot2, sources.nextSibling);
       else root2.appendChild(slot2);
     }
-    slot2.dataset.placeId = text11(placeId2);
+    slot2.dataset.placeId = text12(placeId2);
     return slot2;
   }
   function specialSectionsApply(placeId2) {
@@ -1267,7 +1302,7 @@
     return Boolean(renderNature(place) || hasTrainingContent(place));
   }
   function adoptCanonicalSpecialSections(placeId2) {
-    const id = text11(placeId2);
+    const id = text12(placeId2);
     const place = placeFor5(id);
     const slot2 = ensureSlot3(id);
     if (!id || !place || !(slot2 instanceof HTMLElement)) return null;
@@ -1278,13 +1313,13 @@
   }
   function onUnifiedReady6(event) {
     var _a;
-    const id = text11((_a = event.detail) == null ? void 0 : _a.placeId);
+    const id = text12((_a = event.detail) == null ? void 0 : _a.placeId);
     if (id && specialSectionsApply(id)) adoptCanonicalSpecialSections(id);
   }
   ensureStylesheet5();
-  runtime11.addEventListener("hg:place-unified-ready", onUnifiedReady6);
-  runtime11.HGPlaceSheetSections = {
-    ...runtime11.HGPlaceSheetSections || {},
+  runtime12.addEventListener("hg:place-unified-ready", onUnifiedReady6);
+  runtime12.HGPlaceSheetSections = {
+    ...runtime12.HGPlaceSheetSections || {},
     special: {
       applies: specialSectionsApply,
       adopt: adoptCanonicalSpecialSections
@@ -1316,8 +1351,8 @@
     ["language", "learning"],
     ["sources"]
   ];
-  var runtime12 = window;
-  function text12(value) {
+  var runtime13 = window;
+  function text13(value) {
     return String(value == null ? "" : value).trim();
   }
   function placeSheetSectionNode(id) {
@@ -1331,13 +1366,13 @@
   function hasRenderedPlaceSheetSection(id) {
     const node = placeSheetSectionNode(id);
     if (!(node instanceof HTMLElement) || node.hidden) return false;
-    if (text12(node.dataset.placeId)) return true;
+    if (text13(node.dataset.placeId)) return true;
     if (node.querySelector("[data-hg-place-sheet-owner], [data-hg-place-sheet-special-owner], .hg-place-learning-section, [data-language-place], .hg-place-tab-generated")) return true;
-    return text12(node.textContent).length > 0;
+    return text13(node.textContent).length > 0;
   }
   function placeSheetSectionApplies(id, placeId2) {
     var _a;
-    const api = (_a = runtime12.HGPlaceSheetSections) == null ? void 0 : _a[id];
+    const api = (_a = runtime13.HGPlaceSheetSections) == null ? void 0 : _a[id];
     if (!api || typeof api.applies !== "function") return true;
     try {
       return api.applies(placeId2) === true;
@@ -1347,7 +1382,7 @@
   }
   function nudgePlaceSheetSection(id, placeId2) {
     var _a;
-    const api = (_a = runtime12.HGPlaceSheetSections) == null ? void 0 : _a[id];
+    const api = (_a = runtime13.HGPlaceSheetSections) == null ? void 0 : _a[id];
     if (!api || typeof api.adopt !== "function") return;
     try {
       api.adopt(placeId2);
@@ -1356,7 +1391,7 @@
   }
 
   // js/ui/place-sheet/place-sheet-state.ts
-  var runtime13 = window;
+  var runtime14 = window;
   var generationCounter = 0;
   var active = null;
   function cloneSnapshot(value) {
@@ -1372,7 +1407,7 @@
   }
   function emit(name, value) {
     try {
-      runtime13.dispatchEvent(new CustomEvent(name, { detail: cloneSnapshot(value) }));
+      runtime14.dispatchEvent(new CustomEvent(name, { detail: cloneSnapshot(value) }));
     } catch {
     }
   }
@@ -1432,24 +1467,24 @@
       delete card2.dataset.hgPlaceSheetRenderState;
     }
   }
-  runtime13.HGPlaceSheetState = {
+  runtime14.HGPlaceSheetState = {
     snapshot: currentPlaceSheetSnapshot,
     cancel: cancelPlaceSheetGeneration
   };
 
   // js/ui/place-sheet/place-sheet-render-queue.ts
-  var runtime14 = window;
+  var runtime15 = window;
   var compatibilityReady = /* @__PURE__ */ new Set();
   var compatibilityWaiters = /* @__PURE__ */ new Map();
   var promotedSections = /* @__PURE__ */ new Map();
   var pendingPromotions = /* @__PURE__ */ new Map();
   var COMPATIBILITY_SECTION_IDS = new Set(PLACE_SHEET_COMPAT_SECTION_BATCHES.flat());
   var activeHandle = null;
-  function text13(value) {
+  function text14(value) {
     return String(value == null ? "" : value).trim();
   }
   function canonicalSectionId(value) {
-    const id = text13(value);
+    const id = text14(value);
     return PLACE_SHEET_SECTION_IDS.includes(id) ? id : null;
   }
   function isTerminalStatus(value) {
@@ -1462,7 +1497,7 @@
   }
   async function yieldToBrowser(signal) {
     if (signal.aborted) return;
-    const scheduler = runtime14.scheduler;
+    const scheduler = runtime15.scheduler;
     if (scheduler && typeof scheduler.postTask === "function") {
       try {
         await scheduler.postTask(() => void 0, { priority: "background", signal });
@@ -1472,20 +1507,20 @@
       }
     }
     await new Promise((resolve) => {
-      const finish = () => runtime14.setTimeout(resolve, 0);
-      if (typeof runtime14.requestAnimationFrame === "function") runtime14.requestAnimationFrame(finish);
+      const finish = () => runtime15.setTimeout(resolve, 0);
+      if (typeof runtime15.requestAnimationFrame === "function") runtime15.requestAnimationFrame(finish);
       else finish();
     });
   }
   function onCompatibilityReady(event) {
     var _a, _b;
-    const placeId2 = text13((_a = event.detail) == null ? void 0 : _a.placeId);
+    const placeId2 = text14((_a = event.detail) == null ? void 0 : _a.placeId);
     const snapshot = currentPlaceSheetSnapshot();
     if (!snapshot || snapshot.placeId !== placeId2) return;
     compatibilityReady.add(snapshot.generation);
     (_b = compatibilityWaiters.get(snapshot.generation)) == null ? void 0 : _b();
   }
-  runtime14.addEventListener("hg:place-unified-ready", onCompatibilityReady);
+  runtime15.addEventListener("hg:place-unified-ready", onCompatibilityReady);
   function waitForCompatibility(generation, placeId2, signal, timeoutMs = 2600) {
     if (compatibilityReady.has(generation)) return Promise.resolve(true);
     return new Promise((resolve) => {
@@ -1493,13 +1528,13 @@
       const finish = (value) => {
         if (settled) return;
         settled = true;
-        runtime14.clearTimeout(timer);
+        runtime15.clearTimeout(timer);
         compatibilityWaiters.delete(generation);
         signal.removeEventListener("abort", onAbort);
         resolve(value);
       };
       const onAbort = () => finish(false);
-      const timer = runtime14.setTimeout(() => finish(false), timeoutMs);
+      const timer = runtime15.setTimeout(() => finish(false), timeoutMs);
       compatibilityWaiters.set(generation, () => {
         if (!isActivePlaceSheetGeneration(generation, placeId2)) finish(false);
         else finish(true);
@@ -1512,7 +1547,7 @@
     while (!signal.aborted && isActivePlaceSheetGeneration(generation, placeId2)) {
       if (hasRenderedPlaceSheetSection(id)) return true;
       if (Date.now() - started >= timeoutMs) return false;
-      await new Promise((resolve) => runtime14.setTimeout(resolve, 30));
+      await new Promise((resolve) => runtime15.setTimeout(resolve, 30));
     }
     return false;
   }
@@ -1608,7 +1643,7 @@
     }
   }
   function startAutomaticPlaceSheetRender(placeIdValue) {
-    const placeId2 = text13(placeIdValue);
+    const placeId2 = text14(placeIdValue);
     if (!placeId2) return null;
     if (activeHandle && !activeHandle.signal.aborted && activeHandle.placeId === placeId2) return activeHandle;
     if (activeHandle) promotedSections.delete(activeHandle.generation);
@@ -1633,7 +1668,7 @@
   }
   async function promoteAutomaticPlaceSheetSection(placeIdValue, sectionIdValue) {
     var _a;
-    const placeId2 = text13(placeIdValue);
+    const placeId2 = text14(placeIdValue);
     const id = canonicalSectionId(sectionIdValue);
     if (!placeId2 || !id) return false;
     const initial = currentPlaceSheetSnapshot();
@@ -1659,7 +1694,7 @@
         registerPromotion(snapshot.generation, id);
         if (compatibilityReady.has(snapshot.generation)) nudgePlaceSheetSection(id, placeId2);
       }
-      await new Promise((resolve) => runtime14.setTimeout(resolve, 20));
+      await new Promise((resolve) => runtime15.setTimeout(resolve, 20));
     }
     (_a = pendingPromotions.get(placeId2)) == null ? void 0 : _a.delete(id);
     return hasRenderedPlaceSheetSection(id);
@@ -1674,7 +1709,7 @@
     pendingPromotions.clear();
     activeHandle = null;
   }
-  runtime14.HGPlaceSheetRenderQueue = {
+  runtime15.HGPlaceSheetRenderQueue = {
     start: startAutomaticPlaceSheetRender,
     promote: promoteAutomaticPlaceSheetSection,
     cancel: cancelAutomaticPlaceSheetRender,
@@ -1682,29 +1717,29 @@
   };
 
   // js/ui/place-sheet/place-sheet-direct-routing.ts
-  var runtime15 = window;
+  var runtime16 = window;
   var INSTALL_FLAG = "__HG_PLACE_SHEET_DIRECT_ROUTING_INSTALLED__";
   var WRAPPED_FLAG = "__hgPlaceSheetDirectRouting";
-  function text14(value) {
+  function text15(value) {
     return String(value == null ? "" : value).trim();
   }
   function resolvedPlace(place) {
     if (place && typeof place === "object") return place;
-    const id = text14(place);
-    return (Array.isArray(runtime15.PLACES) ? runtime15.PLACES : []).find((row) => text14(row == null ? void 0 : row.id) === id) || place;
+    const id = text15(place);
+    return (Array.isArray(runtime16.PLACES) ? runtime16.PLACES : []).find((row) => text15(row == null ? void 0 : row.id) === id) || place;
   }
   function placeId(place) {
     const value = resolvedPlace(place);
-    return text14((value == null ? void 0 : value.id) || (typeof value === "string" ? value : ""));
+    return text15((value == null ? void 0 : value.id) || (typeof value === "string" ? value : ""));
   }
   function isMicro(place) {
     const value = resolvedPlace(place);
-    return text14(value == null ? void 0 : value.placeTier).toLowerCase() === "micro";
+    return text15(value == null ? void 0 : value.placeTier).toLowerCase() === "micro";
   }
   function canonicalSection(target) {
     var _a;
-    const canonical = (_a = runtime15.HGPlaceUnifiedSurface) == null ? void 0 : _a.canonicalSection;
-    return typeof canonical === "function" ? canonical(target || "about") : text14(target || "about");
+    const canonical = (_a = runtime16.HGPlaceUnifiedSurface) == null ? void 0 : _a.canonicalSection;
+    return typeof canonical === "function" ? canonical(target || "about") : text15(target || "about");
   }
   async function finishPromotedRoute(value, promotion, sectionId) {
     var _a, _b;
@@ -1713,13 +1748,13 @@
     } catch {
     }
     try {
-      (_b = (_a = runtime15.HGPlaceUnifiedSurface) == null ? void 0 : _a.scrollToSection) == null ? void 0 : _b.call(_a, sectionId);
+      (_b = (_a = runtime16.HGPlaceUnifiedSurface) == null ? void 0 : _a.scrollToSection) == null ? void 0 : _b.call(_a, sectionId);
     } catch {
     }
     return value;
   }
   function wrapShowPlacePopup() {
-    const current = runtime15.showPlacePopup;
+    const current = runtime16.showPlacePopup;
     if (typeof current !== "function" || current[WRAPPED_FLAG] === true) return false;
     if (current.__hgUnifiedPlaceSurface !== true) return false;
     const wrapped = function showPromotedPlaceSheetSection(place, target) {
@@ -1737,11 +1772,11 @@
     });
     wrapped[WRAPPED_FLAG] = true;
     wrapped.__previous = current;
-    runtime15.showPlacePopup = wrapped;
+    runtime16.showPlacePopup = wrapped;
     return true;
   }
   function wrapPopupTabBridge() {
-    const tabs = runtime15.HGPlacePopupTabs;
+    const tabs = runtime16.HGPlacePopupTabs;
     const current = tabs == null ? void 0 : tabs.openTab;
     if (!tabs || typeof current !== "function" || current[WRAPPED_FLAG] === true) return false;
     const wrapped = function openPromotedPlaceSheetSection(place, tabId) {
@@ -1757,25 +1792,25 @@
     return true;
   }
   function install() {
-    if (runtime15[INSTALL_FLAG]) return true;
-    if (runtime15.__HG_PLACE_UNIFIED_SURFACE_INSTALLED__ !== true) return false;
-    if (!runtime15.HGPlaceUnifiedSurface || typeof runtime15.showPlacePopup !== "function") return false;
-    if (runtime15.showPlacePopup.__hgUnifiedPlaceSurface !== true) return false;
+    if (runtime16[INSTALL_FLAG]) return true;
+    if (runtime16.__HG_PLACE_UNIFIED_SURFACE_INSTALLED__ !== true) return false;
+    if (!runtime16.HGPlaceUnifiedSurface || typeof runtime16.showPlacePopup !== "function") return false;
+    if (runtime16.showPlacePopup.__hgUnifiedPlaceSurface !== true) return false;
     wrapShowPlacePopup();
     wrapPopupTabBridge();
-    runtime15[INSTALL_FLAG] = true;
+    runtime16[INSTALL_FLAG] = true;
     return true;
   }
   if (!install()) {
     let attempts = 0;
-    const timer = runtime15.setInterval(() => {
+    const timer = runtime16.setInterval(() => {
       attempts += 1;
-      if (install() || attempts > 400) runtime15.clearInterval(timer);
+      if (install() || attempts > 400) runtime16.clearInterval(timer);
     }, 25);
   }
 
   // js/ui/place-sheet/place-sheet-shell.ts
-  var runtime16 = window;
+  var runtime17 = window;
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
   var NAV_ITEMS = [
@@ -1789,7 +1824,7 @@
     ["learning", "Fagverk"],
     ["sources", "Kilder"]
   ];
-  function text15(value) {
+  function text16(value) {
     return String(value == null ? "" : value).trim();
   }
   function card() {
@@ -1800,7 +1835,7 @@
     return ((_a = card()) == null ? void 0 : _a.querySelector(":scope > .pc-body")) || null;
   }
   function isMicro2(place) {
-    return text15(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+    return text16(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
   }
   function ensureSectionNav(shell4, place) {
     let nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
@@ -1814,46 +1849,46 @@
         var _a, _b, _c;
         const collectionButton = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-collection-link]") : null;
         if (collectionButton instanceof HTMLElement && (nav == null ? void 0 : nav.contains(collectionButton))) {
-          const collectionId = text15(collectionButton.dataset.hgPlaceSheetCollectionLink);
+          const collectionId = text16(collectionButton.dataset.hgPlaceSheetCollectionLink);
           if (!collectionId) return;
           event.preventDefault();
           const root2 = card();
-          const collection = root2 ? Array.from(root2.querySelectorAll(".pc-collection")).find((node) => text15(node.dataset.collectionId) === collectionId) : null;
+          const collection = root2 ? Array.from(root2.querySelectorAll(".pc-collection")).find((node) => text16(node.dataset.collectionId) === collectionId) : null;
           collection == null ? void 0 : collection.click();
           return;
         }
         const button = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-jump]") : null;
         if (!(button instanceof HTMLElement) || !(nav == null ? void 0 : nav.contains(button))) return;
-        const target = text15(button.dataset.hgPlaceSheetJump);
-        const placeId2 = text15(shell4.dataset.placeId);
+        const target = text16(button.dataset.hgPlaceSheetJump);
+        const placeId2 = text16(shell4.dataset.placeId);
         if (!target || !placeId2) return;
         event.preventDefault();
-        const open = (_a = runtime16.HGPlaceUnifiedSurface) == null ? void 0 : _a.open;
+        const open = (_a = runtime17.HGPlaceUnifiedSurface) == null ? void 0 : _a.open;
         if (typeof open === "function") {
           void Promise.resolve(open(placeId2, target));
         } else {
-          (_c = (_b = runtime16.HGPlaceUnifiedSurface) == null ? void 0 : _b.scrollToSection) == null ? void 0 : _c.call(_b, target);
+          (_c = (_b = runtime17.HGPlaceUnifiedSurface) == null ? void 0 : _b.scrollToSection) == null ? void 0 : _c.call(_b, target);
         }
       });
     }
     if (shell4.firstElementChild !== nav) shell4.prepend(nav);
-    nav.dataset.placeId = text15(place.id);
+    nav.dataset.placeId = text16(place.id);
     return nav;
   }
   function syncCollectionNav(nav, place, sideStack) {
     var _a, _b;
     nav.querySelectorAll("[data-hg-place-sheet-collection-link]").forEach((button) => button.remove());
-    const configured = ((_b = (_a = runtime16.HGPlaceCardCollections) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, place)) || [];
-    const fallback = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).filter((node) => !node.hidden && text15(node.dataset.collectionId)).map((node) => ({
-      id: text15(node.dataset.collectionId),
-      label: text15(node.getAttribute("aria-label") || node.title)
+    const configured = ((_b = (_a = runtime17.HGPlaceCardCollections) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, place)) || [];
+    const fallback = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).filter((node) => !node.hidden && text16(node.dataset.collectionId)).map((node) => ({
+      id: text16(node.dataset.collectionId),
+      label: text16(node.getAttribute("aria-label") || node.title)
     })) : [];
     const source = configured.length ? configured : fallback;
     const seen = /* @__PURE__ */ new Set();
     let insertAfter = nav.querySelector('[data-hg-place-sheet-jump="about"]');
     for (const item of source) {
-      const id = text15(item == null ? void 0 : item.id);
-      const label = text15(item == null ? void 0 : item.label);
+      const id = text16(item == null ? void 0 : item.id);
+      const label = text16(item == null ? void 0 : item.label);
       if (!id || !label || seen.has(id)) continue;
       seen.add(id);
       const button = document.createElement("button");
@@ -1891,7 +1926,7 @@
     `;
       rootBody.prepend(shell4);
     }
-    shell4.dataset.placeId = text15(place.id);
+    shell4.dataset.placeId = text16(place.id);
     ensureSectionNav(shell4, place);
     root2.dataset.hgPlaceSheetPhase = "6";
     root2.classList.add("is-place-sheet-phase1", "is-place-sheet-direct");
@@ -1968,7 +2003,7 @@
     return slot2;
   }
   function mountPlaceSheetPhase1(place) {
-    var _a, _b, _c, _d;
+    var _a, _b, _c, _d, _e;
     if (!place || isMicro2(place)) return null;
     const shell4 = ensureShell(place);
     if (!(shell4 instanceof HTMLElement)) return null;
@@ -1976,12 +2011,15 @@
     const aboutSlot = ensureAboutSlot(shell4);
     if (aboutSlot) (_a = mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })) == null ? void 0 : _a.classList.add("pc-sheet-canonical-about");
     const historySlot = ensureHistorySlot(shell4);
-    if (historySlot) (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
+    if (historySlot) {
+      (_b = mountCanonicalHistory(historySlot, place)) == null ? void 0 : _b.classList.add("pc-sheet-canonical-history");
+      (_c = mountCanonicalChronology(historySlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-history");
+    }
     const storiesSlot = ensureStoriesSlot(shell4);
-    if (storiesSlot) (_c = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _c.classList.add("pc-sheet-canonical-stories");
+    if (storiesSlot) (_d = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-stories");
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
-    if (beforeAfterSlot) (_d = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-before-after");
-    startAutomaticPlaceSheetRender(text15(place.id));
+    if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
+    startAutomaticPlaceSheetRender(text16(place.id));
     return shell4;
   }
   function restoreLegacyPlaceCardStructure() {
@@ -2014,7 +2052,7 @@
   }
   function placeSheetSectionTarget(id) {
     var _a;
-    const normalized2 = text15(id);
+    const normalized2 = text16(id);
     if (!normalized2) return null;
     const target = ((_a = card()) == null ? void 0 : _a.querySelector(`[${SHELL_SECTION_ATTR}="${normalized2}"]`)) || null;
     return target instanceof HTMLElement && !target.hidden ? target : null;
@@ -2069,17 +2107,17 @@
       sources: "sources",
       kilder: "sources"
     });
-    const text16 = (value) => String(value == null ? "" : value).trim();
+    const text17 = (value) => String(value == null ? "" : value).trim();
     let legacyOpenPlaceCard = null;
     let legacyShowPlacePopup = null;
     let readyGeneration = 0;
     let activeMount = Promise.resolve(null);
     let compatibilityTimer = null;
     function isMicro3(place) {
-      return text16(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
+      return text17(place == null ? void 0 : place.placeTier).toLowerCase() === "micro";
     }
     function placeId2(place) {
-      return text16(place == null ? void 0 : place.id);
+      return text17(place == null ? void 0 : place.id);
     }
     function card2() {
       return document.getElementById("placeCard");
@@ -2087,7 +2125,7 @@
     function resolvedPlace2(place) {
       var _a, _b, _c, _d;
       if (place && typeof place === "object") return ((_b = (_a = global.HGPlaceOpen) == null ? void 0 : _a.getPlace) == null ? void 0 : _b.call(_a, place)) || place;
-      const id = text16(place);
+      const id = text17(place);
       if (!id) return null;
       try {
         const enriched = (_d = (_c = global.HGPlaceOpen) == null ? void 0 : _c.getPlace) == null ? void 0 : _d.call(_c, id);
@@ -2098,11 +2136,11 @@
     }
     function currentPlace() {
       var _a, _b, _c, _d;
-      const id = text16(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || ((_d = (_c = card2()) == null ? void 0 : _c.dataset) == null ? void 0 : _d.hgUnifiedPlaceId));
+      const id = text17(((_b = (_a = card2()) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || ((_d = (_c = card2()) == null ? void 0 : _c.dataset) == null ? void 0 : _d.hgUnifiedPlaceId));
       return resolvedPlace2(id);
     }
     function canonicalSection2(value) {
-      const key = text16(value).toLowerCase().replace(/\s+/g, "-");
+      const key = text17(value).toLowerCase().replace(/\s+/g, "-");
       return SECTION_ALIASES[key] || (SECTION_ORDER.some(([id]) => id === key) ? key : "about");
     }
     function ensureStylesheet6() {
@@ -2135,7 +2173,7 @@
         var _a;
         if (generation !== readyGeneration) return;
         const root2 = card2();
-        if (!(root2 instanceof HTMLElement) || text16(root2.dataset.hgUnifiedPlaceId) !== placeId2(place)) return;
+        if (!(root2 instanceof HTMLElement) || text17(root2.dataset.hgUnifiedPlaceId) !== placeId2(place)) return;
         (_a = global.dispatchEvent) == null ? void 0 : _a.call(global, new CustomEvent("hg:place-unified-ready", {
           detail: { placeId: placeId2(place), direct: true, phase: 7 }
         }));
@@ -2190,7 +2228,7 @@
       const id = canonicalSection2(target);
       const promotion = promoteAutomaticPlaceSheetSection(placeId2(place), id);
       const root2 = card2();
-      const samePlace = text16(((_a = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _a.currentPlaceId) || ((_b = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _b.hgUnifiedPlaceId)) === placeId2(place);
+      const samePlace = text17(((_a = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _a.currentPlaceId) || ((_b = root2 == null ? void 0 : root2.dataset) == null ? void 0 : _b.hgUnifiedPlaceId)) === placeId2(place);
       if (!samePlace && typeof global.openPlaceCard === "function") await global.openPlaceCard(place);
       else await materialize(place, { refresh: false });
       try {

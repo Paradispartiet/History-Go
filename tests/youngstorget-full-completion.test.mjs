@@ -116,7 +116,9 @@ test("desktop and mobile render four full collections, separate Badge and promin
       await page.setViewportSize(viewport);
       await page.goto(`http://127.0.0.1:${port}/__audit__/youngstorget.html`,{waitUntil:"networkidle"});
       await page.waitForFunction(()=>window.__ready===true);
-      assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(),4);
+      assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
+      assert.equal(await page.locator(".pc-title-row #pcPeopleIcon:not([hidden])").count(), 1, "People remains a visible fourth canonical collection beside the Badge");
+      assert.equal(await page.locator("#pcPeopleIcon").getAttribute("data-collection-id"), "people");
       assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"),"place_card_profile_v2");
       assert.equal(await page.locator("#pcBadgesIcon").evaluate(node=>node.parentElement.classList.contains("pc-title-row")),true);
       assert.equal(await page.locator("#pcQuiz").isVisible(),true);

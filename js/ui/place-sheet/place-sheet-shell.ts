@@ -1,5 +1,6 @@
 import { mountCanonicalAbout } from "./sections/about";
 import { mountCanonicalHistory } from "./sections/history";
+import { mountCanonicalChronology } from "./sections/chronology";
 import { mountCanonicalStories } from "./sections/stories";
 import { mountCanonicalBeforeAfter } from "./sections/before-after";
 import "./sections/news";
@@ -258,7 +259,10 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   const aboutSlot = ensureAboutSlot(shell);
   if (aboutSlot) mountCanonicalAbout(aboutSlot, place, { suppressIfSameAsDesc: true })?.classList.add("pc-sheet-canonical-about");
   const historySlot = ensureHistorySlot(shell);
-  if (historySlot) mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");
+  if (historySlot) {
+    mountCanonicalHistory(historySlot, place)?.classList.add("pc-sheet-canonical-history");
+    mountCanonicalChronology(historySlot, place)?.classList.add("pc-sheet-canonical-history");
+  }
   const storiesSlot = ensureStoriesSlot(shell);
   if (storiesSlot) mountCanonicalStories(storiesSlot, place)?.classList.add("pc-sheet-canonical-stories");
   const beforeAfterSlot = ensureBeforeAfterSlot(shell);

@@ -1,0 +1,172 @@
+{
+  "schema": "history_go_place_production_workflow_v3",
+  "place_id": "aftenposten_akersgata",
+  "category": "media",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/aftenposten_akersgata.json",
+    "evidence_refs": [
+      "reports/place-production/aftenposten-akersgata-production-audit-20261009.md",
+      "reports/place-production/aftenposten-akersgata-read-first-20261009.json",
+      "reports/place-production/aftenposten-akersgata-prior-work-baseline-v1.md"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-10-09T09:17:31.792Z",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/media.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "Gjeldende checklist, v1-referanse, profiler, quizkontrakt, rundingskontrakt, Badge-register, Media-badge, routing, Objects og Brand-regler er lest. Hashene er registrert i read-first-20261009.json. Kilde- og prior-work-kontroll gikk foran den bekreftede planen."
+  },
+  "profile": {
+    "id": "major",
+    "status": "confirmed",
+    "reason": "127 år med flere dokumenterte, selvstendige spor om avishus, utgaver, arbeidsdeling, okkupasjon, produksjonsteknologi og nettavis. Ingen antallskvote for samlinger eller quiz er utledet fra profilen."
+  },
+  "source_review": {
+    "status": "complete",
+    "evidence": "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+  },
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "reason": "Harald Stanghelle og Per Egil Hegge har verifiserte v1-claims, utdanning/verk og originale lisensierte portretter. #6155 er merget på main d3d77d9e; historisk adressegrense og Eilertsens vg_huset-anker er bevart.",
+      "refs": [
+        "data/people/media/oslo/people_media_oslo.json",
+        "data/people/claims/media/oslo/redaksjoner/harald_stanghelle.claims.json",
+        "data/people/claims/media/oslo/redaksjoner/per_egil_hegge.claims.json",
+        "reports/people/aftenposten-people-production-2026-10-09.md",
+        "bilder/kort/people/harald_stanghelle.jpg",
+        "bilder/kort/people/per_egil_hegge.jpg"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "bilder/kort/objects/aftenposten_1879_01_02.jpg"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "data/brands/brands_master.json",
+        "data/brands/brands_by_place.json",
+        "bilder/kort/brands/aftenposten_ordmerke_1879.jpg"
+      ]
+    },
+    "productions": {
+      "status": "PASS",
+      "reason": "To identifiserbare, kilde- og bildeklare utgivelser er materialisert: papiravisfamilien med en ærlig datert 1879-utgave og Hybelmat merket For A-magasinet, katalogført 1938–1939. Morgen-/aftenutgaver er versjoner i samme papiravisfamilie og forklares i medlemmet; det finnes ingen antallskvote. Den nye museumsoriginalen har uttrykkelig CC BY-SA 4.0. A-magasinets første cover er holdt tilbake og erstattes ikke av en rekonstruksjon eller påstått magasincover.",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "bilder/kort/productions/aftenposten_hybelmat_1938_1939.webp",
+        "reports/place-production/aftenposten-hybelmat-asset-proof-20261009.json",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/aftenposten_akersgata.json",
+        "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/aftenposten_akersgata.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "refs": [
+        "data/stories/stories_aftenposten_akersgata.json",
+        "data/stories/stories_episode_v1_manifest.json"
+      ]
+    },
+    "lesespor": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_media.json"
+      ]
+    },
+    "before_after": {
+      "status": "PASS",
+      "reason": "Begge publiserte originalmotiver er sett i full oppløsning og katalogmetadata/lisenser lest. Paret viser samme hovedadresse 51 og sammenlignbar skrå gatefasade fra 1890-årene til 2025. Ulik kompleksbredde, ikke-identisk ståsted og manglende metrisk skala avgrenser teksten eksplisitt; etterbildet utgis ikke for nåtid i 2026.",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "bilder/historisk/aftenposten/akersgata_51_1890_1900.jpg",
+        "bilder/places/aftenposten_akersgata_51_front_2025.webp",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Dette Place representerer den avsluttede redaksjonsperioden 1876–2003. Kildene om returen i 2014 gjelder nummer 55, og senere eiendomsrehabilitering dokumenterer ikke aktuell Aftenposten-drift i nummer 51. Ingen selvstendig aktuell medienyhetsflate er valgt.",
+      "refs": [
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "reason": "#6181 er merget i main bdcf9a192fae39d977e5b3bef8406cfc7ae75149: normal 4×7, kildebank, Knowledge-synk, individuell spørsmålsreview, to komplette desktop-/touch-mobil-gjennomspill og final-head CI PASS. Stedsbranch har hentet mergecommitten. QuizCard viser ti avledede canonical spørsmål; flip hører fortsatt til final_ui-porten.",
+      "refs": [
+        "data/quiz/media/aftenposten_akersgata_sets.json",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md",
+        "data/quizcards/media/aftenposten_akersgata_quizkort_v1.json",
+        "reports/quiz-aftenposten-source-audit-2026-10-09.md",
+        "data/quiz/production_context/media/aftenposten_akersgata.json"
+      ]
+    },
+    "runtime": {
+      "status": "PASS",
+      "reason": "Canonical generering/regresjoner og ekte Chromium desktop-/touch-mobilkontroll består på 2192481602938661a0beeb3790eba36d485da373. Alle fire samlinger med bilder/popuper, QuizCard mus/touch/tastatur, kunnskapsseksjoner, før/etter, epokeinngang og full Fagverk-side er kontrollert; ingen pageerrors eller horisontal overflow.",
+      "refs": [
+        "data/runtime/place-open/aftenposten_akersgata.json",
+        "reports/place-production/aftenposten-browser-closeout-20261009.json"
+      ]
+    }
+  },
+  "blockers": [],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+    },
+    "final_ui": {
+      "status": "PASS",
+      "evidence": "reports/place-production/aftenposten-browser-closeout-20261009.json"
+    }
+  },
+  "state": "complete"
+}
