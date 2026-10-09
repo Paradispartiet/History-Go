@@ -4,6 +4,8 @@ on:
   pull_request:
     paths:
       - 'css/layout.css'
+      - 'css/theme.css'
+      - 'css/miniProfile.css'
       - 'css/footer.css'
       - 'js/core/viewportManager.js'
       - 'tests/mobile-footer-layout.test.mjs'
@@ -13,6 +15,7 @@ on:
       - 'css/nature.css'
       - 'index.html'
       - 'tests/nearby-framed-layout-browser.test.mjs'
+      - 'tests/header-language-menu-browser.test.mjs'
       - '.github/workflows/nearby-framed-layout-browser.yml'
   workflow_dispatch:
 
@@ -43,3 +46,5 @@ jobs:
         run: node tests/mobile-footer-browser.test.mjs
       - name: Audit framed Nearby layout on phone, tablet and desktop
         run: node tests/nearby-framed-layout-browser.test.mjs
+      - name: Verify Hurtigmeny language flag on mobile and desktop
+        run: node tests/header-language-menu-browser.test.mjs
