@@ -32,10 +32,10 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Quiz | PASS | PR #6159, ingen omproduksjon |
 | Bilder (`image`, stående `frontImage`) | PASS teknisk, manuell UI-QA gjenstår | To lokale, separate WebP-varianter fra rettighetsklarert Commons-original; portrett dimensjonskontrollert og bildekontroll bestått |
 | QuizCard + flip | PASS automatisk browser-QA, manuell skjermbildegjennomgang gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
-| PlaceCard-samlinger | PASS teknisk for én samling; manuell visuell QA gjenstår | Ett kildebåret medlem er nå plassert under `historical_events` (ikke legacy `productions`). 2022-fotografiet av 1888-bygningen har eksplisitt moderne datering. People, Objects og Brands er fortsatt under egen kandidatvurdering. |
+| PlaceCard-samlinger | To kildeførte samlinger produsert; ny browser/visuell QA kreves | Ett kildebåret medlem er nå plassert under `historical_events` (ikke legacy `productions`). 2022-fotografiet av 1888-bygningen har eksplisitt moderne datering. People, Objects og Brands er fortsatt under egen kandidatvurdering. |
 | People | BLOCKED | Bjørklund-familien er dokumentert, men ikke tilstrekkelig individualisert til People-profil; Ole Olsen/Haeselich må auditeres mot eksisterende kanoniske personer og stedskrav |
 | Objects | BLOCKED | Museets symaskin, seng m.m. er fotografert, men konkrete museumsobjekters proveniens og eierskap er ikke verifisert |
-| Brands | BLOCKED | Oslo Museum/Tøyenhagen og «Gråbein» må testes mot Brand-kontrakten før N/A eller PASS |
+| Brands | PASS for Oslo Museum; andre kandidater ikke publisert | Oslo Museum er direkte museal driftsaktør siden 1990. Brand `oslo_museum` er registrert med autentisk Commons-logo (PD textlogo, referensiell identifikasjon). «Gråbein» og Tøyenhagen er sted/borettslag, ikke ekstra Brands; Oslo Byfornyelse må fortsatt vurderes som mulig separat historisk Brand. |
 | Historiske hendelser | PASS automatisert browser-QA, manuell bilde-QA gjenstår | Oppføringen av akkurat Tøyengata 38B i 1888 er registrert under canonical `historical_events` med kilde og bilde av den bevarte bygningen fra 2022. Innflytting 1891 og tilbakeføring 1987 forblir tidsankere; de løftes ikke automatisk til samlingsmedlemmer. |
 | Stories | BEGRUNNET N/A foreløpig | Ingen uavhengig narrativ utover beboerhistorikk/kronologi bekreftet |
 | Før/etter | BLOCKED | Behov for stedstro historisk bildepar før det kan godkjennes |
@@ -67,7 +67,7 @@ Denne auditen følger `docs/people-of-places-method.md`, `docs/PLACE_OBJECTS_CAN
 | People | Oskar Braaten | `Ulvehiet` er litterært vitnesbyrd om miljøtypen, ikke dokumentasjon på Braatens bosted eller arbeid i Tøyengata 38B. | **Ikke materialiser** som stedsperson. |
 | Objects | Symaskin, kjøkkenredskaper, vaskefat, seng og kommode i utstillingen | Oslo Museum fotograferer de synlige gjenstandene. Lokalhistoriewiki dokumenterer at interiøret ble møblert med tidstypiske gjenstander ved etableringen. Hvert objekts identitet, eierhistorie og bildebruk må dokumenteres separat. | **BLOCKED** – ikke tilskriv tingene Bjørklund-familien. |
 | Brands | «Gråbein» / Tøyenhagen borettslag | Gråbein er i denne sammenhengen navnet på et historisk gårdsmiljø, Tøyenhagen et boligfellesskap; ingen separat kvalifisert varemerkeidentitet for stedet er etablert. | **BEGRUNNET N/A** som selvstendige PlaceCard-Brand-medlemmer. |
-| Brands | Oslo Museum / Oslo Byfornyelse | Oslo Museum er en selvstendig institusjon som drifter museumsstedet; Oslo Byfornyelse stod bak restaureringen. Eksisterende brand-ID, direkte stedskobling og lisensiert logo/ordmerke må kontrolleres før publisering. | **BLOCKED** for mulig institusjons-Brand, ikke automatisk N/A. |
+| Brands | Oslo Museum / Oslo Byfornyelse | Oslo Museum er dokumentert institusjon ved stedet siden 1990, nå registrert under én canonical `oslo_museum`-ID med uendret, offentlig tilgjengelig PD-tekstlogo fra Commons. Oslo Byfornyelse hadde restaureringsrolle i 1987, men er fortsatt ikke billed-/identitetsklar for egen Brand. | **PASS** for Oslo Museum som PlaceCard-medlem; Oslo Byfornyelse **kandidat-holdback**, ingen falsk logo. |
 | Før/etter | Tøyengata 38B eksteriør 1888/ca.1900 mot 2022 | Moderne dokumentarfoto er publisert hos Wikimedia Commons; ingen eldre kildebelagt, sammenlignbar standpunktserie er dokumentert i denne produksjonen. | **BLOCKED** frem til et faktisk historisk førbilde med motivanker er kilde- og rettighetskontrollert. |
 | Før/etter | Museumsleilighet før/etter 1987 | Lokalhistoriewiki omtaler tilbakeføringen, men dokumenterer ikke et bildepar fra samme interiør/standpunkt. | **BLOCKED** – ikke bruk to moderne fotos av rekonstruert interiør som falskt før/etter. |
 
@@ -104,3 +104,15 @@ Historie-kontrakten for nye/vesentlig reviderte steder krever `historical_events
 - Begge eksterne lenker er korrekt `https`-koblet, den litterære kildeavgrensningen («ikke som dokumentasjon») vises, horisontalt overløp er 0 px, og ingen JavaScript-feil ble registrert.
 - QA avdekket ingen produktfeil: første test søkte etter gammel `#hg-place-panel-reading`-ID. Aktuell app bruker `[data-place-panel="reading"]`, og den kontrakttro testen bestod uten endring i produksjonskode.
 - Samlingen er fortsatt **ikke** en erstatning for historiske Objects, Brand eller People, og manuell visuell vurdering av PlaceCard er ikke signert.
+
+## Brands — kildebelagt materialisering 9. oktober 2026
+
+Oslo Museum er en selvstendig museumsinstitusjon, ikke et alias for bygården eller en kopi av Arbeidermuseets sted. Museets egen besøkside dokumenterer forvaltningsansvar fra 1990. Institusjonens faktiske merke er kildetatt direkte fra Wikimedia Commons' uendrede original `Oslo Museum logo.svg` (opplasting 18. oktober 2012, oppført som PD-textlogo, fortsatt potensielt varemerkebeskyttet). Denne er lagret som original SVG, kun for referensiell identifikasjon, uten antydning om sponsing eller godkjenning.
+
+- Brand-ID: `oslo_museum` i `data/brands/brands_master.json`.
+- Stedskobling: `data/brands/brands_by_place.json`, `museumsleiligheten_grabein`.
+- Medlemsbilde: `bilder/kort/brands/oslo_museum.svg`, SHA-256 `233b047cf217e90fa233372ebcc1518c432f8d9af7646bd65ab80f248d7b4dc0` fra original kilde.
+- Kildeside: https://commons.wikimedia.org/wiki/File:Oslo_Museum_logo.svg.
+- Stedskilde: https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/.
+- Oslo Byfornyelse vurderes separat; det brukes ikke en institusjonslogo for å gi dette selskapet identitet.
+- `place_card_profile.collection_ids` har nå `brands` og `historical_events`. Ny real-browser QA må vise to bildesterke og koherente samlingskort; manuell designreview gjenstår.
