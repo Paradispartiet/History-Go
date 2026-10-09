@@ -1,12 +1,12 @@
 # People of Places status-audit etter #812
 
-Generert: 2026-10-09T21:06:06.089Z
+Generert: 2026-10-09T21:10:26.503Z
 
 ## Sammendrag
 
 | Felt | Verdi |
 |---|---:|
-| generatedAt | 2026-10-09T21:06:06.089Z |
+| generatedAt | 2026-10-09T21:10:26.503Z |
 | peopleFilesRead | 779 |
 | totalPeople | 1435 |
 | uniquePeopleIds | 1435 |
