@@ -94,6 +94,8 @@ try {
         previousClass:document.getElementById("pcEventsBox").previousElementSibling?.className,
         outsideNav:!document.querySelector(".pc-sheet-section-nav #pcEventsBox"),
         count:document.querySelectorAll("#pcEventsBox").length,
+        rightDisplay:getComputedStyle(document.querySelector(".pc-sheet-explore-grid")).display,
+        rightHeight:document.querySelector(".pc-sheet-explore-grid").getBoundingClientRect().height,
         horizontalOverflow:document.documentElement.scrollWidth > innerWidth + 1
       };
     });
@@ -108,6 +110,14 @@ try {
     assert.ok(layout.controls.x >= layout.rightColumn.x - 1 &&
       layout.controls.right <= layout.rightColumn.right + 1,
       "Events/Møtes stay within right column at "+width);
+    assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
+    if (width >= 768) {
+      assert.ok(Math.abs(layout.controls.bottom - layout.front.bottom) <= 2,
+        "Events/Møtes bottom must align with frontImage bottom at "+width+": "+
+        JSON.stringify({frontBottom:layout.front.bottom,controlsBottom:layout.controls.bottom,roundsBottom:layout.rounds.bottom,rightHeight:layout.rightHeight}));
+      assert.ok(layout.controls.y - layout.rounds.bottom >= 7,
+        "Events/Møtes must not overlap collections at "+width);
+    }
     if (width <= 700) {
       assert.ok(layout.events.bottom <= layout.meet.y + 1,
         "On narrow screens controls stack to remain readable at "+width);
