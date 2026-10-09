@@ -99,12 +99,12 @@ const playwrightImport = process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES
 const { chromium } = await import(playwrightImport);
 const browserExecutable = [chromium.executablePath(), "/usr/bin/google-chrome", "/usr/bin/google-chrome-stable", "/usr/bin/chromium"].find(candidate => candidate && fs.existsSync(candidate));
 const fixture = `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><style>body{margin:0}.pc-icons-quad{display:grid;width:360px;height:300px}.pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center}.pc-round[hidden]{display:none!important}</style></head><body>
+<link rel="stylesheet" href="/css/place-rounds-fill-layout.css"><style>body{margin:0}.pc-title-row{display:flex;align-items:center;gap:8px}.pc-title-row .pc-round{width:52px;height:52px;flex:0 0 52px}.pc-icons-quad{display:grid;width:360px;height:300px}.pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center}.pc-round[hidden]{display:none!important}</style></head><body>
 <div id="placeCard" data-current-place-id="${id}"><div class="pc-body"><div class="pc-title-row"><h2>Brugata/Storgata</h2><div id="pcBadgesIcon" class="pc-round"></div></div><div class="pc-icons-quad"><div id="pcPeopleIcon" class="pc-round">People</div><div id="pcBrandsIcon" class="pc-round">Brands</div></div><div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div></div></div><button id="pcQuiz" hidden>Ta quiz</button><div id="capture"></div>
 <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>${JSON.stringify(people)};window.HGBrands={getByPlace:()=>[]};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup=payload;document.getElementById("capture").innerHTML=payload.html};</script>
 <script src="/js/ui/place-rounds-visual-collections.js"></script><script src="/js/ui/place-rounds-fill-layout.js"></script><script>window.addEventListener("DOMContentLoaded",()=>window.HGPlaceRounds.apply(window.PLACES[0]).then(()=>window.__ready=true).catch(error=>window.__error=String(error&&error.stack||error)))</script></body></html>`;
 
-test("mobile and desktop show four full surfaces, separate Badge and prominent Quiz", { skip: !browserExecutable }, async () => {
+test("mobile and desktop show People beside Badge and three full collection surfaces", { skip: !browserExecutable }, async () => {
   const mime = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8" };
   const server = http.createServer((request, response) => {
     const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
@@ -123,7 +123,9 @@ test("mobile and desktop show four full surfaces, separate Badge and prominent Q
       await page.setViewportSize(viewport);
       await page.goto(`http://127.0.0.1:${port}/__audit__/brugata.html`, { waitUntil: "networkidle" });
       await page.waitForFunction(() => window.__ready === true);
-      assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4);
+      assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
+      assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden])").count(), 1);
+      assert.equal(await page.locator("#pcPeopleIcon").evaluate(node => node.nextElementSibling?.id), "pcBadgesIcon");
       assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
       assert.equal(await page.locator("#pcBadgesIcon").evaluate(node => node.parentElement.classList.contains("pc-title-row")), true);
       assert.equal(await page.locator("#pcQuiz").isVisible(), true);

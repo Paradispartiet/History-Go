@@ -17,14 +17,17 @@ test("legacy nodes cannot leak beyond the fixed four PlaceCard collections", asy
   const dom = new JSDOM(`<!doctype html><body><div id="placeCard" data-current-place-id="p"><div class="pc-body"><div class="pc-title-row"><h2 id="pcTitle"></h2></div><div class="pc-icons-quad">${["People", "Nature", "Badges", "Works", "Details", "Spots", "CivicationStore", "Brands", "ForNa", "Fortellinger", "Leksikon", "Play", "Training", "Tasks"].map(x => `<div id="pc${x}Icon" class="pc-round"></div>`).join("")}</div><div id="pcPeopleList"></div><div id="pcBadgesList"></div><div id="pcBrandsList"></div><div id="pcWorksList"></div><div id="pcCivicationStoreList"></div></div></div></body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
   const w = dom.window;
   w.PLACES = [{ id: "p", category: "sport", competitions: [{ id: "finale", title: "Finale", image: "finale.jpg" }], image: "sted.jpg" }];
+  w.getPeopleForPlace = () => [{ id:"p1", name:"Person tilknyttet stedet" }];
   w.eval(roundsSource);
   w.document.dispatchEvent(new w.Event("DOMContentLoaded", { bubbles: true }));
   await w.HGVisualPlaceRounds.apply(w.PLACES[0]);
   const visible = [...w.document.querySelectorAll(".pc-icons-quad .pc-round")].filter(el => !el.hidden);
-  assert.equal(visible.length, 4);
-  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4");
+  assert.equal(visible.length, 3, "People is no longer inside the lower grid");
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "3");
   assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionProfileSource, "category_default");
-  assert.deepEqual(visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id), ["pcPeopleIcon", "pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
+  assert.deepEqual(visible.slice().sort((a, b) => Number(a.style.order) - Number(b.style.order)).map(el => el.id), ["pcObjectsIcon", "pcBrandsIcon", "pcCategoryCollectionIcon"]);
+  assert.equal(w.document.querySelector(".pc-title-row > #pcPeopleIcon")?.hidden, false);
+  assert.equal(w.document.getElementById("pcPeopleIcon").nextElementSibling?.id, "pcBadgesIcon");
   for (const removed of ["pcWorksIcon", "pcDetailsIcon", "pcSpotsIcon", "pcCivicationStoreIcon"]) {
     assert.equal(w.document.getElementById(removed).hidden, true, removed);
   }

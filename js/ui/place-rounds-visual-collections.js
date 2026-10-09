@@ -369,14 +369,29 @@
     return id ? collectionLabel(place, id) : "";
   }
 
-  function ensureBadgePlacement() {
+  function ensureTitleRoundPlacement() {
     const titleRow = document.querySelector("#placeCard .pc-title-row");
     const badge = document.getElementById("pcBadgesIcon");
+    const people = document.getElementById("pcPeopleIcon");
     if (!titleRow || !badge) return;
     badge.classList.add("pc-title-badge");
     badge.hidden = false;
     badge.setAttribute("aria-hidden", "false");
     if (badge.parentElement !== titleRow) titleRow.appendChild(badge);
+
+    // Move the canonical People round, not a duplicate: the click/keyboard
+    // handlers bound by place-card.js remain attached to this same DOM node.
+    if (people) {
+      people.classList.add("pc-title-people");
+      applyCollectionShape(people, BY_ID.get("people"));
+      people.setAttribute("role", "button");
+      people.setAttribute("tabindex", "0");
+      people.setAttribute("aria-label", "Personer");
+      people.title = "Personer";
+      if (people.parentElement !== titleRow || people.nextElementSibling !== badge) {
+        titleRow.insertBefore(people, badge);
+      }
+    }
   }
 
   function ensureQuizAction() {
@@ -425,7 +440,7 @@
     const categoryIcon = ensureElement("pcCategoryCollectionIcon", "pc-round pc-collection", grid, true);
     categoryIcon?.setAttribute("aria-label", "Kategoriinnhold");
     ensureElement("pcCategoryCollectionList", "", body, false);
-    ensureBadgePlacement();
+    ensureTitleRoundPlacement();
     ensureQuizAction();
   }
 
@@ -477,6 +492,10 @@
     if (!icon) return;
     const items = collectionItems(place, def.id);
     renderCollectionPreview(icon, items.find(item => item.image), def, items.length);
+    if (def.id === "people" && icon.classList.contains("pc-title-people")) {
+      icon.hidden = items.length === 0;
+      icon.setAttribute("aria-hidden", items.length ? "false" : "true");
+    }
   }
 
   async function renderFixed(place, def) {
@@ -585,7 +604,7 @@
     if (!card || !place) return;
     ensureDom();
     bindBadge();
-    ensureBadgePlacement();
+    ensureTitleRoundPlacement();
     ensureQuizAction();
     for (const def of FIXED_DEFS.filter(item => ["people", "brands"].includes(item.id))) {
       renderExistingCollectionPreview(place, def);
@@ -598,9 +617,12 @@
     bindCategoryCollection();
 
     const selected = selectedIds(place);
-    const slotIconIds = selected.map(id => BY_ID.get(id)?.iconId).filter(Boolean);
+    // People is independently available beside the heading badge; it does
+    // not consume one of the portrait-media collection grid slots.
+    const gridIds = selected.filter(id => id !== "people");
+    const slotIconIds = gridIds.map(id => BY_ID.get(id)?.iconId).filter(Boolean);
     const allowed = new Set(slotIconIds);
-    selected.forEach((id, index) => {
+    gridIds.forEach((id, index) => {
       const icon = document.getElementById(slotIconIds[index]);
       const def = defFor(place, id);
       if (!icon || !def) return;
@@ -614,6 +636,7 @@
     const source = profileSource(place);
     card.dataset.collectionMode = "place-card-collections-v2";
     card.dataset.collectionCount = String(selected.length);
+    card.dataset.collectionGridCount = String(gridIds.length);
     card.dataset.collectionProfileSource = source;
     card.dataset.roundMode = "collections-v2";
     card.dataset.roundCount = String(selected.length);
@@ -641,10 +664,10 @@
         delete icon.dataset.collectionPosition;
       }
       grid.dataset.collectionMode = "place-card-collections-v2";
-      grid.dataset.collectionCount = String(selected.length);
+      grid.dataset.collectionCount = String(gridIds.length);
       grid.dataset.collectionProfileSource = source;
       grid.dataset.roundMode = "collections-v2";
-      grid.dataset.roundCount = String(selected.length);
+      grid.dataset.roundCount = String(gridIds.length);
       grid.style.removeProperty("grid-template-columns");
       grid.style.removeProperty("grid-template-rows");
     }
