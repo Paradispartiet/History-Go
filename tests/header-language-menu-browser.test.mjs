@@ -14,7 +14,7 @@ assert.equal((source.match(/id="languageSelect"/g) || []).length, 1,
 const headerMarkup = source.slice(headerStart, headerEnd + "</header>".length);
 
 const fixture = [
-  '<!doctype html><html lang="nb"><head><meta charset="utf-8">',
+  '<!doctype html><html lang="nb"><head><meta charset="utf-8"><base href="/">',
   '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">',
   '<link rel="stylesheet" href="/css/theme.css">',
   '<link rel="stylesheet" href="/css/base.css">',
@@ -67,12 +67,6 @@ try {
   const { port } = server.address();
   for (const [width, height] of [[320, 700], [390, 844], [768, 1024], [1024, 900]]) {
     const page = await browser.newPage({ viewport: { width, height }, locale: "nb-NO" });
-    page.on("pageerror", error => console.log("[language audit pageerror]", error.message));
-    page.on("console", message => {
-      if (message.type() === "error" || message.type() === "warning") {
-        console.log("[language audit console]", message.type(), message.text());
-      }
-    });
     await page.goto(`http://127.0.0.1:${port}/__audit__/header-language.html`, { waitUntil: "load" });
     await page.waitForFunction(() =>
       document.getElementById("languageSelect")?.dataset.hgI18nBound === "1");
@@ -111,16 +105,7 @@ try {
     assert.equal(geometry.overflow, false, `No horizontal overflow at ${width}px`);
 
     await page.locator("#languageSelect").selectOption("en");
-    await page.waitForTimeout(300);
-    console.log("[language audit diagnostic]", width, JSON.stringify(await page.evaluate(() => ({
-      lang: document.documentElement.lang,
-      selectValue: document.getElementById("languageSelect")?.value,
-      selectedIndex: document.getElementById("languageSelect")?.selectedIndex,
-      bound: document.getElementById("languageSelect")?.dataset.hgI18nBound,
-      currentLang: window.HG_I18N?.getLang?.(),
-      stored: localStorage.getItem("hg_lang")
-    }))));
-    await page.waitForFunction(() => document.documentElement.lang === "en", null, { timeout: 5000 });
+    await page.waitForFunction(() => document.documentElement.lang === "en");
     assert.equal(await page.locator("#languageSelect").inputValue(), "en");
     assert.equal(await page.evaluate(() => localStorage.getItem("hg_lang")), "en");
     assert.equal(await page.locator("#headerMenuPanel").isVisible(), true,
