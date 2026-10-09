@@ -563,64 +563,110 @@
   overflow: hidden;
 }
 
-body.hg-app.hg-phone #placeCard{
-  --place-card-media-width: clamp(120px, 38vw, 150px);
-  --place-card-media-height: calc(var(--place-card-media-width) * 4 / 3);
-  --place-card-media-gap: clamp(8px, 2.5vw, 10px);
-  --pc-round-gap: clamp(8px, calc(var(--place-card-media-width) * 0.075), 12px);
-  --place-card-orb-size: calc((var(--place-card-media-height) - (2 * var(--pc-round-gap))) / 3);
-  --pc-round-size: var(--place-card-orb-size);
-  --pc-text-inset: 8px;
-  --pc-text-h: 184px;
+/* Mobil: frontbildet og Rundingene deler ett ekte grid. Skjulte
+   rundinger fjernes av [hidden] og resten pakker seg automatisk. */
+@media (max-width: 600px){
+  body.hg-app #placeCard{
+    --pc-text-inset: 8px;
+    --pc-text-h: 184px;
+    --pc-round-gap: clamp(5px, 1.5vw, 8px);
+    --pc-round-size: clamp(38px, calc((100vw - 78px) / 6), 60px);
+  }
+
+  body.hg-app #placeCard .pc-grid{
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    grid-auto-flow: row dense;
+    gap: var(--pc-round-gap);
+    padding: 12px 10px 10px;
+    align-items: start;
+  }
+
+  body.hg-app #placeCard .pc-frontcard{
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 3;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    margin: 0;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* Behold bilde-fallback og quizkortbakside, men ikke sorte letterbox-felt
+     rundt et faktisk innlastet stedsfoto. */
+  body.hg-app #placeCard .pc-card-face-front[data-media-state="ready"]{
+    background: transparent;
+  }
+  body.hg-app #placeCard .pc-card-face-front[data-media-state="ready"] img{
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Wrapperne deltar ikke med egne bokser: hver synlig runding blir
+     en egen celle ved siden av, og ved behov under, frontbildet. */
+  body.hg-app #placeCard .pc-side-stack,
+  body.hg-app #placeCard .pc-icons-quad{
+    display: contents;
+  }
+
+  body.hg-app #placeCard .pc-round{
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    max-width: none;
+    max-height: none;
+    flex: none;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    box-shadow: 0 3px 10px rgba(0,0,0,.22);
+  }
+
+  body.hg-app #placeCard .pc-round .pc-person-img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  body.hg-app #placeCard .pc-round-label{
+    gap: 2px;
+  }
+  body.hg-app #placeCard .pc-round-emoji{
+    font-size: clamp(18px, 4.5vw, 24px);
+  }
+  body.hg-app #placeCard .pc-round-count{
+    font-size: clamp(9px, 2.5vw, 12px);
+  }
+
+  body.hg-app #placeCard .pc-events-quad{
+    grid-column: 1 / -1;
+    grid-row: auto;
+    min-height: 44px;
+    max-height: none;
+    padding: 8px 10px;
+    margin-top: 6px;
+  }
+
+  body.hg-app #placeCard #pcTitle{
+    font-size: 25px;
+  }
+  body.hg-app #placeCard #pcMeta{
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  body.hg-app #placeCard #pcDesc{
+    font-size: 16px;
+    line-height: 1.36;
+    -webkit-line-clamp: 4;
+  }
 }
-
-body.hg-app.hg-phone #placeCard .pc-grid{
-  grid-template-columns: var(--place-card-media-width) minmax(var(--place-card-media-width), 1fr);
-  column-gap: var(--place-card-media-gap);
-  row-gap: 12px;
-  padding: 18px 8px 10px;
-}
-
-body.hg-app.hg-phone .pc-frontcard{
-  border-radius: 12px;
-}
-
-body.hg-app.hg-phone .pc-side-stack,
-body.hg-app.hg-phone .pc-icons-quad{
-  transform: none;
-  width: max-content;
-}
-
-body.hg-app.hg-phone .pc-events-quad{
-  min-height: 44px;
-  max-height: 56px;
-  padding: 8px 10px;
-}
-
-body.hg-app.hg-phone #placeCard .pc-round-emoji{
-  font-size: 24px;
-}
-
-body.hg-app.hg-phone #placeCard .pc-round-count{
-  font-size: 12px;
-}
-
-body.hg-app.hg-phone #placeCard #pcTitle{
-  font-size: 25px;
-}
-
-body.hg-app.hg-phone #placeCard #pcMeta{
-  font-size: 11px;
-  margin-bottom: 8px;
-}
-
-body.hg-app.hg-phone #placeCard #pcDesc{
-  font-size: 16px;
-  line-height: 1.36;
-  -webkit-line-clamp: 4;
-}
-
-
 
 
 /* ===================================================== */
