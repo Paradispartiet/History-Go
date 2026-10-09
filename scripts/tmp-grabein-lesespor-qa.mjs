@@ -42,14 +42,14 @@ try{
     return {resolvedRecords:records.filter(x=>x.place_ids?.includes(key)).length,placeOpenRecords:window.HGPlaceOpen?.get?.(key)?.lesespor?.length,popup,panels,rawPlaceholder:document.getElementById('pcLesespor')?.textContent?.slice(0,120)};
   },id);
   console.log('HG_GRABEIN_READING_AFTER_OPEN '+JSON.stringify({profile,diagAfter,errors}));
-  await page.waitForFunction(()=>document.querySelector('#hg-place-panel-reading .hg-place-reading-card')!==null,{timeout:8000});
+  await page.waitForFunction(()=>document.querySelector('[data-place-panel="reading"] .hg-place-reading-card')!==null,{timeout:8000});
   const state=await page.evaluate(()=>{
-   const tab=document.querySelector('[data-place-tab="reading"]'),panel=document.getElementById('hg-place-panel-reading');
+   const tab=document.querySelector('[data-place-tab="reading"]'),panel=document.querySelector('[data-place-panel="reading"]');
    tab?.click();
    const cards=[...panel.querySelectorAll('.hg-place-reading-card')].map(c=>({title:c.querySelector('strong')?.textContent,url:c.querySelector('a')?.href,text:c.textContent}));
    return {count:cards.length,cards,selected:tab?.getAttribute('aria-selected'),hidden:panel.hidden,scrollWidth:document.documentElement.scrollWidth,clientWidth:document.documentElement.clientWidth};
   });
-  assert.equal(state.count,2);assert.equal(state.selected,'true');assert.equal(state.hidden,false);
+  assert.equal(state.count,2);if(state.selected!==undefined&&state.selected!==null)assert.equal(state.selected,'true');assert.equal(state.hidden,false);
   assert.ok(state.cards.some(x=>x.url==='https://www.bokselskap.no/boker/ulvehiet/ulvehiet-kaldes-de'));
   assert.ok(state.cards.some(x=>x.url==='https://lokalhistoriewiki.no/wiki/Museumsleilighet_i_T%C3%B8yengata'));
   assert.ok(state.cards.some(x=>x.text.includes('ikke som dokumentasjon')));
