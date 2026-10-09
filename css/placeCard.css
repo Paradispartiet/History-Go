@@ -1773,6 +1773,20 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   overflow-wrap: anywhere;
 }
 
+/* The retired shortcut layout left a 50/58px margin on Merker.
+   Remove it here and bottom-align the round with the title row so the
+   category button can sit immediately under the circle, including on
+   narrow phones where the title wraps to multiple lines. */
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+  margin-right: 0;
+  margin-left: 0;
+  align-self: flex-end;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon,
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+  align-self: flex-end;
+}
+
 #placeCard .pc-heading-hero .pc-heading-content #pcMeta{
   order: 1;
   display: flex;
