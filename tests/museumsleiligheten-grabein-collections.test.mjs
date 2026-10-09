@@ -41,6 +41,10 @@ test('Gråbein includes only the source-backed Oslo Museum Brand with authentic 
   assert.deepEqual(mapping.museumsleiligheten_grabein, ['oslo_museum']);
   assert.deepEqual(runtime.brands.map(item=>item.id), ['oslo_museum']);
   assert.equal(brand.logo, 'bilder/kort/brands/oslo_museum.svg');
+  assert.equal(brand.image, 'bilder/kort/brands/oslo_museum.webp');
+  assert.equal(brand.cardImage, 'bilder/kort/brands/oslo_museum.webp');
+  assert.equal(brand.imageMeta.previewSha256, 'b1eebb84250f2b0acf946ae7d9affaed62e30811cc7be10effa10ba9184dbb62');
+  assert.ok(fs.statSync(brand.image).size > 1000);
   assert.equal(brand.imageMeta.sourceSha256, '233b047cf217e90fa233372ebcc1518c432f8d9af7646bd65ab80f248d7b4dc0');
   const asset = fs.readFileSync(brand.logo,'utf8');
   assert.match(asset, /<svg/);

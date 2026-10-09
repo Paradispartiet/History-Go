@@ -111,8 +111,12 @@ Oslo Museum er en selvstendig museumsinstitusjon, ikke et alias for bygården el
 
 - Brand-ID: `oslo_museum` i `data/brands/brands_master.json`.
 - Stedskobling: `data/brands/brands_by_place.json`, `museumsleiligheten_grabein`.
-- Medlemsbilde: `bilder/kort/brands/oslo_museum.svg`, SHA-256 `233b047cf217e90fa233372ebcc1518c432f8d9af7646bd65ab80f248d7b4dc0` fra original kilde.
+- Medlemsbilde: `bilder/kort/brands/oslo_museum.webp` (proporsjonsbevart, original identitet i `bilder/kort/brands/oslo_museum.svg`), SHA-256 `233b047cf217e90fa233372ebcc1518c432f8d9af7646bd65ab80f248d7b4dc0` fra original kilde.
 - Kildeside: https://commons.wikimedia.org/wiki/File:Oslo_Museum_logo.svg.
 - Stedskilde: https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/.
 - Oslo Byfornyelse vurderes separat; det brukes ikke en institusjonslogo for å gi dette selskapet identitet.
 - `place_card_profile.collection_ids` har nå `brands` og `historical_events`. Ny real-browser QA må vise to bildesterke og koherente samlingskort; manuell designreview gjenstår.
+
+### Logo-forhåndsvisning – dokumentert bilde-QA
+
+Den faktiske Chrome-skjermbildet av 2-samlings-PlaceCard viste at den originale 306×216-SVG-logoen ble for hardt beskåret av rektanglets `object-fit: cover` (særlig på mobil). Dette er et reelt visuelt kvalitetsavvik, ikke et bildeproblem i selve kilden. Original `bilder/kort/brands/oslo_museum.svg` beholdes uendret. En lesbar kvadratisk WebP-preview på 640×640, med den nøyaktige kildelogoen proporsjonalt skalert og sentrert på ren hvit flate, produseres derfor som eget medlemsbilde `bilder/kort/brands/oslo_museum.webp` (SHA-256 `b1eebb84250f2b0acf946ae7d9affaed62e30811cc7be10effa10ba9184dbb62`). Ingen ny tekst, rekonstruksjon eller stylisering tilført. Bygge- og QA-kjøring: https://github.com/Paradispartiet/History-Go/actions/runs/37959974022. Ny Chrome- og manuell visual-QA må kontrolleres på denne faktisk publiserte previewvarianten.
