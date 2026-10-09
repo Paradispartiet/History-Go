@@ -231,6 +231,15 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   flex:0 0 auto;
 }
 
+/* The legacy collection grid carries a 3:4 aspect ratio intended for the
+   old PlaceCard. In the Place Sheet that ratio creates empty height in the
+   right column and can stretch frontImage just to align the outer boxes.
+   Let the visible collections determine the grid height; Events/Møtes can
+   then use the remaining space to share the natural 3:4 photo baseline. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad{
+  aspect-ratio:auto;
+}
+
 /* Place Sheet: Events and Møtes belong BELOW the collection tiles in the
    right-hand column alongside frontImage, not below the landscape header. */
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox{
