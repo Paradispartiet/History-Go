@@ -12,6 +12,8 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
   <link rel="stylesheet" href="/css/place-rounds-fill-layout.css">
   <style>
     :root{--pc-round-gap:12px;--place-card-orb-size:120px}
+    .pc-title-row{display:flex;align-items:center;gap:8px}
+    .pc-title-row .pc-round{width:52px;height:52px;flex:0 0 52px}
     body{margin:0;font-family:sans-serif}.pc-grid{display:grid;grid-template-columns:280px 360px;gap:16px;width:656px;margin:24px}
     .pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack,.pc-icons-quad{height:300px}.pc-icons-quad{display:grid}
     .pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}.pc-round[hidden]{display:none!important}
