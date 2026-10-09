@@ -90,3 +90,21 @@ jobs:
           node scripts/build-fagverk-release-manifest.mjs --check
       - name: Verify production context reproducibility
         run: npm run quiz:context -- --category historie --target sagene_skole --output data/quiz/production_context/historie/sagene_skole.json --check
+      - name: Resolve system Chrome for full place quiz browser test
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Full Sagene quiz through app on desktop and mobile
+        run: node scripts/verify-place-quiz-browser.mjs sagene_skole
+      - name: Save browser evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sagene-skole-quiz-browser-evidence
+          path: artifacts/place-quiz/sagene_skole/
+          if-no-files-found: ignore
+          retention-days: 14
