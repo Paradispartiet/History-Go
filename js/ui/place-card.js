@@ -1426,11 +1426,12 @@ if (!card) return;
         headerHeroEl.classList.toggle("has-image", headerImgEl.naturalWidth > 0);
       });
       headerImgEl.addEventListener("error", () => {
-        headerHeroEl.classList.remove("has-image");
+        headerHeroEl.classList.remove("has-image", "has-photo-source");
         headerImgEl.removeAttribute("src");
       });
     }
     headerHeroEl.classList.remove("has-image");
+    headerHeroEl.classList.toggle("has-photo-source", Boolean(String(place.image || "").trim()));
     setPlaceCardImgSrcStable(headerImgEl, place.image || "");
     if (headerImgEl.complete && headerImgEl.naturalWidth > 0) {
       headerHeroEl.classList.add("has-image");
