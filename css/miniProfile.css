@@ -441,14 +441,8 @@ body.hg-app.hg-phone #globalSearch{
   padding: 0 8px;
 }
 
-/* Språkvelgeren trenger bare flagget + pil på mobil. */
-body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
-  width: 56px;
-  flex: 0 0 56px;
-}
-
 /* Ekstra smale telefoner: miniprofilen må ned i bredde for at
-   øverste rad (språk + profil + Civication) skal holde én rad. */
+   øverste rad skal holde én rad. */
 @media (max-width: 350px){
   body.hg-app.hg-phone .site-header .top-actions #miniProfile{
     width: 118px;
@@ -517,17 +511,6 @@ body.hg-app.hg-phone .site-header .top-actions{
   align-content: center;
   overflow: visible;
   white-space: nowrap;
-}
-
-body.hg-app .site-header .top-actions .top-lang-select,
-body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
-  width: 46px !important;
-  max-width: 46px !important;
-  height: 32px;
-  flex: 0 0 46px;
-  padding: 2px 4px !important;
-  font-size: 1rem !important;
-  line-height: 1;
 }
 
 body.hg-app .site-header .top-actions #miniProfile,
@@ -629,12 +612,6 @@ body.hg-app.hg-phone .site-header .top-actions .header-menu-toggle .toggle{
     padding-right: 5px;
   }
 
-  body.hg-app .site-header .top-actions .top-lang-select,
-  body.hg-app.hg-phone .site-header .top-actions .top-lang-select{
-    width: 40px !important;
-    max-width: 40px !important;
-    flex-basis: 40px;
-  }
 }
 
 
@@ -648,11 +625,6 @@ body.hg-app.hg-phone .site-header .top-actions .header-menu-toggle .toggle{
     max-width: 72px;
     min-width: 72px;
     flex-basis: 72px;
-  }
-  body.hg-app .site-header .top-actions .top-lang-select{
-    width: 36px !important;
-    max-width: 36px !important;
-    flex-basis: 36px;
   }
   body.hg-app .site-header .top-actions .iconbtn,
   body.hg-app .site-header .top-actions .header-menu-button{
