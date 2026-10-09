@@ -1,0 +1,38 @@
+name: Aftenposten Place candidate browser (temporary)
+on:
+  pull_request:
+    paths:
+      - 'data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json'
+      - 'data/quizcards/media/**'
+      - 'scripts/verify-aftenposten-production-candidate-temporary.mjs'
+      - '.github/workflows/aftenposten-place-browser-temporary.yml'
+permissions:
+  contents: read
+concurrency:
+  group: aftenposten-place-browser-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  candidate:
+    if: github.head_ref == 'agent/aftenposten-production-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve runner Chrome
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+      - run: node scripts/verify-aftenposten-production-candidate-temporary.mjs aftenposten_akersgata
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aftenposten-place-candidate-${{ github.event.pull_request.head.sha }}
+          path: artifacts/place-closeout/aftenposten_akersgata
+          retention-days: 14

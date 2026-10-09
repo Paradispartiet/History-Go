@@ -84,7 +84,9 @@
 
     const uniqueWanted = wantedIcons.filter((entry, index, all) => all.findIndex(other => other.iconId === entry.iconId) === index);
     const visible = uniqueWanted.filter(entry => hasRealPreview(entry.icon));
-    const allowed = new Set(visible.map(entry => entry.iconId));
+    // People is a heading round beside Merker, not a grid collection.
+    const visibleInGrid = visible.filter(entry => entry.icon.parentElement === grid);
+    const allowed = new Set(visibleInGrid.map(entry => entry.iconId));
 
     grid.querySelectorAll(".pc-round").forEach(icon => {
       const managed = Object.values(ICON_BY_ID).includes(icon.id);
@@ -98,15 +100,16 @@
       }
     });
 
-    visible.forEach((entry, index) => {
+    visibleInGrid.forEach((entry, index) => {
       entry.icon.hidden = false;
       entry.icon.setAttribute("aria-hidden", "false");
       entry.icon.style.order = String(index);
       entry.icon.dataset.collectionPosition = String(index);
     });
 
-    const count = visible.length;
-    card.dataset.collectionCount = String(count);
+    const count = visibleInGrid.length;
+    card.dataset.collectionCount = String(visible.length);
+    card.dataset.collectionGridCount = String(count);
     card.dataset.collectionRequestedCount = String(requested.length);
     card.dataset.collectionProfileSource = "place_card_profile_v2_curated";
     grid.dataset.collectionCount = String(count);

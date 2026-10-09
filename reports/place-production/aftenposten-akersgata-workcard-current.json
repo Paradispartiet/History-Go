@@ -87,9 +87,12 @@
       ]
     },
     "before_after": {
-      "status": "BLOCKED",
-      "reason": "Det historiske motivet Avislesere ved Aftenpostens gård (1931) er en kandidat, men motiv-/adresseparitet og bildeproveniens er ikke sluttkontrollert. To foto fra samme dag i 2025 utgjør ikke et historisk før/etter-par.",
+      "status": "PASS",
+      "reason": "Begge publiserte originalmotiver er sett i full oppløsning og katalogmetadata/lisenser lest. Paret viser samme hovedadresse 51 og sammenlignbar skrå gatefasade fra 1890-årene til 2025. Ulik kompleksbredde, ikke-identisk ståsted og manglende metrisk skala avgrenser teksten eksplisitt; etterbildet utgis ikke for nåtid i 2026.",
       "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "bilder/historisk/aftenposten/akersgata_51_1890_1900.jpg",
+        "bilder/places/aftenposten_akersgata_51_front_2025.webp",
         "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
       ]
     },
@@ -102,10 +105,12 @@
     },
     "quiz": {
       "status": "BLOCKED",
-      "reason": "Aktiv legacy-pakke har 6 sett à 3 spørsmål; alle 18 har answerIndex 0. Eksisterende spørsmål og dedikert QuizCard mangler closeout etter gjeldende kontrakt. Quizsett skal revideres i eget kildeledet løp; denne PR-en produserer ingen sett.",
+      "reason": "Den separate kildeledede pakken i #6181 har fire sett à sju spørsmål og består faktisk mobil-/desktop-gjennomspill. QuizCard med ti avledede spørsmål er materialisert; final CI/merge og kortets flip-QA gjenstår.",
       "refs": [
         "data/quiz/media/aftenposten_akersgata_sets.json",
-        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md",
+        "data/quizcards/media/aftenposten_akersgata_quizkort_v1.json",
+        "reports/quiz-aftenposten-source-audit-2026-10-09.md"
       ]
     },
     "runtime": {
@@ -118,7 +123,6 @@
   },
   "blockers": [
     "Utgivelsessamlingen er ikke ferdig.",
-    "Historisk før/etter-kandidat er ikke sluttkontrollert.",
     "Quizrevisjon og dedikert QuizCard med flip-QA gjenstår."
   ],
   "manual_reviews": {

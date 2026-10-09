@@ -12,6 +12,8 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
   <link rel="stylesheet" href="/css/place-rounds-fill-layout.css">
   <style>
     :root{--pc-round-gap:12px;--place-card-orb-size:120px}
+    .pc-title-row{display:flex;align-items:center;gap:8px}
+    .pc-title-row .pc-round{width:52px;height:52px;flex:0 0 52px}
     body{margin:0;font-family:sans-serif}.pc-grid{display:grid;grid-template-columns:280px 360px;gap:16px;width:656px;margin:24px}
     .pc-media{height:300px;background:#ccd6df;border-radius:16px}.pc-side-stack,.pc-icons-quad{height:300px}.pc-icons-quad{display:grid}
     .pc-round{box-sizing:border-box;background:#315b78;color:white;border:2px solid #fff;display:grid;place-items:center;overflow:hidden}.pc-round[hidden]{display:none!important}
@@ -26,7 +28,7 @@ const fixture = `<!doctype html><html><head><meta charset="utf-8">
       <div id="pcPeopleList"></div><div id="pcBrandsList"></div><div id="pcBadgesList"></div>
     </div>
   </div><button id="pcQuiz" hidden>Ta quiz</button><div id="capture"></div>
-  <script>window.PLACES=${JSON.stringify([place, ...related])};window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
+  <script>window.PLACES=${JSON.stringify([place, ...related])};window.getPeopleForPlace=()=>[{id:"wenche_gulbransen",name:"Wenche Gulbransen"}];window.showPlaceCardRoundPopup=payload=>{window.__lastPopup={title:payload.title,kind:payload.kind,html:payload.html};document.getElementById('capture').innerHTML=payload.html};</script>
   <script src="/js/ui/place-rounds-visual-collections.js"></script>
   <script src="/js/ui/place-rounds-fill-layout.js"></script>
   <script>window.addEventListener('DOMContentLoaded',()=>{window.HGPlaceCardCollections.apply(window.PLACES[0]).then(()=>{window.__auditReady=true}).catch(error=>{window.__auditError=String(error&&error.stack||error)})})</script>
@@ -59,9 +61,11 @@ try {
   await page.waitForFunction(() => window.__auditReady === true);
 
   const verify = async expectedWidth => {
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "4");
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "3");
     assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-profile-source"), "place_card_profile_v2");
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 3);
+    assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden])").count(), 1,
+      "canonical People round sits next to Merker in heading");
     assert.equal(await page.locator("#pcQuiz").isVisible(), true);
     assert.equal(await page.locator("#pcQuiz").evaluate(node => node.classList.contains("pc-action-primary")), true);
     const geometry = await page.evaluate(() => {
@@ -75,10 +79,13 @@ try {
       const related = box(document.getElementById("pcCategoryCollectionIcon"));
       const gridElement = document.querySelector(".pc-icons-quad");
       const grid = box(gridElement);
+      const badge = box(document.getElementById("pcBadgesIcon"));
       const gridStyle = getComputedStyle(gridElement);
-      return { people, objects, brands, related, grid, columns:gridStyle.gridTemplateColumns, rows:gridStyle.gridTemplateRows };
+      return { people, badge, objects, brands, related, grid, columns:gridStyle.gridTemplateColumns, rows:gridStyle.gridTemplateRows };
     });
     assert.ok(Math.abs(geometry.people.width - geometry.people.height) < 2);
+    assert.ok(geometry.people.x < geometry.badge.x && geometry.people.x + geometry.people.width <= geometry.badge.x + 1,
+      "People is directly to the left of Merker");
     assert.ok(geometry.objects.width > geometry.objects.height);
     assert.ok(geometry.brands.width > geometry.brands.height);
     assert.ok(geometry.related.width > geometry.related.height);

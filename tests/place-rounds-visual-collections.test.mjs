@@ -75,7 +75,9 @@ test("all registered ordinary categories render a full 1 + 3 composition", async
     const definitions = Array.from(w.HGPlaceCardCollections.get(place));
     assert.equal(definitions.length, 4, category);
     assert.deepEqual(definitions.map(def => def.shape), ["circle", "rectangle", "rectangle", "rectangle"], category);
-    assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4", category);
+    assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "3", category);
+    assert.equal(w.document.querySelector(".pc-title-row > #pcPeopleIcon")?.id, "pcPeopleIcon", category);
+    assert.equal(w.document.getElementById("pcPeopleIcon").nextElementSibling?.id, "pcBadgesIcon", category);
   }
 });
 
@@ -141,7 +143,7 @@ test("legacy round_profile remains readable and silently drops Images", async ()
   assert.deepEqual(ids(w, place), ["people", "objects", "brands", "related"]);
   assert.equal(w.HGPlaceCardCollections.getProfileSource(place), "round_profile_v1_adapter");
   await w.HGPlaceCardCollections.apply(place);
-  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "4");
+  assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionCount, "3");
   assert.equal(w.document.querySelector(".pc-icons-quad").dataset.collectionProfileSource, "round_profile_v1_adapter");
 });
 

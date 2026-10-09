@@ -40,6 +40,8 @@ function makeRuntime() {
   windows.add(dom.window);
   const related = place.related_place_ids.map(id => ({ id, name: id.replaceAll("_", " ") }));
   dom.window.PLACES = [place, ...related];
+  dom.window.getPeopleForPlace = () => people.filter(person =>
+    [person.placeId, person.place_id, person.source_place_id, ...(person.places || []), ...(person.placeIds || [])].includes(place.id));
   dom.window.eval(runtime);
   dom.window.document.dispatchEvent(new dom.window.Event("DOMContentLoaded", { bubbles: true }));
   return dom.window;
@@ -72,7 +74,9 @@ test("PlaceCard fills the fixed four-cell contract and keeps Quiz primary", asyn
   await window.HGPlaceCardCollections.apply(place);
   assert.deepEqual(Array.from(window.HGPlaceCardCollections.get(place), item => item.id), ["people", "objects", "brands", "structures"]);
   const grid = window.document.querySelector(".pc-icons-quad");
-  assert.equal(grid.dataset.collectionCount, "4");
+  assert.equal(grid.dataset.collectionCount, "3", "People is in the landscape heading, with three collections beneath");
+  assert.equal(window.document.querySelector(".pc-title-row > #pcPeopleIcon")?.hidden, false);
+  assert.equal(window.document.getElementById("pcPeopleIcon").nextElementSibling?.id, "pcBadgesIcon");
   assert.equal(grid.dataset.collectionProfileSource, "place_card_profile_v2");
   assert.equal(window.document.getElementById("pcPeopleIcon").dataset.collectionShape, "circle");
   assert.equal(window.document.getElementById("pcObjectsIcon").dataset.collectionShape, "rectangle");

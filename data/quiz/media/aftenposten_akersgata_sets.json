@@ -1,966 +1,1994 @@
 {
-  "targetId": "aftenposten_akersgata",
   "categoryId": "media",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
-  "generated_from": [
-    "data/stories/stories_aftenposten_akersgata.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen dagsaktuelle redaksjons-, eier- eller mediedriftspåstander.",
-      "Ingen usikre personrelasjoner.",
-      "Ingen detaljer om nåværende byggbruk uten kilde.",
-      "Story-data brukes for Christiania Adresseblad 1860, Christian Schibsted, 127 år i Akersgata og flytting til Postgirobygget i 2003."
+  "targetId": "aftenposten_akersgata",
+  "sources": {
+    "tanta": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+    "byleksikon": "https://oslobyleksikon.no/side/Aftenposten",
+    "jubileum": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+    "snl_avis": "https://snl.no/Aftenposten",
+    "amag": "https://www.aftenposten.no/norge/i/l3Jae/nytt-a-magasin-for-tredje-gang",
+    "fotosats": "https://snl.no/fotosats/fotosetting",
+    "avis1879": "https://commons.wikimedia.org/wiki/File:Aftenposten_2._januar_1879-_framside.JPG",
+    "foto2025": "https://commons.wikimedia.org/wiki/File:Akersgata_51_(II).jpg",
+    "carey": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf"
+  },
+  "production_context": {
+    "manifest_category": "media",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/media/aftenposten_akersgata.json",
+    "context_artifact": "data/quiz/production_context/media/aftenposten_akersgata.json",
+    "resolved_files": {
+      "pensum": "data/fag/media/mediapensum_canonical_v4_5.json",
+      "emner": "data/fag/media/emner_media_canonical_v4_5.json",
+      "fagkart": "data/fag/media/fagkart_media_canonical_v4_5.json",
+      "methods": "data/fag/media/methods_media_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/media/supersetQUIZMAL_media.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "presse_redaksjoner_avishus",
+      "kilder_kritikk_sannhet"
+    ],
+    "emne_ids": [
+      "em_media_pressehistorie",
+      "em_media_avishus_offentlighetsrom",
+      "em_media_trykkeri_materialitet",
+      "em_media_mediehistorisk_endring",
+      "em_media_arkiv_og_bevis",
+      "em_media_kildekritikk"
+    ],
+    "topic_hook_ids": [
+      "avishus_som_offentlighetsrom"
+    ],
+    "method_ids": [
+      "met_media_kildekritisk_analyse"
+    ],
+    "thinker_ids": [
+      "james_carey"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/**/*.json",
+        "data/knowledge/knowledge_units.generated.json"
+      ],
+      "active_before": [
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "set_count": 6,
+          "question_count": 18,
+          "manifest_entries": 6,
+          "answer_positions": {
+            "0": 18
+          }
+        }
+      ],
+      "decisions": [
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s1_q1",
+          "question": "Hva gjør Aftenposten i Akersgata til et viktig mediehistorisk sted?",
+          "knowledge": "Aftenpostens lange Akersgata-periode gjør stedet til et konkret spor etter avisoffentlighet, redaksjonell makt og medieby.",
+          "old_knowledge_ids": [
+            "ku_media_aftenpostens_lange_akers_9159a8f283"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s1_q2",
+          "question": "Hva bør spilleren se etter først i Akersgata?",
+          "knowledge": "Storyen peker på Akersgata som fysisk ramme for aviser, kilder, konkurrenter og institusjoner tett på hverandre.",
+          "old_knowledge_ids": [
+            "ku_media_storyen_peker_pa_akersga_b159d6f27a"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s1_q3",
+          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "knowledge": "Spørsmålet kobler sted til mediegeografi og offentlighet uten å bruke dagsaktuelle medieopplysninger.",
+          "old_knowledge_ids": [
+            "ku_media_sp_rsmalet_kobler_sted_t_c98606477b"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s2_q1",
+          "question": "Hva begynte Aftenposten som i 1860 ifølge story-data?",
+          "knowledge": "Story-dataen sier at Aftenposten begynte som Christiania Adresseblad i 1860.",
+          "old_knowledge_ids": [
+            "ku_media_story_dataen_sier_at_aft_ea989caf93"
+          ],
+          "decision": "rewrite",
+          "reason": "Faktakjernen bevares med ekstern kilde og ny presis formulering."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s2_q2",
+          "question": "Hvem etablerte avisen ifølge story-data?",
+          "knowledge": "Storyen knytter avisens start til boktrykker Christian Schibsted.",
+          "old_knowledge_ids": [
+            "ku_media_storyen_knytter_avisens__56b0f77810"
+          ],
+          "decision": "rewrite",
+          "reason": "Faktakjernen bevares med ekstern kilde og ny presis formulering."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s2_q3",
+          "question": "Hva bør holdes ute av trygg Aftenposten-quiz her?",
+          "knowledge": "Quizzen skal lære stabile historiske mønstre, ikke oppdatere dagens mediebransje.",
+          "old_knowledge_ids": [
+            "ku_media_quizzen_skal_l_re_stabil_41f1b68547"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s3_q1",
+          "question": "Hva betyr presseakse?",
+          "knowledge": "Akersgata fungerer som presseakse fordi aviser, kilder og politiske miljøer lå tett på hverandre.",
+          "old_knowledge_ids": [
+            "ku_media_akersgata_fungerer_som_p_b5215ba30d"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s3_q2",
+          "question": "Hva betyr redaksjonell makt?",
+          "knowledge": "Storyen peker på nyheter og lederartikler som del av avisens makt i offentligheten.",
+          "old_knowledge_ids": [
+            "ku_media_storyen_peker_pa_nyheter_2649254309"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s3_q3",
+          "question": "Hva betyr medieby?",
+          "knowledge": "Flyttingen i 2003 viser at mediebyen endrer adresse, teknologi og arbeidsform over tid.",
+          "old_knowledge_ids": [
+            "ku_media_flyttingen_i_2003_viser__3d8320786e"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s4_q1",
+          "question": "Hva er en avansert observasjon i Aftenposten Akersgata?",
+          "knowledge": "Storyen sier at avisens historie også handler om trykk, distribusjon, eierskap og redaksjonell makt i hovedstaden.",
+          "old_knowledge_ids": [
+            "ku_media_storyen_sier_at_avisens__4a4dcaddf0"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s4_q2",
+          "question": "Hva markerer flyttingen til Postgirobygget i 2003 i storyen?",
+          "knowledge": "Storyens arc bruker 2003-flyttingen til å vise endret adresse, teknologi og arbeidsform i mediebyen.",
+          "old_knowledge_ids": [
+            "ku_media_storyens_arc_bruker_2003_f9f6fc95ef"
+          ],
+          "decision": "rewrite",
+          "reason": "Faktakjernen bevares med ekstern kilde og ny presis formulering."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s4_q3",
+          "question": "Hva bør en god Aftenposten-quiz trene spilleren i?",
+          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå norsk pressehistorie gjennom et konkret sted.",
+          "old_knowledge_ids": [
+            "ku_media_quizzen_skal_gj_re_spill_92a565e044"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s5_q1",
+          "question": "Hva er den dypere læringen i Aftenposten Akersgata?",
+          "knowledge": "Aftenpostens 127 år i Akersgata gjør avisen til et sterkt eksempel på langvarig mediegeografi.",
+          "old_knowledge_ids": [
+            "ku_media_aftenpostens_127_ar_i_ak_8c4e739bc1"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s5_q2",
+          "question": "Hvorfor er 127 år i Akersgata viktig?",
+          "knowledge": "Den lange perioden gjør stedet til historisk kompass for norsk avisoffentlighet.",
+          "old_knowledge_ids": [
+            "ku_media_den_lange_perioden_gj_r__0cbbbcefb8"
+          ],
+          "decision": "rewrite",
+          "reason": "Faktakjernen bevares med ekstern kilde og ny presis formulering."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s5_q3",
+          "question": "Hvordan fungerer stedet i en mediehistorisk rute?",
+          "knowledge": "Aftenposten i Akersgata gir et konkret sted for norsk avispresse og mediebyens endringer.",
+          "old_knowledge_ids": [
+            "ku_media_aftenposten_i_akersgata__2075b8211a"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s6_q1",
+          "question": "Hvilket begrep beskriver en gate der flere presseinstitusjoner er samlet?",
+          "knowledge": "Akersgata fungerer som presseakse i Aftenposten-storyen.",
+          "old_knowledge_ids": [
+            "ku_media_akersgata_fungerer_som_p_f46a858fa6"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s6_q2",
+          "question": "Hva betyr offentlighet i mediehistorie?",
+          "knowledge": "Aftenposten kan leses gjennom sin langvarige rolle i norsk offentlighet.",
+          "old_knowledge_ids": [
+            "ku_media_aftenposten_kan_leses_gj_03f335c5ae"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        },
+        {
+          "file": "data/quiz/media/aftenposten_akersgata_sets.json",
+          "id": "aftenposten_akersgata_s6_q3",
+          "question": "Hvilket begrepspar forklarer Aftenposten Akersgata best?",
+          "knowledge": "Stedet blir tydeligst når avisens lange byplassering leses sammen med offentlig debatt og redaksjonell makt.",
+          "old_knowledge_ids": [
+            "ku_media_stedet_blir_tydeligst_na_cbac3fc395"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Metaspørsmål, duplisering eller svak/åpenbar distraktor. Mediegeografi, offentlighet og produksjonskjede er bevart i nye forklaringer og Fagverk."
+        }
+      ],
+      "knowledge_migration": "Retire original 18 quiz-owned units only when no other owner uses them; generate 28 verified new units with canonical pipeline. Do not rewrite unrelated Knowledge or reuse legacy set completion IDs for new contents."
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "28 selvstendige enheter bærer fire læringsjobber: adresse/institusjonsbakgrunn; utgaver/bygg/teknologi; produksjonskjede/ombruk; dokumentbevis/metode og to Carey-scenarioer. major-sted er ikke automatisk major-quiz. Ekstra krigs-/konfliktsett krever egen kontrollert bank, og flere person-/årstallsett ville duplisere allerede dekket stoff. Profilen er valgt etter eksisterende 18-spørsmålsaudit og full fagpakke, ikke for å spare arbeid."
+    },
+    "held_back_candidates": [
+      "Detaljert 1905-konflikt og okkupasjon: potensielt selvstendig fordypning, men krever egen bank med samtidige kilder og ansvarsskille.",
+      "A-magasinets stoppår 1942/1943: kildekonflikt, ikke quizfasit.",
+      "Dagens opplag, ledelse, Aftenposten junior og podkaster: tilhører ikke den avsluttede nr. 51-perioden.",
+      "Personportretter som egne ekstra quizsett: rollehistorien er merget i #6155, men ny trivia gir ingen selvstendig settplan.",
+      "Eksakt år for vinterhagen: kilden daterer ikke ombruken."
     ]
   },
   "sets": [
     {
-      "set_id": "popkultur_aftenposten_akersgata_set_1",
+      "set_id": "media_aftenposten_akersgata_set_1",
       "level": 1,
       "order": 1,
+      "phase": "opening",
+      "title": "Adressen og avisens opphav",
       "xp": 50,
-      "mode": "place_intro_story",
       "questions": [
         {
-          "id": "aftenposten_akersgata_s1_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_1_q1",
+          "id": "aftenposten_v2_q01",
+          "quiz_id": "media_aftenposten_v2_q01",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva gjør Aftenposten i Akersgata til et viktig mediehistorisk sted?",
+          "question": "Hvilket husnummer var Aftenpostens redaksjonsadresse i Akersgata fra 1876 til 2003?",
           "options": [
-            "Det viser hvordan en avis kunne prege offentligheten fra en fast presseakse over lang tid",
-            "Det er bare et naturpunkt",
-            "Det ligger uten forbindelse til norsk pressehistorie"
+            "55",
+            "51",
+            "32"
           ],
-          "answer": "Det viser hvordan en avis kunne prege offentligheten fra en fast presseakse over lang tid",
-          "answerIndex": 0,
-          "knowledge": "Aftenpostens lange Akersgata-periode gjør stedet til et konkret spor etter avisoffentlighet, redaksjonell makt og medieby.",
+          "answer": "51",
+          "answerIndex": 1,
+          "knowledge": "I nummer 51 lå også ekspedisjon og setteri. Returen til Akersgata i 2014 gikk til nummer 55 og er en annen adresseperiode.",
           "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
+          "question_type": "fact",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "tanta"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_01",
+          "claim_basis": "Aftenposten hadde redaksjon, ekspedisjon og setteri i Akersgata 51 fra 1876 til 2003.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
           "tags": [
             "aftenposten",
-            "akersgata",
-            "pressehistorie"
+            "media"
           ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_aftenpostens_lange_akers_9159a8f283",
+          "primary_knowledge_unit_id": "ku_media_i_nummer_51_la_ogsa_eksp_959af7106e",
           "knowledge_unit_ids": [
-            "ku_media_aftenpostens_lange_akers_9159a8f283"
+            "ku_media_i_nummer_51_la_ogsa_eksp_959af7106e",
+            "ku_media_returen_til_akersgata_i__ea1bbf46a6"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 19
-              },
-              {
-                "emne_id": "em_media_pressehistorie",
-                "score": 18
-              },
-              {
-                "emne_id": "em_media_redaksjonell_institusjon",
-                "score": 16
-              }
-            ]
-          }
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Aftenposten hadde redaksjon, ekspedisjon og setteri i Akersgata 51 fra 1876 til 2003.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s1_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_1_q2",
+          "id": "aftenposten_v2_q02",
+          "quiz_id": "media_aftenposten_v2_q02",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva bør spilleren se etter først i Akersgata?",
+          "question": "Når flyttet Aftenposten fra Dronningens gate til Akersgata 51?",
           "options": [
-            "Byrom, avishus, navnespor og nærhet mellom medier, politikk og byinstitusjoner",
-            "Bare fjell og skog",
-            "Kun fjordkanten"
+            "1876",
+            "1860",
+            "1885"
           ],
-          "answer": "Byrom, avishus, navnespor og nærhet mellom medier, politikk og byinstitusjoner",
+          "answer": "1876",
           "answerIndex": 0,
-          "knowledge": "Storyen peker på Akersgata som fysisk ramme for aviser, kilder, konkurrenter og institusjoner tett på hverandre.",
+          "knowledge": "Avisen fantes allerede før flyttingen. Den nye adressen samlet redaksjon, ekspedisjon og produksjonsfunksjoner; etableringsåret og innflyttingsåret må holdes fra hverandre.",
           "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
-          "tags": [
-            "observasjon",
-            "presseakse"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "tanta"
           ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_storyen_peker_pa_akersga_b159d6f27a",
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_02",
+          "claim_basis": "Aftenposten flyttet fra Dronningens gate til Akersgata 51 i 1876.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_avisen_fantes_allerede_f_b67297b555",
           "knowledge_unit_ids": [
-            "ku_media_storyen_peker_pa_akersga_b159d6f27a"
+            "ku_media_avisen_fantes_allerede_f_b67297b555",
+            "ku_media_den_nye_adressen_samlet__809332b1cf"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_redaksjonell_institusjon",
-                "score": 10
-              },
-              {
-                "emne_id": "em_media_journalist_kilde",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_frilans_og_press",
-                "score": 7
-              }
-            ]
-          }
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Aftenposten flyttet fra Dronningens gate til Akersgata 51 i 1876.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s1_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_1_q3",
+          "id": "aftenposten_v2_q03",
+          "quiz_id": "media_aftenposten_v2_q03",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
+          "question": "Hvilket år forlot Aftenposten den historiske Akersgata-adressen for Postgirobygget?",
           "options": [
-            "Hvordan blir en gate et sentrum for avisoffentlighet og redaksjonell makt?",
-            "Hvorfor finnes det ingen medier her?",
-            "Hvem eier avisen akkurat nå?"
+            "1995",
+            "2014",
+            "2003"
           ],
-          "answer": "Hvordan blir en gate et sentrum for avisoffentlighet og redaksjonell makt?",
-          "answerIndex": 0,
-          "knowledge": "Spørsmålet kobler sted til mediegeografi og offentlighet uten å bruke dagsaktuelle medieopplysninger.",
+          "answer": "2003",
+          "answerIndex": 2,
+          "knowledge": "2003 avslutter perioden 1876–2003 ved nummer 51. Nettutgaven kom tidligere, mens returen til nummer 55 kom senere.",
           "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
-          "tags": [
-            "stedlesning"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "byleksikon"
           ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_media_sp_rsmalet_kobler_sted_t_c98606477b",
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_03",
+          "claim_basis": "I 2003 forlot Aftenposten Akersgata og flyttet til Postgirobygget.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_2003_avslutter_perioden__24d680c03a",
           "knowledge_unit_ids": [
-            "ku_media_sp_rsmalet_kobler_sted_t_c98606477b"
+            "ku_media_2003_avslutter_perioden__24d680c03a",
+            "ku_media_nettutgaven_kom_tidliger_9d41d7710a"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_debatt_offentlighet",
-                "score": 5
-              },
-              {
-                "emne_id": "em_media_opplyst_offentlighet",
-                "score": 5
-              },
-              {
-                "emne_id": "em_media_digital_offentlighet",
-                "score": 4
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_aftenposten_akersgata_set_2",
-      "level": 2,
-      "order": 2,
-      "xp": 60,
-      "mode": "place_life_people_events",
-      "questions": [
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "I 2003 forlot Aftenposten Akersgata og flyttet til Postgirobygget.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            },
+            {
+              "source_id": "snl_avis",
+              "url": "https://snl.no/Aftenposten",
+              "title": "snl_avis",
+              "source_type": "reference",
+              "claim_basis": "I 2003 forlot Aftenposten Akersgata og flyttet til Postgirobygget.",
+              "role": "Kontrollert Digitalt: nettutgave 1995. Dagens opplag, ledelse og produkter brukes ikke som lokal nr. 51-historie."
+            }
+          ]
+        },
         {
-          "id": "aftenposten_akersgata_s2_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_2_q1",
+          "id": "aftenposten_v2_q04",
+          "quiz_id": "media_aftenposten_v2_q04",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva begynte Aftenposten som i 1860 ifølge story-data?",
+          "question": "Hvem grunnla avisen i 1860, før den flyttet til Akersgata?",
           "options": [
-            "Christiania Adresseblad",
-            "Diário de Notícias",
-            "Akerselva Avis"
+            "Amandus Schibsted",
+            "Christian Schibsted",
+            "Thorstein Diesen"
+          ],
+          "answer": "Christian Schibsted",
+          "answerIndex": 1,
+          "knowledge": "Christian Schibsted var boktrykker og utgiver. Sønnen Amandus overtok senere; avisens opphav hører til institusjonshistorien før adressen i nummer 51.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
+          "source": [
+            "jubileum"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_04",
+          "claim_basis": "Boktrykker Christian Schibsted etablerte avisen i 1860, før perioden i Akersgata 51.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_christian_schibsted_var__910681fe3b",
+          "knowledge_unit_ids": [
+            "ku_media_christian_schibsted_var__910681fe3b",
+            "ku_media_s_nnen_amandus_overtok_s_731d663bda"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "Boktrykker Christian Schibsted etablerte avisen i 1860, før perioden i Akersgata 51.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q05",
+          "quiz_id": "media_aftenposten_v2_q05",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva het avisen da den ble startet i 1860?",
+          "options": [
+            "Aftenbladet",
+            "Morgenbladet",
+            "Christiania Adresseblad"
           ],
           "answer": "Christiania Adresseblad",
-          "answerIndex": 0,
-          "knowledge": "Story-dataen sier at Aftenposten begynte som Christiania Adresseblad i 1860.",
+          "answerIndex": 2,
+          "knowledge": "Christiania Adresseblad var startnavnet. Aftenbladet var en annen avis som Schibsteds trykkeri hadde produsert, ikke et tidligere navn på Aftenposten.",
           "difficulty": 1,
-          "question_type": "historisk_fakta",
-          "question_layer": "place_life",
-          "tags": [
-            "1860",
-            "christiania_adresseblad"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "jubileum"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_kildekritikk"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_05",
+          "claim_basis": "Avisen ble startet i 1860 under navnet Christiania Adresseblad.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_story_dataen_sier_at_aft_ea989caf93",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_christiania_adresseblad__a1ba7f219d",
           "knowledge_unit_ids": [
-            "ku_media_story_dataen_sier_at_aft_ea989caf93"
+            "ku_media_christiania_adresseblad__a1ba7f219d",
+            "ku_media_aftenbladet_var_en_annen_df62b5851d"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "Avisen ble startet i 1860 under navnet Christiania Adresseblad.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s2_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_2_q2",
+          "id": "aftenposten_v2_q06",
+          "quiz_id": "media_aftenposten_v2_q06",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hvem etablerte avisen ifølge story-data?",
+          "question": "Når fikk Christiania Adresseblad navnet Aftenposten?",
           "options": [
-            "Boktrykker Christian Schibsted",
-            "Henrik Mohn",
-            "Porfírio Pardal Monteiro"
+            "1861",
+            "1876",
+            "1879"
           ],
-          "answer": "Boktrykker Christian Schibsted",
+          "answer": "1861",
           "answerIndex": 0,
-          "knowledge": "Storyen knytter avisens start til boktrykker Christian Schibsted.",
+          "knowledge": "Navneendringen skjedde året etter etableringen. Den må ikke blandes med flyttingen til Akersgata eller Amandus Schibsteds senere redaktørperiode.",
           "difficulty": 1,
-          "question_type": "historisk_person",
-          "question_layer": "place_life",
-          "tags": [
-            "christian_schibsted",
-            "trykk"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "jubileum"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_kildekritikk"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_06",
+          "claim_basis": "Avisen fikk navnet Aftenposten i 1861, året etter starten.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_knytter_avisens__56b0f77810",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_navneendringen_skjedde_a_04c3a5d6d5",
           "knowledge_unit_ids": [
-            "ku_media_storyen_knytter_avisens__56b0f77810"
+            "ku_media_navneendringen_skjedde_a_04c3a5d6d5",
+            "ku_media_den_ma_ikke_blandes_med__83c93e3593"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "Avisen fikk navnet Aftenposten i 1861, året etter starten.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            },
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Avisen fikk navnet Aftenposten i 1861, året etter starten.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s2_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_2_q3",
+          "id": "aftenposten_v2_q07",
+          "quiz_id": "media_aftenposten_v2_q07",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva bør holdes ute av trygg Aftenposten-quiz her?",
+          "question": "Hvor lenge varte Aftenpostens historiske periode i Akersgata, fra 1876 til 2003?",
           "options": [
-            "Dagsaktuelle redaksjons-, eier- og driftsopplysninger uten kilde",
-            "Året 1860 fra story-data",
-            "Begrepet pressehistorie"
+            "115 år",
+            "127 år",
+            "143 år"
           ],
-          "answer": "Dagsaktuelle redaksjons-, eier- og driftsopplysninger uten kilde",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal lære stabile historiske mønstre, ikke oppdatere dagens mediebransje.",
+          "answer": "127 år",
+          "answerIndex": 1,
+          "knowledge": "Tidsrommet beskriver en adresseperiode, ikke avisens totale alder. Avisen var eldre enn denne tilknytningen og fortsatte etter utflyttingen.",
           "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "holdback"
-          ],
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
           "source": [
-            "manual_production_notes"
+            "byleksikon"
           ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_media_kildekritikk"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_07",
+          "claim_basis": "Aftenpostens periode på den historiske Akersgata-adressen varte i 127 år, 1876–2003.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "kildekritikk",
-              "kilde",
-              "kildekritikk"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_l_re_stabil_41f1b68547",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_tidsrommet_beskriver_en__32ded1cdb7",
           "knowledge_unit_ids": [
-            "ku_media_quizzen_skal_l_re_stabil_41f1b68547"
+            "ku_media_tidsrommet_beskriver_en__32ded1cdb7",
+            "ku_media_avisen_var_eldre_enn_den_c1f0075065"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Aftenpostens periode på den historiske Akersgata-adressen varte i 127 år, 1876–2003.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
         }
       ]
     },
     {
-      "set_id": "popkultur_aftenposten_akersgata_set_3",
+      "set_id": "media_aftenposten_akersgata_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Utgaver, avishus og teknologi",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "aftenposten_v2_q08",
+          "quiz_id": "media_aftenposten_v2_q08",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan skilte morgen- og aftenutgaven seg i målområde?",
+          "options": [
+            "Morgen: Oslo-området. Aften: hele landet.",
+            "Morgen: utenlandet. Aften: hele Norge.",
+            "Morgen: hele landet. Aften: Oslo-området."
+          ],
+          "answer": "Morgen: hele landet. Aften: Oslo-området.",
+          "answerIndex": 2,
+          "knowledge": "De to daglige utgavene fra 1885 hadde ulike geografiske oppgaver. Den lokale aftenutgaven la vekt på Oslo-stoff; dette sier ikke at alle enkeltartikler hadde samme tema.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_08",
+          "claim_basis": "Morgenutgaven hadde hele landet som målområde; aftenutgaven hadde lokalt Oslo-stoff og distribusjon i Oslo-området.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_de_to_daglige_utgavene_f_4b901ebd93",
+          "knowledge_unit_ids": [
+            "ku_media_de_to_daglige_utgavene_f_4b901ebd93",
+            "ku_media_den_lokale_aftenutgaven__a2a797f49a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Morgenutgaven hadde hele landet som målområde; aftenutgaven hadde lokalt Oslo-stoff og distribusjon i Oslo-området.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q09",
+          "quiz_id": "media_aftenposten_v2_q09",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvilket år kom den første utgaven av A-magasinet?",
+          "options": [
+            "1926",
+            "1885",
+            "1963"
+          ],
+          "answer": "1926",
+          "answerIndex": 0,
+          "knowledge": "Den første utgaven kom 31. desember 1926. 1963 viser til en senere gjenopptakelse. Motstridende opplysninger om stoppåret under krigen brukes ikke som quizfasit.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_pressehistorie",
+          "source": [
+            "amag"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_09",
+          "claim_basis": "A-magasinet kom ut første gang 31. desember 1926.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_den_f_rste_utgaven_kom_3_a09a0189b9",
+          "knowledge_unit_ids": [
+            "ku_media_den_f_rste_utgaven_kom_3_a09a0189b9",
+            "ku_media_1963_viser_til_en_senere_513d63483e",
+            "ku_media_motstridende_opplysninge_dbbbbcd4c2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "amag",
+              "url": "https://www.aftenposten.no/norge/i/l3Jae/nytt-a-magasin-for-tredje-gang",
+              "title": "amag",
+              "source_type": "primary",
+              "claim_basis": "A-magasinet kom ut første gang 31. desember 1926.",
+              "role": "Kontrollert første utgave 31.12.1926. Artikkelens stoppår 1942 avviker fra senere 1943-kilder; stoppåret holdes utenfor quiz."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q10",
+          "quiz_id": "media_aftenposten_v2_q10",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvem tegnet hovedbygningen i Akersgata 51 fra 1964?",
+          "options": [
+            "Arnstein Arneberg",
+            "Henrik Bull",
+            "Finn Bryn"
+          ],
+          "answer": "Finn Bryn",
+          "answerIndex": 2,
+          "knowledge": "Byleksikonet knytter Finn Bryn til hovedbygningen fra 1964. Byggeåret dokumenterer en bygningsendring, ikke starten på avisens bruk av adressen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_10",
+          "claim_basis": "Hovedbygningen fra 1964 i Akersgata 51 ble tegnet av Finn Bryn.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_byleksikonet_knytter_fin_f8556005f9",
+          "knowledge_unit_ids": [
+            "ku_media_byleksikonet_knytter_fin_f8556005f9",
+            "ku_media_byggearet_dokumenterer_e_b7c6e4511a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Hovedbygningen fra 1964 i Akersgata 51 ble tegnet av Finn Bryn.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q11",
+          "quiz_id": "media_aftenposten_v2_q11",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken naboeiendom kjøpte Aftenposten i 1923?",
+          "options": [
+            "Akersgata 55",
+            "Akersgata 53",
+            "Dronningens gate 10"
+          ],
+          "answer": "Akersgata 53",
+          "answerIndex": 1,
+          "knowledge": "Kjøpet utvidet avishusets fysiske ramme. Flere eiendommer i virksomheten betyr ikke at nummer 53 eller 55 kan erstatte det historiske nummer 51-ankeret.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "tanta"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_11",
+          "claim_basis": "Aftenposten kjøpte naboeiendommen Akersgata 53 i 1923.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_kj_pet_utvidet_avishuset_b4b0ee978e",
+          "knowledge_unit_ids": [
+            "ku_media_kj_pet_utvidet_avishuset_b4b0ee978e",
+            "ku_media_flere_eiendommer_i_virks_46021ad264"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Aftenposten kjøpte naboeiendommen Akersgata 53 i 1923.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q12",
+          "quiz_id": "media_aftenposten_v2_q12",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken trykketeknikk gikk Aftenposten og VG over til i 1976?",
+          "options": [
+            "Offsettrykk",
+            "Dyptrykk",
+            "Silketrykk"
+          ],
+          "answer": "Offsettrykk",
+          "answerIndex": 0,
+          "knowledge": "Offsetovergangen gjelder framstillingen av papiravisen. Fotosats hører til forberedelsen av tekst og sider, mens en nettavis er en annen publiseringsflate.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_trykkeri_materialitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_12",
+          "claim_basis": "Aftenposten og VG gikk over til offsettrykk i 1976.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_offsetovergangen_gjelder_c55deae0cc",
+          "knowledge_unit_ids": [
+            "ku_media_offsetovergangen_gjelder_c55deae0cc",
+            "ku_media_fotosats_h_rer_til_forbe_5f701fb3a0"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Aftenposten og VG gikk over til offsettrykk i 1976.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            },
+            {
+              "source_id": "fotosats",
+              "url": "https://snl.no/fotosats/fotosetting",
+              "title": "fotosats",
+              "source_type": "reference",
+              "claim_basis": "Aftenposten og VG gikk over til offsettrykk i 1976.",
+              "role": "Lest definisjon: tekst på film/fotopapir for overføring til trykkform, ikke ferdig trykte avissider."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q13",
+          "quiz_id": "media_aftenposten_v2_q13",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvor ble Aftenposten trykt fra 1976?",
+          "options": [
+            "Akersgata 51",
+            "Nydalen",
+            "Linderud"
+          ],
+          "answer": "Linderud",
+          "answerIndex": 2,
+          "knowledge": "Trykkingen flyttet til Schibstedgruppens anlegg på Linderud. Setteriet var fortsatt i Akersgata 51. Byleksikonet daterer det nye trykkeriet i Nydalen til 1999.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_trykkeri_materialitet",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_13",
+          "claim_basis": "Fra 1976 ble avisene trykt på Schibstedgruppens anlegg på Linderud.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_trykkingen_flyttet_til_s_c7daee86c3",
+          "knowledge_unit_ids": [
+            "ku_media_trykkingen_flyttet_til_s_c7daee86c3",
+            "ku_media_setteriet_var_fortsatt_i_b1307e0d2d",
+            "ku_media_byleksikonet_daterer_det_e491c82cd3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Fra 1976 ble avisene trykt på Schibstedgruppens anlegg på Linderud.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q14",
+          "quiz_id": "media_aftenposten_v2_q14",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Når begynte Aftenposten med nettutgave?",
+          "options": [
+            "1995",
+            "1976",
+            "2003"
+          ],
+          "answer": "1995",
+          "answerIndex": 0,
+          "knowledge": "Nettavisen ble etablert mens redaksjonen fortsatt holdt til i Akersgata. 1976 gjelder offset og Linderud; 2003 gjelder utflyttingen til Postgirobygget.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "source": [
+            "snl_avis"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_14",
+          "claim_basis": "Aftenposten begynte med nettutgave i 1995.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_nettavisen_ble_etablert__f3a2d932aa",
+          "knowledge_unit_ids": [
+            "ku_media_nettavisen_ble_etablert__f3a2d932aa",
+            "ku_media_1976_gjelder_offset_og_l_723871566b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "snl_avis",
+              "url": "https://snl.no/Aftenposten",
+              "title": "snl_avis",
+              "source_type": "reference",
+              "claim_basis": "Aftenposten begynte med nettutgave i 1995.",
+              "role": "Kontrollert Digitalt: nettutgave 1995. Dagens opplag, ledelse og produkter brukes ikke som lokal nr. 51-historie."
+            },
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Aftenposten begynte med nettutgave i 1995.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "set_id": "media_aftenposten_akersgata_set_3",
       "level": 3,
       "order": 3,
+      "phase": "bridge",
+      "title": "Produksjonskjeden og ombruken",
       "xp": 70,
-      "mode": "emne_based_foundation",
       "questions": [
         {
-          "id": "aftenposten_akersgata_s3_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_3_q1",
+          "id": "aftenposten_v2_q15",
+          "quiz_id": "media_aftenposten_v2_q15",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr presseakse?",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva ble den tidligere pressesalen i avishuset senere brukt som?",
           "options": [
-            "En gate eller bydel der flere presse- og medieinstitusjoner er samlet",
-            "En elv som renner gjennom skog",
-            "Et værmålingspunkt"
+            "Stoffarkiv",
+            "Vinterhage",
+            "Ekspedisjon"
           ],
-          "answer": "En gate eller bydel der flere presse- og medieinstitusjoner er samlet",
-          "answerIndex": 0,
-          "knowledge": "Akersgata fungerer som presseakse fordi aviser, kilder og politiske miljøer lå tett på hverandre.",
+          "answer": "Vinterhage",
+          "answerIndex": 1,
+          "knowledge": "Kilden beskriver en konkret ombruk av pressesalen. Den oppgir ikke et eksakt år for vinterhagen, så trykkeriflyttingen i 1976 kan ikke automatisk dateres som ombruksåret.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "presseakse"
-          ],
+          "question_type": "context",
+          "emne_id": "em_media_mediehistorisk_endring",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "tanta"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_akersgata_fungerer_som_p_b5215ba30d",
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_15",
+          "claim_basis": "Pressesalen i avishuset ble senere brukt som vinterhage; kilden oppgir ikke et eksakt år for ombruken.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_kilden_beskriver_en_konk_38c1b2ed1e",
           "knowledge_unit_ids": [
-            "ku_media_akersgata_fungerer_som_p_b5215ba30d"
+            "ku_media_kilden_beskriver_en_konk_38c1b2ed1e",
+            "ku_media_den_oppgir_ikke_et_eksak_a8bb84d2c1"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_journalist_kilde",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_politisk_kommunikasjon",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_frilans_og_press",
-                "score": 7
-              }
-            ]
-          }
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Pressesalen i avishuset ble senere brukt som vinterhage; kilden oppgir ikke et eksakt år for ombruken.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s3_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_3_q2",
+          "id": "aftenposten_v2_q16",
+          "quiz_id": "media_aftenposten_v2_q16",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr redaksjonell makt?",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken produksjonsfunksjon i Akersgata 51 sendte sider til Linderud?",
           "options": [
-            "Muligheten medier har til å velge, vinkle og prioritere offentlig informasjon",
-            "Evnen til å måle regn",
-            "En type parkdrag"
+            "Setteriet",
+            "Trykkeriet",
+            "Ekspedisjonen"
           ],
-          "answer": "Muligheten medier har til å velge, vinkle og prioritere offentlig informasjon",
+          "answer": "Setteriet",
           "answerIndex": 0,
-          "knowledge": "Storyen peker på nyheter og lederartikler som del av avisens makt i offentligheten.",
+          "knowledge": "Setteriet og trykkeriet var forskjellige ledd på forskjellige adresser. At papiravisen ble trykt på Linderud, betyr derfor ikke at hele produksjonskjeden hadde forlatt Akersgata.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "redaksjonell_makt"
-          ],
+          "question_type": "context",
+          "emne_id": "em_media_trykkeri_materialitet",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "byleksikon"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_storyen_peker_pa_nyheter_2649254309",
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_16",
+          "claim_basis": "Setteriet i Akersgata 51 var fortsatt et avsendersted da trykkingen foregikk på Linderud.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_setteriet_og_trykkeriet__7f4c352ecb",
           "knowledge_unit_ids": [
-            "ku_media_storyen_peker_pa_nyheter_2649254309"
+            "ku_media_setteriet_og_trykkeriet__7f4c352ecb",
+            "ku_media_at_papiravisen_ble_trykt_5b44a990e6"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_avisens_materielle_form",
-                "score": 13
-              },
-              {
-                "emne_id": "em_media_redaksjonell_institusjon",
-                "score": 13
-              },
-              {
-                "emne_id": "em_media_redaksjonell_kapasitet",
-                "score": 13
-              }
-            ]
-          }
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Setteriet i Akersgata 51 var fortsatt et avsendersted da trykkingen foregikk på Linderud.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s3_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_3_q3",
+          "id": "aftenposten_v2_q17",
+          "quiz_id": "media_aftenposten_v2_q17",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr medieby?",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva ble overført med radiolink fra Akersgata 51 til Linderud?",
           "options": [
-            "Byrom der medier, institusjoner, teknologi og offentlig debatt former hverandre",
-            "Et sted uten aviser",
-            "Et rent naturreservat"
+            "Ferdig trykte eksemplarer",
+            "Løse blymatriser",
+            "Hele avissider"
           ],
-          "answer": "Byrom der medier, institusjoner, teknologi og offentlig debatt former hverandre",
-          "answerIndex": 0,
-          "knowledge": "Flyttingen i 2003 viser at mediebyen endrer adresse, teknologi og arbeidsform over tid.",
+          "answer": "Hele avissider",
+          "answerIndex": 2,
+          "knowledge": "Radiolinken overførte sideinformasjon, ikke fysiske aviser. Opplysningen viser hvordan setteri og trykkeri kunne samarbeide over avstand.",
           "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "medieby"
-          ],
+          "question_type": "context",
+          "emne_id": "em_media_trykkeri_materialitet",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "byleksikon"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_flyttingen_i_2003_viser__3d8320786e",
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_17",
+          "claim_basis": "Hele avissider ble overført med radiolink fra setteriet i Akersgata 51 til trykkeriet på Linderud.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_radiolinken_overf_rte_si_116ddf61ab",
           "knowledge_unit_ids": [
-            "ku_media_flyttingen_i_2003_viser__3d8320786e"
+            "ku_media_radiolinken_overf_rte_si_116ddf61ab",
+            "ku_media_opplysningen_viser_hvord_79b358a83d"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_annonseokonomi",
-                "score": 3
-              },
-              {
-                "emne_id": "em_media_arbeidsdeling",
-                "score": 3
-              },
-              {
-                "emne_id": "em_media_avisens_materielle_form",
-                "score": 3
-              }
-            ]
-          }
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Hele avissider ble overført med radiolink fra setteriet i Akersgata 51 til trykkeriet på Linderud.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q18",
+          "quiz_id": "media_aftenposten_v2_q18",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva dokumenterer det trykketekniske samarbeidet mellom Aftenposten og VG?",
+          "options": [
+            "Enighet om alle lederartikler",
+            "Samarbeid om avisproduksjonen",
+            "Felles standpunkt i alle nyhetssaker"
+          ],
+          "answer": "Samarbeid om avisproduksjonen",
+          "answerIndex": 1,
+          "knowledge": "En felles produksjonsløsning er ikke alene bevis for samme redaksjonelle mening. Påstander om redaksjonelle valg må undersøkes gjennom andre kilder enn trykketeknikken.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_media_kildekritikk",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_18",
+          "claim_basis": "Byleksikonet dokumenterer trykketeknisk samarbeid og offsetovergang for Aftenposten og VG; det er ikke alene bevis for felles redaksjonelle standpunkter.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_en_felles_produksjonsl_s_e7a6ba1dc7",
+          "knowledge_unit_ids": [
+            "ku_media_en_felles_produksjonsl_s_e7a6ba1dc7",
+            "ku_media_pastander_om_redaksjonel_a4c9a2d356"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Byleksikonet dokumenterer trykketeknisk samarbeid og offsetovergang for Aftenposten og VG; det er ikke alene bevis for felles redaksjonelle standpunkter.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q19",
+          "quiz_id": "media_aftenposten_v2_q19",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva skjedde med Aftenposten da den flyttet i 2003?",
+          "options": [
+            "Avisen fortsatte fra Postgirobygget",
+            "Papiravisen ble lagt ned permanent",
+            "Redaksjonen flyttet til Linderud"
+          ],
+          "answer": "Avisen fortsatte fra Postgirobygget",
+          "answerIndex": 0,
+          "knowledge": "Adresseendringen avsluttet den lange perioden ved nummer 51. Avisen fortsatte; trykkeriets adresse må heller ikke forveksles med redaksjonens nye arbeidssted.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "source": [
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_19",
+          "claim_basis": "Flyttingen i 2003 var en adresseendring til Postgirobygget, ikke en nedleggelse av avisen.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_adresseendringen_avslutt_85ac6daf7d",
+          "knowledge_unit_ids": [
+            "ku_media_adresseendringen_avslutt_85ac6daf7d",
+            "ku_media_avisen_fortsatte_trykker_a7d3909a17"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Flyttingen i 2003 var en adresseendring til Postgirobygget, ikke en nedleggelse av avisen.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q20",
+          "quiz_id": "media_aftenposten_v2_q20",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvor mange aviser i timen kunne den nye pressen fra 1876 trykke?",
+          "options": [
+            "800",
+            "3000",
+            "27000"
+          ],
+          "answer": "3000",
+          "answerIndex": 1,
+          "knowledge": "Jubileumsartikkelen oppgir kapasiteten til pressen. Den dokumenterer ikke at pressen fra 1876 var en rotasjonspresse; den betegnelsen omtales i et senere avsnitt om 1885.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_trykkeri_materialitet",
+          "source": [
+            "jubileum"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_20",
+          "claim_basis": "Den nye pressen ved flyttingen i 1876 kunne trykke 3000 aviser i timen.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_jubileumsartikkelen_oppg_64d4ded20a",
+          "knowledge_unit_ids": [
+            "ku_media_jubileumsartikkelen_oppg_64d4ded20a",
+            "ku_media_den_dokumenterer_ikke_at_daf1465afa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "Den nye pressen ved flyttingen i 1876 kunne trykke 3000 aviser i timen.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q21",
+          "quiz_id": "media_aftenposten_v2_q21",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken dato står på det bevarte Aftenposten-eksemplaret nr. 1 fra 1879?",
+          "options": [
+            "1. januar 1879",
+            "2. januar 1885",
+            "2. januar 1879"
+          ],
+          "answer": "2. januar 1879",
+          "answerIndex": 2,
+          "knowledge": "Det konkrete aviseksemplaret gjør dato, nummer og adresse direkte kontrollerbare. Det representerer én utgave før ordningen med to daglige utgaver fra 1885.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "source": [
+            "avis1879"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_21",
+          "claim_basis": "Den bevarte avisscanningen viser Aftenposten nr. 1 datert 2. januar 1879.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_det_konkrete_aviseksempl_7a7176fe72",
+          "knowledge_unit_ids": [
+            "ku_media_det_konkrete_aviseksempl_7a7176fe72",
+            "ku_media_det_representerer_en_utg_30a2760b0f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "avis1879",
+              "url": "https://commons.wikimedia.org/wiki/File:Aftenposten_2._januar_1879-_framside.JPG",
+              "title": "avis1879",
+              "source_type": "archival_original",
+              "claim_basis": "Den bevarte avisscanningen viser Aftenposten nr. 1 datert 2. januar 1879.",
+              "role": "Kontrollert original forsidescan: nr. 1, torsdag 2. januar 1879, Akersgaden nr. 51. Ett datert eksemplar er ikke nåtidsadressebevis."
+            }
+          ]
         }
       ]
     },
     {
-      "set_id": "popkultur_aftenposten_akersgata_set_4",
+      "set_id": "media_aftenposten_akersgata_set_4",
       "level": 4,
       "order": 4,
+      "phase": "final",
+      "title": "Kilder og kommunikasjon",
       "xp": 80,
-      "mode": "place_concrete_advanced",
       "questions": [
         {
-          "id": "aftenposten_akersgata_s4_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_4_q1",
+          "id": "aftenposten_v2_q22",
+          "quiz_id": "media_aftenposten_v2_q22",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
           "question_scope": "place",
-          "question": "Hva er en avansert observasjon i Aftenposten Akersgata?",
+          "question": "Hva framstilles med fotosats før selve trykkingen?",
           "options": [
-            "Å se hvordan trykk, distribusjon, eierskap og redaksjonell makt fikk en fysisk adresse",
-            "Å bare lese gatenavnet",
-            "Å ignorere pressehistorien"
+            "Tekst på film eller fotopapir",
+            "Trykte aviser klare for distribusjon",
+            "Blybokstaver til manuell setting"
           ],
-          "answer": "Å se hvordan trykk, distribusjon, eierskap og redaksjonell makt fikk en fysisk adresse",
+          "answer": "Tekst på film eller fotopapir",
           "answerIndex": 0,
-          "knowledge": "Storyen sier at avisens historie også handler om trykk, distribusjon, eierskap og redaksjonell makt i hovedstaden.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "trykk",
-            "distribusjon",
-            "redaksjonell_makt"
-          ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_redaksjonell_kapasitet"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.88,
-            "score": 13,
-            "matched": [
-              "redaksjon",
-              "makt",
-              "redaksjonell",
-              "eierskap"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_sier_at_avisens__4a4dcaddf0",
-          "knowledge_unit_ids": [
-            "ku_media_storyen_sier_at_avisens__4a4dcaddf0"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "aftenposten_akersgata_s4_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_4_q2",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "place",
-          "question": "Hva markerer flyttingen til Postgirobygget i 2003 i storyen?",
-          "options": [
-            "Overgang fra historisk presseakse til en mer omorganisert medieby",
-            "At avisen sluttet å ha historie",
-            "At Akersgata aldri var viktig"
-          ],
-          "answer": "Overgang fra historisk presseakse til en mer omorganisert medieby",
-          "answerIndex": 0,
-          "knowledge": "Storyens arc bruker 2003-flyttingen til å vise endret adresse, teknologi og arbeidsform i mediebyen.",
-          "difficulty": 2,
-          "question_type": "historisk_endring",
-          "question_layer": "advanced_place",
-          "tags": [
-            "2003",
-            "postgirobygget",
-            "medieby"
-          ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_storyens_arc_bruker_2003_f9f6fc95ef",
-          "knowledge_unit_ids": [
-            "ku_media_storyens_arc_bruker_2003_f9f6fc95ef"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 4
-              },
-              {
-                "emne_id": "em_media_annonseokonomi",
-                "score": 3
-              },
-              {
-                "emne_id": "em_media_arbeidsdeling",
-                "score": 3
-              }
-            ]
-          }
-        },
-        {
-          "id": "aftenposten_akersgata_s4_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_4_q3",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "place",
-          "question": "Hva bør en god Aftenposten-quiz trene spilleren i?",
-          "options": [
-            "Å lese avis, presseakse, offentlighet og medieby sammen",
-            "Å pugge dagens eiere",
-            "Å overse stedet"
-          ],
-          "answer": "Å lese avis, presseakse, offentlighet og medieby sammen",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå norsk pressehistorie gjennom et konkret sted.",
-          "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_media_pressehistorie"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "pressehistorie",
-              "pressehistorie",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_gj_re_spill_92a565e044",
-          "knowledge_unit_ids": [
-            "ku_media_quizzen_skal_gj_re_spill_92a565e044"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_aftenposten_akersgata_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
-      "questions": [
-        {
-          "id": "aftenposten_akersgata_s5_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_5_q1",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i Aftenposten Akersgata?",
-          "options": [
-            "At en avis kan prege offentligheten over lang tid fra et konkret byrom",
-            "At aviser bare er løs tekst uten steder",
-            "At mediehistorie ikke har bygeografi"
-          ],
-          "answer": "At en avis kan prege offentligheten over lang tid fra et konkret byrom",
-          "answerIndex": 0,
-          "knowledge": "Aftenpostens 127 år i Akersgata gjør avisen til et sterkt eksempel på langvarig mediegeografi.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "pressehistorie",
-            "offentlighet"
-          ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_pressehistorie"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.87,
-            "score": 12,
-            "matched": [
-              "pressehistorie",
-              "offentlighet",
-              "pressehistorie",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_aftenpostens_127_ar_i_ak_8c4e739bc1",
-          "knowledge_unit_ids": [
-            "ku_media_aftenpostens_127_ar_i_ak_8c4e739bc1"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        },
-        {
-          "id": "aftenposten_akersgata_s5_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_5_q2",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hvorfor er 127 år i Akersgata viktig?",
-          "options": [
-            "Det viser kontinuitet mellom avisens arbeid og gatens rolle som presseakse",
-            "Det viser at avisen aldri flyttet",
-            "Det handler bare om et gatenavn"
-          ],
-          "answer": "Det viser kontinuitet mellom avisens arbeid og gatens rolle som presseakse",
-          "answerIndex": 0,
-          "knowledge": "Den lange perioden gjør stedet til historisk kompass for norsk avisoffentlighet.",
-          "difficulty": 3,
-          "question_type": "historisk_sammenheng",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "127_år",
-            "akersgata"
-          ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_den_lange_perioden_gj_r__0cbbbcefb8",
-          "knowledge_unit_ids": [
-            "ku_media_den_lange_perioden_gj_r__0cbbbcefb8"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_debatt_offentlighet",
-                "score": 5
-              },
-              {
-                "emne_id": "em_media_opplyst_offentlighet",
-                "score": 5
-              },
-              {
-                "emne_id": "em_media_digital_offentlighet",
-                "score": 4
-              }
-            ]
-          }
-        },
-        {
-          "id": "aftenposten_akersgata_s5_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_5_q3",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "emne",
-          "question": "Hvordan fungerer stedet i en mediehistorisk rute?",
-          "options": [
-            "Som Oslo-punkt der trykk, redaksjon, offentlighet og presseakse møtes",
-            "Som naturpunkt uten medier",
-            "Som et rent idrettsanlegg"
-          ],
-          "answer": "Som Oslo-punkt der trykk, redaksjon, offentlighet og presseakse møtes",
-          "answerIndex": 0,
-          "knowledge": "Aftenposten i Akersgata gir et konkret sted for norsk avispresse og mediebyens endringer.",
-          "difficulty": 3,
-          "question_type": "rutekobling",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "mediehistorie",
-            "oslo"
-          ],
-          "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_mediehistorisk_endring"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.86,
-            "score": 11,
-            "matched": [
-              "mediehistorisk",
-              "endring",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_aftenposten_i_akersgata__2075b8211a",
-          "knowledge_unit_ids": [
-            "ku_media_aftenposten_i_akersgata__2075b8211a"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_aftenposten_akersgata_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "aftenposten_akersgata_s6_q1",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_6_q1",
-          "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
-          "targetId": "aftenposten_akersgata",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver en gate der flere presseinstitusjoner er samlet?",
-          "options": [
-            "Presseakse",
-            "Ravinedal",
-            "Overvann"
-          ],
-          "answer": "Presseakse",
-          "answerIndex": 0,
-          "knowledge": "Akersgata fungerer som presseakse i Aftenposten-storyen.",
+          "knowledge": "Fotosats brukes til overføring til trykkform. Den er et forberedende ledd og må holdes adskilt fra trykketeknikken offset og fra ferdige papiraviser.",
           "difficulty": 3,
           "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "presseakse"
-          ],
+          "emne_id": "em_media_trykkeri_materialitet",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "fotosats"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_22",
+          "claim_basis": "Fotosats er typografisk tekst på film eller fotopapir til overføring til trykkform.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "institusjon",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_akersgata_fungerer_som_p_f46a858fa6",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "primary_knowledge_unit_id": "ku_media_fotosats_brukes_til_over_ef2504cafd",
           "knowledge_unit_ids": [
-            "ku_media_akersgata_fungerer_som_p_f46a858fa6"
+            "ku_media_fotosats_brukes_til_over_ef2504cafd",
+            "ku_media_den_er_et_forberedende_l_1bf6656a19"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "fotosats",
+              "url": "https://snl.no/fotosats/fotosetting",
+              "title": "fotosats",
+              "source_type": "reference",
+              "claim_basis": "Fotosats er typografisk tekst på film eller fotopapir til overføring til trykkform.",
+              "role": "Lest definisjon: tekst på film/fotopapir for overføring til trykkform, ikke ferdig trykte avissider."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s6_q2",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_6_q2",
+          "id": "aftenposten_v2_q23",
+          "quiz_id": "media_aftenposten_v2_q23",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
-          "question_scope": "concept",
-          "question": "Hva betyr offentlighet i mediehistorie?",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva kan adresselinjen på avisforsiden fra 1879 dokumentere?",
           "options": [
-            "Rommet der nyheter, meninger og debatt blir delt og diskutert i samfunnet",
-            "Et privat låst lager",
-            "En grønn korridor"
+            "Redaksjonsadressen i 2026",
+            "Ekspedisjonsadressen i 1879",
+            "Trykkeriadressen etter 1976"
           ],
-          "answer": "Rommet der nyheter, meninger og debatt blir delt og diskutert i samfunnet",
-          "answerIndex": 0,
-          "knowledge": "Aftenposten kan leses gjennom sin langvarige rolle i norsk offentlighet.",
+          "answer": "Ekspedisjonsadressen i 1879",
+          "answerIndex": 1,
+          "knowledge": "Et samtidig dokument har et bestemt tidslag. Adressen Akersgaden nr. 51 er sterk evidens for den avbildede utgaven, men kan ikke alene bevise dagens organisering.",
           "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "offentlighet"
-          ],
+          "question_type": "analysis",
+          "emne_id": "em_media_arkiv_og_bevis",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "avis1879"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_23",
+          "claim_basis": "Adresselinjen på forsiden fra 1879 dokumenterer en samtidig ekspedisjonsadresse, ikke avisens adresse i dag.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_aftenposten_kan_leses_gj_03f335c5ae",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_et_samtidig_dokument_har_f826f412e3",
           "knowledge_unit_ids": [
-            "ku_media_aftenposten_kan_leses_gj_03f335c5ae"
+            "ku_media_et_samtidig_dokument_har_f826f412e3",
+            "ku_media_adressen_akersgaden_nr_5_bd82b536e5"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "avis1879",
+              "url": "https://commons.wikimedia.org/wiki/File:Aftenposten_2._januar_1879-_framside.JPG",
+              "title": "avis1879",
+              "source_type": "archival_original",
+              "claim_basis": "Adresselinjen på forsiden fra 1879 dokumenterer en samtidig ekspedisjonsadresse, ikke avisens adresse i dag.",
+              "role": "Kontrollert original forsidescan: nr. 1, torsdag 2. januar 1879, Akersgaden nr. 51. Ett datert eksemplar er ikke nåtidsadressebevis."
+            }
+          ]
         },
         {
-          "id": "aftenposten_akersgata_s6_q3",
-          "quiz_id": "popkultur_aftenposten_akersgata_set_6_q3",
+          "id": "aftenposten_v2_q24",
+          "quiz_id": "media_aftenposten_v2_q24",
           "categoryId": "media",
-          "placeId": "aftenposten_akersgata",
           "targetId": "aftenposten_akersgata",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Aftenposten Akersgata best?",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva kan fasadefotoet av Akersgata 51 fra mai 2025 dokumentere?",
           "options": [
-            "Presseakse og offentlighet",
-            "Fjordovergang og vannkvalitet",
-            "Ravinedal og løvskog"
+            "Aftenpostens redaksjonsdrift i 2025",
+            "Setteriets arbeidsdeling i 1976",
+            "Byggets utseende på fotodatoen"
           ],
-          "answer": "Presseakse og offentlighet",
-          "answerIndex": 0,
-          "knowledge": "Stedet blir tydeligst når avisens lange byplassering leses sammen med offentlig debatt og redaksjonell makt.",
+          "answer": "Byggets utseende på fotodatoen",
+          "answerIndex": 2,
+          "knowledge": "Fotoet er tatt etter avisens utflytting. Synlig fasade og nåværende skilt må skilles fra historiske romfunksjoner, som krever daterte tekst- og arkivkilder.",
           "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
-          "tags": [
-            "presseakse",
-            "offentlighet"
-          ],
+          "question_type": "analysis",
+          "emne_id": "em_media_kildekritikk",
           "source": [
-            "data/stories/stories_aftenposten_akersgata.json"
+            "foto2025",
+            "tanta"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_24",
+          "claim_basis": "Fasadefotoet fra 7. mai 2025 viser Akersgata 51 etter Aftenpostens utflytting i 2003; bildet alene beviser ikke at avisen fortsatt arbeidet der.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_stedet_blir_tydeligst_na_cbac3fc395",
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_fotoet_er_tatt_etter_avi_c3ac73438a",
           "knowledge_unit_ids": [
-            "ku_media_stedet_blir_tydeligst_na_cbac3fc395"
+            "ku_media_fotoet_er_tatt_etter_avi_c3ac73438a",
+            "ku_media_synlig_fasade_og_nav_ren_ddd99ff612"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "foto2025",
+              "url": "https://commons.wikimedia.org/wiki/File:Akersgata_51_(II).jpg",
+              "title": "foto2025",
+              "source_type": "documentary_photograph",
+              "claim_basis": "Fasadefotoet fra 7. mai 2025 viser Akersgata 51 etter Aftenpostens utflytting i 2003; bildet alene beviser ikke at avisen fortsatt arbeidet der.",
+              "role": "Commons-proveniens og publisert original kontrollert i stedsreview; Jan-Tore Egge, 07.05.2025. Faktisk lokal avledning er visuelt gjennomgått. Foto viser fasade etter utflytting, ikke fortsatt Aftenposten-drift."
+            },
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "Fasadefotoet fra 7. mai 2025 viser Akersgata 51 etter Aftenpostens utflytting i 2003; bildet alene beviser ikke at avisen fortsatt arbeidet der.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q25",
+          "quiz_id": "media_aftenposten_v2_q25",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hva måles med opplysningen «3000 aviser i timen» om pressen fra 1876?",
+          "options": [
+            "Produksjonskapasitet",
+            "Betalt opplag",
+            "Antall daglige lesere"
+          ],
+          "answer": "Produksjonskapasitet",
+          "answerIndex": 0,
+          "knowledge": "Kapasitet sier hvor raskt pressen kunne produsere. Den sier ikke hvor mange eksemplarer som faktisk ble trykt, solgt eller lest i en bestemt periode.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_media_kildekritikk",
+          "source": [
+            "jubileum"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_25",
+          "claim_basis": "Opplysningen 3000 aviser i timen er en produksjonskapasitet, ikke et dokumentert antall solgte aviser.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_kapasitet_sier_hvor_rask_253fae11e5",
+          "knowledge_unit_ids": [
+            "ku_media_kapasitet_sier_hvor_rask_253fae11e5",
+            "ku_media_den_sier_ikke_hvor_mange_ee9e93703e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "Opplysningen 3000 aviser i timen er en produksjonskapasitet, ikke et dokumentert antall solgte aviser.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q26",
+          "quiz_id": "media_aftenposten_v2_q26",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Hvorfor er både 1860 og 1876 relevante år i Aftenpostens historie?",
+          "options": [
+            "1860: adresseflytting. 1876: avisstart.",
+            "1860: navnebytte. 1876: nettavisstart.",
+            "1860: avisstart. 1876: adresseflytting."
+          ],
+          "answer": "1860: avisstart. 1876: adresseflytting.",
+          "answerIndex": 2,
+          "knowledge": "Årstallene gjelder forskjellige hendelser og skalaer. Institusjonens etablering skjedde før den lokale adresseperioden; et sted kan derfor ha en kortere historie enn virksomheten.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_media_kildekritikk",
+          "source": [
+            "jubileum",
+            "tanta"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_26",
+          "claim_basis": "1860 daterer avisens etablering; 1876 daterer flyttingen til Akersgata 51. Dette er forskjellige hendelser.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_arstallene_gjelder_forsk_60b5148e41",
+          "knowledge_unit_ids": [
+            "ku_media_arstallene_gjelder_forsk_60b5148e41",
+            "ku_media_institusjonens_etablerin_483a8e734e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "jubileum",
+              "url": "https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten",
+              "title": "jubileum",
+              "source_type": "primary",
+              "claim_basis": "1860 daterer avisens etablering; 1876 daterer flyttingen til Akersgata 51. Dette er forskjellige hendelser.",
+              "role": "Lest: Christian Schibsted, Christiania Adresseblad/1860, nytt navn året etter, ny presse/3000 aviser per time i 1876. Rotasjonspresse drøftes ved 1885, ikke dokumentert som typen i 1876."
+            },
+            {
+              "source_id": "tanta",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "title": "tanta",
+              "source_type": "primary",
+              "claim_basis": "1860 daterer avisens etablering; 1876 daterer flyttingen til Akersgata 51. Dette er forskjellige hendelser.",
+              "role": "Lest brødtekst: nr. 51 1876–2003, nr. 55 fra 2014, oppkjøp av 53 og pressesalens senere vinterhage. Bildetekstens byggeår brukes ikke."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q27",
+          "quiz_id": "media_aftenposten_v2_q27",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Undervisningsscenario: Du undersøker morgenutgavens spredning over hele landet. Hva undersøker Careys transmisjonsperspektiv?",
+          "options": [
+            "Hvordan avislest skaper en felles rytme",
+            "Hvordan nyheter formidles over avstand",
+            "Hvordan ansatte fordeler vakter i setteriet"
+          ],
+          "answer": "Hvordan nyheter formidles over avstand",
+          "answerIndex": 1,
+          "knowledge": "Carey skiller geografisk informasjonsformidling fra ritualperspektivets deltakelse i en felles framstilt verden. Her brukes det første som analyseredskap; scenarioet dokumenterer ingen bestemt effekt på Aftenpostens lesere.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "carey",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_27",
+          "claim_basis": "Undervisningsscenario: morgenutgaven sendt til lesere over hele landet kan undersøkes som geografisk nyhetsformidling i Careys transmisjonsperspektiv, uten å påstå en målt historisk lesereffekt.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "topic_hook_id": "avishus_som_offentlighetsrom",
+          "thinker_id": "james_carey",
+          "evidence_type": "explicit_teaching_scenario",
+          "theory_ref": {
+            "topic_hook_id": "avishus_som_offentlighetsrom",
+            "thinker_id": "james_carey",
+            "why_it_helps": "Skiller geografisk nyhetsformidling fra kulturell deltakelse i avislest uten å gjøre analysescenarioet til dokumentert lokal lesereffekt."
+          },
+          "primary_knowledge_unit_id": "ku_media_carey_skiller_geografisk_00c237d679",
+          "knowledge_unit_ids": [
+            "ku_media_carey_skiller_geografisk_00c237d679",
+            "ku_media_her_brukes_det_f_rste_so_429f0c0656"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "carey",
+              "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf",
+              "title": "carey",
+              "source_type": "primary_scholarly_essay",
+              "claim_basis": "Undervisningsscenario: morgenutgaven sendt til lesere over hele landet kan undersøkes som geografisk nyhetsformidling i Careys transmisjonsperspektiv, uten å påstå en målt historisk lesereffekt.",
+              "role": "James W. Carey: A Cultural Approach to Communication, trykte sider 6–7 (PDF side 5–6) lest. Avisdistribusjon og avislest som ritual er ulike komplementære perspektiver. Lokal anvendelse er eksplisitt undervisningsscenario, ikke dokumentert lesereffekt."
+            },
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Undervisningsscenario: morgenutgaven sendt til lesere over hele landet kan undersøkes som geografisk nyhetsformidling i Careys transmisjonsperspektiv, uten å påstå en målt historisk lesereffekt.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
+        },
+        {
+          "id": "aftenposten_v2_q28",
+          "quiz_id": "media_aftenposten_v2_q28",
+          "categoryId": "media",
+          "targetId": "aftenposten_akersgata",
+          "placeId": "aftenposten_akersgata",
+          "question_scope": "place",
+          "question": "Undervisningsscenario: Du undersøker daglig lesning av Aftenposten som ritual hos Carey. Hva retter du oppmerksomheten mot?",
+          "options": [
+            "Deltakelse i en framstilt felles verden",
+            "Transporten av nyheter over avstand",
+            "Kapasiteten til avisens trykkemaskiner"
+          ],
+          "answer": "Deltakelse i en framstilt felles verden",
+          "answerIndex": 0,
+          "knowledge": "Ritualperspektivet undersøker hvordan avislest inngår i samfunnets kulturelle liv over tid. Det utelukker ikke at informasjon overføres. Dette er et undervisningsscenario, ikke en påstand om alle historiske leseres opplevelse.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "source": [
+            "carey",
+            "byleksikon"
+          ],
+          "source_origin": "external",
+          "claim_id": "claim_aftenposten_quiz_28",
+          "claim_basis": "Undervisningsscenario: daglig lesning av Aftenposten kan undersøkes som deltakelse i en framstilt felles verden i Careys ritualperspektiv; dette utelukker ikke informasjonsformidling og er ikke dokumentasjon av alle faktiske leseres opplevelse.",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "tags": [
+            "aftenposten",
+            "media"
+          ],
+          "topic_hook_id": "avishus_som_offentlighetsrom",
+          "thinker_id": "james_carey",
+          "evidence_type": "explicit_teaching_scenario",
+          "theory_ref": {
+            "topic_hook_id": "avishus_som_offentlighetsrom",
+            "thinker_id": "james_carey",
+            "why_it_helps": "Skiller geografisk nyhetsformidling fra kulturell deltakelse i avislest uten å gjøre analysescenarioet til dokumentert lokal lesereffekt."
+          },
+          "primary_knowledge_unit_id": "ku_media_ritualperspektivet_under_9e0c7b1817",
+          "knowledge_unit_ids": [
+            "ku_media_ritualperspektivet_under_9e0c7b1817",
+            "ku_media_det_utelukker_ikke_at_in_1abcab437b",
+            "ku_media_dette_er_et_undervisning_a522284f75"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked",
+          "sources": [
+            {
+              "source_id": "carey",
+              "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf",
+              "title": "carey",
+              "source_type": "primary_scholarly_essay",
+              "claim_basis": "Undervisningsscenario: daglig lesning av Aftenposten kan undersøkes som deltakelse i en framstilt felles verden i Careys ritualperspektiv; dette utelukker ikke informasjonsformidling og er ikke dokumentasjon av alle faktiske leseres opplevelse.",
+              "role": "James W. Carey: A Cultural Approach to Communication, trykte sider 6–7 (PDF side 5–6) lest. Avisdistribusjon og avislest som ritual er ulike komplementære perspektiver. Lokal anvendelse er eksplisitt undervisningsscenario, ikke dokumentert lesereffekt."
+            },
+            {
+              "source_id": "byleksikon",
+              "url": "https://oslobyleksikon.no/side/Aftenposten",
+              "title": "byleksikon",
+              "source_type": "institutional_reference",
+              "claim_basis": "Undervisningsscenario: daglig lesning av Aftenposten kan undersøkes som deltakelse i en framstilt felles verden i Careys ritualperspektiv; dette utelukker ikke informasjonsformidling og er ikke dokumentasjon av alle faktiske leseres opplevelse.",
+              "role": "Lest hele artikkelen: morgen/aften, Finn Bryn/1964, offset/Linderud/1976, fotosats/radiolink, Postgiro/2003. Dagens institusjon er ikke dagens nr. 51."
+            }
+          ]
         }
       ]
     }
