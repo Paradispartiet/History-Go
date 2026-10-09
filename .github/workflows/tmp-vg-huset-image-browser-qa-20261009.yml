@@ -1,0 +1,128 @@
+name: Temporary VG-huset two-image browser QA
+on:
+  push:
+    branches:
+      - agent/vg-huset-source-preflight-20261009
+    paths:
+      - .github/workflows/tmp-vg-huset-image-browser-qa-20261009.yml
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    name: Inspect VG-huset PlaceCard images desktop and mobile
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve runner Chromium
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME_BIN" ]; then echo '::error::No browser'; exit 1; fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Test exact VG-huset source images and browser rendering
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import fs from 'node:fs';
+          import http from 'node:http';
+          import path from 'node:path';
+          import { chromium } from 'playwright';
+          const root=process.cwd(), outDir=path.join(root,'artifacts/vg-huset-image-qa');
+          fs.mkdirSync(outDir,{recursive:true});
+          const placeId='vg_huset';
+          const runtime=JSON.parse(fs.readFileSync('data/runtime/place-open/vg_huset.json','utf8'));
+          assert.equal(runtime.place.id,placeId);
+          const imagePath='bilder/places/vg_huset_akersgata_55_2026.webp';
+          const frontPath='bilder/places/vg_huset_front_2007.webp';
+          assert.equal(runtime.place.image,imagePath);
+          assert.equal(runtime.place.frontImage,frontPath);
+          assert.notEqual(imagePath,frontPath);
+          for(const p of [imagePath,frontPath]){
+            const b=fs.readFileSync(p);
+            assert.ok(b.length>20_000,p+' is unexpectedly small');
+            assert.equal(b.toString('ascii',0,4),'RIFF');
+            assert.equal(b.toString('ascii',8,12),'WEBP');
+          }
+          const mime={'.html':'text/html','.js':'text/javascript','.css':'text/css','.json':'application/json','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.svg':'image/svg+xml','.mjs':'text/javascript','.woff2':'font/woff2'};
+          const server=http.createServer((req,res)=>{
+            const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
+            const rel=pathname==='/'?'/index.html':pathname;
+            const absolute=path.resolve(root,`.${rel}`);
+            if(!absolute.startsWith(root+path.sep)||!fs.existsSync(absolute)||!fs.statSync(absolute).isFile()){
+              res.writeHead(404);res.end('not found');return;
+            }
+            res.writeHead(200,{'content-type':(mime[path.extname(absolute).toLowerCase()]||'application/octet-stream')});
+            res.end(fs.readFileSync(absolute));
+          });
+          await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+          let browser;
+          const reports=[];
+          try {
+            const base='http://127.0.0.1:'+server.address().port;
+            browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_BIN,args:['--no-sandbox','--disable-dev-shm-usage']});
+            for(const profile of [
+              {name:'desktop',viewport:{width:1440,height:900},isMobile:false,hasTouch:false},
+              {name:'mobile',viewport:{width:390,height:844},isMobile:true,hasTouch:true}
+            ]){
+              const context=await browser.newContext({viewport:profile.viewport,isMobile:profile.isMobile,hasTouch:profile.hasTouch});
+              const page=await context.newPage(),errors=[];
+              page.on('pageerror',e=>errors.push(String(e.message||e)));
+              await page.addInitScript(()=>{
+                localStorage.setItem('hg_onboarding_shown_v1','1');
+                localStorage.setItem('HG_TEST_MODE','1');
+              });
+              await page.goto(base+'/index.html?hgTest=1#/place/vg_huset',{waitUntil:'domcontentloaded',timeout:60000});
+              await page.waitForFunction(()=>window.__HG_APP_READY__===true&&window.__HG_ROUTER_STARTED__===true,null,{timeout:90000});
+              await page.waitForFunction(()=>document.getElementById('placeCard')?.dataset?.currentPlaceId==='vg_huset',null,{timeout:60000});
+              await page.waitForFunction(()=>{
+                const front=document.getElementById('pcFrontImage');
+                const header=document.getElementById('pcHeaderImage');
+                return front?.complete===true&&front.naturalWidth>0&&header?.complete===true&&header.naturalWidth>0;
+              },null,{timeout:30000});
+              const media=await page.evaluate(()=>{
+                const f=document.getElementById('pcFrontImage'),h=document.getElementById('pcHeaderImage'),card=document.getElementById('placeCard');
+                return {
+                  placeId:card?.dataset.currentPlaceId,
+                  front:{src:f?.currentSrc||'',width:f?.naturalWidth||0,height:f?.naturalHeight||0,renderedWidth:f?.getBoundingClientRect()?.width||0},
+                  image:{src:h?.currentSrc||'',width:h?.naturalWidth||0,height:h?.naturalHeight||0,renderedWidth:h?.getBoundingClientRect()?.width||0},
+                  horizontalOverflow:Math.max(0,document.documentElement.scrollWidth-document.documentElement.clientWidth)
+                };
+              });
+              assert.ok(media.image.src.includes(imagePath),JSON.stringify(media));
+              assert.ok(media.front.src.includes(frontPath),JSON.stringify(media));
+              assert.ok(media.image.width>media.image.height,JSON.stringify(media));
+              assert.ok(media.front.height>media.front.width,JSON.stringify(media));
+              assert.ok(media.image.renderedWidth>0&&media.front.renderedWidth>0,JSON.stringify(media));
+              assert.equal(errors.length,0,'Browser errors: '+JSON.stringify(errors));
+              const evidence={profile:profile.name,media,pageErrors:errors,head:process.env.GITHUB_SHA};
+              reports.push(evidence);
+              await page.screenshot({path:path.join(outDir,profile.name+'.png'),fullPage:true});
+              await context.close();
+            }
+            fs.writeFileSync(path.join(outDir,'report.json'),JSON.stringify(reports,null,2)+'\n');
+            console.log(JSON.stringify(reports,null,2));
+          }finally {
+            await browser?.close();
+            await new Promise(resolve=>server.close(resolve));
+          }
+          JS
+      - name: Upload screenshot and browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vg-huset-image-browser-qa
+          path: artifacts/vg-huset-image-qa/
+          if-no-files-found: ignore
+          retention-days: 14
