@@ -23,7 +23,17 @@ try{
   await page.addInitScript(()=>{localStorage.setItem('hg_onboarding_shown_v1','1');localStorage.setItem('HG_TEST_MODE','1')});
   await page.goto(base+'/index.html?hgTest=1#/place/'+id,{waitUntil:'domcontentloaded',timeout:90000});
   await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.getElementById('placeCard')?.dataset.currentPlaceId===id,id,{timeout:90000});
-  await page.waitForFunction(()=>typeof window.showPlacePopup==='function'&&typeof window.HGPlacePopupTabs?.resolveLesespor==='function',{timeout:30000});
+  const diagnostic=await page.evaluate(()=>({
+   appReady:window.__HG_APP_READY__,
+   popupType:typeof window.showPlacePopup,
+   popupV2:window.showPlacePopup?.__hgPlacePopupV2===true,
+   makePopupType:typeof window.makePopup,
+   tabsType:typeof window.HGPlacePopupTabs,
+   tabResolverType:typeof window.HGPlacePopupTabs?.resolveLesespor,
+   presentScripts:[...document.scripts].map(s=>s.src).filter(s=>/place-popup/.test(s)),
+  }));
+  console.log('HG_GRABEIN_READING_DIAGNOSTIC '+JSON.stringify({profile,diagnostic,errors}));
+  await page.waitForFunction(()=>typeof window.showPlacePopup==='function'&&typeof window.HGPlacePopupTabs?.resolveLesespor==='function',{timeout:10000});
   await page.evaluate(async key=>{await window.showPlacePopup(key)},id);
   await page.waitForFunction(()=>document.querySelector('#hg-place-panel-reading .hg-place-reading-card')!==null,{timeout:45000});
   const state=await page.evaluate(()=>{
