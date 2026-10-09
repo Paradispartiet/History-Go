@@ -636,3 +636,33 @@ body.hg-app.hg-phone .site-header .top-actions .header-menu-toggle .toggle{
     flex-basis: 40px;
   }
 }
+
+
+/* Når Utforsk flyttes til headeren, skal også 320px beholde én kontrollrad. */
+@media (max-width: 380px){
+  body.hg-app .site-header .top-actions{
+    padding-left: 64px;
+  }
+  body.hg-app .site-header .top-actions #miniProfile{
+    width: 72px;
+    max-width: 72px;
+    min-width: 72px;
+    flex-basis: 72px;
+  }
+  body.hg-app .site-header .top-actions .top-lang-select{
+    width: 36px !important;
+    max-width: 36px !important;
+    flex-basis: 36px;
+  }
+  body.hg-app .site-header .top-actions .iconbtn,
+  body.hg-app .site-header .top-actions .header-menu-button{
+    width: 28px;
+    min-width: 28px;
+    flex: 0 0 28px;
+  }
+  body.hg-app #geoStatus{
+    width: 20px;
+    min-width: 20px;
+    flex: 0 0 20px;
+  }
+}
