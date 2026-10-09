@@ -47,13 +47,13 @@ try{
       const original=bs?.[method];
       if(typeof original!=='function')continue;
       bs[method]=function(...args){
-        console.log('HG_BS_'+method.toUpperCase()+' '+JSON.stringify({args,stack:new Error().stack?.split('\\n').slice(1,8)}));
+        console.log('HG_BS_'+method.toUpperCase()+' '+JSON.stringify({args,stack:new Error().stack?.split(String.fromCharCode(10)).slice(1,8)}));
         return original.apply(this,args);
       };
     }
     const pc=document.getElementById('placeCard');
     new MutationObserver(()=>{
-      console.log('HG_CARD_MUTATION '+JSON.stringify({classes:pc.className,aria:pc.getAttribute('aria-hidden'),stack:new Error().stack?.split('\\n').slice(1,4)}));
+      console.log('HG_CARD_MUTATION '+JSON.stringify({classes:pc.className,aria:pc.getAttribute('aria-hidden'),stack:new Error().stack?.split(String.fromCharCode(10)).slice(1,4)}));
     }).observe(pc,{attributes:true,attributeFilter:['class','aria-hidden']});
   });
   await page.evaluate(()=>window.expandPlaceCard());
