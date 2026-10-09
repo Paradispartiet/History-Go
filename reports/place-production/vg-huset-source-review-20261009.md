@@ -108,4 +108,16 @@ De opprinnelig kartlagte motivkandidatene er revidert. Et nyere og bedre dokumen
 - [Bildeimport, grønn GitHub Actions](https://github.com/Paradispartiet/History-Go/actions/runs/37978870510): nedlastede originaler inspeksjonert for JPEG-format, minimumsstørrelse, motstående orienteringer og ulike SHA-256; to egne WebP-filer ble kontrollert på nytt og committet.
 - [Avledet generator, grønn GitHub Actions](https://github.com/Paradispartiet/History-Go/actions/runs/37979068005): canonical places-index, place-open, Fagverk release, epoke og Fagverk coverage kjørt med streng endringsliste. Brukerrettet PNG/WebP blir ikke erstattet av illustrasjon eller falskt preview. Midlertidige arbeidsworkflows er fjernet fra PR-branchen.
 
-**Bildestatus:** `image` og `frontImage` er importert og koblet. Riktig filformat/orientering og lisensproveniens er kontrollert. Ekte mobil-/desktop-PlaceCard QA og de stedsavhengige medlemsbildene gjenstår; dette er fremdeles **ikke** fullført Place-produksjon.
+**Bildestatus:** `image` og `frontImage` er importert og koblet. Riktig filformat/orientering og lisensproveniens er kontrollert. Ekte mobil-/desktop-**bilde-QA** er senere bestått (se §7). De stedsavhengige medlemsbildene, komplette PlaceCard-samlinger, QuizCard, Fagverk-browser og full UI-closeout gjenstår; dette er fremdeles **ikke** fullført Place-produksjon.
+
+## 7. Kontroll av faktiske PlaceCard-bilder i Chromium
+
+[GitHub Actions #37979568851](https://github.com/Paradispartiet/History-Go/actions/runs/37979568851) bestod for desktop **1440 × 900** og touch-mobil **390 × 844**, på commit `382a3defbe1c7926dbbebc777a71159a06dbb4cc`. [Browserbevis med bilder og JSON](https://github.com/Paradispartiet/History-Go/actions/runs/37979568851/artifacts/11639997073) (14 dagers oppbevaring).
+
+Testen åpnet virkelig app-kart og stedets PlaceCard i Chromium, ikke bare en JSON-test, og sjekket:
+- `#pcFrontImage` laster `bilder/places/vg_huset_front_2007.webp`, ekte stående WebP **1272 × 1900**;
+- `#pcHeaderImage` laster `bilder/places/vg_huset_akersgata_55_2026.webp`, ekte liggende WebP **1900 × 1267**;
+- begge bilder rendres med positiv skjermbredde på mobil og desktop;
+- begge testprofilene hadde **0 px horisontal side-overflow**, **0 JavaScript-pageerrors**, og eksakt `currentPlaceId: vg_huset`.
+
+Dette er **bevis for to bildeflater og lokal browser-lasting**, ikke for komplett design-/manual-QA, People/Objects/Brands/Productions, QuizCard, alle popupfaner, Fagverk-side eller native Safari. Den midlertidige QA-workflowen fjernes etter gjennomført kontroll.
