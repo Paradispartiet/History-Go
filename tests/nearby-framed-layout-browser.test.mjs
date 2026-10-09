@@ -6,27 +6,40 @@ import { chromium } from "playwright";
 
 const root = process.cwd();
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-const start = html.indexOf('<button id="nearbyExploreToggle"');
-const end = html.indexOf('<div id="toast"', start);
-assert.ok(start >= 0 && end > start, "The canonical Explore markup exists");
-const nearbyMarkup = html.slice(start, end);
+const headerStart = html.indexOf('<header class="site-header">');
+const headerEnd = html.indexOf('</header>', headerStart);
+const nearbyStart = html.indexOf('<div id="nearbyListContainer"');
+const nearbyEnd = html.indexOf('<div id="toast"', nearbyStart);
+assert.ok(headerStart >= 0 && headerEnd > headerStart && nearbyStart > headerEnd
+  && nearbyEnd > nearbyStart, "Header and canonical Explore drawer exist");
+assert.equal((html.match(/id="nearbyExploreToggle"/g) || []).length, 1,
+  "Utforsk must have exactly one toggle button in the document");
+const headerMarkup = html.slice(headerStart, headerEnd + '</header>'.length);
+assert.match(headerMarkup, /<button id="nearbyExploreToggle"/,
+  "The single Utforsk button is inside header");
+const nearbyMarkup = html.slice(nearbyStart, nearbyEnd);
 
 const fixture = [
   '<!doctype html><html><head><meta charset="utf-8">',
   '<meta name="viewport" content="width=device-width,initial-scale=1">',
+  '<link rel="stylesheet" href="/css/theme.css">',
+  '<link rel="stylesheet" href="/css/base.css">',
   '<link rel="stylesheet" href="/css/layout.css">',
   '<link rel="stylesheet" href="/css/nearby.css">',
+  '<link rel="stylesheet" href="/css/miniProfile.css">',
   '<link rel="stylesheet" href="/css/people.css">',
   '<link rel="stylesheet" href="/css/nature.css">',
-  '<style>:root{--hg-visual-header-height:74px;--hg-visual-footer-height:72px}',
+  '<style>:root{--hg-visual-header-height:56px;--hg-visual-footer-height:72px}',
   '#mapLayer{background:repeating-linear-gradient(45deg,#263b28 0 20px,#315035 20px 40px)}',
   '</style></head><body class="hg-app">',
-  '<div id="mapLayer"></div><header class="site-header"></header>',
+  '<div id="mapLayer"></div>',
+  headerMarkup,
   nearbyMarkup,
   '<footer class="app-footer"></footer>',
   '<script src="/js/ui/nearby-drawer.js"></script>',
   '<script>',
-  'document.body.classList.toggle("hg-phone", innerWidth <= 600);',
+  'document.body.classList.toggle("hg-phone", innerWidth <= 520);',
+  'document.documentElement.style.setProperty("--hg-visual-footer-height", innerWidth <= 520 ? "60px" : "72px");',
   'for (const id of ["nearbyList","leftPeopleList","leftNatureList","leftRoutesList","leftBadgesList"]) {',
   '  const list = document.getElementById(id);',
   '  for (let i = 0; i < 24; i++) {',
@@ -50,8 +63,9 @@ const server = http.createServer((request, response) => {
     response.end(fixture);
     return;
   }
-  if (!["/css/layout.css", "/css/nearby.css", "/css/people.css",
-    "/css/nature.css", "/js/ui/nearby-drawer.js"].includes(pathname)) {
+  if (!["/css/theme.css", "/css/base.css", "/css/layout.css", "/css/nearby.css",
+    "/css/miniProfile.css", "/css/people.css", "/css/nature.css",
+    "/js/ui/nearby-drawer.js"].includes(pathname)) {
     response.writeHead(404); response.end("not found"); return;
   }
   response.writeHead(200, { "content-type": pathname.endsWith(".css")
@@ -67,6 +81,32 @@ try {
   for (const [width, height] of [[320, 700], [390, 844], [768, 1024], [1024, 900], [1440, 900]]) {
     const page = await browser.newPage({ viewport: { width, height } });
     await page.goto("http://127.0.0.1:" + port + "/__audit__/nearby.html", { waitUntil: "load" });
+    assert.equal(await page.locator("#nearbyExploreToggle").count(), 1,
+      "Only one Utforsk button at " + width);
+    assert.equal(await page.locator("header.site-header .top-actions > #nearbyExploreToggle").count(), 1,
+      "Utforsk is a direct header action at " + width);
+    assert.equal(await page.locator("#nearbyExploreToggle").getAttribute("aria-controls"), "nearbyListContainer");
+    const before = await page.evaluate(() => {
+      const bounds = selector => document.querySelector(selector).getBoundingClientRect();
+      const header = bounds("header.site-header");
+      const logo = bounds("header.site-header .hg-brand");
+      const toggle = bounds("#nearbyExploreToggle");
+      return {
+        headerBottom: header.bottom,
+        toggleTop: toggle.top,
+        toggleBottom: toggle.bottom,
+        toggleLeft: toggle.left,
+        toggleRight: toggle.right,
+        logoRight: logo.right,
+        pageScrollWidth: document.documentElement.scrollWidth
+      };
+    });
+    assert.ok(before.toggleTop >= -1 && before.toggleBottom <= before.headerBottom + 1,
+      "Utforsk fits vertically in the header at " + width);
+    assert.ok(before.toggleLeft >= before.logoRight - 1,
+      "Utforsk does not overlap the logo at " + width);
+    assert.ok(before.toggleRight <= width - 2 && before.pageScrollWidth <= width + 1,
+      "No horizontal header overflow at " + width);
     assert.equal(await page.locator("#nearbyListContainer").evaluate(node => getComputedStyle(node).display), "none",
       "Explore must start closed");
     await page.locator("#nearbyExploreToggle").click();
@@ -79,6 +119,7 @@ try {
       const panel = document.getElementById("nearbyListContainer");
       const list = document.getElementById("nearbyList");
       return {
+        header: rect(document.querySelector("header.site-header")),
         panel: rect(panel),
         list: rect(list),
         first: rect(list.children[0]),
@@ -91,7 +132,10 @@ try {
     });
     assert.ok(state.panel.x >= (width <= 600 ? 9 : 15), "map margin left at " + width);
     assert.ok(state.panel.right <= width - (width <= 600 ? 9 : 15), "map margin right at " + width);
-    assert.ok(state.panel.y >= 125 && state.panel.bottom <= height - 78, "header/footer clearance at " + width);
+    assert.ok(Math.abs(state.panel.y - (state.header.bottom + 12)) <= 2,
+      "Explore sits directly under header at " + width);
+    assert.ok(state.panel.bottom <= height - (width <= 520 ? 70 : 88),
+      "footer clearance at " + width);
     assert.ok(state.panel.height > (height - 146) * 0.74, "near-full-height Explore at " + width);
     assert.equal(state.gridDisplay, "grid", "places use CSS grid at " + width);
     assert.ok(state.list.height > 90 && state.scrollable, "internal vertical list scroll at " + width);
