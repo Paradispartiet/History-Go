@@ -81,6 +81,8 @@ jobs:
             'data/people/media/oslo/people_media_oslo.json',
             'data/people/people_image_attributions.json',
             'data/runtime/people-all/part-004.json',
+            'data/runtime/people-all/part-005.json',
+            'data/runtime/people-all/part-006.json',
             'data/runtime/place-open/vg_huset.json',
             'reports/people-of-places-status.json',
             'reports/people-of-places-status.md',
@@ -94,7 +96,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/people/media/oslo/people_media_oslo.json data/people/people_image_attributions.json
-          git add data/runtime/people-all/part-004.json data/runtime/place-open/vg_huset.json
+          git add data/runtime/people-all/part-004.json data/runtime/people-all/part-005.json data/runtime/people-all/part-006.json data/runtime/place-open/vg_huset.json
           git add reports/people-of-places-status.json reports/people-of-places-status.md
           git add bilder/kort/people/gard_steiro.jpg bilder/kort/people/hanne_skartveit.jpg
           git commit -m "feat(vg-huset): materialize two reviewed licensed People portraits"
