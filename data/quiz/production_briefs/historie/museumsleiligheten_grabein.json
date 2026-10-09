@@ -1,0 +1,442 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "museumsleiligheten_grabein",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-10-09",
+  "review_note": "Kontrollert Oslo Museum, Oslo byleksikon og Store norske leksikon mot canonical stedsfil og tidligere kildeaudit. Eget 1888-kvartal rundt Tøyengata 38B er holdt atskilt fra 1894-kvartalet i Jens Bjelkes gate.",
+  "sources": {
+    "museum": {
+      "url": "https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 9.10.2026: Tøyengata 38, Bjørklund fra 1891, sju svenske arbeidsinnvandrere, ett rom og kjøkken, Ole Olsen, murstein, vann og klaskedoer, istandsetting 1987 og museumsdrift fra 1990."
+    },
+    "toyengata": {
+      "url": "https://oslobyleksikon.no/side/T%C3%B8yengata",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 9.10.2026: 38b oppført 1888, opprinnelig leilighet, tidsriktig innredning, de sju gårdene Tøyengata 36–40/Herslebs gate/Jens Bjelkes gate, 212 små leiligheter og gruppevis rehabilitering 1981–83."
+    },
+    "snl": {
+      "url": "https://snl.no/Gr%C3%A5being%C3%A5rdene",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 9.10.2026: Gråbeingårdene fra 1880/1890-årene, mange hundre småleiligheter, Rudolf Haeselich, Oskar Braaten/Ulvehiet (1919) og Rudolf Nilsen. Holder samlebetegnelsen atskilt fra leiligheten i 38B."
+    },
+    "arkitekt": {
+      "url": "https://snl.no/Rudolf_Haeselich",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Kontrollert 9.10.2026: biografien knytter Rudolf Haeselich til Gråbeingårdene, og forklarer nøkterne røde teglfasader og arbeiderleiligheter. Ikke brukt til å påstå at han tegnet interiøret."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_spor_materialitet",
+      "em_his_tilhorighet_ekskludering",
+      "em_his_minnesteder_historiebruk",
+      "em_his_kildekritikk_arkiv_spor"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Four different, source-supported history lines: precise apartment/Bjørklund family; working-class housing standards and builders; the seven-gårds group and the wider built Gråbein environment; literary reception, urban renewal and historical interpretation. Two initial 7-question factual sets and 14 later questions; no quota-driven overlap with nearby Arbeidermuseet."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json (exact target and Gråbein name variants)",
+      "data/fag/fag_manifest.json",
+      "main Git tree recursive for grabein/gråbein/graabein names and quiz paths",
+      "data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json",
+      "reports/visitoslo-oslo-east-audit-20260720/museumsleiligheten-grabein-audit.md"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "No active quiz manifest target for museumsleiligheten_grabein or name variant; complete main repository tree contains no legacy quiz file for Gråbein.",
+      "Keep 1888 as Tøyengata 38B's dated building; the different northern 13-gårds complex has separate chronology and must not be conflated.",
+      "Preserved dwelling is not Arbeidermuseet, other tenements, or evidence that every displayed object belonged to the Bjørklund family."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "reason": "No active or legacy quiz for this apartment ID, and no previously linked Knowledge units."
+    }
+  },
+  "held_back_candidates": [
+    "Do not use 1894/13-gårds or 450-unit facts as if they described Tøyengata 38B; that is a different Gråbein group.",
+    "Earlier VisitOSLO mentions 1887 for the individual building; Oslo byleksikon Tøyengata 38b gives 1888, retained as the established canonical year pending primary construction documents.",
+    "Reconstructed period furnishings must not be attributed as original possessions of the Bjørklund family without independent inventories.",
+    "Do not claim the apartment is normally freely open for independent visits; Oslo Museum advertises appointments and selected events.",
+    "Do not treat fictional literature as direct documentation of the residents; use as cultural reception, not a household census."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "statement": "Museumsleiligheten Gråbein ligger i Tøyengata 38B i Oslo.",
+      "source_ids": [
+        "toyengata",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "statement": "Museumsleiligheten Gråbein ligger på Tøyen i Oslo.",
+      "source_ids": [
+        "museum",
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "statement": "Oslo Museum bruker leiligheten til å vise arbeiderfamiliers boforhold rundt 1900.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "statement": "Den historiske leiligheten besto av ett rom og kjøkken.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "statement": "Familien Bjørklund bodde i leiligheten rundt slutten av 1800-tallet.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "statement": "Familien Bjørklund hadde innvandret fra Sverige for å arbeide i Christiania.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_tilhorighet_ekskludering",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "statement": "Familien Bjørklund besto av sju personer.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "statement": "Familien Bjørklund bodde i Tøyengata 38 fra 1891.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "statement": "Byggmesteren bak Gråbein-prosjektet het Ole Olsen.",
+      "source_ids": [
+        "museum",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "statement": "Navnet Gråbeingårdene kommer fra Ole Olsens økenavn «Gråbein».",
+      "source_ids": [
+        "museum",
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "statement": "Gråbein-prosjektet omfattet store leiegårder bygd av murstein.",
+      "source_ids": [
+        "museum",
+        "arkitekt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "statement": "Ole Olsen ville bygge leiligheter med høyere standard enn mange dårlige trehus i området.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "statement": "Gråbein-leilighetene var blant annet utstyrt med innlagt vann.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "statement": "Oslo Museum beskriver «klaskedoer» som en toalettløsning i Gråbeingårdene.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "family": "fact"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "statement": "Gråbeingården i Tøyengata 38B ble oppført i 1888, ifølge Oslo byleksikon.",
+      "source_ids": [
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "statement": "Gruppen rundt Tøyengata 36–40 omfattet sju leiegårder reist samtidig.",
+      "source_ids": [
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "statement": "Gruppen med Tøyengata 38B omfattet i alt 212 små leiligheter.",
+      "source_ids": [
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "statement": "Den relevante sjugårdsgruppen omfatter adresser i Tøyengata, Herslebs gate og Jens Bjelkes gate.",
+      "source_ids": [
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "statement": "Rudolf Haeselich tegnet Gråbeingårdene.",
+      "source_ids": [
+        "snl",
+        "arkitekt"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "statement": "Gråbeingårdene som samlebetegnelse omfatter mange hundre småleiligheter med ett rom og kjøkken.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "statement": "Gråbeingårdene på Tøyen ble oppført i løpet av 1880- og 1890-årene.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_22",
+      "order": 22,
+      "planned_phase": "final",
+      "statement": "Arbeiderdikteren Rudolf Nilsen skildret Gråbeingårdene.",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "family": "context"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_23",
+      "order": 23,
+      "planned_phase": "final",
+      "statement": "Oskar Braaten skildret Gråbeingårdene i romanen «Ulvehiet».",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "family": "concept_theory"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_24",
+      "order": 24,
+      "planned_phase": "final",
+      "statement": "Store norske leksikon oppgir 1919 som årstallet for Oskar Braatens «Ulvehiet».",
+      "source_ids": [
+        "snl"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom",
+      "family": "concept_theory"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_25",
+      "order": 25,
+      "planned_phase": "final",
+      "statement": "Sjugårdsgruppen ved Tøyengata ble renovert av Oslo Byfornyelse i 1981–83.",
+      "source_ids": [
+        "toyengata"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "family": "concept_theory"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_26",
+      "order": 26,
+      "planned_phase": "final",
+      "statement": "Selve museumsleiligheten ble renovert og tilbakeført i 1987 av Oslo Byfornyelse.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "family": "concept_theory"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_27",
+      "order": 27,
+      "planned_phase": "final",
+      "statement": "Oslo Museum overtok museumsleiligheten i 1990.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk",
+      "family": "concept_theory"
+    },
+    {
+      "claim_id": "claim_museumsleiligheten_grabein_28",
+      "order": 28,
+      "planned_phase": "final",
+      "statement": "Museumsleiligheten er innredet slik den kan ha sett ut rundt 1900, ikke dokumentert som en fullstendig samling av Bjørklund-familiens egne eiendeler.",
+      "source_ids": [
+        "toyengata",
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor",
+      "family": "concept_theory"
+    }
+  ]
+}

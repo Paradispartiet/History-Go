@@ -151,50 +151,34 @@ body.hg-app .app-footer{
 #nearbyListContainer{
   position: fixed;
 
-  top: calc(var(--hg-visual-header-height, 74px) + 56px);
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: min(860px, calc(100vw - 32px));
-  max-height: calc(
-    100vh -
-    var(--hg-visual-header-height, 74px) - 56px -
-    var(--hg-visual-footer-height, 72px) - 12px
-  );
-  max-height: calc(
-    100dvh -
-    var(--hg-visual-header-height, 74px) - 56px -
-    var(--hg-visual-footer-height, 72px) - 12px
-  );
+  /* The toggle now lives inside the header: preserve the map frame,
+     without a second empty control strip above Explore. */
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
+  right: calc(16px + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--hg-bottom-nav-height) + 16px);
+  left: calc(16px + env(safe-area-inset-left, 0px));
+  width: auto;
+  max-height: none;
   box-sizing: border-box;
 
   z-index: var(--hg-z-nearby);
 
   display: none;
   flex-direction: column;
-
   overflow: hidden;
-
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
 }
 
 #nearbyListContainer.is-drawer-open{
   display: flex;
 }
 
-/* Mobil: full/nesten full overlay mellom header og footer.
-   Toppen ligger under Utforsk-knappen slik at den forblir synlig
-   som lukkeknapp; listen scroller internt (se css/nearby.css). */
+/* Phone still has a framed map border instead of a full-bleed overlay. */
 body.hg-app.hg-phone #nearbyListContainer{
-  top: calc(var(--hg-visual-header-height, 74px) + 56px);
-  left: 0;
-  right: 0;
-  bottom: var(--hg-visual-footer-height, 72px);
-  transform: none;
-  width: 100vw;
-  max-height: none;
+  left: calc(10px + env(safe-area-inset-left, 0px));
+  right: calc(10px + env(safe-area-inset-right, 0px));
+  bottom: calc(var(--hg-bottom-nav-height) + 10px);
 }
+
 
 
 
@@ -294,7 +278,7 @@ body.hg-app.hg-phone #placesLoadingIndicator{
 
 /* ============================================================
    PLACE CARD LAYER
-   PlaceCard starter alltid rett under Utforsk-knappen, men skal ikke
+   PlaceCard starter rett under headeren med Utforsk-knappen, men skal ikke
    strekkes ned til footeren. Normaltilstanden følger innholdshøyden.
    Hvis kortet blir høyere enn den tilgjengelige viewporten, begrenser
    max-height kortet og .pc-body tar den interne scrollen. Det skal alltid
@@ -308,20 +292,19 @@ body.hg-app #placeCard{
   position: fixed;
   left: calc(12px + env(safe-area-inset-left, 0px));
   right: calc(12px + env(safe-area-inset-right, 0px));
-  /* Utforsk starter 10px under headeren og er omtrent 38px høy.
-     58px gir en liten, stabil luftstripe under knappen. */
-  top: calc(var(--hg-visual-header-height, 74px) + 58px);
+  /* Headeren eier Utforsk-knappen, så PlaceCard trenger ingen knappstripe. */
+  top: calc(var(--hg-visual-header-height, 74px) + 12px);
   bottom: auto;
   height: auto;
   max-height: calc(
     100vh -
-    var(--hg-visual-header-height, 74px) - 58px -
+    var(--hg-visual-header-height, 74px) - 12px -
     var(--hg-bottom-nav-height) -
     var(--hg-place-card-footer-gap)
   );
   max-height: calc(
     100dvh -
-    var(--hg-visual-header-height, 74px) - 58px -
+    var(--hg-visual-header-height, 74px) - 12px -
     var(--hg-bottom-nav-height) -
     var(--hg-place-card-footer-gap)
   );

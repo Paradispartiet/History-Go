@@ -32,7 +32,7 @@ Social Meet identity and Spotmeeting discovery must never add, store, expose, in
 - last seen, online, or device-derived presence/availability status;
 - followers, following, follower counts, popularity counts, or social graph ranking;
 - public activity feed;
-- free chat, free-text invite messages, or open direct messaging;
+- unsolicited open direct messaging or free-text invite messages; accepted, authenticated participants may access AHA private chat only under `HG_SOCIAL_MEET_DIRECT_CHAT_EXTENSION_V1.md`;
 - public visit history, recently visited places, retained check-in history, or passive place trails;
 - background movement, passive tracking, sensor-derived proximity, or co-presence inference;
 - raw quiz answer logs, raw route history, raw observation history, or exact timestamped learning behavior as public profile fields;
@@ -392,3 +392,7 @@ Before production Spotmeeting discovery is enabled, automated checks should veri
 ## 13. Next backend prerequisite
 
 The next backend prerequisite is to implement authenticated current-user identity plus opt-in public profile publication, including visibility states, consent records, block/report enforcement, export/delete support, and static API validation for the forbidden fields listed above. Production Spotmeeting discovery must remain off until that prerequisite is complete.
+
+## Post-accept communication amendment (2026-10-09)
+
+The previous free-chat exclusion still applies to **discovery, invitations, public profiles and strangers**. A separately authorized AHA conversation is allowed only for both verified participants of an accepted/completed server-owned invite, with History Go blocking and moderation enforced at the message database layer. No AHA friendship or public visibility is inferred. See `HG_SOCIAL_MEET_DIRECT_CHAT_EXTENSION_V1.md`.

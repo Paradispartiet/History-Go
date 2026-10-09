@@ -15,6 +15,7 @@
   let currentOptions = { filter: 'all', placeId: '', sourceSurface: 'unknown' };
   let currentData = makeEmptyInbox();
   let currentWarning = '';
+  let currentMode = 'local';
   let currentRequestId = 0;
 
   function escapeHTML(value){
@@ -39,6 +40,12 @@
       #${SHEET_ID} .hg-social-meet-context{margin:6px 0 0;color:rgba(255,255,255,.72);font-size:14px}
       #${SHEET_ID} .hg-social-meet-close{width:36px;height:36px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;font-size:20px;line-height:1;cursor:pointer}
       #${SHEET_ID} .hg-social-meet-body{display:grid;gap:12px;padding:15px 18px 18px}
+      #${SHEET_ID} .hg-social-meet-chat-layer{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;background:#10110f;border-radius:24px;overflow:hidden}
+      #${SHEET_ID} .hg-social-meet-chat-head{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.18);gap:8px}
+      #${SHEET_ID} .hg-social-meet-chat-layer iframe{width:100%;flex:1;min-height:420px;border:0;background:#101116}
+      #${SHEET_ID} .hg-social-meet-panel{position:relative}
+      #${SHEET_ID} .hg-social-meet-chat-close{min-height:40px;padding:6px 12px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:#222;color:#fff;cursor:pointer}
+      @media(max-width:720px){#${SHEET_ID} .hg-social-meet-chat-layer iframe{min-height:65dvh}}
       #${SHEET_ID} .profile-social-stack{display:grid;gap:12px}
       #${SHEET_ID} .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
       #${SHEET_ID} .section-head h2{font-size:20px}
@@ -176,12 +183,18 @@
     return `<button class="hg-social-meet-action" type="button" data-hg-social-meet-action="${escapeHTML(action)}" data-hg-social-meet-invite-id="${escapeHTML(id)}">${escapeHTML(label)}</button>`;
   }
 
+  function chatActionButton(id){
+    if (currentMode !== 'fastapi' || !/^[a-f0-9-]{36}$/i.test(id)) return '';
+    return `<button class="hg-social-meet-action" type="button" data-hg-social-meet-chat="${escapeHTML(id)}">Privat chat</button>`;
+  }
+
   function inviteActions(invite){
     const id = inviteId(invite);
     if (!id) return '';
     const status = statusValue(invite);
     if (status === 'pending') return `<div class="hg-social-meet-actions">${actionButton('accept', 'Godta', id)}${actionButton('decline', 'Avslå', id)}</div>`;
-    if (status === 'accepted') return `<div class="hg-social-meet-actions">${actionButton('complete', 'Marker gjennomført', id)}${actionButton('cancel', 'Avbryt', id)}</div>`;
+    if (status === 'accepted') return `<div class="hg-social-meet-actions">${actionButton('complete', 'Marker gjennomført', id)}${actionButton('cancel', 'Avbryt', id)}${chatActionButton(id)}</div>`;
+    if (status === 'completed') return `<div class="hg-social-meet-actions">${chatActionButton(id)}</div>`;
     return '';
   }
 
@@ -261,6 +274,7 @@
     if (requestId !== currentRequestId) return { ok: true, options: currentOptions, stale: true };
     currentData = loaded.inbox;
     currentWarning = loaded.warning || '';
+    currentMode = loaded.mode || 'local';
     render(currentOptions);
     return { ok: true, options: currentOptions, mode: loaded.mode };
   }
@@ -334,6 +348,7 @@
     const loaded = await loadInbox(currentOptions);
     currentData = loaded.inbox;
     currentWarning = loaded.warning || '';
+    currentMode = loaded.mode || 'local';
     render(currentOptions);
     root.dispatchEvent?.(new root.CustomEvent('hg:spotmeetingChanged', { detail: { source: 'socialMeetStatusAction', inviteId, status } }));
     root.dispatchEvent?.(new root.CustomEvent('updateProfile', { detail: { source: 'socialMeetStatusAction' } }));
@@ -355,12 +370,42 @@
     await refreshAfterStatusAction(inviteId, status);
   }
 
+  function openChat(inviteId){
+    if (currentMode !== 'fastapi' || !/^[a-f0-9-]{36}$/i.test(inviteId)) return;
+    const sheet = ensureSheet();
+    const panel = sheet.querySelector('.hg-social-meet-panel');
+    if (!panel) return;
+    panel.querySelector('.hg-social-meet-chat-layer')?.remove();
+    const layer = root.document.createElement('section');
+    layer.className = 'hg-social-meet-chat-layer';
+    layer.setAttribute('aria-label','Privat samtale i Social Meet');
+    const head = root.document.createElement('div');
+    head.className = 'hg-social-meet-chat-head';
+    const label = root.document.createElement('strong');
+    label.textContent = 'Privat chat · AHA';
+    const closeButton = root.document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'hg-social-meet-chat-close';
+    closeButton.textContent = 'Tilbake til Social Meet';
+    closeButton.setAttribute('data-hg-social-meet-chat-close','1');
+    head.append(label,closeButton);
+    const frame = root.document.createElement('iframe');
+    frame.title = 'AHA privat chat – verifisert Social Meet-kontakt';
+    frame.src = 'https://paradispartiet.github.io/AHA-EchoNet/friend-chat.html?embed=1&meetInviteId='+encodeURIComponent(inviteId);
+    frame.referrerPolicy = 'no-referrer';
+    layer.append(head,frame);
+    panel.append(layer);
+    closeButton.focus();
+  }
+
   function handleClick(event){
-    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close], [data-hg-social-meet-action]');
+    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close], [data-hg-social-meet-action], [data-hg-social-meet-chat], [data-hg-social-meet-chat-close]');
     if (!target) return;
     event.preventDefault?.();
     event.stopPropagation?.();
     if (target.hasAttribute('data-hg-social-meet-close')) { close(); return; }
+    if (target.hasAttribute('data-hg-social-meet-chat-close')) { target.closest('.hg-social-meet-chat-layer')?.remove(); return; }
+    if (target.hasAttribute('data-hg-social-meet-chat')) { openChat(String(target.getAttribute('data-hg-social-meet-chat') || '')); return; }
     if (target.hasAttribute('data-hg-social-meet-action')) { handleStatusClick(target); return; }
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();

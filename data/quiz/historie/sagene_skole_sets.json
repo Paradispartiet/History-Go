@@ -1,0 +1,1116 @@
+{
+  "targetId": "sagene_skole",
+  "categoryId": "historie",
+  "sources": {
+    "school": "https://sagene.osloskolen.no/om-skolen/om-oss/skolens-historie/",
+    "by": "https://oslobyleksikon.no/side/Sagene_skole",
+    "nbl": "https://nbl.snl.no/Anna_Sethne",
+    "vesle": "https://sagene.osloskolen.no/for-elever-og-foresatte/andre-tilbud-til-elevene/vesle-sagene-leirskole/"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/sagene_skole.json",
+    "context_artifact": "data/quiz/production_context/historie/sagene_skole.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_spor_materialitet",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/fag/fag_manifest.json",
+        "git tree main recursive path name variants sagene_skole, sageneskole, sethne",
+        "data/places/historie/oslo/places_historie/sagene_skole.json",
+        "reports/quiz-sagene-skole-source-audit-2026-10-09.md"
+      ],
+      "active_before": {
+        "categoryId": null,
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "No Sagene school target in active quiz manifest at current main; no named Sagene skole quiz file found in complete 28,721-path repository tree.",
+        "Retain 1741 as founding of school institution; 1861 as first extant building, 1922–26 as later construction.",
+        "No older canonical quiz questions or Knowledge IDs available to migrate for this target."
+      ],
+      "knowledge_migration": {
+        "status": "not_applicable",
+        "reason": "No active or matching canonical Sagene skole quiz identified."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Four distinct documented school-history lines supported by institution/lexicon/biography sources: founding and school buildings; pupils in an industrial district; Sethne's reform-pedagogical experiments; occupation and subsequent social change. Seven original, non-overlapping claims per learning job."
+    },
+    "held_back_candidates": [
+      "Current grade offerings changed in 2026 and vary across sources; omitted as time-sensitive.",
+      "Avoid unqualified claims about the national first leirskole; use documented school-specific 1948/1951.",
+      "Do not use protected-heritage legal classification without independent cultural heritage register verification.",
+      "Do not conflate classroom methods and independent historical evidence; the school history is an institutional account."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "historie_sagene_skole_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Opphav og skolebygninger",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "sagene_skole_quiz_01",
+          "quiz_id": "historie_sagene_skole_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva er besøksadressen til Sagene skole?",
+          "options": [
+            "Maridalsveien 84",
+            "Sandakerveien 3",
+            "Biermanns gate 2"
+          ],
+          "answer": "Biermanns gate 2",
+          "answerIndex": 2,
+          "knowledge": "Skolen ligger i Biermanns gate 2, nær det historiske fabrikkmiljøet ved Akerselva.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole har adresse Biermanns gate 2.",
+          "claim_id": "claim_sagene_skole_01",
+          "primary_knowledge_unit_id": "ku_historie_skolen_ligger_i_biermann_a551f8a2cb",
+          "knowledge_unit_ids": [
+            "ku_historie_skolen_ligger_i_biermann_a551f8a2cb"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_02",
+          "quiz_id": "historie_sagene_skole_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilket år ble den første faste allmueskolen på Sagene opprettet?",
+          "options": [
+            "1796",
+            "1741",
+            "1861"
+          ],
+          "answer": "1741",
+          "answerIndex": 1,
+          "knowledge": "1741 er året for institusjonens røtter, ikke byggeåret for dagens eldste skolehus.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "school",
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den første faste allmueskolen på Sagene ble opprettet i 1741.",
+          "claim_id": "claim_sagene_skole_02",
+          "primary_knowledge_unit_id": "ku_historie_1741_er_aret_for_institu_ddf63e0454",
+          "knowledge_unit_ids": [
+            "ku_historie_1741_er_aret_for_institu_ddf63e0454"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_03",
+          "quiz_id": "historie_sagene_skole_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken kommune tilhørte Sagene-skolens første allmueskole i 1741?",
+          "options": [
+            "Aker",
+            "Christiania",
+            "Bærum"
+          ],
+          "answer": "Aker",
+          "answerIndex": 0,
+          "knowledge": "Sagene var del av Aker før senere byutvidelser flyttet området inn i hovedstaden.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "school",
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den første allmueskolen i 1741 var Akers første faste allmueskole.",
+          "claim_id": "claim_sagene_skole_03",
+          "primary_knowledge_unit_id": "ku_historie_sagene_var_del_av_aker_f_0e47cc250c",
+          "knowledge_unit_ids": [
+            "ku_historie_sagene_var_del_av_aker_f_0e47cc250c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_04",
+          "quiz_id": "historie_sagene_skole_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva skjedde med skoleordningen på Sagene i 1796?",
+          "options": [
+            "Det ble åpnet et nytt basseng",
+            "Skolen ble overtatt av staten",
+            "Den ble delt i Østre og Vestre Sagene"
+          ],
+          "answer": "Den ble delt i Østre og Vestre Sagene",
+          "answerIndex": 2,
+          "knowledge": "Skolehistorien omfatter flere tidligere skoleenheter; de ble ikke alle samlet i dagens hus fra starten av.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene-skolen ble delt i Vestre og Østre Sagene skoler i 1796.",
+          "claim_id": "claim_sagene_skole_04",
+          "primary_knowledge_unit_id": "ku_historie_skolehistorien_omfatter__fe228af4a8",
+          "knowledge_unit_ids": [
+            "ku_historie_skolehistorien_omfatter__fe228af4a8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_05",
+          "quiz_id": "historie_sagene_skole_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva endret byutvidelsen i 1859 for skolene på Sagene?",
+          "options": [
+            "De ble gjort til private skoler",
+            "De kom innenfor byens grenser",
+            "De ble flyttet til Hadeland"
+          ],
+          "answer": "De kom innenfor byens grenser",
+          "answerIndex": 1,
+          "knowledge": "Utvidelsen av Christiania endret den kommunale rammen rundt den voksende industribydelen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Byutvidelsen i 1859 førte de tre Sagene-skolene inn på byens grunn.",
+          "claim_id": "claim_sagene_skole_05",
+          "primary_knowledge_unit_id": "ku_historie_utvidelsen_av_christiani_c9a2738f94",
+          "knowledge_unit_ids": [
+            "ku_historie_utvidelsen_av_christiani_c9a2738f94"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_06",
+          "quiz_id": "historie_sagene_skole_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvem tegnet Sagene skoles eldste eksisterende bygning?",
+          "options": [
+            "Jacob Wilhelm Nordan",
+            "Arnstein Arneberg",
+            "Christian Heinrich Grosch"
+          ],
+          "answer": "Jacob Wilhelm Nordan",
+          "answerIndex": 0,
+          "knowledge": "Nordan tegnet skolebygget som ble tatt i bruk i 1861, før anlegget ble utvidet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "school",
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Jacob Wilhelm Nordan var arkitekt for den eldste nåværende skolebygningen.",
+          "claim_id": "claim_sagene_skole_06",
+          "primary_knowledge_unit_id": "ku_historie_nordan_tegnet_skolebygge_971dfc97b3",
+          "knowledge_unit_ids": [
+            "ku_historie_nordan_tegnet_skolebygge_971dfc97b3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_07",
+          "quiz_id": "historie_sagene_skole_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Når åpnet den eldste skolebygningen som fortsatt står ved Sagene skole?",
+          "options": [
+            "1741",
+            "1926",
+            "1861"
+          ],
+          "answer": "1861",
+          "answerIndex": 2,
+          "knowledge": "Datoen viser til dagens eldste bygning; skoleinstitusjonen fører historien lenger tilbake.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "school",
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den eldste nåværende Sagene skole-bygningen åpnet i 1861.",
+          "claim_id": "claim_sagene_skole_07",
+          "primary_knowledge_unit_id": "ku_historie_datoen_viser_til_dagens__bb4db93180",
+          "knowledge_unit_ids": [
+            "ku_historie_datoen_viser_til_dagens__bb4db93180"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_sagene_skole_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Barn i industribydelen",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "sagene_skole_quiz_08",
+          "quiz_id": "historie_sagene_skole_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva skjedde med skolebygningen fra 1861 i 1880?",
+          "options": [
+            "Den ble revet og erstattet",
+            "Den ble forlenget og fikk en ekstra etasje",
+            "Den ble flyttet til Storo"
+          ],
+          "answer": "Den ble forlenget og fikk en ekstra etasje",
+          "answerIndex": 1,
+          "knowledge": "Jacob Wilhelm og Victor Nordan er oppført som arkitekter for denne senere endringen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skolebygningen fra 1861 ble forlenget og påbygd i 1880.",
+          "claim_id": "claim_sagene_skole_08",
+          "primary_knowledge_unit_id": "ku_historie_jacob_wilhelm_og_victor__f951220724",
+          "knowledge_unit_ids": [
+            "ku_historie_jacob_wilhelm_og_victor__f951220724"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_09",
+          "quiz_id": "historie_sagene_skole_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Når ble den store mellomkrigsbygningen på Sagene skole oppført?",
+          "options": [
+            "1922–1926",
+            "1880–1884",
+            "1945–1951"
+          ],
+          "answer": "1922–1926",
+          "answerIndex": 0,
+          "knowledge": "Den nye bygningen var et svar på skolens plass- og funksjonsbehov, og er ikke den samme som 1861-bygget.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "by",
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den store hjørnebygningen på Sagene skole ble oppført i 1922–26.",
+          "claim_id": "claim_sagene_skole_09",
+          "primary_knowledge_unit_id": "ku_historie_den_nye_bygningen_var_et_d654a5609f",
+          "knowledge_unit_ids": [
+            "ku_historie_den_nye_bygningen_var_et_d654a5609f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_10",
+          "quiz_id": "historie_sagene_skole_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken elv ligger ved Sagene skoles historiske industrimiljø?",
+          "options": [
+            "Alnaelva",
+            "Lysakerelva",
+            "Akerselva"
+          ],
+          "answer": "Akerselva",
+          "answerIndex": 2,
+          "knowledge": "Akerselvas vannkraft og fabrikkmiljø satte preg på både boligene og skolens elevgrunnlag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole ligger i industrimiljøet langs Akerselva.",
+          "claim_id": "claim_sagene_skole_10",
+          "primary_knowledge_unit_id": "ku_historie_akerselvas_vannkraft_og__e978f6cb5a",
+          "knowledge_unit_ids": [
+            "ku_historie_akerselvas_vannkraft_og__e978f6cb5a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_11",
+          "quiz_id": "historie_sagene_skole_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken industri preget særlig Sagene-området da skolen vokste på 1800-tallet?",
+          "options": [
+            "Verftsindustri",
+            "Tekstilindustri",
+            "Fiskeindustri"
+          ],
+          "answer": "Tekstilindustri",
+          "answerIndex": 1,
+          "knowledge": "Tekstilfabrikker, arbeiderboliger og andre arbeidssteder skapte et tett lokalsamfunn ved skolen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skolen lå ved de tidlige tekstilfabrikkene langs Akerselva.",
+          "claim_id": "claim_sagene_skole_11",
+          "primary_knowledge_unit_id": "ku_historie_tekstilfabrikker_arbeide_808ded504d",
+          "knowledge_unit_ids": [
+            "ku_historie_tekstilfabrikker_arbeide_808ded504d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_12",
+          "quiz_id": "historie_sagene_skole_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Omtrent hvor mange elever hadde Sagene skole rundt 1882?",
+          "options": [
+            "1 710",
+            "710",
+            "3 710"
+          ],
+          "answer": "1 710",
+          "answerIndex": 0,
+          "knowledge": "Oslo byleksikon oppgir dette som et historisk toppnivå; elevtallet viser presset på skolelokalene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole hadde omkring 1 710 elever rundt 1882.",
+          "claim_id": "claim_sagene_skole_12",
+          "primary_knowledge_unit_id": "ku_historie_oslo_byleksikon_oppgir_d_25b6d94af2",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_byleksikon_oppgir_d_25b6d94af2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_13",
+          "quiz_id": "historie_sagene_skole_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken hjelp ga Sagene skole barn fra fattige familier i tillegg til undervisningen?",
+          "options": [
+            "Lønn fra fabrikkene",
+            "Gratis reise til utlandet",
+            "Mat, klær og hygienetiltak"
+          ],
+          "answer": "Mat, klær og hygienetiltak",
+          "answerIndex": 2,
+          "knowledge": "Skolens sosiale oppgaver knyttet undervisning til den materielle hverdagen i arbeiderfamiliene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole hjalp også med bespisning, påkledning og hygiene.",
+          "claim_id": "claim_sagene_skole_13",
+          "primary_knowledge_unit_id": "ku_historie_skolens_sosiale_oppgaver_ac86379d4f",
+          "knowledge_unit_ids": [
+            "ku_historie_skolens_sosiale_oppgaver_ac86379d4f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_14",
+          "quiz_id": "historie_sagene_skole_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken forfatter gikk på Sagene skole og skildret senere arbeiderlivet ved Akerselva?",
+          "options": [
+            "Johan Borgen",
+            "Oskar Braaten",
+            "Knut Hamsun"
+          ],
+          "answer": "Oskar Braaten",
+          "answerIndex": 1,
+          "knowledge": "Braatens litteratur formidler miljøer som også formet elevenes liv utenfor klasserommet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Forfatteren Oskar Braaten var elev ved Sagene skole.",
+          "claim_id": "claim_sagene_skole_14",
+          "primary_knowledge_unit_id": "ku_historie_braatens_litteratur_form_d9d42deab6",
+          "knowledge_unit_ids": [
+            "ku_historie_braatens_litteratur_form_d9d42deab6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_sagene_skole_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Anna Sethne og Sagene-forsøkene",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "sagene_skole_quiz_15",
+          "quiz_id": "historie_sagene_skole_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvem ledet Sagene skole som overlærer fra 1919 til 1938?",
+          "options": [
+            "Anna Sethne",
+            "Anna Rogstad",
+            "Katrine Arnesen"
+          ],
+          "answer": "Anna Sethne",
+          "answerIndex": 0,
+          "knowledge": "Sethne fikk gjennomført forsøk som senere ble kjent langt utenfor Sagene.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by",
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anna Sethne var overlærer ved Sagene skole fra 1919 til 1938.",
+          "claim_id": "claim_sagene_skole_15",
+          "primary_knowledge_unit_id": "ku_historie_sethne_fikk_gjennomf_rt__43bf5a7196",
+          "knowledge_unit_ids": [
+            "ku_historie_sethne_fikk_gjennomf_rt__43bf5a7196"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_16",
+          "quiz_id": "historie_sagene_skole_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva skjedde ved Sagene skole i 1930 under Anna Sethnes ledelse?",
+          "options": [
+            "Skolen ble rekvirert av tyskerne",
+            "Skolen åpnet leirskole på Hadeland",
+            "Sagene-forsøkene startet"
+          ],
+          "answer": "Sagene-forsøkene startet",
+          "answerIndex": 2,
+          "knowledge": "Forsøkene utviklet aktivitetsskolepedagogikk som fikk betydning utenfor Sagene.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anna Sethne fikk starte Sagene-forsøkene i 1930.",
+          "claim_id": "claim_sagene_skole_16",
+          "primary_knowledge_unit_id": "ku_historie_fors_kene_utviklet_aktiv_919348b595",
+          "knowledge_unit_ids": [
+            "ku_historie_fors_kene_utviklet_aktiv_919348b595"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_17",
+          "quiz_id": "historie_sagene_skole_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva kjennetegnet undervisningen i Sagene-forsøkene?",
+          "options": [
+            "All undervisning foregikk som pugging",
+            "Elevene arbeidet aktivt og praktisk med stoffet",
+            "Alle fag ble erstattet med eksamener"
+          ],
+          "answer": "Elevene arbeidet aktivt og praktisk med stoffet",
+          "answerIndex": 1,
+          "knowledge": "Arbeidsskoleprinsippet la vekt på læring gjennom aktivitet, egne undersøkelser og erfaringer.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school",
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene-forsøkene la større vekt på elevaktivitet og praktisk arbeid.",
+          "claim_id": "claim_sagene_skole_17",
+          "primary_knowledge_unit_id": "ku_historie_arbeidsskoleprinsippet_l_a87237211c",
+          "knowledge_unit_ids": [
+            "ku_historie_arbeidsskoleprinsippet_l_a87237211c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_18",
+          "quiz_id": "historie_sagene_skole_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken italiensk pedagog inspirerte Anna Sethne tidlig i hennes reformarbeid?",
+          "options": [
+            "Maria Montessori",
+            "Ellen Key",
+            "Maria Edgeworth"
+          ],
+          "answer": "Maria Montessori",
+          "answerIndex": 0,
+          "knowledge": "Sethne hentet senere også impulser fra amerikanske reformpedagoger.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anna Sethne var tidlig inspirert av Maria Montessori.",
+          "claim_id": "claim_sagene_skole_18",
+          "primary_knowledge_unit_id": "ku_historie_sethne_hentet_senere_ogs_72f428c4a2",
+          "knowledge_unit_ids": [
+            "ku_historie_sethne_hentet_senere_ogs_72f428c4a2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_19",
+          "quiz_id": "historie_sagene_skole_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilke amerikanske pedagoger ble særlig viktige for Sethnes senere arbeid?",
+          "options": [
+            "Horace Mann og John Locke",
+            "Jerome Bruner og B. F. Skinner",
+            "John Dewey og William H. Kilpatrick"
+          ],
+          "answer": "John Dewey og William H. Kilpatrick",
+          "answerIndex": 2,
+          "knowledge": "Tankene om å lære gjennom handling fikk betydning for arbeidsskolepedagogikken på Sagene.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sethne hentet senere inspirasjon fra John Dewey og William H. Kilpatrick.",
+          "claim_id": "claim_sagene_skole_19",
+          "primary_knowledge_unit_id": "ku_historie_tankene_om_a_l_re_gjenno_27b1003e21",
+          "knowledge_unit_ids": [
+            "ku_historie_tankene_om_a_l_re_gjenno_27b1003e21"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_20",
+          "quiz_id": "historie_sagene_skole_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilket nytt lesetilbud vokste fram gjennom forsøkene med leseundervisning ved Sagene?",
+          "options": [
+            "Et rent universitetsbibliotek",
+            "Et folkeskolebibliotek med lesestue",
+            "Et offentlig avisarkiv"
+          ],
+          "answer": "Et folkeskolebibliotek med lesestue",
+          "answerIndex": 1,
+          "knowledge": "Norsk biografisk leksikon omtaler lesestuen som et tidlig, banebrytende bibliotektilbud for folkeskoleelever.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Forsøkene med leseundervisning ved Sagene ledet til et folkeskolebibliotek med lesestue.",
+          "claim_id": "claim_sagene_skole_20",
+          "primary_knowledge_unit_id": "ku_historie_norsk_biografisk_leksiko_31c29e4f92",
+          "knowledge_unit_ids": [
+            "ku_historie_norsk_biografisk_leksiko_31c29e4f92"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_21",
+          "quiz_id": "historie_sagene_skole_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilken skolesak var Anna Sethne uenig med deler av den øvrige skoleledelsen om?",
+          "options": [
+            "Fellesklasser for gutter og jenter",
+            "At elever skulle lære å lese",
+            "At lærere skulle få utdanning"
+          ],
+          "answer": "Fellesklasser for gutter og jenter",
+          "answerIndex": 0,
+          "knowledge": "Selv en innflytelsesrik reformpedagog støttet ikke automatisk alle samtidige skolereformer.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "nbl"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Anna Sethne var sterkt imot fellesklasser for gutter og jenter.",
+          "claim_id": "claim_sagene_skole_21",
+          "primary_knowledge_unit_id": "ku_historie_selv_en_innflytelsesrik__ac686a3d0c",
+          "knowledge_unit_ids": [
+            "ku_historie_selv_en_innflytelsesrik__ac686a3d0c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_sagene_skole_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Krig, leirskole og samfunnsendring",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "sagene_skole_quiz_22",
+          "quiz_id": "historie_sagene_skole_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvilket brudd i bruken av Sagene skoles bygninger inntraff våren 1940?",
+          "options": [
+            "Bygningene ble overtatt av en lærerhøgskole",
+            "Skolen ble omgjort til leirskole",
+            "Skolelokalene ble rekvirert til tysk kaserne"
+          ],
+          "answer": "Skolelokalene ble rekvirert til tysk kaserne",
+          "answerIndex": 2,
+          "knowledge": "Fra 29. april 1940 brukte tyske styrker anlegget som kaserne; skolens funksjon måtte fortsette andre steder.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tyske styrker rekvirerte Sagene skole 29. april 1940 og brukte den som kaserne.",
+          "claim_id": "claim_sagene_skole_22",
+          "primary_knowledge_unit_id": "ku_historie_fra_29_april_1940_brukte_77cd14ee3b",
+          "knowledge_unit_ids": [
+            "ku_historie_fra_29_april_1940_brukte_77cd14ee3b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_23",
+          "quiz_id": "historie_sagene_skole_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva ble en direkte følge av at tyske styrker disponerte Sagene skole under okkupasjonen?",
+          "options": [
+            "Alle elever fikk undervisning i skolegården",
+            "Undervisningen ble spredt til andre lokaler",
+            "Skolen sluttet å ha elever permanent"
+          ],
+          "answer": "Undervisningen ble spredt til andre lokaler",
+          "answerIndex": 1,
+          "knowledge": "Blant de dokumenterte erstatningslokalene var Biermannsgården, Deichman og andre adresser på Sagene.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Undervisningen ble flyttet til ulike lokaler fordi tyskerne brukte Sagene skole som kaserne.",
+          "claim_id": "claim_sagene_skole_23",
+          "primary_knowledge_unit_id": "ku_historie_blant_de_dokumenterte_er_e0a0caad39",
+          "knowledge_unit_ids": [
+            "ku_historie_blant_de_dokumenterte_er_e0a0caad39"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_24",
+          "quiz_id": "historie_sagene_skole_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva viser datoene 1948 og 1951 om etableringen av leirskolen Vesle Sagene?",
+          "options": [
+            "Bygninger ble kjøpt i 1948, leirskolen åpnet i 1951",
+            "Leirskolen åpnet i 1948 og ble nedlagt i 1951",
+            "Skolen flyttet fra Sagene i 1948 og tilbake i 1951"
+          ],
+          "answer": "Bygninger ble kjøpt i 1948, leirskolen åpnet i 1951",
+          "answerIndex": 0,
+          "knowledge": "Tid mellom innkjøp og åpning ble brukt til istandsetting på dugnad, blant annet med foreldre og elever.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "vesle"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole kjøpte tre bygninger på Hadeland i 1948 og åpnet Vesle Sagene i 1951.",
+          "claim_id": "claim_sagene_skole_24",
+          "primary_knowledge_unit_id": "ku_historie_tid_mellom_innkj_p_og_ap_442a482799",
+          "knowledge_unit_ids": [
+            "ku_historie_tid_mellom_innkj_p_og_ap_442a482799"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_25",
+          "quiz_id": "historie_sagene_skole_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva knyttet åpningen av Vesle Sagene i 1951 til skolens tidligere pedagogiske forsøk?",
+          "options": [
+            "At elevene kun skulle lære ved pugging",
+            "At leirskolen bare ble brukt til eksamen",
+            "Praktisk læring og elevenes egne erfaringer"
+          ],
+          "answer": "Praktisk læring og elevenes egne erfaringer",
+          "answerIndex": 2,
+          "knowledge": "Anna Sethne og Katrine Arnesen var inspirert av leirskoler i England og Danmark, og ønsket naturopplevelser for bybarn.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "vesle"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vesle Sagene ble etablert for å gi bybarn naturopplevelser og praktisk undervisning, etter impulser fra utenlandske leirskoler.",
+          "claim_id": "claim_sagene_skole_25",
+          "primary_knowledge_unit_id": "ku_historie_anna_sethne_og_katrine_a_da5b2525ed",
+          "knowledge_unit_ids": [
+            "ku_historie_anna_sethne_og_katrine_a_da5b2525ed"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_26",
+          "quiz_id": "historie_sagene_skole_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva var historisk nytt ved språktilbudet på Sagene skole i 1982?",
+          "options": [
+            "Skolen avviklet all morsmålsundervisning",
+            "Skolen opprettet en tidlig tospråklig klasse",
+            "Skolen begynte bare å undervise på engelsk"
+          ],
+          "answer": "Skolen opprettet en tidlig tospråklig klasse",
+          "answerIndex": 1,
+          "knowledge": "Tospråklig undervisning er en konkret del av skolens historie om et samfunn med større språklig variasjon.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagene skole opprettet en tidlig tospråklig klasse i 1982.",
+          "claim_id": "claim_sagene_skole_26",
+          "primary_knowledge_unit_id": "ku_historie_tospraklig_undervisning__ad49aee7d5",
+          "knowledge_unit_ids": [
+            "ku_historie_tospraklig_undervisning__ad49aee7d5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_27",
+          "quiz_id": "historie_sagene_skole_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hvordan ble truslene mot skolens 17. mai-deltakelse i 1983 fulgt opp året etter?",
+          "options": [
+            "Elevene bar slagordet «17. mai for alle»",
+            "Skolen avlyste 17. mai-feiringen for godt",
+            "Elevene sluttet å delta i flaggborgen"
+          ],
+          "answer": "Elevene bar slagordet «17. mai for alle»",
+          "answerIndex": 0,
+          "knowledge": "Ifølge skolens egen historie ble truslene møtt med mobilisering for en feiring der alle skulle høre til.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "school"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Etter truslene mot 17. mai-deltakelsen i 1983 bar Sagene-elevene slagordet «17. mai for alle» i 1984.",
+          "claim_id": "claim_sagene_skole_27",
+          "primary_knowledge_unit_id": "ku_historie_if_lge_skolens_egen_hist_4d1b799566",
+          "knowledge_unit_ids": [
+            "ku_historie_if_lge_skolens_egen_hist_4d1b799566"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "sagene_skole_quiz_28",
+          "quiz_id": "historie_sagene_skole_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "sagene_skole",
+          "targetId": "sagene_skole",
+          "question_scope": "place",
+          "question": "Hva må en historiker skille når kildene daterer Sagene skole til 1741 og den eldste bygningen til 1861?",
+          "options": [
+            "To ulike datoer for åpning av samme skolebygning",
+            "Stiftelsen av skolen og åpningen av leirskolen",
+            "Opprettelsen av skolen og byggingen av ett skolehus"
+          ],
+          "answer": "Opprettelsen av skolen og byggingen av ett skolehus",
+          "answerIndex": 2,
+          "knowledge": "1741 gjelder allmueskolens begynnelse i Aker, mens 1861 gjelder Nordans eldste eksisterende bygning. Kildevurdering krever korrekt hendelse til hvert årstall.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "school",
+            "by"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Skolens institusjonshistorie begynner i 1741, mens den eldste eksisterende skolebygningen åpnet i 1861.",
+          "claim_id": "claim_sagene_skole_28",
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Kildekritikk hos Marc Bloch retter oppmerksomhet mot hva ulike opplysninger faktisk vitner om: etableringen av en skole er ikke det samme som oppføringen av en bestemt bygning."
+          },
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+            "school",
+            "by"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_1741_gjelder_allmueskole_fc097b164d",
+          "knowledge_unit_ids": [
+            "ku_historie_1741_gjelder_allmueskole_fc097b164d",
+            "ku_historie_kildevurdering_krever_ko_2297e684af"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}

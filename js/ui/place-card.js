@@ -1050,6 +1050,8 @@ const frontCardFlipEl = document.getElementById("pcFrontCardFlip");
 const frontImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcFrontImage"));
 const quizCardImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcQuizCardImage"));
 const quizCardContentEl = document.getElementById("pcQuizCardContent");
+const headerHeroEl = document.getElementById("pcHeaderHero");
+const headerImgEl = /** @type {HTMLImageElement|null} */ (document.getElementById("pcHeaderImage"));
 const titleEl    = document.getElementById("pcTitle");
 const favoriteBtn = document.getElementById("pcFavorite");
 const metaEl     = document.getElementById("pcMeta");
@@ -1416,7 +1418,25 @@ if (!card) return;
   // Smooth “skifte sted”
   if (!samePlace) card.classList.add("is-switching");
 
-  // Basic content
+  // Basic content: place.image is the landscape place photo; frontImage stays the collectible card art.
+  if (headerHeroEl && headerImgEl) {
+    if (headerImgEl.dataset.pcHeaderEventsBound !== "1") {
+      headerImgEl.dataset.pcHeaderEventsBound = "1";
+      headerImgEl.addEventListener("load", () => {
+        headerHeroEl.classList.toggle("has-image", headerImgEl.naturalWidth > 0);
+      });
+      headerImgEl.addEventListener("error", () => {
+        headerHeroEl.classList.remove("has-image", "has-photo-source");
+        headerImgEl.removeAttribute("src");
+      });
+    }
+    headerHeroEl.classList.remove("has-image");
+    headerHeroEl.classList.toggle("has-photo-source", Boolean(String(place.image || "").trim()));
+    setPlaceCardImgSrcStable(headerImgEl, place.image || "");
+    if (headerImgEl.complete && headerImgEl.naturalWidth > 0) {
+      headerHeroEl.classList.add("has-image");
+    }
+  }
   setPlaceCardImgSrcStable(frontImgEl, place.frontImage || place.cardImage || place.image || "");
   setPlaceCardQuizImage(frontCardFlipEl, quizCardImgEl, place);
   const quizStart = performance.now();

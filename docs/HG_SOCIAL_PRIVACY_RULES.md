@@ -52,7 +52,7 @@ Social Meet og Spotmeeting skal aldri bruke eller eksponere:
 - last seen, online status, presence eller availability;
 - offentlig visit history eller passive route traces;
 - followers, popularity score eller offentlig feed;
-- fri chat eller fritekstinvitasjoner;
+- uoppfordret direktechat med fremmede eller fritekstinvitasjoner;
 - passiv tracking eller inferred co-presence;
 - private konto-, sikkerhets- eller moderatorfelt i public/participant APIs.
 
@@ -63,3 +63,7 @@ Et valgt History GO-sted kan være eksplisitt møtecontext. Det er ikke brukeren
 Implementert backend betyr ikke automatisk bred produksjonsaktivering. Discovery, invite writes og destruktiv retention skal være fail-closed bak deployment-konfigurasjon, private rollout-flagg, cohort controls og testet rollback.
 
 `HG_TEST_MODE` og seedede demo-profiler skal forbli adskilt fra ekte profiler, `PEOPLE` og servereid Social Meet-state.
+
+## Smal utvidelse: privat chat etter gjensidig aksept (9. oktober 2026)
+
+AHA eier den private samtalen etter at en servereid Spotmeeting-invitasjon er godkjent. Selve Social Meet-invitasjonen er fremdeles preset-basert og uten fritekst. Blokkering og moderering fra History Go håndheves også ved AHA-meldinger. Avtalte møter gir ikke automatisk AHA-vennskap. Se `HG_SOCIAL_MEET_DIRECT_CHAT_EXTENSION_V1.md`.

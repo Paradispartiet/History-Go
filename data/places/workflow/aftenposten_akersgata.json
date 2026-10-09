@@ -49,11 +49,15 @@
   },
   "collections": {
     "people": {
-      "status": "BLOCKED",
-      "reason": "Stanghelle og Hegge er relevante eksisterende personer, men profilene mangler v1-claims og ferdig billedkontroll. Stanghelles registrerte PNG finnes ikke; Hegge mangler portrett. Dette er ikke naturlig fravær.",
+      "status": "PASS",
+      "reason": "Harald Stanghelle og Per Egil Hegge har verifiserte v1-claims, utdanning/verk og originale lisensierte portretter. #6155 er merget på main d3d77d9e; historisk adressegrense og Eilertsens vg_huset-anker er bevart.",
       "refs": [
         "data/people/media/oslo/people_media_oslo.json",
-        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+        "data/people/claims/media/oslo/redaksjoner/harald_stanghelle.claims.json",
+        "data/people/claims/media/oslo/redaksjoner/per_egil_hegge.claims.json",
+        "reports/people/aftenposten-people-production-2026-10-09.md",
+        "bilder/kort/people/harald_stanghelle.jpg",
+        "bilder/kort/people/per_egil_hegge.jpg"
       ]
     },
     "objects": {
@@ -145,7 +149,6 @@
     }
   },
   "blockers": [
-    "People-profilenes claim- og portrettporter er uferdige.",
     "Utgivelsessamlingen er ikke ferdig.",
     "Historisk før/etter-kandidat er ikke sluttkontrollert.",
     "Quizrevisjon og dedikert QuizCard med flip-QA gjenstår."

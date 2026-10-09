@@ -10,7 +10,7 @@ Media; underbadges aviser, nettaviser, journalistikk og mediehus_og_redaksjoner.
 
 - [Tanta flytter hjem](https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem), Liv Berit Tessem, publisert 16.08.2014, oppdatert 18.08.2014: adresseperiode, familiens bolig og bakhage, utvidelsen i 1923, pressehall/vinterhage, flytting til nr. 55. Brødteksten er lest. Bildeteksten «1963 / to år gamle» strider mot artikkelens 1964-opplysning; den brukes ikke som byggeårbevis.
 - [Oslo byleksikon – Aftenposten](https://oslobyleksikon.no/side/Aftenposten): Finn Bryn/1964, utgaver, A-magasinet, offsettrykk, fotosats og radiolink fra setteriet i nr. 51 til Linderud. Brødteksten er lest.
-- [125 år med Aftenposten](https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten): rotasjonspressen i 1876 kunne trykke 3000 aviser i timen. Dette er kapasitet, ikke opplag.
+- [125 år med Aftenposten](https://www.aftenposten.no/norge/i/bmwn3/125-aar-med-aftenposten): den nye pressen i 1876 kunne trykke 3000 aviser i timen. Dette er kapasitet, ikke opplag.
 - [SNL – Aftenposten](https://snl.no/Aftenposten): sensur/direktiver under okkupasjonen og nettavis i 1995. Institusjonshistorie tilskrives ikke automatisk enkeltansatte.
 - [SNL – fotosats/fotosetting](https://snl.no/fotosats/fotosetting): presis fagdefinisjon. Dette er ikke lokal dialekt.
 - [SNL – Harald Stanghelle](https://snl.no/Harald_Stanghelle) og [Aftenpostens biografi](https://www.aftenposten.no/meninger/i/Py5pX/harald-stanghelle): 1991 ansettelse, 1994–1995 nyhetsredaktør, 1995–2000 Dagbladet, retur som politisk redaktør i 2000. Profilen er fortsatt legacy og ikke omskrevet i denne stedspakken.
@@ -59,3 +59,7 @@ Rebaset på main e67914e217c2d3aa303ab280ad201483eb7f01ef (nyere Akershus-quizen
 Regresjonskontrollen fant at en korrekt opplysning om returen til nr. 55 i 2014 ble materialisert som en lokal nr. 51-milepæl. Setningen, påstanden og readiness-spørsmålet er derfor fjernet fra stedsproduksjonspakken, og tidslinjen er regenerert fra kildedata. Returen er bevart som eksplisitt ekskludert identitet og ekstern Leksikon-kontekst. En test kontrollerer nå alle avledede tidslinjers hendelser for nr. 51, ikke bare Leksikon-ankrene. Ingen generatorpolicy er svekket.
 
 Nettleserinstallasjon med Playwright feilet ved nedlasting av Chromium. Faktisk mobil-/desktop-, samlingspopup-, epokeviser- og flip-QA er derfor fortsatt PENDING. Automatiske datakontroller kan ikke erstatte denne kontrollen.
+
+## Fortsettelse mot main 034c7438
+
+People er ferdig materialisert og merget i #6155 (d3d77d9e). Samlingen er nå PASS og valgt sammen med Objects og Brands. Jubileumsartikkelens 1876-avsnitt dokumenterer en ny presse med kapasitet 3000 aviser i timen, ikke typen rotasjonspresse. Stedstekst, claim/sourceLocation, readiness-spørsmål og EN/ES/PT er presisert; hashene er beregnet fra faktisk endret tekst. Alle READ-FIRST-filers innhold er identisk med forrige registrerte preflight, kontrollert med git diff mot fersk main. De øvrige åpne portene er fortsatt reelle.
