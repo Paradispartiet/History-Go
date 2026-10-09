@@ -89,6 +89,8 @@ try{
       documentOverflow:document.documentElement.scrollWidth-innerWidth,overlapWords};
   });
   console.log('HG_GRABEIN_LAYOUT '+JSON.stringify({profile,layout}));
+  assert.ok(layout.front.height <= layout.front.width * 1.45, profile+' 3:4 frontImage must not stretch with the right column');
+  if(profile==='mobile') assert.ok(layout.events.y-layout.lastCollectionBottom <= 24, 'Mobile Events/Møtes follow two collection tiles without a blank reserve');
   assert.deepEqual(layout.overlapWords,[],profile+' title should not overlap round actions');
   await page.screenshot({path:'grabein-two-collections-'+profile+'-before-popup.png',fullPage:true});
   await page.locator('#pcBrandsIcon').click();

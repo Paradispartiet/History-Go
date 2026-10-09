@@ -138,3 +138,12 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-
     grid-template-rows:repeat(2, minmax(166px, auto)) !important;
   }
 }
+
+/* A two-tile Place Sheet on narrow phones has no empty 166px reserved
+   row. Natural tile height leaves room for the live Events/Møtes actions
+   alongside the 3:4 portrait rather than below the scroll viewport. */
+@media (max-width:520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="2"]{
+    grid-template-rows:auto !important;
+  }
+}

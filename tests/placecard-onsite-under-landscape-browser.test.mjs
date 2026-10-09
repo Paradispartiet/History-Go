@@ -114,6 +114,8 @@ try {
       layout.controls.right <= layout.rightColumn.right + 1,
       "Events/Møtes stay within right column at "+width);
     assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
+    assert.ok(layout.front.height <= layout.front.width * 1.45,
+      "3:4 frontImage must not stretch to fill the collections column at "+width+": "+JSON.stringify(layout.front));
     if (width >= 768) {
       assert.ok(Math.abs(layout.controls.bottom - layout.front.bottom) <= 2,
         "Events/Møtes bottom must align with frontImage bottom at "+width+": "+
