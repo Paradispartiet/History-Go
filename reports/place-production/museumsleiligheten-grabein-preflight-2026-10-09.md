@@ -31,7 +31,7 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Kronologi/epoker | PASS teknisk, manuell UI-QA gjenstår | 1888, 1891, 1919, perioden 1981–83, 1987, 1990 |
 | Quiz | PASS | PR #6159, ingen omproduksjon |
 | Bilder (`image`, stående `frontImage`) | PASS teknisk, manuell UI-QA gjenstår | To lokale, separate WebP-varianter fra rettighetsklarert Commons-original; portrett dimensjonskontrollert og bildekontroll bestått |
-| QuizCard + flip | PASS manifest, browser-QA gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
+| QuizCard + flip | PASS automatisk browser-QA, manuell skjermbildegjennomgang gjenstår | Stedsspesifikk 10-spørsmåls QuizCard laget fra merget 4×7-quiz og registrert i historie-manifestet. Faktisk flip-interaksjon skal browser-testes. |
 | PlaceCard-samlinger | DELVIS PASS, avsluttende visuell QA mangler | Én kildebåret historisk hendelse (oppføring 1888) har bildesikret medlem, merket 2022-foto. Andre kandidatfamilier er særskilt uferdige. |
 | People | BLOCKED | Bjørklund-familien er dokumentert, men ikke tilstrekkelig individualisert til People-profil; Ole Olsen/Haeselich må auditeres mot eksisterende kanoniske personer og stedskrav |
 | Objects | BLOCKED | Museets symaskin, seng m.m. er fotografert, men konkrete museumsobjekters proveniens og eierskap er ikke verifisert |
@@ -42,6 +42,15 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Nyheter | BEGRUNNET N/A foreløpig | Ikke konstruer samtidige hendelser fra tidligere museumsarrangementer |
 | Lesespor | BLOCKED | «Ulvehiet» (1919) er et dokumentert stedstilknyttet lesekandidat; direkte lesbar, rettighetsmessig forsvarlig tekst må verifiseres |
 | Kilder / Fagverk-lenker | PASS, UI-QA kreves | Navngitte kildehenvisninger i Place-data |
-| Browser, plassering av Rundingene, bilder og mobil | PENDING | Full visuell slutt-QA og image preview på eksakt PR-head kreves |
+| Browser, plassering av Rundingene, bilder og mobil | PASS automatisert, manuell visuell kontroll PENDING | Chrome/Playwright på desktop (1440×1000) og mobil (390×844) bestod samling, popup, QuizCard-flip, quizinngang, bildelasting, ingen horisontal overflow og ingen JS-feil. Skjermbildene må fortsatt vurderes manuelt. |
 
-**Sluttstatus: IKKE SLUTTFØRT.** Bilder, språk, Fagverk, kronologi og QuizCard er nå teknisk materialisert. People-, Object- og Brand-kandidater, Før/etter, lesespor og faktisk visuell Playwright-QA er fortsatt åpne porter. Dette er en bevisst delvis produksjon; `production_status=complete` må ikke settes før de reelle manglene er avklart.
+**Sluttstatus: IKKE SLUTTFØRT.** Bilder, språk, Fagverk, kronologi og QuizCard er nå teknisk materialisert. People-, Object- og Brand-kandidater, Før/etter, lesespor og manuell visuell kontroll av desktop- og mobilskjermbilder er fortsatt åpne porter. Dette er en bevisst delvis produksjon; `production_status=complete` må ikke settes før de reelle manglene er avklart.
+
+## Automatisert PlaceCard-QA — 9. oktober 2026
+
+- Kilde: [målrettet GitHub Actions-kjøring #37933514948](https://github.com/Paradispartiet/History-Go/actions/runs/37933514948), på PR-head `f242b4c5bc917e05cb7ffcc76a0d945bb9058638`.
+- Testet faktisk app-ruting mot `#/place/museumsleiligheten_grabein` og `data/runtime/place-open/museumsleiligheten_grabein.json`, ikke isolert DOM-fixture.
+- Desktop 1440 × 1000 og mobil 390 × 844: PASS på riktig sted og tittel, `place-card-collections-v2`, én materiell historisk hendelse med bilde og popup, QuizCard-tekst, front/bak-vending i begge retninger, quizrute, synlige bildeforespørsler, fravær av horisontal overflow og feil fra siden.
+- Første diagnostiske forsøk stoppet på bekreftelse av tilbakevending; andre komplette gjennomspilling verifiserte begge faktiske klikkhendelser og kortretninger, uten produktkodeendring. Denne første kjøringen gir grunn til å beholde regresjonsdekning, men er ikke alene bevis for en permanent feil.
+- Bevis: `grabein-placecard-mobile-desktop`-artefakt med desktop- og mobilskjermbilder og maskinlesbare tester fra kjøringen. Skjermbildene er **ikke manuelt designreviewet**.
+- Dette er teknisk QA for nåværende delvis produserte samlinger, **ikke** bekreftelse på full stedsproduksjon. People, Objects, Brands, Før/etter og Lesespor er fortsatt ikke lukket.
