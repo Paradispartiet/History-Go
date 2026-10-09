@@ -19,6 +19,7 @@ try{
  for(const [profile,viewport,mobile] of [['desktop',{width:1440,height:1000},false],['mobile',{width:390,height:844},true]]){
   const ctx=await browser.newContext({viewport,isMobile:mobile,hasTouch:mobile}),page=await ctx.newPage();
   const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+  page.on('console',msg=>{ if(msg.text().startsWith('HG_BS_')||msg.text().startsWith('HG_CARD_')) console.log('HG_BROWSER_TRACE '+profile+' '+msg.text()); });
   await page.addInitScript(()=>{localStorage.setItem('hg_onboarding_shown_v1','1');localStorage.setItem('HG_TEST_MODE','1')});
   await page.goto(base+'/index.html?hgTest=1#/place/'+placeId,{waitUntil:'domcontentloaded',timeout:90000});
   await page.waitForFunction(id=>window.__HG_APP_READY__===true&&document.querySelector('#placeCard')?.dataset.currentPlaceId===id,placeId,{timeout:90000});
@@ -40,6 +41,21 @@ try{
   assert.equal(state.count,'2');assert.equal(state.brand.source,'brands');assert.equal(state.brand.loaded,true);
   assert.match(state.brand.path,/oslo_museum\.svg/);assert.equal(state.event.source,'historical_events');assert.equal(state.event.loaded,true);
   assert.equal(state.brand.hidden,false);assert.equal(state.event.hidden,false);assert.ok(state.overflow<=2);
+  await page.evaluate(()=>{
+    const bs=window.bottomSheetController;
+    for(const method of ['hide','collapse','open','setState']) {
+      const original=bs?.[method];
+      if(typeof original!=='function')continue;
+      bs[method]=function(...args){
+        console.log('HG_BS_'+method.toUpperCase()+' '+JSON.stringify({args,stack:new Error().stack?.split('\\n').slice(1,8)}));
+        return original.apply(this,args);
+      };
+    }
+    const pc=document.getElementById('placeCard');
+    new MutationObserver(()=>{
+      console.log('HG_CARD_MUTATION '+JSON.stringify({classes:pc.className,aria:pc.getAttribute('aria-hidden'),stack:new Error().stack?.split('\\n').slice(1,4)}));
+    }).observe(pc,{attributes:true,attributeFilter:['class','aria-hidden']});
+  });
   await page.evaluate(()=>window.expandPlaceCard());
   await page.waitForFunction(()=>{
     const pc=document.getElementById('placeCard');return !!pc&&pc.classList.contains('is-open')&&!pc.classList.contains('is-hidden')&&
