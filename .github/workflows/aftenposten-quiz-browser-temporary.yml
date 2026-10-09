@@ -1,0 +1,34 @@
+name: Aftenposten quiz browser (temporary)
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/media/aftenposten_akersgata_sets.json'
+      - '.github/workflows/aftenposten-quiz-browser-temporary.yml'
+permissions:
+  contents: read
+jobs:
+  playthrough:
+    if: github.head_ref == 'agent/aftenposten-quiz-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Resolve runner Chrome
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - run: node scripts/verify-place-quiz-browser.mjs aftenposten_akersgata
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: aftenposten-quiz-browser-${{ github.event.pull_request.head.sha }}
+          path: artifacts/place-quiz/aftenposten_akersgata
+          retention-days: 14
