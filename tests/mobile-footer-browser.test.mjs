@@ -67,7 +67,7 @@ try {
         mini: rect(mini),
         buttons: buttons.map(rect),
         navHeight: getComputedStyle(footer).height,
-        safeBottom: parseFloat(getComputedStyle(footer).paddingBottom) - (innerWidth <= 520 ? 6 : 7),
+        safeBottom: parseFloat(getComputedStyle(footer).paddingBottom) - (innerWidth <= 520 ? 6 : 8),
         actionsScroll: { scrollWidth: actions.scrollWidth, clientWidth: actions.clientWidth },
         viewportFooter: window.HGViewport?.footerHeight,
       };
