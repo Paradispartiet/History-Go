@@ -23,9 +23,34 @@ jobs:
         run: |
           npm run audit:people-profile-canonical
           npm run test:people-profile-canonical
-      - name: People reference and image checks
-        run: |
-          npm run audit:people-of-places
-          npm run people:images:audit
+      - name: People reference validity
+        run: npm run audit:people-of-places
+      - name: Global image backlog (diagnostic, does not approve VG portraits)
+        continue-on-error: true
+        run: npm run people:images:audit
       - name: Verify derived place surface
         run: npm run place-open:check
+      - name: Find licensed Gard and Hanne portrait candidates, without approving them
+        run: |
+          npm run people:images:candidates -- --ids=gard_steiro,hanne_skartveit --limit=2 --max-candidates-per-person=3
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const a = JSON.parse(fs.readFileSync('data/people/people_image_candidates.json', 'utf8'));
+          const allowed = new Set(['gard_steiro','hanne_skartveit']);
+          if (!Array.isArray(a) || a.some(x => !allowed.has(x.personId) || x.approved !== false)) {
+            throw new Error('Unexpected candidate IDs or auto-approval');
+          }
+          console.log('Unapproved source candidates:', a.length);
+          console.log(JSON.stringify(a.map(x=>({
+            personId:x.personId,candidateId:x.candidateId,commonsFileName:x.commonsFileName,
+            sourcePage:x.sourcePage,creator:x.creator,license:x.license,licenseUrl:x.licenseUrl,
+            identity:x.identity,quality:x.quality?.analysisStatus
+          })),null,2));
+          NODE
+      - name: Keep candidate evidence as workflow artifact only
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vg-people-portrait-candidates
+          path: data/people/people_image_candidates.json
+          retention-days: 14
