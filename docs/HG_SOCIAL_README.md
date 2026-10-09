@@ -332,7 +332,7 @@ Vil du gjøre en felles observasjon her?
 Vil du møtes rundt dette temaet?
 ```
 
-Ingen fritekstchat i v1.
+Ingen fritekstchat i v1-invitasjonene. Etter akseptert møte kan privat AHA-chat åpnes gjennom den avgrensede utvidelsen dokumentert i `HG_SOCIAL_MEET_DIRECT_CHAT_EXTENSION_V1.md`.
 
 ## 12. Backend-krav før ekte sosial discovery
 
@@ -457,7 +457,7 @@ Teknisk docs/kode: HG Social / HG Spotmeeting
 
 Ikke legg til:
 
-- fri chat;
+- åpen fri chat med fremmede;
 - live kart over folk;
 - nearby users;
 - follower/following;
@@ -468,3 +468,7 @@ Ikke legg til:
 - sosial scoring som offentlig popularitet.
 
 Først må Social Meet være ryddig, personverntrygt og forståelig som en kunnskapsbasert møtefunksjon.
+
+## Utvidelse 9. oktober 2026: privat chat etter møteaksept
+
+Social Meet kan nå vise `Privat chat` etter en reell, godkjent møteinvitasjon (eller fullført møte), med autentisering og RLS. Meldingsinnhold og vennskap eies av AHA; History Go leverer bare bekreftet møteadgang og sikkerhetssperrer. Ingen demo-møter, tilfeldig personmatching, stedshistorikk eller uoppfordrede meldinger gir slik adgang. Se `HG_SOCIAL_MEET_DIRECT_CHAT_EXTENSION_V1.md`.
