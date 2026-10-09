@@ -1,0 +1,30 @@
+name: Gråbein real-browser visual QA (temporary)
+on:
+  push:
+    branches:
+      - place/museumsleiligheten-grabein-production-20261009
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Gråbein desktop and mobile PlaceCard
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v chromium)"
+          export CHROME_BIN
+          node scripts/tmp-grabein-two-collection-qa.mjs
+      - name: QA screenshot artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: grabein-visual-closeout
+          path: grabein-two-collections-*.png
+          if-no-files-found: ignore
