@@ -147,3 +147,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-
     grid-template-rows:auto !important;
   }
 }
+
+/* In the canonical direct Place Sheet, the legacy 100%-height tiles
+   must not size their flex column. Collection rows use their content
+   height; the remaining space belongs to the alignment of Events/Møtes. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid > .pc-side-stack{
+  height:auto !important;
+  min-height:0 !important;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad{
+  height:auto !important;
+  min-height:0 !important;
+  align-content:start;
+}
