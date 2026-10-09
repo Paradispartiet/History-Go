@@ -60,3 +60,13 @@
 4. **PlaceCard / QuizCard:** Få source-/bilde-/periodestatus per People, Objects, Brands og Productions. Bruk bare virkelig `PASS`-samlinger. Revider eksisterende seks quizsett i eget quizløp før dedikert QuizCard. Foreta full Chromium desktop/mobil- og Safari-review til slutt.
 
 **Denne fasen erklærer ikke samlingene, quiz, kronologi i runtime eller kvalitetspoeng som godkjent.**
+
+## Materialisert fase 2 – 2026-10-09
+
+Faktisk canonical v4.2.1-pakke er nå `data/places/production/vg_huset.json`: 18 verified claims, setningsdekning for `desc` og `popupDesc`, og ti foreløpige quiz-readiness-spørsmål. De er ikke erstatning for separate quizsett.
+
+Sju stedsspesifikke tidsankere er generert fra påstandsbanken: **1944, 1994, 1995, 2000, 2011, 2014, 2024**. 1945 er beholdt som kontekst for VGs grunnleggelse, ikke et nytt tidsanker for dagens bygning.
+
+Kildedata og de tre avledede filene `data/places/places_index.json`, `data/runtime/place-open/vg_huset.json` og `data/epoker/epoke-place-index.json` ble synkronisert i [canonical generator #37984544966](https://github.com/Paradispartiet/History-Go/actions/runs/37984544966) (PASS). Full v4.2.1-beskrivelsesvalidering av 184 pakker ga 0 blokkerende feil. Generatoren ble etterfulgt av fjerning av midlertidig workflow.
+
+Denne statusen gjelder bare den kildebelagte factuality-/kronologifasen. PlaceCard-samlinger, QuizCard/egen quizrevisjon, V3 workflow og full visuell closeout mangler fortsatt. De foreløpige claim-ID-ene i beslutningstabellen over skal leses som planhistorikk; de faktiske canonical ID-ene finnes i den nye v4.2-filen.
