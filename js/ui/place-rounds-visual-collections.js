@@ -383,6 +383,7 @@
     // handlers bound by place-card.js remain attached to this same DOM node.
     if (people) {
       people.classList.add("pc-title-people");
+      applyCollectionShape(people, BY_ID.get("people"));
       people.setAttribute("role", "button");
       people.setAttribute("tabindex", "0");
       people.setAttribute("aria-label", "Personer");
