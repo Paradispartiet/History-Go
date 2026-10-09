@@ -90,6 +90,13 @@ try {
         front:box(".pc-frontcard"),
         frontImage:box("#pcFrontImage"),
         collectionAspect:getComputedStyle(document.querySelector(".pc-icons-quad")).aspectRatio,
+        typography:{
+          title:parseFloat(getComputedStyle(document.querySelector("#pcTitle")).fontSize),
+          description:parseFloat(getComputedStyle(document.querySelector("#pcDesc")).fontSize),
+          navigation:parseFloat(getComputedStyle(document.querySelector(".pc-sheet-section-nav button")).fontSize),
+          collectionLabel:parseFloat(getComputedStyle(document.querySelector(".pc-collection"),"::after").fontSize),
+          onsiteLabel:parseFloat(getComputedStyle(document.querySelector(".pc-onsite-action-label")).fontSize)
+        },
         rounds:box(".pc-side-stack"),
         competitions:box('[data-collection-id="competitions"]'),
         controls:box("#pcEventsBox"),
@@ -121,6 +128,10 @@ try {
       "Events/Møtes stay within right column at "+width);
     assert.equal(layout.rightDisplay,"flex","right-hand column stretches as flex at "+width);
     assert.equal(layout.collectionAspect,"auto","Place Sheet collections must not reserve legacy 3:4 empty height at "+width);
+    assert.ok(layout.typography.title >= 30 && layout.typography.description >= (width <= 720 ? 16 : 17) &&
+      layout.typography.navigation >= 13 && layout.typography.collectionLabel >= 14 &&
+      layout.typography.onsiteLabel >= (width <= 700 ? 11 : 13),
+      "PlaceCard typography uses the modestly enlarged scale at "+width+": "+JSON.stringify(layout.typography));
     if (width >= 768) {
       assert.ok(Math.abs(layout.front.height - layout.front.width * 4 / 3) <= 2,
         "frontImage must retain its natural 3:4 proportions at "+width+": "+JSON.stringify(layout));
