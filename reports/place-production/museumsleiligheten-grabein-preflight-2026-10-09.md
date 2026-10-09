@@ -40,7 +40,7 @@ Kontrolldato: 2026-10-09. Canonical Place-ID: `museumsleiligheten_grabein`. Sted
 | Stories | BEGRUNNET N/A foreløpig | Ingen uavhengig narrativ utover beboerhistorikk/kronologi bekreftet |
 | Før/etter | BLOCKED | Behov for stedstro historisk bildepar før det kan godkjennes |
 | Nyheter | BEGRUNNET N/A foreløpig | Ikke konstruer samtidige hendelser fra tidligere museumsarrangementer |
-| Lesespor | PASS kildekontroll, UI-QA gjenstår | Bokselskap har førsteutgaven av «Ulvehiet» (1919) direkte lesbar i nettleser. Lokalhistoriewiki beskriver musealiseringen og den senere innredningen. Begge registrert som `link_only` og stedskoblet i canonical Lesespor og runtime. |
+| Lesespor | PASS teknisk og browser-QA, manuell redaksjonell skjermbildekontroll gjenstår | Bokselskap har førsteutgaven av «Ulvehiet» (1919) direkte lesbar i nettleser. Lokalhistoriewiki beskriver musealiseringen og den senere innredningen. Begge registrert som `link_only` og stedskoblet i canonical Lesespor og runtime. |
 | Kilder / Fagverk-lenker | PASS, UI-QA kreves | Navngitte kildehenvisninger i Place-data |
 | Browser, plassering av Rundingene, bilder og mobil | PASS automatisert, manuell visuell kontroll PENDING | Chrome/Playwright på desktop (1440×1000) og mobil (390×844) bestod samling, popup, QuizCard-flip, quizinngang, bildelasting, ingen horisontal overflow og ingen JS-feil. Skjermbildene må fortsatt vurderes manuelt. |
 
@@ -78,7 +78,7 @@ Kilder kontrollert:
 - SNL om Gråbeingårdene: https://snl.no/Gr%C3%A5being%C3%A5rdene
 - Commons om 2022-fotografiet: https://commons.wikimedia.org/wiki/File:T%C3%B8yengata_38_fra_KMS.jpg
 
-**Eiergrense:** Lesespor er publiserbare lenker, ikke en People-person, Object eller Story. Opplysningene om senere møblering betyr at påstander om Bjørklund-familiens spesifikke møbler må avvises. Lesespor er nå teknisk produsert; all annen oppført BLOCKED-status og manuell slutt-QA forblir åpen.
+**Eiergrense:** Lesespor er publiserbare lenker, ikke en People-person, Object eller Story. Opplysningene om senere møblering betyr at påstander om Bjørklund-familiens spesifikke møbler må avvises. Lesespor er nå teknisk produsert og browser-testet; all annen oppført BLOCKED-status og manuell slutt-QA forblir åpen.
 
 ## Canonical kategoriuttrykk — korrigert 9. oktober 2026
 
@@ -96,3 +96,11 @@ Historie-kontrakten for nye/vesentlig reviderte steder krever `historical_events
 - Oslo Museum / Oslobilder, `OB.A6017`: fotograf Rune Aakvik, gårdsinteriør/hage/lekeplass ved Tøyengata 38 i **1993**. https://oslobilder.no/OMU/OB.A6017
 - Oslo Museum / Oslobilder, `OB.F29508`: fotograf Heidi Bakke, kjøkken i Museumsleiligheten Tøyengata 38B i **1996**. https://oslobilder.no/OMU/OB.F29508
 - Begge er relevante kilder for restaurert bruk, men **ikke dokumentasjon på interiøret før 1987**. Verken kamerastandpunktparitet eller publiserbar fotorett er ferdig kontrollert. Ingen av dem materialiseres som `for_na` nå.
+
+## Lesespor — faktisk browser-QA
+
+- Kjøring: https://github.com/Paradispartiet/History-Go/actions/runs/37956426140
+- Desktop 1440 × 1000 og mobil 390 × 844: **PASS**. `HGPlacePopupTabs.resolveLesespor` returnerer begge stedskoblede oppføringene; de rendres i den faktiske synlige `[data-place-panel="reading"]`-flaten, med nøyaktig to kort.
+- Begge eksterne lenker er korrekt `https`-koblet, den litterære kildeavgrensningen («ikke som dokumentasjon») vises, horisontalt overløp er 0 px, og ingen JavaScript-feil ble registrert.
+- QA avdekket ingen produktfeil: første test søkte etter gammel `#hg-place-panel-reading`-ID. Aktuell app bruker `[data-place-panel="reading"]`, og den kontrakttro testen bestod uten endring i produksjonskode.
+- Samlingen er fortsatt **ikke** en erstatning for historiske Objects, Brand eller People, og manuell visuell vurdering av PlaceCard er ikke signert.
