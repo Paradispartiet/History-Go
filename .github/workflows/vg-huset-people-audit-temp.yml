@@ -39,6 +39,8 @@ jobs:
           const changed = execFileSync('git',['status','--porcelain','--untracked-files=all'],{encoding:'utf8'})
             .trimEnd().split(/\r?\n/u).filter(Boolean).map(line=>line.slice(3));
           const allowed = x => x === 'data/runtime/people-all.json'
+            || x === 'reports/people-of-places-status.json'
+            || x === 'reports/people-of-places-status.md'
             || x === 'data/runtime/place-open/vg_huset.json'
             || /^data\/runtime\/people-all\/part-\d{3}\.json$/u.test(x);
           console.log('Actual generated changes:',changed);
@@ -47,7 +49,7 @@ jobs:
           NODE
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/runtime/people-all data/runtime/people-all.json data/runtime/place-open/vg_huset.json
+          git add data/runtime/people-all data/runtime/people-all.json data/runtime/place-open/vg_huset.json reports/people-of-places-status.json reports/people-of-places-status.md
           if ! git diff --cached --quiet; then
             git commit -m "chore(vg-huset): sync People runtime shards after verified profile correction"
             git push origin HEAD:agent/vg-huset-source-preflight-20261009
