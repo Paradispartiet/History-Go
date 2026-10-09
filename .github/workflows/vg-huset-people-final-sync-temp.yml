@@ -1,0 +1,64 @@
+name: VG-huset final People v1 sync (temporary)
+on:
+  push:
+    branches: [agent/vg-huset-source-preflight-20261009]
+    paths: ['.github/workflows/vg-huset-people-final-sync-temp.yml']
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Verify factuality and profile contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run audit:people-profile-canonical
+          npm run test:people-profile-canonical
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const p=JSON.parse(fs.readFileSync('data/people/media/oslo/people_media_oslo.json','utf8'));
+          for(const id of ['gard_steiro','hanne_skartveit']){
+            const person=p.find(x=>x.id===id);
+            const claims=JSON.parse(fs.readFileSync(person.claimsFile,'utf8'));
+            if(person.profileStatus!=='ready_people_v1'||claims.completion.current_status!=='ready_people_v1')throw new Error('Profile not complete for '+id);
+            if(!fs.existsSync(person.image)||!person.imageMeta?.license||!person.imageMeta?.creator)throw new Error('Portrait missing for '+id);
+            if(claims.claims.some(x=>x.status!=='verified'))throw new Error('Unverified claims '+id);
+            console.log('Complete source-backed person:',id,claims.claims.length,person.image);
+          }
+          NODE
+      - name: Synchronize current people runtime and provenance audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run place-open:build
+          npm run place-open:check
+          npm run audit:people-of-places
+          node --input-type=module <<'NODE'
+          import {execFileSync} from 'node:child_process';
+          const files=execFileSync('git',['status','--porcelain','--untracked-files=all'],{encoding:'utf8'}).trimEnd().split(/\r?\n/u).filter(Boolean).map(x=>x.slice(3));
+          const allowed=x=>/^data\/runtime\/people-all\/part-\d{3}\.json$/u.test(x)
+            || x==='data/runtime/people-all.json'
+            || x==='data/runtime/place-open/vg_huset.json'
+            || x==='reports/people-of-places-status.json'
+            || x==='reports/people-of-places-status.md';
+          console.log('Changed derived assets:',files);
+          if(files.some(x=>!allowed(x)))throw new Error('Unexpected output outside reviewed VG people scope');
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/runtime/people-all data/runtime/people-all.json data/runtime/place-open/vg_huset.json
+          git add reports/people-of-places-status.json reports/people-of-places-status.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(vg-huset): sync finished Gard and Hanne People profiles into runtime"
+            git push origin HEAD:agent/vg-huset-source-preflight-20261009
+          fi
