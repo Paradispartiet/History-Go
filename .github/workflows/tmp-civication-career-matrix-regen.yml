@@ -1,0 +1,50 @@
+name: Temporary Civication career matrix regeneration
+
+on:
+  push:
+    branches:
+      - codex/civication-career-matrix-regenerate-20261009
+    paths:
+      - .github/workflows/tmp-civication-career-matrix-regen.yml
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate-and-remove-workflow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - name: Diagnose and deterministically regenerate stale career matrix
+        run: |
+          set -euo pipefail
+          if node scripts/audit-civication-career-gameplay.mjs --check; then
+            echo "Matrix and report already current"
+          else
+            echo "The canonical --check failed; regenerate with the existing generator"
+            node scripts/audit-civication-career-gameplay.mjs --write
+          fi
+          node scripts/audit-civication-career-gameplay.mjs --check
+          git diff --stat
+          git diff --name-only | sort > /tmp/generated-paths.txt
+          cat /tmp/generated-paths.txt
+          if grep -Ev '^(data/Civication/careerGameplayMatrix.json|reports/civication-career-gameplay-matrix.md)$' /tmp/generated-paths.txt; then
+            echo "Unexpected generated changes" >&2
+            exit 1
+          fi
+      - name: Remove temporary workflow and commit only regenerated artifacts
+        run: |
+          set -euo pipefail
+          rm .github/workflows/tmp-civication-career-matrix-regen.yml
+          git add -- data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md .github/workflows/tmp-civication-career-matrix-regen.yml
+          git diff --cached --name-only | sort
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "build(civication): synchronize canonical career matrix and report"
+          git push origin HEAD:codex/civication-career-matrix-regenerate-20261009
