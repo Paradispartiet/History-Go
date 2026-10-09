@@ -103,13 +103,6 @@ try {
         horizontalOverflow:document.documentElement.scrollWidth > innerWidth + 1
       };
     });
-    if (width === 768) {
-      const debug=await page.evaluate(() => Object.fromEntries([".pc-frontcard", ".pc-side-stack", ".pc-icons-quad", ".pc-sheet-explore-grid", ".pc-sheet-hero-media"].map(sel=>{
-        const el=document.querySelector(sel), c=getComputedStyle(el), b=el.getBoundingClientRect();
-        return [sel,{width:b.width,height:b.height,display:c.display,aspectRatio:c.aspectRatio,heightCss:c.height,minHeight:c.minHeight,gridTemplateRows:c.gridTemplateRows,gridTemplateColumns:c.gridTemplateColumns,flex:c.flex,alignSelf:c.alignSelf}];
-      })));
-      console.log("PLACE_SHEET_768_DIAGNOSTIC", JSON.stringify({layout,debug}));
-    }
     assert.equal(layout.outsideNav,true,"Events/Møtes must be outside horizontal nav at "+width);
     assert.equal(layout.count,1,"One canonical on-site surface at "+width);
     assert.equal(layout.parentClass,"pc-sheet-explore-grid","Events/Møtes belong to right-hand grid at "+width);

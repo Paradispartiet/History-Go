@@ -133,3 +133,27 @@ Den faktiske Chrome-skjermbildet av 2-samlings-PlaceCard viste at den originale 
 - Uavklarte kategorigater: People (Ole Olsen uten komplett canonical mediereview), Objects (udokumentert enkeltgjenstandsproveniens), Før/etter (mangler verifisert historisk bildepar). Oslo Byfornyelse er fortsatt en kandidat, ikke publisert som Brand.
 
 **Produksjonsbeslutning:** Behold `draft` og `production_status` ufullstendig inntil de manglende gates er riktig dokumentert/godkjent og visuell PlaceCard-QA er godkjent. Grønn CI for dokumenter/data er ikke ekvivalent med full stedsproduksjon.
+
+## Tilleggsrevisjon av kilder og visuell closeout — 9. oktober 2026
+
+### Bjørklund-familien: navngitte kandidater, men usikker leilighetsidentifikasjon
+
+Enerhaugen, Grønland og Tøyen historielags artikkel «Museumsleiligheten på Tøyen» er skrevet av Marte Marie Ofstad, som oppgir at hun arbeider som formidler ved Oslo Museum. Hun navngir Johan Aronson Bjørklund (f. 1855), Marie Sofie (f. 1853), døtrene Ester Marie, Eline (Ellen) Marie, Borghild Konstanse og Anna Margrete, samt sønnen Johan Artur Gottfried. Artikkelen beskriver dessuten at Bjørklund og Engebretsen var knyttet til to leiligheter i andre etasje; **hvilken familie som bodde i akkurat hvilken leilighet er ikke sikkert kjent**, og museet valgte å formidle én av leilighetene som Bjørklund-familiens hjem. Dette er en vesentlig presisering av den mer kategoriske formuleringen på Oslo Museums korte besøkside. Navnelisten må kontrolleres mot primærkilder før individuelle People-profiler materialiseres. Ingen personportretter er kilde-/rettighetsklarert for kanonisk bruk. **People forblir BLOCKED**, nå med konkrete, navngitte kandidater og eksplisitt identitetsforbehold.
+
+Kilder: https://egt-historielag.no/informasjon/nyheter/vis/?ID=22174&T=Museumsleiligheten+p%C3%A5+T%C3%B8yen&af=1 ; https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/ .
+
+### Objects: materiell dokumentasjon kontra opprinnelig proveniens
+
+Den samme artikkelen og Lokalhistoriewiki oppgir at Oslo Byfornyelse tilbakeførte og innredet museumsleiligheten med tidstypiske møbler i samarbeid med kunsthistoriker Truls Aslaksby; dette er **ikke** en dokumentert beholdning av Bjørklund-familiens eiendeler. Museets egen publikasjon viser blant annet seng, kommode og vaskemiljø. Oslo Museums fotografiske arkiv beskriver interiør og gjenstander i 1995/1996 (OB.A6767, OB.F29508, OB.F29511 og OB.F29512), men dokumenterer ikke for hvert konkret Object inventarnummer, opphav/eierrekke eller godkjente medlemsbilder for lokal publisering. **Objects forblir BLOCKED**, og eventuelle objekter skal beskrives som del av museets periodeinteriør, ikke som autentiske Bjørklund-gjenstander, dersom de senere godkjennes.
+
+Kilder: https://lokalhistoriewiki.no/wiki/Museumsleilighet_i_T%C3%B8yengata ; https://oslobilder.no/OMU/OB.A6767 ; https://oslobilder.no/OMU/OB.F29508 ; https://www.oslobilder.no/OMU/OB.F29511 ; https://www.oslobilder.no/OMU/OB.F29512 .
+
+### Før/etter: bildenes dato og motiv er avgjørende
+
+Oslo byarkivs bilde A-10003/Ub/0001/099 («Gråbein Okt - 87») viser en oppusset bakgård i 1987, ikke et dokumentert førbilde av interiøret før tilbakeføringen. Interiørfotoene fra 1995 og 1996 er også **etter** musealiseringen. De gir historiske etterbilder og kildehenvisninger, men ingen verifisert stedstro før/etter-paritet med dagens interiør eller samme eksteriørstandpunkt. **Før/etter forblir BLOCKED** inntil både motiv- og rettighetskontroll av et sammenlignbart bildepar er fullført.
+
+Kilde: https://www.oslobilder.no/BAR/A-10003/Ub/0001/099 .
+
+### Verifisert UI-status
+
+Etter merge av nyere `main` og utbedring av den gamle fire-raders reserveringen i Place Sheet bestod 18 av 18 PR-workflows på head `a2e933285dd921c01d0e7d6c10e2b92b6a48b1cf`, inkludert `Place Sheet final acceptance`. Nettleserartefakten `grabein-visual-closeout` fra https://github.com/Paradispartiet/History-Go/actions/runs/37982416951 viser faktisk sted på desktop og mobil med to kildebårne samlinger og Events/Møtes i høyre mediekolonne. Sluttgjennomgangen markerer fortsatt visuell finjustering av Oslo Museum-logoens aktive SVG-preview og vertikal scrolling i små viewport som reviewpunkter; automatisert grønn test alene er ikke redaksjonell sluttgodkjenning. Ingen manglende kildeport settes til PASS, og `production_status` skal forbli ufullstendig.
