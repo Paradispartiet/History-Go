@@ -236,9 +236,10 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
    columns, so the unused rows otherwise stretch the portrait itself.
    Keep the existing column/row gaps, but size only the occupied rows.
    Events/Møtes can then align with the natural 3:4 frontImage bottom. */
-body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad{
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-hero-media > .pc-sheet-explore-grid .pc-icons-quad{
   aspect-ratio:auto;
-  grid-template-rows:none;
+  /* Override the legacy count-specific minmax(190px) rows loaded later. */
+  grid-template-rows:none !important;
 }
 
 /* Place Sheet: Events and Møtes belong BELOW the collection tiles in the
