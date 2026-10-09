@@ -73,7 +73,7 @@ try{
     const pieces=[];
     for(const node of title?.childNodes||[]){
       if(node.nodeType!==Node.TEXT_NODE)continue;
-      const words=node.textContent.match(/\\S+/g)||[];
+      const words=node.textContent.match(/\S+/g)||[];
       let start=0;
       for(const word of words){
         const at=node.textContent.indexOf(word,start);const range=new Range();range.setStart(node,at);range.setEnd(node,at+word.length);
