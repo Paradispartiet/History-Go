@@ -41,8 +41,10 @@ try {
   const verify = async (category, expectedShapes) => {
     await page.goto(`http://127.0.0.1:${port}/__audit__/fullness.html?category=${category}`, { waitUntil:"networkidle" });
     await page.waitForFunction(() => window.__ready === true);
-    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), 4, category);
-    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), "4", category);
+    assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(), expectedShapes.length, category);
+    assert.equal(await page.locator(".pc-icons-quad").getAttribute("data-collection-count"), String(expectedShapes.length), category);
+    assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon").count(), 1, category);
+    assert.equal(await page.locator(".pc-icons-quad > #pcPeopleIcon").count(), 0, category);
     assert.deepEqual(await page.locator(".pc-icons-quad .pc-round:not([hidden])").evaluateAll(nodes => nodes.sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(node => node.dataset.collectionShape)), expectedShapes, category);
     const cells = await page.locator(".pc-icons-quad .pc-round:not([hidden])").evaluateAll(nodes => nodes.sort((a,b) => Number(a.style.order) - Number(b.style.order)).map(node => { const r=node.getBoundingClientRect(); return { x:r.x, y:r.y, w:r.width, h:r.height }; }));
     assert.equal(new Set(cells.map(cell => Math.round(cell.y))).size, 2, category);
@@ -75,10 +77,10 @@ try {
     assert.equal(await page.locator("#pcQuiz").isVisible(), true, category);
     assert.match(await page.locator(".pc-card-face-front").evaluate(node => getComputedStyle(node, "::before").content), /HISTORY GO/, category);
   };
-  for (const category of ordinaryCategories) await verify(category, ["circle", "rectangle", "rectangle", "rectangle"]);
+  for (const category of ordinaryCategories) await verify(category, ["rectangle", "rectangle", "rectangle"]);
   await verify("natur", ["circle", "circle", "rectangle", "rectangle"]);
   await page.setViewportSize({ width:390, height:844 });
-  await verify("by", ["circle", "rectangle", "rectangle", "rectangle"]);
+  await verify("by", ["rectangle", "rectangle", "rectangle"]);
   await verify("natur", ["circle", "circle", "rectangle", "rectangle"]);
   assert.equal(await page.evaluate(() => window.__error || null), null);
   console.log("PlaceCard full-grid all-category browser audit OK");

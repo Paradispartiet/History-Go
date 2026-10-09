@@ -4,6 +4,9 @@ on:
     paths:
       - 'data/quiz/media/aftenposten_akersgata_sets.json'
       - '.github/workflows/aftenposten-quiz-browser-temporary.yml'
+concurrency:
+  group: aftenposten-quiz-browser-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:

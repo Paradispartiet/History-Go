@@ -39,6 +39,7 @@ function makeRuntime() {
   windows.add(dom.window);
   const related = place.related_place_ids.map(id => ({ id, name: id.replaceAll("_", " ") }));
   dom.window.PLACES = [place, ...related];
+  dom.window.getPeopleForPlace = () => [{ id:"wenche_gulbransen", name:"Wenche Gulbransen" }];
   dom.window.eval(runtime);
   dom.window.document.dispatchEvent(new dom.window.Event("DOMContentLoaded", { bubbles: true }));
   return dom.window;
@@ -77,7 +78,10 @@ test("runtime renders the v2 profile as a full 2 × 2 PlaceCard with prominent Q
   assert.deepEqual(ids, ["people", "objects", "brands", "related"]);
   assert.equal(window.HGPlaceCardCollections.getProfileSource(place), "place_card_profile_v2");
   const grid = window.document.querySelector(".pc-icons-quad");
-  assert.equal(grid.dataset.collectionCount, "4");
+  assert.equal(grid.dataset.collectionCount, "3");
+  assert.equal(window.document.querySelector(".pc-title-row > #pcPeopleIcon")?.hidden, false,
+    "People circle moved beside the badge on the landscape header");
+  assert.equal(window.document.getElementById("pcPeopleIcon").nextElementSibling?.id, "pcBadgesIcon");
   assert.equal(grid.dataset.collectionProfileSource, "place_card_profile_v2");
   assert.equal(window.document.getElementById("pcPeopleIcon").dataset.collectionShape, "circle");
   assert.equal(window.document.getElementById("pcObjectsIcon").dataset.collectionShape, "rectangle");
