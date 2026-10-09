@@ -151,7 +151,7 @@ function ensureStylesheet(): void {
   if (document.querySelector('link[data-hg-place-sheet-reading-style="1"]')) return;
   const link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "css/place-sheet-reading.css";
+  link.href = "css/place-sheet-reading.css?v=20261009-type-scale1";
   link.setAttribute("data-hg-place-sheet-reading-style", "1");
   document.head.appendChild(link);
 }
