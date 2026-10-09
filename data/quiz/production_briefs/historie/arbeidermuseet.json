@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0",
+  "categoryId": "historie",
+  "targetId": "arbeidermuseet",
+  "scope": "place",
+  "status": "reviewed",
+  "reviewed_at": "2026-10-09",
+  "review_note": "History-first sources: Oslo Museum, Oslo byleksikon. Distinguish Sagveien 28 museum/apotek/gender hostel from separately addressed factories and worker flat Brenna at Sagveien 8. First two sets are 14 normal factual questions. Claims and source notes independently checked 2026-10-09; site records guide but never substitute for external sources.",
+  "sources": {
+    "museum": {
+      "url": "https://www.oslomuseum.no/besok-oss/arbeidermuseet/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Offisiell museumsadresse Sagveien 28, museum i eldre fabrikkmiljø, Sagenevandring og historisk arbeiderbolig."
+    },
+    "museum_exhibition": {
+      "url": "https://www.oslomuseum.no/hva-skjer/fabrikkjenter-og-industriherrer/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Fast utstilling, 1840-tallets industrielle omveltning, tekstilfabrikker, kvinner i industrien og formidlingsform. Dagens utstillingsstatus kan endres."
+    },
+    "museum_walk": {
+      "url": "https://www.oslomuseum.no/hva-skjer/sagenevandring/",
+      "source_type": "institutional",
+      "review_status": "reviewed",
+      "review_note": "Offisiell Sagenevandring, arbeiderleiligheten Brenna i Sagveien 8, hus fra 1848, Knud Graah, forskjell museumsbygg og museumsleilighet."
+    },
+    "by_museum": {
+      "url": "https://oslobyleksikon.no/side/Arbeidermuseet",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Museet åpnet juni 2013, Oslo Museum, apotekgården fra 1869/70, Sagveien 8-Brenna, Beierbrua, fabrikkene, 1924–1940 og brannen i 1943."
+    },
+    "by_apotek": {
+      "url": "https://oslobyleksikon.no/side/Falken_apotek",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Lindgaards apotek 1867 Sagveien 26, murbygning 1870 Sagveien 28, apotek i første og familiebolig i andre, laboratorium og lokal legemiddelproduksjon, flyttingen senere."
+    },
+    "by_sagveien": {
+      "url": "https://oslobyleksikon.no/side/Sagveien",
+      "source_type": "reference",
+      "review_status": "reviewed",
+      "review_note": "Historisk Sagveien: Hjula 23, apotek 28 og herberget rundt 1924–1940."
+    }
+  },
+  "selected_curriculum": {
+    "module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_spor_materialitet",
+      "em_his_minnesteder_historiebruk",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ]
+  },
+  "profile_decision": {
+    "profile": "normal",
+    "set_count": 4,
+    "questions_per_set": 7,
+    "justification": "Four independent historical learning jobs supported by sources: museum/apotekergård; Sagene's textile development; women/workers and housing; document-based reading of the site and its historic layers."
+  },
+  "existing_quiz_audit": {
+    "searched_paths": [
+      "data/quiz/manifest.json",
+      "data/quiz/historie/arbeidermuseet_sets.json",
+      "data/quiz/production_briefs/historie/arbeidermuseet.json",
+      "git tree main recursive Arbeidermuseet name variants",
+      "reports/quiz-place-coverage-2026-10-08.csv"
+    ],
+    "active_before": {
+      "categoryId": null,
+      "set_count": 0,
+      "question_count": 0
+    },
+    "decisions": [
+      "Current quiz manifest has no arbeidermuseet target or obvious renamed quiz; old snapshot lists 0 records.",
+      "Do not treat Vøien, Hjula, Brenna, and Arbeidermuseet as one physical building; separate identities remain.",
+      "Do not use date 2013 as date for local industrialisation or the 1870 building."
+    ],
+    "knowledge_migration": {
+      "status": "not_applicable",
+      "reason": "No canonical or legacy Arbeidermuseet quiz to migrate."
+    }
+  },
+  "held_back_candidates": [
+    "Exact permanent exhibition membership may change; questions concern documented exhibition's historical content not temporary visitor information.",
+    "Oslo Museum's worker-share 70% is framed as the textile factories treated by that exhibit, not as a universal share in all Norwegian industry.",
+    "Distinguish different years: 1848 Brenna; 1870 apothecary; 1920 recreated flat period; 2013 museum opening.",
+    "Do not assign 1943 fire to the neighboring textile mills.",
+    "Do not claim the museum building itself housed Vøiens spinneri or Hjula weaving."
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_arbeidermuseet_01",
+      "order": 1,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arbeidermuseet holder til i Sagveien 28 på Sagene.",
+      "source_ids": [
+        "museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_02",
+      "order": 2,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arbeidermuseet er del av Oslo Museum.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_03",
+      "order": 3,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arbeidermuseet åpnet i juni 2013.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_04",
+      "order": 4,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Arbeidermuseet viser industri- og arbeiderhistorie fra Akerselva.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_05",
+      "order": 5,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Bygningen som i dag huser Arbeidermuseet ble oppført som apotekergård.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_06",
+      "order": 6,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Apotekergården i Sagveien 28 stod ferdig i 1870.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_07",
+      "order": 7,
+      "planned_phase": "opening",
+      "family": "fact",
+      "statement": "Apoteker Jens Nicolai Lindgaard fikk oppført murbygningen i Sagveien 28.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_08",
+      "order": 8,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Falken apotek åpnet i en trebygning i Sagveien 26 i 1867.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_09",
+      "order": 9,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Apotekgården i Sagveien 28 hadde apotek i første etasje og apotekerfamilienes bolig i andre.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_10",
+      "order": 10,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Ved Falken apotek i Sagveien 28 ble de fleste medisinene tilvirket på stedet.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_spor_materialitet"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_11",
+      "order": 11,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Fra midten av 1840-årene vokste norsk tekstilindustri langs Akerselva.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_12",
+      "order": 12,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Tidlige norske tekstilfabrikker ble etablert på Sagene og i Nydalen.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_13",
+      "order": 13,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Vøiens Bomuldsspinderi og Hjula Væverier ligger på hver sin side av plassen ved Arbeidermuseet.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_14",
+      "order": 14,
+      "planned_phase": "middle",
+      "family": "fact",
+      "statement": "Beierbrua ligger ved Arbeidermuseet mellom de tidligere fabrikkene.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_15",
+      "order": 15,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museets faste utstilling oppgir at rundt 70 prosent av arbeiderne i de omtalte tekstilfabrikkene var kvinner.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_16",
+      "order": 16,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Knud Graah var den sentrale fabrikkeieren bak Vøiens Bomuldsspinderi.",
+      "source_ids": [
+        "museum_walk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_17",
+      "order": 17,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brenna i Sagveien 8 ble oppført som bolig for fabrikkarbeidere.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_18",
+      "order": 18,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Brenna i Sagveien 8 ble oppført i 1848.",
+      "source_ids": [
+        "museum_walk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_19",
+      "order": 19,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Museumsleiligheten Brenna er innredet som en arbeiderleilighet kan ha sett ut rundt 1920.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_20",
+      "order": 20,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Apotekgården i Sagveien 28 huset Nanna Storjohanns Minde i perioden ca. 1924–1940.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_21",
+      "order": 21,
+      "planned_phase": "bridge",
+      "family": "context",
+      "statement": "Kvinneherberget Nanna Storjohanns Minde ble drevet av Hvitebånds-foreningen.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_sosialhistorie_hverdagsliv"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_22",
+      "order": 22,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Det var brann i den senere museumsbygningen i Sagveien 28 i 1943.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_23",
+      "order": 23,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Utstillingen Fabrikkjenter og industriherrer løfter fram fire virkelige personers erfaringer fra industri- og arbeiderlivet.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_minnesteder_historiebruk"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_24",
+      "order": 24,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Museet åpnet i 2013 i et eldre hus fra 1870; de to årstallene gjelder ulike hendelser.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_historiske_lag_i_byrom"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_25",
+      "order": 25,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Museet bruker historiske fortellinger som må kunne sammenholdes med selvstendige dokumenter, fotografier og andre arbeiderkilder.",
+      "source_ids": [
+        "museum_exhibition"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_26",
+      "order": 26,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Museets arbeiderleilighet Brenna i Sagveien 8 er en annen bygning enn Arbeidermuseet i apotekgården Sagveien 28.",
+      "source_ids": [
+        "museum_walk"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kulturminner_bevaring"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_27",
+      "order": 27,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Bygningens 1870-datering og apotekhistorie kan kontrolleres mot daterte adresse- og byggekilder.",
+      "source_ids": [
+        "by_apotek"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    },
+    {
+      "claim_id": "claim_arbeidermuseet_28",
+      "order": 28,
+      "planned_phase": "final",
+      "family": "concept_theory",
+      "statement": "Sagveien 28 hadde ulike historiske funksjoner som apotek, kvinneherberge og fra 2013 museum.",
+      "source_ids": [
+        "by_museum"
+      ],
+      "source_origin": "external",
+      "emne_id": "em_his_kildekritikk_arkiv_spor"
+    }
+  ]
+}

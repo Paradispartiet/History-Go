@@ -1,0 +1,1168 @@
+{
+  "targetId": "arbeidermuseet",
+  "categoryId": "historie",
+  "sources": {
+    "museum": "https://www.oslomuseum.no/besok-oss/arbeidermuseet/",
+    "museum_exhibition": "https://www.oslomuseum.no/hva-skjer/fabrikkjenter-og-industriherrer/",
+    "museum_walk": "https://www.oslomuseum.no/hva-skjer/sagenevandring/",
+    "by_museum": "https://oslobyleksikon.no/side/Arbeidermuseet",
+    "by_apotek": "https://oslobyleksikon.no/side/Falken_apotek",
+    "by_sagveien": "https://oslobyleksikon.no/side/Sagveien"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/arbeidermuseet.json",
+    "context_artifact": "data/quiz/production_context/historie/arbeidermuseet.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_historiske_lag_i_byrom",
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_spor_materialitet",
+      "em_his_minnesteder_historiebruk",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_kulturminner_bevaring"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/arbeidermuseet_sets.json",
+        "data/quiz/production_briefs/historie/arbeidermuseet.json",
+        "git tree main recursive Arbeidermuseet name variants",
+        "reports/quiz-place-coverage-2026-10-08.csv"
+      ],
+      "active_before": {
+        "categoryId": null,
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Current quiz manifest has no arbeidermuseet target or obvious renamed quiz; old snapshot lists 0 records.",
+        "Do not treat Vøien, Hjula, Brenna, and Arbeidermuseet as one physical building; separate identities remain.",
+        "Do not use date 2013 as date for local industrialisation or the 1870 building."
+      ],
+      "knowledge_migration": {
+        "status": "not_applicable",
+        "reason": "No canonical or legacy Arbeidermuseet quiz to migrate."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Four independent historical learning jobs supported by sources: museum/apotekergård; Sagene's textile development; women/workers and housing; document-based reading of the site and its historic layers."
+    },
+    "held_back_candidates": [
+      "Exact permanent exhibition membership may change; questions concern documented exhibition's historical content not temporary visitor information.",
+      "Oslo Museum's worker-share 70% is framed as the textile factories treated by that exhibit, not as a universal share in all Norwegian industry.",
+      "Distinguish different years: 1848 Brenna; 1870 apothecary; 1920 recreated flat period; 2013 museum opening.",
+      "Do not assign 1943 fire to the neighboring textile mills.",
+      "Do not claim the museum building itself housed Vøiens spinneri or Hjula weaving."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "historie_arbeidermuseet_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Museet og apotekgården",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "arbeidermuseet_quiz_01",
+          "quiz_id": "historie_arbeidermuseet_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva er Arbeidermuseets besøksadresse?",
+          "options": [
+            "Sagveien 8",
+            "Sagveien 28",
+            "Sagveien 23"
+          ],
+          "answer": "Sagveien 28",
+          "answerIndex": 1,
+          "knowledge": "Museet ligger i den tidligere apotekergården i Sagveien 28 på Sagene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidermuseet holder til i Sagveien 28 på Sagene.",
+          "claim_id": "claim_arbeidermuseet_01",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_museet_ligger_i_den_tidl_a5104e4f47",
+          "knowledge_unit_ids": [
+            "ku_historie_museet_ligger_i_den_tidl_a5104e4f47"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_02",
+          "quiz_id": "historie_arbeidermuseet_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken museumsinstitusjon er Arbeidermuseet en del av?",
+          "options": [
+            "Norsk Teknisk Museum",
+            "Norsk Folkemuseum",
+            "Oslo Museum"
+          ],
+          "answer": "Oslo Museum",
+          "answerIndex": 2,
+          "knowledge": "Arbeidermuseet er en av Oslo Museums besøksarenaer.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidermuseet er del av Oslo Museum.",
+          "claim_id": "claim_arbeidermuseet_02",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_arbeidermuseet_er_en_av__2837c85a11",
+          "knowledge_unit_ids": [
+            "ku_historie_arbeidermuseet_er_en_av__2837c85a11"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_03",
+          "quiz_id": "historie_arbeidermuseet_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Når åpnet Arbeidermuseet for publikum?",
+          "options": [
+            "Juni 2013",
+            "Juni 1995",
+            "Juni 1870"
+          ],
+          "answer": "Juni 2013",
+          "answerIndex": 0,
+          "knowledge": "2013 er museumsinstitusjonens åpningsår, ikke året apotekgården ble bygd eller industrien oppstod.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidermuseet åpnet i juni 2013.",
+          "claim_id": "claim_arbeidermuseet_03",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_2013_er_museumsinstitusj_786b7a835e",
+          "knowledge_unit_ids": [
+            "ku_historie_2013_er_museumsinstitusj_786b7a835e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_04",
+          "quiz_id": "historie_arbeidermuseet_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva er hovedtemaet for Arbeidermuseet?",
+          "options": [
+            "Sjøfart og tollvesen på Vippetangen",
+            "Bondegårder og seterdrift i Nordmarka",
+            "Industri- og arbeiderhistorien langs Akerselva"
+          ],
+          "answer": "Industri- og arbeiderhistorien langs Akerselva",
+          "answerIndex": 2,
+          "knowledge": "Museet formidler hvordan fabrikkarbeid, boligliv og industri preget området langs elva.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Arbeidermuseet viser industri- og arbeiderhistorie fra Akerselva.",
+          "claim_id": "claim_arbeidermuseet_04",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_museet_formidler_hvordan_b08273bfd5",
+          "knowledge_unit_ids": [
+            "ku_historie_museet_formidler_hvordan_b08273bfd5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_05",
+          "quiz_id": "historie_arbeidermuseet_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva ble huset i Sagveien 28 opprinnelig oppført som?",
+          "options": [
+            "Apotekergård",
+            "Tekstilspinneri",
+            "Kommunalt rådhus"
+          ],
+          "answer": "Apotekergård",
+          "answerIndex": 0,
+          "knowledge": "Bygningens eldre bruk viser at den hadde en egen historie før den ble museum.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen som i dag huser Arbeidermuseet ble oppført som apotekergård.",
+          "claim_id": "claim_arbeidermuseet_05",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_bygningens_eldre_bruk_vi_f10076694f",
+          "knowledge_unit_ids": [
+            "ku_historie_bygningens_eldre_bruk_vi_f10076694f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_06",
+          "quiz_id": "historie_arbeidermuseet_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Omtrent hvilket år stod apotekergården i Sagveien 28 ferdig?",
+          "options": [
+            "1848",
+            "1870",
+            "1905"
+          ],
+          "answer": "1870",
+          "answerIndex": 1,
+          "knowledge": "Apotekgården ble oppført i 1869–70 og stod ferdig i 1870.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Apotekergården i Sagveien 28 stod ferdig i 1870.",
+          "claim_id": "claim_arbeidermuseet_06",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_apotekgarden_ble_oppf_rt_83d57b0a8d",
+          "knowledge_unit_ids": [
+            "ku_historie_apotekgarden_ble_oppf_rt_83d57b0a8d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_07",
+          "quiz_id": "historie_arbeidermuseet_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken apoteker stod bak oppføringen av bygget?",
+          "options": [
+            "Knud Graah",
+            "Christiania-kjøpmannen Thorvald Meyer",
+            "Nicolai Lindgaard"
+          ],
+          "answer": "Nicolai Lindgaard",
+          "answerIndex": 2,
+          "knowledge": "Lindgaard fikk bygget et nytt apotek- og bolighus i 1870.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Apoteker Jens Nicolai Lindgaard fikk oppført murbygningen i Sagveien 28.",
+          "claim_id": "claim_arbeidermuseet_07",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_lindgaard_fikk_bygget_et_f6e1f32997",
+          "knowledge_unit_ids": [
+            "ku_historie_lindgaard_fikk_bygget_et_f6e1f32997"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_arbeidermuseet_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "title": "Fabrikker langs Akerselva",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "arbeidermuseet_quiz_08",
+          "quiz_id": "historie_arbeidermuseet_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvor åpnet Lindgaard først apotek på Sagene i 1867?",
+          "options": [
+            "Sagveien 26",
+            "Sagveien 28",
+            "Sagveien 8"
+          ],
+          "answer": "Sagveien 26",
+          "answerIndex": 0,
+          "knowledge": "Det første apoteket lå i en liten trebygning på nr. 26 før flyttingen inn i nabohuset i nr. 28.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Falken apotek åpnet i en trebygning i Sagveien 26 i 1867.",
+          "claim_id": "claim_arbeidermuseet_08",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_det_f_rste_apoteket_la_i_79fc600cc7",
+          "knowledge_unit_ids": [
+            "ku_historie_det_f_rste_apoteket_la_i_79fc600cc7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_09",
+          "quiz_id": "historie_arbeidermuseet_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken bruk hadde etasjene i apotekergården i 1870?",
+          "options": [
+            "Spinneri nede og skole oppe",
+            "Vevsal oppe og fabrikkontor nede",
+            "Apotek nede og familiebolig oppe"
+          ],
+          "answer": "Apotek nede og familiebolig oppe",
+          "answerIndex": 2,
+          "knowledge": "Huset knyttet sammen apotekerens næring og familiens bosted.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Apotekgården i Sagveien 28 hadde apotek i første etasje og apotekerfamilienes bolig i andre.",
+          "claim_id": "claim_arbeidermuseet_09",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_huset_knyttet_sammen_apo_f087a93e89",
+          "knowledge_unit_ids": [
+            "ku_historie_huset_knyttet_sammen_apo_f087a93e89"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_10",
+          "quiz_id": "historie_arbeidermuseet_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva viser apotekets laboratorium og urtebod om medisinproduksjonen på 1800-tallet?",
+          "options": [
+            "All medisin kom ferdig med tog fra utlandet",
+            "Mange medisiner ble laget på stedet",
+            "Apoteket solgte bare ferdige medisiner fra sykehus"
+          ],
+          "answer": "Mange medisiner ble laget på stedet",
+          "answerIndex": 1,
+          "knowledge": "Falken apotek hadde laboratorium, urtebod og materialkammer og produserte mye av medisinene lokalt.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_spor_materialitet",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Ved Falken apotek i Sagveien 28 ble de fleste medisinene tilvirket på stedet.",
+          "claim_id": "claim_arbeidermuseet_10",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_falken_apotek_hadde_labo_c8b32569e3",
+          "knowledge_unit_ids": [
+            "ku_historie_falken_apotek_hadde_labo_c8b32569e3"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_11",
+          "quiz_id": "historie_arbeidermuseet_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Når tok industrialiseringen rundt Akerselva særlig fart?",
+          "options": [
+            "På 1700-tallets begynnelse",
+            "Fra midten av 1840-årene",
+            "Først etter andre verdenskrig"
+          ],
+          "answer": "Fra midten av 1840-årene",
+          "answerIndex": 1,
+          "knowledge": "Akerselva ble et tyngdepunkt i den tidlige norske tekstilindustrien i 1840-årene.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fra midten av 1840-årene vokste norsk tekstilindustri langs Akerselva.",
+          "claim_id": "claim_arbeidermuseet_11",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_akerselva_ble_et_tyngdep_a3c0bc7620",
+          "knowledge_unit_ids": [
+            "ku_historie_akerselva_ble_et_tyngdep_a3c0bc7620"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_12",
+          "quiz_id": "historie_arbeidermuseet_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilke to områder fikk noen av de tidligste norske tekstilfabrikkene?",
+          "options": [
+            "Sagene og Nydalen",
+            "Frogner og Bygdøy",
+            "Ullern og Holmenkollen"
+          ],
+          "answer": "Sagene og Nydalen",
+          "answerIndex": 0,
+          "knowledge": "Museets utstilling trekker fram Sagene og Nydalen som sentre i den tidlige norske tekstilindustrien.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Tidlige norske tekstilfabrikker ble etablert på Sagene og i Nydalen.",
+          "claim_id": "claim_arbeidermuseet_12",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_museets_utstilling_trekk_41c8e73d9a",
+          "knowledge_unit_ids": [
+            "ku_historie_museets_utstilling_trekk_41c8e73d9a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_13",
+          "quiz_id": "historie_arbeidermuseet_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilke fabrikker lå ved plassen foran den senere apotekgården?",
+          "options": [
+            "Akers Mekaniske Verksted og Kværner Brug",
+            "Christiania Spigerverk og Nydalens Compagnie",
+            "Vøiens Bomuldsspinderi og Hjula Væverier"
+          ],
+          "answer": "Vøiens Bomuldsspinderi og Hjula Væverier",
+          "answerIndex": 2,
+          "knowledge": "De historiske tekstilfabrikkene lå på hver sin side av plassen ved det som nå er museet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Vøiens Bomuldsspinderi og Hjula Væverier ligger på hver sin side av plassen ved Arbeidermuseet.",
+          "claim_id": "claim_arbeidermuseet_13",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_de_historiske_tekstilfab_e4b8f045f1",
+          "knowledge_unit_ids": [
+            "ku_historie_de_historiske_tekstilfab_e4b8f045f1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_14",
+          "quiz_id": "historie_arbeidermuseet_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken bro ligger ved Arbeidermuseet i det historiske fabrikkmiljøet?",
+          "options": [
+            "Ankerbrua",
+            "Beierbrua",
+            "Åmot bru"
+          ],
+          "answer": "Beierbrua",
+          "answerIndex": 1,
+          "knowledge": "Beierbrua ligger ved fabrikkmiljøet mellom Vøien og Hjula.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Beierbrua ligger ved Arbeidermuseet mellom de tidligere fabrikkene.",
+          "claim_id": "claim_arbeidermuseet_14",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_beierbrua_ligger_ved_fab_895a40da88",
+          "knowledge_unit_ids": [
+            "ku_historie_beierbrua_ligger_ved_fab_895a40da88"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_arbeidermuseet_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "title": "Fabrikkjenter, boliger og herberge",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "arbeidermuseet_quiz_15",
+          "quiz_id": "historie_arbeidermuseet_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Omtrent hvor stor andel av tekstilarbeiderne oppgir museets utstilling at var kvinner?",
+          "options": [
+            "70 prosent",
+            "30 prosent",
+            "Omtrent 5 prosent"
+          ],
+          "answer": "70 prosent",
+          "answerIndex": 0,
+          "knowledge": "Kvinnenes arbeid er avgjørende for å forstå tekstilindustriens arbeidsdeling; tallet gjelder den historiske industrien som utstillingen omtaler.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museets faste utstilling oppgir at rundt 70 prosent av arbeiderne i de omtalte tekstilfabrikkene var kvinner.",
+          "claim_id": "claim_arbeidermuseet_15",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_kvinnenes_arbeid_er_avgj_8d996633a1",
+          "knowledge_unit_ids": [
+            "ku_historie_kvinnenes_arbeid_er_avgj_8d996633a1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_16",
+          "quiz_id": "historie_arbeidermuseet_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken industrigründer knyttes til Vøiens Bomuldsspinderi ved museet?",
+          "options": [
+            "Nicolai Lindgaard",
+            "Thorvald Løvenskiold",
+            "Knud Graah"
+          ],
+          "answer": "Knud Graah",
+          "answerIndex": 2,
+          "knowledge": "Knud Graah er knyttet til spinneriet på Vøien og arbeiderboligene i Sagveien.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "museum_walk"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Knud Graah var den sentrale fabrikkeieren bak Vøiens Bomuldsspinderi.",
+          "claim_id": "claim_arbeidermuseet_16",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_knud_graah_er_knyttet_ti_510b730eaa",
+          "knowledge_unit_ids": [
+            "ku_historie_knud_graah_er_knyttet_ti_510b730eaa"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_17",
+          "quiz_id": "historie_arbeidermuseet_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva var Brenna, som museet viser fram i Sagveien 8?",
+          "options": [
+            "En tidligere apotekbutikk",
+            "En tidligere arbeiderbolig",
+            "En avstengt fabrikkhall"
+          ],
+          "answer": "En tidligere arbeiderbolig",
+          "answerIndex": 1,
+          "knowledge": "Brenna viser boligforholdene knyttet til fabrikkmiljøet og er ikke den samme bygningen som Arbeidermuseet i nr. 28.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brenna i Sagveien 8 ble oppført som bolig for fabrikkarbeidere.",
+          "claim_id": "claim_arbeidermuseet_17",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_brenna_viser_boligforhol_e83be258ce",
+          "knowledge_unit_ids": [
+            "ku_historie_brenna_viser_boligforhol_e83be258ce"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_18",
+          "quiz_id": "historie_arbeidermuseet_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilket år ble arbeiderboligen Brenna oppført?",
+          "options": [
+            "1870",
+            "1924",
+            "1848"
+          ],
+          "answer": "1848",
+          "answerIndex": 2,
+          "knowledge": "Boligbygningen hører til tidlig industrialisering langs Akerselva.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "museum_walk"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Brenna i Sagveien 8 ble oppført i 1848.",
+          "claim_id": "claim_arbeidermuseet_18",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_boligbygningen_h_rer_til_bf9d3d8f37",
+          "knowledge_unit_ids": [
+            "ku_historie_boligbygningen_h_rer_til_bf9d3d8f37"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_19",
+          "quiz_id": "historie_arbeidermuseet_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken tidsperiode skal museumsleiligheten Brenna illustrere?",
+          "options": [
+            "Omkring 1920",
+            "Omkring 1720",
+            "Omkring 1975"
+          ],
+          "answer": "Omkring 1920",
+          "answerIndex": 0,
+          "knowledge": "Den innredede leiligheten viser en senere fase av arbeidernes boligliv, ikke nødvendigvis hvordan den så ut i byggeåret 1848.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museumsleiligheten Brenna er innredet som en arbeiderleilighet kan ha sett ut rundt 1920.",
+          "claim_id": "claim_arbeidermuseet_19",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_den_innredede_leilighete_5d8a3d7f54",
+          "knowledge_unit_ids": [
+            "ku_historie_den_innredede_leilighete_5d8a3d7f54"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_20",
+          "quiz_id": "historie_arbeidermuseet_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva ble apotekgården brukt til i perioden rundt 1924–1940?",
+          "options": [
+            "Tekstilfabrikk for barn",
+            "Herberge for kvinner",
+            "Politistasjon med arrester"
+          ],
+          "answer": "Herberge for kvinner",
+          "answerIndex": 1,
+          "knowledge": "Nanna Storjohanns Minde tok imot blant annet arbeidssøkende og hjemløse kvinner.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Apotekgården i Sagveien 28 huset Nanna Storjohanns Minde i perioden ca. 1924–1940.",
+          "claim_id": "claim_arbeidermuseet_20",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_nanna_storjohanns_minde__17c6be507c",
+          "knowledge_unit_ids": [
+            "ku_historie_nanna_storjohanns_minde__17c6be507c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_21",
+          "quiz_id": "historie_arbeidermuseet_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken organisasjon drev kvinneherberget Nanna Storjohanns Minde?",
+          "options": [
+            "Norske Kvinners Sanitetsforening",
+            "Det Norske Misjonsselskap",
+            "Hvite Bånd"
+          ],
+          "answer": "Hvite Bånd",
+          "answerIndex": 2,
+          "knowledge": "Hvitebånds-foreningen var en kvinnelig totalavholdsorganisasjon; herberget hadde også avholdskafé.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Kvinneherberget Nanna Storjohanns Minde ble drevet av Hvitebånds-foreningen.",
+          "claim_id": "claim_arbeidermuseet_21",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_hvitebands_foreningen_va_8d000ae45b",
+          "knowledge_unit_ids": [
+            "ku_historie_hvitebands_foreningen_va_8d000ae45b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_arbeidermuseet_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "title": "Historiske spor og kildekritikk",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "arbeidermuseet_quiz_22",
+          "quiz_id": "historie_arbeidermuseet_set_4_q1",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva hendte i bygningen i Sagveien 28 i 1943?",
+          "options": [
+            "Det brøt ut brann",
+            "Den ble revet for en ny gate",
+            "Den ble ombygd til en moderne fabrikk"
+          ],
+          "answer": "Det brøt ut brann",
+          "answerIndex": 0,
+          "knowledge": "En brann i 1943 er en del av byggets historie før det ble museumsbygning.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Det var brann i den senere museumsbygningen i Sagveien 28 i 1943.",
+          "claim_id": "claim_arbeidermuseet_22",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "by_museum"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_en_brann_i_1943_er_en_de_644c1bbb27",
+          "knowledge_unit_ids": [
+            "ku_historie_en_brann_i_1943_er_en_de_644c1bbb27"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_23",
+          "quiz_id": "historie_arbeidermuseet_set_4_q2",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilket grep bruker utstillingen «Fabrikkjenter og industriherrer» for å belyse historien?",
+          "options": [
+            "Bare statistiske diagrammer uten personer",
+            "Fortellingene til fire historiske personer",
+            "Bare historiene til apotekerens familie"
+          ],
+          "answer": "Fortellingene til fire historiske personer",
+          "answerIndex": 1,
+          "knowledge": "Utstillingen bruker stemmer fra blant andre en fabrikkarbeiderske og en agitator for å belyse ulike roller i industrisamfunnet.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Utstillingen Fabrikkjenter og industriherrer løfter fram fire virkelige personers erfaringer fra industri- og arbeiderlivet.",
+          "claim_id": "claim_arbeidermuseet_23",
+          "year": null,
+          "method_id": "met_minneanalyse",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "museum_exhibition"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_utstillingen_bruker_stem_8dc01c88f2",
+          "knowledge_unit_ids": [
+            "ku_historie_utstillingen_bruker_stem_8dc01c88f2"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_24",
+          "quiz_id": "historie_arbeidermuseet_set_4_q3",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva er riktig når vi daterer Arbeidermuseet og bygningen det holder til i?",
+          "options": [
+            "Både museet og huset ble opprettet i 2013",
+            "Museet åpnet i 1870 og startet som spinneri",
+            "Museet åpnet i 2013, mens huset ble bygget i 1870"
+          ],
+          "answer": "Museet åpnet i 2013, mens huset ble bygget i 1870",
+          "answerIndex": 2,
+          "knowledge": "Samme bygning kan ha flere funksjoner i ulike perioder; åpningen av en museumsinstitusjon er ikke det samme som byggeåret.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museet åpnet i 2013 i et eldre hus fra 1870; de to årstallene gjelder ulike hendelser.",
+          "claim_id": "claim_arbeidermuseet_24",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "by_museum"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_samme_bygning_kan_ha_fle_9a331b140a",
+          "knowledge_unit_ids": [
+            "ku_historie_samme_bygning_kan_ha_fle_9a331b140a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_25",
+          "quiz_id": "historie_arbeidermuseet_set_4_q4",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvordan kan man best undersøke hvem industriutstillingen gir en stemme?",
+          "options": [
+            "Sammenligne utstillingens fortellinger med historiske fotografier og arbeiderkilder",
+            "Telle antall glassmontere uten å lese innholdet",
+            "Bruke bare dagens turistomtaler av museet"
+          ],
+          "answer": "Sammenligne utstillingens fortellinger med historiske fotografier og arbeiderkilder",
+          "answerIndex": 0,
+          "knowledge": "Kildekritikk sammenligner ulike kildetyper og undersøker hvem som blir representert eller utelatt.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "museum_exhibition"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museet bruker historiske fortellinger som må kunne sammenholdes med selvstendige dokumenter, fotografier og andre arbeiderkilder.",
+          "claim_id": "claim_arbeidermuseet_25",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "museum_exhibition"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_kildekritikk_sammenligne_2d139e286b",
+          "knowledge_unit_ids": [
+            "ku_historie_kildekritikk_sammenligne_2d139e286b"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_26",
+          "quiz_id": "historie_arbeidermuseet_set_4_q5",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hva skiller Brenna fra selve Arbeidermuseets bygning?",
+          "options": [
+            "Begge er navn på samme hus i Sagveien 28",
+            "Brenna er en arbeiderbolig i Sagveien 8; museet ligger i apotekgården i nr. 28",
+            "Brenna var apoteket i nr. 26 og er nå museets hovedbygg"
+          ],
+          "answer": "Brenna er en arbeiderbolig i Sagveien 8; museet ligger i apotekgården i nr. 28",
+          "answerIndex": 1,
+          "knowledge": "En museumsomvisning kan inkludere andre, separate historiske steder, men hver bygning har sin egen adresse og funksjon.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kulturminner_bevaring",
+          "source": [
+            "museum_walk"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Museets arbeiderleilighet Brenna i Sagveien 8 er en annen bygning enn Arbeidermuseet i apotekgården Sagveien 28.",
+          "claim_id": "claim_arbeidermuseet_26",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "museum_walk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_en_museumsomvisning_kan__b0642a8cb8",
+          "knowledge_unit_ids": [
+            "ku_historie_en_museumsomvisning_kan__b0642a8cb8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_27",
+          "quiz_id": "historie_arbeidermuseet_set_4_q6",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvilken metode er best egnet til å kontrollere når Falken apotek brukte Sagveien 28?",
+          "options": [
+            "Tolke takformen uten å undersøke historiske kilder",
+            "Bruke dagens museumsbillett som dokumentasjon på apotekets drift",
+            "Sammenligne datert bygningshistorie med historiske apotek- og adresseopplysninger"
+          ],
+          "answer": "Sammenligne datert bygningshistorie med historiske apotek- og adresseopplysninger",
+          "answerIndex": 2,
+          "knowledge": "Ved å sammenligne uavhengige daterte kilder kan vi skille byggets oppføring, apotekets bruk og senere museumsdrift.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "by_apotek"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningens 1870-datering og apotekhistorie kan kontrolleres mot daterte adresse- og byggekilder.",
+          "claim_id": "claim_arbeidermuseet_27",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "by_apotek"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_ved_a_sammenligne_uavhen_5f8cfb7aa6",
+          "knowledge_unit_ids": [
+            "ku_historie_ved_a_sammenligne_uavhen_5f8cfb7aa6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "arbeidermuseet_quiz_28",
+          "quiz_id": "historie_arbeidermuseet_set_4_q7",
+          "categoryId": "historie",
+          "placeId": "arbeidermuseet",
+          "targetId": "arbeidermuseet",
+          "question_scope": "place",
+          "question": "Hvordan kan en historiker bruke Sagveien 28 til å studere endring over tid?",
+          "options": [
+            "Skille mellom apotek, kvinneherberge og museum og dokumentere hvert tidslag",
+            "Betrakte alle tidligere bruksformer som museets opprinnelige formål",
+            "Forutsette at bygget alltid var tekstilfabrikk fordi fabrikkene ligger ved siden av"
+          ],
+          "answer": "Skille mellom apotek, kvinneherberge og museum og dokumentere hvert tidslag",
+          "answerIndex": 0,
+          "knowledge": "Bygningen rommer dokumenterbare tidslag som både kan leses i kilder og undersøkes på stedet, uten å forveksle den med nabofabrikkene.",
+          "difficulty": 3,
+          "question_type": "concept",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "by_museum"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Sagveien 28 hadde ulike historiske funksjoner som apotek, kvinneherberge og fra 2013 museum.",
+          "claim_id": "claim_arbeidermuseet_28",
+          "year": null,
+          "method_id": "met_minneanalyse",
+          "guidance_basis": [
+            "data/fag/historie/methods_historie_canonical_v4_5.json",
+            "by_museum",
+            "data/fag/historie/fagkart_historie_canonical_v4_5.json"
+          ],
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Sammenholder tidslag og uavhengige vitnesbyrd for å skille dokumenterte institusjonsskifter fra en sammenblanding av hus, museum og nabofabrikkene."
+          },
+          "primary_knowledge_unit_id": "ku_historie_bygningen_rommer_dokumen_e3fdacc88e",
+          "knowledge_unit_ids": [
+            "ku_historie_bygningen_rommer_dokumen_e3fdacc88e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
