@@ -26,7 +26,7 @@ jobs:
           const buffer=fs.readFileSync('/tmp/oslo_museum_logo.svg');
           const txt=buffer.toString('utf8');
           console.log('HG_LOGO_VERIFY '+JSON.stringify({bytes:buffer.length,head:txt.slice(0,130)}));
-          if(buffer.length<3000||buffer.length>100000||!/<svg(?:\\s|>)/i.test(txt)||!txt.includes('</svg>'))
+          if(buffer.length<3000||buffer.length>100000||!txt.includes('<svg')||!txt.includes('</svg>'))
             throw new Error('Downloaded file not an authentic SVG source');
           const hash=crypto.createHash('sha256').update(buffer).digest('hex');
           const b64=buffer.toString('base64');
