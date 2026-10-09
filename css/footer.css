@@ -192,6 +192,13 @@ body.hg-app.hg-phone .app-footer{
   padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px));
 }
 
+/* The collapsed mini card must fit the same 48px row as the controls. */
+body.hg-app.hg-phone .pc-mini{
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+
 body.hg-app.hg-phone .app-actions{
   justify-content: flex-start;
   gap: 7px;

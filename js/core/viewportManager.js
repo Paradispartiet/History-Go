@@ -17,6 +17,7 @@
   const COMPACT_HEADER_HEIGHT = 56;
   const COMPACT_HEADER_MAX_VW = 860;
   const FOOTER_HEIGHT = 72;
+  const PHONE_FOOTER_HEIGHT = 60; // 48px controls + 6px padding above/below
   const NEARBY_HEIGHT_TABLET = 260;
   const NEARBY_HEIGHT_PHONE = 228;
 
@@ -94,6 +95,7 @@
       ? PHONE_HEADER_HEIGHT
       : (vw <= COMPACT_HEADER_MAX_VW ? COMPACT_HEADER_HEIGHT : HEADER_HEIGHT);
     const nearbyHeight = mode === "phone" ? NEARBY_HEIGHT_PHONE : NEARBY_HEIGHT_TABLET;
+    const footerHeight = mode === "phone" ? PHONE_FOOTER_HEIGHT : FOOTER_HEIGHT;
     const scaledW = designWidth * scale;
     const scaledH = designHeight * scale;
 
@@ -149,7 +151,7 @@
     // de få header/nearby/footer-klaring uttrykt i design-piksler (ekte px / scale).
     const designHeaderOffset = headerHeight / scale;
     const designNearbyOffset = nearbyHeight / scale;
-    const designFooterOffset = FOOTER_HEIGHT / scale;
+    const designFooterOffset = footerHeight / scale;
 
     const root = document.documentElement;
     if (root) {
@@ -162,7 +164,7 @@
       root.style.setProperty("--hg-design-footer-offset", `${designFooterOffset}px`);
       root.style.setProperty("--hg-visual-header-height", `${headerHeight}px`);
       root.style.setProperty("--hg-visual-nearby-height", `${nearbyHeight}px`);
-      root.style.setProperty("--hg-visual-footer-height", `${FOOTER_HEIGHT}px`);
+      root.style.setProperty("--hg-visual-footer-height", `${footerHeight}px`);
     }
 
     window.HGViewport = {
@@ -180,7 +182,7 @@
       vh,
       headerHeight,
       nearbyHeight,
-      footerHeight: FOOTER_HEIGHT,
+      footerHeight,
       designHeaderOffset,
       designNearbyOffset,
       designFooterOffset

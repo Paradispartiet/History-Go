@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - 'css/layout.css'
+      - 'css/footer.css'
+      - 'js/core/viewportManager.js'
+      - 'tests/mobile-footer-layout.test.mjs'
+      - 'tests/mobile-footer-browser.test.mjs'
       - 'css/nearby.css'
       - 'css/people.css'
       - 'css/nature.css'
@@ -33,5 +37,9 @@ jobs:
         run: npm ci
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Verify footer geometry contract
+        run: node --test tests/mobile-footer-layout.test.mjs
+      - name: Audit footer layout on phone and tablet
+        run: node tests/mobile-footer-browser.test.mjs
       - name: Audit framed Nearby layout on phone, tablet and desktop
         run: node tests/nearby-framed-layout-browser.test.mjs
