@@ -1579,6 +1579,57 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   min-width: 0;
 }
 
+/* PlaceCard hero: Personer is the same live round as before, relocated
+   next to Merker. Keep both circles on the landscape heading image. */
+#placeCard .pc-title-row > #pcPeopleIcon,
+#placeCard .pc-title-row > #pcBadgesIcon {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  max-width: 52px;
+  max-height: 52px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0;
+  overflow: hidden;
+}
+
+#placeCard .pc-title-row > #pcPeopleIcon {
+  order: 2;
+}
+
+#placeCard .pc-title-row > #pcBadgesIcon {
+  order: 3;
+}
+
+#placeCard .pc-title-row > #pcPeopleIcon > img,
+#placeCard .pc-title-row > #pcBadgesIcon > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+@media (max-width: 520px) {
+  #placeCard .pc-title-row {
+    gap: 6px;
+  }
+
+  #placeCard .pc-title-row > #pcPeopleIcon,
+  #placeCard .pc-title-row > #pcBadgesIcon {
+    flex-basis: 38px;
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+  }
+}
+
 #placeCard .pc-favorite-btn {
   flex: 0 0 auto;
   width: 32px;

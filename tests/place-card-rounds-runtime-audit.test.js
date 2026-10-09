@@ -32,7 +32,8 @@ assert(rounds.includes('round_profile_v1_adapter'));
 assert(rounds.includes('id === "images"'));
 assert(rounds.includes('PRODUCTION_LABELS'));
 assert(rounds.includes('badge:BY_ID.get("badges")'));
-assert(rounds.includes('ensureBadgePlacement'));
+assert(rounds.includes('ensureTitleRoundPlacement'));
+assert(rounds.includes('titleRow.insertBefore(people, badge)'));
 assert(rounds.includes('ensureQuizAction'));
 
 assert(adaptive.includes('place_card_profile_v2_curated'));
