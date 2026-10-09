@@ -1,0 +1,164 @@
+{
+  "schema": "history_go_place_production_workflow_v3",
+  "place_id": "aftenposten_akersgata",
+  "category": "media",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/aftenposten_akersgata.json",
+    "evidence_refs": [
+      "reports/place-production/aftenposten-akersgata-production-audit-20261009.md",
+      "reports/place-production/aftenposten-akersgata-read-first-20261009.json",
+      "reports/place-production/aftenposten-akersgata-prior-work-baseline-v1.md"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-10-09T09:17:31.792Z",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/media.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "Gjeldende checklist, v1-referanse, profiler, quizkontrakt, rundingskontrakt, Badge-register, Media-badge, routing, Objects og Brand-regler er lest. Hashene er registrert i read-first-20261009.json. Kilde- og prior-work-kontroll gikk foran den bekreftede planen."
+  },
+  "profile": {
+    "id": "major",
+    "status": "confirmed",
+    "reason": "127 år med flere dokumenterte, selvstendige spor om avishus, utgaver, arbeidsdeling, okkupasjon, produksjonsteknologi og nettavis. Ingen antallskvote for samlinger eller quiz er utledet fra profilen."
+  },
+  "source_review": {
+    "status": "complete",
+    "evidence": "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+  },
+  "collections": {
+    "people": {
+      "status": "BLOCKED",
+      "reason": "Stanghelle og Hegge er relevante eksisterende personer, men profilene mangler v1-claims og ferdig billedkontroll. Stanghelles registrerte PNG finnes ikke; Hegge mangler portrett. Dette er ikke naturlig fravær.",
+      "refs": [
+        "data/people/media/oslo/people_media_oslo.json",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "bilder/kort/objects/aftenposten_1879_01_02.jpg"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "data/brands/brands_master.json",
+        "data/brands/brands_by_place.json",
+        "bilder/kort/brands/aftenposten_ordmerke_1879.jpg"
+      ]
+    },
+    "productions": {
+      "status": "BLOCKED",
+      "reason": "Papiravisen er materialisert, men morgen-/aftenutgaver og A-magasinet er kildebelagte kandidater som trenger avgrenset utgivelses- og assetarbeid. Samlingen holdes utenfor collection_ids inntil den er ferdig.",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/aftenposten_akersgata.json",
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/aftenposten_akersgata.json",
+        "data/leksikon/places/oslo/mixed/leksikon_oslo_media_redaksjoner.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/aftenposten_akersgata.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "refs": [
+        "data/stories/stories_aftenposten_akersgata.json",
+        "data/stories/stories_episode_v1_manifest.json"
+      ]
+    },
+    "lesespor": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_media.json"
+      ]
+    },
+    "before_after": {
+      "status": "BLOCKED",
+      "reason": "Det historiske motivet Avislesere ved Aftenpostens gård (1931) er en kandidat, men motiv-/adresseparitet og bildeproveniens er ikke sluttkontrollert. To foto fra samme dag i 2025 utgjør ikke et historisk før/etter-par.",
+      "refs": [
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Dette Place representerer den avsluttede redaksjonsperioden 1876–2003. Kildene om returen i 2014 gjelder nummer 55, og senere eiendomsrehabilitering dokumenterer ikke aktuell Aftenposten-drift i nummer 51. Ingen selvstendig aktuell medienyhetsflate er valgt.",
+      "refs": [
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "quiz": {
+      "status": "BLOCKED",
+      "reason": "Aktiv legacy-pakke har 6 sett à 3 spørsmål; alle 18 har answerIndex 0. Eksisterende spørsmål og dedikert QuizCard mangler closeout etter gjeldende kontrakt. Quizsett skal revideres i eget kildeledet løp; denne PR-en produserer ingen sett.",
+      "refs": [
+        "data/quiz/media/aftenposten_akersgata_sets.json",
+        "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+      ]
+    },
+    "runtime": {
+      "status": "BLOCKED",
+      "reason": "Generering og integrasjonskontroll pågår; mobil/desktop, samlingspopuper og Fagverk/Språk må testes på aktuell head.",
+      "refs": [
+        "data/runtime/place-open/aftenposten_akersgata.json"
+      ]
+    }
+  },
+  "blockers": [
+    "People-profilenes claim- og portrettporter er uferdige.",
+    "Utgivelsessamlingen er ikke ferdig.",
+    "Historisk før/etter-kandidat er ikke sluttkontrollert.",
+    "Quizrevisjon og dedikert QuizCard med flip-QA gjenstår."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "reports/place-production/aftenposten-akersgata-production-audit-20261009.md"
+    }
+  },
+  "state": "blocked"
+}
