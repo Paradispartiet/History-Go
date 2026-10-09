@@ -736,7 +736,7 @@
     if (document.querySelector('link[data-hg-place-sheet-reading-style="1"]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/place-sheet-reading.css?v=20261009-type-scale1";
+    link.href = "css/place-sheet-reading.css";
     link.setAttribute("data-hg-place-sheet-reading-style", "1");
     document.head.appendChild(link);
   }
@@ -1002,7 +1002,7 @@
     if (document.querySelector('link[data-hg-place-sheet-sources-style="1"]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/place-sheet-sources.css?v=20261009-type-scale1";
+    link.href = "css/place-sheet-sources.css";
     link.setAttribute("data-hg-place-sheet-sources-style", "1");
     document.head.appendChild(link);
   }
@@ -1089,7 +1089,7 @@
     if (document.querySelector('link[data-hg-place-sheet-learning-style="1"]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/place-sheet-learning.css?v=20261009-type-scale1";
+    link.href = "css/place-sheet-learning.css";
     link.setAttribute("data-hg-place-sheet-learning-style", "1");
     document.head.appendChild(link);
   }
@@ -1275,7 +1275,7 @@
     if (document.querySelector('link[data-hg-place-sheet-special-style="1"]')) return;
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = "css/place-sheet-special.css?v=20261009-type-scale1";
+    link.href = "css/place-sheet-special.css";
     link.setAttribute("data-hg-place-sheet-special-style", "1");
     document.head.appendChild(link);
   }
@@ -2145,9 +2145,9 @@
     }
     function ensureStylesheet6() {
       const styles = [
-        [STYLE_FLAG, "css/place-unified-surface.css?v=20261009-type-scale1"],
-        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261009-type-scale1"],
-        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css?v=20261009-type-scale1"]
+        [STYLE_FLAG, "css/place-unified-surface.css"],
+        [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20260912-onsite-under-explore1"],
+        [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
       ];
       for (const [flag, href] of styles) {
         if (document.querySelector(`link[${flag}="1"]`)) continue;
