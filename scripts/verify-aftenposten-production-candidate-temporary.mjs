@@ -214,6 +214,8 @@ try {
       });
 
       const popupRoot = page.locator('.hg-popup.placecard-round-popup.visible');
+      await popupRoot.waitFor({state:'visible',timeout:30000});
+      fs.writeFileSync(path.join(outDir, `${profile.name}-${expected.id}-popup.json`), JSON.stringify(await page.evaluate(id => ({calls:window.__HG_PLACE_CLOSEOUT_POPUPS__,html:document.querySelector('.hg-popup.placecard-round-popup.visible')?.innerHTML,items:window.HGPlaceRounds.getItems(window.PLACES.find(p=>p.id===id),'productions'),place:window.PLACES.find(p=>p.id===id)}),placeId),null,2)+'\n');
       const memberImages = popupRoot.locator('img');
       assert.ok(await memberImages.count() >= 1, `Member images required in ${expected.id}`);
       for (let i=0; i<await memberImages.count(); i++) {
@@ -251,6 +253,11 @@ try {
     await page.waitForFunction(() => !document.querySelector('#pcFrontCardFlip')?.classList.contains('is-flipped'));
     const sections = {};
     for (const id of ['about','history','stories','before-after','news','reading','language','learning','sources']) {
+      if (id === 'news' && workflow.modules.news.status === 'BEGRUNNET_NA') {
+        assert.equal(await page.locator('[data-hg-place-sheet-section="news"]').isVisible(), false, 'No current news fabricated for the closed historic Place');
+        sections.news = workflow.modules.news.reason;
+        continue;
+      }
       await page.locator(`[data-hg-place-sheet-jump="${id}"]`).click();
       const section = page.locator(`[data-hg-place-sheet-section="${id}"]`).first();
       await section.waitFor({state:'visible',timeout:30000});
