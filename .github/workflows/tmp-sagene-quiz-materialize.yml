@@ -58,6 +58,7 @@ jobs:
             p === 'data/quiz/historie/sagene_skole_sets.json' ||
             p === 'data/fagverk/fagverk_release.json' ||
             p === 'reports/knowledge-id-backfill.json' ||
+            p === 'reports/knowledge-contract-audit.json' ||
             p.startsWith('data/knowledge/')
           ));
           const disallowed = paths.filter(p => !allowed.includes(p));
