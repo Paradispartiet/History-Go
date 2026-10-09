@@ -166,7 +166,17 @@ test("responsive fixture shows four collections, separate Badge and prominent Qu
   let browser;
   try {
     browser = await chromium.launch({headless:true,executablePath:browserExecutable}); const page = await browser.newPage();
-    for (const viewport of [{width:1100,height:760},{width:390,height:844}]) { await page.setViewportSize(viewport); await page.goto(`http://127.0.0.1:${server.address().port}/__audit__/olaf.html`,{waitUntil:"networkidle"}); await page.waitForFunction(()=>window.__ready===true); assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(),3); assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden]) > img").count(),3); assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden]) > img").count(),1); assert.ok(await page.locator(".pc-icons-quad .pc-round:not([hidden]) > img").evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0&&image.naturalHeight>0))); assert.ok(await page.locator("#pcFrontImage").evaluate(image=>image.naturalHeight>image.naturalWidth)); assert.equal(await page.locator("#pcBadgesIcon").evaluate(node=>node.parentElement.classList.contains("pc-title-row")),true); assert.equal(await page.locator("#pcQuiz").isVisible(),true); assert.equal(await page.locator("#pcQuiz").evaluate(node=>node.classList.contains("pc-action-primary")),true); assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2),true); }
+    for (const viewport of [{width:1100,height:760},{width:390,height:844}]) { await page.setViewportSize(viewport); await page.goto(`http://127.0.0.1:${server.address().port}/__audit__/olaf.html`,{waitUntil:"networkidle"}); await page.waitForFunction(()=>window.__ready===true); assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden])").count(),3); assert.equal(await page.locator(".pc-icons-quad .pc-round:not([hidden]) > img").count(),3); assert.equal(await page.locator(".pc-title-row > #pcPeopleIcon:not([hidden]) > img").count(),1); assert.ok(await page.locator(".pc-icons-quad .pc-round:not([hidden]) > img").evaluateAll(images=>images.every(image=>image.complete&&image.naturalWidth>0&&image.naturalHeight>0))); assert.ok(await page.locator("#pcFrontImage").evaluate(image=>image.naturalHeight>image.naturalWidth)); assert.equal(await page.locator("#pcBadgesIcon").evaluate(node=>node.parentElement.classList.contains("pc-title-row")),true); assert.equal(await page.locator("#pcQuiz").isVisible(),true); assert.equal(await page.locator("#pcQuiz").evaluate(node=>node.classList.contains("pc-action-primary")),true); const overflowState = await page.evaluate(() => ({
+      width:innerWidth,
+      documentScroll:document.documentElement.scrollWidth,
+      offenders:[...document.querySelectorAll("body *")].map(el => ({
+        tag:el.tagName,id:el.id,cls:typeof el.className==="string"?el.className:"",
+        right:Math.round(el.getBoundingClientRect().right),
+        left:Math.round(el.getBoundingClientRect().left),
+        scrollWidth:el.scrollWidth
+      })).filter(x=>x.right>innerWidth+2 || x.left<-2).slice(0,10)
+    }));
+    assert.ok(overflowState.documentScroll<=overflowState.width+2,JSON.stringify(overflowState)); }
     assert.deepEqual(await page.evaluate(()=>window.HGPlaceRounds.get(window.PLACES[0]).map(round=>round.id)),["people","objects","brands","related"]);
   } finally { await browser?.close(); await new Promise(resolve=>server.close(resolve)); }
 });
