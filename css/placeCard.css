@@ -103,6 +103,29 @@
 }
 
 #placeCard.is-hidden .pc-frontcard{
+  background: transparent;
+}
+
+#placeCard::before{
+  content:"";
+  display:none;
+}
+
+/* Portrait card and 12 round previews form one responsive media grid. */
+#placeCard .pc-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
+  column-gap: var(--place-card-media-gap);
+  row-gap: 12px;
+  width: min(100%, 680px);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 18px 12px 12px;
+  box-sizing: border-box;
+}
+
+.pc-frontcard{
   grid-column: 1;
   grid-row: 1;
   width: 100%;
