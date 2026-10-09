@@ -168,7 +168,24 @@
     return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Stedsfunksjoner">${buttons.join("")}</div></div>`;
   }
 
+  function ensureBelowCollections() {
+    const card = document.getElementById("placeCard");
+    const box = document.getElementById("pcEventsBox");
+    // On standard Places the collections grid is to the right of frontImage.
+    // Reuse the canonical Events/Møtes node directly BELOW those collections,
+    // never in the top navigation, above the description or in a duplicate box.
+    // Micro Places retain their own legacy grid placement.
+    if (!card?.classList.contains("is-place-sheet-direct") || !box || !card.contains(box)) return;
+    const collections = card.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid");
+    const rounds = collections?.querySelector(":scope > .pc-side-stack");
+    if (!collections || !rounds) return;
+    if (box.parentElement !== collections || rounds.nextElementSibling !== box) {
+      rounds.after(box);
+    }
+  }
+
   function decorate(force = false) {
+    ensureBelowCollections();
     const box = document.getElementById("pcEventsBox");
     const place = currentPlace();
     if (!box || !place) return;
@@ -264,8 +281,16 @@
   function observe() {
     const card = document.getElementById("placeCard");
     if (!card || observer) return;
+    // Place Sheet can mount or re-mount its navigation after on-site actions
+    // render. Watch node moves as well as place switches, then put the one
+    // canonical box back under the hero. Already-correct nodes do not move.
     observer = new MutationObserver(() => decorate());
-    observer.observe(card, { attributes:true, attributeFilter:["data-current-place-id"] });
+    observer.observe(card, {
+      attributes: true,
+      attributeFilter: ["data-current-place-id"],
+      childList: true,
+      subtree: true
+    });
   }
 
   function init() {

@@ -1,0 +1,40 @@
+name: Gråbein combined-index regeneration (temporary)
+on:
+  push:
+    branches:
+      - place/museumsleiligheten-grabein-production-20261009
+permissions:
+  contents: write
+concurrency:
+  group: grabein-combined-regen-20261009
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: place/museumsleiligheten-grabein-production-20261009
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild integrated epoch and Fagverk derivatives
+        run: |
+          node scripts/build-epoke-place-index.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+          node scripts/build-epoke-place-index.mjs --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json --check
+          node --test tests/epoke-place-index.test.mjs tests/museumsleiligheten-grabein-collections.test.mjs
+      - name: Commit regenerated derived outputs and remove temporary workflow
+        run: |
+          rm .github/workflows/tmp-grabein-integrated-regen.yml
+          git add data/epoker/epoke-place-index.json data/fagverk/fagverk_release.json data/quiz/production_context/historie/museumsleiligheten_grabein.json .github/workflows/tmp-grabein-integrated-regen.yml
+          git diff --cached --stat
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Regenerate Gråbein and Aftenposten indexes together; remove temporary workflow'
+          git push origin HEAD:refs/heads/place/museumsleiligheten-grabein-production-20261009

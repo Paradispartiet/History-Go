@@ -58,6 +58,7 @@ test("Økern keeps a visible epoch slot and routes it to the dedicated timeline"
 test("status renders for an already-open first card and opens its next action", () => {
   const dom = new JSDOM(`<!doctype html><head></head><body>
     <div id="placeCard" data-current-place-id="okern"></div>
+    <div id="pcStatusBar"></div>
     <div id="pcMeta"><button type="button">BY &amp; ARKITEKTUR</button></div>
     <button id="pcQuiz" type="button">Ta quiz</button>
   </body>`, { url: "https://history-go.test/", runScripts: "outside-only" });
@@ -78,7 +79,9 @@ test("status renders for an already-open first card and opens its next action", 
 
   w.eval(statusSource);
 
-  const status = w.document.querySelector("#pcMeta > .pc-progress-status-line");
+  const status = w.document.querySelector("#pcStatusBar > .pc-progress-status-line");
+  assert.equal(w.document.querySelector("#pcMeta > .pc-progress-status-line"), null);
+  assert.equal(w.document.querySelector("#pcMeta > button").textContent, "BY & ARKITEKTUR");
   assert.equal(status.tagName, "BUTTON");
   assert.match(status.textContent, /^Status: Ikke fullført · Gjenstår: Ta quiz$/);
   status.click();

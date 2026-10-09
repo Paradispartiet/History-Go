@@ -211,3 +211,67 @@ body.hg-app .pc-onsite-meet-choice small{
     font-size:8px;
   }
 }
+
+/* Place Sheet: Events and Møtes belong BELOW the collection tiles in the
+   right-hand column alongside frontImage, not below the landscape header. */
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox{
+  display:block;
+  grid-column:auto;
+  grid-row:auto;
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  min-height:0;
+  max-height:none;
+  height:auto;
+  margin:20px 0 0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  box-sizing:border-box;
+  overflow:visible;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox[hidden]{
+  display:none !important;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox .pc-onsite-actions{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  align-items:stretch;
+  width:100%;
+  min-width:0;
+}
+
+body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox .pc-onsite-action{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  width:100%;
+  min-width:0;
+  min-height:44px;
+  padding:8px 9px;
+  border-radius:12px;
+  box-sizing:border-box;
+}
+
+@media(max-width:700px){
+  /* In the narrow right column, stack full-width actions so both labels
+     remain legible without overflowing into the frontImage. */
+  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox{
+    margin-top:14px;
+  }
+  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox .pc-onsite-actions{
+    grid-template-columns:minmax(0,1fr);
+    gap:7px;
+  }
+  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox .pc-onsite-action{
+    min-height:40px;
+    padding:7px 8px;
+  }
+}

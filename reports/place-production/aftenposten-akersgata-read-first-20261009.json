@@ -1,0 +1,70 @@
+{
+  "schema": "history_go_place_rule_preflight_v1",
+  "status": "PASS",
+  "place_id": "aftenposten_akersgata",
+  "category": "media",
+  "recorded_at": "2026-10-09T09:17:31.792Z",
+  "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+  "files": [
+    {
+      "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "sha256": "e18f4e14764a969d2d46a8298c4005dccdb431861a9aa9fc3983be213c4ba54f"
+    },
+    {
+      "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+    },
+    {
+      "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+      "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+    },
+    {
+      "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+    },
+    {
+      "path": "data/places/README_place_rounds.md",
+      "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+    },
+    {
+      "path": "data/badges/index.json",
+      "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+    },
+    {
+      "path": "data/badges/place_production_routing_v1.json",
+      "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+    },
+    {
+      "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+      "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+    },
+    {
+      "path": "data/brands/brand_rules_v1_1.json",
+      "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+    },
+    {
+      "path": "data/badges/media.json",
+      "sha256": "de8b4ab7bc580488bea383fa6d176937dd34b19bab3f0c8155fd27a785389367"
+    }
+  ],
+  "contract_snapshot": {
+    "full_place_collection_count": 4,
+    "candidate_collections": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "category_expression": "productions",
+    "related_is_placecard_collection": false,
+    "no_filler": true,
+    "routing_order": [
+      "universal_canonical_core",
+      "primary_badge_family",
+      "active_underbadge_ids",
+      "place_specific_source_review",
+      "confirmed_production_profile",
+      "final_content_plan"
+    ]
+  }
+}
