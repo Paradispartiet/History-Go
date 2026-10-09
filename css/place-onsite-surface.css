@@ -212,6 +212,25 @@ body.hg-app .pc-onsite-meet-choice small{
   }
 }
 
+/* Place Sheet: both media columns share a bottom baseline. The portrait
+   establishes the height when collections are shorter; the right column
+   flexes so Events/Møtes ends at the portrait's bottom without a pixel
+   offset or absolute positioning. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-hero-media{
+  align-items:stretch;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-hero-media > .pc-sheet-explore-grid{
+  display:flex;
+  flex-direction:column;
+  align-self:stretch;
+  min-height:0;
+}
+
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid > .pc-side-stack{
+  flex:0 0 auto;
+}
+
 /* Place Sheet: Events and Møtes belong BELOW the collection tiles in the
    right-hand column alongside frontImage, not below the landscape header. */
 body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox{
@@ -224,7 +243,7 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsB
   min-height:0;
   max-height:none;
   height:auto;
-  margin:20px 0 0;
+  margin:auto 0 0;
   padding:0;
   border:0;
   border-radius:0;
@@ -263,9 +282,7 @@ body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsB
 @media(max-width:700px){
   /* In the narrow right column, stack full-width actions so both labels
      remain legible without overflowing into the frontImage. */
-  body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox{
-    margin-top:14px;
-  }
+
   body.hg-app #placeCard.is-place-sheet-direct .pc-sheet-explore-grid > #pcEventsBox .pc-onsite-actions{
     grid-template-columns:minmax(0,1fr);
     gap:7px;
