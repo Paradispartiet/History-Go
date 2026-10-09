@@ -157,3 +157,9 @@ Kilde: https://www.oslobilder.no/BAR/A-10003/Ub/0001/099 .
 ### Verifisert UI-status
 
 Etter merge av nyere `main` og utbedring av den gamle fire-raders reserveringen i Place Sheet bestod 18 av 18 PR-workflows på head `a2e933285dd921c01d0e7d6c10e2b92b6a48b1cf`, inkludert `Place Sheet final acceptance`. Nettleserartefakten `grabein-visual-closeout` fra https://github.com/Paradispartiet/History-Go/actions/runs/37982416951 viser faktisk sted på desktop og mobil med to kildebårne samlinger og Events/Møtes i høyre mediekolonne. Sluttgjennomgangen markerer fortsatt visuell finjustering av Oslo Museum-logoens aktive SVG-preview og vertikal scrolling i små viewport som reviewpunkter; automatisert grønn test alene er ikke redaksjonell sluttgodkjenning. Ingen manglende kildeport settes til PASS, og `production_status` skal forbli ufullstendig.
+
+## Kildedrevet presisering av Bjørklund-leiligheten — 9. oktober 2026
+
+Marte Marie Ofstad (Oslo Museum, publisert hos EGT historielag) opplyser at Bjørklund og Engebretsen bodde i to leiligheter i andre etasje, og at det ikke er sikkert hvilken familie som bodde i hvilken: https://egt-historielag.no/informasjon/nyheter/vis/?ID=22174&T=Museumsleiligheten+p%C3%A5+T%C3%B8yen&af=1
+
+Denne revisjonen retter kronologi, stedets Språkleksikon, leksikonartikkel, historisk case-kilde, claim-evidens og deres avledede runtime-visninger. **PlaceCard sin `desc` og `popupDesc`, samt integrert Fagverk-tekst, inneholder fortsatt for kategorisk formulering.** Den fullstendige stedsrettingen er derfor ikke lukket. Disse feltene må endres samtidig med oppdatering av kildehash, quiz-kontekst, Fagverk-release og Place-open før ny teknisk sluttkontroll. People, Objects og Før/etter er fortsatt BLOCKED; behold PR som draft.

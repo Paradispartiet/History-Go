@@ -53,3 +53,12 @@ test('Gråbein includes only the source-backed Oslo Museum Brand with authentic 
   assert.equal(brand.imageMeta.generated, false);
   assert.equal(brand.imageMeta.noEndorsement, true);
 });
+
+
+test('Gråbein chronology and language qualify the Bjørklund apartment identification', () => {
+  const entry = runtime.leksikon.find(item => item.id === 'leksikon_museumsleiligheten_grabein');
+  assert.ok(entry);
+  assert.match(entry.wikiText[1], /en av to leiligheter i andre etasje/);
+  assert.match(entry.chronology.find(item => item.year === 1891).consequence, /usikkert/);
+  assert.match(runtime.language.entries.find(item => item.id === 'grabein_arbeiderleilighet').context, /ikke historisk sikkert/);
+});
