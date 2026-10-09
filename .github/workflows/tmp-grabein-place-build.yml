@@ -1,0 +1,110 @@
+name: Temporary Grabein place build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'data/places/historie/oslo/places_historie/museumsleiligheten_grabein.json'
+      - 'data/leksikon/places/oslo/historie/leksikon_museumsleiligheten_grabein.json'
+      - 'data/fagverk/fagverk_registry.json'
+      - 'data/leksikon/sprak/manifest.json'
+      - 'data/quizcards/historie/manifest.json'
+      - '.github/workflows/tmp-grabein-place-build.yml'
+permissions:
+  contents: write
+concurrency:
+  group: tmp-grabein-place-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'place/museumsleiligheten-grabein-production-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Create two role-specific documentary images from licensed original
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check pillow
+          curl -fLSs --retry 3 --max-time 90 -A 'HistoryGo image provenance QA (+https://github.com/Paradispartiet/History-Go)' \
+             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/T%C3%B8yengata_38_fra_KMS.jpg/1280px-T%C3%B8yengata_38_fra_KMS.jpg' -o /tmp/grabein-original.jpg
+          python - <<'PY'
+          from PIL import Image,ImageOps
+          im=Image.open('/tmp/grabein-original.jpg').convert('RGB')
+          assert im.width>=960 and im.height>=720,(im.width,im.height)
+          landscape=ImageOps.contain(im,(1280,960),Image.Resampling.LANCZOS)
+          landscape.save('bilder/places/museumsleiligheten_grabein.webp','WEBP',quality=85,method=6)
+          portrait=ImageOps.fit(im,(900,1280),Image.Resampling.LANCZOS,centering=(0.5,0.5))
+          portrait.save('bilder/places/museumsleiligheten_grabein_front_portrait.webp','WEBP',quality=86,method=6)
+          assert landscape.width>landscape.height
+          assert portrait.height>portrait.width
+          print('CC BY 4.0 documentary assets:',landscape.size,portrait.size)
+          PY
+      - name: Record canonical READ-FIRST
+        run: |
+          mkdir -p reports/place-production
+          node scripts/place-production-rule-preflight.mjs record --workcard reports/place-production/museumsleiligheten-grabein-workcard-current.json --place-id museumsleiligheten_grabein --category historie
+      - name: Generate all derived canonical data
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run epoker:places:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+          npm run quiz:context -- --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+      - name: Review deterministic changed-path scope
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          node - <<'NODE'
+          const {execFileSync}=require('node:child_process');
+          const rows=execFileSync('git',['status','--porcelain','-uall'],{encoding:'utf8'}).split('\n').filter(Boolean).map(x=>x.slice(3));
+          const safe=p=>p.startsWith('data/runtime/') || p.startsWith('data/epoker/') ||
+            p.startsWith('data/fagverk/') || p.startsWith('reports/fagverk/') ||
+            p.startsWith('reports/place-production/') || p.startsWith('data/quiz/production_context/') ||
+            p.startsWith('data/places/places_index') || p.startsWith('data/places/index') ||
+            p==='bilder/places/museumsleiligheten_grabein.webp' ||
+            p==='bilder/places/museumsleiligheten_grabein_front_portrait.webp';
+          const unexpected=rows.filter(p=>!safe(p));
+          if(unexpected.length){console.error('Unapproved generated diff:',unexpected);process.exit(1);}
+          console.log('Generated files in scoped output:',rows.length);
+          NODE
+      - name: Commit generated output to PR branch
+        shell: bash
+        env:
+          BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- bilder/places/museumsleiligheten_grabein*.webp data/runtime/ data/epoker/ data/fagverk/ reports/fagverk/ reports/place-production/ data/quiz/production_context/
+          if ! git diff --cached --quiet; then
+            git commit -m "Materialize Grabein imagery and canonical place derivatives"
+            git push origin "HEAD:$BRANCH"
+          fi
+      - name: Verify generators, language, fagverk and image contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run place-open:check
+          npm run epoker:places:check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          node scripts/audit-place-images.mjs --mode=changed
+          node scripts/place-production-rule-preflight.mjs validate --workcard reports/place-production/museumsleiligheten-grabein-workcard-current.json
+          node --test tests/fagverk-place-pages.test.mjs tests/fagverk-place-rendering.test.mjs tests/fagverk-place-substance-audit.test.mjs
