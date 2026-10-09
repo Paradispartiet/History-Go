@@ -53,7 +53,7 @@ test("PlaceCard retires shortcut geometry while preserving direct section routin
   assert.match(shortcutsCss, /#placeCard \.pc-icons-quad\{[\s\S]*?gap:5px/);
   assert.match(shortcutsCss, /#placeCard #pcMeta\{[\s\S]*?grid-template-columns:minmax\(0,\.9fr\) minmax\(0,1\.35fr\)/);
   assert.match(shortcutsCss, /pc-progress-status-line\{[\s\S]*?grid-column:1 \/ -1;[\s\S]*?grid-row:2/);
-  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?--hg-place-card-footer-gap:\s*12px;[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 58px\);[\s\S]*?bottom:\s*auto;[\s\S]*?height:\s*auto/);
+  assert.match(layoutCss, /body\.hg-app #placeCard\{[\s\S]*?--hg-place-card-footer-gap:\s*12px;[\s\S]*?top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 12px\);[\s\S]*?bottom:\s*auto;[\s\S]*?height:\s*auto/);
   assert.match(placeCardCss, /#placeCard \.pc-body\{[\s\S]*?overflow-y:\s*auto/);
   assert.match(placeCardSource, /if \(!samePlace\)[\s\S]*?scrollBody\.scrollTop = 0/);
 
