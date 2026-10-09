@@ -67,7 +67,7 @@ jobs:
           const place=JSON.parse(fs.readFileSync(pf,'utf8'));
           const packet=JSON.parse(fs.readFileSync(cf,'utf8'));
           packet.textHashes={algorithm:'sha256',desc:crypto.createHash('sha256').update(place.desc,'utf8').digest('hex'),popupDesc:crypto.createHash('sha256').update(place.popupDesc,'utf8').digest('hex')};
-          fs.writeFileSync(cf,JSON.stringify(packet,null,2)+'\\n');
+          fs.writeFileSync(cf,JSON.stringify(packet,null,2));
           console.log('Synchronized 4.2 factuality text hashes');
           NODE
       - name: Generate all derived canonical data
