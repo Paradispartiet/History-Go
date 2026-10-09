@@ -65,3 +65,23 @@ Dette endrer ikke forrige beslutning om Kåre Valebrokks udokumenterte direkte k
 - People-samlingen skal **ikke** settes `PASS` eller aktiveres som full samling før kvalifiserte medlemmer og faktiske popuper/rettigheter er gjennomgått samlet. Enkeltpersoners `ready_people_v1` er ikke PlaceCard-final-QA.
 
 Neste fase: faktisk full PlaceCard-samlingsaudit for People, Objects, Brands og Media/Productions; separat QuizCard og slutt-QA.
+
+## Fase 3D – fem profiler fullt materialisert (9. oktober 2026)
+
+**To eksisterende ready-profiler beholdt, tre ytterligere ferdigstilt.** Verken kildegodkjenning eller bildefiler er hentet fra generiske substitutter.
+
+| Person | Canonical People v1 | Påstander | Bildefil | Proveniens |
+| --- | --- | ---: | --- | --- |
+| Gard Steiro | `ready_people_v1` | 6 | `bilder/kort/people/gard_steiro.jpg` | Thor Brødreskift, CC BY-SA 2.0 |
+| Hanne Skartveit | `ready_people_v1` | 4 | `bilder/kort/people/hanne_skartveit.jpg` | Bjørn Erik Pedersen, CC BY 2.5 |
+| Torry Pedersen | `ready_people_v1` | 6 | `bilder/kort/people/torry_pedersen.jpg` | Tore Sætre, CC BY-SA 4.0 |
+| Bernt Olufsen | `ready_people_v1` | 7 | `bilder/kort/people/bernt_olufsen.jpg` | Hildegunn Holtet, CC BY-SA 2.0 |
+| Trine Eilertsen | `ready_people_v1` | 5 | `bilder/kort/people/trine_eilertsen.jpg` | Tore Sætre, CC BY-SA 4.0 |
+
+- Eksisterende nasjonale kildeverk dokumenterer Torry Pedersens redaktørperiode **2011–2017**, Bernt Olufsens **1994–2011**, Trine Eilertsens Aftenposten-roller **2014–2020** og fra januar **2020**. Hvert publisert år og formulering er direkte knyttet til egen claimsfil under `data/people/claims/media/oslo/redaksjoner/`, ikke bare til teksten i et tidligere PlaceCard.
+- [Photo import #37991246280](https://github.com/Paradispartiet/History-Go/actions/runs/37991246280) **PASS** på fysisk JPG-fil, bildedimensjon, attribusjon, kildefotograf/lisens og deterministisk People-runtime. De tre fotoene ble importert etter at Gard og Hanne var ferdige, mens kandidatenes øvrige 22 registreringer ble bevart. Alle fem originale bildefiler ligger lokalt.
+- [Five-person final QA #37991709010](https://github.com/Paradispartiet/History-Go/actions/runs/37991709010) **PASS**: alle fem `ready_people_v1`, claimsfiler med `fact_review: passed`, 7/7 People Profile-regresjonstester, People-of-Places gate, faktiske bildedata og `place-open:build`/`place-open:check` av alle 1533 steder. Midlertidige workflows er fjernet.
+- Korrekt kildegrense: Trine Eilertsen er en **Aftenposten**-redaktør i samme fysiske bygg fra 2014, ikke VG-redaktør; Gard, Hanne, Torry og Bernt er VG-relaterte. Aftenposten og VG er separate redaksjoner selv om de hadde samme hus.
+- **Kåre Valebrokk** er fortsatt i legacy People-array med `placeId: vg_huset` og år `1980`, **uten** ferdig kilde- eller bildepakke. Opplysninger fra [SNL – Kåre Valebrokk](https://snl.no/K%C3%A5re_Valebrokk) og [Norsk biografisk leksikon](https://nbl.snl.no/K%C3%A5re_Valebrokk) dokumenterer arbeid for VG 1979–1984, **før** dagens hus ble reist i 1994. Det er ikke tilstrekkelig bevis for direkte arbeid ved dagens bygning. Ikke konstruer flytting til et annet canonical Place eller fjern hele personen før egen source-/own-place-audit.
+
+**Samlet People-kandidatstatus for VG-husets PlaceCard:** `BLOCKED` inntil Valebrokk er korrekt avklart/ekskludert gjennom canonical medlemsmodell og browser-QA verifiserer at kun kvalifiserte personer vises med riktige foto og popup. Fem ferdige personprofiler er et dokumentert delresultat, ikke automatisk samlings- eller PlaceCard-`PASS`.
