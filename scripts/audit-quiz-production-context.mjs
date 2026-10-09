@@ -326,6 +326,14 @@ export async function auditQuizProductionContext({ root = process.cwd() } = {}) 
       const artifact = await readJson(root, paths.context_artifact);
       const rebuiltArtifact = await buildQuizProductionContext({ root, categoryId, targetId });
       if (JSON.stringify(artifact) !== JSON.stringify(rebuiltArtifact)) {
+        if (targetId === "museumsleiligheten_grabein") {
+          const keys = [...new Set([...Object.keys(artifact), ...Object.keys(rebuiltArtifact)])];
+          console.log("[GRABEIN CONTEXT DIAG]", JSON.stringify(keys.filter(key => JSON.stringify(artifact[key]) !== JSON.stringify(rebuiltArtifact[key])).map(key => ({
+            key,
+            saved: JSON.stringify(artifact[key]).slice(0, 1200),
+            rebuilt: JSON.stringify(rebuiltArtifact[key]).slice(0, 1200)
+          }))));
+        }
         addFailure(failures, paths.context_artifact, "kontekstarterfakt avviker fra deterministisk rebuild");
       }
       if (artifact.categoryId !== categoryId || artifact.targetId !== targetId) {
