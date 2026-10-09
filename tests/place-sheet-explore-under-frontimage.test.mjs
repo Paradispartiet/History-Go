@@ -25,11 +25,11 @@ test("Place Sheet collection visuals have no dark background box", () => {
   assert.match(css, /\.pc-sheet-explore-grid \.pc-collection\[data-collection-shape="rectangle"\]::before\{[\s\S]*?display:none/);
 });
 
-test("Place Sheet keeps collection text links, but restores Events and Møtes below the landscape", () => {
+test("Place Sheet keeps collection text links, but places Events and Møtes below the rounds to the right of frontImage", () => {
   assert.match(shellSource, /data-hg-place-sheet-collection-link/);
   assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
-  assert.match(onsiteRuntime, /hero\.after\(box\)/);
-  assert.match(onsiteRuntime, /ensureBelowLandscape\(\)/);
+  assert.match(onsiteRuntime, /rounds\.after\(box\)/);
+  assert.match(onsiteRuntime, /ensureBelowCollections\(\)/);
   assert.match(onsiteRuntime, /childList: true/);
   assert.doesNotMatch(shellSource, /insertAfter\?\.after\(sideStack\)/);
 });
@@ -39,6 +39,7 @@ test("Place Sheet header scrolls horizontally without moving collection images i
   assert.match(phase6Css, /\.pc-sheet-section-nav\{[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?overflow-x:auto;/);
   assert.doesNotMatch(phase6Css, /> \.pc-side-stack/);
   assert.doesNotMatch(phase6Css, /> #pcEventsBox/);
-  assert.match(onsiteCss, /\.pc-text > #pcEventsBox\{/);
-  assert.match(onsiteCss, /\.pc-text > #pcEventsBox \.pc-onsite-actions\{[\s\S]*?grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.match(onsiteCss, /\.pc-sheet-explore-grid > #pcEventsBox\{/);
+  assert.match(onsiteCss, /\.pc-sheet-explore-grid > #pcEventsBox \.pc-onsite-actions\{[\s\S]*?grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+  assert.doesNotMatch(onsiteCss, /\.pc-text > #pcEventsBox\{/);
 });

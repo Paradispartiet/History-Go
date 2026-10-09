@@ -112,8 +112,9 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   window.fetch = async () => ({ ok:false });
   window.eval(onsiteSource);
   window.HGPlaceOnSiteSurface.decorate(true);
-  const eventsBox = shell.querySelector(".pc-sheet-hero-copy > .pc-text > #pcEventsBox");
+  const eventsBox = shell.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid > .pc-side-stack + #pcEventsBox");
   assert.ok(eventsBox);
+  assert.equal(eventsBox.parentElement, sideStack.parentElement);
   assert.equal(nav.querySelector("#pcEventsBox"), null);
   assert.equal(card.querySelectorAll("#pcEventsBox").length, 1);
   assert.deepEqual(
