@@ -1,0 +1,64 @@
+name: VG-huset canonical sync (temporary)
+
+on:
+  push:
+    branches:
+      - agent/vg-huset-source-preflight-20261009
+    paths:
+      - .github/workflows/vg-huset-canonical-sync-temp.yml
+
+permissions:
+  contents: write
+
+jobs:
+  canonical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Verify descriptions before build
+        run: node scripts/validate-place-description-production-v4_2_policy.mjs --all
+      - name: Rebuild source-derived place and epoch surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run places:index:build
+          npm run place-open:build
+          npm run epoker:places:build
+      - name: Enforce exact generated output scope and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --porcelain
+          node --input-type=module <<'NODE'
+          import { execFileSync } from 'node:child_process';
+          const files=execFileSync('git',['status','--porcelain','--untracked-files=all'],{encoding:'utf8'})
+            .trim().split(/\r?\n/u).filter(Boolean).map(line=>line.slice(3));
+          const allowed=new Set([
+            'data/places/places_index.json',
+            'data/runtime/place-open/vg_huset.json',
+            'data/epoker/epoke-place-index.json'
+          ]);
+          const invalid=files.filter(file=>!allowed.has(file));
+          if(invalid.length) {
+            console.error('Unexpected generator changes:',invalid);
+            process.exit(1);
+          }
+          console.log('Scoped derived files:',files);
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/places/places_index.json data/runtime/place-open/vg_huset.json data/epoker/epoke-place-index.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(vg-huset): sync canonical place and epoch projections"
+            git push origin HEAD:agent/vg-huset-source-preflight-20261009
+          fi
