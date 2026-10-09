@@ -62,3 +62,14 @@ test('Gråbein chronology and language qualify the Bjørklund apartment identifi
   assert.match(entry.chronology.find(item => item.year === 1891).consequence, /usikkert/);
   assert.match(runtime.language.entries.find(item => item.id === 'grabein_arbeiderleilighet').context, /ikke historisk sikkert/);
 });
+
+
+test('Gråbein visible PlaceCard and Fagverk distinguish museum interpretation from confirmed apartment', () => {
+  assert.match(source.desc, /hvilken leilighet de bodde i, er usikkert/);
+  assert.match(source.popupDesc, /ikke sikkert hvilken av de to/);
+  assert.match(source.fagverk.article[1], /ikke sikkert kjent/);
+  assert.match(source.fagverk.lenses[0].evidence, /fordelingen er usikker/);
+  assert.equal(runtime.place.desc, source.desc);
+  assert.equal(runtime.place.popupDesc, source.popupDesc);
+  assert.ok(source.fagverk.source_urls.some(url => url.includes('egt-historielag.no')));
+});
