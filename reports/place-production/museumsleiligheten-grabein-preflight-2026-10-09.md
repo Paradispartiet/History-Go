@@ -120,3 +120,16 @@ Oslo Museum er en selvstendig museumsinstitusjon, ikke et alias for bygården el
 ### Logo-forhåndsvisning – dokumentert bilde-QA
 
 Den faktiske Chrome-skjermbildet av 2-samlings-PlaceCard viste at den originale 306×216-SVG-logoen ble for hardt beskåret av rektanglets `object-fit: cover` (særlig på mobil). Dette er et reelt visuelt kvalitetsavvik, ikke et bildeproblem i selve kilden. Original `bilder/kort/brands/oslo_museum.svg` beholdes uendret. En lesbar kvadratisk WebP-preview på 640×640, med den nøyaktige kildelogoen proporsjonalt skalert og sentrert på ren hvit flate, produseres derfor som eget medlemsbilde `bilder/kort/brands/oslo_museum.webp` (SHA-256 `b1eebb84250f2b0acf946ae7d9affaed62e30811cc7be10effa10ba9184dbb62`). Ingen ny tekst, rekonstruksjon eller stylisering tilført. Bygge- og QA-kjøring: https://github.com/Paradispartiet/History-Go/actions/runs/37959974022. Ny Chrome- og manuell visual-QA må kontrolleres på denne faktisk publiserte previewvarianten.
+
+## Slutt-QA på korrekt MapView-rute — 9. oktober 2026
+
+- Real-browser kjøring: https://github.com/Paradispartiet/History-Go/actions/runs/37963008548
+- Den forrige testens falske skjult-tilstand er forklart av `js/views/MapView.js`: ved `#/place/...` skjules kortet med vilje mens `flyTo` kjører; det åpnes på korrekt `moveend` når kartet er sentrert. Målrettet testen venter nå på den ferdige navigasjonen, ikke en manuell `expandPlaceCard()` før kartbevegelsen avsluttes.
+- Chrome desktop 1440×1000 og mobil 390×844: faktisk synlig kort (`is-open`, `aria-hidden=false`, `opacity=1`), begge bildebaserte samlinger, kildebelagt Oslo Museum-Brand-popup, 1888-hendelse og ingen horisontal dokument-overflow: **PASS automatisert**.
+- Faktiske skjermbilder: artefakten `grabein-two-collections-20261009` fra kjøringen er kontrollert visuelt. **Visuell slutt-QA: IKKE GODKJENT.** På mobil overlapper tittel-/statusområdet deler av hero/overlegg og ikonplasseringen. PlaceCard har dessuten et stort ubenyttet mørkt felt under samlingene. Desktop har også ubenyttet areal nederst; arkfanenavigasjon horisontalt stikker utenfor synlig område.
+- Disse funnene gjelder felles PlaceCard-geometri/layout i den oppdaterte appen, og skal løses i det generelle PlaceCard-designsporet, ikke ved å forfalske eller repetere samlingsinnholdet for Gråbein.
+- Brand-forhåndsvisningen bruker fortsatt en referanse til `bilder/kort/brands/oslo_museum.svg` i det faktiske kortet selv om separat proporsjonsbevart WebP-preview finnes i kildene. Dette må verifiseres ved endelig visual-QA; kilde-SVG beholdes uendret.
+- Midlertidig workflow og midlertidig QA-script er fjernet etter at logg/skjermbildebevis ble lagret hos GitHub Actions. Permanent regresjonstest `tests/museumsleiligheten-grabein-collections.test.mjs` beholdes.
+- Uavklarte kategorigater: People (Ole Olsen uten komplett canonical mediereview), Objects (udokumentert enkeltgjenstandsproveniens), Før/etter (mangler verifisert historisk bildepar). Oslo Byfornyelse er fortsatt en kandidat, ikke publisert som Brand.
+
+**Produksjonsbeslutning:** Behold `draft` og `production_status` ufullstendig inntil de manglende gates er riktig dokumentert/godkjent og visuell PlaceCard-QA er godkjent. Grønn CI for dokumenter/data er ikke ekvivalent med full stedsproduksjon.
