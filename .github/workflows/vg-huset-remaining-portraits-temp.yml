@@ -1,0 +1,44 @@
+name: VG-huset remaining People image research (temporary)
+on:
+  push:
+    branches: [agent/vg-huset-source-preflight-20261009]
+    paths: ['.github/workflows/vg-huset-remaining-portraits-temp.yml']
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Search and rank Commons pictures for still-blocked VG people
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run people:images:candidates -- --ids=torry_pedersen,bernt_olufsen,trine_eilertsen --limit=3 --max-candidates-per-person=4
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const people=['torry_pedersen','bernt_olufsen','trine_eilertsen'];
+          const rows=JSON.parse(fs.readFileSync('data/people/people_image_candidates.json','utf8'));
+          if(!Array.isArray(rows)||rows.some(x=>!people.includes(x.personId)||x.approved!==false))throw new Error('Invalid unapproved candidate research');
+          for(const id of people) {
+            const sub=rows.filter(x=>x.personId===id);
+            console.log(JSON.stringify({personId:id,candidates:sub.map(x=>({
+              candidateId:x.candidateId,commonsFileName:x.commonsFileName,commonsPage:x.commonsPage,
+              sourcePage:x.sourcePage,creator:x.creator,credit:x.credit,license:x.license,
+              licenseUrl:x.licenseUrl,identity:x.identity,quality:x.quality
+            }))},null,2));
+          }
+          NODE
+      - name: Upload research, not images or public profile changes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vg-huset-remaining-people-candidates
+          path: data/people/people_image_candidates.json
+          retention-days: 14
