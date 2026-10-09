@@ -162,5 +162,7 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-dir
   max-height:none !important;
   min-height:0 !important;
   aspect-ratio:auto !important;
+  /* Legacy four-row grid must not reserve empty rows in the direct sheet. */
+  grid-template-rows:none !important;
   align-content:start;
 }
