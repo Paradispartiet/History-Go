@@ -1,0 +1,912 @@
+{
+  "targetId": "abelonegarden",
+  "categoryId": "historie",
+  "sources": {
+    "local_place": "https://lokalhistoriewiki.no/Abeloneg%C3%A5rden",
+    "snl_case": "https://snl.no/Abelonesaken",
+    "local_person": "https://lokalhistoriewiki.no/wiki/Abelone_Constance_Kristensen",
+    "nb": "https://www.nb.no/historier-fra-samlingen/abelone-dronningen-av-kristianias-underverden/"
+  },
+  "production_context": {
+    "manifest_category": "historie",
+    "profile": "narrow_3x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/historie/abelonegarden.json",
+    "context_artifact": "data/quiz/production_context/historie/abelonegarden.json",
+    "resolved_files": {
+      "pensum": "data/fag/historie/historiepensum_canonical_v4_5.json",
+      "emner": "data/fag/historie/emner_historie_canonical_v4_5.json",
+      "fagkart": "data/fag/historie/fagkart_historie_canonical_v4_5.json",
+      "methods": "data/fag/historie/methods_historie_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/historie/supersetQUIZMAL_historie.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "his_kilder_arkiv_spor",
+      "his_minne_kulturarv_historiebruk"
+    ],
+    "emne_ids": [
+      "em_his_sosialhistorie_hverdagsliv",
+      "em_his_historiske_lag_i_byrom",
+      "em_his_kildekritikk_arkiv_spor",
+      "em_his_minnesteder_historiebruk"
+    ],
+    "topic_hook_ids": [
+      "his_kildekritikk"
+    ],
+    "method_ids": [
+      "met_kildekritikk",
+      "met_minneanalyse"
+    ],
+    "thinker_ids": [
+      "marc_bloch"
+    ],
+    "works": [
+      "The Historian's Craft"
+    ],
+    "source_review_status": "reviewed",
+    "theory_start_phase": "final",
+    "method_start_phase": "final",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/historie/abelonegarden_sets.json",
+        "data/quiz/historie/arkiv",
+        "data/quiz/arkiv",
+        "reports/quiz-place-coverage-2026-10-08.csv"
+      ],
+      "active_before": {
+        "categoryId": null,
+        "set_count": 0,
+        "question_count": 0
+      },
+      "decisions": [
+        "Ingen aktiv quiz registrert for targetId abelonegarden. Nytt stedsspesifikt quizgrunnlag; gjenbruk andre steder/fortellinger bare der påstanden faktisk gjelder dette stedet."
+      ],
+      "knowledge_migration": {
+        "status": "not_applicable",
+        "retained_rule": "Ingen eksisterende abelonegarden-quiz eller Knowledge-koblinger å migrere."
+      }
+    },
+    "profile_decision": {
+      "profile": "narrow",
+      "set_count": 3,
+      "questions_per_set": 7,
+      "justification": "Avgrenset historisk tomt med tre kildebårne læringsjobber: bygningen og Vaterland, Abelonesaken og rettsoppgjøret, sanering og ettertid. Ingen emnebasert filler for å øke settantallet."
+    },
+    "held_back_candidates": [
+      "SNL oppgir 15 dagers straff mens Lokalhistoriewiki beskriver et lengre soningsforløp i 1894; ikke still soningslengde-spørsmål før primærkildene er forlikt.",
+      "Rettsavgjørelsens versjon av hendelsesforløpet skal ikke gjengis som ubestridt årsaksforklaring; flere forklaringer forekom.",
+      "Sensasjonaliserende eller romantiserende karakteristikker av prostitusjon, fattigdom og kriminalitet.",
+      "Forveksling av historisk Karl XIIs gate 15 med Abelones senere adresse i nr. 30."
+    ]
+  },
+  "sets": [
+    {
+      "set_id": "historie_abelonegarden_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "title": "Et hus i gamle Vaterland",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "abelonegarden_quiz_01",
+          "quiz_id": "historie_abelonegarden_set_1_q1",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken adresse hadde Abelonegården i det gamle Vaterland?",
+          "options": [
+            "Karl XIIs gate 15",
+            "Vognmannsgata 15",
+            "Sukkerhusgaten 15"
+          ],
+          "answer": "Karl XIIs gate 15",
+          "answerIndex": 0,
+          "knowledge": "Adressen identifiserer et konkret, nå forsvunnet hus. Det historiske gatenettet kan ikke finnes igjen ved å lese dagens adresseskilt.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "local_place"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Abelonegården hadde adressen Karl XIIs gate 15 i det gamle Vaterland.",
+          "claim_id": "claim_abelonegarden_01",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_adressen_identifiserer_e_cf23fad42e",
+          "knowledge_unit_ids": [
+            "ku_historie_adressen_identifiserer_e_cf23fad42e",
+            "ku_historie_det_historiske_gatenette_8d15ba3d7c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_02",
+          "quiz_id": "historie_abelonegarden_set_1_q2",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken gate krysset Karl XIIs gate ved Abelonegården?",
+          "options": [
+            "Vognmannsgata",
+            "Brugata",
+            "Sukkerhusgaten"
+          ],
+          "answer": "Sukkerhusgaten",
+          "answerIndex": 2,
+          "knowledge": "Hjørnet mellom Karl XIIs gate og Sukkerhusgaten er kjent fra stedsbeskrivelser og eldre fotografier. Begge gateløpene har siden forsvunnet.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "local_place"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen lå på hjørnet av Karl XIIs gate og Sukkerhusgaten.",
+          "claim_id": "claim_abelonegarden_02",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_hj_rnet_mellom_karl_xiis_d808f2bcfb",
+          "knowledge_unit_ids": [
+            "ku_historie_hj_rnet_mellom_karl_xiis_d808f2bcfb",
+            "ku_historie_begge_gatel_pene_har_sid_38d8695ddf"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_03",
+          "quiz_id": "historie_abelonegarden_set_1_q3",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilket byområde lå Abelonegården i på 1890-tallet?",
+          "options": [
+            "Enerhaugen",
+            "Vaterland",
+            "Grønland"
+          ],
+          "answer": "Vaterland",
+          "answerIndex": 1,
+          "knowledge": "Vaterland hadde losjihus, vertshus og bondehandel. Det var et annet bymiljø enn den store arena- og trafikkinfrastrukturen som preger området i dag.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Abelonegården lå i byområdet Vaterland i datidens Kristiania.",
+          "claim_id": "claim_abelonegarden_03",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_vaterland_hadde_losjihus_b6407b479b",
+          "knowledge_unit_ids": [
+            "ku_historie_vaterland_hadde_losjihus_b6407b479b",
+            "ku_historie_det_var_et_annet_bymilj__cf2d2a136d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_04",
+          "quiz_id": "historie_abelonegarden_set_1_q4",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvem fikk den historiske gården navn etter?",
+          "options": [
+            "Abelone Constance Kristensen",
+            "Anna Rogstad",
+            "Laura Gundersen"
+          ],
+          "answer": "Abelone Constance Kristensen",
+          "answerIndex": 0,
+          "knowledge": "Abelone drev virksomhet i gården og ble en kjent skikkelse etter rettssaken i 1893. Personnavnet lever videre, selv om bygningen er borte.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "local_place"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Gården fikk sitt navn etter Abelone Constance Kristensen.",
+          "claim_id": "claim_abelonegarden_04",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_abelone_drev_virksomhet__2d287b2f42",
+          "knowledge_unit_ids": [
+            "ku_historie_abelone_drev_virksomhet__2d287b2f42",
+            "ku_historie_personnavnet_lever_vider_85cde51483"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_05",
+          "quiz_id": "historie_abelonegarden_set_1_q5",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken kombinasjon beskriver virksomheten i Abelonegården?",
+          "options": [
+            "Bakeri og skysstasjon",
+            "Losjihus og bordell",
+            "Skjenkested og trykkeri"
+          ],
+          "answer": "Losjihus og bordell",
+          "answerIndex": 1,
+          "knowledge": "Betegnelsene hotell og losjihus skjulte ikke at også prostitusjon foregikk i bygningen. Dette er del av byens sosial- og økonomihistorie, ikke en kuriositet.",
+          "difficulty": 1,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Virksomheten ble omtalt som hotell eller losjihus, men omfattet også bordellvirksomhet.",
+          "claim_id": "claim_abelonegarden_05",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_betegnelsene_hotell_og_l_d2a2893448",
+          "knowledge_unit_ids": [
+            "ku_historie_betegnelsene_hotell_og_l_d2a2893448",
+            "ku_historie_dette_er_del_av_byens_so_3f20a84932"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_06",
+          "quiz_id": "historie_abelonegarden_set_1_q6",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilket ektepar drev virksomheten knyttet til gården?",
+          "options": [
+            "Abelone og Fredrik Stang Lund",
+            "Anna og Lauritz Kristensen",
+            "Abelone og Lauritz Kristensen"
+          ],
+          "answer": "Abelone og Lauritz Kristensen",
+          "answerIndex": 2,
+          "knowledge": "Lauritz var vertshusvert, og Abelone hadde en sentral rolle i virksomheten. Drapet på Lauritz førte saken ut i offentligheten.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Abelone og ektemannen Lauritz Kristensen drev virksomheten i huset.",
+          "claim_id": "claim_abelonegarden_06",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_lauritz_var_vertshusvert_93277167f0",
+          "knowledge_unit_ids": [
+            "ku_historie_lauritz_var_vertshusvert_93277167f0",
+            "ku_historie_drapet_pa_lauritz_f_rte__6c43429cc7"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_07",
+          "quiz_id": "historie_abelonegarden_set_1_q7",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvordan beskriver Nasjonalbiblioteket bruken av etasjene i gården?",
+          "options": [
+            "Vertshus nede og rom over",
+            "Butikk over og stall nede",
+            "Verksted nede og kontor over"
+          ],
+          "answer": "Vertshus nede og rom over",
+          "answerIndex": 0,
+          "knowledge": "Nasjonalbiblioteket beskriver første etasje som vertshus og rom over. Skildringen synliggjør møtet mellom servering, losji og det som skjedde ellers i huset.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "nb"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Nasjonalbibliotekets skildring beskriver vertshus i første etasje og rom i etasjen over.",
+          "claim_id": "claim_abelonegarden_07",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_nasjonalbiblioteket_besk_949e425376",
+          "knowledge_unit_ids": [
+            "ku_historie_nasjonalbiblioteket_besk_949e425376",
+            "ku_historie_skildringen_synliggj_r_m_18823a60f8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_abelonegarden_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "bridge",
+      "title": "Drapet og rettssaken",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "abelonegarden_quiz_08",
+          "quiz_id": "historie_abelonegarden_set_2_q1",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Når fant drapet i Abelonesaken sted?",
+          "options": [
+            "1. mai 1891",
+            "1. mai 1895",
+            "1. mai 1893"
+          ],
+          "answer": "1. mai 1893",
+          "answerIndex": 2,
+          "knowledge": "Drapet skjedde i losjihuset i Kristiania. Rettssaken som fulgte, gjorde gården landskjent.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den sentrale drapshendelsen i Abelonesaken fant sted 1. mai 1893.",
+          "claim_id": "claim_abelonegarden_08",
+          "year": 1893,
+          "primary_knowledge_unit_id": "ku_historie_drapet_skjedde_i_losjihu_c8f8ec413d",
+          "knowledge_unit_ids": [
+            "ku_historie_drapet_skjedde_i_losjihu_c8f8ec413d",
+            "ku_historie_rettssaken_som_fulgte_gj_fd8108dc36"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_09",
+          "quiz_id": "historie_abelonegarden_set_2_q2",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvem ble skutt og drept i gården?",
+          "options": [
+            "Fredrik Stang Lund",
+            "Lauritz Kristensen",
+            "Nils Gulbrandsen Kinde"
+          ],
+          "answer": "Lauritz Kristensen",
+          "answerIndex": 1,
+          "knowledge": "Lauritz var Abelones ektemann og en av innehaverne. Hendelsen må skilles fra den senere mytedannelsen rundt Abelone selv.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Drapsofferet var Lauritz Kristensen, Abelones ektemann.",
+          "claim_id": "claim_abelonegarden_09",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_lauritz_var_abelones_ekt_2269398485",
+          "knowledge_unit_ids": [
+            "ku_historie_lauritz_var_abelones_ekt_2269398485",
+            "ku_historie_hendelsen_ma_skilles_fra_b61f802bf6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_10",
+          "quiz_id": "historie_abelonegarden_set_2_q3",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken bakgrunn hadde mannen som skjøt Lauritz?",
+          "options": [
+            "Losjerende gardbruker fra Ringsaker",
+            "Havnearbeider fra Drammen",
+            "Handelsreisende fra Bergen"
+          ],
+          "answer": "Losjerende gardbruker fra Ringsaker",
+          "answerIndex": 0,
+          "knowledge": "Kildene omtaler en tilreisende bonde fra Ringsaker. Forbindelsen til bondehandelen viser en viktig side av Vaterlands funksjon i byen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Mannen som skjøt Lauritz, var en losjerende gardbruker fra Ringsaker.",
+          "claim_id": "claim_abelonegarden_10",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_kildene_omtaler_en_tilre_f37ce71870",
+          "knowledge_unit_ids": [
+            "ku_historie_kildene_omtaler_en_tilre_f37ce71870",
+            "ku_historie_forbindelsen_til_bondeha_7b1d018247"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_11",
+          "quiz_id": "historie_abelonegarden_set_2_q4",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hva ble utfallet av drapssaken for mannen som skjøt Lauritz?",
+          "options": [
+            "Han ble dømt for forsettlig drap",
+            "Han fikk betinget fengselsstraff",
+            "Han ble frikjent etter nødvergevurdering"
+          ],
+          "answer": "Han ble frikjent etter nødvergevurdering",
+          "answerIndex": 2,
+          "knowledge": "Retten la nødverge til grunn og frikjente ham. Historikere skiller mellom hva dommen fastslo og hva som sikkert kan fastslås om alle omstendighetene.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Retten fant at drapet skjedde i nødverge, og mannen ble frikjent.",
+          "claim_id": "claim_abelonegarden_11",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_retten_la_n_dverge_til_g_6ee80f6814",
+          "knowledge_unit_ids": [
+            "ku_historie_retten_la_n_dverge_til_g_6ee80f6814",
+            "ku_historie_historikere_skiller_mell_27d4836823"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_12",
+          "quiz_id": "historie_abelonegarden_set_2_q5",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken type virksomhet kom frem under rettssaken?",
+          "options": [
+            "Smugling av industrivarer",
+            "Rufferi og bordelldrift",
+            "Forfalskning av eiendomsskjøter"
+          ],
+          "answer": "Rufferi og bordelldrift",
+          "answerIndex": 1,
+          "knowledge": "Rettssaken avdekket utnyttelse og hallikvirksomhet i miljøet rundt gården. Det er nødvendig å beskrive dette saklig og i lys av sosial ulikhet.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Rettssaken avdekket rufferi og annen kriminell virksomhet med tilknytning til etablissementet.",
+          "claim_id": "claim_abelonegarden_12",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_rettssaken_avdekket_utny_ff8d9ec598",
+          "knowledge_unit_ids": [
+            "ku_historie_rettssaken_avdekket_utny_ff8d9ec598",
+            "ku_historie_det_er_n_dvendig_a_beskr_25faebf99e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_13",
+          "quiz_id": "historie_abelonegarden_set_2_q6",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken advokat fikk stor folkelig oppslutning som forsvarer i saken?",
+          "options": [
+            "Bernhard Getz",
+            "Francis Hagerup",
+            "Fredrik Stang Lund"
+          ],
+          "answer": "Fredrik Stang Lund",
+          "answerIndex": 2,
+          "knowledge": "Fredrik Stang Lund var forsvarsadvokat for den tiltalte drapsmannen. Saken fikk betydelig oppmerksomhet også utenfor rettssalen.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Forsvarsadvokat Fredrik Stang Lund fikk stor publikumsoppslutning etter saken.",
+          "claim_id": "claim_abelonegarden_13",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_fredrik_stang_lund_var_f_9aaad04140",
+          "knowledge_unit_ids": [
+            "ku_historie_fredrik_stang_lund_var_f_9aaad04140",
+            "ku_historie_saken_fikk_betydelig_opp_5cef71759f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_14",
+          "quiz_id": "historie_abelonegarden_set_2_q7",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hva fulgte i gatene etter Abelonesaken?",
+          "options": [
+            "Protester og opptøyer over tid",
+            "En varig nedleggelse av bondehandelen",
+            "Et samlet støtteopptog for vertshusene"
+          ],
+          "answer": "Protester og opptøyer over tid",
+          "answerIndex": 0,
+          "knowledge": "Saken utløste demonstrasjoner og uroligheter som kom og gikk i flere år. Samtidige reaksjoner forteller også om moraldebatt og klasseskiller.",
+          "difficulty": 2,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Saken utløste offentlig uro og opptøyer som fortsatte over tid.",
+          "claim_id": "claim_abelonegarden_14",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_saken_utl_ste_demonstras_158f1d2127",
+          "knowledge_unit_ids": [
+            "ku_historie_saken_utl_ste_demonstras_158f1d2127",
+            "ku_historie_samtidige_reaksjoner_for_2a0139f610"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "historie_abelonegarden_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "final",
+      "title": "Det tapte stedet og mytene",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "abelonegarden_quiz_15",
+          "quiz_id": "historie_abelonegarden_set_3_q1",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "I hvilket tiår forsvant Abelonegården under saneringen av Vaterland?",
+          "options": [
+            "1930-årene",
+            "1960-årene",
+            "1980-årene"
+          ],
+          "answer": "1960-årene",
+          "answerIndex": 1,
+          "knowledge": "Ombyggingen fjernet både huset og deler av gatenettet. Et historisk sted kan dermed være viktig selv om bygningen ikke er bevart.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "local_place"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Bygningen og den tidligere gaten forsvant ved saneringen av Vaterland i 1960-årene.",
+          "claim_id": "claim_abelonegarden_15",
+          "year": 1960,
+          "primary_knowledge_unit_id": "ku_historie_ombyggingen_fjernet_bade_2dc5e5bce2",
+          "knowledge_unit_ids": [
+            "ku_historie_ombyggingen_fjernet_bade_2dc5e5bce2",
+            "ku_historie_et_historisk_sted_kan_de_00857e395d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_16",
+          "quiz_id": "historie_abelonegarden_set_3_q2",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilket nåværende bygg ligger på den tidligere tomten til Abelonegården?",
+          "options": [
+            "Oslo City",
+            "Oslo Plaza",
+            "Oslo Spektrum"
+          ],
+          "answer": "Oslo Spektrum",
+          "answerIndex": 2,
+          "knowledge": "Oslo Spektrum er et orienteringspunkt for den historiske tomten, ikke en ombygd versjon av Abelonegården. Slik synliggjøres forskjellen mellom sted og bygning.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_historiske_lag_i_byrom",
+          "source": [
+            "local_place"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Den historiske tomten ligger der Oslo Spektrum står i dag; arenaen er ikke det gamle huset.",
+          "claim_id": "claim_abelonegarden_16",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_oslo_spektrum_er_et_orie_789d352f19",
+          "knowledge_unit_ids": [
+            "ku_historie_oslo_spektrum_er_et_orie_789d352f19",
+            "ku_historie_slik_synliggj_res_forskj_105457c109"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_17",
+          "quiz_id": "historie_abelonegarden_set_3_q3",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken adresse oppgir folketellingen i 1900 for Abelone, forskjellig fra den gamle Abelonegården?",
+          "options": [
+            "Karl XIIs gate 30",
+            "Karl XIIs gate 15",
+            "Vognmannsgata 15"
+          ],
+          "answer": "Karl XIIs gate 30",
+          "answerIndex": 0,
+          "knowledge": "Folketellingens senere adresse må ikke brukes som bevis for hvor gården i drapssaken sto. Nettopp slike forskyvninger må kildekritisk stedshistorie fange opp.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "local_person"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Folketellingen for 1900 plasserer Abelone i Karl XIIs gate 30, en annen adresse enn Abelonegården i nr. 15.",
+          "claim_id": "claim_abelonegarden_17",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "Kildeforskjell mellom den historiske bygningsadressen og folketellingen 1900",
+            "met_kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_folketellingens_senere_a_a08a5304ef",
+          "knowledge_unit_ids": [
+            "ku_historie_folketellingens_senere_a_a08a5304ef",
+            "ku_historie_nettopp_slike_forskyvnin_50308e3bae"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_18",
+          "quiz_id": "historie_abelonegarden_set_3_q4",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvor flyttet Abelone da hun avsluttet virksomheten i Kristiania i 1913?",
+          "options": [
+            "Hønefoss",
+            "Moss",
+            "Ski"
+          ],
+          "answer": "Ski",
+          "answerIndex": 2,
+          "knowledge": "Hun trakk seg tilbake til Ski etter flere tiår i Kristiania. Livet hennes fortsatte lenge etter den oppsiktsvekkende saken i 1893.",
+          "difficulty": 3,
+          "question_type": "context",
+          "emne_id": "em_his_sosialhistorie_hverdagsliv",
+          "source": [
+            "local_person"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Abelone avviklet virksomheten i Kristiania og flyttet til Ski i 1913.",
+          "claim_id": "claim_abelonegarden_18",
+          "year": null,
+          "primary_knowledge_unit_id": "ku_historie_hun_trakk_seg_tilbake_ti_e1cd699cab",
+          "knowledge_unit_ids": [
+            "ku_historie_hun_trakk_seg_tilbake_ti_e1cd699cab",
+            "ku_historie_livet_hennes_fortsatte_l_1a0c908f2d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_19",
+          "quiz_id": "historie_abelonegarden_set_3_q5",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilket dokumentert forhold motsier påstanden om at Abelone ble henrettet for drap?",
+          "options": [
+            "Hun ble frikjent i 1893",
+            "Hun døde i 1920 etter sykdom",
+            "Gården ble revet i 1960-årene"
+          ],
+          "answer": "Hun døde i 1920 etter sykdom",
+          "answerIndex": 1,
+          "knowledge": "Biografiske opplysninger dokumenterer dødsfallet i 1920. En myte om henrettelse kan ikke gis samme kildeverdi som etterprøvbare livsopplysninger.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_his_kildekritikk_arkiv_spor",
+          "source": [
+            "local_person"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Abelone Constance Kristensen døde i 1920, ikke ved en henrettelse slik en senere myte hevdet.",
+          "claim_id": "claim_abelonegarden_19",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "topic_hook_id": "his_kildekritikk",
+          "thinker_id": "marc_bloch",
+          "work": "The Historian's Craft",
+          "theory_ref": {
+            "topic_hook_id": "his_kildekritikk",
+            "thinker_id": "marc_bloch",
+            "work": "The Historian's Craft",
+            "why_it_helps": "Blochs kildekritikk hjelper oss å skille dokumentert dødsfall fra en ettertidssagn om henrettelse."
+          },
+          "guidance_basis": [
+            "Biografisk dødsfall med kildegrunnlag",
+            "his_kildekritikk",
+            "met_kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_biografiske_opplysninger_fce4110985",
+          "knowledge_unit_ids": [
+            "ku_historie_biografiske_opplysninger_fce4110985",
+            "ku_historie_en_myte_om_henrettelse_k_9996380489"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_20",
+          "quiz_id": "historie_abelonegarden_set_3_q6",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilket tidlig verk viser hvordan Abelonesaken ble omformet til underholdningslitteratur?",
+          "options": [
+            "Jon Flatabøs roman fra 1895",
+            "Bernt Roughtvedts bok fra 2014",
+            "Redvald Larssens erindringer fra 1946"
+          ],
+          "answer": "Jon Flatabøs roman fra 1895",
+          "answerIndex": 0,
+          "knowledge": "Romanen kom bare to år etter saken og viser at fortellingen allerede var blitt bearbeidet for et publikum. Et litterært verk er ikke en rettsprotokoll.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "snl_case"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Jon Flatabø utga romanen «Dronningen i Vaterland eller Abelones 100 eventyr» i 1895.",
+          "claim_id": "claim_abelonegarden_20",
+          "year": 1895,
+          "method_id": "met_minneanalyse",
+          "guidance_basis": [
+            "Romanutgivelse 1895 som spor etter populær historiebruk",
+            "met_minneanalyse"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_romanen_kom_bare_to_ar_e_b187b3803d",
+          "knowledge_unit_ids": [
+            "ku_historie_romanen_kom_bare_to_ar_e_b187b3803d",
+            "ku_historie_et_litter_rt_verk_er_ikk_ac6fea0352"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "abelonegarden_quiz_21",
+          "quiz_id": "historie_abelonegarden_set_3_q7",
+          "categoryId": "historie",
+          "placeId": "abelonegarden",
+          "targetId": "abelonegarden",
+          "question_scope": "place",
+          "question": "Hvilken kilde er best egnet til å kontrollere rettens begrunnelse, når senere viser og romaner gir andre versjoner?",
+          "options": [
+            "En revyvise om Abelone",
+            "Jon Flatabøs roman fra 1895",
+            "Rettens samtidige dokumenter"
+          ],
+          "answer": "Rettens samtidige dokumenter",
+          "answerIndex": 2,
+          "knowledge": "Rettspapirene er det primære sporet til selve avgjørelsen, mens viser og romaner dokumenterer hvordan historien siden ble fortalt. Historikeren må også spørre hva dokumentene ikke kan bevise.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "emne_id": "em_his_minnesteder_historiebruk",
+          "source": [
+            "local_person"
+          ],
+          "source_origin": "external",
+          "claim_basis": "Fortellinger om Abelone ble til gateviser, revyviser og romaner; slike senere framstillinger må skilles fra etterprøvbare hendelser.",
+          "claim_id": "claim_abelonegarden_21",
+          "year": null,
+          "method_id": "met_kildekritikk",
+          "guidance_basis": [
+            "Skille mellom samtidige rettsdokumenter og senere framstillinger",
+            "met_kildekritikk"
+          ],
+          "primary_knowledge_unit_id": "ku_historie_rettspapirene_er_det_pri_5d33ea6387",
+          "knowledge_unit_ids": [
+            "ku_historie_rettspapirene_er_det_pri_5d33ea6387",
+            "ku_historie_historikeren_ma_ogsa_sp__9291fde526"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    }
+  ]
+}
