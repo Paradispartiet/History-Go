@@ -70,6 +70,12 @@ body.hg-app.map-only #nearbyExploreToggle{
   display: none;
 }
 
+/* Kartkontrollene skal ikke dekke kortene når Utforsk-panelet er åpent.
+   Kontrollen kommer tilbake straks panelet lukkes. */
+body.hg-app:has(#nearbyListContainer.is-drawer-open) .map-controls{
+  display: none !important;
+}
+
 /* Head */
 #nearbyListContainer .leftpanel-head{
   display: flex;
