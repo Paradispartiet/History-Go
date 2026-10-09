@@ -1,6 +1,6 @@
 # Aftenposten – gjeldende produksjonsaudit 9. oktober 2026
 
-Dette er den videre stedsproduksjonen etter kilde-/personrettelsen i #6144. Bekreftet profil: **major**, Media med aviser, nettaviser, journalistikk og mediehus_og_redaksjoner. Stedseier er Akersgata 51 i perioden 1876–2003. Linderud er trykkestedskontekst og nummer 55 i 2014 er en annen adresse. Koordinatene og Eilertsens vg_huset-anker er bevart. READ-FIRST er gjennomført med gjeldende regler, og hashparitet er kontrollert gjennom alle fresh-main replay. Gjeldende integrasjonsbase er bdcf9a192fae39d977e5b3bef8406cfc7ae75149.
+Dette er den videre stedsproduksjonen etter kilde-/personrettelsen i #6144. Bekreftet profil: **major**, Media med aviser, nettaviser, journalistikk og mediehus_og_redaksjoner. Stedseier er Akersgata 51 i perioden 1876–2003. Linderud er trykkestedskontekst og nummer 55 i 2014 er en annen adresse. Koordinatene og Eilertsens vg_huset-anker er bevart. READ-FIRST er gjennomført med gjeldende regler, og hashparitet er kontrollert gjennom alle fresh-main replay. Gjeldende integrasjonsbase er d64f72896ea1186b8cd0b0c00026181c512a2504.
 
 ## Tekst, kilder og eierflater
 
@@ -39,12 +39,27 @@ Paret viser samme katalogførte hovedadresse og sammenlignbare skrå gatefasader
 
 QuizCard er native canonical JSON, med ti avledede spørsmål og fasit, registrert i Media-manifestet. Kortets spørsmål, alternativer, svar, emner og kilde-ID-er er kopiert fra canonical quiz, ingen nye sett er produsert i Place-PR-en.
 
-## Runtime-funn, kontroller og åpen sluttgate
+## Runtime-funn og sluttkontroll
 
 Canonical place:build/place:verify har bestått og generert indeks, runtime, Fagverk-release og epokeindex. Fire målrettede Aftenposten-regresjoner består. Den første ekte Place-nettleserkontrollen fant en reell manglende kobling: Historie renderer history_layers, men hentet ikke Leksikon-eid chronology. En separat chronology-renderer er derfor koblet til Historie-slotten. Den leser eksisterende canonical Leksikon-data; den oppretter ingen lokal parallell tidslinje og endrer ikke history_layers-rendererens eiergrense. Regresjonen kontrollerer åtte ekte Aftenposten-milepæler, kilde-URL-er, eksklusjon av 2014, idempotens og annen-place-isolasjon. Åtte History/Place Sheet-tester består.
 
 To eksisterende fixture-tester fra Storgata/Youngstorget var ikke oppdatert etter main sin flytting av People til heroen. De er rettet til å kontrollere tre nedre celler **og** en synlig, canonical People-flate ved Badge; fortsatt fire faktiske samlinger. Ingen samlings- eller eierskapskrav er svekket.
 
-Faktisk sluttkontroll av alle fire samlinger/popuper/medlemsbilder, ti QuizCard-spørsmål, mus/touch/tastatur-flip, samtlige kunnskapsseksjoner, epokeviser, Fagverk-side, bilder og overflow gjentas på aktuell PR-head. UI-status er PENDING frem til beviset foreligger. Midlertidig candidate-workflow endrer ikke canonical final_ui-gaten og fjernes etter kontrollen.
+Faktisk sluttkontroll består på head **2192481602938661a0beeb3790eba36d485da373**, med main d64f7289 som integrasjonsbase: [browser-run 37972551047](https://github.com/Paradispartiet/History-Go/actions/runs/37972551047), artifact 11636722263. Begge profiler (1440×1000 desktop, 390×844 touch-mobil) har alle 14 obligatoriske kontroller PASS og ingen pageerrors. Alle medlemsbilder er dekodet; samlingene har 2 People, 1 Object, 1 Brand og 2 Utgivelser. Ni seksjoner er kontrollert, med begrunnet N/A for Nyheter. Før/etter har begge bildene lastet. QuizCard har ti faktiske spørsmål og fasit, mus-/touch-flip og Enter/Space-flip; skjermbildet tas etter fullført animasjon. Hele Fagverk-siden viser fem avsnitt, fem spørsmål og riktig linse. Media-epokeinngangen viser Aftenposten/1876; de kildebelagte historiske milepælene er kontrollert i den genererte Historie-indeksen, ikke påstått vist som Media-hendelser.
 
-Kvalitetsvurdering før denne re-QA: korrekthet/evidens 5, dekning 4, faglig/redaksjonell kvalitet 4, teknisk integritet 3, sikkerhet/ansvarlighet 5, vedlikeholdbarhet/etterprøvbarhet 5 = **26/30, BLOCKED**. Teknikk er under 4, og stedet hevdes ikke ferdig. Green CI kan ikke erstatte faktisk kontroll av brukerflaten.
+Skjermbilder av PlaceCard, alle popuper, før/etter, quizkort, epokeviser og Fagverk er inspisert. Samlings-ID-er bevares i canonical rekkefølge, men People er ved overskriften, og de tre nedre samlingene har egen grid-rekkefølge. Den tidligere closeout-testen forventet fire nedre posisjoner etter main sin hero-endring. Den kontrollerer nå faktisk People-plassering og de øvrige samlingenes grid-rekkefølge; ingen medlemmer eller synlighetskrav er fjernet. Den innledende popup-bildefeilen var en test-race før modalens visible-tilstand; medlemsbildene var til stede og kontrollen venter nå på den reelle modalen.
+
+Bevis med alle resultater og kilde til CI-artifact er lagret i `reports/place-production/aftenposten-browser-closeout-20261009.json`. UI-status er PASS. Midlertidig candidate-workflow og helper fjernes etter denne kontrollen. Canonical final closeout og øvrig relevant CI må bestå på den ryddede final-head før merge; ferdig innholdsstatus er ikke en erstatning for mergekontrollen. Dette er Chromium på desktop/touch-mobil, ingen påstand om separat native Safari-/iPad-test.
+
+## Eksplisitt kvalitetsport
+
+| Dimensjon | Poeng | Konkret evidens og avgrensning |
+|---|---:|---|
+| Korrekthet og evidens | 5 | 20/20 kildebelagte påstander, full factual/editorial review, direkte primærkilder og inspiserte originalbilder. 51/55, trykkested/redaksjon og usikker datering skilles. |
+| Dekning og ferdigstillelse | 4 | Hele bekreftet major-plan er materialisert: fire reelle samlinger og alle valgte moduler. Nyheter har kildebegrunnet N/A; første magasincover er en åpen, dokumentert asset-holdback utenfor de valgte to publikasjonene. Ingen uttømmende bibliografi hevdes. |
+| Faglig/redaksjonell kvalitet | 4 | Selvstendig stedsartikkel, to faktiske historiske Fagverk-caser, konkrete observasjonsspor, særskilt språk og kildebevisste quizspørsmål. Teori følger faktisk mediehistorie. |
+| Teknisk integritet | 4 | Canonical build/verify, åtte History/Place Sheet-tester, fire Aftenposten-regresjoner og full desktop-/touch-mobil-QA. Final-head CI beholdes som mergegate; native Safari/iPad er ikke attestert. |
+| Sikkerhet og ansvarlighet | 5 | Konkrete bilde-ID-er/lisenser og opphav, museets kreditering beholdt, ingen endorsement eller konstruerte medarbeiderholdninger. Historisk scope og bildenes bevisgrenser er eksplisitte. |
+| Vedlikeholdbarhet og etterprøvbarhet | 5 | Én canonical eier for Place/Fagverk/Leksikon/Quiz, genererte runtime-/epokedata, deterministisk quizkontekst i Place-pipelinen og eksakt CI-/assetbevis. |
+
+**27/30, PASS**: hver dimensjon minst 4, ingen kritiske innholdsavvik eller uavklarte produksjonsblokkere. Hele det valgte scope er gjennomgått; skjema, ordtelling og grønn CI alene er ikke kvalitetsbevis.

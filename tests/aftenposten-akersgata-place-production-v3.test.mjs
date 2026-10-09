@@ -25,7 +25,7 @@ test('Aftenposten preserves the verified 51 anchor and the Eilertsen correction'
   assert.equal(eilertsen.placeId, 'vg_huset');
 });
 
-test('Aftenposten has factual text and a truthful partial production state', () => {
+test('Aftenposten has factual text and a consistent declared production state', () => {
   const packet = read(`data/places/production/${id}.json`);
   const result = validatePacket({ packet, place });
   const issues = result.issues.filter(issue => !['popup_below_minimum', 'desc_outside_normal_range'].includes(issue.code));
@@ -34,6 +34,7 @@ test('Aftenposten has factual text and a truthful partial production state', () 
   assert.equal(workflow.profile.id, 'major');
   assert.equal(workflow.state, deriveWorkflowState(workflow));
   if (workflow.state !== 'complete') assert.notEqual(place.production_status, 'complete');
+  else assert.equal(place.production_status, 'complete');
   assert.deepEqual(place.place_card_profile.collection_ids, deriveSelectedCollections(workflow));
   assert.deepEqual(runtime.place.place_card_profile, place.place_card_profile);
 });
