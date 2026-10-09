@@ -191,6 +191,8 @@ try {
         id,
         actualId: el?.dataset?.collectionId || '',
         position: Number(el?.dataset?.collectionPosition ?? -1),
+        inTitleRow: Boolean(el?.closest('.pc-title-row')),
+        inCollectionGrid: Boolean(el?.closest('.pc-icons-quad')),
         itemCount: Number(el?.dataset?.collectionItemCount || 0),
         previewLoaded: image instanceof HTMLImageElement ? image.complete && image.naturalWidth > 0 : false,
       };
@@ -341,7 +343,9 @@ try {
       canonicalCollectionMode: base.collectionMode === 'place-card-collections-v2',
       collectionCount: base.collectionCount === expectedUiCollections.length,
       collectionIdsAndOrder: collectionState.every((item, index) =>
-        item.actualId === expectedUiCollections[index].id && item.position === index
+        item.actualId === expectedUiCollections[index].id && (item.id === 'people'
+          ? item.inTitleRow && !item.inCollectionGrid
+          : item.inCollectionGrid && item.position === expectedUiCollections.filter(row => row.id !== 'people').findIndex(row => row.id === item.id))
       ),
       collectionItemsPresent: collectionState.every((item) => item.itemCount >= 1),
       collectionPreviewsLoaded: collectionState.every((item) => item.previewLoaded === true),

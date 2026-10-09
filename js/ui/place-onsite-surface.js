@@ -168,24 +168,24 @@
     return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Stedsfunksjoner">${buttons.join("")}</div></div>`;
   }
 
-  function ensureBelowLandscape() {
+  function ensureBelowCollections() {
     const card = document.getElementById("placeCard");
     const box = document.getElementById("pcEventsBox");
-    // Standard Place Sheet moves the canonical box into the sticky tab rail.
-    // Return the *same node* to the landscape hero: the delegated event and
-    // meeting actions remain intact. Micro Places keep their legacy layout.
+    // On standard Places the collections grid is to the right of frontImage.
+    // Reuse the canonical Events/Møtes node directly BELOW those collections,
+    // never in the top navigation, above the description or in a duplicate box.
+    // Micro Places retain their own legacy grid placement.
     if (!card?.classList.contains("is-place-sheet-direct") || !box || !card.contains(box)) return;
-    const hero = card.querySelector(".pc-text > #pcHeaderHero");
-    if (hero) {
-      if (hero.nextElementSibling !== box) hero.after(box);
-      return;
+    const collections = card.querySelector(".pc-sheet-hero-media > .pc-sheet-explore-grid");
+    const rounds = collections?.querySelector(":scope > .pc-side-stack");
+    if (!collections || !rounds) return;
+    if (box.parentElement !== collections || rounds.nextElementSibling !== box) {
+      rounds.after(box);
     }
-    const textBlock = card.querySelector(".pc-sheet-hero-copy > .pc-text");
-    if (textBlock && box.parentElement !== textBlock) textBlock.appendChild(box);
   }
 
   function decorate(force = false) {
-    ensureBelowLandscape();
+    ensureBelowCollections();
     const box = document.getElementById("pcEventsBox");
     const place = currentPlace();
     if (!box || !place) return;

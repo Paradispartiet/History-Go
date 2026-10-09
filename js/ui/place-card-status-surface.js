@@ -58,8 +58,8 @@
     ensureScript("js/ui/place-rounds-fill-layout.js");
     ensureStylesheet("css/place-popup-shortcuts.css");
     ensureScript("js/ui/place-popup-shortcuts.js");
-    ensureStylesheet("css/place-onsite-surface.css?v=20261009-below-landscape1");
-    ensureScript("js/ui/place-onsite-surface.js?v=20261009-below-landscape1");
+    ensureStylesheet("css/place-onsite-surface.css?v=20261009-right-collections2");
+    ensureScript("js/ui/place-onsite-surface.js?v=20261009-right-collections2");
   }
 
   function loadPlaceLearningSurface() {
