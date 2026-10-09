@@ -96,6 +96,9 @@ try {
         count:document.querySelectorAll("#pcEventsBox").length,
         rightDisplay:getComputedStyle(document.querySelector(".pc-sheet-explore-grid")).display,
         rightHeight:document.querySelector(".pc-sheet-explore-grid").getBoundingClientRect().height,
+        lastVisibleCollectionBottom:Math.max(...[...document.querySelectorAll(".pc-sheet-explore-grid .pc-collection:not([hidden])")]
+          .filter(element => getComputedStyle(element).display !== "none")
+          .map(element => element.getBoundingClientRect().bottom)),
         horizontalOverflow:document.documentElement.scrollWidth > innerWidth + 1
       };
     });
@@ -115,9 +118,9 @@ try {
       assert.ok(Math.abs(layout.controls.bottom - layout.front.bottom) <= 2,
         "Events/Møtes bottom must align with frontImage bottom at "+width+": "+
         JSON.stringify({frontBottom:layout.front.bottom,controlsBottom:layout.controls.bottom,roundsBottom:layout.rounds.bottom,rightHeight:layout.rightHeight}));
-      assert.ok(layout.controls.y - layout.rounds.bottom >= 7,
-        "Events/Møtes must not overlap collections at "+width+": "+
-        JSON.stringify({front:layout.front,rounds:layout.rounds,controls:layout.controls,competitions:layout.competitions,right:layout.rightColumn}));
+      assert.ok(layout.controls.y - layout.lastVisibleCollectionBottom >= 7,
+        "Events/Møtes must not overlap any rendered collection tile at "+width+": "+
+        JSON.stringify({front:layout.front,rounds:layout.rounds,controls:layout.controls,lastVisibleCollectionBottom:layout.lastVisibleCollectionBottom}));
     }
     if (width <= 700) {
       assert.ok(layout.events.bottom <= layout.meet.y + 1,
