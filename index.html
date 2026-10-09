@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/map.css">
-  <link rel="stylesheet" href="css/placeCard.css">
+  <link rel="stylesheet" href="css/placeCard.css?v=20261009-media-grid-hero1">
   <link rel="stylesheet" href="css/place-onsite-surface.css?v=20260912-live-surfaces2">
   <link rel="stylesheet" href="css/wonderkammer.css">
   <link rel="stylesheet" href="css/footer.css">
@@ -254,8 +254,13 @@
 
   <div class="pc-body">
     <div class="pc-text">
-      <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
-      <div id="pcMeta" class="pc-meta"></div>
+      <div id="pcHeaderHero" class="pc-heading-hero">
+        <img id="pcHeaderImage" class="pc-heading-image" alt="" aria-hidden="true">
+        <div class="pc-heading-content">
+          <div id="pcMeta" class="pc-meta"></div>
+          <div class="pc-title-row"><h2 id="pcTitle"></h2><button id="pcFavorite" class="pc-favorite-btn" type="button" aria-label="Legg til favoritt" title="Legg til favoritt">☆</button></div>
+        </div>
+      </div>
       <p id="pcDesc" class="pc-desc"></p>
     </div>
 
@@ -355,6 +360,6 @@
     }, { once: true });
   </script>
 
-  <script type="module" src="./js/app.js?v=20260913-place-status1"></script>
+  <script type="module" src="./js/app.js?v=20261009-placecard-media1"></script>
 </body>
 </html>
