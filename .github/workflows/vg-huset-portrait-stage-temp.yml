@@ -1,0 +1,60 @@
+name: VG-huset portrait candidate staging (temporary)
+
+on:
+  push:
+    branches: [agent/vg-huset-source-preflight-20261009]
+    paths: ['.github/workflows/vg-huset-portrait-stage-temp.yml']
+permissions:
+  contents: write
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Preserve existing candidates and inspect fresh Commons candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp data/people/people_image_candidates.json /tmp/people-candidates-existing.json
+          npm run people:images:candidates -- --ids=gard_steiro,hanne_skartveit --limit=2 --max-candidates-per-person=3
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const old=JSON.parse(fs.readFileSync('/tmp/people-candidates-existing.json','utf8'));
+          const fresh=JSON.parse(fs.readFileSync('data/people/people_image_candidates.json','utf8'));
+          const ids={
+            gard_steiro:'gard_steiro__nmd_2019_toppm_tet_2019_13_46893491935_cropped_jpg',
+            hanne_skartveit:'hanne_skartveit__hanne_skartveit_0002_jpg'
+          };
+          if(!Array.isArray(old)||!Array.isArray(fresh))throw new Error('Candidate store schema mismatch');
+          if(old.some(x=>Object.hasOwn(ids,x.personId)))throw new Error('Target IDs already exist in global candidate store');
+          const selected=Object.entries(ids).map(([personId,candidateId])=>{
+            const found=fresh.filter(x=>x.personId===personId&&x.candidateId===candidateId);
+            if(found.length!==1)throw new Error('Not exactly one candidate for '+personId);
+            const c=found[0];
+            if(c.approved!==false||c.identity?.status!=='strong'||c.quality?.analysisStatus!=='complete')throw new Error('Candidate not ready for manual source review: '+personId);
+            if(!/^CC BY(?:-SA)? (?:2\.0|2\.5)$/u.test(c.license))throw new Error('Unexpected license '+c.license);
+            return c;
+          });
+          const merged=[...old,...selected];
+          fs.writeFileSync('data/people/people_image_candidates.json',JSON.stringify(merged,null,2)+'\n');
+          console.log(JSON.stringify({retained:old.length,newUnapproved:selected.map(x=>({personId:x.personId,file:x.commonsFileName,license:x.license,candidateId:x.candidateId})),allApprovedFalse:merged.every(x=>x.approved!==true)},null,2));
+          NODE
+      - name: Commit only unapproved selected candidate metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          test "$(git diff --name-only)" = "data/people/people_image_candidates.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/people/people_image_candidates.json
+          git commit -m "data(vg-huset): stage two unapproved Commons people-image candidates"
+          git push origin HEAD:agent/vg-huset-source-preflight-20261009
