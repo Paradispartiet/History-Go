@@ -47,3 +47,21 @@ Den siste ferdigstatusen krever separate godkjente People-portretter og faktisk 
 - **Ikke ferdigstilt:** Ingen av kandidatene er `approved: true`, nedlastet, materialisert eller koblet til People. Det gjenstår eksplisitt godkjenning av faktisk bildemotiv og lisens, standard `people:images:apply`/re-audit, samt full PlaceCard-/popup-QA før People `PASS`.
 
 Dette endrer ikke forrige beslutning om Kåre Valebrokks udokumenterte direkte kobling til nybygget, og ingen samling er aktivert.
+
+## Fase 3C – to source-reviewed People-profiler og faktiske portretter
+
+**Dato:** 2026-10-09. **Delstatus:** Gard Steiro og Hanne Skartveit har fått canonical `ready_people_v1`; hele People-samlingen for VG-huset er fortsatt **BLOCKED**.
+
+- **Gard Steiro:** Originalt Commons-fotografi fra Nordiske Mediedager 2019, Thor Brødreskift / Nordiske Mediedager, **CC BY-SA 2.0**, 2020 × 2676 piksler. Lokal fil `bilder/kort/people/gard_steiro.jpg`, `image` og `cardImage` peker til denne. Canonical kilde-/setningsbank: `data/people/claims/media/oslo/redaksjoner/gard_steiro.claims.json` med **6/6 verified**. VGs ledelses-/kontaktside og SNL bekrefter tiltredelse januar 2017 og tidligere redaktørperioder. `profileStatus: ready_people_v1`.
+- **Hanne Skartveit:** Originalt Commons-fotografi tatt ved Litteraturhuset i 2009 av Bjørn Erik Pedersen, **CC BY 2.5**, 2128 × 2040 piksler. Lokal fil `bilder/kort/people/hanne_skartveit.jpg` og samme `image`/`cardImage`. Canonical profilbank `data/people/claims/media/oslo/redaksjoner/hanne_skartveit.claims.json`, nå **4/4 verified**, inkludert fotograf-/lisenserklæring. Politisk redaktør i VG 2009–2023; overgang til fristilt redaktørstilling i 2023. `profileStatus: ready_people_v1`.
+- Begge bildefiler er importert fra de godkjente Commons-originalene gjennom den eksisterende People-image-pipelinen, ikke generert eller rekonstruert. `data/people/people_image_attributions.json` har fotograf/kreditering og lisenslenke; `data/people/people_image_candidates.json` bevarer de andre 22 kandidatene.
+- Kontrollert faktisk fil og pikselstørrelse, `imageMeta`, provenance og attribusjonsregistrering under [original-apply #37989536057](https://github.com/Paradispartiet/History-Go/actions/runs/37989536057) (**PASS**). Etter at begge profilene fikk `ready_people_v1`, bestod [People v1 final sync #37989908725](https://github.com/Paradispartiet/History-Go/actions/runs/37989908725) (**PASS**) med People Profile Canonical, regresjonstester, People-of-Places og deterministisk `place-open:check`.
+- De midlertidige bilde- og QA-workflowene er fjernet fra PR. Avledede `people-all`-sharder (004–006), VG-place-open og People-attribusjon/statusrapporter er synkronisert.
+
+### Avgrensning som fortsatt blokkerer PlaceCard People-samling
+
+- **Torry Pedersen, Bernt Olufsen og Trine Eilertsen** har ennå ikke ferdige lisensierte portretter/profil-review for VG-husets PlaceCard; eksisterende ugyldige bildefilreferanser er fjernet, ikke erstattet med generiske bilder.
+- **Kåre Valebrokk:** feilaktig direkte tilknytning til dagens VG-hus er dokumentert, men korrekt canonical primæranker må kontrolleres før en relasjonsendring.
+- People-samlingen skal **ikke** settes `PASS` eller aktiveres som full samling før kvalifiserte medlemmer og faktiske popuper/rettigheter er gjennomgått samlet. Enkeltpersoners `ready_people_v1` er ikke PlaceCard-final-QA.
+
+Neste fase: faktisk full PlaceCard-samlingsaudit for People, Objects, Brands og Media/Productions; separat QuizCard og slutt-QA.
