@@ -10,6 +10,11 @@ on:
       - "js/ui/place-language-layer.js"
       - "js/ui/place-learning-surface.js"
       - "js/ui/place-card-status-surface.js"
+      - "js/ui/place-onsite-surface.js"
+      - "css/place-onsite-surface.css"
+      - "tests/placecard-onsite-under-landscape-browser.test.mjs"
+      - "tests/place-onsite-category-policy.test.mjs"
+      - "tests/torggata-phase9-onsite.test.mjs"
       - "js/ui/place-popup-shortcuts.js"
       - "dist/web/place-unified-surface.js"
       - "dist/web/place-unified-surface.js.map"
@@ -66,6 +71,10 @@ jobs:
             tests/place-sheet-special-profiles.test.mjs \
             tests/place-unified-surface.test.mjs
 
+      - name: Verify Events and Møtes below landscape on mobile and desktop
+        run: node tests/placecard-onsite-under-landscape-browser.test.mjs
+      - name: Verify canonical Events/Møtes and Place Sheet DOM ownership
+        run: node --test tests/place-sheet-explore-under-frontimage.test.mjs tests/place-sheet-phase1.test.mjs tests/torggata-phase9-onsite.test.mjs
       - name: Verify responsive PlaceCard collection contract
         run: node tests/place-card-fullness-all-categories-browser-audit.test.mjs
 
