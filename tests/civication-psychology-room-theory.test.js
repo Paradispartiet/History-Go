@@ -43,6 +43,10 @@ for (const theory of catalog.theories) {
   assert.ok(ids.has(theory.compare_with), "missing compared theory: " + theory.id);
 }
 assert.equal(ids.size, catalog.theories.length);
+const teachingCases = catalog.theories.flatMap((theory) => [theory.example, theory.example_secondary]);
+assert.equal(teachingCases.length, 28, "14 theory cards must each have two scenarios");
+assert.equal(new Set(teachingCases).size, teachingCases.length,
+  "every hypothetical teaching scenario should be independently authored");
 
 // DOM stub captures view transitions without loading the full History Go app.
 let rendered = "";
