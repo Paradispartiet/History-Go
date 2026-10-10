@@ -266,7 +266,9 @@ assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
-assert.match(reviewed.get("kognitiv_terapi").method, /1963.*ikke hele metodedelen/);
+assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
+assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
 for (const [id, urls] of Object.entries(primaryOriginalSources)) {
   const units = detailedReview.units.filter((unit) => unit.theory_id === id);
   assert.ok(units.some((unit) => urls.some((url) => unit.evidence_urls.includes(url))),
