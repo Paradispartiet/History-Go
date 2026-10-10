@@ -264,8 +264,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 assert.match(reviewed.get("tilknytning").idea, /biologiske mor/);
 assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
-assert.match(reviewed.get("resiliens").method, /1989.*1993.*1, 2, 10, 18 og 32/);
-assert.match(reviewed.get("resiliens").limit, /698.*32 år/);
+assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
+assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*ikke hele metodedelen/);
 for (const [id, urls] of Object.entries(primaryOriginalSources)) {
   const units = detailedReview.units.filter((unit) => unit.theory_id === id);
@@ -274,4 +274,17 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
   assert.ok(units.every((unit) => unit.card_is_source_verified === false));
 }
 
+// Batch 09: original-publication access and unresolved scientific gates
+assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
+assert.equal(detailedReview.original_publication_audit.entries.length, 8);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 8);
+for (const item of detailedReview.original_publication_audit.entries) {
+  assert.ok(group1.includes(item.theory_id));
+  assert.ok(item.open_requirement.length > 50);
+  assert.ok(item.access.length > 15);
+  assert.ok(reviewed.get(item.theory_id).reference_links.some((ref) => ref.url === item.source_url));
+}
+assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__limit").assertion, /88 %.*90 %.*80 %/);
+assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__method").assertion, /698.*201.*72/);
+assert.equal(detailedReview.units.filter((unit) => unit.full_original_review_complete === true).length, 0);
 console.log("civication-psychology-room-coverage.test.js passed");
