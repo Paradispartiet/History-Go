@@ -74,3 +74,15 @@ VG-artikkelen har illustrasjon av nettets første forside, men bildet er **ikke 
 5. Materialiser bare samlinger med PASS i `place_card_profile.collection_ids`; kjør generatorer og målrettet pop-up/browser-test, QuizCard-flip og mobil/iPad, og til slutt seksdelt kvalitetsgate / merge.
 
 Dette notatet godkjenner ikke en ferdig PlaceCard. Det skiller konkrete, verifiserte **kildespor** fra publiserte medlemmer og lar fungerende canonical data være urørt inntil den nødvendige materialiseringen er gjennomført.
+
+## Fase 4 – importert og materialisert, 10. oktober 2026
+
+**Supersederer tidligere «ikke importert»-opplysninger i Objects- og Brands-kapitlene.** Etter den opprinnelige kandidatkontrollen er de to verifiserte Commons-originalene faktisk lastet inn på PR-branchen og bundet til canonical data:
+
+- `bilder/kort/objects/vg_avismonter_2011.jpg`: 1 327 678 byte, JPEG (Ulflarsen, 14.10.2011, CC BY-SA 3.0), original uendret. Sha-256: `60160af9668bac88f5db0f0e6e78636ba3992698a3940c18f2de5599ce9b73b7`.
+- `bilder/kort/brands/vg_logo.svg`: 2 300 byte, original VG-logo (2015), PD-textlogo med varemerkeforbehold, refererende identifikasjon uten tilslutningspåstand. Sha-256: `a7246867d40e7651a071088914a7c9b474f14fd28dc3567ff1381ca5e9219dc7`.
+- `data/places/media/oslo/places_oslo_media/vg_huset.json` har fått den dokumenterte fysiske monteren under `objects`; den er behandlet som et begrunnet signaturobjekt og ikke som et generisk andreobjekt.
+- Eksisterende Brand `vg` i `brands_master.json` har nå dokumentert `logo`, tids- og rettighetsmetadata og `state: catalog`; `brands_by_place.json` kobler `vg_huset` til `vg`. Ingen duplikat-ID.
+- Generatorer og synkroniseringskontroller for `places_index.json` og 1 533 Place-open-payloads har passert; bare `data/runtime/place-open/vg_huset.json` trengte endring (commit `db57be0f`). Fire egne datatester passerer. De midlertidige GitHub Actions-workflowene er fjernet etter bruk.
+
+**Gjenstår før samlet PlaceCard-PASS:** faktisk Chromium medlemspreview og popup (målrettet browser-test), Valebrokks ugyldige gamle VG-anker, representative Productions-medlemsbilder, QuizCard-flip og full mobil-/iPad-/desktop-kvalitetskontroll. Den kanoniske `place_card_profile` er fortsatt ikke aktivert; ingen fullført stedstatus eller merge.
