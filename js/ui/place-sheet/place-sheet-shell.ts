@@ -25,12 +25,16 @@ type PlaceSheetShellRuntime = Window & typeof globalThis & {
   };
   HGPlaceCardCollections?: {
     get?: (place: PlaceSheetPlace) => Array<{ id?: string; label?: string }>;
+    getItems?: (place: PlaceSheetPlace, id: string) => unknown[];
   };
 };
 
 const runtime = window as PlaceSheetShellRuntime;
 const SHELL_ATTR = "data-hg-place-sheet-shell";
 const SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
+let sectionNavObserver: MutationObserver | null = null;
+let observedShell: HTMLElement | null = null;
+let observedPlace: PlaceSheetPlace | null = null;
 const NAV_ITEMS = [
   ["about", "Om"],
   ["history", "Historie"],
@@ -66,7 +70,7 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
     nav.className = "pc-sheet-section-nav";
     nav.setAttribute("data-hg-place-sheet-nav", "1");
     nav.setAttribute("aria-label", "Hopp til del av stedet");
-    nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
+    nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}" hidden>${label}</button>`).join("");
     nav.addEventListener("click", event => {
       const collectionButton = event.target instanceof Element
         ? event.target.closest<HTMLElement>("[data-hg-place-sheet-collection-link]")
@@ -103,6 +107,59 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
   return nav;
 }
 
+function hasSectionContent(shell: HTMLElement, placeId: string, sectionId: string): boolean {
+  const section = shell.querySelector<HTMLElement>(`[data-hg-place-sheet-section="${sectionId}"]`);
+  if (!(section instanceof HTMLElement) || section.hidden) return false;
+
+  // Compatibility sections load asynchronously and must belong to this Place,
+  // not to the Place previously displayed in the reused shell.
+  if (["news", "reading", "language", "learning", "sources"].includes(sectionId)
+      && text(section.dataset.placeId) !== placeId) return false;
+
+  if (sectionId === "sources") {
+    // The Sources owner can render an empty-state message; that is not content.
+    return Boolean(section.querySelector(".hg-place-source-list li, .hg-place-source-link-list a"));
+  }
+
+  const owner = section.querySelector<HTMLElement>(
+    `[data-hg-place-sheet-owner="${sectionId}"]` +
+    (sectionId === "history" ? ', [data-hg-place-sheet-owner="chronology"]' : "")
+  );
+  return Boolean(owner && text(owner.textContent) && !owner.querySelector(".hg-place-tab-empty"));
+}
+
+function syncSectionNav(shell: HTMLElement): void {
+  const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  const placeId = text(shell.dataset.placeId);
+  if (!(nav instanceof HTMLElement) || !placeId) return;
+  nav.querySelectorAll<HTMLButtonElement>("[data-hg-place-sheet-jump]").forEach(button => {
+    const visible = hasSectionContent(shell, placeId, text(button.dataset.hgPlaceSheetJump));
+    if (button.hidden === visible) button.hidden = !visible;
+  });
+}
+
+function hasCollectionContent(place: PlaceSheetPlace, id: string, sideStack: HTMLElement | null): boolean {
+  let items: unknown;
+  try { items = runtime.HGPlaceCardCollections?.getItems?.(place, id); } catch {}
+  if (Array.isArray(items)) {
+    if (items.length) return true;
+    // Legacy Nature previews may load after the collection API, but canonical
+    // People/Brands/Objects/Events/Productions must never inherit stale icons.
+    if (!["flora", "fauna", "map"].includes(id)) return false;
+  }
+
+  const icon = sideStack
+    ? Array.from(sideStack.querySelectorAll<HTMLElement>(".pc-collection"))
+        .find(node => text(node.dataset.collectionId) === id)
+    : null;
+  if (!(icon instanceof HTMLElement) || icon.hidden || icon.getAttribute("aria-hidden") === "true") return false;
+  const count = text(icon.dataset.collectionItemCount);
+  if (count) return Number(count) > 0;
+  // Preserve existing visible legacy previews while excluding known-empty
+  // canonical collections.
+  return !Array.isArray(items);
+}
+
 function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: HTMLElement | null): Element | null {
   nav.querySelectorAll<HTMLElement>("[data-hg-place-sheet-collection-link]").forEach(button => button.remove());
 
@@ -115,7 +172,8 @@ function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: 
           label: text(node.getAttribute("aria-label") || node.title)
         }))
     : [];
-  const source = configured.length ? configured : fallback;
+  const source = (typeof runtime.HGPlaceCardCollections?.get === "function" ? configured : fallback)
+    .filter(item => hasCollectionContent(place, text(item?.id), sideStack));
   const seen = new Set<string>();
   let insertAfter = nav.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
 
@@ -135,6 +193,36 @@ function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: 
   }
 
   return insertAfter;
+}
+
+function observeSectionNav(shell: HTMLElement, place: PlaceSheetPlace): void {
+  observedPlace = place;
+  if (observedShell !== shell) {
+    sectionNavObserver?.disconnect();
+    observedShell = shell;
+    sectionNavObserver = new MutationObserver(mutations => {
+      if (!observedShell?.isConnected) return;
+      let sectionsChanged = false;
+      let collectionsChanged = false;
+      for (const mutation of mutations) {
+        const target = mutation.target;
+        if (!(target instanceof Element) || target.closest('[data-hg-place-sheet-nav="1"]')) continue;
+        if (target.closest("[data-hg-place-sheet-section]")) sectionsChanged = true;
+        if (target.closest(".pc-side-stack")) collectionsChanged = true;
+      }
+      if (sectionsChanged) syncSectionNav(shell);
+      if (collectionsChanged) {
+        const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+        if (nav) {
+          if (observedPlace) syncCollectionNav(nav, observedPlace, shell.querySelector<HTMLElement>(".pc-side-stack"));
+        }
+      }
+    });
+    sectionNavObserver.observe(shell, {
+      subtree: true, childList: true, attributes: true,
+      attributeFilter: ["hidden", "aria-hidden", "data-place-id", "data-collection-item-count", "data-collection-id"]
+    });
+  }
 }
 
 function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
@@ -268,12 +356,18 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   const beforeAfterSlot = ensureBeforeAfterSlot(shell);
   if (beforeAfterSlot) mountCanonicalBeforeAfter(beforeAfterSlot, place)?.classList.add("pc-sheet-canonical-before-after");
 
+  syncSectionNav(shell);
+  observeSectionNav(shell, place);
   startAutomaticPlaceSheetRender(text(place.id));
   return shell;
 }
 
 export function restoreLegacyPlaceCardStructure(): void {
   cancelAutomaticPlaceSheetRender();
+  sectionNavObserver?.disconnect();
+  sectionNavObserver = null;
+  observedShell = null;
+  observedPlace = null;
   const root = card();
   const rootBody = body();
   if (!(root instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;

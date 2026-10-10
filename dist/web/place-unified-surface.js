@@ -1813,6 +1813,9 @@
   var runtime17 = window;
   var SHELL_ATTR = "data-hg-place-sheet-shell";
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
+  var sectionNavObserver = null;
+  var observedShell = null;
+  var observedPlace = null;
   var NAV_ITEMS = [
     ["about", "Om"],
     ["history", "Historie"],
@@ -1844,7 +1847,7 @@
       nav.className = "pc-sheet-section-nav";
       nav.setAttribute("data-hg-place-sheet-nav", "1");
       nav.setAttribute("aria-label", "Hopp til del av stedet");
-      nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}">${label}</button>`).join("");
+      nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}" hidden>${label}</button>`).join("");
       nav.addEventListener("click", (event) => {
         var _a, _b, _c;
         const collectionButton = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-collection-link]") : null;
@@ -1875,15 +1878,53 @@
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
-  function syncCollectionNav(nav, place, sideStack) {
+  function hasSectionContent(shell4, placeId2, sectionId) {
+    const section = shell4.querySelector(`[data-hg-place-sheet-section="${sectionId}"]`);
+    if (!(section instanceof HTMLElement) || section.hidden) return false;
+    if (["news", "reading", "language", "learning", "sources"].includes(sectionId) && text16(section.dataset.placeId) !== placeId2) return false;
+    if (sectionId === "sources") {
+      return Boolean(section.querySelector(".hg-place-source-list li, .hg-place-source-link-list a"));
+    }
+    const owner = section.querySelector(
+      `[data-hg-place-sheet-owner="${sectionId}"]` + (sectionId === "history" ? ', [data-hg-place-sheet-owner="chronology"]' : "")
+    );
+    return Boolean(owner && text16(owner.textContent) && !owner.querySelector(".hg-place-tab-empty"));
+  }
+  function syncSectionNav(shell4) {
+    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    const placeId2 = text16(shell4.dataset.placeId);
+    if (!(nav instanceof HTMLElement) || !placeId2) return;
+    nav.querySelectorAll("[data-hg-place-sheet-jump]").forEach((button) => {
+      const visible = hasSectionContent(shell4, placeId2, text16(button.dataset.hgPlaceSheetJump));
+      if (button.hidden === visible) button.hidden = !visible;
+    });
+  }
+  function hasCollectionContent(place, id, sideStack) {
     var _a, _b;
+    let items;
+    try {
+      items = (_b = (_a = runtime17.HGPlaceCardCollections) == null ? void 0 : _a.getItems) == null ? void 0 : _b.call(_a, place, id);
+    } catch {
+    }
+    if (Array.isArray(items)) {
+      if (items.length) return true;
+      if (!["flora", "fauna", "map"].includes(id)) return false;
+    }
+    const icon = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).find((node) => text16(node.dataset.collectionId) === id) : null;
+    if (!(icon instanceof HTMLElement) || icon.hidden || icon.getAttribute("aria-hidden") === "true") return false;
+    const count = text16(icon.dataset.collectionItemCount);
+    if (count) return Number(count) > 0;
+    return !Array.isArray(items);
+  }
+  function syncCollectionNav(nav, place, sideStack) {
+    var _a, _b, _c;
     nav.querySelectorAll("[data-hg-place-sheet-collection-link]").forEach((button) => button.remove());
     const configured = ((_b = (_a = runtime17.HGPlaceCardCollections) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, place)) || [];
     const fallback = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).filter((node) => !node.hidden && text16(node.dataset.collectionId)).map((node) => ({
       id: text16(node.dataset.collectionId),
       label: text16(node.getAttribute("aria-label") || node.title)
     })) : [];
-    const source = configured.length ? configured : fallback;
+    const source = (typeof ((_c = runtime17.HGPlaceCardCollections) == null ? void 0 : _c.get) === "function" ? configured : fallback).filter((item) => hasCollectionContent(place, text16(item == null ? void 0 : item.id), sideStack));
     const seen = /* @__PURE__ */ new Set();
     let insertAfter = nav.querySelector('[data-hg-place-sheet-jump="about"]');
     for (const item of source) {
@@ -1901,6 +1942,37 @@
       insertAfter = button;
     }
     return insertAfter;
+  }
+  function observeSectionNav(shell4, place) {
+    observedPlace = place;
+    if (observedShell !== shell4) {
+      sectionNavObserver == null ? void 0 : sectionNavObserver.disconnect();
+      observedShell = shell4;
+      sectionNavObserver = new MutationObserver((mutations) => {
+        if (!(observedShell == null ? void 0 : observedShell.isConnected)) return;
+        let sectionsChanged = false;
+        let collectionsChanged = false;
+        for (const mutation of mutations) {
+          const target = mutation.target;
+          if (!(target instanceof Element) || target.closest('[data-hg-place-sheet-nav="1"]')) continue;
+          if (target.closest("[data-hg-place-sheet-section]")) sectionsChanged = true;
+          if (target.closest(".pc-side-stack")) collectionsChanged = true;
+        }
+        if (sectionsChanged) syncSectionNav(shell4);
+        if (collectionsChanged) {
+          const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+          if (nav) {
+            if (observedPlace) syncCollectionNav(nav, observedPlace, shell4.querySelector(".pc-side-stack"));
+          }
+        }
+      });
+      sectionNavObserver.observe(shell4, {
+        subtree: true,
+        childList: true,
+        attributes: true,
+        attributeFilter: ["hidden", "aria-hidden", "data-place-id", "data-collection-item-count", "data-collection-id"]
+      });
+    }
   }
   function ensureShell(place) {
     if (isMicro2(place)) return null;
@@ -2019,11 +2091,17 @@
     if (storiesSlot) (_d = mountCanonicalStories(storiesSlot, place)) == null ? void 0 : _d.classList.add("pc-sheet-canonical-stories");
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
     if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
+    syncSectionNav(shell4);
+    observeSectionNav(shell4, place);
     startAutomaticPlaceSheetRender(text16(place.id));
     return shell4;
   }
   function restoreLegacyPlaceCardStructure() {
     cancelAutomaticPlaceSheetRender();
+    sectionNavObserver == null ? void 0 : sectionNavObserver.disconnect();
+    sectionNavObserver = null;
+    observedShell = null;
+    observedPlace = null;
     const root2 = card();
     const rootBody = body();
     if (!(root2 instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
