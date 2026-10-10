@@ -1,0 +1,60 @@
+name: VG-huset integrated quiz and release sync (temporary)
+on:
+  push:
+    branches:
+      - agent/vg-huset-source-preflight-20261009
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vg-huset-source-preflight-20261009
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Install
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical VG merged outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-quiz-production-context.mjs --category media --target vg_huset --output data/quiz/production_context/media/vg_huset.json
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-quiz-production-context.mjs --category media --target vg_huset --output data/quiz/production_context/media/vg_huset.json --check
+          node scripts/build-fagverk-release-manifest.mjs --check
+          npm run place-open:check
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run knowledge:canonical:check
+          node --test tests/vg-huset-collections.test.mjs tests/vg-huset-quizcard.test.mjs
+      - name: Verify strictly derived changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only > /tmp/vg-integrated-diff
+          cat /tmp/vg-integrated-diff
+          node <<'NODE'
+          const fs=require("node:fs");
+          const files=fs.readFileSync("/tmp/vg-integrated-diff","utf8").trim().split("\n").filter(Boolean);
+          const allowed=new Set(["data/fagverk/fagverk_release.json","data/quiz/production_context/media/vg_huset.json"]);
+          const bad=files.filter(x=>!allowed.has(x));
+          if(bad.length)throw Error("Unexpected generated change: "+bad.join(", "));
+          if(!files.includes("data/fagverk/fagverk_release.json"))throw Error("Expected release rebuild is missing");
+          NODE
+      - name: Commit derived integration and retire workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fagverk/fagverk_release.json data/quiz/production_context/media/vg_huset.json
+          git rm .github/workflows/vg-huset-integrated-sync-temp.yml
+          git diff --cached --stat
+          git commit -m "Synchronize merged VG-huset source, quiz context and Fagverk release"
+          git push origin HEAD:refs/heads/agent/vg-huset-source-preflight-20261009
