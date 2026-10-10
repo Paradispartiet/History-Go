@@ -108,6 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
     await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261009-media-grid-hero1"));
+    await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261010-read-toggle1"));
     await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260913-place-status1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
