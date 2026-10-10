@@ -697,10 +697,20 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
   if (!card || card.dataset.pcQuizFlipBound === "1") return;
   card.dataset.pcQuizFlipBound = "1";
 
+  const hasRenderedQuizBack = () => {
+    const content = document.getElementById("pcQuizCardContent");
+    return Boolean(content && !content.hidden && content.querySelector(".pc-rendered-quiz-card"));
+  };
+
   const toggle = (event) => {
     event?.preventDefault?.();
     event?.stopPropagation?.();
-    if (!card.classList.contains("has-quiz-card")) return;
+    // A failed or stale image load can remove the availability class after
+    // the rendered QuizCard is ready. Use the actual rendered back as fallback.
+    if (!card.classList.contains("has-quiz-card")) {
+      if (!hasRenderedQuizBack()) return;
+      card.classList.add("has-quiz-card");
+    }
     card.classList.toggle("is-flipped");
     card.setAttribute(
       "aria-label",
@@ -789,6 +799,9 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
     quizImgEl.dataset.pcQuizErrorBound = "1";
     quizImgEl.addEventListener("error", () => {
       if (String(card.dataset.currentPlaceId || "") !== String(quizImgEl.dataset.placeId || "")) return;
+      // The image is only a fallback. Its failure must not disable a valid
+      // data-rendered QuizCard (or remove an already opened rendered back).
+      if (hasRenderedQuizBack()) return;
       card.classList.remove("has-quiz-card", "is-flipped");
       card.setAttribute("aria-label", tUI("ui.place.quizCardMissing", "Quizkort mangler"));
       quizImgEl.removeAttribute("src");
