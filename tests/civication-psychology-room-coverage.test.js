@@ -53,6 +53,15 @@ for (const theory of partiallyReviewed) {
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
 assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 14);
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 18,
+  "four claim-bound reuse links add emne-level coverage without adding duplicate theory cards");
+const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
+assert.equal(extraLinks.length, 4);
+for (const link of extraLinks) {
+  const entry = byEmne.get(link.emne_id);
+  assert.equal(entry?.related_link_evidence?.review, "canonical_id_and_claim_binding_only");
+  assert.equal(entry.source_review_status, "not_reviewed");
+}
 assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
   "partial evidence must not be silently promoted to full verification");
 
