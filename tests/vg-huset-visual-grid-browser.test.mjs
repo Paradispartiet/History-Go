@@ -64,13 +64,19 @@ try{
   await page.addScriptTag({url:"/js/brands/brands_loader.js"});
   await page.addScriptTag({url:"/js/ui/place-rounds-visual-collections.js"});
   await page.evaluate(async()=>{await window.HGBrands.init();await window.HGPlaceCardCollections.apply(window.PLACES[0]);});
-  const ids=["people","objects","brands","productions"];
+  const ids=["objects","brands","productions"];
   const items=await page.locator(".pc-icons-quad .pc-collection:not([hidden])").evaluateAll(nodes=>nodes.map(n=>({kind:n.dataset.collectionId,preview:n.querySelector("img")?.getAttribute("src"),box:(()=>{const r=n.getBoundingClientRect();return {x:r.x,y:r.y,right:r.right,bottom:r.bottom}})()})));
-  assert.deepEqual(items.map(x=>x.kind).sort(),ids.slice().sort(),"actual four canonical previews at "+width);
-  await page.waitForFunction(()=>[...document.querySelectorAll(".pc-icons-quad .pc-collection:not([hidden]) img, #pcFrontImage, #pcHeaderImage")].every(img=>img.complete));
+  assert.deepEqual(items.map(x=>x.kind).sort(),ids.slice().sort(),"three canonical media-grid previews at "+width);
+  // People is a fourth collection placed beside the heading badge by the real runtime.
+  const person=await page.locator("#pcPeopleIcon").evaluate(n=>({inTitle:!!n.closest(".pc-title-row"),hidden:n.hidden,count:n.dataset.collectionItemCount,preview:n.querySelector("img")?.getAttribute("src")}));
+  assert.equal(person.inTitle,true,"People collection remains beside title badges at "+width);
+  assert.equal(person.hidden,false,"Five VG people are visible in title at "+width);
+  assert.ok(Number(person.count)>=5,"Canonical people preview count at "+width);
+  assert.ok(person.preview,"Actual VG portrait selected at "+width);
+  await page.waitForFunction(()=>[...document.querySelectorAll(".pc-icons-quad .pc-collection:not([hidden]) img, #pcPeopleIcon img, #pcFrontImage, #pcHeaderImage")].every(img=>img.complete));
   const layout=await page.evaluate(()=>{
    const rect=s=>{const e=document.querySelector(s);const b=e.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom,naturalWidth:e?.naturalWidth,naturalHeight:e?.naturalHeight}};
-   const previews=[...document.querySelectorAll(".pc-icons-quad .pc-collection:not([hidden]) img")];
+   const previews=[...document.querySelectorAll(".pc-icons-quad .pc-collection:not([hidden]) img, #pcPeopleIcon img")];
    return {front:rect(".pc-frontcard"),frontImage:rect("#pcFrontImage"),header:rect("#pcHeaderImage"),grid:rect(".pc-sheet-explore-grid"),rounds:rect(".pc-icons-quad"),previews:previews.map(e=>({src:e.getAttribute("src"),naturalWidth:e.naturalWidth,naturalHeight:e.naturalHeight,box:(()=>{const b=e.getBoundingClientRect();return {x:b.x,right:b.right,width:b.width}})()})),horizontalOverflow:document.documentElement.scrollWidth>innerWidth+2};
   });
   assert.ok(layout.frontImage.naturalHeight>layout.frontImage.naturalWidth,"VG frontImage truly portrait at "+width);
