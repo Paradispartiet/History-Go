@@ -30,6 +30,9 @@ for (const chapter of catalog.chapters) {
         "missing authored analysis " + key + " on " + theory.id);
     }
     assert.ok(theory.example.startsWith("Undervisningsscenario:"), "example must be marked hypothetical");
+    assert.ok(typeof theory.example_secondary === "string" && theory.example_secondary.startsWith("Undervisningsscenario:") && theory.example_secondary.length > 120,
+      "missing second authored hypothetical scenario: " + theory.id);
+    assert.notEqual(theory.example, theory.example_secondary, "teaching scenarios must not repeat each other: " + theory.id);
     for (const phenomenonId of theory.related_phenomena) {
       assert.ok(phenomena.some((item) => item.id === phenomenonId),
         "unknown phenomenon: " + phenomenonId);
@@ -110,7 +113,9 @@ const press = (selector) => {
   assert.match(rendered, /Også relevant for/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_atferd_laring/);
   assert.match(rendered, /Atferd og læring/);
-  assert.match(rendered, /Undervisningseksempel \(hypotetisk\)/);
+  assert.match(rendered, /Undervisningseksempel 1 \(hypotetisk\)/);
+  assert.match(rendered, /Undervisningseksempel 2 \(hypotetisk\)/);
+  assert.match(rendered, /plagsom lyd/);
   press("related:unngaelsesforsterkning");
   assert.match(rendered, /Teoretisk bakgrunn/);
   press("linked:behaviorisme");
