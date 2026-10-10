@@ -23,6 +23,7 @@ on:
       - "tests/vg-huset-collections-browser-audit.test.mjs"
       - "tests/vg-huset-visual-grid-browser.test.mjs"
       - "tests/vg-huset-quizcard.test.mjs"
+      - "tests/placecard-quiz-flip-browser.test.mjs"
       - "data/quizcards/media/vg_huset_quizkort_v1.json"
       - "data/quizcards/media/manifest.json"
       - "data/places/media/oslo/places_oslo_media/vg_huset.json"
@@ -149,6 +150,7 @@ jobs:
           HG_BROWSER_ENGINE=webkit node tests/vg-huset-collections-browser-audit.test.mjs
           HG_BROWSER_ENGINE=webkit node tests/vg-huset-visual-grid-browser.test.mjs
           node --test tests/vg-huset-quizcard.test.mjs
+          node tests/placecard-quiz-flip-browser.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js

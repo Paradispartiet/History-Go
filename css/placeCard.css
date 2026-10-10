@@ -196,6 +196,19 @@
   transform: rotateY(180deg);
 }
 
+/* Safari/WebKit can paint the reverse of the front image during a 3D flip
+   even when backface-visibility is hidden. Explicitly hide the inactive
+   face so the reverse always displays the actual QuizCard content/image. */
+.pc-frontcard:not(.is-flipped) .pc-card-face-back{
+  visibility: hidden;
+}
+.pc-frontcard.is-flipped .pc-card-face-front{
+  visibility: hidden;
+}
+.pc-frontcard.is-flipped .pc-card-face-back{
+  visibility: visible;
+}
+
 .pc-frontcard img{
   width: 100%;
   height: 100%;
