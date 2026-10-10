@@ -136,8 +136,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Chromium for PlaceCard UI audits
-        run: npx playwright install --with-deps chromium
+      - name: Install Chromium and WebKit for PlaceCard UI audits
+        run: npx playwright install --with-deps chromium webkit
 
       - name: Test canonical adaptive PlaceCard plus Badges contract
         run: |
@@ -146,6 +146,8 @@ jobs:
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/bankplassen-place-completion-v1.test.mjs tests/nature-detailed-map.test.mjs
           node tests/vg-huset-collections-browser-audit.test.mjs
           node tests/vg-huset-visual-grid-browser.test.mjs
+          HG_BROWSER_ENGINE=webkit node tests/vg-huset-collections-browser-audit.test.mjs
+          HG_BROWSER_ENGINE=webkit node tests/vg-huset-visual-grid-browser.test.mjs
           node --test tests/vg-huset-quizcard.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
