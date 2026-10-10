@@ -1,0 +1,39 @@
+name: Grabein place index repair (one shot)
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: grabein-place-index-repair
+  cancel-in-progress: false
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Rebuild canonical places index
+        run: npm run places:index:build
+      - name: Verify canonical index
+        run: npm run places:index:check
+      - name: Commit repaired index and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- data/places/places_index.json
+          git rm -- .github/workflows/grabein-place-index-repair-once.yml
+          git commit -m "build(grabein): sync canonical places index after site merge"
+          git push origin HEAD:main
