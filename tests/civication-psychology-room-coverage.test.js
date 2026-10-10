@@ -65,4 +65,42 @@ for (const link of extraLinks) {
 assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
   "partial evidence must not be silently promoted to full verification");
 
+// Evidence-bounded field-review regression: links and alternatives stay on the
+// actual theory cards, without silently promoting partial reviews to verification.
+const fieldReviewSources = {
+  femfaktormodellen: ["https://pubmed.ncbi.nlm.nih.gov/18453460/"],
+  heuristikker: [
+    "https://pubmed.ncbi.nlm.nih.gov/7455683/",
+    "https://doi.org/10.1146/annurev-psych-120709-145346"
+  ],
+  tilknytning: ["https://doi.org/10.1002/jhbs.21729"],
+  sosial_identitet: ["https://www.yorku.ca/pclassic/Sherif/chap2.htm"],
+  konformitet: ["https://doi.org/10.1037/0033-2909.119.1.111"],
+  kognitiv_terapi: ["https://pubmed.ncbi.nlm.nih.gov/36640411/"]
+};
+for (const [id, urls] of Object.entries(fieldReviewSources)) {
+  const theory = catalog.theories.find((item) => item.id === id);
+  assert.ok(theory, "missing field-reviewed theory: " + id);
+  const actual = theory.reference_links.map((link) => link.url);
+  for (const url of urls) {
+    assert.ok(actual.includes(url), "field-review source is missing: " + id + " / " + url);
+    const reference = theory.reference_links.find((link) => link.url === url);
+    assert.deepEqual(reference.canonical_claim_ids, [],
+      "new literature must not inherit unverified canonical claim IDs");
+    assert.deepEqual(reference.canonical_source_ids, [],
+      "new literature must not inherit unverified canonical source IDs");
+  }
+  const mirror = byEmne.get(theory.emne_id).partial_reference_review.reference_urls;
+  assert.deepEqual(mirror, actual, "audit source URL mirror diverged: " + id);
+}
+const reviewed = new Map(catalog.theories.map((theory) => [theory.id, theory]));
+assert.match(reviewed.get("femfaktormodellen").contrast, /HEXACO/);
+assert.match(reviewed.get("heuristikker").contrast, /økologisk rasjonalitet/i);
+assert.match(reviewed.get("heuristikker").example, /Undervisningsscenario:/);
+assert.match(reviewed.get("sosial_identitet").contrast, /Sherif/);
+assert.match(reviewed.get("behaviorisme").idea, /Negativ forsterkning/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /depresjon/);
+assert.match(reviewed.get("tilknytning").limit, /diagnos/);
+assert.equal(catalog.theories.length, 14);
+
 console.log("civication-psychology-room-coverage.test.js passed");
