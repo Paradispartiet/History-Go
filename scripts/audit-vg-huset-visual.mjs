@@ -182,6 +182,24 @@ try {
           await capture(page,'ipad-fagverk');
           run.captures.push('ipad-fagverk.jpg');
         }
+        // Follow the actual Fagverk link; a navigation teaser is not the article.
+        const fagPageLink=page.locator('[data-hg-place-sheet-section="learning"] a.hg-place-learning-all').first();
+        if(await fagPageLink.count()) {
+          run.fagverkPage={href:await fagPageLink.getAttribute('href')};
+          try {
+            await fagPageLink.click({timeout:10000});
+            await page.waitForLoadState('domcontentloaded',{timeout:20000});
+            await page.waitForTimeout(1300);
+            run.fagverkPage.url=page.url();
+            run.fagverkPage.title=await page.title();
+            run.fagverkPage.bodyLength=await page.locator('body').innerText().then(v=>v.trim().length);
+            run.fagverkPage.headings=await page.locator('h1,h2').allTextContents();
+            if(profile.name==='ipad') {
+              await capture(page,'ipad-fagverk-page');
+              run.captures.push('ipad-fagverk-page.jpg');
+            }
+          } catch(e) {run.fagverkPage.error=String(e.message||e).slice(0,500);run.issues.push('Fagverk page navigation: '+run.fagverkPage.error);}
+        } else {run.issues.push('Fagverk page link is missing');}
       } else { run.fagverk={status:'no learning jump found'}; run.issues.push('Fagverk navigation not verified in this run'); }
     } catch(e) {
       run.issues.push('run error: '+String(e.stack||e).slice(0,800));
