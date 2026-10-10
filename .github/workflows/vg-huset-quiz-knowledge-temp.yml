@@ -1,0 +1,56 @@
+name: VG-huset quiz Knowledge canonical one-shot
+on:
+  push:
+    branches: [agent/vg-huset-quiz-source-revision-20261010]
+permissions:
+  contents: write
+jobs:
+  knowledge:
+    if: github.ref == 'refs/heads/agent/vg-huset-quiz-source-revision-20261010'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vg-huset-quiz-source-revision-20261010
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rebuild canonical Knowledge from registered VG quiz
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run knowledge:canonical:write
+          npm run knowledge:canonical:check
+          npm run audit:quiz-manifest:v2
+          npm run audit:quiz-wiring
+          npm run test:quiz-wiring
+          npm run audit:quiz-production-context
+          npm run audit:quiz-progression
+          npm run audit:quiz-theory-binding
+          npm run audit:quiz-templates
+          npm run audit:quiz-content
+      - name: Review and commit scoped generated diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          git diff --name-only > /tmp/vg-knowledge-paths
+          node <<'NODE'
+          const fs=require('node:fs');
+          const files=fs.readFileSync('/tmp/vg-knowledge-paths','utf8').split('\n').filter(Boolean);
+          const allowed=file=>file==='data/quiz/media/vg_huset_sets.json'||file.startsWith('data/knowledge/')||file==='reports/knowledge-id-backfill.json';
+          const unexpected=files.filter(file=>!allowed(file));
+          if(unexpected.length)throw new Error('Unexpected Knowledge mutations: '+unexpected.join(', '));
+          if(!files.includes('data/quiz/media/vg_huset_sets.json'))throw new Error('VG quiz Knowledge IDs not generated');
+          NODE
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/media/vg_huset_sets.json data/knowledge reports/knowledge-id-backfill.json
+          git rm .github/workflows/vg-huset-quiz-knowledge-temp.yml
+          git diff --cached --stat
+          git commit -m "Sync canonical Knowledge with source-verified 4x7 VG quiz"
+          git push origin HEAD:refs/heads/agent/vg-huset-quiz-source-revision-20261010
