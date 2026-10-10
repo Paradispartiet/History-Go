@@ -101,6 +101,22 @@ assert.match(reviewed.get("sosial_identitet").contrast, /Sherif/);
 assert.match(reviewed.get("behaviorisme").idea, /Negativ forsterkning/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /depresjon/);
 assert.match(reviewed.get("tilknytning").limit, /diagnos/);
+// Evidence batch 05: safeguard quantitative claims against summary drift.
+assert.match(reviewed.get("femfaktormodellen").idea, /ekstraversjon.*omgjengelighet.*planmessighet.*nevrotisisme.*åpenhet/);
+assert.match(reviewed.get("heuristikker").example, /gevinster.*tap/);
+assert.match(reviewed.get("tilknytning").limit, /r = 0,28/);
+assert.match(reviewed.get("tilknytning").limit, /publiseringsskjevhet/);
+assert.match(reviewed.get("resiliens").method, /traumeeksponerte voksne/);
+assert.match(reviewed.get("resiliens").limit, /korrelasjonsdesign/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /g = 0,06/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /statistisk signifikant i hovedanalysen/);
+assert.match(reviewed.get("konformitet").method, /133.*17 land/);
+assert.ok(reviewed.get("tilknytning").reference_links.some((link) =>
+  link.url === "https://pubmed.ncbi.nlm.nih.gov/32772822/" && link.supports.includes("2021-årgang")));
+assert.ok(reviewed.get("kognitiv_terapi").reference_links.some((link) =>
+  link.url === "https://pubmed.ncbi.nlm.nih.gov/36640411/" && link.supports.includes("de fleste sensitivitetsanalysene")));
+assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
+  "batch 05 specific-source check must never imply 14/14 full source verification");
 assert.equal(catalog.theories.length, 14);
 
 console.log("civication-psychology-room-coverage.test.js passed");
