@@ -107,7 +107,7 @@ assert.match(reviewed.get("heuristikker").example, /gevinster.*tap/);
 assert.match(reviewed.get("tilknytning").limit, /r = 0,28/);
 assert.match(reviewed.get("tilknytning").limit, /publiseringsskjevhet/);
 assert.match(reviewed.get("resiliens").method, /traumeeksponerte voksne/);
-assert.match(reviewed.get("resiliens").limit, /korrelasjonsdesign/);
+assert.match(reviewed.get("resiliens").limit, /Stianalysene er observasjonelle og kan ikke isolere årsakseffekt/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /g = 0,06/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /statistisk signifikant i hovedanalysen/);
 assert.match(reviewed.get("konformitet").method, /133.*17 land/);
