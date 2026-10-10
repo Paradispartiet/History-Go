@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { chromium } from "playwright";
+import { chromium, webkit } from "playwright";
 
 const root=process.cwd();
 const payload=JSON.parse(fs.readFileSync("data/runtime/place-open/vg_huset.json","utf8"));
@@ -19,7 +19,7 @@ const server=http.createServer((req,res)=>{
 await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 let browser;
 try {
-  browser=await chromium.launch({headless:true});
+  browser=await (process.env.HG_BROWSER_ENGINE === "webkit" ? webkit : chromium).launch({headless:true});
   const port=server.address().port;
   for(const width of [390,768,1280]){
     const page=await browser.newPage({viewport:{width,height:width===390?844:width===768?1024:900}});
