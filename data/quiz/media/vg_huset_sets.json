@@ -1,567 +1,1560 @@
 {
   "targetId": "vg_huset",
   "categoryId": "media",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
-  "generated_from": [
-    "data/stories/stories_vg_huset.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen dagsaktuelle redaksjons-, eier- eller mediedriftspåstander.",
-      "Ingen usikre personrelasjoner utover relaterte personer i story-data.",
-      "Ingen nåværende program-, trafikk- eller klikkdata.",
-      "Story-data brukes for VG 1945, Akersgata 55, VG-huset 1994, tabloid offentlighet, nettavis og døgnrytme."
-    ]
+  "sources": {
+    "akersgata": "https://oslobyleksikon.no/side/Akersgata",
+    "lund": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+    "snl_oslo": "https://snl.no/Oslogjengen",
+    "vg_old": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+    "vg_history": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+    "vg_nett": "https://www.vg.no/nyheter/i/wE6ryo/vg-nett-fyller-10-aar-10-oktober-slik-startet-vg-nett-eventyret",
+    "houen": "https://lokalhistoriewiki.no/Houens_diplom",
+    "koro": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+    "monter2011": "https://commons.wikimedia.org/wiki/File:Shattered_newspaper_monter_outside_VG_in_Oslo.jpg",
+    "monter2013": "https://commons.wikimedia.org/wiki/File:VG_monter_flyttet.JPG",
+    "schibsted": "https://kommunikasjon.ntb.no/pressemelding/18132215/schibsted-media-sjefen-en-ny-epoke?lang=no&publisherId=17848846",
+    "byleksikon_vg": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+    "carey": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf"
   },
-  "sets": [
-    {
-      "set_id": "popkultur_vg_huset_set_1",
-      "level": 1,
-      "order": 1,
-      "xp": 50,
-      "mode": "place_intro_story",
-      "questions": [
+  "production_context": {
+    "manifest_category": "media",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/media/vg_huset.json",
+    "context_artifact": "data/quiz/production_context/media/vg_huset.json",
+    "resolved_files": {
+      "pensum": "data/fag/media/mediapensum_canonical_v4_5.json",
+      "emner": "data/fag/media/emner_media_canonical_v4_5.json",
+      "fagkart": "data/fag/media/fagkart_media_canonical_v4_5.json",
+      "methods": "data/fag/media/methods_media_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/media/supersetQUIZMAL_media.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "presse_redaksjoner_avishus",
+      "kilder_kritikk_sannhet",
+      "plattformer_algoritmer_distribusjon"
+    ],
+    "emne_ids": [
+      "em_media_avishus_offentlighetsrom",
+      "em_media_pressehistorie",
+      "em_media_digital_offentlighet",
+      "em_media_arkiv_og_bevis",
+      "em_media_kildekritikk",
+      "em_media_mediehistorisk_endring",
+      "em_media_redaksjon_desk"
+    ],
+    "topic_hook_ids": [
+      "avishus_som_offentlighetsrom"
+    ],
+    "method_ids": [
+      "met_media_kildekritisk_analyse"
+    ],
+    "thinker_ids": [
+      "james_carey"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/media/vg_huset_sets.json",
+        "data/quiz/production_briefs/media/vg_huset.json",
+        "data/knowledge/knowledge_units.generated.json"
+      ],
+      "active_before": [
+        {
+          "file": "data/quiz/media/vg_huset_sets.json",
+          "set_count": 6,
+          "question_count": 18,
+          "answer_positions": {
+            "0": 18
+          }
+        }
+      ],
+      "decisions": [
         {
           "id": "vg_huset_s1_q1",
-          "quiz_id": "popkultur_vg_huset_set_1_q1",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva gjør VG-huset til et viktig mediehistorisk sted?",
-          "options": [
-            "Det viser overgangen fra løssalgsavisens forside til nettavisens kontinuerlige nyhetsstrøm",
-            "Det er bare et naturpunkt",
-            "Det handler bare om radio"
-          ],
-          "answer": "Det viser overgangen fra løssalgsavisens forside til nettavisens kontinuerlige nyhetsstrøm",
-          "answerIndex": 0,
-          "knowledge": "Storyen gjør VG-huset til et kartpunkt for tabloid journalistikk, digital publisering og nasjonal dagsorden.",
-          "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
-          "tags": [
-            "vg_huset",
-            "tabloid",
-            "nettavis"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_gj_r_vg_huset_ti_bb2cf471b5",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_storyen_gj_r_vg_huset_ti_bb2cf471b5"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s1_q2",
-          "quiz_id": "popkultur_vg_huset_set_1_q2",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva bør spilleren se etter først ved VG-huset?",
-          "options": [
-            "Bygget, presseaksen, synlig redaksjonsbygg og tegn på rask nyhetsproduksjon",
-            "Bare trær og fugler",
-            "Kun fjordkanten"
-          ],
-          "answer": "Bygget, presseaksen, synlig redaksjonsbygg og tegn på rask nyhetsproduksjon",
-          "answerIndex": 0,
-          "knowledge": "VG-huset gjør avisen synlig som redaksjonelt maskineri midt i Akersgatas pressegeografi.",
-          "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
-          "tags": [
-            "observasjon",
-            "akersgata_55"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_vg_huset_gj_r_avisen_syn_14a2957925",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_vg_huset_gj_r_avisen_syn_14a2957925"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s1_q3",
-          "quiz_id": "popkultur_vg_huset_set_1_q3",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
-          "options": [
-            "Hvordan blir nyhetstempo, forsidevalg og digital publisering synlig i et bybygg?",
-            "Hvorfor finnes det ingen medier her?",
-            "Hvor mange klikk har VG akkurat nå?"
-          ],
-          "answer": "Hvordan blir nyhetstempo, forsidevalg og digital publisering synlig i et bybygg?",
-          "answerIndex": 0,
-          "knowledge": "Spørsmålet kobler stedet til mediearbeid uten å bruke dagsaktuelle trafikk- eller redaksjonsdata.",
-          "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
-          "tags": [
-            "stedlesning"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_sp_rsmalet_kobler_stedet_0911c59dad",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_sp_rsmalet_kobler_stedet_0911c59dad"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_vg_huset_set_2",
-      "level": 2,
-      "order": 2,
-      "xp": 60,
-      "mode": "place_life_people_events",
-      "questions": [
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
         {
           "id": "vg_huset_s2_q1",
-          "quiz_id": "popkultur_vg_huset_set_2_q1",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Når ble VG etablert ifølge story-data?",
-          "options": [
-            "1945",
-            "1994",
-            "2003"
-          ],
-          "answer": "1945",
-          "answerIndex": 0,
-          "knowledge": "Story-dataen sier at VG kom ut etter frigjøringen i 1945 og tok plass i Akersgatas pressegeografi.",
-          "difficulty": 1,
-          "question_type": "historisk_fakta",
-          "question_layer": "place_life",
-          "tags": [
-            "1945",
-            "vg"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_story_dataen_sier_at_vg__897cbf52c3",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_story_dataen_sier_at_vg__897cbf52c3"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s2_q2",
-          "quiz_id": "popkultur_vg_huset_set_2_q2",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva skjedde i 1994 ifølge story-data?",
-          "options": [
-            "VG-huset i Akersgata 55 stod ferdig",
-            "VG ble grunnlagt",
-            "Aftenposten flyttet til Postgirobygget"
-          ],
-          "answer": "VG-huset i Akersgata 55 stod ferdig",
-          "answerIndex": 0,
-          "knowledge": "Story-dataen sier at VG-huset i Akersgata 55 stod ferdig i 1994.",
-          "difficulty": 1,
-          "question_type": "historisk_endring",
-          "question_layer": "place_life",
-          "tags": [
-            "1994",
-            "akersgata_55"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_story_dataen_sier_at_vg__4e3a87c59d",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_story_dataen_sier_at_vg__4e3a87c59d"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s2_q3",
-          "quiz_id": "popkultur_vg_huset_set_2_q3",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva bør holdes ute av trygg VG-quiz her?",
-          "options": [
-            "Dagsaktuelle klikk-, program-, redaksjons- og eieropplysninger uten kilde",
-            "Året 1945 fra story-data",
-            "Begrepet tabloid offentlighet"
-          ],
-          "answer": "Dagsaktuelle klikk-, program-, redaksjons- og eieropplysninger uten kilde",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal lære stabile mediehistoriske mønstre, ikke oppdatere dagens nyhetsdrift.",
-          "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "holdback"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_l_re_stabil_c282e5d9a8",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_quizzen_skal_l_re_stabil_c282e5d9a8"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_vg_huset_set_3",
-      "level": 3,
-      "order": 3,
-      "xp": 70,
-      "mode": "emne_based_foundation",
-      "questions": [
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
         {
           "id": "vg_huset_s3_q1",
-          "quiz_id": "popkultur_vg_huset_set_3_q1",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hva betyr tabloid offentlighet?",
-          "options": [
-            "En offentlighet preget av store titler, tydelig prioritering, tempo og bred appell",
-            "Et lukket arkiv uten publikum",
-            "En type elvedal"
-          ],
-          "answer": "En offentlighet preget av store titler, tydelig prioritering, tempo og bred appell",
-          "answerIndex": 0,
-          "knowledge": "Storyen knytter VG til høyere tempo, løssalg, store titler og en tydelig tabloid offentlighet.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "tabloid_offentlighet"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_knytter_vg_til_h_84ea6554e6",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_storyen_knytter_vg_til_h_84ea6554e6"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s3_q2",
-          "quiz_id": "popkultur_vg_huset_set_3_q2",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hva betyr frontredigering?",
-          "options": [
-            "Å velge og prioritere hva publikum møter først i en avis eller nettavis",
-            "Å bygge broer",
-            "Å måle regn"
-          ],
-          "answer": "Å velge og prioritere hva publikum møter først i en avis eller nettavis",
-          "answerIndex": 0,
-          "knowledge": "Storyen gjør frontredigering konkret som en arbeidsprosess i en rask nyhetsredaksjon.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "frontredigering"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_gj_r_frontredige_eab46d666f",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_storyen_gj_r_frontredige_eab46d666f"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s3_q3",
-          "quiz_id": "popkultur_vg_huset_set_3_q3",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hva betyr døgnrytme i moderne nyhetsarbeid?",
-          "options": [
-            "At nyheter prioriteres og publiseres kontinuerlig gjennom døgnet",
-            "At avisen bare kommer én gang i året",
-            "At mediene ikke har tempo"
-          ],
-          "answer": "At nyheter prioriteres og publiseres kontinuerlig gjennom døgnet",
-          "answerIndex": 0,
-          "knowledge": "VG-huset viser hvordan moderne nyhetsrytme ble døgnkontinuerlig redaksjonsarbeid.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "døgnrytme",
-            "nettavis"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_vg_huset_viser_hvordan_m_0b5d0acde3",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_vg_huset_viser_hvordan_m_0b5d0acde3"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_vg_huset_set_4",
-      "level": 4,
-      "order": 4,
-      "xp": 80,
-      "mode": "place_concrete_advanced",
-      "questions": [
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
         {
           "id": "vg_huset_s4_q1",
-          "quiz_id": "popkultur_vg_huset_set_4_q1",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva er en avansert observasjon ved VG-huset?",
-          "options": [
-            "Å se hvordan papiravis, nettavis, sport, bilder, nyheter og forsidevalg krevde ett aktivt redaksjonsbygg",
-            "Å bare lese gatenavnet",
-            "Å ignorere pressehistorien"
-          ],
-          "answer": "Å se hvordan papiravis, nettavis, sport, bilder, nyheter og forsidevalg krevde ett aktivt redaksjonsbygg",
-          "answerIndex": 0,
-          "knowledge": "Storyen beskriver bygget som fysisk ramme rundt flere hurtige redaksjonelle arbeidsprosesser.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "redaksjon",
-            "nettavis",
-            "forsidevalg"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_beskriver_bygget_8079c7926d",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_storyen_beskriver_bygget_8079c7926d"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s4_q2",
-          "quiz_id": "popkultur_vg_huset_set_4_q2",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "place",
-          "question": "Hva kan VG-huset lære om overgangen i norsk presse?",
-          "options": [
-            "Fra løssalgsavisens synlige forside til nettavisens kontinuerlige strøm",
-            "Fra radio til ravinedal",
-            "Fra fjordovergang til vannkvalitet"
-          ],
-          "answer": "Fra løssalgsavisens synlige forside til nettavisens kontinuerlige strøm",
-          "answerIndex": 0,
-          "knowledge": "Storyen oppsummerer VG-huset som sted for overgangen fra papirforside til digital nyhetsstrøm.",
-          "difficulty": 2,
-          "question_type": "kritisk_analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "løssalg",
-            "digital_publisering"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.83,
-            "score": 8,
-            "matched": [
-              "forside",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_oppsummerer_vg_h_14411dc31d",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_storyen_oppsummerer_vg_h_14411dc31d"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
         },
         {
           "id": "vg_huset_s4_q3",
-          "quiz_id": "popkultur_vg_huset_set_4_q3",
+          "old_knowledge_ids": [
+            "ku_media_quizzen_skal_gj_re_spill_7c326d839d"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s5_q1",
+          "old_knowledge_ids": [
+            "ku_media_vg_huset_samler_tabloid__dce50a0864"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s5_q2",
+          "old_knowledge_ids": [
+            "ku_media_storyen_kontrasterer_vg__b261cc57b0"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s5_q3",
+          "old_knowledge_ids": [
+            "ku_media_vg_huset_gir_en_konkret__9c6dead980"
+          ],
+          "decision": "retire_question_surface",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s6_q1",
+          "old_knowledge_ids": [
+            "ku_media_tabloid_offentlighet_er__5ea9dcfd82"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s6_q2",
+          "old_knowledge_ids": [
+            "ku_media_frontredigering_forklare_8bddb5829f"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        },
+        {
+          "id": "vg_huset_s6_q3",
+          "old_knowledge_ids": [
+            "ku_media_stedet_blir_tydeligst_na_18eaa11891"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Canonical answerIndex concentrated entirely in slot 0; legacy questions use internal story/rule sources and many are meta or implausible alternatives. Preserve sound historical kernels through externally sourced new claims, explanations and Fagverk."
+        }
+      ],
+      "knowledge_migration": {
+        "status": "pending_generation",
+        "old_question_count": 18,
+        "new_question_count": 28,
+        "rule": "Derived knowledge index must be regenerated and checked; do not manually retain identifiers for retired surface questions."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "Ti stedshistoriske kjernemilepæler med egne materiale-, arkitektur-, publiserings- og etterprøvingsspor støtter 28 ulike spørsmål på normalprofil. 8–10 sett ville skape duplisering. De første to settene er utelukkende direkte faktaspørsmål."
+    },
+    "held_back_candidates": [
+      {
+        "subject": "VG Nett first screenshot",
+        "reason": "Original 1995 skjermbilde uten dokumentert gjenbrukslisens; dette er ikke grunnlag for bildespørsmål."
+      },
+      {
+        "subject": "Kåre Valebrokk ved Akersgata 55",
+        "reason": "Arbeidet i eldre VG-bygg ved Akersgata 34 før 1994, ikke kobles til dagens bygning."
+      },
+      {
+        "subject": "Spesifikk intern deskplassering for VG Nett i 1995",
+        "reason": "Ikke dokumentert i eksterne kilder."
+      },
+      {
+        "subject": "Teoretikerbinding",
+        "reason": "Avishus-som-offentlighetsrom er valgt som organisatorisk fagkart-hook; ingen bestemt teoretiker/verk brukes som fasit uten original tekst. Spørsmålene er stedshistorie først."
+      }
+    ],
+    "relative_phase_policy": {
+      "theory_start_phase": "not_selected",
+      "method_start_phase": "bridge"
+    }
+  },
+  "sets": [
+    {
+      "set_id": "media_vg_huset_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "vg_huset_v2_q01",
+          "quiz_id": "media_vg_huset_v2_q01",
+          "claim_id": "claim_vg_quiz_01",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
           "question_scope": "place",
-          "question": "Hva bør en god VG-huset-quiz trene spilleren i?",
+          "question": "Hva er besøksadressen til VG-huset i Oslo?",
           "options": [
-            "Å lese tabloid journalistikk, digital publisering og dagsorden sammen",
-            "Å pugge dagens trafikkdata",
-            "Å overse stedet"
+            "Akersgata 49",
+            "Akersgata 55",
+            "Akersgata 51"
           ],
-          "answer": "Å lese tabloid journalistikk, digital publisering og dagsorden sammen",
+          "answer": "Akersgata 55",
+          "answerIndex": 1,
+          "knowledge": "Akersgata 55 er den moderne redaksjonsadressen. Nummer 49 og 51 har egne avishistorier som ikke skal blandes inn i dagens VG-bygg.",
+          "claim_basis": "Dagens VG-hus har besøksadresse Akersgata 55.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Dagens VG-hus har besøksadresse Akersgata 55.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_akersgata_55_er_den_mode_4c7bb89c62",
+          "knowledge_unit_ids": [
+            "ku_media_akersgata_55_er_den_mode_4c7bb89c62",
+            "ku_media_nummer_49_og_51_har_egne_4e87fba697"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q02",
+          "quiz_id": "media_vg_huset_v2_q02",
+          "claim_id": "claim_vg_quiz_02",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilket år stod det nåværende VG-huset ferdig?",
+          "options": [
+            "2014",
+            "1945",
+            "1994"
+          ],
+          "answer": "1994",
+          "answerIndex": 2,
+          "knowledge": "Ferdigstillelsen i 1994 må skilles fra avisens etablering i 1945 og Aftenpostens innflytting i 2014.",
+          "claim_basis": "Lund & Slaatto tegnet VG-huset som stod ferdig i 1994.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "lund",
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "Lund & Slaatto tegnet VG-huset som stod ferdig i 1994.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            },
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Lund & Slaatto tegnet VG-huset som stod ferdig i 1994.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_ferdigstillelsen_i_1994__54d70af00c",
+          "knowledge_unit_ids": [
+            "ku_media_ferdigstillelsen_i_1994__54d70af00c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q03",
+          "quiz_id": "media_vg_huset_v2_q03",
+          "claim_id": "claim_vg_quiz_03",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvem tegnet VG-huset fra 1994?",
+          "options": [
+            "Lund & Slaatto",
+            "Finn Bryn",
+            "Snøhetta"
+          ],
+          "answer": "Lund & Slaatto",
           "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå moderne presse gjennom et konkret redaksjonsbygg.",
+          "knowledge": "Arkitektkontorets egen prosjektside dokumenterer bygningen og dens idé om en offentlig tilgjengelig passasje.",
+          "claim_basis": "Arkitektkontoret Lund & Slaatto tegnet bygningen.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "lund"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "Arkitektkontoret Lund & Slaatto tegnet bygningen.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arkitektkontorets_egen_p_1658bb743d",
+          "knowledge_unit_ids": [
+            "ku_media_arkitektkontorets_egen_p_1658bb743d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q04",
+          "quiz_id": "media_vg_huset_v2_q04",
+          "claim_id": "claim_vg_quiz_04",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva var VGs første Akersgata-adresse i 1945?",
+          "options": [
+            "Akersgata 55",
+            "Akersgata 34",
+            "Akersgata 49"
+          ],
+          "answer": "Akersgata 34",
+          "answerIndex": 1,
+          "knowledge": "VG holdt først til i nr. 34. Den historiske avisen og dagens redaksjonsbygg er derfor to ulike stedlige tidsankre.",
+          "claim_basis": "VG startet i 1945 med Akersgata 34 som første lokaler.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_history",
+            "vg_old"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_history",
+              "url": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+              "source_type": "institutional_reference",
+              "claim_basis": "VG startet i 1945 med Akersgata 34 som første lokaler.",
+              "role": "Avisa startet 1945, opprinnelig Akersgata 34; historisk tabloid, adskilt fra moderne bygg. Ingen kildefri opplysning om opplag."
+            },
+            {
+              "source_id": "vg_old",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "source_type": "primary_press_history",
+              "claim_basis": "VG startet i 1945 med Akersgata 34 som første lokaler.",
+              "role": "Aftenpostens egen pressehistorie med VG tidligere Akersgata 34 og VG-huset fra 1994, Aftenpostens eldre nr. 51 og flytting til nr. 55 i august 2014."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_vg_holdt_f_rst_til_i_nr__26f46a6138",
+          "knowledge_unit_ids": [
+            "ku_media_vg_holdt_f_rst_til_i_nr__26f46a6138",
+            "ku_media_den_historiske_avisen_og_e8b5091385"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q05",
+          "quiz_id": "media_vg_huset_v2_q05",
+          "claim_id": "claim_vg_quiz_05",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "I hvilket år ble avisen VG grunnlagt?",
+          "options": [
+            "1945",
+            "1963",
+            "1994"
+          ],
+          "answer": "1945",
+          "answerIndex": 0,
+          "knowledge": "VG ble etablert etter frigjøringen. Det er 49 år før dagens avishus stod ferdig.",
+          "claim_basis": "VG ble grunnlagt i 1945.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_history"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_history",
+              "url": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+              "source_type": "institutional_reference",
+              "claim_basis": "VG ble grunnlagt i 1945.",
+              "role": "Avisa startet 1945, opprinnelig Akersgata 34; historisk tabloid, adskilt fra moderne bygg. Ingen kildefri opplysning om opplag."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_vg_ble_etablert_etter_fr_e7229a6c9c",
+          "knowledge_unit_ids": [
+            "ku_media_vg_ble_etablert_etter_fr_e7229a6c9c",
+            "ku_media_det_er_49_ar_f_r_dagens__aace2b9d57"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q06",
+          "quiz_id": "media_vg_huset_v2_q06",
+          "claim_id": "claim_vg_quiz_06",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvem gjennomførte sabotasje mot arbeidsmobiliseringsarkivene på tomten i 1944?",
+          "options": [
+            "Milorgs radiogruppe",
+            "Polititroppene",
+            "Oslogjengen"
+          ],
+          "answer": "Oslogjengen",
+          "answerIndex": 2,
+          "knowledge": "Aksjonen fant sted 18. mai 1944 mot lokalene som da stod på tomten. Det var ikke dagens bygning fra 1994.",
+          "claim_basis": "Oslogjengen saboterte arkivene på Akersgata 55 i 1944.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "snl_oslo",
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl_oslo",
+              "url": "https://snl.no/Oslogjengen",
+              "source_type": "reference",
+              "claim_basis": "Oslogjengen saboterte arkivene på Akersgata 55 i 1944.",
+              "role": "Kontrollert omtale av sabotasjen 18. mai 1944 ved arbeidskontoret på nr. 55, uttrykkelig før dagens avishus."
+            },
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Oslogjengen saboterte arkivene på Akersgata 55 i 1944.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_aksjonen_fant_sted_18_ma_c47b416413",
+          "knowledge_unit_ids": [
+            "ku_media_aksjonen_fant_sted_18_ma_c47b416413",
+            "ku_media_det_var_ikke_dagens_bygn_c44f178d28"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q07",
+          "quiz_id": "media_vg_huset_v2_q07",
+          "claim_id": "claim_vg_quiz_07",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilket bygningsrom fremhever arkitektene i beskrivelsen av VG-huset?",
+          "options": [
+            "Et underjordisk trykkeri",
+            "En glassoverdekket lysgård",
+            "En lukket varehall"
+          ],
+          "answer": "En glassoverdekket lysgård",
+          "answerIndex": 1,
+          "knowledge": "Lund & Slaatto brukte lysgården og passasjen som del av ideen om et åpent avishus.",
+          "claim_basis": "VG-huset fikk en glassoverdekket lysgård.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "lund"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "VG-huset fikk en glassoverdekket lysgård.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_lund_slaatto_brukte_lysg_c6f2b80874",
+          "knowledge_unit_ids": [
+            "ku_media_lund_slaatto_brukte_lysg_c6f2b80874"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_vg_huset_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 60,
+      "questions": [
+        {
+          "id": "vg_huset_v2_q08",
+          "quiz_id": "media_vg_huset_v2_q08",
+          "claim_id": "claim_vg_quiz_08",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva åpnet VG den 10. oktober 1995?",
+          "options": [
+            "VG Nett",
+            "VGTV",
+            "Dagens VG-hus"
+          ],
+          "answer": "VG Nett",
+          "answerIndex": 0,
+          "knowledge": "VG Nett ble lansert året etter at avishuset stod ferdig. Digital publisering er en annen milepæl enn byggingen.",
+          "claim_basis": "VG Nett ble lansert 10. oktober 1995.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_nett"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_digital_offentlighet",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_nett",
+              "url": "https://www.vg.no/nyheter/i/wE6ryo/vg-nett-fyller-10-aar-10-oktober-slik-startet-vg-nett-eventyret",
+              "source_type": "primary_press_history",
+              "claim_basis": "VG Nett ble lansert 10. oktober 1995.",
+              "role": "VG markerer nettavisens lansering 10. oktober 1995, skilt fra VG-husets åpning 1994."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_vg_nett_ble_lansert_aret_ff3b3671d6",
+          "knowledge_unit_ids": [
+            "ku_media_vg_nett_ble_lansert_aret_ff3b3671d6",
+            "ku_media_digital_publisering_er_e_1e55d7b64e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q09",
+          "quiz_id": "media_vg_huset_v2_q09",
+          "claim_id": "claim_vg_quiz_09",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilken utmerkelse fikk VG-huset i 2000?",
+          "options": [
+            "Betongtavlen",
+            "St. Olavs Orden",
+            "Houens fonds diplom"
+          ],
+          "answer": "Houens fonds diplom",
+          "answerIndex": 2,
+          "knowledge": "Houens fonds diplom gjelder byggets arkitektur, ikke pris for VGs journalistiske publisering.",
+          "claim_basis": "VG-huset mottok Houens fonds diplom i 2000.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "houen",
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "houen",
+              "url": "https://lokalhistoriewiki.no/Houens_diplom",
+              "source_type": "local_history_reference",
+              "claim_basis": "VG-huset mottok Houens fonds diplom i 2000.",
+              "role": "Prislisten daterer VG-husets Houens fonds diplom til 2000; arkitekt og pris dokumenteres separat fra øvrige VG-utgivelser."
+            },
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "VG-huset mottok Houens fonds diplom i 2000.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_houens_fonds_diplom_gjel_ad40a4f06a",
+          "knowledge_unit_ids": [
+            "ku_media_houens_fonds_diplom_gjel_ad40a4f06a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q10",
+          "quiz_id": "media_vg_huset_v2_q10",
+          "claim_id": "claim_vg_quiz_10",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva ble fysisk skadet i VGs utstillingsmonter 22. juli 2011?",
+          "options": [
+            "Avisens trykkpresse",
+            "Monterens glass",
+            "Et arkivskap i kjelleren"
+          ],
+          "answer": "Monterens glass",
+          "answerIndex": 1,
+          "knowledge": "Trykkbølgen etter terrorangrepet knuste glasset. Skadene ble bevart som et dokumentarisk spor, ikke som påstand om hvor avisen ble trykt.",
+          "claim_basis": "Avismonterens glass ble knust av trykkbølgen 22. juli 2011.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "koro",
+            "monter2011"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "Avismonterens glass ble knust av trykkbølgen 22. juli 2011.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            },
+            {
+              "source_id": "monter2011",
+              "url": "https://commons.wikimedia.org/wiki/File:Shattered_newspaper_monter_outside_VG_in_Oslo.jpg",
+              "source_type": "original_documentary_photo",
+              "claim_basis": "Avismonterens glass ble knust av trykkbølgen 22. juli 2011.",
+              "role": "Ulflarsen-original fra 14.10.2011, viser skute glassets tilstand etter 22. juli; ikke et fotografi tatt under eksplosjonen."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_trykkb_lgen_etter_terror_f9c0ab4cee",
+          "knowledge_unit_ids": [
+            "ku_media_trykkb_lgen_etter_terror_f9c0ab4cee",
+            "ku_media_skadene_ble_bevart_som_e_2b3b8f04b8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q11",
+          "quiz_id": "media_vg_huset_v2_q11",
+          "claim_id": "claim_vg_quiz_11",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Når ble den skadde VG-monteren flyttet over gaten?",
+          "options": [
+            "2011",
+            "2013",
+            "2018"
+          ],
+          "answer": "2013",
+          "answerIndex": 1,
+          "knowledge": "Flyttingen og konserveringen i 2013 er senere enn selve angrepet i 2011; det bevarte objektet er fremdeles stedshistorisk knyttet til avishuset.",
+          "claim_basis": "VG-monteren ble flyttet til andre siden av gaten i 2013.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "koro"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "VG-monteren ble flyttet til andre siden av gaten i 2013.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_flyttingen_og_konserveri_91649f612f",
+          "knowledge_unit_ids": [
+            "ku_media_flyttingen_og_konserveri_91649f612f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q12",
+          "quiz_id": "media_vg_huset_v2_q12",
+          "claim_id": "claim_vg_quiz_12",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Når flyttet Aftenposten inn i VG-huset i Akersgata 55?",
+          "options": [
+            "August 2014",
+            "Januar 1994",
+            "Desember 2003"
+          ],
+          "answer": "August 2014",
+          "answerIndex": 0,
+          "knowledge": "Aftenposten hadde forlatt Akersgata 51 i 2003 og vendte tilbake til avisgaten gjennom samlokalisering i dagens VG-hus i 2014.",
+          "claim_basis": "Aftenposten flyttet til Akersgata 55 i august 2014.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_old"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_old",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "source_type": "primary_press_history",
+              "claim_basis": "Aftenposten flyttet til Akersgata 55 i august 2014.",
+              "role": "Aftenpostens egen pressehistorie med VG tidligere Akersgata 34 og VG-huset fra 1994, Aftenpostens eldre nr. 51 og flytting til nr. 55 i august 2014."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_aftenposten_hadde_forlat_d96e0d4b0d",
+          "knowledge_unit_ids": [
+            "ku_media_aftenposten_hadde_forlat_d96e0d4b0d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q13",
+          "quiz_id": "media_vg_huset_v2_q13",
+          "claim_id": "claim_vg_quiz_13",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilket husnummer hadde Aftenposten i Akersgata før utflyttingen i 2003?",
+          "options": [
+            "55",
+            "49",
+            "51"
+          ],
+          "answer": "51",
+          "answerIndex": 2,
+          "knowledge": "Aftenpostens historiske avishus i nummer 51 og VG-huset i nummer 55 har forskjellige bygnings- og redaksjonshistorier.",
+          "claim_basis": "Aftenposten holdt tidligere til i Akersgata 51.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_old",
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_old",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "source_type": "primary_press_history",
+              "claim_basis": "Aftenposten holdt tidligere til i Akersgata 51.",
+              "role": "Aftenpostens egen pressehistorie med VG tidligere Akersgata 34 og VG-huset fra 1994, Aftenpostens eldre nr. 51 og flytting til nr. 55 i august 2014."
+            },
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Aftenposten holdt tidligere til i Akersgata 51.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_aftenpostens_historiske__5a4c1c9f41",
+          "knowledge_unit_ids": [
+            "ku_media_aftenpostens_historiske__5a4c1c9f41"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q14",
+          "quiz_id": "media_vg_huset_v2_q14",
+          "claim_id": "claim_vg_quiz_14",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva viser fotografiet av VG-monteren fra 2013?",
+          "options": [
+            "Første utgave av VG Nett på skjerm",
+            "Et papiraviseksemplar fra 22. juli 2011",
+            "Den første VG-forsiden fra 1945"
+          ],
+          "answer": "Et papiraviseksemplar fra 22. juli 2011",
+          "answerIndex": 1,
+          "knowledge": "Datoen for fotografiet, 2013, er ikke den samme som datoen på avissidene i monteren, 22. juli 2011.",
+          "claim_basis": "Et foto fra 2013 viser et datert 2011-aviseksemplar i VG-monteren.",
+          "difficulty": 1,
+          "question_type": "observation",
+          "question_layer": "middle",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "monter2013",
+            "koro"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "monter2013",
+              "url": "https://commons.wikimedia.org/wiki/File:VG_monter_flyttet.JPG",
+              "source_type": "original_documentary_photo",
+              "claim_basis": "Et foto fra 2013 viser et datert 2011-aviseksemplar i VG-monteren.",
+              "role": "Erik den yngre foto 24.08.2013, viser 22. juli 2011-avis i flyttet monter; fotodato må skilles fra aviseksemplarets dato."
+            },
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "Et foto fra 2013 viser et datert 2011-aviseksemplar i VG-monteren.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_datoen_for_fotografiet_2_8bcaabd95e",
+          "knowledge_unit_ids": [
+            "ku_media_datoen_for_fotografiet_2_8bcaabd95e"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_vg_huset_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 70,
+      "questions": [
+        {
+          "id": "vg_huset_v2_q15",
+          "quiz_id": "media_vg_huset_v2_q15",
+          "claim_id": "claim_vg_quiz_15",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilken rekkefølge er korrekt for avis, bygg og nettavis?",
+          "options": [
+            "Bygget 1945 – avisen 1994 – nettavisen 1995",
+            "Avisen 1945 – bygget 1994 – nettavisen 1995",
+            "Avisen 1994 – nettavisen 2000 – bygget 2014"
+          ],
+          "answer": "Avisen 1945 – bygget 1994 – nettavisen 1995",
+          "answerIndex": 1,
+          "knowledge": "Tre selvstendige milepæler bør holdes atskilt: institusjonens stiftelse, fysisk redaksjonsbygg og digital publisering.",
+          "claim_basis": "VG ble grunnlagt 1945, bygningen ferdig 1994, VG Nett lansert 1995.",
           "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
+          "question_type": "comparison",
+          "question_layer": "bridge",
           "tags": [
-            "stedbasert_læring"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
+            "vg_history",
+            "lund",
+            "vg_nett"
           ],
-          "claim_basis": "generator_rule",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_gj_re_spill_7c326d839d",
+          "sources": [
+            {
+              "source_id": "vg_history",
+              "url": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+              "source_type": "institutional_reference",
+              "claim_basis": "VG ble grunnlagt 1945, bygningen ferdig 1994, VG Nett lansert 1995.",
+              "role": "Avisa startet 1945, opprinnelig Akersgata 34; historisk tabloid, adskilt fra moderne bygg. Ingen kildefri opplysning om opplag."
+            },
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "VG ble grunnlagt 1945, bygningen ferdig 1994, VG Nett lansert 1995.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            },
+            {
+              "source_id": "vg_nett",
+              "url": "https://www.vg.no/nyheter/i/wE6ryo/vg-nett-fyller-10-aar-10-oktober-slik-startet-vg-nett-eventyret",
+              "source_type": "primary_press_history",
+              "claim_basis": "VG ble grunnlagt 1945, bygningen ferdig 1994, VG Nett lansert 1995.",
+              "role": "VG markerer nettavisens lansering 10. oktober 1995, skilt fra VG-husets åpning 1994."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_tre_selvstendige_milep_l_246e001c7f",
           "knowledge_unit_ids": [
-            "ku_media_quizzen_skal_gj_re_spill_7c326d839d"
+            "ku_media_tre_selvstendige_milep_l_246e001c7f"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q16",
+          "quiz_id": "media_vg_huset_v2_q16",
+          "claim_id": "claim_vg_quiz_16",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvorfor må sabotasjen i 1944 skilles fra byggingen av dagens VG-hus?",
+          "options": [
+            "Aksjonen fant sted i eldre lokaler; dagens bygg kom i 1994",
+            "Aksjonen var i dagens atrium, som først ble bygget etter krigen",
+            "Stedets adresse var en annen i 1944"
+          ],
+          "answer": "Aksjonen fant sted i eldre lokaler; dagens bygg kom i 1994",
+          "answerIndex": 0,
+          "knowledge": "Tomten kan ha eldre historie enn bygningen. Eldre hendelser er relevante som stedshistorie, men ikke som hendelser i den nyoppførte bygningens vegger.",
+          "claim_basis": "1944-sabotasjen gjaldt eldre bygningsmasse på tomten; dagens hus ble ferdig i 1994.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "snl_oslo",
+            "lund"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl_oslo",
+              "url": "https://snl.no/Oslogjengen",
+              "source_type": "reference",
+              "claim_basis": "1944-sabotasjen gjaldt eldre bygningsmasse på tomten; dagens hus ble ferdig i 1994.",
+              "role": "Kontrollert omtale av sabotasjen 18. mai 1944 ved arbeidskontoret på nr. 55, uttrykkelig før dagens avishus."
+            },
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "1944-sabotasjen gjaldt eldre bygningsmasse på tomten; dagens hus ble ferdig i 1994.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_tomten_kan_ha_eldre_hist_b28419f6bf",
+          "knowledge_unit_ids": [
+            "ku_media_tomten_kan_ha_eldre_hist_b28419f6bf",
+            "ku_media_eldre_hendelser_er_relev_a0f0889348"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q17",
+          "quiz_id": "media_vg_huset_v2_q17",
+          "claim_id": "claim_vg_quiz_17",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva var intensjonen med den offentlige passasjen gjennom VG-huset?",
+          "options": [
+            "Å skjule inngangen fra gaten",
+            "Å skille avisen helt fra byrommet",
+            "Å uttrykke et åpent avishus"
+          ],
+          "answer": "Å uttrykke et åpent avishus",
+          "answerIndex": 2,
+          "knowledge": "Arkitekten beskriver åpenhet gjennom bygningens disposisjon. Denne intensjonen dokumenterer ikke automatisk redaksjonelle beslutningsprosesser inne i huset.",
+          "claim_basis": "Arkitektens offentlige passasje skulle uttrykke et åpent avishus.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "lund"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "Arkitektens offentlige passasje skulle uttrykke et åpent avishus.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arkitekten_beskriver_ape_be04e8d3bc",
+          "knowledge_unit_ids": [
+            "ku_media_arkitekten_beskriver_ape_be04e8d3bc",
+            "ku_media_denne_intensjonen_dokume_15e9c56e79"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q18",
+          "quiz_id": "media_vg_huset_v2_q18",
+          "claim_id": "claim_vg_quiz_18",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva gjør den knuste VG-monteren til et historisk fysisk objekt?",
+          "options": [
+            "At den viser all journalistikken VG publiserte",
+            "At glass og aviseksemplar bærer spor etter en bestemt hendelse",
+            "At den beviser eksakt trykkeriadresse for VG"
+          ],
+          "answer": "At glass og aviseksemplar bærer spor etter en bestemt hendelse",
+          "answerIndex": 1,
+          "knowledge": "Skadet glass og en datert papiravis er materielle spor. Objektet skal ikke tillegges ukjente produksjonssteder eller full oversikt over 22. juli-dekningen.",
+          "claim_basis": "VG-monteren er bevart som en fysisk kilde til terrorangrepets virkninger i avisgaten.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "koro",
+            "monter2011"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "VG-monteren er bevart som en fysisk kilde til terrorangrepets virkninger i avisgaten.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            },
+            {
+              "source_id": "monter2011",
+              "url": "https://commons.wikimedia.org/wiki/File:Shattered_newspaper_monter_outside_VG_in_Oslo.jpg",
+              "source_type": "original_documentary_photo",
+              "claim_basis": "VG-monteren er bevart som en fysisk kilde til terrorangrepets virkninger i avisgaten.",
+              "role": "Ulflarsen-original fra 14.10.2011, viser skute glassets tilstand etter 22. juli; ikke et fotografi tatt under eksplosjonen."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_skadet_glass_og_en_dater_a77fbd4045",
+          "knowledge_unit_ids": [
+            "ku_media_skadet_glass_og_en_dater_a77fbd4045",
+            "ku_media_objektet_skal_ikke_tille_465720ce13"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q19",
+          "quiz_id": "media_vg_huset_v2_q19",
+          "claim_id": "claim_vg_quiz_19",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva er forskjellen mellom VG som medieidentitet og VG Nett?",
+          "options": [
+            "VG er avisens merkeidentitet; VG Nett er en digital publiseringsflate",
+            "VG Nett er navnet på selve bygningen fra 1994",
+            "VG er bare den trykte avisen fra 1945, uten digitale utgivelser"
+          ],
+          "answer": "VG er avisens merkeidentitet; VG Nett er en digital publiseringsflate",
+          "answerIndex": 0,
+          "knowledge": "Ett mediemerke kan stå bak ulike publikasjoner og tjenester. Å skille aktøridentitet fra utgivelse hindrer at en logo feilaktig brukes som bilde av en historisk nettavis.",
+          "claim_basis": "VG er medieidentiteten; VG Nett er en nettavis som ble lansert 1995.",
+          "difficulty": 2,
+          "question_type": "concept",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_history",
+            "vg_nett"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_digital_offentlighet",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_history",
+              "url": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+              "source_type": "institutional_reference",
+              "claim_basis": "VG er medieidentiteten; VG Nett er en nettavis som ble lansert 1995.",
+              "role": "Avisa startet 1945, opprinnelig Akersgata 34; historisk tabloid, adskilt fra moderne bygg. Ingen kildefri opplysning om opplag."
+            },
+            {
+              "source_id": "vg_nett",
+              "url": "https://www.vg.no/nyheter/i/wE6ryo/vg-nett-fyller-10-aar-10-oktober-slik-startet-vg-nett-eventyret",
+              "source_type": "primary_press_history",
+              "claim_basis": "VG er medieidentiteten; VG Nett er en nettavis som ble lansert 1995.",
+              "role": "VG markerer nettavisens lansering 10. oktober 1995, skilt fra VG-husets åpning 1994."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_ett_mediemerke_kan_sta_b_518c3495d1",
+          "knowledge_unit_ids": [
+            "ku_media_ett_mediemerke_kan_sta_b_518c3495d1",
+            "ku_media_a_skille_akt_ridentitet__6fe44bdb8c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q20",
+          "quiz_id": "media_vg_huset_v2_q20",
+          "claim_id": "claim_vg_quiz_20",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvordan skal foto- og avisår dateres når en monter fotografert i 2013 viser avisen fra 2011?",
+          "options": [
+            "Begge må dateres 2013",
+            "Begge må dateres 2011",
+            "Aviseksemplaret 2011 og fotografiet 2013"
+          ],
+          "answer": "Aviseksemplaret 2011 og fotografiet 2013",
+          "answerIndex": 2,
+          "knowledge": "Et kildeobjekt og dokumentasjonsbildet av objektet kan ha forskjellige produksjonsår. Den forskjellen er avgjørende ved rekonstruksjon av hendelser.",
+          "claim_basis": "Den avbildede avisen er fra 2011 mens fotografiet er fra 2013.",
+          "difficulty": 2,
+          "question_type": "analysis",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "monter2013",
+            "koro"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "monter2013",
+              "url": "https://commons.wikimedia.org/wiki/File:VG_monter_flyttet.JPG",
+              "source_type": "original_documentary_photo",
+              "claim_basis": "Den avbildede avisen er fra 2011 mens fotografiet er fra 2013.",
+              "role": "Erik den yngre foto 24.08.2013, viser 22. juli 2011-avis i flyttet monter; fotodato må skilles fra aviseksemplarets dato."
+            },
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "Den avbildede avisen er fra 2011 mens fotografiet er fra 2013.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_et_kildeobjekt_og_dokume_8ada0a577d",
+          "knowledge_unit_ids": [
+            "ku_media_et_kildeobjekt_og_dokume_8ada0a577d",
+            "ku_media_den_forskjellen_er_avgj__7a3e708003"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q21",
+          "quiz_id": "media_vg_huset_v2_q21",
+          "claim_id": "claim_vg_quiz_21",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hva innebar samlokaliseringen av VG og Aftenposten i 2014?",
+          "options": [
+            "De ble én felles avis med samme ansvarlige redaktør",
+            "To separate redaksjoner fikk adresse i samme hus",
+            "Aftenposten opphørte som egen publikasjon"
+          ],
+          "answer": "To separate redaksjoner fikk adresse i samme hus",
+          "answerIndex": 1,
+          "knowledge": "Felles bygning betyr ikke felles avis eller identiske redaksjonelle beslutninger. Steds- og institusjonsgrensene må holdes fra hverandre.",
+          "claim_basis": "Aftenposten flyttet inn hos VG i Akersgata 55 i 2014, som separat avis.",
+          "difficulty": 2,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "vg_old"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_redaksjon_desk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "vg_old",
+              "url": "https://www.aftenposten.no/norge/i/BJdpw/tanta-flytter-hjem",
+              "source_type": "primary_press_history",
+              "claim_basis": "Aftenposten flyttet inn hos VG i Akersgata 55 i 2014, som separat avis.",
+              "role": "Aftenpostens egen pressehistorie med VG tidligere Akersgata 34 og VG-huset fra 1994, Aftenpostens eldre nr. 51 og flytting til nr. 55 i august 2014."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_felles_bygning_betyr_ikk_f03a6a9d03",
+          "knowledge_unit_ids": [
+            "ku_media_felles_bygning_betyr_ikk_f03a6a9d03",
+            "ku_media_steds_og_institusjonsgre_4f83333274"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -571,49 +1564,85 @@
       ]
     },
     {
-      "set_id": "popkultur_vg_huset_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
+      "set_id": "media_vg_huset_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 80,
       "questions": [
         {
-          "id": "vg_huset_s5_q1",
-          "quiz_id": "popkultur_vg_huset_set_5_q1",
+          "id": "vg_huset_v2_q22",
+          "quiz_id": "media_vg_huset_v2_q22",
+          "claim_id": "claim_vg_quiz_22",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i VG-huset?",
+          "question_scope": "place",
+          "question": "Hva kan man faktisk dokumentere med VGs bevarte papiravis i monteren?",
           "options": [
-            "At moderne nyhetsmedier er både bygning, arbeidsrytme, publiseringssystem og offentlig dagsorden",
-            "At medier bare er løs tekst uten steder",
-            "At nyhetsrytme ikke påvirker offentlighet"
+            "En datert trykt publikasjon knyttet til huset",
+            "Hele redaksjonens interne arbeidsprosess",
+            "Nettavisens førsteside fra 1995"
           ],
-          "answer": "At moderne nyhetsmedier er både bygning, arbeidsrytme, publiseringssystem og offentlig dagsorden",
+          "answer": "En datert trykt publikasjon knyttet til huset",
           "answerIndex": 0,
-          "knowledge": "VG-huset samler tabloid journalistikk, nettavis og nasjonal dagsorden i ett sted.",
+          "knowledge": "Et autentisk fysisk eksemplar beviser publisert materiale og datering, men ikke alle beslutninger og tekniske produksjonssteder bak utgaven. James W. Carey skiller dessuten mellom kommunikasjon som overføring av informasjon og som sosialt ritual; hvordan leserne faktisk brukte den trykte avisen krever andre kilder enn selve eksemplaret.",
+          "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
           "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
+          "question_type": "analysis",
+          "question_layer": "final",
           "tags": [
-            "dagsorden",
-            "mediehistorie"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/stories/stories_vg_huset.json"
+            "monter2013",
+            "koro",
+            "carey"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
+          "sources": [
+            {
+              "source_id": "monter2013",
+              "url": "https://commons.wikimedia.org/wiki/File:VG_monter_flyttet.JPG",
+              "source_type": "original_documentary_photo",
+              "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
+              "role": "Erik den yngre foto 24.08.2013, viser 22. juli 2011-avis i flyttet monter; fotodato må skilles fra aviseksemplarets dato."
+            },
+            {
+              "source_id": "koro",
+              "url": "https://koro.no/avissidene-fra-22-juli-2011-er-tilbake-i-vg-monteren/",
+              "source_type": "institutional_primary",
+              "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
+              "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            },
+            {
+              "source_id": "carey",
+              "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf",
+              "source_type": "primary_scholarly_essay",
+              "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
+              "role": "James W. Careys A Cultural Approach to Communication er gjennomgått i kildearbeidet for Aftenposten: sidene om kommunikasjon som overføring og ritual. Brukes som fortolkningsperspektiv etter materiell dokumentasjon, ikke som kilde til datoer, faktisk opplag eller VG-lesernes praksis."
+            }
+          ],
+          "topic_hook_id": "avishus_som_offentlighetsrom",
+          "thinker_id": "james_carey",
+          "theory_ref": {
+            "topic_hook_id": "avishus_som_offentlighetsrom",
+            "thinker_id": "james_carey",
+            "why_it_helps": "Carey skiller mellom nyhetsoverføring og lesning som sosialt ritual; en bevart papiravis dokumenterer et utgitt produkt, men ikke hvordan konkrete lesere brukte det. Perspektivet presiserer kildegrensen uten å flytte historien fra VG-huset."
           },
-          "primary_knowledge_unit_id": "ku_media_vg_huset_samler_tabloid__dce50a0864",
+          "primary_knowledge_unit_id": "ku_media_et_autentisk_fysisk_ekse_9c42dff024",
           "knowledge_unit_ids": [
-            "ku_media_vg_huset_samler_tabloid__dce50a0864"
+            "ku_media_et_autentisk_fysisk_ekse_9c42dff024",
+            "ku_media_carey_skiller_dessuten_m_8a6c9237e4"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -621,42 +1650,55 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "vg_huset_s5_q2",
-          "quiz_id": "popkultur_vg_huset_set_5_q2",
+          "id": "vg_huset_v2_q23",
+          "quiz_id": "media_vg_huset_v2_q23",
+          "claim_id": "claim_vg_quiz_23",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hvorfor er Akersgata viktig i VG-storyen?",
+          "question_scope": "place",
+          "question": "Hvilken dokumentasjon er best for å kontrollere den presise lanseringsdatoen til VG Nett?",
           "options": [
-            "Den plasserte VG direkte inn i Oslos presseakse, men med en annen energi enn eldre avishus",
-            "Den gjorde VG til en fjellhytte",
-            "Den fjernet VG fra offentligheten"
+            "Et fotografi av fasaden fra 2007",
+            "Et bygningskart fra 1994",
+            "VGs daterte historikk om nettavisens start"
           ],
-          "answer": "Den plasserte VG direkte inn i Oslos presseakse, men med en annen energi enn eldre avishus",
-          "answerIndex": 0,
-          "knowledge": "Storyen kontrasterer VG med eldre avishus gjennom tempo, løssalg, store titler og senere nettavis.",
+          "answer": "VGs daterte historikk om nettavisens start",
+          "answerIndex": 2,
+          "knowledge": "VGs retrospektive lanseringshistorie oppgir 10. oktober 1995. Et byggfoto kan ikke alene verifisere lanseringsdatoen for en digital tjeneste.",
+          "claim_basis": "VGs egen kilde omtaler lanseringen av VG Nett 10. oktober 1995.",
           "difficulty": 3,
-          "question_type": "historisk_sammenheng",
-          "question_layer": "advanced_emne",
+          "question_type": "analysis",
+          "question_layer": "final",
           "tags": [
-            "akersgata",
-            "presseakse"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/stories/stories_vg_huset.json"
+            "vg_nett"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_storyen_kontrasterer_vg__b261cc57b0",
+          "sources": [
+            {
+              "source_id": "vg_nett",
+              "url": "https://www.vg.no/nyheter/i/wE6ryo/vg-nett-fyller-10-aar-10-oktober-slik-startet-vg-nett-eventyret",
+              "source_type": "primary_press_history",
+              "claim_basis": "VGs egen kilde omtaler lanseringen av VG Nett 10. oktober 1995.",
+              "role": "VG markerer nettavisens lansering 10. oktober 1995, skilt fra VG-husets åpning 1994."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_vgs_retrospektive_lanser_0ad1301473",
           "knowledge_unit_ids": [
-            "ku_media_storyen_kontrasterer_vg__b261cc57b0"
+            "ku_media_vgs_retrospektive_lanser_0ad1301473",
+            "ku_media_et_byggfoto_kan_ikke_ale_4f01ba9dda"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -664,93 +1706,54 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "vg_huset_s5_q3",
-          "quiz_id": "popkultur_vg_huset_set_5_q3",
+          "id": "vg_huset_v2_q24",
+          "quiz_id": "media_vg_huset_v2_q24",
+          "claim_id": "claim_vg_quiz_24",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
-          "question_scope": "emne",
-          "question": "Hvordan fungerer VG-huset i en mediehistorisk rute?",
+          "question_scope": "place",
+          "question": "Hvorfor kan ikke dagens VG-logo alene dokumentere hvordan avishodet så ut i 1945?",
           "options": [
-            "Som Oslo-punkt der tabloid presse, digital publisering og døgnkontinuerlig nyhetsarbeid møtes",
-            "Som naturpunkt uten medier",
-            "Som et rent idrettsanlegg"
+            "Den moderne logoen viser 1945-forsiden med sikkerhet",
+            "En nåtidslogo dokumenterer ikke uten videre historisk grafisk utforming",
+            "Fordi VG aldri hadde et avishode"
           ],
-          "answer": "Som Oslo-punkt der tabloid presse, digital publisering og døgnkontinuerlig nyhetsarbeid møtes",
-          "answerIndex": 0,
-          "knowledge": "VG-huset gir en konkret inngang til moderne nyhetsmedier og mediebyens raske rytme.",
+          "answer": "En nåtidslogo dokumenterer ikke uten videre historisk grafisk utforming",
+          "answerIndex": 1,
+          "knowledge": "En autentisk nåtidslogo kan identifisere merkevaren, men en historisk forside krever dokumentasjon fra riktig periode.",
+          "claim_basis": "En moderne logo er ikke bevis for 1945-årgangens avishode.",
           "difficulty": 3,
-          "question_type": "rutekobling",
-          "question_layer": "advanced_emne",
+          "question_type": "analysis",
+          "question_layer": "final",
           "tags": [
-            "mediehistorie",
-            "oslo"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/stories/stories_vg_huset.json"
+            "vg_history"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_vg_huset_gir_en_konkret__9c6dead980",
+          "sources": [
+            {
+              "source_id": "vg_history",
+              "url": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+              "source_type": "institutional_reference",
+              "claim_basis": "En moderne logo er ikke bevis for 1945-årgangens avishode.",
+              "role": "Avisa startet 1945, opprinnelig Akersgata 34; historisk tabloid, adskilt fra moderne bygg. Ingen kildefri opplysning om opplag."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_en_autentisk_natidslogo__6789fd0b34",
           "knowledge_unit_ids": [
-            "ku_media_vg_huset_gir_en_konkret__9c6dead980"
-          ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_vg_huset_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
-      "questions": [
-        {
-          "id": "vg_huset_s6_q1",
-          "quiz_id": "popkultur_vg_huset_set_6_q1",
-          "categoryId": "media",
-          "placeId": "vg_huset",
-          "targetId": "vg_huset",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver en nyhetsform preget av store titler, tempo og tydelig prioritering?",
-          "options": [
-            "Tabloid offentlighet",
-            "Ravinedal",
-            "Overvann"
-          ],
-          "answer": "Tabloid offentlighet",
-          "answerIndex": 0,
-          "knowledge": "Tabloid offentlighet er nøkkelbegrepet for VG-huset.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
-          "tags": [
-            "tabloid_offentlighet"
-          ],
-          "source": [
-            "data/stories/stories_vg_huset.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_tabloid_offentlighet_er__5ea9dcfd82",
-          "knowledge_unit_ids": [
-            "ku_media_tabloid_offentlighet_er__5ea9dcfd82"
+            "ku_media_en_autentisk_natidslogo__6789fd0b34"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -758,41 +1761,54 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "vg_huset_s6_q2",
-          "quiz_id": "popkultur_vg_huset_set_6_q2",
+          "id": "vg_huset_v2_q25",
+          "quiz_id": "media_vg_huset_v2_q25",
+          "claim_id": "claim_vg_quiz_25",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
-          "question_scope": "concept",
-          "question": "Hva betyr frontredigering?",
+          "question_scope": "place",
+          "question": "Hvilken kilde er best for å dokumentere at VG-huset fikk Houens diplom i 2000?",
           "options": [
-            "Å velge og prioritere hva publikum møter først i en avis eller nettavis",
-            "Å måle vannstand",
-            "Å bygge en bru"
+            "En publisert prisoversikt med årstall",
+            "Et moderne foto av VG-logoen",
+            "En ubekreftet kommentar fra sosiale medier"
           ],
-          "answer": "Å velge og prioritere hva publikum møter først i en avis eller nettavis",
+          "answer": "En publisert prisoversikt med årstall",
           "answerIndex": 0,
-          "knowledge": "Frontredigering forklarer hvordan VG-huset kan leses som sted for raske forside- og nyhetsvalg.",
+          "knowledge": "Prisens år og mottaker kan kontrollsjekkes mot en publisert liste, mens et nåtidsfoto bare viser at en logo finnes.",
+          "claim_basis": "En kilde med oversikt over Houens diplom dokumenterer VG-huset i 2000.",
           "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
+          "question_type": "analysis",
+          "question_layer": "final",
           "tags": [
-            "frontredigering"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/stories/stories_vg_huset.json"
+            "houen"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_frontredigering_forklare_8bddb5829f",
+          "sources": [
+            {
+              "source_id": "houen",
+              "url": "https://lokalhistoriewiki.no/Houens_diplom",
+              "source_type": "local_history_reference",
+              "claim_basis": "En kilde med oversikt over Houens diplom dokumenterer VG-huset i 2000.",
+              "role": "Prislisten daterer VG-husets Houens fonds diplom til 2000; arkitekt og pris dokumenteres separat fra øvrige VG-utgivelser."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_prisens_ar_og_mottaker_k_6c65d26340",
           "knowledge_unit_ids": [
-            "ku_media_frontredigering_forklare_8bddb5829f"
+            "ku_media_prisens_ar_og_mottaker_k_6c65d26340"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -800,42 +1816,182 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "vg_huset_s6_q3",
-          "quiz_id": "popkultur_vg_huset_set_6_q3",
+          "id": "vg_huset_v2_q26",
+          "quiz_id": "media_vg_huset_v2_q26",
+          "claim_id": "claim_vg_quiz_26",
           "categoryId": "media",
           "placeId": "vg_huset",
           "targetId": "vg_huset",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer VG-huset best?",
+          "question_scope": "place",
+          "question": "Hvilken institusjonell endring ble dokumentert i juni 2024?",
           "options": [
-            "Tabloid offentlighet og nettavis",
-            "Fjordovergang og vannkvalitet",
-            "Ravinedal og løvskog"
+            "VG Nett ble grunnlagt som avis",
+            "Aftenposten fikk sin første Akersgata-adresse",
+            "Schibsted Media ble skilt ut som selvstendig mediegruppe"
           ],
-          "answer": "Tabloid offentlighet og nettavis",
-          "answerIndex": 0,
-          "knowledge": "Stedet blir tydeligst når løssalgsavisens forside leses sammen med nettavisens kontinuerlige strøm.",
+          "answer": "Schibsted Media ble skilt ut som selvstendig mediegruppe",
+          "answerIndex": 2,
+          "knowledge": "Konsernendringen må tidsfestes til 2024; den er ikke det samme som VG som avis i 1945, avishuset i 1994 eller VG Nett i 1995.",
+          "claim_basis": "Schibsted Media ble skilt ut i juni 2024.",
           "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
+          "question_type": "fact",
+          "question_layer": "final",
           "tags": [
-            "tabloid",
-            "nettavis"
+            "vg_huset",
+            "media"
           ],
           "source": [
-            "data/stories/stories_vg_huset.json"
+            "schibsted"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_forside_prioritering"
+          "source_origin": "external",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_for_target",
-            "confidence": 0.96
-          },
-          "primary_knowledge_unit_id": "ku_media_stedet_blir_tydeligst_na_18eaa11891",
+          "sources": [
+            {
+              "source_id": "schibsted",
+              "url": "https://kommunikasjon.ntb.no/pressemelding/18132215/schibsted-media-sjefen-en-ny-epoke?lang=no&publisherId=17848846",
+              "source_type": "official_press_release",
+              "claim_basis": "Schibsted Media ble skilt ut i juni 2024.",
+              "role": "Schibsted Media-organisasjon delt fra øvrige virksomheter i juni 2024; ikke samme som avisetablering eller VG Nett."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_konsernendringen_ma_tids_13a16e21c5",
           "knowledge_unit_ids": [
-            "ku_media_stedet_blir_tydeligst_na_18eaa11891"
+            "ku_media_konsernendringen_ma_tids_13a16e21c5"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q27",
+          "quiz_id": "media_vg_huset_v2_q27",
+          "claim_id": "claim_vg_quiz_27",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvorfor er et fotografi av VG-huset fra 2007 utilstrekkelig som eneste kilde til utformingen i 1994?",
+          "options": [
+            "Fordi alle fotografier må være tatt i samme år som avishuset ble grunnlagt",
+            "Fordi endringer mellom 1994 og 2007 krever kontroll mot eldre dokumentasjon",
+            "Fordi et foto aldri kan dokumentere bygninger"
+          ],
+          "answer": "Fordi endringer mellom 1994 og 2007 krever kontroll mot eldre dokumentasjon",
+          "answerIndex": 1,
+          "knowledge": "Arkitektenes originalprosjekt og samtidige kilder viser den planlagte utformingen i 1994; senere bilder viser bygningen på fototidspunktet.",
+          "claim_basis": "Et fotografi fra 2007 er senere enn byggeåret 1994 og kan ikke alene bekrefte opprinnelig tilstand.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "lund",
+            "akersgata"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "Et fotografi fra 2007 er senere enn byggeåret 1994 og kan ikke alene bekrefte opprinnelig tilstand.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            },
+            {
+              "source_id": "akersgata",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Et fotografi fra 2007 er senere enn byggeåret 1994 og kan ikke alene bekrefte opprinnelig tilstand.",
+              "role": "Oslo byleksikons historikk for nr. 49, 51 og 55; 1994 nybygg, Houens diplom 2000, 2011 og tidligere bebyggelse. Sammenlignbart, men nr. 34-koblingen suppleres av avisens egen 2014-kilde."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arkitektenes_originalpro_238493c926",
+          "knowledge_unit_ids": [
+            "ku_media_arkitektenes_originalpro_238493c926"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "vg_huset_v2_q28",
+          "quiz_id": "media_vg_huset_v2_q28",
+          "claim_id": "claim_vg_quiz_28",
+          "categoryId": "media",
+          "placeId": "vg_huset",
+          "targetId": "vg_huset",
+          "question_scope": "place",
+          "question": "Hvilke kilder kan sammen skille hendelsen på tomten i 1944 fra selve VG-bygningen fra 1994?",
+          "options": [
+            "Nåværende redaksjonskontakt og en nyere logo",
+            "VG Nett-historikken og et opplagstall fra 2024",
+            "Sabotasjehistorikken fra 1944 og arkitektens dokumentasjon av nybygget"
+          ],
+          "answer": "Sabotasjehistorikken fra 1944 og arkitektens dokumentasjon av nybygget",
+          "answerIndex": 2,
+          "knowledge": "En stedshistorisk analyse må holde tidslagene fra hverandre. Dokumentasjonen om 1944 gjelder den tidligere bygningsmassen; arkitektens prosjekt dokumenterer 1994-huset.",
+          "claim_basis": "To forskjellige kildetyper dokumenterer 1944-hendelsen og byggets 1994-fase.",
+          "difficulty": 3,
+          "question_type": "analysis",
+          "question_layer": "final",
+          "tags": [
+            "vg_huset",
+            "media"
+          ],
+          "source": [
+            "snl_oslo",
+            "lund"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl_oslo",
+              "url": "https://snl.no/Oslogjengen",
+              "source_type": "reference",
+              "claim_basis": "To forskjellige kildetyper dokumenterer 1944-hendelsen og byggets 1994-fase.",
+              "role": "Kontrollert omtale av sabotasjen 18. mai 1944 ved arbeidskontoret på nr. 55, uttrykkelig før dagens avishus."
+            },
+            {
+              "source_id": "lund",
+              "url": "https://www.lsa.no/prosjekter/kontor/vg-huset",
+              "source_type": "architect_primary",
+              "claim_basis": "To forskjellige kildetyper dokumenterer 1944-hendelsen og byggets 1994-fase.",
+              "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
+            }
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_en_stedshistorisk_analys_706f217a49",
+          "knowledge_unit_ids": [
+            "ku_media_en_stedshistorisk_analys_706f217a49",
+            "ku_media_dokumentasjonen_om_1944__5140288d3f"
           ],
           "concept_ids": [],
           "term_ids": [],

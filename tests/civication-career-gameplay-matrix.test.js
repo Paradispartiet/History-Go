@@ -16,6 +16,11 @@ assert.deepStrictEqual(Object.keys(matrix.summary.statuses), policy.status_order
 assert(matrix.summary.work_worlds >= 80, 'global matrix covers work worlds, not a small hand-picked sample');
 assert.strictEqual(matrix.worlds.length, matrix.summary.work_worlds, 'summary count matches work-world rows');
 assert.strictEqual(new Set(matrix.worlds.map((world) => world.key)).size, matrix.worlds.length, 'one row per category/role_scope');
+// Psykologrommet tests study theories/screening, not an actual workday as a psychologist.
+// Career readiness must use role-world evidence, not incidental text matches.
+assert(matrix.worlds.every((world) =>
+  (world.artifacts?.role_tests || []).every((file) => !/^tests\/civication-psychology-room-/.test(file))
+), 'Psychology Room learning tests must not certify any Civication career world');
 
 const canonicalCategories = new Set(categoryContract.runtimeCategories || []);
 assert(matrix.worlds.every((world) => canonicalCategories.has(world.category)), 'career matrix contains only canonical runtime categories');
