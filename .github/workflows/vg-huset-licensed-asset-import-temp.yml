@@ -1,0 +1,66 @@
+name: VG-huset source-reviewed assets (temporary)
+
+on:
+  push:
+    branches:
+      - "agent/vg-huset-source-preflight-20261009"
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.ref == 'refs/heads/agent/vg-huset-source-preflight-20261009'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/vg-huset-source-preflight-20261009
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Import exact credited Commons originals
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p bilder/kort/objects bilder/kort/brands
+          PHOTO="bilder/kort/objects/vg_avismonter_2011.jpg"
+          LOGO="bilder/kort/brands/vg_logo.svg"
+          if [[ ! -s "$PHOTO" ]]; then
+            curl --fail --location --retry 5 --retry-all-errors --max-time 90 \
+              --user-agent "HistoryGO source-audit image import (Commons attribution)" \
+              "https://upload.wikimedia.org/wikipedia/commons/5/58/Shattered_newspaper_monter_outside_VG_in_Oslo.jpg" \
+              --output "$PHOTO"
+          fi
+          if [[ ! -s "$LOGO" ]]; then
+            curl --fail --location --retry 5 --retry-all-errors --max-time 90 \
+              --user-agent "HistoryGO source-audit logo import (Commons attribution)" \
+              "https://upload.wikimedia.org/wikipedia/commons/a/af/VG_logo.svg" \
+              --output "$LOGO"
+          fi
+          test "$(file --brief --mime-type "$PHOTO")" = "image/jpeg"
+          grep -qia '<svg' "$LOGO"
+          test "$(wc -c < "$PHOTO")" -ge 100000
+          test "$(wc -c < "$LOGO")" -ge 500
+          test "$(wc -c < "$LOGO")" -le 20000
+          if grep -Eiq '<script|onload[[:space:]]*=|javascript:' "$LOGO"; then
+            echo "Unsafe SVG content" >&2; exit 1
+          fi
+          echo "VG-monteren photo: $(wc -c < "$PHOTO") bytes, photo by Ulflarsen, CC BY-SA 3.0 (14.10.2011)"
+          echo "VG logo: $(wc -c < "$LOGO") bytes, VG, PD-textlogo with trademark caveat (2015)"
+          sha256sum "$PHOTO" "$LOGO"
+      - name: Commit only source-reviewed asset bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/kort/objects/vg_avismonter_2011.jpg bilder/kort/brands/vg_logo.svg
+          if git diff --cached --quiet; then
+            echo "Exact target assets already present; no commit needed."
+            exit 0
+          fi
+          git diff --cached --name-only | tee /tmp/vg-assets-staged.txt
+          test "$(wc -l < /tmp/vg-assets-staged.txt)" -eq 2
+          git commit -m "Import licensed VG logo and 2011 newspaper case originals"
+          git push origin HEAD:refs/heads/agent/vg-huset-source-preflight-20261009
