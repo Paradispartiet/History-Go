@@ -116,8 +116,28 @@ try {
             assert.deepEqual(await faces(), { front: "visible", back: "hidden" },
               engine + " " + width + " " + mode + " should conceal the inactive back");
             assert.ok(isRed(await sampledColor(card)), engine + " initial front should be visible");
-            await card.click();
+            if (mode === "rendered") {
+              // Real regression: a legacy image can emit a late error after
+              // valid text QuizCard content has already been rendered.
+              await page.evaluate(() => {
+                const c = document.getElementById("pcFrontCardFlip");
+                const img = document.getElementById("pcQuizCardImage");
+                c.dataset.currentPlaceId = "teststed";
+                img.dataset.placeId = "teststed";
+                img.dispatchEvent(new Event("error"));
+              });
+              assert.equal(await card.evaluate(el => el.classList.contains("has-quiz-card")), true,
+                "a failed image fallback must not disable a rendered quiz");
+              // Also recover if stale async state already stripped the class.
+              await card.evaluate(el => el.classList.remove("has-quiz-card"));
+            }
+            // Click the actual front image, not the container as before.
+            await page.locator("#pcFrontImage").click();
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), true);
+            if (mode === "rendered") {
+              assert.equal(await card.evaluate(el => el.classList.contains("has-quiz-card")), true,
+                "tap must restore availability when the rendered back exists");
+            }
             assert.deepEqual(await faces(), { front: "hidden", back: "visible" },
               engine + " " + width + " " + mode + " should conceal the front after flip");
             if (mode === "rendered") {
@@ -233,10 +253,17 @@ try {
             await card.press("Enter");
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), false);
             assert.ok(isRed(await sampledColor(card)), engine + " should return to front on keyboard flip");
-            await card.evaluate(el => el.classList.remove("has-quiz-card"));
-            await card.click();
+            await card.evaluate(el => {
+              el.classList.remove("has-quiz-card");
+              const content = document.getElementById("pcQuizCardContent");
+              content.replaceChildren();
+              content.hidden = true;
+              const image = document.getElementById("pcQuizCardImage");
+              image.removeAttribute("src");
+            });
+            await page.locator("#pcFrontImage").click();
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), false,
-              "cannot flip cards without a resolved QuizCard");
+              "cannot flip cards with neither rendered QuizCard nor fallback image");
             console.log("QuizCard visible both faces", engine, width, mode);
           } finally {
             await page.close();
