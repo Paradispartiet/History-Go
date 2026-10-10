@@ -62,11 +62,21 @@
 
   function readableBlocks() {
     const blocks = Array.from(body.querySelectorAll(READABLE));
-    return blocks.filter((el, index) => {
+
+    // Place Sheet flytter overskriften og ingressen inn i hero-flaten.
+    // Disse er alltid starten på stedsteksten, uavhengig av generelle
+    // filtre for metadata, aria-live og øvrige dynamiske seksjoner.
+    const opening = ["pcTitle", "pcDesc"]
+      .map(id => document.getElementById(id))
+      .filter(el => el && body.contains(el) && text(el));
+
+    const remaining = blocks.filter((el, index) => {
+      if (opening.some(openingElement => openingElement === el)) return false;
       if (!text(el) || !visible(el) || el.closest(ACTIONS) || el.closest(IGNORE)) return false;
       // Ett tekstledd leses bare én gang selv når det inneholder underordnede tekstledd.
       return !blocks.slice(0, index).some(parent => parent.contains(el));
     });
+    return [...opening, ...remaining];
   }
 
   function chunks(value) {
@@ -102,10 +112,13 @@
   }
 
   function cancelVoice() {
+    const hadVoice = inFlight || Boolean(speech?.speaking || speech?.pending || speech?.paused);
     generation++;
     inFlight = false;
     unmark();
-    if (supported) {
+    // Ikke send cancel() rett før første speak() på en ledig syntetisator.
+    // Dette kan på Safari avbryte oppstarten av de første korte setningene.
+    if (supported && hadVoice) {
       try { speech.cancel(); } catch (_) { /* synthesizer kan være utilgjengelig */ }
     }
   }
