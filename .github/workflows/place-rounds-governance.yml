@@ -21,6 +21,9 @@ on:
       - "css/place-popup-shortcuts.css"
       - "tests/place-rounds-visual-collections.test.mjs"
       - "tests/vg-huset-collections-browser-audit.test.mjs"
+      - "tests/vg-huset-quizcard.test.mjs"
+      - "data/quizcards/media/vg_huset_quizkort_v1.json"
+      - "data/quizcards/media/manifest.json"
       - "data/places/media/oslo/places_oslo_media/vg_huset.json"
       - "data/brands/brands_master.json"
       - "data/brands/brands_by_place.json"
@@ -141,6 +144,7 @@ jobs:
           node --check js/ui/nature-detailed-map.js
           node --test tests/place-rounds-visual-collections.test.mjs tests/place-rounds-grid-exclusivity.test.mjs tests/place-rounds-fill-layout.test.mjs tests/place-card-profile-schema.test.mjs tests/christiania-torv-placecard-collections-v2.test.mjs tests/bankplassen-place-completion-v1.test.mjs tests/nature-detailed-map.test.mjs
           node tests/vg-huset-collections-browser-audit.test.mjs
+          node --test tests/vg-huset-quizcard.test.mjs
           node tests/place-card-rounds-runtime-audit.test.js
           node tests/place-people-ids-runtime.test.js
           node tests/nationaltheatret-people-curation.test.js
