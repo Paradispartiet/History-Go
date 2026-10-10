@@ -231,7 +231,7 @@ test("turning off, closing and switching places cancel speech and hide the panel
       f.card.dataset.currentPlaceId = "stortorget";
       f.notifyMutation();
     }
-    assert.ok(f.cancellations() >= 2);
+    assert.equal(f.cancellations(), 1, "only the active utterance is canceled");
     assert.equal(f.toggle.getAttribute("aria-pressed"), "false");
     assert.equal(f.controls.hidden, true);
     f.spoken[0].onend();
@@ -284,4 +284,13 @@ test("canonical title and description are read before Om stedet even under aria-
     "tapping the canonical intro restarts there, before Om stedet");
   f.spoken[5].onend();
   assert.equal(f.spoken[6].text, "Her finner vi gamle fabrikker.");
+});
+
+test("initial play does not cancel idle Safari speech before the first heading", () => {
+  const f = fixture();
+  f.dispatch(f.toggle);
+  assert.equal(f.cancellations(), 0, "no cancel should race the first heading utterance");
+  assert.equal(f.spoken[0].text, "Akerselva");
+  f.dispatch(f.body, f.description);
+  assert.equal(f.cancellations(), 1, "jumping to a new paragraph cancels active voice");
 });
