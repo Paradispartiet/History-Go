@@ -1,0 +1,109 @@
+name: Temporary Psykoteori iPad and mobile QA
+
+on:
+  push:
+    branches:
+      - codex/psykoteori-browser-qa-20261010
+    paths:
+      - .github/workflows/tmp-psykoteori-browser-qa.yml
+
+permissions:
+  contents: write
+
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install dependencies and Chromium
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Real-browser Psykoteori iPad and mobile navigation
+        run: |
+          set -euo pipefail
+          cat > .tmp-psykoteori-browser-qa.mjs <<'JS'
+          import { spawn } from 'node:child_process';
+          import { mkdir } from 'node:fs/promises';
+          import { chromium } from 'playwright';
+          const host = 'http://127.0.0.1:4173';
+          const server = spawn('python3', ['-m','http.server','4173','--bind','127.0.0.1'], {stdio:'ignore'});
+          let browser;
+          const assert = (v,msg) => { if (!v) throw new Error(msg); };
+          try {
+            let ready = false;
+            for(let i=0;i<100;i++){
+              try { const r=await fetch(host + '/data/psychology/psychology_theories.json'); if(r.ok){ready=true;break;} } catch {}
+              await new Promise(resolve=>setTimeout(resolve,100));
+            }
+            assert(ready,'Local repo server failed');
+            browser=await chromium.launch({headless:true});
+            await mkdir('reports/psychology',{recursive:true});
+            for(const cfg of [
+              {name:'mobile',width:390,height:844,isMobile:true},
+              {name:'ipad',width:1024,height:768,isMobile:true},
+              {name:'desktop',width:1440,height:900,isMobile:false}
+            ]){
+              const context=await browser.newContext({viewport:{width:cfg.width,height:cfg.height},deviceScaleFactor:1,isMobile:cfg.isMobile});
+              const page=await context.newPage();
+              const errors=[],dataFailures=[];
+              page.on('pageerror',err=>errors.push(err.message));
+              page.on('response',res=>{if(res.url().includes('/data/psychology/')&&res.status()>=400)dataFailures.push(res.url()+': '+res.status());});
+              await page.route('**/__psychology_test__',route=>route.fulfill({status:200,contentType:'text/html',body:'<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;background:#111;color:white"></body></html>'}));
+              await page.goto(host+'/__psychology_test__',{waitUntil:'domcontentloaded'});
+              await page.addStyleTag({url:host+'/css/psychologyRoom.css'});
+              await page.addScriptTag({url:host+'/js/psychologyRoom.js'});
+              await page.evaluate(()=>window.PsychologyRoom.open());
+              await page.locator('[data-psych-action="theories"]').click();
+              assert(await page.locator('[data-theory-id]').count()===14,cfg.name+': expected 14 theory cards');
+              await page.locator('[data-theory-id="behaviorisme"]').click();
+              await page.locator('.psychology-room-theory-detail').waitFor();
+              assert(await page.getByText('Kilder og rekkevidde',{exact:true}).isVisible(),cfg.name+': sources hidden');
+              assert(await page.locator('a[href*="em_psy_atferd_laring"]').count()===1,cfg.name+': related emne link not rendered');
+              assert(await page.locator('a[href*="psychology.fas.harvard.edu/people/b-f-skinner"]').count()===1,cfg.name+': historical reference not visible');
+              const geometry=await page.evaluate(()=>{
+                const panel=document.querySelector('.psychology-room-panel');
+                const rect=panel.getBoundingClientRect();
+                return {screen:innerWidth,document:document.documentElement.scrollWidth,
+                  panelLeft:rect.left,panelRight:rect.right,panelClient:panel.clientWidth,panelScroll:panel.scrollWidth};
+              });
+              assert(geometry.document<=geometry.screen+2,cfg.name+': document horizontal overflow '+JSON.stringify(geometry));
+              assert(geometry.panelLeft>=-2&&geometry.panelRight<=geometry.screen+2,cfg.name+': panel exceeds viewport '+JSON.stringify(geometry));
+              assert(geometry.panelScroll<=geometry.panelClient+2,cfg.name+': panel horizontal overflow '+JSON.stringify(geometry));
+              assert(!errors.length,cfg.name+': page errors '+JSON.stringify(errors));
+              assert(!dataFailures.length,cfg.name+': psychology HTTP errors '+JSON.stringify(dataFailures));
+              await page.screenshot({path:'reports/psychology/psykoteori-'+cfg.name+'-browser.png',fullPage:false});
+              await page.locator('.psychology-room-close').click();
+              assert(await page.locator('#psychologyRoomOverlay').getAttribute('aria-hidden')==='true',cfg.name+': close failed');
+              console.log('PASS '+cfg.name+' '+JSON.stringify(geometry)+' source and emne links verified');
+              await context.close();
+            }
+          } finally {
+            if(browser) await browser.close();
+            server.kill('SIGTERM');
+          }
+          JS
+          node .tmp-psykoteori-browser-qa.mjs
+      - name: Upload browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: psykoteori-responsive-qa
+          path: reports/psychology/psykoteori-*-browser.png
+          if-no-files-found: ignore
+      - name: Remove temporary workflow after testing
+        if: always()
+        run: |
+          set -euo pipefail
+          rm -f .github/workflows/tmp-psykoteori-browser-qa.yml
+          git add -- .github/workflows/tmp-psykoteori-browser-qa.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: remove temporary Psykoteori responsive QA workflow"
+          git push origin HEAD:codex/psykoteori-browser-qa-20261010
