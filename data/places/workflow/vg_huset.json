@@ -1,21 +1,53 @@
 {
-  "schema": "history_go_place_workcard_projection_v3",
-  "generated": true,
-  "source": "data/places/workflow/vg_huset.json",
+  "schema": "history_go_place_production_workflow_v3",
   "place_id": "vg_huset",
   "category": "media",
-  "state": "blocked",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/vg_huset.json",
+    "evidence_refs": [
+      "reports/place-production/vg-huset-source-review-20261009.md",
+      "reports/place-production/vg-huset-claims-chronology-20261009.md",
+      "reports/place-production/vg-huset-collections-evidence-20261010.md",
+      "reports/place-production/vg-huset-quiz-production-review-20261010.md"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-10-09T19:06:07.440Z",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/media.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "Reuse of documented READ-FIRST preflight with ten rule files and SHA-256 hashes in the legacy VG-huset workcard dated 2026-10-09. Migration to V3 does not itself attest manual UI or native Safari testing; primary record is reports/place-production/vg-huset-source-review-20261009.md."
+  },
   "profile": {
     "id": "major",
     "status": "confirmed",
     "reason": "Major: VG-huset 1994, sabotasjen på den eldre tomten i 1944, VG og VG Nett, avisutstillingsmonter, arkitektur og redaksjonell samlokalisering. Canonical innhold og QuizCard er nå produsert og integrert med kildeledet quiz PR #6190; sluttføring avhenger av faktisk helhetlig PlaceCard-/Safari-review."
   },
-  "selected_collections": [
-    "people",
-    "objects",
-    "brands",
-    "productions"
-  ],
+  "source_review": {
+    "status": "complete",
+    "evidence": "data/places/production/vg_huset.json contains 18 verified claims; source review documents building/site separation (1944, 1945, 1994) and provenance."
+  },
   "collections": {
     "people": {
       "status": "PASS",
@@ -114,5 +146,6 @@
       "status": "PENDING",
       "evidence": "Existing browser fixture tests cover 390/768/1280 and Chromium/WebKit flip. Integrated full app closeout must be run and assessed; no native Safari claim."
     }
-  }
+  },
+  "state": "blocked"
 }

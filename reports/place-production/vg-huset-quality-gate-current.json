@@ -1,0 +1,26 @@
+{
+  "schema": "history_go_place_quality_gate_projection_v3",
+  "generated": true,
+  "source": "data/places/workflow/vg_huset.json",
+  "place_id": "vg_huset",
+  "derived_state": "blocked",
+  "selected_collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "blockers": [
+    "Final full PlaceCard/Safari human visual review has not been independently attested on the merged VG-huset release, including all popup tabs, Fagverk links, QuizCard flip and quiz entry. Automated Chromium/WebKit fixture tests do not substitute for this manual sign-off."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "PR #6187 image import provenance and browser photo inspection: https://github.com/Paradispartiet/History-Go/actions/runs/37979568851. Both independent original photos and CC attribution checked; not a native iPad test."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Existing browser fixture tests cover 390/768/1280 and Chromium/WebKit flip. Integrated full app closeout must be run and assessed; no native Safari claim."
+    }
+  }
+}

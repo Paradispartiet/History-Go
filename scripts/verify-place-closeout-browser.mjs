@@ -158,10 +158,11 @@ try {
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
         const content = document.getElementById('pcQuizCardContent');
+        // The back face is visibility:hidden until flipped; use textContent here.
         return flip?.classList.contains('has-quiz-card')
           && content instanceof HTMLElement
           && content.hidden === false
-          && (content.innerText || '').trim().length > 20;
+          && (content.textContent || '').trim().length > 20;
       },
       null,
       { timeout: 60_000 },
@@ -221,13 +222,19 @@ try {
       await popupRoot.waitFor({ state: 'detached', timeout: 10_000 });
     }
 
-    const beforeFlipText = await page.locator('#pcQuizCardContent').innerText();
+    const beforeFlipText = await page.locator('#pcQuizCardContent').textContent();
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(
       () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') === true,
       null,
       { timeout: 10_000 },
     );
+    const visibleBack = await page.locator('.pc-card-face-back').evaluate(el => ({
+      visibility: getComputedStyle(el).visibility,
+      content: (el.textContent || '').trim(),
+    }));
+    assert.equal(visibleBack.visibility, 'visible', 'QuizCard backside must become visible after the flip');
+    assert.ok(visibleBack.content.length > 20, 'QuizCard backside must contain real quiz text after the flip');
     await page.locator('#pcFrontCardFlip').click();
     await page.waitForFunction(
       () => document.getElementById('pcFrontCardFlip')?.classList.contains('is-flipped') !== true,
