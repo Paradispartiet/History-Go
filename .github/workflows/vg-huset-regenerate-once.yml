@@ -31,6 +31,7 @@ jobs:
           node scripts/audit-fagverk-place-pages.mjs --write
           npm run place:build -- vg_huset
           node --test tests/vg-huset-checklist-closeout.test.mjs
+          node scripts/check-place-i18n-freshness.mjs vg_huset
           npm run place:verify -- vg_huset
       - name: Automated full-app browser test without faking manual signoff
         shell: bash
