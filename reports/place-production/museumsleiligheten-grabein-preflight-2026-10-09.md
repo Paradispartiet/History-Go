@@ -275,3 +275,11 @@ Dette er **en ny kandidat til arkivkontroll, ikke dokumentert bildebevis** i den
 - Generatoren lagret commit `9832aaf195b805fc29b559e2c5ba3506cee32216` og fjernet den midlertidige workflowen. Første PR-workflows utløst direkte av GitHub Actions-bot viste `action_required`, **ikke** teknisk PASS; det kreves ordinær PR-CI på en senere endelig commit.
 - **Redaksjonell status er uendret:** People, Objects og Før/etter er **BLOCKED**. For OB.A6874 (mulig førfoto) er rettigheter og primærkildepost ennå ikke tilstrekkelig kontrollert. Manuell iPad/Safari-gjennomgang gjenstår.
 - **Ingen `production_status=complete`, ingen endelig merge til `main` og ingen e-post sendt til Oslo Museum.**
+
+## Inkrementell publisering – Gråbein på main (10. oktober 2026)
+
+- [PR #6163](https://github.com/Paradispartiet/History-Go/pull/6163) ble merget til `main` med merge-commit `92acb4849e1601a57ab6f2637bcbf520301f2681`. Dette publiserer **kun den kildebelagte stedskjernen**, inkludert PlaceCard, rettet Bjørklund-tekst, Fagverk, Språkleksikon, QuizCard, historisk hendelse og Oslo Museum som Brand.
+- Den merged PR-headen `4aefa615687589be833add5038d30eb8c44c4ab0` bestod 16 av 16 ordinære CI-workflows. Etter merge avdekket `Main integrity` at den globale `data/places/places_index.json` manglet Gråbeins nye `desc`, `image` og `frontImage`.
+- Kanonisk `npm run places:index:build` og `npm run places:index:check` bestod i [Actions-kjøring #38034658884](https://github.com/Paradispartiet/History-Go/actions/runs/38034658884). Indeksen ble lagret på `main` i commit `3c03a1f6fdaa1bc853a9889c03d7b3a0852f50c5`; den midlertidige workflowen er fjernet. GitHub Actions-kjøringen som startet før en samtidig PR-merge fikk først avvist push, men etterfølgende kjøring lyktes.
+- Uferdige samlinger og rettighets-/kildekrav er overtatt av [issue #6200](https://github.com/Paradispartiet/History-Go/issues/6200): **People BLOCKED, Objects BLOCKED, Før/etter BLOCKED**, og manuell Safari-iPad-godkjenning er ikke dokumentert. Disse feltene er ikke gitt `PASS` eller `BEGRUNNET N/A` på sviktende grunnlag.
+- Stedet er derfor **publisert som inkrementelt kildebelagt innhold**, **ikke** formelt fullprodusert; `production_status=complete` er ikke satt. Ingen e-post er sendt til Oslo Museum. Enhver senere full produksjonsgodkjenning må oppfylle den kanoniske sjekklisten.
