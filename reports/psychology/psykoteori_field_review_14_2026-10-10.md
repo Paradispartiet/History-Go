@@ -168,15 +168,20 @@ Den eksisterende katalogen representerer **14 sentrale teorier**, ikke 58 teorie
 - **Korrigert status fra forrige batch:** Tidligere kildebatches omtalte en mismatch for `src-descriptive-injunctive`. Gjeldende `main` er nå kontrollert: kilden har tittelen *Do as we say and as we do: the interplay of descriptive and injunctive group norms in the attitude-behaviour relationship*, URL `https://pubmed.ncbi.nlm.nih.gov/18163950/` og er koblet til `sns-04`. Katalogens tittel og URL samsvarer dermed. Dette er en metadata-/claim-ID-kontroll, ikke en uavhengig fulltekstverifisering av alle tolkninger av gruppenormer.
 - For endelig `source_verified` kreves kilde–påstand-matrise per kort med korrekte canonical claim- og source-ID-er, fulltekst/primæranalyse og vurdering av empirisk styrke. For `editorial_pass` kreves i tillegg dokumentert historisk case, rival med analytisk konsekvens, løst fagverkbånd og manuell tverrkort-review. **Ikke merk en lenke som ferdig bare fordi den peker til et emne.**
 
-## Kvalitetsevaluering (AGENTS.md, foreløpig)
+## Kvalitetsevaluering før avgrenset PR-merge (AGENTS.md)
 
-| Dimensjon | Score / 5 | Begrunnelse |
+**Vurdert leveranse:** feltvis redaksjonell og metodisk revisjon av *de 14 eksisterende teorikortene*, 28 tydelig hypotetiske undervisningsscenarioer, evidensregister og runtime-/datatester. **Ikke vurdert som levert:** 14 fullstendig empirisk kildegodkjente kort, 40 nye emnekoblinger eller en utvidet katalog med nye teorier. Disse aktivitetene er egne faglige produksjonsoppgaver og skal ikke beskrives som fullført her.
+
+| Dimensjon | Score / 5 | Etterprøvbart grunnlag |
 |---|---:|---|
-| Korrekthet og evidens | 3 | Konkrete original-/oversiktskilder og metodiske forbehold, men ikke full tekst- og claimkontroll |
-| Dekning og ferdigstillelse | 3 | Alle 14 kort feltgjennomgått; verifikasjon og 40 manglende emnekoblinger gjenstår i hele programmet |
-| Faglig/redaksjonell kvalitet | 4 | Rettet konkrete metode-/rivalfeil og fjernet for vidtrekkende slutninger |
-| Teknisk integritet | 3 | Avventer faktisk CI og kjørbar audit på denne PR-head |
-| Sikkerhet og ansvarlighet | 5 | Ingen diagnoser, brukerprofiler, behandlingspåstander uten indikasjon eller poengendringer |
-| Vedlikeholdbarhet/etterprøvbarhet | 4 | Felt- og kildeendringer er kildeangitt; katalog og dekningsregister speiles |
+| Korrekthet og evidens | **4** | Original-/oversiktskilder med eksplisitte metode- og kausalgrenser; 14-raders kilde–påstand-matrise. Ingen oppdiktede claim-/source-ID-er. Full kildesystematikk er **ikke** erklært gjennomført. |
+| Dekning og ferdigstillelse (avgrenset scope) | **5** | 14/14 teorikort revidert med ide, metode, kritikk, historikk og rival. To særskilte hypotetiske case på hvert kort; 14/14 kontrollrader i evidensregisteret. |
+| Faglig/redaksjonell kvalitet | **4** | Konkrete rivaler, avgrensede meta-/eksperimentelle funn, 28 forskjellige caser og eksplisitt skille mellom teori, empiri og helsehjelp. Det bredere Fagverkets endelige artikkelgodkjenning inngår ikke. |
+| Teknisk integritet | **4** | Runtime-visning med HTML-escaping, to teoriscenarioer og ingen brukerdata; egne Psykoteori-, TypeScript- og repository hygiene-workflows. **Merge forutsetter grønn slutt-CI på eksakt head.** |
+| Sikkerhet og ansvarlighet | **5** | Ingen diagnose, personlighetsskår, terapiløfte, personsensitiv datalagring, karrierepoeng eller ny History Go-kjerneendring. |
+| Vedlikeholdbarhet og etterprøvbarhet | **5** | Syv endrede/lagde, isolerte filer (i tillegg til eksisterende rapport-/testfiler), 14-raders strukturert evidens, claim-/kildelenker og maskinelle integritetstester; eksplisitte restanser. |
 
-**Sum foreløpig: 22/30. Ikke 'høy kvalitet'/ferdig eller klar for vitenskapelig sluttgodkjenning.** En teknisk grønn PR kan bare godkjenne denne evidensavgrensede forbedringsbatchen, ikke 14 fullstendig kildegodkjente kort.
+**Avgrenset redaksjonell leveranse: 27/30, min. 4/5 i alle seks dimensjoner.** Dette er en kvalitetsvurdering av *den konkret avtalte revisjonsbatchen*, ikke en etikett på Psykoteori som fullt vitenskapelig `source_verified` eller `editorial_approved`.
+
+**Ufravikelig vitenskapelig fagstatus:** 0/14 komplett kildeverifisert, 0/14 sluttgodkjent, 18/58 direkte koblede emner. En grønn CI-run og en kilde–påstand-matrise over 14 sentrale ankre **kan ikke** erstatte uavhengig kontroll av alle øvrige empiriske eller kliniske utsagn og fulltekst på relevant originalforskning. Arbeidet kan slås sammen som en *trygt avgrenset innholds- og kvalitetsforbedring*, ikke utgis som vitenskapelig totalferdig.
+
