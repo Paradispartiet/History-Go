@@ -158,10 +158,10 @@ try {
       () => {
         const flip = document.getElementById('pcFrontCardFlip');
         const content = document.getElementById('pcQuizCardContent');
+        // The back face is visibility:hidden until flipped; use textContent here.
         return flip?.classList.contains('has-quiz-card')
           && content instanceof HTMLElement
           && content.hidden === false
-          && // The back face is visibility:hidden until flipped; innerText would read as empty.
           && (content.textContent || '').trim().length > 20;
       },
       null,
