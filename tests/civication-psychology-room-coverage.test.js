@@ -65,4 +65,102 @@ for (const link of extraLinks) {
 assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
   "partial evidence must not be silently promoted to full verification");
 
+// Evidence-bounded field-review regression: links and alternatives stay on the
+// actual theory cards, without silently promoting partial reviews to verification.
+const fieldReviewSources = {
+  femfaktormodellen: ["https://pubmed.ncbi.nlm.nih.gov/18453460/"],
+  heuristikker: [
+    "https://pubmed.ncbi.nlm.nih.gov/7455683/",
+    "https://doi.org/10.1146/annurev-psych-120709-145346"
+  ],
+  tilknytning: ["https://doi.org/10.1002/jhbs.21729"],
+  sosial_identitet: ["https://www.yorku.ca/pclassic/Sherif/chap2.htm"],
+  konformitet: ["https://doi.org/10.1037/0033-2909.119.1.111"],
+  kognitiv_terapi: ["https://pubmed.ncbi.nlm.nih.gov/36640411/"]
+};
+for (const [id, urls] of Object.entries(fieldReviewSources)) {
+  const theory = catalog.theories.find((item) => item.id === id);
+  assert.ok(theory, "missing field-reviewed theory: " + id);
+  const actual = theory.reference_links.map((link) => link.url);
+  for (const url of urls) {
+    assert.ok(actual.includes(url), "field-review source is missing: " + id + " / " + url);
+    const reference = theory.reference_links.find((link) => link.url === url);
+    assert.deepEqual(reference.canonical_claim_ids, [],
+      "new literature must not inherit unverified canonical claim IDs");
+    assert.deepEqual(reference.canonical_source_ids, [],
+      "new literature must not inherit unverified canonical source IDs");
+  }
+  const mirror = byEmne.get(theory.emne_id).partial_reference_review.reference_urls;
+  assert.deepEqual(mirror, actual, "audit source URL mirror diverged: " + id);
+}
+const reviewed = new Map(catalog.theories.map((theory) => [theory.id, theory]));
+assert.match(reviewed.get("femfaktormodellen").contrast, /HEXACO/);
+assert.match(reviewed.get("heuristikker").contrast, /økologisk rasjonalitet/i);
+assert.match(reviewed.get("heuristikker").example, /Undervisningsscenario:/);
+assert.match(reviewed.get("sosial_identitet").contrast, /Sherif/);
+assert.match(reviewed.get("behaviorisme").idea, /Negativ forsterkning/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /depresjon/);
+assert.match(reviewed.get("tilknytning").limit, /diagnos/);
+// Evidence batch 05: safeguard quantitative claims against summary drift.
+assert.match(reviewed.get("femfaktormodellen").idea, /ekstraversjon.*omgjengelighet.*planmessighet.*nevrotisisme.*åpenhet/);
+assert.match(reviewed.get("heuristikker").example, /gevinster.*tap/);
+assert.match(reviewed.get("tilknytning").limit, /r = 0,28/);
+assert.match(reviewed.get("tilknytning").limit, /publiseringsskjevhet/);
+assert.match(reviewed.get("resiliens").method, /traumeeksponerte voksne/);
+assert.match(reviewed.get("resiliens").limit, /korrelasjonsdesign/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /g = 0,06/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /statistisk signifikant i hovedanalysen/);
+assert.match(reviewed.get("konformitet").method, /133.*17 land/);
+assert.ok(reviewed.get("tilknytning").reference_links.some((link) =>
+  link.url === "https://pubmed.ncbi.nlm.nih.gov/32772822/" && link.supports.includes("2021-årgang")));
+assert.ok(reviewed.get("kognitiv_terapi").reference_links.some((link) =>
+  link.url === "https://pubmed.ncbi.nlm.nih.gov/36640411/" && link.supports.includes("de fleste sensitivitetsanalysene")));
+assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
+  "batch 05 specific-source check must never imply 14/14 full source verification");
+// Evidence batch 06: theoretical proposals are not silently upgraded to
+// causal, clinical or person-level proof.
+assert.match(reviewed.get("humanistisk_psykologi").limit, /seks betingelser.*teoretisk påstand/);
+assert.match(reviewed.get("sosial_laring").method, /1961.*1977/);
+assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimenter.*belønning/);
+assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
+assert.equal(catalog.theories.length, 14);
+
+// Structured evidence matrix: all 14 cards must expose traceable, bounded
+// source anchors. A source anchor is NOT proof that the full card is verified.
+const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
+assert.equal(fieldEvidence.schema, "history_go_psykoteori_field_evidence_matrix_v1");
+assert.equal(fieldEvidence.card_count, catalog.theories.length);
+assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.map((x) => x.id));
+for (const row of fieldEvidence.cards) {
+  const theory = catalog.theories.find((x) => x.id === row.theory_id);
+  assert.equal(row.emne_id, theory.emne_id, "matrix emne mismatch: " + row.theory_id);
+  assert.equal(row.chapter_id, theory.chapter_id, "matrix chapter mismatch: " + row.theory_id);
+  assert.equal(row.source_verification, "partial_historical_method_review");
+  assert.equal(row.editorial_approval, "not_reviewed");
+  assert.deepEqual(row.claims_reviewed,
+    ["founders", "period", "idea", "method", "limit", "contrast", "example", "example_secondary"]);
+  assert.ok(typeof row.key_claim === "string" && row.key_claim.length > 75,
+    "claim scope missing: " + row.theory_id);
+  assert.ok(typeof row.limitation === "string" && row.limitation.length > 75,
+    "limitations missing: " + row.theory_id);
+  assert.equal(row.reference_urls.length, 2, "two precise anchors required: " + row.theory_id);
+  for (const url of row.reference_urls) {
+    assert.ok(theory.reference_links.some((source) => source.url === url),
+      "matrix source not cited by theory: " + row.theory_id + " / " + url);
+  }
+  for (const id of row.canonical_claim_ids) {
+    assert.ok(theory.reference_links.some((reference) => reference.canonical_claim_ids.includes(id)),
+      "unknown bound claim in evidence matrix: " + row.theory_id + " / " + id);
+  }
+  for (const id of row.canonical_source_ids) {
+    assert.ok(theory.reference_links.some((reference) => reference.canonical_source_ids.includes(id)),
+      "unknown bound source in evidence matrix: " + row.theory_id + " / " + id);
+  }
+  assert.ok(theory.example_secondary.startsWith("Undervisningsscenario:"));
+  assert.notEqual(theory.example, theory.example_secondary);
+  assert.equal(row.secondary_scenario_status, "authored_hypothetical_not_historical_case");
+}
+assert.equal(fieldEvidence.cards.filter((x) => x.editorial_approval !== "not_reviewed").length, 0,
+  "structural evidence matrix must not confer scholarly approval");
+
 console.log("civication-psychology-room-coverage.test.js passed");
