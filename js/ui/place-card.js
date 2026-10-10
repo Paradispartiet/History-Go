@@ -976,8 +976,8 @@ function renderPlaceCardQuizData(cardData) {
     const options = Array.isArray(q?.options) ? q.options : [];
     const optionsHtml = options.length
       ? `<div class="pc-rendered-quiz-options">${options
-          .map((opt, idx) => `${escapePlaceCardHTML(optionLetters[idx] || String(idx + 1))}) ${escapePlaceCardHTML(opt)}`)
-          .join(" · ")}</div>`
+          .map((opt, idx) => `<span class="pc-rendered-quiz-option"><span class="pc-rendered-quiz-option-label">${escapePlaceCardHTML(optionLetters[idx] || String(idx + 1))}</span><span>${escapePlaceCardHTML(opt)}</span></span>`)
+          .join("")}</div>`
       : "";
     return `<li>${questionText}${optionsHtml}</li>`;
   }).join("");
