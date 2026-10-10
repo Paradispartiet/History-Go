@@ -1,0 +1,56 @@
+name: Civication browser smoke
+
+on:
+  pull_request:
+    paths:
+      - 'js/Civication/**'
+      - 'data/Civication/roleWorlds/**'
+      - 'data/Civication/cityMaps/**'
+      - 'data/Civication/maps/**'
+      - 'scripts/verify-civication-boot-smoke.ts'
+      - 'scripts/verify-civication-arbeidsledig-browser.ts'
+      - 'tests/civication-*map*.test.js'
+      - 'tests/civication-place-mapping-split-manifest.test.mjs'
+      - 'index.html'
+      - 'civication.html'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/civication-browser-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser:
+    name: Civication boot smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Run Civication map tests
+        run: npm run test:civication-map
+      - name: Audit Civication place mappings
+        continue-on-error: true
+        run: npm run audit:civication-place-mapping
+      - name: Audit Civication city map entries
+        continue-on-error: true
+        run: npm run audit:civication-city-map-entries
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run Civication browser boot smoke
+        run: npm run civication:boot-smoke
+      - name: Upload browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: civication-browser-diagnostics
+          path: reports/civication-browser/
