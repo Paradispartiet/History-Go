@@ -291,6 +291,20 @@ assert.match(detailedReview.original_publication_audit.entries.find((e) =>
 assert.match(detailedReview.original_publication_audit.entries.find((e) =>
   e.id === "resiliens_werner_1993").access, /pages503_515_reviewed/);
 
+// The 1992 adult sample cannot be silently conflated with the original birth cohort.
+const new1992Book = "https://cornellpress.cornell.edu/book/9780801480188/overcoming-the-odds/";
+const nlmSummary = "https://www.ncbi.nlm.nih.gov/nlmcatalog/101063381";
+for (const url of [new1992Book, nlmSummary]) {
+  const ref = wernerCard.reference_links.find((r) => r.url === url);
+  assert.ok(ref && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0);
+  assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(url));
+}
+assert.match(wernerCard.method, /505 personer/);
+assert.match(wernerCard.limit, /505.*614.*698/);
+assert.match(detailedReview.original_publication_audit.entries.find((e) =>
+  e.id === "resiliens_werner_smith_1992").access, /no_appendix_fulltext/);
+
+
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
 assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
@@ -303,8 +317,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 8);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 8);
+assert.equal(detailedReview.original_publication_audit.entries.length, 9);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 9);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
