@@ -218,23 +218,23 @@ Canonical stedstekst `desc` og `popupDesc`, Fagverkets familieavsnitt, linsekild
 `production_status` **skal ikke settes til complete**. Gjeldende green CI er teknisk, ikke redaksjonell. Manuell visuell iPad-kontroll (inkl. logo-preview, vertikal scroll og kortgeometri) står også åpen. Nyere `main` har berørt bl.a. genererte Fagverk-filer; synk med konfliktkontroll før eventuell senere merge. PR er fortsatt `draft` med åpne evidensporter.
 
 
-## Ny åpen arkivkilde – faktisk før-restaureringsfoto (10. oktober 2026)
+## Arkivspor til etterprøving – mulig før-restaureringsfoto (10. oktober 2026)
 
-### Dokumentert nytt funn: 1985, interiør Tøyengata 38 B
+### Oppgitt arkivtreff: mulig 1985-fotografi fra Tøyengata 38 B
 
-Tidligere kontroll konkluderte med at intet stedstro interiørfoto fra før restaureringen i 1987 var funnet. Nytt søk i DigitaltMuseum avdekker en **før-fotokandidat** som endrer akkurat denne delkonklusjonen:
+Tidligere søk har meldt et mulig treff i DigitaltMuseum. **Ved uavhengig etterkontroll 10. oktober ble selve objektsiden blokkert (403), og eksakt bildereferanse ble ikke gjenfunnet i åpne søkeindekser.** Opplysningene under er dermed søkespor som fortsatt må verifiseres direkte fra museumsregistreringen før kildeporten kan endre status:
 
 - **Samling / eier:** Oslo Museum, Byhistorisk samling.
 - **Inventar-/bildenummer:** **OB.A6874**.
 - **DigitaltMuseum ID:** **021017382615**.
 - **Kildelenke:** https://digitaltmuseum.no/021017382615/museumsleiligheten-i-toyengata-38-b
 - **Oppgitt motiv:** «museumsleilighet, arbeiderleilighet, interiør før restaurering, stue, vedovn, dør til kjøkken».
-- **Fotografering:** **1985 (før restaureringen)**, i museets registrering.
-- **Stedsangivelse:** Oslo, Tøyen, **Tøyengata 38 B**; dette er ikke et uspesifisert motiv fra en annen Gråbeingård.
-- **Fotograf:** **ukjent person** ifølge arkivregistreringen; skal ikke tilskrives Rune Aakvik eller Heidi Bakke.
-- **Lisens:** DigitaltMuseum-indeksen oppgir **«Attribution-ShareAlike (CC BY-SA)»** for akkurat OB.A6874. Eksakt lenket lisensversjon, bildefil/forhåndsvisning, eventuell nedlastingsadgang og fullstendig påkrevd kreditering bør bekreftes på objektsiden før lokal import.
+- **Oppgitt fotografering:** **1985**, men primærkildens registrering er ikke tilgjengelig for uavhengig kontroll i denne arbeidsøkten.
+- **Oppgitt stedsangivelse:** Oslo, Tøyen, **Tøyengata 38 B**, fortsatt å bekrefte mot faktisk objektpost og bilde.
+- **Oppgitt fotograf:** ukjent; kreditering må kontrolleres i primærregistreringen. Skal ikke tilskrives Rune Aakvik eller Heidi Bakke.
+- **Oppgitt lisensspor:** CC BY-SA ble tidligere rapportert, men det har **ikke** vært mulig å verifisere dette direkte på akkurat OB.A6874 i siste kontroll. Ingen lisensstatus kan godkjennes eller bilde importeres uten verifiserbar post, bilde og konkret lisensversjon.
 
-Dette er **ny reell evidens for en historisk før-tilstand**, ikke bare et etterbilde fra 1993–1996. Dette erstatter den tidligere negative påstanden om at det ikke var funnet noe faktisk før-restaureringsmotiv. Ikke endre produksjonsdata før faktisk bilde og kildepost er sammenlignet.
+Dette er **en ny kandidat til arkivkontroll, ikke dokumentert bildebevis** i denne etterkontrollen. Den tidligere konklusjonen om manglende godkjent førbilde står derfor inntil registrering, datering, motiv og rettigheter er verifisert. Ingen produksjonsdata skal endres basert på dette sporet.
 
 ### Kandidat for etterbilde
 
@@ -246,7 +246,7 @@ Dette er **ny reell evidens for en historisk før-tilstand**, ikke bare et etter
 
 ### Beslutning, kontrollrekkefølge
 
-**Før/etter endres fra «ingen historisk før-fotokandidat» til «OB.A6874, datert 1985, funnet og CC BY-SA-indeksert; komplett bildepar/visuell paritet fremdeles BLOCKED».** Dette er ikke PASS og ikke grunnlag for å merke stedet komplett.
+**Før/etter: BLOCKED.** OB.A6874 / DigitaltMuseum 021017382615 behandles som **ubesvart kontrollspor** inntil direkte arkivpost, faktisk fil og opphavs-/lisensdata er bekreftet. Etterbildet OB.F29511 (1996) har en tilgjengelig tekstindeksert museumspost, men det foreligger verken verifisert bildepar eller motivsammenligning. Dette er ikke PASS.
 
 1. Se og last ned akkurat OB.A6874 fra lovlig lisensiert nedlasting (ikke fra tredjepart uten proveniens). Registrer originalfil, fotograf «ukjent», dato 1985, lisensens eksakte versjon og kilde-URL.
 2. Kontroller kandidat OB.F29511 mot OB.A6874 side om side. Registrer veggflater, ovn, dør, fotovinkel og eventuelle strukturelle forandringer. Velg alternativt nyere stuebilde med påviselig standpunktparitet.
@@ -258,4 +258,11 @@ Dette er **ny reell evidens for en historisk før-tilstand**, ikke bare et etter
 - **Arkitekt:** Rudolf Haeselich er dokumentert for **andre** Gråbeingårder i Jens Bjelkes gate, Lakkegata, Sars' gate og Siebkes gate; disse kildene alene beviser ikke at han tegnet akkurat Tøyengata 38 B fra 1888. Ingen People-kobling her uten konkret dokumentasjon.
 - **Objects:** Museumsfoto viser konkrete møbler og hånddrevet symaskin, men har ikke objektspesifikke inventarnumre, datering og eierskap. Kildene dokumenterer et innredet periodeinteriør; objekter skal ikke tilskrives Bjørklund-familien. Objects forblir BLOCKED.
 
-**Ekstern e-post ikke sendt.** Kildekravene undersøkes i åpne arkiver først. På dette trinnet er hele PR-en fremdeles DRAFT; \`production_status=complete\` må ikke settes, og manuell iPad-Safari-QA er ennå ikke signert.
+**Ekstern e-post ikke sendt.** Kildekravene undersøkes i åpne arkiver først. På dette trinnet er hele PR-en fremdeles DRAFT; `production_status=complete` må ikke settes, og manuell iPad-Safari-QA er ennå ikke signert.
+
+### GitHub-integrasjonskontroll etter nytt main – 10. oktober 2026
+
+- Gråbein-head før denne presiseringen var `42a88c209a781beffe2c96d74b0d1441986ebbb0`; siste `main` observert som `4588e042ec5dcd835f3b5ba2cf396d5cd0618c3b`.
+- GitHubs compare viser **divergerte grener** etter felles stamcommit `202058f685376c43fb00ccd3545fa1d9766bd59c`: Gråbein hadde da 82 egne commits, mens oppdatert `main` hadde 117. Overlappende endrede stier inkluderer `data/brands/brands_by_place.json`, `data/brands/brands_master.json`, `data/epoker/epoke-place-index.json`, `data/fagverk/fagverk_registry.json`, `data/fagverk/fagverk_release.json`, `data/places/place_image_backlog_summary.json`, `reports/fagverk/fagverk-place-page-coverage-v2.json` og `tests/epoke-place-index.test.mjs`.
+- API-et viste `mergeable_state=dirty`. Det er **ikke tilstrekkelig til å fastslå faktisk tekstkonflikt** uten kontrollert konfliktanalyse av nytt `main`; dette må undersøkes før en integrasjonsmerge. Den gamle CI-statusen på `1aa1ee55` kan ikke brukes som godkjenning på dokumentasjons- eller fremtidig merge-commit. 
+- **Ingen merge, ingen genererte filendringer og ingen produksjonsstatusendring** er utført i denne kontrollen.
