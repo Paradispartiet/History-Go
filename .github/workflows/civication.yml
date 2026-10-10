@@ -11,6 +11,9 @@ on:
       - 'docs/CIVICATION_FWG_GOVERNANCE.md'
       - 'js/Civication/**'
       - 'tests/civication-*.test.js'
+      # Pure theory/read-only coverage has its own focused workflow.
+      - '!tests/civication-psychology-room-theory.test.js'
+      - '!tests/civication-psychology-room-coverage.test.js'
       - 'tests/run-civication-tests.mjs'
       - 'scripts/audit-civication-*.mjs'
       - 'scripts/auditJobLearningProfiles.*'
@@ -19,6 +22,9 @@ on:
       - 'package-lock.json'
       - '.github/workflows/civication.yml'
   workflow_dispatch:
+  # Full suite still executes daily, and on any relevant Civication PR.
+  schedule:
+    - cron: '17 3 * * *'
 
 permissions:
   contents: read
