@@ -1,154 +1,118 @@
 {
-  "schema": "history_go_place_workcard_v2",
+  "schema": "history_go_place_workcard_projection_v3",
+  "generated": true,
+  "source": "data/places/workflow/vg_huset.json",
   "place_id": "vg_huset",
   "category": "media",
-  "status": "preflight",
-  "production_profile": "major",
-  "profile_status": "confirmed",
-  "profile_reason": "Major: VG-huset 1994, sabotasjen på den eldre tomten i 1944, VG og VG Nett, avisutstillingsmonter, arkitektur og redaksjonell samlokalisering. Canonical innhold og QuizCard er nå produsert og integrert med kildeledet quiz PR #6190; sluttføring avhenger av faktisk helhetlig PlaceCard-/Safari-review.",
-  "rule_preflight": {
-    "schema": "history_go_place_rule_preflight_v1",
-    "status": "PASS",
-    "place_id": "vg_huset",
-    "category": "media",
-    "recorded_at": "2026-10-09T19:06:07.440Z",
-    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
-    "files": [
-      {
-        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
-        "sha256": "e18f4e14764a969d2d46a8298c4005dccdb431861a9aa9fc3983be213c4ba54f"
-      },
-      {
-        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
-        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
-      },
-      {
-        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
-        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
-      },
-      {
-        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
-        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
-      },
-      {
-        "path": "data/places/README_place_rounds.md",
-        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
-      },
-      {
-        "path": "data/badges/index.json",
-        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
-      },
-      {
-        "path": "data/badges/place_production_routing_v1.json",
-        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
-      },
-      {
-        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
-        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
-      },
-      {
-        "path": "data/brands/brand_rules_v1_1.json",
-        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
-      },
-      {
-        "path": "data/badges/media.json",
-        "sha256": "de8b4ab7bc580488bea383fa6d176937dd34b19bab3f0c8155fd27a785389367"
-      }
-    ],
-    "contract_snapshot": {
-      "full_place_collection_count": 4,
-      "candidate_collections": [
-        "people",
-        "objects",
-        "brands",
-        "productions"
-      ],
-      "category_expression": "productions",
-      "related_is_placecard_collection": false,
-      "no_filler": true,
-      "routing_order": [
-        "universal_canonical_core",
-        "primary_badge_family",
-        "active_underbadge_ids",
-        "place_specific_source_review",
-        "confirmed_production_profile",
-        "final_content_plan"
+  "state": "blocked",
+  "profile": {
+    "id": "major",
+    "status": "confirmed",
+    "reason": "Major: VG-huset 1994, sabotasjen på den eldre tomten i 1944, VG og VG Nett, avisutstillingsmonter, arkitektur og redaksjonell samlokalisering. Canonical innhold og QuizCard er nå produsert og integrert med kildeledet quiz PR #6190; sluttføring avhenger av faktisk helhetlig PlaceCard-/Safari-review."
+  },
+  "selected_collections": [
+    "people",
+    "objects",
+    "brands",
+    "productions"
+  ],
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "refs": [
+        "tests/vg-huset-collections.test.mjs",
+        "data/runtime/place-open/vg_huset.json"
+      ]
+    },
+    "objects": {
+      "status": "PASS",
+      "refs": [
+        "tests/vg-huset-collections.test.mjs",
+        "data/places/media/oslo/places_oslo_media/vg_huset.json"
+      ]
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "tests/vg-huset-collections-browser-audit.test.mjs",
+        "data/brands/brands_by_place.json"
+      ]
+    },
+    "productions": {
+      "status": "PASS",
+      "refs": [
+        "tests/vg-huset-collections.test.mjs",
+        "data/places/media/oslo/places_oslo_media/vg_huset.json"
       ]
     }
   },
-  "prior_work": {
-    "decision": "REELT NYTT ARBEID for Fagverk and PlaceCard; BEHOLD for coordinates, descriptions and existing people/quiz until audit",
-    "source_review": "reports/place-production/vg-huset-source-review-20261009.md"
-  },
-  "blockers": [
-    "Krever reell helhetlig PlaceCard/browser-review med People/Objects/Brands/Productions, samlingspopup, lesespor, kildevisning og quizknapp etter siste merge fra main; tidligere foto- og komponenttester alene er ikke full slutt-QA.",
-    "Quizdata i #6190 er merget, og QuizCard finnes; faktisk quiz- og flip-interaksjon på iPad Safari på den endelige VG-huset-headen er ennå ikke attestert.",
-    "Native iPad Safari manuell sluttkontroll for 390px og iPad-bredde gjenstår; bot- og CI-tester kan ikke merkes som denne gjennomgangen.",
-    "VG-huset er fortsatt legacy/workcard-basert; eventuell migrering til V3-workflow og fullført V3-verify er et eget eksplisitt kvalitetssteg."
-  ],
-  "media_assets": {
-    "image": {
-      "status": "PASS_BROWSER_MEDIA_ONLY",
-      "file": "bilder/places/vg_huset_akersgata_55_2026.webp",
-      "source": "https://commons.wikimedia.org/wiki/File:Akersgata_55_med_VG_og_Aftenposten_i_2026.jpg",
-      "creator": "Helge Høifødt",
-      "license": "CC BY-SA 4.0",
-      "orientation": "landscape",
-      "taken": "2026-07-01"
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/vg_huset.json",
+        "data/fagverk/fagverk_registry.json"
+      ]
     },
-    "frontImage": {
-      "status": "PASS_BROWSER_MEDIA_ONLY",
-      "file": "bilder/places/vg_huset_front_2007.webp",
-      "source": "https://commons.wikimedia.org/wiki/File:Verdens_Gang_Akersgata.jpg",
-      "creator": "Bjørn Erik Pedersen",
-      "license": "CC BY-SA 3.0",
-      "orientation": "portrait",
-      "taken": "2007-02-10"
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/vg_huset.json",
+        "data/epoker/epoke-place-index.json"
+      ]
     },
-    "import_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37978870510",
-    "generator_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37979068005",
-    "browser_qa_run": "https://github.com/Paradispartiet/History-Go/actions/runs/37979568851",
-    "browser_qa_artifact": "https://github.com/Paradispartiet/History-Go/actions/runs/37979568851/artifacts/11639997073",
-    "browser_qa_evidence": {
-      "profiles": [
-        "desktop_1440x900",
-        "mobile_touch_390x844"
-      ],
-      "frontImageNatural": {
-        "width": 1272,
-        "height": 1900
-      },
-      "imageNatural": {
-        "width": 1900,
-        "height": 1267
-      },
-      "loaded": true,
-      "horizontalOverflowPixels": 0,
-      "pageErrors": 0,
-      "note": "Automated Chromium photo-only QA with real local app, not end-to-end canonical PlaceCard closeout or native iPad Safari QA."
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/vg_huset.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "refs": [
+        "data/stories/stories_vg_huset.json"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "refs": [
+        "data/quiz/production_context/media/vg_huset.json"
+      ]
+    },
+    "quizcard": {
+      "status": "PASS",
+      "refs": [
+        "data/quizcards/media/vg_huset_quizkort_v1.json",
+        "tests/placecard-quiz-flip-browser.test.mjs"
+      ]
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_media.json",
+        "data/runtime/place-open/vg_huset.json"
+      ]
+    },
+    "before_after": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Existing licensed VG-house facade photos from 2007 and 2026 have different vantage points; no verified matching viewpoint photograph of the prior 1944 site building has been secured. These images do not form a source-faithful before/after pair. Do not fabricate one."
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "VG publishes a general national news stream, not a verified durable institution/site-specific current-events feed for the physical VG-huset in Akersgata 55. Generic VG news headlines would conflate publisher content and place history."
     }
   },
-  "content_status": "canonical_content_integrated_ui_closeout_pending",
-  "completed_canonical_content": {
-    "reviewed_at": "2026-10-10",
-    "place_profile": [
-      "people",
-      "objects",
-      "brands",
-      "productions"
-    ],
-    "people": "Fem redaksjonelt kilde- og bildeverifiserte personer ved bygningen fra 1994. Kåre Valebrokk ved Akersgata 34 ligger i separat historisk holdback.",
-    "objects": "Lisensiert autentisk fotografi av VGs fysiske avisutstillingsmonter",
-    "brands": "Autentisk VG-merke med separat lisensavklart logo",
-    "productions": "Dokumentarisk bilde av VGs papiravisutgave fra 22. juli 2011, fotografert i bevart monter i 2013",
-    "quiz": "#6190 merget på 202058f685376c43fb00ccd3545fa1d9766bd59c; 4x7 kildeledede spørsmål, Knowledge synkronisert",
-    "quizcard": "Kildebelagt QuizCard media/vg_huset; egen runtime og kontrolltest",
-    "integrated_generator": "VG-huset integrated quiz and release sync #38029900939 bestod; artefakter generert mot oppdatert main",
-    "evidence_urls": [
-      "https://github.com/Paradispartiet/History-Go/pull/6190",
-      "https://github.com/Paradispartiet/History-Go/actions/runs/38029517086",
-      "https://github.com/Paradispartiet/History-Go/actions/runs/38029900939",
-      "https://github.com/Paradispartiet/History-Go/actions/runs/38017580239"
-    ]
+  "blockers": [
+    "Final full PlaceCard/Safari human visual review has not been independently attested on the merged VG-huset release, including all popup tabs, Fagverk links, QuizCard flip and quiz entry. Automated Chromium/WebKit fixture tests do not substitute for this manual sign-off."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "PR #6187 image import provenance and browser photo inspection: https://github.com/Paradispartiet/History-Go/actions/runs/37979568851. Both independent original photos and CC attribution checked; not a native iPad test."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Existing browser fixture tests cover 390/768/1280 and Chromium/WebKit flip. Integrated full app closeout must be run and assessed; no native Safari claim."
+    }
   }
 }
