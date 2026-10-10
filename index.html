@@ -46,7 +46,7 @@
   <link rel="stylesheet" href="css/overlay.css">
   <link rel="stylesheet" href="css/effects.css">
   <link rel="stylesheet" href="css/map.css">
-  <link rel="stylesheet" href="css/placeCard.css?v=20261010-quiz-backface1">
+  <link rel="stylesheet" href="css/placeCard.css?v=20261010-quiz-expanded1">
   <link rel="stylesheet" href="css/place-card-reader.css?v=20261010-continuous2">
   <link rel="stylesheet" href="css/place-onsite-surface.css?v=20261009-type-scale1">
   <link rel="stylesheet" href="css/wonderkammer.css">
@@ -257,6 +257,13 @@
 
 <div id="placeCard" aria-hidden="true">
   <button id="pcCollapseBtn" class="pc-collapse-btn" aria-label="Minimer" data-hg-i18n-aria-label="ui.attr.minimize">▾</button>
+  <section id="pcQuizExpanded" class="pc-quiz-expanded" role="dialog" aria-modal="true" aria-labelledby="pcQuizExpandedTitle" hidden>
+    <div class="pc-quiz-expanded-toolbar">
+      <strong id="pcQuizExpandedTitle">Quizkort</strong>
+      <button id="pcQuizExpandedClose" class="pc-quiz-expanded-close" type="button" aria-label="Lukk stort quizkort" title="Lukk stort quizkort">✕</button>
+    </div>
+    <div id="pcQuizExpandedContent" class="pc-quiz-expanded-content"></div>
+  </section>
 
   <div class="pc-body">
     <div class="pc-text">
@@ -279,6 +286,11 @@
           <div id="pcQuizCardBack" class="pc-quiz-card-back" aria-live="polite">
             <img id="pcQuizCardImage" class="pc-quiz-card-image" src="" alt="">
             <div id="pcQuizCardContent" class="pc-quiz-card-content" hidden></div>
+            <button id="pcQuizExpandBtn" class="pc-quiz-expand-btn" type="button" aria-label="Vis quizkort stort" title="Vis quizkort stort" aria-controls="pcQuizExpanded" aria-haspopup="dialog">
+              <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -367,6 +379,6 @@
     }, { once: true });
   </script>
 
-  <script type="module" src="./js/app.js?v=20261010-title-desc3"></script>
+  <script type="module" src="./js/app.js?v=20261010-quiz-expanded1"></script>
 </body>
 </html>
