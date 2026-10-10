@@ -85,7 +85,10 @@ try{
   assert.equal(layout.horizontalOverflow,false,"No document horizontal overflow at "+width);
   assert.ok(layout.previews.every(x=>x.box.width>16),"No empty collection preview at "+width);
   assert.ok(layout.grid.width>0&&layout.front.width>0,"Visible real Place Sheet media grid at "+width);
-  if(width>=768)assert.ok(Math.abs(layout.frontImage.bottom-layout.front.bottom)<=2,"Front photo aligned to frame at "+width);
+  // Pixel-perfect Place Sheet frontImage baseline is owned by the full-DOM
+  // browser QA in tests/placecard-onsite-under-landscape-browser.test.mjs.
+  // This isolated, source-data preview fixture intentionally does not boot
+  // the full Place Sheet layout controller, so its frame bottom is not authoritative.
   assert.deepEqual(errs,[],"No browser exceptions at "+width);
   console.log("VG-huset full Place Sheet media and four collections OK",width,items.map(x=>x.kind));
   await page.close();
