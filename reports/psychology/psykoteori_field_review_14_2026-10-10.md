@@ -179,7 +179,7 @@ Den eksisterende katalogen representerer **14 sentrale teorier**, ikke 58 teorie
 | Faglig/redaksjonell kvalitet | **4** | Konkrete rivaler, avgrensede meta-/eksperimentelle funn, 28 forskjellige caser og eksplisitt skille mellom teori, empiri og helsehjelp. Det bredere Fagverkets endelige artikkelgodkjenning inngår ikke. |
 | Teknisk integritet | **4** | Runtime-visning med HTML-escaping, to teoriscenarioer og ingen brukerdata; egne Psykoteori-, TypeScript- og repository hygiene-workflows. **Merge forutsetter grønn slutt-CI på eksakt head.** |
 | Sikkerhet og ansvarlighet | **5** | Ingen diagnose, personlighetsskår, terapiløfte, personsensitiv datalagring, karrierepoeng eller ny History Go-kjerneendring. |
-| Vedlikeholdbarhet og etterprøvbarhet | **5** | Syv endrede/lagde, isolerte filer (i tillegg til eksisterende rapport-/testfiler), 14-raders strukturert evidens, claim-/kildelenker og maskinelle integritetstester; eksplisitte restanser. |
+| Vedlikeholdbarhet og etterprøvbarhet | **5** | Syv isolerte endrede/lagde filer totalt (katalog, dekning, runtime, to rapporter og to testfiler), 14-raders strukturert evidens, claim-/kildelenker og maskinelle integritetstester; eksplisitte restanser. |
 
 **Avgrenset redaksjonell leveranse: 27/30, min. 4/5 i alle seks dimensjoner.** Dette er en kvalitetsvurdering av *den konkret avtalte revisjonsbatchen*, ikke en etikett på Psykoteori som fullt vitenskapelig `source_verified` eller `editorial_approved`.
 
