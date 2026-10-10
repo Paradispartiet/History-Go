@@ -32,6 +32,7 @@ jobs:
           npm run place:build -- vg_huset
           node --test tests/vg-huset-checklist-closeout.test.mjs
           node scripts/check-place-i18n-freshness.mjs vg_huset
+          node --check scripts/verify-place-closeout-browser.mjs
           node scripts/place-production-routing-v2.mjs --help >/dev/null || true
           npm run place:verify -- vg_huset
       - name: Automated full-app browser test without faking manual signoff
