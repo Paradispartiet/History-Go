@@ -253,10 +253,17 @@ try {
             await card.press("Enter");
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), false);
             assert.ok(isRed(await sampledColor(card)), engine + " should return to front on keyboard flip");
-            await card.evaluate(el => el.classList.remove("has-quiz-card"));
-            await card.click();
+            await card.evaluate(el => {
+              el.classList.remove("has-quiz-card");
+              const content = document.getElementById("pcQuizCardContent");
+              content.replaceChildren();
+              content.hidden = true;
+              const image = document.getElementById("pcQuizCardImage");
+              image.removeAttribute("src");
+            });
+            await page.locator("#pcFrontImage").click();
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), false,
-              "cannot flip cards without a resolved QuizCard");
+              "cannot flip cards with neither rendered QuizCard nor fallback image");
             console.log("QuizCard visible both faces", engine, width, mode);
           } finally {
             await page.close();
