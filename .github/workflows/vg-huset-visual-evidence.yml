@@ -1,0 +1,68 @@
+name: VG-huset visual evidence (one shot)
+
+on:
+  push:
+    branches:
+      - audit/vg-huset-final-ui-20261010
+    paths:
+      - scripts/audit-vg-huset-visual.mjs
+      - .github/workflows/vg-huset-visual-evidence.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vg-huset-visual-one-shot
+  cancel-in-progress: false
+
+jobs:
+  visual-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Resolve installed browser
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME_BIN" ]; then
+            echo "::error::Chromium/Chrome missing"
+            exit 1
+          fi
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          "$CHROME_BIN" --version
+      - name: Capture mobile iPad desktop and popup evidence
+        run: node scripts/audit-vg-huset-visual.mjs
+      - name: Upload screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: vg-huset-visual-evidence-${{ github.sha }}
+          path: artifacts/vg-huset-visual-20261010/
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Commit evidence to audit branch (not main)
+        if: success()
+        shell: bash
+        run: |
+          set -euo pipefail
+          target=reports/visual-qa/vg-huset/20261010
+          mkdir -p "$target"
+          cp artifacts/vg-huset-visual-20261010/* "$target"/
+          git add "$target"
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "docs(vg-huset): archive Chromium visual QA evidence [skip ci]"
+            git push
+          fi
