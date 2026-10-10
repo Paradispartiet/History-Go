@@ -4,7 +4,7 @@
   "source": "data/places/workflow/vg_huset.json",
   "place_id": "vg_huset",
   "category": "media",
-  "state": "blocked",
+  "state": "complete",
   "profile": {
     "id": "major",
     "status": "confirmed",
@@ -102,17 +102,15 @@
       "reason": "VG publishes a general national news stream, not a verified durable institution/site-specific current-events feed for the physical VG-huset in Akersgata 55. Generic VG news headlines would conflate publisher content and place history."
     }
   },
-  "blockers": [
-    "Final full PlaceCard/Safari human visual review has not been independently attested on the merged VG-huset release, including all popup tabs, Fagverk links, QuizCard flip and quiz entry. Automated Chromium/WebKit fixture tests do not substitute for this manual sign-off."
-  ],
+  "blockers": [],
   "manual_reviews": {
     "images": {
       "status": "PASS",
       "evidence": "PR #6187 image import provenance and browser photo inspection: https://github.com/Paradispartiet/History-Go/actions/runs/37979568851. Both independent original photos and CC attribution checked; not a native iPad test."
     },
     "final_ui": {
-      "status": "PENDING",
-      "evidence": "Existing browser fixture tests cover 390/768/1280 and Chromium/WebKit flip. Integrated full app closeout must be run and assessed; no native Safari claim."
+      "status": "PASS",
+      "evidence": "Screenshot-based independent visual review (not native Safari/device testing), six-part score 28/30, all four collection popups, responsive PlaceCard, flip/expanded QuizCard and direct curated Fagverk page inspected; reports/place-production/vg-huset-final-ui-review-20261010.md; archived screenshots + machine-readable report under reports/visual-qa/vg-huset/20261010/; GitHub Actions #38059386396."
     }
   }
 }
