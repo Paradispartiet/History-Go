@@ -329,7 +329,7 @@ assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__limit")
 assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__method").assertion, /698.*201.*72/);
 assert.match(wernerCard.method, /Werner \(1993, s\. 505–506\).*voksen tilpasning/);
 assert.match(wernerCard.limit, /historiske institusjoner og verdier/);
-assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__method").assertion, /register.*1993, s\. 505–506/);
+assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__method").assertion, /offentlige arkiver.*1993, s\. 505–506/);
 assert.match(detailedReview.units.find((unit) => unit.id === "resiliens__limit").scope_limit, /Juridiske\/administrative registre/);
 assert.equal(detailedReview.units.filter((unit) => unit.full_original_review_complete === true).length, 0);
 console.log("civication-psychology-room-coverage.test.js passed");
