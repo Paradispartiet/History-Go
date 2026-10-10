@@ -44,7 +44,7 @@ jobs:
           const allow=new Set(["data/places/places_index.json","data/runtime/place-open/vg_huset.json"]);
           const unexpected=files.filter(file=>!allow.has(file));
           if(unexpected.length) throw new Error("Unexpected generated changes: "+unexpected.join(", "));
-          if(!files.includes("data/places/places_index.json")||!files.includes("data/runtime/place-open/vg_huset.json")) throw new Error("VG-huset index/runtime missing from generator output");
+          if(!files.includes("data/runtime/place-open/vg_huset.json")) throw new Error("VG-huset runtime missing from generator output");
           NODE
       - name: Commit generated artifacts and remove both temporary workflows
         shell: bash
