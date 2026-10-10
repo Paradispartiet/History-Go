@@ -12,7 +12,17 @@ const dirs = [
   "data/Civication/roleModels"
 ];
 const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), "utf8"));
-const manifest = new Set(read("data/quiz/manifest.json").files);
+const quizManifest = read("data/quiz/manifest.json");
+// The canonical manifest stores most place quizzes in "sets", not "files".
+// Include explicitly registered packages and category maps as well.
+const manifest = new Set([
+  ...(quizManifest.files || []),
+  ...(quizManifest.sets || []).map((entry) => entry.file),
+  ...(quizManifest.subjectPackages || []).map((entry) => entry.file),
+  ...(quizManifest.targets || []).map((entry) => entry.file),
+  ...["historie", "politikk", "religion"].flatMap((category) =>
+    Object.values(quizManifest[category] || {}).map((p) => "data/quiz/" + p))
+].filter(Boolean));
 const errors = [];
 let files = 0;
 const refs = [];
