@@ -261,3 +261,28 @@ Dette er en **kvalitativ, kildespesifikk** vurdering av tydelige feilkilder. Den
 **Restanse, eksplisitt avgrenset:** Full tilgang til Werner og Smith (1982), Werner (1989) artikkelmetode og Werner og Smith (1992), særlig appendiks I s. 240–245, samt et fullstendig frafallsregnskap og vurdering av eventuelle uavhengige kohortreplikasjoner. En 13-siders tredjepartsreproduksjon av Werner (1993) lukker et *tilgangshull for artikkelen*, men ikke disse vitenskapelige kontrollkravene.
 
 **Beslutning:** Resilienskortets kronologi, metode og begrensninger er presisert. `source_review_state=partial_historical_method_review`, `source_review_status=not_reviewed` og `editorial_review_status=not_reviewed` beholdes. Fremdeles **0/4 `source_verified`** for produksjonsgruppe 1; ingen uverifiserte canonical-ID-er eller individuelle prognoser.
+
+
+## 13. Werner og Smith (1992) – egen primærkildeport og uavklart kohortnevner
+
+**Forlags- og katalogkontroll:** [Cornell University Press, `Overcoming the Odds` (1992)](https://cornellpress.cornell.edu/book/9780801480188/overcoming-the-odds/), originalt ISBN 9780801480188, og [US National Library of Medicine, NLM ID 101063381](https://www.ncbi.nlm.nih.gov/nlmcatalog/101063381). 1993-artikkelen henviser eksplisitt til **Werner og Smith (1992), appendiks I, trykte s. 240–245**, for stidiagrammer. Cornell annonserer en åpen utgave under lisens CC BY-NC-ND 4.0. Den komplette teksten og appendikset er **ikke** hentet inn og verifisert ved denne kontrollen; forlagets tilgangsopplysning er derfor ikke lik gjennomført originalfulltekstlesning.
+
+### 13.1 Tallene beskriver ikke samme mengde
+
+| Oppføring | Oppgitt N | Hva oppføringen faktisk dokumenterer | Feilaktig slutning som må unngås |
+| --- | ---: | --- | --- |
+| Werner 1993, trykt s. 503–504 | **698** | Antallet barn født i 1955 som ble utgangspunktet for den opprinnelige Kauai-undersøkelsen | At 698 er antall voksne ved 32-årsoppfølging |
+| Cornell University Press' omtale av Werner og Smith (1992) | **505** | Antall menn og kvinner som forlaget sier voksenstudien bygger på | At `505 / 698` er metodisk verifisert retensjon uten å kjenne kriteriene |
+| NLM-katalogomtale av Werner og Smith (1992) | **614** | Katalogen omtaler «a 1955 cohort of births (614 births)» og oppgir voksenutvalget til 505 | At 614 uten videre betyr overlevende eller en annen dokumentert undergruppe. NLM-tallet må forenes med 1993-originalen før den nevneren kan brukes. |
+| Werner 1993, trykt s. 504–507 | **201 og 72** | Definert høyrisikogruppe og positiv utvikling innen denne | At de er komplette undergrupper av alle voksne eller universelle andeler |
+| Werner 1993, trykt s. 507 | **88 / 90 / 80 %** | Oppfølging innenfor tre forskjellige historisk definerte undergrupper | At disse tre prosentene er samlet retensjonsgrad |
+
+**Dette er et faktisk kildekritisk avvik, ikke et regnestykke som kan «fikses» med antakelser.** Uten opprinnelige tabeller for inklusjon, fødselskohort, overlevende, emigrasjon, oppsporing og deltakelse kan ingen utregning fra 505, 614 og 698 autoriseres som studiens totale retensjon. Katalogtekst kan også inneholde forenkling eller feil: originalverkenes metodekapitler er avgjørende.
+
+### 13.2 Kildedekning og faglig sperre
+
+- **Sikkert dokumentert:** Et eget oppfølgingsverk fra 1992 ble utgitt av Cornell University Press. Bokens forlagsomtale beskriver 505 voksne. NLM-katalogen beskriver den samme boken med 505 voksne, men et avvikende fødselstall, 614. Werner (1993) oppgir 698 for 1955-startkohorten.
+- **Foreløpig utilgjengelig for direkte kontroll:** 1992-verkets komplette metode- og frafallsregnskap, appendiks I og stidiagrammenes faktiske koeffisienter; dessuten 1982-bokens primærtabeller. Cornell oppgir åpent nedlastbart format, men fullteksttilgang ble ikke gjennomført i den aktuelle gjennomgangen.
+- **Neste avklaringsport:** Kontrollér 1992-metodekapittelet og appendiks I s. 240–245 og skriv et eksplisitt flytskjema for inkluderte og ekskluderte deltakere ved hver måling, med proveniens for hvert N. Deretter vurder modellerte indirekte/medierte forbindelser, sensitivitetsanalyser og kulturell generaliserbarhet opp mot moderne metodestandard.
+
+**Registerendring:** `original_publication_audit.entries` økes fra 8 til **9**, med særskilt `resiliens_werner_smith_1992`, uten å øke antallet påstandsenheter (32) eller oppgradere noen teori. `source_verified=0/4` består.
