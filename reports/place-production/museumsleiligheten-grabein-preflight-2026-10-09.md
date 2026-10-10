@@ -182,3 +182,37 @@ Canonical stedstekst `desc` og `popupDesc`, Fagverkets familieavsnitt, linsekild
 - Merge-commit `348b40b2` har to foreldre: Gråbein-branchen og ny `main` (`5aac5712`). For 12 ikke-overlappende filer er `main` videreført uendret. `css/place-sheet.css` har beholdt Gråbeins tre frontkort-geometriregler samtidig som nyere typografijusteringer fra `main` følger med. Den permanente PlaceCard-layouttesten bruker nyere, strengere browser-kontrakt fra `main`. GitHub bekreftet etterpå `mergeable=true`, `mergeable_state=clean`, `behind=0`.
 - DigitaltMuseum dokumenterer `OB.A6767` med fotograf Rune Aakvik, 1995, og eksplisitt CC BY-SA-lisens: https://digitaltmuseum.no/021017017322/museumsleiligheten-i-toyengata-38-b . Dette gir én identifisert lisensiert **etter-restaurering**-kilde, men ikke et autentisk historisk førbilde, og gjør ikke de avfotograferte enkeltgjenstandene til proveniensverifiserte Objects.
 - Ny full CI og manuell visuell aksept må fortsatt være grønne på siste commit. Quizens problematiske leilighetsformulering forblir et separat quiz-produksjonsavvik, ikke automatisk en del av stedschecklistens merge.
+
+## Kildefaglig closeout-kontroll — 10. oktober 2026
+
+**Dette er evidensoppdatering, ikke fullført sted.** På `963eb1453614250ca67f28d15b0b3c4f5752718c` var samtlige 19 PR-workflows merket `success` (inkl. Typecheck baseline report og Civication). Siden `main` senere har flyttet seg, gjelder godkjenningen kun denne headen, og det må tas ny eksakt-head CI etter eventuell synk/ny commit.
+
+### People — konkret identitetskontroll, men ingen fotografisk aksept
+
+- Oslo kommunes Byantikvar, *Vedlegg til Kulturmiljøstrategi 2023–2034*, s. 12, omtaler byggmesteren som **Ole Andreas Olsen («Gråbein-Olsen»)** ved Lakkegata 71. https://www.oslo.kommune.no/get-file/1122658/6b331dce83da956b41d811286a77c07729183ded1de5187a35b761059ffeb76c
+- Leif Thingsrud, «Byggmester Ole “Gråbein” Olsen – Rovdyr eller boligreformator?», *Tobias* 3/1997, gjengitt i *DISputten* 1/2008, s. 6 flg., oppgir **Ole Olsen født 1832 på Hovinsetra ved Gardermoen**. Navnevarianten må forankres mot denne biografien og primærkilder før People-profilen får entydig person-ID. https://www.slektogdata.no/_oa/disputten/disputten-2008-1/files/assets/common/downloads/publication.pdf
+- **Navnebror-felle:** Webtreff for «Ole Andreas Olsen (1835–1908)» gjelder en skipper i Porsgrunn, født i Solum 1835, og kan ikke uten videre tilordnes byggmesteren fra Ullensaker (f. 1832). Ikke importer profil, årstall eller portrett fra slike navnetreff. https://servanhomme.com/getperson.php?personID=I23038&tree=tree1
+- Marte Marie Ofstads museumsformidling hos EGT historielag navngir familien Bjørklund, men sier uttrykkelig at de to andre-etasje-leilighetenes familieplassering er usikker. Ingen historiske, personidentifiserte og rettighetsklarerte portretter av Bjørklund-familien eller byggmesteren er dokumentert i denne kontrollen. https://egt-historielag.no/informasjon/nyheter/vis/?ID=22174&T=Museumsleiligheten+p%C3%A5+T%C3%B8yen&af=1
+- **People: BLOCKED.** Mulig videre kildevei er Oslo byarkivs originale kirkebøker, folkeregister-/adressebokkoblinger og Oslo Museums egne fotoarkiver med faktisk identitets- og lisenskontroll; et tilfeldig «Ole Olsen»-portrett oppfyller ikke kravet.
+
+### Objects — skille mellom utstillingsgjenstand og eierproveniens
+
+- Oslo Museum publiserer foto av en konkret, fysisk symaskin ved leilighetens vindu og konkrete møbler/kjøkkeninventar: https://www.oslomuseum.no/hva-skjer/open-house-oslo-grabein/ og https://www.oslomuseum.no/besok-oss/museumsleiligheten-grabein/
+- Fotoet dokumenterer *tilstedeværelse i et kuratert museumsinteriør*, ikke at akkurat denne symaskinen var Bjørklund-familiens, eller et museumsinventarnummer, eksakt opprinnelse, produksjonstid og tillatt gjenbruk i appen.
+- Canonical `docs/PLACE_OBJECTS_CANONICAL.md` krever identifiserbar fysisk gjenstand, stedstilknytning, datering, funksjon, medlemsspesifikt lokalt foto med lisens, og normalt **minst to** representative, ulike Objects. Visk ikke ut evidenskravet ved å skjære enkeltgjenstander ut av generelle interiørbilder.
+- **Objects: BLOCKED / source-bounded holdback**, ikke `BEGRUNNET N/A`.
+
+### Før/etter — tids- og motivport
+
+- `OB.A6767` (1995), `OB.A6769` (1995), `OB.F29508` (1996), `OB.F29511` (1996), `OB.F29512` (1996) og gårdsbildet `OB.A6017` (1993) er alle fra *etter* tilbakeføringen i 1987. Oslobilder-katalogene gir datering og fotograf, men ingen av disse beviser rommets tilstand **før** restaureringen. https://oslobilder.no/OMU/OB.A6767 ; https://oslobilder.no/OMU/OB.A6769 ; https://oslobilder.no/OMU/OB.F29508 ; https://oslobilder.no/OMU/OB.F29511 ; https://oslobilder.no/OMU/OB.F29512 ; https://oslobilder.no/OMU/OB.A6017
+- Generelle foto av «Gråbeingårdene» i Sars gate, Urtegata eller Siebkes gate er **ikke** motiver fra den konkrete museumsleiligheten i Tøyengata 38B. Skal aldri brukes som påstått historisk førbilde for stedet.
+- Potensielle gjenbrukslisenser for ett eller flere *etter*-fotografier opphever ikke manglende motivmessig/tidsmessig par. Krever før-1987-bilde eller eldre samme-sted-eksteriør med verifisert standpunkt, rettigheter og et relevant nåfoto.
+- **Før/etter: BLOCKED.**
+
+### Quiz-presisjon — avdekket avvik, separat korrigeringsfase
+
+`data/quiz/historie/museumsleiligheten_grabein_sets.json` spørsmål `..._05` sin `knowledge` og `claim_basis` og `..._08` sin spørsmålsformulering impliserer at familiens presise leilighet er identifisert. Disse spørsmålene speiles i `data/quizcards/historie/museumsleiligheten_grabein_quizkort_v1.json`. Fasitene **Bjørklund** og **1891** kan beholdes; premiss, kunnskapstekst, påstandsbank og QuizCard må samordnes om «én av to leiligheter i andre etasje, eksakt boenhet usikker». Ikke omproduser de 4 × 7 spørsmålene. Hensyn til generert quiz-kontekst og Knowledge-ID må ivaretas ved retting.
+
+### Merge-gate
+
+`production_status` **skal ikke settes til complete**. Gjeldende green CI er teknisk, ikke redaksjonell. Manuell visuell iPad-kontroll (inkl. logo-preview, vertikal scroll og kortgeometri) står også åpen. Nyere `main` har berørt bl.a. genererte Fagverk-filer; synk med konfliktkontroll før eventuell senere merge. PR er fortsatt `draft` med åpne evidensporter.
