@@ -23,10 +23,6 @@ type PlaceSheetShellRuntime = Window & typeof globalThis & {
     open?: (place: unknown, target?: unknown) => Promise<boolean> | boolean;
     scrollToSection?: (target: unknown, options?: { instant?: boolean; focus?: boolean }) => boolean;
   };
-  HGPlaceCardCollections?: {
-    get?: (place: PlaceSheetPlace) => Array<{ id?: string; label?: string }>;
-    getItems?: (place: PlaceSheetPlace, id: string) => unknown[];
-  };
 };
 
 const runtime = window as PlaceSheetShellRuntime;
@@ -34,7 +30,6 @@ const SHELL_ATTR = "data-hg-place-sheet-shell";
 const SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
 let sectionNavObserver: MutationObserver | null = null;
 let observedShell: HTMLElement | null = null;
-let observedPlace: PlaceSheetPlace | null = null;
 const NAV_ITEMS = [
   ["about", "Om"],
   ["history", "Historie"],
@@ -72,22 +67,6 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
     nav.setAttribute("aria-label", "Hopp til del av stedet");
     nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}" hidden>${label}</button>`).join("");
     nav.addEventListener("click", event => {
-      const collectionButton = event.target instanceof Element
-        ? event.target.closest<HTMLElement>("[data-hg-place-sheet-collection-link]")
-        : null;
-      if (collectionButton instanceof HTMLElement && nav?.contains(collectionButton)) {
-        const collectionId = text(collectionButton.dataset.hgPlaceSheetCollectionLink);
-        if (!collectionId) return;
-        event.preventDefault();
-        const root = card();
-        const collection = root
-          ? Array.from(root.querySelectorAll<HTMLElement>(".pc-collection"))
-              .find(node => text(node.dataset.collectionId) === collectionId)
-          : null;
-        collection?.click();
-        return;
-      }
-
       const button = event.target instanceof Element ? event.target.closest<HTMLElement>("[data-hg-place-sheet-jump]") : null;
       if (!(button instanceof HTMLElement) || !nav?.contains(button)) return;
       const target = text(button.dataset.hgPlaceSheetJump);
@@ -138,85 +117,19 @@ function syncSectionNav(shell: HTMLElement): void {
   });
 }
 
-function hasCollectionContent(place: PlaceSheetPlace, id: string, sideStack: HTMLElement | null): boolean {
-  let items: unknown;
-  try { items = runtime.HGPlaceCardCollections?.getItems?.(place, id); } catch {}
-  if (Array.isArray(items)) {
-    if (items.length) return true;
-    // Legacy Nature previews may load after the collection API, but canonical
-    // People/Brands/Objects/Events/Productions must never inherit stale icons.
-    if (!["flora", "fauna", "map"].includes(id)) return false;
-  }
-
-  const icon = sideStack
-    ? Array.from(sideStack.querySelectorAll<HTMLElement>(".pc-collection"))
-        .find(node => text(node.dataset.collectionId) === id)
-    : null;
-  if (!(icon instanceof HTMLElement) || icon.hidden || icon.getAttribute("aria-hidden") === "true") return false;
-  const count = text(icon.dataset.collectionItemCount);
-  if (count) return Number(count) > 0;
-  // Preserve existing visible legacy previews while excluding known-empty
-  // canonical collections.
-  return !Array.isArray(items);
-}
-
-function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: HTMLElement | null): Element | null {
-  nav.querySelectorAll<HTMLElement>("[data-hg-place-sheet-collection-link]").forEach(button => button.remove());
-
-  const configured = runtime.HGPlaceCardCollections?.get?.(place) || [];
-  const fallback = sideStack
-    ? Array.from(sideStack.querySelectorAll<HTMLElement>(".pc-collection"))
-        .filter(node => !node.hidden && text(node.dataset.collectionId))
-        .map(node => ({
-          id: text(node.dataset.collectionId),
-          label: text(node.getAttribute("aria-label") || node.title)
-        }))
-    : [];
-  const source = (typeof runtime.HGPlaceCardCollections?.get === "function" ? configured : fallback)
-    .filter(item => hasCollectionContent(place, text(item?.id), sideStack));
-  const seen = new Set<string>();
-  let insertAfter = nav.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
-
-  for (const item of source) {
-    const id = text(item?.id);
-    const label = text(item?.label);
-    if (!id || !label || seen.has(id)) continue;
-    seen.add(id);
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "pc-sheet-collection-link";
-    button.dataset.hgPlaceSheetCollectionLink = id;
-    button.textContent = label;
-    insertAfter?.after(button);
-    if (!insertAfter) nav.prepend(button);
-    insertAfter = button;
-  }
-
-  return insertAfter;
-}
-
-function observeSectionNav(shell: HTMLElement, place: PlaceSheetPlace): void {
-  observedPlace = place;
+function observeSectionNav(shell: HTMLElement): void {
   if (observedShell !== shell) {
     sectionNavObserver?.disconnect();
     observedShell = shell;
     sectionNavObserver = new MutationObserver(mutations => {
       if (!observedShell?.isConnected) return;
-      let sectionsChanged = false;
-      let collectionsChanged = false;
-      for (const mutation of mutations) {
+      const sectionsChanged = mutations.some(mutation => {
         const target = mutation.target;
-        if (!(target instanceof Element) || target.closest('[data-hg-place-sheet-nav="1"]')) continue;
-        if (target.closest("[data-hg-place-sheet-section]")) sectionsChanged = true;
-        if (target.closest(".pc-side-stack")) collectionsChanged = true;
-      }
+        return target instanceof Element
+          && !target.closest('[data-hg-place-sheet-nav="1"]')
+          && Boolean(target.closest("[data-hg-place-sheet-section]"));
+      });
       if (sectionsChanged) syncSectionNav(shell);
-      if (collectionsChanged) {
-        const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
-        if (nav) {
-          if (observedPlace) syncCollectionNav(nav, observedPlace, shell.querySelector<HTMLElement>(".pc-side-stack"));
-        }
-      }
     });
     sectionNavObserver.observe(shell, {
       subtree: true, childList: true, attributes: true,
@@ -265,7 +178,6 @@ function movePrimaryNodes(shell: HTMLElement, place: PlaceSheetPlace): void {
   const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
   const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
   const collections = shell.querySelector<HTMLElement>("[data-hg-place-sheet-collections]");
-  const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
 
   const front = root.querySelector<HTMLElement>(".pc-frontcard");
   const textBlock = root.querySelector<HTMLElement>(".pc-text");
@@ -278,10 +190,9 @@ function movePrimaryNodes(shell: HTMLElement, place: PlaceSheetPlace): void {
     collections.appendChild(sideStack);
   }
 
-  const insertAfter = nav ? syncCollectionNav(nav, place, sideStack) : null;
-  if (events instanceof HTMLElement && nav) {
-    insertAfter?.after(events);
-    if (!insertAfter) nav.prepend(events);
+  // Events/Møtes remains beside the canonical collections, never inside the text nav.
+  if (events instanceof HTMLElement && collections && events.parentElement !== collections) {
+    collections.appendChild(events);
   }
 
   const legacyGrid = root.querySelector<HTMLElement>(".pc-grid");
@@ -357,7 +268,7 @@ export function mountPlaceSheetPhase1(place: PlaceSheetPlace): HTMLElement | nul
   if (beforeAfterSlot) mountCanonicalBeforeAfter(beforeAfterSlot, place)?.classList.add("pc-sheet-canonical-before-after");
 
   syncSectionNav(shell);
-  observeSectionNav(shell, place);
+  observeSectionNav(shell);
   startAutomaticPlaceSheetRender(text(place.id));
   return shell;
 }
@@ -367,7 +278,6 @@ export function restoreLegacyPlaceCardStructure(): void {
   sectionNavObserver?.disconnect();
   sectionNavObserver = null;
   observedShell = null;
-  observedPlace = null;
   const root = card();
   const rootBody = body();
   if (!(root instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
