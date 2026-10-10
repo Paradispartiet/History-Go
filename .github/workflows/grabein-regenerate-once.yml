@@ -1,0 +1,52 @@
+name: Gråbein canonical regeneration (temporary)
+
+on:
+  push:
+    branches:
+      - place/museumsleiligheten-grabein-production-20261009
+    paths:
+      - '.github/workflows/grabein-regenerate-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate quiz context
+        run: node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+      - name: Rebuild canonical Knowledge references
+        run: npm run knowledge:canonical:write
+      - name: Rebuild Fagverk release against merged main and Gråbein
+        run: node scripts/build-fagverk-release-manifest.mjs
+      - name: Test Bjørklund precision and source alignment
+        run: |
+          node --test tests/grabein-bjorklund-quiz-integrity.test.mjs
+          node --test tests/museumsleiligheten-grabein-collections.test.mjs
+      - name: Commit generated changes to exact PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/quiz/production_context/historie/museumsleiligheten_grabein.json
+          git add data/quiz/historie/museumsleiligheten_grabein_sets.json
+          git add data/knowledge data/fagverk/fagverk_release.json reports/knowledge-id-backfill.json
+          if git diff --cached --quiet; then
+            echo "All generated files were already up-to-date"
+          else
+            git commit -m "build(grabein): regenerate quiz context, knowledge and release"
+            git push origin "HEAD:refs/heads/place/museumsleiligheten-grabein-production-20261009"
+          fi
