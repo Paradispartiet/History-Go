@@ -320,6 +320,11 @@ assert.ok(wernerCard.reference_links.some((ref) =>
 assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(lohmollerMethod));
 assert.ok(detailedReview.units.find((u) => u.id === "resiliens__method").evidence_urls.includes(lohmollerMethod));
 assert.match(wernerCard.method, /505 personer/);
+// Differing denominators must remain explicitly unresolved until 1992 original pages are checked.
+assert.match(wernerCard.limit, /614 som overlevende.*ikke bekreftet i originalbokens metodekapittel/);
+assert.match(wernerCard.limit, /samlet retensjonsprosent eller et antall dødsfall kan derfor ikke fastslås/);
+assert.match(fieldEvidence.cards.find((row) => row.theory_id === "resiliens").limitation, /Sekundærkilder beskriver 614 som overlevende/);
+assert.match(detailedReview.units.find((row) => row.id === "resiliens__method").scope_limit, /ingen dødsfallstall eller komplett retensjonsandel kan verifiseres/i);
 assert.match(wernerCard.limit, /505.*614.*698/);
 assert.match(detailedReview.original_publication_audit.entries.find((e) =>
   e.id === "resiliens_werner_smith_1992").access, /no_appendix_fulltext/);
