@@ -109,3 +109,37 @@ Den nye strukturerte filen `reports/psychology/psykoteori_claim_units_group1_202
 ### Åpen faglig sperre
 
 `historical_bibliography_checked` betyr **ikke** at originalens komplette metodetabeller er lest. Fullstendig kritisk gjennomgang av originalkasuistikken fra 1895, Bowlby (1958), Ainsworth/Bell (1970), Kauai-bokas kohortfrafall og Beck (1963), sammen med triangulering av sekundær- og primærstudier, er fortsatt nødvendig for `source_verified`. Den nye påstandsmatrisen gjør manglene synlige, men løser dem ikke automatisk. **0/4 source-verified, 0/4 editorial-approved.**
+
+## 8. Kildekontroll av originaltekst og oppfølgingsfunn (10. oktober 2026)
+
+Denne kontrollen gjelder **faktisk leste, navngitte tekststeder**, ikke full godkjenning av alle fire teorikort.
+
+### 8.1 Breuer og Freud (1895) – originalt forord og kasusutvelgelse
+
+- **Verifikasjon:** [`Studien über Hysterie`, originalt forord transkribert på Wikisource](https://de.wikisource.org/wiki/Studien_%C3%BCber_Hysterie), kontrollert mot [førsteutgavens bibliografiske innholdsbeskrivelse hos Library of Congress](https://www.loc.gov/item/76454571/). Originalverket har kasusbeskrivelser, teori og en forløpertekst fra 1893.
+- **Hva forfatterne selv opplyser:** De skriver at materialet bygger på privatpasienter fra en bestemt sosial kontekst, at pasientgjenkjenning gjorde offentliggjøring av enkelte observasjoner uforsvarlig, og at dette påvirket utvalget som ble publisert. Dette er *direkte primærkildekritikk*: publisert materiale representerer ikke nødvendigvis alt klinisk materiale.
+- **Metodisk rekkevidde:** Direkte forordskontroll gir støtte for seleksjons- og rapporteringsbegrensninger. Den beviser ikke at kasusenes symptomer hadde de foreslåtte ubevisste årsakene; hele kasusmaterialet er ikke verifisert i denne runden. Mer spesifikke vurderinger av etikken må vurderes i lys av 1895-konteksten og etterfølgende forskningsstandarder.
+
+### 8.2 Ainsworth (1970) versus Opie mfl. (2021)
+
+- [Ainsworth og Bell (1970), PMID 5490680](https://pubmed.ncbi.nlm.nih.gov/5490680/) er bibliografisk identifisert, **uten sammendrag på PubMed**. Kortet skal ikke utgi artikkelens originale kodings- eller reliabilitetsresultater som fulltekstkontrollert.
+- [Opie mfl. (2021), fulltekst i PubMed Central](https://pmc.ncbi.nlm.nih.gov/articles/PMC7612040/) presenterer senere metaanalyse av Strange Situation-baserte målinger i tidlig barndom. Fireveis `κ = 0,23` med `95 % KI [0,17; 0,29]` og trygg/utrygg `r = 0,28` med `95 % KI [0,21; 0,35]` står i resultat- og sammenligningsavsnittene. Forfatterne diskuterer variasjon etter utviklingsperiode og hvilke studier som inngår. Tallene er **sjansjustert kappa versus korrelasjon**, ikke to prosenter og ikke identiske måleobjekter.
+- Kontrollen gir god evidens for **de eksakte rapporterte metaanalysetallene**, men full kritisk analyse av Ainsworths primære studier og klassifikasjonenes kulturelle måleinvarians er ikke avsluttet.
+
+### 8.3 Kauai-kohorten – design før årsaksslutning
+
+- Australian Institute of Family Studies viser [Kauai Longitudinal Study i sin internasjonale studietabell](https://aifs.gov.au/all-research/research-reports/childrens-health-and-development), som oppgir Kauai/Hawaii, start **1955**, utvalg **698**, rekruttering ved fødsel, seks registrerte innsamlingstidspunkter og oppfølging gjennom 32 år på tidspunktet for oversikten. Beskriver et etnisk sammensatt utvalg, omtrent halvparten fra familier i fattigdom.
+- [Werner og Smith (1982), `Vulnerable, but Invincible`](https://wellcomecollection.org/works/wxaez2sy) er en faktisk historisk bok om dette longitudinelle materialet, men biblioteksposten har ikke effekttabeller.
+- Utvalgsstørrelsen beskriver startkohorten. Uten frafalls-/måledata kan **698 ikke tolkes som N ved alle oppfølginger**, og utfall kan ikke knyttes kausalt til én bestemt faktor bare fra studiedesignet.
+- [Zalta mfl. (2021)](https://pmc.ncbi.nlm.nih.gov/articles/PMC8101258/) undersøker voksne traumeeksponerte utvalg, med **139** tverrsnittsstudier og **37** longitudinelle studier (145 og 38 uavhengige effektstørrelser). `r = −0,27` og `r = −0,25` er støtte/PTSD-korrelasjoner, ikke en ny Kauai-analyse.
+
+### 8.4 Beck, Kovacs og Cuijpers – longitudinell behandling versus mekanisme
+
+- [Beck (1963), original publiseringsoppføring hos JAMA Psychiatry](https://jamanetwork.com/journals/jamapsychiatry/article-abstract/488402) har en innledende artikkeltekst om kognitive prosesser ved depresjon. Publiseringen **dokumenterer forskningshistorien**, ikke effektstørrelser for CBT.
+- [Kovacs, Rush, Beck og Hollon (1981), PMID 7006557](https://pubmed.ncbi.nlm.nih.gov/7006557/) beskriver 44 ikke-psykotiske, ikke-bipolare deprimerte polikliniske pasienter i en kontrollert **12-ukers** sammenligning av kognitiv terapi mot imipramin. **35 protokollfullførere** ble undersøkt i **naturalistisk ettårsoppfølging**. Én selvrapportert depresjonsforskjell favoriserte CBT og var statistisk signifikant; øvrige omtalte mellomgruppeforskjeller var **ikke** signifikante. Dette må **ikke** formidles som at ingen av forskjellene var signifikante eller som bevist generell langtidsoverlegenhet.
+- [Cuijpers mfl. (2023), fulltekst og tabell 2](https://onlinelibrary.wiley.com/doi/full/10.1002/wps.21069): `g = 0,79` mot kontroller, `I² = 85 %` og prediksjonsintervall `−0,45 til 2,04`. Etter begrensning til studier med lav risiko for skjevhet er `g = 0,60`, og etter trim-and-fill-korreksjon for publiseringsskjevhet `g = 0,47`. Mot andre psykoterapier var forskjellen `g = 0,06` i hovedanalysen, men ikke robust i flere sensitivitetsanalyser.
+- **Avgrensning:** Original artikkel, tidlig behandlingsforsøk og moderne metaanalyse undersøker ikke det samme. Innholdet blir vitenskapelig feil om de slås sammen som direkte dokumentasjon for Becks kognitive årsaksmodell.
+
+### 8.5 Revisjonsbeslutning og gjenstående krav
+
+Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes konkrete innhold og begrensninger. **Ingen enhet har `full_original_review_complete=true`; ingen teorikort er `source_verified`.** Dette betyr ikke at ingen funn er støttet; det betyr at *hele teorikortets kildeport* fortsatt krever kritisk originaltekstgjennomgang, utvalgs-/frafallsanalyse og tilstrekkelig dekning av hver underpåstand. Tredjeparts gjengivelse av primærverk eller metaanalyser kan ikke fylle de utestående leddene automatisk.
