@@ -1,0 +1,141 @@
+{
+  "schema": "history_go_people_claims_v1",
+  "version": "1.0.0",
+  "person_id": "hanne_skartveit",
+  "profile_file": "data/people/media/oslo/people_media_oslo.json",
+  "identity": {
+    "canonical_identity": "Hanne Skartveit, journalist og tidligere politisk redaktør i VG.",
+    "name_variants": [
+      "Hanne Skartveit"
+    ],
+    "identity_status": "verified"
+  },
+  "claims": [
+    {
+      "id": "vg_political_editor_2009_2023",
+      "claim": "Hanne Skartveit var politisk redaktør i VG fra 1. januar 2009 til november 2023.",
+      "source_url": "https://www.vg.no/nyheter/i/BWLMXQ/hanne-skartveit-slutter-som-politisk-redaktoer-i-vg-jeg-velger-kjaerligheten",
+      "source_location": "Artikkel oppdatert 3. november 2023, ingress og avsnitt/bildetekst om 15 år fra 1. januar 2009",
+      "source_type": "primary",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-09",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "vg_editor_transition_2023",
+      "claim": "VG opplyste 3. november 2023 at Hanne Skartveit gikk fra rollen som politisk redaktør til en fristilt redaktørstilling.",
+      "source_url": "https://www.vg.no/nyheter/i/BWLMXQ/hanne-skartveit-slutter-som-politisk-redaktoer-i-vg-jeg-velger-kjaerligheten",
+      "source_location": "Publisert/oppdatert 3. november 2023, ingress om overgang til fristilt redaktørstilling",
+      "source_type": "primary",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-09",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "vg_current_address_2026",
+      "claim": "VG oppgir Akersgata 55, 0180 Oslo som besøksadresse.",
+      "source_url": "https://www.vg.no/informasjon/kontakt-oss",
+      "source_location": "Generell kontaktinfo – Besøksadresse",
+      "source_type": "primary",
+      "temporal_status": "current",
+      "verified_at": "2026-10-09",
+      "freshness_required_days": 180,
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "portrait_identity_2009",
+      "claim": "Bjørn Erik Pedersen fotograferte Hanne Skartveit under et dialogmøte i Oslo i mars 2009; fotografiet på Wikimedia Commons er lisensiert CC BY 2.5.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Hanne_Skartveit_0002.jpg",
+      "source_location": "Wikimedia Commons filbeskrivelse og lisens: fotograf Bjørn Erik Pedersen, 22. mars 2009, CC BY 2.5, avbildet Hanne Skartveit.",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-09",
+      "status": "verified",
+      "evidence_level": "direct"
+    }
+  ],
+  "field_claim_map": {
+    "name": [
+      "vg_political_editor_2009_2023"
+    ],
+    "initials": [
+      "vg_political_editor_2009_2023"
+    ],
+    "desc": [
+      "vg_political_editor_2009_2023",
+      "vg_editor_transition_2023"
+    ],
+    "year": [
+      "vg_political_editor_2009_2023"
+    ],
+    "placeId": [
+      "vg_political_editor_2009_2023",
+      "vg_current_address_2026"
+    ],
+    "places[vg_huset]": [
+      "vg_political_editor_2009_2023",
+      "vg_current_address_2026"
+    ],
+    "category": [
+      "vg_political_editor_2009_2023"
+    ],
+    "tags": [
+      "vg_political_editor_2009_2023"
+    ],
+    "popupDesc": [
+      "vg_political_editor_2009_2023",
+      "vg_editor_transition_2023",
+      "vg_current_address_2026"
+    ],
+    "image": [
+      "portrait_identity_2009"
+    ],
+    "cardImage": [
+      "portrait_identity_2009"
+    ]
+  },
+  "sentence_claim_map": {
+    "desc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "vg_political_editor_2009_2023",
+          "vg_editor_transition_2023"
+        ]
+      }
+    ],
+    "popupDesc": [
+      {
+        "sentence": 1,
+        "claim_ids": [
+          "vg_political_editor_2009_2023"
+        ]
+      },
+      {
+        "sentence": 2,
+        "claim_ids": [
+          "vg_editor_transition_2023"
+        ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "vg_current_address_2026",
+          "vg_political_editor_2009_2023"
+        ]
+      }
+    ]
+  },
+  "completion": {
+    "completed_under": "people_profile_v1.0",
+    "claims_verified": "4/4",
+    "fact_review": "passed",
+    "editorial_review": "passed",
+    "source_verified_at": "2026-10-09",
+    "validator_version": "1.0.0",
+    "current_status": "ready_people_v1"
+  }
+}

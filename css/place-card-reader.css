@@ -45,3 +45,48 @@
     height: 30px;
   }
 }
+
+
+/* Flytende kontrollpanel, forankret i kortet og utenfor scrollflaten. */
+#placeCard .pc-reader-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 25;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(255,255,255,.30);
+  border-radius: 999px;
+  background: rgba(18,18,18,.97);
+  color: #fff;
+  box-shadow: 0 3px 16px rgba(0,0,0,.32);
+}
+#placeCard .pc-reader-controls[hidden] {
+  display: none;
+}
+#placeCard .pc-reader-controls button {
+  min-width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255,255,255,.13);
+  color: #fff;
+  font: 700 14px/1 system-ui, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+#placeCard .pc-reader-controls .pc-reader-playpause {
+  font-size: 19px;
+}
+#placeCard .pc-reader-controls button:focus-visible {
+  outline: 2px solid #f6d15a;
+  outline-offset: 2px;
+}
+#placeCard.pc-reader-enabled .pc-body {
+  padding-bottom: 74px;
+}

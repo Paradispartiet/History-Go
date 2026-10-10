@@ -1,0 +1,81 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import fs from "node:fs";
+
+const read = file => JSON.parse(fs.readFileSync(file,"utf8"));
+const place = read("data/places/media/oslo/places_oslo_media/vg_huset.json");
+const brands = read("data/brands/brands_master.json");
+const byPlace = read("data/brands/brands_by_place.json");
+const people = read("data/people/media/oslo/people_media_oslo.json");
+
+test("VG-huset has an actual source-attributed 2011 display object", () => {
+  assert.equal(place.id,"vg_huset");
+  assert.equal(place.objects?.length,1);
+  const obj=place.objects[0];
+  assert.equal(obj.id,"vg_avismonter_22_juli_2011");
+  assert.equal(obj.kind,"physical_object");
+  assert.equal(obj.physicalObject,true);
+  assert.equal(obj.placeSpecific,true);
+  assert.ok(obj.source_urls.some(url=>url.includes("koro.no/")));
+  assert.equal(obj.image,"bilder/kort/objects/vg_avismonter_2011.jpg");
+  assert.equal(obj.imageMeta.creator,"Ulflarsen");
+  assert.equal(obj.imageMeta.license,"CC BY-SA 3.0");
+  assert.equal(obj.imageMeta.transformation,"Original unchanged; no crop or reconstruction.");
+  const data=fs.readFileSync(obj.image);
+  assert.ok(data.length>100_000);
+  assert.deepEqual([...data.subarray(0,3)],[255,216,255],"real local JPEG");
+});
+
+test("VG brand reuses canonical id and licensed authentic visual identity", () => {
+  const vg=brands.filter(row=>row.id==="vg");
+  assert.equal(vg.length,1,"no duplicate Brand entity");
+  assert.equal(vg[0].state,"catalog");
+  assert.deepEqual(vg[0].place_ids,["vg_huset"]);
+  assert.deepEqual(byPlace.vg_huset,["vg"]);
+  assert.equal(vg[0].logo,"bilder/kort/brands/vg_logo.svg");
+  assert.equal(vg[0].imageMeta.assetKind,"logo");
+  assert.equal(vg[0].imageMeta.noEndorsement,true);
+  const svg=fs.readFileSync(vg[0].logo,"utf8");
+  assert.match(svg,/<svg[\s>]/);
+  assert.match(svg,/<path[\s>]/);
+  assert.doesNotMatch(svg,/<script\b|onload\s*=|javascript:/i);
+});
+
+test("five ready People profiles remain distinct from the invalid 1980 VG building anchor", () => {
+  const expected=["bernt_olufsen","gard_steiro","hanne_skartveit","torry_pedersen","trine_eilertsen"];
+  for (const id of expected){
+    const person=people.find(x=>x.id===id);
+    assert.equal(person?.profileStatus,"ready_people_v1",id);
+    assert.equal(person.placeId,"vg_huset",id);
+    assert.ok(fs.existsSync(person.image),"portrait exists: "+id);
+  }
+  assert.equal(people.some(x=>x.id==="kare_valebrokk"),false,"invalid historic 1980 anchor must not be active at the 1994 building");
+  const holdback=read("reports/place-production/vg-huset-valebrokk-historical-anchor-holdback.json");
+  assert.equal(holdback.personId,"kare_valebrokk");
+  assert.equal(holdback.originalCanonicalRecord.placeId,"vg_huset","original record is preserved for editorial migration");
+  assert.equal(holdback.correctHistoricalTarget.address,"Akersgata 34, Oslo");
+  assert.deepEqual(place.place_card_profile.collection_ids,["people","objects","brands","productions"]);
+});
+
+test("VG-huset productions have documentary photographs of the actual publication rather than mock covers",()=>{
+  assert.equal(place.productions?.length,1);
+  const pub=place.productions[0];
+  assert.equal(pub.id,"vg_papiravis_historisk");
+  assert.equal(pub.imageMeta.license,"CC BY-SA 4.0");
+  assert.equal(pub.imageMeta.creator,"Erik den yngre");
+  assert.equal(pub.image,"bilder/kort/productions/vg_papiravis_2011_i_monter_2013.jpg");
+  const bytes=fs.readFileSync(pub.image);
+  assert.ok(bytes.byteLength>150000);
+  assert.deepEqual([...bytes.subarray(0,3)],[255,216,255]);
+  assert.notEqual(pub.image,place.objects[0].image,"paper and monter use distinct documentary photo files");
+});
+
+test("generated full place-open payload matches canonical Object and Brand", () => {
+  const runtime=read("data/runtime/place-open/vg_huset.json");
+  assert.equal(runtime.place?.id,"vg_huset");
+  assert.ok(runtime.place.objects?.some(x=>x.id==="vg_avismonter_22_juli_2011"));
+  assert.ok(runtime.brands?.some(x=>x.id==="vg" && x.logo==="bilder/kort/brands/vg_logo.svg"));
+  assert.deepEqual(runtime.place.place_card_profile.collection_ids,["people","objects","brands","productions"]);
+  assert.equal(runtime.people.some(x=>x.id==="kare_valebrokk"),false);
+  assert.ok(runtime.place.productions.some(x=>x.id==="vg_papiravis_historisk"));
+});
