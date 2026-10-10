@@ -527,6 +527,15 @@
         related.map((item) => '<button type="button" class="psychology-room-mini-action" data-theory-phenomenon="' +
           escapeHtml(item.id) + '">' + escapeHtml(item.title) + ' →</button>').join("") + '</div></section>'
       : '';
+    const additionalEmnes = Array.isArray(theory.related_emne_links)
+      ? theory.related_emne_links.filter((item) => item?.emne_id && item.title && item.why && item.emne_id !== theory.emne_id)
+      : [];
+    const extraEmneHtml = additionalEmnes.length
+      ? '<div class="psychology-room-theory-related-emner"><h5>Også relevant for</h5>' +
+        additionalEmnes.map((item) => '<p><a class="psychology-room-fagverk-link" href="' +
+          escapeHtml(theoryEmneLink(item.emne_id)) + '">' + escapeHtml(item.title) +
+          ' ↗</a><span> ' + escapeHtml(item.why) + '</span></p>').join("") + '</div>'
+      : '';
     const references = Array.isArray(theory.reference_links) ? theory.reference_links.filter((item) =>
       item && /^https:\/\/[^\s"'<>]+$/.test(String(item.url || "")) && item.title && item.supports) : [];
     const sourcesHtml = references.length
@@ -547,7 +556,7 @@
       '<div class="psychology-room-theory-links"><a class="psychology-room-fagverk-link" href="' +
       escapeHtml(theoryChapterLink(theory.chapter_id)) + '">Les ' + escapeHtml(chapter?.title || "kapittelet") +
       ' ↗</a><a class="psychology-room-fagverk-link" href="' + escapeHtml(theoryEmneLink(theory.emne_id)) +
-      '">Åpne tilknyttet fagverksemne ↗</a></div></section>' +
+      '">Åpne tilknyttet fagverksemne ↗</a></div>' + extraEmneHtml + '</section>' +
       (dataCache?.theorySafetyNote ? '<p class="psychology-room-safety-note">' + escapeHtml(dataCache.theorySafetyNote) + '</p>' : '') +
       '</article>'));
     bindBack();

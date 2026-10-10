@@ -49,7 +49,7 @@ for (const entry of audit.coverage_entries || []) {
   if (!Array.isArray(theoryIds) || !unique(theoryIds)) fail("duplicate/malformed theory IDs for " + id);
   for (const theoryId of theoryIds) {
     const theory = theories.get(theoryId);
-    const related = theory?.emne_ids || (theory?.emne_id ? [theory.emne_id] : []);
+    const related = theory ? [theory.emne_id, ...(theory.related_emne_links || []).map((item) => item.emne_id)] : [];
     if (!theory || !related.includes(id) || theory.chapter_id !== entry.chapter_id) {
       fail("theory card does not link back to canonical emne: " + id + " / " + theoryId);
     }
@@ -71,8 +71,13 @@ for (const entry of audit.coverage_entries || []) {
         partial.reference_urls.some((url, i) => url !== boundTheory.reference_links[i]?.url)) {
       fail("partial reference audit does not match theory-card citations: " + id);
     }
-  } else if (theoryIds.some((theoryId) => theories.get(theoryId)?.source_review_state === "partial_historical_method_review")) {
-    fail("theory card has a partial source review omitted from coverage: " + id);
+  } else if (theoryIds.some((theoryId) => {
+    const theory = theories.get(theoryId);
+    return theory?.emne_id === id && theory.source_review_state === "partial_historical_method_review";
+  })) {
+    // A theory's partial source review belongs to its original card/emne;
+    // additional emne reuse is separately claim-bound but remains unreviewed.
+    fail("primary theory card has a partial source review omitted from coverage: " + id);
   }
   if (!["unmapped", "linked_unreviewed", "source_verified", "editorial_pass"].includes(entry.link_status)) {
     fail("unrecognized link status for " + id);
@@ -115,6 +120,55 @@ for (const entry of audit.coverage_entries || []) {
   }
   if (entry.link_status === "editorial_pass" && entry.editorial_review_status !== "verified") {
     fail("false editorial coverage: " + id);
+  }
+}
+// Each additional emne link must be semantically justified and explicitly supported
+// by a canonical claim and source in that particular Fagverk chapter. No link counts
+// as full scholarly review until field-level review is completed.
+for (const theory of catalog.theories || []) {
+  const links = theory.related_emne_links || [];
+  if (!Array.isArray(links) || !unique(links.map((link) => link.emne_id))) {
+    fail("duplicate/malformed extra emne links: " + theory.id);
+    continue;
+  }
+  for (const link of links) {
+    if (link.emne_id === theory.emne_id || canonical.get(link.emne_id) !== theory.chapter_id) {
+      fail("cross-chapter, duplicate or unknown extra emne: " + theory.id + " / " + link.emne_id);
+      continue;
+    }
+    const article = read("data/fagverk/psykologi/emneartikler/" + link.emne_id + ".json");
+    if (link.title !== article.title || typeof link.why !== "string" || link.why.trim().length < 55) {
+      fail("extra emne requires canonical title and substantive scope: " + theory.id + " / " + link.emne_id);
+    }
+    const claimRegistry = read("data/fagverk/psykologi/" + theory.chapter_id + "/claims.json");
+    const claimMap = new Map(claimRegistry.claims.map((claim) => [claim.id, claim]));
+    const sourceSet = new Set(claimRegistry.sources.map((src) => src.id));
+    if (!Array.isArray(link.claim_ids) || !link.claim_ids.length ||
+        !Array.isArray(link.source_ids) || !link.source_ids.length ||
+        !unique(link.claim_ids) || !unique(link.source_ids)) {
+      fail("unsubstantiated extra emne link: " + theory.id + " / " + link.emne_id);
+      continue;
+    }
+    for (const id of link.claim_ids) {
+      if (!article.claim_ids?.includes(id) || !claimMap.has(id)) {
+        fail("extra emne references unknown article claim: " + link.emne_id + " / " + id);
+      }
+    }
+    for (const id of link.source_ids) {
+      if (!sourceSet.has(id) || !article.source_ids?.includes(id) ||
+          !link.claim_ids.some((claimId) => claimMap.get(claimId)?.source_ids.includes(id))) {
+        fail("extra emne source has no matching canonical claim: " + link.emne_id + " / " + id);
+      }
+    }
+    const entry = audit.coverage_entries.find((item) => item.emne_id === link.emne_id);
+    if (!entry || !entry.theory_ids.includes(theory.id) || entry.link_status !== "linked_unreviewed" ||
+        entry.source_review_status !== "not_reviewed" ||
+        entry.editorial_review_status !== "not_reviewed" ||
+        entry.related_link_evidence?.review !== "canonical_id_and_claim_binding_only" ||
+        JSON.stringify(entry.related_link_evidence?.claim_ids) !== JSON.stringify(link.claim_ids) ||
+        JSON.stringify(entry.related_link_evidence?.source_ids) !== JSON.stringify(link.source_ids)) {
+      fail("additional emne link must be non-final and exactly mirrored in coverage: " + link.emne_id);
+    }
   }
 }
 for (const id of canonical.keys()) if (!entryIds.includes(id)) fail("missing canonical emne: " + id);

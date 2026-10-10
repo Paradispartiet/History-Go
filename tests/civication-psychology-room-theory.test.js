@@ -107,6 +107,9 @@ const press = (selector) => {
   assert.match(rendered, /rel="noopener noreferrer"/);
   assert.match(rendered, /Sammenlign teoriene/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_betinging_vaner/);
+  assert.match(rendered, /Også relevant for/);
+  assert.match(rendered, /subject=psykologi&amp;emne=em_psy_atferd_laring/);
+  assert.match(rendered, /Atferd og læring/);
   assert.match(rendered, /Undervisningseksempel \(hypotetisk\)/);
   press("related:unngaelsesforsterkning");
   assert.match(rendered, /Teoretisk bakgrunn/);
