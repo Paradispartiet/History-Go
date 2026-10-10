@@ -58,12 +58,11 @@ test("unified renderer is critical runtime while Phase 6 adds direct Place Sheet
   assert.match(phase6Css, /is-place-sheet-direct/);
 });
 
-test("Place Sheet source keeps visual rounds with the front image and uses text collection links in the sticky header", () => {
+test("Place Sheet source keeps visual collection rounds outside the sticky text navigation", () => {
   assert.match(shellSource, /data-hg-place-sheet-collections/);
   assert.match(shellSource, /collections\.appendChild\(sideStack\)/);
-  assert.match(shellSource, /data-hg-place-sheet-collection-link/);
-  assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
-  assert.match(shellSource, /insertAfter\?\.after\(events\)/);
+  assert.doesNotMatch(shellSource, /data-hg-place-sheet-collection-link|syncCollectionNav/);
+  assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.doesNotMatch(shellSource, /pc-sheet-onsite/);
   assert.match(source, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
   assert.match(runtime, /css\/place-sheet\.css\?v=20260912-onsite-under-explore1/);
@@ -160,16 +159,12 @@ test("standard Places render directly in Place Sheet while Micro keeps the stand
   const aboutButton = nav?.querySelector('[data-hg-place-sheet-jump="about"]');
   const sideStack = collections?.querySelector('.pc-side-stack');
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
-  const eventsBox = nav?.querySelector('#pcEventsBox');
+  const eventsBox = collections?.querySelector('#pcEventsBox');
   assert.ok(mediaColumn && collections && nav && aboutButton && sideStack && eventsBox);
   assert.equal(sideStack.parentElement, collections, "visual collection rounds must stay with the front image in PlaceCard media");
-  assert.equal(eventsBox.parentElement, nav, "Events/Møtes must stay in the sticky header");
-  if (collectionLinks.length) {
-    assert.equal(aboutButton.nextElementSibling, collectionLinks[0], "collection text links must follow Om");
-    assert.equal(collectionLinks.at(-1)?.nextElementSibling, eventsBox, "Events/Møtes must follow collection text links");
-  } else {
-    assert.equal(aboutButton.nextElementSibling, eventsBox, "Events/Møtes must follow Om when no collection links are available");
-  }
+  assert.equal(eventsBox.parentElement, collections, "Events/Møtes must remain beside the collection grid, not inside the text nav");
+  assert.equal(nav.querySelector("#pcEventsBox"), null);
+  assert.equal(collectionLinks.length, 0, "rounds must not duplicate as section navigation tabs");
   assert.equal(card.querySelector('.pc-sheet-explore'), null, "legacy Explore section label must be gone");
   assert.equal(card.querySelector('[data-hg-place-sheet-onsite]'), null, "legacy onsite slot must be gone");
 

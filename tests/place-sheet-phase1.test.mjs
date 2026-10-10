@@ -14,8 +14,8 @@ test("Phase 1 shell reuses existing PlaceCard nodes instead of cloning them", ()
   assert.match(shellSource, /media\.prepend\(front\)/);
   assert.match(shellSource, /copy\.prepend\(textBlock\)/);
   assert.match(shellSource, /collections\.appendChild\(sideStack\)/);
-  assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
-  assert.match(shellSource, /insertAfter\?\.after\(events\)/);
+  assert.doesNotMatch(shellSource, /syncCollectionNav|data-hg-place-sheet-collection-link/);
+  assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.doesNotMatch(shellSource, /cloneNode/);
   assert.match(shellSource, /restoreLegacyPlaceCardStructure/);
   assert.match(shellSource, /pc-sheet-canonical-about/);
@@ -102,12 +102,12 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
   assert.ok(nav && aboutButton && sideStack);
-  assert.equal(collectionLinks.length, 4);
-  assert.equal(aboutButton.nextElementSibling, collectionLinks[0]);
+  assert.equal(collectionLinks.length, 0, "collection rounds must not appear in text navigation");
+  assert.equal(nav.querySelectorAll('[data-hg-place-sheet-jump]').length, 9);
   assert.equal(sideStack.parentElement?.classList.contains("pc-sheet-explore-grid"), true);
 
-  // The on-site owner relocates the same canonical node after the shell has
-  // initially mounted it in the nav. No Events/Møtes copy is introduced.
+  // Events/Møtes stays beside the same canonical collection grid; no second
+  // set of round icons or a navigation shortcut is introduced.
   window.HGEvents = { ready:true, getUpcomingByPlace: () => [] };
   window.fetch = async () => ({ ok:false });
   window.eval(onsiteSource);

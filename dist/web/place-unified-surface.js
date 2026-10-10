@@ -1815,7 +1815,6 @@
   var SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
   var sectionNavObserver = null;
   var observedShell = null;
-  var observedPlace = null;
   var NAV_ITEMS = [
     ["about", "Om"],
     ["history", "Historie"],
@@ -1850,16 +1849,6 @@
       nav.innerHTML = NAV_ITEMS.map(([id, label]) => `<button type="button" data-hg-place-sheet-jump="${id}" hidden>${label}</button>`).join("");
       nav.addEventListener("click", (event) => {
         var _a, _b, _c;
-        const collectionButton = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-collection-link]") : null;
-        if (collectionButton instanceof HTMLElement && (nav == null ? void 0 : nav.contains(collectionButton))) {
-          const collectionId = text16(collectionButton.dataset.hgPlaceSheetCollectionLink);
-          if (!collectionId) return;
-          event.preventDefault();
-          const root2 = card();
-          const collection = root2 ? Array.from(root2.querySelectorAll(".pc-collection")).find((node) => text16(node.dataset.collectionId) === collectionId) : null;
-          collection == null ? void 0 : collection.click();
-          return;
-        }
         const button = event.target instanceof Element ? event.target.closest("[data-hg-place-sheet-jump]") : null;
         if (!(button instanceof HTMLElement) || !(nav == null ? void 0 : nav.contains(button))) return;
         const target = text16(button.dataset.hgPlaceSheetJump);
@@ -1899,72 +1888,17 @@
       if (button.hidden === visible) button.hidden = !visible;
     });
   }
-  function hasCollectionContent(place, id, sideStack) {
-    var _a, _b;
-    let items;
-    try {
-      items = (_b = (_a = runtime17.HGPlaceCardCollections) == null ? void 0 : _a.getItems) == null ? void 0 : _b.call(_a, place, id);
-    } catch {
-    }
-    if (Array.isArray(items)) {
-      if (items.length) return true;
-      if (!["flora", "fauna", "map"].includes(id)) return false;
-    }
-    const icon = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).find((node) => text16(node.dataset.collectionId) === id) : null;
-    if (!(icon instanceof HTMLElement) || icon.hidden || icon.getAttribute("aria-hidden") === "true") return false;
-    const count = text16(icon.dataset.collectionItemCount);
-    if (count) return Number(count) > 0;
-    return !Array.isArray(items);
-  }
-  function syncCollectionNav(nav, place, sideStack) {
-    var _a, _b, _c;
-    nav.querySelectorAll("[data-hg-place-sheet-collection-link]").forEach((button) => button.remove());
-    const configured = ((_b = (_a = runtime17.HGPlaceCardCollections) == null ? void 0 : _a.get) == null ? void 0 : _b.call(_a, place)) || [];
-    const fallback = sideStack ? Array.from(sideStack.querySelectorAll(".pc-collection")).filter((node) => !node.hidden && text16(node.dataset.collectionId)).map((node) => ({
-      id: text16(node.dataset.collectionId),
-      label: text16(node.getAttribute("aria-label") || node.title)
-    })) : [];
-    const source = (typeof ((_c = runtime17.HGPlaceCardCollections) == null ? void 0 : _c.get) === "function" ? configured : fallback).filter((item) => hasCollectionContent(place, text16(item == null ? void 0 : item.id), sideStack));
-    const seen = /* @__PURE__ */ new Set();
-    let insertAfter = nav.querySelector('[data-hg-place-sheet-jump="about"]');
-    for (const item of source) {
-      const id = text16(item == null ? void 0 : item.id);
-      const label = text16(item == null ? void 0 : item.label);
-      if (!id || !label || seen.has(id)) continue;
-      seen.add(id);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "pc-sheet-collection-link";
-      button.dataset.hgPlaceSheetCollectionLink = id;
-      button.textContent = label;
-      insertAfter == null ? void 0 : insertAfter.after(button);
-      if (!insertAfter) nav.prepend(button);
-      insertAfter = button;
-    }
-    return insertAfter;
-  }
-  function observeSectionNav(shell4, place) {
-    observedPlace = place;
+  function observeSectionNav(shell4) {
     if (observedShell !== shell4) {
       sectionNavObserver == null ? void 0 : sectionNavObserver.disconnect();
       observedShell = shell4;
       sectionNavObserver = new MutationObserver((mutations) => {
         if (!(observedShell == null ? void 0 : observedShell.isConnected)) return;
-        let sectionsChanged = false;
-        let collectionsChanged = false;
-        for (const mutation of mutations) {
+        const sectionsChanged = mutations.some((mutation) => {
           const target = mutation.target;
-          if (!(target instanceof Element) || target.closest('[data-hg-place-sheet-nav="1"]')) continue;
-          if (target.closest("[data-hg-place-sheet-section]")) sectionsChanged = true;
-          if (target.closest(".pc-side-stack")) collectionsChanged = true;
-        }
+          return target instanceof Element && !target.closest('[data-hg-place-sheet-nav="1"]') && Boolean(target.closest("[data-hg-place-sheet-section]"));
+        });
         if (sectionsChanged) syncSectionNav(shell4);
-        if (collectionsChanged) {
-          const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
-          if (nav) {
-            if (observedPlace) syncCollectionNav(nav, observedPlace, shell4.querySelector(".pc-side-stack"));
-          }
-        }
       });
       sectionNavObserver.observe(shell4, {
         subtree: true,
@@ -2010,7 +1944,6 @@
     const media = shell4.querySelector("[data-hg-place-sheet-media]");
     const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
     const collections = shell4.querySelector("[data-hg-place-sheet-collections]");
-    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
     const front = root2.querySelector(".pc-frontcard");
     const textBlock = root2.querySelector(".pc-text");
     const sideStack = root2.querySelector(".pc-side-stack");
@@ -2020,10 +1953,8 @@
     if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
       collections.appendChild(sideStack);
     }
-    const insertAfter = nav ? syncCollectionNav(nav, place, sideStack) : null;
-    if (events instanceof HTMLElement && nav) {
-      insertAfter == null ? void 0 : insertAfter.after(events);
-      if (!insertAfter) nav.prepend(events);
+    if (events instanceof HTMLElement && collections && events.parentElement !== collections) {
+      collections.appendChild(events);
     }
     const legacyGrid = root2.querySelector(".pc-grid");
     if (legacyGrid && !legacyGrid.children.length) legacyGrid.hidden = true;
@@ -2092,7 +2023,7 @@
     const beforeAfterSlot = ensureBeforeAfterSlot(shell4);
     if (beforeAfterSlot) (_e = mountCanonicalBeforeAfter(beforeAfterSlot, place)) == null ? void 0 : _e.classList.add("pc-sheet-canonical-before-after");
     syncSectionNav(shell4);
-    observeSectionNav(shell4, place);
+    observeSectionNav(shell4);
     startAutomaticPlaceSheetRender(text16(place.id));
     return shell4;
   }
@@ -2101,7 +2032,6 @@
     sectionNavObserver == null ? void 0 : sectionNavObserver.disconnect();
     sectionNavObserver = null;
     observedShell = null;
-    observedPlace = null;
     const root2 = card();
     const rootBody = body();
     if (!(root2 instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;

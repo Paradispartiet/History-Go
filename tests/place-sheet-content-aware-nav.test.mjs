@@ -82,7 +82,11 @@ test("navigation uses actual rendered sections rather than the fixed list", asyn
     assert.ok(nav);
     await until(() => visible(nav, '[data-hg-place-sheet-jump]').includes("Om"));
 
-    assert.deepEqual(visible(nav, '[data-hg-place-sheet-collection-link]'), ["Brands", "Historiske hendelser"]);
+    assert.deepEqual(visible(nav, '[data-hg-place-sheet-collection-link]'), [],
+      "collection rounds must never create section navigation tabs");
+    assert.equal(window.document.querySelectorAll(
+      '[data-hg-place-sheet-collections] .pc-side-stack .pc-collection'
+    ).length, 3, "existing round icons remain in the collection area");
     for (const id of ["stories", "before-after", "news", "reading", "language", "learning", "sources"]) {
       assert.equal(nav.querySelector(`[data-hg-place-sheet-jump="${id}"]`)?.hidden, true, id + " must be hidden without content");
     }
@@ -120,7 +124,7 @@ test("navigation uses actual rendered sections rather than the fixed list", asyn
 
 test("navigation hides unavailable buttons even when the pill stylesheet sets display", () => {
   assert.match(source, /function hasSectionContent/);
-  assert.match(source, /function hasCollectionContent/);
+  assert.doesNotMatch(source, /function hasCollectionContent|function syncCollectionNav/);
   assert.match(source, /MutationObserver/);
   assert.match(source, /syncSectionNav\(shell\)/);
   assert.match(css, /\.pc-sheet-section-nav button\[hidden\]\s*\{\s*display:none !important;/);

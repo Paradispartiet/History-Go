@@ -25,9 +25,9 @@ test("Place Sheet collection visuals have no dark background box", () => {
   assert.match(css, /\.pc-sheet-explore-grid \.pc-collection\[data-collection-shape="rectangle"\]::before\{[\s\S]*?display:none/);
 });
 
-test("Place Sheet keeps collection text links, but places Events and Møtes below the rounds to the right of frontImage", () => {
-  assert.match(shellSource, /data-hg-place-sheet-collection-link/);
-  assert.match(shellSource, /syncCollectionNav\(nav, place, sideStack\)/);
+test("Place Sheet keeps only text-section links and puts Events/Møtes below collection rounds", () => {
+  assert.doesNotMatch(shellSource, /data-hg-place-sheet-collection-link|syncCollectionNav/);
+  assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.match(onsiteRuntime, /rounds\.after\(box\)/);
   assert.match(onsiteRuntime, /ensureBelowCollections\(\)/);
   assert.match(onsiteRuntime, /childList: true/);
