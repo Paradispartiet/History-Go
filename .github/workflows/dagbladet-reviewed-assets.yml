@@ -1,0 +1,48 @@
+name: Dagbladet reviewed source assets
+on:
+  push:
+    branches: ['production/dagbladet-assets-20261010']
+    paths: ['.github/workflows/dagbladet-reviewed-assets.yml']
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download reviewed originals and metadata
+        shell: python
+        run: |
+          import urllib.request, urllib.parse, json, hashlib, pathlib, time
+          titles = [
+            ('Dagbladet Akersgata.jpg','bilder/places/dagbladet_akersgata_front_2006.jpg','a518edf3e24f5f33957c77b07cb17a5ed06bdd74'),
+            ('Akersgata 49 (Dagbladet) OB.AH0606.jpg','bilder/places/dagbladet_akersgata_1968.jpg','3dc5281f2149e058473cf578d105044ef8a886d7'),
+            ('Dagbladet logo.svg','bilder/brands/dagbladet.svg','491116920a87bedbb7d6f37a7c9da60315153fc1')
+          ]
+          evidence = []
+          for title, dest, expected in titles:
+            params = {'action':'query','format':'json','titles':'File:'+title,'prop':'imageinfo','iiprop':'url|size|extmetadata'}
+            req = urllib.request.Request('https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode(params),headers={'User-Agent':'HistoryGo/1.0 (reviewed cultural-history import)'})
+            with urllib.request.urlopen(req,timeout=60) as r:
+              payload=json.load(r)
+            info=next(iter(payload['query']['pages'].values()))['imageinfo'][0]
+            with urllib.request.urlopen(urllib.request.Request(info['url'],headers={'User-Agent':'HistoryGo/1.0'}),timeout=60) as r:
+              data=r.read()
+            actual=hashlib.sha1(data).hexdigest()
+            if actual != expected: raise RuntimeError('Reviewed source changed: '+title+' '+actual)
+            target=pathlib.Path(dest)
+            if target.exists(): raise RuntimeError('Refusing to overwrite '+dest)
+            target.parent.mkdir(parents=True,exist_ok=True)
+            target.write_bytes(data)
+            evidence.append({'title':title,'path':dest,'sha1':actual,'imageinfo':info})
+            time.sleep(2)
+          out=pathlib.Path('reports/place-production/dagbladet-akersgata-image-originals-20261010.json')
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
+      - name: Commit imported assets to this isolated branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bilder/places/dagbladet_akersgata_front_2006.jpg bilder/places/dagbladet_akersgata_1968.jpg bilder/brands/dagbladet.svg reports/place-production/dagbladet-akersgata-image-originals-20261010.json
+          git commit -m "Import reviewed Dagbladet original photos and text logo"
+          git push origin HEAD:production/dagbladet-assets-20261010
