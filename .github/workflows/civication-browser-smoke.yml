@@ -16,6 +16,9 @@ on:
       - 'package-lock.json'
       - '.github/workflows/civication-browser-smoke.yml'
   workflow_dispatch:
+  # The full 20-scenario browser suite runs nightly and on manual dispatch.
+  schedule:
+    - cron: '29 4 * * *'
 
 permissions:
   contents: read
@@ -46,6 +49,10 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
       - name: Run Civication browser boot smoke
+        env:
+          # PRs verify boot, People UI and map. Nightly/manual also exercise all 20
+          # multi-day Arbeidsledig scenarios; no scenario is deleted.
+          CIVICATION_BROWSER_DEPTH: ${{ github.event_name == 'pull_request' && 'smoke' || 'full' }}
         run: npm run civication:boot-smoke
       - name: Upload browser diagnostics
         if: always()
