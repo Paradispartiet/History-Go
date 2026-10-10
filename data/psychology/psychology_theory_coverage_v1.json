@@ -1,0 +1,1141 @@
+{
+  "schema": "history_go_psykologi_theory_coverage_audit_v1",
+  "version": "1.0.0",
+  "subject_id": "psykologi",
+  "status": "audit_baseline_not_editorial_complete",
+  "updated_at": "2026-10-09",
+  "sources_of_truth": {
+    "theory_catalog": "data/psychology/psychology_theories.json",
+    "theory_catalog_intro_pr": 6168,
+    "theory_catalog_baseline_commit": "b2bb631971bc1754c0c8361cd98090034002b200",
+    "fagverk_chapters": "data/fagverk/psykologi/<chapter_id>.json",
+    "fagverk_articles": "data/fagverk/psykologi/emneartikler/<emne_id>.json",
+    "authoritative_theory_criteria": "data/fag/fagverk_theory_quality_contract_v1.json",
+    "production_plan": "docs/PSYKOLOGROMMET_PSYKOTEORI_PRODUKSJONSPLAN.md"
+  },
+  "status_meanings": {
+    "linked_unreviewed": "A theory card references the canonical emne, but claims have not been proven against specific sources; NOT completed theory coverage.",
+    "unmapped": "No theory-room card references the emne; its Fagverk article exists independently.",
+    "not_reviewed": "Exact support and limitations have not been inspected.",
+    "article_claim_candidates": "Potential claim IDs from the canonical Fagverk article, NOT necessarily evidence for the theory card.",
+    "article_source_candidates": "Potential source IDs from the canonical Fagverk article, NOT individually validated for the theory card.",
+    "verified_theory_claim_ids": "Specific theory-card claims checked against their supporting sources (none initially).",
+    "verified_theory_source_ids": "Scholarly sources checked for the theory-card statements (none initially).",
+    "partial_reference_review": "External references for limited historic/method claims were inspected; full theory evidence and editorial approval remain pending."
+  },
+  "coverage_entries": [
+    {
+      "emne_id": "em_psy_atferd_laring",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_atferd_laring.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_betinging_vaner",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_betinging_vaner.json",
+      "theory_ids": [
+        "behaviorisme"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "fti-10",
+        "fti-11",
+        "fti-12",
+        "kfa-16",
+        "kfa-18"
+      ],
+      "article_source_candidates": [
+        "src-apa-behaviorism",
+        "src-bias-measurement",
+        "src-habit-review",
+        "src-harvard-skinner"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://doi.org/10.1037/h0074428",
+          "https://psychology.fas.harvard.edu/people/b-f-skinner",
+          "https://www.bfskinner.org/publications/books/"
+        ],
+        "report": "reports/psychology/psykoteori_source_review_batch_01_2026-10-09.md"
+      }
+    },
+    {
+      "emne_id": "em_psy_bevissthet_opplevelse",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_bevissthet_opplevelse.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_diagnose_klassifikasjon",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_diagnose_klassifikasjon.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_folelser_affekt",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_folelser_affekt.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_forskning_metode",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_forskning_metode.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_hjerne_kognisjon",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_hjerne_kognisjon.json",
+      "theory_ids": [
+        "kognitiv_psykologi"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "fti-18",
+        "fti-20",
+        "fti-13",
+        "fti-14",
+        "kfa-21"
+      ],
+      "article_source_candidates": [
+        "src-apa-cognitive",
+        "src-apa-neuropsych",
+        "src-emotion-cognition-fundamental",
+        "src-emotion-cognition-imaging",
+        "src-ncbi-emotions",
+        "src-sep-cognitive-science"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://plato.stanford.edu/archives/spr2026/entries/cognitive-science/",
+          "https://jonas.salk.edu/cgi-bin/koha/opac-detail.pl?biblionumber=4239"
+        ],
+        "report": "reports/psychology/psykoteori_source_review_batch_01_2026-10-09.md"
+      }
+    },
+    {
+      "emne_id": "em_psy_motivasjon_behov",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_motivasjon_behov.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_nevroaffekt_regulering",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_nevroaffekt_regulering.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_personlighet_individ",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_personlighet_individ.json",
+      "theory_ids": [
+        "femfaktormodellen"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "fti-21",
+        "fti-22",
+        "fti-23",
+        "fti-03",
+        "uol-23"
+      ],
+      "article_source_candidates": [
+        "src-identity-review",
+        "src-pmc-ffm",
+        "src-pmc-personality-clinical",
+        "src-pubmed-ffm",
+        "src-testing-standards"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/1635039/",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6732674/"
+        ],
+        "note": "Source-referenced historical/methodological subclaims only; NOT an accepted scholarly assessment of every field in the theory card."
+      }
+    },
+    {
+      "emne_id": "em_psy_psykoanalyse",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_psykoanalyse.json",
+      "theory_ids": [
+        "psykoanalyse"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "fti-08",
+        "fti-09",
+        "fti-05",
+        "fti-25",
+        "fti-27"
+      ],
+      "article_source_candidates": [
+        "src-apa-behaviorism",
+        "src-apa-cognitive",
+        "src-apa-humanistic",
+        "src-apa-neuropsych",
+        "src-apa-unconscious",
+        "src-freud-legacy",
+        "src-freud-museum-about",
+        "src-leipzig-wundt"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://www.freud.org.uk/about-us/",
+          "https://www.loc.gov/item/77450592/",
+          "https://www.freud.org.uk/education/higher-education/freud-and-his-legacy-therapy-psychology-neuroscience/"
+        ],
+        "report": "reports/psychology/psykoteori_source_review_batch_01_2026-10-09.md"
+      }
+    },
+    {
+      "emne_id": "em_psy_psykometri_maling",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_psykometri_maling.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_selv_utvikling_mening",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_selv_utvikling_mening.json",
+      "theory_ids": [
+        "humanistisk_psykologi"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "fti-15",
+        "fti-16",
+        "fti-17",
+        "uol-22",
+        "uol-23"
+      ],
+      "article_source_candidates": [
+        "src-apa-humanistic",
+        "src-apa-humanistic-handbook",
+        "src-apa-motivation",
+        "src-identity-review"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://dictionary.apa.org/humanistic-perspective",
+          "https://doi.org/10.1037/h0045357",
+          "https://doi.org/10.1037/h0054346",
+          "https://www.apa.org/pubs/books/apa-handbook-humanistic-existential-psychology"
+        ],
+        "note": "Source-referenced historical/methodological subclaims only; NOT an accepted scholarly assessment of every field in the theory card."
+      }
+    },
+    {
+      "emne_id": "em_psy_ubevisste_prosesser",
+      "chapter_id": "fagtradisjoner-teori-og-sinnet",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_ubevisste_prosesser.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_affektregulering",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_affektregulering.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_beslutning_valg",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_beslutning_valg.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_hverdagspsykologi",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_hverdagspsykologi.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_kognisjon_tenkning",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_kognisjon_tenkning.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_kognitive_bias",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_kognitive_bias.json",
+      "theory_ids": [
+        "heuristikker"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "kfa-13",
+        "kfa-14",
+        "kfa-15",
+        "kfa-10",
+        "kfa-12"
+      ],
+      "article_source_candidates": [
+        "src-bias-measurement",
+        "src-bias-systematic-review",
+        "src-heuristics",
+        "src-judgment-uncertainty"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://doi.org/10.1126/science.185.4157.1124",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7930832/"
+        ],
+        "note": "Source-referenced historical/methodological subclaims only; NOT an accepted scholarly assessment of every field in the theory card."
+      }
+    },
+    {
+      "emne_id": "em_psy_oppmerksomhet_fokus",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_oppmerksomhet_fokus.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_persepsjon_sansing",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_persepsjon_sansing.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_stress_belastning",
+      "chapter_id": "kognisjon-folelser-og-atferd",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_stress_belastning.json",
+      "theory_ids": [
+        "stressvurdering"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "kfa-25",
+        "kfa-26",
+        "kfa-27",
+        "kfa-08",
+        "tkr-21"
+      ],
+      "article_source_candidates": [
+        "src-allostasis",
+        "src-chronic-stress",
+        "src-emotion-cognition-fundamental",
+        "src-emotion-cognition-imaging",
+        "src-stress-appraisal",
+        "src-who-emergencies",
+        "src-who-stress"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/3712234/",
+          "https://www.who.int/news-room/questions-and-answers/item/stress"
+        ],
+        "note": "Only limited historical/methodological subclaims have inspected supporting references. NOT a full source/editorial acceptance of the card."
+      }
+    },
+    {
+      "emne_id": "em_psy_barn_ungdom",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_barn_ungdom.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_familie_samspill",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_familie_samspill.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_identitet_selv",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_identitet_selv.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_laring_hukommelse",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_laring_hukommelse.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_livslop_overganger",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_livslop_overganger.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_oppvekst_miljo",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_oppvekst_miljo.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_skole_motivasjon",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_skole_motivasjon.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_sosial_utvikling",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_sosial_utvikling.json",
+      "theory_ids": [
+        "sosial_laring"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "uol-16",
+        "uol-17",
+        "uol-18",
+        "uol-20",
+        "uol-24"
+      ],
+      "article_source_candidates": [
+        "src-identity-review",
+        "src-school-connectedness",
+        "src-sensitive-period",
+        "src-social-brain",
+        "src-social-reorientation"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/13864605/",
+          "https://pubmed.ncbi.nlm.nih.gov/847061/"
+        ],
+        "note": "Only limited historical/methodological subclaims have inspected supporting references. NOT a full source/editorial acceptance of the card."
+      }
+    },
+    {
+      "emne_id": "em_psy_tilknytning_relasjon",
+      "chapter_id": "utvikling-oppvekst-og-laring",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_tilknytning_relasjon.json",
+      "theory_ids": [
+        "tilknytning"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "uol-04",
+        "uol-05",
+        "uol-06",
+        "uol-03",
+        "uol-26"
+      ],
+      "article_source_candidates": [
+        "src-attachment-early-meta",
+        "src-attachment-lifespan-meta",
+        "src-harvard-brain-architecture",
+        "src-harvard-serve-return"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/32772822/",
+          "https://pubmed.ncbi.nlm.nih.gov/23210665/"
+        ],
+        "note": "Only limited historical/methodological subclaims have inspected supporting references. NOT a full source/editorial acceptance of the card."
+      }
+    },
+    {
+      "emne_id": "em_psy_diagnose_hverdagsliv",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_diagnose_hverdagsliv.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_ensomhet_tilhorighet",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_ensomhet_tilhorighet.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_fordommer_kategorisering",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_fordommer_kategorisering.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_grupper_roller",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_grupper_roller.json",
+      "theory_ids": [
+        "sosial_identitet"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "sns-01",
+        "sns-02",
+        "sns-03",
+        "sns-04",
+        "sns-05"
+      ],
+      "article_source_candidates": [
+        "src-conformity-review",
+        "src-descriptive-injunctive",
+        "src-identity-norm-adherence",
+        "src-norm-psychology",
+        "src-social-identity-influence",
+        "src-status-ingroup"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://doi.org/10.1002/ejsp.2420010202",
+          "https://pubmed.ncbi.nlm.nih.gov/32931718/"
+        ],
+        "note": "Bibliographic, historical and selected methodological subclaims checked; complete field-level source review and editorial acceptance remain outstanding."
+      }
+    },
+    {
+      "emne_id": "em_psy_normalitet_avvik",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_normalitet_avvik.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_sosial_kontroll",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_sosial_kontroll.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_sosial_pavirkning",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_sosial_pavirkning.json",
+      "theory_ids": [
+        "konformitet"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "sns-04",
+        "sns-05",
+        "sns-06",
+        "sns-01",
+        "sns-24"
+      ],
+      "article_source_candidates": [
+        "src-antistigma-meta",
+        "src-conformity-review",
+        "src-descriptive-injunctive",
+        "src-identity-norm-adherence",
+        "src-norm-psychology",
+        "src-prejudice-confrontation",
+        "src-social-identity-influence",
+        "src-stigma-interventions"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://doi.org/10.1037/h0093718",
+          "https://pubmed.ncbi.nlm.nih.gov/32931718/"
+        ],
+        "note": "Bibliographic, historical and selected methodological subclaims checked; complete field-level source review and editorial acceptance remain outstanding."
+      }
+    },
+    {
+      "emne_id": "em_psy_stigma_offentlighet",
+      "chapter_id": "sosialpsykologi-normalitet-og-stigma",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_stigma_offentlighet.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_kollektiv_krise",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_kollektiv_krise.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_resiliens_mestring",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_resiliens_mestring.json",
+      "theory_ids": [
+        "resiliens"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "tkr-22",
+        "tkr-23",
+        "tkr-24",
+        "tkr-20",
+        "tkr-27"
+      ],
+      "article_source_candidates": [
+        "src-collective-resilience-meta",
+        "src-grief-global-review",
+        "src-resilience-protective-review",
+        "src-social-support-meta",
+        "src-who-ptsd"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/11315249/",
+          "https://pubmed.ncbi.nlm.nih.gov/33271023/"
+        ],
+        "note": "Bibliographic, historical and selected methodological subclaims checked; complete field-level source review and editorial acceptance remain outstanding."
+      }
+    },
+    {
+      "emne_id": "em_psy_risiko_beskyttelse",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_risiko_beskyttelse.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_sorg_tap",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_sorg_tap.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_traume_regulering",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_traume_regulering.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_trygghet_tillit",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_trygghet_tillit.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_vold_belastning",
+      "chapter_id": "traume-krise-resiliens-og-omsorg",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_vold_belastning.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_behandling_omsorg",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_behandling_omsorg.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_behandlingsformer",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_behandlingsformer.json",
+      "theory_ids": [
+        "kognitiv_terapi"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "phi-07",
+        "phi-08",
+        "phi-09"
+      ],
+      "article_source_candidates": [
+        "src-helsedir-forlop",
+        "src-helsedir-medvirkning",
+        "src-helsedir-psykiatri",
+        "src-helsenorge-ebehandling",
+        "src-ous-dikemark",
+        "src-phvf-2026",
+        "src-phvl-2026"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://www.guilford.com/books/Cognitive-Therapy-of-Depression/Beck-Rush-Shaw-Emery/9781572305823/prior-editions",
+          "https://www.helsenorge.no/psykisk-helse/hjelp-og-behandling/ebehandling/"
+        ],
+        "note": "Bibliographic, historical and selected methodological subclaims checked; complete field-level source review and editorial acceptance remain outstanding."
+      }
+    },
+    {
+      "emne_id": "em_psy_byrom_psykisk_helse",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_byrom_psykisk_helse.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_institusjoner_psykiatri",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_institusjoner_psykiatri.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_krise_intervensjon",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_krise_intervensjon.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_makt_omsorg",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_makt_omsorg.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_omsorg_system",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_omsorg_system.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_pasientrolle_erfaring",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_pasientrolle_erfaring.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_psykisk_helse",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_psykisk_helse.json",
+      "theory_ids": [
+        "biopsykososial_modell"
+      ],
+      "link_status": "linked_unreviewed",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [
+        "phi-01",
+        "phi-02",
+        "phi-03"
+      ],
+      "article_source_candidates": [
+        "src-helsenorge-hva-er",
+        "src-helsenorge-voksne",
+        "src-who-centres",
+        "src-who-guidance"
+      ],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": {
+        "status": "partial_historical_method_review",
+        "reference_urls": [
+          "https://pubmed.ncbi.nlm.nih.gov/847460/",
+          "https://www.who.int/publications/i/item/9789240025707"
+        ],
+        "note": "Bibliographic, historical and selected methodological subclaims checked; complete field-level source review and editorial acceptance remain outstanding."
+      }
+    },
+    {
+      "emne_id": "em_psy_terapi_praksis",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_terapi_praksis.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_terapirom_relasyon",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_terapirom_relasyon.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    },
+    {
+      "emne_id": "em_psy_velferd_psykisk_helse",
+      "chapter_id": "psykisk-helse-institusjoner-og-behandling",
+      "article_path": "data/fagverk/psykologi/emneartikler/em_psy_velferd_psykisk_helse.json",
+      "theory_ids": [],
+      "link_status": "unmapped",
+      "source_review_status": "not_reviewed",
+      "editorial_review_status": "not_reviewed",
+      "article_claim_candidates": [],
+      "article_source_candidates": [],
+      "verified_theory_claim_ids": [],
+      "verified_theory_source_ids": [],
+      "partial_reference_review": null
+    }
+  ]
+}
