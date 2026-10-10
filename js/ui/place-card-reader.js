@@ -112,10 +112,13 @@
   }
 
   function cancelVoice() {
+    const hadVoice = inFlight || Boolean(speech?.speaking || speech?.pending || speech?.paused);
     generation++;
     inFlight = false;
     unmark();
-    if (supported) {
+    // Ikke send cancel() rett før første speak() på en ledig syntetisator.
+    // Dette kan på Safari avbryte oppstarten av de første korte setningene.
+    if (supported && hadVoice) {
       try { speech.cancel(); } catch (_) { /* synthesizer kan være utilgjengelig */ }
     }
   }
