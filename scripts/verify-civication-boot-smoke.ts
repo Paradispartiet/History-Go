@@ -8,6 +8,9 @@ let playwright: any;
 try { playwright = require('playwright'); } catch { console.error('Playwright not installed'); process.exit(2); }
 
 (async () => {
+  // Default remains exhaustive for manual/nightly runs; PR smoke skips only
+  // the 20 multi-day Arbeidsledig playthrough scenarios.
+  const depth = process.env.CIVICATION_BROWSER_DEPTH === 'smoke' ? 'smoke' : 'full';
   const origin = 'http://127.0.0.1:4173';
   const manifest = JSON.parse(readFileSync(join(process.cwd(), 'data/places/manifest.json'), 'utf8'));
   const sourceHttpErrors = require(join(process.cwd(), 'scripts/civication-source-http-gate.cjs'));
@@ -17,7 +20,7 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
   let serverError: Error | null = null;
   server.on('error', error => { serverError = error; });
   let browser: any;
-  const report: any = { pageErrors: [], failedRequests: [], httpErrors: [], people: null };
+  const report: any = { depth, pageErrors: [], failedRequests: [], httpErrors: [], people: null };
   let phase = 'boot';
   try {
     const deadline = Date.now() + 15000;
@@ -82,8 +85,12 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
-    report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
-    console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
+    if (depth === 'full') {
+      report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
+      console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
+    } else {
+      console.log('Civication PR smoke passed; full Arbeidsledig scenarios run daily or by workflow_dispatch.');
+    }
   } finally {
     try { if (browser) await browser.close(); }
     finally {

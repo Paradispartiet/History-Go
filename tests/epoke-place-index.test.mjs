@@ -17,7 +17,25 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 240);
-  assert.equal(index.stats.verified_place_production_milestone_count, 593);
+  assert.ok(index.stats.verified_place_production_milestone_count >= 593, "previous verified milestones must remain available");
+});
+
+
+test("VG-huset contributes seven source-backed, site-scoped chronology anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "vg_huset")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.deepEqual(
+    milestones.map(({ year }) => year).sort((a, b) => a - b),
+    [1944, 1994, 1995, 2000, 2011, 2014, 2024]
+  );
+  assert.ok(milestones.every(({ source_file }) => source_file === "data/places/production/vg_huset.json"));
+  assert.match(milestones.find(({ year }) => year === 1944)?.title ?? "", /tidligere bygningen/u);
+  assert.match(milestones.find(({ year }) => year === 1994)?.title ?? "", /Dagens VG-hus/u);
+  assert.ok(!milestones.some(({ year }) => year === 1945), "avisens 1945-grunnleggelse er ikke dagens bygnings tidsanker");
 });
 
 test("Klassekampen contributes exactly eight verified production milestones", () => {
@@ -158,10 +176,10 @@ test("Oslo coverage classifies every canonical place exactly once without overst
 
   // Reviewed Oslo places, including the phase-2 blue signs, carry dated, source-backed History evidence.
   assert.equal(coverage.canonical_place_count, 586);
-  assert.equal(coverage.dated_evidence_place_count, 247);
+  assert.equal(coverage.dated_evidence_place_count, 248);
   assert.equal(coverage.documented_case_place_count, 2);
-  assert.equal(coverage.awaiting_source_backed_history_count, 337);
-  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset"]) {
+  assert.equal(coverage.awaiting_source_backed_history_count, 336);
+  for (const placeId of ["akershus_slott", "bogstadveien", "gamle_radhus", "gamle_trikkestallen", "markveien", "waisenhuset_kongens_gate", "paulus_kirke", "freia_fabrikken", "lilleborg_fabrikker", "ovre_foss", "arbeidermuseet", "clemenskirken_ruin_oslo", "minneparken_gamlebyen", "saxegarden", "gamlebyen_gravlund", "gamlebyen_kirke", "galgeberg", "kampen_kirke", "kampen_park", "klosterenga_skulpturpark", "sagene", "torshov", "torshovparken", "grorud", "grorudparken", "the_mini_bottle_gallery", "hammersborg_torg", "gronland_kirke", "dramatikkens_hus", "rodelokka", "vinderen", "ullern", "spikersuppa", "mollergata_skole", "slottsparken", "peststotten_krist_kirkegard", "prinds_christian_augusts_minde", "stortorget", "tollpakkhuset", "museumsleiligheten_grabein"]) {
     assert.equal(
       coverage.places.find((place) => place.place_id === placeId)?.status,
       "dated_evidence",

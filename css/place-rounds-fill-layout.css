@@ -138,3 +138,31 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-
     grid-template-rows:repeat(2, minmax(166px, auto)) !important;
   }
 }
+
+/* A two-tile Place Sheet on narrow phones has no empty 166px reserved
+   row. Natural tile height leaves room for the live Events/Møtes actions
+   alongside the 3:4 portrait rather than below the scroll viewport. */
+@media (max-width:520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad[data-collection-count="2"]{
+    grid-template-rows:auto !important;
+  }
+}
+
+/* In the canonical direct Place Sheet, the legacy 100%-height tiles
+   must not size their flex column. Collection rows use their content
+   height; the remaining space belongs to the alignment of Events/Møtes. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid > .pc-side-stack{
+  height:auto !important;
+  max-height:none !important;
+  min-height:0 !important;
+  align-self:flex-start;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1.is-place-sheet-direct .pc-sheet-explore-grid .pc-icons-quad{
+  height:auto !important;
+  max-height:none !important;
+  min-height:0 !important;
+  aspect-ratio:auto !important;
+  /* Legacy four-row grid must not reserve empty rows in the direct sheet. */
+  grid-template-rows:none !important;
+  align-content:start;
+}

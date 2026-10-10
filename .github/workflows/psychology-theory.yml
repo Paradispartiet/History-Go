@@ -1,0 +1,42 @@
+name: Psykoteori
+
+on:
+  pull_request:
+    paths:
+      - 'data/psychology/**'
+      - 'data/fagverk/psykologi/**'
+      - 'data/fag/psykologi/**'
+      - 'js/psychologyRoom.js'
+      - 'css/psychologyRoom.css'
+      - 'tests/civication-psychology-room-theory.test.js'
+      - 'tests/civication-psychology-room-coverage.test.js'
+      - 'tests/civication-psychology-room-tools.test.js'
+      - 'tests/civication-psychology-competence.test.js'
+      - 'scripts/audit-psychology-theory-coverage.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/psychology-theory.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  theory:
+    name: Psykoteori source and navigation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Check Psykologrommet runtime syntax
+        run: node --check js/psychologyRoom.js
+      - name: Validate theory coverage, read-only navigation and competence boundaries
+        run: npm run test:psychology

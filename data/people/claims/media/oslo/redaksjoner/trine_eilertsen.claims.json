@@ -63,6 +63,28 @@
           "value": "I 2014 flyttet Aftenposten til lokaler i VG-huset."
         }
       ]
+    },
+    {
+      "id": "aftenposten_sjefredaktor_2020",
+      "claim": "Trine Eilertsen tiltrådte som sjefredaktør i Aftenposten 1. januar 2020 etter å ha vært politisk redaktør fra 2014 til 2020.",
+      "source_url": "https://snl.no/Trine_Eilertsen",
+      "source_location": "Innledning: overtok som sjefredaktør fra 1. januar 2020; tidligere politisk redaktør 2014–2020.",
+      "source_type": "recognized_reference",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-09",
+      "status": "verified",
+      "evidence_level": "direct"
+    },
+    {
+      "id": "portrait_identity_2017",
+      "claim": "Bildet «Trine Eilertsen (192054).jpg» er fotografert av Tore Sætre og publisert på Wikimedia Commons under CC BY-SA 4.0.",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Trine_Eilertsen_(192054).jpg",
+      "source_location": "Filbeskrivelse: foto Tore Sætre, CC BY-SA 4.0, fotografert 2017.",
+      "source_type": "institutional",
+      "temporal_status": "historical",
+      "verified_at": "2026-10-09",
+      "status": "verified",
+      "evidence_level": "direct"
     }
   ],
   "field_claim_map": {
@@ -74,7 +96,8 @@
     ],
     "desc": [
       "aftenposten_start_2014",
-      "politisk_redaktor_2014"
+      "politisk_redaktor_2014",
+      "aftenposten_sjefredaktor_2020"
     ],
     "year": [
       "aftenposten_start_2014"
@@ -94,9 +117,15 @@
       "politisk_redaktor_2014"
     ],
     "popupDesc": [
-      "aftenposten_start_2014",
       "politisk_redaktor_2014",
-      "aftenposten_akersgata55_2014"
+      "aftenposten_akersgata55_2014",
+      "aftenposten_sjefredaktor_2020"
+    ],
+    "image": [
+      "portrait_identity_2017"
+    ],
+    "cardImage": [
+      "portrait_identity_2017"
     ]
   },
   "sentence_claim_map": {
@@ -104,8 +133,8 @@
       {
         "sentence": 1,
         "claim_ids": [
-          "aftenposten_start_2014",
-          "politisk_redaktor_2014"
+          "politisk_redaktor_2014",
+          "aftenposten_sjefredaktor_2020"
         ]
       }
     ],
@@ -113,7 +142,6 @@
       {
         "sentence": 1,
         "claim_ids": [
-          "aftenposten_start_2014",
           "politisk_redaktor_2014"
         ]
       },
@@ -122,16 +150,22 @@
         "claim_ids": [
           "aftenposten_akersgata55_2014"
         ]
+      },
+      {
+        "sentence": 3,
+        "claim_ids": [
+          "aftenposten_sjefredaktor_2020"
+        ]
       }
     ]
   },
   "completion": {
     "completed_under": "people_profile_v1.0",
-    "claims_verified": "3/3",
-    "fact_review": "pending",
+    "claims_verified": "5/5",
+    "fact_review": "passed",
     "editorial_review": "passed",
-    "source_verified_at": "2026-10-08",
+    "source_verified_at": "2026-10-09",
     "validator_version": "1.0.0",
-    "current_status": "legacy_unreviewed"
+    "current_status": "ready_people_v1"
   }
 }

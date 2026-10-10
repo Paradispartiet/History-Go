@@ -1,0 +1,31 @@
+name: Civication quiz references
+
+on:
+  pull_request:
+    paths:
+      - 'data/quiz/**'
+      - 'data/Civication/roleWorlds/**'
+      - 'data/Civication/mailFamilies/**'
+      - 'data/Civication/roleModels/**'
+      - 'tests/civication-quiz-active-refs.test.mjs'
+      - '.github/workflows/civication-quiz-refs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quiz-refs:
+    name: Active quiz reference integrity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate active quiz references, not retired audit IDs
+        run: node tests/civication-quiz-active-refs.test.mjs
