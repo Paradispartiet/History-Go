@@ -5,7 +5,7 @@
   "status": "preflight",
   "production_profile": "major",
   "profile_status": "confirmed",
-  "profile_reason": "VG-huset 1994, krigshistorisk tomt, avis og nettavis, arkitektur og redaksjonell samlokalisering. Produksjon fortsetter; ingen samling eller slutt-QA godkjent.",
+  "profile_reason": "Major: VG-huset 1994, sabotasjen på den eldre tomten i 1944, VG og VG Nett, avisutstillingsmonter, arkitektur og redaksjonell samlokalisering. Canonical innhold og QuizCard er nå produsert og integrert med kildeledet quiz PR #6190; sluttføring avhenger av faktisk helhetlig PlaceCard-/Safari-review.",
   "rule_preflight": {
     "schema": "history_go_place_rule_preflight_v1",
     "status": "PASS",
@@ -81,11 +81,10 @@
     "source_review": "reports/place-production/vg-huset-source-review-20261009.md"
   },
   "blockers": [
-    "PlaceCard content collections/QuizCard/full popup and editorial mobile layout QA still outstanding; photo-only Chromium QA passed",
-    "No source- and asset-approved PlaceCard member collections",
-    "Quiz and QuizCard not verified for current full-production gate",
-    "Fagverk and language not browser-verified",
-    "Factuality and derived runtime synced; canonical V3 workflow and full UI closeout still pending"
+    "Krever reell helhetlig PlaceCard/browser-review med People/Objects/Brands/Productions, samlingspopup, lesespor, kildevisning og quizknapp etter siste merge fra main; tidligere foto- og komponenttester alene er ikke full slutt-QA.",
+    "Quizdata i #6190 er merget, og QuizCard finnes; faktisk quiz- og flip-interaksjon på iPad Safari på den endelige VG-huset-headen er ennå ikke attestert.",
+    "Native iPad Safari manuell sluttkontroll for 390px og iPad-bredde gjenstår; bot- og CI-tester kan ikke merkes som denne gjennomgangen.",
+    "VG-huset er fortsatt legacy/workcard-basert; eventuell migrering til V3-workflow og fullført V3-verify er et eget eksplisitt kvalitetssteg."
   ],
   "media_assets": {
     "image": {
@@ -128,5 +127,28 @@
       "pageErrors": 0,
       "note": "Automated Chromium photo-only QA with real local app, not end-to-end canonical PlaceCard closeout or native iPad Safari QA."
     }
+  },
+  "content_status": "canonical_content_integrated_ui_closeout_pending",
+  "completed_canonical_content": {
+    "reviewed_at": "2026-10-10",
+    "place_profile": [
+      "people",
+      "objects",
+      "brands",
+      "productions"
+    ],
+    "people": "Fem redaksjonelt kilde- og bildeverifiserte personer ved bygningen fra 1994. Kåre Valebrokk ved Akersgata 34 ligger i separat historisk holdback.",
+    "objects": "Lisensiert autentisk fotografi av VGs fysiske avisutstillingsmonter",
+    "brands": "Autentisk VG-merke med separat lisensavklart logo",
+    "productions": "Dokumentarisk bilde av VGs papiravisutgave fra 22. juli 2011, fotografert i bevart monter i 2013",
+    "quiz": "#6190 merget på 202058f685376c43fb00ccd3545fa1d9766bd59c; 4x7 kildeledede spørsmål, Knowledge synkronisert",
+    "quizcard": "Kildebelagt QuizCard media/vg_huset; egen runtime og kontrolltest",
+    "integrated_generator": "VG-huset integrated quiz and release sync #38029900939 bestod; artefakter generert mot oppdatert main",
+    "evidence_urls": [
+      "https://github.com/Paradispartiet/History-Go/pull/6190",
+      "https://github.com/Paradispartiet/History-Go/actions/runs/38029517086",
+      "https://github.com/Paradispartiet/History-Go/actions/runs/38029900939",
+      "https://github.com/Paradispartiet/History-Go/actions/runs/38017580239"
+    ]
   }
 }
