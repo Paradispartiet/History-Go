@@ -112,7 +112,7 @@ Den nye strukturerte filen `reports/psychology/psykoteori_claim_units_group1_202
 
 ## 8. Kildekontroll av originaltekst og oppfølgingsfunn (10. oktober 2026)
 
-Denne kontrollen gjelder **faktisk leste, navngitte tekststeder**, ikke full godkjenning av alle fire teorikort.
+Denne kontrollen gjelder **faktisk leste, navngitte tekststeder**, ikke full godkjenning av alle fire teorikort. Forordet er i tillegg kontrollert mot [Sigmund Freud Edition, den vitenskapelige utgaven av originaltrykket fra 1895 (sidene III–IV)](https://www.freudedition.net/werke/vorwort/druckschrift-24), som oppgir sin originalkilde, faksimile og tekststatus.
 
 ### 8.1 Breuer og Freud (1895) – originalt forord og kasusutvelgelse
 
