@@ -1,0 +1,52 @@
+name: Grabein quiz context regeneration (one shot)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/grabein-quiz-context-one-shot-20261010.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'fix/grabein-quiz-context-sync-20261010' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild only stale Grabein quiz-context artifact
+        run: |
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json
+          node scripts/build-quiz-production-context.mjs --category historie --target museumsleiligheten_grabein --output data/quiz/production_context/historie/museumsleiligheten_grabein.json --check
+      - name: Commit narrow artifact and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          expected="data/quiz/production_context/historie/museumsleiligheten_grabein.json"
+          while IFS= read -r f; do
+            if [ "$f" != "$expected" ]; then
+              echo "::error::Unexpected modified file: $f"
+              exit 1
+            fi
+          done < <(git diff --name-only)
+          if git diff --quiet -- "$expected"; then
+            echo "::error::Expected stale artifact did not change"
+            exit 1
+          fi
+          git add "$expected"
+          git rm .github/workflows/grabein-quiz-context-one-shot-20261010.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m "Data: synchronize Grabein deterministic quiz production context"
+          git push origin HEAD:fix/grabein-quiz-context-sync-20261010
