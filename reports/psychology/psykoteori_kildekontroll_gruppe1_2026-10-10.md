@@ -71,7 +71,7 @@ Kontrollobjektet er **utsagn × kilde × forskningsdesign**, ikke bare en funger
 
 **Dokumentert forskningscase:** Kovacs mfl. (1981) kontrollert behandling/følgeundersøkelse, presentert med avgrenset populasjon. **Hypotetiske eksempler i appen:** studieøvelsene i kortet er ikke anbefalinger om egenbehandling.
 
-**Åpent før `source_verified`:** full vurdering av alle relevante primærforsøk og effektstørrelsenes sensitivitet for placebo-/ventelistekontroller, frafall, utfallsmål og kliniske retningslinjer. Becks 1963-original er foreløpig bare bibliografisk kontrollert.
+**Åpent før `source_verified`:** full vurdering av alle relevante primærforsøk og effektstørrelsenes sensitivitet for placebo-/ventelistekontroller, frafall, utfallsmål og kliniske retningslinjer. Becks 1963-original er nå gjennomgått i en lesbar tredjepartsreproduksjon av originaltrykket, med bibliografisk kontroll mot JAMA (se seksjon 11).
 
 ## 5. Sammenligning på tvers av de fire kortene
 
@@ -173,8 +173,8 @@ Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes
 ### Beck, 1963 – historisk observasjon versus klinisk effekt
 
 - **Original:** Aaron T. Beck, *Thinking and Depression: I. Idiosyncratic Content and Cognitive Distortions*, *Archives of General Psychiatry* **9**(4), 324–333 (1963), DOI [10.1001/archpsyc.1963.01720160014002](https://jamanetwork.com/journals/jamapsychiatry/article-abstract/488402). [PubMed PMID 14045261](https://pubmed.ncbi.nlm.nih.gov/14045261/) har ikke sammendrag.
-- **Faktisk inspisert tekst:** Forlagets **åpne innledning**, der Beck beskriver at tidligere depresjonslitteratur la hovedvekt på affekt og motivasjon, mens kognitive prosesser var mindre utforsket. Den tilgjengelige forlagssiden avskjærer resten av artikkelen bak innlogging/tilgang.
-- **Konklusjon:** Vi kan verifisere **forskningshistorisk problemstilling og dato**, men **ikke** hele 1963-studiens utvalg, analyse, måleinstrumenter eller funn uten fulltekst. Derfor finnes ingen oppdiktede 1963-effektstørrelser, og den moderne effekten av CBT ved depresjon bygger fortsatt separat på **Kovacs mfl. (1981)** og **Cuijpers mfl. (2023)**.
+- **Faktisk inspisert tekst:** JAMA-originalens innledning ble først lest på forlagssiden. Deretter er **alle ti sidene av originaltrykket (324–333)** gjennomgått via [lesbar tredjepartsreproduksjon](https://essex-behavioural-therapy.co.uk/documents/client/Aaron%20T.%20Beck%20Article%2C%201963.pdf). Metadata er sammenholdt med JAMA; vertskapet for kopien er ikke utgiver.
+- **Konklusjon etter originaltekstgjennomgang:** Becks kliniske utvalg, sammenligningsgruppe, datainnsamling, funn og eksplisitte metodeforbehold kan nå etterprøves i originaltrykket. Studien gjaldt **50 pasienter med depresjon og 31 ikke-deprimerte psykiatriske sammenligningspasienter**; den målte ikke randomisert CBT-effekt. Separate effektstudier er fortsatt **Kovacs mfl. (1981)** og **Cuijpers mfl. (2023)**. Uavhengig design- og biasvurdering er fortsatt ikke sluttført.
 
 ### Status etter denne runden
 
@@ -182,7 +182,7 @@ Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes
 | --- | --- | --- | --- |
 | `tilknytning` | Bowlby-originalens begrepsdel og Ainsworth/Bell-originalens metode/funn i digitalisert reproduksjon | Uavhengig kvalitetskontroll av fullstendige originaltabeller, kulturell generaliserbarhet og senere målevaliditet | **Ikke godkjent** |
 | `resiliens` | Werner 1989 forlagssammendrag; Werner 1993 originaltrykksreproduksjon, metode og delresultater s. 503–509 | Resten av primærresultatene, samlet frafall, modelljusteringer og originalbok | **Ikke godkjent** |
-| `kognitiv_terapi` | Beck 1963, forlagsoriginal innledning | Resten av 1963-metoden, originalfunnenes usikkerhet, ekstern mekanismevalidering | **Ikke godkjent** |
+| `kognitiv_terapi` | Beck 1963, originaltrykk s. 324–333 i tredjepartsreproduksjon; JAMA-bibliografi kontrollert | Uavhengig vurdering av seleksjons- og observatørbias, replikasjon og mekanismens kausalitet | **Ikke godkjent** |
 | `psykoanalyse` | Breuer/Freud 1895, forord kontrollert mot kritisk tekstutgave | Full kontroll av kasus, moderne PDT-forsøkenes risiko-for-skjevhet og mekanismer | **Ikke godkjent** |
 
 Eksisterende **32 påstandsenheter**, `source_review_state=partial_historical_method_review`, `source_review_status=not_reviewed`, `editorial_review_status=not_reviewed` og 14-korts baseline beholdes til den komplette kvalitetsporten faktisk er bestått.
@@ -203,3 +203,29 @@ Eksisterende **32 påstandsenheter**, `source_review_state=partial_historical_me
 **Særskilt metodisk risiko:** Klassifikasjon av resiliens krever både forhåndsdefinert belastning og utviklingsutfall. Utvalgsseleksjon, overlevelse, voksenoppsporing og definisjon av «god tilpasning» kan påvirke hva man observerer. Påstand om en **universell «én tredel»-regel** ville være uriktig: 72 er en beskrevet undergruppe blant 201 høyrisikobarn, og oppfølgingsandelene har egne nevnere.
 
 Den strukturerte kildeaudit-filen har nå i tillegg `original_publication_audit.entries` med **åtte eksplisitte primærkildeporter**, nøyaktig tilgangsgrad og det faglige punktet som fortsatt blokkerer `source_verified`. Hele teorikortene forblir **ikke godkjent**, selv om bestemte bibliografiske og metodiske delpåstander er bedre belagt.
+
+
+## 11. Nytt primærkildegjennombrudd: Beck (1963) – originalartikkel med metodisk kritikk
+
+**Proveniens (kontroll 10. oktober 2026):** [JAMA Psychiatry, originalpublikasjon](https://jamanetwork.com/journals/jamapsychiatry/article-abstract/488402), DOI `10.1001/archpsyc.1963.01720160014002`, sammenholdt med [skannet originaltrykk hos tredjepartsvert (ti sider, 324–333)](https://essex-behavioural-therapy.co.uk/documents/client/Aaron%20T.%20Beck%20Article%2C%201963.pdf). Tredjepartsverten er **ikke** originalutgiver, men avtrykkets bibliografi, sidetall og artikkelstruktur samsvarer med JAMA. Originaltrykkets s. 325, 326, 332 og 333 er lest for metode, funn og metodekritikk.
+
+| Kontrollpunkt | Dokumentert i Becks originalartikkel | Vitenskapelig grense |
+| --- | --- | --- |
+| Utvalg, s. 325 | **50** deprimerte pasienter (16 menn, 34 kvinner; 18–48 år), **31** ikke-deprimerte psykiatriske sammenligningspasienter. Hovedsakelig middel-/overklasse; pasientene ble sett i terapi/psykoanalyse. | Klinisk, ikke befolkningsrepresentativ seleksjon; historiske diagnosekategorier svarer ikke direkte til dagens kriterier. |
+| Datagrunnlag, s. 325 | Beck nedtegnet selv håndskrevne opplysninger i behandlingssamtaler, både pasienters retrospektive rapporter og spontane ytringer. | Terapeut var samtidig registrator; ingen rapportert uavhengig blindet koding av det sentrale samtalematerialet. Risiko for selektiv rapportering, bekreftelses- og observatørbias. |
+| Rapportererte funn, s. 326 og 333 | Negative selvevalueringer, selvbebreidelse, opplevd deprivasjon og katastrofetolkninger ble beskrevet hos deprimerte pasienter; flere typer kognitive forvrengninger ble kategorisert. | Grupper ble sammenlignet på kliniske beskrivelser, ikke på et forhåndsregistrert, randomisert mekanismeforsøk. |
+| Forfatterens egne forbehold, s. 332–333 | Beck påpeker begrenset generaliserbarhet og problemene med håndskrevne terapinotater; han omtaler behov for mer systematiske undersøkelser og blindet koding. | Hypotesen om at tanker forårsaker depresjon er **ikke bevist**. Beck åpner selv for gjensidig påvirkning mellom affekt og kognisjon. |
+| Behandlingseffekt | Studien beskrev tankeinhold og kliniske fortolkninger; det var ikke tilfeldig fordeling mellom CBT og kontrollbehandling. | Klinisk CBT-effekt må undersøkes i andre studier, med spesifisert indikasjon og sammenligningsbetingelse. |
+
+### Foreløpig selvstendig metodekritisk gjennomgang – de fire teoritradisjonene
+
+Dette er en **kvalitativ, kildespesifikk** vurdering av tydelige feilkilder. Den er ikke en full, dobbeltvurdert ROBINS-I-/RoB-2-evaluering, og vurderingskriteriene er ulike for historisk teori, laboratorieobservasjon, longitudinell kohort og kasuistikk.
+
+| Primærgrunnlag | Vesentlig risiko for skjevhet | Beslutning for History Go |
+| --- | --- | --- |
+| Breuer/Freud 1895 | Kasusutvelgelse og terapeutens tolkning; mangler uavhengig kausal test | Godt belegg for **historisk praksis**; ikke godkjenning av Freuds mekanismer. |
+| Ainsworth/Bell 1970 | 56 sosialt ensartede spedbarn; 23/33 fra ulike opplegg; reliabilitetsdelutvalg 4/8/14 og prosedyrer med variasjon | Historisk observasjonsfunn; ikke generell diagnostisk validitet eller kulturell generaliserbarhet. |
+| Werner 1989/1993 og Werner/Smith 1982 | Observasjonell kohort; risikodefinisjon, tap til oppfølging, endrede livsfaser og mulige konfunderende faktorer | Utviklingsforløp og samvariasjoner; **ikke** en kausal «resiliensprosent» eller universell beskyttelsesfaktor. |
+| Beck 1963 | Klinisk seleksjon, notatbasert registrering og mulig terapeut-/observatørbias; ingen randomisering | Dokumentert begreps-/forskningstradisjon og kliniske observasjoner, **ikke** isolert årsaksmodell eller terapibevis. |
+
+**Ny status:** Full 1963-originaltekst er funnet og gjennomgått for den aktuelle, avgrensede metodekontrollen. Den tidligere sperren «kun innledning tilgjengelig» for *Beck 1963* er derfor lukket. Den bredere sperren på grunn av **uavhengig bias- og replikasjonskontroll** består. Werner og Smiths bok fra 1982 er fortsatt ikke fulltekstkontrollert. **0/4 `source_verified`, 0/4 redaksjonelt godkjent; ingen endring i kortenes statusfelt.**
