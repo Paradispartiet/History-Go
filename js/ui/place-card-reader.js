@@ -164,8 +164,8 @@
     };
     utterance.onerror = event => {
       if (token !== generation) return;
-      // Andre feil enn forventet avbrudd avslutter dette opplesningsforsøket.
-      if (event?.error === "canceled" || event?.error === "interrupted") return;
+      // Planlagte avbrudd har allerede ugyldiggjort tokenet ovenfor.
+      // Uventede avbrudd må stanse køen i stedet for å låse spilleren.
       cancelVoice();
       paused = true;
       updateControls();
