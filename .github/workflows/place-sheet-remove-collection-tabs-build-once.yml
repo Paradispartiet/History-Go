@@ -1,0 +1,39 @@
+name: Place Sheet section-only nav build (one shot)
+
+on:
+  push:
+    branches:
+      - fix/place-sheet-remove-collection-tabs-20261010
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/place-sheet-remove-collection-tabs-20261010
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Typecheck Place Sheet
+        run: npm run typecheck:web
+      - name: Rebuild canonical web runtime
+        run: npm run build:web
+      - name: Verify section-only nav and canonical Place Sheet layout
+        run: node --test tests/place-sheet-phase1.test.mjs tests/place-sheet-content-aware-nav.test.mjs
+      - name: Commit compiled runtime and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u -- dist/web
+          git rm -- .github/workflows/place-sheet-remove-collection-tabs-build-once.yml
+          git commit -m "build(place-sheet): compile section-only navigation"
+          git push origin HEAD:fix/place-sheet-remove-collection-tabs-20261010
