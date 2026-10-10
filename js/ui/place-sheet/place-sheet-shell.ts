@@ -34,6 +34,7 @@ const SHELL_ATTR = "data-hg-place-sheet-shell";
 const SHELL_SECTION_ATTR = "data-hg-place-sheet-section";
 let sectionNavObserver: MutationObserver | null = null;
 let observedShell: HTMLElement | null = null;
+let observedPlace: PlaceSheetPlace | null = null;
 const NAV_ITEMS = [
   ["about", "Om"],
   ["history", "Historie"],
@@ -190,6 +191,7 @@ function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: 
 }
 
 function observeSectionNav(shell: HTMLElement, place: PlaceSheetPlace): void {
+  observedPlace = place;
   if (observedShell !== shell) {
     sectionNavObserver?.disconnect();
     observedShell = shell;
@@ -207,7 +209,7 @@ function observeSectionNav(shell: HTMLElement, place: PlaceSheetPlace): void {
       if (collectionsChanged) {
         const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
         if (nav) {
-          syncCollectionNav(nav, place, shell.querySelector<HTMLElement>(".pc-side-stack"));
+          if (observedPlace) syncCollectionNav(nav, observedPlace, shell.querySelector<HTMLElement>(".pc-side-stack"));
         }
       }
     });
@@ -360,6 +362,7 @@ export function restoreLegacyPlaceCardStructure(): void {
   sectionNavObserver?.disconnect();
   sectionNavObserver = null;
   observedShell = null;
+  observedPlace = null;
   const root = card();
   const rootBody = body();
   if (!(root instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
