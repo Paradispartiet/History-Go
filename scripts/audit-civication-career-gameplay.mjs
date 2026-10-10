@@ -216,7 +216,13 @@ const missingModelFiles = (modelManifest.files || []).filter((rel) => !exists(re
 if (missingModelFiles.length) throw new Error(`roleModels manifest has missing files: ${missingModelFiles.join(', ')}`);
 const models = (modelManifest.files || []).map((rel) => ({ rel, json: readJson(rel) }));
 
-const testFiles = walk('tests').filter((rel) => /^tests\/civication-.*\.test\.js$/.test(rel));
+// Psykologrommet is a read-only learning surface, not a playable career role.
+// Its quizzes/theory/tools tests must never count as evidence that a career work world
+// has runtime coverage, even when text mentions the psychology badge/role ID.
+const testFiles = walk('tests').filter((rel) =>
+  /^tests\/civication-.*\.test\.js$/.test(rel) &&
+  !/^tests\/civication-psychology-room-/.test(rel)
+);
 const testTexts = testFiles.map((rel) => ({ rel, text: fs.readFileSync(abs(rel), 'utf8') }));
 const globalRuntimeTests = [
   'tests/civication-job-offer-eligibility-ui.test.js',
