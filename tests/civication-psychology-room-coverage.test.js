@@ -299,6 +299,18 @@ for (const url of [new1992Book, nlmSummary]) {
   assert.ok(ref && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0);
   assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(url));
 }
+
+// Edition provenance: Werner/Smith (1989) is a verified reprint of 1982, not a second adult cohort study.
+const reprint1989 = "https://ci.nii.ac.jp/ncid/BA13269997?l=en";
+assert.match(wernerCard.period, /1982.*1989.*opptrykk.*1992.*1993/);
+assert.match(wernerCard.period, /separat artikkel rapporterte Werner oppfølging til 32 år/);
+assert.ok(wernerCard.reference_links.some((ref) =>
+  ref.url === reprint1989 && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
+assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(reprint1989));
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "resiliens"
+  && ["founders", "period"].includes(u.field))
+  .every((u) => u.evidence_urls.includes(reprint1989) && u.card_is_source_verified === false));
+
 assert.match(wernerCard.method, /505 personer/);
 assert.match(wernerCard.limit, /505.*614.*698/);
 assert.match(detailedReview.original_publication_audit.entries.find((e) =>
