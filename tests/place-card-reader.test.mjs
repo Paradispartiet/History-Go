@@ -73,7 +73,9 @@ function fixture({ supported = true } = {}) {
   const body = new FakeElement("div", "", ["pc-body"]);
   const row = new FakeElement("div", "", ["pc-title-row"]);
   const title = new FakeElement("h2", "Akerselva");
+  title.id = "pcTitle";
   const description = new FakeElement("p", "Akerselva har industrihistorie.");
+  description.id = "pcDesc";
   const second = new FakeElement("p", "Her finner vi gamle fabrikker.");
   const hiddenSection = new FakeElement("div");
   hiddenSection.hidden = true;
@@ -117,7 +119,7 @@ function fixture({ supported = true } = {}) {
   };
   const document = {
     documentElement: { lang: "nb" },
-    getElementById: id => id === "placeCard" ? card : id === "pcFavorite" ? favourite : null,
+    getElementById: id => ({ placeCard: card, pcFavorite: favourite, pcTitle: title, pcDesc: description })[id] || null,
     createElement: tag => new FakeElement(tag),
     addEventListener() {},
   };
@@ -255,4 +257,31 @@ test("unsupported speech API disables the speaker toggle", () => {
   const f = fixture({ supported: false });
   assert.equal(f.toggle.disabled, true);
   assert.equal(f.toggle.getAttribute("aria-pressed"), "false");
+});
+
+test("canonical title and description are read before Om stedet even under aria-live wrappers", () => {
+  const f = fixture();
+  f.title.parentElement.setAttribute("aria-live", "polite");
+  f.description.setAttribute("aria-live", "polite");
+  const about = new FakeElement("h3", "Om stedet");
+  const popupDesc = new FakeElement("p", "Den fullstendige historien om stedet.");
+  f.body.appendChild(about);
+  f.body.appendChild(popupDesc);
+
+  f.dispatch(f.toggle);
+  assert.equal(f.spoken[0].text, "Akerselva");
+  f.spoken[0].onend();
+  assert.equal(f.spoken[1].text, "Akerselva har industrihistorie.");
+  f.spoken[1].onend();
+  assert.equal(f.spoken[2].text, "Her finner vi gamle fabrikker.");
+  f.spoken[2].onend();
+  assert.equal(f.spoken[3].text, "Om stedet");
+  f.spoken[3].onend();
+  assert.equal(f.spoken[4].text, "Den fullstendige historien om stedet.");
+
+  f.dispatch(f.body, f.description);
+  assert.equal(f.spoken[5].text, "Akerselva har industrihistorie.",
+    "tapping the canonical intro restarts there, before Om stedet");
+  f.spoken[5].onend();
+  assert.equal(f.spoken[6].text, "Her finner vi gamle fabrikker.");
 });
