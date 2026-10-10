@@ -51,3 +51,7 @@ Den midlertidige genereringsworkflowen ble fjernet av samme kontrollerte build-c
 - Fremtidig sluttføring må gjøres gjennom canonical V3-workflow og regenererte projeksjoner, ikke ved å håndredigere det avledede arbeidskortet.
 
 **Vurdering:** Kildedata og automatiske porter er teknisk lukket. Den eneste eksplisitte harde sluttporten som fortsatt ikke er attestert, er den helhetlige menneskelige/visuelle sluttvurderingen.
+
+## Separat blokkering i global CI — lukket på main
+
+Før denne PR-ens slutt-CI ble en eksisterende avledet quizkontekst for **Museumsleiligheten Gråbein** identifisert som usynkronisert på main. Feilen var dokumentert med identisk kildesnapshot på hovedgren og VG-branch og var ikke forårsaket av VG-husets endringer. Gråbein er rettet **separat** i [PR #6209](https://github.com/Paradispartiet/History-Go/pull/6209), grønn CI og merge `66ca1374780c0548941a62fd6044a40fbe647739`. Ingen Gråbein-kilde eller quizartifakt inngår i VG-husets PR. Etter merge kjøres VG-PR-ens exact-head-kontroller på nytt mot oppdatert `main`.
