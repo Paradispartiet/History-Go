@@ -266,6 +266,31 @@ assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
+
+// Werner 1982/1992/1993 provenance: historical book dates are not interchangeable.
+assert.match(reviewed.get("resiliens").period, /1982.*1989.*1992.*1993/);
+assert.match(reviewed.get("resiliens").method, /stianalyser med latente variabler/);
+assert.match(reviewed.get("resiliens").method, /1982 dekker ikke 32-årsresultatene/);
+assert.match(reviewed.get("resiliens").limit, /intervensjonsforsøk|evaluerte hjelpetiltak/);
+assert.match(reviewed.get("resiliens").limit, /kulturelt avhengige oppvekstvilkår/);
+const wernerSourceLinks = [
+  "https://books.google.com/books?id=1YqZAAAAIAAJ",
+  "https://www.scribd.com/document/799482252/Werner-1993"
+];
+const wernerCard = reviewed.get("resiliens");
+const wernerMatrix = fieldEvidence.cards.find((r) => r.theory_id === "resiliens");
+for (const url of wernerSourceLinks) {
+  const link = wernerCard.reference_links.find((r) => r.url === url);
+  assert.ok(link, "missing book provenance / original reproduction: " + url);
+  assert.deepEqual(link.canonical_claim_ids, []);
+  assert.deepEqual(link.canonical_source_ids, []);
+  assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(url));
+}
+assert.match(detailedReview.original_publication_audit.entries.find((e) =>
+  e.id === "resiliens_werner_smith_1982").access, /no_book_fulltext/);
+assert.match(detailedReview.original_publication_audit.entries.find((e) =>
+  e.id === "resiliens_werner_1993").access, /pages503_515_reviewed/);
+
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
 assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
