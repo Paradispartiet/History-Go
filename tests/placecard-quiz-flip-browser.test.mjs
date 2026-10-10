@@ -6,6 +6,10 @@ import sharp from "sharp";
 
 // Exercise the shipping flip handler and stylesheet, rather than duplicating their behavior.
 const source = fs.readFileSync("js/ui/place-card.js", "utf8");
+const liveMarkup = fs.readFileSync("index.html", "utf8");
+for (const id of ["pcQuizExpandBtn", "pcQuizExpanded", "pcQuizExpandedClose", "pcQuizExpandedContent"]) {
+  assert.ok(liveMarkup.includes(`id="${id}"`), `production PlaceCard must contain ${id}`);
+}
 const begin = source.indexOf("function bindPlaceCardQuizFlip(");
 const end = source.indexOf("\nfunction setPlaceCardQuizImage(", begin);
 assert.ok(begin >= 0 && end > begin, "canonical flip binding is available");
@@ -15,6 +19,7 @@ const html = `<!doctype html><html lang="nb"><head><meta charset="utf-8">
 <link rel="stylesheet" href="/css/placeCard.css">
 <style>body{margin:16px;background:#333}#pcFrontCardFlip{width:240px;max-width:none}</style>
 </head><body class="hg-app">
+<div id="placeCard" class="is-open"><h2 id="pcTitle">Teststed</h2>
 <div id="pcFrontCardFlip" class="pc-frontcard has-quiz-card" role="button" tabindex="0">
   <div class="pc-card-flip-inner">
     <div class="pc-card-face pc-card-face-front">
@@ -24,12 +29,20 @@ const html = `<!doctype html><html lang="nb"><head><meta charset="utf-8">
       <div id="pcQuizCardBack" class="pc-quiz-card-back" style="background:rgb(16, 150, 90)">
         <img id="pcQuizCardImage" class="pc-quiz-card-image" alt="Legacy QuizCard">
         <div id="pcQuizCardContent" class="pc-quiz-card-content" hidden>
-          <div class="pc-rendered-quiz-card"><h3>Quizkortets bakside</h3></div>
+          <div class="pc-rendered-quiz-card"><h3>Quizkortets bakside</h3><ol>
+            ${Array.from({length:60}, (_,i)=>`<li>Historisk spørsmål ${i+1}</li>`).join("")}
+          </ol></div>
         </div>
+        <button id="pcQuizExpandBtn" class="pc-quiz-expand-btn" type="button" aria-label="Vis quizkort stort">⛶</button>
       </div>
     </div>
   </div>
-</div></body></html>`;
+</div>
+<section id="pcQuizExpanded" class="pc-quiz-expanded" role="dialog" hidden>
+  <div class="pc-quiz-expanded-toolbar"><strong id="pcQuizExpandedTitle">Quizkort</strong>
+    <button id="pcQuizExpandedClose" class="pc-quiz-expanded-close" type="button">Lukk</button></div>
+  <div id="pcQuizExpandedContent" class="pc-quiz-expanded-content"></div>
+</section></div></body></html>`;
 const server = http.createServer((req, res) => {
   const pathname = new URL(req.url, "http://localhost").pathname;
   if (pathname === "/") {
@@ -101,6 +114,44 @@ try {
               engine + " " + width + " " + mode + " should conceal the front after flip");
             assert.ok(isGreen(await sampledColor(card)),
               engine + " " + width + " " + mode + " shows the QuizCard rather than a mirrored front image");
+            const expand = page.locator("#pcQuizExpandBtn");
+            assert.equal(await expand.isVisible(), true,
+              engine + " must show expand control in bottom right of QuizCard back");
+            await expand.click();
+            const fullView = page.locator("#pcQuizExpanded");
+            assert.equal(await fullView.isVisible(), true, "expanded QuizCard is visible");
+            assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), true,
+              "tapping expansion control must not flip the card to its front");
+            const bounds = await page.evaluate(() => {
+              const sheet = document.getElementById("placeCard").getBoundingClientRect();
+              const overlay = document.getElementById("pcQuizExpanded").getBoundingClientRect();
+              return {sheet:{left:sheet.left,top:sheet.top,right:sheet.right,bottom:sheet.bottom},
+                overlay:{left:overlay.left,top:overlay.top,right:overlay.right,bottom:overlay.bottom}};
+            });
+            for (const edge of ["left","top","right","bottom"]) {
+              assert.ok(Math.abs(bounds.sheet[edge]-bounds.overlay[edge]) <= 2,
+                engine + " enlarged QuizCard must fill PlaceCard edge " + edge);
+            }
+            if (mode === "rendered") {
+              assert.match(await page.locator("#pcQuizExpandedContent").innerText(), /Quizkortets bakside/);
+              const scrolling = await page.locator("#pcQuizExpandedContent").evaluate(el =>
+                ({ scrollHeight:el.scrollHeight, clientHeight:el.clientHeight }));
+              assert.ok(scrolling.scrollHeight > scrolling.clientHeight,
+                "long QuizCard has an independently scrollable reading surface");
+            } else {
+              assert.equal(await page.locator("#pcQuizExpandedContent > img").count(),1,
+                "image based QuizCard expands without replacing original source");
+              await page.waitForFunction(() => document.querySelector("#pcQuizExpandedContent > img")?.naturalWidth > 0);
+            }
+            await page.keyboard.press("Escape");
+            assert.equal(await fullView.isVisible(), false, "Escape closes enlarged QuizCard");
+            assert.equal(await expand.evaluate(el => document.activeElement === el),true,
+              "focus returns to expand control on close");
+            await expand.click();
+            await page.locator("#pcQuizExpandedClose").click();
+            assert.equal(await fullView.isVisible(), false, "close button dismisses enlarged QuizCard");
+            assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")),true,
+              "closing expanded view preserves the QuizCard side");
             await card.press("Enter");
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), false);
             assert.ok(isRed(await sampledColor(card)), engine + " should return to front on keyboard flip");
