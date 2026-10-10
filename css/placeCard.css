@@ -218,20 +218,21 @@
   z-index:1;
 }
 
-/* Classic board-game QuizCard design, used for rendered questions on both surfaces.
-   Legacy bitmap cards retain their original artwork within the same dark frame. */
+/* Elegant black board-game QuizCard: a single hairline frame, refined
+   corner ornaments, and large, high-contrast type. Bitmap cards stay intact. */
 .pc-quiz-card-back{
-  --pc-quiz-gold: #d4b47c;
+  --pc-quiz-metal: #bba477;
   --pc-quiz-paper: #f8fafc;
   width: 100%;
   height: 100%;
   position: relative;
   box-sizing: border-box;
-  background: radial-gradient(ellipse at 48% 0%, #263c54 0%, #142438 46%, #0a1421 100%);
+  background: radial-gradient(ellipse at 50% 0%, #1d1d1d 0%, #121212 40%, #080809 100%);
   color: var(--pc-quiz-paper);
   overflow: hidden;
-  border: 2px solid #b18f59;
-  box-shadow: inset 0 0 0 3px #101d2e, inset 0 0 0 4px rgba(212,180,124,.64);
+  border: 1px solid rgba(187,164,119,.78);
+  border-radius: 13px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.42);
 }
 
 .pc-quiz-card-image{
@@ -247,8 +248,8 @@
   overflow-y: auto;
   padding: 11px;
   box-sizing: border-box;
-  color: #f8fafc;
-  scrollbar-color: #b08d59 #17283a;
+  color: var(--pc-quiz-paper);
+  scrollbar-color: #887453 #171717;
 }
 
 .pc-rendered-quiz-card{
@@ -257,56 +258,78 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 18px 13px 17px;
-  border: 1px solid rgba(217,183,125,.82);
-  border-radius: 7px;
+  gap: 14px;
+  padding: 23px 15px 18px;
+  border: 0;
+  border-radius: 10px;
   color: #f8fafc;
-  background: radial-gradient(circle at 50% 0%, rgba(59,82,112,.46), transparent 56%), linear-gradient(160deg, #1b2c41, #101e30 74%, #0c1828);
-  box-shadow: inset 0 0 0 4px rgba(9,19,31,.82), inset 0 0 0 5px rgba(212,180,124,.27);
+  background: linear-gradient(165deg, #191919 0%, #101011 64%, #0a0a0b 100%);
+  box-shadow: 0 5px 18px rgba(0,0,0,.22);
 }
 
+/* Ornamental corner strokes replace the previous second full gold border. */
 .pc-rendered-quiz-card::before,
 .pc-rendered-quiz-card::after{
-  content: "✦";
+  content: "";
   position: absolute;
-  top: 6px;
-  color: #d4b47c;
-  opacity: .8;
-  font-size: 12px;
-  line-height: 1;
+  top: 11px;
+  width: 26px;
+  height: 19px;
+  opacity: .84;
   pointer-events: none;
 }
-.pc-rendered-quiz-card::before{ left: 9px; }
-.pc-rendered-quiz-card::after{ right: 9px; }
-
+.pc-rendered-quiz-card::before{
+  left: 12px;
+  border-left: 1px solid rgba(187,164,119,.7);
+  border-top: 1px solid rgba(187,164,119,.7);
+  border-top-left-radius: 9px;
+}
+.pc-rendered-quiz-card::after{
+  right: 12px;
+  border-right: 1px solid rgba(187,164,119,.7);
+  border-top: 1px solid rgba(187,164,119,.7);
+  border-top-right-radius: 9px;
+}
 .pc-rendered-quiz-head{
+  position: relative;
   text-align: center;
-  padding: 4px 7px 12px;
-  border-bottom: 1px solid rgba(212,180,124,.57);
+  padding: 7px 9px 17px;
+  border-bottom: 1px solid rgba(187,164,119,.32);
+}
+.pc-rendered-quiz-head::after{
+  content: "◆";
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 8px;
+  background: #161616;
+  color: #c4ad7e;
+  font-size: 10px;
+  line-height: 14px;
 }
 .pc-rendered-quiz-head h3{
-  margin: 6px 0;
+  margin: 7px 0;
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 700;
   font-size: 22px;
-  letter-spacing: .015em;
-  line-height: 1.18;
+  letter-spacing: .014em;
+  line-height: 1.2;
   text-wrap: balance;
   color: #fff;
 }
 .pc-rendered-quiz-kicker{
-  color: #e4c995;
+  color: #d9c49c;
   font-size: 12px;
   font-weight: 800;
-  letter-spacing: .17em;
+  letter-spacing: .15em;
   text-transform: uppercase;
 }
 .pc-rendered-quiz-head p{
-  margin: 5px 0 0;
+  margin: 6px 0 0;
   font-size: 13px;
-  line-height: 1.4;
-  color: #d6e0ea;
+  line-height: 1.45;
+  color: #dbdbdc;
 }
 
 .pc-rendered-quiz-list{
@@ -315,14 +338,14 @@
   margin: 0;
   padding: 0;
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.55;
 }
 .pc-rendered-quiz-list li{
   counter-increment: pc-quiz-question;
   position: relative;
   margin: 0 0 13px;
-  padding: 1px 0 12px 28px;
-  border-bottom: 1px solid rgba(212,180,124,.23);
+  padding: 2px 0 13px 30px;
+  border-bottom: 1px solid rgba(187,164,119,.18);
 }
 .pc-rendered-quiz-list li::before{
   content: counter(pc-quiz-question);
@@ -331,61 +354,56 @@
   top: 0;
   display: grid;
   place-items: center;
-  min-width: 20px;
-  height: 20px;
-  border: 1px solid rgba(212,180,124,.7);
+  min-width: 22px;
+  height: 22px;
+  border: 1px solid rgba(187,164,119,.6);
   border-radius: 50%;
-  color: #f2d7a5;
+  color: #e8d5b2;
   font: 700 13px/1 Georgia, serif;
 }
-
 .pc-rendered-quiz-options{
   display: grid;
-  gap: 5px;
-  margin-top: 9px;
+  gap: 6px;
+  margin-top: 10px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 .pc-rendered-quiz-option{
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 9px;
   min-width: 0;
-  padding: 6px 8px;
-  border: 1px solid rgba(212,180,124,.27);
-  border-radius: 5px;
-  background: rgba(241,246,255,.045);
+  padding: 8px 10px;
+  border: 1px solid rgba(187,164,119,.19);
+  border-radius: 7px;
+  background: rgba(255,255,255,.035);
   color: #f8fafc;
 }
 .pc-rendered-quiz-option-label{
   display: inline-grid;
   flex: 0 0 auto;
   place-items: center;
-  width: 19px;
-  height: 19px;
-  border: 1px solid rgba(228,201,149,.72);
-  border-radius: 3px;
-  color: #f0d6a9;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(187,164,119,.6);
+  border-radius: 4px;
+  color: #ead4ae;
   font: 700 13px/1 Georgia, serif;
 }
-
 .pc-rendered-quiz-answer-key{
   margin-top: auto;
-  padding: 12px 8px 2px;
-  border-top: 1px solid rgba(212,180,124,.65);
-  color: #e4edf6;
+  padding: 14px 8px 2px;
+  border-top: 1px solid rgba(187,164,119,.35);
+  color: #e5e4e1;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 .pc-rendered-quiz-answer-key strong{
-  color: #e9cd9b;
+  color: #e8ce9e;
   letter-spacing: .04em;
 }
 
-/* Expand control belongs to the QuizCard back only; the front still flips normally. */
-.pc-quiz-card-back{
-  position: relative;
-}
+/* Elegant square-button treatment, consistent in compact and expanded views. */
 .pc-quiz-expand-btn{
   position: absolute;
   right: 10px;
@@ -393,26 +411,33 @@
   z-index: 5;
   display: none;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1px solid rgba(255,255,255,.78);
-  border-radius: 11px;
-  color: white;
-  background: rgba(11,20,30,.88);
-  box-shadow: 0 2px 12px rgba(0,0,0,.36);
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(187,164,119,.62);
+  border-radius: 10px;
+  background: linear-gradient(150deg, #272727, #0d0d0e);
+  color: #e8d5b2;
+  box-shadow: 0 3px 12px rgba(0,0,0,.35);
   cursor: pointer;
   touch-action: manipulation;
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
 }
 .pc-frontcard.has-quiz-card.is-flipped .pc-quiz-expand-btn{
   display: grid;
 }
+.pc-quiz-expand-btn:hover,
+#placeCard .pc-quiz-expanded-close:hover{
+  border-color: #dfc79e;
+  background: #292827;
+  box-shadow: 0 4px 16px rgba(0,0,0,.5);
+}
 .pc-quiz-expand-btn:focus-visible,
 .pc-quiz-expanded-close:focus-visible{
-  outline: 3px solid #f1bf58;
+  outline: 3px solid #e6c88f;
   outline-offset: 3px;
 }
 
-/* This dialog is a child of #placeCard, never a viewport-covering modal. */
+/* The expanded reader stays inside PlaceCard rather than covering the map. */
 #placeCard .pc-quiz-expanded[hidden]{ display: none; }
 #placeCard .pc-quiz-expanded{
   position: absolute;
@@ -425,8 +450,8 @@
   grid-template-rows: auto minmax(0,1fr);
   gap: 12px;
   padding: clamp(12px, 2.2vw, 22px);
-  background: #111821;
-  color: #f9f5ec;
+  background: #0a0a0b;
+  color: #f8fafc;
 }
 #placeCard.pc-quiz-expanded-open .pc-body{
   overflow: hidden;
@@ -437,8 +462,11 @@
   justify-content: space-between;
   gap: 14px;
   min-height: 44px;
-  font-size: clamp(16px,2.2vw,22px);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(18px,2.3vw,23px);
+  letter-spacing: .024em;
   line-height: 1.25;
+  color: #f8f6f2;
 }
 #placeCard .pc-quiz-expanded-close{
   flex: 0 0 auto;
@@ -446,12 +474,14 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 12px;
-  background: #303b48;
-  color: #fff;
-  font-size: 23px;
+  border: 1px solid rgba(187,164,119,.62);
+  border-radius: 10px;
+  background: linear-gradient(150deg, #272727, #0d0d0e);
+  color: #e8d5b2;
+  font-size: 21px;
   cursor: pointer;
+  touch-action: manipulation;
+  transition: border-color .18s ease, background-color .18s ease, box-shadow .18s ease;
 }
 #placeCard .pc-quiz-expanded-content{
   min-width: 0;
@@ -464,11 +494,11 @@
   overflow: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  border: 2px solid #b18f59;
+  border: 1px solid rgba(187,164,119,.78);
   border-radius: 14px;
-  background: radial-gradient(ellipse at 50% 0%, #253b54, #142337 56%, #0a1421);
+  background: linear-gradient(180deg, #161616 0%, #09090a 100%);
   color: #f8fafc;
-  box-shadow: inset 0 0 0 4px #101c2d, inset 0 0 0 5px rgba(212,180,124,.6);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
 }
 #placeCard .pc-quiz-expanded-content[data-mode="image"]{
   align-items: center;
@@ -495,7 +525,7 @@
   max-width: 900px;
   margin-inline: auto;
   gap: 20px;
-  padding: clamp(18px, 3vw, 35px);
+  padding: clamp(22px, 3vw, 36px);
   border-radius: 10px;
 }
 #placeCard .pc-quiz-expanded-content .pc-rendered-quiz-head{
@@ -550,6 +580,12 @@
   font-size: clamp(16px,2vw,19px);
   line-height: 1.5;
   margin-top: 14px;
+}
+@media (prefers-reduced-motion: reduce){
+  .pc-quiz-expand-btn,
+  #placeCard .pc-quiz-expanded-close{
+    transition: none;
+  }
 }
 
 /* Høyre kvadrater (generelt) */
