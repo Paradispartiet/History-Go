@@ -125,4 +125,42 @@ assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimente
 assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
 assert.equal(catalog.theories.length, 14);
 
+// Structured evidence matrix: all 14 cards must expose traceable, bounded
+// source anchors. A source anchor is NOT proof that the full card is verified.
+const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
+assert.equal(fieldEvidence.schema, "history_go_psykoteori_field_evidence_matrix_v1");
+assert.equal(fieldEvidence.card_count, catalog.theories.length);
+assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.map((x) => x.id));
+for (const row of fieldEvidence.cards) {
+  const theory = catalog.theories.find((x) => x.id === row.theory_id);
+  assert.equal(row.emne_id, theory.emne_id, "matrix emne mismatch: " + row.theory_id);
+  assert.equal(row.chapter_id, theory.chapter_id, "matrix chapter mismatch: " + row.theory_id);
+  assert.equal(row.source_verification, "partial_historical_method_review");
+  assert.equal(row.editorial_approval, "not_reviewed");
+  assert.deepEqual(row.claims_reviewed,
+    ["founders", "period", "idea", "method", "limit", "contrast", "example", "example_secondary"]);
+  assert.ok(typeof row.key_claim === "string" && row.key_claim.length > 75,
+    "claim scope missing: " + row.theory_id);
+  assert.ok(typeof row.limitation === "string" && row.limitation.length > 75,
+    "limitations missing: " + row.theory_id);
+  assert.equal(row.reference_urls.length, 2, "two precise anchors required: " + row.theory_id);
+  for (const url of row.reference_urls) {
+    assert.ok(theory.reference_links.some((source) => source.url === url),
+      "matrix source not cited by theory: " + row.theory_id + " / " + url);
+  }
+  for (const id of row.canonical_claim_ids) {
+    assert.ok(theory.reference_links.some((reference) => reference.canonical_claim_ids.includes(id)),
+      "unknown bound claim in evidence matrix: " + row.theory_id + " / " + id);
+  }
+  for (const id of row.canonical_source_ids) {
+    assert.ok(theory.reference_links.some((reference) => reference.canonical_source_ids.includes(id)),
+      "unknown bound source in evidence matrix: " + row.theory_id + " / " + id);
+  }
+  assert.ok(theory.example_secondary.startsWith("Undervisningsscenario:"));
+  assert.notEqual(theory.example, theory.example_secondary);
+  assert.equal(row.secondary_scenario_status, "authored_hypothetical_not_historical_case");
+}
+assert.equal(fieldEvidence.cards.filter((x) => x.editorial_approval !== "not_reviewed").length, 0,
+  "structural evidence matrix must not confer scholarly approval");
+
 console.log("civication-psychology-room-coverage.test.js passed");
