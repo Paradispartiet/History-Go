@@ -10,7 +10,7 @@
 | `Psykoteori` (`.github/workflows/psychology-theory.yml`) | `data/psychology/**`, relevante Psykologifagverk-filer, Psykologrommet-kode/-stil, teoritester, pakkeavhengigheter | `node --check js/psychologyRoom.js` og `npm run test:psychology`. Kommandoen omfatter nå 58-emne-dekningsauditen og grensetestene mot Civication-kompetanse/persondata. |
 | `Civication` (`civication.yml`) | Relevante `data/Civication/**`, `js/Civication/**`, karriere-, badge- og governance-endringer, generelle `civication-*.test.js` | Full `test:civication` (698 testfiler per 10. oktober 2026) samt governance og generert sceneregister. **Unntak:** ren `civication-psychology-room-theory/coverage`-testendring starter ikke fullpakke. Fullpakken kjører også daglig ved 03:17 UTC og manuelt. |
 | `Typecheck baseline report` | TypeScript-/tool-kode, generelle Civication-tester, relevante npm-avhengigheter | Syntax- og TypeScript-diagnostikk med rapport. Kjøringen **gjentar ikke** full Civication-suite, karttester eller Playwright. |
-| `Civication browser smoke` | Civication-runtime, scene-/kartdata og relevante nettleser-/karttestfiler | Karttester, eksplisitte kart-auditer, Playwright-installasjon og faktisk Civication-oppstart. |
+| `Civication browser smoke` | Civication-runtime, scene-/kartdata og relevante nettleser-/karttestfiler | Karttester og Playwright-oppstart + People UI på relevante PR-er. Den **komplette** Arbeidsledig-browser-reisen (20 scenariovarianter) bevares i nattlig kjøring kl. 04:29 UTC og ved manuell start. |
 | `Civication quiz references` | Endringer i `data/quiz/**` og relevante Civication roleWorld-/mail-/model-JSON | Liten Node-test: alle refererte quizfiler skal finnes og være registrert i canonical manifest. `#id` må være et **aktivt** `set_id` eller spørsmål (ikke en historisk ID i `existing_quiz_audit`). |
 
 ## Beskyttede grenseflater
@@ -19,7 +19,7 @@
 - Endringer i Civications karrierelogikk, Mail, rolleverdener og felles runtime beholder full regresjon. Det er ikke trygt å fjerne de eksisterende Civication-testfilene.
 - Endringer i **quizdata** skal validere de faktiske Civication–quiz-referansene selv om ingen Civication-kode ble endret. Denne kontrollen er uavhengig av History Go-kjernens quizaudit.
 - Dersom både Psykoteori og Civication-runtime endres i samme PR, kan **flere relevante** workflows starte. Dette er tilsiktet, ikke utilsiktet duplisering.
-- `workflow_dispatch` er beholdt for full manuell kontroll. Daglig Civication-kjøring er en kontroll av `main`, ikke en erstatning for nødvendig PR-regresjon.
+- `workflow_dispatch` er beholdt for full manuell kontroll. Daglig Civication-kjøring er en kontroll av `main`, ikke en erstatning for nødvendig PR-regresjon. `CIVICATION_BROWSER_DEPTH=smoke` er eksplisitt PR-profil; uten denne miljøverdien kjøres fortsatt alle 20 Arbeidsledig-playthroughs som før. Ingen scenarioer er fjernet.
 - Jobbnavnet `Civication regression suite` og workflow-/jobbnavn i Typecheck er beholdt av hensyn til eksisterende CI-statuskrav. Eksakte branch-protection rulesets må verifiseres med riktig GitHub API/UI-tilgang før noen statusnavn fjernes eller gjøres obligatoriske.
 
 ## Feildokumentasjon og tekniske porter
