@@ -92,11 +92,14 @@ test("navigation uses actual rendered sections rather than the fixed list", asyn
     stories.innerHTML = '<section data-hg-place-sheet-owner="stories"><h3>Fortellinger</h3><p>En ny kildebelagt fortelling.</p></section>';
     await until(() => nav.querySelector('[data-hg-place-sheet-jump="stories"]').hidden === false);
 
-    const sources = window.document.createElement("section");
-    sources.setAttribute("data-hg-place-sheet-section", "sources");
+    // Use the actual asynchronous Sources slot; never insert a duplicate.
+    await until(() => window.HGPlaceSheetState?.snapshot?.()?.phase === "full-ready");
+    const shell = nav.closest('[data-hg-place-sheet-shell="1"]');
+    const sources = shell.querySelector('[data-hg-place-sheet-section="sources"]');
+    assert.ok(sources);
     sources.dataset.placeId = grabein.id;
+    sources.hidden = false;
     sources.innerHTML = '<section data-hg-place-sheet-owner="sources"><h3>Kilder</h3><div class="hg-place-tab-empty">Ingen brukerrettede kilder er registrert.</div></section>';
-    nav.closest('[data-hg-place-sheet-shell="1"]').append(sources);
     await delay(40);
     assert.equal(nav.querySelector('[data-hg-place-sheet-jump="sources"]').hidden, true, "empty-state text is not a source");
     sources.innerHTML = '<section data-hg-place-sheet-owner="sources"><h3>Kilder</h3><ul class="hg-place-source-list"><li>Byarkivet</li></ul></section>';
