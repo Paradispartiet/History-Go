@@ -168,7 +168,7 @@ Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes
 
 - **1989:** Emmy E. Werner, *High-Risk Children in Young Adulthood: A Longitudinal Study from Birth to 32 Years*, *American Journal of Orthopsychiatry* **59**, 72–81, DOI [10.1111/j.1939-0025.1989.tb01636.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1939-0025.1989.tb01636.x). Forlagets **originalsammendrag** angir analyser av fødselskohorten fra 1955 og at betydningen av risiko/beskyttelse skiftet mellom livsfaser, delvis ulikt etter kjønn. Ingen spesifikke numeriske kausale effekter er tillagt artikkelen.
 - **1993:** Werner, *Risk, Resilience, and Recovery: Perspectives from the Kauai Longitudinal Study*, *Development and Psychopathology* **5**(4), 503–515, DOI [10.1017/S095457940000612X](https://www.cambridge.org/core/journals/development-and-psychopathology/article/abs/risk-resilience-and-recovery-perspectives-from-the-kauai-longitudinal-study/DC3C3F10587A1A7D04C0310270717B3E). Artikkelen kom i **trykt årgang 1993**, men forlagets nettside viser **2009** som tidspunktet for digital publisering. Dette skal ikke feiltolkes som at studien stammer fra 2009. Originalforfatterens sammendrag lister oppfølging ved **fødsel, 1, 2, 10, 18 og 32 år**.
-- **Metodekritikk:** Startkohorten på **698 barn** er ikke det samme som analysens tilgjengelige antall ved hver oppfølging. Originalpublikasjonenes metodedeler og komplette frafalls-/konfunderingsanalyser er fortsatt ikke tilgjengelig kontrollert i denne runden. Resultater for **Zaltas voksne PTSD-populasjon (2021)** er uavhengig litteratur og ikke et direkte estimat fra Kauai-kohorten.
+- **Metodekritikk:** Startkohorten på **698 barn** er ikke det samme som analysens tilgjengelige antall ved hver oppfølging. Werner (1993) er nå i tillegg delvis lest i originaltrykksreproduksjon: studien identifiserte 201 høyrisikobarn blant overlevende i 698-kohorten og 72 motstandsdyktige innenfor denne høyrisikogruppen. Ved 32-årsoppfølging ble tilgjengelig data rapportert for 88 % av den motstandsdyktige høyrisikogruppen, 90 % av tenåringsmødrene og 80 % av høyrisikounge med alvorlig psykisk helse- og/eller lovbruddshistorie. Disse tre er undergruppespesifikke oppfølgingsandeler, **ikke** totalretensjon for 698-kohorten. Et samlet, uavhengig revidert frafallsregnskap og full vurdering av konfunderingsmodellene gjenstår. Resultater for **Zaltas voksne PTSD-populasjon (2021)** er uavhengig litteratur og ikke et direkte estimat fra Kauai-kohorten.
 
 ### Beck, 1963 – historisk observasjon versus klinisk effekt
 
@@ -181,8 +181,25 @@ Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes
 | Kort | Primærtekst nå faktisk undersøkt | Sentrale åpne spørsmål | Godkjenning |
 | --- | --- | --- | --- |
 | `tilknytning` | Bowlby-originalens begrepsdel og Ainsworth/Bell-originalens metode/funn i digitalisert reproduksjon | Uavhengig kvalitetskontroll av fullstendige originaltabeller, kulturell generaliserbarhet og senere målevaliditet | **Ikke godkjent** |
-| `resiliens` | Werner 1989/1993, forlagsoriginale sammendrag | Full kohortmetode, frafall, modelljusteringer, analysedesign i originalbok og artikler | **Ikke godkjent** |
+| `resiliens` | Werner 1989 forlagssammendrag; Werner 1993 originaltrykksreproduksjon, metode og delresultater s. 503–509 | Resten av primærresultatene, samlet frafall, modelljusteringer og originalbok | **Ikke godkjent** |
 | `kognitiv_terapi` | Beck 1963, forlagsoriginal innledning | Resten av 1963-metoden, originalfunnenes usikkerhet, ekstern mekanismevalidering | **Ikke godkjent** |
 | `psykoanalyse` | Breuer/Freud 1895, forord kontrollert mot kritisk tekstutgave | Full kontroll av kasus, moderne PDT-forsøkenes risiko-for-skjevhet og mekanismer | **Ikke godkjent** |
 
 Eksisterende **32 påstandsenheter**, `source_review_state=partial_historical_method_review`, `source_review_status=not_reviewed`, `editorial_review_status=not_reviewed` og 14-korts baseline beholdes til den komplette kvalitetsporten faktisk er bestått.
+
+
+## 10. Kvalitativ revisjon av Werner (1993) – differensierte nevnere og oppfølging
+
+**Primærkilde:** Werner (1993), *Development and Psychopathology* 5:503–515, [Cambridge publiseringsoppføring](https://www.cambridge.org/core/journals/development-and-psychopathology/article/abs/risk-resilience-and-recovery-perspectives-from-the-kauai-longitudinal-study/DC3C3F10587A1A7D04C0310270717B3E), sammenholdt med [lesbar reproduksjon av originaltrykket](https://www.scribd.com/document/799482252/Werner-1993). Reproduksjonen er ikke utgiverattestert; metodiske utsagn skal derfor beholde sporbar tilgangsgrad.
+
+| Originaltrykk | Påstand som nå kan kontrolleres | Evidensgrense |
+| --- | --- | --- |
+| s. 503–504 | Fødselskohorten var **698** barn på Kauai i 1955; Werner rapporterer at **54 %** vokste opp i fattigdom | Måler historisk kohort og dens kontekst; ikke en landsrepresentativ, randomisert gruppe |
+| s. 504–505 | Av de overlevende barna ble **201** klassifisert som høyrisiko etter sammensatte kriterier; **72 av de 201** hadde positivt utviklingsforløp som ikke viste de alvorlige problemene som ble definert for andre i gruppen | Klassifikasjonene er operasjonalisert for denne kohorten; tallet 72 er **ikke** andelen av alle 698 fødsler |
+| s. 505–507 | Voksenutfall ble vurdert med semistrukturerte intervjuer og offentlige dokumenter som bl.a. helsetjeneste-/rettsregistreringer | Intervjuer og offentlige registre har ulik dekning; rettslige og helsemessige indikatorer er ikke nøytrale universelle mål på «suksess» |
+| s. 507 | Voksenoppfølgingen inkluderte **88 %** av tidligere motstandsdyktige høyrisikodeltakere, **90 %** av tenåringsmødre og **80 %** av høyrisikoungdom med historikk for alvorlige problemer | Andeler gjelder **separate undergrupper**, ikke hele fødselskohorten eller eksakte effektstørrelser |
+| s. 509 ff. | Forfatteren analyserte sammenkoblede beskyttelsesfaktorer og livsløp, bl.a. støtte fra andre voksne, skole og overgang til voksenliv | Longitudinelle sammenhenger kan ikke uten videre tolkes som kausale effekter av omsorg, kjønn eller én bestemt ressurs |
+
+**Særskilt metodisk risiko:** Klassifikasjon av resiliens krever både forhåndsdefinert belastning og utviklingsutfall. Utvalgsseleksjon, overlevelse, voksenoppsporing og definisjon av «god tilpasning» kan påvirke hva man observerer. Påstand om en **universell «én tredel»-regel** ville være uriktig: 72 er en beskrevet undergruppe blant 201 høyrisikobarn, og oppfølgingsandelene har egne nevnere.
+
+Den strukturerte kildeaudit-filen har nå i tillegg `original_publication_audit.entries` med **åtte eksplisitte primærkildeporter**, nøyaktig tilgangsgrad og det faglige punktet som fortsatt blokkerer `source_verified`. Hele teorikortene forblir **ikke godkjent**, selv om bestemte bibliografiske og metodiske delpåstander er bedre belagt.
