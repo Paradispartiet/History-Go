@@ -24,7 +24,7 @@
 
 ## Feildokumentasjon og tekniske porter
 
-- VG-huset-rotårsak er dokumentert i [issue #6192](https://github.com/Paradispartiet/History-Go/issues/6192). Referanser til historiske quiz-ID-er må rettes til semantisk riktige levende objekter, ikke skjules ved å svekke testen.
+- VG-huset-rotårsak er dokumentert i [issue #6192](https://github.com/Paradispartiet/History-Go/issues/6192) og rettet i [PR #6195](https://github.com/Paradispartiet/History-Go/pull/6195), merget som `4588e042`. Åtte eldre referanser ble koblet til eksisterende redaksjonelle kilder, ikke til vilkårlige nye quiz-ID-er. Referansekontrollen må fortsatt avvise ugyldige aktive quiz-ID-er.
 - Det nye manifestet bruker blant annet `sets[].file` for stedquiz (ikke bare `files[]`). Referansekontrollen følger denne strukturen.
 - Grønn CI verifiserer at kode, filer, referanser og ruting er konsistent; den er **ikke** dokumentasjon for vitenskapelig sannhet i Psykoteori-innholdet.
 
