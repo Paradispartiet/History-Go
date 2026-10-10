@@ -47,10 +47,12 @@ class FakeElement {
     return false;
   }
   querySelector(selector) {
-    if (selector === ".pc-body" || selector === ".pc-title-row") {
-      return this.children.find(child => child.matches(selector)) ?? null;
+    for (const child of this.children) {
+      if (child.matches(selector)) return child;
+      const nested = child.querySelector(selector);
+      if (nested) return nested;
     }
-    return this.children.find(child => child.matches(selector)) ?? null;
+    return null;
   }
 }
 
