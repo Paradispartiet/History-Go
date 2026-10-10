@@ -56,7 +56,7 @@ try {
   for (const profile of profiles) {
     const context = await browser.newContext({
       viewport:{ width:profile.width, height:profile.height },
-      isMobile:profile.isMobile, hasTouch:profile.isMobile, deviceScaleFactor:1
+      isMobile:profile.isMobile, hasTouch:profile.isMobile, deviceScaleFactor:1, locale:'nb-NO'
     });
     const page = await context.newPage();
     const run = {profile:profile.name, viewport:profile, captures:[], popups:[], issues:[], pageErrors:[]};
@@ -101,7 +101,7 @@ try {
       run.captures.push(profile.name + '-placecard-top.jpg');
       // The PlaceCard may scroll via an internal sheet rather than the document.
       await page.evaluate(() => {
-        const els=[document.querySelector('#placeCard .pc-sheet-scroll'),document.getElementById('placeCard')];
+        const els=[document.querySelector('#placeCard .pc-body'),document.getElementById('placeCard')];
         for(const el of els) if(el) el.scrollTop=el.scrollHeight;
       });
       await page.waitForTimeout(300);
@@ -110,7 +110,7 @@ try {
       await page.evaluate(() => {
         const c=document.getElementById('placeCard');
         if(c) c.scrollTop=0;
-        const sc=document.querySelector('#placeCard .pc-sheet-scroll');
+        const sc=document.querySelector('#placeCard .pc-body');
         if(sc) sc.scrollTop=0;
       });
       // Each collection must open its real popup; screenshot at iPad width.
@@ -164,8 +164,20 @@ try {
       const fag=page.locator('[data-hg-place-sheet-jump="learning"]').first();
       if(await fag.count() && await fag.isVisible()) {
         await fag.click({timeout:10000});
-        await page.waitForTimeout(500);
-        run.fagverk={route:await page.evaluate(() => location.hash)};
+        await page.waitForTimeout(1600);
+        run.fagverk=await page.evaluate(() => {
+          const info=(name)=>{
+            const el=document.querySelector('[data-hg-place-sheet-section="'+name+'"]');
+            if(!el) return null;
+            const r=el.getBoundingClientRect();
+            return {hidden:el.hidden, top:r.top, bottom:r.bottom, height:r.height,
+              heading:(el.querySelector('h1,h2,h3')?.textContent||'').trim().slice(0,160),
+              text:(el.textContent||'').trim().slice(0,250)};
+          };
+          return {route:location.hash, language:info('language'), learning:info('learning'),
+            bodyScrollTop:document.querySelector('#placeCard .pc-body')?.scrollTop || 0,
+            viewportHeight:innerHeight};
+        });
         if(profile.name==='ipad') {
           await capture(page,'ipad-fagverk');
           run.captures.push('ipad-fagverk.jpg');
