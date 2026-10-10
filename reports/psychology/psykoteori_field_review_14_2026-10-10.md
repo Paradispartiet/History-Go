@@ -130,6 +130,17 @@ Dette er en **kildespesifikk** gjennomgang. Verifisert betyr i tabellen at *den 
 
 **Verifikasjonsrestanse:** Det gjenstår (1) komplett felt-for-felt og setning-for-setning evidensuttrekk for alle 14 kort, (2) vurdering av øvrige lenker, (3) flere relevante historiske caser, (4) skriftlig tverrkortvurdering, og (5) 40 emner som fortsatt ikke har direkte teorikorttilknytning. Dette hindrer full faglig sluttgodkjenning, men ikke å behandle batch 05 som en klart avgrenset forbedring.
 
+## Batch 06 — teori, historikk og anvendelsesbevis for fire tilleggsmodeller
+
+| Kort / berørt felt | Kontrollert originalverk og relevant avgrensning | Redaksjonell konsekvens |
+| --- | --- | --- |
+| **Humanistisk psykologi · `limit`** | [Rogers (1957), APA: *The necessary and sufficient conditions of therapeutic personality change*](https://doi.org/10.1037/h0045357), originalt abstractsammendrag med seks forutsatte betingelser. [Maslow (1943), *A Theory of Human Motivation*](https://www.yorku.ca/pclassic/Maslow/motivation.htm), historisk primærtekst og [APA DOI](https://doi.org/10.1037/h0054346). | Rogers' seks betingelser er eksplisitt en **hypotese om terapeutisk endring**, ikke behandlingseffekt dokumentert i dette arbeidet. Maslows behovshierarki er et teoretisk forslag; ingen empirisk universallov følger av den historiske originalartikkelen. |
+| **Sosial læring · `method`** | [Bandura, Ross og Ross (1961), PMID 13864605](https://pubmed.ncbi.nlm.nih.gov/13864605/) og [originaltekst, York University](https://www.yorku.ca/pclassic/Bandura/bobo.htm): imitasjon av observerte modeller i spesifikk eksperimentell oppgave. [Bandura (1977), PMID 847061](https://pubmed.ncbi.nlm.nih.gov/847061/): senere teoretisk artikkel om mestringstro. | To historiske bidrag beskrives som **forskjellige design og begreper**. Imitasjonsfunn fra 1961 er ikke en direkte eksperimentell validering av 1977-begrepet om mestringstro. |
+| **Sosial identitet · `method`** | [Tajfel, Billig, Bundy og Flament (1971), Wiley](https://doi.org/10.1002/ejsp.2420010202): minimalgruppeforsøk og fordeling av reelle belønninger/sanksjoner mellom grupper uten etablert fiendtlighet eller egeninteresse. | Metoden spesifiserer nå **minimalgruppedesign og fordelingsoppgave**. Resultater fra kunstige inngrupper må ikke automatisk generaliseres til komplekse grupper, roller eller moralske vurderinger av individer. |
+| **Biopsykososial modell · `limit`** | [Engel (1977), *The Need for a New Medical Model*, PMID 847460](https://pubmed.ncbi.nlm.nih.gov/847460/): *Science*-artikkel som foreslår rammeverk for forskning, undervisning og helsetjenester. | Den historiske originalteksten er et **normativt og teoretisk modelleringsforslag**, ikke en kvantifisert kausal forklaring eller behandlingsstudie. Enkelte faktorers bidrag må dokumenteres særskilt. |
+
+**Metodisk terskel:** Tilgang har vært til originalt utgiversammendrag, DOI-data og åpne originaltekstutdrag, men ikke komplett systematisk fulltekstkritikk av all sekundær- og replikasjonslitteratur. Disse fire rettelsene styrker faglig presisjon; status i manifestet er fortsatt `partial_historical_method_review`.
+
 ## Integritet og restanse
 
 - **14/14** kort har feltvis tekstgjennomgang; det betyr ikke at alle 14 har fått fulltekst-/claim-verifikasjon. Seks av kortene er nå presisert ytterligere i batch 05.
