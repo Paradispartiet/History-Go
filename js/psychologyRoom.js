@@ -527,11 +527,21 @@
         related.map((item) => '<button type="button" class="psychology-room-mini-action" data-theory-phenomenon="' +
           escapeHtml(item.id) + '">' + escapeHtml(item.title) + ' →</button>').join("") + '</div></section>'
       : '';
+    const references = Array.isArray(theory.reference_links) ? theory.reference_links.filter((item) =>
+      item && /^https:\/\/[^\s"'<>]+$/.test(String(item.url || "")) && item.title && item.supports) : [];
+    const sourcesHtml = references.length
+      ? '<section class="psychology-room-theory-source"><h4>Kilder og rekkevidde</h4>' +
+        '<p>Disse referansene dokumenterer angitte historiske eller metodiske forhold. Hele teorikortet er ennå ikke kildegodkjent.</p>' +
+        '<ul class="psychology-room-theory-references">' + references.map((item) =>
+          '<li><a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(item.title) + ' ↗</a><span>' + escapeHtml(item.supports) + '</span></li>').join("") +
+        '</ul></section>'
+      : '';
     setContent(shell(backButton("theories") + '<article class="psychology-room-detail psychology-room-theory-detail">' +
       '<div class="psychology-room-kicker">Psykoteori · ' + escapeHtml(chapter?.title || "Psykologi") + '</div>' +
       '<h3>' + escapeHtml(theory.title) + '</h3><p class="psychology-room-muted">' +
       escapeHtml(theory.founders || "") + ' · ' + escapeHtml(theory.period || "") + '</p>' +
-      information + comparisonHtml + phenomenaHtml +
+      information + comparisonHtml + phenomenaHtml + sourcesHtml +
       '<section class="psychology-room-theory-source"><h4>Fordypning i psykologifagverket</h4>' +
       '<p>Kortet er en innføring. Les hele fagkapittelet for forskning, historikk og kildegrunnlag.</p>' +
       '<div class="psychology-room-theory-links"><a class="psychology-room-fagverk-link" href="' +

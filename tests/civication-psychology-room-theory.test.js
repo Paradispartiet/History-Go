@@ -101,6 +101,10 @@ const press = (selector) => {
   assert.match(rendered, /fagverk\.html\?subject=psykologi&amp;chapter=/);
   press("theory:behaviorisme");
   assert.match(rendered, /Hvordan undersøkes dette\?/);
+  assert.match(rendered, /Kilder og rekkevidde/);
+  assert.match(rendered, /psychology\.fas\.harvard\.edu\/people\/b-f-skinner/);
+  assert.match(rendered, /Hele teorikortet er ennå ikke kildegodkjent/);
+  assert.match(rendered, /rel="noopener noreferrer"/);
   assert.match(rendered, /Sammenlign teoriene/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_betinging_vaner/);
   assert.match(rendered, /Undervisningseksempel \(hypotetisk\)/);
