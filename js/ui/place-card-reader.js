@@ -10,9 +10,13 @@
 
   const speech = window.speechSynthesis;
   const supported = Boolean(speech && typeof window.SpeechSynthesisUtterance === "function");
-  const READABLE = "h1,h2,h3,h4,h5,h6,p,li,blockquote,dt,dd,[data-pc-readable],.pc-relation-title,.pc-relation-meta";
+  // Place Sheet has prose in div/strong/span as well as ordinary paragraphs.
+  const SEMANTIC = "h1,h2,h3,h4,h5,h6,p,li,blockquote,dt,dd,[data-pc-readable],.pc-relation-title,.pc-relation-meta";
+  const READABLE = SEMANTIC + ",div,span,strong,em,small,article,section,time,a";
+  const EDITORIAL_EXCLUDE = "button,input,textarea,select,summary,nav,[role='button'],[role='tab'],[contenteditable]";
+
   const ACTIONS = "button,a,input,textarea,select,summary,[role='button'],[role='link'],[role='tab'],[contenteditable],.pc-round,.pc-frontcard,.pc-events-quad,.pc-status-bar,.pc-sheet-section-nav";
-  const IGNORE = "#pcStatusBar,#pcMeta,.pc-grid,.pc-icons-quad,.pc-frontcard,.pc-events-quad,.pc-empty,[aria-live],.pc-reader-controls";
+  const IGNORE = "#pcStatusBar,#pcMeta,.pc-grid,.pc-icons-quad,.pc-frontcard,.pc-events-quad,.pc-empty,.pc-reader-controls,.pc-sheet-hero-media,.pc-sheet-explore-grid,.pc-sheet-section-nav,.pc-story-related,.pc-story-tags,.pc-category-meta";
   const SPEEDS = [0.8, 1, 1.2, 1.5];
 
   const toggle = document.createElement("button");
@@ -44,8 +48,9 @@
   let inFlight = false;
   let generation = 0;
   let speedIndex = 1;
-  let queue = [];
-  let position = 0;
+  let completed = new Map();
+  let startAnchor = null;
+  let finished = false;
   let highlighted = null;
   let readingPlaceId = "";
 
@@ -61,22 +66,62 @@
   }
 
   function readableBlocks() {
-    const blocks = Array.from(body.querySelectorAll(READABLE));
-
-    // Place Sheet flytter overskriften og ingressen inn i hero-flaten.
-    // Disse er alltid starten på stedsteksten, uavhengig av generelle
-    // filtre for metadata, aria-live og øvrige dynamiske seksjoner.
+    // Standard Place Sheet owns the editorial content. Other PlaceCard widgets
+    // (collections, badges, quiz and popups) must not enter the narration.
+    const shell = body.querySelector('[data-hg-place-sheet-shell="1"]');
+    const scope = shell || body;
+    const blocks = Array.from(scope.querySelectorAll(READABLE));
     const opening = ["pcTitle", "pcDesc"]
       .map(id => document.getElementById(id))
       .filter(el => el && body.contains(el) && text(el));
 
-    const remaining = blocks.filter((el, index) => {
-      if (opening.some(openingElement => openingElement === el)) return false;
-      if (!text(el) || !visible(el) || el.closest(ACTIONS) || el.closest(IGNORE)) return false;
-      // Ett tekstledd leses bare én gang selv når det inneholder underordnede tekstledd.
-      return !blocks.slice(0, index).some(parent => parent.contains(el));
+    const remaining = blocks.filter(el => {
+      if (opening.some(item => item === el)) return false;
+      // Bibliographic link labels are source text; their click still opens
+      // the external source and never triggers a tap-to-seek action.
+      const sourceLink = el.matches("a") && !!el.closest('[data-hg-place-sheet-section="sources"]');
+      if (!text(el) || !visible(el) || (el.closest(ACTIONS) && !sourceLink) ||
+          el.closest(EDITORIAL_EXCLUDE) || el.closest(IGNORE)) return false;
+      if (el.closest(SEMANTIC) && !el.matches(SEMANTIC)) return false;
+      if (el.matches(SEMANTIC)) {
+        const parent = el.parentElement?.closest(SEMANTIC);
+        return !parent || !scope.contains(parent);
+      }
+      // Prefer a meaningful parent when it contains unwrapped prose; otherwise
+      // prefer its smallest text-bearing children, avoiding duplicated speech.
+      const ownText = Array.from(el.childNodes || []).some(node =>
+        node.nodeType === 3 && String(node.textContent || "").trim()
+      );
+      if (ownText && !el.querySelector(ACTIONS)) return true;
+      return !el.querySelector(READABLE + "," + ACTIONS);
     });
-    return [...opening, ...remaining];
+    const result = [];
+    for (const el of [...opening, ...remaining]) {
+      if (result.some(parent => parent !== el && parent.contains(el))) continue;
+      result.push(el);
+    }
+    return result;
+  }
+
+  function readingPending() {
+    const state = window.HGPlaceSheetState?.snapshot?.();
+    if (state?.placeId === readingPlaceId) return state.phase !== "full-ready";
+    return !!body.querySelector('[data-hg-place-sheet-shell="1"]')
+      && String(card.dataset.hgPlaceSheetRenderPlaceId || "") === readingPlaceId
+      && !["", "full-ready"].includes(String(card.dataset.hgPlaceSheetRenderState || ""));
+  }
+
+  function nextUnread() {
+    for (const element of readableBlocks()) {
+      if (startAnchor && startAnchor.isConnected !== false && element !== startAnchor && typeof element.compareDocumentPosition === "function" &&
+          (element.compareDocumentPosition(startAnchor) & 4)) continue;
+      const fullText = text(element);
+      const parts = chunks(fullText);
+      const previous = completed.get(element);
+      const index = previous?.text === fullText ? previous.count : 0;
+      if (index < parts.length) return { element, fullText, index, value: parts[index] };
+    }
+    return null;
   }
 
   function chunks(value) {
@@ -147,15 +192,16 @@
   function speakNext() {
     if (!enabled || paused || inFlight) return;
     if (!usablePlace()) { deactivate(); return; }
-    if (position >= queue.length) {
+    const item = nextUnread();
+    if (!item) {
+      if (readingPending()) return; // Late Place Sheet sections will resume the narration.
       unmark();
-      position = 0; // Play etter fullført lesing starter på nytt.
+      finished = true;
       paused = true;
       updateControls();
       return;
     }
 
-    const item = queue[position];
     if (highlighted !== item.element) {
       unmark();
       highlighted = item.element;
@@ -172,13 +218,11 @@
     utterance.onend = () => {
       if (token !== generation) return;
       inFlight = false;
-      position++;
+      completed.set(item.element, { text: item.fullText, count: item.index + 1 });
       speakNext();
     };
     utterance.onerror = event => {
       if (token !== generation) return;
-      // Planlagte avbrudd har allerede ugyldiggjort tokenet ovenfor.
-      // Uventede avbrudd må stanse køen i stedet for å låse spilleren.
       cancelVoice();
       paused = true;
       updateControls();
@@ -191,9 +235,15 @@
     const index = node ? blocks.indexOf(node) : 0;
     if (!blocks.length || index < 0) return false;
     cancelVoice();
+    completed = new Map();
+    startAnchor = node || null;
+    if (index > 0) {
+      for (const element of blocks.slice(0, index)) {
+        completed.set(element, { text: text(element), count: chunks(text(element)).length });
+      }
+    }
     readingPlaceId = String(card.dataset.currentPlaceId || "");
-    queue = blocks.slice(index).flatMap(element => chunks(text(element)).map(value => ({ element, value })));
-    position = 0;
+    finished = false;
     paused = false;
     enabled = true;
     updateControls();
@@ -203,8 +253,9 @@
 
   function deactivate() {
     cancelVoice();
-    queue = [];
-    position = 0;
+    completed.clear();
+    startAnchor = null;
+    finished = false;
     readingPlaceId = "";
     enabled = false;
     paused = false;
@@ -225,8 +276,12 @@
   body.addEventListener("click", event => {
     if (!enabled || !supported || !(event.target instanceof Element)) return;
     if (event.target.closest(ACTIONS) || window.getSelection?.()?.toString().trim()) return;
-    const node = event.target.closest(READABLE);
-    if (!node || !readableBlocks().includes(node)) return;
+    const blocks = readableBlocks();
+    // Inline formatting (strong/span/em) often sits inside the actual prose
+    // paragraph. Seek to the accepted block, not the innermost DOM element.
+    let node = event.target;
+    while (node && node !== body && !blocks.includes(node)) node = node.parentElement;
+    if (!node || node === body) return;
     event.preventDefault();
     event.stopPropagation();
     startFrom(node); // Hopp hit og fortsett videre til slutten.
@@ -240,6 +295,10 @@
       paused = true;
       try { speech.pause(); } catch (_) { /* noop */ }
     } else {
+      if (finished) {
+        startFrom(null);
+        return;
+      }
       paused = false;
       try { speech.resume(); } catch (_) { /* noop */ }
       if (!inFlight) speakNext();
@@ -251,12 +310,11 @@
     event.preventDefault();
     event.stopPropagation();
     speedIndex = (speedIndex + 1) % SPEEDS.length;
-    if (enabled && queue.length) {
-      // Den nye hastigheten gjelder fra starten av det aktive tekstsegmentet.
+    if (enabled && !finished) {
+      // An in-flight chunk is not marked complete until onend. Changing
+      // speed therefore restarts that chunk without repeating earlier text.
       const wasPaused = paused;
-      const current = position;
       cancelVoice();
-      position = current;
       paused = wasPaused;
       if (!paused) speakNext();
     }
@@ -267,6 +325,26 @@
     if (enabled && !usablePlace()) deactivate();
   });
   observer.observe(card, { attributes: true, attributeFilter: ["class", "aria-hidden", "data-current-place-id"] });
+  // Re-check the live DOM when async Place Sheet sections are hydrated. Do
+  // not interrupt a speaking chunk; the next onend will see new content.
+  function onEditorialUpdate() {
+    if (!enabled || inFlight || !usablePlace()) return;
+    // An async renderer may deliver its last section even after the
+    // phase reports full-ready. Continue when new unread prose appears.
+    if (finished && nextUnread()) {
+      finished = false;
+      paused = false;
+      updateControls();
+    }
+    if (!paused) speakNext();
+  }
+  const contentObserver = new MutationObserver(onEditorialUpdate);
+  contentObserver.observe(body, {
+    childList: true, subtree: true, characterData: true,
+    attributes: true, attributeFilter: ["hidden", "aria-hidden"]
+  });
+  window.addEventListener("hg:place-sheet-state", onEditorialUpdate);
+  window.addEventListener("hg:place-sheet-full-ready", onEditorialUpdate);
   document.addEventListener("visibilitychange", () => { if (document.hidden && enabled) deactivate(); });
   window.addEventListener("pagehide", () => { if (enabled) deactivate(); });
   window.addEventListener("hg:langchange", () => { if (enabled) deactivate(); });
