@@ -55,3 +55,7 @@ Den midlertidige genereringsworkflowen ble fjernet av samme kontrollerte build-c
 ## Separat blokkering i global CI — lukket på main
 
 Før denne PR-ens slutt-CI ble en eksisterende avledet quizkontekst for **Museumsleiligheten Gråbein** identifisert som usynkronisert på main. Feilen var dokumentert med identisk kildesnapshot på hovedgren og VG-branch og var ikke forårsaket av VG-husets endringer. Gråbein er rettet **separat** i [PR #6209](https://github.com/Paradispartiet/History-Go/pull/6209), grønn CI og merge `66ca1374780c0548941a62fd6044a40fbe647739`. Ingen Gråbein-kilde eller quizartifakt inngår i VG-husets PR. Etter merge kjøres VG-PR-ens exact-head-kontroller på nytt mot oppdatert `main`.
+
+## Sluttsynkronisering med hovedgren
+
+VG-branchen er oppdatert med `main` etter den separate Gråbein-fiksen (merge parent `66ca1374780c0548941a62fd6044a40fbe647739`). Deretter er Fagverk-release regenerert deterministisk med canonical script og `--check` i [one-shot run #38041968469](https://github.com/Paradispartiet/History-Go/actions/runs/38041968469) (**SUCCESS**). Workflowen er slettet fra branchen, og denne rapportoppdateringen utløser ordinær CI med én konsistent kildebase. Manuell sluttvurdering forblir `PENDING`.
