@@ -286,3 +286,21 @@ Dette er en **kvalitativ, kildespesifikk** vurdering av tydelige feilkilder. Den
 - **Neste avklaringsport:** Kontrollér 1992-metodekapittelet og appendiks I s. 240–245 og skriv et eksplisitt flytskjema for inkluderte og ekskluderte deltakere ved hver måling, med proveniens for hvert N. Deretter vurder modellerte indirekte/medierte forbindelser, sensitivitetsanalyser og kulturell generaliserbarhet opp mot moderne metodestandard.
 
 **Registerendring:** `original_publication_audit.entries` økes fra 8 til **9**, med særskilt `resiliens_werner_smith_1992`, uten å øke antallet påstandsenheter (32) eller oppgradere noen teori. `source_verified=0/4` består.
+
+
+### 13.3 Lokalisert originalt metodeapparat – bibliografisk kontroll, ikke fulltekstrevisjon
+
+**Ny dokumentkontroll 10. oktober 2026:** En [digitalisert tredjepartskopi av originalutgavens innholdsfortegnelse](https://external.dandelon.com/download/attachments/dandelon/ids/AT002A83A5830F7925FA4C1257D1C002C734A.pdf) er lest og visuelt kontrollert. Denne kopien er **bare tre PDF-sider** (forside og innholdsoversikt) og inneholder ikke selve appendiksene. Innholdsoversikten angir følgende *trykte* sider i Werner og Smith (1992):
+
+| Originalside | Navngitt del i innholdsoversikten | Kildekritisk bruk |
+| ---: | --- | --- |
+| 173 | Kapittel 9, «Protective Factors and Adult Adaptation» | Identifisert for direkte metode- og resultatrevisjon, ikke undersøkt fulltekst. |
+| 213 | Appendiks I: tabell 1–28 | Plassering bekreftet; de enkelte tabellene er **ikke** avlest. |
+| 242 | Appendiks I: figur A1–A4 | Plassering bekreftet; diagrammer, estimater og modelltilpasning er **ikke** undersøkt. |
+| 249 | Appendiks II: «Summary of Data Base: Kauai Longitudinal Study» | Primært kontrollpunkt for å avklare kohort- og oppfølgingsnevnere. |
+| 251 | Skåringssystem for prenatale/perinatale komplikasjoner | Kontrollpunkt for operasjonalisering av risiko. |
+| 253–260 | Voksenoppfølgingens intervjuer, spørreskjema og vurderingssystem | Kontrollpunkt for målevaliditet og definisjoner av voksenutfall. |
+
+**Sammenstilling:** Werners henvisning i 1993-artikkelen til appendiks I s. 240–245 kan nå knyttes til en identifisert figurseksjon fra **s. 242**. Det bekrefter *hvor* materialet skal finnes, ikke hva pilene, de latente variablene eller koeffisientene faktisk viser. [Google Books' katalogoversikt](https://books.google.com/books/about/Overcoming_the_Odds.html?id=b0f4Xo_sjUIC) og [ERIC ED344979](https://eric.ed.gov/?id=ED344979) understøtter bokens identitet og voksenstudien (505), men løser ikke NLMs 614 mot originalartikkelens 698. Ingen antatt forklaring på forskjellen mellom 614 og 698 er innført.
+
+**Revidert kontrollrekkefølge:** (1) Skaff verifiserbar originalfulltekst av appendiks II s. 249 og introduserende metodekapittel fra s. 17; (2) lag kildebundet kohort-/oppfølgingsflyt for 698, 614 og 505 uten antatte nevnerdefinisjoner; (3) gjennomgå tabell 1–28 og figur A1–A4 samt modellspesifikasjon, konfundering og frafall. Cornell annonserer åpen tilgjengelighet, men verifisert fulltekst for disse sidene foreligger fortsatt **ikke**. Alle faglige statusflagg og 32 påstandsenheter er uendret.
