@@ -20,7 +20,8 @@
     textConfig: "data/psychology/module_text_config.json",
     phenomena: "data/psychology/psychology_phenomena.json",
     tools: "data/psychology/cbt_tools.json",
-    paths: "data/psychology/psychology_paths.json"
+    paths: "data/psychology/psychology_paths.json",
+    theories: "data/psychology/psychology_theories.json"
   };
 
   let dataCache = null;
@@ -57,13 +58,14 @@
   async function loadData() {
     if (dataCache) return dataCache;
 
-    const [tests, exercises, textConfig, phenomena, tools, paths] = await Promise.all([
+    const [tests, exercises, textConfig, phenomena, tools, paths, theoryCatalog] = await Promise.all([
       fetchJsonSoft(DATA_URLS.tests, { tests: [] }),
       fetchJsonSoft(DATA_URLS.exercises, { exercises: [] }),
       fetchJsonSoft(DATA_URLS.textConfig, {}),
       fetchJsonSoft(DATA_URLS.phenomena, { phenomena: [], safety_note: "" }),
       fetchJsonSoft(DATA_URLS.tools, { tools: [], safety_note: "" }),
-      fetchJsonSoft(DATA_URLS.paths, { paths: [], safety_note: "" })
+      fetchJsonSoft(DATA_URLS.paths, { paths: [], safety_note: "" }),
+      fetchJsonSoft(DATA_URLS.theories, { chapters: [], theories: [], introduction: "", safety_note: "" })
     ]);
 
     dataCache = {
@@ -75,7 +77,11 @@
       tools: Array.isArray(tools.tools) ? tools.tools : [],
       toolsSafetyNote: String(tools.safety_note || "").trim(),
       paths: Array.isArray(paths.paths) ? paths.paths : [],
-      pathsSafetyNote: String(paths.safety_note || "").trim()
+      pathsSafetyNote: String(paths.safety_note || "").trim(),
+      theoryChapters: Array.isArray(theoryCatalog.chapters) ? theoryCatalog.chapters : [],
+      theories: Array.isArray(theoryCatalog.theories) ? theoryCatalog.theories : [],
+      theoryIntroduction: String(theoryCatalog.introduction || "").trim(),
+      theorySafetyNote: String(theoryCatalog.safety_note || "").trim()
     };
 
     return dataCache;
@@ -138,7 +144,7 @@
       <header class="psychology-room-header">
         <div class="psychology-room-kicker">Psykologi</div>
         <h2 id="psychologyRoomTitle">Psykologrommet</h2>
-        <p>Et selvhjelpsrom for screening, kognitiv terapi, psykoedukasjon og refleksjon. Innholdet erstatter ikke helsehjelp.</p>
+        <p>Utforsk psykologisk teori og fagverk, eller bruk screening, øvelser og refleksjon. Innholdet erstatter ikke helsehjelp.</p>
       </header>
       ${body}
     `;
@@ -156,7 +162,13 @@
     document.querySelectorAll("[data-psych-back]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const target = button.dataset.psychBack || "home";
-        if (target === "phenomena") renderPhenomenaList();
+        if (target.startsWith("theory:")) {
+          const theory = findById(dataCache?.theories || [], target.slice(7));
+          if (theory) renderTheoryDetail(theory);
+          else renderTheoryList();
+        }
+        else if (target === "theories") renderTheoryList();
+        else if (target === "phenomena") renderPhenomenaList();
         else if (target === "tools") renderToolsList();
         else if (target === "paths") renderPathsList();
         else renderHome();
@@ -454,6 +466,101 @@
     return `<section class="${escapeHtml(className)}"><h4>${escapeHtml(title)}</h4><ul>${list.map((id) => `<li>${escapeHtml(titleFor(sourceList, id))}</li>`).join("")}</ul></section>`;
   }
 
+
+  // Learning cards reference canonical Fagverk chapter and emne IDs. They never
+  // score mental health, modify psychology competence, or award insight points.
+  function theoryChapterLink(chapterId) {
+    return "fagverk.html?subject=psykologi&chapter=" + encodeURIComponent(chapterId);
+  }
+
+  function theoryEmneLink(emneId) {
+    return "fagverk.html?subject=psykologi&emne=" + encodeURIComponent(emneId);
+  }
+
+  function renderTheoryList() {
+    const chapters = dataCache?.theoryChapters || [];
+    const theories = dataCache?.theories || [];
+    const sections = chapters.map((chapter) => {
+      const grouped = theories.filter((item) => item.chapter_id === chapter.id);
+      if (!grouped.length) return "";
+      return '<section class="psychology-room-theory-group"><div class="psychology-room-theory-head"><h4>' +
+        escapeHtml(chapter.title) + '</h4><a href="' + escapeHtml(theoryChapterLink(chapter.id)) +
+        '">Les fagverkskapittelet ↗</a></div><div class="psychology-room-list">' +
+        grouped.map((item) => '<button class="psychology-room-list-item psychology-room-card" type="button" data-theory-id="' +
+          escapeHtml(item.id) + '"><strong>' + escapeHtml(item.title) + '</strong><span>' +
+          escapeHtml(item.idea) + '</span></button>').join("") + '</div></section>';
+    }).join("");
+    setContent(shell(backButton() + '<section class="psychology-room-section"><h3>Psykoteori</h3><p class="psychology-room-muted">' +
+      escapeHtml(dataCache?.theoryIntroduction || "Innføring i psykologiske teorier.") +
+      '</p><a class="psychology-room-fagverk-link" href="fagverk.html?subject=psykologi">Åpne hele psykologifagverket ↗</a></section>' +
+      (sections || '<p class="psychology-room-muted">Ingen teorier funnet.</p>') + 
+      (dataCache?.theorySafetyNote ? '<p class="psychology-room-safety-note">' + escapeHtml(dataCache.theorySafetyNote) + '</p>' : '')));
+    bindBack();
+    document.querySelectorAll("[data-theory-id]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const theory = findById(theories, button.dataset.theoryId);
+        if (theory) renderTheoryDetail(theory);
+      });
+    });
+  }
+
+  function renderTheoryDetail(theory) {
+    const theories = dataCache?.theories || [];
+    const chapter = (dataCache?.theoryChapters || []).find((item) => item.id === theory.chapter_id);
+    const comparison = findById(theories, theory.compare_with);
+    const related = (theory.related_phenomena || []).map((id) =>
+      findById(dataCache?.phenomena || [], id)).filter(Boolean);
+    const information = [
+      ["Kjerneidé", theory.idea],
+      ["Hvordan undersøkes dette?", theory.method],
+      ["Begrensninger og kritikk", theory.limit],
+      ["Undervisningseksempel (hypotetisk)", theory.example]
+    ].map(([heading, value]) => '<section><h4>' + escapeHtml(heading) + '</h4><p>' +
+      escapeHtml(value || "") + '</p></section>').join("");
+    const comparisonHtml = comparison
+      ? '<section class="psychology-room-theory-compare"><h4>Sammenlign teoriene</h4><p>' +
+        escapeHtml(theory.contrast || "") + '</p><button type="button" class="psychology-room-mini-action" data-theory-compare="' +
+        escapeHtml(comparison.id) + '">Se ' + escapeHtml(comparison.title) + ' →</button></section>'
+      : '';
+    const phenomenaHtml = related.length
+      ? '<section class="psychology-room-section"><h4>Beslektede fenomener</h4><div class="psychology-room-theory-links">' +
+        related.map((item) => '<button type="button" class="psychology-room-mini-action" data-theory-phenomenon="' +
+          escapeHtml(item.id) + '">' + escapeHtml(item.title) + ' →</button>').join("") + '</div></section>'
+      : '';
+    setContent(shell(backButton("theories") + '<article class="psychology-room-detail psychology-room-theory-detail">' +
+      '<div class="psychology-room-kicker">Psykoteori · ' + escapeHtml(chapter?.title || "Psykologi") + '</div>' +
+      '<h3>' + escapeHtml(theory.title) + '</h3><p class="psychology-room-muted">' +
+      escapeHtml(theory.founders || "") + ' · ' + escapeHtml(theory.period || "") + '</p>' +
+      information + comparisonHtml + phenomenaHtml +
+      '<section class="psychology-room-theory-source"><h4>Fordypning i psykologifagverket</h4>' +
+      '<p>Kortet er en innføring. Les hele fagkapittelet for forskning, historikk og kildegrunnlag.</p>' +
+      '<div class="psychology-room-theory-links"><a class="psychology-room-fagverk-link" href="' +
+      escapeHtml(theoryChapterLink(theory.chapter_id)) + '">Les ' + escapeHtml(chapter?.title || "kapittelet") +
+      ' ↗</a><a class="psychology-room-fagverk-link" href="' + escapeHtml(theoryEmneLink(theory.emne_id)) +
+      '">Åpne tilknyttet fagverksemne ↗</a></div></section>' +
+      (dataCache?.theorySafetyNote ? '<p class="psychology-room-safety-note">' + escapeHtml(dataCache.theorySafetyNote) + '</p>' : '') +
+      '</article>'));
+    bindBack();
+    document.querySelector("[data-theory-compare]")?.addEventListener("click", () => {
+      if (comparison) renderTheoryDetail(comparison);
+    });
+    document.querySelectorAll("[data-theory-phenomenon]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const phenomenon = findById(dataCache?.phenomena || [], button.dataset.theoryPhenomenon);
+        if (phenomenon) renderPhenomenonDetail(phenomenon, { type: "theory", theoryId: theory.id });
+      });
+    });
+  }
+
+  function renderTheoryCrossLinks(phenomenon) {
+    const theories = (dataCache?.theories || []).filter((item) =>
+      Array.isArray(item.related_phenomena) && item.related_phenomena.includes(phenomenon.id));
+    if (!theories.length) return "";
+    return '<section class="psychology-room-section"><h4>Teoretisk bakgrunn</h4><div class="psychology-room-theory-links">' +
+      theories.map((item) => '<button type="button" class="psychology-room-mini-action" data-phenomenon-theory="' +
+        escapeHtml(item.id) + '">' + escapeHtml(item.title) + ' →</button>').join("") + '</div></section>';
+  }
+
   function renderHome() {
     const profile = getProfile();
     const pathProgress = readPathProgress();
@@ -470,6 +577,7 @@
         <button type="button" data-psych-action="tests">Tester</button>
         <button type="button" data-psych-action="exercises">Øvelser</button>
         <button type="button" data-psych-action="phenomena">Fenomenleksikon</button>
+        <button type="button" data-psych-action="theories">Psykoteori</button>
         <button type="button" data-psych-action="tools">CBT-verktøy</button>
         <button type="button" data-psych-action="paths">7-dagersløp</button>
         <button type="button" data-psych-action="journal">Skriv refleksjon</button>
@@ -480,6 +588,7 @@
     document.querySelector("[data-psych-action='tests']")?.addEventListener("click", renderTestList);
     document.querySelector("[data-psych-action='exercises']")?.addEventListener("click", renderExerciseList);
     document.querySelector("[data-psych-action='phenomena']")?.addEventListener("click", renderPhenomenaList);
+    document.querySelector("[data-psych-action='theories']")?.addEventListener("click", renderTheoryList);
     document.querySelector("[data-psych-action='tools']")?.addEventListener("click", renderToolsList);
     document.querySelector("[data-psych-action='paths']")?.addEventListener("click", renderPathsList);
     document.querySelector("[data-psych-action='journal']")?.addEventListener("click", renderJournal);
@@ -559,9 +668,15 @@
 
   function renderPhenomenonDetail(item, context = null) {
     const path = context?.type === "path" ? findById(dataCache?.paths || [], context.pathId) : null;
-    const back = path ? pathBackButton(path.id) : backButton("phenomena");
-    setContent(shell(`${back}<article class="psychology-room-detail"><div class="psychology-room-kicker">${escapeHtml(item.category || "fenomen")}</div><h3>${escapeHtml(item.title)}</h3><p><strong>${escapeHtml(item.short || "")}</strong></p><p>${escapeHtml(item.description || "")}</p>${renderTags(item.appears_when)}${renderLinkedList("Vanlige tegn", item.common_signs, [])}${renderLinkedList("Nyttige spørsmål", item.helpful_questions, [])}${renderLinkedList("Relaterte CBT-verktøy", item.related_tools, dataCache?.tools || [])}${renderLinkedList("Relaterte tester", item.related_tests, dataCache?.tests || [])}${renderLinkedList("Relaterte øvelser", item.related_exercises, dataCache?.exercises || [])}${item.history_go_angle ? `<p class="psychology-room-guidance">${escapeHtml(item.history_go_angle)}</p>` : ""}${dataCache?.phenomenaSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.phenomenaSafetyNote)}</p>` : ""}</article>`));
+    const back = path ? pathBackButton(path.id) : context?.type === "theory" ? backButton("theory:" + context.theoryId) : backButton("phenomena");
+    setContent(shell(`${back}<article class="psychology-room-detail"><div class="psychology-room-kicker">${escapeHtml(item.category || "fenomen")}</div><h3>${escapeHtml(item.title)}</h3><p><strong>${escapeHtml(item.short || "")}</strong></p><p>${escapeHtml(item.description || "")}</p>${renderTags(item.appears_when)}${renderLinkedList("Vanlige tegn", item.common_signs, [])}${renderLinkedList("Nyttige spørsmål", item.helpful_questions, [])}${renderLinkedList("Relaterte CBT-verktøy", item.related_tools, dataCache?.tools || [])}${renderLinkedList("Relaterte tester", item.related_tests, dataCache?.tests || [])}${renderLinkedList("Relaterte øvelser", item.related_exercises, dataCache?.exercises || [])}${item.history_go_angle ? `<p class="psychology-room-guidance">${escapeHtml(item.history_go_angle)}</p>` : ""}${renderTheoryCrossLinks(item)}${dataCache?.phenomenaSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.phenomenaSafetyNote)}</p>` : ""}</article>`));
     bindBack();
+    document.querySelectorAll("[data-phenomenon-theory]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const theory = findById(dataCache?.theories || [], button.dataset.phenomenonTheory);
+        if (theory) renderTheoryDetail(theory);
+      });
+    });
   }
 
   function getToolCompletions(toolId) {
