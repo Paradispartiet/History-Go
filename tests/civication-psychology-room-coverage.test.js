@@ -163,4 +163,37 @@ for (const row of fieldEvidence.cards) {
 assert.equal(fieldEvidence.cards.filter((x) => x.editorial_approval !== "not_reviewed").length, 0,
   "structural evidence matrix must not confer scholarly approval");
 
+// Batch 07: four-card source audit must remain evidence-bounded.
+const group1 = ["psykoanalyse", "tilknytning", "resiliens", "kognitiv_terapi"];
+const group1Sources = {
+  psykoanalyse: ["https://www.loc.gov/item/76454571/", "https://pmc.ncbi.nlm.nih.gov/articles/PMC10168167/"],
+  tilknytning: ["https://wellcomecollection.org/works/ebjjsja2", "https://pubmed.ncbi.nlm.nih.gov/5490680/"],
+  resiliens: ["https://wellcomecollection.org/works/wxaez2sy", "https://doi.org/10.1111/jftr.12255"],
+  kognitiv_terapi: ["https://pubmed.ncbi.nlm.nih.gov/14045261/", "https://pubmed.ncbi.nlm.nih.gov/7006557/"]
+};
+for (const id of group1) {
+  const theory = reviewed.get(id);
+  const entry = byEmne.get(theory.emne_id);
+  const matrixRow = fieldEvidence.cards.find((row) => row.theory_id === id);
+  const urls = theory.reference_links.map((link) => link.url);
+  assert.deepEqual(entry.partial_reference_review.reference_urls, urls,
+    "group 1 reference mirrors must match: " + id);
+  assert.equal(entry.source_review_status, "not_reviewed");
+  assert.equal(entry.editorial_review_status, "not_reviewed");
+  assert.equal(theory.source_review_state, "partial_historical_method_review");
+  assert.equal(matrixRow.group_1_source_audit.status, "source_bounded_review_in_progress");
+  assert.equal(matrixRow.group_1_source_audit.fulltext_complete, false);
+  assert.equal(matrixRow.group_1_source_audit.report,
+    "reports/psychology/psykoteori_kildekontroll_gruppe1_2026-10-10.md");
+  for (const url of group1Sources[id]) {
+    const source = theory.reference_links.find((link) => link.url === url);
+    assert.ok(source, "missing group 1 scholarly reference: " + id + " / " + url);
+    assert.deepEqual(source.canonical_claim_ids, []);
+    assert.deepEqual(source.canonical_source_ids, []);
+  }
+}
+assert.match(reviewed.get("psykoanalyse").limit, /moderne psykodynamisk psykoterapi/);
+assert.match(reviewed.get("tilknytning").period, /1958.*1970.*1978/);
+assert.match(reviewed.get("resiliens").period, /1955.*1982.*2001/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /g = 0,79.*g = 0,06/);
 console.log("civication-psychology-room-coverage.test.js passed");
