@@ -141,7 +141,12 @@ function syncSectionNav(shell: HTMLElement): void {
 function hasCollectionContent(place: PlaceSheetPlace, id: string, sideStack: HTMLElement | null): boolean {
   let items: unknown;
   try { items = runtime.HGPlaceCardCollections?.getItems?.(place, id); } catch {}
-  if (Array.isArray(items) && items.length) return true;
+  if (Array.isArray(items)) {
+    if (items.length) return true;
+    // Legacy Nature previews may load after the collection API, but canonical
+    // People/Brands/Objects/Events/Productions must never inherit stale icons.
+    if (!["flora", "fauna", "map"].includes(id)) return false;
+  }
 
   const icon = sideStack
     ? Array.from(sideStack.querySelectorAll<HTMLElement>(".pc-collection"))
@@ -167,7 +172,7 @@ function syncCollectionNav(nav: HTMLElement, place: PlaceSheetPlace, sideStack: 
           label: text(node.getAttribute("aria-label") || node.title)
         }))
     : [];
-  const source = (configured.length ? configured : fallback)
+  const source = (typeof runtime.HGPlaceCardCollections?.get === "function" ? configured : fallback)
     .filter(item => hasCollectionContent(place, text(item?.id), sideStack));
   const seen = new Set<string>();
   let insertAfter = nav.querySelector<HTMLElement>('[data-hg-place-sheet-jump="about"]');
