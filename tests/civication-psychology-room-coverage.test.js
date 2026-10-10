@@ -319,6 +319,15 @@ assert.ok(wernerCard.reference_links.some((ref) =>
   ref.url === lohmollerMethod && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
 assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(lohmollerMethod));
 assert.ok(detailedReview.units.find((u) => u.id === "resiliens__method").evidence_urls.includes(lohmollerMethod));
+// Direct author-origin historical source: the 1989 cohort-tracing numbers have bounded meanings.
+const wernerGardenIsland = "https://people.uncw.edu/hungerforda/Infancy/PDF/gardenisland.pdf";
+assert.match(wernerCard.method, /2 203 registrerte svangerskap.*240 fosterdødsfall.*1 963 levende fødte/);
+assert.match(wernerCard.method, /545 medlemmer av fødselskohorten.*62 av de 72/);
+assert.match(wernerCard.limit, /545 oppsporede.*505 voksne/);
+assert.ok(wernerCard.reference_links.some((ref) =>
+  ref.url === wernerGardenIsland && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
+assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(wernerGardenIsland));
+assert.ok(detailedReview.units.find((unit) => unit.id === "resiliens__method").evidence_urls.includes(wernerGardenIsland));
 assert.match(wernerCard.method, /505 personer/);
 // Differing denominators must remain explicitly unresolved until 1992 original pages are checked.
 assert.match(wernerCard.limit, /614 som overlevende.*ikke bekreftet i originalbokens metodekapittel/);
