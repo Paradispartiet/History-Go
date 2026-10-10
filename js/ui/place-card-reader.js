@@ -71,7 +71,7 @@
       .filter(el => el && body.contains(el) && text(el));
 
     const remaining = blocks.filter((el, index) => {
-      if (opening.includes(el)) return false;
+      if (opening.some(openingElement => openingElement === el)) return false;
       if (!text(el) || !visible(el) || el.closest(ACTIONS) || el.closest(IGNORE)) return false;
       // Ett tekstledd leses bare én gang selv når det inneholder underordnede tekstledd.
       return !blocks.slice(0, index).some(parent => parent.contains(el));
