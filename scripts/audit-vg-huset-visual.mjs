@@ -194,6 +194,15 @@ try {
             run.fagverkPage.title=await page.title();
             run.fagverkPage.bodyLength=await page.locator('body').innerText().then(v=>v.trim().length);
             run.fagverkPage.headings=await page.locator('h1,h2').allTextContents();
+            run.fagverkPage.unfinished=await page.locator('#fagverkPlaceUnfinished').evaluate(el => ({
+              hidden: el.hidden,
+              computedDisplay: getComputedStyle(el).display,
+              visibleRect: (()=>{const r=el.getBoundingClientRect(); return {width:r.width,height:r.height};})()
+            }));
+            run.fagverkPage.coverageLabel=await page.locator('#fagverkPlaceCoverageStatus').innerText();
+            if (!run.fagverkPage.unfinished.hidden || run.fagverkPage.unfinished.computedDisplay !== 'none') {
+              run.issues.push('Fagverk unfinished message is visibly shown for curated VG-huset');
+            }
             if(profile.name==='ipad') {
               await capture(page,'ipad-fagverk-page');
               run.captures.push('ipad-fagverk-page.jpg');
