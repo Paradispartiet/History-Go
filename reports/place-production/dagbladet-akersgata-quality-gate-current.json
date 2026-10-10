@@ -1,0 +1,26 @@
+{
+  "schema": "history_go_place_quality_gate_projection_v3",
+  "generated": true,
+  "source": "data/places/workflow/dagbladet_akersgata.json",
+  "place_id": "dagbladet_akersgata",
+  "derived_state": "blocked",
+  "selected_collections": [
+    "people",
+    "brands"
+  ],
+  "blockers": [
+    "Productions: rettighetsavklart, autentisk medlemsbilde for kvalifisert utgivelse fra 1967–2008 gjenstår.",
+    "Endelig visuell godkjenning av komplett produksjon kan ikke gis mens en kvalifisert samling er BLOCKED.",
+    "Manuell UI-review: mobiltittel brytes midt i ord, Brand-logo beskjæres i samlingslisten, og den ene canonical fortellingen vises dobbelt. Må korrigeres og dokumenteres i ny nettleserkjøring før final_ui PASS."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "Uendrede fasadeoriginaler 1968/2006, autentisk tekstlogo og originale Egeland/Hansen/Stanghelle-portretter kontrollert mot kilde og lokal fil. Osvold-illustrasjon sammenlignet med SNLs navngitte identitetsfoto, tydelig tegnet og faktisk transparent; dokumentert kandidatkjøring Actions 38064735750."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Actions 38065847520 samlet 12 faktiske Chromium-skjermbilder på 390×844, 768×1024 og 1440×1000. Alle er manuelt gjennomgått. Automatiske runtimekontroller bestod, men manuell review fant konkrete visningsavvik; se reports/place-production/dagbladet-akersgata-visual-review-20261010.md. Dette er ikke native Safari eller fysisk iPad."
+    }
+  }
+}

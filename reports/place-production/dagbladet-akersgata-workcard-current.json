@@ -1,0 +1,115 @@
+{
+  "schema": "history_go_place_workcard_projection_v3",
+  "generated": true,
+  "source": "data/places/workflow/dagbladet_akersgata.json",
+  "place_id": "dagbladet_akersgata",
+  "category": "media",
+  "state": "blocked",
+  "profile": {
+    "id": "major",
+    "status": "confirmed",
+    "reason": "Fire tiår med dokumentert avishus, avisformat, redaksjonelle personer, bilag, nettlansering og arkivhistorie bærer full Fagverk-dybde. Profilen bestemmer ikke quizens settantall."
+  },
+  "selected_collections": [
+    "people",
+    "brands"
+  ],
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "refs": [
+        "data/people/media/oslo/people_media_oslo.json",
+        "data/people/people_image_attributions.json"
+      ],
+      "reason": "Fire direkte stedsknyttede personer med tre lisensierte Commons-portretter og én transparent, identitetskontrollert og tydelig merket redaksjonell illustrasjon."
+    },
+    "objects": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Avgrenset audit av museale arkiver og husets historikk fant ingen identifisert, separat fysisk gjenstand med dokumentert direkte tilknytning til Akersgata 49 i 1967–2008. Dagbladets brede negativarkiv er en samling, ikke én identifisert gjenstand; generiske trykkpresser, kunst på veggene og selve bygget er utelukket av Object-kontrakten. Ingen kvalifisert kandidat holdes tilbake bare fordi bildet mangler."
+    },
+    "brands": {
+      "status": "PASS",
+      "refs": [
+        "data/brands/brands_by_place.json",
+        "bilder/brands/dagbladet.svg"
+      ],
+      "reason": "Dagbladets autentiske 2015-logo brukt som brandidentitet, ikke som illustrasjon av en avisforside fra 1967."
+    },
+    "productions": {
+      "status": "BLOCKED",
+      "reason": "Papiravisen, nettutgaven fra 1995 og Magasinet fra 1999 er kvalifiserte utgivelser. Eget autentisk, rettighetsavklart medlemsbilde fra stedets periode er ikke sikret. Commons-forsider fra 1905/1910 gjelder andre adresser; logo og bygningsfoto kan ikke erstatte publikasjonens bilde.",
+      "refs": [
+        "reports/place-production/dagbladet-akersgata-source-review-20261010.md"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/dagbladet_akersgata.json",
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "refs": [
+        "data/places/production/dagbladet_akersgata.json",
+        "data/epoker/epoke-place-index.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/dagbladet_akersgata.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "refs": [
+        "data/stories/stories_dagbladet_akersgata.json"
+      ]
+    },
+    "quiz": {
+      "status": "PASS",
+      "refs": [
+        "data/quiz/production_context/media/dagbladet_akersgata.json"
+      ]
+    },
+    "quizcard": {
+      "status": "PASS",
+      "refs": [
+        "data/quizcards/media/dagbladet_akersgata_quizkort_v1.json"
+      ]
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_media.json"
+      ]
+    },
+    "before_after": {
+      "status": "BEGRUNNET_NA",
+      "reason": "De lisensierte historiske fasadebildene fra 1968 og 2006 viser forskjellige vinkler i samme redaksjonsperiode, og gir ikke et verifisert par fra samme standpunkt før og etter en avgrenset bygningsendring. De vises som daterte kildebilder, ikke som en konstruert før/etter-sammenstilling."
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Stedet representerer et historisk redaksjonssete avsluttet i 2008. Ingen stabil nåtidig hendelsesstrøm for selve Akersgata 49 er påvist; avisens generelle nasjonale nyheter er ikke stedsspesifikke nyheter."
+    }
+  },
+  "blockers": [
+    "Productions: rettighetsavklart, autentisk medlemsbilde for kvalifisert utgivelse fra 1967–2008 gjenstår.",
+    "Endelig visuell godkjenning av komplett produksjon kan ikke gis mens en kvalifisert samling er BLOCKED.",
+    "Manuell UI-review: mobiltittel brytes midt i ord, Brand-logo beskjæres i samlingslisten, og den ene canonical fortellingen vises dobbelt. Må korrigeres og dokumenteres i ny nettleserkjøring før final_ui PASS."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "Uendrede fasadeoriginaler 1968/2006, autentisk tekstlogo og originale Egeland/Hansen/Stanghelle-portretter kontrollert mot kilde og lokal fil. Osvold-illustrasjon sammenlignet med SNLs navngitte identitetsfoto, tydelig tegnet og faktisk transparent; dokumentert kandidatkjøring Actions 38064735750."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Actions 38065847520 samlet 12 faktiske Chromium-skjermbilder på 390×844, 768×1024 og 1440×1000. Alle er manuelt gjennomgått. Automatiske runtimekontroller bestod, men manuell review fant konkrete visningsavvik; se reports/place-production/dagbladet-akersgata-visual-review-20261010.md. Dette er ikke native Safari eller fysisk iPad."
+    }
+  }
+}
