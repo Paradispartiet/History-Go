@@ -97,13 +97,29 @@ For å hindre falsk faglig godkjenning står `source_review_state` som `partial_
 - **Grense:** WHOs systemveiledning er normativ kontekst, ikke empirisk validering av Engels rammeverk; søvn/arbeid/støtte er hypotetiske forskningsvariabler.
 - **Rettet:** `idea`, `method`, `contrast`. **Gjenstår:** konkret testbar mekanisme- og kausalitetsbinding i hvert anvendte emne.
 
+## Supplerende kilde–påstand-kontroll for de syv nye ankerne (10. oktober 2026)
+
+Dette er en **kildespesifikk** gjennomgang. Verifisert betyr i tabellen at *den oppførte, avgrensede påstanden* er kontrollert mot oppgitt utgiverside/sammendrag; det betyr ikke at hele teorikortet er source-verified eller redaksjonelt ferdig. Beslutningskontrasten i kortet er en egen syntese som krever bredere kildegrunnlag. Ingen nye canonical ID-er er tilordnet automatisk.
+
+| Teorikort / kilde | Inspisert belegg og avgrenset påstand | Hva kilden **ikke** verifiserer |
+| --- | --- | --- |
+| `femfaktormodellen` — [Ashton og Lee (2007)](https://pubmed.ncbi.nlm.nih.gov/18453460/) | PubMed-indeksert fagartikkel formulerer HEXACO som seksdimensjonalt alternativ til Big Five og beskriver ærlighet–ydmykhet som eget domene. Bekrefter modellalternativets identitet og begrunnelse. | At HEXACO gir bedre prediksjon for alle utvalg, eller at et trekk beskriver et bestemt menneske entydig. |
+| `heuristikker` — [Tversky og Kahneman (1981)](https://pubmed.ncbi.nlm.nih.gov/7455683/) | Primærartikkel i *Science* om at ulik innramming av ellers sammenlignbare beslutningsproblemer kan gi preferansereversering; relevant for det hypotetiske framing-eksemplet. | Støtter ikke alene alt om heuristikkmåling, stabil individuell bias eller enhver moderne kontekst. |
+| `heuristikker` — [Gigerenzer og Gaissmaier (2011)](https://doi.org/10.1146/annurev-psych-120709-145346) | *Annual Review of Psychology*, 62:451–482, gjennomgår formaliserte heuristikker, betingelser for adaptive beslutninger og spørsmål om økologisk rasjonalitet. | Gir ingen generell regel om at enkle heuristikker alltid er bedre enn statistiske modeller. |
+| `tilknytning` — [Van Rosmalen, Van der Veer og Van der Horst (2015)](https://doi.org/10.1002/jhbs.21729) | *Journal of the History of the Behavioral Sciences*, 51:261–284, beskriver forløpere til og utviklingen av Ainsworths Strange Situation. Historisk og metodisk kilde. | Ingen effektstudie av foreldrestil og intet belegg for å tolke et enkelt barns tilknytning fra én situasjon. |
+| `sosial_identitet` — [Sherif mfl. (1954/1961), kapittel 2](https://www.yorku.ca/pclassic/Sherif/chap2.htm) | Primærverkets forsøksplan beskriver egen gruppedannelse, konkurranse og senere felles overordnede mål. Konkret alternativt undersøkelsesdesign til ren kategorisering. | Verifiserer ikke alle senere påstander om realistisk konfliktteori og beviser ikke universell overførbarhet. |
+| `konformitet` — [Bond og Smith (1996)](https://doi.org/10.1037/0033-2909.119.1.111) | Metaanalyse i *Psychological Bulletin*, 119:111, med 133 Asch-lignende studier fra 17 land. Bekrefter at konformitet i denne oppgavefamilien varierer med kontekst og tid. | Gir ingen konstant «konformitetsprosent» for enkeltpersoner eller alle oppgavetyper. |
+| `kognitiv_terapi` — [Cuijpers mfl. (2023)](https://pubmed.ncbi.nlm.nih.gov/36640411/) | Metaanalyse i *World Psychiatry*, 22:105–115, av 409 studier, 518 sammenligninger og 52 702 pasienter om CBT ved depresjon. Sammenligninger og risiko for skjevhet må tolkes per kontrollgruppe. | Ingen selvstendig effektgaranti for en bestemt person, andre diagnoser eller History Go-øvelser. |
+
+**Kildeløft (avgrenset):** Disse syv ankerne er kontrollert på original utgiverside, forskningsarkiv eller PubMed/sammendrag. Klassifiseres som `checked_specific_source_scope` **kun i denne rapporten**. De 32 eldre kildelenkene og alle øvrige kortfelt er fortsatt ikke underlagt komplett claim-for-claim-kontroll. Derfor forblir totalstatus 0/14 fullt kildegodkjente.
+
 ## Integritet og restanse
 
 - **14/14** kort har feltvis tekstgjennomgang; det betyr ikke at alle 14 har fått fulltext-/claim-verifikasjon.
 - **7** nye kildeankre på **6** kort, med tekst om hva de støtter, og identisk URL-speil i dekningsregisterets primærposter.
 - **18/58** emner er direkte koblet; **40** mangler direkte inngang, men eksisterer allerede i Fagverket.
 - **0/14** full kildegodkjenning; **0/14** redaksjonell sluttgodkjenning. Ikke endre dette automatisk.
-- **Uavklart fra forrige batch:** `src-descriptive-injunctive` i kapittelet `sosialpsykologi-normalitet-og-stigma/claims.json` har mistilpasset tittel/URL og skal kildeavklares i en egen, avgrenset canonical retting før denne kilden brukes som teoribevis.
+- **Korrigert status fra forrige batch:** Tidligere kildebatches omtalte en mismatch for `src-descriptive-injunctive`. Gjeldende `main` er nå kontrollert: kilden har tittelen *Do as we say and as we do: the interplay of descriptive and injunctive group norms in the attitude-behaviour relationship*, URL `https://pubmed.ncbi.nlm.nih.gov/18163950/` og er koblet til `sns-04`. Katalogens tittel og URL samsvarer dermed. Dette er en metadata-/claim-ID-kontroll, ikke en uavhengig fulltekstverifisering av alle tolkninger av gruppenormer.
 - For endelig `source_verified` kreves kilde–påstand-matrise per kort med korrekte canonical claim- og source-ID-er, fulltekst/primæranalyse og vurdering av empirisk styrke. For `editorial_pass` kreves i tillegg dokumentert historisk case, rival med analytisk konsekvens, løst fagverkbånd og manuell tverrkort-review. **Ikke merk en lenke som ferdig bare fordi den peker til et emne.**
 
 ## Kvalitetsevaluering (AGENTS.md, foreløpig)
