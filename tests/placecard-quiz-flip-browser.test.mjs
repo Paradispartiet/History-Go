@@ -130,8 +130,14 @@ try {
                 engine + " rendered QuizCard uses the dark decorated surface");
               assert.equal(theme.color, "rgb(248, 250, 252)",
                 engine + " rendered QuizCard uses readable near-white text");
-              assert.equal(theme.border, "solid",
-                engine + " rendered QuizCard has a decorative border");
+              assert.equal(theme.border, "none",
+                engine + " rendered QuizCard has no duplicate perimeter frame");
+              const outerFrame = await page.locator("#pcQuizCardBack").evaluate(el => ({
+                border: getComputedStyle(el).borderTopWidth,
+                style: getComputedStyle(el).borderTopStyle
+              }));
+              assert.equal(outerFrame.border, "1px", "compact QuizCard has one thin external frame");
+              assert.equal(outerFrame.style, "solid", "compact QuizCard frame is present");
               const compactFont = await card.evaluate(el => ({
                 heading: parseFloat(getComputedStyle(el.querySelector(".pc-rendered-quiz-head h3")).fontSize),
                 question: parseFloat(getComputedStyle(el.querySelector(".pc-rendered-quiz-list")).fontSize),
@@ -151,9 +157,27 @@ try {
             const expand = page.locator("#pcQuizExpandBtn");
             assert.equal(await expand.isVisible(), true,
               engine + " must show expand control in bottom right of QuizCard back");
+            const expandStyle = await expand.evaluate(el => ({
+              height: parseFloat(getComputedStyle(el).height),
+              border: getComputedStyle(el).borderTopWidth,
+              background: getComputedStyle(el).backgroundImage
+            }));
+            assert.ok(expandStyle.height >= 44 && expandStyle.border === "1px",
+              engine + " enlarge button retains a 44px accessible target and refined hairline frame");
+            assert.match(expandStyle.background, /gradient/,
+              engine + " enlarge button uses elegant dark button treatment");
             await expand.click();
             const fullView = page.locator("#pcQuizExpanded");
             assert.equal(await fullView.isVisible(), true, "expanded QuizCard is visible");
+            const closeStyle = await page.locator("#pcQuizExpandedClose").evaluate(el => ({
+              height: parseFloat(getComputedStyle(el).height),
+              border: getComputedStyle(el).borderTopWidth,
+              background: getComputedStyle(el).backgroundImage
+            }));
+            assert.ok(closeStyle.height >= 44 && closeStyle.border === "1px",
+              engine + " close button retains accessible dimensions and matches the frame");
+            assert.match(closeStyle.background, /gradient/,
+              engine + " close button follows black QuizCard styling");
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), true,
               "tapping expansion control must not flip the card to its front");
             const bounds = await page.evaluate(() => {
@@ -177,8 +201,8 @@ try {
                 "large rendered QuizCard has white lettering");
               assert.match(expandedTheme.background, /gradient/,
                 "large rendered QuizCard uses a dark background");
-              assert.equal(expandedTheme.border, "2px",
-                "large rendered QuizCard has an outer frame");
+              assert.equal(expandedTheme.border, "1px",
+                "large rendered QuizCard has one thin outer frame");
               const expandedFont = await page.locator("#pcQuizExpandedContent").evaluate(el => ({
                 heading: parseFloat(getComputedStyle(el.querySelector(".pc-rendered-quiz-head h3")).fontSize),
                 question: parseFloat(getComputedStyle(el.querySelector(".pc-rendered-quiz-list")).fontSize),
