@@ -57,8 +57,8 @@ try{
    window.PLACES=[place];
    window.getPeopleForPlace=()=>people;
    window.showPlaceCardRoundPopup=payload=>{window.__lastPopup=payload};
-   document.getElementById("pcFrontImage").src=String(place.frontImage).replace(/^\\//,"/");
-   const header=String(place.image).replace(/^\\//,"/");
+   document.getElementById("pcFrontImage").src=String(place.frontImage);
+   const header=String(place.image);
    document.getElementById("pcHeaderImage").src=header;
   },{place:payload.place,people:payload.people});
   await page.addScriptTag({url:"/js/brands/brands_loader.js"});
