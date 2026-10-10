@@ -337,3 +337,135 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Theory is a scholarly exploration surface, separate from screening and rewards. */
+.psychology-room-theory-group {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.psychology-room-theory-group .psychology-room-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psychology-room-theory-group .psychology-room-list-item {
+  min-width: 0;
+  align-content: start;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.psychology-room-theory-group .psychology-room-list-item:hover,
+.psychology-room-theory-group .psychology-room-list-item:focus-visible {
+  border-color: rgba(255, 171, 180, 0.65);
+  background: rgba(255, 154, 162, 0.11);
+}
+
+.psychology-room-theory-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.psychology-room-theory-head h4,
+.psychology-room-theory-detail h4 {
+  margin: 0;
+}
+
+.psychology-room-theory-head a,
+.psychology-room-fagverk-link {
+  color: #ffc2ca;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.psychology-room-theory-detail > section {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 13px;
+}
+
+.psychology-room-theory-detail > section p {
+  margin: 8px 0 0;
+  line-height: 1.6;
+}
+
+.psychology-room-theory-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.psychology-room-theory-links .psychology-room-mini-action,
+.psychology-room-theory-compare .psychology-room-mini-action {
+  width: auto;
+  min-width: 0;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.psychology-room-theory-source .psychology-room-theory-links {
+  margin-top: 12px;
+}
+
+.psychology-room-panel a:focus-visible,
+.psychology-room-panel button:focus-visible {
+  outline: 2px solid #ffc2ca;
+  outline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .psychology-room-theory-group .psychology-room-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .psychology-room-theory-head {
+    align-items: start;
+  }
+}
+
+.psychology-room-theory-references {
+  display: grid;
+  gap: 11px;
+  margin: 12px 0 0;
+  padding-left: 20px;
+}
+
+.psychology-room-theory-references li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.psychology-room-theory-references a {
+  color: #ffc2ca;
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
+
+.psychology-room-theory-references span {
+  display: block;
+  margin-top: 3px;
+  color: rgba(247, 241, 232, 0.76);
+  font-size: 13px;
+}
+
+/* Contextual Fagverk links reuse established theory cards without making new claims. */
+.psychology-room-theory-related-emner {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.psychology-room-theory-related-emner h5 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.psychology-room-theory-related-emner p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
