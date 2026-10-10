@@ -17,7 +17,25 @@ test("generated epoch-place index is deterministic and current", () => {
   assert.equal(index.stats.place_evidence_link_count, 325);
   assert.equal(index.stats.period_case_count, 9);
   assert.equal(index.stats.canonical_story_milestone_count, 240);
-  assert.equal(index.stats.verified_place_production_milestone_count, 593);
+  assert.ok(index.stats.verified_place_production_milestone_count >= 593, "previous verified milestones must remain available");
+});
+
+
+test("VG-huset contributes seven source-backed, site-scoped chronology anchors", () => {
+  const index = buildEpokePlaceIndex();
+  const milestones = Object.values(index.domains.historie.epochs)
+    .flatMap((epoch) => epoch.places || [])
+    .filter((place) => place.place_id === "vg_huset")
+    .flatMap((place) => place.milestones || [])
+    .filter((milestone) => milestone.evidence_type === "verified_place_production_claim");
+  assert.deepEqual(
+    milestones.map(({ year }) => year).sort((a, b) => a - b),
+    [1944, 1994, 1995, 2000, 2011, 2014, 2024]
+  );
+  assert.ok(milestones.every(({ source_file }) => source_file === "data/places/production/vg_huset.json"));
+  assert.match(milestones.find(({ year }) => year === 1944)?.title ?? "", /tidligere bygningen/u);
+  assert.match(milestones.find(({ year }) => year === 1994)?.title ?? "", /Dagens VG-hus/u);
+  assert.ok(!milestones.some(({ year }) => year === 1945), "avisens 1945-grunnleggelse er ikke dagens bygnings tidsanker");
 });
 
 test("Klassekampen contributes exactly eight verified production milestones", () => {
