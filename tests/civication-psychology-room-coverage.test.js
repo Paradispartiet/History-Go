@@ -196,4 +196,39 @@ assert.match(reviewed.get("psykoanalyse").limit, /moderne psykodynamisk psykoter
 assert.match(reviewed.get("tilknytning").period, /1958.*1970.*1978/);
 assert.match(reviewed.get("resiliens").period, /1955.*1982.*2001/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /g = 0,79.*g = 0,06/);
+
+const detailedReview = load("reports/psychology/psykoteori_claim_units_group1_2026-10-10.json");
+assert.equal(detailedReview.schema, "history_go_psykoteori_claim_units_source_review_v1");
+assert.equal(detailedReview.card_count, 4);
+assert.equal(detailedReview.fields_per_card, 8);
+assert.equal(detailedReview.unit_count, 32);
+assert.equal(detailedReview.units.length, 32);
+const expectedFields = [
+  "founders", "period", "idea", "method", "limit", "contrast", "example", "example_secondary"
+];
+assert.equal(new Set(detailedReview.units.map((unit) => unit.id)).size, 32);
+for (const id of group1) {
+  const theory = reviewed.get(id);
+  const rows = detailedReview.units.filter((unit) => unit.theory_id === id);
+  assert.deepEqual(rows.map((unit) => unit.field), expectedFields,
+    "each group 1 card must have eight distinct, scoped evidence units: " + id);
+  for (const unit of rows) {
+    assert.equal(unit.full_original_review_complete, false,
+      "partial source consultation cannot claim full original research verification");
+    assert.equal(unit.card_is_source_verified, false);
+    assert.ok(unit.assertion.length > 35 && unit.scope_limit.length > 35);
+    assert.equal(unit.id, id + "__" + unit.field);
+    if (unit.field.startsWith("example")) {
+      assert.deepEqual(unit.evidence_urls, []);
+      assert.equal(unit.claim_status, "hypothetical_label_checked");
+    } else {
+      assert.equal(unit.claim_status, "evidence_bounded_not_fully_verified");
+      assert.ok(unit.evidence_urls.length >= 1);
+      for (const url of unit.evidence_urls) {
+        assert.ok(theory.reference_links.some((ref) => ref.url === url),
+          "evidence URL not found on the theory card: " + id + " / " + url);
+      }
+    }
+  }
+}
 console.log("civication-psychology-room-coverage.test.js passed");
