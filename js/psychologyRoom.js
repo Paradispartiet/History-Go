@@ -514,7 +514,8 @@
       ["Kjerneidé", theory.idea],
       ["Hvordan undersøkes dette?", theory.method],
       ["Begrensninger og kritikk", theory.limit],
-      ["Undervisningseksempel (hypotetisk)", theory.example]
+      ["Undervisningseksempel 1 (hypotetisk)", theory.example],
+      ["Undervisningseksempel 2 (hypotetisk)", theory.example_secondary]
     ].map(([heading, value]) => '<section><h4>' + escapeHtml(heading) + '</h4><p>' +
       escapeHtml(value || "") + '</p></section>').join("");
     const comparisonHtml = comparison
