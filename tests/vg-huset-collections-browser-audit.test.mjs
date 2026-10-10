@@ -40,18 +40,23 @@ try {
     });
     const object=page.locator("#pcObjectsIcon > img");
     const brand=page.locator("#pcBrandsIcon > img");
+    const production=page.locator("#pcCategoryCollectionIcon > img");
     assert.equal(await object.count(),1,"Object has real member preview at "+width);
     assert.equal(await brand.count(),1,"Brand has real logo preview at "+width);
+    assert.equal(await production.count(),1,"Production has real publication preview at "+width);
     assert.equal(await object.getAttribute("src"),"bilder/kort/objects/vg_avismonter_2011.jpg");
     assert.equal(await brand.getAttribute("src"),"bilder/kort/brands/vg_logo.svg");
+    assert.equal(await production.getAttribute("src"),"bilder/kort/productions/vg_papiravis_2011_i_monter_2013.jpg");
     await page.waitForFunction(()=>{
       const a=document.querySelector("#pcObjectsIcon > img");
       const b=document.querySelector("#pcBrandsIcon > img");
-      return a?.complete&&b?.complete;
+      const c=document.querySelector("#pcCategoryCollectionIcon > img");
+      return a?.complete&&b?.complete&&c?.complete;
     });
     const media=await page.evaluate(()=>{
       const obj=document.querySelector("#pcObjectsIcon > img"),logo=document.querySelector("#pcBrandsIcon > img");
-      return {objectWidth:obj.naturalWidth,objectHeight:obj.naturalHeight,brandWidth:logo.naturalWidth,brandHeight:logo.naturalHeight,
+      const pub=document.querySelector("#pcCategoryCollectionIcon > img");
+      return {objectWidth:obj.naturalWidth,objectHeight:obj.naturalHeight,brandWidth:logo.naturalWidth,brandHeight:logo.naturalHeight,publicationWidth:pub.naturalWidth,publicationHeight:pub.naturalHeight,publicationStatus:document.querySelector("#pcCategoryCollectionIcon").dataset.previewStatus,
         objectStatus:document.querySelector("#pcObjectsIcon").dataset.previewStatus,
         brandStatus:document.querySelector("#pcBrandsIcon").dataset.previewStatus,
         objectCount:document.querySelector("#pcObjectsIcon").dataset.collectionItemCount,
@@ -61,6 +66,8 @@ try {
     assert.ok(media.brandWidth>0 && media.brandHeight>0,"VG logo decoded "+width);
     assert.equal(media.objectStatus,"member-image");
     assert.equal(media.brandStatus,"member-image");
+    assert.ok(media.publicationWidth>100 && media.publicationHeight>100,"Publication photo decoded at "+width);
+    assert.equal(media.publicationStatus,"member-image");
     assert.equal(media.objectCount,"1");
     assert.equal(media.brandCount,"1");
     await page.locator("#pcObjectsIcon").click();
