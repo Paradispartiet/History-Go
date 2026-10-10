@@ -143,3 +143,46 @@ Denne kontrollen gjelder **faktisk leste, navngitte tekststeder**, ikke full god
 ### 8.5 Revisjonsbeslutning og gjenstående krav
 
 Den maskinlesbare 32-enheters påstandskontrollen er revidert med disse kildenes konkrete innhold og begrensninger. **Ingen enhet har `full_original_review_complete=true`; ingen teorikort er `source_verified`.** Dette betyr ikke at ingen funn er støttet; det betyr at *hele teorikortets kildeport* fortsatt krever kritisk originaltekstgjennomgang, utvalgs-/frafallsanalyse og tilstrekkelig dekning av hver underpåstand. Tredjeparts gjengivelse av primærverk eller metaanalyser kan ikke fylle de utestående leddene automatisk.
+
+
+## 9. Originalarbeider – metode, utvalg, resultater og forskningshistorie (ny kildekontroll 10. oktober 2026)
+
+**Proveniens:** Publikasjonene identifiseres mot originaltidsskriftenes bibliografiske arkiver og forlag. Der lesbar originaltekst kommer fra tredjepartsreproduksjon, er dette *angitt eksplisitt*. Forlagets originalmetadata, originale tekstutdrag, bibliotekskataloger og indekserte sammendrag er ikke samme verifikasjonsnivå. Ingen full nyanalysering av rådata er gjennomført.
+
+### Bowlby, 1958 – begreper og opprinnelig hypotese
+
+- **Original:** John Bowlby, *The Nature of the Child's Tie to His Mother*, *International Journal of Psycho-Analysis* **39**, 350–373 (1958). [PubMed PMID 13610508](https://pubmed.ncbi.nlm.nih.gov/13610508/) bekrefter oppføringen, og [Wellcome-arkivet](https://wellcomecollection.org/works/ebjjsja2) har originaltrykk/reprint.
+- **Kontrollert originaltekst:** Tilgjengelige utdrag av [reprodusert artikkel](https://www.studocu.com/in/document/indian-institute-of-psychology-research/counseling-psychology/bowlby-1958-the-nature-of-the-child-s-tie-to-his-mother/96429548), side 350 med note 2 og hypotesen om fem atferdskomponenter. Bowlby presiserte selv at uttrykket mor sikter til *personen som gir barnet omsorg og som barnet knytter seg til*, ikke nødvendigvis biologisk mor. Han foreslo **suging, klamring, følging, gråt og smil** som delsystemer. Dette er hans historiske teori, ikke en evidensbasert test av en bestemt biologisk mor–barn-relasjon.
+- **Metodisk avgrensning:** Artikkelen er teoriformulering med tolkning av observasjoner, etologi og klinisk materiale, **ikke en kohort-RCT eller effektstudie**. Originalens øvrige argumentasjon og kritiske data er ikke uavhengig analysert fullstendig. Tilknytningskortet oppgir eksplisitt denne grensen.
+
+### Ainsworth og Bell, 1970 – kontroll av originalmetoden
+
+- **Original:** Mary D. S. Ainsworth og Silvia M. Bell, *Attachment, Exploration, and Separation: Illustrated by the Behavior of One-Year-Olds in a Strange Situation*, *Child Development* **41**(1), 49–67 (1970). [JSTORs originalregistrering](https://www.jstor.org/stable/1127388) og [PubMed PMID 5490680](https://pubmed.ncbi.nlm.nih.gov/5490680/) bekrefter bibliografien; PubMed har ikke sammendrag.
+- **Kildetilgang:** [Tekstlig reproduksjon av JSTOR-artikkelens originaltrykk på StudyLib](https://studylib.net/doc/28483723/ainsworth-attachment--exploration--and-separation-illustr...), kontrollert med originalens trykte sidetall **49–67**. Dette er en tredjepartsopplasting, ikke en utgiverattestert tekst; originalbibliografien er kontrollert separat.
+- **Metode og utvalg (trykte s. 53–56):** **56 hvite middelklassebarn** i alderen **49–51 uker**, rekruttert gjennom barneleger. **23** kom fra en longitudinell hjemmestudie og **33** fra et annet prosjekt. Åtte episoder, inkludert observasjon med omsorgsperson, fremmed, to separasjoner og gjenforening. Episodene kunne avkortes dersom barnet viste sterk uro. To observatører dikterte løpende observasjoner med 15-sekunds markeringer i store deler av materialet, men protokollen og observatørbemanningen var ikke helt identiske for hele utvalget.
+- **Reliabilitet (trykte s. 54–56):** Forfatterne oppgir bl.a. korrelasjoner fra **4 tilfeller observert av begge**, **8 tilfeldig valgte tilfeller dobbeltkodet** for frekvensmål og **14 tilfeller dobbeltvurdert** for andre atferdsskalaer. Flere rapporterte korrelasjoner var høye, men de bygger på små delutvalg og på **spesifikke mål**. De må ikke forveksles med universell reliabilitet eller validitet for senere fireveis tilknytningsklassifikasjon.
+- **Rapporterte funn (s. 56–59):** Utforsking sank når mor var borte, gråt og søk økte under separasjoner og nærhetssøking økte ved gjenforening. Dette er **gruppegjennomsnittlige mønstre i én historisk observasjonsstudie**. Det ble ikke demonstrert at én standardepisode kan diagnostisere et barns tilknytning eller vurdere omsorgspersoners samlede kvalitet.
+- **Risiko for skjevhet og kunnskapshull:** Sosialt begrenset utvalg, avhengighet mellom episodene, metodisk variasjon under innsamlingen og små reliabilitetsdelutvalg. Senere analyse av instrumentets kulturelle måleinvarians og mer omfattende rådatamateriale gjenstår. Resultatene i **Opie mfl. (2021)** gjelder nyere metaanalyse og skal ikke retroaktivt tilskrives Ainsworth og Bell.
+
+### Werner, 1989 og 1993 – longitudinelle originalanalyser
+
+- **1989:** Emmy E. Werner, *High-Risk Children in Young Adulthood: A Longitudinal Study from Birth to 32 Years*, *American Journal of Orthopsychiatry* **59**, 72–81, DOI [10.1111/j.1939-0025.1989.tb01636.x](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1939-0025.1989.tb01636.x). Forlagets **originalsammendrag** angir analyser av fødselskohorten fra 1955 og at betydningen av risiko/beskyttelse skiftet mellom livsfaser, delvis ulikt etter kjønn. Ingen spesifikke numeriske kausale effekter er tillagt artikkelen.
+- **1993:** Werner, *Risk, Resilience, and Recovery: Perspectives from the Kauai Longitudinal Study*, *Development and Psychopathology* **5**(4), 503–515, DOI [10.1017/S095457940000612X](https://www.cambridge.org/core/journals/development-and-psychopathology/article/abs/risk-resilience-and-recovery-perspectives-from-the-kauai-longitudinal-study/DC3C3F10587A1A7D04C0310270717B3E). Artikkelen kom i **trykt årgang 1993**, men forlagets nettside viser **2009** som tidspunktet for digital publisering. Dette skal ikke feiltolkes som at studien stammer fra 2009. Originalforfatterens sammendrag lister oppfølging ved **fødsel, 1, 2, 10, 18 og 32 år**.
+- **Metodekritikk:** Startkohorten på **698 barn** er ikke det samme som analysens tilgjengelige antall ved hver oppfølging. Originalpublikasjonenes metodedeler og komplette frafalls-/konfunderingsanalyser er fortsatt ikke tilgjengelig kontrollert i denne runden. Resultater for **Zaltas voksne PTSD-populasjon (2021)** er uavhengig litteratur og ikke et direkte estimat fra Kauai-kohorten.
+
+### Beck, 1963 – historisk observasjon versus klinisk effekt
+
+- **Original:** Aaron T. Beck, *Thinking and Depression: I. Idiosyncratic Content and Cognitive Distortions*, *Archives of General Psychiatry* **9**(4), 324–333 (1963), DOI [10.1001/archpsyc.1963.01720160014002](https://jamanetwork.com/journals/jamapsychiatry/article-abstract/488402). [PubMed PMID 14045261](https://pubmed.ncbi.nlm.nih.gov/14045261/) har ikke sammendrag.
+- **Faktisk inspisert tekst:** Forlagets **åpne innledning**, der Beck beskriver at tidligere depresjonslitteratur la hovedvekt på affekt og motivasjon, mens kognitive prosesser var mindre utforsket. Den tilgjengelige forlagssiden avskjærer resten av artikkelen bak innlogging/tilgang.
+- **Konklusjon:** Vi kan verifisere **forskningshistorisk problemstilling og dato**, men **ikke** hele 1963-studiens utvalg, analyse, måleinstrumenter eller funn uten fulltekst. Derfor finnes ingen oppdiktede 1963-effektstørrelser, og den moderne effekten av CBT ved depresjon bygger fortsatt separat på **Kovacs mfl. (1981)** og **Cuijpers mfl. (2023)**.
+
+### Status etter denne runden
+
+| Kort | Primærtekst nå faktisk undersøkt | Sentrale åpne spørsmål | Godkjenning |
+| --- | --- | --- | --- |
+| `tilknytning` | Bowlby-originalens begrepsdel og Ainsworth/Bell-originalens metode/funn i digitalisert reproduksjon | Uavhengig kvalitetskontroll av fullstendige originaltabeller, kulturell generaliserbarhet og senere målevaliditet | **Ikke godkjent** |
+| `resiliens` | Werner 1989/1993, forlagsoriginale sammendrag | Full kohortmetode, frafall, modelljusteringer, analysedesign i originalbok og artikler | **Ikke godkjent** |
+| `kognitiv_terapi` | Beck 1963, forlagsoriginal innledning | Resten av 1963-metoden, originalfunnenes usikkerhet, ekstern mekanismevalidering | **Ikke godkjent** |
+| `psykoanalyse` | Breuer/Freud 1895, forord kontrollert mot kritisk tekstutgave | Full kontroll av kasus, moderne PDT-forsøkenes risiko-for-skjevhet og mekanismer | **Ikke godkjent** |
+
+Eksisterende **32 påstandsenheter**, `source_review_state=partial_historical_method_review`, `source_review_status=not_reviewed`, `editorial_review_status=not_reviewed` og 14-korts baseline beholdes til den komplette kvalitetsporten faktisk er bestått.
