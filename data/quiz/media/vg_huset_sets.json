@@ -13,7 +13,8 @@
     "monter2011": "https://commons.wikimedia.org/wiki/File:Shattered_newspaper_monter_outside_VG_in_Oslo.jpg",
     "monter2013": "https://commons.wikimedia.org/wiki/File:VG_monter_flyttet.JPG",
     "schibsted": "https://kommunikasjon.ntb.no/pressemelding/18132215/schibsted-media-sjefen-en-ny-epoke?lang=no&publisherId=17848846",
-    "byleksikon_vg": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29"
+    "byleksikon_vg": "https://oslobyleksikon.no/side/Verdens_Gang_%28n%C3%A5v%C3%A6rende%29",
+    "carey": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf"
   },
   "production_context": {
     "manifest_category": "media",
@@ -59,7 +60,9 @@
     "method_ids": [
       "met_media_kildekritisk_analyse"
     ],
-    "thinker_ids": [],
+    "thinker_ids": [
+      "james_carey"
+    ],
     "works": [],
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
@@ -1403,7 +1406,7 @@
           ],
           "answer": "En datert trykt publikasjon knyttet til huset",
           "answerIndex": 0,
-          "knowledge": "Et autentisk fysisk eksemplar beviser publisert materiale og datering, men ikke alle beslutninger og tekniske produksjonssteder bak utgaven.",
+          "knowledge": "Et autentisk fysisk eksemplar beviser publisert materiale og datering, men ikke alle beslutninger og tekniske produksjonssteder bak utgaven. James W. Carey skiller dessuten mellom kommunikasjon som overføring av informasjon og som sosialt ritual; hvordan leserne faktisk brukte den trykte avisen krever andre kilder enn selve eksemplaret.",
           "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
           "difficulty": 3,
           "question_type": "analysis",
@@ -1414,7 +1417,8 @@
           ],
           "source": [
             "monter2013",
-            "koro"
+            "koro",
+            "carey"
           ],
           "source_origin": "external",
           "emne_id": "em_media_kildekritikk",
@@ -1439,8 +1443,22 @@
               "source_type": "institutional_primary",
               "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
               "role": "KOROs fysiske dokumentasjon av den skadde avisutstillingsmonteren, flytting 2013 og tilbakeføring av aviseksemplar."
+            },
+            {
+              "source_id": "carey",
+              "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf",
+              "source_type": "primary_scholarly_essay",
+              "claim_basis": "VGs trykte avissider i monteren er dokumentasjon på en konkret publisert papiravis.",
+              "role": "James W. Careys A Cultural Approach to Communication er gjennomgått i kildearbeidet for Aftenposten: sidene om kommunikasjon som overføring og ritual. Brukes som fortolkningsperspektiv etter materiell dokumentasjon, ikke som kilde til datoer, faktisk opplag eller VG-lesernes praksis."
             }
-          ]
+          ],
+          "topic_hook_id": "avishus_som_offentlighetsrom",
+          "thinker_id": "james_carey",
+          "theory_ref": {
+            "topic_hook_id": "avishus_som_offentlighetsrom",
+            "thinker_id": "james_carey",
+            "why_it_helps": "Carey skiller mellom nyhetsoverføring og lesning som sosialt ritual; en bevart papiravis dokumenterer et utgitt produkt, men ikke hvordan konkrete lesere brukte det. Perspektivet presiserer kildegrensen uten å flytte historien fra VG-huset."
+          }
         },
         {
           "id": "vg_huset_v2_q23",
@@ -1738,7 +1756,8 @@
               "claim_basis": "To forskjellige kildetyper dokumenterer 1944-hendelsen og byggets 1994-fase.",
               "role": "Lund & Slaattos prosjektdokumentasjon: 1994, arkitekt, lysgård, glassoverdekning, offentlig passasje og åpent avishus; ingen oppdiktet sal, redaksjonsrom eller byggekost."
             }
-          ]
+          ],
+          "method_id": "met_media_kildekritisk_analyse"
         }
       ]
     }
