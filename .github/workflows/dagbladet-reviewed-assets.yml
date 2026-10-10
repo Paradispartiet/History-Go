@@ -26,8 +26,15 @@ jobs:
             with urllib.request.urlopen(req,timeout=60) as r:
               payload=json.load(r)
             info=next(iter(payload['query']['pages'].values()))['imageinfo'][0]
-            with urllib.request.urlopen(urllib.request.Request(info['url'],headers={'User-Agent':'HistoryGo/1.0'}),timeout=60) as r:
-              data=r.read()
+            for attempt in range(6):
+              try:
+                req=urllib.request.Request(info['url']+'?download=1&historygo_review=20261010',headers={'User-Agent':'HistoryGo cultural-history asset import (https://github.com/Paradispartiet/History-Go)'})
+                with urllib.request.urlopen(req,timeout=60) as r:
+                  data=r.read()
+                break
+              except urllib.error.HTTPError as error:
+                if error.code != 429 or attempt == 5: raise
+                time.sleep(10*(attempt+1))
             actual=hashlib.sha1(data).hexdigest()
             if actual != expected: raise RuntimeError('Reviewed source changed: '+title+' '+actual)
             target=pathlib.Path(dest)
