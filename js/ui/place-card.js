@@ -710,8 +710,80 @@ function bindPlaceCardQuizFlip(card, quizImgEl) {
 
   card.addEventListener("click", toggle);
   card.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") toggle(event);
+    // A nested button has its own keyboard action; never flip on its Enter/Space.
+    if (event.target === card && (event.key === "Enter" || event.key === " ")) toggle(event);
   });
+
+  // Expand the *existing* QuizCard back within PlaceCard, not the entire viewport.
+  const sheet = card.closest("#placeCard");
+  const expandButton = document.getElementById("pcQuizExpandBtn");
+  const expandedView = document.getElementById("pcQuizExpanded");
+  const expandedContent = document.getElementById("pcQuizExpandedContent");
+  const expandedClose = document.getElementById("pcQuizExpandedClose");
+  const expandedTitle = document.getElementById("pcQuizExpandedTitle");
+  const renderedBack = document.getElementById("pcQuizCardContent");
+
+  if (sheet && expandButton && expandedView && expandedContent && expandedClose) {
+    const closeExpanded = (restoreFocus = true) => {
+      if (expandedView.hidden) return;
+      expandedView.hidden = true;
+      sheet.classList.remove("pc-quiz-expanded-open");
+      expandedContent.replaceChildren();
+      expandedContent.removeAttribute("data-mode");
+      if (restoreFocus) expandButton.focus();
+    };
+
+    expandButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!card.classList.contains("has-quiz-card") || !card.classList.contains("is-flipped")) return;
+
+      // Data-rendered QuizCards take precedence over a legacy image back.
+      const hasRenderedBack = renderedBack && !renderedBack.hidden && Boolean(renderedBack.textContent.trim());
+      expandedContent.replaceChildren();
+      if (hasRenderedBack) {
+        const fullText = /** @type {HTMLElement} */ (renderedBack.cloneNode(true));
+        fullText.removeAttribute("id");
+        expandedContent.appendChild(fullText);
+        expandedContent.dataset.mode = "rendered";
+      } else if (quizImgEl?.getAttribute("src")) {
+        const fullImage = document.createElement("img");
+        fullImage.className = "pc-quiz-expanded-image";
+        fullImage.src = quizImgEl.currentSrc || quizImgEl.src;
+        fullImage.alt = quizImgEl.alt || "Quizkort";
+        expandedContent.appendChild(fullImage);
+        expandedContent.dataset.mode = "image";
+      } else {
+        return;
+      }
+
+      if (expandedTitle) {
+        const placeTitle = sheet.querySelector("#pcTitle")?.textContent?.trim();
+        expandedTitle.textContent = placeTitle ? `Quizkort · ${placeTitle}` : "Quizkort";
+      }
+      expandedView.hidden = false;
+      sheet.classList.add("pc-quiz-expanded-open");
+      expandedContent.scrollTop = 0;
+      expandedClose.focus();
+    });
+
+    expandedClose.addEventListener("click", (event) => {
+      event.preventDefault();
+      closeExpanded();
+    });
+    card.addEventListener("hg:quiz-expanded-close", () => closeExpanded(false));
+    document.addEventListener("keydown", (event) => {
+      if (expandedView.hidden) return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeExpanded();
+      } else if (event.key === "Tab") {
+        // The enlarged reading surface is a modal with one action: close.
+        event.preventDefault();
+        expandedClose.focus();
+      }
+    });
+  }
 
   if (quizImgEl && quizImgEl.dataset.pcQuizErrorBound !== "1") {
     quizImgEl.dataset.pcQuizErrorBound = "1";
@@ -1081,6 +1153,8 @@ const previousPlaceId = String(card.dataset.currentPlaceId || "").trim();
 const nextPlaceId = String(place.id || "").trim();
 const samePlace = previousPlaceId && previousPlaceId === nextPlaceId;
 if (!samePlace) {
+  frontCardFlipEl?.dispatchEvent(new Event("hg:quiz-expanded-close"));
+  frontCardFlipEl?.classList.remove("is-flipped");
   const scrollBody = card.querySelector(".pc-body");
   if (scrollBody instanceof HTMLElement) scrollBody.scrollTop = 0;
 }
