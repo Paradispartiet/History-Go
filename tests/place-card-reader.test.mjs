@@ -100,7 +100,9 @@ function fixture({ supported = true } = {}) {
   let cancellations = 0;
   let pauses = 0;
   let resumes = 0;
-  let observer;
+  const observers = [];
+  const handlers = {};
+  let sheetState = null;
   const speech = {
     getVoices: () => [{ lang: "nb-NO", name: "Norsk" }],
     cancel: () => { cancellations++; },
@@ -114,7 +116,8 @@ function fixture({ supported = true } = {}) {
       constructor(text) { this.text = text; }
     } : undefined,
     getComputedStyle: () => ({ display: "block", visibility: "visible" }),
-    addEventListener() {},
+    addEventListener(type, handler) { (handlers[type] ||= []).push(handler); },
+    HGPlaceSheetState: { snapshot: () => sheetState },
     getSelection: () => ({ toString: () => "" }),
   };
   const document = {
@@ -124,7 +127,7 @@ function fixture({ supported = true } = {}) {
     addEventListener() {},
   };
   class Observer {
-    constructor(callback) { observer = callback; }
+    constructor(callback) { observers.push(callback); }
     observe() {}
   }
   vm.runInNewContext(source, { document, window: win, Element: FakeElement, MutationObserver: Observer });
@@ -145,7 +148,10 @@ function fixture({ supported = true } = {}) {
   return {
     card, body, title, description, second, hiddenText, linkLabel, round, toggle,
     controls, playPause, speed, spoken, dispatch,
-    notifyMutation: () => observer(),
+    notifyMutation: () => observers[0](),
+    notifyContent: () => observers[1](),
+    setSheetState: state => { sheetState = state; },
+    dispatchWindow: type => handlers[type]?.forEach(fn => fn()),
     cancellations: () => cancellations,
     pauses: () => pauses,
     resumes: () => resumes,
@@ -251,6 +257,165 @@ test("long paragraphs chunk without skipping the following paragraphs", () => {
     next++;
   }
   assert.equal(f.spoken[next].text, "Her finner vi gamle fabrikker.");
+});
+
+test("async History and Fagverk are narrated when added after playback began", () => {
+  const f = fixture();
+  f.setSheetState({ placeId: "akerselva", phase: "rendering-full" });
+  f.dispatch(f.toggle);
+  f.spoken[0].onend();
+  f.spoken[1].onend();
+  f.spoken[2].onend();
+  assert.equal(f.spoken.length, 3, "reader waits for late sections");
+  assert.equal(f.playPause.textContent, "⏸", "loading must not finish playback");
+
+  const history = new FakeElement("section");
+  const heading = new FakeElement("h3", "Historiske lag");
+  const timeline = new FakeElement("article");
+  const period = new FakeElement("span", "1850–1900");
+  const title = new FakeElement("strong", "Industrialiseringen");
+  const summary = new FakeElement("p", "Fabrikkene endret byen.");
+  history.appendChild(heading);
+  history.appendChild(timeline);
+  timeline.appendChild(period);
+  timeline.appendChild(title);
+  timeline.appendChild(summary);
+  f.body.appendChild(history);
+  f.notifyContent();
+  assert.equal(f.spoken[3].text, "Historiske lag");
+  f.spoken[3].onend();
+  assert.equal(f.spoken[4].text, "1850–1900");
+  f.spoken[4].onend();
+  assert.equal(f.spoken[5].text, "Industrialiseringen");
+  f.spoken[5].onend();
+  assert.equal(f.spoken[6].text, "Fabrikkene endret byen.");
+});
+
+test("div-based stories, inline text, source lists and later Fagverk are read without buttons", () => {
+  const f = fixture();
+  f.setSheetState({ placeId: "akerselva", phase: "rendering-full" });
+  const stories = new FakeElement("section");
+  const heading = new FakeElement("h3", "Fortellinger");
+  const story = new FakeElement("div", "Historien fra verkstedet.");
+  const link = new FakeElement("a", "Åpne historien");
+  stories.appendChild(heading);
+  stories.appendChild(story);
+  stories.appendChild(link);
+  f.body.appendChild(stories);
+  f.dispatch(f.toggle);
+  for (let i = 0; i < 5; i++) f.spoken[i].onend();
+  assert.deepEqual(f.spoken.slice(0, 5).map(s => s.text),
+    ["Akerselva", "Akerselva har industrihistorie.", "Her finner vi gamle fabrikker.", "Fortellinger", "Historien fra verkstedet."]);
+  assert.equal(f.spoken.length, 5, "navigational link is excluded");
+
+  const learning = new FakeElement("section");
+  learning.appendChild(new FakeElement("h3", "Fagverk"));
+  learning.appendChild(new FakeElement("div", "Faglig analyse av industrihistorien."));
+  const sources = new FakeElement("section");
+  sources.appendChild(new FakeElement("h3", "Kilder"));
+  sources.appendChild(new FakeElement("li", "Oslo byarkiv, 1904"));
+  f.body.appendChild(learning);
+  f.body.appendChild(sources);
+  f.notifyContent();
+  assert.equal(f.spoken[5].text, "Fagverk");
+  f.spoken[5].onend();
+  assert.equal(f.spoken[6].text, "Faglig analyse av industrihistorien.");
+  f.spoken[6].onend();
+  assert.equal(f.spoken[7].text, "Kilder");
+  f.spoken[7].onend();
+  assert.equal(f.spoken[8].text, "Oslo byarkiv, 1904");
+});
+
+test("late sections after full-ready are read instead of silently missed", () => {
+  const f = fixture();
+  f.setSheetState({ placeId: "akerselva", phase: "rendering-full" });
+  f.dispatch(f.toggle);
+  f.spoken[0].onend();
+  f.spoken[1].onend();
+  f.spoken[2].onend();
+  f.setSheetState({ placeId: "akerselva", phase: "full-ready" });
+  f.dispatchWindow("hg:place-sheet-full-ready");
+  assert.equal(f.playPause.textContent, "▶", "all currently available prose is complete");
+
+  const extra = new FakeElement("p", "Ny fagtekst ble lastet inn.");
+  f.body.appendChild(extra);
+  f.notifyContent();
+  assert.equal(f.spoken[3].text, "Ny fagtekst ble lastet inn.");
+  assert.equal(f.playPause.textContent, "⏸");
+});
+
+test("clicking prose seeks forward while delayed updates never reactivate a manually paused reader", () => {
+  const f = fixture();
+  f.setSheetState({ placeId: "akerselva", phase: "rendering-full" });
+  f.dispatch(f.toggle);
+  f.dispatch(f.body, f.description);
+  assert.equal(f.spoken[1].text, "Akerselva har industrihistorie.");
+  f.dispatch(f.playPause);
+  const later = new FakeElement("div", "Forsinket fortellertekst.");
+  f.body.appendChild(later);
+  f.notifyContent();
+  assert.equal(f.spoken.length, 2, "manual pause holds despite content updates");
+  f.dispatch(f.playPause);
+  f.spoken[1].onend();
+  assert.equal(f.spoken[2].text, "Her finner vi gamle fabrikker.");
+  f.spoken[2].onend();
+  assert.equal(f.spoken[3].text, "Forsinket fortellertekst.");
+});
+
+
+test("Place Sheet narration uses its editorial shell and excludes outside collection text", () => {
+  const f = fixture();
+  const outsideCollection = new FakeElement("div", "Samlekort for gjenstand.");
+  f.body.appendChild(outsideCollection);
+  const shell = new FakeElement("section");
+  shell.setAttribute("data-hg-place-sheet-shell", "1");
+  const about = new FakeElement("section");
+  about.appendChild(new FakeElement("h3", "Om stedet"));
+  about.appendChild(new FakeElement("p", "Lang stedsbeskrivelse."));
+  shell.appendChild(about);
+  f.body.appendChild(shell);
+
+  f.dispatch(f.toggle);
+  assert.equal(f.spoken[0].text, "Akerselva");
+  f.spoken[0].onend();
+  assert.equal(f.spoken[1].text, "Akerselva har industrihistorie.");
+  f.spoken[1].onend();
+  assert.equal(f.spoken[2].text, "Om stedet");
+  f.spoken[2].onend();
+  assert.equal(f.spoken[3].text, "Lang stedsbeskrivelse.");
+  f.spoken[3].onend();
+  assert.equal(f.spoken.length, 4, "neither old legacy copy nor collection UI is repeated");
+});
+
+test("tapping a nested inline span seeks to its enclosing paragraph", () => {
+  const f = fixture();
+  const emphasis = new FakeElement("span", "Historie");
+  f.description.appendChild(emphasis);
+  f.dispatch(f.toggle);
+  const event = f.dispatch(f.body, emphasis);
+  assert.equal(event.propagationStopped, true);
+  assert.equal(f.spoken[1].text, "Akerselva har industrihistorie.");
+  f.spoken[1].onend();
+  assert.equal(f.spoken[2].text, "Her finner vi gamle fabrikker.");
+});
+
+test("source titles are narrated while external source links remain clickable", () => {
+  const f = fixture();
+  const sources = new FakeElement("section");
+  sources.setAttribute("data-hg-place-sheet-section", "sources");
+  sources.appendChild(new FakeElement("h3", "Kilder"));
+  const reference = new FakeElement("a", "Digitalarkivet 1890");
+  sources.appendChild(reference);
+  f.body.appendChild(sources);
+  f.dispatch(f.toggle);
+  f.spoken[0].onend();
+  f.spoken[1].onend();
+  f.spoken[2].onend();
+  assert.equal(f.spoken[3].text, "Kilder");
+  f.spoken[3].onend();
+  assert.equal(f.spoken[4].text, "Digitalarkivet 1890");
+  const click = f.dispatch(f.body, reference);
+  assert.equal(click.propagationStopped, false, "source links must keep their navigation");
 });
 
 test("unsupported speech API disables the speaker toggle", () => {
