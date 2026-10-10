@@ -6,49 +6,24 @@ on:
 permissions:
   contents: write
 jobs:
-  import:
+  candidates:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download reviewed originals and metadata
-        shell: python
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Authoritative candidate lookup, no approval or apply
         run: |
-          import urllib.request, urllib.parse, json, hashlib, pathlib, time
-          titles = [
-            ('Tabloidsnekkerne - NMD 2013 (8722608117) (cropped).jpg','bilder/kort/people/john_olav_egeland.jpg',None),
-            ('NMD Redaktørens dilemma - NMD 2018 (41866262591) (cropped).jpg','bilder/kort/people/frode_hansen.jpg',None)
-          ]
-          evidence = []
-          for title, dest, expected in titles:
-            params = {'action':'query','format':'json','titles':'File:'+title,'prop':'imageinfo','iiprop':'url|size|sha1|extmetadata'}
-            req = urllib.request.Request('https://commons.wikimedia.org/w/api.php?'+urllib.parse.urlencode(params),headers={'User-Agent':'HistoryGo/1.0 (reviewed cultural-history import)'})
-            with urllib.request.urlopen(req,timeout=60) as r:
-              payload=json.load(r)
-            info=next(iter(payload['query']['pages'].values()))['imageinfo'][0]
-            for attempt in range(6):
-              try:
-                req=urllib.request.Request(info['url']+'?download=1&historygo_review=20261010',headers={'User-Agent':'HistoryGo cultural-history asset import (https://github.com/Paradispartiet/History-Go)'})
-                with urllib.request.urlopen(req,timeout=60) as r:
-                  data=r.read()
-                break
-              except urllib.error.HTTPError as error:
-                if error.code != 429 or attempt == 5: raise
-                time.sleep(10*(attempt+1))
-            actual=hashlib.sha1(data).hexdigest()
-            if actual != (expected or info['sha1']): raise RuntimeError('Reviewed source changed: '+title+' '+actual)
-            target=pathlib.Path(dest)
-            if target.exists(): raise RuntimeError('Refusing to overwrite '+dest)
-            target.parent.mkdir(parents=True,exist_ok=True)
-            target.write_bytes(data)
-            evidence.append({'title':title,'path':dest,'sha1':actual,'imageinfo':info})
-            time.sleep(2)
-          out=pathlib.Path('reports/place-production/dagbladet-akersgata-people-originals-20261010.json')
-          out.parent.mkdir(parents=True,exist_ok=True)
-          out.write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
-      - name: Commit imported assets to this isolated branch
+          npm run people:images:candidates -- --ids=sissel_benneche_osvold --include-existing --limit=1 > reports/place-production/dagbladet-osvold-candidates-20261010.log 2>&1
+          cp data/people/people_image_candidates.json reports/place-production/dagbladet-osvold-candidates-20261010.json
+          git restore data/people/people_image_candidates.json
+      - name: Commit evidence on isolated branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add bilder/kort/people/john_olav_egeland.jpg bilder/kort/people/frode_hansen.jpg reports/place-production/dagbladet-akersgata-people-originals-20261010.json
-          git commit -m "Import reviewed Dagbladet original photos and text logo"
+          git add reports/place-production/dagbladet-osvold-candidates-20261010.*
+          git commit -m "Record authoritative Osvold portrait candidate audit"
           git push origin HEAD:production/dagbladet-assets-20261010
