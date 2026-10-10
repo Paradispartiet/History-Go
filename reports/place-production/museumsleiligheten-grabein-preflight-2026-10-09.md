@@ -216,3 +216,46 @@ Canonical stedstekst `desc` og `popupDesc`, Fagverkets familieavsnitt, linsekild
 ### Merge-gate
 
 `production_status` **skal ikke settes til complete**. Gjeldende green CI er teknisk, ikke redaksjonell. Manuell visuell iPad-kontroll (inkl. logo-preview, vertikal scroll og kortgeometri) står også åpen. Nyere `main` har berørt bl.a. genererte Fagverk-filer; synk med konfliktkontroll før eventuell senere merge. PR er fortsatt `draft` med åpne evidensporter.
+
+
+## Ny åpen arkivkilde – faktisk før-restaureringsfoto (10. oktober 2026)
+
+### Dokumentert nytt funn: 1985, interiør Tøyengata 38 B
+
+Tidligere kontroll konkluderte med at intet stedstro interiørfoto fra før restaureringen i 1987 var funnet. Nytt søk i DigitaltMuseum avdekker en **før-fotokandidat** som endrer akkurat denne delkonklusjonen:
+
+- **Samling / eier:** Oslo Museum, Byhistorisk samling.
+- **Inventar-/bildenummer:** **OB.A6874**.
+- **DigitaltMuseum ID:** **021017382615**.
+- **Kildelenke:** https://digitaltmuseum.no/021017382615/museumsleiligheten-i-toyengata-38-b
+- **Oppgitt motiv:** «museumsleilighet, arbeiderleilighet, interiør før restaurering, stue, vedovn, dør til kjøkken».
+- **Fotografering:** **1985 (før restaureringen)**, i museets registrering.
+- **Stedsangivelse:** Oslo, Tøyen, **Tøyengata 38 B**; dette er ikke et uspesifisert motiv fra en annen Gråbeingård.
+- **Fotograf:** **ukjent person** ifølge arkivregistreringen; skal ikke tilskrives Rune Aakvik eller Heidi Bakke.
+- **Lisens:** DigitaltMuseum-indeksen oppgir **«Attribution-ShareAlike (CC BY-SA)»** for akkurat OB.A6874. Eksakt lenket lisensversjon, bildefil/forhåndsvisning, eventuell nedlastingsadgang og fullstendig påkrevd kreditering bør bekreftes på objektsiden før lokal import.
+
+Dette er **ny reell evidens for en historisk før-tilstand**, ikke bare et etterbilde fra 1993–1996. Dette erstatter den tidligere negative påstanden om at det ikke var funnet noe faktisk før-restaureringsmotiv. Ikke endre produksjonsdata før faktisk bilde og kildepost er sammenlignet.
+
+### Kandidat for etterbilde
+
+- **OB.F29511** – https://oslobilder.no/OMU/OB.F29511
+- **1996**, Heidi Bakke / Oslo Museum, samme identifiserte sted Tøyengata 38 B.
+- **Motiv:** stue, ovn, konge-/dronningportretter på veggen, etter tilbakeføringen i 1987.
+- Dette kan være et godt **etter**-motiv til OB.A6874 siden begge omtaler stue/ovn, men en felles ovn i arkivbeskrivelsene **beviser ikke** samsvarende kamerastandpunkt eller romutsnitt.
+- Oslobilder viser Creative Commons-lisens på enkelte registreringer, men en offentlig museumsnettside er ikke i seg selv bevis for rett til å republisere høyoppløselige originalfiler. Individuell kildeside og versjon av lisensen må dokumenteres.
+
+### Beslutning, kontrollrekkefølge
+
+**Før/etter endres fra «ingen historisk før-fotokandidat» til «OB.A6874, datert 1985, funnet og CC BY-SA-indeksert; komplett bildepar/visuell paritet fremdeles BLOCKED».** Dette er ikke PASS og ikke grunnlag for å merke stedet komplett.
+
+1. Se og last ned akkurat OB.A6874 fra lovlig lisensiert nedlasting (ikke fra tredjepart uten proveniens). Registrer originalfil, fotograf «ukjent», dato 1985, lisensens eksakte versjon og kilde-URL.
+2. Kontroller kandidat OB.F29511 mot OB.A6874 side om side. Registrer veggflater, ovn, dør, fotovinkel og eventuelle strukturelle forandringer. Velg alternativt nyere stuebilde med påviselig standpunktparitet.
+3. Verifiser CC-by-sa-krav og metadata for begge bilder samt lokale rettighets-/krediteringsfelter. Ikke publiser før bildepar og credits består den kanoniske Før/etter-porten.
+
+### People/Objects etter samme arkivsøk
+
+- **People:** EGT historielag, SNL og lokalhistoriewiki bekrefter historisk bakgrunn, men søk avdekket ingen pålitelig personidentifisert og rettighetsklarert portrettfil for byggmester Ole Olsen (f. 1832), familien Bjørklund eller sønnen Ole Anton. Ikke forveksle denne byggmesteren med komponisten Ole Olsen (1850–1927), presten Ole Tobias Olsen (1830–1924) eller andre navnebrødre.
+- **Arkitekt:** Rudolf Haeselich er dokumentert for **andre** Gråbeingårder i Jens Bjelkes gate, Lakkegata, Sars' gate og Siebkes gate; disse kildene alene beviser ikke at han tegnet akkurat Tøyengata 38 B fra 1888. Ingen People-kobling her uten konkret dokumentasjon.
+- **Objects:** Museumsfoto viser konkrete møbler og hånddrevet symaskin, men har ikke objektspesifikke inventarnumre, datering og eierskap. Kildene dokumenterer et innredet periodeinteriør; objekter skal ikke tilskrives Bjørklund-familien. Objects forblir BLOCKED.
+
+**Ekstern e-post ikke sendt.** Kildekravene undersøkes i åpne arkiver først. På dette trinnet er hele PR-en fremdeles DRAFT; \`production_status=complete\` må ikke settes, og manuell iPad-Safari-QA er ennå ikke signert.
