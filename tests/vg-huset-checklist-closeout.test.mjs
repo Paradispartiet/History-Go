@@ -71,14 +71,28 @@ test("quiz and reading tracks are materialized; conditional modules have explici
   }
 });
 
-test("V3 workflow never conflates automated evidence with manual sign-off", () => {
+test("V3 workflow requires documented visual evidence to complete", () => {
   assert.equal(workflow.schema, "history_go_place_production_workflow_v3");
   assert.equal(workflow.profile.id, "major");
-  assert.equal(workflow.manual_reviews.final_ui.status, "PENDING");
-  assert.equal(workflow.state, "blocked");
-  assert.ok(workflow.blockers.length);
+  assert.equal(workflow.manual_reviews.final_ui.status, "PASS");
+  assert.equal(workflow.state, "complete");
+  assert.deepEqual(workflow.blockers, []);
+  assert.match(workflow.manual_reviews.final_ui.evidence, /screenshot-based/i);
+  assert.match(workflow.manual_reviews.final_ui.evidence, /not native Safari/i);
+  const visualReport = "reports/place-production/vg-huset-final-ui-review-20261010.md";
+  const visualData = "reports/visual-qa/vg-huset/20261010/visual-audit.json";
+  assert.ok(fs.existsSync(visualReport));
+  const evidence = load(visualData);
+  assert.deepEqual(evidence.profiles.map((profile) => profile.profile), ["mobile", "ipad", "desktop"]);
+  assert.ok(evidence.profiles.every((profile) =>
+    profile.issues.length === 0
+      && profile.pageErrors.length === 0
+      && profile.popups.length === 4
+      && profile.fagverkPage?.unfinished?.hidden === true
+      && profile.fagverkPage?.coverageLabel === "KURATERT STEDSFAGVERK"
+  ));
   const workcard = load("reports/place-production/vg-huset-workcard-current.json");
   const quality = load("reports/place-production/vg-huset-quality-gate-current.json");
-  assert.equal(workcard.state, "blocked");
-  assert.equal(quality.derived_state, "blocked");
+  assert.equal(workcard.state, "complete");
+  assert.equal(quality.derived_state, "complete");
 });
