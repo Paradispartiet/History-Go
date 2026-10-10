@@ -117,6 +117,12 @@ assert.ok(reviewed.get("kognitiv_terapi").reference_links.some((link) =>
   link.url === "https://pubmed.ncbi.nlm.nih.gov/36640411/" && link.supports.includes("de fleste sensitivitetsanalysene")));
 assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
   "batch 05 specific-source check must never imply 14/14 full source verification");
+// Evidence batch 06: theoretical proposals are not silently upgraded to
+// causal, clinical or person-level proof.
+assert.match(reviewed.get("humanistisk_psykologi").limit, /seks betingelser.*teoretisk påstand/);
+assert.match(reviewed.get("sosial_laring").method, /1961.*1977/);
+assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimenter.*belønning/);
+assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
 assert.equal(catalog.theories.length, 14);
 
 console.log("civication-psychology-room-coverage.test.js passed");
