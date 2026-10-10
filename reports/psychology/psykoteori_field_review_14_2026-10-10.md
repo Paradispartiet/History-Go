@@ -141,9 +141,27 @@ Dette er en **kildespesifikk** gjennomgang. Verifisert betyr i tabellen at *den 
 
 **Metodisk terskel:** Tilgang har vært til originalt utgiversammendrag, DOI-data og åpne originaltekstutdrag, men ikke komplett systematisk fulltekstkritikk av all sekundær- og replikasjonslitteratur. Disse fire rettelsene styrker faglig presisjon; status i manifestet er fortsatt `partial_historical_method_review`.
 
+## Batch 07 — to ulike undervisningsscenarioer per kort, kilde–påstand-register
+
+Hvert av de **14/14 eksisterende teorikortene** har nå et nytt felt `example_secondary` ved siden av det opprinnelige `example`. Begge presenteres i Psykologrommet som eksplisitt **hypotetiske undervisningsscenarioer**, uten brukerregistrering eller karrierebelønning. Eksempel 2 er utviklet som en **annen forskningssituasjon**: blant annet negativ forsterkning (behaviorisme), måleavvik mellom informanter (Big Five), hukommelsesinterferens (kognitiv psykologi), forholdet mellom tilknytningsklassifikasjon og stabilitet, og sammenligning av kontrollbetingelser (CBT). Ingen illustrasjoner blir utgitt for å være dokumenterte historiske personer/hendelser.
+
+### Konkret etterprøvbarhet
+
+Ny fil: `reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json`. Den inneholder **14 identifiserte korthenvisninger**, for hvert kort: kapittel- og emne-ID, sentral kildeavgrenset påstand, to presise kilde-URL-er som allerede ligger på kortet, hvilke `canonical_claim_ids` og `canonical_source_ids` som finnes, metode-/kildetype, en konkret begrensning, to felthenvisninger til undervisningsscenarioene, og eksplisitt **ikke-godkjent** status. Nye kilder arver ingen claim-ID-er ved lik tematikk alene.
+
+I `tests/civication-psychology-room-coverage.test.js` kontrolleres at alle 14 radene samsvarer med de faktiske teorikortene, at anker-URL-er og allerede løste claim-/source-ID-er finnes, at eksemplene er forskjellige, og at ingen delkontroll medfører `source_verified` eller `editorial_pass`.
+
+I `tests/civication-psychology-room-theory.test.js` kontrolleres at begge eksemplene faktisk vises i runtime og at teorivisningen forblir read-only.
+
+### Klargjort scope
+
+Den eksisterende katalogen representerer **14 sentrale teorier**, ikke 58 teorier. Emnedekningen er fortsatt **18/58 direkte lenkede Fagverksemner**, mens de øvrige 40 emnene har egne canonical Fagverk-artikler uten direkte inngang fra disse 14 teorikortene. Det er ikke faglig forsvarlig å gi alle 40 en kobling til en vilkårlig teori bare for å få `58/58`. Dette er en **separat utvidelse av teoriutvalget/fagnavigasjonen**, ikke en skjult feil i de 14 kortenes identiteter.
+
+**Utgivelsesgrense:** Redaksjonell revisjon av de 14 eksisterende kortene kan fullføres teknisk og publiseres uten at et helt annet oppdrag (nye teorikort for alle Fagverksemner) påstås gjennomført. `0/14` fullstendig empirisk kildegodkjent opprettholdes som ærlig fagstatus til kildenes komplette påstandsmatriser er uavhengig kontrollert.
+
 ## Integritet og restanse
 
-- **14/14** kort har feltvis tekstgjennomgang; det betyr ikke at alle 14 har fått fulltekst-/claim-verifikasjon. Seks av kortene er nå presisert ytterligere i batch 05.
+- **14/14** kort har feltvis tekstgjennomgang og to forskjellige hypotetiske undervisningsscenarioer; det betyr ikke at alle 14 har fått fulltekst-/claim-verifikasjon. Seks av kortene er nå presisert ytterligere i batch 05.
 - **7** nye kildeankre på **6** kort, med tekst om hva de støtter, og identisk URL-speil i dekningsregisterets primærposter. Batch 05 presiserer i tillegg 10 felt i seks kort uten nye URL-er.
 - **18/58** emner er direkte koblet; **40** mangler direkte inngang, men eksisterer allerede i Fagverket.
 - **0/14** full kildegodkjenning; **0/14** redaksjonell sluttgodkjenning. Ikke endre dette automatisk.
