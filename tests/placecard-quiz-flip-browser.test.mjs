@@ -112,8 +112,22 @@ try {
             assert.equal(await card.evaluate(el => el.classList.contains("is-flipped")), true);
             assert.deepEqual(await faces(), { front: "hidden", back: "visible" },
               engine + " " + width + " " + mode + " should conceal the front after flip");
-            assert.ok(isGreen(await sampledColor(card)),
-              engine + " " + width + " " + mode + " shows the QuizCard rather than a mirrored front image");
+            if (mode === "rendered") {
+              const theme = await page.locator(".pc-rendered-quiz-card").evaluate(el => ({
+                background: getComputedStyle(el).backgroundImage,
+                color: getComputedStyle(el).color,
+                border: getComputedStyle(el).borderTopStyle
+              }));
+              assert.match(theme.background, /gradient/,
+                engine + " rendered QuizCard uses the dark decorated surface");
+              assert.equal(theme.color, "rgb(248, 250, 252)",
+                engine + " rendered QuizCard uses readable near-white text");
+              assert.equal(theme.border, "solid",
+                engine + " rendered QuizCard has a decorative border");
+            } else {
+              assert.ok(isGreen(await sampledColor(card)),
+                engine + " image QuizCard retains its source artwork");
+            }
             const expand = page.locator("#pcQuizExpandBtn");
             assert.equal(await expand.isVisible(), true,
               engine + " must show expand control in bottom right of QuizCard back");
@@ -134,6 +148,17 @@ try {
             }
             if (mode === "rendered") {
               assert.match(await page.locator("#pcQuizExpandedContent").innerText(), /Quizkortets bakside/);
+              const expandedTheme = await page.locator("#pcQuizExpandedContent").evaluate(el => ({
+                color: getComputedStyle(el).color,
+                background: getComputedStyle(el).backgroundImage,
+                border: getComputedStyle(el).borderTopWidth
+              }));
+              assert.equal(expandedTheme.color, "rgb(248, 250, 252)",
+                "large rendered QuizCard has white lettering");
+              assert.match(expandedTheme.background, /gradient/,
+                "large rendered QuizCard uses a dark background");
+              assert.equal(expandedTheme.border, "2px",
+                "large rendered QuizCard has an outer frame");
               const scrolling = await page.locator("#pcQuizExpandedContent").evaluate(el =>
                 ({ scrollHeight:el.scrollHeight, clientHeight:el.clientHeight }));
               assert.ok(scrolling.scrollHeight > scrolling.clientHeight,
