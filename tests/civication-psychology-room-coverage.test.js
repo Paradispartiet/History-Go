@@ -231,4 +231,47 @@ for (const id of group1) {
     }
   }
 }
+
+// Batch 08: original-method audit; note that passing these guards is not scholarly approval.
+const primaryOriginalSources = {
+  tilknytning: [
+    "https://pubmed.ncbi.nlm.nih.gov/13610508/",
+    "https://www.jstor.org/stable/1127388"
+  ],
+  resiliens: [
+    "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1939-0025.1989.tb01636.x",
+    "https://www.cambridge.org/core/journals/development-and-psychopathology/article/abs/risk-resilience-and-recovery-perspectives-from-the-kauai-longitudinal-study/DC3C3F10587A1A7D04C0310270717B3E"
+  ],
+  kognitiv_terapi: [
+    "https://jamanetwork.com/journals/jamapsychiatry/article-abstract/488402"
+  ]
+};
+for (const [id, urls] of Object.entries(primaryOriginalSources)) {
+  const theory = reviewed.get(id);
+  const coverageRow = byEmne.get(theory.emne_id);
+  const matrixRow = fieldEvidence.cards.find((row) => row.theory_id === id);
+  for (const url of urls) {
+    const source = theory.reference_links.find((link) => link.url === url);
+    assert.ok(source, "batch 08 missing original publication reference: " + id);
+    assert.deepEqual(source.canonical_claim_ids, []);
+    assert.deepEqual(source.canonical_source_ids, []);
+    assert.ok(matrixRow.group_1_source_audit.new_reference_urls.includes(url));
+  }
+  assert.deepEqual(coverageRow.partial_reference_review.reference_urls,
+    theory.reference_links.map((link) => link.url));
+  assert.equal(matrixRow.group_1_source_audit.fulltext_complete, false);
+}
+assert.match(reviewed.get("tilknytning").idea, /biologiske mor/);
+assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
+assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
+assert.match(reviewed.get("resiliens").method, /1989.*1993.*1, 2, 10, 18 og 32/);
+assert.match(reviewed.get("resiliens").limit, /698.*32 år/);
+assert.match(reviewed.get("kognitiv_terapi").method, /1963.*ikke hele metodedelen/);
+for (const [id, urls] of Object.entries(primaryOriginalSources)) {
+  const units = detailedReview.units.filter((unit) => unit.theory_id === id);
+  assert.ok(units.some((unit) => urls.some((url) => unit.evidence_urls.includes(url))),
+    "original primary literature must be referenced by claim units: " + id);
+  assert.ok(units.every((unit) => unit.card_is_source_verified === false));
+}
+
 console.log("civication-psychology-room-coverage.test.js passed");
