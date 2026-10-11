@@ -316,6 +316,17 @@ assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning")
 assert.ok(detailedReview.units.filter((x) =>
   x.theory_id === "tilknytning" && ["period","method","limit"].includes(x.field))
   .every((x) => x.evidence_urls.includes(ainsworth1978Preface) && x.card_is_source_verified === false));
+// Waters 2002 provides later coauthor scoring criteria, not the original NAPS 00762.
+const watersScoring2002 = "https://psychology.psy.sunysb.edu/attachment/measures/content/ss_scoring.pdf";
+assert.ok(ainsworthCard.period.includes("2002: Everett Waters"));
+assert.ok(ainsworthCard.method.includes("fire sentrale sjuleddede interaksjonsskalaer"));
+assert.ok(ainsworthCard.method.includes("ikke identiske med alle de fem sosialatferdsmålene"));
+assert.ok(ainsworthCard.limit.includes("gruppe D (desorganisert tilknytning)"));
+assert.ok(ainsworthCard.limit.includes("ikke klassifiseres"));
+assert.ok(ainsworthCard.reference_links.some((r) => r.url === watersScoring2002 && r.canonical_claim_ids.length === 0 && r.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((r) => r.theory_id === "tilknytning").group_1_source_audit.new_reference_urls.includes(watersScoring2002));
+assert.equal(detailedReview.original_publication_audit.entries.find((r) => r.id === "tilknytning_waters_scoring_2002").access, "18_page_author_coauthor_scoring_guide_online_key_pages1_2_11_14_visually_read_NAPS_00762_still_unread");
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "tilknytning" && ["period","method","limit"].includes(u.field)).every((u) => u.evidence_urls.includes(watersScoring2002) && u.card_is_source_verified === false));
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
@@ -414,8 +425,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 12);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 12);
+assert.equal(detailedReview.original_publication_audit.entries.length, 13);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 13);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
