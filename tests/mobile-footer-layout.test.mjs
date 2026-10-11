@@ -72,7 +72,13 @@ test('tablet footer keeps original height', () => {
 test('footer safe area is counted once and buttons remain in one scrolling row', () => {
   assert.match(layoutCSS, /--hg-bottom-nav-content-height:\s*var\(--hg-visual-footer-height, 72px\)/);
   assert.match(layoutCSS, /--hg-bottom-nav-height:\s*calc\(\s*var\(--hg-bottom-nav-content-height\) \+ var\(--hg-safe-area-bottom\)/);
+  assert.match(footerCSS, /\.app-actions\s*\{[^}]*min-width:\s*0;[^}]*overflow-x:\s*auto/);
   assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-actions\s*\{[^}]*overflow-x:\s*auto/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*transparent/);
+  assert.doesNotMatch(indexHTML, /id="pcInfo"/);
+  for (const id of ["pcRoute", "pcObserve", "pcNote"]) {
+    assert.match(footerCSS, new RegExp("#" + id + "::before\\s*\\{[^}]*mask-image:"));
+  }
   assert.match(indexHTML, /<footer class="site-footer app-footer"[\s\S]*?<div class="app-actions"/);
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
