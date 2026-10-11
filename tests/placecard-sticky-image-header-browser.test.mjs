@@ -88,7 +88,8 @@ try {
     await page.waitForFunction(()=>document.querySelector("#placeCard")?.classList.contains("is-original-photo-pinned")
       && document.querySelector("#pcHeaderHero")?.dataset.pcContrast==="dark");
     const initial=await page.evaluate(()=>{
-      const rect=(s)=>document.querySelector(s).getBoundingClientRect();
+      const rect=(s)=>{const r=document.querySelector(s).getBoundingClientRect();
+        return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
       const style=getComputedStyle(document.querySelector("#pcTitle"));
       return {
         heading:rect("#pcHeaderHero").height,
@@ -134,7 +135,7 @@ try {
     });
     const scrolled=await page.evaluate(()=>{
       const r=(s)=>{const x=document.querySelector(s).getBoundingClientRect();
-        return {top:x.top,bottom:x.bottom,height:x.height}};
+        return {left:x.left,right:x.right,top:x.top,bottom:x.bottom,width:x.width,height:x.height}};
       const hero=document.querySelector("#pcHeaderHero");
       const title=document.querySelector("#pcTitle");
       return {
