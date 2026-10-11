@@ -82,3 +82,16 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.match(indexHTML, /<footer class="site-footer app-footer"[\s\S]*?<div class="app-actions"/);
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
+
+test('footer keeps dark monochrome glyphs with individual neon details, and hosts Events + Meet', () => {
+  assert.match(indexHTML, /id="pcOnSiteFooter" class="pc-onsite-footer"/);
+  assert.match(footerCSS, /\.app-actions #pcRoute\{ --hg-footer-neon:/);
+  assert.match(footerCSS, /\.app-actions #pcObserve\{ --hg-footer-neon:/);
+  assert.match(footerCSS, /\.app-actions #pcNote\{ --hg-footer-neon:/);
+  assert.match(footerCSS, /\.pc-onsite-footer \.pc-onsite-action-events/);
+  assert.match(footerCSS, /\.pc-onsite-footer \.pc-onsite-action-meet/);
+  const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
+  assert.match(surface, /function syncFooterActions\(place, force = false\)/);
+  assert.match(surface, /footerOwnsCore/);
+  assert.match(surface, /if \(!actions.length\) return ""/);
+});
