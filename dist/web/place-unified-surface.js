@@ -1863,7 +1863,9 @@
         }
       });
     }
-    if (shell4.firstElementChild !== nav) shell4.prepend(nav);
+    const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
+    if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
+    else if (!hero && shell4.firstElementChild !== nav) shell4.prepend(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
@@ -1921,9 +1923,10 @@
       shell4.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-          <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-        </div>
+      </div>
+      <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
+        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -1943,13 +1946,16 @@
     if (!(root2 instanceof HTMLElement)) return;
     const media = shell4.querySelector("[data-hg-place-sheet-media]");
     const copy = shell4.querySelector("[data-hg-place-sheet-copy]");
+    const intro = shell4.querySelector("[data-hg-place-sheet-intro]");
     const collections = shell4.querySelector("[data-hg-place-sheet-collections]");
     const front = root2.querySelector(".pc-frontcard");
     const textBlock = root2.querySelector(".pc-text");
+    const description = document.getElementById("pcDesc");
     const sideStack = root2.querySelector(".pc-side-stack");
     const events = document.getElementById("pcEventsBox");
     if (front && media && front.parentElement !== media) media.prepend(front);
     if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
+    if (description && intro && description.parentElement !== intro) intro.appendChild(description);
     if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
       collections.appendChild(sideStack);
     }
@@ -1966,8 +1972,8 @@
       aboutSlot.className = "pc-sheet-about";
       aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
       aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-      const hero = shell4.querySelector("[data-hg-place-sheet-hero]");
-      if (hero == null ? void 0 : hero.nextSibling) shell4.insertBefore(aboutSlot, hero.nextSibling);
+      const anchor = shell4.querySelector("[data-hg-place-sheet-media]") || shell4.querySelector("[data-hg-place-sheet-hero]");
+      if (anchor == null ? void 0 : anchor.nextSibling) shell4.insertBefore(aboutSlot, anchor.nextSibling);
       else shell4.appendChild(aboutSlot);
     }
     return aboutSlot;
@@ -2037,6 +2043,7 @@
     if (!(root2 instanceof HTMLElement) || !(rootBody instanceof HTMLElement)) return;
     const shell4 = rootBody.querySelector(`[${SHELL_ATTR}="1"]`);
     const textBlock = (shell4 == null ? void 0 : shell4.querySelector(".pc-text")) || root2.querySelector(".pc-text");
+    const description = shell4 == null ? void 0 : shell4.querySelector("#pcDesc");
     const front = (shell4 == null ? void 0 : shell4.querySelector(".pc-frontcard")) || root2.querySelector(".pc-frontcard");
     const sideStack = (shell4 == null ? void 0 : shell4.querySelector(".pc-side-stack")) || root2.querySelector(".pc-side-stack");
     const events = (shell4 == null ? void 0 : shell4.querySelector("#pcEventsBox")) || document.getElementById("pcEventsBox");
@@ -2046,6 +2053,7 @@
       legacyGrid.className = "pc-grid";
     }
     legacyGrid.hidden = false;
+    if (description instanceof HTMLElement && textBlock instanceof HTMLElement) textBlock.appendChild(description);
     if (textBlock instanceof HTMLElement) rootBody.prepend(textBlock);
     if (legacyGrid.parentElement !== rootBody) {
       if (textBlock == null ? void 0 : textBlock.nextSibling) rootBody.insertBefore(legacyGrid, textBlock.nextSibling);
