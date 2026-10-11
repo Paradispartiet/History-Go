@@ -125,7 +125,7 @@ for (const pub of ['avklar', 'ja_uten_ramme']) for (const past of pasts) {
     assert.equal(R.selectNextScene(first, contents[1]).id, 'd11_arvid_' + expected11);
     for (const final of explore(first, contents[1], packs[1], prior)) {
       assert.deepEqual(final.kapittelArkiv, first.kapittelArkiv);
-      assert.deepEqual(final.fortsettelser, packs.map(p => p.id));
+      assert.deepEqual(final.fortsettelser, packs.slice(0, 2).map(p => p.id), 'day-13 save contains the first two chapters until the third is started');
       assert.deepEqual(base.role.symposium.fortsettelser.filter(n => R.canStartContinuation(final, contents[1], n)).map(n => n.id), ['miljo_etter_invitasjonen'], 'completed day 13 now offers the third authored chapter');
       finalSave = final;
     }
@@ -133,7 +133,7 @@ for (const pub of ['avklar', 'ja_uten_ramme']) for (const past of pasts) {
 }
 assert.equal(openings.size, 4);
 assert.equal(endings.size, 6);
-for (const p of packs) for (const scene of p.scenes) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
+for (const p of packs.filter(p => p.sisteDag <= 13)) for (const scene of p.scenes) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
 const s = week({}), text = JSON.stringify(s);
 for (const wrong of [null, { badge_id: 'musikk', label: 'Gangster' }, { badge_id: 'subkultur', label: 'Crew' }]) {
   primary = wrong;
