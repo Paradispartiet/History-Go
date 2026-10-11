@@ -29,7 +29,7 @@ test('curated Fagverk is navigable and every source is exposed in the place',()=
 });
 test('selected collections contain genuine local member previews including a disclosed illustration',async()=>{
  assert.deepEqual(deriveSelectedCollections(workflow),place.place_card_profile.collection_ids);
- assert.deepEqual(runtime.place.place_card_profile.collection_ids,['people','brands']);
+ assert.deepEqual(runtime.place.place_card_profile.collection_ids,['people','brands','productions']);
  assert.equal(runtime.people.length,4);
  for(const person of runtime.people){
    assert.equal(person.profileStatus,'ready_people_v1');
@@ -60,13 +60,26 @@ test('normal quiz opens with concrete knowledge, and QuizCard is loaded from its
  assert.equal(card.questions.length,10);
  assert.deepEqual(card.questions.map(x=>x.answer),card.answerKey.map(x=>x.answer));
 });
-test('missing publication provenance blocks completion even after a hypothetical UI approval',()=>{
- assert.equal(workflow.collections.productions.status,'BLOCKED');
+test('serial publication preserves separate image and own-place dates',async()=>{
+ assert.equal(workflow.collections.productions.status,'PASS');
+ const [publication]=runtime.place.productions;
+ assert.equal(publication.entityType,'serial_publication');
+ assert.deepEqual(publication.placePeriod,{from:1967,to:2008});
+ assert.equal(publication.imageMeta.publishedAt,'1905-01-02');
+ assert.match(publication.name,/faksimile 1905/);
+ assert.match(publication.desc,/før redaksjonen flyttet hit/);
+ assert.match(publication.desc,/Public domain/);
+ assert.notEqual(publication.image,place.frontImage);
+ const meta=await sharp(publication.image).metadata();
+ assert.equal(meta.width,599);
+ assert.equal(meta.height,836);
+ const claims=new Set(read(`data/places/production/${id}.json`).claims.map(x=>x.id));
+ assert.ok(publication.claim_ids.every(id=>claims.has(id)));
+});
+test('an unfinished qualified collection still blocks a hypothetical UI approval',()=>{
  assert.equal(workflow.collections.objects.status,'BEGRUNNET_NA');
- assert.equal(deriveWorkflowState(workflow),'blocked');
  const proposed=structuredClone(workflow);
+ proposed.collections.productions.status='BLOCKED';
  proposed.manual_reviews.final_ui={status:'PASS',evidence:'hypothetical approval'};
  assert.equal(deriveWorkflowState(proposed),'blocked');
- assert.ok(workflow.blockers.some(x=>/Productions/.test(x)));
- assert.ok(!(runtime.place.productions||[]).length,'no fabricated publication preview');
 });

@@ -11,7 +11,8 @@
     "factuality_record": "data/places/production/dagbladet_akersgata.json",
     "evidence_refs": [
       "reports/place-production/dagbladet-akersgata-source-review-20261010.md",
-      "reports/place-production/dagbladet-akersgata-revision-review-20261011.md"
+      "reports/place-production/dagbladet-akersgata-revision-review-20261011.md",
+      "reports/place-production/dagbladet-akersgata-closeout-review-20261011.md"
     ]
   },
   "read_first": {
@@ -68,10 +69,12 @@
       "reason": "Dagbladets autentiske 2015-logo brukt som brandidentitet, ikke som illustrasjon av en avisforside fra 1967."
     },
     "productions": {
-      "status": "BLOCKED",
-      "reason": "Papiravisen, nettutgaven fra 1995 og Magasinet fra 1999 er kvalifiserte utgivelser. Eget autentisk, rettighetsavklart medlemsbilde fra stedets periode er ikke sikret. Commons-forsider fra 1905/1910 gjelder andre adresser; logo og bygningsfoto kan ikke erstatte publikasjonens bilde.",
+      "status": "PASS",
+      "reason": "Papiravisen er et løpende publikasjonsverk med kildebelagt redaksjonstilknytning 1967–2008. Et uendret autentisk faksimile fra 2. januar 1905 identifiserer publikasjonen og er eksplisitt datert i synlig medlemstittel og beskrivelse. Det hevdes ikke at 1905-utgaven ble laget i Akersgata 49. Eget lokalt bilde, Commons-proveniens og Public domain-status er kontrollert.",
       "refs": [
-        "reports/place-production/dagbladet-akersgata-source-review-20261010.md"
+        "data/places/media/oslo/places_oslo_media/dagbladet_akersgata.json",
+        "bilder/places/dagbladet_papiravis_faksimile_1905.jpg",
+        "reports/place-production/dagbladet-akersgata-closeout-review-20261011.md"
       ]
     }
   },
@@ -130,8 +133,7 @@
     }
   },
   "blockers": [
-    "Productions: rettighetsavklart, autentisk medlemsbilde for kvalifisert utgivelse fra 1967–2008 gjenstår.",
-    "Endelig visuell godkjenning av komplett produksjon kan ikke gis mens en kvalifisert samling er BLOCKED."
+    "Ny visuell kontroll av tre samlinger og den daterte publikasjonspopupen gjenstår."
   ],
   "manual_reviews": {
     "images": {
@@ -140,7 +142,7 @@
     },
     "final_ui": {
       "status": "PENDING",
-      "evidence": "Ny Actions 38139378858 på kildecommit 7fbebfbf695b501869306de8416ffa43b7b7d267 består 320×844, 390×844, 768×1024 og 1440×1000. Alle 14 skjermbilder er åpnet og manuelt gjennomgått; de fire tidligere visnings-/listeavvikene er lukket. Fullproduksjonens final_ui forblir PENDING fordi Utgivelser mangler et rettighetsavklart medlemsbilde. Se reports/place-production/dagbladet-akersgata-visual-review-20261011.md. Emulert Chromium, ikke native Safari/fysisk iPad."
+      "evidence": "Tidligere 14 skjermbilder dokumenterer to samlinger; ny tre-samlingskomposisjon må kontrolleres før sluttgodkjenning."
     }
   },
   "state": "blocked"

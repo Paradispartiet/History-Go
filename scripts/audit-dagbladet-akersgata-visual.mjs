@@ -7,7 +7,7 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
-const out = path.join(root, 'artifacts', 'dagbladet-akersgata-visual-20261011');
+const out = path.join(root, 'artifacts', 'dagbladet-akersgata-closeout-20261011');
 fs.mkdirSync(out, { recursive: true });
 const mime = {
   '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8',
@@ -39,7 +39,8 @@ const profiles = [
 ];
 const icons = [
   ['people','pcPeopleIcon'],
-  ['brands','pcBrandsIcon']
+  ['brands','pcBrandsIcon'],
+  ['productions','pcCategoryCollectionIcon']
 ];
 const results = [];
 let browser;
@@ -118,6 +119,9 @@ try {
           viewportOverflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
           images, collectionMode:c.dataset.collectionMode, collectionCount:c.dataset.collectionCount};
       });
+      if(run.initial.collectionCount !== '3') run.issues.push('Exactly three selected collections must be shown');
+      if(run.initial.viewportOverflow > 2) run.issues.push('Page overflows the viewport');
+      if(run.initial.images.some(img=>!img.complete || !img.naturalWidth)) run.issues.push('Visible image failed to load');
       await capture(page, profile.name + '-placecard-top');
       run.captures.push(profile.name + '-placecard-top.jpg');
       // The PlaceCard may scroll via an internal sheet rather than the document.
@@ -147,6 +151,18 @@ try {
           const text=await popup.innerText();
           const box=await popup.boundingBox();
           run.popups.push({label, textLength:text.trim().length, box});
+          if(label==='productions') {
+            run.publicationText=text;
+            if(!text.includes('faksimile 1905') || !text.includes('før redaksjonen flyttet hit') ||
+               !text.includes('1967–2008') || !text.includes('Public domain')) {
+              run.issues.push('Publication must disclose the older facsimile and the actual own-place period');
+            }
+            const img=popup.locator('img').first();
+            const loaded=await img.evaluate(el=>el.complete && el.naturalWidth===599 && el.naturalHeight===836);
+            if(!loaded) run.issues.push('Authentic publication facsimile must load');
+            await capture(page,profile.name+'-popup-productions');
+            run.captures.push(profile.name+'-popup-productions.jpg');
+          }
           if(label==='people' && !/Stanghelle[\s\S]*sjefredaktør i Dagbladet i 1995–2000/.test(text)) {
             run.issues.push('People list must expose Stanghelle’s Dagbladet period');
           }
@@ -162,7 +178,7 @@ try {
               run.issues.push('Brand logo must load in full without overlapping its name');
             }
           }
-          if(profile.name==='ipad') {
+          if(profile.name==='ipad' && label!=='productions') {
             await capture(page,'ipad-popup-'+label);
             run.captures.push('ipad-popup-'+label+'.jpg');
           }
