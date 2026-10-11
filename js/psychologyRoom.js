@@ -545,7 +545,7 @@
     const featured = featuredUrls.length
       ? featuredUrls.map((url) => references.find((item) => item.url === url)).filter(Boolean)
       : references;
-    const preferred = featured.slice(0, 4);
+    const preferred = featuredUrls.length ? featured.slice(0, 4) : references;
     const remaining = featuredUrls.length
       ? references.filter((item) => !preferred.some((selected) => selected.url === item.url))
       : [];
