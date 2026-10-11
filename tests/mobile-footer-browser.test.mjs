@@ -118,7 +118,7 @@ try {
       `each icon uses at least four genuine illustration colors at ${width}`);
     // Yellow/gold accents must also be visible on the real button borders.
     const goldBorder = value => {
-      const [r, g, b] = (value.match(/[\\d.]+/g) || []).slice(0, 3).map(Number);
+      const [r, g, b] = (value.match(/\d+(?:\.\d+)?/g) || []).slice(0, 3).map(Number);
       return r >= g && g > b && g > 150;
     };
     assert.ok(actual.icons.every(icon => goldBorder(icon.border)),
