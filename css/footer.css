@@ -2,11 +2,13 @@
    FOOTER – kun innhold/layout inni footer (posisjon styres i layout.css)
    ============================================================ */
 
-.app-footer{
-  /* Solid paint layer: PlaceCard may extend underneath, but must not show through. */
-  background-color: #000;
+body.hg-app .app-footer{
+  /* The full-bleed map is the only background behind the controls. */
+  background: transparent;
   background-image: none;
-  border-top: 1px solid rgba(255,255,255,.06);
+  border-top: 0;
+  box-shadow: none;
+  pointer-events: none;
 
   /* litt mer “app”-følelse + safe-area */
   padding: 7px 12px calc(7px + env(safe-area-inset-bottom, 0px));
@@ -38,13 +40,34 @@
   object-fit: contain;
 }
 
-/* Action-raden tar resten av linja og sentrerer knappene */
+/* Allow this flex child to shrink: without min-width:0 the controls can
+   overflow the viewport without making the strip horizontally scrollable. */
 .app-actions{
   flex: 1 1 auto;
+  min-width: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+  pointer-events: auto;
+}
+
+.app-actions::-webkit-scrollbar{
+  display: none;
+}
+
+.app-actions > button{
+  flex: 0 0 auto;
+}
+
+.pc-route-menu{
+  pointer-events: auto;
 }
 
 /* Standard knappehøyder i footer */
@@ -54,9 +77,12 @@
   border-radius: 999px;
   font-size: 15px;
   font-weight: 800;
-  border: 1px solid rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
   color: #fff;
-  background: rgba(255,255,255,0.08);
+  background: rgba(18, 28, 39, .76);
+  box-shadow: 0 4px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.12);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -113,21 +139,48 @@
   opacity: .72;
 }
 
-/* Ikonknapper */
-#pcRoute::before           { content:"🗺️"; font-size:22px; }
-#pcObserve::before         { content:"👁️"; font-size:22px; }
-#pcNote::before            { content:"📝"; font-size:22px; }
-
-#pcRoute,
-#pcObserve,
-#pcNote{
+/* One sharp icon family instead of emoji, independent of browser/OS.
+   The original text/aria-label remains available to screen readers. */
+.app-actions #pcRoute,
+.app-actions #pcObserve,
+.app-actions #pcNote{
   width: 52px;
   height: 52px;
   flex: 0 0 52px;
   padding: 0;
   font-size: 0;
   border-radius: 50%;
-  background: rgba(255,255,255,0.08);
+  background: rgba(18, 28, 39, .78);
+}
+
+.app-actions #pcRoute::before,
+.app-actions #pcObserve::before,
+.app-actions #pcNote::before{
+  content: "";
+  display: block;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  background: #f6f7f9;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.app-actions #pcRoute::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2218%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%226%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M8%2018h7a4%204%200%200%200%200-8H9a4%204%200%200%201%200-8h7%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%226%22%20cy%3D%2218%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%2218%22%20cy%3D%226%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M8%2018h7a4%204%200%200%200%200-8H9a4%204%200%200%201%200-8h7%22%2F%3E%3C%2Fsvg%3E");
+}
+.app-actions #pcObserve::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.5%2012s3.5-6%209.5-6%209.5%206%209.5%206-3.5%206-9.5%206-9.5-6-9.5-6Z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.9%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2.5%2012s3.5-6%209.5-6%209.5%206%209.5%206-3.5%206-9.5%206-9.5-6-9.5-6Z%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%223%22%2F%3E%3C%2Fsvg%3E");
+}
+.app-actions #pcNote::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2021H6a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2h11a2%202%200%200%201%202%202v7%22%2F%3E%3Cpath%20d%3D%22M8%208h7M8%2012h4%22%2F%3E%3Cpath%20d%3D%22m14.5%2018.5%204.8-4.8a1.6%201.6%200%200%201%202.3%202.3l-4.8%204.8-3.4.7z%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%2021H6a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2h11a2%202%200%200%201%202%202v7%22%2F%3E%3Cpath%20d%3D%22M8%208h7M8%2012h4%22%2F%3E%3Cpath%20d%3D%22m14.5%2018.5%204.8-4.8a1.6%201.6%200%200%201%202.3%202.3l-4.8%204.8-3.4.7z%22%2F%3E%3C%2Fsvg%3E");
 }
 
 
@@ -232,9 +285,9 @@ body.hg-app.hg-phone .app-actions #pcVisit{
   font-size: 12px;
 }
 
-body.hg-app.hg-phone #pcRoute,
-body.hg-app.hg-phone #pcObserve,
-body.hg-app.hg-phone #pcNote{
+body.hg-app.hg-phone .app-actions #pcRoute,
+body.hg-app.hg-phone .app-actions #pcObserve,
+body.hg-app.hg-phone .app-actions #pcNote{
   /* flex-basis må også ned: basisregelen setter flex: 0 0 56px,
      og flex-basis vinner ellers over width. */
   width: 42px;
