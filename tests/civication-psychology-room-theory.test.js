@@ -81,6 +81,7 @@ global.document = {
     return existing.get(selector);
   },
   querySelectorAll(selector) {
+    if (selector === "[data-psych-action=\'workbench\']") return [node(selector)];
     if (selector === "[data-psych-focus]") return phenomena.map((item) => node("focus:" + item.id, { psychFocus: item.id }));
     if (selector === "[data-phenomenon-id]") return phenomena.map((item) => node("phenomenon:" + item.id, { phenomenonId: item.id }));
     if (selector === "[data-psych-next-theory]") return catalog.theories.map((item) => node("next-theory:" + item.id, { psychNextTheory: item.id }));
