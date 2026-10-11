@@ -7,7 +7,7 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
-const out = path.join(root, 'artifacts', 'arbeiderbladet-youngstorget-closeout-20261011');
+const out = path.join(root, 'artifacts', 'arbeiderbladet-youngstorget-final-20261011');
 fs.mkdirSync(out, { recursive: true });
 const mime = {
   '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8',
@@ -122,6 +122,13 @@ try {
       if(run.initial.collectionCount !== '3') run.issues.push('Exactly three selected collections must be shown');
       if(run.initial.viewportOverflow > 2) run.issues.push('Page overflows the viewport');
       if(run.initial.images.some(img=>!img.complete || !img.naturalWidth)) run.issues.push('Visible image failed to load');
+      run.brandPreview=await page.locator('#pcBrandsIcon img').evaluate(el=>({
+        background:getComputedStyle(el).backgroundColor, paddingBottom:getComputedStyle(el).paddingBottom, complete:el.complete, naturalWidth:el.naturalWidth
+      }));
+      if(['rgb(255, 255, 255)','rgba(0, 0, 0, 0)'].includes(run.brandPreview.background))
+        run.issues.push('White brand preview is invisible on its background');
+      if(parseFloat(run.brandPreview.paddingBottom)<34)
+        run.issues.push('Brand preview does not reserve space for its label');
       run.publicationPreview=await page.locator('#pcCategoryCollectionIcon img').evaluate(el=>({
         objectFit:getComputedStyle(el).objectFit, naturalWidth:el.naturalWidth,
         naturalHeight:el.naturalHeight
@@ -174,7 +181,7 @@ try {
             await capture(page,profile.name+'-popup-productions');
             run.captures.push(profile.name+'-popup-productions.jpg');
           }
-          if(label==='people' && !(/Tranmæl/.test(text) && /Stanghelle/.test(text) && /journalist/.test(text))) {
+          if(label==='people' && !(/Tranmæl/.test(text) && /Stanghelle[\s\S]*journalist i Arbeiderbladet i 1982–1991[\s\S]*Youngstorget til 1988/.test(text))) {
             run.issues.push('People list must expose the reused editors and journalist');
           }
           if(label==='brands') {
@@ -242,6 +249,9 @@ try {
             bodyScrollTop:document.querySelector('#placeCard .pc-body')?.scrollTop || 0,
             viewportHeight:innerHeight};
         });
+        run.languageEntryIds=await page.locator('[data-hg-place-sheet-section="language"] [data-language-entry]').evaluateAll(els=>els.map(el=>el.dataset.languageEntryId));
+        if(run.languageEntryIds.length!==5||!run.languageEntryIds.includes('arbeiderbladet_youngstorget_organ'))
+          run.issues.push('Språkleksikon does not render all five canonical entries');
         if(profile.name==='ipad') {
           await capture(page,'ipad-fagverk');
           run.captures.push('ipad-fagverk.jpg');
@@ -267,10 +277,22 @@ try {
             if (!run.fagverkPage.unfinished.hidden || run.fagverkPage.unfinished.computedDisplay !== 'none') {
               run.issues.push('Fagverk unfinished message is visibly shown for curated Arbeiderbladet');
             }
-            if(profile.name==='ipad') {
-              await capture(page,'ipad-fagverk-page');
-              run.captures.push('ipad-fagverk-page.jpg');
-            }
+            run.fagverkPage.titleGeometry=await page.locator('#fagverkPlaceTitle').evaluate(el=>{
+              const box=el.getBoundingClientRect(), node=el.firstChild, words=[];
+              for(const m of node.textContent.matchAll(/\S+/g)){
+                const range=document.createRange();range.setStart(node,m.index);range.setEnd(node,m.index+m[0].length);
+                const rectangles=[...range.getClientRects()].map(r=>({left:r.left,right:r.right}));
+                words.push({word:m[0],rectangles});
+              }
+              return {left:box.left,right:box.right,words,placeId:document.body.dataset.placeId,fontSize:getComputedStyle(el).fontSize,containerType:getComputedStyle(el.closest('.fagverk-place-hero-copy')).containerType};
+            });
+            const g=run.fagverkPage.titleGeometry;
+            if(g.placeId!=='arbeiderbladet_youngstorget'||g.containerType!=='inline-size')
+              run.issues.push('Fagverk title sizing is not bound to the canonical place');
+            if(g.words.some(w=>w.rectangles.length!==1||w.rectangles.some(r=>r.left<g.left-1||r.right>g.right+1)))
+              run.issues.push('Fagverk title clips or splits a word');
+            await capture(page,profile.name+'-fagverk-page');
+            run.captures.push(profile.name+'-fagverk-page.jpg');
           } catch(e) {run.fagverkPage.error=String(e.message||e).slice(0,500);run.issues.push('Fagverk page navigation: '+run.fagverkPage.error);}
         } else {run.issues.push('Fagverk page link is missing');}
       } else { run.fagverk={status:'no learning jump found'}; run.issues.push('Fagverk navigation not verified in this run'); }
