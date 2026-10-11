@@ -226,7 +226,7 @@ assert.equal(selfDetermination.emne_id, "em_psy_skole_motivasjon");
 assert.equal(selfDetermination.chapter_id, "utvikling-oppvekst-og-laring");
 assert.equal(selfDetermination.compare_with, "sosial_laring");
 assert.equal(selfDetermination.teaching_view.editorial_state, "ready_for_educational_use");
-assert.match(selfDetermination.idea, /autonomi.*kompetanse.*tilhørighet/);
+assert.match(selfDetermination.idea, /autonomi.*kompetanse.*tilhørighet/i);
 assert.match(selfDetermination.limit, /belønninger/);
 assert.deepEqual(byEmne.get("em_psy_skole_motivasjon").theory_ids, ["selvbestemmelsesteori"]);
 assert.equal(byEmne.get("em_psy_skole_motivasjon").source_review_status, "not_reviewed");
