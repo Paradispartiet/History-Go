@@ -56,8 +56,9 @@ test('Litteratur legacy-teori har deterministisk, fail-closed canonical coverage
 
   assert.ok(report.canonical.manifestGraphFiles.length >= report.canonical.manifestFiles.length);
   assert.equal(report.canonical.registrySubjectPresent, true, 'Litteratur-subjektet skal finnes når general-engine har et operativt kapittel');
-  assert.equal(report.canonical.registryChapterCount, 1);
+  assert.equal(report.canonical.registryChapterCount, 2);
   assert.deepEqual(report.canonical.registryFiles, [
+    'data/fagverk/litteratur/arketyper_grunnfortellinger_narrativhistorie.json',
     'data/fagverk/litteratur/lesekultur_bokdeling_offentlighet.json'
   ]);
   assert.ok(report.canonical.corpusCharacterCount >= 50000, 'Canonical Litteratur-korpus er uventet lite');
