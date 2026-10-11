@@ -67,6 +67,7 @@ on:
       - 'scripts/lib/place-image-change-classifier.mjs'
       - 'tests/fagverk-documentation-contract.test.mjs'
       - 'tests/fagverk-content.test.mjs'
+      - 'tests/fagverk-litteratur-narrativhistorie.test.mjs'
       - 'tests/fagverk-portal.test.mjs'
       - 'tests/fagverk-place-pages.test.mjs'
       - 'tests/fagverk-place-rendering.test.mjs'
@@ -202,6 +203,7 @@ jobs:
           node --test tests/politikk-fag-integration.test.mjs
           node --test tests/fagverk-politikk-runtime-equivalence.test.mjs
           node --test tests/fagverk-content.test.mjs
+          node --test tests/fagverk-litteratur-narrativhistorie.test.mjs
           node --test tests/fagverk-portal.test.mjs
           node --test tests/fagverk-place-pages.test.mjs
           node --test tests/fagverk-place-rendering.test.mjs
