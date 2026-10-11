@@ -68,7 +68,10 @@ try {
         buttons: buttons.map(rect),
         navHeight: getComputedStyle(footer).height,
         safeBottom: parseFloat(getComputedStyle(footer).paddingBottom) - (innerWidth <= 520 ? 6 : 8),
-        actionsScroll: { scrollWidth: actions.scrollWidth, clientWidth: actions.clientWidth },
+        actionsScroll: { scrollWidth: actions.scrollWidth, clientWidth: actions.clientWidth, overflowX: getComputedStyle(actions).overflowX },
+        footerBackground: getComputedStyle(footer).backgroundColor,
+        hasMoreInfo: Boolean(document.getElementById("pcInfo")),
+        icons: ["pcRoute", "pcObserve", "pcNote"].map(id => getComputedStyle(document.getElementById(id), "::before").webkitMaskImage),
         viewportFooter: window.HGViewport?.footerHeight,
       };
     });
@@ -83,8 +86,21 @@ try {
       (b.top + b.bottom) / 2 - (actual.buttons[0].top + actual.buttons[0].bottom) / 2
     ) < 1), `footer buttons stay vertically centered in one row at ${width}`);
     assert.ok(actual.mini.height <= (isPhone ? 48 : 56), `mini fits row at ${width}`);
+    assert.equal(actual.footerBackground, "rgba(0, 0, 0, 0)", `map visible below footer at ${width}`);
+    assert.equal(actual.hasMoreInfo, false, `obsolete info button removed at ${width}`);
+    assert.ok(actual.icons.every(icon => icon && icon !== "none"), `vector icons render at ${width}`);
+    assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);
     assert.ok(actual.actionsScroll.scrollWidth >= actual.actionsScroll.clientWidth,
-      `actions are horizontally scrollable at ${width}`);
+      `actions do not clip at ${width}`);
+    if (width <= 390) {
+      assert.ok(actual.actionsScroll.scrollWidth > actual.actionsScroll.clientWidth,
+        `phone actions have real horizontal overflow at ${width}`);
+      const scrolled = await page.locator(".app-actions").evaluate(el => {
+        el.scrollLeft = el.scrollWidth;
+        return el.scrollLeft;
+      });
+      assert.ok(scrolled > 0, `actions can actually scroll sideways at ${width}`);
+    }
 
     await page.close();
     console.log(`Mobile footer layout OK at ${width}x${height}`);
