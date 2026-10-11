@@ -23,6 +23,7 @@ ${files.filter(x=>x.endsWith(".css")).map(file=>`<link rel="stylesheet" href="${
 <style>
 html,body{margin:0;background:#111;color:white;font-family:system-ui;}
 #placeCard{top:12px;bottom:12px}
+#placeCard .pc-body .pc-sheet-shell{min-height:2000px;flex:0 0 auto}
 #placeCard .pc-sheet-canonical-about{height:1400px}
 #placeCard .pc-sheet-section-nav{flex:0 0 auto}
 </style></head><body class="hg-app">
