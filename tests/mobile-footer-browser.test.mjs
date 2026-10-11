@@ -78,16 +78,16 @@ try {
         safeBottom: parseFloat(getComputedStyle(footer).paddingBottom) - (innerWidth <= 520 ? 6 : 8),
         actionsScroll: { scrollWidth: actions.scrollWidth, clientWidth: actions.clientWidth, overflowX: getComputedStyle(actions).overflowX },
         footerBackground: getComputedStyle(footer).backgroundColor,
+        footerImage: getComputedStyle(footer).backgroundImage,
         hasMoreInfo: Boolean(document.getElementById("pcInfo")),
-        icons: ["pcRoute", "pcObserve", "pcNote"].map(id => ({
-          mask: getComputedStyle(document.getElementById(id), "::before").webkitMaskImage,
-          foreground: getComputedStyle(document.getElementById(id), "::before").backgroundColor,
+        icons: ["pcQuiz", "pcVisit", "pcRoute", "pcObserve", "pcNote"].map(id => ({
+          id,
+          image: getComputedStyle(document.getElementById(id), "::before").backgroundImage,
           border: getComputedStyle(document.getElementById(id)).borderTopColor
         })),
         onsite: [...document.querySelectorAll("#pcOnSiteFooter button")].map(el => ({
           action: el.dataset.hgOnsiteAction,
-          mask: getComputedStyle(el.querySelector(".pc-onsite-action-icon"), "::before").webkitMaskImage,
-          foreground: getComputedStyle(el.querySelector(".pc-onsite-action-icon"), "::before").backgroundColor,
+          image: getComputedStyle(el.querySelector(".pc-onsite-action-icon"), "::before").backgroundImage,
           label: el.getAttribute("aria-label")
         })),
         onsiteBoxHidden: document.getElementById("pcEventsBox").hidden,
@@ -106,17 +106,23 @@ try {
       (b.top + b.bottom) / 2 - (actual.buttons[0].top + actual.buttons[0].bottom) / 2
     ) < 1), `footer buttons stay vertically centered in one row at ${width}`);
     assert.ok(actual.mini.height <= (isPhone ? 48 : 56), `mini fits row at ${width}`);
-    assert.equal(actual.footerBackground, "rgba(0, 0, 0, 0)", `map visible below footer at ${width}`);
+    assert.equal(actual.footerBackground, "rgb(0, 0, 0)", `solid black footer at ${width}`);
+    assert.equal(actual.footerImage, "none", `no transparent gradient overlay at ${width}`);
     assert.equal(actual.hasMoreInfo, false, `obsolete info button removed at ${width}`);
-    assert.ok(actual.icons.every(icon => icon.mask && icon.mask !== "none"), `vector icons render at ${width}`);
-    assert.ok(actual.icons.every(icon => icon.foreground === "rgb(16, 27, 35)"),
-      `all footer glyphs are dark at ${width}`);
-    assert.equal(new Set(actual.icons.map(icon => icon.border)).size, 3,
-      `three discrete neon accent colors at ${width}`);
+    assert.ok(actual.icons.every(icon => icon.image.includes("data:image/svg+xml")),
+      `five illustrated SVG icons render at ${width}`);
+    assert.equal(new Set(actual.icons.map(icon => icon.image)).size, 5,
+      `five distinct footer icon illustrations at ${width}`);
+    assert.ok(actual.icons.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
+      `each icon uses at least four genuine illustration colors at ${width}`);
     assert.deepEqual(actual.onsite.map(item => item.action), ["events", "meet"],
       `canonical Events and Meet live in footer at ${width}`);
-    assert.ok(actual.onsite.every(icon => icon.mask && icon.mask !== "none" && icon.foreground === "rgb(16, 27, 35)"),
-      `Events and Meet have dark vector icons at ${width}`);
+    assert.ok(actual.onsite.every(icon => icon.image.includes("data:image/svg+xml")),
+      `Events and Meet have full-colour SVG icons at ${width}`);
+    assert.notEqual(actual.onsite[0].image, actual.onsite[1].image,
+      `Events and Meet have distinct illustrations at ${width}`);
+    assert.ok(actual.onsite.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
+      `Events and Meet illustrations use several colors at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);
     assert.equal(actual.onsiteBoxHidden, true, `old Events/Meet box removed at ${width}`);
     assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);

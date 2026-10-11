@@ -74,22 +74,36 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.match(layoutCSS, /--hg-bottom-nav-height:\s*calc\(\s*var\(--hg-bottom-nav-content-height\) \+ var\(--hg-safe-area-bottom\)/);
   assert.match(footerCSS, /\.app-actions\s*\{[^}]*min-width:\s*0;[^}]*overflow-x:\s*auto/);
   assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-actions\s*\{[^}]*overflow-x:\s*auto/);
-  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*transparent/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*#000/);
   assert.doesNotMatch(indexHTML, /id="pcInfo"/);
-  for (const id of ["pcRoute", "pcObserve", "pcNote"]) {
-    assert.match(footerCSS, new RegExp("#" + id + "::before\\s*\\{[^}]*mask-image:"));
+  for (const id of ["pcQuiz", "pcVisit", "pcRoute", "pcObserve", "pcNote"]) {
+    assert.match(footerCSS, new RegExp("#" + id + "::before\\s*\\{[^}]*background-image:"));
   }
   assert.match(indexHTML, /<footer class="site-footer app-footer"[\s\S]*?<div class="app-actions"/);
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
 
-test('footer keeps dark monochrome glyphs with individual neon details, and hosts Events + Meet', () => {
+test('footer is black with seven distinct polychrome SVG illustrations', () => {
   assert.match(indexHTML, /id="pcOnSiteFooter" class="pc-onsite-footer"/);
-  assert.match(footerCSS, /\.app-actions #pcRoute\{ --hg-footer-neon:/);
-  assert.match(footerCSS, /\.app-actions #pcObserve\{ --hg-footer-neon:/);
-  assert.match(footerCSS, /\.app-actions #pcNote\{ --hg-footer-neon:/);
-  assert.match(footerCSS, /\.pc-onsite-footer \.pc-onsite-action-events/);
-  assert.match(footerCSS, /\.pc-onsite-footer \.pc-onsite-action-meet/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*#000/);
+  assert.doesNotMatch(footerCSS, /(?:-webkit-)?mask-image:/);
+  for (const selector of [
+    '#pcQuiz::before', '#pcVisit::before', '#pcRoute::before',
+    '#pcObserve::before', '#pcNote::before'
+  ]) {
+    assert.match(footerCSS, new RegExp(selector + '\\s*\\{[^}]*background-image:'));
+  }
+  assert.match(footerCSS, /\.pc-onsite-action-events \.pc-onsite-action-icon::before\s*\{[^}]*background-image:/);
+  assert.match(footerCSS, /\.pc-onsite-action-meet \.pc-onsite-action-icon::before\s*\{[^}]*background-image:/);
+  const dataImages = [...footerCSS.matchAll(/background-image:\s*url\("data:image\/svg\+xml,([^"]+)"\)/g)];
+  assert.equal(dataImages.length, 7, 'seven illustrated SVGs, including Quiz and Visit');
+  const art = dataImages.map(([, raw]) => decodeURIComponent(raw));
+  assert.equal(new Set(art).size, 7, 'no generic reused artwork');
+  for (const svg of art) {
+    assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
+    assert.ok(new Set(svg.match(/#[a-fA-F0-9]{6}/g) || []).size >= 4,
+      'each illustrated icon has multiple saturated colours');
+  }
   const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
   assert.match(surface, /function syncFooterActions\(place, force = false\)/);
   assert.match(surface, /footerOwnsCore/);
