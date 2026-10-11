@@ -753,3 +753,21 @@ Den offisielle [*Aaron T. Beck Papers*, UPT 50 B393](https://archives.upenn.edu/
 5. Før separat skjevhetsvurdering av tildeling, ublindede vurderere, ulik kontaktmengde, interkurrent behandling, informativt frafall, håndtering av manglende verdier og alternative årsaksforklaringer. Godkjenn kun formuleringer med etterprøvbart, direkte belegg.
 
 **Sperre opprettholdes:** Kildeanskaffelsen er fortsatt ufullført; ingen kohortavvik er løst og ingen ny vitenskapelig evidens er påvist. `kognitiv_terapi` er **ikke** `source_verified`, PR #6206 forblir **draft**, og verken kort, påstandsregister, godkjenningsfelt eller History Go-/Civication-kode endres i denne dokumentasjonsoppdateringen.
+
+
+## 31. Kognitiv terapi – uavhengig historisk kohortomtale fra 1986 (11. oktober 2026)
+
+**Nytt gjennomlest dokument:** I.M. Blackburn, K.M. Eunson og S. Bishop, *A two-year naturalistic follow-up of depressed patients treated with cognitive therapy, pharmacotherapy and a combination of both*, *Journal of Affective Disorders* **10** (1986), s. 67–75. [Lesbar ni-siders reproduksjon av originaltrykket](https://gwern.net/doc/psychiatry/depression/1986-blackburn.pdf). Originalens trykte s. **68**, venstre spalte, er kontrollert visuelt.
+
+**Viktig nytt historiografisk belegg:** Blackburn mfl. omtaler eksplisitt Kovacs mfl. (1981) som en ettårs naturalistisk oppfølging av **pasientene fra Rush mfl. (1977)** som fikk kognitiv terapi eller imipramin. Dette er et samtidig fagfellevurdert, **sekundært vitnesbyrd om studiedesignets historiske sammenheng**, ikke primærdokumentasjon av identiske pasientlister eller den nøyaktige rekrutteringsflyten. Det øker grunnlaget for å omtale de to publikasjonene som samme **forskningsforløp**, men er **ikke** dokumentasjon for at alle 41 pasienter i 1977 og 44 i 1981 hadde identisk inklusjon.
+
+| Avgrenset spørsmål | Dokumentasjon etter 1986-funnet | Faglig tillatt konklusjon |
+| --- | --- | --- |
+| Fulgte Kovacs mfl. (1981) opp det tidligere Rush-forsøket? | Blackburn mfl. 1986, s. 68, skriver dette eksplisitt om den opprinnelige Rush-populasjonen. | **Sterk sekundærstøtte** for samme historiske forskningsforløp; fortsatt ikke primærverifisert på individ-/inklusjonsnivå. |
+| Hvorfor **41/32** i 1977, men **44/35** i 1981? | Begge publiserte tallsett står uendret; Blackburn gir ingen tildelings- eller deltakerflytbro. | **Uavklart.** Ingen tre nye personer, definisjonsendring eller frafallsårsak skal konstrueres. |
+| Er Rush september 1981 og juli 1982 samme **N=35** som Kovacs? | Blackburn omtaler ikke disse analytiske koblingene eller deltakerfordelingen. | **Uavklart** for begge. Ingen antatt N=105 og ingen uavhengig replikasjon påstås. |
+| Er Blackburn mfl. (1986) en ny primærkilde til Rush-kohorten? | Artikkelen har sin **egen separate britiske behandlingsstudie** med annen rekruttering og toårig oppfølging, og refererer til Rush/Kovacs i bakgrunnen. | **Nei.** Blackburns egne deltakertall må aldri slås sammen med Rush/Kovacs. |
+
+**Kildestatus og tiltak:** Det nye funnet endrer **tolkningsstyrken for historisk studieforbindelse**, ikke det verifiserte deltakerregnskapet eller de åtte eksisterende påstandsenhetenes godkjenning. Et ferdig e-postutkast til University of Pennsylvania Archives er **lagret, ikke sendt**; det ber om tilgjengelighet, eventuell skanning og forhåndspris for relevante arkivmapper, særlig boks 52/mappe 45. Arkivets [offisielle reproduksjonsvilkår](https://archives.upenn.edu/research/services-fees/) innebærer at sideavgift kan være null for de første 100 PDF-sidene, mens **forskningsservice likevel kan faktureres**; ingen ordre, utgift eller betaling er autorisert.
+
+**Vedtak:** Ingen av de tre 1981–1982-originalfulltekstene er lest; studieidentitet på individnivå, 41/32 mot 44/35 og de to Rush-utvalgene er fortsatt åpne primærkildekrav. Ingen nye canonical ID-er eller kildeporter opprettes på grunnlag av et sekundært historisk kildevitnesbyrd. `source_verified` opprettholdes som **false** og PR #6206 som **draft**. Ingen påstand om kausal kognitiv mediator eller selvstendig behandlingsrangering.
