@@ -17,6 +17,8 @@ assert.equal((html.match(/id="nearbyExploreToggle"/g) || []).length, 1,
 const headerMarkup = html.slice(headerStart, headerEnd + '</header>'.length);
 assert.match(headerMarkup, /<button id="nearbyExploreToggle"/,
   "The single Utforsk button is inside header");
+assert.match(headerMarkup, /id="nearbyExploreToggle"[\s\S]*?<a id="miniProfile"/,
+  "Utforsk must precede the mini-profile in header markup");
 const nearbyMarkup = html.slice(nearbyStart, nearbyEnd);
 
 const fixture = [
@@ -86,13 +88,19 @@ try {
     assert.equal(await page.locator("header.site-header .top-actions > #nearbyExploreToggle").count(), 1,
       "Utforsk is a direct header action at " + width);
     assert.equal(await page.locator("#nearbyExploreToggle").getAttribute("aria-controls"), "nearbyListContainer");
+    assert.equal(await page.locator("#miniProfile").evaluate(el => el.previousElementSibling?.id),
+      "nearbyExploreToggle", "Utforsk immediately precedes mini-profile at " + width);
     const before = await page.evaluate(() => {
       const bounds = selector => document.querySelector(selector).getBoundingClientRect();
       const header = bounds("header.site-header");
       const logo = bounds("header.site-header .hg-brand");
       const toggle = bounds("#nearbyExploreToggle");
+      const profile = bounds("#miniProfile");
       return {
         headerBottom: header.bottom,
+        profileLeft: profile.left,
+        profileTop: profile.top,
+        profileBottom: profile.bottom,
         toggleTop: toggle.top,
         toggleBottom: toggle.bottom,
         toggleLeft: toggle.left,
@@ -105,6 +113,11 @@ try {
       "Utforsk fits vertically in the header at " + width);
     assert.ok(before.toggleLeft >= before.logoRight - 1,
       "Utforsk does not overlap the logo at " + width);
+    assert.ok(before.toggleRight <= before.profileLeft + 1
+      && before.profileLeft - before.toggleRight <= 10,
+      "Utforsk stays directly to the left of mini-profile at " + width);
+    assert.ok(before.toggleTop < before.profileBottom && before.toggleBottom > before.profileTop,
+      "Utforsk and mini-profile remain in the same header row at " + width);
     assert.ok(before.toggleRight <= width - 2 && before.pageScrollWidth <= width + 1,
       "No horizontal header overflow at " + width);
     assert.equal(await page.locator("#nearbyListContainer").evaluate(node => getComputedStyle(node).display), "none",
