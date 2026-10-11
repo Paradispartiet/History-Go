@@ -8,6 +8,9 @@ const root = path.resolve(__dirname, "..");
 const json = (name) => JSON.parse(fs.readFileSync(path.join(root, name), "utf8"));
 const catalog = json("data/psychology/psychology_theories.json");
 const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
+const tools = json("data/psychology/cbt_tools.json").tools;
+const exercises = json("data/psychology/psychology_exercises.json").exercises;
+const tests = json("data/psychology/psychology_tests.json").tests;
 const ids = new Set();
 assert.equal(catalog.fagverk_subject, "psykologi");
 assert.equal(catalog.chapters.length, 6);
@@ -74,6 +77,12 @@ global.document = {
     return existing.get(selector);
   },
   querySelectorAll(selector) {
+    if (selector === "[data-psych-focus]") return phenomena.map((item) => node("focus:" + item.id, { psychFocus: item.id }));
+    if (selector === "[data-psych-related]") return [
+      ...tools.map((item) => node("related-tool:" + item.id, { psychRelated: "tool", psychRelatedId: item.id })),
+      ...exercises.map((item) => node("related-exercise:" + item.id, { psychRelated: "exercise", psychRelatedId: item.id })),
+      ...tests.map((item) => node("related-test:" + item.id, { psychRelated: "test", psychRelatedId: item.id }))
+    ];
     if (selector === "[data-theory-id]") return catalog.theories.map((item) => node("theory:" + item.id, { theoryId: item.id }));
     if (selector === "[data-theory-phenomenon]") return phenomena.map((item) => node("related:" + item.id, { theoryPhenomenon: item.id }));
     if (selector === "[data-phenomenon-theory]") return catalog.theories.map((item) => node("linked:" + item.id, { phenomenonTheory: item.id }));
@@ -102,6 +111,40 @@ const press = (selector) => {
 
 (async () => {
   await window.PsychologyRoom.open();
+  assert.match(overlay.innerHTML, /class="psychology-room-footer"/);
+  assert.match(overlay.innerHTML, /aria-label="Navigasjon i Psykologrommet"/);
+  for (const item of ["home", "phenomena", "practice", "theories", "profile"]) {
+    assert.match(overlay.innerHTML, new RegExp('data-psych-nav="' + item + '"'));
+  }
+  assert.match(rendered, /Fra opplevelse til innsikt/);
+  assert.match(rendered, /Skriv en refleksjon/);
+  assert.match(rendered, /Et sted å begynne/);
+  assert.equal(overlay.dataset.activeSection, "home");
+  press('[data-psych-nav="phenomena"]');
+  assert.match(rendered, /Fenomenleksikon/);
+  assert.equal(overlay.dataset.activeSection, "phenomena");
+  press("focus:ruminasjon"); // Direct entry is also available on the start view.
+  assert.match(rendered, /FRA BEGREP TIL HANDLING/);
+  assert.match(rendered, /data-psych-related="tool"/);
+  assert.match(rendered, /data-psych-related="exercise"/);
+  assert.match(rendered, /data-psych-related="test"/);
+  press("related-tool:alternativ_tanke_v1");
+  assert.match(rendered, /Fyll ut verktøyet/);
+  assert.equal(overlay.dataset.activeSection, "practice");
+  press('[data-psych-nav="home"]');
+  assert.equal(overlay.dataset.activeSection, "home");
+  assert.match(rendered, /Fra opplevelse til innsikt/);
+  press("focus:unngaelsesforsterkning");
+  assert.match(rendered, /Teoretisk bakgrunn/);
+  press('[data-psych-nav="theories"]');
+  assert.match(rendered, /Psykoteori/);
+  assert.equal(overlay.dataset.activeSection, "theories");
+  press('[data-psych-nav="profile"]');
+  assert.match(rendered, /Screeningprofil/);
+  assert.equal(overlay.dataset.activeSection, "profile");
+  press('[data-psych-nav="practice"]');
+  assert.match(rendered, /CBT-verktøy/);
+  press('[data-psych-nav="home"]');
   assert.match(rendered, /data-psych-action="theories"/);
   press("[data-psych-action='theories']");
   assert.match(rendered, /Psykoteori/);
@@ -190,6 +233,11 @@ const press = (selector) => {
   assert.match(rendered, /Teoretisk bakgrunn/);
   press("linked:behaviorisme");
   assert.match(rendered, /Fordypning i psykologifagverket/);
+  const roomCss = fs.readFileSync(path.join(root, "css/psychologyRoom.css"), "utf8");
+  assert.match(roomCss, /width:\s*min\(760px,\s*calc\(100vw - 24px\)\)/);
+  assert.match(roomCss, /\.psychology-room-content\s*\{[^}]*overflow-y:\s*auto;/s);
+  assert.match(roomCss, /\.psychology-room-footer\s*\{[^}]*grid-template-columns:\s*repeat\(5,/s);
+  assert.match(roomCss, /\[data-active-section="theories"\]/);
   assert.equal(storage.size, 0, "theory navigation must not write personal data");
   console.log("psychology-room-theory.test.js passed");
 })().catch((error) => { console.error(error); process.exitCode = 1; });
