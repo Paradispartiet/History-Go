@@ -291,7 +291,8 @@ export function restoreLegacyPlaceCardStructure(): void {
   const sideStack = shell?.querySelector<HTMLElement>(".pc-side-stack") || root.querySelector<HTMLElement>(".pc-side-stack");
   const events = shell?.querySelector<HTMLElement>("#pcEventsBox") || document.getElementById("pcEventsBox");
   // The navigation belongs only to the canonical sheet, not the legacy/micro card.
-  shell?.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]')?.remove();
+  const nav = shell?.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  if (nav) nav.remove();
 
   let legacyGrid = rootBody.querySelector<HTMLElement>(":scope > .pc-grid");
   if (!(legacyGrid instanceof HTMLElement)) {
