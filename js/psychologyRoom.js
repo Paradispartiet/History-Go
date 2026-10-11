@@ -488,7 +488,7 @@
         '">Les fagverkskapittelet ↗</a></div><div class="psychology-room-list">' +
         grouped.map((item) => '<button class="psychology-room-list-item psychology-room-card" type="button" data-theory-id="' +
           escapeHtml(item.id) + '"><strong>' + escapeHtml(item.title) + '</strong><span>' +
-          escapeHtml(item.idea) + '</span></button>').join("") + '</div></section>';
+          escapeHtml(item.teaching_view?.idea || item.idea) + '</span></button>').join("") + '</div></section>';
     }).join("");
     setContent(shell(backButton() + '<section class="psychology-room-section"><h3>Psykoteori</h3><p class="psychology-room-muted">' +
       escapeHtml(dataCache?.theoryIntroduction || "Innføring i psykologiske teorier.") +
@@ -510,10 +510,11 @@
     const comparison = findById(theories, theory.compare_with);
     const related = (theory.related_phenomena || []).map((id) =>
       findById(dataCache?.phenomena || [], id)).filter(Boolean);
+    const reading = theory.teaching_view || theory;
     const information = [
-      ["Kjerneidé", theory.idea],
-      ["Hvordan undersøkes dette?", theory.method],
-      ["Begrensninger og kritikk", theory.limit],
+      ["Kjerneidé", reading.idea],
+      ["Hvordan undersøkes dette?", reading.method],
+      ["Begrensninger og kritikk", reading.limit],
       ["Undervisningseksempel 1 (hypotetisk)", theory.example],
       ["Undervisningseksempel 2 (hypotetisk)", theory.example_secondary]
     ].map(([heading, value]) => '<section><h4>' + escapeHtml(heading) + '</h4><p>' +
@@ -539,18 +540,31 @@
       : '';
     const references = Array.isArray(theory.reference_links) ? theory.reference_links.filter((item) =>
       item && /^https:\/\/[^\s"'<>]+$/.test(String(item.url || "")) && item.title && item.supports) : [];
+    const featuredUrls = Array.isArray(reading.featured_reference_urls)
+      ? reading.featured_reference_urls : [];
+    const featured = featuredUrls.length
+      ? featuredUrls.map((url) => references.find((item) => item.url === url)).filter(Boolean)
+      : references;
+    const preferred = featuredUrls.length ? featured.slice(0, 4) : references;
+    const remaining = featuredUrls.length
+      ? references.filter((item) => !preferred.some((selected) => selected.url === item.url))
+      : [];
+    const referenceItems = (items) => '<ul class="psychology-room-theory-references">' +
+      items.map((item) => '<li><a href="' + escapeHtml(item.url) +
+        '" target="_blank" rel="noopener noreferrer">' + escapeHtml(item.title) +
+        ' ↗</a><span>' + escapeHtml(item.supports) + '</span></li>').join("") + '</ul>';
     const sourcesHtml = references.length
-      ? '<section class="psychology-room-theory-source"><h4>Kilder og rekkevidde</h4>' +
-        '<p>Disse referansene dokumenterer angitte historiske eller metodiske forhold. Hele teorikortet er ennå ikke kildegodkjent.</p>' +
-        '<ul class="psychology-room-theory-references">' + references.map((item) =>
-          '<li><a href="' + escapeHtml(item.url) + '" target="_blank" rel="noopener noreferrer">' +
-          escapeHtml(item.title) + ' ↗</a><span>' + escapeHtml(item.supports) + '</span></li>').join("") +
-        '</ul></section>'
+      ? '<section class="psychology-room-theory-source"><h4>Kilder og videre lesning</h4>' +
+        '<p>Kildene viser den historiske bakgrunnen og forskningen bak kortet. For fordypning, se psykologifagverket.</p>' +
+        referenceItems(preferred) +
+        (remaining.length ? '<details><summary>Vis flere kilder (' + remaining.length +
+          ')</summary>' + referenceItems(remaining) + '</details>' : '') +
+        '</section>'
       : '';
     setContent(shell(backButton("theories") + '<article class="psychology-room-detail psychology-room-theory-detail">' +
       '<div class="psychology-room-kicker">Psykoteori · ' + escapeHtml(chapter?.title || "Psykologi") + '</div>' +
       '<h3>' + escapeHtml(theory.title) + '</h3><p class="psychology-room-muted">' +
-      escapeHtml(theory.founders || "") + ' · ' + escapeHtml(theory.period || "") + '</p>' +
+      escapeHtml(theory.founders || "") + ' · ' + escapeHtml(reading.period || theory.period || "") + '</p>' +
       information + comparisonHtml + phenomenaHtml + sourcesHtml +
       '<section class="psychology-room-theory-source"><h4>Fordypning i psykologifagverket</h4>' +
       '<p>Kortet er en innføring. Les hele fagkapittelet for forskning, historikk og kildegrunnlag.</p>' +
