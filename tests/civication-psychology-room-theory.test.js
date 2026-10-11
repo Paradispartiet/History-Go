@@ -11,7 +11,7 @@ const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
 const ids = new Set();
 assert.equal(catalog.fagverk_subject, "psykologi");
 assert.equal(catalog.chapters.length, 6);
-assert.equal(catalog.theories.length, 16);
+assert.equal(catalog.theories.length, 19);
 
 for (const chapter of catalog.chapters) {
   const canonical = json("data/fagverk/psykologi/" + chapter.id + ".json");
@@ -44,7 +44,7 @@ for (const theory of catalog.theories) {
 }
 assert.equal(ids.size, catalog.theories.length);
 const teachingCases = catalog.theories.flatMap((theory) => [theory.example, theory.example_secondary]);
-assert.equal(teachingCases.length, 32, "16 theory cards must each have two scenarios");
+assert.equal(teachingCases.length, 38, "19 theory cards must each have two scenarios");
 assert.equal(new Set(teachingCases).size, teachingCases.length,
   "every hypothetical teaching scenario should be independently authored");
 
@@ -125,6 +125,15 @@ const press = (selector) => {
   assert.match(rendered, /Vis flere kilder/);
   assert.match(rendered, /<details><summary>Vis flere kilder/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_familie_samspill/);
+  press("theory:emosjonsregulering");
+  assert.match(rendered, /James J. Gross/);
+  assert.match(rendered, /em_psy_nevroaffekt_regulering/);
+  press("theory:stigma_sosial_merking");
+  assert.match(rendered, /Erving Goffman/);
+  assert.match(rendered, /em_psy_diagnose_hverdagsliv/);
+  press("theory:sorg_dobbelprosessmodell");
+  assert.match(rendered, /Stroebe/);
+  assert.match(rendered, /em_psy_sorg_tap/);
   press("theory:kognitiv_terapi");
   assert.match(rendered, /Kognitiv terapi undersøker hvordan tolkninger/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_terapi_praksis/);
