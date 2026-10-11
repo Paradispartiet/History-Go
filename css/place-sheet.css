@@ -346,6 +346,15 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 }
 
 @media (max-width: 520px){
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy .pc-title-row{
+    flex-wrap:wrap;
+  }
+
+  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy .pc-title-row #pcTitle{
+    flex:1 0 100%;
+    overflow-wrap:break-word;
+  }
+
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
     grid-template-columns:minmax(120px,.82fr) minmax(0,1.18fr);
     gap:10px;
@@ -374,6 +383,17 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy{
     padding-top:2px;
   }
+}
+
+/* Brand logos retain their proportions and have a column that fits the image. */
+.hg-popup.placecard-round-popup .pc-brand-entry{
+  grid-template-columns:56px minmax(0,1fr);
+}
+
+.hg-popup.placecard-round-popup .pc-brand-entry > .pc-person-img{
+  object-fit:contain;
+  border-radius:8px;
+  background:#fff;
 }
 
 @media (prefers-reduced-motion: reduce){

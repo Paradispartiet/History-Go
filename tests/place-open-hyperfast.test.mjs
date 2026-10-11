@@ -6,6 +6,47 @@ import test from "node:test";
 const read = file => fs.readFileSync(file, "utf8");
 const json = file => JSON.parse(read(file));
 
+test("Stories rebuilds every index when place-open arrives during aggregate loading", async () => {
+  const story = {
+    id: "opening-story", place_id: "opening-place", person_id: "editor",
+    type: "turning_point", title: "Opening", story: "A sourced story.",
+    sources: ["https://example.test/source"], tags: ["press"],
+    next_scenes: ["next-place"]
+  };
+  const seededOnly = { ...story, id: "seeded-only", title: "Only in opening payload" };
+  let releaseAggregate;
+  const aggregate = new Promise(resolve => { releaseAggregate = resolve; });
+  const context = {
+    console, URL,
+    document: { baseURI: "https://example.test/History-Go/" },
+    CustomEvent: class CustomEvent {},
+    fetch: async url => ({ ok: true, json: async () =>
+      String(url).includes("place-open/")
+        ? { place: { id: story.place_id }, stories: structuredClone([story, seededOnly]) }
+        : aggregate
+    })
+  };
+  context.window = context;
+  vm.runInNewContext(read("js/stories/stories_loader.js"), context);
+  vm.runInNewContext(read("js/data/place-open-loader.js"), context);
+  const loading = context.HGStories.init();
+  await context.HGPlaceOpen.preload(story.place_id);
+  assert.equal(context.HGStories.getByPlace(story.place_id).length, 2);
+  releaseAggregate(structuredClone([story]));
+  await loading;
+  const runtime = context.HGStories;
+  for (const list of [runtime.all, runtime.getByPlace(story.place_id),
+    runtime.getByPerson(story.person_id), runtime.getByType(story.type), runtime.getByTag("press")]) {
+    assert.equal(list.length, 2, "one copy of each story, including the payload-only story");
+    assert.equal(new Set(list.map(item => item.id)).size, 2);
+  }
+  assert.equal(runtime.getById(story.id).next_scenes[0].place_id, "next-place");
+  assert.equal(runtime.getById(seededOnly.id).next_scenes[0].place_id, "next-place");
+  await runtime.init();
+  await context.HGPlaceOpen.preload(story.place_id);
+  assert.equal(runtime.getByPlace(story.place_id).length, 2, "reopening stays idempotent");
+});
+
 test("Regjeringskvartalet has one complete open payload", () => {
   const payload = json("data/runtime/place-open/regjeringskvartalet.json");
   assert.equal(payload.schema, "history-go-place-open-v1");

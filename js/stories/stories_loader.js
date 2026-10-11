@@ -221,7 +221,15 @@
         }
       }
 
+      // Place-open can seed stories while the background aggregate is loading.
+      // Keep payload-only stories and rebuild indexes from the deduplicated list.
+      addStories(this.all);
       this.all = loadedStories;
+      this.byId = {};
+      this.byPlace = {};
+      this.byPerson = {};
+      this.byType = {};
+      this.byTag = {};
 
       for (const story of this.all) {
         this.byId[story.id] = story;

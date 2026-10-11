@@ -7,7 +7,7 @@ import process from 'node:process';
 import { chromium } from 'playwright';
 
 const root = process.cwd();
-const out = path.join(root, 'artifacts', 'dagbladet-akersgata-visual-20261010');
+const out = path.join(root, 'artifacts', 'dagbladet-akersgata-visual-20261011');
 fs.mkdirSync(out, { recursive: true });
 const mime = {
   '.html':'text/html; charset=utf-8', '.js':'text/javascript; charset=utf-8',
@@ -32,6 +32,7 @@ await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const port = server.address().port;
 
 const profiles = [
+  { name:'mobile320', width:320, height:844, isMobile:true },
   { name:'mobile', width:390, height:844, isMobile:true },
   { name:'ipad', width:768, height:1024, isMobile:true },
   { name:'desktop', width:1440, height:1000, isMobile:false }
@@ -72,7 +73,29 @@ try {
       await page.waitForFunction(() => window.__HG_APP_READY__ && window.__HG_ROUTER_STARTED__, null, {timeout:90000});
       await page.waitForFunction(() => document.getElementById('placeCard')?.dataset?.currentPlaceId === 'dagbladet_akersgata', null, {timeout:60000});
       await page.waitForFunction(() => document.getElementById('pcFrontCardFlip')?.classList.contains('has-quiz-card'), null, {timeout:60000});
+      await page.evaluate(() => window.HGStories.init());
       await page.waitForTimeout(850);
+      run.storyCounts = await page.evaluate(() => ({
+        canonical: window.HGPlaceOpen.get('dagbladet_akersgata').stories.length,
+        indexed: window.HGStories.getByPlace('dagbladet_akersgata').length,
+        visible: document.querySelectorAll('#placeCard .pc-sheet-canonical-stories .pc-story').length
+      }));
+      if (run.storyCounts.canonical !== 1 || run.storyCounts.indexed !== 1 || run.storyCounts.visible !== 1) {
+        run.issues.push('Stories must appear exactly once after aggregate loading');
+      }
+      run.titleWords = await page.locator('#pcTitle').evaluate(el => {
+        const walker=document.createTreeWalker(el, NodeFilter.SHOW_TEXT), words=[];
+        while (walker.nextNode()) {
+          const node=walker.currentNode;
+          for (const match of node.textContent.matchAll(/\S+/g)) {
+            const range=document.createRange();
+            range.setStart(node,match.index); range.setEnd(node,match.index+match[0].length);
+            words.push({word:match[0],lines:range.getClientRects().length});
+          }
+        }
+        return words;
+      });
+      if (run.titleWords.some(word=>word.lines>1)) run.issues.push('Place title breaks inside a word');
       run.initial = await page.evaluate(() => {
         const pick = selector => {
           const el = document.querySelector(selector);
@@ -124,6 +147,21 @@ try {
           const text=await popup.innerText();
           const box=await popup.boundingBox();
           run.popups.push({label, textLength:text.trim().length, box});
+          if(label==='people' && !/Stanghelle[\s\S]*sjefredaktør i Dagbladet i 1995–2000/.test(text)) {
+            run.issues.push('People list must expose Stanghelle’s Dagbladet period');
+          }
+          if(label==='brands') {
+            run.brandLayout=await popup.locator('.pc-brand-entry').first().evaluate(el=>{
+              const img=el.querySelector('.pc-person-img'), title=el.querySelector('.pc-brand-entry-title');
+              const image=img.getBoundingClientRect(), name=title.getBoundingClientRect();
+              return {objectFit:getComputedStyle(img).objectFit, imageRight:image.right,
+                titleLeft:name.left, complete:img.complete, naturalWidth:img.naturalWidth};
+            });
+            if(run.brandLayout.objectFit!=='contain' || run.brandLayout.titleLeft<run.brandLayout.imageRight ||
+              !run.brandLayout.complete || !run.brandLayout.naturalWidth) {
+              run.issues.push('Brand logo must load in full without overlapping its name');
+            }
+          }
           if(profile.name==='ipad') {
             await capture(page,'ipad-popup-'+label);
             run.captures.push('ipad-popup-'+label+'.jpg');
@@ -229,4 +267,4 @@ console.log(JSON.stringify(results.map(r=>({
   profile:r.profile, captures:r.captures.length, popups:r.popups.length,
   issues:r.issues, pageErrors:r.pageErrors
 })),null,2));
-if(results.some(r=>r.issues.some(x=>x.startsWith('run error')))) process.exitCode=1;
+if(results.some(r=>r.issues.length || r.pageErrors.length)) process.exitCode=1;
