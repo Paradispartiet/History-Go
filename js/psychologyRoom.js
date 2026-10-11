@@ -222,6 +222,7 @@
         else if (target === "theories") renderTheoryList();
         else if (target === "phenomena") renderPhenomenaList();
         else if (target === "workbench") renderWorkbench();
+        else if (target === "profile") renderProfile();
         else if (target.startsWith("phenomenon:")) {
           const phenomenon = findById(dataCache?.phenomena || [], target.slice(11));
           if (phenomenon) renderPhenomenonDetail(phenomenon);
@@ -303,6 +304,109 @@
     history.push(entry);
     writeJson(STORAGE_KEYS.workbench, history.slice(-30));
     return { saved: true, entry };
+  }
+
+  function saveWorkbenchFollowUp(entryId, values = {}) {
+    const fields = ["tried", "outcome", "new_view", "next_step"];
+    const clean = Object.fromEntries(fields.map((field) =>
+      [field, String(values[field] || "").trim().slice(0, 2400)]));
+    if (!clean.tried || !clean.outcome) return { saved: false, reason: "required_fields" };
+  
+    const entries = getWorkbenchEntries();
+    const index = entries.findIndex((entry) => entry.id === entryId);
+    if (index < 0) return { saved: false, reason: "not_found" };
+    const previous = entries[index];
+    const existing = Array.isArray(previous.follow_ups) ? previous.follow_ups : [];
+    const followUp = {
+      id: "psych_followup_" + Date.now() + "_" + (existing.length + 1),
+      created_at: new Date().toISOString(),
+      ...clean
+    };
+    const entry = { ...previous, follow_ups: [...existing, followUp] };
+    entries[index] = entry;
+    try {
+      localStorage.setItem(STORAGE_KEYS.workbench, JSON.stringify(entries));
+    } catch (err) {
+      console.warn("[PsychologyRoom.saveWorkbenchFollowUp]", err);
+      return { saved: false, reason: "storage_failed" };
+    }
+    return { saved: true, entry, followUp };
+  }
+
+  function renderWorkbenchEntry(entryId) {
+    const entry = getWorkbenchEntries().find((item) => item.id === entryId);
+    if (!entry) {
+      renderProfile();
+      window.showToast?.("Refleksjonen finnes ikke lenger på denne enheten");
+      return;
+    }
+    setActiveSection("profile");
+    const originals = [
+      ["situation", "Hva skjedde konkret?"],
+      ["thoughts", "Hva tenkte eller antok jeg?"],
+      ["feelings", "Hvilke følelser la jeg merke til?"],
+      ["body", "Hva merket jeg i kroppen?"],
+      ["actions", "Hva gjorde jeg?"],
+      ["next_step", "Hva ville jeg prøve?"]
+    ];
+    const followUps = Array.isArray(entry.follow_ups) ? entry.follow_ups : [];
+    const originalHtml = originals.map(([key, heading]) =>
+      `<div class="psychology-room-note-field"><h4>${escapeHtml(heading)}</h4><p>${escapeHtml(entry[key] || "Ikke fylt ut")}</p></div>`).join("");
+    const followUpHtml = followUps.map((item, index) =>
+      `<article class="psychology-room-followup-card">
+        <div class="psychology-room-note-meta">Oppfølging ${index + 1} · ${escapeHtml(String(item.created_at || "").slice(0, 10))}</div>
+        <div class="psychology-room-note-field"><h4>Hva prøvde jeg?</h4><p>${escapeHtml(item.tried || "")}</p></div>
+        <div class="psychology-room-note-field"><h4>Hva skjedde?</h4><p>${escapeHtml(item.outcome || "")}</p></div>
+        ${item.new_view ? `<div class="psychology-room-note-field"><h4>Ser jeg annerledes på situasjonen?</h4><p>${escapeHtml(item.new_view)}</p></div>` : ""}
+        ${item.next_step ? `<div class="psychology-room-note-field"><h4>Hva vil jeg prøve videre?</h4><p>${escapeHtml(item.next_step)}</p></div>` : ""}
+      </article>`).join("");
+  
+    setContent(shell(`${backButton("profile")}
+      <section class="psychology-room-workbench psychology-room-workbench-detail">
+        <div class="psychology-room-eyebrow">TANKEVERKSTED / DIN SITUASJON</div>
+        <h3>Fra refleksjon til erfaring</h3>
+        <p class="psychology-room-muted">Opprinnelig notat · ${escapeHtml(String(entry.created_at || "").slice(0, 10))}</p>
+        <section class="psychology-room-note-section">
+          <h4>Den første refleksjonen</h4>
+          <div class="psychology-room-note-fields">${originalHtml}</div>
+        </section>
+        <section class="psychology-room-note-section">
+          <h4>Oppfølginger (${followUps.length})</h4>
+          ${followUpHtml || '<p class="psychology-room-muted">Ingen oppfølginger ennå. Du kan komme tilbake til samme situasjon flere ganger.</p>'}
+        </section>
+        <form id="psychologyRoomWorkbenchFollowUpForm" class="psychology-room-form">
+          <h4>Legg til en oppfølging</h4>
+          <label class="psychology-room-textarea-label"><span>1. Hva prøvde du, eller valgte du å ikke gjøre?</span>
+            <textarea name="tried" rows="3" maxlength="2400" required></textarea>
+          </label>
+          <label class="psychology-room-textarea-label"><span>2. Hva skjedde etterpå?</span>
+            <textarea name="outcome" rows="3" maxlength="2400" required></textarea>
+          </label>
+          <label class="psychology-room-textarea-label"><span>3. Ser du annerledes på situasjonen nå? (valgfritt)</span>
+            <textarea name="new_view" rows="3" maxlength="2400"></textarea>
+          </label>
+          <label class="psychology-room-textarea-label"><span>4. Hva vil du eventuelt prøve videre? (valgfritt)</span>
+            <textarea name="next_step" rows="3" maxlength="2400"></textarea>
+          </label>
+          <p class="psychology-room-privacy">Oppfølgingen lagres sammen med dette notatet bare i denne nettleseren. Den gir ingen skår, diagnose eller Civication-kompetanse.</p>
+          <button class="psychology-room-primary" type="submit">Lagre oppfølging</button>
+        </form>
+      </section>
+    `));
+    bindBack();
+    document.getElementById("psychologyRoomWorkbenchFollowUpForm")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
+      const values = Object.fromEntries(["tried", "outcome", "new_view", "next_step"]
+        .map((field) => [field, form.elements[field]?.value || ""]));
+      const result = saveWorkbenchFollowUp(entry.id, values);
+      if (!result.saved) {
+        window.showToast?.(result.reason === "required_fields" ? "Fyll ut hva du prøvde og hva som skjedde" : "Oppfølgingen kunne ikke lagres");
+        return;
+      }
+      window.showToast?.("Oppfølgingen er lagret på denne enheten");
+      renderWorkbenchEntry(entry.id);
+    });
   }
 
   function renderWorkbench() {
@@ -1221,16 +1325,22 @@
     const pathEntries = Object.values(pathProgress).filter((item) => item && typeof item === "object");
     const workbenchEntries = getWorkbenchEntries();
     const workbenchHtml = '<section class="psychology-room-section"><div class="psychology-room-section-heading"><h3>Tankeverkstedet mitt</h3></div>' +
-      (workbenchEntries.length ? workbenchEntries.slice(-5).reverse().map((item) =>
-        '<article class="psychology-room-insight"><strong>' + escapeHtml(item.situation) +
-        '</strong>' + (item.next_step ? '<p>Et mulig neste steg: ' + escapeHtml(item.next_step) + '</p>' : '') +
-        '</article>').join("") : '<p class="psychology-room-muted">Ingen situasjoner lagret ennå.</p>') +
+      (workbenchEntries.length ? '<p class="psychology-room-muted">Åpne en tidligere situasjon for å se hele refleksjonen og legge til hva som skjedde etterpå.</p>' +
+        workbenchEntries.slice().reverse().map((item) =>
+          '<button type="button" class="psychology-room-workbench-entry" data-psych-open-workbench="' + escapeHtml(item.id) +
+          '"><span class="psychology-room-note-meta">' + escapeHtml(String(item.created_at || "").slice(0, 10)) +
+          ' · ' + (Array.isArray(item.follow_ups) ? item.follow_ups.length : 0) + ' oppfølginger</span><strong>' +
+          escapeHtml(item.situation.slice(0, 180)) + '</strong><span class="psychology-room-workbench-entry-arrow">Åpne refleksjon →</span></button>').join("")
+        : '<p class="psychology-room-muted">Ingen situasjoner lagret ennå.</p>') +
       '<p class="psychology-room-privacy">Disse notatene lagres bare på denne enheten. De brukes ikke til psykologisk vurdering eller Civication-progresjon.</p>' +
       (workbenchEntries.length ? '<button type="button" class="psychology-room-back" data-psych-clear-workbench="1">Slett lagrede tankeverksted-notater</button>' : '') +
       '</section>';
 
     setContent(shell(`${backButton()}${workbenchHtml}<section class="psychology-room-profile-card"><div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div><div><span>Økter</span><strong>${profile.completed_sessions}</strong></div><div><span>Lagrede situasjoner</span><strong>${getWorkbenchEntries().length}</strong></div></section><section class="psychology-room-section"><h3>Screeningprofil</h3>${Object.keys(profile.screening || {}).length ? Object.entries(profile.screening).map(([dimension, score]) => `<div class="psychology-room-score"><span>${escapeHtml(dimension)}</span><strong>${escapeHtml(score)}</strong></div>`).join("") : `<p class="psychology-room-muted">Ingen screeningdata lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>7-dagersløp</h3>${pathEntries.length ? pathEntries.map((item) => { const path = findById(dataCache?.paths || [], item.path_id); const total = path?.days?.length || path?.duration_days || 7; const completed = Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : []; const done = completed.length; const currentDay = Number(item.current_day || 1); const today = (path?.days || []).find((day) => Number(day.day || 0) === currentDay); const latestReflection = getLatestPathReflection(item.path_id, completed); return `<article class="psychology-room-insight"><strong>${escapeHtml(path?.title || item.path_id)} — ${item.completed_at ? "Fullført" : `Pågår: ${done}/${total} dager`}</strong>${!item.completed_at ? `<p>Dagens steg: dag ${escapeHtml(currentDay)}${today?.title ? ` – ${escapeHtml(today.title)}` : ""}</p>` : `<p>Fullført: ${escapeHtml(done)}/${escapeHtml(total)} dager</p>`}<p>Fullførte dager: ${escapeHtml(done)}/${escapeHtml(total)}</p>${latestReflection ? `<p>Siste refleksjon: ${escapeHtml(latestReflection)}</p>` : ""}</article>`; }).join("") : `<p class="psychology-room-muted">Ingen løp startet ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste refleksjoner / screeningresultater</h3>${Array.isArray(insights) && insights.length ? insights.slice(-7).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.reflection || item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen refleksjoner lagret ennå.</p>`}</section><section class="psychology-room-section"><h3>Siste screening</h3>${screenings.length ? screenings.slice(-3).reverse().map(item => `<article class="psychology-room-insight"><strong>${escapeHtml(item.result_title || item.title)}</strong><p>${escapeHtml(item.result_text || "")}</p></article>`).join("") : `<p class="psychology-room-muted">Ingen screeningresultater lagret ennå.</p>`}</section>`));
     bindBack();
+    document.querySelectorAll("[data-psych-open-workbench]").forEach((button) => {
+      button.addEventListener("click", () => renderWorkbenchEntry(button.dataset.psychOpenWorkbench));
+    });
     document.querySelector("[data-psych-clear-workbench]")?.addEventListener("click", () => {
       if (typeof window.confirm !== "function" ||
           !window.confirm("Slette alle lagrede tankeverksted-notater på denne enheten?")) return;
@@ -1262,6 +1372,7 @@
     getToolCompletions,
     getWorkbenchEntries,
     saveWorkbench,
+    saveWorkbenchFollowUp,
     completeTool,
     storageKeys: STORAGE_KEYS
   };
