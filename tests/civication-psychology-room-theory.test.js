@@ -123,7 +123,7 @@ const press = (selector) => {
   press("theory:tilknytning");
   assert.match(rendered, /Barn søker trygghet hos omsorgspersoner/);
   assert.match(rendered, /Vis flere kilder/);
-  assert.doesNotMatch(rendered, /NAPS 00762/);
+  assert.match(rendered, /<details><summary>Vis flere kilder/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_familie_samspill/);
   press("theory:kognitiv_terapi");
   assert.match(rendered, /Kognitiv terapi undersøker hvordan tolkninger/);
