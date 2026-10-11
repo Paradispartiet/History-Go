@@ -11,7 +11,7 @@ const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
 const ids = new Set();
 assert.equal(catalog.fagverk_subject, "psykologi");
 assert.equal(catalog.chapters.length, 6);
-assert.equal(catalog.theories.length, 25);
+assert.equal(catalog.theories.length, 28);
 
 for (const chapter of catalog.chapters) {
   const canonical = json("data/fagverk/psykologi/" + chapter.id + ".json");
@@ -44,7 +44,7 @@ for (const theory of catalog.theories) {
 }
 assert.equal(ids.size, catalog.theories.length);
 const teachingCases = catalog.theories.flatMap((theory) => [theory.example, theory.example_secondary]);
-assert.equal(teachingCases.length, 50, "25 theory cards must each have two scenarios");
+assert.equal(teachingCases.length, 56, "28 theory cards must each have two scenarios");
 assert.equal(new Set(teachingCases).size, teachingCases.length,
   "every hypothetical teaching scenario should be independently authored");
 
@@ -153,6 +153,15 @@ const press = (selector) => {
   assert.match(rendered, /Gaustad/);
   assert.match(rendered, /em_psy_makt_omsorg/);
   assert.match(rendered, /em_psy_omsorg_system/);
+  press("theory:diagnostisk_klassifikasjon_historie");
+  assert.match(rendered, /Kraepelin/);
+  assert.match(rendered, /em_psy_diagnose_klassifikasjon/);
+  press("theory:hverdagsattribusjon_og_vaner");
+  assert.match(rendered, /Heider/);
+  assert.match(rendered, /em_psy_hverdagspsykologi/);
+  press("theory:ensomhet_sosial_tilhorighet");
+  assert.match(rendered, /Weiss/);
+  assert.match(rendered, /em_psy_ensomhet_tilhorighet/);
   press("theory:kognitiv_terapi");
   assert.match(rendered, /Kognitiv terapi undersøker hvordan tolkninger/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_terapi_praksis/);
