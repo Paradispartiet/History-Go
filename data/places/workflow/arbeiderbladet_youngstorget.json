@@ -11,7 +11,8 @@
     "factuality_record": "data/places/production/arbeiderbladet_youngstorget.json",
     "evidence_refs": [
       "reports/place-production/arbeiderbladet-youngstorget-source-review-20261011.md",
-      "reports/place-production/arbeiderbladet-youngstorget-rule-preflight-20261011.json"
+      "reports/place-production/arbeiderbladet-youngstorget-rule-preflight-20261011.json",
+      "reports/place-production/arbeiderbladet-youngstorget-final-ui-review-20261011.md"
     ]
   },
   "read_first": {
@@ -44,7 +45,7 @@
   },
   "source_review": {
     "status": "complete",
-    "evidence": "31 verifiserte claims, setningsdekning, åpnet samtidig primærkilde, dokumenterte kildeavgrensninger og separat samlingsaudit."
+    "evidence": "32 verifiserte claims, setningsdekning, åpnet samtidig primærkilde, dokumenterte kildeavgrensninger og separat samlingsaudit."
   },
   "collections": {
     "people": {
@@ -139,18 +140,16 @@
       "reason": "Fersk kontroll av OBOS og historisk adresse dokumenterer dagens kontoreiendom, men ingen stedsspesifikk nyhetshendelse om den historiske redaksjonen. Avisens generelle nyhetsstrøm er ikke nyheter om dette stedet."
     }
   },
-  "blockers": [
-    "Manuell UI-kontroll fant hvitt ordmerke på hvit forhåndsvisning, ufullstendig Stanghelle-teaser og klippet Fagverk-tittel. Rettet lokalt; ny faktisk nettleserevidens og sluttkontroll gjenstår."
-  ],
+  "blockers": [],
   "manual_reviews": {
     "images": {
       "status": "PASS",
       "evidence": "Alle fem lokale JPEG-er (1947, 2006, faksimile 1884 og to eksisterende personportretter) er åpnet og visuelt kontrollert. Offisielt SVG-ordmerke er rendret og åpnet; autentisk Dagsavisen-navn på mørk flate. Proveniens, dato, Public domain / CC BY-SA-status og egne stedsperioder er kontrollert. Intake Actions 38160487568 samt offisielt logo-intake på f1c3d95c er kildeevidens."
     },
     "final_ui": {
-      "status": "PENDING",
-      "evidence": "Første Actions 38163175595 og 20 manuelt åpnede skjermbilder dokumenterer fungerende quiz, flip og integrasjoner, men visuelle avvik skal kontrolleres i ny kjøring før godkjenning."
+      "status": "PASS",
+      "evidence": "Visuell sluttkontroll 2026-10-11: Chromium 320/390/768/1440 px, 4/4 profiler uten audit-/sidefeil. Alle 21 JPG og audit-JSON i GitHub Actions 38175133599, artifact 11716145205, eksakt head fdff0f974170353837e9f765d8aa46bb05676394. Manuell gjennomgang av mobil, iPad, desktop, ordmerke, People, faksimile, Fagverk og QuizCard; mobil tittel/knapper uten kollisjon. Native Safari/fysisk iPad ikke testet. Se reports/place-production/arbeiderbladet-youngstorget-final-ui-review-20261011.md."
     }
   },
-  "state": "blocked"
+  "state": "complete"
 }
