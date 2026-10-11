@@ -97,6 +97,33 @@ try {
         return words;
       });
       if (run.titleWords.some(word=>word.lines>1)) run.issues.push('Place title breaks inside a word');
+      if (profile.width <= 520) {
+        run.titleControlLayout=await page.locator('#placeCard .pc-title-row').evaluate(row=>{
+          const rect=selector=>{
+            const el=row.querySelector(selector);
+            if(!el) return null;
+            const r=el.getBoundingClientRect();
+            return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
+          };
+          return {
+            title:rect('#pcTitle'),
+            reader:rect('.pc-reader-toggle'),
+            favorite:rect('#pcFavorite'),
+            people:rect('#pcPeopleIcon'),
+            badges:rect('#pcBadgesIcon')
+          };
+        });
+        const t=run.titleControlLayout;
+        if([t.title,t.reader,t.favorite,t.people,t.badges].some(v=>!v))
+          run.issues.push('Missing title or original controls in mobile heading');
+        else {
+          const controls=[t.reader,t.favorite,t.people,t.badges];
+          if(controls.some(c=>c.top<t.title.bottom-1))
+            run.issues.push('Original heading controls must be below the complete title');
+          if(!(t.reader.left<t.favorite.left && t.favorite.right<t.people.left && t.people.left<t.badges.left))
+            run.issues.push('Heading controls have wrong left-to-right order');
+        }
+      }
       run.initial = await page.evaluate(() => {
         const pick = selector => {
           const el = document.querySelector(selector);
