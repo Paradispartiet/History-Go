@@ -852,3 +852,89 @@
 @media (prefers-reduced-motion: reduce) {
   .psychology-room-panel *, .psychology-room-panel *::before, .psychology-room-panel *::after { transition: none !important; }
 }
+
+
+/* Tankeverksted: one concrete situation, with distinct observation and
+   interpretation fields. The reflection stays in browser-local storage. */
+.psychology-room-workbench,
+.psychology-room-journey-finish {
+  display: grid;
+  gap: 16px;
+  margin: 0 0 22px;
+}
+.psychology-room-workbench h3,
+.psychology-room-journey-finish h3 {
+  margin: 0;
+  font-size: clamp(27px, 4vw, 37px);
+  line-height: 1.16;
+  letter-spacing: -.045em;
+}
+.psychology-room-workbench > p,
+.psychology-room-journey-finish > p {
+  margin: 0;
+}
+.psychology-room-workbench .psychology-room-form {
+  display: grid;
+  gap: 15px;
+}
+.psychology-room-workbench .psychology-room-textarea-label {
+  gap: 9px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--psyche-border);
+  background: rgba(27, 39, 49, .86);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.psychology-room-workbench .psychology-room-textarea-label > span {
+  display: block;
+  color: #e4f4ef;
+}
+.psychology-room-workbench-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.psychology-room-privacy {
+  padding: 13px 15px;
+  border: 1px solid rgba(163, 208, 208, .22);
+  border-radius: 12px;
+  background: #1a2d34;
+  color: #c0dedb;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.psychology-room-workbench-recent,
+.psychology-room-workbench-next,
+.psychology-room-journey-context {
+  display: grid;
+  gap: 8px;
+  padding: 17px;
+  border-radius: 15px;
+  border: 1px solid rgba(136, 239, 217, .27);
+  background: #183137;
+}
+.psychology-room-workbench-next { margin-bottom: 18px; }
+.psychology-room-workbench-recent > span,
+.psychology-room-workbench-next > span,
+.psychology-room-journey-context > span {
+  color: #94efdc;
+  font-size: 11px;
+  letter-spacing: .09em;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+.psychology-room-workbench-recent strong,
+.psychology-room-workbench-next strong,
+.psychology-room-journey-context strong {
+  overflow-wrap: anywhere;
+  font-size: 16px;
+  line-height: 1.45;
+}
+.psychology-room-workbench-next p { color: #bbd2d2; margin: 0; font-size: 13px; line-height: 1.55; }
+.psychology-room-journey-finish h4 { margin: 5px 0 0; font-size: 18px; }
+.psychology-room-journey-finish .psychology-room-related-grid { margin-bottom: 12px; }
+@media (max-width: 560px) {
+  .psychology-room-workbench-grid { grid-template-columns: minmax(0, 1fr); }
+  .psychology-room-workbench .psychology-room-textarea-label { padding: 13px; }
+}

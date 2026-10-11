@@ -1,7 +1,6 @@
-// Verifies the interactive CBT-tool completion in Psykologrommet has a concrete
-// player effect: it logs a session, adds insight points, and adds (anti-farmed)
-// psychology competence via CivicationPsyche. Runs headless with a null-DOM stub
-// and a fetch mock over the real data files (no jsdom needed).
+// Psykologrommet stores reflection locally without automatically changing
+// Civication Psyke's gameplay competence. Civication's own engine tests remain
+// separate. Runs headless over the real data files (no jsdom needed).
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -99,7 +98,7 @@ async function run() {
   assert.strictEqual(empty.reason, 'empty');
   assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), 0, 'no competence from empty');
 
-  // Filling the worksheet completes it and applies the concrete effect.
+  // Filling the worksheet logs a local reflection without altering game state.
   const first = window.PsychologyRoom.completeTool(toolId, {
     steps: ['Jeg tenkte at alt går galt', 'Sjefen sa "kan vi ta en prat"', 'Antok at det var kritikk', 'Kanskje det bare er en oppdatering'],
     reflections: ['Jeg ble roligere', 'Lite søvn', 'Spørre hva praten gjelder']
@@ -108,19 +107,39 @@ async function run() {
   assert.ok(first.insight_points > 0, 'tool awards insight points');
 
   const afterFirst = Number(window.CivicationPsyche.getPsychologyCompetence());
-  assert.ok(afterFirst > before, `completing a tool should add psychology competence (got ${afterFirst})`);
+  assert.strictEqual(afterFirst, before, 'completing a reflection tool does not award Civication competence');
   assert.strictEqual(window.PsychologyRoom.getToolCompletions(toolId).length, 1, 'one tool session logged');
 
   const profile = window.PsychologyRoom.getProfile();
   assert.ok(profile.insight_points >= first.insight_points, 'insight points recorded on profile');
 
-  // Anti-farming: a second completion of the SAME tool logs the session/insight
-  // but does NOT grant psychology competence again.
+  // A second completion logs local activity without affecting Civication.
   const second = window.PsychologyRoom.completeTool(toolId, { steps: ['igjen'], reflections: ['igjen'] });
   assert.strictEqual(second.completed, true);
   const afterSecond = Number(window.CivicationPsyche.getPsychologyCompetence());
-  assert.strictEqual(afterSecond, afterFirst, 'competence is anti-farmed on repeat completion');
+  assert.strictEqual(afterSecond, before, 'neither first nor repeated reflection changes game competence');
   assert.strictEqual(window.PsychologyRoom.getToolCompletions(toolId).length, 2, 'second session still logged');
+
+  // Structured first-person reflections are voluntary, local and non-diagnostic.
+  assert.strictEqual(typeof window.PsychologyRoom.saveWorkbench, 'function');
+  const emptySituation = window.PsychologyRoom.saveWorkbench({ thoughts: 'Jeg utsetter' });
+  assert.strictEqual(emptySituation.saved, false);
+  assert.strictEqual(emptySituation.reason, 'situation_required');
+  const work = window.PsychologyRoom.saveWorkbench({
+    situation: 'Jeg utsatte en arbeidsoppgave i går.',
+    thoughts: 'Dette blir vanskelig.',
+    feelings: 'Uro',
+    body: 'Stram i skuldrene',
+    actions: 'La oppgaven bort',
+    next_step: 'Prøve fem minutter'
+  });
+  assert.strictEqual(work.saved, true);
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries().length, 1);
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries()[0].situation, 'Jeg utsatte en arbeidsoppgave i går.');
+  assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), before,
+    'saving personal reflections never changes Civication competence');
+  assert.strictEqual(window.PsychologyRoom.getToolCompletions(toolId).length, 2,
+    'workbench reflections are not disguised tool completions');
 
   // Unknown tool id is handled.
   const unknown = window.PsychologyRoom.completeTool('does_not_exist', { steps: ['x'] });
