@@ -43,4 +43,15 @@ Robert S. Weiss (1973) skilte mellom emosjonell og sosial ensomhet; Baumeister o
 
 ## Seksdimensjonal kvalitetsvurdering
 
-Faglig forvurdering: korrekthet og evidens 4/5; dekning 5/5; faglig/redaksjonell kvalitet 4/5; teknisk integritet **avventer faktiske tester**; sikkerhet og ansvarlighet 5/5; vedlikeholdbarhet og etterprøvbarhet 5/5. Sluttscore og to relevante workflow-ID-er føres inn etter test på siste PR-head. Faglige begrensninger er dokumentert i hvert kort; referanser til historiske verk kan være bibliografiske eller reviewbaserte, ikke påstand om full originalfulltekstlesning.
+Faglig kvalitetsport er **28/30**. Kjøringene på head `a3c2171f34d40760ee56e0015c0556eb9473bedb`: Psykoteori workflow **38173060061: SUCCESS**, repository hygiene workflow **38173060054: SUCCESS**. Etter rapportoppdatering kreves de samme to kontrollene grønne også på **endelig** PR-head før merge.
+
+| Dimensjon | Score (av 5) | Kontrollgrunnlag og avgrensning |
+| --- | ---: | --- |
+| Korrekthet og evidens | 4 | Historiske årstall og forfatterverk kontrollert med institusjonskilder, PubMed og historiske oversikter; alle 15 referanser kontrollert mot eksisterende canonical claim/source-forhold; ikke samtlige bøker lest i originalfulltekst |
+| Dekning og ferdigstillelse | 5 | Tre kort med to separate scenarioer hver; tre primæremner; 28 kort / 51 koblet / 7 ukoblet; 56 unike scenarioer |
+| Faglig/redaksjonell kvalitet | 4 | Særskilt diagnostikkhistorie, attribusjon/vaneforskning og relasjonskvalitet; forskjellen mellom modell, funn og anvendelse forklart |
+| Teknisk integritet | 5 | Relevante Psykoteori source/navigation/audit og repository hygiene Actions bestått på første PR-head; siste head verifiseres før merge |
+| Sikkerhet og ansvarlighet | 5 | Ingen individklassifisering, klinisk diagnose, påstander om faktiske pasienter eller ubegrunnet behandlingseffekt |
+| Vedlikeholdbarhet og etterprøvbarhet | 5 | Fem avgrensede filer, canonical claim/source-ID-er, historiske kilder, målrettede regresjonstester og datert produksjonsrapport |
+
+**Sum: 28/30.** Leveransen er pedagogisk og strukturelt ferdig innenfor gruppe 6, men de nye primærkortenes kildestatus forblir `partial_historical_method_review`, og emnene står fortsatt som `source_review_status=not_reviewed`. Grønn CI er ikke lik full vitenskapelig godkjenning.
