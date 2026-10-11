@@ -33,8 +33,8 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "3864d79d0bba9e905362353ae55274639064e1722667b2ee52ae6d187a77e072",
-    "popupDesc": "c13c3962251415a25ea10be5f83675d3f329e05c0c74c25f1444b17bcb715a89"
+    "desc": "d5d88a06a473212f5a98f1a8d57c6b9122180d7cb1576ae403b6f9d665fbd49c",
+    "popupDesc": "d7ee96cbaec67669f069cddc35703313089e32d00004cd457817275ed2f50a95"
   },
   "claims": [
     {
@@ -81,10 +81,13 @@
       "sourceType": "reputable_secondary",
       "verifiedAt": "2026-10-09",
       "status": "verified",
-      "claimKind": "ordinary",
-      "evidenceMode": "direct",
+      "claimKind": "strong",
+      "evidenceMode": "explicit",
       "temporalStatus": "historical",
-      "notes": "Frigjøringsåret 1945 er kildebelagt aviskontekst, ikke et byggeår eller selvstendig hendelsesanker for Akersgata 55."
+      "notes": "Frigjøringsåret 1945 er kildebelagt aviskontekst, ikke et byggeår eller selvstendig hendelsesanker for Akersgata 55.",
+      "independentSourceUrls": [
+        "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)"
+      ]
     },
     {
       "id": "claim_vg_site_1944",
@@ -262,6 +265,82 @@
       "claimKind": "ordinary",
       "evidenceMode": "direct",
       "temporalStatus": "current"
+    },
+    {
+      "id": "claim_vg_resistance_origin",
+      "claim": "VG ble grunnlagt i 1945 av personer fra motstandsmiljøet rundt Kretsen.",
+      "sourceUrl": "https://lokalhistoriewiki.no/wiki/Verdens_Gang",
+      "sourceLocation": "Innledning om 1945 og Kretsen",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 1945,
+      "timelineScope": "institution_context",
+      "notes": "Avisens tidligere historie; hendelsen fant sted før innflyttingen i dagens VG-hus i 1994."
+    },
+    {
+      "id": "claim_vg_tabloid_1963",
+      "claim": "VG gikk over til tabloidformat i 1963.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Pressehistorie: tabloid fra 1963",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 1963,
+      "timelineScope": "institution_context",
+      "notes": "Avisens tidligere historie; hendelsen fant sted før innflyttingen i dagens VG-hus i 1994."
+    },
+    {
+      "id": "claim_vg_schibsted_1966",
+      "claim": "Schibsted overtok VG i 1966.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Pressehistorie: overtakelsen i 1966",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 1966,
+      "timelineScope": "institution_context",
+      "notes": "Avisens tidligere historie; hendelsen fant sted før innflyttingen i dagens VG-hus i 1994."
+    },
+    {
+      "id": "claim_vg_largest_1981",
+      "claim": "VG var landets største avis målt i opplag fra 1981 til 2010.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Pressehistorie: landets største avis 1981–2010",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "strong",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical",
+      "timelineYear": 1981,
+      "independentSourceUrls": [
+        "https://lokalhistoriewiki.no/wiki/Verdens_Gang"
+      ],
+      "timelineScope": "institution_context",
+      "notes": "Avisens tidligere historie; hendelsen fant sted før innflyttingen i dagens VG-hus i 1994."
+    },
+    {
+      "id": "claim_vg_peak_2002",
+      "claim": "VG hadde sitt høyeste opplag i 2002, med 390 510 eksemplarer.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Pressehistorie: største opplag i 2002",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 2002
     }
   ],
   "sentenceCoverage": {
@@ -269,24 +348,39 @@
       {
         "sentence": 1,
         "claimIds": [
-          "claim_vg_address",
-          "claim_vg_foundation",
-          "claim_vg_newsroom"
+          "claim_vg_house_1994"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
-          "claim_vg_newsroom",
-          "claim_vg_published_services"
+          "claim_vg_resistance_origin",
+          "claim_vg_tabloid_1963",
+          "claim_vg_largest_1981"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_vg_digital_front",
-          "claim_vg_tabloid_concept",
-          "claim_vg_attention"
+          "claim_vg_net_1995"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claimIds": [
+          "claim_vg_site_1944"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claimIds": [
+          "claim_vg_monter_2011"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claimIds": [
+          "claim_vg_aftenposten_2014"
         ]
       }
     ],
@@ -294,142 +388,100 @@
       {
         "sentence": 1,
         "claimIds": [
-          "claim_vg_address",
-          "claim_vg_neighbors"
+          "claim_vg_site_1944",
+          "claim_vg_house_1994"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
-          "claim_vg_newsroom",
-          "claim_vg_ethics"
+          "claim_vg_site_1944"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_vg_newsroom",
-          "claim_vg_published_services"
+          "claim_vg_site_1944",
+          "claim_vg_house_1994"
         ]
       },
       {
         "sentence": 4,
         "claimIds": [
-          "claim_vg_foundation",
-          "claim_vg_net_1995"
+          "claim_vg_resistance_origin"
         ]
       },
       {
         "sentence": 5,
         "claimIds": [
-          "claim_vg_digital_front"
+          "claim_vg_foundation"
         ]
       },
       {
         "sentence": 6,
         "claimIds": [
-          "claim_vg_digital_front",
-          "claim_vg_published_services"
+          "claim_vg_tabloid_1963",
+          "claim_vg_schibsted_1966"
         ]
       },
       {
         "sentence": 7,
         "claimIds": [
-          "claim_vg_tabloid_concept"
+          "claim_vg_largest_1981"
         ]
       },
       {
         "sentence": 8,
         "claimIds": [
-          "claim_vg_ethics"
+          "claim_vg_peak_2002"
         ]
       },
       {
         "sentence": 9,
         "claimIds": [
-          "claim_vg_attention",
-          "claim_vg_tabloid_concept"
+          "claim_vg_house_1994"
         ]
       },
       {
         "sentence": 10,
         "claimIds": [
-          "claim_vg_ethics"
+          "claim_vg_public_passage"
         ]
       },
       {
         "sentence": 11,
         "claimIds": [
-          "claim_vg_neighbors"
+          "claim_vg_award_2000"
         ]
       },
       {
         "sentence": 12,
         "claimIds": [
-          "claim_vg_neighbors"
+          "claim_vg_net_1995"
         ]
       },
       {
         "sentence": 13,
         "claimIds": [
-          "claim_vg_neighbors"
+          "claim_vg_monter_2011"
         ]
       },
       {
         "sentence": 14,
         "claimIds": [
-          "claim_vg_address"
+          "claim_vg_monter_2011"
         ]
       },
       {
         "sentence": 15,
         "claimIds": [
-          "claim_vg_foundation",
-          "claim_vg_address"
+          "claim_vg_monter_2011"
         ]
       },
       {
         "sentence": 16,
         "claimIds": [
-          "claim_vg_ethics"
-        ]
-      },
-      {
-        "sentence": 17,
-        "claimIds": [
-          "claim_vg_public_passage",
-          "claim_vg_neighbors"
-        ]
-      },
-      {
-        "sentence": 18,
-        "claimIds": [
-          "claim_vg_digital_front"
-        ]
-      },
-      {
-        "sentence": 19,
-        "claimIds": [
-          "claim_vg_attention"
-        ]
-      },
-      {
-        "sentence": 20,
-        "claimIds": [
-          "claim_vg_attention"
-        ]
-      },
-      {
-        "sentence": 21,
-        "claimIds": [
-          "claim_vg_attention",
-          "claim_vg_digital_front"
-        ]
-      },
-      {
-        "sentence": 22,
-        "claimIds": [
-          "claim_vg_ethics"
+          "claim_vg_aftenposten_2014"
         ]
       }
     ]
@@ -437,16 +489,16 @@
   "reviews": {
     "factual": {
       "status": "passed",
-      "reviewedAt": "2026-10-09",
-      "reviewer": "VG-huset source review",
-      "notes": "Kildenes faktiske brødtekst er inspisert, med separat sted/avis/konsern og presise tidsankre. Akademisk tolkningsramme er markert som metode, ikke kilde til interne motiver."
+      "reviewedAt": "2026-10-11",
+      "reviewer": "Avisgaten – historisk kildekontroll",
+      "notes": "Alle nye årstall og stedshendelser dekkes av kildebelagte, verifiserte claims. Bygningens historie holdes atskilt fra avisens etableringshistorie."
     },
     "editorial": {
       "status": "passed",
-      "reviewedAt": "2026-10-09",
-      "reviewer": "VG-huset editorial review",
+      "reviewedAt": "2026-10-11",
+      "reviewer": "Avisgaten – historisk tekstredigering",
       "introducedNewFacts": false,
-      "notes": "Eksisterende desc og popupDesc er bevart med seks kilde-/jargongbegrunnede enkeltsetningsrettinger. Innholdet presenterer analyse som oppgaver, ikke som dokumenterte årsaksforhold."
+      "notes": "Ingress og popupDesc er redigert til sammenhengende, konkret historisk prosa. Læringsoppgaver, spilllogikk, interne metodebeskrivelser og generiske analyser er fjernet."
     }
   },
   "quizReadiness": {
@@ -546,10 +598,10 @@
   "completion": {
     "completedUnder": "4.2",
     "currentStatus": "current",
-    "sourceVerifiedAt": "2026-10-09",
+    "sourceVerifiedAt": "2026-10-11",
     "claimsVerified": {
-      "verified": 18,
-      "total": 18
+      "verified": 23,
+      "total": 23
     },
     "factualReview": "passed",
     "editorialReview": "passed",
