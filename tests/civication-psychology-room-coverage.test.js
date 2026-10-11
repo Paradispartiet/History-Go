@@ -21,9 +21,9 @@ const byEmne = new Map(coverage.coverage_entries.map((entry) => [entry.emne_id, 
 const partiallyReviewed = catalog.theories.filter((theory) => theory.source_review_state === "partial_historical_method_review");
 const expectedPartials = [
   "psykoanalyse", "behaviorisme", "kognitiv_psykologi",
-  "humanistisk_psykologi", "femfaktormodellen", "heuristikker",
+  "humanistisk_psykologi", "femfaktormodellen", "emosjonsregulering", "heuristikker",
   "stressvurdering", "tilknytning", "sosial_laring", "selvbestemmelsesteori", "hukommelse_gjenhenting",
-  "sosial_identitet", "konformitet", "resiliens",
+  "sosial_identitet", "konformitet", "stigma_sosial_merking", "resiliens", "sorg_dobbelprosessmodell",
   "kognitiv_terapi", "biopsykososial_modell"
 ];
 assert.deepEqual(partiallyReviewed.map((theory) => theory.id), expectedPartials,
@@ -52,9 +52,9 @@ for (const theory of partiallyReviewed) {
   }
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 16);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 32,
-  "eighteen additional relevant emner, including two new primary theories, are linked");
+assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 19);
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 37,
+  "three further primary theories and two closely scoped reuse links are linked");
 // Batch 02: eight new canonical claim-bound, still-unreviewed reuse links.
 const batch02Links = [
   [
@@ -117,10 +117,10 @@ for (const [theoryId, emneId, claimId, sourceId] of batch02Links) {
   assert.equal(byEmne.get(emneId).source_review_status, "not_reviewed");
   assert.equal(byEmne.get(emneId).editorial_review_status, "not_reviewed");
 }
-assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 26);
+assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 21);
 
 const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
-assert.equal(extraLinks.length, 16);
+assert.equal(extraLinks.length, 18);
 for (const link of extraLinks) {
   const entry = byEmne.get(link.emne_id);
   assert.equal(entry?.related_link_evidence?.review, "canonical_id_and_claim_binding_only");
@@ -216,7 +216,7 @@ assert.match(reviewed.get("humanistisk_psykologi").limit, /seks betingelser.*teo
 assert.match(reviewed.get("sosial_laring").method, /1961.*1977/);
 assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimenter.*belønning/);
 assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
-assert.equal(catalog.theories.length, 16);
+assert.equal(catalog.theories.length, 19);
 
 // First new theory card: independent primary emne, with traceable sources and
 // educational text, but no false scholarly-verification promotion.
@@ -252,6 +252,45 @@ for (const [claimId, sourceId] of [["uol-10", "src-retrieval-practice"], ["uol-1
     "memory card must tie learning claim to canonical source");
 }
 assert.equal(memoryCard.teaching_view.featured_reference_urls.length, 4);
+
+
+ // Production group 3: theory history and educational readiness remain separate
+ // from complete scholarly/source verification; new links are chapter-local.
+const newCards = [
+  ["emosjonsregulering", "em_psy_folelser_affekt", "stressvurdering", "Gross", "em_psy_nevroaffekt_regulering"],
+  ["stigma_sosial_merking", "em_psy_stigma_offentlighet", "sosial_identitet", "Goffman", "em_psy_diagnose_hverdagsliv"],
+  ["sorg_dobbelprosessmodell", "em_psy_sorg_tap", "resiliens", "Stroebe", null]
+];
+for (const [id, primary, comparison, historicalName, secondary] of newCards) {
+  const theory = catalog.theories.find((item) => item.id === id);
+  assert.ok(theory, "production 3 missing: " + id);
+  assert.equal(theory.emne_id, primary);
+  assert.equal(theory.compare_with, comparison);
+  assert.match(theory.period, new RegExp(historicalName));
+  assert.equal(theory.teaching_view.editorial_state, "ready_for_educational_use");
+  assert.equal(theory.source_review_state, "partial_historical_method_review");
+  assert.equal(theory.teaching_view.featured_reference_urls.length, 4);
+  for (const key of ["period", "idea", "method", "limit"]) {
+    assert.ok(theory.teaching_view[key].length > 65 && theory.teaching_view[key].length < 500);
+  }
+  const audit = byEmne.get(primary);
+  assert.deepEqual(audit.theory_ids, [id]);
+  assert.equal(audit.source_review_status, "not_reviewed");
+  assert.equal(audit.editorial_review_status, "not_reviewed");
+  assert.deepEqual(audit.partial_reference_review.reference_urls, theory.reference_links.map((r) => r.url));
+  if (secondary) {
+    const link = theory.related_emne_links.find((item) => item.emne_id === secondary);
+    assert.ok(link);
+    assert.deepEqual(byEmne.get(secondary).theory_ids, [id]);
+    assert.deepEqual(byEmne.get(secondary).related_link_evidence.claim_ids, link.claim_ids);
+    assert.deepEqual(byEmne.get(secondary).related_link_evidence.source_ids, link.source_ids);
+  } else {
+    assert.ok(!theory.related_emne_links?.length);
+  }
+}
+assert.match(reviewed.get("emosjonsregulering").method, /120 deltakere/);
+assert.match(reviewed.get("stigma_sosial_merking").idea, /makt/);
+assert.match(reviewed.get("sorg_dobbelprosessmodell").limit, /ikke automatisk en psykisk lidelse/);
 
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
