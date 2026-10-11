@@ -130,7 +130,7 @@ try {
     assert.equal(scrolled.titleFont,initial.titleFont,"No title restyling during scroll");
     assert.equal(scrolled.imageSource,initial.source,"Photo source never changes");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
-      && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned");
+      && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
     assert.ok(scrolled.visible.height<=initial.heading+4,"Image bottom may crop, never expands");
     assert.ok(scrolled.title.bottom<=scrolled.visible.bottom+1,"Title stays visible");
     assert.ok(scrolled.people.bottom<=scrolled.visible.bottom+1
