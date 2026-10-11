@@ -1,7 +1,7 @@
 {
   "schema": "history_go_fagverk_registry_v1",
-  "version": "3.16.0",
-  "updatedAt": "2026-09-16",
+  "version": "3.17.0",
+  "updatedAt": "2026-10-12",
   "placePage": {
     "route": "fagverk-sted.html?place={placeId}",
     "genericForAllCanonicalPlaces": true,
@@ -4614,12 +4614,12 @@
     },
     "litteratur": {
       "title": "Litteratur",
-      "description": "Et tekst-, verk-, sted- og institusjonsbasert fagverk om litterære former, historie, språk, sirkulasjon, lesere, offentlighet og litteraturfelt.",
+      "description": "Et tekst-, verk-, sted- og institusjonsbasert fagverk om litterære former, fortelling, arketyper, grunnfortellinger, historie, språk, sirkulasjon, lesere, offentlighet og litteraturfelt.",
       "canonicalModel": {
         "manifest": "data/fag/fag_manifest.json",
         "schemaFamily": "standard_canonical",
         "sourceOfTruth": true,
-        "note": "Canonical Litteratur-data eies av fag_manifest, emne-, fagkart- og metodefilene. Det eksisterende fulltekstkapittelet om lesekultur, bokdeling og offentlighet er registrert her som operativt kapittel for stedlig litteratur- og bibliotekkobling."
+        "note": "Canonical Litteratur-data eies av fag_manifest, emne-, fagkart- og metodefilene. Fagverkskapitlene om lesekultur og narrativhistorie er operative fulltekster som utdyper eksisterende canonical emner; de innfører ikke nye emne-ID-er. Narrativhistorie skiller historiske teorimodeller fra redaksjonell anvendelse i Civication."
       },
       "chapters": [
         {
@@ -4633,6 +4633,21 @@
             "em_lit_litteraturfelt_institusjoner",
             "em_lit_lesere_offentlighet_formidling",
             "em_lit_litteraere_steder_og_bytekst"
+          ]
+        },
+        {
+          "id": "arketyper_grunnfortellinger_narrativhistorie",
+          "title": "Arketyper, grunnfortellinger og narrativtenkning",
+          "subtitle": "Historiske teorier, fortellingsmønstre og kritisk anvendelse",
+          "file": "data/fagverk/litteratur/arketyper_grunnfortellinger_narrativhistorie.json",
+          "primary_domain_id": "tekst_form_fortelling",
+          "chapter_role": "core",
+          "emne_ids": [
+            "em_lit_poetikk_plot_hendelse_narrativ_organisering",
+            "em_lit_fortelling_perspektiv_stemme",
+            "em_lit_motiv_symbol_bildebruk",
+            "em_lit_sjanger_og_formtradisjon",
+            "em_lit_historie_periodisering_samtidige_tradisjoner"
           ]
         }
       ]
