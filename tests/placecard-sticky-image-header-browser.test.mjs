@@ -100,6 +100,16 @@ try {
         peopleX:rect("#pcPeopleIcon").x,
         title:rect("#pcTitle"),
         hero:rect("#pcHeaderHero"),
+        card:rect("#placeCard"),
+        shell:rect(".pc-sheet-shell"),
+        wrapper:rect(".pc-sheet-hero"),
+        nav:rect(".pc-sheet-section-nav"),
+        media:rect(".pc-sheet-hero-media"),
+        intro:rect(".pc-sheet-intro"),
+        shellPadding:getComputedStyle(document.querySelector(".pc-sheet-shell")).paddingLeft,
+        gutter:getComputedStyle(document.querySelector(".pc-body")).scrollbarGutter,
+        heroRadius:getComputedStyle(document.querySelector(".pc-sheet-hero")).borderTopLeftRadius,
+        border:getComputedStyle(document.querySelector("#placeCard")).borderLeftWidth,
         status:rect("#pcStatusBar > .pc-progress-status-line"),
         audio:rect("#pcReaderToggle"),
         favorite:rect("#pcFavorite"),
@@ -111,6 +121,18 @@ try {
       };
     });
     assert.equal(initial.duplicates,0,"No substitute title/photo strip");
+    assert.equal(initial.shellPadding,"0px","No inner PlaceCard frame at "+width+"px");
+    assert.equal(initial.border,"0px","No extra outline around PlaceCard at "+width+"px");
+    assert.equal(initial.gutter,"auto","No reserved strip next to the full-width sheet at "+width+"px");
+    assert.equal(initial.heroRadius,"0px","Hero uses the card's own corner clipping at "+width+"px");
+    for (const [name,bounds] of [["shell",initial.shell],["photo",initial.hero],["hero wrapper",initial.wrapper],
+      ["section navigation",initial.nav],["media",initial.media]]) {
+      assert.ok(Math.abs(bounds.left-initial.card.left)<=1
+        && Math.abs(bounds.right-initial.card.right)<=1,
+        name+" reaches both PlaceCard edges at "+width+"px: "+JSON.stringify({bounds,card:initial.card}));
+    }
+    assert.ok(initial.intro.left >= initial.card.left,
+      "Editorial content remains inside the card at "+width+"px");
     assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
     const verifyBelowTitle = (geom, stage) => {
       const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
