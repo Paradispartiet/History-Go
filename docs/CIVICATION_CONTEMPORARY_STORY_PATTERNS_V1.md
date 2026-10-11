@@ -75,3 +75,9 @@ Eksisterende arbeidsliv har press på dokumentasjon og faglig integritet (Arealp
 **Litterære kilder brukes til grep, ikke kopiering:** Solstad (små hendelser med varige ettervirkninger), Coetzee (makt og tilhørighet), Fante (ambisjon og skam), Despentes (sosiale nettverk), Ernaux (erindring og klasse), Fosse (gjentakelse og åpne forløp), Kafka (institusjonell friksjon). Disse er redaksjonelle inspirasjonslinjer, ikke påstander om at en roman og en Civication-tråd har identisk plott.
 
 **Arkitektur:** `docs/civication-life-story-system.md` er fremdeles normativ. Life Story Runner er eneste mål for scene- og valgutførelse. Dette dokumentet oppretter ingen ny motor, formel, arketypescore eller rolle/Badge-gate. History Go-kjernen endres ikke.
+
+## Fra litterært grep til faktisk fortellingskapittel
+
+[`narrativeCrosswalkV1.json`](../data/Civication/lifestory/editorial/narrativeCrosswalkV1.json) knytter alle 24 litterære hovedspor og de syv modellplottene hos Booker til alle 24 samtidige fortellingstyper. Litterære kilder er grep, ikke gjenbrukte plott. Grunnplott er valgfrie sammenligningsmodeller; flere Civication-tråder har med vilje ingen Booker-kategori.
+
+Fem selvstendige videreføringer er produsert for **dag 14–16**: Mira (`musikk_etter_foresporselen`), Lea som Sideprosjektbygger, Frilanser og Gründerdrømmer (`*_etter_neste_steg`), og Arvid (`miljo_etter_invitasjonen`). Dag 14-lesningen av gamle flagg, senere svar og dag 16-tilbakekomst ligger i konkrete `data/Civication/lifestory/continuations/*.json`. Scenarioene endrer ikke motor, kanoniske Badge-gater eller fortidige lagringsnøkler. De gir ingen jobb, betaling, booking eller rett til gjesteliste automatisk.

@@ -1,0 +1,460 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "grunder_etter_neste_steg",
+  "role_scope": "naeringsliv_grunderdrommer",
+  "tittel": "Én mening er ikke et marked",
+  "sisteDag": 16,
+  "hovedtraad": "grunder_etter_valget",
+  "threads": [
+    {
+      "id": "grunder_etter_valget",
+      "tittel": "Én mening er ikke et marked",
+      "type": "privatliv",
+      "startDag": 14,
+      "konflikt": "Eget prosjekt møter forventninger, arbeidstid og behov for klare grenser"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d14_grunder_beholdt",
+      "threadId": "grunder_etter_valget",
+      "dag": 14,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du valgte å beholde",
+      "tekst": "Du beholdt spørsmålene om et mulig behov i forrige kapittel. Nå skriver Lea: Lea vil skille mellom en interessant observasjon og et marked som noen faktisk har undersøkt. Du trenger ikke fortsette bare fordi du har notater.",
+      "valg": [
+        {
+          "id": "del",
+          "tekst": "Del ett avgrenset spørsmål med Lea",
+          "konsekvensTekst": "Du sender ett spørsmål, uten å love mer arbeid. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_14_spor": "vis"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Behold materialet hjemme",
+          "konsekvensTekst": "Du svarer at du beholder spørsmålene om et mulig behov for deg selv. Lea venter ingen leveranse.",
+          "effekter": {
+            "flagg": {
+              "grunder_14_spor": "privat"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d14_grunder_avsluttet",
+      "threadId": "grunder_etter_valget",
+      "dag": 14,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et valg som fortsatt gjelder",
+      "tekst": "Du la spørsmålene om et mulig behov bort i forrige kapittel. Lea har ikke bestilt noe. Du kan stille et avgrenset spørsmål uten å gjenåpne prosjektet.",
+      "valg": [
+        {
+          "id": "sporr",
+          "tekst": "Spør Lea hvem som ellers ville hatt nytte av denne ideen",
+          "konsekvensTekst": "Du spør om én ting. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_14_spor": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "La prosjektet hvile",
+          "konsekvensTekst": "Du lar den gamle beslutningen stå. Lea får ingen ny forpliktelse.",
+          "effekter": {
+            "flagg": {
+              "grunder_14_spor": "privat"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_neste_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "d15_grunder_delt",
+      "threadId": "grunder_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Svaret er mindre enn drømmen",
+      "tekst": "Lea har lest spørsmålet. Hun sier at ett svar sier noe om én person, men ingenting sikkert om hvem andre som ville betalt. Det er et nyttig svar, ikke en avtale.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Noter svaret uten å love arbeid",
+          "konsekvensTekst": "Du tar med deg svaret og avgrenser arbeidet. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "avgrens"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "Takk for svaret og legg materialet bort",
+          "konsekvensTekst": "Du takker Lea og holder resten av dagen fri. Ingen frist følger med.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_14_spor": "vis"
+        }
+      }
+    },
+    {
+      "id": "d15_grunder_spurt",
+      "threadId": "grunder_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ikke et oppdrag",
+      "tekst": "Lea svarer på spørsmålet ditt: ett svar sier noe om én person, men ingenting sikkert om hvem andre som ville betalt. Hun har ikke bedt deg levere noe.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Skriv ned hva svaret faktisk dokumenterer",
+          "konsekvensTekst": "Du beholder informasjonen uten å opprette en ny bestilling. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "avgrens"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "La samtalen slutte her",
+          "konsekvensTekst": "Du sier takk og lar det uavklarte være uavklart.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_14_spor": "sporr"
+        }
+      }
+    },
+    {
+      "id": "d15_grunder_privat",
+      "threadId": "grunder_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et arbeid som ikke er lovet bort",
+      "tekst": "Du har ikke sendt noe til Lea. Du kan bruke ti minutter på et lite spørreskjema uten utsending, eller la det ligge.",
+      "valg": [
+        {
+          "id": "skrive",
+          "tekst": "Lag en begrenset, privat merknad",
+          "konsekvensTekst": "Du har en merknad for deg selv. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "egen"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "hvil",
+          "tekst": "La notatet hvile",
+          "konsekvensTekst": "Du bruker tiden på noe annet. Ingen blir sittende og vente på en leveranse.",
+          "effekter": {
+            "flagg": {
+              "grunder_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_14_spor": "privat"
+        }
+      }
+    },
+    {
+      "id": "d16_grunder_avgrenset",
+      "threadId": "grunder_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den lille tilbakekomsten",
+      "tekst": "To dager etter at du spurte Lea, har hun ikke gitt deg en ny bestilling. Svaret er fortsatt begrenset til én del av spørsmålene om et mulig behov. Valget ditt får betydning når du bestemmer hvor mange timer du skal sette av.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Ta vare på svaret, uten ny frist",
+          "konsekvensTekst": "Du beholder den avgrensede innsikten. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "klar",
+              "grunder_16_klar": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Sett et punktum for denne runden",
+          "konsekvensTekst": "Du bestemmer at svaret ikke trenger å føre til nye arbeidsoppgaver.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "pause",
+              "grunder_16_pause": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_15_retning": "avgrens"
+        }
+      }
+    },
+    {
+      "id": "d16_grunder_egen",
+      "threadId": "grunder_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ett notat, ingen publisering",
+      "tekst": "Du ser på det private notatet fra i går. Lea har ikke sett det, og det finnes ingen frist eller avtale. Du kan bruke det som egen erfaring.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold det for deg selv",
+          "konsekvensTekst": "Du tar vare på notatet. Ingen bedrift, kunde, investering eller betalingsvilje er dokumentert.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "egen",
+              "grunder_16_egen": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "lukk",
+          "tekst": "Legg også det private notatet bort",
+          "konsekvensTekst": "Du bestemmer selv når du eventuelt ser på det igjen.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "pause",
+              "grunder_16_pause": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_15_retning": "egen"
+        }
+      }
+    },
+    {
+      "id": "d16_grunder_pause",
+      "threadId": "grunder_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tiden du fikk tilbake",
+      "tekst": "Du valgte å ikke ta på deg mer arbeid. To dager etter det første spørsmålet finnes det fortsatt ingen bestilling eller avtale med Lea. Du har beholdt noe av dagen din til annet liv.",
+      "valg": [
+        {
+          "id": "ro",
+          "tekst": "La pausen fortsette",
+          "konsekvensTekst": "Du lar samtalen ligge og står ved grensen du satte.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "pause",
+              "grunder_16_pause": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Noter hvorfor du valgte å stoppe",
+          "konsekvensTekst": "Du tar med deg erfaringen uten å love mer arbeid.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_ending": "egen",
+              "grunder_16_egen": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_15_retning": "pause"
+        }
+      }
+    },
+    {
+      "id": "d16_grunder_slutt",
+      "threadId": "grunder_etter_valget",
+      "dag": 16,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En beslutning som varer",
+      "tekst": "Du legger bort arbeidet for kvelden. Det går an å endre en idé uten å kalle den et gjennombrudd. Symposium beholder både det tidligere prosjektet og avgrensningen du valgte nå.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Du lukker historieboka uten automatisk inntekt, oppdrag eller investering.",
+          "effekter": {
+            "flagg": {
+              "grunder_16_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "grunder_etter_valget": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "grunder16_klar",
+      "navn": "Et avklart spørsmål",
+      "tekst": "Du har et nyttig svar, men ingen kontrakt eller formelt oppdrag.",
+      "kriterier": {
+        "flagg": {
+          "grunder_16_klar": true
+        }
+      }
+    },
+    {
+      "id": "grunder16_egen",
+      "navn": "Eget arbeidsrom",
+      "tekst": "Du beholder noen notater og bestemmer selv om du vil bruke dem senere.",
+      "kriterier": {
+        "flagg": {
+          "grunder_16_egen": true
+        }
+      }
+    },
+    {
+      "id": "grunder16_pause",
+      "navn": "En pause uten tapte avtaler",
+      "tekst": "Du lot prosjektet hvile. Tidligere arbeid er bevart uten nye forpliktelser.",
+      "kriterier": {
+        "flagg": {
+          "grunder_16_pause": true
+        }
+      }
+    },
+    {
+      "id": "grunder16_standard",
+      "navn": "Historien er bevart",
+      "tekst": "Ingen ny avtale eller betaling er ført inn.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

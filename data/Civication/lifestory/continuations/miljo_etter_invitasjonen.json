@@ -1,0 +1,595 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_etter_invitasjonen",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Et navn er ikke en avtale",
+  "sisteDag": 16,
+  "hovedtraad": "arvid_etter_invitasjonen",
+  "threads": [
+    {
+      "id": "arvid_etter_invitasjonen",
+      "tittel": "Et navn er ikke en avtale",
+      "type": "privatliv",
+      "startDag": 14,
+      "konflikt": "Sosial tilhørighet møter uuttalte forventninger om tid og tjenester"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d14_arvid_kontakt",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Navnet ditt – hva betyr det?",
+      "tekst": "Du har beholdt kontakten med Arvid. Navnet ditt kan ha stått under programspørsmål eller blitt fjernet. Arrangøren bestemmer fremdeles om noen slipper inn. Arvid spør hvor mye du faktisk ønsker å være involvert.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Svar at du bare kan svare om det du kjenner til",
+          "konsekvensTekst": "Du setter en grense. Ingen arbeidsvakt eller adgangsløfte følger med.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "avklar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "Si at du trenger pause fra arrangementet",
+          "konsekvensTekst": "Du avklarer at du ikke tar ansvar på arrangementet.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "ro"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid13_kontakt": true
+        }
+      }
+    },
+    {
+      "id": "d14_arvid_avstand",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei er ikke en utestående tjeneste",
+      "tekst": "Du valgte avstand. Arvid har ikke avtalt noe nytt med deg, og ingen vakt venter på deg. Likevel kan et gammelt miljø fremdeles kjennes nærme.",
+      "valg": [
+        {
+          "id": "ro",
+          "tekst": "La kontakten hvile",
+          "konsekvensTekst": "Du sender ingen melding og beholder dagen fri.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "ro"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        },
+        {
+          "id": "presis",
+          "tekst": "Send én presisering om at du ikke stiller på arrangementet",
+          "konsekvensTekst": "Du bekrefter grensen, uten å avtale en ny rolle.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "presis"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid13_avstand": true
+        }
+      }
+    },
+    {
+      "id": "d14_arvid_uklart",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Spørsmålet du lot henge",
+      "tekst": "En person venter fortsatt på svar om gjestelista. Ditt navn stod i en uklar invitasjon. Det er arrangøren som avgjør adgang, ikke du.",
+      "valg": [
+        {
+          "id": "rett",
+          "tekst": "Be Arvid rette invitasjonen og vis til arrangøren",
+          "konsekvensTekst": "Du ber om retting og forklarer at du ikke styrer adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "rett"
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "La spørsmålet vente enda en dag",
+          "konsekvensTekst": "Du svarer ikke. Ingen får adgang av den grunn.",
+          "effekter": {
+            "flagg": {
+              "arvid14_retning": "vent"
+            },
+            "meters": {
+              "psyke": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid13_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "d15_arvid_avklar",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ansvar uten adgang",
+      "tekst": "Arvid svarer at han er enig i at arrangøren håndterer gjesteliste og adgang. Han ber deg ikke om ny vakt.",
+      "valg": [
+        {
+          "id": "første",
+          "tekst": "Svar presist om hvem som har ansvar",
+          "konsekvensTekst": "Du sier hvem som faktisk bestemmer adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "grense"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Avslutt kontakten for denne runden",
+          "konsekvensTekst": "Du avslutter kontakten uten noen ny vakt.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid14_retning": "avklar"
+        }
+      }
+    },
+    {
+      "id": "d15_arvid_presis",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Bekreftelsen",
+      "tekst": "Arvid har lest meldingen din. Han bekrefter at du ikke er satt opp på vakt.",
+      "valg": [
+        {
+          "id": "første",
+          "tekst": "Svar presist om hvem som har ansvar",
+          "konsekvensTekst": "Du sier hvem som faktisk bestemmer adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "grense"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Avslutt kontakten for denne runden",
+          "konsekvensTekst": "Du avslutter kontakten uten noen ny vakt.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid14_retning": "presis"
+        }
+      }
+    },
+    {
+      "id": "d15_arvid_rett",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En retting som kommer etterpå",
+      "tekst": "Arvid retter invitasjonens kontaktfelt. En gammel forventning kan likevel bli hengende hos folk som allerede har lest den.",
+      "valg": [
+        {
+          "id": "første",
+          "tekst": "Svar presist om hvem som har ansvar",
+          "konsekvensTekst": "Du sier hvem som faktisk bestemmer adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "grense"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Avslutt kontakten for denne runden",
+          "konsekvensTekst": "Du avslutter kontakten uten noen ny vakt.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid14_retning": "rett"
+        }
+      }
+    },
+    {
+      "id": "d15_arvid_ro",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Dagen uten arrangementet",
+      "tekst": "Du valgte ro. Jonas har skrevet om en tur, men det har ingen forbindelse til Arvid eller gjestelista.",
+      "valg": [
+        {
+          "id": "første",
+          "tekst": "Behold pausen",
+          "konsekvensTekst": "Du lar kontakten hvile uten nye avtaler.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "avstand"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Send en kort presisering",
+          "konsekvensTekst": "Du forklarer grensen uten å love adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "grense"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid14_retning": "ro"
+        }
+      }
+    },
+    {
+      "id": "d15_arvid_vent",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den andre purringen",
+      "tekst": "Personen som spurte om gjestelista skriver igjen. En ubesvart melding er ingen adgangsbillett.",
+      "valg": [
+        {
+          "id": "første",
+          "tekst": "Vent til du vet hvordan du vil svare",
+          "konsekvensTekst": "Du svarer ikke i dag; ingen adgang er lovet.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "uavklart"
+            },
+            "meters": {
+              "psyke": -1
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Send en kort presisering",
+          "konsekvensTekst": "Du forklarer grensen uten å love adgang.",
+          "effekter": {
+            "flagg": {
+              "arvid15_retning": "grense"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid14_retning": "vent"
+        }
+      }
+    },
+    {
+      "id": "d16_arvid_grense_d16",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den samme grensen, en ny dag",
+      "tekst": "Du satte en grense for hvem som svarer om adgang. To dager etterpå har du fortsatt ingen myndighet over gjestelista, og ingen ny vakt er avtalt. En relasjon kan overleve uten et oppdrag.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold bare den kontakten du faktisk ønsker",
+          "konsekvensTekst": "Du lar arrangøren eie adgangsspørsmålene. Ingen jobb følger av kontakten.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "grense",
+              "arvid16_grense": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "trekk",
+          "tekst": "Avslutt kontakten om arrangementet",
+          "konsekvensTekst": "Du svarer at du ikke tar flere oppgaver nå.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "avstand",
+              "arvid16_avstand": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid15_retning": "grense"
+        }
+      }
+    },
+    {
+      "id": "d16_arvid_avstand_d16",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En frikveld du valgte selv",
+      "tekst": "Det gikk to dager uten at du tok på deg en ny oppgave. Du skylder ingen et svar bare fordi du en gang møtte opp i miljøet.",
+      "valg": [
+        {
+          "id": "ro",
+          "tekst": "Behold kvelden for deg selv",
+          "konsekvensTekst": "Du lar pausen fortsette.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "avstand",
+              "arvid16_avstand": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Noter hva et nei sparte deg for",
+          "konsekvensTekst": "Du bevarer begrunnelsen uten å opprette en ny avtale.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "avstand",
+              "arvid16_avstand": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid15_retning": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d16_arvid_uklart_d16",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Stillheten er ikke et ja",
+      "tekst": "Du har ennå ikke avklart det gamle spørsmålet om adgang. Ingen har fått rett til å slippe inn på grunnlag av navnet ditt. Personen som spurte, vet fremdeles ikke hvem som skal svare.",
+      "valg": [
+        {
+          "id": "rett",
+          "tekst": "Svar nå og henvis til arrangøren",
+          "konsekvensTekst": "Du sier tydelig at du ikke kan ordne gjestelista, og ber Arvid rette kontaktfeltet.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "grense",
+              "arvid16_grense": true
+            },
+            "meters": {
+              "integritet": 2
+            }
+          }
+        },
+        {
+          "id": "vent",
+          "tekst": "La spørsmålet stå åpent også nå",
+          "konsekvensTekst": "Du svarer ikke. Historieboka bevarer uklarheten uten å tolke den som en avtale.",
+          "effekter": {
+            "flagg": {
+              "arvid16_ending": "uavklart",
+              "arvid16_uavklart": true
+            },
+            "meters": {
+              "psyke": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid15_retning": "uavklart"
+        }
+      }
+    },
+    {
+      "id": "d16_arvid_slutt",
+      "threadId": "arvid_etter_invitasjonen",
+      "dag": 16,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem får snakke for deg?",
+      "tekst": "Symposium tar vare på hvilke svar du gav, hva som stod på invitasjonen, og når du satte grenser eller lot noe stå åpent.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Du lukker historieboka uten ny vakt, adgang eller betaling.",
+          "effekter": {
+            "flagg": {
+              "arvid16_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_etter_invitasjonen": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "arvid16_grense",
+      "navn": "Grensen ble tydelig",
+      "tekst": "Du har avklart ansvaret uten å opprette en vakt eller et adgangsløfte.",
+      "kriterier": {
+        "flagg": {
+          "arvid16_grense": true
+        }
+      }
+    },
+    {
+      "id": "arvid16_avstand",
+      "navn": "Tid uten nye tjenester",
+      "tekst": "Du har ikke tatt på deg nye oppgaver for Arvid.",
+      "kriterier": {
+        "flagg": {
+          "arvid16_avstand": true
+        }
+      }
+    },
+    {
+      "id": "arvid16_uavklart",
+      "navn": "Det ubesvarte spørsmålet",
+      "tekst": "Invitasjonen var fortsatt uklar. Stillheten betyr ikke at noen har fått adgang.",
+      "kriterier": {
+        "flagg": {
+          "arvid16_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "arvid16_standard",
+      "navn": "Et kapittel i miljøet",
+      "tekst": "Tidligere valg er bevart uten ny jobb eller adgangsrett.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

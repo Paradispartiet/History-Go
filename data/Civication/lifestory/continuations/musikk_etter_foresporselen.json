@@ -1,0 +1,568 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_etter_foresporselen",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Musikken etter forespørselen",
+  "sisteDag": 16,
+  "hovedtraad": "mira_etter_foresporselen",
+  "threads": [
+    {
+      "id": "mira_etter_foresporselen",
+      "tittel": "Et svar som får følger",
+      "type": "privatliv",
+      "startDag": 14,
+      "konflikt": "Musikalsk samarbeid møter egen kapasitet og ubekreftet betaling"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d14_mira_hold",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forbehold går ut klokka tolv",
+      "tekst": "Du hadde holdt datoen fram til i dag klokka tolv. Betaling og lydansvar er fortsatt uavklart. En holdt dato er ingen booking.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be om vilkårene skriftlig uten å forlenge fristen",
+          "konsekvensTekst": "Du ber bookeren oppgi omfang og honorar. Datoen holdes ikke etter fristen.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "avklar"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Gi fra deg datoen i tide",
+          "konsekvensTekst": "Du slipper datoen og har ingen spilleforpliktelse.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "ro"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_beholdt_hold": true
+        }
+      }
+    },
+    {
+      "id": "d14_mira_nei",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei som endret kalenderen",
+      "tekst": "Du avslo eller frigjorde forespørselen. Det blir ikke noe sett, men du kan fortsatt ta kontakt med Mira om musikk uten å be om en spillejobb.",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Spør Mira om dere vil holde kontakten",
+          "konsekvensTekst": "Du sender en melding om musikk, uten å avtale en prøve.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "mira"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "La avslaget stå og ta fri",
+          "konsekvensTekst": "Du beholder det avtalefrie døgnet.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "ro"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_avslatt": true
+        }
+      }
+    },
+    {
+      "id": "d14_mira_uavklart",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 14,
+      "fase": "morgen",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Datoen var aldri holdt",
+      "tekst": "Du sa ikke ja til å holde datoen. Den er derfor ikke reservert. Det er fremdeles mulig å stille et spørsmål, men ikke å hevde at det foreligger et tilbud.",
+      "valg": [
+        {
+          "id": "sporr",
+          "tekst": "Spør om vilkår til en eventuell senere anledning",
+          "konsekvensTekst": "Du spør om rammene, men reserverer ingen dato.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "avklar"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "Slutt å vente på denne forespørselen",
+          "konsekvensTekst": "Du lar tiden være din og svarer ikke ja til noen booking.",
+          "effekter": {
+            "flagg": {
+              "mira14_retning": "ro"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "musikk_foresporsel_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "d15_mira_bookersvar",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det bookeren ennå ikke vet",
+      "tekst": "Bookeren svarer at lydansvar og honorar fortsatt ikke er fastlagt. Det kan derfor ikke bekreftes noen opptreden nå.",
+      "valg": [
+        {
+          "id": "noter",
+          "tekst": "Behold skriftlige minimumskrav",
+          "konsekvensTekst": "Du skriver ned hva som må avklares før en ny forespørsel kan vurderes.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "vilkar"
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "lukk",
+          "tekst": "Takk for svaret og avslutt saken",
+          "konsekvensTekst": "Du har fått et svar, men har ikke inngått noen avtale.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "slutt"
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira14_retning": "avklar"
+        }
+      }
+    },
+    {
+      "id": "d15_mira_svar",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira svarer",
+      "tekst": "Mira svarer at hun gjerne utveksler ideer senere, men ikke kan sette opp en prøve nå. Ingen øvingstid eller scene er bestilt.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Svar at en senere samtale må avtales særskilt",
+          "konsekvensTekst": "Du takker ja til å snakke en annen gang, ikke til en bestemt dato.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "kontakt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hvil",
+          "tekst": "Si at du trenger ro en stund",
+          "konsekvensTekst": "Du lar kontakten hvile uten å avtale noe.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "slutt"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira14_retning": "mira"
+        }
+      }
+    },
+    {
+      "id": "d15_mira_uten_press",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som ikke ble en jobb",
+      "tekst": "Du valgte å ikke åpne noen ny forespørsel. En kveld som ikke er planlagt, kan fortsatt brukes på egen musikk eller hvile.",
+      "valg": [
+        {
+          "id": "egen",
+          "tekst": "Skriv et kort privat notat om musikken",
+          "konsekvensTekst": "Du lager et eget notat. Mira har ikke hørt eller bestilt noe.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "egen"
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "hvile",
+          "tekst": "La musikken ligge i dag",
+          "konsekvensTekst": "Du tar fri, uten et løfte om neste prøve.",
+          "effekter": {
+            "flagg": {
+              "mira15_retning": "slutt"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira14_retning": "ro"
+        }
+      }
+    },
+    {
+      "id": "d16_mira_vilkar",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "To dager senere: den manglende kontrakten",
+      "tekst": "Du har fortsatt ingen avtale om betaling eller lydansvar. De skriftlige spørsmålene ligger der, men det finnes ingen konsert å møte til.",
+      "valg": [
+        {
+          "id": "grense",
+          "tekst": "Behold kravene til neste forespørsel",
+          "konsekvensTekst": "Du har tydeligere grenser for framtidige forespørsler, uten en ny booking.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "grense",
+              "mira16_grense": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Legg denne forespørselen bort",
+          "konsekvensTekst": "Du avslutter kontakten om denne datoen.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "avsluttet",
+              "mira16_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira15_retning": "vilkar"
+        }
+      }
+    },
+    {
+      "id": "d16_mira_rel",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et samarbeid uten scene",
+      "tekst": "To dager etter at du skrev til Mira, finnes samtalen fortsatt uten noen ny prøve. Du kan bevare samarbeidet uten å love tid du ikke har.",
+      "valg": [
+        {
+          "id": "hold_kontakt",
+          "tekst": "Si at du kan avtale noe konkret senere",
+          "konsekvensTekst": "Du opprettholder kontakten. Ingen øving eller spillejobb opprettes.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "kontakt",
+              "mira16_kontakt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "La en eventuell prøve vente",
+          "konsekvensTekst": "Du sier at du vil vente med nye avtaler.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "avsluttet",
+              "mira16_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira15_retning": "kontakt"
+        }
+      }
+    },
+    {
+      "id": "d16_mira_egen",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den private rytmen",
+      "tekst": "Du ser tilbake på notatet fra i går. Det er ingen som venter på det; du kan fortsette uten å gjøre det til en forestilling.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold arbeidet privat",
+          "konsekvensTekst": "Du tar vare på ideen uten å love en framføring.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "egen",
+              "mira16_egen": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver det og gå videre",
+          "konsekvensTekst": "Du legger notatet bort. Mira har ikke mottatt materiale.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "egen",
+              "mira16_egen": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira15_retning": "egen"
+        }
+      }
+    },
+    {
+      "id": "d16_mira_stopp",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En kveld du ikke skylder noen",
+      "tekst": "Du har avstått fra flere avtaler. Det valget står ved lag to dager senere; ingen booker kan føre deg opp som musiker på denne datoen.",
+      "valg": [
+        {
+          "id": "fri",
+          "tekst": "Behold kvelden din",
+          "konsekvensTekst": "Du lar den ubestilte datoen være fri.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "avsluttet",
+              "mira16_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        },
+        {
+          "id": "lare",
+          "tekst": "Noter hva du vil spørre om neste gang",
+          "konsekvensTekst": "Du noterer erfaringen uten å gjenåpne avtalen.",
+          "effekter": {
+            "flagg": {
+              "mira16_ending": "grense",
+              "mira16_grense": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira15_retning": "slutt"
+        }
+      }
+    },
+    {
+      "id": "d16_mira_slutt",
+      "threadId": "mira_etter_foresporselen",
+      "dag": 16,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Musikken fortsetter på egne vilkår",
+      "tekst": "Symposium viser hva du svarte, hva som aldri ble avtalt, og hva du selv valgte å gjøre videre.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Du lukker historieboka uten konsert eller betaling.",
+          "effekter": {
+            "flagg": {
+              "mira16_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_etter_foresporselen": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "mira16_grense",
+      "navn": "Klarere vilkår",
+      "tekst": "Du har satt ord på hvilke opplysninger som må finnes før en senere forespørsel kan bli aktuell.",
+      "kriterier": {
+        "flagg": {
+          "mira16_grense": true
+        }
+      }
+    },
+    {
+      "id": "mira16_kontakt",
+      "navn": "Kontakt uten ny avtale",
+      "tekst": "Du har beholdt kontakten med Mira, men ingen ny prøve eller konsert er bekreftet.",
+      "kriterier": {
+        "flagg": {
+          "mira16_kontakt": true
+        }
+      }
+    },
+    {
+      "id": "mira16_egen",
+      "navn": "Musikk for deg selv",
+      "tekst": "Du har valgt å arbeide privat, uten å skape en spilleforpliktelse.",
+      "kriterier": {
+        "flagg": {
+          "mira16_egen": true
+        }
+      }
+    },
+    {
+      "id": "mira16_avsluttet",
+      "navn": "Forespørselen er avsluttet",
+      "tekst": "Denne forespørselen ga ingen konsert eller betaling.",
+      "kriterier": {
+        "flagg": {
+          "mira16_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "mira16_standard",
+      "navn": "Et åpent kapittel",
+      "tekst": "Ingen ny booking eller betaling er registrert.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

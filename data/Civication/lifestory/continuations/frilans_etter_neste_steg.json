@@ -1,0 +1,460 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "frilans_etter_neste_steg",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "Utkastet og grensen",
+  "sisteDag": 16,
+  "hovedtraad": "frilans_etter_valget",
+  "threads": [
+    {
+      "id": "frilans_etter_valget",
+      "tittel": "Utkastet og grensen",
+      "type": "privatliv",
+      "startDag": 14,
+      "konflikt": "Eget prosjekt møter forventninger, arbeidstid og behov for klare grenser"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d14_frilans_beholdt",
+      "threadId": "frilans_etter_valget",
+      "dag": 14,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det du valgte å beholde",
+      "tekst": "Du beholdt utkastet til mulig frilansarbeid i forrige kapittel. Nå skriver Lea: Lea vil vite hvilke deler av arbeidet som eventuelt hører til en forespørsel, men har ikke bestilt noe. Du trenger ikke fortsette bare fordi du har notater.",
+      "valg": [
+        {
+          "id": "del",
+          "tekst": "Del ett avgrenset spørsmål med Lea",
+          "konsekvensTekst": "Du sender ett spørsmål, uten å love mer arbeid. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_14_spor": "vis"
+            },
+            "meters": {
+              "energi": -1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Behold materialet hjemme",
+          "konsekvensTekst": "Du svarer at du beholder utkastet til mulig frilansarbeid for deg selv. Lea venter ingen leveranse.",
+          "effekter": {
+            "flagg": {
+              "frilans_14_spor": "privat"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_neste_beholdt": true
+        }
+      }
+    },
+    {
+      "id": "d14_frilans_avsluttet",
+      "threadId": "frilans_etter_valget",
+      "dag": 14,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et valg som fortsatt gjelder",
+      "tekst": "Du la utkastet til mulig frilansarbeid bort i forrige kapittel. Lea har ikke bestilt noe. Du kan stille et avgrenset spørsmål uten å gjenåpne prosjektet.",
+      "valg": [
+        {
+          "id": "sporr",
+          "tekst": "Spør Lea hva hun faktisk trenger å få avklart før en pris kan diskuteres",
+          "konsekvensTekst": "Du spør om én ting. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_14_spor": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "La prosjektet hvile",
+          "konsekvensTekst": "Du lar den gamle beslutningen stå. Lea får ingen ny forpliktelse.",
+          "effekter": {
+            "flagg": {
+              "frilans_14_spor": "privat"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_neste_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "d15_frilans_delt",
+      "threadId": "frilans_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Svaret er mindre enn drømmen",
+      "tekst": "Lea har lest spørsmålet. Hun sier at hun kan beskrive behovet, men verken bestille arbeidet eller oppgi en prisavtale nå. Det er et nyttig svar, ikke en avtale.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Noter svaret uten å love arbeid",
+          "konsekvensTekst": "Du tar med deg svaret og avgrenser arbeidet. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "avgrens"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "pause",
+          "tekst": "Takk for svaret og legg materialet bort",
+          "konsekvensTekst": "Du takker Lea og holder resten av dagen fri. Ingen frist følger med.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_14_spor": "vis"
+        }
+      }
+    },
+    {
+      "id": "d15_frilans_spurt",
+      "threadId": "frilans_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ikke et oppdrag",
+      "tekst": "Lea svarer på spørsmålet ditt: hun kan beskrive behovet, men verken bestille arbeidet eller oppgi en prisavtale nå. Hun har ikke bedt deg levere noe.",
+      "valg": [
+        {
+          "id": "avgrens",
+          "tekst": "Skriv ned hva svaret faktisk dokumenterer",
+          "konsekvensTekst": "Du beholder informasjonen uten å opprette en ny bestilling. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "avgrens"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "La samtalen slutte her",
+          "konsekvensTekst": "Du sier takk og lar det uavklarte være uavklart.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_14_spor": "sporr"
+        }
+      }
+    },
+    {
+      "id": "d15_frilans_privat",
+      "threadId": "frilans_etter_valget",
+      "dag": 15,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et arbeid som ikke er lovet bort",
+      "tekst": "Du har ikke sendt noe til Lea. Du kan bruke ti minutter på en liste over hva som ikke inngår i et tilbud, eller la det ligge.",
+      "valg": [
+        {
+          "id": "skrive",
+          "tekst": "Lag en begrenset, privat merknad",
+          "konsekvensTekst": "Du har en merknad for deg selv. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "egen"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "hvil",
+          "tekst": "La notatet hvile",
+          "konsekvensTekst": "Du bruker tiden på noe annet. Ingen blir sittende og vente på en leveranse.",
+          "effekter": {
+            "flagg": {
+              "frilans_15_retning": "pause"
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_14_spor": "privat"
+        }
+      }
+    },
+    {
+      "id": "d16_frilans_avgrenset",
+      "threadId": "frilans_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den lille tilbakekomsten",
+      "tekst": "To dager etter at du spurte Lea, har hun ikke gitt deg en ny bestilling. Svaret er fortsatt begrenset til én del av utkastet til mulig frilansarbeid. Valget ditt får betydning når du bestemmer hvor mange timer du skal sette av.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Ta vare på svaret, uten ny frist",
+          "konsekvensTekst": "Du beholder den avgrensede innsikten. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "klar",
+              "frilans_16_klar": true
+            },
+            "meters": {
+              "handlingsrom": 2
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Sett et punktum for denne runden",
+          "konsekvensTekst": "Du bestemmer at svaret ikke trenger å føre til nye arbeidsoppgaver.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "pause",
+              "frilans_16_pause": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_15_retning": "avgrens"
+        }
+      }
+    },
+    {
+      "id": "d16_frilans_egen",
+      "threadId": "frilans_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ett notat, ingen publisering",
+      "tekst": "Du ser på det private notatet fra i går. Lea har ikke sett det, og det finnes ingen frist eller avtale. Du kan bruke det som egen erfaring.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold det for deg selv",
+          "konsekvensTekst": "Du tar vare på notatet. Ingen kunde, kontrakt, leveranse eller faktura er opprettet.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "egen",
+              "frilans_16_egen": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        },
+        {
+          "id": "lukk",
+          "tekst": "Legg også det private notatet bort",
+          "konsekvensTekst": "Du bestemmer selv når du eventuelt ser på det igjen.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "pause",
+              "frilans_16_pause": true
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_15_retning": "egen"
+        }
+      }
+    },
+    {
+      "id": "d16_frilans_pause",
+      "threadId": "frilans_etter_valget",
+      "dag": 16,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tiden du fikk tilbake",
+      "tekst": "Du valgte å ikke ta på deg mer arbeid. To dager etter det første spørsmålet finnes det fortsatt ingen bestilling eller avtale med Lea. Du har beholdt noe av dagen din til annet liv.",
+      "valg": [
+        {
+          "id": "ro",
+          "tekst": "La pausen fortsette",
+          "konsekvensTekst": "Du lar samtalen ligge og står ved grensen du satte.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "pause",
+              "frilans_16_pause": true
+            },
+            "meters": {
+              "energi": 2
+            }
+          }
+        },
+        {
+          "id": "noter",
+          "tekst": "Noter hvorfor du valgte å stoppe",
+          "konsekvensTekst": "Du tar med deg erfaringen uten å love mer arbeid.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_ending": "egen",
+              "frilans_16_egen": true
+            },
+            "meters": {
+              "psyke": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_15_retning": "pause"
+        }
+      }
+    },
+    {
+      "id": "d16_frilans_slutt",
+      "threadId": "frilans_etter_valget",
+      "dag": 16,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En beslutning som varer",
+      "tekst": "Du legger bort arbeidet for kvelden. En arbeidsskisse kan være nyttig uten å være en betalt bestilling. Symposium beholder både det tidligere prosjektet og avgrensningen du valgte nå.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Du lukker historieboka uten automatisk inntekt, oppdrag eller investering.",
+          "effekter": {
+            "flagg": {
+              "frilans_16_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "frilans_etter_valget": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "frilans16_klar",
+      "navn": "Et avklart spørsmål",
+      "tekst": "Du har et nyttig svar, men ingen kontrakt eller formelt oppdrag.",
+      "kriterier": {
+        "flagg": {
+          "frilans_16_klar": true
+        }
+      }
+    },
+    {
+      "id": "frilans16_egen",
+      "navn": "Eget arbeidsrom",
+      "tekst": "Du beholder noen notater og bestemmer selv om du vil bruke dem senere.",
+      "kriterier": {
+        "flagg": {
+          "frilans_16_egen": true
+        }
+      }
+    },
+    {
+      "id": "frilans16_pause",
+      "navn": "En pause uten tapte avtaler",
+      "tekst": "Du lot prosjektet hvile. Tidligere arbeid er bevart uten nye forpliktelser.",
+      "kriterier": {
+        "flagg": {
+          "frilans_16_pause": true
+        }
+      }
+    },
+    {
+      "id": "frilans16_standard",
+      "navn": "Historien er bevart",
+      "tekst": "Ingen ny avtale eller betaling er ført inn.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
