@@ -346,14 +346,9 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 }
 
 @media (max-width: 520px){
-  /* Keep the original heading and both inline controls on one row,
-     including narrow phones. Long names may wrap inside the title itself. */
-  body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy .pc-title-row{
-    flex-wrap:nowrap;
-  }
-
+  /* The canonical title grid (placeCard.css) owns the title and its
+     second-row controls, including wrapped names on narrow phones. */
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy .pc-title-row #pcTitle{
-    flex:0 1 auto;
     overflow-wrap:break-word;
   }
 
