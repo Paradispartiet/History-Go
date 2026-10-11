@@ -4,7 +4,7 @@
   "source": "data/places/workflow/arbeiderbladet_youngstorget.json",
   "place_id": "arbeiderbladet_youngstorget",
   "category": "media",
-  "state": "blocked",
+  "state": "complete",
   "profile": {
     "id": "standard",
     "status": "confirmed",
@@ -108,17 +108,15 @@
       "reason": "Fersk kontroll av OBOS og historisk adresse dokumenterer dagens kontoreiendom, men ingen stedsspesifikk nyhetshendelse om den historiske redaksjonen. Avisens generelle nyhetsstrøm er ikke nyheter om dette stedet."
     }
   },
-  "blockers": [
-    "Manuell UI-kontroll fant hvitt ordmerke på hvit forhåndsvisning, ufullstendig Stanghelle-teaser og klippet Fagverk-tittel. Rettet lokalt; ny faktisk nettleserevidens og sluttkontroll gjenstår."
-  ],
+  "blockers": [],
   "manual_reviews": {
     "images": {
       "status": "PASS",
       "evidence": "Alle fem lokale JPEG-er (1947, 2006, faksimile 1884 og to eksisterende personportretter) er åpnet og visuelt kontrollert. Offisielt SVG-ordmerke er rendret og åpnet; autentisk Dagsavisen-navn på mørk flate. Proveniens, dato, Public domain / CC BY-SA-status og egne stedsperioder er kontrollert. Intake Actions 38160487568 samt offisielt logo-intake på f1c3d95c er kildeevidens."
     },
     "final_ui": {
-      "status": "PENDING",
-      "evidence": "Første Actions 38163175595 og 20 manuelt åpnede skjermbilder dokumenterer fungerende quiz, flip og integrasjoner, men visuelle avvik skal kontrolleres i ny kjøring før godkjenning."
+      "status": "PASS",
+      "evidence": "Alle 21 JPG-filer fra Actions 38165340451 og begge quizresultatbilder fra Actions 38164723339 er åpnet og manuelt gjennomgått. Evidens i reports/visual-qa/arbeiderbladet-youngstorget/20261011-final/: fire bredder 320/390/768/1440, tre samlinger, autentisk logo med egen etikettplass, datert hel faksimile, Stanghelle-teaser, fem synlige språkoppføringer, én Story, QuizCard-flip/utvidelse/lukking og curated Fagverk med hele tittelord. Alle 28 quizspørsmål fullført på desktop og mobil; fire læringshendelser, én belønning, ingen besøksregistrering. Null registrerte avvik/sidefeil. Seksdelt vurdering 28/30 i reports/place-production/arbeiderbladet-youngstorget-closeout-review-20261011.md. Emulert Linux Chromium, ikke native Safari eller fysisk iPad."
     }
   }
 }

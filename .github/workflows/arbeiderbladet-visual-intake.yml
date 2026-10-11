@@ -1,0 +1,61 @@
+name: Arbeiderbladet bounded visual evidence
+on:
+  push:
+    branches:
+      - production/arbeiderbladet-final-qa-20261011
+    paths:
+      - .github/workflows/arbeiderbladet-visual-intake.yml
+      - scripts/audit-arbeiderbladet-youngstorget-visual.mjs
+permissions:
+  contents: write
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Resolve runner Chrome
+        run: |
+          set -euo pipefail
+          chrome_path="$(command -v google-chrome || command -v chromium)"
+          echo "CHROME_BIN=$chrome_path" >> "$GITHUB_ENV"
+          "$chrome_path" --version
+      - name: Generate canonical Knowledge on the exact source head
+        run: npm run knowledge:canonical:write
+      - name: Inspect four viewports and real integrations
+        run: node scripts/audit-arbeiderbladet-youngstorget-visual.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arbeiderbladet-visual-evidence-${{ github.sha }}
+          path: |
+            artifacts/arbeiderbladet-youngstorget-final-20261011/
+      - name: Persist only bounded evidence on the same leased branch
+        if: always()
+        env:
+          EVIDENCE_BRANCH: production/arbeiderbladet-final-qa-20261011
+        run: |
+          set -euo pipefail
+          evidence_dir=reports/visual-qa/arbeiderbladet-youngstorget/20261011-final
+          mkdir -p "$evidence_dir"
+          if test -d artifacts/arbeiderbladet-youngstorget-final-20261011; then
+            cp artifacts/arbeiderbladet-youngstorget-final-20261011/* "$evidence_dir/"
+          fi
+          git add -- "$evidence_dir" data/knowledge/knowledge_units.generated.json
+          unexpected_paths="$(git diff --name-only)"
+          test -z "$unexpected_paths"
+          if git diff --cached --quiet; then exit 0; fi
+          remote_head="$(git ls-remote origin "refs/heads/$EVIDENCE_BRANCH" | cut -f1)"
+          test "$remote_head" = "$GITHUB_SHA"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git commit -m 'test(media): record own-place browser and complete quiz evidence'
+          git push origin "HEAD:refs/heads/$EVIDENCE_BRANCH"
