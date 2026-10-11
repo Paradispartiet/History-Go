@@ -30,3 +30,11 @@ QuizCard er én egen flate med ti valgte spørsmål og nummerert fasit. Kortet e
 | Vedlikeholdbarhet og etterprøvbarhet | 4/5 | Separat quizløp, kildebrief, deterministisk kontekst og kjørbar audit. Global Knowledge-fil er fortsatt en reviewkostnad. |
 
 **27/30. Ikke SLUTTFØRT før reell quizavspilling, QuizCard-flip, visuell kontroll og endelig V3-closeout.** Kontrollresultater og faktisk head registreres i sluttgjennomgangen etter nettleserkjøringen.
+
+## Faktiske kontrollresultater
+
+Kildekontekst: 97 pakker, 0 feil; egen pakke 28 spørsmål. Progresjon: egen pakke 11 fact / 10 context / 7 concept_theory, og de første 14 kontrollert. Teori: én eksplisitt Hallin-kobling og sju metodeoppgaver, 0 feil. Quiz-manifest, runtime-wiring, QuizCard-manifest (3 tester) og canonical Knowledge-check består. Alle 28 spørsmål har Knowledge-ID-er. `place:verify` består med 9 tester og én eksisterende lokal browserskip.
+
+Actions [38163175595](https://github.com/Paradispartiet/History-Go/actions/runs/38163175595), kildehead `e0b482d8127bd14ea292ad7af702c799b81792b0`, fullfører 28 spørsmål / fire sett på både desktop og mobil. Hvert sett lagrer progresjon én gang, fire læringshendelser blir registrert, én stedsbelønning blir gitt, og fysisk besøksstatus endres ikke. Fire UI-profiler (320, 390, 768 og 1440 px) har null runtimefeil. QuizCard-flip, utvidelse og Fagverk-navigasjon er reelt kjørt.
+
+Alle 20 skjermbilder er åpnet og manuelt kontrollert. Quizen og QuizCard fungerer. Den videre steds-closeouten skal rette den hvite logoens forhåndsvisning, Stanghelle-teaseren og Fagverk-tittelen ved nettbrettbredde før manuell final_ui kan godkjennes. Den automatiske visuelle kjøringen alene er ikke en slik godkjenning. Evidens ligger under `reports/visual-qa/arbeiderbladet-youngstorget/20261011-closeout/`, og botcommit `ef34efa417c9c6862d94106b1ae63f2b8bb79145` materialiserer nøyaktig canonical Knowledge fra dette kildeheadet. Engangsworkflowen er fjernet fra sluttdiffet.
