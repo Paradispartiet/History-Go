@@ -312,7 +312,7 @@ const press = (selector) => {
   assert.equal(window.PsychologyRoom.getWorkbenchEntries()[0].follow_ups.length, 1);
   assert.equal(window.PsychologyRoom.getWorkbenchEntries()[0].situation, "Jeg utsetter en oppgave.");
   press('[data-psych-nav="profile"]');
-  assert.match(rendered, /1 oppfølginger/);
+  assert.match(rendered, /1 oppfølging/);
   press("workbench-entry:" + localReflection.entry.id);
   assert.match(rendered, /Fem minutter på oppgaven/);
   assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
