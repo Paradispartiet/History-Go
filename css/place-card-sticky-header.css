@@ -1,0 +1,105 @@
+/* PlaceCard's permanent compact photo header, above its internal scroller.
+   The original landscape hero and its category/epoch/status actions still
+   scroll naturally. Only the image's top edge and title are mirrored here. */
+#placeCard {
+  --pc-sticky-image-height: 76px;
+}
+
+#placeCard > .pc-sticky-image-header {
+  position: absolute;
+  z-index: 9;
+  inset: 0 0 auto;
+  height: var(--pc-sticky-image-height);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,.24);
+  background: #17202a;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 150ms ease, visibility 150ms ease;
+}
+
+#placeCard.is-sticky-image-visible:not(.is-collapsed):not(.is-hidden) > .pc-sticky-image-header {
+  opacity: 1;
+  visibility: visible;
+}
+
+#placeCard .pc-sticky-image-header-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+#placeCard > .pc-sticky-image-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.015), rgba(0,0,0,.12));
+  pointer-events: none;
+}
+
+#placeCard .pc-sticky-image-header-title {
+  position: relative;
+  z-index: 1;
+  width: calc(100% - 76px);
+  margin-left: 16px;
+  padding: 5px 7px;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: #fff;
+  font: 800 clamp(18px, 2.6vw, 25px)/1.13 system-ui, -apple-system, sans-serif;
+  letter-spacing: -.025em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 5px rgba(0,0,0,.95), 0 0 14px rgba(0,0,0,.6);
+}
+
+#placeCard .pc-sticky-image-header[data-pc-contrast="dark"] .pc-sticky-image-header-title {
+  color: #101820;
+  text-shadow: 0 1px 2px rgba(255,255,255,.75), 0 0 9px rgba(255,255,255,.6);
+}
+
+#placeCard .pc-sticky-image-header:not([data-pc-contrast="dark"]) .pc-sticky-image-header-title {
+  background: linear-gradient(90deg, rgba(0,0,0,.36), rgba(0,0,0,.08));
+}
+
+#placeCard .pc-heading-hero[data-pc-contrast="dark"] #pcTitle {
+  color: #111923 !important;
+  text-shadow: 0 1px 2px rgba(255,255,255,.85), 0 0 12px rgba(255,255,255,.55);
+}
+
+#placeCard .pc-heading-hero[data-pc-contrast="light"] #pcTitle {
+  color: #fff !important;
+  text-shadow: 0 1px 5px rgba(0,0,0,.98), 0 0 14px rgba(0,0,0,.65);
+}
+
+/* The existing text-section navigation keeps its sticky behavior and
+   sits immediately below the compact image once that image is pinned. */
+body.hg-app #placeCard.is-place-sheet-direct.is-sticky-image-visible .pc-sheet-section-nav {
+  top: var(--pc-sticky-image-height);
+}
+
+@media (max-width: 520px) {
+  #placeCard { --pc-sticky-image-height: 70px; }
+  #placeCard .pc-sticky-image-header-title {
+    width: calc(100% - 66px);
+    margin-left: 10px;
+    font-size: clamp(18px, 5vw, 22px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #placeCard > .pc-sticky-image-header { transition: none; }
+}
