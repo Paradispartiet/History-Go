@@ -1,0 +1,31 @@
+name: Temporary Arbeiderbladet text regeneration
+on:
+  push:
+    branches:
+      - editorial/arbeiderbladet-youngstorget-historisk-tekst-20261011
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run place:build -- arbeiderbladet_youngstorget
+      - name: Commit regenerated outputs
+        shell: bash
+        run: |
+          git add data/places/places_index.json data/runtime/place-open/arbeiderbladet_youngstorget.json data/epoker/epoke-place-index.json data/quiz/production_context/media/arbeiderbladet_youngstorget.json data/fagverk/fagverk_release.json
+          git diff --cached --check
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Regenerate Arbeiderbladet outputs after editorial precision'
+            git push origin HEAD:editorial/arbeiderbladet-youngstorget-historisk-tekst-20261011
+          fi
