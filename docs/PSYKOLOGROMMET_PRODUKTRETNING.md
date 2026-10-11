@@ -1,7 +1,7 @@
 # Psykologrommet – produktformål og fungerende brukerreise
 
 **Oppdatert:** 12. oktober 2026
-**Status:** Praktisk brukerreise implementert i eksisterende PlaceCard-store visning og Psykologrommets egen footer.
+**Status:** Praktisk brukerreise med frivillig oppfølging av samme situasjon i eksisterende PlaceCard-store visning og Psykologrommets egen footer.
 
 ## Formål
 
@@ -14,6 +14,13 @@ Psykologrommet er et pedagogisk refleksjonsverktøy for selvinnsikt, hverdagsfen
 3. **Prøv – verktøy/øvelse:** Fenomenartikler lenker til virkelige verktøy, øvelser og eventuelle frivillige innsjekker gjennom eksisterende data-ID-er. Ved fullføring med fenomenkontekst kommer brukeren til et eget neste-steg-bilde i stedet for å bli kastet tilbake til start.
 4. **Lær – Psykoteori:** Neste-steg-bildet tilbyr eksisterende teorikort koblet til det valgte fenomenet, eller hele teorikatalogen dersom ingen direkte kobling er dokumentert. Teorikortene viser forskningshistorie, metode, begrensninger, kilder og lenker til det kanoniske psykologifagverket.
 5. **Historie – History Go:** Psykologiens utvikling, forskere og historiske institusjoner hører hjemme i History Go og psykologifagverket. Steds- eller personkoblinger opprettes bare der en faktisk kanonisk kobling finnes; nye antatte steder og personer er ikke opprettet i denne oppgaven.
+
+## Oppfølging av samme situasjon
+
+- På Min side kan brukeren åpne hver av de inntil 30 lokalt lagrede situasjonene og lese alle de opprinnelige svarene.
+- Brukeren kan legge til flere daterte oppfølginger: hva vedkommende prøvde eller ikke prøvde, hva som skjedde, en eventuell endret oppfatning og neste mulige handling.
+- Originalnotatet overskrives ikke. Gamle notater uten feltet `follow_ups` fungerer fremdeles; oppfølginger lagres i samme `hg_psychology_workbench_v1`-liste.
+- Oppfølging gir ikke kompetansepoeng, innsiktspoeng eller nye økter. Lagringsfeil gir beskjed i stedet for en falsk bekreftelse.
 
 ## Eiergrenser
 
@@ -36,6 +43,7 @@ Psykologrommet er et pedagogisk refleksjonsverktøy for selvinnsikt, hverdagsfen
 - [x] Helt manuell fenomenvalg etter lagring.
 - [x] Klikkbar fenomen–øvelse/verktøy–teori-navigasjon, med opprettholdt kontekst etter lagring.
 - [x] Lokal lagring, eksplisitt opplysning om formål og mulig sletting.
+- [x] Åpne samme situasjon igjen, lese originalen og legge til flere daterte oppfølginger uten poeng.
 - [x] Ingen automatisk Civication-kompetanse fra Psykologrommet.
 - [x] De 35 eksisterende teorikortene, 58 emnekoblingene, 70 hypotetiske scenarioene og kanoniske fagverksruter beholdes.
 - [x] History Go-kjerne, Civication Psyke-motoren, PlaceCard og ordinær footer beholdes uendret.
