@@ -712,3 +712,44 @@ Ytterligere direkte lesning og visuell kontroll av [Rush mfl. 1977, trykte s. **
 - **Fortsatt åpne fulltekster:** Kovacs (1981) s. 33–39, Rush (1981) s. 221–229, Rush (1982) s. 862–866. Arkivoriginale manuskripter kan brukes til historisk kontroll, men må sammenholdes med **faktisk publisert versjon** og erstatte den ikke uten dokumentasjon av forskjellene.
 - **Ingen statuspromotering:** `source_review_state=partial_historical_method_review`, åtte felt vurdert, **16 kildeporter totalt**, 32 underpåstander totalt, **0/4** teorikort kilde-/vitenskapelig sluttgodkjent. PR skal forbli **draft**. Ingen felles utvalgsstørrelse eller spesifikk kognitiv kausalmediator er fastslått.
 
+
+
+## 30. Kognitiv terapi – konkret primærkildetilgang og arkivbestilling (11. oktober 2026)
+
+**Status:** Dette er en kildeanskaffelseslogg og en praktisk bestillingsspesifikasjon, **ikke** en ferdig fulltekstrevisjon. Ingen av de tre etterspurte originalfulltekstene fra 1981–1982 ble hentet eller lest i denne kontrollen. Det publiserte deltakerregnskapet **41/32** i 1977 versus **44/35** i 1981 er fortsatt uavklart; Rush-studienes respektive **N=35** er ikke individkoblet.
+
+### 30.1 Konkrete tilgangsresultater
+
+| Dokument | Verifisert tilgangsforsøk | Nåværende bevisnivå |
+| --- | --- | --- |
+| Kovacs, Rush, Beck og Hollon (1981), *Archives of General Psychiatry* 38:33–39, DOI [10.1001/archpsyc.1981.01780260035003](https://doi.org/10.1001/archpsyc.1981.01780260035003) | [Forlagets PDF-lenke](https://jamanetwork.com/journals/jamapsychiatry/articlepdf/492460/archpsyc_38_1_003.pdf) fører ved offentlig tilgang tilbake til abstract/innlogging; JAMA angir kjøp eller institusjonstilgang. | Originalabstract kontrollert; originalsidene 33–39 **ikke lest**. |
+| Rush, Kovacs, Beck, Weissenburger og Hollon (1981), *Journal of Affective Disorders* 3:221–229, DOI [10.1016/0165-0327(81)90024-0](https://doi.org/10.1016/0165-0327(81)90024-0) | [Elseviers forlagsside](https://www.sciencedirect.com/science/article/pii/0165032781900240) viser metode-/resultatabstract, men ingen etterprøvbar åpen fulltekst i denne kontrollen. | Originalabstract kontrollert; artikkelsider og panelmatriser **ikke lest**. |
+| Rush, Beck, Kovacs, Weissenburger og Hollon (1982), *American Journal of Psychiatry* 139:862–866, DOI [10.1176/ajp.139.7.862](https://doi.org/10.1176/ajp.139.7.862) | [Forlagets PDF-endepunkt](https://psychiatryonline.org/doi/pdf/10.1176/ajp.139.7.862?download=true) er identifisert, men returnerte HTTP 403 ved henteforsøk; [PubMed](https://pubmed.ncbi.nlm.nih.gov/7091401/) bekrefter abstract og bibliografi. | Originalabstract kontrollert; artikkelsider 862–866 **ikke lest**. |
+
+En lenke med «PDF» i adresse eller søkeresultat er **ikke** bevis for at originalens sidetekst eller tabeller er gjennomgått. Ingen av publikasjonene er derfor oppgradert til fulltekstverifisert.
+
+### 30.2 Originalmanuskripter ved University of Pennsylvania Archives
+
+Den offisielle [*Aaron T. Beck Papers*, UPT 50 B393](https://archives.upenn.edu/collections/finding-aid/upt50b393/), katalogfører særlig følgende **ikke gjennomleste** mulige kildebroer:
+
+| Boks/mappe | Katalogert materiale | Faglig undersøkelsesspørsmål |
+| --- | --- | --- |
+| **52/45** | Manuskript #127, *one-year follow-up of depressed outpatients treated with cognitive therapy or pharmacotherapy* (Kovacs mfl., 1980) | Kan manuskriptet forklare 44/35 og eventuelle forskjeller fra den publiserte 1977-rapporten? |
+| **12/36** | Steven D. Hollon, *Manuscripts and research material, 1977–1981* | Finnes kontrollert studie-/rekrutteringsbeskrivelse eller kobling til den første behandlingsstudien? |
+| **4/34** | Brian Shaw, *Cognitive therapy outcome studies*, tabell (1977) | Kan samtidige aggregerte tabeller bidra til å avklare teller-/nevnerdefinisjoner? |
+| **49/22** | *Cognitive therapy versus pharmacotherapy of depression*, Steven D. Hollon mfl. (august 1977) | Sammenhold rapporteringsperiode, utvalgskriterier og analyser mot 1977-originalen. |
+| **50/52** | *Differential effects of cognitive therapy and pharmacotherapy on hopelessness and self concept*, Rush mfl. (1980) | Kan dette være et forarbeid til senere analyser, og beskrives eventuelle analyseutvalg? **Tekstidentitet er ikke bekreftet.** |
+
+**Arkivets egen bestillingsordning er kontrollert:** [Research Services and Fees](https://archives.upenn.edu/research/services-fees/) oppgir mulighet for digital reproduksjon, **inntil 100 PDF-sider uten sideavgift**, men forskningsassistanse kan medføre gebyrer og tilgang krever arkivets aksept. Offisiell kontakt: [University Archives](https://archives.upenn.edu/archives-info/contact/), **uarc@pobox.upenn.edu**. [Penn Libraries Request a Scan](https://www.library.upenn.edu/services/request-scan) beskriver en separat ordning for tidsskriftartikler og spesialsamlinger; tilgjengelighet for eksterne brukere må bekreftes. **Ingen forespørsel er sendt, ingen dokumenter bestilt og ingen betaling avtalt.**
+
+**Forespørselens avgrensning:** Be om publiserte originalartikler, eventuelt allerede tilgjengelige skann av de fem ovennevnte manuskript-/tabellmappene, samt kun **anonymiserte/aggregert rapporterte** utvalgstall. Ikke be om identifiserbare pasientjournaler.
+
+### 30.3 Kontrollport ved faktisk dokumentmottak
+
+1. Noter utgave, fysisk sidetall, proveniens og hele originalens tilgjengelighet per verk.
+2. Rekonstruer for **hver publikasjon**: screenet → inkludert → tildelt → behandlet → protokollfullført → gyldig måling → analyse → oppfølging, med gruppevise nevnere og grunner til frafall bare der originalen faktisk angir dem.
+3. Skill **rekrutteringsutvalg**, **fullførere**, **korttidsanalyse** og **oppfølgingsanalyse**. Dokumenter eksplisitt om 41/32 og 44/35 er samme studiedeltakere etter ulike inklusjons-/dataregler, utvidet rekruttering eller separate utvalg. Et konstant differansetall på tre er ikke nok.
+4. Sammenhold Rush 1981 og Rush 1982 med Kovacs 1981 på tidsperiode, inklusjonskriterier, behandlingsarmer, utvalgsflyt og analysemål. Merk **dokumentert overlapp**, **dokumentert ikke-overlapp** eller **ukjent**; ikke summer tre N=35-publikasjoner til tre uavhengige behandlingseksperimenter.
+5. Før separat skjevhetsvurdering av tildeling, ublindede vurderere, ulik kontaktmengde, interkurrent behandling, informativt frafall, håndtering av manglende verdier og alternative årsaksforklaringer. Godkjenn kun formuleringer med etterprøvbart, direkte belegg.
+
+**Sperre opprettholdes:** Kildeanskaffelsen er fortsatt ufullført; ingen kohortavvik er løst og ingen ny vitenskapelig evidens er påvist. `kognitiv_terapi` er **ikke** `source_verified`, PR #6206 forblir **draft**, og verken kort, påstandsregister, godkjenningsfelt eller History Go-/Civication-kode endres i denne dokumentasjonsoppdateringen.
