@@ -22,7 +22,7 @@ const partiallyReviewed = catalog.theories.filter((theory) => theory.source_revi
 const expectedPartials = [
   "psykoanalyse", "behaviorisme", "kognitiv_psykologi",
   "humanistisk_psykologi", "femfaktormodellen", "heuristikker",
-  "stressvurdering", "tilknytning", "sosial_laring", "selvbestemmelsesteori",
+  "stressvurdering", "tilknytning", "sosial_laring", "selvbestemmelsesteori", "hukommelse_gjenhenting",
   "sosial_identitet", "konformitet", "resiliens",
   "kognitiv_terapi", "biopsykososial_modell"
 ];
@@ -52,9 +52,9 @@ for (const theory of partiallyReviewed) {
   }
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 15);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 31,
-  "seventeen additional relevant emner, including one new primary theory, are linked");
+assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 16);
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 32,
+  "eighteen additional relevant emner, including two new primary theories, are linked");
 // Batch 02: eight new canonical claim-bound, still-unreviewed reuse links.
 const batch02Links = [
   [
@@ -117,7 +117,7 @@ for (const [theoryId, emneId, claimId, sourceId] of batch02Links) {
   assert.equal(byEmne.get(emneId).source_review_status, "not_reviewed");
   assert.equal(byEmne.get(emneId).editorial_review_status, "not_reviewed");
 }
-assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 27);
+assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 26);
 
 const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
 assert.equal(extraLinks.length, 16);
@@ -216,7 +216,7 @@ assert.match(reviewed.get("humanistisk_psykologi").limit, /seks betingelser.*teo
 assert.match(reviewed.get("sosial_laring").method, /1961.*1977/);
 assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimenter.*belønning/);
 assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
-assert.equal(catalog.theories.length, 15);
+assert.equal(catalog.theories.length, 16);
 
 // First new theory card: independent primary emne, with traceable sources and
 // educational text, but no false scholarly-verification promotion.
@@ -237,12 +237,28 @@ for (const [claimId, sourceId] of [["uol-13", "src-student-motivation"], ["uol-1
 assert.deepEqual(selfDetermination.teaching_view.featured_reference_urls.length, 4);
 assert.ok(!selfDetermination.related_emne_links, "do not force a cross-chapter link");
 
+// The first dedicated memory research card has two traceable canonical links.
+const memoryCard = catalog.theories.find((x) => x.id === "hukommelse_gjenhenting");
+assert.ok(memoryCard);
+assert.equal(memoryCard.emne_id, "em_psy_laring_hukommelse");
+assert.equal(memoryCard.compare_with, "selvbestemmelsesteori");
+assert.equal(memoryCard.teaching_view.editorial_state, "ready_for_educational_use");
+assert.match(memoryCard.idea, /Ebbinghaus/);
+assert.match(memoryCard.limit, /universelt optimalt intervall/);
+assert.deepEqual(byEmne.get("em_psy_laring_hukommelse").theory_ids, ["hukommelse_gjenhenting"]);
+assert.equal(byEmne.get("em_psy_laring_hukommelse").source_review_status, "not_reviewed");
+for (const [claimId, sourceId] of [["uol-10", "src-retrieval-practice"], ["uol-11", "src-spacing"]]) {
+  assert.ok(memoryCard.reference_links.some((r) => r.canonical_claim_ids.includes(claimId) && r.canonical_source_ids.includes(sourceId)),
+    "memory card must tie learning claim to canonical source");
+}
+assert.equal(memoryCard.teaching_view.featured_reference_urls.length, 4);
+
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
 assert.equal(fieldEvidence.schema, "history_go_psykoteori_field_evidence_matrix_v1");
 assert.equal(fieldEvidence.card_count, 14);
-assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.filter((x) => x.id !== "selvbestemmelsesteori").map((x) => x.id));
+assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.filter((x) => !["selvbestemmelsesteori", "hukommelse_gjenhenting"].includes(x.id)).map((x) => x.id));
 for (const row of fieldEvidence.cards) {
   const theory = catalog.theories.find((x) => x.id === row.theory_id);
   assert.equal(row.emne_id, theory.emne_id, "matrix emne mismatch: " + row.theory_id);
