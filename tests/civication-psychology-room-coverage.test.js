@@ -23,11 +23,11 @@ const expectedPartials = [
   "diagnostisk_klassifikasjon_historie", "psykoanalyse", "behaviorisme", "globalt_arbeidsrom_bevissthet", "kognitiv_psykologi",
   "humanistisk_psykologi", "femfaktormodellen", "psykometri_validitet", "emosjonsregulering", "heuristikker", "arbeidsminne_flerkomponent", "persepsjon_prediktiv_prosessering", "hverdagsattribusjon_og_vaner",
   "stressvurdering", "tilknytning", "sosial_laring", "selvbestemmelsesteori", "hukommelse_gjenhenting", "identitetsutvikling_erikson_marcia",
-  "sosial_identitet", "konformitet", "ensomhet_sosial_tilhorighet", "stigma_sosial_merking", "resiliens", "sorg_dobbelprosessmodell",
+  "sosial_identitet", "konformitet", "ensomhet_sosial_tilhorighet", "stigma_sosial_merking", "kollektiv_krise_flerniva", "resiliens", "trygghet_tillit_krisehjelp", "vold_belastning_tvangskontroll", "sorg_dobbelprosessmodell",
   "kognitiv_terapi", "psykiatri_institusjonshistorie", "biopsykososial_modell"
 ];
 assert.deepEqual(partiallyReviewed.map((theory) => theory.id), expectedPartials,
-  "batches 01–06 must be accounted for as PARTIAL reviews, not scholarly approval");
+  "batches 01–07 must be accounted for as PARTIAL reviews, not scholarly approval");
 for (const theory of partiallyReviewed) {
   assert.ok(expectedPartials.includes(theory.id));
   const entry = byEmne.get(theory.emne_id);
@@ -52,8 +52,8 @@ for (const theory of partiallyReviewed) {
   }
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 28);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 51,
+assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 31);
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 54,
   "group 4 adds three primary and three scoped reuse links");
 // Batch 02: eight new canonical claim-bound, still-unreviewed reuse links.
 const batch02Links = [
@@ -117,7 +117,7 @@ for (const [theoryId, emneId, claimId, sourceId] of batch02Links) {
   assert.equal(byEmne.get(emneId).source_review_status, "not_reviewed");
   assert.equal(byEmne.get(emneId).editorial_review_status, "not_reviewed");
 }
-assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 7);
+assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 4);
 
 const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
 assert.equal(extraLinks.length, 23);
@@ -216,7 +216,7 @@ assert.match(reviewed.get("humanistisk_psykologi").limit, /seks betingelser.*teo
 assert.match(reviewed.get("sosial_laring").method, /1961.*1977/);
 assert.match(reviewed.get("sosial_identitet").method, /Minimalgruppeeksperimenter.*belønning/);
 assert.match(reviewed.get("biopsykososial_modell").limit, /ikke en dokumentert årsaksfordeling/);
-assert.equal(catalog.theories.length, 28);
+assert.equal(catalog.theories.length, 31);
 
 // First new theory card: independent primary emne, with traceable sources and
 // educational text, but no false scholarly-verification promotion.
@@ -393,7 +393,7 @@ for (const [id, primary, comparison, historical, claim, source] of [
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
 assert.equal(fieldEvidence.schema, "history_go_psykoteori_field_evidence_matrix_v1");
 assert.equal(fieldEvidence.card_count, 14);
-assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.filter((x) => !["selvbestemmelsesteori", "hukommelse_gjenhenting", "emosjonsregulering", "stigma_sosial_merking", "sorg_dobbelprosessmodell", "psykometri_validitet", "arbeidsminne_flerkomponent", "identitetsutvikling_erikson_marcia", "globalt_arbeidsrom_bevissthet", "persepsjon_prediktiv_prosessering", "psykiatri_institusjonshistorie", "diagnostisk_klassifikasjon_historie", "hverdagsattribusjon_og_vaner", "ensomhet_sosial_tilhorighet"].includes(x.id)).map((x) => x.id));
+assert.deepEqual(fieldEvidence.cards.map((x) => x.theory_id), catalog.theories.filter((x) => !["selvbestemmelsesteori", "hukommelse_gjenhenting", "emosjonsregulering", "stigma_sosial_merking", "sorg_dobbelprosessmodell", "psykometri_validitet", "arbeidsminne_flerkomponent", "identitetsutvikling_erikson_marcia", "globalt_arbeidsrom_bevissthet", "persepsjon_prediktiv_prosessering", "psykiatri_institusjonshistorie", "diagnostisk_klassifikasjon_historie", "hverdagsattribusjon_og_vaner", "ensomhet_sosial_tilhorighet", "kollektiv_krise_flerniva", "trygghet_tillit_krisehjelp", "vold_belastning_tvangskontroll"].includes(x.id)).map((x) => x.id));
 for (const row of fieldEvidence.cards) {
   const theory = catalog.theories.find((x) => x.id === row.theory_id);
   assert.equal(row.emne_id, theory.emne_id, "matrix emne mismatch: " + row.theory_id);
