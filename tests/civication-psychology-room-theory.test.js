@@ -70,7 +70,11 @@ let overlay = null;
 const existing = new Map();
 global.document = {
   body: { appendChild(value) { overlay = value; } },
-  getElementById(id) { return id === "psychologyRoomOverlay" ? overlay : null; },
+  getElementById(id) {
+    if (id === "psychologyRoomOverlay") return overlay;
+    if (["psychologyRoomWorkbenchForm", "psychologyRoomExerciseForm"].includes(id)) return node("#" + id);
+    return null;
+  },
   createElement() { return node("overlay"); },
   querySelector(selector) {
     if (!existing.has(selector)) existing.set(selector, node(selector));
@@ -78,6 +82,8 @@ global.document = {
   },
   querySelectorAll(selector) {
     if (selector === "[data-psych-focus]") return phenomena.map((item) => node("focus:" + item.id, { psychFocus: item.id }));
+    if (selector === "[data-phenomenon-id]") return phenomena.map((item) => node("phenomenon:" + item.id, { phenomenonId: item.id }));
+    if (selector === "[data-psych-next-theory]") return catalog.theories.map((item) => node("next-theory:" + item.id, { psychNextTheory: item.id }));
     if (selector === "[data-psych-related]") return [
       ...tools.map((item) => node("related-tool:" + item.id, { psychRelated: "tool", psychRelatedId: item.id })),
       ...exercises.map((item) => node("related-exercise:" + item.id, { psychRelated: "exercise", psychRelatedId: item.id })),
@@ -256,6 +262,31 @@ const press = (selector) => {
   assert.equal(window.PsychologyRoom.getWorkbenchEntries().length, 1);
   assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
   assert.equal(storage.size, 1, "a voluntary reflection is stored under one isolated local key");
+
+  // Follow the real end-to-end flow without inferring a phenotype from free text:
+  // self-description -> manual phenomenon choice -> short exercise -> theory.
+  press('[data-psych-nav="home"]');
+  press("[data-psych-action='workbench']");
+  const submitWorkbench = handlers.get("#psychologyRoomWorkbenchForm:submit");
+  assert.equal(typeof submitWorkbench, "function");
+  const formElements = Object.fromEntries(["situation", "thoughts", "feelings", "body", "actions", "next_step"]
+    .map((key) => [key, { value: key === "situation" ? "Jeg utsatte oppgaven." : key }]));
+  submitWorkbench({ preventDefault() {}, currentTarget: { elements: formElements } });
+  assert.match(rendered, /Velg selv et fenomen å undersøke/);
+  assert.equal(window.PsychologyRoom.getWorkbenchEntries().length, 2);
+  press("phenomenon:unngaelsesforsterkning");
+  assert.match(rendered, /Du har valgt dette fenomenet selv/);
+  press("related-exercise:dagens_behov_v1");
+  assert.match(rendered, /Kort refleksjon/);
+  const submitExercise = handlers.get("#psychologyRoomExerciseForm:submit");
+  assert.equal(typeof submitExercise, "function");
+  submitExercise({ preventDefault() {}, currentTarget: { elements: { reflection: { value: "Neste gang starter jeg med fem minutter." } } } });
+  assert.match(rendered, /Du har gjennomført en øvelse/);
+  assert.match(rendered, /Trinn 04: Utforsk forskningen/);
+  assert.match(rendered, /data-psych-next-theory="behaviorisme"/);
+  press("next-theory:behaviorisme");
+  assert.match(rendered, /Fordypning i psykologifagverket/);
+
   press('[data-psych-nav="phenomena"]');
   assert.match(rendered, /Fenomenleksikon/);
   assert.doesNotMatch(rendered, /Velg selv et fenomen å undersøke/,
