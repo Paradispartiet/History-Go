@@ -3,22 +3,54 @@ on:
   pull_request:
     branches:
       - main
-  workflow_dispatch:
+concurrency:
+  group: arbeiderbladet-visual-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
   visual:
-    name: Four-width browser audit
+    name: Generate scoped outputs and inspect four widths
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: npm
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
+      - name: Regenerate source-owned projections
+        run: |
+          npm run build:web
+          npm run place-open:build
+          npm run civication:history-people:build
+          node --experimental-strip-types scripts/build-civication-scenario-people-index.mts
+      - name: Check regeneration scope and commit only if needed
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only | tee /tmp/arb-changed.txt
+          while IFS= read -r changed; do
+            case "$changed" in
+              dist/web/place-unified-surface.js|dist/web/place-unified-surface.js.map|data/runtime/place-open/arbeiderbladet_youngstorget.json|data/runtime/place-open/aftenposten_akersgata.json|data/runtime/place-open/dagbladet_akersgata.json|data/Civication/historyPeople_index.json|data/Civication/scenarioPeople/generated/media.json|data/Civication/scenarioPeople_index.json)
+                ;;
+              *) echo "::error::Unexpected regenerated file: $changed"; exit 1;;
+            esac
+          done </tmp/arb-changed.txt
+          if [[ -s /tmp/arb-changed.txt ]]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- dist/web/place-unified-surface.js dist/web/place-unified-surface.js.map data/runtime/place-open/arbeiderbladet_youngstorget.json data/runtime/place-open/aftenposten_akersgata.json data/runtime/place-open/dagbladet_akersgata.json data/Civication/historyPeople_index.json data/Civication/scenarioPeople/generated/media.json data/Civication/scenarioPeople_index.json
+            git commit -m "Regenerate Arbeiderbladet dependent projections from canonical sources"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Audit real PlaceCard / Fagverk on four widths
