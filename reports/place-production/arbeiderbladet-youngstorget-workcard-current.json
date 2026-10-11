@@ -76,12 +76,21 @@
       ]
     },
     "quiz": {
-      "status": "BLOCKED",
-      "reason": "Separat canonical quiz-PR gjenstår etter core."
+      "status": "PASS",
+      "reason": "Separat quizløp: 28 kildebelagte oppgaver i fire sett; Knowledge, kildekontekst, progresjon og teori består. Alle 28 spilt på desktop og mobil med én belønning og ingen besøksregistrering.",
+      "refs": [
+        "data/quiz/media/arbeiderbladet_youngstorget_sets.json",
+        "data/quiz/production_context/media/arbeiderbladet_youngstorget.json",
+        "reports/place-production/arbeiderbladet-youngstorget-quiz-review-20261011.md"
+      ]
     },
     "quizcard": {
-      "status": "BLOCKED",
-      "reason": "Separat QuizCard produseres fra ferdig quiz; faktisk flip skal testes."
+      "status": "PASS",
+      "reason": "Dedikert ti-spørsmålsflate med fasit, manifestbinding og faktisk flip/utvidelse på fire skjermstørrelser.",
+      "refs": [
+        "data/quizcards/media/arbeiderbladet_youngstorget_quizkort_v1.json",
+        "data/quizcards/media/manifest.json"
+      ]
     },
     "reading_tracks": {
       "status": "PASS",
@@ -100,7 +109,7 @@
     }
   },
   "blockers": [
-    "Separat quiz-PR og QuizCard gjenstår."
+    "Manuell UI-kontroll fant hvitt ordmerke på hvit forhåndsvisning, ufullstendig Stanghelle-teaser og klippet Fagverk-tittel. Rettet lokalt; ny faktisk nettleserevidens og sluttkontroll gjenstår."
   ],
   "manual_reviews": {
     "images": {
@@ -109,7 +118,7 @@
     },
     "final_ui": {
       "status": "PENDING",
-      "evidence": "Faktisk nettleser-QA av ny place, collections, Fagverk, Story og QuizCard gjenstår."
+      "evidence": "Første Actions 38163175595 og 20 manuelt åpnede skjermbilder dokumenterer fungerende quiz, flip og integrasjoner, men visuelle avvik skal kontrolleres i ny kjøring før godkjenning."
     }
   }
 }
