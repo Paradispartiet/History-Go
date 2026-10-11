@@ -35,14 +35,14 @@ Tre forskjellige teorihistoriske forløp og seks forskjellige hypotetiske underv
 ## Verifikasjon og kvalitetsport
 Maskinell preflight av endringsgrunnlaget: 22 teorikort; 43/58 kanoniske emner direkte koblet; 15 ukoblede; 44 unike undervisningsscenarioer; 21 sekundærkoblinger totalt. Eksisterende 14-korts evidensmatrise er uendret.
 
-Kvalitetsvurderingen nedenfor er **foreløpig**, før GitHub CI:
-| Dimensjon | Foreløpig / 5 | Grunnlag / åpent |
+Kvalitetsvurdering for den avtalte produksjonsgruppen, etter retting av et registeravvik og grønn relevant CI på PR-head `7d806e7`:
+| Dimensjon | Score / 5 | Evidens og begrensning |
 | --- | ---: | --- |
-| Korrekthet og evidens | 4 | Bibliografiske primærkilder og claim-ID-spor; ikke ny fulltekstgjennomgang |
-| Dekning av avtalt gruppe | 5 | Tre kort, seks avgrensede koblinger, to scenarioer per kort |
-| Faglig/redaksjonell kvalitet | 4 | Historisk konkret skille mellom statistisk metode, kognitiv modell og identitetsteori |
-| Teknisk integritet | 3 | Strukturell preflight i endringsscript; relevant CI må bestås før merge |
+| Korrekthet og evidens | 4 | Historiske originalpublikasjoner og presise claim-/source-ID-er; ingen ny uttømmende originalfulltekstgjennomgang |
+| Dekning av avtalt gruppe | 5 | Tre ulike kort, tre primære og tre kildeankrede sekundæremner, seks forskjellige scenarioer |
+| Faglig/redaksjonell kvalitet | 4 | Særskilt historisk metode og begrensning for statistisk testvaliditet, arbeidsminnemodell og identitetsintervju |
+| Teknisk integritet | 5 | Psykoteori workflow 38170773551 og repository hygiene 38170773603 bestod; theory navigation, competence og structure audit inkludert |
 | Sikkerhet og ansvarlighet | 5 | Ingen diagnostikk, personlig skåring, personklassifisering eller behandlingsråd |
-| Vedlikeholdbarhet og etterprøvbarhet | 5 | Kanoniske ID-er, kildelenker, avgrenset diff og regresjonstester |
+| Vedlikeholdbarhet og etterprøvbarhet | 5 | Kanoniske ID-er, kildelenker, fem avgrensede filer og regresjonstester |
 
-**Foreløpig sum: 26/30. Ingen påstand om høy kvalitet eller mergeklar før faktisk CI, kontroll av differ og oppdatert portvurdering.**
+**Samlet: 28/30.** Alle seks dimensjoner er minst 4/5. Kvalitetsporten gjelder *produksjonsgruppe 4*, ikke vitenskapelig sluttgodkjenning av alle 22 kort eller alle 58 emner. Registeravviket `fti-01` i psykometri-kandidater ble funnet av første CI og korrigert til artikkelens `fti-03`; begge workflowene bestod på etterfølgende commit. Endelig PR-head etter denne rapportendringen skal også ha grønn CI før merge.
