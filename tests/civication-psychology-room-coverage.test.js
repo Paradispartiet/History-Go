@@ -451,6 +451,23 @@ assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
     && u.card_is_source_verified === false && u.full_original_review_complete === false));
 assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
   r.id === "kognitiv_terapi_rush_1981").access, "elsevier_original_publisher_abstract_read_fulltext_unavailable");
+// Original Rush et al. (1977): sample N=41, differential dropout and methodological limitations.
+const rush1977Original = "https://dradamvolungis.com/wp-content/uploads/2012/01/efficacy-of-cognitive-therapy-treatment-for-depression-rush-et-al-1977.pdf";
+assert.match(cbtCard.period, /1977: Rush.*N=41.*19.*22/);
+assert.match(cbtCard.method, /110 søkere.*41 inkludert.*terapeuttider.*ikke blindet/);
+assert.match(cbtCard.limit, /1 av 19 CT.*8 av 22 imipramin/);
+assert.match(cbtCard.limit, /N=41.*N=44.*ikke dokumentert/);
+assert.ok(cbtCard.reference_links.some((r) =>
+  r.url === rush1977Original && r.canonical_claim_ids.length === 0 && r.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((r) => r.theory_id === "kognitiv_terapi")
+  .group_1_source_audit.new_reference_urls.includes(rush1977Original));
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
+  && ["period","method","limit"].includes(u.field))
+  .every((u) => u.evidence_urls.includes(rush1977Original)
+    && u.card_is_source_verified === false && u.full_original_review_complete === false));
+assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
+  r.id === "kognitiv_terapi_rush_1977").access,
+  "1977_21page_original_journal_scan_available_selected_design_results_and_limitations_pp17_22_27_32_35_checked");
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
 assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
@@ -463,8 +480,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 14);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 14);
+assert.equal(detailedReview.original_publication_audit.entries.length, 15);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 15);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
