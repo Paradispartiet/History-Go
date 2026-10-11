@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import sharp from 'sharp';
 import {deriveWorkflowState, deriveSelectedCollections, loadWorkflowRecord} from '../scripts/place-production-v3-lib.mjs';
 import {validateRepository} from '../scripts/validate-place-description-production-v4_2.mjs';
+import {applySourceLedLengthPolicy} from '../scripts/validate-place-description-production-v4_2_policy.mjs';
 import {checkPlaceTranslationFreshness} from '../scripts/check-place-i18n-freshness.mjs';
 const id='dagbladet_akersgata';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
@@ -17,7 +18,7 @@ test('opening payload preserves the physical 1967 address anchor and reviewed ch
  assert.match(runtime.place.popupDesc,/grunnlagt i 1869/);
  assert.equal(runtime.place.lat,59.914542408879896);
  assert.equal(runtime.place.lon,10.74304201409404);
- assert.deepEqual(validateRepository().issues.filter(x=>x.packetFile===`data/places/production/${id}.json`),[]);
+ assert.deepEqual(applySourceLedLengthPolicy(validateRepository()).issues.filter(x=>x.packetFile===`data/places/production/${id}.json`),[]);
  assert.deepEqual(checkPlaceTranslationFreshness(id).errors,[]);
 });
 test('curated Fagverk is navigable and every source is exposed in the place',()=>{
