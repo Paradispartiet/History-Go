@@ -25,6 +25,7 @@
   };
 
   let dataCache = null;
+  let activeSection = "home";
 
   function readJson(key, fallback) {
     try {
@@ -102,6 +103,18 @@
       .replace(/\b\w/g, (char) => char.toUpperCase());
   }
 
+  function navigationIcon(kind) {
+    const paths = {
+      home: '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+      phenomena: '<circle cx="12" cy="12" r="8"/><path d="M12 7v10M7 12h10M9 9l6 6M15 9l-6 6"/>',
+      practice: '<path d="M7 3h10v4H7zM5 7h14v14H5z"/><path d="m9 14 2 2 4-5"/>',
+      theories: '<path d="M12 6C9.3 4.3 6.4 4 3 5v14c3.4-1 6.3-.7 9 1 2.7-1.7 5.6-2 9-1V5c-3.4-1-6.3-.7-9 1zM12 6v14"/>',
+      profile: '<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>'
+    };
+    return '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' +
+      (paths[kind] || paths.home) + '</svg>';
+  }
+
   function makeOverlay() {
     let overlay = document.getElementById("psychologyRoomOverlay");
     if (overlay) return overlay;
@@ -112,22 +125,52 @@
     overlay.setAttribute("aria-hidden", "true");
     overlay.innerHTML = `
       <div class="psychology-room-panel" role="dialog" aria-modal="true" aria-labelledby="psychologyRoomTitle">
-        <button class="psychology-room-close" type="button" aria-label="Lukk">✕</button>
+        <button class="psychology-room-close" type="button" aria-label="Lukk Psykologrommet">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
         <div class="psychology-room-content"></div>
+        <nav class="psychology-room-footer" aria-label="Navigasjon i Psykologrommet">
+          <button type="button" data-psych-nav="home" aria-label="Hjem">${navigationIcon("home")}<span>Hjem</span></button>
+          <button type="button" data-psych-nav="phenomena" aria-label="Fenomener">${navigationIcon("phenomena")}<span>Fenomener</span></button>
+          <button type="button" data-psych-nav="practice" aria-label="Øvelser og verktøy">${navigationIcon("practice")}<span>Øvelser</span></button>
+          <button type="button" data-psych-nav="theories" aria-label="Psykoteori">${navigationIcon("theories")}<span>Teori</span></button>
+          <button type="button" data-psych-nav="profile" aria-label="Min side">${navigationIcon("profile")}<span>Min side</span></button>
+        </nav>
       </div>
     `;
     document.body.appendChild(overlay);
     overlay.querySelector(".psychology-room-close")?.addEventListener("click", close);
+    const navigation = {
+      home: renderHome,
+      phenomena: renderPhenomenaList,
+      practice: renderToolsList,
+      theories: renderTheoryList,
+      profile: renderProfile
+    };
+    Object.entries(navigation).forEach(([section, action]) => {
+      overlay.querySelector('[data-psych-nav="' + section + '"]')?.addEventListener("click", action);
+    });
     overlay.addEventListener("click", (event) => {
       if (event.target === overlay) close();
     });
+    document.addEventListener?.("keydown", (event) => {
+      if (event.key === "Escape" && overlay.classList.contains("is-open")) close();
+    });
     return overlay;
+  }
+
+  function setActiveSection(section) {
+    activeSection = section;
   }
 
   function setContent(html) {
     const overlay = makeOverlay();
     const content = overlay.querySelector(".psychology-room-content");
-    if (content) content.innerHTML = html;
+    if (content) {
+      content.innerHTML = html;
+      content.scrollTop = 0;
+    }
+    overlay.dataset.activeSection = activeSection;
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
   }
@@ -142,9 +185,12 @@
   function shell(body) {
     return `
       <header class="psychology-room-header">
-        <div class="psychology-room-kicker">Psykologi</div>
-        <h2 id="psychologyRoomTitle">Psykologrommet</h2>
-        <p>Utforsk psykologisk teori og fagverk, eller bruk screening, øvelser og refleksjon. Innholdet erstatter ikke helsehjelp.</p>
+        <div class="psychology-room-header-logo" aria-hidden="true">Ψ</div>
+        <div class="psychology-room-header-copy">
+          <div class="psychology-room-kicker">History Go <span aria-hidden="true">/</span> Fagrom</div>
+          <h2 id="psychologyRoomTitle">Psykologrommet</h2>
+          <p>Forstå · Utforsk · Prøv · Lær</p>
+        </div>
       </header>
       ${body}
     `;
@@ -460,6 +506,18 @@
     return `<div class="psychology-room-tag-row">${list.map((item) => `<span class="psychology-room-tag">${escapeHtml(item)}</span>`).join("")}</div>`;
   }
 
+  function renderRelatedActions(title, ids, source, kind) {
+    const entries = (Array.isArray(ids) ? ids : [])
+      .map((id) => findById(source, id)).filter(Boolean);
+    if (!entries.length) return "";
+    return '<section class="psychology-room-related"><h4>' + escapeHtml(title) +
+      '</h4><div class="psychology-room-related-grid">' +
+      entries.map((item) => '<button type="button" class="psychology-room-related-action" data-psych-related="' +
+        escapeHtml(kind) + '" data-psych-related-id="' + escapeHtml(item.id) +
+        '"><strong>' + escapeHtml(item.title) + '</strong><span aria-hidden="true">↗</span></button>').join("") +
+      '</div></section>';
+  }
+
   function renderLinkedList(title, ids, sourceList, className = "psychology-room-link-list") {
     const list = Array.isArray(ids) ? ids.filter(Boolean) : [];
     if (!list.length) return "";
@@ -478,6 +536,7 @@
   }
 
   function renderTheoryList() {
+    setActiveSection("theories");
     const chapters = dataCache?.theoryChapters || [];
     const theories = dataCache?.theories || [];
     const sections = chapters.map((chapter) => {
@@ -505,6 +564,7 @@
   }
 
   function renderTheoryDetail(theory) {
+    setActiveSection("theories");
     const theories = dataCache?.theories || [];
     const chapter = (dataCache?.theoryChapters || []).find((item) => item.id === theory.chapter_id);
     const comparison = findById(theories, theory.compare_with);
@@ -596,27 +656,61 @@
   }
 
   function renderHome() {
+    setActiveSection("home");
     const profile = getProfile();
     const pathProgress = readPathProgress();
     const activePaths = Object.values(pathProgress).filter((item) => item && !item.completed_at).length;
+    const sessions = readJson(STORAGE_KEYS.sessions, []);
+    const recent = Array.isArray(sessions) ? sessions[sessions.length - 1] : null;
+    const suggested = [
+      "unngaelsesforsterkning", "ruminasjon", "bekreftelsesbias"
+    ].map((id) => findById(dataCache?.phenomena || [], id)).filter(Boolean);
 
     setContent(shell(`
-      <section class="psychology-room-profile-card">
-        <div><span>Innsiktspoeng</span><strong>${profile.insight_points}</strong></div>
-        <div><span>Økter</span><strong>${profile.completed_sessions}</strong></div>
-        <div><span>Aktive løp</span><strong>${activePaths}</strong></div>
-        <div><span>Screeningfelt</span><strong>${Object.keys(profile.screening || {}).length}</strong></div>
+      <section class="psychology-room-hero">
+        <div class="psychology-room-eyebrow"><span class="psychology-room-spark" aria-hidden="true"></span> DIN ARBEIDSFLATE</div>
+        <h3>Hva vil du forstå<br><em>i dag?</em></h3>
+        <p>Begynn med en konkret situasjon. Undersøk et mønster, prøv en øvelse og finn forskningen bak.</p>
+        <div class="psychology-room-hero-actions">
+          <button class="psychology-room-hero-primary" type="button" data-psych-action="journal">Skriv en refleksjon <span aria-hidden="true">↗</span></button>
+          <button class="psychology-room-hero-secondary" type="button" data-psych-action="tests">Ta en frivillig innsjekk <span aria-hidden="true">→</span></button>
+        </div>
       </section>
-      <section class="psychology-room-actions psychology-room-tabs">
-        <button type="button" data-psych-action="tests">Tester</button>
-        <button type="button" data-psych-action="exercises">Øvelser</button>
-        <button type="button" data-psych-action="phenomena">Fenomenleksikon</button>
-        <button type="button" data-psych-action="theories">Psykoteori</button>
-        <button type="button" data-psych-action="tools">CBT-verktøy</button>
-        <button type="button" data-psych-action="paths">7-dagersløp</button>
-        <button type="button" data-psych-action="journal">Skriv refleksjon</button>
-        <button type="button" data-psych-action="profile">Mine mønstre</button>
+      <section class="psychology-room-section psychology-room-journey">
+        <div class="psychology-room-section-heading">
+          <div><div class="psychology-room-eyebrow">ET SAMMENHENGENDE LØP</div><h3>Fra opplevelse til innsikt</h3></div>
+          <span class="psychology-room-section-count">01 — 04</span>
+        </div>
+        <div class="psychology-room-journey-grid">
+          <div class="psychology-room-journey-item"><span class="psychology-room-journey-index">01</span><strong>Observer</strong><p>Beskriv hva som skjedde, uten å konkludere.</p></div>
+          <div class="psychology-room-journey-item"><span class="psychology-room-journey-index">02</span><strong>Forstå</strong><p>Finn et fenomen som kan belyse situasjonen.</p><button type="button" data-psych-action="phenomena">Utforsk fenomener →</button></div>
+          <div class="psychology-room-journey-item"><span class="psychology-room-journey-index">03</span><strong>Prøv</strong><p>Bruk et konkret verktøy eller en øvelse.</p><button type="button" data-psych-action="tools">Åpne verktøy →</button></div>
+          <div class="psychology-room-journey-item"><span class="psychology-room-journey-index">04</span><strong>Lær</strong><p>Se hvordan forskere har undersøkt fenomenet.</p><button type="button" data-psych-action="theories">Utforsk Psykoteori →</button></div>
+        </div>
       </section>
+      <section class="psychology-room-section psychology-room-featured">
+        <div class="psychology-room-section-heading"><div><div class="psychology-room-eyebrow">UTFORSK ET MØNSTER</div><h3>Et sted å begynne</h3></div></div>
+        <div class="psychology-room-featured-grid">
+          ${suggested.map((item, index) => `<button class="psychology-room-featured-card" type="button" data-psych-focus="${escapeHtml(item.id)}">
+            <span class="psychology-room-featured-number">0${index + 1}</span><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.short || "")}</span>
+            <span class="psychology-room-featured-arrow" aria-hidden="true">↗</span>
+          </button>`).join("")}
+        </div>
+      </section>
+      <section class="psychology-room-section psychology-room-continue">
+        <div class="psychology-room-continue-copy">
+          <div class="psychology-room-eyebrow">DIN EGEN OVERSIKT</div>
+          <h3>${recent ? "Fortsett der du slapp" : "Ta vare på det du lærer"}</h3>
+          <p>${recent ? "Siste aktivitet: " + escapeHtml(recent.title || "Refleksjon") : "Refleksjoner og øvelser samles i din egen oversikt."}</p>
+          <div class="psychology-room-meta-row"><span>${profile.completed_sessions} økter</span><span>${activePaths} aktive løp</span></div>
+        </div>
+        <button type="button" class="psychology-room-continue-button" data-psych-action="profile">Min side →</button>
+      </section>
+      <section class="psychology-room-utility-row">
+        <button type="button" data-psych-action="exercises">Korte øvelser <span aria-hidden="true">↗</span></button>
+        <button type="button" data-psych-action="paths">7-dagersløp <span aria-hidden="true">↗</span></button>
+      </section>
+      <p class="psychology-room-safety-inline">Refleksjon og faglig informasjon – ikke diagnostikk eller behandling.</p>
     `));
 
     document.querySelector("[data-psych-action='tests']")?.addEventListener("click", renderTestList);
@@ -627,9 +721,16 @@
     document.querySelector("[data-psych-action='paths']")?.addEventListener("click", renderPathsList);
     document.querySelector("[data-psych-action='journal']")?.addEventListener("click", renderJournal);
     document.querySelector("[data-psych-action='profile']")?.addEventListener("click", renderProfile);
+    document.querySelectorAll("[data-psych-focus]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const item = findById(dataCache?.phenomena || [], button.dataset.psychFocus);
+        if (item) renderPhenomenonDetail(item);
+      });
+    });
   }
 
   function renderTestList() {
+    setActiveSection("home");
     const tests = dataCache?.tests || [];
     setContent(shell(`${backButton()}<section class="psychology-room-list">${tests.map(test => `<button class="psychology-room-list-item psychology-room-card" type="button" data-test-id="${escapeHtml(test.id)}"><strong>${escapeHtml(test.title)}</strong><span>${escapeHtml(test.description)}</span></button>`).join("") || `<p class="psychology-room-muted">Ingen tester funnet.</p>`}</section>`));
     bindBack();
@@ -642,6 +743,7 @@
   }
 
   function renderTest(test) {
+    setActiveSection("home");
     setContent(shell(`${backButton()}<form id="psychologyRoomTestForm" class="psychology-room-form"><h3>${escapeHtml(test.title)}</h3><p class="psychology-room-muted">${escapeHtml(test.description)}</p>${(test.questions || []).map(question => `<fieldset class="psychology-room-question"><legend>${escapeHtml(question.text)}</legend><div class="psychology-room-scale">${[1,2,3,4,5].map(value => `<label><input type="radio" name="${escapeHtml(question.id)}" value="${value}" required><span>${value}</span></label>`).join("")}</div></fieldset>`).join("")}<button class="psychology-room-primary" type="submit">Lagre test</button></form>`));
     bindBack();
     document.getElementById("psychologyRoomTestForm")?.addEventListener("submit", event => {
@@ -653,6 +755,7 @@
   }
 
   function renderScreeningResult(test, result) {
+    setActiveSection("home");
     const exercise = (dataCache?.exercises || []).find((item) => item.id === result.recommended_exercise_id);
     const highGuidance = Number(result.top_score) >= 70;
     const followUpText = getFollowUpText();
@@ -663,6 +766,7 @@
   }
 
   function renderExerciseList() {
+    setActiveSection("practice");
     const exercises = dataCache?.exercises || [];
     setContent(shell(`${backButton()}<section class="psychology-room-list">${exercises.map(exercise => `<button class="psychology-room-list-item psychology-room-card" type="button" data-exercise-id="${escapeHtml(exercise.id)}"><strong>${escapeHtml(exercise.title)}</strong><span>${escapeHtml(exercise.description)}</span></button>`).join("") || `<p class="psychology-room-muted">Ingen øvelser funnet.</p>`}</section>`));
     bindBack();
@@ -675,6 +779,7 @@
   }
 
   function renderExercise(exercise, context = null) {
+    setActiveSection("practice");
     const isPathContext = context?.type === "path";
     const path = isPathContext ? findById(dataCache?.paths || [], context.pathId) : null;
     const contextText = path ? `Denne øvelsen hører til: ${path.title} – dag ${Number(context.dayNumber || 1)}` : "";
@@ -689,6 +794,7 @@
   }
 
   function renderPhenomenaList() {
+    setActiveSection("phenomena");
     const phenomena = dataCache?.phenomena || [];
     setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>Fenomenleksikon</h3><p class="psychology-room-muted">Psykologiske fenomener og kognitive mønstre som kan hjelpe deg å forstå egne reaksjoner.</p></section><section class="psychology-room-list">${phenomena.map((item) => `<button class="psychology-room-list-item psychology-room-card" type="button" data-phenomenon-id="${escapeHtml(item.id)}"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.short || "")}</span>${renderTags(item.appears_when)}</button>`).join("") || `<p class="psychology-room-muted">Ingen fenomener funnet.</p>`}</section>`));
     bindBack();
@@ -701,10 +807,43 @@
   }
 
   function renderPhenomenonDetail(item, context = null) {
+    setActiveSection("phenomena");
     const path = context?.type === "path" ? findById(dataCache?.paths || [], context.pathId) : null;
     const back = path ? pathBackButton(path.id) : context?.type === "theory" ? backButton("theory:" + context.theoryId) : backButton("phenomena");
-    setContent(shell(`${back}<article class="psychology-room-detail"><div class="psychology-room-kicker">${escapeHtml(item.category || "fenomen")}</div><h3>${escapeHtml(item.title)}</h3><p><strong>${escapeHtml(item.short || "")}</strong></p><p>${escapeHtml(item.description || "")}</p>${renderTags(item.appears_when)}${renderLinkedList("Vanlige tegn", item.common_signs, [])}${renderLinkedList("Nyttige spørsmål", item.helpful_questions, [])}${renderLinkedList("Relaterte CBT-verktøy", item.related_tools, dataCache?.tools || [])}${renderLinkedList("Relaterte tester", item.related_tests, dataCache?.tests || [])}${renderLinkedList("Relaterte øvelser", item.related_exercises, dataCache?.exercises || [])}${item.history_go_angle ? `<p class="psychology-room-guidance">${escapeHtml(item.history_go_angle)}</p>` : ""}${renderTheoryCrossLinks(item)}${dataCache?.phenomenaSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.phenomenaSafetyNote)}</p>` : ""}</article>`));
+    setContent(shell(`${back}<article class="psychology-room-detail psychology-room-phenomenon-detail">
+      <div class="psychology-room-kicker">${escapeHtml(item.category || "fenomen")}</div>
+      <h3>${escapeHtml(item.title)}</h3>
+      <p class="psychology-room-lead">${escapeHtml(item.short || "")}</p>
+      <p>${escapeHtml(item.description || "")}</p>
+      ${renderTags(item.appears_when)}
+      ${renderLinkedList("Vanlige tegn", item.common_signs, [])}
+      ${renderLinkedList("Spørsmål å undersøke", item.helpful_questions, [])}
+      <section class="psychology-room-next"><div class="psychology-room-eyebrow">FRA BEGREP TIL HANDLING</div><h3>Hva vil du gjøre videre?</h3>
+      ${renderRelatedActions("Prøv et refleksjonsverktøy", item.related_tools, dataCache?.tools || [], "tool")}
+      ${renderRelatedActions("Prøv en kort øvelse", item.related_exercises, dataCache?.exercises || [], "exercise")}
+      ${renderRelatedActions("Undersøk en innsjekk", item.related_tests, dataCache?.tests || [], "test")}
+      </section>
+      ${item.history_go_angle ? `<p class="psychology-room-guidance">${escapeHtml(item.history_go_angle)}</p>` : ""}
+      ${renderTheoryCrossLinks(item)}
+      ${dataCache?.phenomenaSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.phenomenaSafetyNote)}</p>` : ""}
+      </article>`));
     bindBack();
+    document.querySelectorAll("[data-psych-related]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const kind = button.dataset.psychRelated;
+        const id = button.dataset.psychRelatedId;
+        if (kind === "tool") {
+          const tool = findById(dataCache?.tools || [], id);
+          if (tool) renderToolDetail(tool);
+        } else if (kind === "exercise") {
+          const exercise = findById(dataCache?.exercises || [], id);
+          if (exercise) renderExercise(exercise);
+        } else if (kind === "test") {
+          const test = findById(dataCache?.tests || [], id);
+          if (test) renderTest(test);
+        }
+      });
+    });
     document.querySelectorAll("[data-phenomenon-theory]").forEach((button) => {
       button.addEventListener("click", () => {
         const theory = findById(dataCache?.theories || [], button.dataset.phenomenonTheory);
@@ -757,6 +896,7 @@
   }
 
   function renderToolsList() {
+    setActiveSection("practice");
     const tools = dataCache?.tools || [];
     setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>CBT-verktøy</h3><p class="psychology-room-muted">Kognitive og atferdsbaserte verktøy for strukturert selvhjelp. Fyll ut verktøyet steg for steg og få innsikt og psykologisk kompetanse.</p></section><section class="psychology-room-list">${tools.map((tool) => {
       const done = getToolCompletions(tool.id).length;
@@ -772,6 +912,7 @@
   }
 
   function renderToolDetail(tool, context = null) {
+    setActiveSection("practice");
     const reward = tool.reward || {};
     const points = Number(reward.insight_points || 0);
     const path = context?.type === "path" ? findById(dataCache?.paths || [], context.pathId) : null;
@@ -797,6 +938,7 @@
   }
 
   function renderPathsList() {
+    setActiveSection("practice");
     const paths = dataCache?.paths || [];
     setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>7-dagersløp</h3><p class="psychology-room-muted">Start et kort selvhjelpsløp, fullfør én dag om gangen og få reward først når hele løpet er fullført.</p></section><section class="psychology-room-list">${paths.map((path) => {
       const progress = getPathProgress(path.id);
@@ -831,6 +973,7 @@
   }
 
   function renderPathDetail(path) {
+    setActiveSection("practice");
     if (!path?.id) return renderPathsList();
     const progress = getPathProgress(path.id);
     const days = Array.isArray(path.days) ? path.days : [];
@@ -880,6 +1023,7 @@
   }
 
   function renderJournal() {
+    setActiveSection("home");
     setContent(shell(`${backButton()}<form id="psychologyRoomJournalForm" class="psychology-room-form"><h3>Refleksjonsrom</h3><label class="psychology-room-textarea-label">Hva legger du merke til i deg selv akkurat nå?<textarea name="reflection" rows="6" required></textarea></label><button class="psychology-room-primary" type="submit">Lagre refleksjon</button></form>`));
     bindBack();
     document.getElementById("psychologyRoomJournalForm")?.addEventListener("submit", event => {
@@ -939,6 +1083,7 @@
   }
 
   function renderProfile() {
+    setActiveSection("profile");
     const profile = getProfile();
     const insights = readJson(STORAGE_KEYS.insights, []);
     const screenings = Array.isArray(insights) ? insights.filter((item) => item.type === "screening") : [];
