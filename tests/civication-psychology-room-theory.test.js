@@ -108,9 +108,9 @@ const press = (selector) => {
   assert.match(rendered, /fagverk\.html\?subject=psykologi&amp;chapter=/);
   press("theory:behaviorisme");
   assert.match(rendered, /Hvordan undersøkes dette\?/);
-  assert.match(rendered, /Kilder og rekkevidde/);
+  assert.match(rendered, /Kilder og videre lesning/);
   assert.match(rendered, /psychology\.fas\.harvard\.edu\/people\/b-f-skinner/);
-  assert.match(rendered, /Hele teorikortet er ennå ikke kildegodkjent/);
+  assert.match(rendered, /For fordypning, se psykologifagverket/);
   assert.match(rendered, /rel="noopener noreferrer"/);
   assert.match(rendered, /Sammenlign teoriene/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_betinging_vaner/);
@@ -120,6 +120,14 @@ const press = (selector) => {
   assert.match(rendered, /Undervisningseksempel 1 \(hypotetisk\)/);
   assert.match(rendered, /Undervisningseksempel 2 \(hypotetisk\)/);
   assert.match(rendered, /plagsom lyd/);
+  press("theory:tilknytning");
+  assert.match(rendered, /Barn søker trygghet hos omsorgspersoner/);
+  assert.match(rendered, /Vis flere kilder/);
+  assert.doesNotMatch(rendered, /NAPS 00762/);
+  assert.match(rendered, /subject=psykologi&amp;emne=em_psy_familie_samspill/);
+  press("theory:kognitiv_terapi");
+  assert.match(rendered, /Kognitiv terapi undersøker hvordan tolkninger/);
+  assert.match(rendered, /subject=psykologi&amp;emne=em_psy_terapi_praksis/);
   press("related:unngaelsesforsterkning");
   assert.match(rendered, /Teoretisk bakgrunn/);
   press("linked:behaviorisme");
