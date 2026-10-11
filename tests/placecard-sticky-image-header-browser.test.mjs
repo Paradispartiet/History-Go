@@ -99,6 +99,8 @@ try {
         badgeX:rect("#pcBadgesIcon").x,
         peopleX:rect("#pcPeopleIcon").x,
         title:rect("#pcTitle"),
+        hero:rect("#pcHeaderHero"),
+        status:rect("#pcStatusBar > .pc-progress-status-line"),
         audio:rect("#pcReaderToggle"),
         favorite:rect("#pcFavorite"),
         people:rect("#pcPeopleIcon"),
@@ -126,6 +128,14 @@ try {
         "Right-hand circles share the lower action row beneath the title: " + desc);
     };
     verifyBelowTitle(initial, "before scroll");
+    assert.ok(initial.status.bottom<=initial.hero.bottom+1,
+      "Small status remains INSIDE original full-size image");
+    assert.ok(initial.status.height<=28,
+      "Progress status must remain visibly smaller than the previous 29px+ line at "+width);
+    await page.locator("#pcStatusBar button").click();
+    assert.equal(await page.evaluate(()=>window.__clicks),1,
+      "Existing progress status action stays clickable in expanded photo");
+
     await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
     // Unified PlaceCard uses smooth native scrolling: wait until the real
     // scroll container has actually moved, not merely for an initial CSS var.
@@ -133,6 +143,13 @@ try {
     await page.waitForFunction(()=>{
       const c=document.querySelector("#placeCard");
       return parseFloat(c.style.getPropertyValue("--pc-visible-hero-height"))>0;
+    });
+    await page.waitForFunction(()=>{
+      const c=document.querySelector("#placeCard");
+      const expanded=parseFloat(c.style.getPropertyValue("--pc-original-hero-height"));
+      const visible=parseFloat(c.style.getPropertyValue("--pc-visible-hero-height"));
+      return Number.isFinite(expanded) && Number.isFinite(visible)
+        && expanded-visible>=45;
     });
     const scrolled=await page.evaluate(()=>{
       const r=(s)=>{const x=document.querySelector(s).getBoundingClientRect();
@@ -164,19 +181,21 @@ try {
     verifyBelowTitle(scrolled, "after scroll");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
-    assert.ok(scrolled.visible.height<=initial.heading+4,"Image bottom may crop, never expands");
+    assert.ok(scrolled.visible.height<=initial.heading-40,
+      "Actual original image must shrink significantly during scroll; not just a few pixels: "+JSON.stringify(scrolled));
     assert.ok(scrolled.title.bottom<=scrolled.visible.bottom+1,"Title stays visible");
     assert.ok(scrolled.audio.bottom<=scrolled.visible.bottom+1
       && scrolled.favorite.bottom<=scrolled.visible.bottom+1,
       "Audio and favorite remain inside pinned original image");
     assert.ok(scrolled.people.bottom<=scrolled.visible.bottom+1
       && scrolled.badge.bottom<=scrolled.visible.bottom+1,"Icon circles stay visible");
-    assert.ok(scrolled.meta.bottom<=scrolled.visible.bottom+1
-      && scrolled.status.bottom<=scrolled.visible.bottom+1,"Original category, epoch and status stay visible");
+    assert.ok(scrolled.meta.bottom>scrolled.visible.bottom+1
+      && scrolled.status.bottom>scrolled.visible.bottom+1,
+      "Metadata and status stay in the original image DOM, but the lower edge scrolls away");
     assert.ok(scrolled.nav.top>=scrolled.visible.bottom-1,"Navigation follows pinned image");
 
-    await page.locator("#pcStatusBar button").click();
-    assert.equal(await page.evaluate(()=>window.__clicks),1,"Real original progress action still clickable");
+    // Do not click the status while clipped: it is intentionally part of the
+    // expanded photo, not the permanently visible compact header.
 
     await page.evaluate(()=>{
       const c=document.createElement("canvas");c.width=1200;c.height=750;
