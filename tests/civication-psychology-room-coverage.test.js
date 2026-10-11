@@ -468,6 +468,25 @@ assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
 assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
   r.id === "kognitiv_terapi_rush_1977").access,
   "1977_21page_original_journal_scan_available_selected_design_results_and_limitations_pp17_22_27_32_35_checked");
+// Original July 1982 N=35 is a third publication; matching N does not prove participant identity.
+const rush1982SelfConcept = "https://pubmed.ncbi.nlm.nih.gov/7091401/";
+assert.ok(cbtCard.period.includes("juli 1982: Rush"));
+assert.ok(cbtCard.method.includes("over omtrent 11 uker") && cbtCard.method.includes("håpløshet og selvoppfatning"));
+assert.ok(cbtCard.limit.includes("samme oppgitte N=35 som i to artikler fra 1981"));
+assert.ok(cbtCard.limit.includes("pasientoverlapp ikke bekreftet"));
+assert.ok(cbtCard.reference_links.some((r) =>
+  r.url === rush1982SelfConcept
+  && r.canonical_claim_ids.length === 0 && r.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((r) => r.theory_id === "kognitiv_terapi")
+  .group_1_source_audit.new_reference_urls.includes(rush1982SelfConcept));
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
+  && ["period","method","limit"].includes(u.field))
+  .every((u) => u.evidence_urls.includes(rush1982SelfConcept)
+    && u.card_is_source_verified === false && u.full_original_review_complete === false));
+const rush1982Gate = detailedReview.original_publication_audit.entries.find((r) =>
+  r.id === "kognitiv_terapi_rush_1982");
+assert.equal(rush1982Gate.access, "american_journal_of_psychiatry_original_publisher_abstract_only_fulltext_paywalled");
+assert.ok(rush1982Gate.open_requirement.includes("subject provenance"));
 // Original 1977 treatment completers cannot be relabeled as the 1981 abstract's 35.
 const trialFlow1977 = { ctStart: 19, drugStart: 22, ctDropouts: 1, drugDropouts: 8 };
 const completers1977 = trialFlow1977.ctStart + trialFlow1977.drugStart
@@ -500,8 +519,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 15);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 15);
+assert.equal(detailedReview.original_publication_audit.entries.length, 16);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 16);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
