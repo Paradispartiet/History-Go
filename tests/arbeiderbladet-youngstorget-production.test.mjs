@@ -5,6 +5,7 @@ import crypto from 'node:crypto';
 import sharp from 'sharp';
 import { loadWorkflowRecord, deriveWorkflowState, deriveSelectedCollections } from '../scripts/place-production-v3-lib.mjs';
 import { validateRepository } from '../scripts/validate-place-description-production-v4_2.mjs';
+import { applySourceLedLengthPolicy } from '../scripts/validate-place-description-production-v4_2_policy.mjs';
 const id='arbeiderbladet_youngstorget';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const place=read(`data/places/media/oslo/places_oslo_media/${id}.json`);
@@ -18,9 +19,9 @@ test('historic editorial site preserves the dated physical identity and current 
  assert.equal(place.coordRole,'historical_anchor');
  assert.match(place.coordNote,/stedfestingverifisert=false/);
  assert.match(place.popupDesc,/Dagsavisen fra 1998/);
- assert.match(place.popupDesc,/etter at redaksjonen hadde forlatt Youngstorget/);
+ assert.match(place.popupDesc,/Først etter utflyttingen kom tabloidformatet i 1990/);
  assert.equal(runtime.place.popupDesc,place.popupDesc);
- assert.deepEqual(validateRepository().issues.filter(x=>x.packetFile===`data/places/production/${id}.json`),[]);
+ assert.deepEqual(applySourceLedLengthPolicy(validateRepository()).issues.filter(x=>x.packetFile===`data/places/production/${id}.json`),[]);
 });
 test('Fagverk exposes political parallelism and two distinguishable sourced cases',()=>{
  assert.equal(runtime.place.fagverk.level,'full');

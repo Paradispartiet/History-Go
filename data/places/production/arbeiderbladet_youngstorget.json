@@ -101,7 +101,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1884
+      "timelineYear": 1884,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_social",
@@ -114,7 +115,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1886
+      "timelineYear": 1886,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_organ",
@@ -127,7 +129,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1887
+      "timelineYear": 1887,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_name",
@@ -140,7 +143,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1923
+      "timelineYear": 1923,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_stop",
@@ -330,7 +334,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1997
+      "timelineYear": 1997,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_later_address",
@@ -343,7 +348,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1997
+      "timelineYear": 1997,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_tabloid",
@@ -356,7 +362,8 @@
       "claimKind": "temporal",
       "evidenceMode": "direct",
       "temporalStatus": "historical",
-      "timelineYear": 1990
+      "timelineYear": 1990,
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_photo1947",
@@ -380,7 +387,8 @@
       "status": "verified",
       "claimKind": "ordinary",
       "evidenceMode": "direct",
-      "temporalStatus": "historical"
+      "temporalStatus": "historical",
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_facsimile",
@@ -392,7 +400,8 @@
       "status": "verified",
       "claimKind": "ordinary",
       "evidenceMode": "direct",
-      "temporalStatus": "historical"
+      "temporalStatus": "historical",
+      "timelineScope": "institution_context"
     },
     {
       "id": "claim_arbeiderbladet_parallelism",
@@ -404,6 +413,18 @@
       "status": "verified",
       "claimKind": "ordinary",
       "evidenceMode": "direct",
+      "temporalStatus": "historical"
+    },
+    {
+      "id": "claim_arbeiderbladet_floor_functions",
+      "claim": "I Folketeaterbygningen lå Arbeiderbladets trykkeri i kjelleren og redaksjonslokalene i etasjene over.",
+      "sourceUrl": "https://youngstorgeteiendom.no/folketeaterbygningen-som-institusjon/",
+      "sourceLocation": "Bygningens historie, avsnitt 1: trykkeri i kjelleren, redaksjonslokaler i etasjene.",
+      "sourceType": "primary",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "ordinary",
+      "evidenceMode": "explicit",
       "temporalStatus": "historical"
     }
   ],
@@ -425,31 +446,44 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "e4f45e77800b090cd64edce3d6dd6ac6fd993acc479ff64b8e9ff7695f806987",
-    "popupDesc": "96fa3d3aaad9fee7fe9016c8fed3d71d5e5e01415d44953ce03dc674573cd21f"
+    "desc": "ca826515c07e0770392c0bec45cb12b76eab5575449ec22d1fe8d1c758e444ff",
+    "popupDesc": "a60b790907e5c7b6b5772ba22876dd20974c347442ad74f2ebdb52749bc3498f"
   },
   "sentenceCoverage": {
     "desc": [
       {
         "sentence": 1,
         "claimIds": [
-          "claim_arbeiderbladet_site"
+          "claim_arbeiderbladet_site",
+          "claim_arbeiderbladet_stop"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
           "claim_arbeiderbladet_organ",
-          "claim_arbeiderbladet_selection",
-          "claim_arbeiderbladet_tech1976"
+          "claim_arbeiderbladet_tranmael",
+          "claim_arbeiderbladet_site"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_arbeiderbladet_move",
-          "claim_arbeiderbladet_opposition",
-          "claim_arbeiderbladet_later_name"
+          "claim_arbeiderbladet_stop"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claimIds": [
+          "claim_arbeiderbladet_resume",
+          "claim_arbeiderbladet_hirsti"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claimIds": [
+          "claim_arbeiderbladet_tech1976",
+          "claim_arbeiderbladet_move"
         ]
       }
     ],
@@ -464,58 +498,53 @@
       {
         "sentence": 2,
         "claimIds": [
-          "claim_arbeiderbladet_opening",
+          "claim_arbeiderbladet_historic_address",
           "claim_arbeiderbladet_building"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_arbeiderbladet_historic_address",
-          "claim_arbeiderbladet_building"
+          "claim_arbeiderbladet_architects",
+          "claim_arbeiderbladet_opening"
         ]
       },
       {
         "sentence": 4,
         "claimIds": [
-          "claim_arbeiderbladet_architects",
-          "claim_arbeiderbladet_material"
+          "claim_arbeiderbladet_floor_functions"
         ]
       },
       {
         "sentence": 5,
         "claimIds": [
-          "claim_arbeiderbladet_foundation",
-          "claim_arbeiderbladet_site"
+          "claim_arbeiderbladet_site",
+          "claim_arbeiderbladet_foundation"
         ]
       },
       {
         "sentence": 6,
         "claimIds": [
-          "claim_arbeiderbladet_foundation",
-          "claim_arbeiderbladet_social",
-          "claim_arbeiderbladet_name"
+          "claim_arbeiderbladet_foundation"
         ]
       },
       {
         "sentence": 7,
         "claimIds": [
+          "claim_arbeiderbladet_social",
           "claim_arbeiderbladet_organ"
         ]
       },
       {
         "sentence": 8,
         "claimIds": [
-          "claim_arbeiderbladet_foundation",
-          "claim_arbeiderbladet_social",
-          "claim_arbeiderbladet_name",
-          "claim_arbeiderbladet_site"
+          "claim_arbeiderbladet_name"
         ]
       },
       {
         "sentence": 9,
         "claimIds": [
-          "claim_arbeiderbladet_stop"
+          "claim_arbeiderbladet_tranmael"
         ]
       },
       {
@@ -527,76 +556,72 @@
       {
         "sentence": 11,
         "claimIds": [
-          "claim_arbeiderbladet_resume",
-          "claim_arbeiderbladet_morning"
+          "claim_arbeiderbladet_stop"
         ]
       },
       {
         "sentence": 12,
         "claimIds": [
-          "claim_arbeiderbladet_photo1947",
-          "claim_arbeiderbladet_resume"
+          "claim_arbeiderbladet_resume",
+          "claim_arbeiderbladet_morning"
         ]
       },
       {
         "sentence": 13,
         "claimIds": [
-          "claim_arbeiderbladet_tranmael",
-          "claim_arbeiderbladet_site"
+          "claim_arbeiderbladet_selection",
+          "claim_arbeiderbladet_hirsti"
         ]
       },
       {
         "sentence": 14,
         "claimIds": [
-          "claim_arbeiderbladet_hirsti"
+          "claim_arbeiderbladet_selection"
         ]
       },
       {
         "sentence": 15,
         "claimIds": [
-          "claim_arbeiderbladet_selection"
+          "claim_arbeiderbladet_hirsti"
         ]
       },
       {
         "sentence": 16,
         "claimIds": [
-          "claim_arbeiderbladet_brunvand",
-          "claim_arbeiderbladet_stanghelle"
+          "claim_arbeiderbladet_brunvand"
         ]
       },
       {
         "sentence": 17,
+        "claimIds": [
+          "claim_arbeiderbladet_tech1976"
+        ]
+      },
+      {
+        "sentence": 18,
         "claimIds": [
           "claim_arbeiderbladet_stanghelle",
           "claim_arbeiderbladet_site"
         ]
       },
       {
-        "sentence": 18,
-        "claimIds": [
-          "claim_arbeiderbladet_tech1976"
-        ]
-      },
-      {
         "sentence": 19,
         "claimIds": [
-          "claim_arbeiderbladet_move",
-          "claim_arbeiderbladet_hasle",
-          "claim_arbeiderbladet_input"
+          "claim_arbeiderbladet_opposition"
         ]
       },
       {
         "sentence": 20,
         "claimIds": [
-          "claim_arbeiderbladet_owner_view",
           "claim_arbeiderbladet_opposition"
         ]
       },
       {
         "sentence": 21,
         "claimIds": [
-          "claim_arbeiderbladet_owner_view",
-          "claim_arbeiderbladet_opposition"
+          "claim_arbeiderbladet_move",
+          "claim_arbeiderbladet_hasle",
+          "claim_arbeiderbladet_input"
         ]
       },
       {
@@ -612,21 +637,6 @@
           "claim_arbeiderbladet_later_address",
           "claim_arbeiderbladet_later_name"
         ]
-      },
-      {
-        "sentence": 24,
-        "claimIds": [
-          "claim_arbeiderbladet_later_name",
-          "claim_arbeiderbladet_site"
-        ]
-      },
-      {
-        "sentence": 25,
-        "claimIds": [
-          "claim_arbeiderbladet_facsimile",
-          "claim_arbeiderbladet_photo2006",
-          "claim_arbeiderbladet_site"
-        ]
       }
     ]
   },
@@ -634,15 +644,15 @@
     "factual": {
       "status": "passed",
       "reviewedAt": "2026-10-11",
-      "reviewer": "Arbeiderbladet source review",
-      "notes": "År, adresser og navneperioder kontrollert mot åpnet kildeinnhold og samtidig PDF. Dagpresis stansdato, Larssens eksakte tiltredelsesår og motiver for Hirstis avsettelse er holdt tilbake ved kildevariasjon."
+      "reviewer": "Arbeiderbladet – site-source revision",
+      "notes": "Identitet, årstall, okkupasjonsavbrudd og flytting kontrollert mot Oslo byleksikon, Arbeiderbevegelsens arkiv, Dagsavisen og huseiers beskrivelse av redaksjon/trykkeri. Opplysninger utenfor 1934–1988 merket institusjonshistorisk kontekst."
     },
     "editorial": {
       "status": "passed",
       "reviewedAt": "2026-10-11",
-      "reviewer": "Arbeiderbladet separate text review",
+      "reviewer": "Arbeiderbladet – historisk tekstredigering",
       "introducedNewFacts": false,
-      "notes": "Hver setning kontrollert mot claimbanken. Eiersidens vurdering og deltakerens tilbakeblikk er eksplisitt attribuert; senere navn og bilder er avgrenset fra husperioden."
+      "notes": "Både desc og popupDesc er skrevet om som sammenhengende historisk prosa, uten metatekst om bilder, kilder eller læringslogikk. Nye faktiske opplysninger har verifisert claim."
     }
   },
   "quizReadiness": {
@@ -727,8 +737,8 @@
     "currentStatus": "current",
     "sourceVerifiedAt": "2026-10-11",
     "claimsVerified": {
-      "verified": 31,
-      "total": 31
+      "verified": 32,
+      "total": 32
     },
     "factualReview": "passed",
     "editorialReview": "passed",
