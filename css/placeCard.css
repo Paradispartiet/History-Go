@@ -2198,28 +2198,38 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   }
 }
 
-/* Progress status stays inside the landscape photo, below category and epoke. */
+/* Status stays in the original landscape image beneath category/epoch,
+   but is a small unobtrusive progress label rather than a full-height row. */
 #placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
   order:2;
   flex:0 0 auto;
   align-self:flex-end;
   width:auto;
   max-width:100%;
-  margin:9px 0 0;
+  margin:5px 0 0;
   padding:0;
   text-align:right;
 }
 #placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
   width:auto;
   max-width:100%;
-  min-height:28px;
+  min-height:20px;
+  padding:3px 7px;
+  border-radius:6px;
   background:rgba(0,0,0,.63);
-  border-color:rgba(255,255,255,.30);
+  border-color:rgba(255,255,255,.26);
   backdrop-filter:blur(7px);
+  font:700 10px/1.18 system-ui,sans-serif;
+  letter-spacing:.015em;
   text-align:left;
 }
 @media (max-width:520px){
   #placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
-    margin-top:6px;
+    margin-top:4px;
+  }
+  #placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
+    min-height:18px;
+    padding:2px 5px;
+    font-size:9px;
   }
 }
