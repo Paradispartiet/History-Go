@@ -2084,6 +2084,9 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
   order: 0;
+  /* Fit the actual place name, not the entire available heading row:
+     the reader and favorite controls must start immediately after it. */
+  flex: 0 1 auto;
   overflow-wrap: anywhere;
 }
 
@@ -2096,9 +2099,16 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   margin-left: 0;
   align-self: flex-end;
 }
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon,
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
+  margin-left: auto;
   align-self: flex-end;
+}
+
+/* Audio and favorite belong beside the place name, not down by the
+   two independent round collection icons on the far right. */
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite,
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
+  align-self: center;
 }
 
 #placeCard .pc-heading-hero .pc-heading-content #pcMeta{

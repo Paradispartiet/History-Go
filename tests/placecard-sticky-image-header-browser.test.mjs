@@ -13,7 +13,7 @@ assert.equal((index.match(/<script[^>]*place-card-sticky-header\.js/g) || []).le
 
 const files = [
   "/css/placeCard.css", "/css/place-popup-shortcuts.css",
-  "/css/place-unified-surface.css", "/css/place-sheet.css",
+  "/css/place-unified-surface.css", "/css/place-sheet.css", "/css/place-card-reader.css",
   "/css/place-sheet-phase6.css", "/css/place-card-sticky-header.css",
   "/js/ui/place-card-sticky-header.js"
 ];
@@ -34,8 +34,9 @@ html,body{margin:0;background:#111;color:white;font-family:system-ui;}
 <div class="pc-text"><div id="pcHeaderHero" class="pc-heading-hero">
 <img id="pcHeaderImage" class="pc-heading-image" alt="">
 <div class="pc-heading-content">
-<div class="pc-title-row"><h2 id="pcTitle">VG-huset</h2>
-<button id="pcFavorite" class="pc-favorite-btn">☆</button>
+<div class="pc-title-row"><h2 id="pcTitle">Olaf Ryes plass</h2>
+<button id="pcReaderToggle" class="pc-reader-toggle" type="button">Lyd</button>
+<button id="pcFavorite" class="pc-favorite-btn" type="button">☆</button>
 <button id="pcPeopleIcon" class="pc-round" type="button">Person</button>
 <button id="pcBadgesIcon" class="pc-round" type="button">Medier</button>
 </div>
@@ -87,7 +88,8 @@ try {
     await page.waitForFunction(()=>document.querySelector("#placeCard")?.classList.contains("is-original-photo-pinned")
       && document.querySelector("#pcHeaderHero")?.dataset.pcContrast==="dark");
     const initial=await page.evaluate(()=>{
-      const rect=(s)=>document.querySelector(s).getBoundingClientRect();
+      const rect=(s)=>{const r=document.querySelector(s).getBoundingClientRect();
+        return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,height:r.height};};
       const style=getComputedStyle(document.querySelector("#pcTitle"));
       return {
         heading:rect("#pcHeaderHero").height,
@@ -96,6 +98,11 @@ try {
         titleColor:style.color,
         badgeX:rect("#pcBadgesIcon").x,
         peopleX:rect("#pcPeopleIcon").x,
+        title:rect("#pcTitle"),
+        audio:rect("#pcReaderToggle"),
+        favorite:rect("#pcFavorite"),
+        people:rect("#pcPeopleIcon"),
+        badge:rect("#pcBadgesIcon"),
         source:document.querySelector("#pcHeaderImage").src,
         duplicates:document.querySelectorAll(".pc-sticky-image-header").length,
         full:parseFloat(getComputedStyle(document.querySelector("#placeCard")).getPropertyValue("--pc-original-hero-height"))
@@ -103,6 +110,21 @@ try {
     });
     assert.equal(initial.duplicates,0,"No substitute title/photo strip");
     assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
+    const midpoint = r => (r.top + r.bottom) / 2;
+    const verifyInlineControls = (geom, stage) => {
+      const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
+      assert.ok(geom.audio.left >= geom.title.right - 1 && geom.audio.left - geom.title.right <= 16,
+        "Audio immediately right of text, not pushed to far-right icons: " + desc);
+      assert.ok(geom.favorite.left >= geom.audio.right - 1 && geom.favorite.left - geom.audio.right <= 16,
+        "Favorite immediately after audio: " + desc);
+      assert.ok(geom.people.left >= geom.favorite.right - 1 && geom.people.right <= geom.badge.left + 1,
+        "People and badge remain independent right-hand circles: " + desc);
+      assert.ok(Math.abs(midpoint(geom.audio) - midpoint(geom.favorite)) <= 5,
+        "Audio and favorite must share vertical alignment: " + desc);
+      assert.ok(Math.abs(midpoint(geom.audio) - midpoint(geom.title)) <= 9,
+        "Controls must align to center of actual heading: " + desc);
+    };
+    verifyInlineControls(initial, "before scroll");
     await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
     // Unified PlaceCard uses smooth native scrolling: wait until the real
     // scroll container has actually moved, not merely for an initial CSS var.
@@ -113,7 +135,7 @@ try {
     });
     const scrolled=await page.evaluate(()=>{
       const r=(s)=>{const x=document.querySelector(s).getBoundingClientRect();
-        return {top:x.top,bottom:x.bottom,height:x.height}};
+        return {left:x.left,right:x.right,top:x.top,bottom:x.bottom,width:x.width,height:x.height}};
       const hero=document.querySelector("#pcHeaderHero");
       const title=document.querySelector("#pcTitle");
       return {
@@ -122,7 +144,8 @@ try {
           &&document.querySelector("#pcBadgesIcon")===window.__initialBadges,
         duplicate:document.querySelectorAll(".pc-sticky-image-header").length,
         hero:r("#pcHeaderHero"), visible:r(".pc-sheet-hero"),
-        title:r("#pcTitle"), badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
+        title:r("#pcTitle"), audio:r("#pcReaderToggle"), favorite:r("#pcFavorite"),
+        badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
         status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
         scroller:r(".pc-body"), scrollTop:document.querySelector(".pc-body").scrollTop,
         scrollHeight:document.querySelector(".pc-body").scrollHeight,
@@ -137,10 +160,14 @@ try {
     assert.equal(scrolled.duplicate,0,"Never creates a different-format heading");
     assert.equal(scrolled.titleFont,initial.titleFont,"No title restyling during scroll");
     assert.ok(scrolled.sameImage,"Photo source never changes");
+    verifyInlineControls(scrolled, "after scroll");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
     assert.ok(scrolled.visible.height<=initial.heading+4,"Image bottom may crop, never expands");
     assert.ok(scrolled.title.bottom<=scrolled.visible.bottom+1,"Title stays visible");
+    assert.ok(scrolled.audio.bottom<=scrolled.visible.bottom+1
+      && scrolled.favorite.bottom<=scrolled.visible.bottom+1,
+      "Audio and favorite remain inside pinned original image");
     assert.ok(scrolled.people.bottom<=scrolled.visible.bottom+1
       && scrolled.badge.bottom<=scrolled.visible.bottom+1,"Icon circles stay visible");
     assert.ok(scrolled.meta.bottom<=scrolled.visible.bottom+1
