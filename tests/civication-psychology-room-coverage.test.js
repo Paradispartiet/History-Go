@@ -265,6 +265,27 @@ assert.match(reviewed.get("tilknytning").idea, /biologiske mor/);
 assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
 // The entire 1970 original is now inspected, while the independently deposited coding manual is not.
 const ainsworthFull = "https://www.fre.uy/a/e68bbdc6/Ainsworth.Attachmentexplorationandseparation.pdf";
+
+// Bowlby (1958): primary journal reprint supports caregiver definition and noncausal monotropy.
+const bowlby1958Original = "https://scispace.com/pdf/the-nature-of-the-child-s-tie-to-his-mother-1y4tsohzwc.pdf";
+const bowlbyTheory = reviewed.get("tilknytning");
+assert.ok(bowlbyTheory.idea.includes("monotropi") && bowlbyTheory.idea.includes("beskrivende begrep"));
+assert.ok(bowlbyTheory.method.includes("24-siders originaltrykk-reproduksjon"));
+assert.ok(bowlbyTheory.limit.includes("s. 365–366") && bowlbyTheory.limit.includes("s. 370"));
+assert.ok(bowlbyTheory.reference_links.some((r) =>
+  r.url === bowlby1958Original && r.canonical_claim_ids.length === 0 && r.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((r) => r.theory_id === "tilknytning")
+  .group_1_source_audit.new_reference_urls.includes(bowlby1958Original));
+assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
+  r.id === "tilknytning_bowlby_1958").source_url, bowlby1958Original);
+assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
+  r.id === "tilknytning_bowlby_1958").access,
+  "original_journal_24_page_reprint_accessible_key_pp350_351_365_366_369_370_visually_reviewed");
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "tilknytning"
+  && ["founders", "idea", "method", "limit"].includes(u.field))
+  .every((u) => u.evidence_urls.includes(bowlby1958Original)
+    && u.card_is_source_verified === false && u.full_original_review_complete === false));
+
 const ainsworthCard = reviewed.get("tilknytning");
 assert.ok(ainsworthCard.reference_links.some((ref) =>
   ref.url === ainsworthFull && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
