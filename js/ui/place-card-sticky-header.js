@@ -8,7 +8,7 @@
     const card = document.getElementById("placeCard");
     const scroller = card?.querySelector(".pc-body");
     const hero = document.getElementById("pcHeaderHero");
-    const heroImage = document.getElementById("pcHeaderImage");
+    const heroImage = /** @type {HTMLImageElement|null} */ (document.getElementById("pcHeaderImage"));
     const title = document.getElementById("pcTitle");
     if (!(card instanceof HTMLElement) || !(scroller instanceof HTMLElement)
       || !(hero instanceof HTMLElement) || !(heroImage instanceof HTMLImageElement)
