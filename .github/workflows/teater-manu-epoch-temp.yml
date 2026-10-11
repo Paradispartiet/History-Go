@@ -1,0 +1,46 @@
+name: Teater Manu epoch projection sync (temporary)
+on:
+  pull_request:
+    branches:
+      - main
+concurrency:
+  group: teater-manu-epoch-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild epoch place projection from canonical records
+        run: npm run epoker:places:build
+      - name: Commit only generated epoch index
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --porcelain
+          unexpected="$(git diff --name-only | grep -v '^data/epoker/epoke-place-index.json$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "::error::Unexpected generated changes:"
+            echo "$unexpected"
+            exit 1
+          fi
+          if ! git diff --quiet -- data/epoker/epoke-place-index.json; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -- data/epoker/epoke-place-index.json
+            git commit -m "Sync Teater Manu historical claims into epoch place index"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
