@@ -8,6 +8,10 @@ const root = process.cwd();
 const index = fs.readFileSync(path.join(root, "index.html"), "utf8");
 assert.match(index, /css\/place-card-sticky-header\.css/);
 assert.match(index, /js\/ui\/place-card-sticky-header\.js/);
+assert.equal((index.match(/<link[^>]*place-card-sticky-header\\.css/g) || []).length, 1,
+  "Sticky photo CSS must load exactly once");
+assert.equal((index.match(/<script[^>]*place-card-sticky-header\\.js/g) || []).length, 1,
+  "Sticky photo runtime must initialize exactly once");
 assert.ok(index.indexOf('id="pcHeaderHero"') < index.indexOf('id="pcDesc"'),
   "Canonical landscape header precedes PlaceCard content");
 
