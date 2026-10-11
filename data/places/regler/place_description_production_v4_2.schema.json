@@ -90,6 +90,7 @@
           "evidenceMode": { "enum": ["explicit", "direct", "corroborated"] },
           "temporalStatus": { "enum": ["historical", "current", "planned", "superseded"] },
           "timelineYear": { "type": "integer", "minimum": 1000, "maximum": 9999 },
+          "timelineScope": { "enum": ["site_event", "institution_context"] },
           "independentSourceUrls": {
             "type": "array",
             "items": { "type": "string", "format": "uri", "pattern": "^https://" },
