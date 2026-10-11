@@ -493,6 +493,14 @@ const completers1977 = trialFlow1977.ctStart + trialFlow1977.drugStart
   - trialFlow1977.ctDropouts - trialFlow1977.drugDropouts;
 assert.equal(trialFlow1977.ctStart + trialFlow1977.drugStart, 41);
 assert.equal(completers1977, 32);
+ // 1977 table-specific denominators and follow-up contacts are not protocol-completer counts.
+ assert.ok(cbtCard.limit.includes("siste registrerte depresjonsskår videreført"));
+ assert.ok(cbtCard.limit.includes("38 oppfulgte"));
+ assert.ok(detailedReview.units.find((u) => u.id === "kognitiv_terapi__method")
+   .assertion.includes("38 pasienter ved oppfølging etter 3/6 måneder"));
+ assert.ok(detailedReview.units.find((u) => u.id === "kognitiv_terapi__method")
+   .scope_limit.includes("Skala-spesifikke nevnergrupper"));
+
 assert.equal(44 - 35, 41 - 32);
 assert.notEqual(completers1977, 35);
 assert.ok(cbtCard.method.includes("18 av de 19 i CT-gruppen"));
