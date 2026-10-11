@@ -102,7 +102,7 @@ try {
     });
     assert.equal(initial.duplicates,0,"No substitute title/photo strip");
     assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
-    await page.evaluate(()=>{document.querySelector(".pc-body").scrollTop=280});
+    await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
     await page.waitForFunction(()=>{
       const c=document.querySelector("#placeCard");
       return parseFloat(c.style.getPropertyValue("--pc-visible-hero-height"))>0;
@@ -121,14 +121,14 @@ try {
         title:r("#pcTitle"), badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
         status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
         scroller:r(".pc-body"), titleFont:getComputedStyle(title).fontSize,
-        imageSource:document.querySelector("#pcHeaderImage").src,
+        sameImage:document.querySelector("#pcHeaderImage").src===window.__initialImageSource,
         value:parseFloat(document.querySelector("#placeCard").style.getPropertyValue("--pc-visible-hero-height"))
       };
     });
     assert.ok(scrolled.originalNodes,"Original heading, badges and icons remain single live DOM nodes");
     assert.equal(scrolled.duplicate,0,"Never creates a different-format heading");
     assert.equal(scrolled.titleFont,initial.titleFont,"No title restyling during scroll");
-    assert.equal(scrolled.imageSource,initial.source,"Photo source never changes");
+    assert.ok(scrolled.sameImage,"Photo source never changes");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
     assert.ok(scrolled.visible.height<=initial.heading+4,"Image bottom may crop, never expands");
