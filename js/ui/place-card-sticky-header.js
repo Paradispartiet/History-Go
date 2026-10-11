@@ -105,7 +105,7 @@
       shellHero = owningHero;
       // The image retains its natural layout height independently of the
       // sticky wrapper, which only reveals less of the image from the bottom.
-      const height = Math.ceil(hero.getBoundingClientRect().height + 2);
+      const height = Math.ceil(hero.getBoundingClientRect().height);
       if (!height) return;
       const bounds = owningHero.getBoundingClientRect();
       const headingBounds = hero.getBoundingClientRect();
