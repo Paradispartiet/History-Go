@@ -150,7 +150,50 @@ body.hg-app .app-footer{
   padding: 0;
   font-size: 0;
   border-radius: 50%;
-  background: rgba(18, 28, 39, .78);
+  background: #bfd8d3;
+  border: 1px solid rgba(107, 245, 222, .68);
+  box-shadow: 0 0 0 1px rgba(10, 21, 28, .74), 0 0 13px rgba(58, 233, 210, .22),
+    inset 0 1px 1px rgba(255, 255, 255, .68);
+  position: relative;
+}
+
+/* Dark charcoal glyphs with individual neon edge accents. */
+.app-actions #pcRoute{ --hg-footer-neon: #39edcf; --hg-footer-icon-bg: #b9e9df; }
+.app-actions #pcObserve{ --hg-footer-neon: #b4f15a; --hg-footer-icon-bg: #d8eabc; }
+.app-actions #pcNote{ --hg-footer-neon: #ba97ff; --hg-footer-icon-bg: #d7cbee; }
+.app-actions #pcRoute,
+.app-actions #pcObserve,
+.app-actions #pcNote{
+  background: var(--hg-footer-icon-bg);
+  border-color: var(--hg-footer-neon);
+}
+.app-actions #pcRoute::after,
+.app-actions #pcObserve::after,
+.app-actions #pcNote::after{
+  content: "";
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--hg-footer-neon);
+  box-shadow: 0 0 7px var(--hg-footer-neon);
+  pointer-events: none;
+}
+.app-actions #pcRoute:hover,
+.app-actions #pcObserve:hover,
+.app-actions #pcNote:hover,
+.app-actions #pcRoute:focus-visible,
+.app-actions #pcObserve:focus-visible,
+.app-actions #pcNote:focus-visible{
+  box-shadow: 0 0 0 1px #15232a, 0 0 17px var(--hg-footer-neon);
+}
+.app-actions #pcRoute:focus-visible,
+.app-actions #pcObserve:focus-visible,
+.app-actions #pcNote:focus-visible{
+  outline: 2px solid var(--hg-footer-neon);
+  outline-offset: 2px;
 }
 
 .app-actions #pcRoute::before,
@@ -161,7 +204,7 @@ body.hg-app .app-footer{
   width: 23px;
   height: 23px;
   flex: 0 0 23px;
-  background: #f6f7f9;
+  background: #101b23;
   -webkit-mask-size: contain;
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
@@ -293,4 +336,119 @@ body.hg-app.hg-phone .app-actions #pcNote{
   width: 42px;
   height: 42px;
   flex: 0 0 42px;
+}
+
+/* Events + Meet use the original OnSiteSurface actions and document-level
+   click handler, now rendered in this footer strip rather than PlaceCard. */
+.app-actions .pc-onsite-footer{
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-width: max-content;
+}
+.app-actions .pc-onsite-footer[hidden]{ display: none !important; }
+.app-actions .pc-onsite-footer .pc-onsite-surface{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action{
+  --hg-footer-neon: #7ee4ff;
+  --hg-footer-icon-bg: #c6e6ed;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  min-height: 48px;
+  min-width: 0;
+  padding: 0 12px 0 8px;
+  border-radius: 999px;
+  border: 1px solid var(--hg-footer-neon);
+  background: rgba(9, 16, 23, .94);
+  color: #eaf7f6;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .3), inset 0 0 13px rgba(255, 255, 255, .035);
+  cursor: pointer;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-events{
+  --hg-footer-neon: #60e7f5;
+  --hg-footer-icon-bg: #bce6e9;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-meet{
+  --hg-footer-neon: #cf92ff;
+  --hg-footer-icon-bg: #ddc8ec;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-icon{
+  display: inline-grid;
+  flex: 0 0 27px;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--hg-footer-icon-bg);
+  color: transparent;
+  font-size: 0;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-icon::before{
+  content: "";
+  width: 19px;
+  height: 19px;
+  background: #101b23;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-events .pc-onsite-action-icon::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225.4%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222.6%22%2F%3E%3Cpath%20d%3D%22M7.5%203v4.6M16.5%203v4.6M3.5%2010h17%22%2F%3E%3Ccircle%20cx%3D%228.2%22%20cy%3D%2214.5%22%20r%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M12%2014.5h4%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223.5%22%20y%3D%225.4%22%20width%3D%2217%22%20height%3D%2215%22%20rx%3D%222.6%22%2F%3E%3Cpath%20d%3D%22M7.5%203v4.6M16.5%203v4.6M3.5%2010h17%22%2F%3E%3Ccircle%20cx%3D%228.2%22%20cy%3D%2214.5%22%20r%3D%22.7%22%2F%3E%3Cpath%20d%3D%22M12%2014.5h4%22%2F%3E%3C%2Fsvg%3E");
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-meet .pc-onsite-action-icon::before{
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%228.5%22%20cy%3D%228%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2216.5%22%20cy%3D%229.5%22%20r%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M2.5%2019v-1.7a6%206%200%200%201%2012%200V19H2.5Zm13.5-5.4a4.6%204.6%200%200%201%205.5%204.5v.9h-4.5%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%228.5%22%20cy%3D%228%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%2216.5%22%20cy%3D%229.5%22%20r%3D%222.4%22%2F%3E%3Cpath%20d%3D%22M2.5%2019v-1.7a6%206%200%200%201%2012%200V19H2.5Zm13.5-5.4a4.6%204.6%200%200%201%205.5%204.5v.9h-4.5%22%2F%3E%3C%2Fsvg%3E");
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-label{
+  color: #eaf7f6;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action-count{
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 3px;
+  border-radius: 9px;
+  background: var(--hg-footer-neon);
+  color: #101b23;
+  font-size: 10px;
+  font-weight: 900;
+}
+.app-actions .pc-onsite-footer .pc-onsite-action:hover,
+.app-actions .pc-onsite-footer .pc-onsite-action:focus-visible{
+  box-shadow: 0 0 18px var(--hg-footer-neon);
+  outline: 2px solid var(--hg-footer-neon);
+  outline-offset: 2px;
+}
+body.hg-app.hg-phone .app-actions #pcRoute,
+body.hg-app.hg-phone .app-actions #pcObserve,
+body.hg-app.hg-phone .app-actions #pcNote{
+  padding: 0;
+  font-size: 0;
+}
+body.hg-app.hg-phone .app-actions .pc-onsite-footer .pc-onsite-action{
+  height: 42px;
+  min-height: 42px;
+  padding: 0 10px 0 7px;
+  font-size: 12px;
+}
+body.hg-app.hg-phone .app-actions .pc-onsite-footer .pc-onsite-action-label{
+  font-size: 12px;
 }

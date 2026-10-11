@@ -155,7 +155,7 @@
     const countHtml = actionId === "events" && count > 0
       ? `<span class="pc-onsite-action-count">${count}</span>`
       : "";
-    return `<button class="pc-onsite-action pc-onsite-action-${esc(actionId)}" type="button" data-hg-onsite-action="${esc(actionId)}" data-place-id="${esc(placeId)}"><span class="pc-onsite-action-icon">${esc(def.icon || "•")}</span><span class="pc-onsite-action-label">${esc(def.label || actionId)}</span>${countHtml}</button>`;
+    return `<button class="pc-onsite-action pc-onsite-action-${esc(actionId)}" type="button" aria-label="${esc(def.label || actionId)}" title="${esc(def.label || actionId)}" data-hg-onsite-action="${esc(actionId)}" data-place-id="${esc(placeId)}"><span class="pc-onsite-action-icon" aria-hidden="true">${esc(def.icon || "•")}</span><span class="pc-onsite-action-label">${esc(def.label || actionId)}</span>${countHtml}</button>`;
   }
 
   function renderSurface(place) {
@@ -163,9 +163,31 @@
     if (!placeId) return "";
     const events = eventsForPlace(placeId);
     const localActions = visibleActions(place);
-    const actions = [...CORE_SHORTCUTS, ...localActions.filter(actionId => !CORE_SHORTCUTS.includes(actionId))];
+    // Events and Meet have one canonical control location: the footer if
+    // present, otherwise the original on-site panel (older embed pages).
+    const footerOwnsCore = Boolean(document.getElementById("pcOnSiteFooter"));
+    const actions = [...(footerOwnsCore ? [] : CORE_SHORTCUTS),
+      ...localActions.filter(actionId => !CORE_SHORTCUTS.includes(actionId))];
+    if (!actions.length) return "";
     const buttons = actions.map(actionId => button(actionId, placeId, actionId === "events" ? events.length : 0));
     return `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}"><div class="pc-onsite-actions" role="group" aria-label="Stedsfunksjoner">${buttons.join("")}</div></div>`;
+  }
+
+  function syncFooterActions(place, force = false) {
+    const footer = document.getElementById("pcOnSiteFooter");
+    if (!footer) return;
+    const placeId = text(place?.id);
+    footer.hidden = !placeId;
+    if (!placeId) {
+      footer.replaceChildren();
+      return;
+    }
+    const existing = footer.querySelector(`[${SURFACE_ATTR}]`);
+    if (!force && existing?.getAttribute(SURFACE_ATTR) === placeId
+      && existing?.getAttribute(POLICY_ATTR) === policyVersion) return;
+    const count = eventsForPlace(placeId).length;
+    const buttons = CORE_SHORTCUTS.map(actionId => button(actionId, placeId, actionId === "events" ? count : 0));
+    footer.innerHTML = `<div class="pc-onsite-surface" ${SURFACE_ATTR}="${esc(placeId)}" ${POLICY_ATTR}="${esc(policyVersion)}">${buttons.join("")}</div>`;
   }
 
   function ensureBelowCollections() {
@@ -188,7 +210,11 @@
     ensureBelowCollections();
     const box = document.getElementById("pcEventsBox");
     const place = currentPlace();
-    if (!box || !place) return;
+    syncFooterActions(place, force);
+    if (!box || !place) {
+      if (box && !place) box.hidden = true;
+      return;
+    }
     const placeId = text(place.id);
     const existing = box.querySelector(`[${SURFACE_ATTR}]`);
     if (!force && existing?.getAttribute(SURFACE_ATTR) === placeId && existing?.getAttribute(POLICY_ATTR) === policyVersion) return;

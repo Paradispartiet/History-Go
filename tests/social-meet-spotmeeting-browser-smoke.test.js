@@ -62,9 +62,10 @@ const indexSource = read('index.html');
 const footerCssSource = read('css/footer.css');
 assert(!indexSource.includes('pcExploreTogether'), 'index.html does not ship a footer Utforsk sammen entry');
 assert(!footerCssSource.includes('pcExploreTogether'), 'css/footer.css does not style pcExploreTogether');
-for (const id of ['pcInfo', 'pcQuiz', 'pcRoute', 'pcObserve', 'pcNote']) {
+for (const id of ['pcQuiz', 'pcVisit', 'pcRoute', 'pcObserve', 'pcNote', 'pcOnSiteFooter']) {
   assert(indexSource.includes(`id="${id}"`), `footer keeps quick action: ${id}`);
 }
+assert(!indexSource.includes('id="pcInfo"'), 'removed Mer info action stays removed');
 
 // Canonical modul-eierskap: app laster UI-modulen etter motoren og før wrapperen.
 const appSource = read('js/app.js');
