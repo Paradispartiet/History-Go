@@ -11,7 +11,7 @@ const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
 const ids = new Set();
 assert.equal(catalog.fagverk_subject, "psykologi");
 assert.equal(catalog.chapters.length, 6);
-assert.equal(catalog.theories.length, 19);
+assert.equal(catalog.theories.length, 22);
 
 for (const chapter of catalog.chapters) {
   const canonical = json("data/fagverk/psykologi/" + chapter.id + ".json");
@@ -44,7 +44,7 @@ for (const theory of catalog.theories) {
 }
 assert.equal(ids.size, catalog.theories.length);
 const teachingCases = catalog.theories.flatMap((theory) => [theory.example, theory.example_secondary]);
-assert.equal(teachingCases.length, 38, "19 theory cards must each have two scenarios");
+assert.equal(teachingCases.length, 44, "22 theory cards must each have two scenarios");
 assert.equal(new Set(teachingCases).size, teachingCases.length,
   "every hypothetical teaching scenario should be independently authored");
 
@@ -134,6 +134,15 @@ const press = (selector) => {
   press("theory:sorg_dobbelprosessmodell");
   assert.match(rendered, /Stroebe/);
   assert.match(rendered, /em_psy_sorg_tap/);
+  press("theory:psykometri_validitet");
+  assert.match(rendered, /konstruktvaliditet/);
+  assert.match(rendered, /em_psy_forskning_metode/);
+  press("theory:arbeidsminne_flerkomponent");
+  assert.match(rendered, /Baddeley og Hitch/);
+  assert.match(rendered, /em_psy_oppmerksomhet_fokus/);
+  press("theory:identitetsutvikling_erikson_marcia");
+  assert.match(rendered, /Marcia/);
+  assert.match(rendered, /em_psy_livslop_overganger/);
   press("theory:kognitiv_terapi");
   assert.match(rendered, /Kognitiv terapi undersøker hvordan tolkninger/);
   assert.match(rendered, /subject=psykologi&amp;emne=em_psy_terapi_praksis/);
