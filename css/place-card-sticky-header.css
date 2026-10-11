@@ -3,7 +3,8 @@
    category, epoch and progress status keep their original DOM and styles. */
 body.hg-app #placeCard.is-place-sheet-direct.is-original-photo-pinned .pc-sheet-hero {
   position: sticky;
-  top: 0;
+  /* Compensate for the Place Sheet shell padding when pinned. */
+  top: -18px;
   z-index: 9;
   height: var(--pc-visible-hero-height);
   box-sizing: border-box;
