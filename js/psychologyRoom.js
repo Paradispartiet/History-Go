@@ -149,7 +149,7 @@
       profile: renderProfile
     };
     Object.entries(navigation).forEach(([section, action]) => {
-      overlay.querySelector('[data-psych-nav="' + section + '"]')?.addEventListener("click", action);
+      overlay.querySelector('[data-psych-nav="' + section + '"]')?.addEventListener("click", () => action());
     });
     overlay.addEventListener("click", (event) => {
       if (event.target === overlay) close();
@@ -345,7 +345,7 @@
     bindBack();
     document.getElementById("psychologyRoomWorkbenchForm")?.addEventListener("submit", (event) => {
       event.preventDefault();
-      const form = event.currentTarget;
+      const form = /** @type {HTMLFormElement} */ (event.currentTarget);
       const values = Object.fromEntries(["situation", "thoughts", "feelings", "body", "actions", "next_step"]
         .map((field) => [field, form.elements[field]?.value || ""]));
       const result = saveWorkbench(values);
@@ -805,7 +805,7 @@
     document.querySelectorAll("[data-psych-action='workbench']").forEach((button) => button.addEventListener("click", renderWorkbench));
     document.querySelector("[data-psych-action='tests']")?.addEventListener("click", renderTestList);
     document.querySelector("[data-psych-action='exercises']")?.addEventListener("click", renderExerciseList);
-    document.querySelector("[data-psych-action='phenomena']")?.addEventListener("click", renderPhenomenaList);
+    document.querySelector("[data-psych-action='phenomena']")?.addEventListener("click", () => renderPhenomenaList());
     document.querySelector("[data-psych-action='theories']")?.addEventListener("click", renderTheoryList);
     document.querySelector("[data-psych-action='tools']")?.addEventListener("click", renderToolsList);
     document.querySelector("[data-psych-action='paths']")?.addEventListener("click", renderPathsList);
