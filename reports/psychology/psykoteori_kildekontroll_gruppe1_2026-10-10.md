@@ -673,3 +673,42 @@ Oppfølgingen av **38** ved tre/seks måneder er et annet utfallstidspunkt og om
 4. Før en eksplisitt **publikasjon–kohort–mål–tidspunkt–analyse**-matrise og separat risiko-for-skjevhet-vurdering. Dersom originalene ikke identifiserer personer eller deltakerflyt, marker overlapp som *ikke etterprøvbart*, ikke som bevist eller motbevist.
 
 **Prosessport:** PR #6206 må forbli **draft**. Ingen endring i `source_review_state`, `source_verified`, godkjenningsfelter, kliniske råd, Civication eller History Go-kjerne. Status etter denne dokumentasjonskontrollen: **16 registrerte originalporter, 32 eksisterende påstandsenheter, 14 teorikort, 0 av 4 vitenskapelig godkjent**. Denne seksjonen dokumenterer de faktiske utestående kravene i stedet for å redusere dem.
+
+
+## 29. Kognitiv terapi – Beck-arkivet, imipraminprotokoll og kontroll av tilgang (11. oktober 2026)
+
+### 29.1 Nytt spor til upublisert/originalt metodegrunnlag
+
+**Original arkivkatalog kontrollert, ikke arkivmappene:** University of Pennsylvania Archives and Records Center har bevart [*Aaron T. Beck Papers*, samlingssignatur **UPT 50 B393**](https://archives.upenn.edu/collections/finding-aid/upt50b393/), i en omfattende fysisk manuskriptsamling (finding aid utarbeidet 2009). Katalogen identifiserer følgende spesielt relevante mapper:
+
+| Arkivboks/mappe | Katalogpost | Datering i katalog | Mulig forskningsbetydning og begrensning |
+| --- | --- | --- | --- |
+| **49/45** | «Cognitive-behavioral psychotherapy versus antidepressant medication», presentert av Maria Kovacs og A. John Rush | **april 1976** | Dokumentert presentasjon før den trykte 1977-rapporten; faktisk utvalg, metode og eventuelle data er **ikke lest**. |
+| **50/4** | «Comparative efficacy of cognitive therapy and pharmacotherapy in the treatment of depressed outpatients», Rush mfl.; *Cognitive Therapy and Research* | **1977** | Arkivert manuskript/trykkspor til 1977-artikkelen; mulig kontroll mot den publiserte N=41-versjonen. |
+| **50/52** | «Differential effects of cognitive therapy and pharmacotherapy on hopelessness and self concept», A. J. Rush mfl. | **1980** | Forløper eller relatert manuskript er en **hypotese**, ikke dokumentert at dette er teksten til 1982-publikasjonen eller september-1981-publikasjonen. |
+| **52/45** | «#127, one-year follow-up of depressed outpatients treated with cognitive therapy or pharmacotherapy», Maria Kovacs mfl. | **1980** | Mest direkte arkivspor mot **Kovacs mfl. 1981 (N=44/35)** og det uavklarte 1977-regnskapet N=41/32. Manuskriptet er **ikke hentet**. |
+
+**Kildestatus:** Dette er en offisiell *finding aid* som bekrefter at slike mapper er katalogført. Arkivkatalogen inneholder **ikke** reproduksjon av artiklene, deltakerflyttabeller eller anonymiserte rådata. Tilgang til de fysiske arkivdokumentene må avklares med University Archives under institusjonens [arkivprotokoll](https://archives.upenn.edu/collections/finding-aid/upt50b393/). Bestill eventuelt først en **anonymisert, aggregert metode-/deltakerflyt-avskrift**, ikke identifiserbare pasientjournaler. Å bevise individuelle pasientkoblinger er verken gjennomført eller nødvendig for publisering av en redelig vitenskapelig avgrensning: dersom primærkildene ikke oppgir kohortkobling, blir den **uavklart**.
+
+**Kildekravet er ikke løst:** Den nøyaktige koblingen mellom 41/32 i 1977, 44/35 i januar 1981 og N=35 i september 1981 og juli 1982 er fortsatt ikke bekreftet. Oppføringen «1980» i katalogen er **manuskriptets katalogdatering**, ikke en ny offentlig artikkel eller bevis for annet pasientutvalg.
+
+### 29.2 1977-originalen: konkret medikamentdoserings- og behandlingsstruktur
+
+Ytterligere direkte lesning og visuell kontroll av [Rush mfl. 1977, trykte s. **23–27, 29, 32–33**](https://dradamvolungis.com/wp-content/uploads/2012/01/efficacy-of-cognitive-therapy-treatment-for-depression-rush-et-al-1977.pdf) bekrefter følgende:
+
+1. **Planlagt legemiddelforløp på s. 24:** Imipramin startet på **75 mg ved sengetid**, ble økt/holdt på **150 mg daglig i uke 2–4**, kunne etter klinisk behov økes til **200 mg i uke 5–7** og **inntil 250 mg i uke 8–10**; **de to siste ukene ble brukt til nedtrapping og seponering**. Dette er en *beskrevet protokoll*; den dokumenterer ikke hvilke doser hver person faktisk mottok eller etterlevelse.
+2. **Ny, substansiell metodisk begrensning på s. 27 (fotnote 3):** Forfatterne bemerket at gjennomsnittlig BDI i legemiddelgruppen **økte med 2,43** mellom uke 10 og uke 12, mot reduksjon på **2,17** i CT-gruppen; økningen var knyttet til betydelig symptomforverring hos **én person**. Forfatterne spurte uttrykkelig om utflating i bedringen hos legemiddelpasienter kunne henge sammen med dosereduksjon og anbefalte at framtidige studier opprettholdt full dose gjennom hele behandlingen før nedtrapping. Dette gir **mulig konkurrerende forklaring**, *ikke bevis for at nedtrappingen forårsaket forskjellen*.
+3. **Observerte og tilbudte terapidoser er ulike:** CT-protokollen tillot **opptil 20 økter à 50 minutter**, men fullførerne mottok i gjennomsnitt **15,3 økter** på **10,90 uker**. Legemiddelgruppen hadde tilbud om opptil 12 ukentlige **20-minutters konsultasjoner**, og fullførerne var i behandling i gjennomsnitt **10,86 uker**. Sammenligningen gjelder ulike intervensjonsforløp og kontaktmuligheter; ikke identisk terapeutkontakt.
+4. **Balanserende metodeopplysninger på s. 25:** Begge intervensjonene ble gjennomført etter behandlingsmanual. Psykoterapisamtalene ble tatt opp og terapeuter ble veiledet ukentlig, og et tilfeldig opptaksutvalg var undersøkt av en uavhengig forskningsassistent. Disse prosedyrene støtter rapportert etterlevelse av *behandlingsinstruksjonene*, men reparerer ikke manglende blindet utfallsvurdering eller likt behandlingsvolum. Studieforfatterne behandlet selv **ingen** CT-pasienter i dette forsøket.
+5. **Målekompletthet på s. 26 og 29:** BDI-kompletthet (18/14 fullførere; 19/22 inkludert avbrudd) kan ikke projiseres over på Hamilton eller Raskin, der N varierer. BDI med videreført siste observasjon er ikke reell uke-12-observasjon for alle.
+6. **Forfatterkritikken s. 32–33:** Rush mfl. drøftet selv muligheten for seleksjons-, forventnings-, frafalls-, vurderings- og kontaktbias. At terapimanual og supervisjon fantes, er derfor et designpluss innen intervensjonsintegritet, men **ikke** en kontroll for hele intervensjonskontrasten.
+
+**Forholdet til samtidig legemiddelkritikk:** Becker og Schuckits kritikk (1978) om hvorvidt legemiddelprotokollen var en adekvat komparator har fortsatt bare abstract-/bibliografistatus i denne revisjonen. Den nøyaktig kontrollerte 1977-protokollen viser nå hvorfor spørsmålet er faglig relevant; den gir **ikke** grunnlag for å konkludere at en bestemt alternativ dose eller varighet nødvendigvis ville snudd behandlingsresultatet.
+
+### 29.3 Status / videre verifiseringsport
+
+- **Direkte verifisert fra original 1977:** doserings- og nedtrappingsplan; faktisk gjennomsnittlig CT-sesjonsantall; manual-/supervisjonsprosedyre; rapporterte BDI-endringer i uke 10–12 med én spesielt utslagsgivende observasjon. Dette styrker metodekritikken, men er **ikke en rekonstruksjon av individuelle data**.
+- **Direkte verifisert fra University of Pennsylvanias originale arkivkatalog:** eksistens, datering og mappesignaturer for fire relevante arkivinnførsler. **Ingen innholdsgodkjenning** fra disse arkivmappene.
+- **Fortsatt åpne fulltekster:** Kovacs (1981) s. 33–39, Rush (1981) s. 221–229, Rush (1982) s. 862–866. Arkivoriginale manuskripter kan brukes til historisk kontroll, men må sammenholdes med **faktisk publisert versjon** og erstatte den ikke uten dokumentasjon av forskjellene.
+- **Ingen statuspromotering:** `source_review_state=partial_historical_method_review`, åtte felt vurdert, **16 kildeporter totalt**, 32 underpåstander totalt, **0/4** teorikort kilde-/vitenskapelig sluttgodkjent. PR skal forbli **draft**. Ingen felles utvalgsstørrelse eller spesifikk kognitiv kausalmediator er fastslått.
+
