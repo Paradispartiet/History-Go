@@ -1,734 +1,326 @@
 {
   "targetId": "dagbladet_akersgata",
   "categoryId": "media",
-  "generator_version": "chatgpt_history_go_manual_v1_compact",
-  "generated_from": [
-    "data/stories/stories_dagbladet_akersgata.json",
-    "data/quiz/regler/SET_MAL_README_v3.md"
-  ],
-  "manual_production_notes": {
-    "quality_direction": "sted → observasjon → emne → forståelse",
-    "hold_back": [
-      "Ingen dagsaktuelle redaksjons-, eier- eller mediedriftspåstander.",
-      "Ingen usikre personrelasjoner.",
-      "Ingen detaljer om nåværende byggbruk uten kilde.",
-      "Story-data brukes for Akersgata som presseakse, Dagbladet som avis/institusjon og avishus som offentlig byspor."
-    ]
+  "sources": {
+    "street": "https://oslobyleksikon.no/side/Akersgata",
+    "local": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+    "snl": "https://snl.no/Dagbladet",
+    "net": "https://www.dagbladet.no/meninger/akkurat-na-gratulerer-med-dagen/82789679",
+    "osvold": "https://snl.no/Sissel_Benneche_Osvold",
+    "egeland": "https://snl.no/John_Olav_Egeland",
+    "stanghelle": "https://www.aftenposten.no/meninger/i/Py5pX/harald-stanghelle",
+    "art": "https://www.dagbladetstiftelsen.no/artikkel/kunsten-i-dagbladet/",
+    "archive": "https://www.dagbladetstiftelsen.no/artikkel/museums-trio-sikrer-dagbladets-historie/",
+    "photo": "https://commons.wikimedia.org/wiki/File:Akersgata_49_(Dagbladet)_OB.AH0606.jpg",
+    "frontphoto": "https://commons.wikimedia.org/wiki/File:Dagbladet_Akersgata.jpg",
+    "logo": "https://commons.wikimedia.org/wiki/File:Dagbladet_logo.svg",
+    "carey": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf"
   },
-  "sets": [
-    {
-      "set_id": "popkultur_dagbladet_akersgata_set_1",
-      "level": 1,
-      "order": 1,
-      "xp": 50,
-      "mode": "place_intro_story",
-      "questions": [
+  "production_context": {
+    "manifest_category": "media",
+    "profile": "normal_4x7",
+    "standard_version": "3.4",
+    "source_brief": "data/quiz/production_briefs/media/dagbladet_akersgata.json",
+    "context_artifact": "data/quiz/production_context/media/dagbladet_akersgata.json",
+    "resolved_files": {
+      "pensum": "data/fag/media/mediapensum_canonical_v4_5.json",
+      "emner": "data/fag/media/emner_media_canonical_v4_5.json",
+      "fagkart": "data/fag/media/fagkart_media_canonical_v4_5.json",
+      "methods": "data/fag/media/methods_media_canonical_v4_5.json",
+      "supersetQuizMal": "data/fag/media/supersetQUIZMAL_media.json",
+      "quizStandard": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "quizQuestionSchema": "data/quiz/regler/QUIZ_QUESTION_SCHEMA_V2.json"
+    },
+    "required_inputs_loaded": [
+      "pensum",
+      "emner",
+      "fagkart",
+      "methods",
+      "supersetQuizMal",
+      "quizStandard",
+      "quizQuestionSchema"
+    ],
+    "pensum_module_ids": [
+      "presse_redaksjoner_avishus",
+      "kilder_kritikk_sannhet",
+      "plattformer_algoritmer_distribusjon"
+    ],
+    "emne_ids": [
+      "em_media_avishus_offentlighetsrom",
+      "em_media_pressehistorie",
+      "em_media_mediehistorisk_endring",
+      "em_media_redaksjon_desk",
+      "em_media_digital_offentlighet",
+      "em_media_arkiv_og_bevis",
+      "em_media_kildekritikk"
+    ],
+    "topic_hook_ids": [
+      "avishus_som_offentlighetsrom"
+    ],
+    "method_ids": [
+      "met_media_kildekritisk_analyse"
+    ],
+    "thinker_ids": [
+      "james_carey"
+    ],
+    "works": [],
+    "source_review_status": "reviewed",
+    "existing_quiz_audit": {
+      "searched_paths": [
+        "data/quiz/manifest.json",
+        "data/quiz/media/dagbladet_akersgata_sets.json",
+        "data/knowledge/knowledge_units.generated.json",
+        "data/stories/stories_dagbladet_akersgata.json"
+      ],
+      "active_before": [
+        {
+          "file": "data/quiz/media/dagbladet_akersgata_sets.json",
+          "set_count": 6,
+          "question_count": 18,
+          "answer_positions": {
+            "0": 18
+          }
+        }
+      ],
+      "decisions": [
         {
           "id": "dagbladet_akersgata_s1_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_1_q1",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva gjør Dagbladet i Akersgata til et viktig mediehistorisk sted?",
-          "options": [
-            "Det viser hvordan aviser kunne bli synlige institusjoner i byens presseakse",
-            "Det er bare et naturpunkt",
-            "Det ligger uten forbindelse til offentlighet"
-          ],
-          "answer": "Det viser hvordan aviser kunne bli synlige institusjoner i byens presseakse",
-          "answerIndex": 0,
-          "knowledge": "Dagbladet i Akersgata kan leses som del av pressegeografien der redaksjoner, offentlig debatt og byrom hang sammen.",
-          "difficulty": 1,
-          "question_type": "scene",
-          "question_layer": "intro_story",
-          "tags": [
-            "dagbladet",
-            "akersgata",
-            "pressehistorie"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_dagbladet_i_akersgata_ka_2083cdffe5",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_dagbladet_i_akersgata_ka_2083cdffe5"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 13
-              },
-              {
-                "emne_id": "em_media_pressehistorie",
-                "score": 12
-              },
-              {
-                "emne_id": "em_media_kritikk_kommentar",
-                "score": 9
-              }
-            ]
-          }
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s1_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_1_q2",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva bør spilleren se etter først i Akersgata?",
-          "options": [
-            "Bygninger, fasader, navn og spor etter presse som offentlig byinstitusjon",
-            "Bare trær og fugler",
-            "Kun fjordkanten"
-          ],
-          "answer": "Bygninger, fasader, navn og spor etter presse som offentlig byinstitusjon",
-          "answerIndex": 0,
-          "knowledge": "Et mediehistorisk stopp handler om å se hvordan redaksjoner og avishus tok plass i byen.",
-          "difficulty": 1,
-          "question_type": "visuell_hook",
-          "question_layer": "intro_story",
-          "tags": [
-            "observasjon",
-            "avishus"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_et_mediehistorisk_stopp__476058c6fa",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_et_mediehistorisk_stopp__476058c6fa"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 10
-              },
-              {
-                "emne_id": "em_media_avishus_offentlighetsrom",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_redaksjon_desk",
-                "score": 8
-              }
-            ]
-          }
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s1_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_1_q3",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva er et godt første observasjonsspørsmål her?",
-          "options": [
-            "Hvordan gjorde aviser og redaksjoner offentlig debatt synlig i byrommet?",
-            "Hvorfor finnes det ingen medier her?",
-            "Hvem eier avisen akkurat nå?"
-          ],
-          "answer": "Hvordan gjorde aviser og redaksjoner offentlig debatt synlig i byrommet?",
-          "answerIndex": 0,
-          "knowledge": "Spørsmålet kobler stedet til presse, offentlighet og bygeografi uten å bruke dagsaktuelle mediedetaljer.",
-          "difficulty": 1,
-          "question_type": "observasjon",
-          "question_layer": "intro_story",
-          "tags": [
-            "stedlesning"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_media_sp_rsmalet_kobler_stedet_9eb0e892ca",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_sp_rsmalet_kobler_stedet_9eb0e892ca"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_frilans_og_press",
-                "score": 7
-              },
-              {
-                "emne_id": "em_media_hendelse_og_presse",
-                "score": 7
-              },
-              {
-                "emne_id": "em_media_lokal_offentlighet",
-                "score": 7
-              }
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_dagbladet_akersgata_set_2",
-      "level": 2,
-      "order": 2,
-      "xp": 60,
-      "mode": "place_life_people_events",
-      "questions": [
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
         {
           "id": "dagbladet_akersgata_s2_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_2_q1",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva slags stedsliv peker et avishus i Akersgata mot?",
-          "options": [
-            "Redaksjonsarbeid, trykk/produksjon, distribusjon, offentlig debatt og bysynlighet",
-            "Kun privat boligliv",
-            "Bare naturreservat"
-          ],
-          "answer": "Redaksjonsarbeid, trykk/produksjon, distribusjon, offentlig debatt og bysynlighet",
-          "answerIndex": 0,
-          "knowledge": "Pressehistorie handler både om tekster og om stedene der nyheter ble produsert, organisert og synliggjort.",
-          "difficulty": 1,
-          "question_type": "stedsliv",
-          "question_layer": "place_life",
-          "tags": [
-            "redaksjon",
-            "offentlighet"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_pressehistorie"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.9299999999999999,
-            "score": 18,
-            "matched": [
-              "pressehistorie",
-              "redaksjon",
-              "offentlighet",
-              "pressehistorie",
-              "presse",
-              "avishus"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_pressehistorie_handler_b_2a9e2aef1c",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_pressehistorie_handler_b_2a9e2aef1c"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s2_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_2_q2",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva betyr Akersgata i en norsk pressefortelling?",
-          "options": [
-            "En konsentrert presseakse der flere medieinstitusjoner kunne forme offentligheten",
-            "Et fjellområde uten aviser",
-            "Et rent jordbrukslandskap"
-          ],
-          "answer": "En konsentrert presseakse der flere medieinstitusjoner kunne forme offentligheten",
-          "answerIndex": 0,
-          "knowledge": "Akersgata fungerer som geografisk nøkkel til norsk pressehistorie og mediemakt.",
-          "difficulty": 1,
-          "question_type": "stedskobling",
-          "question_layer": "place_life",
-          "tags": [
-            "akersgata",
-            "presseakse"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_pressehistorie"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.87,
-            "score": 12,
-            "matched": [
-              "pressehistorie",
-              "makt",
-              "pressehistorie",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_akersgata_fungerer_som_g_939793183c",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_akersgata_fungerer_som_g_939793183c"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s2_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_2_q3",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva bør holdes ute av trygg Dagbladet-quiz her?",
-          "options": [
-            "Dagsaktuelle redaksjons-, eier- og driftsopplysninger uten kilde",
-            "Begrepet pressehistorie",
-            "Observasjon av bygninger"
-          ],
-          "answer": "Dagsaktuelle redaksjons-, eier- og driftsopplysninger uten kilde",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal lære stabile historiske mønstre, ikke oppdatere dagens mediebransje.",
-          "difficulty": 1,
-          "question_type": "kildekritikk",
-          "question_layer": "place_life",
-          "tags": [
-            "holdback"
-          ],
-          "source": [
-            "manual_production_notes"
-          ],
-          "claim_basis": "holdback_rule",
-          "emne_ids": [
-            "em_media_kildekritikk"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.84,
-            "score": 9,
-            "matched": [
-              "kildekritikk",
-              "kilde",
-              "kildekritikk"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_l_re_stabil_41f1b68547",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_quizzen_skal_l_re_stabil_41f1b68547"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_dagbladet_akersgata_set_3",
-      "level": 3,
-      "order": 3,
-      "xp": 70,
-      "mode": "emne_based_foundation",
-      "questions": [
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
         {
           "id": "dagbladet_akersgata_s3_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_3_q1",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr pressehistorie?",
-          "options": [
-            "Historien om aviser, journalistikk, trykk, offentlighet og medieinstitusjoner",
-            "Historien om fossiler",
-            "Et rent værbegrep"
-          ],
-          "answer": "Historien om aviser, journalistikk, trykk, offentlighet og medieinstitusjoner",
-          "answerIndex": 0,
-          "knowledge": "Dagbladet i Akersgata gjør pressehistorie konkret gjennom sted, institusjon og byrom.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "pressehistorie"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_dagbladet_i_akersgata_gj_a84bfaa2e5",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_dagbladet_i_akersgata_gj_a84bfaa2e5"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s3_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_3_q2",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr offentlighet i mediehistorie?",
-          "options": [
-            "Rommet der nyheter, meninger og debatt blir delt og diskutert i samfunnet",
-            "Et privat låst lager",
-            "En skog uten mennesker"
-          ],
-          "answer": "Rommet der nyheter, meninger og debatt blir delt og diskutert i samfunnet",
-          "answerIndex": 0,
-          "knowledge": "Aviser som Dagbladet var viktige fordi de produserte stoff for offentlig samtale.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "offentlighet"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_aviser_som_dagbladet_var_e364840848",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_aviser_som_dagbladet_var_e364840848"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s3_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_3_q3",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hva betyr mediegeografi?",
-          "options": [
-            "Hvordan medieinstitusjoner plasserer seg i byen og former offentlig rom",
-            "Hvor høyt et fjell er",
-            "Hvordan planter vokser"
-          ],
-          "answer": "Hvordan medieinstitusjoner plasserer seg i byen og former offentlig rom",
-          "answerIndex": 0,
-          "knowledge": "Akersgata er et eksempel på mediegeografi fordi flere presseinstitusjoner samlet seg i ett byområde.",
-          "difficulty": 2,
-          "question_type": "definition",
-          "question_layer": "foundation",
-          "tags": [
-            "mediegeografi"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_redaksjonell_institusjon"
-          ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "institusjon",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_akersgata_er_et_eksempel_a204b2f03f",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_akersgata_er_et_eksempel_a204b2f03f"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_dagbladet_akersgata_set_4",
-      "level": 4,
-      "order": 4,
-      "xp": 80,
-      "mode": "place_concrete_advanced",
-      "questions": [
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
         {
           "id": "dagbladet_akersgata_s4_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_4_q1",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva er en avansert observasjon i Akersgata?",
-          "options": [
-            "Å se hvordan medieinstitusjoner trengte synlighet, nærhet og bysentral plassering",
-            "Å bare lese gatenavnet",
-            "Å ignorere bygningene"
-          ],
-          "answer": "Å se hvordan medieinstitusjoner trengte synlighet, nærhet og bysentral plassering",
-          "answerIndex": 0,
-          "knowledge": "Avansert stedlesning kobler redaksjon, offentlighet og bygeografi.",
-          "difficulty": 2,
-          "question_type": "analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "mediegeografi",
-            "byrom"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_avansert_stedlesning_kob_54fbfb066d",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_avansert_stedlesning_kob_54fbfb066d"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_debatt_offentlighet",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_opplyst_offentlighet",
-                "score": 8
-              },
-              {
-                "emne_id": "em_media_redaksjon_desk",
-                "score": 8
-              }
-            ]
-          }
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s4_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_4_q2",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva kan Dagbladet-stedet lære om aviser som institusjoner?",
-          "options": [
-            "At aviser både produserer innhold og tar fysisk plass i byen",
-            "At aviser ikke trenger steder",
-            "At presse bare er naturfenomen"
-          ],
-          "answer": "At aviser både produserer innhold og tar fysisk plass i byen",
-          "answerIndex": 0,
-          "knowledge": "Pressehistorien blir lettere å forstå når avisen leses som bygg, arbeid, produksjon og offentlighet.",
-          "difficulty": 2,
-          "question_type": "kritisk_analyse",
-          "question_layer": "advanced_place",
-          "tags": [
-            "avishus",
-            "institusjon"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "primary_knowledge_unit_id": "ku_media_pressehistorien_blir_let_d93d030f96",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_pressehistorien_blir_let_d93d030f96"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_pressehistorie",
-                "score": 15
-              },
-              {
-                "emne_id": "em_media_redaksjonell_institusjon",
-                "score": 14
-              },
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 12
-              }
-            ]
-          }
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s4_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_4_q3",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "place",
-          "question": "Hva bør en god Dagbladet-quiz trene spilleren i?",
-          "options": [
-            "Å lese avis, offentlighet, byakse og medieinstitusjon sammen",
-            "Å pugge dagens eiere",
-            "Å overse stedet"
-          ],
-          "answer": "Å lese avis, offentlighet, byakse og medieinstitusjon sammen",
-          "answerIndex": 0,
-          "knowledge": "Quizzen skal gjøre spilleren bedre til å forstå mediehistorie gjennom et konkret sted.",
-          "difficulty": 2,
-          "question_type": "meta",
-          "question_layer": "advanced_place",
-          "tags": [
-            "stedbasert_læring"
-          ],
-          "source": [
-            "data/quiz/regler/SET_MAL_README_v3.md"
-          ],
-          "claim_basis": "generator_rule",
-          "primary_knowledge_unit_id": "ku_media_quizzen_skal_gj_re_spill_3793e03ecf",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_quizzen_skal_gj_re_spill_3793e03ecf"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0
-          }
-        }
-      ]
-    },
-    {
-      "set_id": "popkultur_dagbladet_akersgata_set_5",
-      "level": 5,
-      "order": 5,
-      "xp": 90,
-      "mode": "emne_based_advanced",
-      "questions": [
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
         {
           "id": "dagbladet_akersgata_s5_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_5_q1",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hva er den dypere læringen i Dagbladet Akersgata?",
-          "options": [
-            "At pressehistorie også er byhistorie: mediemakt får steder, fasader og arbeidsrom",
-            "At aviser bare er løs tekst",
-            "At byrom ikke påvirker offentlighet"
-          ],
-          "answer": "At pressehistorie også er byhistorie: mediemakt får steder, fasader og arbeidsrom",
-          "answerIndex": 0,
-          "knowledge": "Stedet viser hvordan journalistikk og offentlig debatt er knyttet til konkrete byrom.",
-          "difficulty": 3,
-          "question_type": "emne_avansert",
-          "question_layer": "advanced_emne",
-          "tags": [
-            "pressehistorie",
-            "byhistorie"
-          ],
-          "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
-          ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_mediehistorisk_endring"
-          ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_stedet_viser_hvordan_jou_d47a3a7c0e",
-          "knowledge_unit_ids": [
+          "old_knowledge_ids": [
             "ku_media_stedet_viser_hvordan_jou_d47a3a7c0e"
           ],
-          "concept_ids": [],
-          "term_ids": [],
-          "knowledge_contract_version": 1,
-          "knowledge_link_status": "linked"
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
         },
         {
           "id": "dagbladet_akersgata_s5_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_5_q2",
-          "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
-          "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hvorfor er en presseakse nyttig å forstå?",
-          "options": [
-            "Fordi den viser hvordan flere mediehus sammen kan forme byens offentlige sentrum",
-            "Fordi den viser at aviser aldri samarbeider med byen",
-            "Fordi den bare handler om gatenavn"
+          "old_knowledge_ids": [
+            "ku_media_akersgata_kan_leses_som__28bd28f40a"
           ],
-          "answer": "Fordi den viser hvordan flere mediehus sammen kan forme byens offentlige sentrum",
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
+        {
+          "id": "dagbladet_akersgata_s5_q3",
+          "old_knowledge_ids": [
+            "ku_media_dagbladet_i_akersgata_gi_20bf01345e"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
+        {
+          "id": "dagbladet_akersgata_s6_q1",
+          "old_knowledge_ids": [
+            "ku_media_pressehistorie_er_n_kkel_303b8e6d65"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
+        {
+          "id": "dagbladet_akersgata_s6_q2",
+          "old_knowledge_ids": [
+            "ku_media_akersgata_er_et_klart_ek_a9412682b5"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        },
+        {
+          "id": "dagbladet_akersgata_s6_q3",
+          "old_knowledge_ids": [
+            "ku_media_stedet_blir_tydeligst_na_f8b6962143"
+          ],
+          "decision": "rewrite_from_external_evidence",
+          "reason": "Legacy-spørsmålet har intern lærings-/storyflate og alle gamle fasitsvar er i slot 0. Belegg om avishus, pressehistorie og mediegeografi bevares i nye source-led forklaringer og Fagverk."
+        }
+      ],
+      "knowledge_migration": {
+        "old_question_count": 18,
+        "new_question_count": 28,
+        "rule": "Eksisterende faglige kjerner bevares i forklaringer og Fagverk; udokumenterte interne flater pensjoneres med auditerte gamle Knowledge-ID-er. Avledet indeks regenereres."
+      }
+    },
+    "profile_decision": {
+      "profile": "normal",
+      "set_count": 4,
+      "questions_per_set": 7,
+      "justification": "28 ulike kunnskapsoppgaver gir fire selvstendige læringsjobber: huset og adressene, papiravis og personer, digital arbeidsflyt, deretter arkiver og kildegrenser. Morgenavis, bilag og kulturtegninger fordypes i Fagverk; separate ekstra sett ville i dette kildeutvalget gjenta datoer eller kreve nye samtidige utgaver. Byggets major-profil forhåndslåser ikke quizprofilen."
+    },
+    "held_back_candidates": [
+      {
+        "subject": "Trykkpresser, kameraer og andre fysiske redaksjonsgjenstander",
+        "reason": "Ingen identifisert gjenstandspost med direkte nummer-49-evidens."
+      },
+      {
+        "subject": "Enkeltforsider og nettfront fra 1995",
+        "reason": "Ingen lisensavklart samtidig medlemsillustrasjon; ingen oppdiktede grafiske detaljer."
+      },
+      {
+        "subject": "Lippmann, Tuchman, Gans og Schudson",
+        "reason": "Vurdert i avishus-hooken; det aktuelle kildegrunnlaget trenger kildegrenser og leserpraksis, ikke en generell navnequiz."
+      },
+      {
+        "subject": "Interne arbeidsstasjoner og årsak til tabloidkonflikten",
+        "reason": "De leste kildene dokumenterer ikke plassering eller alle aktørenes begrunnelser."
+      }
+    ],
+    "relative_phase_policy": {
+      "theory_start_phase": "final",
+      "method_start_phase": "final"
+    }
+  },
+  "sets": [
+    {
+      "set_id": "media_dagbladet_akersgata_set_1",
+      "level": 1,
+      "order": 1,
+      "phase": "opening",
+      "xp": 50,
+      "questions": [
+        {
+          "id": "dagbladet_akersgata_v2_q01",
+          "quiz_id": "media_dagbladet_akersgata_v2_q01",
+          "claim_id": "claim_dagbladet_quiz_01",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva var Dagbladets redaksjonsadresse i Oslo fra 1967 til 2008?",
+          "options": [
+            "Akersgata 49",
+            "Akersgata 55",
+            "Akersgata 51"
+          ],
+          "answer": "Akersgata 49",
           "answerIndex": 0,
-          "knowledge": "Akersgata kan leses som et samlet miljø for presse, politikk og offentlig samtale.",
-          "difficulty": 3,
-          "question_type": "historisk_sammenheng",
-          "question_layer": "advanced_emne",
+          "knowledge": "Nummer 49 er Dagbladets historiske redaksjonssted. Nummer 51 og 55 har andre avishushistorier.",
+          "claim_basis": "Dagbladets redaksjon holdt til i avishuset i Akersgata 49 fra nybygget i 1967 til utflyttingen i 2008.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
           "tags": [
-            "presseakse",
-            "offentlighet"
+            "media",
+            "dagbladet_akersgata"
           ],
           "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
+            "local"
           ],
-          "claim_basis": "conceptual_safe",
-          "emne_ids": [
-            "em_media_mediehistorisk_endring"
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "single_explicit_emne_in_set",
-            "confidence": 0.98
-          },
-          "primary_knowledge_unit_id": "ku_media_akersgata_kan_leses_som__28bd28f40a",
+          "sources": [
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Dagbladets redaksjon holdt til i avishuset i Akersgata 49 fra nybygget i 1967 til utflyttingen i 2008.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_nummer_49_er_dagbladets__fe788e9fbd",
           "knowledge_unit_ids": [
-            "ku_media_akersgata_kan_leses_som__28bd28f40a"
+            "ku_media_nummer_49_er_dagbladets__fe788e9fbd",
+            "ku_media_nummer_51_og_55_har_andr_943fc1244d"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -736,47 +328,335 @@
           "knowledge_link_status": "linked"
         },
         {
-          "id": "dagbladet_akersgata_s5_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_5_q3",
+          "id": "dagbladet_akersgata_v2_q02",
+          "quiz_id": "media_dagbladet_akersgata_v2_q02",
+          "claim_id": "claim_dagbladet_quiz_02",
           "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
           "targetId": "dagbladet_akersgata",
-          "question_scope": "emne",
-          "question": "Hvordan fungerer stedet i en mediehistorisk rute?",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilket år er Dagbladet-gårdens nye gateparti datert til?",
           "options": [
-            "Som Oslo-punkt der avis, redaksjon, offentlighet og byakse møtes",
-            "Som naturpunkt uten medier",
-            "Som rent idrettsanlegg"
+            "1959",
+            "1976",
+            "1967"
           ],
-          "answer": "Som Oslo-punkt der avis, redaksjon, offentlighet og byakse møtes",
-          "answerIndex": 0,
-          "knowledge": "Dagbladet i Akersgata gir en konkret inngang til norsk pressegeografi.",
-          "difficulty": 3,
-          "question_type": "rutekobling",
-          "question_layer": "advanced_emne",
+          "answer": "1967",
+          "answerIndex": 2,
+          "knowledge": "Dateringen gjelder partiet mot Akersgata. Eiendommens eldre bygningsdeler har en annen historie.",
+          "claim_basis": "Partiet av Dagbladets gård mot Akersgata er fra 1967.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
           "tags": [
-            "mediehistorie",
-            "oslo"
+            "media",
+            "dagbladet_akersgata"
           ],
           "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
+            "street"
           ],
-          "claim_basis": "safe_story_data",
-          "emne_ids": [
-            "em_media_mediehistorisk_endring"
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
           ],
-          "knowledge_link_evidence": {
-            "method": "unique_lexical_emne_match",
-            "confidence": 0.8200000000000001,
-            "score": 7,
-            "matched": [
-              "mediehistorisk",
-              "presse"
-            ]
-          },
-          "primary_knowledge_unit_id": "ku_media_dagbladet_i_akersgata_gi_20bf01345e",
+          "sources": [
+            {
+              "source_id": "street",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Partiet av Dagbladets gård mot Akersgata er fra 1967.",
+              "role": "Gatepartiet fra 1967, arkitektene, rivingen i 1965 og ny bruk fra 2009."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_dateringen_gjelder_parti_7d571c0135",
           "knowledge_unit_ids": [
-            "ku_media_dagbladet_i_akersgata_gi_20bf01345e"
+            "ku_media_dateringen_gjelder_parti_7d571c0135",
+            "ku_media_eiendommens_eldre_bygnin_457383d091"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q03",
+          "quiz_id": "media_dagbladet_akersgata_v2_q03",
+          "claim_id": "claim_dagbladet_quiz_03",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvem tegnet gatepartiet fra 1967?",
+          "options": [
+            "Lund & Slaatto",
+            "Thorleif Jensen, Ole Bue og Eiler Prytz",
+            "Arnstein Arneberg og Magnus Poulsson"
+          ],
+          "answer": "Thorleif Jensen, Ole Bue og Eiler Prytz",
+          "answerIndex": 1,
+          "knowledge": "Arkitektene oppgis i Oslo byleksikons omtale av nummer 49. Navnet på et avishus er ikke i seg selv en arkitektkilde.",
+          "claim_basis": "Gatepartiet fra 1967 ble tegnet av Thorleif Jensen, Ole Bue og Eiler Prytz.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "street"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "street",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Gatepartiet fra 1967 ble tegnet av Thorleif Jensen, Ole Bue og Eiler Prytz.",
+              "role": "Gatepartiet fra 1967, arkitektene, rivingen i 1965 og ny bruk fra 2009."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arkitektene_oppgis_i_osl_9ab89457ea",
+          "knowledge_unit_ids": [
+            "ku_media_arkitektene_oppgis_i_osl_9ab89457ea",
+            "ku_media_navnet_pa_et_avishus_er__98628c399c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q04",
+          "quiz_id": "media_dagbladet_akersgata_v2_q04",
+          "claim_id": "claim_dagbladet_quiz_04",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Når ble avisen Dagbladet grunnlagt?",
+          "options": [
+            "1945",
+            "1860",
+            "1869"
+          ],
+          "answer": "1869",
+          "answerIndex": 2,
+          "knowledge": "Avisen eksisterte lenge før den tok i bruk Akersgata 49. Avisens etableringsår og husets byggeår beskriver forskjellige ting.",
+          "claim_basis": "Dagbladet ble grunnlagt i 1869 og hadde flere redaksjonsadresser før Akersgata 49.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Dagbladet ble grunnlagt i 1869 og hadde flere redaksjonsadresser før Akersgata 49.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_avisen_eksisterte_lenge__63581c9569",
+          "knowledge_unit_ids": [
+            "ku_media_avisen_eksisterte_lenge__63581c9569",
+            "ku_media_avisens_etableringsar_og_2164bd968d"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q05",
+          "quiz_id": "media_dagbladet_akersgata_v2_q05",
+          "claim_id": "claim_dagbladet_quiz_05",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken adresse i Akersgata hadde Dagbladet før nummer 49?",
+          "options": [
+            "Akersgata 55",
+            "Akersgata 36",
+            "Akersgata 34"
+          ],
+          "answer": "Akersgata 36",
+          "answerIndex": 1,
+          "knowledge": "Lokalhistoriewiki dokumenterer nummer 36 som tidligere redaksjonsadresse. Den gamle Dagbladet-gården er et eget historisk bygg.",
+          "claim_basis": "Dagbladet holdt tidligere til i Akersgata 36.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Dagbladet holdt tidligere til i Akersgata 36.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_lokalhistoriewiki_dokume_78ffaac35f",
+          "knowledge_unit_ids": [
+            "ku_media_lokalhistoriewiki_dokume_78ffaac35f",
+            "ku_media_den_gamle_dagbladet_gard_0f8d22ffb6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q06",
+          "quiz_id": "media_dagbladet_akersgata_v2_q06",
+          "claim_id": "claim_dagbladet_quiz_06",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Når ble den eldre gården mot gaten i nummer 49 revet?",
+          "options": [
+            "1967",
+            "1965",
+            "1971"
+          ],
+          "answer": "1965",
+          "answerIndex": 1,
+          "knowledge": "Rivingen og ferdigstillingen av det nye gatepartiet var forskjellige hendelser. Den eldre gården hadde blant annet huset Ørebladet.",
+          "claim_basis": "Den tidligere gården mot gaten ble revet i 1965.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "street"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "street",
+              "url": "https://oslobyleksikon.no/side/Akersgata",
+              "source_type": "institutional_reference",
+              "claim_basis": "Den tidligere gården mot gaten ble revet i 1965.",
+              "role": "Gatepartiet fra 1967, arkitektene, rivingen i 1965 og ny bruk fra 2009."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_rivingen_og_ferdigstilli_015a74ce8b",
+          "knowledge_unit_ids": [
+            "ku_media_rivingen_og_ferdigstilli_015a74ce8b",
+            "ku_media_den_eldre_garden_hadde_b_98987f2c81"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q07",
+          "quiz_id": "media_dagbladet_akersgata_v2_q07",
+          "claim_id": "claim_dagbladet_quiz_07",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvor flyttet Dagbladet da redaksjonen forlot Akersgata i 2008?",
+          "options": [
+            "Hasle",
+            "Havnelageret",
+            "VG-huset"
+          ],
+          "answer": "Havnelageret",
+          "answerIndex": 1,
+          "knowledge": "Flyttingen til Havnelageret avslutter redaksjonsperioden i nummer 49. Senere adresser skal ikke legges inn som bruk av dette huset.",
+          "claim_basis": "Dagbladet flyttet fra Akersgata til Havnelageret i 2008.",
+          "difficulty": 1,
+          "question_type": "fact",
+          "question_layer": "opening",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Dagbladet flyttet fra Akersgata til Havnelageret i 2008.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_flyttingen_til_havnelage_de17353dc9",
+          "knowledge_unit_ids": [
+            "ku_media_flyttingen_til_havnelage_de17353dc9",
+            "ku_media_senere_adresser_skal_ikk_a342a87622"
           ],
           "concept_ids": [],
           "term_ids": [],
@@ -786,157 +666,1272 @@
       ]
     },
     {
-      "set_id": "popkultur_dagbladet_akersgata_set_6",
-      "level": 6,
-      "order": 6,
-      "xp": 100,
-      "mode": "concept_based",
+      "set_id": "media_dagbladet_akersgata_set_2",
+      "level": 2,
+      "order": 2,
+      "phase": "middle",
+      "xp": 75,
       "questions": [
         {
-          "id": "dagbladet_akersgata_s6_q1",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_6_q1",
+          "id": "dagbladet_akersgata_v2_q08",
+          "quiz_id": "media_dagbladet_akersgata_v2_q08",
+          "claim_id": "claim_dagbladet_quiz_08",
           "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
           "targetId": "dagbladet_akersgata",
-          "question_scope": "concept",
-          "question": "Hvilket begrep beskriver historien om aviser, journalistikk og offentlighet?",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilket år begynte Dagbladet å komme ut som morgenavis?",
           "options": [
-            "Pressehistorie",
-            "Ravinedal",
-            "Overvann"
+            "1982",
+            "1990",
+            "1983"
           ],
-          "answer": "Pressehistorie",
+          "answer": "1982",
           "answerIndex": 0,
-          "knowledge": "Pressehistorie er nøkkelbegrepet for Dagbladet i Akersgata.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
+          "knowledge": "Overgangen til morgenavis kom før tabloidformatet. Utgivelsestidspunkt og papirformat er to ulike endringer.",
+          "claim_basis": "Dagbladet gikk over til å komme ut som morgenavis i 1982.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
           "tags": [
-            "pressehistorie"
+            "media",
+            "dagbladet_akersgata"
           ],
           "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
+            "snl"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_pressehistorie_er_n_kkel_303b8e6d65",
+          "source_origin": "external",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl",
+              "url": "https://snl.no/Dagbladet",
+              "source_type": "recognized_reference",
+              "claim_basis": "Dagbladet gikk over til å komme ut som morgenavis i 1982.",
+              "role": "Morgenavis 1982, tabloid 1983, bilag og søndagsutgave."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_overgangen_til_morgenavi_9ccc2a0e26",
           "knowledge_unit_ids": [
-            "ku_media_pressehistorie_er_n_kkel_303b8e6d65"
+            "ku_media_overgangen_til_morgenavi_9ccc2a0e26",
+            "ku_media_utgivelsestidspunkt_og_p_ad81b26762"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_pressehistorie",
-                "score": 15
-              },
-              {
-                "emne_id": "em_media_journalist_kilde",
-                "score": 14
-              },
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 12
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "dagbladet_akersgata_s6_q2",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_6_q2",
+          "id": "dagbladet_akersgata_v2_q09",
+          "quiz_id": "media_dagbladet_akersgata_v2_q09",
+          "claim_id": "claim_dagbladet_quiz_09",
           "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
           "targetId": "dagbladet_akersgata",
-          "question_scope": "concept",
-          "question": "Hva betyr mediegeografi?",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Når gikk Dagbladet over til tabloidformat?",
           "options": [
-            "Hvordan medieinstitusjoner plasserer seg i byen og former offentlig rom",
-            "Hvordan elver renner gjennom skog",
-            "Et værvarsel"
+            "1995",
+            "1963",
+            "1983"
           ],
-          "answer": "Hvordan medieinstitusjoner plasserer seg i byen og former offentlig rom",
-          "answerIndex": 0,
-          "knowledge": "Akersgata er et klart eksempel på mediegeografi i Oslo.",
-          "difficulty": 3,
-          "question_type": "concept",
-          "question_layer": "concept",
+          "answer": "1983",
+          "answerIndex": 2,
+          "knowledge": "SNL daterer formatomleggingen til 1983 og omtaler intern strid. Kilden gir ikke grunnlag for å tilskrive alle medarbeiderne samme syn.",
+          "claim_basis": "Dagbladet gikk over til tabloidformat i 1983.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
           "tags": [
-            "mediegeografi"
+            "media",
+            "dagbladet_akersgata"
           ],
           "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
+            "snl"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_akersgata_er_et_klart_ek_a9412682b5",
+          "source_origin": "external",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl",
+              "url": "https://snl.no/Dagbladet",
+              "source_type": "recognized_reference",
+              "claim_basis": "Dagbladet gikk over til tabloidformat i 1983.",
+              "role": "Morgenavis 1982, tabloid 1983, bilag og søndagsutgave."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_snl_daterer_formatomlegg_0ee9f1bc2d",
           "knowledge_unit_ids": [
-            "ku_media_akersgata_er_et_klart_ek_a9412682b5"
+            "ku_media_snl_daterer_formatomlegg_0ee9f1bc2d",
+            "ku_media_kilden_gir_ikke_grunnlag_1dce8d2f24"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0
-          }
+          "knowledge_link_status": "linked"
         },
         {
-          "id": "dagbladet_akersgata_s6_q3",
-          "quiz_id": "popkultur_dagbladet_akersgata_set_6_q3",
+          "id": "dagbladet_akersgata_v2_q10",
+          "quiz_id": "media_dagbladet_akersgata_v2_q10",
+          "claim_id": "claim_dagbladet_quiz_10",
           "categoryId": "media",
-          "placeId": "dagbladet_akersgata",
           "targetId": "dagbladet_akersgata",
-          "question_scope": "concept",
-          "question": "Hvilket begrepspar forklarer Dagbladet Akersgata best?",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvem var sjefredaktør i Dagbladet fra 1995 til 2000?",
           "options": [
-            "Pressehistorie og offentlighet",
-            "Fjordovergang og vannkvalitet",
-            "Ravinedal og løvskog"
+            "John Olav Egeland",
+            "Frode Hansen",
+            "Harald Stanghelle"
           ],
-          "answer": "Pressehistorie og offentlighet",
-          "answerIndex": 0,
-          "knowledge": "Stedet blir tydeligst når avisens byrom leses sammen med den offentlige samtalen avisen bidro til.",
-          "difficulty": 3,
-          "question_type": "concept_pair",
-          "question_layer": "concept",
+          "answer": "Harald Stanghelle",
+          "answerIndex": 2,
+          "knowledge": "Stanghelles lederperiode falt mens redaksjonen holdt til i Akersgata 49. Hans arbeid i Aftenposten er en annen institusjonstilknytning.",
+          "claim_basis": "Harald Stanghelle var sjefredaktør i Dagbladet i 1995–2000.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
           "tags": [
-            "pressehistorie",
-            "offentlighet"
+            "media",
+            "dagbladet_akersgata"
           ],
           "source": [
-            "data/stories/stories_dagbladet_akersgata.json"
+            "stanghelle"
           ],
-          "claim_basis": "conceptual_safe",
-          "primary_knowledge_unit_id": "ku_media_stedet_blir_tydeligst_na_f8b6962143",
+          "source_origin": "external",
+          "emne_id": "em_media_redaksjon_desk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "stanghelle",
+              "url": "https://www.aftenposten.no/meninger/i/Py5pX/harald-stanghelle",
+              "source_type": "primary_biography",
+              "claim_basis": "Harald Stanghelle var sjefredaktør i Dagbladet i 1995–2000.",
+              "role": "Aftenpostens daterte biografitekst dokumenterer sjefredaktørperioden i Dagbladet 1995–2000."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_stanghelles_lederperiode_d80ad89f57",
           "knowledge_unit_ids": [
-            "ku_media_stedet_blir_tydeligst_na_f8b6962143"
+            "ku_media_stanghelles_lederperiode_d80ad89f57",
+            "ku_media_hans_arbeid_i_aftenposte_85bd40b1f8"
           ],
           "concept_ids": [],
           "term_ids": [],
           "knowledge_contract_version": 1,
-          "knowledge_link_status": "editorial_review_required",
-          "knowledge_link_evidence": {
-            "method": "unresolved",
-            "confidence": 0,
-            "top": [
-              {
-                "emne_id": "em_media_pressehistorie",
-                "score": 12
-              },
-              {
-                "emne_id": "em_media_avisens_materielle_form",
-                "score": 10
-              },
-              {
-                "emne_id": "em_media_mediehistorisk_endring",
-                "score": 9
-              }
-            ]
-          }
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q11",
+          "quiz_id": "media_dagbladet_akersgata_v2_q11",
+          "claim_id": "claim_dagbladet_quiz_11",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvem var sjefredaktør i Dagbladet fra 2000 til 2003?",
+          "options": [
+            "Harald Stanghelle",
+            "Arve Solstad",
+            "John Olav Egeland"
+          ],
+          "answer": "John Olav Egeland",
+          "answerIndex": 2,
+          "knowledge": "Egeland hadde også andre roller i avisen. En biografi må skille sjefredaktørperioden fra hele ansettelsesperioden.",
+          "claim_basis": "John Olav Egeland arbeidet i Dagbladet fra 1978 til 2021 og var sjefredaktør i 2000–2003.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "egeland"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_redaksjon_desk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "egeland",
+              "url": "https://snl.no/John_Olav_Egeland",
+              "source_type": "recognized_reference",
+              "claim_basis": "John Olav Egeland arbeidet i Dagbladet fra 1978 til 2021 og var sjefredaktør i 2000–2003.",
+              "role": "Arbeidsperiode og sjefredaktør 2000–2003."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_egeland_hadde_ogsa_andre_337b03ac83",
+          "knowledge_unit_ids": [
+            "ku_media_egeland_hadde_ogsa_andre_337b03ac83",
+            "ku_media_en_biografi_ma_skille_sj_0c3ed67c01"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q12",
+          "quiz_id": "media_dagbladet_akersgata_v2_q12",
+          "claim_id": "claim_dagbladet_quiz_12",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvem skrev den ukentlige spalten Sidesprang fra 1990?",
+          "options": [
+            "Sissel Benneche Osvold",
+            "Gudleiv Forr",
+            "John Olav Egeland"
+          ],
+          "answer": "Sissel Benneche Osvold",
+          "answerIndex": 0,
+          "knowledge": "Sidesprang er et navngitt innslag i Osvolds kommentarjournalistikk. Spaltetittelen er ikke navnet på et redaksjonsrom.",
+          "claim_basis": "Osvold var kommentarjournalist fra 1989 og skrev den ukentlige spalten Sidesprang fra 1990.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "osvold"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "osvold",
+              "url": "https://snl.no/Sissel_Benneche_Osvold",
+              "source_type": "recognized_reference",
+              "claim_basis": "Osvold var kommentarjournalist fra 1989 og skrev den ukentlige spalten Sidesprang fra 1990.",
+              "role": "Dagbladet-perioden, kommentarjournalistikk og Sidesprang."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_sidesprang_er_et_navngit_e45b341399",
+          "knowledge_unit_ids": [
+            "ku_media_sidesprang_er_et_navngit_e45b341399",
+            "ku_media_spaltetittelen_er_ikke_n_f9b394b8ba"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q13",
+          "quiz_id": "media_dagbladet_akersgata_v2_q13",
+          "claim_id": "claim_dagbladet_quiz_13",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken tegner ble knyttet til Dagbladet i 1988?",
+          "options": [
+            "Fredrik Stabel",
+            "Gösta Hammarlund",
+            "Finn Graff"
+          ],
+          "answer": "Finn Graff",
+          "answerIndex": 2,
+          "knowledge": "Stiftelsens kunsthistorie daterer Graffs tilknytning. Den skiller avistegninger fra de bevarte verkene som hang på veggene.",
+          "claim_basis": "Finn Graff ble knyttet til Dagbladet som tegner i 1988.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "art"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "art",
+              "url": "https://www.dagbladetstiftelsen.no/artikkel/kunsten-i-dagbladet/",
+              "source_type": "institutional_history",
+              "claim_basis": "Finn Graff ble knyttet til Dagbladet som tegner i 1988.",
+              "role": "Graff 1988, Stabel-vignetten og veggkunst. Omtalen av flytteår 2007 er holdt tilbake."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_stiftelsens_kunsthistori_9eda8a0c52",
+          "knowledge_unit_ids": [
+            "ku_media_stiftelsens_kunsthistori_9eda8a0c52",
+            "ku_media_den_skiller_avistegninge_6d9956c878"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q14",
+          "quiz_id": "media_dagbladet_akersgata_v2_q14",
+          "claim_id": "claim_dagbladet_quiz_14",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilket lørdagsbilag lanserte Dagbladet i 1999?",
+          "options": [
+            "Dagbladet Fredag",
+            "Magasinet",
+            "Søndag"
+          ],
+          "answer": "Magasinet",
+          "answerIndex": 1,
+          "knowledge": "Bilagene hadde egne navn og lanseringsår. Fredag kom i 1990, mens Søndag kom i 2004.",
+          "claim_basis": "Lørdagsbilaget Magasinet ble lansert i 1999.",
+          "difficulty": 2,
+          "question_type": "fact",
+          "question_layer": "middle",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl",
+              "url": "https://snl.no/Dagbladet",
+              "source_type": "recognized_reference",
+              "claim_basis": "Lørdagsbilaget Magasinet ble lansert i 1999.",
+              "role": "Morgenavis 1982, tabloid 1983, bilag og søndagsutgave."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_bilagene_hadde_egne_navn_e192532158",
+          "knowledge_unit_ids": [
+            "ku_media_bilagene_hadde_egne_navn_e192532158",
+            "ku_media_fredag_kom_i_1990_mens_s_282e8cceb8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_dagbladet_akersgata_set_3",
+      "level": 3,
+      "order": 3,
+      "phase": "bridge",
+      "xp": 100,
+      "questions": [
+        {
+          "id": "dagbladet_akersgata_v2_q15",
+          "quiz_id": "media_dagbladet_akersgata_v2_q15",
+          "claim_id": "claim_dagbladet_quiz_15",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken dato ble Dagbladets nettutgave lansert?",
+          "options": [
+            "8. mars 1995",
+            "10. oktober 1995",
+            "8. mars 1999"
+          ],
+          "answer": "8. mars 1995",
+          "answerIndex": 0,
+          "knowledge": "Dagbladets tilbakeblikk daterer starten til klokken 12 denne dagen. En lanseringsdato dokumenterer ikke automatisk organiseringen av hele nettredaksjonen.",
+          "claim_basis": "Dagbladets nettutgave ble lansert 8. mars 1995 klokken 12.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "net"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_digital_offentlighet",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "net",
+              "url": "https://www.dagbladet.no/meninger/akkurat-na-gratulerer-med-dagen/82789679",
+              "source_type": "primary_retrospective",
+              "claim_basis": "Dagbladets nettutgave ble lansert 8. mars 1995 klokken 12.",
+              "role": "Dagbladets jubileumstekst fra 2025; lansering 8. mars 1995 og nattdesken er gjennomgått. Egen ettertidstekst, ikke samtidig logg."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_dagbladets_tilbakeblikk__613d02c7bd",
+          "knowledge_unit_ids": [
+            "ku_media_dagbladets_tilbakeblikk__613d02c7bd",
+            "ku_media_en_lanseringsdato_dokume_f2dbfbf70a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q16",
+          "quiz_id": "media_dagbladet_akersgata_v2_q16",
+          "claim_id": "claim_dagbladet_quiz_16",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvilken vignett stod over Fredrik Stabels små tegninger på Bysiden?",
+          "options": [
+            "Magasinet",
+            "Norsk Dusteforbund",
+            "Sidesprang"
+          ],
+          "answer": "Norsk Dusteforbund",
+          "answerIndex": 1,
+          "knowledge": "Vignetten knyttet et gjenkjennelig satirisk uttrykk til side 3. Navngitte innslag kan undersøkes i daterte avisutgaver.",
+          "claim_basis": "Fredrik Stabels små tegninger stod på Bysiden, side 3, under vignetten Norsk Dusteforbund.",
+          "difficulty": 3,
+          "question_type": "fact",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "art"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_pressehistorie",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "art",
+              "url": "https://www.dagbladetstiftelsen.no/artikkel/kunsten-i-dagbladet/",
+              "source_type": "institutional_history",
+              "claim_basis": "Fredrik Stabels små tegninger stod på Bysiden, side 3, under vignetten Norsk Dusteforbund.",
+              "role": "Graff 1988, Stabel-vignetten og veggkunst. Omtalen av flytteår 2007 er holdt tilbake."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_vignetten_knyttet_et_gje_60c847424e",
+          "knowledge_unit_ids": [
+            "ku_media_vignetten_knyttet_et_gje_60c847424e",
+            "ku_media_navngitte_innslag_kan_un_3ae6becb4a"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q17",
+          "quiz_id": "media_dagbladet_akersgata_v2_q17",
+          "claim_id": "claim_dagbladet_quiz_17",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan fikk den tidlige nettutgaven artikler fra papiravisen?",
+          "options": [
+            "Et eget reporterkorps leverte bare nye nettreportasjer",
+            "Papiravisens abonnementstjeneste skannet hele utgaver",
+            "To redigerere på papiravisens desk la dem ut om natten"
+          ],
+          "answer": "To redigerere på papiravisens desk la dem ut om natten",
+          "answerIndex": 2,
+          "knowledge": "Arbeidsflyten i jubileumsberetningen begynte med gjenbruk av papirinnhold. Egne artikler og bilder kom senere.",
+          "claim_basis": "Papiravisens desk publiserte saker på nettet i startfasen; egne nettartikler og bilder kom senere.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "net"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_redaksjon_desk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "net",
+              "url": "https://www.dagbladet.no/meninger/akkurat-na-gratulerer-med-dagen/82789679",
+              "source_type": "primary_retrospective",
+              "claim_basis": "Papiravisens desk publiserte saker på nettet i startfasen; egne nettartikler og bilder kom senere.",
+              "role": "Dagbladets jubileumstekst fra 2025; lansering 8. mars 1995 og nattdesken er gjennomgått. Egen ettertidstekst, ikke samtidig logg."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arbeidsflyten_i_jubileum_7018eb29fb",
+          "knowledge_unit_ids": [
+            "ku_media_arbeidsflyten_i_jubileum_7018eb29fb",
+            "ku_media_egne_artikler_og_bilder__9d64e9afb6"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q18",
+          "quiz_id": "media_dagbladet_akersgata_v2_q18",
+          "claim_id": "claim_dagbladet_quiz_18",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan skiller endringene i 1982 og 1983 seg fra hverandre?",
+          "options": [
+            "1982 endret avisformatet, 1983 utgivelsesrytmen",
+            "Begge endret bare hvilke dager bilagene kom ut",
+            "1982 endret utgivelsesrytmen, 1983 avisformatet"
+          ],
+          "answer": "1982 endret utgivelsesrytmen, 1983 avisformatet",
+          "answerIndex": 2,
+          "knowledge": "Morgenavis betegner en publiseringsrytme, tabloid et format. En kronologi bør ikke slå endringene sammen til ett teknologisk skifte.",
+          "claim_basis": "Overgangen til morgenavis i 1982 endret tidspunkt, mens tabloidomleggingen i 1983 endret avisformat.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "snl"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_mediehistorisk_endring",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "snl",
+              "url": "https://snl.no/Dagbladet",
+              "source_type": "recognized_reference",
+              "claim_basis": "Overgangen til morgenavis i 1982 endret tidspunkt, mens tabloidomleggingen i 1983 endret avisformat.",
+              "role": "Morgenavis 1982, tabloid 1983, bilag og søndagsutgave."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_morgenavis_betegner_en_p_a770c542e5",
+          "knowledge_unit_ids": [
+            "ku_media_morgenavis_betegner_en_p_a770c542e5",
+            "ku_media_en_kronologi_b_r_ikke_sl_5bf8065e55"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q19",
+          "quiz_id": "media_dagbladet_akersgata_v2_q19",
+          "claim_id": "claim_dagbladet_quiz_19",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan var Stanghelles og Egelands sjefredaktørperioder knyttet til Akersgata 49?",
+          "options": [
+            "Begge falt innenfor redaksjonens brukstid 1967–2008",
+            "Begge var sjefredaktører etter utflyttingen i 2008",
+            "Stanghelle ledet avisen før innflytting, Egeland etter utflytting"
+          ],
+          "answer": "Begge falt innenfor redaksjonens brukstid 1967–2008",
+          "answerIndex": 0,
+          "knowledge": "Arbeidsår og adressens brukstid gir to uavhengige tidsgrenser for person–sted-koblingen. Det er ikke nok at noen senere arbeidet i Dagbladet.",
+          "claim_basis": "Stanghelle var sjefredaktør 1995–2000 og Egeland 2000–2003, begge innenfor redaksjonsperioden i Akersgata 49.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "stanghelle",
+            "egeland",
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_redaksjon_desk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "stanghelle",
+              "url": "https://www.aftenposten.no/meninger/i/Py5pX/harald-stanghelle",
+              "source_type": "primary_biography",
+              "claim_basis": "Stanghelle var sjefredaktør 1995–2000 og Egeland 2000–2003, begge innenfor redaksjonsperioden i Akersgata 49.",
+              "role": "Aftenpostens daterte biografitekst dokumenterer sjefredaktørperioden i Dagbladet 1995–2000."
+            },
+            {
+              "source_id": "egeland",
+              "url": "https://snl.no/John_Olav_Egeland",
+              "source_type": "recognized_reference",
+              "claim_basis": "Stanghelle var sjefredaktør 1995–2000 og Egeland 2000–2003, begge innenfor redaksjonsperioden i Akersgata 49.",
+              "role": "Arbeidsperiode og sjefredaktør 2000–2003."
+            },
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Stanghelle var sjefredaktør 1995–2000 og Egeland 2000–2003, begge innenfor redaksjonsperioden i Akersgata 49.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_arbeidsar_og_adressens_b_c0a8dfea10",
+          "knowledge_unit_ids": [
+            "ku_media_arbeidsar_og_adressens_b_c0a8dfea10",
+            "ku_media_det_er_ikke_nok_at_noen__fa5c5090f8"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q20",
+          "quiz_id": "media_dagbladet_akersgata_v2_q20",
+          "claim_id": "claim_dagbladet_quiz_20",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan ligger Mahlums fasadefoto fra 2006 i forhold til Dagbladets flytting?",
+          "options": [
+            "Fotoet ble tatt samme år som flyttingen",
+            "Fotoet ble tatt før flyttingen i 2008",
+            "Fotoet ble tatt etter flyttingen i 2008"
+          ],
+          "answer": "Fotoet ble tatt før flyttingen i 2008",
+          "answerIndex": 1,
+          "knowledge": "Fotoet viser huset under Dagbladet-perioden. Det skal dateres tydelig og ikke presenteres som dagens fasade.",
+          "claim_basis": "Fasadefotoet fra 2006 ble tatt før redaksjonens utflytting i 2008.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "frontphoto",
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "frontphoto",
+              "url": "https://commons.wikimedia.org/wiki/File:Dagbladet_Akersgata.jpg",
+              "source_type": "documentary_photo",
+              "claim_basis": "Fasadefotoet fra 2006 ble tatt før redaksjonens utflytting i 2008.",
+              "role": "Mahlums originale fasadefoto fra september 2006; bildet er ikke et kontorfoto."
+            },
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Fasadefotoet fra 2006 ble tatt før redaksjonens utflytting i 2008.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_fotoet_viser_huset_under_298e098244",
+          "knowledge_unit_ids": [
+            "ku_media_fotoet_viser_huset_under_298e098244",
+            "ku_media_det_skal_dateres_tydelig_0872ff6372"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q21",
+          "quiz_id": "media_dagbladet_akersgata_v2_q21",
+          "claim_id": "claim_dagbladet_quiz_21",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvorfor kan ikke alle bilder i negativarkivet 1950–1970 knyttes til arbeid i nummer 49?",
+          "options": [
+            "Hele arkivets opptaksperiode er yngre enn utflyttingen i 2008",
+            "Arkivets årstall viser bare når filene ble publisert digitalt",
+            "Deler av opptaksperioden er eldre enn innflyttingen i 1967"
+          ],
+          "answer": "Deler av opptaksperioden er eldre enn innflyttingen i 1967",
+          "answerIndex": 2,
+          "knowledge": "Avisarkivet og redaksjonsbygningen har forskjellige tidsrom. Institusjonstilknytning alene er ikke en presis stedfesting av hvert motiv.",
+          "claim_basis": "Negativarkivet 1950–1970 omfatter opptaksår før redaksjonen tok i bruk Akersgata 49 i 1967.",
+          "difficulty": 3,
+          "question_type": "context",
+          "question_layer": "bridge",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "archive",
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "archive",
+              "url": "https://www.dagbladetstiftelsen.no/artikkel/museums-trio-sikrer-dagbladets-historie/",
+              "source_type": "institutional_history",
+              "claim_basis": "Negativarkivet 1950–1970 omfatter opptaksår før redaksjonen tok i bruk Akersgata 49 i 1967.",
+              "role": "Negativarkivets motivperiode og overføring, intensjonsavtale 2019. Ingen påstand om senere fullføring."
+            },
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Negativarkivet 1950–1970 omfatter opptaksår før redaksjonen tok i bruk Akersgata 49 i 1967.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_avisarkivet_og_redaksjon_a1767412a8",
+          "knowledge_unit_ids": [
+            "ku_media_avisarkivet_og_redaksjon_a1767412a8",
+            "ku_media_institusjonstilknytning__a97b8bd91c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        }
+      ]
+    },
+    {
+      "set_id": "media_dagbladet_akersgata_set_4",
+      "level": 4,
+      "order": 4,
+      "phase": "final",
+      "xp": 125,
+      "questions": [
+        {
+          "id": "dagbladet_akersgata_v2_q22",
+          "quiz_id": "media_dagbladet_akersgata_v2_q22",
+          "claim_id": "claim_dagbladet_quiz_22",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva betyr februar 1968 i opplysningene om Heibergs museumsfoto?",
+          "options": [
+            "Tidspunktet da filen ble lastet opp til Commons",
+            "Tidspunktet da motivet ble fotografert",
+            "Tidspunktet da Dagbladet flyttet til Havnelageret"
+          ],
+          "answer": "Tidspunktet da motivet ble fotografert",
+          "answerIndex": 1,
+          "knowledge": "Opptaksdato, arkivregistrering og digital publisering er ulike metadata. De må kontrolleres hver for seg.",
+          "claim_basis": "Heibergs museumsfoto har motivdato februar 1968, mens Commons-filens publiseringshistorikk er senere.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "photo"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "photo",
+              "url": "https://commons.wikimedia.org/wiki/File:Akersgata_49_(Dagbladet)_OB.AH0606.jpg",
+              "source_type": "documentary_archive",
+              "claim_basis": "Heibergs museumsfoto har motivdato februar 1968, mens Commons-filens publiseringshistorikk er senere.",
+              "role": "Oslo Museum-foto fra februar 1968; opplastingsdato er en annen dato."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_opptaksdato_arkivregistr_ca490d3282",
+          "knowledge_unit_ids": [
+            "ku_media_opptaksdato_arkivregistr_ca490d3282",
+            "ku_media_de_ma_kontrolleres_hver__e69fddc376"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q23",
+          "quiz_id": "media_dagbladet_akersgata_v2_q23",
+          "claim_id": "claim_dagbladet_quiz_23",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva må tas med i kildevurderingen av Dagbladets nettjubileumstekst fra 2025?",
+          "options": [
+            "Den er avisens egen beretning skrevet tretti år etter oppstarten",
+            "Den er en samtidig nattlogg skrevet under lanseringen",
+            "Den er en uavhengig arkivrapport skrevet før nettlanseringen"
+          ],
+          "answer": "Den er avisens egen beretning skrevet tretti år etter oppstarten",
+          "answerIndex": 0,
+          "knowledge": "Kildekritikk vurderer både hvem som forteller og avstanden til hendelsen. En egenberetning kan gi konkrete detaljer uten å være en samtidig logg.",
+          "claim_basis": "Avisens jubileumstekst fra 2025 er en retrospektiv egenberetning om nettlanseringen i 1995.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "net"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "net",
+              "url": "https://www.dagbladet.no/meninger/akkurat-na-gratulerer-med-dagen/82789679",
+              "source_type": "primary_retrospective",
+              "claim_basis": "Avisens jubileumstekst fra 2025 er en retrospektiv egenberetning om nettlanseringen i 1995.",
+              "role": "Dagbladets jubileumstekst fra 2025; lansering 8. mars 1995 og nattdesken er gjennomgått. Egen ettertidstekst, ikke samtidig logg."
+            }
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_kildekritikk_vurderer_ba_c81c89843e",
+          "knowledge_unit_ids": [
+            "ku_media_kildekritikk_vurderer_ba_c81c89843e",
+            "ku_media_en_egenberetning_kan_gi__9e48ed6b55"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q24",
+          "quiz_id": "media_dagbladet_akersgata_v2_q24",
+          "claim_id": "claim_dagbladet_quiz_24",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva kan en autentisk Dagbladet-logo dokumentert i 2015 alene vise?",
+          "options": [
+            "Avisens identitetsmarkør på det dokumenterte tidspunktet",
+            "Hvordan gatefasaden så ut da nybygget åpnet",
+            "Hvordan alle avisforsider i 1967 var satt opp"
+          ],
+          "answer": "Avisens identitetsmarkør på det dokumenterte tidspunktet",
+          "answerIndex": 0,
+          "knowledge": "Autentisitet er ikke det samme som ubegrenset historisk rekkevidde. En senere logo må ikke brukes som bevis for et eldre avishode.",
+          "claim_basis": "Logo dokumentert i 2015 gir ikke alene belegg for avisens grafiske identitet i 1967.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "logo",
+            "local"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "logo",
+              "url": "https://commons.wikimedia.org/wiki/File:Dagbladet_logo.svg",
+              "source_type": "original_identity_asset",
+              "claim_basis": "Logo dokumentert i 2015 gir ikke alene belegg for avisens grafiske identitet i 1967.",
+              "role": "Autentisk tekstlogo dokumentert 2015. Ingen slutning om logoens bruk i 1967."
+            },
+            {
+              "source_id": "local",
+              "url": "https://lokalhistoriewiki.no/wiki/Dagbladet",
+              "source_type": "institutional_reference",
+              "claim_basis": "Logo dokumentert i 2015 gir ikke alene belegg for avisens grafiske identitet i 1967.",
+              "role": "Redaksjonslokaler og presis periode 1967–2008; eldre adresser er bakgrunn."
+            }
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_autentisitet_er_ikke_det_2fbd5ab9c0",
+          "knowledge_unit_ids": [
+            "ku_media_autentisitet_er_ikke_det_2fbd5ab9c0",
+            "ku_media_en_senere_logo_ma_ikke_b_a840b73040"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q25",
+          "quiz_id": "media_dagbladet_akersgata_v2_q25",
+          "claim_id": "claim_dagbladet_quiz_25",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Du undersøker lesernes tilbakevendende møte med Sidesprang. Hva vektlegger James Careys ritualperspektiv?",
+          "options": [
+            "Hvor mange papirark trykkeriet produserer per time",
+            "Hvor raskt teksten transporteres mellom servere",
+            "Hvordan lesningen inngår i gjentatte sosiale vaner"
+          ],
+          "answer": "Hvordan lesningen inngår i gjentatte sosiale vaner",
+          "answerIndex": 2,
+          "knowledge": "Carey skiller mellom informasjonsoverføring og kommunikasjon som sosialt ritual. Perspektivet foreslår hva en kan undersøke; spaltens eksistens beviser ikke bestemte leservaner.",
+          "claim_basis": "Careys ritualperspektiv undersøker hvordan mediebruk inngår i gjentatt sosial praksis, i motsetning til bare informasjonsoverføring. Sidesprang var en ukentlig spalte fra 1990.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "carey",
+            "osvold"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_avishus_offentlighetsrom",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "carey",
+              "url": "https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/f/4576/files/2013/08/Carey-Cultural_Approach.pdf",
+              "source_type": "primary_scholarly_essay",
+              "claim_basis": "Careys ritualperspektiv undersøker hvordan mediebruk inngår i gjentatt sosial praksis, i motsetning til bare informasjonsoverføring. Sidesprang var en ukentlig spalte fra 1990.",
+              "role": "A Cultural Approach to Communication, PDF-sidene 2 og 6–7: overføring og ritualperspektiv. Teorien brukes til et formulert undersøkelsesspørsmål om leservaner, ikke en udokumentert påstand om Dagbladets lesere."
+            },
+            {
+              "source_id": "osvold",
+              "url": "https://snl.no/Sissel_Benneche_Osvold",
+              "source_type": "recognized_reference",
+              "claim_basis": "Careys ritualperspektiv undersøker hvordan mediebruk inngår i gjentatt sosial praksis, i motsetning til bare informasjonsoverføring. Sidesprang var en ukentlig spalte fra 1990.",
+              "role": "Dagbladet-perioden, kommentarjournalistikk og Sidesprang."
+            }
+          ],
+          "topic_hook_id": "avishus_som_offentlighetsrom",
+          "thinker_id": "james_carey",
+          "theory_ref": {
+            "topic_hook_id": "avishus_som_offentlighetsrom",
+            "thinker_id": "james_carey",
+            "why_it_helps": "Careys skille mellom overføring og ritual presiserer hva en undersøkelse av tilbakevendende avislesning skal se etter. Spaltens eksistens er dokumentert; bestemte leservaner er et undersøkelsesspørsmål, ikke en fasitpåstand."
+          },
+          "primary_knowledge_unit_id": "ku_media_carey_skiller_mellom_inf_727c521e0d",
+          "knowledge_unit_ids": [
+            "ku_media_carey_skiller_mellom_inf_727c521e0d",
+            "ku_media_perspektivet_foreslar_hv_28b6547284"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q26",
+          "quiz_id": "media_dagbladet_akersgata_v2_q26",
+          "claim_id": "claim_dagbladet_quiz_26",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hvordan skiller årstallet 2002 seg fra perioden 1950–1970 i omtalen av negativarkivet?",
+          "options": [
+            "2002 gjelder opptak, 1950–1970 gjelder digital publisering",
+            "2002 gjelder utflytting, 1950–1970 gjelder museumsutstillingen",
+            "2002 gjelder overføring, 1950–1970 gjelder bildenes opptaksperiode"
+          ],
+          "answer": "2002 gjelder overføring, 1950–1970 gjelder bildenes opptaksperiode",
+          "answerIndex": 2,
+          "knowledge": "En arkivoverføring samler materiale med eldre motivdatoer. Den gjør ikke alle fotografiene til dokumentasjon av selve overføringsåret.",
+          "claim_basis": "2002 er året for overføringen av negativarkivet, ikke opptaksåret for alle bildene fra 1950–1970.",
+          "difficulty": 4,
+          "question_type": "context",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_arkiv_og_bevis",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "archive",
+              "url": "https://www.dagbladetstiftelsen.no/artikkel/museums-trio-sikrer-dagbladets-historie/",
+              "source_type": "institutional_history",
+              "claim_basis": "2002 er året for overføringen av negativarkivet, ikke opptaksåret for alle bildene fra 1950–1970.",
+              "role": "Negativarkivets motivperiode og overføring, intensjonsavtale 2019. Ingen påstand om senere fullføring."
+            }
+          ],
+          "primary_knowledge_unit_id": "ku_media_en_arkivoverf_ring_samle_8d7905e212",
+          "knowledge_unit_ids": [
+            "ku_media_en_arkivoverf_ring_samle_8d7905e212",
+            "ku_media_den_gj_r_ikke_alle_fotog_2fdd2627e1"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q27",
+          "quiz_id": "media_dagbladet_akersgata_v2_q27",
+          "claim_id": "claim_dagbladet_quiz_27",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva kan fasadefotoene fra 1968 og 2006 brukes som direkte belegg for?",
+          "options": [
+            "Ledelsens begrunnelser for tabloidomleggingen",
+            "Husets ytre utseende på to daterte tidspunkter",
+            "Fordelingen av alle arbeidsstasjoner i redaksjonen"
+          ],
+          "answer": "Husets ytre utseende på to daterte tidspunkter",
+          "answerIndex": 1,
+          "knowledge": "Fotografienes utsnitt setter en grense for hva de dokumenterer. Redaksjonelle beslutninger trenger andre kilder enn utvendige fasadebilder.",
+          "claim_basis": "Daterte fasadebilder fra 1968 og 2006 kan dokumentere forskjeller i ytre utseende, men ikke redaksjonens interne beslutninger.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "photo",
+            "frontphoto"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "photo",
+              "url": "https://commons.wikimedia.org/wiki/File:Akersgata_49_(Dagbladet)_OB.AH0606.jpg",
+              "source_type": "documentary_archive",
+              "claim_basis": "Daterte fasadebilder fra 1968 og 2006 kan dokumentere forskjeller i ytre utseende, men ikke redaksjonens interne beslutninger.",
+              "role": "Oslo Museum-foto fra februar 1968; opplastingsdato er en annen dato."
+            },
+            {
+              "source_id": "frontphoto",
+              "url": "https://commons.wikimedia.org/wiki/File:Dagbladet_Akersgata.jpg",
+              "source_type": "documentary_photo",
+              "claim_basis": "Daterte fasadebilder fra 1968 og 2006 kan dokumentere forskjeller i ytre utseende, men ikke redaksjonens interne beslutninger.",
+              "role": "Mahlums originale fasadefoto fra september 2006; bildet er ikke et kontorfoto."
+            }
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_fotografienes_utsnitt_se_da5f069600",
+          "knowledge_unit_ids": [
+            "ku_media_fotografienes_utsnitt_se_da5f069600",
+            "ku_media_redaksjonelle_beslutning_12a3af899c"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
+        },
+        {
+          "id": "dagbladet_akersgata_v2_q28",
+          "quiz_id": "media_dagbladet_akersgata_v2_q28",
+          "claim_id": "claim_dagbladet_quiz_28",
+          "categoryId": "media",
+          "targetId": "dagbladet_akersgata",
+          "placeId": "dagbladet_akersgata",
+          "question_scope": "place",
+          "question": "Hva dokumenterer arkivartikkelens omtale av en intensjonsavtale fra 2019?",
+          "options": [
+            "At hele arkivet allerede var ferdig digitalisert",
+            "At alle originalnegativene allerede var utstilt",
+            "At institusjonene hadde avtalt en hensikt om bevaring"
+          ],
+          "answer": "At institusjonene hadde avtalt en hensikt om bevaring",
+          "answerIndex": 2,
+          "knowledge": "En intensjonsavtale og et fullført tiltak er forskjellige statuser. En artikkel fra 2020 gir ikke alene belegg for hva som senere er gjennomført.",
+          "claim_basis": "Arkivartikkelen fra 2020 omtaler en intensjonsavtale inngått i 2019; den dokumenterer ikke at hele den planlagte bevaringen senere ble fullført.",
+          "difficulty": 4,
+          "question_type": "concept",
+          "question_layer": "final",
+          "tags": [
+            "media",
+            "dagbladet_akersgata"
+          ],
+          "source": [
+            "archive"
+          ],
+          "source_origin": "external",
+          "emne_id": "em_media_kildekritikk",
+          "guidance_basis": [
+            "pensum",
+            "emner",
+            "fagkart",
+            "methods",
+            "supersetQuizMal"
+          ],
+          "sources": [
+            {
+              "source_id": "archive",
+              "url": "https://www.dagbladetstiftelsen.no/artikkel/museums-trio-sikrer-dagbladets-historie/",
+              "source_type": "institutional_history",
+              "claim_basis": "Arkivartikkelen fra 2020 omtaler en intensjonsavtale inngått i 2019; den dokumenterer ikke at hele den planlagte bevaringen senere ble fullført.",
+              "role": "Negativarkivets motivperiode og overføring, intensjonsavtale 2019. Ingen påstand om senere fullføring."
+            }
+          ],
+          "method_id": "met_media_kildekritisk_analyse",
+          "primary_knowledge_unit_id": "ku_media_en_intensjonsavtale_og_e_71c3b9beb0",
+          "knowledge_unit_ids": [
+            "ku_media_en_intensjonsavtale_og_e_71c3b9beb0",
+            "ku_media_en_artikkel_fra_2020_gir_38dcbc7b97"
+          ],
+          "concept_ids": [],
+          "term_ids": [],
+          "knowledge_contract_version": 1,
+          "knowledge_link_status": "linked"
         }
       ]
     }
