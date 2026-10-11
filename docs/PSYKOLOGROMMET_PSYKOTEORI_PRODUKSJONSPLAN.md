@@ -1,5 +1,7 @@
 # Psykologrommet → Psykoteori → Psykologifagverket: produksjonsplan
 
+> **Statusoppdatering 11. oktober 2026:** Produksjonsgruppe 8 er merget i PR #6235. Nåværende katalog inneholder 35 kort som dekker alle 58 kanoniske emner med 70 selvstendige hypotetiske undervisningsscenarioer. Tallet 14/58 nedenfor er det dokumenterte, historiske utgangspunktet fra 9. oktober og gjelder ikke dagens `main`. En egen pedagogisk samordningsrunde legger kortfattede `teaching_view`-tekster på alle 35 kort. Strukturell og pedagogisk ferdigstilling er fortsatt ikke det samme som full vitenskapelig kildegodkjenning.
+
 **Dato:** 2026-10-09  
 **Status:** Operativ plan / ikke redaksjonell ferdigmelding  
 **Repository:** `Paradispartiet/History-Go`  
