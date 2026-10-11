@@ -1,0 +1,32 @@
+name: Arbeiderbladet visual QA (temporary)
+on:
+  push:
+    branches:
+      - production/arbeiderbladet-ui-closeout-20261011-current
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  visual:
+    name: Four-width browser audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Audit real PlaceCard / Fagverk on four widths
+        run: node scripts/audit-arbeiderbladet-youngstorget-visual.mjs
+      - name: Preserve screenshots and audit JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arbeiderbladet-current-visual-qa
+          path: artifacts/arbeiderbladet-youngstorget-final-20261011/
+          if-no-files-found: warn
