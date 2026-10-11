@@ -71,7 +71,14 @@
         && compactImage.complete && compactImage.naturalWidth > 0
         && Boolean(compactTitle.textContent);
       const threshold = Math.min(70, Math.max(30, hero.offsetHeight * 0.4));
-      card.classList.toggle("is-sticky-image-visible", ready && scroller.scrollTop > threshold);
+      const show = ready && scroller.scrollTop > threshold;
+      const wasVisible = card.classList.contains("is-sticky-image-visible");
+      card.classList.toggle("is-sticky-image-visible", show);
+      // The compact image has zero height before its first appearance, so
+      // its photo pixels can only be sampled after layout has expanded it.
+      if (show && !wasVisible) {
+        requestAnimationFrame(() => chooseContrast(compact, compactImage, compactTitle, 0));
+      }
     }
 
     function refreshContrast() {
