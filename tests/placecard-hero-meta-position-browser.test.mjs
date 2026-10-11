@@ -11,8 +11,9 @@ const end = source.indexOf('<footer class="site-footer', start);
 assert.ok(start >= 0 && end > start, "Canonical PlaceCard exists");
 const markup = source.slice(start,end).replace('aria-hidden="true"','aria-hidden="false"');
 assert.match(markup, /id="pcStatusBar"/);
-assert.ok(markup.indexOf('id="pcStatusBar"') < markup.indexOf('id="pcHeaderHero"'),
-  "Status must precede landscape image in canonical markup");
+assert.ok(markup.indexOf('id="pcStatusBar"') > markup.indexOf('id="pcMeta"')
+  && markup.indexOf('id="pcStatusBar"') < markup.indexOf('id="pcDesc"'),
+  "Status must sit inside the landscape heading after category and epoch metadata");
 assert.ok(markup.indexOf('id="pcTitle"') < markup.indexOf('id="pcMeta"'),
   "Title precedes badge metadata");
 
@@ -96,11 +97,11 @@ try{
        overflow:document.documentElement.scrollWidth>innerWidth+1
      };
    });
-   assert.equal(m.statusParent,"pcStatusBar","progress action is outside image at "+width);
+   assert.equal(m.statusParent,"pcStatusBar","progress action keeps its host at "+width);
    assert.equal(m.categoryParent,"pcMeta","category stays inside image at "+width);
    assert.equal(m.titleParent,"pc-title-row","title stays in hero heading row at "+width);
-   assert.ok(m.status.bottom<=m.hero.y+1 && m.hero.y-m.status.bottom<=14,
-     "status directly above image at "+width+": "+JSON.stringify(m));
+   assert.ok(m.status.y>=m.epoke.bottom-1 && m.status.bottom<=m.hero.bottom+1,
+     "status inside image below epoch at "+width+": "+JSON.stringify(m));
    assert.ok(m.title.x>=m.hero.x-1 && m.title.x<=m.hero.x+26
      && m.title.y>=m.hero.y-1 && m.title.y<=m.hero.y+27,
      "title top-left on image at "+width+": "+JSON.stringify(m));
