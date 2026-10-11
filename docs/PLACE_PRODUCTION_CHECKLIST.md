@@ -119,6 +119,17 @@ For `major`, `standard` og `focused` kan følgende aldri settes profil-N/A:
 
 Teknisk PASS er aldri synonymt med redaksjonell ferdigstatus.
 
+### Historisk ingress og `popupDesc` — redaksjonell sluttport
+
+Denne porten gjelder ved nyproduksjon og ved vesentlig revisjon av ethvert Place. Full kontrakt: `data/places/regler/PLACE_DESCRIPTION_CANONICAL.md`.
+
+- [ ] **`desc` er en naturlig, kort historisk ingress** om selve stedet. Start med sted, bygning, hendelse eller virksomhet og gi konkrete, vesentlige fakta: årstall, navngitte aktører, fysisk historie og historiske endringer. Ikke gjør ingressen til en løs oppramsing.
+- [ ] **`popupDesc` er en selvstendig historisk stedartikkel**, ikke en gjentakelse av ingressen. Bruk vesentlig flere kildebelagte opplysninger om hendelser, personer, bruk, ombygginger, konflikter og relevante tidslag. La stoffet avgjøre lengden; ingen ordkvote eller seksavsnittsmal.
+- [ ] **Sted og institusjon skilles presist.** Avisens stiftelse er ikke byggeåret; eldre historie om virksomheten er kontekst, ikke automatisk en hendelse i dagens bygning. Historiske adresser og tidligere bygninger omtales med eksplisitt avgrensning.
+- [ ] **Kun historisk/leksikalsk formidling i brukerrettet tekst.** Ingen History Go-/spill-/Quiz-/Badge-/læringslogikk, brukeroppgaver eller produksjonsinstrukser i `desc` eller `popupDesc`. Unngå oppstyltede uttrykk, pedagogiske konklusjoner og abstrakte erstatninger for fakta, eksempelvis «redaksjonsanker», «stedet viser hvordan», «gjør prosesser konkrete» og «representerer en viktig periode».
+- [ ] **Redaksjonell egenart kontrolleres.** Hver setning må tilføre faktisk opplysning om dette stedet, eller være nødvendig for sammenhengen. Teksten skal tåle høytlesning som saklig norsk historieprosa; den skal ikke fungere like godt med et annet stedsnavn.
+- [ ] **Kilde–påstand-paritet og sluttintegrasjon** dokumenteres i stedets produksjonspakke: identitetsport, inspiserte kilder, claim-dekning per setning, hash og separat fakta-/språkreview. Etter tekstendring oppdateres relevante indekser, Place-open-payloads og eksisterende oversettelser med ny `_sourceHash`; relevante tester kjøres. Teksten godkjennes aldri alene fordi CI er grønn.
+
 ---
 
 ## 3. Stedsavhengige samlinger og betingede subsystemer
