@@ -118,12 +118,10 @@ try {
           run.issues.push('Missing title or original controls in mobile heading');
         else {
           const controls=[t.reader,t.favorite,t.people,t.badges];
-          if(controls.some(c=>c.left<t.title.right-1))
-            run.issues.push('Heading controls overlap the title column');
-          if(!(t.reader.left<t.favorite.left && t.people.left<t.badges.left))
-            run.issues.push('Heading control pairs have wrong left-to-right order');
-          if(!(t.reader.top<t.people.top && t.favorite.top<t.badges.top))
-            run.issues.push('Heading controls are not grouped in two original rows');
+          if(controls.some(c=>c.top<t.title.bottom-1))
+            run.issues.push('Original heading controls must appear below the entire title');
+          if(!(t.reader.left<t.favorite.left && t.favorite.right<t.people.left && t.people.left<t.badges.left))
+            run.issues.push('Audio/favorite, People/Merker order is incorrect');
         }
       }
       run.initial = await page.evaluate(() => {
