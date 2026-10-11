@@ -246,6 +246,17 @@ assert.equal(cbtAudits.find((unit) => unit.field === "method").latest_claim_audi
 assert.ok(cbtAudits.find((unit) => unit.field === "method")
   .latest_claim_audit.remaining_gate.includes("Kovacs 1981"));
 
+// Original 1977 follow-up: dosing/taper confound must remain in the published card.
+assert.match(reviewed.get("kognitiv_terapi").method, /15,3 økter.*75 mg.*250 mg.*nedtrapping/);
+assert.match(reviewed.get("kognitiv_terapi").limit, /BDI.*2,43.*ikke dokumentasjon/);
+const taperMethod = cbtAudits.find((unit) => unit.field === "method").latest_claim_audit.followup_29;
+const taperLimits = cbtAudits.find((unit) => unit.field === "limit").latest_claim_audit.followup_29;
+assert.ok(taperMethod && taperLimits
+  && taperMethod.archive_access_state.includes("not_read")
+  && taperMethod.cohort_link_1977_1981_1982 === "unresolved"
+  && taperMethod.scientific_signoff === false
+  && taperLimits.scientific_signoff === false);
+
 // Batch 08: original-method audit; note that passing these guards is not scholarly approval.
 const primaryOriginalSources = {
   tilknytning: [
