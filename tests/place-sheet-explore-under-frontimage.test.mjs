@@ -8,12 +8,13 @@ const phase6Css = fs.readFileSync("css/place-sheet-phase6.css", "utf8");
 const onsiteRuntime = fs.readFileSync("js/ui/place-onsite-surface.js", "utf8");
 const onsiteCss = fs.readFileSync("css/place-onsite-surface.css", "utf8");
 
-test("Place Sheet keeps title and popup description above frontImage with collection rounds to its right", () => {
+test("Place Sheet orders photo, section navigation, description and collection visuals", () => {
   assert.match(
     shellSource,
     /<div class="pc-sheet-hero"[^>]*>[\s\S]*?<div class="pc-sheet-hero-copy"[^>]*><\/div>[\s\S]*?<div class="pc-sheet-hero-media"[^>]*>[\s\S]*?data-hg-place-sheet-collections/,
     "copy must precede the front image and collection host"
   );
+  assert.match(shellSource, /intro\.appendChild\(description\)/, "description follows the photo and navigation");
   assert.match(shellSource, /media\.prepend\(front\)/, "frontImage remains owned by hero-media");
   assert.match(shellSource, /collections\.appendChild\(sideStack\)/, "visual collection rounds remain in PlaceCard media");
   assert.match(css, /\.pc-sheet-hero-media\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(0,330px\) minmax\(0,1fr\)/);
@@ -35,7 +36,7 @@ test("Place Sheet keeps only text-section links and puts Events/Møtes below col
 });
 
 test("Place Sheet header scrolls horizontally without moving collection images into it", () => {
-  assert.match(shellSource, /if \(shell\.firstElementChild !== nav\) shell\.prepend\(nav\)/);
+  assert.match(shellSource, /hero\.insertAdjacentElement\("afterend", nav\)/, "text navigation sits below the place photo");
   assert.match(phase6Css, /\.pc-sheet-section-nav\{[\s\S]*?position:sticky;[\s\S]*?top:0;[\s\S]*?overflow-x:auto;/);
   assert.doesNotMatch(phase6Css, /> \.pc-side-stack/);
   assert.doesNotMatch(phase6Css, /> #pcEventsBox/);
