@@ -438,7 +438,7 @@ assert.match(detailedReview.original_publication_audit.entries.find((e) =>
 const rush1981 = "https://www.sciencedirect.com/science/article/pii/0165032781900240";
 const cbtCard = reviewed.get("kognitiv_terapi");
 assert.ok(cbtCard.period.includes("januar 1981") && cbtCard.period.includes("september 1981"));
-assert.ok(cbtCard.method.includes("kryssforskjøvede panelanalyser") && cbtCard.method.includes("behandlingsuke 1–4"));
+assert.ok(cbtCard.method.toLowerCase().includes("kryssforskjøvede panelanalyser") && cbtCard.method.includes("behandlingsuke 1–4"));
 assert.ok(cbtCard.limit.includes("placebo- eller ventelistekontroller"));
 assert.ok(cbtCard.limit.includes("kan det ikke fastslås at analysene bygger på nøyaktig samme delutvalg"));
 assert.ok(cbtCard.reference_links.some((r) => r.url === rush1981
