@@ -493,7 +493,7 @@ for (const [id, historicallyRelevant] of [
  // names its actual compare_with card and distinguishes questions, methods or evidence.
  const chapterPairs = {
  "fagtradisjoner-teori-og-sinnet": [
-   ["psykoanalyse", "kognitiv_psykologi", /kasusfortolkning.*eksperimentelle prediksjoner/],
+   ["psykoanalyse", "kognitiv_psykologi", /[Kk]asusfortolkning.*eksperimentelle prediksjoner/],
    ["behaviorisme", "sosial_laring", /forsterkningsforsøk.*imitasjonsforsøk/],
    ["kognitiv_psykologi", "behaviorisme", /reaksjonstid/],
    ["humanistisk_psykologi", "behaviorisme", /Rogers.*Skinners/],
