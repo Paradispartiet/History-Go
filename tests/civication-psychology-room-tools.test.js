@@ -143,6 +143,7 @@ async function run() {
 
 
   // A previous situation can receive multiple experiences without rewriting it.
+  const beforeFollowUpProfile = window.PsychologyRoom.getProfile();
   assert.strictEqual(typeof window.PsychologyRoom.saveWorkbenchFollowUp, 'function');
   assert.strictEqual(window.PsychologyRoom.saveWorkbenchFollowUp(work.entry.id, {}).reason, 'required_fields');
   assert.strictEqual(window.PsychologyRoom.saveWorkbenchFollowUp('missing-note', {
@@ -169,8 +170,10 @@ async function run() {
     'follow-ups do not complete tools');
   assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), before,
     'follow-ups never increase Civication competence');
-  assert.strictEqual(window.PsychologyRoom.getProfile().completed_sessions, profile.completed_sessions,
-    'follow-ups do not grant sessions or insight points');
+  assert.strictEqual(window.PsychologyRoom.getProfile().completed_sessions, beforeFollowUpProfile.completed_sessions,
+    'follow-ups do not add sessions');
+  assert.strictEqual(window.PsychologyRoom.getProfile().insight_points, beforeFollowUpProfile.insight_points,
+    'follow-ups do not grant insight points');
 
   // Unknown tool id is handled.
   const unknown = window.PsychologyRoom.completeTool('does_not_exist', { steps: ['x'] });
