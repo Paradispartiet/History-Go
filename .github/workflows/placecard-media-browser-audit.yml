@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'css/placeCard.css'
+      - 'css/place-card-sticky-header.css'
       - 'css/place-rounds-fill-layout.css'
       - 'css/person-popup-v2.css'
       - 'css/people.css'
@@ -11,6 +12,7 @@ on:
       - 'css/popup-polish.css'
       - 'index.html'
       - 'js/ui/place-card.js'
+      - 'js/ui/place-card-sticky-header.js'
       - 'js/ui/place-card-status-surface.js'
       - 'js/ui/place-rounds-visual-collections.js'
       - 'js/ui/place-rounds-fill-layout.js'
@@ -21,6 +23,7 @@ on:
       - 'tests/person-popup-placecard-layout-browser.test.mjs'
       - 'tests/placecard-people-hero-browser.test.mjs'
       - 'tests/placecard-hero-meta-position-browser.test.mjs'
+      - 'tests/placecard-sticky-image-header-browser.test.mjs'
       - 'tests/place-card-meta-surfaces.test.mjs'
       - 'tests/christiania-torv-placecard-collections-v2.test.mjs'
       - 'tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs'
@@ -53,6 +56,8 @@ jobs:
         run: node tests/placecard-media-hero-responsive-browser.test.mjs
       - name: Verify PlaceCard status, title and category positions
         run: node tests/placecard-hero-meta-position-browser.test.mjs
+      - name: Verify compact sticky photo and automatic heading contrast
+        run: node tests/placecard-sticky-image-header-browser.test.mjs
       - name: Verify PlaceCard metadata and progress click behavior
         run: node --test tests/place-card-meta-surfaces.test.mjs
       - name: Verify People circle beside Merker on landscape hero
