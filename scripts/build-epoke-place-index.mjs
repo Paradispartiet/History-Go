@@ -533,6 +533,8 @@ export function buildEpokePlaceIndex() {
     const location = locations.places[text(production?.placeId)];
     if (!place || location?.country_id !== "no" || location?.city_id !== "oslo") continue;
     for (const claim of Array.isArray(production?.claims) ? production.claims : []) {
+      // Earlier institutional history may inform a Place description without becoming an event at this building.
+      if (text(claim?.timelineScope) === "institution_context") continue;
       const claimText = text(claim?.claim);
       const sourceUrl = text(claim?.sourceUrl);
       const years = exactProductionClaimYears(claimText);
