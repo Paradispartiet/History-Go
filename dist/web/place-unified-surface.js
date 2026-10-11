@@ -1863,7 +1863,7 @@
         }
       });
     }
-    if (shell4.firstElementChild !== nav) shell4.prepend(nav);
+    if (!nav.isConnected) shell4.prepend(nav);
     nav.dataset.placeId = text16(place.id);
     return nav;
   }
@@ -1950,6 +1950,9 @@
     const events = document.getElementById("pcEventsBox");
     if (front && media && front.parentElement !== media) media.prepend(front);
     if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
+    const heading = textBlock == null ? void 0 : textBlock.querySelector(".pc-heading-hero");
+    const nav = shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    if (heading && nav && heading.nextElementSibling !== nav) heading.after(nav);
     if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
       collections.appendChild(sideStack);
     }
@@ -2040,6 +2043,8 @@
     const front = (shell4 == null ? void 0 : shell4.querySelector(".pc-frontcard")) || root2.querySelector(".pc-frontcard");
     const sideStack = (shell4 == null ? void 0 : shell4.querySelector(".pc-side-stack")) || root2.querySelector(".pc-side-stack");
     const events = (shell4 == null ? void 0 : shell4.querySelector("#pcEventsBox")) || document.getElementById("pcEventsBox");
+    // The navigation belongs only to the canonical sheet, not the legacy/micro card.
+    shell4 == null ? void 0 : shell4.querySelector('[data-hg-place-sheet-nav="1"]')?.remove();
     let legacyGrid = rootBody.querySelector(":scope > .pc-grid");
     if (!(legacyGrid instanceof HTMLElement)) {
       legacyGrid = document.createElement("div");
