@@ -1,0 +1,146 @@
+{
+  "schema": "history_go_place_production_workflow_v3",
+  "place_id": "arbeiderbladet_youngstorget",
+  "category": "media",
+  "contracts": {
+    "place_production": "v3",
+    "place_card_collections": "v2",
+    "quiz_production": "canonical-v1"
+  },
+  "sources": {
+    "factuality_record": "data/places/production/arbeiderbladet_youngstorget.json",
+    "evidence_refs": [
+      "reports/place-production/arbeiderbladet-youngstorget-source-review-20261011.md"
+    ]
+  },
+  "read_first": {
+    "schema": "history_go_place_read_first_v3",
+    "status": "PASS",
+    "recorded_at": "2026-10-11T17:45:15.572021+00:00",
+    "rule_files": [
+      "docs/PLACE_PRODUCTION_CHECKLIST.md",
+      "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+      "docs/PLACE_PRODUCTION_PROFILES.md",
+      "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+      "data/places/README_place_rounds.md",
+      "data/badges/index.json",
+      "data/badges/place_production_routing_v1.json",
+      "docs/PLACE_OBJECTS_CANONICAL.md",
+      "data/brands/brand_rules_v1_1.json",
+      "data/badges/media.json"
+    ],
+    "contracts": {
+      "place_production": "v3",
+      "place_card_collections": "v2",
+      "quiz_production": "canonical-v1"
+    },
+    "attestation": "De ti READ-FIRST-filene er lest på nytt i denne Arbeiderbladet-produksjonen på main 3680f4da364d8892bd7d1779667697fb0c7550ca. Subsystemregler er lest før endring. Dagbladets innhold, review og fullførtstatus er ikke gjenbrukt som bevis for dette nye stedet."
+  },
+  "profile": {
+    "id": "standard",
+    "status": "confirmed",
+    "reason": "Et avgrenset fysisk redaksjonssted med dokumenterte partibånd, okkupasjonsbrudd, redaktørvalg, trykkteknikk og flyttestrid; avisens øvrige adresser er etterhistorie."
+  },
+  "source_review": {
+    "status": "complete",
+    "evidence": "31 verifiserte claims, setningsdekning, åpnet samtidig primærkilde, dokumenterte kildeavgrensninger og separat samlingsaudit."
+  },
+  "collections": {
+    "people": {
+      "status": "PASS",
+      "reason": "To gjenbrukte personer med direkte redaksjonsperioder; primærsteder bevares.",
+      "refs": [
+        "data/people/historie/oslo/people_historie_oslo.json",
+        "data/people/media/oslo/people_media_oslo.json"
+      ]
+    },
+    "objects": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Separat audit av trykkpresser, redaksjonsutstyr og eksemplarer fant ingen identifisert fysisk gjenstand med dokumentert bruk i denne redaksjonen. Generisk presse, bygning, samlet fotoarkiv og løpende publikasjon er ikke en bestemt gjenstand. Ingen kvalifisert kandidat holdes tilbake på grunn av manglende bilde."
+    },
+    "brands": {
+      "status": "PASS",
+      "reason": "Autentisk offisielt ordmerke for Dagsavisen viser senere avisidentitet, ikke historisk skilt i 1934.",
+      "refs": [
+        "data/brands/brands_by_place.json",
+        "bilder/brands/dagsavisen.svg"
+      ]
+    },
+    "productions": {
+      "status": "PASS",
+      "reason": "Den løpende papiravisen er publikasjonsverk. Mai 1884-faksimilen er synlig datert som forløper og avgrenset fra husperioden 1934–1988; ikke Object.",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/arbeiderbladet_youngstorget.json",
+        "bilder/places/arbeiderbladet_vort_arbeide_1884.jpg"
+      ]
+    }
+  },
+  "modules": {
+    "fagverk": {
+      "status": "PASS",
+      "reason": "Stedseiet fullartikkel, fem linser, named theory og to dokumenterte cases.",
+      "refs": [
+        "data/places/media/oslo/places_oslo_media/arbeiderbladet_youngstorget.json",
+        "data/fagverk/fagverk_registry.json"
+      ]
+    },
+    "chronology": {
+      "status": "PASS",
+      "reason": "Claimdatert innflytting, okkupasjonsbrudd, redaktørvalg, teknikk og flytting.",
+      "refs": [
+        "data/places/production/arbeiderbladet_youngstorget.json"
+      ]
+    },
+    "language": {
+      "status": "PASS",
+      "reason": "Avisnavn og hovedorgan med kilder; intet oppdiktet dialektlag.",
+      "refs": [
+        "data/leksikon/sprak/places/europe/norway/oslo/arbeiderbladet_youngstorget.json"
+      ]
+    },
+    "stories": {
+      "status": "PASS",
+      "reason": "Flyttestrid med samtidig beretning og navngitt tilbakeblikk.",
+      "refs": [
+        "data/stories/stories_arbeiderbladet_youngstorget.json"
+      ]
+    },
+    "quiz": {
+      "status": "BLOCKED",
+      "reason": "Separat canonical quiz-PR gjenstår etter core."
+    },
+    "quizcard": {
+      "status": "BLOCKED",
+      "reason": "Separat QuizCard produseres fra ferdig quiz; faktisk flip skal testes."
+    },
+    "reading_tracks": {
+      "status": "PASS",
+      "reason": "Fire åpne, stedsspesifikke lesespor med side-/avsnittshenvisning.",
+      "refs": [
+        "data/lesespor/oslo/lesespor_oslo_media.json"
+      ]
+    },
+    "before_after": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Eksteriørbildene 1947 og 2006 er forskjellige standpunkt. De dokumenterer ikke et kontrollert før/etter-par for en bestemt redaksjonsendring. Teatersalens ombygging er en annen virksomhet."
+    },
+    "news": {
+      "status": "BEGRUNNET_NA",
+      "reason": "Fersk kontroll av OBOS og historisk adresse dokumenterer dagens kontoreiendom, men ingen stedsspesifikk nyhetshendelse om den historiske redaksjonen. Avisens generelle nyhetsstrøm er ikke nyheter om dette stedet."
+    }
+  },
+  "blockers": [
+    "Separat quiz-PR og QuizCard gjenstår."
+  ],
+  "manual_reviews": {
+    "images": {
+      "status": "PASS",
+      "evidence": "Alle fem lokale JPEG-er (1947, 2006, faksimile 1884 og to eksisterende personportretter) er åpnet og visuelt kontrollert. Offisielt SVG-ordmerke er rendret og åpnet; autentisk Dagsavisen-navn på mørk flate. Proveniens, dato, Public domain / CC BY-SA-status og egne stedsperioder er kontrollert. Intake Actions 38160487568 samt offisielt logo-intake på f1c3d95c er kildeevidens."
+    },
+    "final_ui": {
+      "status": "PENDING",
+      "evidence": "Faktisk nettleser-QA av ny place, collections, Fagverk, Story og QuizCard gjenstår."
+    }
+  },
+  "state": "blocked"
+}

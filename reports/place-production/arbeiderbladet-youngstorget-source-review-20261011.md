@@ -1,7 +1,7 @@
 # Arbeiderbladet / Dagsavisen — kilde- og identitetsgjennomgang
 
 Dato: 2026-10-11. Base: main `3680f4da364d8892bd7d1779667697fb0c7550ca`.
-Status: research gjennomført; assets, materialisering og sluttkontroll gjenstår.
+Status: canonical core materialisert og reviewet; separat quiz, QuizCard og samlet UI-closeout gjenstår.
 
 ## Identitet og nullmåling
 
@@ -45,3 +45,15 @@ Quiz produseres i separat quizløp etter canonical stedsinnhold. Normalåpning o
 3. [Vort Arbeide No 1 1884](https://commons.wikimedia.org/wiki/File:Vort_Arbeide_No_1_1884.jpg), ukjent opphavsperson, faksimile fra Det Norske arbeiderpartis historie 1887–1937, Public domain. Publikasjonsidentitet og eldre navnehistorie, ikke redaksjonsadresse i 1884.
 
 Lokale downloads fikk HTTP 403. Dette betyr ikke at kildefilene mangler eller at rettigheter er kontrollert av nedlasting; en avgrenset Actions-kjøring skal hente originalene og registrere bytes/hash/dimensjoner før lokal visuell vurdering.
+
+## Core-review og kildeevidens
+
+31 verifiserte claims dekker beskrivelsen setning for setning. Full Fagverk-artikkel er lest avsnitt for avsnitt: (1) hus/innflytting/innvielse, (2) avisnavn og partiorgan, (3) okkupasjonsbrudd, (4) Hallin/Mancini-definisjon, (5) redaktørvalg som første dokumenterte case, (6) Hasle som andre dokumenterte case, (7) kildenes avsender- og tidsgrenser, (8) senere navn og bilder. Alle kildelenker er operative kilder som er åpnet, ikke intern modelltekst. De to leksikonartiklene er redigert for hhv. historie og flyttestrid. Språkets fem oppføringer gjelder dokumenterte navne-/presseuttrykk. Story er én navngitt og datert episode, og maskinscoren 19 beregnes med den eksisterende scoremotoren; scoren erstatter ikke kilde-review.
+
+OBOS' åpne eiendomsside er kontrollert 11.10.2026 og identifiserer dagens Youngstorget 2 som det tidligere avishuset. Fersk Geonorge-JSON gir nøyaktig adresseobjekt 0301:18554:2. Råfeltet stedfestingverifisert=false beholdes og opplyses i coordNote: dette er et adressepunkt for den kildeidentifiserte historiske bygningen, ikke en kontrollmålt inngang eller et bestemt kontorrom.
+
+Intake Actions 38160487568 hentet originalbilder og råadresse. Offisielt logo-intake resulterte i commit f1c3d95cda46f893e45593c67a974617999df980. HTML-snapshotets faktiske header og publisher.logo pekte begge til DA_Primarylogo_Negativ.svg. Original URL og hash beholdes i logo-source.json. Midlertidig downloader/workflow og hele side-HTML-en fjernes fra sluttendringen; originale assets og avgrenset kildeevidens beholdes.
+
+Alle tre nye bildeoriginaler og begge eksisterende personportretter er åpnet. Hele avissiden er kontrollert: No. 1, Mai, 1884. Ordmerket er rendret og visuelt kontrollert. White-on-transparent-originalen får mørk flate; hele publikasjonssiden vises med contain fremfor portrettbeskjæring. Proveniens og datoer er eksplisitte. Ingen moderne logo hevdes historisk brukt i huset.
+
+Kvalitet for dette avgrensede core-checkpointet: korrekthet/evidens 5, dekning 4, redaksjonell kvalitet 5, teknisk integritet 4, ansvarlighet 5, etterprøvbarhet 4 = 27/30. Dekning gjelder canonical stedsinnholdet, ikke samlet SLUTTFØRT-status. Sluttkvaliteten skal vurderes på nytt etter separat quiz og reell nettleser-QA. Seks egne semantiske regresjoner, fem Place Sheet-regresjoner, People Profile-audit og hele Story-integriteten består lokalt. Den tidligere generelle all-place factuality-auditen har eksisterende avvik utenfor scope; ny place har null packet-avvik etter tekstkontroll. V3 verify og remote CI må i tillegg bestå på committen som merges.
