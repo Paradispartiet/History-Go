@@ -293,6 +293,18 @@ assert.ok(detailedReview.units.filter((x) =>
 assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
   x.id === "tilknytning_ainsworth_bell_stayton_1969").access,
   "ERIC_scanned_1969_author_manuscript_methods_classification_and_discussion_read_NAPS00762_unread");
+// The 2015 book contents identify potentially relevant scoring appendices, not inspected NAPS 00762.
+const ainsworthClassic2015 = "https://www.routledge.com/Patterns-of-Attachment-A-Psychological-Study-of-the-Strange-Situation/Ainsworth-Blehar-Waters-Wall/p/book/9780203758045";
+assert.match(ainsworthCard.method, /appendiks I s\. 316.*II s\. 319.*III s\. 336/);
+assert.match(ainsworthCard.limit, /appendiks I–III.*ikke innholdskontrollert.*NAPS 00762/);
+assert.ok(ainsworthCard.reference_links.some((x) =>
+  x.url === ainsworthClassic2015 && x.canonical_claim_ids.length === 0 && x.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning").group_1_source_audit.new_reference_urls.includes(ainsworthClassic2015));
+assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
+  x.id === "tilknytning_ainsworth_blehar_waters_wall_1978_1979").access, "routledge_publisher_contents_and_2015_148_page_partial_excerpt_read_appendices_I_III_unread_NAPS_00762_not_compared");
+assert.ok(detailedReview.units.filter((x) =>
+  x.theory_id === "tilknytning" && ["period","method","limit"].includes(x.field))
+  .every((x) => x.evidence_urls.includes(ainsworthClassic2015) && x.card_is_source_verified === false));
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
@@ -391,8 +403,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 11);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 11);
+assert.equal(detailedReview.original_publication_audit.entries.length, 12);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 12);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
