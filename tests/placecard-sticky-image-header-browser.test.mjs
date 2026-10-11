@@ -120,10 +120,10 @@ try {
         "Favorite stays beside audio in the second row: " + desc);
       assert.ok(Math.abs(geom.audio.top - geom.favorite.top) <= 2,
         "Audio and favorite share the row below the title: " + desc);
-      assert.ok(geom.people.left >= geom.title.right - 1 && geom.people.right <= geom.badge.left + 1,
-        "People and badge stay at the right of the top title row: " + desc);
-      assert.ok(geom.people.bottom <= geom.audio.top + 1 && geom.badge.bottom <= geom.audio.top + 1,
-        "People and badge remain above the audio/favorite row: " + desc);
+      assert.ok(geom.people.left >= geom.favorite.right - 1 && geom.people.right <= geom.badge.left + 1,
+        "People and badge stay right of the audio/favorite controls: " + desc);
+      assert.ok(geom.people.top >= geom.title.bottom + 2 && geom.badge.top >= geom.title.bottom + 2,
+        "Right-hand circles share the lower action row beneath the title: " + desc);
     };
     verifyBelowTitle(initial, "before scroll");
     await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
