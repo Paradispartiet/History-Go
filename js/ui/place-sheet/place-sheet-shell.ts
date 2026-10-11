@@ -81,7 +81,7 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
       }
     });
   }
-  if (shell.firstElementChild !== nav) shell.prepend(nav);
+  if (!nav.isConnected) shell.prepend(nav);
   nav.dataset.placeId = text(place.id);
   return nav;
 }
@@ -186,6 +186,9 @@ function movePrimaryNodes(shell: HTMLElement, place: PlaceSheetPlace): void {
 
   if (front && media && front.parentElement !== media) media.prepend(front);
   if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
+  const heading = textBlock?.querySelector<HTMLElement>(".pc-heading-hero");
+  const nav = shell.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]');
+  if (heading && nav && heading.nextElementSibling !== nav) heading.after(nav);
   if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
     collections.appendChild(sideStack);
   }
@@ -287,6 +290,8 @@ export function restoreLegacyPlaceCardStructure(): void {
   const front = shell?.querySelector<HTMLElement>(".pc-frontcard") || root.querySelector<HTMLElement>(".pc-frontcard");
   const sideStack = shell?.querySelector<HTMLElement>(".pc-side-stack") || root.querySelector<HTMLElement>(".pc-side-stack");
   const events = shell?.querySelector<HTMLElement>("#pcEventsBox") || document.getElementById("pcEventsBox");
+  // The navigation belongs only to the canonical sheet, not the legacy/micro card.
+  shell?.querySelector<HTMLElement>('[data-hg-place-sheet-nav="1"]')?.remove();
 
   let legacyGrid = rootBody.querySelector<HTMLElement>(":scope > .pc-grid");
   if (!(legacyGrid instanceof HTMLElement)) {
