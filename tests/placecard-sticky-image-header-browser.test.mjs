@@ -46,6 +46,7 @@ html,body{margin:0;background:#111;color:white;font-family:system-ui;}
 </div></div></div></div>
 <nav class="pc-sheet-section-nav"><button type="button">Om</button><button type="button">Fortellinger</button></nav>
 <div class="pc-sheet-intro"><p id="pcDesc">Historisk beskrivelse</p></div>
+<div class="pc-sheet-hero-media" data-hg-place-sheet-media></div>
 <section class="pc-sheet-canonical-about">Langt historisk innhold</section>
 </section></div></div>
 <script defer src="/js/ui/place-card-sticky-header.js"></script>
