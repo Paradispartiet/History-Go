@@ -301,10 +301,21 @@ assert.ok(ainsworthCard.reference_links.some((x) =>
   x.url === ainsworthClassic2015 && x.canonical_claim_ids.length === 0 && x.canonical_source_ids.length === 0));
 assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning").group_1_source_audit.new_reference_urls.includes(ainsworthClassic2015));
 assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
-  x.id === "tilknytning_ainsworth_blehar_waters_wall_1978_1979").access, "routledge_publisher_contents_and_2015_148_page_partial_excerpt_read_appendices_I_III_unread_NAPS_00762_not_compared");
+  x.id === "tilknytning_ainsworth_blehar_waters_wall_1978_1979").access, "routledge_original_1978_preface_and_2015_preface_fully_read_in_148page_excerpt_appendices_I_III_unread_NAPS_00762_not_compared");
 assert.ok(detailedReview.units.filter((x) =>
   x.theory_id === "tilknytning" && ["period","method","limit"].includes(x.field))
   .every((x) => x.evidence_urls.includes(ainsworthClassic2015) && x.card_is_source_verified === false));
+// The original 1978 author preface directly rules out treating the fixed sequence as an experimental effect test.
+const ainsworth1978Preface = "https://tilknytning.nu/wp-content/uploads/2023/04/Ainsworth-Patterns-of-Attachment.pdf";
+assert.match(ainsworthCard.method, /1978, s\. xli og xliv.*ikke et randomisert eksperiment/);
+assert.match(ainsworthCard.method, /totalt 106 spedbarn.*ikke bare de 56/);
+assert.match(ainsworthCard.limit, /rekkefølgeeffekter.*xliii–xliv/);
+assert.ok(ainsworthCard.reference_links.some((x) => x.url === ainsworth1978Preface));
+assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning")
+  .group_1_source_audit.new_reference_urls.includes(ainsworth1978Preface));
+assert.ok(detailedReview.units.filter((x) =>
+  x.theory_id === "tilknytning" && ["period","method","limit"].includes(x.field))
+  .every((x) => x.evidence_urls.includes(ainsworth1978Preface) && x.card_is_source_verified === false));
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
