@@ -397,14 +397,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
 }
 
 /* A dated newspaper facsimile keeps its masthead and page edges visible. */
-body.hg-app #placeCard[data-current-place-id="dagbladet_akersgata"].is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"] > img.pc-person-img{
+body.hg-app #placeCard[data-current-place-id="dagbladet_akersgata"].is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"] > img.pc-person-img,
+body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"] > img.pc-person-img{
   object-fit:contain;
   background:#111923;
   padding:8px 8px 34px;
   box-sizing:border-box;
 }
 
-.hg-popup.placecard-round-popup [data-visual-round-item="dagbladet_papiravisen"] > .pc-person-img{
+.hg-popup.placecard-round-popup [data-visual-round-item="dagbladet_papiravisen"] > .pc-person-img,
+.hg-popup.placecard-round-popup [data-visual-round-item="arbeiderbladet_papiravisen"] > .pc-person-img{
   height:78px;
   object-fit:contain;
   border-radius:4px;
@@ -780,4 +782,12 @@ body.hg-app #placeCard .pc-sheet-canonical-news .hg-place-news-source{
   body.hg-app #placeCard .pc-sheet-canonical-news .pc-sheet-news-list{
     grid-template-columns:1fr;
   }
+}
+
+/* The authentic negative Dagsavisen wordmark needs a dark surface. */
+body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"] .pc-collection[data-collection-id="brands"] > img.pc-person-img,
+.hg-popup.placecard-round-popup .pc-brand-entry[data-brand="dagsavisen"] > .pc-person-img{
+  background:#202531;
+  padding:8px;
+  box-sizing:border-box;
 }
