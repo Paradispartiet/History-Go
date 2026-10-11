@@ -126,7 +126,7 @@ for (const pub of ['avklar', 'ja_uten_ramme']) for (const past of pasts) {
     for (const final of explore(first, contents[1], packs[1], prior)) {
       assert.deepEqual(final.kapittelArkiv, first.kapittelArkiv);
       assert.deepEqual(final.fortsettelser, packs.map(p => p.id));
-      assert.ok(!base.role.symposium.fortsettelser.some(n => R.canStartContinuation(final, contents[1], n)));
+      assert.deepEqual(base.role.symposium.fortsettelser.filter(n => R.canStartContinuation(final, contents[1], n)).map(n => n.id), ['miljo_etter_invitasjonen'], 'completed day 13 now offers the third authored chapter');
       finalSave = final;
     }
   }
@@ -184,7 +184,7 @@ async function uiTest() {
   const final = await boot(finalSave, role);
   assert.equal(final.w.localStorage.getItem('civication_lifestory_v1'), JSON.stringify(finalSave));
   assert.equal(final.panel.querySelector('[data-lifestory-next-day]'), null);
-  assert.equal(final.panel.querySelector('[data-lifestory-continue]'), null);
+  assert.ok(final.panel.querySelector('[data-lifestory-continue="miljo_etter_invitasjonen"]'), 'new chapter is available at the day-13 boundary');
   assert.ok(final.panel.textContent.includes(finalSave.kapittelArkiv[0].ending.navn));
   final.panel.querySelector('[data-lifestory-restart]').click();
   const fresh = JSON.parse(final.w.localStorage.getItem('civication_lifestory_v1'));
