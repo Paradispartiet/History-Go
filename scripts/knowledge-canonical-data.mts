@@ -461,21 +461,28 @@ async function runCanonicalPipeline(): Promise<{ changedFiles: string[]; report:
   const termList = [...terms.values()].sort((a, b) => a.term_id.localeCompare(b.term_id, 'en'));
   const storyList = [...stories.values()].sort((a, b) => a.story_id.localeCompare(b.story_id, 'en'));
   const subjectRegistries = await subjectCanonicalRegistries();
-  const supplementalSubjects = new Set(Object.keys(subjectRegistries));
-  await writeOrCheck(UNIT_REGISTRY_PATH, { schema: 'history_go_knowledge_unit_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
-  await writeOrCheck(CONCEPT_REGISTRY_PATH, { schema: 'history_go_concept_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
-  await writeOrCheck(TERM_REGISTRY_PATH, { schema: 'history_go_term_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
-  await writeOrCheck(STORY_REGISTRY_PATH, { schema: 'history_go_story_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => !supplementalSubjects.has(item.subject_id)) }, changedFiles);
+  const fullSubjectRegistries = new Set(Object.entries(subjectRegistries)
+    .filter(([, config]) => !Array.isArray(config.knowledge_unit_ids))
+    .map(([subject]) => subject));
+  const scopedUnitIds = new Set(Object.values(subjectRegistries).flatMap(
+    (config) => Array.isArray(config.knowledge_unit_ids) ? config.knowledge_unit_ids : []
+  ));
+  const usesSupplementalUnit = (item) => fullSubjectRegistries.has(item.subject_id) || scopedUnitIds.has(item.knowledge_unit_id);
+  await writeOrCheck(UNIT_REGISTRY_PATH, { schema: 'history_go_knowledge_unit_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => !usesSupplementalUnit(item)) }, changedFiles);
+  await writeOrCheck(CONCEPT_REGISTRY_PATH, { schema: 'history_go_concept_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => !fullSubjectRegistries.has(item.subject_id)) }, changedFiles);
+  await writeOrCheck(TERM_REGISTRY_PATH, { schema: 'history_go_term_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => !fullSubjectRegistries.has(item.subject_id)) }, changedFiles);
+  await writeOrCheck(STORY_REGISTRY_PATH, { schema: 'history_go_story_registry_v1', version: 1, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => !fullSubjectRegistries.has(item.subject_id)) }, changedFiles);
   for (const [subject, config] of Object.entries(subjectRegistries)) {
     const unitFile = clean(config.knowledge_units);
     const conceptFile = clean(config.concepts);
     const termFile = clean(config.terms);
     const storyFile = clean(config.stories);
     if (!unitFile || !conceptFile || !termFile || !storyFile) throw new Error(`${subject}: subjectCanonicalRegistries må angi alle fire registre`);
-    await writeOrCheck(path.join(KNOWLEDGE_ROOT, unitFile), { schema: 'history_go_knowledge_unit_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => item.subject_id === subject) }, changedFiles);
-    await writeOrCheck(path.join(KNOWLEDGE_ROOT, conceptFile), { schema: 'history_go_concept_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => item.subject_id === subject) }, changedFiles);
-    await writeOrCheck(path.join(KNOWLEDGE_ROOT, termFile), { schema: 'history_go_term_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => item.subject_id === subject) }, changedFiles);
-    await writeOrCheck(path.join(KNOWLEDGE_ROOT, storyFile), { schema: 'history_go_story_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => item.subject_id === subject) }, changedFiles);
+    const scoped = Array.isArray(config.knowledge_unit_ids);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, unitFile), { schema: 'history_go_knowledge_unit_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', units: unitList.filter((item) => item.subject_id === subject && (!scoped || scopedUnitIds.has(item.knowledge_unit_id))) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, conceptFile), { schema: 'history_go_concept_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', concepts: conceptList.filter((item) => item.subject_id === subject && !scoped) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, termFile), { schema: 'history_go_term_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', terms: termList.filter((item) => item.subject_id === subject && !scoped) }, changedFiles);
+    await writeOrCheck(path.join(KNOWLEDGE_ROOT, storyFile), { schema: 'history_go_story_registry_v1', version: 1, subject_id: subject, generated_by: 'scripts/knowledge-canonical-data.mts', stories: storyList.filter((item) => item.subject_id === subject && !scoped) }, changedFiles);
   }
   await writeOrCheck(REVIEW_QUEUE_PATH, { schema: 'history_go_knowledge_emne_review_queue_v1', version: 1, policy: 'Do not infer ambiguous emne links automatically.', items: unresolved }, changedFiles);
   const report = {
