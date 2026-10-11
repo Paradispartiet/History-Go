@@ -307,7 +307,7 @@ assert.ok(detailedReview.units.filter((x) =>
   .every((x) => x.evidence_urls.includes(ainsworthClassic2015) && x.card_is_source_verified === false));
 // The original 1978 author preface directly rules out treating the fixed sequence as an experimental effect test.
 const ainsworth1978Preface = "https://tilknytning.nu/wp-content/uploads/2023/04/Ainsworth-Patterns-of-Attachment.pdf";
-assert.match(ainsworthCard.method, /1978, s\. xli og xliv.*ikke et randomisert eksperiment/);
+assert.match(ainsworthCard.method, /1978, s\. xli og xliv.*ikke er et randomisert eksperiment/);
 assert.match(ainsworthCard.method, /totalt 106 spedbarn.*ikke bare de 56/);
 assert.match(ainsworthCard.limit, /rekkefølgeeffekter.*xliii–xliv/);
 assert.ok(ainsworthCard.reference_links.some((x) => x.url === ainsworth1978Preface));
