@@ -53,8 +53,8 @@ De fire som står igjen er `em_psy_behandling_omsorg`, `em_psy_krise_intervensjo
 | Korrekthet/evidens | 4 | Faglig originale forskningshistorier, 14 avgrensede referanser og eksisterende claim-/sourcekoblinger; originalfulltekster ikke alle lest |
 | Dekning/ferdigstilling | 5 | Alle tre primæremner og to undervisningsscenarioer per kort; 31/54/4/62-kontroll |
 | Faglig/redaksjonell kvalitet | 4 | Ulike spørsmål for samfunnskrise, sikkerhet/tjenester og løpende voldsbelastning |
-| Teknisk integritet | Avventer | Skal dokumenteres med Psykoteori- og Repository hygiene-workflows på siste head |
+| Teknisk integritet | 5 | Psykoteori workflow 38174385492 (success) og Repository hygiene workflow 38174385487 (success) på head 33b0b584; ny CI kreves på endelig rapportcommit |
 | Sikkerhet/ansvarlighet | 5 | Ingen navngitt individuelt påstått voldsutøver, diagnose eller behandlingsanbefaling |
 | Vedlikeholdbarhet | 5 | Avgrenset femfilsdiff, daterte kilder, canonical IDs, regresjonstester |
 
-**Endelig score og workflow-ID-er legges inn etter grønn relevant CI.** Ingen historisk/klinisk sluttgodkjenning registreres automatisk.
+**Kvalitetsvurdering: 28/30.** Alle seks dimensjoner scorer minst 4/5; tre kildeavgrensede kort, tre emner og seks undervisningsscenarioer er kontrollert. Relevant CI er grønn på første PR-head. Endelig rapportcommit skal også være grønn før merge. Ingen historisk/klinisk fullkildegodkjenning registreres automatisk.
