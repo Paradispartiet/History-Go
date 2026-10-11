@@ -53,3 +53,7 @@ Bruk dramaturgiske mønstre til å revidere allerede forfattede fortellinger:
 For hver publisert videreføring registreres: `premiss`, `personer`, `etablert_fortid`, `konflikt`, `valg_med_konsekvens`, `alternative_endinger`, `kapittelbro`, `moteksempel_til_valgt_monster` og `state_bevis`. Dette er en skrivekontroll, ikke et nytt dataschema eller et krav om å utvide gamle pakker.
 
 **Grense:** Fagverket dokumenterer historien om fortellingsmodeller; Civication bruker modellen som kritisk redaksjonell metode. Symposium viser spillerens faktiske historie.
+
+## Samtidige, spillbare fortellingstyper
+
+For konkrete nåtidshistorier som kan videreutvikles i eksisterende Civication-roller, se [Civication – samtidige fortellingstyper (v1)](CIVICATION_CONTEMPORARY_STORY_PATTERNS_V1.md). De 24 mønstrene er en **redaksjonell idébank**, ikke registrerte scener eller universelle dramaturgiske kategorier.
