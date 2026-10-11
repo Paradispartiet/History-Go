@@ -81,7 +81,9 @@ function ensureSectionNav(shell: HTMLElement, place: PlaceSheetPlace): HTMLEleme
       }
     });
   }
-  if (shell.firstElementChild !== nav) shell.prepend(nav);
+  const hero = shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
+  if (hero && hero.nextElementSibling !== nav) hero.insertAdjacentElement("afterend", nav);
+  else if (!hero && shell.firstElementChild !== nav) shell.prepend(nav);
   nav.dataset.placeId = text(place.id);
   return nav;
 }
@@ -152,9 +154,10 @@ function ensureShell(place: PlaceSheetPlace): HTMLElement | null {
     shell.innerHTML = `
       <div class="pc-sheet-hero" data-hg-place-sheet-hero>
         <div class="pc-sheet-hero-copy" data-hg-place-sheet-copy></div>
-        <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
-          <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
-        </div>
+      </div>
+      <div class="pc-sheet-intro" data-hg-place-sheet-intro></div>
+      <div class="pc-sheet-hero-media" data-hg-place-sheet-media>
+        <div class="pc-sheet-explore-grid" data-hg-place-sheet-collections></div>
       </div>
       <section class="pc-sheet-history" data-hg-place-sheet-history hidden></section>
       <section class="pc-sheet-stories" data-hg-place-sheet-stories hidden></section>
@@ -177,15 +180,18 @@ function movePrimaryNodes(shell: HTMLElement, place: PlaceSheetPlace): void {
 
   const media = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]");
   const copy = shell.querySelector<HTMLElement>("[data-hg-place-sheet-copy]");
+  const intro = shell.querySelector<HTMLElement>("[data-hg-place-sheet-intro]");
   const collections = shell.querySelector<HTMLElement>("[data-hg-place-sheet-collections]");
 
   const front = root.querySelector<HTMLElement>(".pc-frontcard");
   const textBlock = root.querySelector<HTMLElement>(".pc-text");
+  const description = document.getElementById("pcDesc");
   const sideStack = root.querySelector<HTMLElement>(".pc-side-stack");
   const events = document.getElementById("pcEventsBox");
 
   if (front && media && front.parentElement !== media) media.prepend(front);
   if (textBlock && copy && textBlock.parentElement !== copy) copy.prepend(textBlock);
+  if (description && intro && description.parentElement !== intro) intro.appendChild(description);
   if (sideStack instanceof HTMLElement && collections && sideStack.parentElement !== collections) {
     collections.appendChild(sideStack);
   }
@@ -206,8 +212,8 @@ function ensureAboutSlot(shell: HTMLElement): HTMLElement | null {
     aboutSlot.className = "pc-sheet-about";
     aboutSlot.setAttribute("data-hg-place-sheet-about", "1");
     aboutSlot.setAttribute(SHELL_SECTION_ATTR, "about");
-    const hero = shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
-    if (hero?.nextSibling) shell.insertBefore(aboutSlot, hero.nextSibling);
+    const anchor = shell.querySelector<HTMLElement>("[data-hg-place-sheet-media]") || shell.querySelector<HTMLElement>("[data-hg-place-sheet-hero]");
+    if (anchor?.nextSibling) shell.insertBefore(aboutSlot, anchor.nextSibling);
     else shell.appendChild(aboutSlot);
   }
   return aboutSlot;
@@ -284,6 +290,7 @@ export function restoreLegacyPlaceCardStructure(): void {
 
   const shell = rootBody.querySelector<HTMLElement>(`[${SHELL_ATTR}="1"]`);
   const textBlock = shell?.querySelector<HTMLElement>(".pc-text") || root.querySelector<HTMLElement>(".pc-text");
+  const description = shell?.querySelector<HTMLElement>("#pcDesc");
   const front = shell?.querySelector<HTMLElement>(".pc-frontcard") || root.querySelector<HTMLElement>(".pc-frontcard");
   const sideStack = shell?.querySelector<HTMLElement>(".pc-side-stack") || root.querySelector<HTMLElement>(".pc-side-stack");
   const events = shell?.querySelector<HTMLElement>("#pcEventsBox") || document.getElementById("pcEventsBox");
@@ -295,6 +302,7 @@ export function restoreLegacyPlaceCardStructure(): void {
   }
   legacyGrid.hidden = false;
 
+  if (description instanceof HTMLElement && textBlock instanceof HTMLElement) textBlock.appendChild(description);
   if (textBlock instanceof HTMLElement) rootBody.prepend(textBlock);
   if (legacyGrid.parentElement !== rootBody) {
     if (textBlock?.nextSibling) rootBody.insertBefore(legacyGrid, textBlock.nextSibling);

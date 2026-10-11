@@ -791,3 +791,24 @@ body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"] .pc-
   padding:8px;
   box-sizing:border-box;
 }
+
+/* Editorial intro follows the sticky section navigation, not the image. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-intro{
+  min-width:0;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-intro #pcDesc{
+  max-width:62ch;
+  width:100%;
+  margin:12px 0 0;
+  padding:0;
+  color:rgba(255,255,255,.91);
+  font-size:clamp(17px,2.09vw,19px);
+  line-height:1.62;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy .pc-text{
+  width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  overflow:visible;
+}

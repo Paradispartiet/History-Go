@@ -2026,7 +2026,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 }
 
 
-/* PlaceCard landscape hero: status is above the picture, title starts at
+/* PlaceCard landscape hero: status is inside the picture, title starts at
    its top-left and category/epoch sit just below the Merker circle.
    Use scoped selectors to also beat the lazily loaded shortcut stylesheet. */
 #placeCard .pc-text > #pcStatusBar{
@@ -2159,5 +2159,31 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   }
   #placeCard .pc-heading-hero .pc-heading-content #pcMeta > *{
     font-size: 11px;
+  }
+}
+
+/* Progress status stays inside the landscape photo, below category and epoke. */
+#placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
+  order:2;
+  flex:0 0 auto;
+  align-self:flex-end;
+  width:auto;
+  max-width:100%;
+  margin:9px 0 0;
+  padding:0;
+  text-align:right;
+}
+#placeCard .pc-heading-hero #pcStatusBar > .pc-progress-status-line{
+  width:auto;
+  max-width:100%;
+  min-height:28px;
+  background:rgba(0,0,0,.63);
+  border-color:rgba(255,255,255,.30);
+  backdrop-filter:blur(7px);
+  text-align:left;
+}
+@media (max-width:520px){
+  #placeCard .pc-heading-hero .pc-heading-content #pcStatusBar{
+    margin-top:6px;
   }
 }
