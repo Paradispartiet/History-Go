@@ -64,8 +64,8 @@ test("Place Sheet source keeps visual collection rounds outside the sticky text 
   assert.doesNotMatch(shellSource, /data-hg-place-sheet-collection-link|syncCollectionNav/);
   assert.match(shellSource, /collections\.appendChild\(events\)/);
   assert.doesNotMatch(shellSource, /pc-sheet-onsite/);
-  assert.match(source, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-assets/);
-  assert.match(runtime, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-assets/);
+  assert.match(source, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-ui4/);
+  assert.match(runtime, /css\/place-sheet\.css\?v=20261011-arbeiderbladet-ui4/);
 });
 
 test("plan locks fail-closed parity and Micro Place exception", () => {
