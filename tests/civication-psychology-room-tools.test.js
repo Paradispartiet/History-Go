@@ -141,6 +141,37 @@ async function run() {
   assert.strictEqual(window.PsychologyRoom.getToolCompletions(toolId).length, 2,
     'workbench reflections are not disguised tool completions');
 
+
+  // A previous situation can receive multiple experiences without rewriting it.
+  assert.strictEqual(typeof window.PsychologyRoom.saveWorkbenchFollowUp, 'function');
+  assert.strictEqual(window.PsychologyRoom.saveWorkbenchFollowUp(work.entry.id, {}).reason, 'required_fields');
+  assert.strictEqual(window.PsychologyRoom.saveWorkbenchFollowUp('missing-note', {
+    tried: 'Test', outcome: 'Test'
+  }).reason, 'not_found');
+  const followed = window.PsychologyRoom.saveWorkbenchFollowUp(work.entry.id, {
+    tried: 'Jeg jobbet med oppgaven i fem minutter',
+    outcome: 'Jeg fikk begynt',
+    new_view: 'Oppgaven var mer håndterlig enn jeg trodde',
+    next_step: 'Fortsette i morgen'
+  });
+  assert.strictEqual(followed.saved, true);
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries().length, 1, 'follow-up updates same note');
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries()[0].thoughts, 'Dette blir vanskelig.',
+    'original reflection is untouched');
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries()[0].follow_ups.length, 1);
+  const again = window.PsychologyRoom.saveWorkbenchFollowUp(work.entry.id, {
+    tried: 'Nytt forsøk', outcome: 'Ny erfaring'
+  });
+  assert.strictEqual(again.saved, true);
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries()[0].follow_ups.length, 2,
+    'history of experiences is preserved');
+  assert.strictEqual(window.PsychologyRoom.getToolCompletions(toolId).length, 2,
+    'follow-ups do not complete tools');
+  assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), before,
+    'follow-ups never increase Civication competence');
+  assert.strictEqual(window.PsychologyRoom.getProfile().completed_sessions, profile.completed_sessions,
+    'follow-ups do not grant sessions or insight points');
+
   // Unknown tool id is handled.
   const unknown = window.PsychologyRoom.completeTool('does_not_exist', { steps: ['x'] });
   assert.strictEqual(unknown.completed, false);
