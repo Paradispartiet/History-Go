@@ -103,7 +103,28 @@ test('footer is black with seven distinct polychrome SVG illustrations', () => {
     assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
     assert.ok(new Set(svg.match(/#[a-fA-F0-9]{6}/g) || []).size >= 4,
       'each illustrated icon has multiple saturated colours');
+    const colors = [...new Set((svg.match(/#[a-fA-F0-9]{6}/g) || []).map(x => x.toLowerCase()))];
+    const vibrant = colors.map(hex => {
+      const [r, g, b] = [1, 3, 5].map(pos => parseInt(hex.slice(pos, pos + 2), 16) / 255);
+      const high = Math.max(r, g, b);
+      const low = Math.min(r, g, b);
+      const delta = high - low;
+      let hue = 0;
+      if (delta > 0) {
+        if (high === r) hue = ((g - b) / delta) % 6;
+        else if (high === g) hue = (b - r) / delta + 2;
+        else hue = (r - g) / delta + 4;
+        hue = (hue * 60 + 360) % 360;
+      }
+      return { hue, vivid: high > .56 && delta > .17 };
+    }).filter(item => item.vivid);
+    const yellowGold = vibrant.filter(item => item.hue >= 28 && item.hue <= 64).length;
+    const violet = vibrant.filter(item => item.hue >= 260 && item.hue <= 332).length;
+    assert.ok(yellowGold >= Math.ceil(vibrant.length / 2), 'yellow/gold dominates each icon');
+    assert.equal(violet, 0, 'no vivid purple or magenta in footer icon artwork');
   }
+  assert.match(footerCSS, /#pcNote\{ border-color: rgba\(255,228,131,\.64\); \}/);
+  assert.match(footerCSS, /\.pc-onsite-action-meet\s*\{[^}]*border-color: rgba\(246,173,60,\.67\)/);
   const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
   assert.match(surface, /function syncFooterActions\(place, force = false\)/);
   assert.match(surface, /footerOwnsCore/);
