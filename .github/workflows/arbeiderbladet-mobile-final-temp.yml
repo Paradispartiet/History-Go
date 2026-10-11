@@ -1,0 +1,32 @@
+name: Arbeiderbladet final mobile layout QA
+on:
+  pull_request:
+    branches:
+      - main
+concurrency:
+  group: arbeiderbladet-layout-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  verify:
+    name: Four viewport layout test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Audit original controls and PlaceCard layouts
+        run: node scripts/audit-arbeiderbladet-youngstorget-visual.mjs
+      - name: Preserve all screenshots and measured geometry
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arbeiderbladet-layout-final
+          path: artifacts/arbeiderbladet-youngstorget-final-20261011/
+          if-no-files-found: error
