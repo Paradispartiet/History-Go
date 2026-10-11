@@ -9,8 +9,7 @@
     const hero = document.getElementById("pcHeaderHero");
     const image = /** @type {HTMLImageElement|null} */ (document.getElementById("pcHeaderImage"));
     const title = document.getElementById("pcTitle");
-    const meta = document.getElementById("pcMeta");
-    const status = document.getElementById("pcStatusBar");
+    const headingRow = hero?.querySelector(".pc-title-row");
     if (!(card instanceof HTMLElement) || !(scroller instanceof HTMLElement)
       || !(hero instanceof HTMLElement) || !(image instanceof HTMLImageElement)
       || !(title instanceof HTMLElement)) return;
@@ -109,14 +108,16 @@
       if (!height) return;
       const bounds = owningHero.getBoundingClientRect();
       const headingBounds = hero.getBoundingClientRect();
-      const end = [title, meta, status].filter(Boolean).reduce((max, node) => {
-        if (!(node instanceof HTMLElement) || !node.offsetHeight) return max;
-        return Math.max(max, node.getBoundingClientRect().bottom - headingBounds.top);
-      }, 0);
+      // Preserve the original title, audio/favorite controls and the live
+      // people/badge circles. Metadata and status stay in their ORIGINAL
+      // positions in the expanded photo but may scroll out of the clipped
+      // lower edge. Including them in this limit prevented any real collapse.
+      const headingBottom = headingRow instanceof HTMLElement
+        ? headingRow.getBoundingClientRect().bottom - headingBounds.top
+        : title.getBoundingClientRect().bottom - headingBounds.top;
       naturalHeight = Math.ceil(Math.max(height, hero.offsetHeight) + Math.max(0, headingBounds.top - bounds.top));
-      // Do not crop icons, badge labels, epoch, or the existing status row.
-      // On compact devices these controls may fill nearly the entire hero.
-      minimumHeight = Math.min(naturalHeight, Math.max(96, Math.ceil(end + 8 + Math.max(0, headingBounds.top - bounds.top))));
+      minimumHeight = Math.min(naturalHeight, Math.max(96,
+        Math.ceil(headingBottom + 9 + Math.max(0, headingBounds.top - bounds.top))));
       card.style.setProperty("--pc-original-hero-height", height + "px");
       card.classList.add("is-original-photo-pinned");
       updateTitleContrast();
@@ -135,8 +136,7 @@
     window.addEventListener("resize", scheduleMeasure, { passive: true });
     new ResizeObserver(scheduleMeasure).observe(hero);
     new MutationObserver(scheduleMeasure).observe(title, { childList: true, characterData: true, subtree: true });
-    if (meta) new MutationObserver(scheduleMeasure).observe(meta, { childList: true, subtree: true });
-    if (status) new MutationObserver(scheduleMeasure).observe(status, { childList: true, subtree: true });
+    if (headingRow) new ResizeObserver(scheduleMeasure).observe(headingRow);
     new MutationObserver(scheduleMeasure).observe(hero, { attributes: true, attributeFilter: ["class"] });
     new MutationObserver(scheduleMeasure).observe(card, { attributes: true, attributeFilter: ["data-current-place-id", "class"] });
     scheduleMeasure();
