@@ -2044,7 +2044,8 @@
     const sideStack = (shell4 == null ? void 0 : shell4.querySelector(".pc-side-stack")) || root2.querySelector(".pc-side-stack");
     const events = (shell4 == null ? void 0 : shell4.querySelector("#pcEventsBox")) || document.getElementById("pcEventsBox");
     // The navigation belongs only to the canonical sheet, not the legacy/micro card.
-    shell4 == null ? void 0 : shell4.querySelector('[data-hg-place-sheet-nav="1"]')?.remove();
+    const nav = shell4 == null ? void 0 : shell4.querySelector('[data-hg-place-sheet-nav="1"]');
+    if (nav) nav.remove();
     let legacyGrid = rootBody.querySelector(":scope > .pc-grid");
     if (!(legacyGrid instanceof HTMLElement)) {
       legacyGrid = document.createElement("div");
