@@ -884,6 +884,7 @@
   }
 
   function renderPhenomenaList(fromWorkbench = false) {
+    fromWorkbench = fromWorkbench === true;
     setActiveSection("phenomena");
     const phenomena = dataCache?.phenomena || [];
     const workbenchNotice = fromWorkbench ? '<div class="psychology-room-workbench-next"><span>TRINN 02 / FORSTÅ</span><strong>Velg selv et fenomen å undersøke</strong><p>Dette er begreper fra psykologien, ikke en automatisk tolkning av refleksjonen din.</p></div>' : "";
