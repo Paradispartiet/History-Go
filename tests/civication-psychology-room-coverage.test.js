@@ -388,6 +388,40 @@ for (const [id, primary, comparison, historical, claim, source] of [
   assert.match(entry.partial_reference_review.report, /gruppe6/);
   assert.equal((card.related_emne_links || []).length, 0);
 }
+// Production group 7: distinguish collective event, support conditions and continuing violence.
+for (const [id, emne, comparison, historical, claim, source] of [
+  ["kollektiv_krise_flerniva", "em_psy_kollektiv_krise", "resiliens", "Lindemann", "tkr-14", "src-nkvts-utoya3"],
+  ["trygghet_tillit_krisehjelp", "em_psy_trygghet_tillit", "kollektiv_krise_flerniva", "Hobfoll", "tkr-08", "src-who-pfa"],
+  ["vold_belastning_tvangskontroll", "em_psy_vold_belastning", "stressvurdering", "Stark", "tkr-05", "src-nkvts-continuing-violence"]
+]) {
+  const card = catalog.theories.find((x) => x.id === id);
+  assert.ok(card, "group 7 missing card: " + id);
+  assert.equal(card.emne_id, emne);
+  assert.equal(card.compare_with, comparison);
+  assert.match(card.period, new RegExp(historical));
+  assert.equal(card.source_review_state, "partial_historical_method_review");
+  assert.equal(card.teaching_view.editorial_state, "ready_for_educational_use");
+  assert.equal(card.teaching_view.featured_reference_urls.length, 4);
+  for (const field of ["period", "idea", "method", "limit"]) {
+    assert.ok(card.teaching_view[field].length > 65 && card.teaching_view[field].length < 500,
+      "group 7 teaching text: " + id + "/" + field);
+  }
+  const urls = card.reference_links.map((x) => x.url);
+  assert.ok(card.teaching_view.featured_reference_urls.every((url) => urls.includes(url)));
+  assert.ok(card.reference_links.some((x) => x.canonical_claim_ids.includes(claim) && x.canonical_source_ids.includes(source)));
+  assert.equal((card.related_emne_links || []).length, 0, "new coverage links need own chapter-specific evidence");
+  const row = byEmne.get(emne);
+  assert.deepEqual(row.theory_ids, [id]);
+  assert.equal(row.link_status, "linked_unreviewed");
+  assert.equal(row.source_review_status, "not_reviewed");
+  assert.equal(row.editorial_review_status, "not_reviewed");
+  assert.deepEqual(row.partial_reference_review.reference_urls, urls);
+  assert.match(row.partial_reference_review.report, /gruppe7/);
+}
+assert.match(reviewed.get("kollektiv_krise_flerniva").method, /Longitudinelle/);
+assert.match(reviewed.get("trygghet_tillit_krisehjelp").limit, /Psykososial førstehjelp/);
+assert.match(reviewed.get("vold_belastning_tvangskontroll").idea, /tvangskontroll/);
+
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
