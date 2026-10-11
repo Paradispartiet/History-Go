@@ -434,6 +434,23 @@ assert.match(detailedReview.original_publication_audit.entries.find((e) =>
   e.id === "resiliens_werner_smith_1992").access, /no_appendix_fulltext/);
 
 
+// 1981 CBT publications: one-year outcome and four-week cross-lagged mechanism are not interchangeable.
+const rush1981 = "https://www.sciencedirect.com/science/article/pii/0165032781900240";
+const cbtCard = reviewed.get("kognitiv_terapi");
+assert.ok(cbtCard.period.includes("januar 1981") && cbtCard.period.includes("september 1981"));
+assert.ok(cbtCard.method.includes("kryssforskjøvede panelanalyser") && cbtCard.method.includes("behandlingsuke 1–4"));
+assert.ok(cbtCard.limit.includes("placebo- eller ventelistekontroller"));
+assert.ok(cbtCard.limit.includes("kan det ikke fastslås at analysene bygger på nøyaktig samme delutvalg"));
+assert.ok(cbtCard.reference_links.some((r) => r.url === rush1981
+  && r.canonical_claim_ids.length === 0 && r.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((r) => r.theory_id === "kognitiv_terapi")
+  .group_1_source_audit.new_reference_urls.includes(rush1981));
+assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
+  && ["period", "method", "limit"].includes(u.field))
+  .every((u) => u.evidence_urls.includes(rush1981)
+    && u.card_is_source_verified === false && u.full_original_review_complete === false));
+assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
+  r.id === "kognitiv_terapi_rush_1981").access, "elsevier_original_publisher_abstract_read_fulltext_unavailable");
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
 assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
@@ -446,8 +463,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 13);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 13);
+assert.equal(detailedReview.original_publication_audit.entries.length, 14);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 14);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
