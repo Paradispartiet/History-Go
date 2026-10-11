@@ -2077,7 +2077,7 @@ body.hg-app.hg-phone #placeCard #pcDesc{
 
 /* Original image header: title across the upper left, the audio and
    favorite controls on a separate line immediately below it. The real
-   people/badge circles keep their right-hand positions in the first row.
+   people/badge circles remain on the right directly above their metadata.
    Grid avoids moving or cloning any interactive DOM nodes. */
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row{
   order: 0;
@@ -2112,16 +2112,18 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   align-self: start;
 }
 
-/* Preserve the existing round icons on the right, alongside the title. */
+/* Keep the original circles at the right of the second row, directly
+   above the matching category and epoch labels. They remain the same live
+   controls and preserve their size and horizontal order. */
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
   grid-column: 4;
-  grid-row: 1;
+  grid-row: 2;
   margin-left: 0;
   align-self: end;
 }
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
   grid-column: 5;
-  grid-row: 1;
+  grid-row: 2;
   margin-right: 0;
   margin-left: 0;
   align-self: end;
