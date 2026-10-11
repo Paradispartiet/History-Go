@@ -123,10 +123,12 @@ try {
       if(run.initial.viewportOverflow > 2) run.issues.push('Page overflows the viewport');
       if(run.initial.images.some(img=>!img.complete || !img.naturalWidth)) run.issues.push('Visible image failed to load');
       run.brandPreview=await page.locator('#pcBrandsIcon img').evaluate(el=>({
-        background:getComputedStyle(el).backgroundColor, complete:el.complete, naturalWidth:el.naturalWidth
+        background:getComputedStyle(el).backgroundColor, paddingBottom:getComputedStyle(el).paddingBottom, complete:el.complete, naturalWidth:el.naturalWidth
       }));
       if(['rgb(255, 255, 255)','rgba(0, 0, 0, 0)'].includes(run.brandPreview.background))
         run.issues.push('White brand preview is invisible on its background');
+      if(parseFloat(run.brandPreview.paddingBottom)<34)
+        run.issues.push('Brand preview does not reserve space for its label');
       run.publicationPreview=await page.locator('#pcCategoryCollectionIcon img').evaluate(el=>({
         objectFit:getComputedStyle(el).objectFit, naturalWidth:el.naturalWidth,
         naturalHeight:el.naturalHeight
