@@ -171,6 +171,11 @@
       content.scrollTop = 0;
     }
     overlay.dataset.activeSection = activeSection;
+    for (const section of ["home", "phenomena", "practice", "theories", "profile"]) {
+      const button = overlay.querySelector('[data-psych-nav="' + section + '"]');
+      if (activeSection === section) button?.setAttribute("aria-current", "page");
+      else button?.removeAttribute?.("aria-current");
+    }
     overlay.classList.add("is-open");
     overlay.setAttribute("aria-hidden", "false");
   }
@@ -834,10 +839,10 @@
         const id = button.dataset.psychRelatedId;
         if (kind === "tool") {
           const tool = findById(dataCache?.tools || [], id);
-          if (tool) renderToolDetail(tool);
+          if (tool) renderToolDetail(tool, path ? { type: "path", pathId: path.id } : null);
         } else if (kind === "exercise") {
           const exercise = findById(dataCache?.exercises || [], id);
-          if (exercise) renderExercise(exercise);
+          if (exercise) renderExercise(exercise, path ? { type: "path", pathId: path.id } : null);
         } else if (kind === "test") {
           const test = findById(dataCache?.tests || [], id);
           if (test) renderTest(test);
