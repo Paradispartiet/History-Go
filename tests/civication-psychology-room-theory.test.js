@@ -239,5 +239,30 @@ const press = (selector) => {
   assert.match(roomCss, /\.psychology-room-footer\s*\{[^}]*grid-template-columns:\s*repeat\(5,/s);
   assert.match(roomCss, /\[data-active-section="theories"\]/);
   assert.equal(storage.size, 0, "theory navigation must not write personal data");
+  press('[data-psych-nav="home"]');
+  press("[data-psych-action='workbench']");
+  assert.match(rendered, /Tankeverksted/);
+  assert.match(rendered, /Hva skjedde konkret/);
+  assert.match(rendered, /Hva tenkte eller antok du/);
+  assert.match(rendered, /Hva merket du i kroppen/);
+  assert.match(rendered, /Lagre og utforsk fenomener/);
+  assert.match(rendered, /Ingen svar sendes til Civication/);
+  const localReflection = window.PsychologyRoom.saveWorkbench({
+    situation: "Jeg utsetter en oppgave.",
+    thoughts: "Den er vanskelig.",
+    actions: "Jeg venter."
+  });
+  assert.equal(localReflection.saved, true);
+  assert.equal(window.PsychologyRoom.getWorkbenchEntries().length, 1);
+  assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
+  assert.equal(storage.size, 1, "a voluntary reflection is stored under one isolated local key");
+  press('[data-psych-nav="phenomena"]');
+  assert.match(rendered, /Fenomenleksikon/);
+  assert.doesNotMatch(rendered, /Velg selv et fenomen å undersøke/,
+    "footer navigation does not interpret the click event as a workshop flow");
+  press("focus:ruminasjon");
+  assert.match(rendered, /FRA BEGREP TIL HANDLING/);
+  assert.match(rendered, /data-psych-related="tool"/);
+  assert.match(rendered, /Teoretisk bakgrunn/);
   console.log("psychology-room-theory.test.js passed");
 })().catch((error) => { console.error(error); process.exitCode = 1; });
