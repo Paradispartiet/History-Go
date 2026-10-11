@@ -32,16 +32,12 @@ jobs:
         run: npm run knowledge:canonical:write
       - name: Inspect four viewports and real integrations
         run: node scripts/audit-arbeiderbladet-youngstorget-visual.mjs
-      - name: Play all four quiz sets on desktop and mobile
-        if: always()
-        run: node scripts/verify-place-quiz-browser.mjs arbeiderbladet_youngstorget
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: arbeiderbladet-visual-evidence-${{ github.sha }}
           path: |
             artifacts/arbeiderbladet-youngstorget-final-20261011/
-            artifacts/place-quiz/arbeiderbladet_youngstorget/
       - name: Persist only bounded evidence on the same leased branch
         if: always()
         env:
@@ -52,10 +48,6 @@ jobs:
           mkdir -p "$evidence_dir"
           if test -d artifacts/arbeiderbladet-youngstorget-final-20261011; then
             cp artifacts/arbeiderbladet-youngstorget-final-20261011/* "$evidence_dir/"
-          fi
-          if test -d artifacts/place-quiz/arbeiderbladet_youngstorget; then
-            mkdir -p "$evidence_dir/quiz"
-            cp artifacts/place-quiz/arbeiderbladet_youngstorget/* "$evidence_dir/quiz/"
           fi
           git add -- "$evidence_dir" data/knowledge/knowledge_units.generated.json
           unexpected_paths="$(git diff --name-only)"

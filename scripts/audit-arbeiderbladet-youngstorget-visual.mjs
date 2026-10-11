@@ -247,6 +247,9 @@ try {
             bodyScrollTop:document.querySelector('#placeCard .pc-body')?.scrollTop || 0,
             viewportHeight:innerHeight};
         });
+        run.languageEntryIds=await page.locator('[data-hg-place-sheet-section="language"] [data-language-entry]').evaluateAll(els=>els.map(el=>el.dataset.languageEntryId));
+        if(run.languageEntryIds.length!==5||!run.languageEntryIds.includes('arbeiderbladet_youngstorget_organ'))
+          run.issues.push('Språkleksikon does not render all five canonical entries');
         if(profile.name==='ipad') {
           await capture(page,'ipad-fagverk');
           run.captures.push('ipad-fagverk.jpg');
