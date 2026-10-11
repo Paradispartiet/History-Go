@@ -53,10 +53,10 @@ for (const theory of partiallyReviewed) {
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
 assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 14);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 18,
-  "four claim-bound reuse links add emne-level coverage without adding duplicate theory cards");
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 22,
+  "eight claim-bound reuse links increase relevant emne coverage without duplicating theory cards");
 const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
-assert.equal(extraLinks.length, 4);
+assert.equal(extraLinks.length, 8);
 for (const link of extraLinks) {
   const entry = byEmne.get(link.emne_id);
   assert.equal(entry?.related_link_evidence?.review, "canonical_id_and_claim_binding_only");
@@ -64,6 +64,35 @@ for (const link of extraLinks) {
 }
 assert.equal(coverage.coverage_entries.filter((entry) => entry.source_review_status === "verified").length, 0,
   "partial evidence must not be silently promoted to full verification");
+
+
+// Educational readiness is a publishing/editorial decision, not a false claim that every
+// original article or historical cohort has been independently reanalyzed.
+for (const id of ["psykoanalyse", "tilknytning", "resiliens", "kognitiv_terapi"]) {
+  const card = catalog.theories.find((item) => item.id === id);
+  assert.equal(card.teaching_view?.editorial_state, "ready_for_educational_use");
+  for (const key of ["period", "idea", "method", "limit"]) {
+    const text = card.teaching_view[key];
+    assert.ok(typeof text === "string" && text.length > 65 && text.length < 500,
+      "pedagogical summary missing or too long: " + id + "." + key);
+  }
+  const highlights = card.teaching_view.featured_reference_urls;
+  assert.equal(highlights.length, 4);
+  assert.ok(highlights.every((url) => card.reference_links.some((ref) => ref.url === url)));
+  assert.equal(card.source_review_state, "partial_historical_method_review",
+    "pedagogical readiness must not masquerade as complete original-source verification");
+}
+for (const [id, emne] of [
+  ["psykoanalyse", "em_psy_ubevisste_prosesser"],
+  ["tilknytning", "em_psy_familie_samspill"],
+  ["resiliens", "em_psy_traume_regulering"],
+  ["kognitiv_terapi", "em_psy_terapi_praksis"]
+]) {
+  assert.ok(catalog.theories.find((item) => item.id === id).related_emne_links
+    .some((link) => link.emne_id === emne));
+  assert.deepEqual(byEmne.get(emne).theory_ids, [id]);
+  assert.equal(byEmne.get(emne).source_review_status, "not_reviewed");
+}
 
 // Evidence-bounded field-review regression: links and alternatives stay on the
 // actual theory cards, without silently promoting partial reviews to verification.
