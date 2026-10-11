@@ -32,6 +32,6 @@ for (const [name, url] of [
   ['official-logo-page.html', 'https://www.dagsavisen.no/nyheter/logo-dagsavisen/8542896'],
 ]) {
   const response = await request(url);
-  await writeFile(`${root}/${name}`, await response.text());
+  await writeFile(`${root}/${name}`, (await response.text()).split("\n").map(line => line.trimEnd()).join("\n"));
 }
 console.log(JSON.stringify(records));
