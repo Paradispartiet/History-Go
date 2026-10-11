@@ -120,7 +120,11 @@ try {
         hero:r("#pcHeaderHero"), visible:r(".pc-sheet-hero"),
         title:r("#pcTitle"), badge:r("#pcBadgesIcon"), people:r("#pcPeopleIcon"),
         status:r("#pcStatusBar"), meta:r("#pcMeta"), nav:r(".pc-sheet-section-nav"),
-        scroller:r(".pc-body"), titleFont:getComputedStyle(title).fontSize,
+        scroller:r(".pc-body"), scrollTop:document.querySelector(".pc-body").scrollTop,
+        scrollHeight:document.querySelector(".pc-body").scrollHeight,
+        clientHeight:document.querySelector(".pc-body").clientHeight,
+        stickyPosition:getComputedStyle(document.querySelector(".pc-sheet-hero")).position,
+        titleFont:getComputedStyle(title).fontSize,
         sameImage:document.querySelector("#pcHeaderImage").src===window.__initialImageSource,
         value:parseFloat(document.querySelector("#placeCard").style.getPropertyValue("--pc-visible-hero-height"))
       };
