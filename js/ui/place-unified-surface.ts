@@ -90,7 +90,7 @@ type HistoryGoUnifiedRuntime = Window & typeof globalThis & {
   function ensureStylesheet(): void {
     const styles = [
       [STYLE_FLAG, "css/place-unified-surface.css"],
-      [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261011-title-brand-layout"],
+      [SHEET_STYLE_FLAG, "css/place-sheet.css?v=20261011-publication-preview"],
       [PHASE6_STYLE_FLAG, "css/place-sheet-phase6.css"]
     ] as const;
     for (const [flag, href] of styles) {

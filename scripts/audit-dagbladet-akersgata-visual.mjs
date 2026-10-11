@@ -122,6 +122,11 @@ try {
       if(run.initial.collectionCount !== '3') run.issues.push('Exactly three selected collections must be shown');
       if(run.initial.viewportOverflow > 2) run.issues.push('Page overflows the viewport');
       if(run.initial.images.some(img=>!img.complete || !img.naturalWidth)) run.issues.push('Visible image failed to load');
+      run.publicationPreview=await page.locator('#pcCategoryCollectionIcon img').evaluate(el=>({
+        objectFit:getComputedStyle(el).objectFit, naturalWidth:el.naturalWidth,
+        naturalHeight:el.naturalHeight
+      }));
+      if(run.publicationPreview.objectFit!=='contain') run.issues.push('Publication preview crops the newspaper page');
       await capture(page, profile.name + '-placecard-top');
       run.captures.push(profile.name + '-placecard-top.jpg');
       // The PlaceCard may scroll via an internal sheet rather than the document.
@@ -160,6 +165,12 @@ try {
             const img=popup.locator('img').first();
             const loaded=await img.evaluate(el=>el.complete && el.naturalWidth===599 && el.naturalHeight===836);
             if(!loaded) run.issues.push('Authentic publication facsimile must load');
+            run.publicationLayout=await img.evaluate(el=>{
+              const style=getComputedStyle(el), box=el.getBoundingClientRect();
+              return {objectFit:style.objectFit,borderRadius:style.borderRadius,width:box.width,height:box.height};
+            });
+            if(run.publicationLayout.objectFit!=='contain' || run.publicationLayout.height<=run.publicationLayout.width ||
+               run.publicationLayout.borderRadius==='50%') run.issues.push('Publication popup must show a complete rectangular newspaper page');
             await capture(page,profile.name+'-popup-productions');
             run.captures.push(profile.name+'-popup-productions.jpg');
           }

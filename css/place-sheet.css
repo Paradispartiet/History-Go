@@ -396,6 +396,20 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
   background:#fff;
 }
 
+/* A dated newspaper facsimile keeps its masthead and page edges visible. */
+body.hg-app #placeCard[data-current-place-id="dagbladet_akersgata"].is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"] > img.pc-person-img{
+  object-fit:contain;
+  background:#111923;
+  padding:8px 8px 34px;
+  box-sizing:border-box;
+}
+
+.hg-popup.placecard-round-popup [data-visual-round-item="dagbladet_papiravisen"] > .pc-person-img{
+  height:78px;
+  object-fit:contain;
+  border-radius:4px;
+}
+
 @media (prefers-reduced-motion: reduce){
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection{
     transition: none;
