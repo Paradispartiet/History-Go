@@ -120,6 +120,14 @@ const press = (selector) => {
   assert.match(rendered, /Undervisningseksempel 1 \(hypotetisk\)/);
   assert.match(rendered, /Undervisningseksempel 2 \(hypotetisk\)/);
   assert.match(rendered, /plagsom lyd/);
+  press("theory:behaviorisme");
+  assert.match(rendered, /John B\. Watson/);
+  assert.match(rendered, /forsterkning øke sannsynligheten/);
+  assert.doesNotMatch(rendered, /Negativ forsterkning er ikke det samme som straff\./);
+  press("theory:kognitiv_psykologi");
+  assert.match(rendered, /Neissers bok Cognitive Psychology/);
+  press("theory:biopsykososial_modell");
+  assert.match(rendered, /Science i 1977/);
   press("theory:tilknytning");
   assert.match(rendered, /Barn søker trygghet hos omsorgspersoner/);
   assert.match(rendered, /Vis flere kilder/);

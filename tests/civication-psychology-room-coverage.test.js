@@ -458,6 +458,36 @@ assert.match(reviewed.get("vold_belastning_tvangskontroll").idea, /tvangskontrol
  assert.equal(catalog.theories.flatMap((x) => [x.example,x.example_secondary]).length, 70);
  assert.equal(coverage.coverage_entries.filter((x) => !x.theory_ids.length).length, 0);
  
+
+// Whole-catalog editorial reading layer: every one of the 35 cards has a
+// short, independently authored teaching view; long source/method text remains intact.
+assert.equal(catalog.theories.length, 35);
+assert.equal(catalog.theories.filter((theory) => theory.teaching_view).length, 35);
+for (const theory of catalog.theories) {
+  const short = theory.teaching_view;
+  assert.equal(short.editorial_state, "ready_for_educational_use");
+  for (const field of ["period", "idea", "method", "limit"]) {
+    assert.ok(typeof short[field] === "string" && short[field].length >= 65 && short[field].length < 500,
+      "teaching view unreadable: " + theory.id + "/" + field);
+  }
+  assert.ok(short.featured_reference_urls.length >= 2 && short.featured_reference_urls.length <= 4);
+  assert.equal(new Set(short.featured_reference_urls).size, short.featured_reference_urls.length);
+  assert.ok(short.featured_reference_urls.every((url) => theory.reference_links.some((ref) => ref.url === url)),
+    "summary uses unknown source: " + theory.id);
+  assert.equal(theory.source_review_state, "partial_historical_method_review",
+    "summary completion does not confer full source approval");
+}
+for (const [id, historicallyRelevant] of [
+  ["behaviorisme", "1913"], ["kognitiv_psykologi", "1967"],
+  ["humanistisk_psykologi", "1943"], ["femfaktormodellen", "1992"],
+  ["heuristikker", "1974"], ["stressvurdering", "1986"],
+  ["sosial_laring", "1961"], ["sosial_identitet", "1971"],
+  ["konformitet", "1956"], ["biopsykososial_modell", "1977"]
+]) {
+  assert.ok(catalog.theories.find((theory) => theory.id === id).teaching_view.period.includes(historicallyRelevant),
+    "missing research-history anchor: " + id);
+}
+
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
