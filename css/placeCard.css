@@ -2075,40 +2075,64 @@ body.hg-app.hg-phone #placeCard #pcDesc{
   gap: 5px;
 }
 
+/* Original image header: title across the upper left, the audio and
+   favorite controls on a separate line immediately below it. The real
+   people/badge circles keep their right-hand positions in the first row.
+   Grid avoids moving or cloning any interactive DOM nodes. */
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row{
   order: 0;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 34px 32px minmax(0, 1fr) auto auto;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  row-gap: 7px;
+  align-items: start;
   margin: 0;
   flex: 0 0 auto;
 }
 
 #placeCard .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
   order: 0;
-  /* Fit the actual place name, not the entire available heading row:
-     the reader and favorite controls must start immediately after it. */
-  flex: 0 1 auto;
+  grid-column: 1 / 4;
+  grid-row: 1;
+  min-width: 0;
   overflow-wrap: anywhere;
 }
 
-/* The retired shortcut layout left a 50/58px margin on Merker.
-   Remove it here and bottom-align the round with the title row so the
-   category button can sit immediately under the circle, including on
-   narrow phones where the title wraps to multiple lines. */
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
-  margin-right: 0;
-  margin-left: 0;
-  align-self: flex-end;
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  align-self: start;
 }
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
-  margin-left: auto;
-  align-self: flex-end;
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+  align-self: start;
 }
 
-/* Audio and favorite belong beside the place name, not down by the
-   two independent round collection icons on the far right. */
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite,
-#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
-  align-self: center;
+/* Preserve the existing round icons on the right, alongside the title. */
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
+  grid-column: 4;
+  grid-row: 1;
+  margin-left: 0;
+  align-self: end;
+}
+#placeCard .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+  grid-column: 5;
+  grid-row: 1;
+  margin-right: 0;
+  margin-left: 0;
+  align-self: end;
+}
+
+@media (max-width: 520px){
+  #placeCard .pc-heading-hero .pc-heading-content .pc-title-row{
+    grid-template-columns: 30px 32px minmax(0, 1fr) auto auto;
+    column-gap: 6px;
+    row-gap: 6px;
+  }
 }
 
 #placeCard .pc-heading-hero .pc-heading-content #pcMeta{
