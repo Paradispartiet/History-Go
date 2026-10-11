@@ -102,6 +102,13 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   const sideStack = shell.querySelector(".pc-sheet-explore-grid .pc-side-stack");
   const collectionLinks = Array.from(nav?.querySelectorAll('[data-hg-place-sheet-collection-link]') || []);
   assert.ok(nav && aboutButton && sideStack);
+  const hero = shell.querySelector("[data-hg-place-sheet-hero]");
+  const intro = shell.querySelector("[data-hg-place-sheet-intro]");
+  const media = shell.querySelector("[data-hg-place-sheet-media]");
+  assert.equal(hero?.nextElementSibling, nav, "navigation immediately follows the landscape hero");
+  assert.equal(nav.nextElementSibling, intro, "place description follows navigation");
+  assert.equal(intro?.nextElementSibling, media, "collection cards follow the description");
+  assert.equal(window.document.getElementById("pcDesc")?.parentElement, intro, "description retains one live owner");
   assert.equal(collectionLinks.length, 0, "collection rounds must not appear in text navigation");
   assert.equal(nav.querySelectorAll('[data-hg-place-sheet-jump]').length, 9);
   assert.equal(sideStack.parentElement?.classList.contains("pc-sheet-explore-grid"), true);
@@ -133,6 +140,7 @@ test("Unified runtime mounts Phase 1 directly, owns canonical About and restores
   assert.ok(grid?.querySelector(".pc-side-stack"));
   assert.ok(grid?.querySelector("#pcEventsBox"));
   assert.equal(window.document.querySelector(".pc-text")?.parentElement?.classList.contains("pc-body"), true);
+  assert.equal(window.document.getElementById("pcDesc")?.parentElement?.classList.contains("pc-text"), true, "legacy PlaceCard recovers its description");
 
   dom.window.close();
 });
