@@ -11,7 +11,7 @@ const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
 const ids = new Set();
 assert.equal(catalog.fagverk_subject, "psykologi");
 assert.equal(catalog.chapters.length, 6);
-assert.equal(catalog.theories.length, 14);
+assert.equal(catalog.theories.length, 15);
 
 for (const chapter of catalog.chapters) {
   const canonical = json("data/fagverk/psykologi/" + chapter.id + ".json");
@@ -44,7 +44,7 @@ for (const theory of catalog.theories) {
 }
 assert.equal(ids.size, catalog.theories.length);
 const teachingCases = catalog.theories.flatMap((theory) => [theory.example, theory.example_secondary]);
-assert.equal(teachingCases.length, 28, "14 theory cards must each have two scenarios");
+assert.equal(teachingCases.length, 30, "15 theory cards must each have two scenarios");
 assert.equal(new Set(teachingCases).size, teachingCases.length,
   "every hypothetical teaching scenario should be independently authored");
 
