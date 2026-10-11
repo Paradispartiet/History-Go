@@ -101,10 +101,11 @@
   .hg-fagverk-place-page .fagverk-place-design-note{padding:18px;}
 }
 
-/* Media titles scale to the actual text column, including a two-column tablet hero. */
-.hg-fagverk-place-page[data-place-category="media"] .fagverk-place-hero-copy{
+/* This long place title scales to its text column, including the tablet hero. */
+.hg-fagverk-place-page[data-place-id="arbeiderbladet_youngstorget"] .fagverk-place-hero-copy{
   container-type:inline-size;
 }
-.hg-fagverk-place-page[data-place-category="media"] .fagverk-place-hero h1{
+.hg-fagverk-place-page[data-place-id="arbeiderbladet_youngstorget"] .fagverk-place-hero h1{
+  max-width:100%;
   font-size:clamp(26px,11cqi,64px);
 }

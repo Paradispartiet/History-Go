@@ -279,9 +279,11 @@ try {
                 const rectangles=[...range.getClientRects()].map(r=>({left:r.left,right:r.right}));
                 words.push({word:m[0],rectangles});
               }
-              return {left:box.left,right:box.right,words};
+              return {left:box.left,right:box.right,words,placeId:document.body.dataset.placeId,fontSize:getComputedStyle(el).fontSize,containerType:getComputedStyle(el.closest('.fagverk-place-hero-copy')).containerType};
             });
             const g=run.fagverkPage.titleGeometry;
+            if(g.placeId!=='arbeiderbladet_youngstorget'||g.containerType!=='inline-size')
+              run.issues.push('Fagverk title sizing is not bound to the canonical place');
             if(g.words.some(w=>w.rectangles.length!==1||w.rectangles.some(r=>r.left<g.left-1||r.right>g.right+1)))
               run.issues.push('Fagverk title clips or splits a word');
             await capture(page,profile.name+'-fagverk-page');
