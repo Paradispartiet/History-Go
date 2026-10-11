@@ -39,4 +39,15 @@ Produksjonen omfatter tre nye kort og **fem nye direkte koblede emner**: 25 kort
 Alle nye primærkort bruker `partial_historical_method_review`. Dekningsregisteret beholder `linked_unreviewed`, `source_review_status: not_reviewed` og `editorial_review_status: not_reviewed`; de to sekundærkoblingene er kun `canonical_id_and_claim_binding_only`. Ingen fulltekst- eller vitenskapelig sluttgodkjenning er påstått.
 
 ## Kvalitetsvurdering
-Kildereferansene er kontrollert mot forlagenes/arkivenes bibliografiske materiale og det kanoniske fagverket. Før publisering skal relevante GitHub Actions-arbeidsflyter bestå på siste PR-head. Seksdelte kvalitetsscorer og konkrete workflow-ID-er føres inn etter test.
+Kildereferansene er kontrollert innen avgrenset bibliografisk, historisk og metodekritisk scope mot originalarbeider, faglige oversikter og de kanoniske claims-/source-ID-ene. Den første CI-kjøringen for PR-head `475021dc` bestod: **Psykoteori** workflow `38171813885` og **Repository hygiene** workflow `38171813848`. Endelig PR-head må også ha grønn relevant CI før merge.
+
+| Dimensjon | Score (av 5) | Begrunnelse og begrensning |
+| --- | ---: | --- |
+| Korrekthet og evidens | 4 | Daterte publikasjonsankre, original-/institusjonskilder, claim-koblinger og eksplisitte vitenskapelige grenser; ikke fullstendig originalfulltekstkontroll |
+| Dekning og ferdigstillelse | 5 | Tre kort, fem avgrensede emner, seks separate scenarioer, 25/48/10 kontrollert i dekningsregisteret |
+| Faglig/redaksjonell kvalitet | 4 | Ulike forskningshistoriske forløp, empirisk metode og rivaliserende modeller; historisk institusjonsanalyse holdt adskilt fra teoripåstand |
+| Teknisk integritet | 5 | To relevante Actions-workflows grønne; runtime-syntaks, navigasjon, read-only, strukturell coverage og hygiene kontrollert |
+| Sikkerhet og ansvarlighet | 5 | Ingen persondiagnostikk, tvangsvurdering, personskåring, oppdiktede pasientfortellinger eller terapiråd |
+| Vedlikeholdbarhet og etterprøvbarhet | 5 | Kanoniske ID-er, fem avgrensede filer, historiske kilder i rapport, PR-diff og målrettede regresjonstester |
+
+**Sum: 28/30.** Høy pedagogisk kvalitet for denne avgrensede produksjonsgruppen; ingen påstand om full vitenskapelig kildeverifikasjon av de 25 kortene eller ferdigstillelse av alle 58 emner. Nye kort har fortsatt `partial_historical_method_review`; redaksjonell og vitenskapelig sluttgodkjenning på emnenivå er `not_reviewed`.
