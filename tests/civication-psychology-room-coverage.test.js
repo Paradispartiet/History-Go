@@ -328,6 +328,16 @@ assert.ok(wernerCard.reference_links.some((ref) =>
   ref.url === wernerGardenIsland && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
 assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(wernerGardenIsland));
 assert.ok(detailedReview.units.find((unit) => unit.id === "resiliens__method").evidence_urls.includes(wernerGardenIsland));
+// Separate 1968 combined 1955/1956 analytic sample must not be conflated with 1955 birth cohort.
+const werner1968 = "https://publications.aap.org/pediatrics/article/42/1/112/44332/REPRODUCTIVE-AND-ENVIRONMENTAL-CASUALTIES-A-REPORT";
+assert.match(wernerCard.period, /1968.*866 barn.*1956/);
+assert.match(wernerCard.method, /866 barn.*1955-fødte.*1956/);
+assert.match(wernerCard.limit, /tiårsanalysen fra 1968 hadde 866 barn/);
+assert.ok(wernerCard.reference_links.some((x) => x.url === werner1968));
+assert.ok(wernerMatrix.group_1_source_audit.new_reference_urls.includes(werner1968));
+assert.ok(detailedReview.units.find((x) => x.id === "resiliens__method").evidence_urls.includes(werner1968));
+assert.equal(detailedReview.original_publication_audit.entries.find((e) =>
+  e.id === "resiliens_werner_bierman_1968").access, "AAP_original_journal_publisher_abstract_only_no_article_fulltext");
 assert.match(wernerCard.method, /505 personer/);
 // Differing denominators must remain explicitly unresolved until 1992 original pages are checked.
 assert.match(wernerCard.limit, /614 som overlevende.*ikke bekreftet i originalbokens metodekapittel/);
@@ -351,8 +361,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 9);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 9);
+assert.equal(detailedReview.original_publication_audit.entries.length, 10);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 10);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
