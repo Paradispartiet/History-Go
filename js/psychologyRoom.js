@@ -1329,7 +1329,9 @@
         workbenchEntries.slice().reverse().map((item) =>
           '<button type="button" class="psychology-room-workbench-entry" data-psych-open-workbench="' + escapeHtml(item.id) +
           '"><span class="psychology-room-note-meta">' + escapeHtml(String(item.created_at || "").slice(0, 10)) +
-          ' · ' + (Array.isArray(item.follow_ups) ? item.follow_ups.length : 0) + ' oppfølginger</span><strong>' +
+          ' · ' + (Array.isArray(item.follow_ups) ? item.follow_ups.length : 0) +
+          ((Array.isArray(item.follow_ups) ? item.follow_ups.length : 0) === 1 ? ' oppfølging' : ' oppfølginger') +
+          '</span><strong>' +
           escapeHtml(item.situation.slice(0, 180)) + '</strong><span class="psychology-room-workbench-entry-arrow">Åpne refleksjon →</span></button>').join("")
         : '<p class="psychology-room-muted">Ingen situasjoner lagret ennå.</p>') +
       '<p class="psychology-room-privacy">Disse notatene lagres bare på denne enheten. De brukes ikke til psykologisk vurdering eller Civication-progresjon.</p>' +
