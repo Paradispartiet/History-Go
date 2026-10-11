@@ -33,7 +33,7 @@
   },
   "textHashes": {
     "algorithm": "sha256",
-    "desc": "3864d79d0bba9e905362353ae55274639064e1722667b2ee52ae6d187a77e072",
+    "desc": "d5d88a06a473212f5a98f1a8d57c6b9122180d7cb1576ae403b6f9d665fbd49c",
     "popupDesc": "c13c3962251415a25ea10be5f83675d3f329e05c0c74c25f1444b17bcb715a89"
   },
   "claims": [
@@ -262,6 +262,45 @@
       "claimKind": "ordinary",
       "evidenceMode": "direct",
       "temporalStatus": "current"
+    },
+    {
+      "id": "claim_vg_resistance_1945",
+      "claim": "Verdens Gang ble stiftet av folk fra den norske hjemmefronten i 1945, og første utgave kom 23. juni.",
+      "sourceUrl": "https://www.vg.no/spesial/2020/vg-forsiden/",
+      "sourceLocation": "Innledningen om etableringen 23. juni 1945 og Hjemmefronten.",
+      "sourceType": "primary",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 1945
+    },
+    {
+      "id": "claim_vg_tabloid_1963",
+      "claim": "VG gikk over til tabloidformat i 1963.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Historikk: overgangen til tabloidformat i 1963.",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "temporal",
+      "evidenceMode": "direct",
+      "temporalStatus": "historical",
+      "timelineYear": 1963
+    },
+    {
+      "id": "claim_vg_largest_1981",
+      "claim": "VG var Norges største avis målt i opplag fra 1981 til 2010.",
+      "sourceUrl": "https://oslobyleksikon.no/side/Verdens_Gang_(n%C3%A5v%C3%A6rende)",
+      "sourceLocation": "Historikk: landets største avis 1981–2010.",
+      "sourceType": "institutional",
+      "verifiedAt": "2026-10-11",
+      "status": "verified",
+      "claimKind": "strong",
+      "evidenceMode": "explicit",
+      "temporalStatus": "historical",
+      "timelineYear": 1981
     }
   ],
   "sentenceCoverage": {
@@ -269,24 +308,40 @@
       {
         "sentence": 1,
         "claimIds": [
-          "claim_vg_address",
-          "claim_vg_foundation",
-          "claim_vg_newsroom"
+          "claim_vg_house_1994",
+          "claim_vg_address"
         ]
       },
       {
         "sentence": 2,
         "claimIds": [
-          "claim_vg_newsroom",
-          "claim_vg_published_services"
+          "claim_vg_resistance_1945",
+          "claim_vg_tabloid_1963",
+          "claim_vg_largest_1981"
         ]
       },
       {
         "sentence": 3,
         "claimIds": [
-          "claim_vg_digital_front",
-          "claim_vg_tabloid_concept",
-          "claim_vg_attention"
+          "claim_vg_net_1995"
+        ]
+      },
+      {
+        "sentence": 4,
+        "claimIds": [
+          "claim_vg_site_1944"
+        ]
+      },
+      {
+        "sentence": 5,
+        "claimIds": [
+          "claim_vg_monter_2011"
+        ]
+      },
+      {
+        "sentence": 6,
+        "claimIds": [
+          "claim_vg_aftenposten_2014"
         ]
       }
     ],
@@ -437,16 +492,16 @@
   "reviews": {
     "factual": {
       "status": "passed",
-      "reviewedAt": "2026-10-09",
+      "reviewedAt": "2026-10-11",
       "reviewer": "VG-huset source review",
-      "notes": "Kildenes faktiske brødtekst er inspisert, med separat sted/avis/konsern og presise tidsankre. Akademisk tolkningsramme er markert som metode, ikke kilde til interne motiver."
+      "notes": "VG 1945, tabloid 1963, opplagsposisjon fra 1981, tomtesabotasjen 1944, VG-huset 1994, skadene 2011 og Aftenpostens innflytting 2014 er kontrollert mot institusjonelle og primære kilder."
     },
     "editorial": {
       "status": "passed",
-      "reviewedAt": "2026-10-09",
+      "reviewedAt": "2026-10-11",
       "reviewer": "VG-huset editorial review",
       "introducedNewFacts": false,
-      "notes": "Eksisterende desc og popupDesc er bevart med seks kilde-/jargongbegrunnede enkeltsetningsrettinger. Innholdet presenterer analyse som oppgaver, ikke som dokumenterte årsaksforhold."
+      "notes": "Ingress skrevet om til konkret kronologisk historie. Den eksisterende popupDesc er ikke endret i denne gjennomgangen."
     }
   },
   "quizReadiness": {
@@ -546,10 +601,10 @@
   "completion": {
     "completedUnder": "4.2",
     "currentStatus": "current",
-    "sourceVerifiedAt": "2026-10-09",
+    "sourceVerifiedAt": "2026-10-11",
     "claimsVerified": {
-      "verified": 18,
-      "total": 18
+      "verified": 21,
+      "total": 21
     },
     "factualReview": "passed",
     "editorialReview": "passed",
