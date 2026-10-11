@@ -104,6 +104,9 @@ try {
     assert.equal(initial.duplicates,0,"No substitute title/photo strip");
     assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
     await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
+    // Unified PlaceCard uses smooth native scrolling: wait until the real
+    // scroll container has actually moved, not merely for an initial CSS var.
+    await page.waitForFunction(()=>document.querySelector(".pc-body").scrollTop>=250);
     await page.waitForFunction(()=>{
       const c=document.querySelector("#placeCard");
       return parseFloat(c.style.getPropertyValue("--pc-visible-hero-height"))>0;
@@ -156,6 +159,7 @@ try {
     assert.equal(await page.evaluate(()=>getComputedStyle(document.querySelector("#pcTitle")).color),
       "rgb(255, 255, 255)","Dark original image uses light title");
     await page.evaluate(()=>document.querySelector(".pc-body").scrollTop=0);
+    await page.waitForFunction(()=>document.querySelector(".pc-body").scrollTop===0);
     await page.waitForFunction(()=>{
       const c=document.querySelector("#placeCard");
       return Math.abs(parseFloat(c.style.getPropertyValue("--pc-visible-hero-height"))-
