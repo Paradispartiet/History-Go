@@ -6,7 +6,7 @@ body.hg-app .app-footer{
   /* Solid black again: the map must stop at this full-width control surface. */
   background: #000;
   background-image: none;
-  border-top: 1px solid rgba(255,255,255,.13);
+  border-top: 1px solid rgba(255,211,96,.23);
   box-shadow: 0 -8px 22px rgba(0,0,0,.32);
   pointer-events: none;
 
@@ -129,9 +129,9 @@ body.hg-app .app-footer{
   min-width: 116px;
   height: 48px;
   padding: 0 15px;
-  border-color: rgba(74,226,177,.52);
-  background: #0b1b1a;
-  color: #c8fff1;
+  border-color: rgba(255,205,86,.65);
+  background: #21190c;
+  color: #ffe9ab;
   font-size: 13px;
 }
 
@@ -153,12 +153,12 @@ body.hg-app .app-footer{
   font-size: 0;
   position: relative;
   background: #10141e;
-  border: 1px solid rgba(140,170,220,.32);
+  border: 1px solid rgba(255,203,91,.42);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 4px 14px rgba(0,0,0,.38);
 }
-.app-actions #pcRoute{ border-color: rgba(69,220,217,.60); }
-.app-actions #pcObserve{ border-color: rgba(166,244,116,.52); }
-.app-actions #pcNote{ border-color: rgba(186,126,255,.58); }
+.app-actions #pcRoute{ border-color: rgba(255,214,102,.64); }
+.app-actions #pcObserve{ border-color: rgba(248,185,68,.62); }
+.app-actions #pcNote{ border-color: rgba(255,228,131,.64); }
 
 .app-actions #pcRoute::before,
 .app-actions #pcObserve::before,
@@ -172,9 +172,9 @@ body.hg-app .app-footer{
   background-size: contain;
   background-position: center;
 }
-.app-actions #pcRoute::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22m%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2335edda%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235d87ff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22m5%2012%2013-5%2013%205%2012-5v29l-12%205-13-5-13%205Z%22%20fill%3D%22%2312243c%22%20stroke%3D%22%2391eafa%22%20stroke-width%3D%221.7%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m18%207v29m13-24v29%22%20stroke%3D%22%235d98e9%22%20stroke-width%3D%221.5%22%20opacity%3D%22.8%22%2F%3E%0A%3Cpath%20d%3D%22M5%2024%2018%2019l13%205%2012-5v8L31%2032l-13-5-13%205Z%22%20fill%3D%22url(%23m)%22%20opacity%3D%22.32%22%2F%3E%0A%3Cpath%20d%3D%22M10%2031c7%202%2012-12%2019-9%204%201.8%202%209%2010%205%22%20fill%3D%22none%22%20stroke%3D%22%23ffb452%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22%20stroke-dasharray%3D%223%204%22%2F%3E%0A%3Ccircle%20cx%3D%2210%22%20cy%3D%2231%22%20r%3D%223.3%22%20fill%3D%22%23ff689b%22%20stroke%3D%22%23ffd7db%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M35%2012a4.5%204.5%200%200%201%209%200c0%203.6-4.5%208-4.5%208S35%2015.6%2035%2012Z%22%20fill%3D%22%23fb6d72%22%20stroke%3D%22%23ffc3a3%22%20stroke-width%3D%221.2%22%2F%3E%3Ccircle%20cx%3D%2239.5%22%20cy%3D%2212%22%20r%3D%221.5%22%20fill%3D%22%23fff1a0%22%2F%3E%0A%3C%2Fsvg%3E"); }
-.app-actions #pcObserve::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22l%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%2387f8e7%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23286ff0%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22r%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23def778%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%235bcb7c%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22m9%2013%208%202%201%2018-12%205-3-7z%22%20fill%3D%22%23204063%22%20stroke%3D%22%2375e7fd%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m39%2013-8%202-1%2018%2012%205%203-7z%22%20fill%3D%22%234c376a%22%20stroke%3D%22%23d3a2ff%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M17%2017h14v7H17z%22%20fill%3D%22%23163a4e%22%20stroke%3D%22%23fbd384%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%3Ccircle%20cx%3D%2213%22%20cy%3D%2231%22%20r%3D%229%22%20fill%3D%22%23132b46%22%20stroke%3D%22%2372edfe%22%20stroke-width%3D%222.2%22%2F%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2231%22%20r%3D%229%22%20fill%3D%22%232c294f%22%20stroke%3D%22%23ddaeff%22%20stroke-width%3D%222.2%22%2F%3E%0A%3Ccircle%20cx%3D%2213%22%20cy%3D%2231%22%20r%3D%225.6%22%20fill%3D%22url(%23l)%22%2F%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2231%22%20r%3D%225.6%22%20fill%3D%22url(%23r)%22%2F%3E%3Ccircle%20cx%3D%2210.7%22%20cy%3D%2228.8%22%20r%3D%222%22%20fill%3D%22%23ddfffb%22%2F%3E%3Ccircle%20cx%3D%2232.7%22%20cy%3D%2228.8%22%20r%3D%222%22%20fill%3D%22%23f6ffe0%22%2F%3E%0A%3Cpath%20d%3D%22m25%204%201.8%204L31%2010l-4.2%201.5L25%2016l-1.8-4.5L19%2010l4.2-2Z%22%20fill%3D%22%23ffcf6a%22%2F%3E%0A%3C%2Fsvg%3E"); }
-.app-actions #pcNote::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23b89dff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23695cff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M8%206h28a3%203%200%200%201%203%203v31a3%203%200%200%201-3%203H8a3%203%200%200%201-3-3V9a3%203%200%200%201%203-3Z%22%20fill%3D%22%2314203a%22%20stroke%3D%22%239eafff%22%20stroke-width%3D%221.5%22%2F%3E%0A%3Cpath%20d%3D%22M9%206h7v37H9c-2%200-4-1.4-4-3V9c0-1.7%201.4-3%204-3Z%22%20fill%3D%22url(%23b)%22%2F%3E%0A%3Cpath%20d%3D%22M20%2014h13M20%2021h12M20%2028h8%22%20stroke%3D%22%2382e5f4%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M11.8%2013v23%22%20stroke%3D%22%23e0d3ff%22%20stroke-width%3D%221.5%22%20stroke-dasharray%3D%222%204%22%2F%3E%0A%3Cpath%20d%3D%22m26%2040%202-8%2011-12a3%203%200%200%201%204%204L32%2036l-6%204Z%22%20fill%3D%22%23ffbc63%22%20stroke%3D%22%23fce0a0%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22m28%2032%204%204-6%204Z%22%20fill%3D%22%23ff619d%22%2F%3E%3Cpath%20d%3D%22m39%2020%204%204%22%20stroke%3D%22%23a954e8%22%20stroke-width%3D%223%22%2F%3E%0A%3Ccircle%20cx%3D%2231%22%20cy%3D%2210%22%20r%3D%222%22%20fill%3D%22%23ff90c3%22%2F%3E%0A%3C%2Fsvg%3E"); }
+.app-actions #pcRoute::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22m%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffe36d%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f4a52b%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22m5%2012%2013-5%2013%205%2012-5v29l-12%205-13-5-13%205Z%22%20fill%3D%22%2312243c%22%20stroke%3D%22%23ffe29a%22%20stroke-width%3D%221.7%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m18%207v29m13-24v29%22%20stroke%3D%22%23ac8a45%22%20stroke-width%3D%221.5%22%20opacity%3D%22.8%22%2F%3E%0A%3Cpath%20d%3D%22M5%2024%2018%2019l13%205%2012-5v8L31%2032l-13-5-13%205Z%22%20fill%3D%22url(%23m)%22%20opacity%3D%22.32%22%2F%3E%0A%3Cpath%20d%3D%22M10%2031c7%202%2012-12%2019-9%204%201.8%202%209%2010%205%22%20fill%3D%22none%22%20stroke%3D%22%23fff097%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22%20stroke-dasharray%3D%223%204%22%2F%3E%0A%3Ccircle%20cx%3D%2210%22%20cy%3D%2231%22%20r%3D%223.3%22%20fill%3D%22%23ffbc40%22%20stroke%3D%22%23fff0b4%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22M35%2012a4.5%204.5%200%200%201%209%200c0%203.6-4.5%208-4.5%208S35%2015.6%2035%2012Z%22%20fill%3D%22%23f7b83d%22%20stroke%3D%22%23fff0b8%22%20stroke-width%3D%221.2%22%2F%3E%3Ccircle%20cx%3D%2239.5%22%20cy%3D%2212%22%20r%3D%221.5%22%20fill%3D%22%23fff1a0%22%2F%3E%0A%3C%2Fsvg%3E"); }
+.app-actions #pcObserve::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22l%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fff6a2%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f4b134%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22r%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffe17a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e89c25%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22m9%2013%208%202%201%2018-12%205-3-7z%22%20fill%3D%22%23204063%22%20stroke%3D%22%23ffda72%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m39%2013-8%202-1%2018%2012%205%203-7z%22%20fill%3D%22%233b3328%22%20stroke%3D%22%23ffd16a%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M17%2017h14v7H17z%22%20fill%3D%22%23163a4e%22%20stroke%3D%22%23fbd384%22%20stroke-width%3D%221.8%22%20%2F%3E%0A%3Ccircle%20cx%3D%2213%22%20cy%3D%2231%22%20r%3D%229%22%20fill%3D%22%23132b46%22%20stroke%3D%22%23ffe18a%22%20stroke-width%3D%222.2%22%2F%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2231%22%20r%3D%229%22%20fill%3D%22%23302c28%22%20stroke%3D%22%23ffe58e%22%20stroke-width%3D%222.2%22%2F%3E%0A%3Ccircle%20cx%3D%2213%22%20cy%3D%2231%22%20r%3D%225.6%22%20fill%3D%22url(%23l)%22%2F%3E%3Ccircle%20cx%3D%2235%22%20cy%3D%2231%22%20r%3D%225.6%22%20fill%3D%22url(%23r)%22%2F%3E%3Ccircle%20cx%3D%2210.7%22%20cy%3D%2228.8%22%20r%3D%222%22%20fill%3D%22%23fffbe4%22%2F%3E%3Ccircle%20cx%3D%2232.7%22%20cy%3D%2228.8%22%20r%3D%222%22%20fill%3D%22%23fff5b7%22%2F%3E%0A%3Cpath%20d%3D%22m25%204%201.8%204L31%2010l-4.2%201.5L25%2016l-1.8-4.5L19%2010l4.2-2Z%22%20fill%3D%22%23ffcf6a%22%2F%3E%0A%3C%2Fsvg%3E"); }
+.app-actions #pcNote::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22b%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffe98a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23df9f2d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M8%206h28a3%203%200%200%201%203%203v31a3%203%200%200%201-3%203H8a3%203%200%200%201-3-3V9a3%203%200%200%201%203-3Z%22%20fill%3D%22%2314203a%22%20stroke%3D%22%23ffde78%22%20stroke-width%3D%221.5%22%2F%3E%0A%3Cpath%20d%3D%22M9%206h7v37H9c-2%200-4-1.4-4-3V9c0-1.7%201.4-3%204-3Z%22%20fill%3D%22url(%23b)%22%2F%3E%0A%3Cpath%20d%3D%22M20%2014h13M20%2021h12M20%2028h8%22%20stroke%3D%22%23f9d978%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22%2F%3E%3Cpath%20d%3D%22M11.8%2013v23%22%20stroke%3D%22%23fff2b7%22%20stroke-width%3D%221.5%22%20stroke-dasharray%3D%222%204%22%2F%3E%0A%3Cpath%20d%3D%22m26%2040%202-8%2011-12a3%203%200%200%201%204%204L32%2036l-6%204Z%22%20fill%3D%22%23ffbc63%22%20stroke%3D%22%23fce0a0%22%20stroke-width%3D%221.2%22%2F%3E%3Cpath%20d%3D%22m28%2032%204%204-6%204Z%22%20fill%3D%22%23fa9d38%22%2F%3E%3Cpath%20d%3D%22m39%2020%204%204%22%20stroke%3D%22%23e17e23%22%20stroke-width%3D%223%22%2F%3E%0A%3Ccircle%20cx%3D%2231%22%20cy%3D%2210%22%20r%3D%222%22%20fill%3D%22%23ffdd6b%22%2F%3E%0A%3C%2Fsvg%3E"); }
 
 .app-actions #pcQuiz,
 .app-actions #pcVisit{
@@ -191,21 +191,21 @@ body.hg-app .app-footer{
   background-position: center;
   background-size: contain;
 }
-.app-actions #pcQuiz::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fbed85%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8d4b%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M7%2014c6-2%2012-.7%2017%203%205-3.7%2011-5%2017-3v23c-6-2-12-.8-17%202-5-2.8-11-4-17-2V14Z%22%20fill%3D%22%2320334b%22%20stroke%3D%22%2377d9ff%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M24%2017v22M10%2018c4-.7%207.3%200%2010%201.5M28%2019.5c2.9-1.5%206.4-2.2%2010-1.5M10%2032c4-.5%207.3.3%2010%201.7M28%2033.7c3-1.4%206.4-2.2%2010-1.7%22%20stroke%3D%22%238ef1e7%22%20stroke-width%3D%221.4%22%20opacity%3D%22.75%22%2F%3E%0A%3Ccircle%20cx%3D%2230.5%22%20cy%3D%2214%22%20r%3D%2210%22%20fill%3D%22url(%23a)%22%20stroke%3D%22%23ffdca9%22%20stroke-width%3D%221.3%22%2F%3E%3Cpath%20d%3D%22M27.7%2011a3%203%200%200%201%205.8%201.2c0%202.6-3.2%202.2-3.2%205%22%20fill%3D%22none%22%20stroke%3D%22%234d2544%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2230.3%22%20cy%3D%2220.1%22%20r%3D%221.2%22%20fill%3D%22%234d2544%22%2F%3E%3Cpath%20d%3D%22m10%207%201.4%203.5L15%2012l-3.6%201.5L10%2017l-1.4-3.5L5%2012l3.6-1.5z%22%20fill%3D%22%23f3a2ff%22%2F%3E%0A%3C%2Fsvg%3E"); }
-.app-actions #pcVisit::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22p%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ff8c63%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23f8519f%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%239f5bff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M24%2044s-15-15-15-25a15%2015%200%200%201%2030%200C39%2029%2024%2044%2024%2044Z%22%20fill%3D%22url(%23p)%22%20stroke%3D%22%23ffceb3%22%20stroke-width%3D%221.5%22%2F%3E%0A%3Ccircle%20cx%3D%2224%22%20cy%3D%2219%22%20r%3D%228.3%22%20fill%3D%22%23112a32%22%20stroke%3D%22%23ffd66e%22%20stroke-width%3D%221.9%22%2F%3E%0A%3Cpath%20d%3D%22m19.6%2019.2%203.2%203.1%205.9-6.6%22%20fill%3D%22none%22%20stroke%3D%22%23adf787%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M5%2034c1.7-1.9%204.8-2.5%207.2-1M35.8%2033c3.3-1.2%205.8-.5%207.2%201%22%20fill%3D%22none%22%20stroke%3D%22%2362e7f9%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-dasharray%3D%222.5%203%22%2F%3E%0A%3C%2Fsvg%3E"); }
+.app-actions #pcQuiz::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22a%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fbed85%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ff8d4b%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M7%2014c6-2%2012-.7%2017%203%205-3.7%2011-5%2017-3v23c-6-2-12-.8-17%202-5-2.8-11-4-17-2V14Z%22%20fill%3D%22%2320334b%22%20stroke%3D%22%23ffe39a%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M24%2017v22M10%2018c4-.7%207.3%200%2010%201.5M28%2019.5c2.9-1.5%206.4-2.2%2010-1.5M10%2032c4-.5%207.3.3%2010%201.7M28%2033.7c3-1.4%206.4-2.2%2010-1.7%22%20stroke%3D%22%23f8df93%22%20stroke-width%3D%221.4%22%20opacity%3D%22.75%22%2F%3E%0A%3Ccircle%20cx%3D%2230.5%22%20cy%3D%2214%22%20r%3D%2210%22%20fill%3D%22url(%23a)%22%20stroke%3D%22%23ffdca9%22%20stroke-width%3D%221.3%22%2F%3E%3Cpath%20d%3D%22M27.7%2011a3%203%200%200%201%205.8%201.2c0%202.6-3.2%202.2-3.2%205%22%20fill%3D%22none%22%20stroke%3D%22%23503515%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%2F%3E%3Ccircle%20cx%3D%2230.3%22%20cy%3D%2220.1%22%20r%3D%221.2%22%20fill%3D%22%23503515%22%2F%3E%3Cpath%20d%3D%22m10%207%201.4%203.5L15%2012l-3.6%201.5L10%2017l-1.4-3.5L5%2012l3.6-1.5z%22%20fill%3D%22%23ffe470%22%2F%3E%0A%3C%2Fsvg%3E"); }
+.app-actions #pcVisit::before{ background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22p%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fff183%22%2F%3E%3Cstop%20offset%3D%22.52%22%20stop-color%3D%22%23fbc344%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ec9027%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Cpath%20d%3D%22M24%2044s-15-15-15-25a15%2015%200%200%201%2030%200C39%2029%2024%2044%2024%2044Z%22%20fill%3D%22url(%23p)%22%20stroke%3D%22%23ffe4a5%22%20stroke-width%3D%221.5%22%2F%3E%0A%3Ccircle%20cx%3D%2224%22%20cy%3D%2219%22%20r%3D%228.3%22%20fill%3D%22%23112a32%22%20stroke%3D%22%23ffd66e%22%20stroke-width%3D%221.9%22%2F%3E%0A%3Cpath%20d%3D%22m19.6%2019.2%203.2%203.1%205.9-6.6%22%20fill%3D%22none%22%20stroke%3D%22%23adf787%22%20stroke-width%3D%223.1%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M5%2034c1.7-1.9%204.8-2.5%207.2-1M35.8%2033c3.3-1.2%205.8-.5%207.2%201%22%20fill%3D%22none%22%20stroke%3D%22%23f2d06d%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-dasharray%3D%222.5%203%22%2F%3E%0A%3C%2Fsvg%3E"); }
 
 .app-actions #pcRoute:hover,
 .app-actions #pcObserve:hover,
 .app-actions #pcNote:hover{
   background: #1b2332;
-  border-color: #b6d8ff;
+  border-color: #ffe09a;
 }
 .app-actions #pcRoute:focus-visible,
 .app-actions #pcObserve:focus-visible,
 .app-actions #pcNote:focus-visible,
 .app-actions #pcQuiz:focus-visible,
 .app-actions #pcVisit:focus-visible{
-  outline: 2px solid #88d9ff;
+  outline: 2px solid #ffdc78;
   outline-offset: 2px;
 }
 
@@ -346,7 +346,7 @@ body.hg-app.hg-phone .app-actions #pcNote{
   min-width: 0;
   padding: 0 12px 0 8px;
   border-radius: 999px;
-  border: 1px solid rgba(119,186,234,.42);
+  border: 1px solid rgba(255,207,96,.52);
   background: #111724;
   color: #f5f5fa;
   font-size: 13px;
@@ -355,10 +355,10 @@ body.hg-app.hg-phone .app-actions #pcNote{
   cursor: pointer;
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-events{
-  border-color: rgba(104,198,251,.56);
+  border-color: rgba(255,207,79,.67);
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-meet{
-  border-color: rgba(215,137,255,.58);
+  border-color: rgba(246,173,60,.67);
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-icon{
   display: inline-grid;
@@ -382,10 +382,10 @@ body.hg-app.hg-phone .app-actions #pcNote{
   background-size: contain;
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-events .pc-onsite-action-icon::before{
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23a184ff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%2337c9f4%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Crect%20x%3D%225%22%20y%3D%228%22%20width%3D%2237%22%20height%3D%2234%22%20rx%3D%225.5%22%20fill%3D%22%2318253e%22%20stroke%3D%22%238ec9fa%22%20stroke-width%3D%221.7%22%2F%3E%0A%3Cpath%20d%3D%22M5%2014a6%206%200%200%201%206-6h25a6%206%200%200%201%206%206v8H5Z%22%20fill%3D%22url(%23c)%22%2F%3E%0A%3Cpath%20d%3D%22M14%204v9M33%204v9%22%20stroke%3D%22%23ffe39e%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Crect%20x%3D%2211%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%23f5c46f%22%2F%3E%3Crect%20x%3D%2221%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%2382e9bd%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%2226%22%20width%3D%225%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%23ec89f6%22%2F%3E%0A%3Cpath%20d%3D%22m37%2033%202.2%204.5L44%2039l-4.8%201.5L37%2045l-2.2-4.5L30%2039l4.8-1.5Z%22%20fill%3D%22%23ffb75c%22%20stroke%3D%22%23ffeba9%22%20stroke-width%3D%22.6%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22c%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffe682%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23f2a62f%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Crect%20x%3D%225%22%20y%3D%228%22%20width%3D%2237%22%20height%3D%2234%22%20rx%3D%225.5%22%20fill%3D%22%2318253e%22%20stroke%3D%22%23ffe097%22%20stroke-width%3D%221.7%22%2F%3E%0A%3Cpath%20d%3D%22M5%2014a6%206%200%200%201%206-6h25a6%206%200%200%201%206%206v8H5Z%22%20fill%3D%22url(%23c)%22%2F%3E%0A%3Cpath%20d%3D%22M14%204v9M33%204v9%22%20stroke%3D%22%23ffe39e%22%20stroke-width%3D%223%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Crect%20x%3D%2211%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%23f5c46f%22%2F%3E%3Crect%20x%3D%2221%22%20y%3D%2226%22%20width%3D%227%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%23ffe18e%22%2F%3E%3Crect%20x%3D%2231%22%20y%3D%2226%22%20width%3D%225%22%20height%3D%226%22%20rx%3D%221.3%22%20fill%3D%22%23f19b39%22%2F%3E%0A%3Cpath%20d%3D%22m37%2033%202.2%204.5L44%2039l-4.8%201.5L37%2045l-2.2-4.5L30%2039l4.8-1.5Z%22%20fill%3D%22%23ffb75c%22%20stroke%3D%22%23ffeba9%22%20stroke-width%3D%22.6%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-meet .pc-onsite-action-icon::before{
-  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%236cefff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23737dff%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffafbd%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23dc65f9%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Ccircle%20cx%3D%2214%22%20cy%3D%2216%22%20r%3D%227%22%20fill%3D%22url(%23f)%22%20stroke%3D%22%23b6faff%22%20stroke-width%3D%221.1%22%2F%3E%0A%3Ccircle%20cx%3D%2234%22%20cy%3D%2216%22%20r%3D%227%22%20fill%3D%22url(%23g)%22%20stroke%3D%22%23ffdaec%22%20stroke-width%3D%221.1%22%2F%3E%0A%3Cpath%20d%3D%22M3%2037v-3a11%2011%200%200%201%2021-4%2011%2011%200%200%201%2021%204v3a4%204%200%200%201-4%204H7a4%204%200%200%201-4-4Z%22%20fill%3D%22%23252949%22%20stroke%3D%22%23ad99fe%22%20stroke-width%3D%221.8%22%2F%3E%0A%3Cpath%20d%3D%22M6%2036c.5-6%204.5-9%208-9s7.5%203%208%209%22%20fill%3D%22none%22%20stroke%3D%22%2383eefa%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M26%2036c.5-6%204.5-9%208-9s7.5%203%208%209%22%20fill%3D%22none%22%20stroke%3D%22%23ff96d8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m24%2023-5-4a3.2%203.2%200%200%201%205-4%203.2%203.2%200%200%201%205%204Z%22%20fill%3D%22%23ffd26f%22%20stroke%3D%22%23fff0b2%22%20stroke-width%3D%22.8%22%2F%3E%0A%3C%2Fsvg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%3E%0A%3Cdefs%3E%3ClinearGradient%20id%3D%22f%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23fff19a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23eaa22f%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ffe39a%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e1a133%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%3Ccircle%20cx%3D%2214%22%20cy%3D%2216%22%20r%3D%227%22%20fill%3D%22url(%23f)%22%20stroke%3D%22%23fff4be%22%20stroke-width%3D%221.1%22%2F%3E%0A%3Ccircle%20cx%3D%2234%22%20cy%3D%2216%22%20r%3D%227%22%20fill%3D%22url(%23g)%22%20stroke%3D%22%23fff3c6%22%20stroke-width%3D%221.1%22%2F%3E%0A%3Cpath%20d%3D%22M3%2037v-3a11%2011%200%200%201%2021-4%2011%2011%200%200%201%2021%204v3a4%204%200%200%201-4%204H7a4%204%200%200%201-4-4Z%22%20fill%3D%22%23302920%22%20stroke%3D%22%23e7b954%22%20stroke-width%3D%221.8%22%2F%3E%0A%3Cpath%20d%3D%22M6%2036c.5-6%204.5-9%208-9s7.5%203%208%209%22%20fill%3D%22none%22%20stroke%3D%22%23ffe88a%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22M26%2036c.5-6%204.5-9%208-9s7.5%203%208%209%22%20fill%3D%22none%22%20stroke%3D%22%23f4bd5a%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3Cpath%20d%3D%22m24%2023-5-4a3.2%203.2%200%200%201%205-4%203.2%203.2%200%200%201%205%204Z%22%20fill%3D%22%23ffd26f%22%20stroke%3D%22%23fff0b2%22%20stroke-width%3D%22.8%22%2F%3E%0A%3C%2Fsvg%3E");
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-label{
   color: #f2f3f9;
@@ -401,16 +401,16 @@ body.hg-app.hg-phone .app-actions #pcNote{
   height: 18px;
   padding: 0 3px;
   border-radius: 9px;
-  background: #88dafa;
-  color: #0b1420;
+  background: #ffcf58;
+  color: #231806;
   font-size: 10px;
   font-weight: 900;
 }
 .app-actions .pc-onsite-footer .pc-onsite-action:hover,
 .app-actions .pc-onsite-footer .pc-onsite-action:focus-visible{
   background: #1a2233;
-  border-color: #c5c4ff;
-  outline: 2px solid #a3ddff;
+  border-color: #ffe3a0;
+  outline: 2px solid #ffcf58;
   outline-offset: 2px;
 }
 body.hg-app.hg-phone .app-actions #pcRoute,
