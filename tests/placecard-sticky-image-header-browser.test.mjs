@@ -66,7 +66,7 @@ await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 let browser;
 try {
   browser = await chromium.launch({headless:true});
-  for (const [width,height] of [[390,844],[768,1024],[1280,900]]) {
+  for (const [width,height] of [[320,700],[390,844],[768,1024],[1280,900]]) {
     const page = await browser.newPage({viewport:{width,height}});
     await page.goto(`http://127.0.0.1:${server.address().port}/__audit__/original-hero.html`);
     await page.evaluate(()=>{
@@ -110,21 +110,22 @@ try {
     });
     assert.equal(initial.duplicates,0,"No substitute title/photo strip");
     assert.equal(initial.titleColor,"rgb(17, 25, 35)","Bright original image uses dark title");
-    const midpoint = r => (r.top + r.bottom) / 2;
-    const verifyInlineControls = (geom, stage) => {
+    const verifyBelowTitle = (geom, stage) => {
       const desc = stage + " at " + width + "px: " + JSON.stringify(geom);
-      assert.ok(geom.audio.left >= geom.title.right - 1 && geom.audio.left - geom.title.right <= 16,
-        "Audio immediately right of text, not pushed to far-right icons: " + desc);
-      assert.ok(geom.favorite.left >= geom.audio.right - 1 && geom.favorite.left - geom.audio.right <= 16,
-        "Favorite immediately after audio: " + desc);
+      assert.ok(geom.audio.top >= geom.title.bottom + 2 && geom.audio.top <= geom.title.bottom + 18,
+        "Audio must sit directly below the place heading: " + desc);
+      assert.ok(Math.abs(geom.audio.left - geom.title.left) <= 2,
+        "Audio starts at the left edge of the heading: " + desc);
+      assert.ok(geom.favorite.left >= geom.audio.right - 1 && geom.favorite.left - geom.audio.right <= 12,
+        "Favorite stays beside audio in the second row: " + desc);
+      assert.ok(Math.abs(geom.audio.top - geom.favorite.top) <= 2,
+        "Audio and favorite share the row below the title: " + desc);
       assert.ok(geom.people.left >= geom.favorite.right - 1 && geom.people.right <= geom.badge.left + 1,
-        "People and badge remain independent right-hand circles: " + desc);
-      assert.ok(Math.abs(midpoint(geom.audio) - midpoint(geom.favorite)) <= 5,
-        "Audio and favorite must share vertical alignment: " + desc);
-      assert.ok(Math.abs(midpoint(geom.audio) - midpoint(geom.title)) <= 9,
-        "Controls must align to center of actual heading: " + desc);
+        "People and badge stay right of the audio/favorite controls: " + desc);
+      assert.ok(geom.people.top >= geom.title.bottom + 2 && geom.badge.top >= geom.title.bottom + 2,
+        "Right-hand circles share the lower action row beneath the title: " + desc);
     };
-    verifyInlineControls(initial, "before scroll");
+    verifyBelowTitle(initial, "before scroll");
     await page.evaluate(()=>{window.__initialImageSource=document.querySelector("#pcHeaderImage").src;document.querySelector(".pc-body").scrollTop=280});
     // Unified PlaceCard uses smooth native scrolling: wait until the real
     // scroll container has actually moved, not merely for an initial CSS var.
@@ -160,7 +161,7 @@ try {
     assert.equal(scrolled.duplicate,0,"Never creates a different-format heading");
     assert.equal(scrolled.titleFont,initial.titleFont,"No title restyling during scroll");
     assert.ok(scrolled.sameImage,"Photo source never changes");
-    verifyInlineControls(scrolled, "after scroll");
+    verifyBelowTitle(scrolled, "after scroll");
     assert.ok(scrolled.visible.top <= scrolled.scroller.top + 1
       && scrolled.visible.top >= scrolled.scroller.top-1, "Same original image remains pinned: "+JSON.stringify(scrolled));
     assert.ok(scrolled.visible.height<=initial.heading+4,"Image bottom may crop, never expands");
