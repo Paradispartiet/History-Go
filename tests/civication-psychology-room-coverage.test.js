@@ -263,6 +263,20 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 }
 assert.match(reviewed.get("tilknytning").idea, /biologiske mor/);
 assert.match(reviewed.get("tilknytning").method, /56.*23.*33.*åtte/);
+// The entire 1970 original is now inspected, while the independently deposited coding manual is not.
+const ainsworthFull = "https://www.fre.uy/a/e68bbdc6/Ainsworth.Attachmentexplorationandseparation.pdf";
+const ainsworthCard = reviewed.get("tilknytning");
+assert.ok(ainsworthCard.reference_links.some((ref) =>
+  ref.url === ainsworthFull && ref.canonical_claim_ids.length === 0 && ref.canonical_source_ids.length === 0));
+assert.match(ainsworthCard.method, /NAPS 00762/);
+assert.match(ainsworthCard.limit, /for tidlig kvantifisering/);
+assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning").group_1_source_audit.new_reference_urls.includes(ainsworthFull));
+assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
+  x.id === "tilknytning_ainsworth_bell_1970").access,
+  "full_1970_printed_pages49_67_read_in_third_party_JSTOR_scan_NAPS_00762_unread");
+assert.ok(detailedReview.units.filter((x) =>
+  x.theory_id === "tilknytning" && ["method", "limit"].includes(x.field))
+  .every((x) => x.evidence_urls.includes(ainsworthFull) && x.card_is_source_verified === false));
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
