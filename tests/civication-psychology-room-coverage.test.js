@@ -277,6 +277,22 @@ assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
 assert.ok(detailedReview.units.filter((x) =>
   x.theory_id === "tilknytning" && ["method", "limit"].includes(x.field))
   .every((x) => x.evidence_urls.includes(ainsworthFull) && x.card_is_source_verified === false));
+// Ainsworth/Bell/Stayton original 1969 author manuscript is not NAPS 00762.
+const ericAinsworth1969 = "https://files.eric.ed.gov/fulltext/ED056742.pdf";
+assert.match(ainsworthCard.period, /juli 1969.*1971.*1970/);
+assert.match(ainsworthCard.method, /1969.*A\/B\/C.*åtte undergrupper/);
+assert.match(ainsworthCard.method, /bare 23 av de 56 barna.*hjemmeobservasjoner/);
+assert.match(ainsworthCard.limit, /NAPS 00762 er fremdeles ikke lest/);
+assert.ok(ainsworthCard.reference_links.some((x) =>
+  x.url === ericAinsworth1969 && x.canonical_claim_ids.length === 0 && x.canonical_source_ids.length === 0));
+assert.ok(fieldEvidence.cards.find((x) => x.theory_id === "tilknytning")
+  .group_1_source_audit.new_reference_urls.includes(ericAinsworth1969));
+assert.ok(detailedReview.units.filter((x) =>
+  x.theory_id === "tilknytning" && ["period", "method", "limit"].includes(x.field))
+  .every((x) => x.evidence_urls.includes(ericAinsworth1969) && x.card_is_source_verified === false));
+assert.equal(detailedReview.original_publication_audit.entries.find((x) =>
+  x.id === "tilknytning_ainsworth_bell_stayton_1969").access,
+  "ERIC_scanned_1969_author_manuscript_methods_classification_and_discussion_read_NAPS00762_unread");
 assert.match(reviewed.get("tilknytning").limit, /4, 8 eller 14/);
 assert.match(reviewed.get("resiliens").method, /698.*201.*72.*1, 2, 10, 18 og 32/);
 assert.match(reviewed.get("resiliens").limit, /698.*201.*72.*88 %.*90 %.*80 %/);
@@ -375,8 +391,8 @@ for (const [id, urls] of Object.entries(primaryOriginalSources)) {
 
 // Batch 09: original-publication access and unresolved scientific gates
 assert.equal(detailedReview.original_publication_audit.status, "in_progress_not_source_verified");
-assert.equal(detailedReview.original_publication_audit.entries.length, 10);
-assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 10);
+assert.equal(detailedReview.original_publication_audit.entries.length, 11);
+assert.deepEqual(new Set(detailedReview.original_publication_audit.entries.map((item) => item.id)).size, 11);
 for (const item of detailedReview.original_publication_audit.entries) {
   assert.ok(group1.includes(item.theory_id));
   assert.ok(item.open_requirement.length > 50);
