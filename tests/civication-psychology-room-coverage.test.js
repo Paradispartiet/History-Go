@@ -488,6 +488,56 @@ for (const [id, historicallyRelevant] of [
     "missing research-history anchor: " + id);
 }
 
+
+ // Chapter-by-chapter comparative editorial review. Each targeted comparison
+ // names its actual compare_with card and distinguishes questions, methods or evidence.
+ const chapterPairs = {
+ "fagtradisjoner-teori-og-sinnet": [
+   ["psykoanalyse", "kognitiv_psykologi", /[Kk]asusfortolkning.*eksperimentelle prediksjoner/],
+   ["behaviorisme", "sosial_laring", /forsterkningsforsøk.*imitasjonsforsøk/],
+   ["kognitiv_psykologi", "behaviorisme", /reaksjonstid/],
+   ["humanistisk_psykologi", "behaviorisme", /Rogers.*Skinners/],
+   ["femfaktormodellen", "sosial_identitet", /HEXACO/]
+ ],
+ "kognisjon-folelser-og-atferd": [
+   ["heuristikker", "sosial_identitet", /økologisk rasjonalitet.*gruppeidentifikasjon/],
+   ["hverdagsattribusjon_og_vaner", "heuristikker", /attribusjonstradisjon.*vaneforskning/],
+   ["stressvurdering", "resiliens", /konkret situasjon.*livsforløp/]
+ ],
+ "utvikling-oppvekst-og-laring": [
+   ["tilknytning", "sosial_laring", /atskillelse.*imitasjon/],
+   ["sosial_laring", "behaviorisme", /Banduras.*mestringstro/]
+ ],
+ "sosialpsykologi-normalitet-og-stigma": [
+   ["sosial_identitet", "femfaktormodellen", /Sherifs.*kategorisering/],
+   ["konformitet", "sosial_identitet", /Asch.*gruppeidentitet/]
+ ],
+ "traume-krise-resiliens-og-omsorg": [
+   ["resiliens", "stressvurdering", /longitudinelle data/]
+ ],
+ "psykisk-helse-institusjoner-og-behandling": [
+   ["biopsykososial_modell", "humanistisk_psykologi", /Engels.*kausale virkninger/],
+   ["behandling_omsorg_relationshistorie", "psykiatri_institusjonshistorie", /organisasjonsplaner.*behandlingsforløp/],
+   ["kriseintervensjon_historie", "trygghet_tillit_krisehjelp", /akutt kontakt.*tjenester/],
+   ["pasientrolle_medvirkning_historie", "behandling_omsorg_relationshistorie", /innflytelse.*medvirkningen/],
+   ["terapeutisk_allianse_og_terapirom", "kognitiv_terapi", /Samvariasjon.*forårsaket/]
+ ]};
+ assert.equal(Object.keys(chapterPairs).length, 6);
+ assert.equal(Object.values(chapterPairs).flat().length, 18);
+ for (const [chapter, pairs] of Object.entries(chapterPairs)) {
+   for (const [id, target, evidence] of pairs) {
+     const item = reviewed.get(id);
+     assert.equal(item.chapter_id, chapter);
+     assert.equal(item.compare_with, target);
+     assert.ok(item.contrast.length >= 180, "shallow theory comparison: " + id);
+     assert.match(item.contrast, evidence, "missing specific comparison: " + id);
+     assert.equal(item.source_review_state, "partial_historical_method_review");
+   }
+ }
+ assert.match(reviewed.get("kognitiv_terapi").teaching_view.period, /1963.*1977.*1979/);
+ assert.match(reviewed.get("terapeutisk_allianse_og_terapirom").teaching_view.method, /r = 0,278/);
+ assert.match(reviewed.get("behandling_omsorg_relationshistorie").teaching_view.period, /2024.*januar 2025/);
+ 
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
