@@ -358,6 +358,36 @@ assert.match(reviewed.get("globalt_arbeidsrom_bevissthet").limit, /Rapportering/
 assert.match(reviewed.get("persepsjon_prediktiv_prosessering").limit, /prediksjonsfeil/);
 assert.match(reviewed.get("psykiatri_institusjonshistorie").method, /museale gjenstander/);
 
+// Production group 6: history and source scope for three new cards.
+for (const [id, primary, comparison, historical, claim, source] of [
+  ["diagnostisk_klassifikasjon_historie", "em_psy_diagnose_klassifikasjon", "psykometri_validitet", "Kraepelin", "fti-06", "src-who-icd11-cddr"],
+  ["hverdagsattribusjon_og_vaner", "em_psy_hverdagspsykologi", "heuristikker", "Heider", "kfa-18", "src-habit-review"],
+  ["ensomhet_sosial_tilhorighet", "em_psy_ensomhet_tilhorighet", "sosial_identitet", "Weiss", "sns-25", "src-who-social-connection"]
+]) {
+  const card = catalog.theories.find((x) => x.id === id);
+  assert.ok(card, "group 6 missing card " + id);
+  assert.equal(card.emne_id, primary);
+  assert.equal(card.compare_with, comparison);
+  assert.match(card.period, new RegExp(historical));
+  assert.equal(card.source_review_state, "partial_historical_method_review");
+  assert.equal(card.teaching_view.editorial_state, "ready_for_educational_use");
+  assert.equal(card.teaching_view.featured_reference_urls.length, 4);
+  for (const f of ["period", "idea", "method", "limit"])
+    assert.ok(card.teaching_view[f].length > 65 && card.teaching_view[f].length < 500,
+      "group 6 teaching text length mismatch " + id + "/" + f);
+  const urls = card.reference_links.map((x) => x.url);
+  assert.ok(card.teaching_view.featured_reference_urls.every((url) => urls.includes(url)));
+  assert.ok(card.reference_links.some((x) =>
+    x.canonical_claim_ids.includes(claim) && x.canonical_source_ids.includes(source)));
+  const entry = byEmne.get(primary);
+  assert.deepEqual(entry.theory_ids, [id]);
+  assert.equal(entry.link_status, "linked_unreviewed");
+  assert.equal(entry.source_review_status, "not_reviewed");
+  assert.equal(entry.editorial_review_status, "not_reviewed");
+  assert.deepEqual(entry.partial_reference_review.reference_urls, urls);
+  assert.match(entry.partial_reference_review.report, /gruppe6/);
+  assert.equal((card.related_emne_links || []).length, 0);
+}
 // Historical 2026-10-10 evidence matrix records the original 14-card cohort only:
 // new cards have separately scoped source reviews. Historical matrix remains immutable.
 const fieldEvidence = load("reports/psychology/psykoteori_evidence_matrix_14_2026-10-10.json");
