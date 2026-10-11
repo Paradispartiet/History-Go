@@ -468,6 +468,26 @@ assert.ok(detailedReview.units.filter((u) => u.theory_id === "kognitiv_terapi"
 assert.equal(detailedReview.original_publication_audit.entries.find((r) =>
   r.id === "kognitiv_terapi_rush_1977").access,
   "1977_21page_original_journal_scan_available_selected_design_results_and_limitations_pp17_22_27_32_35_checked");
+// Original 1977 treatment completers cannot be relabeled as the 1981 abstract's 35.
+const trialFlow1977 = { ctStart: 19, drugStart: 22, ctDropouts: 1, drugDropouts: 8 };
+const completers1977 = trialFlow1977.ctStart + trialFlow1977.drugStart
+  - trialFlow1977.ctDropouts - trialFlow1977.drugDropouts;
+assert.equal(trialFlow1977.ctStart + trialFlow1977.drugStart, 41);
+assert.equal(completers1977, 32);
+assert.equal(44 - 35, 41 - 32);
+assert.notEqual(completers1977, 35);
+assert.ok(cbtCard.method.includes("18 av de 19 i CT-gruppen"));
+assert.ok(cbtCard.method.includes("14 av de 22 i imipramingruppen"));
+assert.ok(cbtCard.method.includes("32"));
+assert.ok(cbtCard.method.includes("44 behandlingsstartende og 35 protokollfullførere"));
+assert.ok(cbtCard.limit.includes("identisk differanse beviser ikke identisk frafallsårsak"));
+assert.ok(cbtCard.limit.includes("gruppespesifikke start- og fullførertall ikke kan verifiseres"));
+assert.ok(detailedReview.units.find((u) => u.id === "kognitiv_terapi__method")
+  .scope_limit.includes("Tallparene 41/32 (1977) og 44/35 (1981)"));
+assert.ok(detailedReview.units.find((u) => u.id === "kognitiv_terapi__limit")
+  .scope_limit.includes("frafallstyper, unike personidentiteter"));
+assert.ok(detailedReview.original_publication_audit.entries.find((e) =>
+  e.id === "kognitiv_terapi_kovacs_1981").open_requirement.includes("N=44 versus 1977 N=41"));
 assert.match(reviewed.get("kognitiv_terapi").method, /1963.*50.*31.*håndskrevne/);
 assert.match(reviewed.get("kognitiv_terapi").method, /observasjonsstudie, ikke et randomisert behandlingsforsøk/);
 assert.match(reviewed.get("kognitiv_terapi").limit, /terapi.*notater|behandlingsnotater|håndskrevne behandlingsnotater/);
