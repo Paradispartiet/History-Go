@@ -123,7 +123,7 @@ const press = (selector) => {
     assert.match(overlay.innerHTML, new RegExp('data-psych-nav="' + item + '"'));
   }
   assert.match(rendered, /Fra opplevelse til innsikt/);
-  assert.match(rendered, /Skriv en refleksjon/);
+  assert.match(rendered, /Åpne tankeverkstedet/);
   assert.match(rendered, /Et sted å begynne/);
   assert.equal(overlay.dataset.activeSection, "home");
   press('[data-psych-nav="phenomena"]');
