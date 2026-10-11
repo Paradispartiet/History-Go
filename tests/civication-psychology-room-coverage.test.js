@@ -53,10 +53,74 @@ for (const theory of partiallyReviewed) {
 }
 assert.equal(catalog.theories.filter((theory) => !theory.reference_links).length, 0);
 assert.equal(coverage.coverage_entries.filter((entry) => entry.partial_reference_review).length, 14);
-assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 22,
-  "eight claim-bound reuse links increase relevant emne coverage without duplicating theory cards");
+assert.equal(coverage.coverage_entries.filter((entry) => entry.theory_ids.length).length, 30,
+  "sixteen claim-bound reuse links increase relevant emne coverage without duplicating theory cards");
+// Batch 02: eight new canonical claim-bound, still-unreviewed reuse links.
+const batch02Links = [
+  [
+    "humanistisk_psykologi",
+    "em_psy_motivasjon_behov",
+    "fti-15",
+    "src-apa-humanistic"
+  ],
+  [
+    "stressvurdering",
+    "em_psy_affektregulering",
+    "kfa-23",
+    "src-reappraisal-review"
+  ],
+  [
+    "tilknytning",
+    "em_psy_barn_ungdom",
+    "uol-02",
+    "src-who-nurturing"
+  ],
+  [
+    "tilknytning",
+    "em_psy_oppvekst_miljo",
+    "uol-07",
+    "src-harvard-serve-return"
+  ],
+  [
+    "sosial_identitet",
+    "em_psy_fordommer_kategorisering",
+    "sns-11",
+    "src-status-ingroup"
+  ],
+  [
+    "konformitet",
+    "em_psy_normalitet_avvik",
+    "sns-13",
+    "src-stigma-framework"
+  ],
+  [
+    "biopsykososial_modell",
+    "em_psy_byrom_psykisk_helse",
+    "phi-25",
+    "src-who-guidance"
+  ],
+  [
+    "biopsykososial_modell",
+    "em_psy_velferd_psykisk_helse",
+    "phi-03",
+    "src-who-guidance"
+  ]
+];
+for (const [theoryId, emneId, claimId, sourceId] of batch02Links) {
+  const theory = catalog.theories.find((item) => item.id === theoryId);
+  const link = theory?.related_emne_links?.find((item) => item.emne_id === emneId);
+  assert.ok(link, "missing batch 02 link: " + emneId);
+  assert.deepEqual(link.claim_ids, [claimId]);
+  assert.deepEqual(link.source_ids, [sourceId]);
+  assert.deepEqual(byEmne.get(emneId).theory_ids, [theoryId]);
+  assert.equal(byEmne.get(emneId).link_status, "linked_unreviewed");
+  assert.equal(byEmne.get(emneId).source_review_status, "not_reviewed");
+  assert.equal(byEmne.get(emneId).editorial_review_status, "not_reviewed");
+}
+assert.equal(coverage.coverage_entries.filter((entry) => !entry.theory_ids.length).length, 28);
+
 const extraLinks = catalog.theories.flatMap((theory) => theory.related_emne_links || []);
-assert.equal(extraLinks.length, 8);
+assert.equal(extraLinks.length, 16);
 for (const link of extraLinks) {
   const entry = byEmne.get(link.emne_id);
   assert.equal(entry?.related_link_evidence?.review, "canonical_id_and_claim_binding_only");
