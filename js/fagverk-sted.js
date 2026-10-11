@@ -344,6 +344,7 @@
       if (!placeId) throw new Error('Mangler place-parameter.');
       const [registry, place] = await Promise.all([fetchJson(REGISTRY_URL), loadPlace(placeId)]);
       if (!place) throw new Error(`Fant ikke canonical sted: ${placeId}`);
+      document.body.dataset.placeId = placeId;
 
       const model = await modelFor(registry, place, placeId);
       if (model.subjectIds.length && model.subjects.some((entry) => !entry.model)) {

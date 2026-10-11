@@ -352,6 +352,41 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-unified-knowle
     overflow-wrap:break-word;
   }
 
+  /* Keep the complete historical title above the original live icon row.
+     Audio/favorite stay below the heading; People/Merker remain at the right. */
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row{
+    display:grid;
+    grid-template-columns:32px 32px minmax(0,1fr) 38px 38px;
+    grid-template-rows:auto 38px;
+    column-gap:6px;
+    row-gap:7px;
+    align-items:start;
+  }
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row #pcTitle{
+    grid-column:1 / -1;
+    grid-row:1;
+    font-size:clamp(24px,7vw,31px);
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
+  }
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > .pc-reader-toggle{
+    grid-column:1;
+    grid-row:2;
+  }
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcFavorite{
+    grid-column:2;
+    grid-row:2;
+  }
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcPeopleIcon{
+    grid-column:4;
+    grid-row:2;
+  }
+  body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-heading-hero .pc-heading-content .pc-title-row > #pcBadgesIcon{
+    grid-column:5;
+    grid-row:2;
+  }
+
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media{
     grid-template-columns:minmax(120px,.82fr) minmax(0,1.18fr);
     gap:10px;
@@ -781,8 +816,12 @@ body.hg-app #placeCard .pc-sheet-canonical-news .hg-place-news-source{
   }
 }
 
-/* The authentic negative Dagsavisen wordmark needs a dark surface. */
-body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"] .pc-collection[data-collection-id="brands"] > img.pc-person-img,
+/* Keep the authentic negative wordmark legible and clear of its label. */
+body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="brands"] > img.pc-person-img{
+  background:#202531;
+  padding:8px 8px 34px;
+  box-sizing:border-box;
+}
 .hg-popup.placecard-round-popup .pc-brand-entry[data-brand="dagsavisen"] > .pc-person-img{
   background:#202531;
   padding:8px;

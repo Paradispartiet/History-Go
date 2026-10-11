@@ -100,3 +100,12 @@
   .hg-fagverk-place-page .fagverk-place-hero-copy::before{left:22px;top:24px;width:54px;}
   .hg-fagverk-place-page .fagverk-place-design-note{padding:18px;}
 }
+
+/* Scale this long title within its actual text column. */
+.hg-fagverk-place-page[data-place-id="arbeiderbladet_youngstorget"] .fagverk-place-hero-copy{
+  container-type:inline-size;
+}
+.hg-fagverk-place-page[data-place-id="arbeiderbladet_youngstorget"] .fagverk-place-hero h1{
+  max-width:100%;
+  font-size:clamp(26px,11cqi,64px);
+}
