@@ -1,6 +1,6 @@
 # Dagbladet – Akersgata 49: sluttføring og publikasjonseierskap
 
-Dato: 2026-10-11. Tidligere rapporter beskriver tidligere checkpoints; denne vurderingen eier sluttføringen. Visuell sluttkontroll og exact-head CI føres etter faktisk kjøring.
+Dato: 2026-10-11. Branch `production/dagbladet-akersgata-20261010`, PR [#6211](https://github.com/Paradispartiet/History-Go/pull/6211), base `c19467307501d99f5237eab0d561e2a1373fc39e`. Tidligere rapporter beskriver tidligere checkpoints; denne vurderingen eier sluttføringen og erstatter deres åpne produksjons- og UI-porter. Endelig CI-status avleses på den faktiske sluttcommit-en i PR-en før merge.
 
 ## Avisen som verk, eksemplaret som bilde
 
@@ -23,4 +23,37 @@ Papiravisen er samlingens representative hovedutgivelse. Nettutgaven, bilagene o
 
 ## Validering og visuell sluttkontroll
 
-Pågår: regenerering, regresjonstester, alle tre samlingspopuper og ny mobil-/desktop-kontroll. Ingen visuell PASS eller merge hevdes før kontrollene er utført.
+`npm run place:build -- dagbladet_akersgata` og `npm run place:verify -- dagbladet_akersgata` består. Place-open-materialisering, quizkontekst, workcard og quality-gate-projeksjon er bygget fra canonical eiere. Engelsk, spansk og portugisisk stedstekst har fortsatt gjeldende kildehash; ingen eldre oversettelse er erklært nyprodusert.
+
+`npm run build:web` består. Dagbladet-integrasjon, samlingsrenderer, samlingslayout og Unified Place har **31 beståtte tester**. Stories, Place-open og Lesespor-race har **11 beståtte tester**, inkludert den faktiske feilrekkefølgen der Place-open fyller Stories før bakgrunnsaggregatet. Publikasjonstesten kontrollerer separat bildedato/stedsperiode, faktisk bildefil og oppløste claim-ID-er. Negativ testen beholder at en kvalifisert BLOCKED-samling blokkerer også etter en hypotetisk UI-godkjenning.
+
+Faktisk app-kjøring: [Actions 38155614695](https://github.com/Paradispartiet/History-Go/actions/runs/38155614695), kildecommit `a5d5605f976a68b0018230920e8da6c046abeef9`. Botcommit `fda6512611cb9b6e58543e57112a8f36d68e3858` lagrer bare skjermbilder og maskinrapport i `reports/visual-qa/dagbladet-akersgata/20261011-closeout/`. **Alle 18 JPG-filer er åpnet og visuelt gjennomgått**, ikke bare et utvalg. Linux Chromium med emulerte viewporter; native Safari eller fysisk iPad hevdes ikke.
+
+| Kontroll | Faktisk evidens og resultat |
+| --- | --- |
+| 320×844 og 390×844 | Begge topp-/nedre PlaceCard-bilder og begge publikasjonspopuper. Hele tittelord, leselig tekst, tilgjengelig lukking, synlig 1905-datering og lisens. Ingen horisontal sideoverflow. |
+| 768×1024 og 1440×1000 | Begge topp-/nedre PlaceCard-bilder og publikasjonspopuper. Tre valgte samlinger med faktiske lastede medlemsbilder; hele avisarkets avishode og ytterkanter vises med contain. Et mørkt bildefelt holder Utgivelser-etiketten leselig. |
+| People og Brands | iPad-popuper åpnet og kontrollert; begge åpner på alle fire bredder. Fire personer, synlig Osvold-illustrasjonsmerking og Stanghelles eksplisitte Dagbladet-periode 1995–2000. Hans primære Aftenposten-år 1991 beholdes. Hele Brand-logoen vises uten navneoverlapp. |
+| Utgivelser | Alle fire popuper. Autentisk 599×836-faksimile vises som rektangulært avisark. Teksten skiller 1905-bildet fra redaksjonsperioden 1967–2008 og oppgir Dagbladet/Nasjonalbiblioteket/Commons og Public domain. |
+| QuizCard | iPad-flip og utvidet visning gjennomgått. Flip, utvidelse og lukking utført på alle bredder. Ti spørsmål og fasit er gjennomgått i canonical innhold. |
+| Fagverk og kilder | iPad-integrasjonen og den faktiske artikkelsiden gjennomgått. Artikkellenken fulgt på alle bredder; curated-status, ingen synlig unfinished-melding. Elleve synlige kildelenker inkluderer den eldre avisfaksimilen. |
+| Stories og drift | Én canonical, én indeksert og én synlig fortelling etter global init på alle bredder. Alle fire profiler har null registrerte avvik og null JavaScript-sidefeil. |
+
+Den første tre-samlingskjøringen viste at avisbildet fikk portrettets sirkel og at forhåndsvisningen beskar avishodet. Dette er rettet med CSS avgrenset til Dagbladets publikasjonsmedlem/sted. Ny kjøring måler contain og rektangulær thumbnail, og den faktiske visningen er kontrollert. CSS-cacheversjonen, TypeScript-kilden og generert bundle er oppdatert sammen. Engangsworkflowen fjernes i sluttcommit-en.
+
+Hele leveransens redaksjonelle innhold er gjennomgått: stedstekst, alle åtte Fagverk-avsnitt/fem linser/fem nøkkelspørsmål, de fire kunnskapsenhetene, fem språkoppføringer, fire People-profiler, Brand, publikasjonsmedlem, kronologi, 28 normalquizspørsmål med alternativer/fasit, ti QuizCard-spørsmål, hele nettstart-fortellingen og fem Lesespor. Historiske kildekonflikter og tilbakeblikkenes begrensninger står synlig; Carey er navngitt teori og de to dokumenterte case-ene skilles fra analytiske spørsmål om leserne.
+
+Objects, før/etter og News har dokumentert avgrenset N/A, ikke en skjult kvalifisert kandidat. Ingen global legacy-bilde-/kildemangel utenfor stedet erklæres løst. De tidligere Lesespor-advarslene beholdes. Ingen rettighetsforespørsel er sendt, og ingen rettighetsuklar 1985/1986-forside publiseres.
+
+## Seksdelt kvalitetsvurdering
+
+| Dimensjon | Score | Evidens og avgrensning |
+| --- | --- | --- |
+| Korrekthet og evidens | 4/5 | 33 sted-claims og egne personclaims; kilde-/setningskoblinger gjennomgått. Grunnleggelse, bygning, flytting og bildedato holdes fra hverandre. Retrospektive kilder er avgrenset, ikke behandlet som samtidige arbeidslogger. |
+| Dekning og ferdigstillelse | 5/5 | Hele avtalte stedschecklisten er utført. People, Brand og reelt publikasjonsverk vises; Objects og betingede moduler har substansiert N/A. Alle innholdsenheter og 18 nye skjermbilder er gjennomgått; ingen åpne lokale restpunkter. |
+| Faglig/redaksjonell kvalitet | 4/5 | Adressebundet avishistorie, separate redaksjonelle roller, navngitt Carey-perspektiv med begrensning og to dokumenterte case. Quiz starter med konkret kunnskap; ingen generisk filler eller påståtte leserfunn. |
+| Teknisk integritet | 5/5 | Deterministisk Place-build/verify, synkronisert TypeScript-bundle, 31 integrasjons-/visningstester og 11 lasteregresjoner. Faktisk Chromium-app på fire bredder, alle tre popuper, QuizCard og artikkelnavigasjon; null registrerte feil. Final-head CI kreves separat før merge. |
+| Sikkerhet og ansvarlighet | 5/5 | Originalfilens proveniens, dimensjoner og checksum er verifisert. Synlig datogrense, Public domain-kreditering og illustrasjonsmerking; de begrensede/uklare bildealternativene er utelukket. Ingen ekstern henvendelse eller persondataendring. |
+| Vedlikeholdbarhet og etterprøvbarhet | 4/5 | Canonical workflow eier status, avledede filer materialiseres. Smal CSS-retting, kjørbar audit, negative gate-tester og uendrede daterte skjermbilder gir etterprøvbar evidens. Det store avledede datadiffet er fortsatt en reviewkostnad. |
+
+**27/30; hver dimensjon minst 4. Innholds- og visuell kvalitetsport består.** `final_ui` settes PASS og V3-state complete etter denne gjennomgangen. Merge utføres først etter grønn CI på faktisk final PR-head, uendret forventet SHA og kontroll av base/reviewstatus; post-merge Main integrity avleses på mergecommit-en.
