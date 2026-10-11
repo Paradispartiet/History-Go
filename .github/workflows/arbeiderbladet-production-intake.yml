@@ -1,0 +1,36 @@
+name: Arbeiderbladet bounded production intake
+on:
+  push:
+    branches: ['production/arbeiderbladet-youngstorget-20261011']
+    paths: ['.github/workflows/arbeiderbladet-production-intake.yml']
+permissions:
+  contents: write
+jobs:
+  intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/fetch-arbeiderbladet-production-assets.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: arbeiderbladet-source-intake
+          path: reports/place-production/arbeiderbladet-youngstorget-intake-20261011
+      - name: Commit bounded intake evidence with head lease
+        shell: bash
+        run: |
+          head=$(git ls-remote origin refs/heads/${GITHUB_REF_NAME} | cut -f1)
+          test "$head" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/arbeiderbladet_youngstorget_1947.jpg bilder/places/arbeiderbladet_youngstorget_2006.jpg bilder/places/arbeiderbladet_vort_arbeide_1884.jpg reports/place-production/arbeiderbladet-youngstorget-intake-20261011
+          git diff --cached --check
+          git commit -m 'Record Arbeiderbladet licensed source assets and address intake'
+          git push origin HEAD:${GITHUB_REF_NAME}
