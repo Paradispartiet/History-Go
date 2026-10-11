@@ -232,6 +232,20 @@ for (const id of group1) {
   }
 }
 
+// Scientific signoff is separate from claim-field documentation and green CI.
+// All eight CBT fields were assessed, but the 1981/1982 participant bridge remains unresolved.
+const cbtAudits = detailedReview.units.filter((unit) => unit.theory_id === "kognitiv_terapi");
+assert.equal(cbtAudits.length, 8);
+assert.ok(cbtAudits.every((unit) => unit.latest_claim_audit?.date === "2026-10-11"
+  && unit.latest_claim_audit.report_section === "28"
+  && unit.latest_claim_audit.scientific_signoff === false
+  && unit.card_is_source_verified === false
+  && unit.full_original_review_complete === false));
+assert.equal(cbtAudits.find((unit) => unit.field === "method").latest_claim_audit.verdict,
+  "blocked_primary_fulltext_and_cohort_flow");
+assert.ok(cbtAudits.find((unit) => unit.field === "method")
+  .latest_claim_audit.remaining_gate.includes("Kovacs 1981"));
+
 // Batch 08: original-method audit; note that passing these guards is not scholarly approval.
 const primaryOriginalSources = {
   tilknytning: [
