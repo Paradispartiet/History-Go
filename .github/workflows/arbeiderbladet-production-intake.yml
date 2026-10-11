@@ -1,4 +1,4 @@
-name: Arbeiderbladet bounded production intake with normalized source HTML
+name: Arbeiderbladet bounded production intake including official header logo
 on:
   push:
     branches: ['production/arbeiderbladet-youngstorget-20261011']
@@ -30,7 +30,7 @@ jobs:
           test "$head" = "$GITHUB_SHA"
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add bilder/places/arbeiderbladet_youngstorget_1947.jpg bilder/places/arbeiderbladet_youngstorget_2006.jpg bilder/places/arbeiderbladet_vort_arbeide_1884.jpg reports/place-production/arbeiderbladet-youngstorget-intake-20261011
+          git add bilder/brands/dagsavisen.svg bilder/places/arbeiderbladet_youngstorget_1947.jpg bilder/places/arbeiderbladet_youngstorget_2006.jpg bilder/places/arbeiderbladet_vort_arbeide_1884.jpg reports/place-production/arbeiderbladet-youngstorget-intake-20261011
           git diff --cached --check
           git commit -m 'Record Arbeiderbladet licensed source assets and address intake'
           git push origin HEAD:${GITHUB_REF_NAME}

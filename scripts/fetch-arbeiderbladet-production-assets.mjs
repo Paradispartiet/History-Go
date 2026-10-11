@@ -35,3 +35,10 @@ for (const [name, url] of [
   await writeFile(`${root}/${name}`, (await response.text()).split("\n").map(line => line.trimEnd()).join("\n"));
 }
 console.log(JSON.stringify(records));
+
+await mkdir('bilder/brands', { recursive: true });
+const logoUrl = 'https://www.dagsavisen.no/view-resources/dachser2/public/dagsavisen/DA_Primarylogo_Negativ.svg';
+const logo = (await (await request(logoUrl)).text()).split('\n').map(line => line.trimEnd()).join('\n');
+if (!logo.includes('<svg')) throw new Error('Official header asset is not SVG');
+await writeFile('bilder/brands/dagsavisen.svg', logo);
+await writeFile(`${root}/logo-source.json`, JSON.stringify({ url: logoUrl, source: 'Official header and publisher.logo metadata in downloaded Dagsavisen HTML', retrievedAt: new Date().toISOString(), sha256: createHash('sha256').update(logo).digest('hex') }, null, 2) + '\n');
