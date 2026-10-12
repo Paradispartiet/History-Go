@@ -361,6 +361,24 @@
         ${item.next_step ? `<div class="psychology-room-note-field"><h4>Hva vil jeg prøve videre?</h4><p>${escapeHtml(item.next_step)}</p></div>` : ""}
       </article>`).join("");
   
+
+    const linkedPathsHtml = pathsForWorkbench(entry.id).map((path) => {
+      const progress = getPathProgress(path.id);
+      const reflections = readPathReflections()[path.id] || {};
+      const dayHistory = Object.entries(reflections)
+        .filter(([dayNo, item]) => Number(dayNo) >= 1 && Number(dayNo) <= 7 &&
+          typeof item?.reflection === "string" && item.reflection.trim())
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([dayNo, item]) => '<div class="psychology-room-note-field"><h4>Dag ' +
+          escapeHtml(dayNo) + '</h4><p>' + escapeHtml(item.reflection) + '</p></div>').join("");
+      return '<article class="psychology-room-linked-path"><strong>' + escapeHtml(path.title) +
+        '</strong><p class="psychology-room-muted">' +
+        (progress?.completed_at ? 'Fullført' : 'Pågår: ' + (progress?.completed_days?.length || 0) + '/7 dager') +
+        '</p>' + (dayHistory || '<p class="psychology-room-muted">Ingen dagrefleksjoner registrert ennå.</p>') +
+        '<button type="button" class="psychology-room-back" data-psych-open-linked-path="' +
+        escapeHtml(path.id) + '">Åpne 7-dagersløpet</button></article>';
+    }).join("");
+
     setContent(shell(`${backButton("profile")}
       <section class="psychology-room-workbench psychology-room-workbench-detail">
         <div class="psychology-room-eyebrow">TANKEVERKSTED / DIN SITUASJON</div>
@@ -373,6 +391,12 @@
         <section class="psychology-room-note-section">
           <h4>Oppfølginger (${followUps.length})</h4>
           ${followUpHtml || '<p class="psychology-room-muted">Ingen oppfølginger ennå. Du kan komme tilbake til samme situasjon flere ganger.</p>'}
+        </section>
+        <section class="psychology-room-note-section">
+          <h4>7-dagersløp knyttet til situasjonen</h4>
+          ${linkedPathsHtml || '<p class="psychology-room-muted">Ingen løp knyttet til denne situasjonen.</p>'}
+          <button type="button" class="psychology-room-primary" data-psych-choose-linked-path="1">Velg et 7-dagersløp</button>
+          <p class="psychology-room-muted">Du velger selv løpet. Daglige refleksjoner vises her når løpet er knyttet til situasjonen, uten å endre originalnotatet.</p>
         </section>
         <form id="psychologyRoomWorkbenchFollowUpForm" class="psychology-room-form">
           <h4>Legg til en oppfølging</h4>
@@ -394,6 +418,13 @@
       </section>
     `));
     bindBack();
+    document.querySelector("[data-psych-choose-linked-path]")?.addEventListener("click", () => renderPathsList(entry.id));
+    document.querySelectorAll("[data-psych-open-linked-path]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const path = findById(dataCache?.paths || [], button.dataset.psychOpenLinkedPath);
+        if (path) renderPathDetail(path);
+      });
+    });
     document.getElementById("psychologyRoomWorkbenchFollowUpForm")?.addEventListener("submit", (event) => {
       event.preventDefault();
       const form = /** @type {HTMLFormElement} */ (event.currentTarget);
