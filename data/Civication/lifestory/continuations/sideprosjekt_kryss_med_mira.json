@@ -1,0 +1,463 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "sideprosjekt_kryss_med_mira",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "tittel": "Navnet som ikke stod på plakaten",
+  "sisteDag": 19,
+  "hovedtraad": "lea_og_miras_program",
+  "threads": [
+    {
+      "id": "lea_og_miras_program",
+      "tittel": "Navnet som ikke stod på plakaten",
+      "type": "privatliv",
+      "startDag": 17,
+      "konflikt": "Leas programutkast avhenger av hva som faktisk ble avtalt med Mira"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d17_samspill_lea_vilkar",
+      "threadId": "lea_og_miras_program",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lea ber om en overskrift",
+      "tekst": "Du ba om klare vilkår for en mulig spillejobb. Ingen jobb ble bekreftet. Lea vil nevne Mira i programutkastet for en åpen kulturkveld, men vet ennå ikke om Mira vil delta.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Gi Lea bare opplysningene som er bekreftet",
+          "konsekvensTekst": "Du gjør Lea oppmerksom på at ingen spillejobb, prøve eller honorar er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "avklar"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Lea la musikkposten stå tom",
+          "konsekvensTekst": "Lea lar være å knytte Miras navn til programmet.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira16_grense": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_lea_kontakt",
+      "threadId": "lea_og_miras_program",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et vennlig svar er ikke et ja",
+      "tekst": "Du beholdt kontakten med Mira, uten å avtale en ny prøve. Lea ønsker å skrive at Mira kommer til kulturkvelden. Hun har ennå ikke spurt Mira.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Gi Lea bare opplysningene som er bekreftet",
+          "konsekvensTekst": "Du gjør Lea oppmerksom på at ingen spillejobb, prøve eller honorar er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "avklar"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Lea la musikkposten stå tom",
+          "konsekvensTekst": "Lea lar være å knytte Miras navn til programmet.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira16_kontakt": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_lea_privat",
+      "threadId": "lea_og_miras_program",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det private notatet",
+      "tekst": "Du valgte å holde musikken for deg selv. Lea vet bare at noen har snakket om en kulturkveld; hun kjenner ikke det private materialet ditt. Hun spør om hun skal føre opp en musikkpost.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Gi Lea bare opplysningene som er bekreftet",
+          "konsekvensTekst": "Du gjør Lea oppmerksom på at ingen spillejobb, prøve eller honorar er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "avklar"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Lea la musikkposten stå tom",
+          "konsekvensTekst": "Lea lar være å knytte Miras navn til programmet.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira16_egen": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_lea_avslutning",
+      "threadId": "lea_og_miras_program",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Plassen etter en avlysning",
+      "tekst": "Den gamle spilleforespørselen er avsluttet. Lea vil fylle et hull i programutkastet med musikk, men det finnes ingen ny avtale med Mira.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Gi Lea bare opplysningene som er bekreftet",
+          "konsekvensTekst": "Du gjør Lea oppmerksom på at ingen spillejobb, prøve eller honorar er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "avklar"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Lea la musikkposten stå tom",
+          "konsekvensTekst": "Lea lar være å knytte Miras navn til programmet.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "mira16_avsluttet": true
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_lea_avklar",
+      "threadId": "lea_og_miras_program",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lea stryker løftet",
+      "tekst": "Lea har endret utkastet til «musikkinnslag ikke avklart». En frivillig ønsker likevel å dele teksten offentlig. Hun spør om formuleringen er tydelig nok.",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Presiser forskjellen mellom ubekreftet og avlyst",
+          "konsekvensTekst": "Lea noterer at manglende avtale verken er et ja eller et avslag fra Mira.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea18_spor": "presiser"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "La programutkastet hvile uten flere navn",
+          "konsekvensTekst": "Lea legger bort programutkastet og lar spørsmålet stå ubesvart.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "avklar"
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_lea_skjerm",
+      "threadId": "lea_og_miras_program",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Plakaten uten musikk",
+      "tekst": "Lea har fjernet musikkposten. Nå spør en annen frivillig om det betyr at Mira takket nei; det har hun ikke opplyst.",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Presiser forskjellen mellom ubekreftet og avlyst",
+          "konsekvensTekst": "Lea noterer at manglende avtale verken er et ja eller et avslag fra Mira.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea18_spor": "presiser"
+            },
+            "relasjoner": {
+              "lea": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "La programutkastet hvile uten flere navn",
+          "konsekvensTekst": "Lea legger bort programutkastet og lar spørsmålet stå ubesvart.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "skjerm"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_lea_presiser",
+      "threadId": "lea_og_miras_program",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Én setning som ble endret",
+      "tekst": "Lea har rettet utkastet. Miras navn er ikke trykt som et løfte, og den frivillige har fått en konkret presisering.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold den presise formuleringen",
+          "konsekvensTekst": "Den konkrete rettelsen blir stående. Ingen automatisk avtale eller betaling følger med.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea19_ending": "presiser",
+              "samspill_lea19_presiser": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea19_ending": "presiser",
+              "samspill_lea19_presiser": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea18_spor": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_lea_stans",
+      "threadId": "lea_og_miras_program",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den åpne plassen",
+      "tekst": "Lea har latt musikkfeltet stå tomt. Hun synes det er vanskelig, men slutter å fylle stillheten med andres navn.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Stå ved beslutningen om å holde tilbake",
+          "konsekvensTekst": "Du står ved grensen. Ingen har fått noen ny oppgave eller rettighet.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea19_ending": "stans",
+              "samspill_lea19_stans": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea19_ending": "stans",
+              "samspill_lea19_stans": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea18_spor": "stans"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_lea_slutt",
+      "threadId": "lea_og_miras_program",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva de andre tar med seg",
+      "tekst": "Historieboka viser hva du valgte, hvem som fikk en presisering, og hvilke planer som ble endret. Ingen møteplikt, booking, oppdrag eller betaling er opprettet.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Konsekvensene blir liggende i arkivet og kan brukes av senere kapitler.",
+          "effekter": {
+            "flagg": {
+              "samspill_lea19_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_og_miras_program": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "samspill_lea19_presiser",
+      "navn": "Program uten løfter",
+      "tekst": "Tidligere valg fikk en tydelig og avgrenset følge i en annen persons historie.",
+      "kriterier": {
+        "flagg": {
+          "samspill_lea19_presiser": true
+        }
+      }
+    },
+    {
+      "id": "samspill_lea19_stans",
+      "navn": "Plass til et nei",
+      "tekst": "En annen persons plan ble endret fordi du holdt tilbake et ubekreftet løfte.",
+      "kriterier": {
+        "flagg": {
+          "samspill_lea19_stans": true
+        }
+      }
+    },
+    {
+      "id": "samspill_lea19_standard",
+      "navn": "Et uavklart samarbeid",
+      "tekst": "Valgene er bevart uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

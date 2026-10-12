@@ -1,0 +1,415 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_kryss_med_arvid",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "En konsert som ingen har bestilt",
+  "sisteDag": 19,
+  "hovedtraad": "mira_og_arvids_invitasjon",
+  "threads": [
+    {
+      "id": "mira_og_arvids_invitasjon",
+      "tittel": "En konsert som ingen har bestilt",
+      "type": "privatliv",
+      "startDag": 17,
+      "konflikt": "Miras mulige prøve omtales gjennom Arvids uklare invitasjon"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d17_samspill_mira_grense",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et navn på riktig sted",
+      "tekst": "Du krevde at Arvid skilte programkontakt fra adgangsliste. Nå ser Mira navnet ditt i et tidlig utkast og spør om hun dermed er ventet som musiker. Det er hun ikke.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Forklar Mira at invitasjonen ikke er en booking",
+          "konsekvensTekst": "Mira får en konkret avklaring og kan svare arrangøren på egne vilkår.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "avklar"
+            },
+            "relasjoner": {
+              "mira": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid stoppe videre bruk av utkastet",
+          "konsekvensTekst": "Du ber Arvid stoppe deling til ansvarsforholdene er avklart.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid16_grense": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_mira_avstand",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Invitasjonen du gikk fra",
+      "tekst": "Du valgte avstand til Arvids arrangement og tok ikke på deg flere tjenester. Mira har fått se et gammelt utkast og spør om du vet hvem som har ansvar for musikken.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Forklar Mira at invitasjonen ikke er en booking",
+          "konsekvensTekst": "Mira får en konkret avklaring og kan svare arrangøren på egne vilkår.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "avklar"
+            },
+            "relasjoner": {
+              "mira": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid stoppe videre bruk av utkastet",
+          "konsekvensTekst": "Du ber Arvid stoppe deling til ansvarsforholdene er avklart.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid16_avstand": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_mira_uavklart",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Spørsmålet som fant Mira",
+      "tekst": "Du lot ansvaret rundt Arvids invitasjon forbli uklart. Mira spør nå om utkastet hun har sett, betyr at hun er satt opp. Ingen booking eller øving er avtalt.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Forklar Mira at invitasjonen ikke er en booking",
+          "konsekvensTekst": "Mira får en konkret avklaring og kan svare arrangøren på egne vilkår.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "avklar"
+            },
+            "relasjoner": {
+              "mira": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid stoppe videre bruk av utkastet",
+          "konsekvensTekst": "Du ber Arvid stoppe deling til ansvarsforholdene er avklart.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "arvid16_uavklart": true
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_mira_avklar",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira vil se teksten selv",
+      "tekst": "Mira takker for presiseringen. Hun vil lese et eventuelt nytt forslag selv før hun svarer, og ber om at ingen bruker navnet hennes uten tillatelse.",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Skriv tydelig at Mira ikke er bekreftet",
+          "konsekvensTekst": "Du ber om at gamle og nye versjoner merkes med korrekt status. Ingen konsert oppstår av det.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira18_spor": "presiser"
+            },
+            "relasjoner": {
+              "mira": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "La Mira selv avgjøre videre kontakt",
+          "konsekvensTekst": "Du sender den kjente informasjonen og lar Mira velge om hun vil følge opp.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "avklar"
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_mira_skjerm",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den gamle invitasjonen dukker opp",
+      "tekst": "Arvid sier at han har stanset delingen. Likevel har Mira mottatt en kopi uten rettelsen. Hun vil vite hva hun skal svare.",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Skriv tydelig at Mira ikke er bekreftet",
+          "konsekvensTekst": "Du ber om at gamle og nye versjoner merkes med korrekt status. Ingen konsert oppstår av det.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira18_spor": "presiser"
+            },
+            "relasjoner": {
+              "mira": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "La Mira selv avgjøre videre kontakt",
+          "konsekvensTekst": "Du sender den kjente informasjonen og lar Mira velge om hun vil følge opp.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "skjerm"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_mira_presiser",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et navn blir tatt ut",
+      "tekst": "Arvid har rettet formuleringen. Mira står ikke som bekreftet musiker og beholder retten til å velge selv.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold den presise formuleringen",
+          "konsekvensTekst": "Den konkrete rettelsen blir stående. Ingen automatisk avtale eller betaling følger med.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira19_ending": "presiser",
+              "samspill_mira19_presiser": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira19_ending": "presiser",
+              "samspill_mira19_presiser": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira18_spor": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_mira_stans",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En samtale uten scene",
+      "tekst": "Mira har fått grunnlaget for å svare selv. Ingen øving er innkalt, og den gamle invitasjonen kan ikke brukes som løfte.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Stå ved beslutningen om å holde tilbake",
+          "konsekvensTekst": "Du står ved grensen. Ingen har fått noen ny oppgave eller rettighet.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira19_ending": "stans",
+              "samspill_mira19_stans": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira19_ending": "stans",
+              "samspill_mira19_stans": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira18_spor": "stans"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_mira_slutt",
+      "threadId": "mira_og_arvids_invitasjon",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva de andre tar med seg",
+      "tekst": "Historieboka viser hva du valgte, hvem som fikk en presisering, og hvilke planer som ble endret. Ingen møteplikt, booking, oppdrag eller betaling er opprettet.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Konsekvensene blir liggende i arkivet og kan brukes av senere kapitler.",
+          "effekter": {
+            "flagg": {
+              "samspill_mira19_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_og_arvids_invitasjon": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "samspill_mira19_presiser",
+      "navn": "Rettet før noen møtte opp",
+      "tekst": "Tidligere valg fikk en tydelig og avgrenset følge i en annen persons historie.",
+      "kriterier": {
+        "flagg": {
+          "samspill_mira19_presiser": true
+        }
+      }
+    },
+    {
+      "id": "samspill_mira19_stans",
+      "navn": "Et ubekreftet spørsmål ble stående",
+      "tekst": "En annen persons plan ble endret fordi du holdt tilbake et ubekreftet løfte.",
+      "kriterier": {
+        "flagg": {
+          "samspill_mira19_stans": true
+        }
+      }
+    },
+    {
+      "id": "samspill_mira19_standard",
+      "navn": "Et uavklart samarbeid",
+      "tekst": "Valgene er bevart uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

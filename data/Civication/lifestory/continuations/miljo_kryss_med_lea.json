@@ -1,0 +1,415 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_kryss_med_lea",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Hvem eier programteksten?",
+  "sisteDag": 19,
+  "hovedtraad": "arvid_og_leas_tekst",
+  "threads": [
+    {
+      "id": "arvid_og_leas_tekst",
+      "tittel": "Hvem eier programteksten?",
+      "type": "privatliv",
+      "startDag": 17,
+      "konflikt": "Arvid vil bruke Leas prosjekttekst uten å forutsette samtykke eller arbeid"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d17_samspill_arvid_klart",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et spørsmål blir en annonse",
+      "tekst": "Du fikk avklart et avgrenset spørsmål med Lea, men ingen leveranse er bestilt. Arvid har hørt om idéen og vil ha en linje om den i en invitasjon. Han spør ikke Lea direkte.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be Arvid spørre Lea før noe nevnes",
+          "konsekvensTekst": "Arvid får tydelig beskjed om at Lea selv bestemmer om prosjektet kan omtales.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "avklar"
+            },
+            "relasjoner": {
+              "amir": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid fjerne prosjektet fra utkastet",
+          "konsekvensTekst": "Invitasjonsutkastet blir stående uten prosjektet og uten navnene deres.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_16_klar": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_arvid_egen",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Notatet som ble omtale",
+      "tekst": "Du valgte å beholde et privat notat etter samtalene med Lea. Arvid vil nevne prosjektet i en invitasjon, selv om Lea ikke har sett notatet.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be Arvid spørre Lea før noe nevnes",
+          "konsekvensTekst": "Arvid får tydelig beskjed om at Lea selv bestemmer om prosjektet kan omtales.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "avklar"
+            },
+            "relasjoner": {
+              "amir": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid fjerne prosjektet fra utkastet",
+          "konsekvensTekst": "Invitasjonsutkastet blir stående uten prosjektet og uten navnene deres.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_16_egen": true
+        }
+      }
+    },
+    {
+      "id": "d17_samspill_arvid_pause",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Prosjektet som fikk fri",
+      "tekst": "Du valgte å la arbeidet med Lea hvile. Arvid foreslår likevel å skrive at prosjektet er med på arrangementet. Ingen har spurt Lea, og ingen oppgave er avtalt.",
+      "valg": [
+        {
+          "id": "avklar",
+          "tekst": "Be Arvid spørre Lea før noe nevnes",
+          "konsekvensTekst": "Arvid får tydelig beskjed om at Lea selv bestemmer om prosjektet kan omtales.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "avklar"
+            },
+            "relasjoner": {
+              "amir": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "skjerm",
+          "tekst": "Be Arvid fjerne prosjektet fra utkastet",
+          "konsekvensTekst": "Invitasjonsutkastet blir stående uten prosjektet og uten navnene deres.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid17_spor": "skjerm"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "sideprosjekt_16_pause": true
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_arvid_avklar",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arvid vil ha et raskt svar",
+      "tekst": "Arvid sier at Lea ønsker å se ordlyden før hun sier ja til å bli omtalt. En annen i miljøet mener at en muntlig idé er nok. Hvem får bestemme?",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Si at Lea må godkjenne ordlyden selv",
+          "konsekvensTekst": "Arvid varsler de andre om at bare Lea kan samtykke til omtalen, og at ingen oppgave er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid18_spor": "presiser"
+            },
+            "relasjoner": {
+              "amir": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "Be dem stanse utsendingen foreløpig",
+          "konsekvensTekst": "Arvid ber om at invitasjonen ikke sendes med Leas navn eller prosjekt.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "avklar"
+        }
+      }
+    },
+    {
+      "id": "d18_samspill_arvid_skjerm",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En forventning uten avsender",
+      "tekst": "Arvid fjernet linjen, men en frivillig har fortsatt en eldre utgave av utkastet. Den kan skape et inntrykk av at Lea har forpliktet seg.",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Si at Lea må godkjenne ordlyden selv",
+          "konsekvensTekst": "Arvid varsler de andre om at bare Lea kan samtykke til omtalen, og at ingen oppgave er avtalt.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid18_spor": "presiser"
+            },
+            "relasjoner": {
+              "amir": 1
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "stans",
+          "tekst": "Be dem stanse utsendingen foreløpig",
+          "konsekvensTekst": "Arvid ber om at invitasjonen ikke sendes med Leas navn eller prosjekt.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid18_spor": "stans"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "skjerm"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_arvid_presiser",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arvid retter kilden",
+      "tekst": "Arvid har fjernet en påstand om at Lea deltar. Den nye teksten forteller bare at et forslag ble diskutert; Lea skylder ingen oppmøte.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Behold den presise formuleringen",
+          "konsekvensTekst": "Den konkrete rettelsen blir stående. Ingen automatisk avtale eller betaling følger med.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid19_ending": "presiser",
+              "samspill_arvid19_presiser": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid19_ending": "presiser",
+              "samspill_arvid19_presiser": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid18_spor": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_arvid_stans",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Invitasjonen uten avsender",
+      "tekst": "Den gamle versjonen er trukket tilbake. Arvid må forklare hvorfor navnet mangler, i stedet for å bruke Leas tid som begrunnelse.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Stå ved beslutningen om å holde tilbake",
+          "konsekvensTekst": "Du står ved grensen. Ingen har fått noen ny oppgave eller rettighet.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid19_ending": "stans",
+              "samspill_arvid19_stans": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver beslutningen og gå videre",
+          "konsekvensTekst": "Du arkiverer saken som avsluttet, uten å skrive om det tidligere valget.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid19_ending": "stans",
+              "samspill_arvid19_stans": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid18_spor": "stans"
+        }
+      }
+    },
+    {
+      "id": "d19_samspill_arvid_slutt",
+      "threadId": "arvid_og_leas_tekst",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva de andre tar med seg",
+      "tekst": "Historieboka viser hva du valgte, hvem som fikk en presisering, og hvilke planer som ble endret. Ingen møteplikt, booking, oppdrag eller betaling er opprettet.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Konsekvensene blir liggende i arkivet og kan brukes av senere kapitler.",
+          "effekter": {
+            "flagg": {
+              "samspill_arvid19_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_og_leas_tekst": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "samspill_arvid19_presiser",
+      "navn": "Et tydelig samtykkeprinsipp",
+      "tekst": "Tidligere valg fikk en tydelig og avgrenset følge i en annen persons historie.",
+      "kriterier": {
+        "flagg": {
+          "samspill_arvid19_presiser": true
+        }
+      }
+    },
+    {
+      "id": "samspill_arvid19_stans",
+      "navn": "Invitasjonen holdes tilbake",
+      "tekst": "En annen persons plan ble endret fordi du holdt tilbake et ubekreftet løfte.",
+      "kriterier": {
+        "flagg": {
+          "samspill_arvid19_stans": true
+        }
+      }
+    },
+    {
+      "id": "samspill_arvid19_standard",
+      "navn": "Et uavklart samarbeid",
+      "tekst": "Valgene er bevart uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
