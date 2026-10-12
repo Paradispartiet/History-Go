@@ -1234,7 +1234,7 @@
     return `<section class="psychology-room-active-day"><div class="psychology-room-kicker">Dagens steg</div><h4>Dag ${escapeHtml(currentDay)}: ${escapeHtml(day.title || "")}</h4>${day.reflection_prompt ? `<p class="psychology-room-guidance">${escapeHtml(day.reflection_prompt)}</p>` : ""}<ul class="psychology-room-link-list"><li>Fenomen: ${escapeHtml(phenomenon?.title || day.phenomenon_id || "Ikke satt")}</li><li>CBT-verktøy: ${escapeHtml(tool?.title || day.tool_id || "Ikke satt")}</li><li>Øvelse: ${escapeHtml(exercise?.title || day.exercise_id || "Ikke satt")}</li></ul><div class="psychology-room-day-actions">${renderPathDayAction("phenomenon", phenomenon?.title || day.phenomenon_id || "", "Les fenomen", "path-phenomenon-id", phenomenon?.id || "")}${renderPathDayAction("tool", tool?.title || day.tool_id || "", "Les CBT-verktøy", "path-tool-id", tool?.id || "")}${renderPathDayAction("exercise", exercise?.title || day.exercise_id || "", "Gjør øvelse", "path-exercise-id", exercise?.id || "")}</div><div class="psychology-room-day-reflection"><label class="psychology-room-textarea-label">Dagens refleksjon<textarea id="psychologyRoomDayReflection" rows="4" placeholder="Hva la du merke til i dag?">${escapeHtml(saved)}</textarea></label><button class="psychology-room-primary" type="button" data-save-day-reflection="${escapeHtml(currentDay)}">Lagre refleksjon</button></div><button class="psychology-room-primary" type="button" data-complete-path-day="${escapeHtml(currentDay)}">Fullfør dag</button></section>`;
   }
 
-  function renderPathDetail(path) {
+  function renderPathDetail(path, workbenchEntryId = null) {
     setActiveSection("practice");
     if (!path?.id) return renderPathsList();
     const progress = getPathProgress(path.id);
@@ -1247,8 +1247,33 @@
     const reward = path.completion_reward || {};
     const activeDay = days.find((day) => Number(day.day || 0) === Number(currentDay)) || days[Math.max(0, Number(currentDay) - 1)] || null;
     const activeDayHtml = isStarted && !isCompleted ? renderActivePathDay(path, activeDay, currentDay) : "";
+    const workbenchEntries = getWorkbenchEntries();
+    const linkedEntry = workbenchEntries.find((item) => item.id === progress?.workbench_entry_id);
+    const candidateEntry = workbenchEntries.find((item) => item.id === workbenchEntryId);
+    const entryOptions = workbenchEntries.slice().reverse().map((item) =>
+      '<option value="' + escapeHtml(item.id) + '">' + escapeHtml(item.situation.slice(0, 110)) + '</option>').join("");
+    const linkContent = linkedEntry ?
+      '<strong>' + escapeHtml(linkedEntry.situation.slice(0, 220)) + '</strong>' +
+      '<p>Dagrefleksjonene vises også i denne situasjonen, uten å endre den opprinnelige beskrivelsen.</p>' +
+      '<button class="psychology-room-back" type="button" data-psych-open-linked-note="' +
+        escapeHtml(linkedEntry.id) + '">Åpne situasjonen</button>' :
+      isCompleted ? '<p>Løpet ble fullført uten en bevart kobling til et Tankeverksted-notat.</p>' :
+      candidateEntry ?
+        '<strong>' + escapeHtml(candidateEntry.situation.slice(0, 220)) + '</strong>' +
+        (isStarted ? '<button class="psychology-room-primary" type="button" data-psych-link-path="' +
+          escapeHtml(candidateEntry.id) + '">Knytt løpet til denne situasjonen</button>' :
+          '<p>Når du starter løpet, knyttes det til denne situasjonen. Du kan følge dagene fra begge steder.</p>') :
+      isStarted && workbenchEntries.length ?
+        '<p>Vil du følge løpet gjennom en tidligere refleksjon? Velg en situasjon selv.</p>' +
+        '<label for="psychologyRoomPathWorkbenchPicker">Situasjon</label>' +
+        '<select id="psychologyRoomPathWorkbenchPicker"><option value="">Velg en situasjon</option>' +
+          entryOptions + '</select>' +
+        '<button class="psychology-room-primary" type="button" data-psych-link-path="">Knytt valgt situasjon</button>' :
+      '<p>Du kan bruke løpet selvstendig eller knytte det til en refleksjon fra Tankeverkstedet senere.</p>';
+    const pathLinkHtml = '<section class="psychology-room-path-link"><h4>Din situasjon</h4>' +
+      linkContent + '</section>';
 
-    setContent(shell(`${backButton("paths")}<article class="psychology-room-detail"><div class="psychology-room-kicker">7-dagersløp</div><h3>${escapeHtml(path.title)}</h3><p>${escapeHtml(path.description || "")}</p>${renderTags([`${total} dager`, ...(path.focus || [])])}<section class="psychology-room-section"><h4>Status</h4><div class="psychology-room-score"><span>Progresjon</span><strong>${escapeHtml(completedDays.size)}/${escapeHtml(total)}</strong></div>${isCompleted ? `<p class="psychology-room-guidance">Løpet er fullført.</p>` : isStarted ? `<p class="psychology-room-guidance">Dagens steg: dag ${escapeHtml(currentDay)}.</p>` : `<p class="psychology-room-muted">Dette løpet er ikke startet ennå.</p>`}${reward.insight_points ? `<p class="psychology-room-muted">Fullføring: ${escapeHtml(reward.insight_points)} innsiktspoeng${reward.badge_hint ? ` · ${escapeHtml(reward.badge_hint)}` : ""}</p>` : ""}</section>${!isStarted ? `<button class="psychology-room-primary" type="button" data-start-path="${escapeHtml(path.id)}">Start løp</button>` : ""}${activeDayHtml}<section class="psychology-room-section"><h4>Dag for dag</h4>${days.length ? days.map((day) => {
+    setContent(shell(`${backButton("paths")}<article class="psychology-room-detail"><div class="psychology-room-kicker">7-dagersløp</div><h3>${escapeHtml(path.title)}</h3><p>${escapeHtml(path.description || "")}</p>${renderTags([`${total} dager`, ...(path.focus || [])])}<section class="psychology-room-section"><h4>Status</h4><div class="psychology-room-score"><span>Progresjon</span><strong>${escapeHtml(completedDays.size)}/${escapeHtml(total)}</strong></div>${isCompleted ? `<p class="psychology-room-guidance">Løpet er fullført.</p>` : isStarted ? `<p class="psychology-room-guidance">Dagens steg: dag ${escapeHtml(currentDay)}.</p>` : `<p class="psychology-room-muted">Dette løpet er ikke startet ennå.</p>`}${reward.insight_points ? `<p class="psychology-room-muted">Fullføring: ${escapeHtml(reward.insight_points)} innsiktspoeng${reward.badge_hint ? ` · ${escapeHtml(reward.badge_hint)}` : ""}</p>` : ""}</section>${!isStarted ? `<button class="psychology-room-primary" type="button" data-start-path="${escapeHtml(path.id)}">Start løp</button>` : ""}${pathLinkHtml}${activeDayHtml}<section class="psychology-room-section"><h4>Dag for dag</h4>${days.length ? days.map((day) => {
       const dayNo = Number(day.day || 0);
       const done = completedDays.has(dayNo);
       const isToday = dayNo === Number(currentDay) && isStarted && !isCompleted;
@@ -1256,7 +1281,25 @@
     }).join("") : `<p class="psychology-room-muted">Ingen dager er satt opp for dette løpet.</p>`}</section>${dataCache?.pathsSafetyNote ? `<p class="psychology-room-safety-note">${escapeHtml(dataCache.pathsSafetyNote)}</p>` : ""}</article>`));
 
     bindBack();
-    document.querySelector("[data-start-path]")?.addEventListener("click", () => startPath(path));
+    document.querySelector("[data-start-path]")?.addEventListener("click", () => startPath(path, candidateEntry?.id || null));
+    document.querySelector("[data-psych-open-linked-note]")?.addEventListener("click", () => {
+      if (linkedEntry) renderWorkbenchEntry(linkedEntry.id);
+    });
+    document.querySelector("[data-psych-link-path]")?.addEventListener("click", (event) => {
+      const requestedId = event.currentTarget.dataset.psychLinkPath ||
+        document.getElementById("psychologyRoomPathWorkbenchPicker")?.value || "";
+      if (!requestedId) {
+        window.showToast?.("Velg først en situasjon");
+        return;
+      }
+      const result = linkPathToWorkbench(path.id, requestedId);
+      if (!result.linked) {
+        window.showToast?.("Kunne ikke knytte løpet til denne situasjonen");
+        return;
+      }
+      window.showToast?.("Løpet er knyttet til situasjonen");
+      renderPathDetail(path);
+    });
     document.querySelector("[data-save-day-reflection]")?.addEventListener("click", () => {
       const dayNo = Number(/** @type {HTMLElement|null} */ (document.querySelector("[data-save-day-reflection]"))?.dataset.saveDayReflection || currentDay);
       const reflection = String(/** @type {HTMLTextAreaElement|null} */ (document.getElementById("psychologyRoomDayReflection"))?.value || "").trim();
