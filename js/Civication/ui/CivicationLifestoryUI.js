@@ -615,7 +615,7 @@
       ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
       ["meter", "Psyke " + m.psyke],
       ["meter", "Energi " + m.energi],
-      ["pc", m.penger + " PC"]
+      ["meter", "Fortellingsøkonomi " + m.penger]
     ];
     header.textContent = "";
     chips.map(function (chip) {
