@@ -1,0 +1,25 @@
+name: Black Box portrait source research
+on:
+  pull_request:
+    branches: [main]
+    paths: ['.github/workflows/black-box-portrait-research.yml']
+permissions:
+  contents: read
+jobs:
+  candidates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run people:images:candidates -- --ids=inger_buresund --limit=1 --max-candidates-per-person=5
+      - run: cat data/people/people_image_candidates.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: black-box-portrait-candidates
+          path: |
+            data/people/people_image_candidates.json
+            reports/people-image*
