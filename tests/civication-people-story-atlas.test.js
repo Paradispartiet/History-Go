@@ -116,3 +116,32 @@ test('Six example People IDs and place links exist but are not approved scene pe
     assert.equal(canonical.name, p.name, p.id);
   }
 });
+
+test('Six differentiated People story routes preserve canonical identity and policy boundary', () => {
+  const casting = read('data/Civication/lifestory/editorial/peopleScenarioCandidatesV1.json');
+  const roleScopes = new Set(base.symposium.rollebroer.map(x => x.role_scope));
+  const validTypes = new Set(crosswalk.contemporaryTypes.map(x => x.id));
+  assert.equal(casting.status, 'editorial_only_policy_pending');
+  assert.equal(casting.candidates.length, 6);
+  assert.equal(new Set(casting.candidates.map(x => x.canonical_person_id)).size, 6);
+  assert.equal(new Set(casting.candidates.map(x => x.id)).size, 6);
+  assert.equal(new Set(casting.candidates.map(x => x.synopsis_title)).size, 6);
+  for (const candidate of casting.candidates) {
+    const canonical = peopleById.get(candidate.canonical_person_id);
+    assert.ok(canonical, candidate.id);
+    assert.equal(candidate.canonical_person_name, canonical.name);
+    assert.equal(candidate.canonical_place_id, canonical.placeId);
+    assert.equal(candidate.verified_people_description, canonical.desc);
+    assert.ok(roleScopes.has(candidate.role_scope), candidate.id);
+    assert.equal(candidate.status, 'authoring_candidate_not_runtime');
+    assert.equal(candidate.real_person_actor_mode, 'historical_knowledge_reference_only_until_policy_approved');
+    assert.ok(candidate.choice_candidates.length >= 2 && candidate.beat_proposals.length >= 3);
+    assert.ok(candidate.delayed_effect_design && candidate.symposium_evidence_design);
+    for (const storyId of candidate.contemporary_story_ids) assert.ok(validTypes.has(storyId), candidate.id);
+  }
+  const bugge = casting.candidates.find(x => x.canonical_person_id === 'bugge_wesseltoft');
+  const mari = casting.candidates.find(x => x.canonical_person_id === 'mari_boine');
+  assert.equal(bugge.role_scope, mari.role_scope);
+  assert.notEqual(bugge.player_centered_conflict, mari.player_centered_conflict);
+  assert.notDeepEqual(bugge.choice_candidates, mari.choice_candidates);
+});
