@@ -1,0 +1,641 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "sideprosjekt_etter_miras_samtale",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "tittel": "Lea: Et samarbeid eller et vennskap?",
+  "sisteDag": 25,
+  "hovedtraad": "lea_etter_miras_samtale",
+  "threads": [
+    {
+      "id": "lea_etter_miras_samtale",
+      "tittel": "Lea: Et samarbeid eller et vennskap?",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Tidligere beslutninger setter lojalitet, grenser og tillit i spill mellom personene."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_relasjon_lea_mira_mira_direkte",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et bilde av et «team»",
+      "tekst": "Mira fikk tidslinjen og valgte å skrive direkte til Lea. Nå vil en frivillig omtale dem som team i en presentasjon, på grunnlag av et bilde fra samtalen deres.",
+      "valg": [
+        {
+          "id": "personlig",
+          "tekst": "La Lea møte Mira uten arbeidsagenda",
+          "konsekvensTekst": "Begge får anledning til å være venner uten program eller bilder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "personlig"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "faglig",
+          "tekst": "Spør forsiktig om Mira er interessert i ideen",
+          "konsekvensTekst": "Mira er nysgjerrig, men sier uttrykkelig at det ikke er et løfte om musikk.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "faglig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "mira",
+          "ensemble_mira_tekst_21_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_mira_mira_skille",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "To forskjellige spor",
+      "tekst": "Mira fikk tidslinjen, og de holdt musikken adskilt fra ideen. En bekjent omtaler dem likevel som samarbeidspartnere. Lea vil ikke avvise et vennskap hun gjerne vil beholde.",
+      "valg": [
+        {
+          "id": "personlig",
+          "tekst": "La Lea møte Mira uten arbeidsagenda",
+          "konsekvensTekst": "Begge får anledning til å være venner uten program eller bilder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "personlig"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "faglig",
+          "tekst": "Spør forsiktig om Mira er interessert i ideen",
+          "konsekvensTekst": "Mira er nysgjerrig, men sier uttrykkelig at det ikke er et løfte om musikk.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "faglig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "mira",
+          "ensemble_mira_tekst_21_retning": "skille"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_mira_lea_direkte",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En privat samtale blir et forslag",
+      "tekst": "Lea fikk anledning til å forklare ideen, og hun og Mira tok direkte kontakt. En frivillig spør om en felles framvisning. Det var ikke formålet med samtalen.",
+      "valg": [
+        {
+          "id": "personlig",
+          "tekst": "La Lea møte Mira uten arbeidsagenda",
+          "konsekvensTekst": "Begge får anledning til å være venner uten program eller bilder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "personlig"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "faglig",
+          "tekst": "Spør forsiktig om Mira er interessert i ideen",
+          "konsekvensTekst": "Mira er nysgjerrig, men sier uttrykkelig at det ikke er et løfte om musikk.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "faglig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "lea",
+          "ensemble_mira_tekst_21_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_mira_lea_skille",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En kaffe uten agenda",
+      "tekst": "Lea forklarte ideen, mens musikken ble holdt utenfor. Mira foreslår å møtes på kafé. Lea er redd for å virke uambisiøs dersom hun lar prosjektet ligge.",
+      "valg": [
+        {
+          "id": "personlig",
+          "tekst": "La Lea møte Mira uten arbeidsagenda",
+          "konsekvensTekst": "Begge får anledning til å være venner uten program eller bilder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "personlig"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "faglig",
+          "tekst": "Spør forsiktig om Mira er interessert i ideen",
+          "konsekvensTekst": "Mira er nysgjerrig, men sier uttrykkelig at det ikke er et løfte om musikk.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_23_retning": "faglig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "lea",
+          "ensemble_mira_tekst_21_retning": "skille"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_lea_mira_personlig",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En kveld som ikke skal annonseres",
+      "tekst": "Lea og Mira snakker om bøker, arbeid og hverdag. Neste dag ber en frivillig om å dele et bilde fra kaféen som reklame for prosjektet.",
+      "valg": [
+        {
+          "id": "relasjon",
+          "tekst": "La Lea beskytte den private kontakten",
+          "konsekvensTekst": "Hun sier at møtet ikke var en lansering, uten å gjengi det personlige de snakket om.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_24_retning": "relasjon"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "adskilt",
+          "tekst": "La dem fortsette hver sin vei faglig",
+          "konsekvensTekst": "Lea lar være å legge fram flere prosjektforespørsler. Mira kan fortsatt være venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_24_retning": "adskilt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "personlig"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_lea_mira_faglig",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei som kunne vært personlig",
+      "tekst": "Mira vil gjerne lytte, men ikke levere musikk. Lea kjenner skuffelsen før hun husker at hun selv ba om interesse, ikke et oppdrag.",
+      "valg": [
+        {
+          "id": "relasjon",
+          "tekst": "La Lea beskytte den private kontakten",
+          "konsekvensTekst": "Hun sier at møtet ikke var en lansering, uten å gjengi det personlige de snakket om.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_24_retning": "relasjon"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "adskilt",
+          "tekst": "La dem fortsette hver sin vei faglig",
+          "konsekvensTekst": "Lea lar være å legge fram flere prosjektforespørsler. Mira kan fortsatt være venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_24_retning": "adskilt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "faglig"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_mira_personlig_relasjon",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Bildet som ikke ble delt",
+      "tekst": "Lea ber om at kafébildet ikke brukes. Mira takker. De avtaler ingen produksjon, men kan fortsette å bli kjent.",
+      "valg": [
+        {
+          "id": "vennskap",
+          "tekst": "Behold kontakten på deres egne premisser",
+          "konsekvensTekst": "Ingen registreres som kunde, deltaker eller oppdragstaker.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "personlig_relasjon_vennskap",
+              "relasjon_lea_mira_25_personlig_relasjon": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egenvei",
+          "tekst": "Godta at de vil forskjellige ting",
+          "konsekvensTekst": "Uenighet om prosjektet trenger ikke være uenighet om personen.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "personlig_relasjon_egenvei",
+              "relasjon_lea_mira_25_personlig_relasjon": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "personlig",
+          "relasjon_lea_mira_24_retning": "relasjon"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_mira_personlig_adskilt",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En bok i stedet for en prototype",
+      "tekst": "Mira sender Lea tips om en bok. Ingen av dem spør hva kontakten skal bli til.",
+      "valg": [
+        {
+          "id": "vennskap",
+          "tekst": "Behold kontakten på deres egne premisser",
+          "konsekvensTekst": "Ingen registreres som kunde, deltaker eller oppdragstaker.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "personlig_adskilt_vennskap",
+              "relasjon_lea_mira_25_personlig_adskilt": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egenvei",
+          "tekst": "Godta at de vil forskjellige ting",
+          "konsekvensTekst": "Uenighet om prosjektet trenger ikke være uenighet om personen.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "personlig_adskilt_egenvei",
+              "relasjon_lea_mira_25_personlig_adskilt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "personlig",
+          "relasjon_lea_mira_24_retning": "adskilt"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_mira_faglig_relasjon",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei som ikke avsluttet vennskapet",
+      "tekst": "Lea innrømmer at hun tok avslaget litt personlig. Mira sier at hun gjerne kan høre om arbeidet uten å måtte bidra. Samtalen blir lettere.",
+      "valg": [
+        {
+          "id": "vennskap",
+          "tekst": "Behold kontakten på deres egne premisser",
+          "konsekvensTekst": "Ingen registreres som kunde, deltaker eller oppdragstaker.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "faglig_relasjon_vennskap",
+              "relasjon_lea_mira_25_faglig_relasjon": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egenvei",
+          "tekst": "Godta at de vil forskjellige ting",
+          "konsekvensTekst": "Uenighet om prosjektet trenger ikke være uenighet om personen.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "faglig_relasjon_egenvei",
+              "relasjon_lea_mira_25_faglig_relasjon": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "faglig",
+          "relasjon_lea_mira_24_retning": "relasjon"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_mira_faglig_adskilt",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ideen fortsetter uten lyd",
+      "tekst": "Lea arbeider på egen hånd. Mira blir ikke bedt om vurderinger. De hilser varmt når de møtes, uten avtaler.",
+      "valg": [
+        {
+          "id": "vennskap",
+          "tekst": "Behold kontakten på deres egne premisser",
+          "konsekvensTekst": "Ingen registreres som kunde, deltaker eller oppdragstaker.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "faglig_adskilt_vennskap",
+              "relasjon_lea_mira_25_faglig_adskilt": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egenvei",
+          "tekst": "Godta at de vil forskjellige ting",
+          "konsekvensTekst": "Uenighet om prosjektet trenger ikke være uenighet om personen.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_valg": "faglig_adskilt_egenvei",
+              "relasjon_lea_mira_25_faglig_adskilt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_mira_23_retning": "faglig",
+          "relasjon_lea_mira_24_retning": "adskilt"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_mira_slutt",
+      "threadId": "lea_etter_miras_samtale",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva som ble annerledes",
+      "tekst": "Tidligere valg og nye grenser er bevart i historieboka. Personene kan ha ulike oppfatninger uten at én scene avgjør framtiden for dem.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Ingen avtale, spillejobb, betaling eller møteplikt er opprettet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_mira_25_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_etter_miras_samtale": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "relasjon_lea_mira_25_personlig_relasjon",
+      "navn": "Privat rom",
+      "tekst": "Lea ber om at kafébildet ikke brukes. Mira takker. De avtaler ingen produksjon, men kan fortsette å bli kjent.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_mira_25_personlig_relasjon": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_mira_25_personlig_adskilt",
+      "navn": "Vennskap uten agenda",
+      "tekst": "Mira sender Lea tips om en bok. Ingen av dem spør hva kontakten skal bli til.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_mira_25_personlig_adskilt": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_mira_25_faglig_relasjon",
+      "navn": "Et tydelig nei",
+      "tekst": "Lea innrømmer at hun tok avslaget litt personlig. Mira sier at hun gjerne kan høre om arbeidet uten å måtte bidra. Samtalen blir lettere.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_mira_25_faglig_relasjon": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_mira_25_faglig_adskilt",
+      "navn": "Separate planer",
+      "tekst": "Lea arbeider på egen hånd. Mira blir ikke bedt om vurderinger. De hilser varmt når de møtes, uten avtaler.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_mira_25_faglig_adskilt": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_mira_standard",
+      "navn": "Et åpent forhold",
+      "tekst": "Historien forblir åpen uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
