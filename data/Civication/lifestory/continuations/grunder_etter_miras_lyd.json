@@ -1,0 +1,641 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "grunder_etter_miras_lyd",
+  "role_scope": "naeringsliv_grunderdrommer",
+  "tittel": "Lea: Ideen uten lånt musikk",
+  "sisteDag": 25,
+  "hovedtraad": "lea_etter_miras_lyd",
+  "threads": [
+    {
+      "id": "lea_etter_miras_lyd",
+      "tittel": "Lea: Ideen uten lånt musikk",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Tidligere beslutninger setter lojalitet, grenser og tillit i spill mellom personene."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_relasjon_lea_lyd_stans_slett",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Demoen som ikke fantes",
+      "tekst": "Arvid stoppet avspillingen og ba den frivillige slutte å dele filen. Lea får likevel meldingen «Så flott musikken deres var!». Mira har aldri laget musikk for prosjektet.",
+      "valg": [
+        {
+          "id": "aerlig",
+          "tekst": "La Lea beskrive ideen uten Miras lyd",
+          "konsekvensTekst": "Hun skriver hva hun faktisk forsøker å undersøke, ikke en påstått demo eller avtale.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "aerlig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "utsett",
+          "tekst": "Utsett framvisningen til eget grunnlag er klart",
+          "konsekvensTekst": "Lea kan miste muligheten, men slipper å bruke Miras private opptak.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "utsett"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "stans",
+          "ensemble_arvid_lyd_21_retning": "slett"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_lyd_stans_begrens",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En lyd uten oppdrag",
+      "tekst": "Arvid stoppet avspillingen, og Mira valgte selv hvordan hun ville følge opp. Lea får spørsmål om å vise ideen med samme klipp, som hun ikke har rett til å bruke.",
+      "valg": [
+        {
+          "id": "aerlig",
+          "tekst": "La Lea beskrive ideen uten Miras lyd",
+          "konsekvensTekst": "Hun skriver hva hun faktisk forsøker å undersøke, ikke en påstått demo eller avtale.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "aerlig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "utsett",
+          "tekst": "Utsett framvisningen til eget grunnlag er klart",
+          "konsekvensTekst": "Lea kan miste muligheten, men slipper å bruke Miras private opptak.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "utsett"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "stans",
+          "ensemble_arvid_lyd_21_retning": "begrens"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_lyd_sporr_slett",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et spørsmål som ikke var et ja",
+      "tekst": "Arvid spurte Mira og fikk vite at skissen var privat. Lenken ble bedt fjernet. En bekjent har likevel skrevet «lydproduksjon bekreftet» i et møteutkast.",
+      "valg": [
+        {
+          "id": "aerlig",
+          "tekst": "La Lea beskrive ideen uten Miras lyd",
+          "konsekvensTekst": "Hun skriver hva hun faktisk forsøker å undersøke, ikke en påstått demo eller avtale.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "aerlig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "utsett",
+          "tekst": "Utsett framvisningen til eget grunnlag er klart",
+          "konsekvensTekst": "Lea kan miste muligheten, men slipper å bruke Miras private opptak.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "utsett"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "sporr",
+          "ensemble_arvid_lyd_21_retning": "slett"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_lea_lyd_sporr_begrens",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Presentasjonen andre fant opp",
+      "tekst": "Mira avklarte at opptaket var privat. Lea er invitert til en samtale om ideen, men arrangøren forventer en lydillustrasjon hun ikke har.",
+      "valg": [
+        {
+          "id": "aerlig",
+          "tekst": "La Lea beskrive ideen uten Miras lyd",
+          "konsekvensTekst": "Hun skriver hva hun faktisk forsøker å undersøke, ikke en påstått demo eller avtale.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "aerlig"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "utsett",
+          "tekst": "Utsett framvisningen til eget grunnlag er klart",
+          "konsekvensTekst": "Lea kan miste muligheten, men slipper å bruke Miras private opptak.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_23_retning": "utsett"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "sporr",
+          "ensemble_arvid_lyd_21_retning": "begrens"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_lea_lyd_aerlig",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En idé uten imponerende innslag",
+      "tekst": "Noen spør hvorfor det ikke finnes lyd. Lea må tåle at prosjektets begrensninger er synlige.",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Fortell Mira hva andre trodde, uten å be om hjelp",
+          "konsekvensTekst": "Lea bekrefter at feilen er rettet og at Mira ikke er del av prosjektet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_24_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "selv",
+          "tekst": "Arbeid videre kun med egne dokumenterte opplysninger",
+          "konsekvensTekst": "Lea skiller mellom spørsmål, planer og resultater hun faktisk har.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_24_retning": "selv"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "aerlig"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_lea_lyd_utsett",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei som virket lite ambisiøst",
+      "tekst": "Bekjenten svarer at det kanskje ikke blir en ny anledning. Lea føler presset om å sende «bare et lite klipp».",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Fortell Mira hva andre trodde, uten å be om hjelp",
+          "konsekvensTekst": "Lea bekrefter at feilen er rettet og at Mira ikke er del av prosjektet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_24_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "selv",
+          "tekst": "Arbeid videre kun med egne dokumenterte opplysninger",
+          "konsekvensTekst": "Lea skiller mellom spørsmål, planer og resultater hun faktisk har.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_24_retning": "selv"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "utsett"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_lyd_aerlig_mira",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En idé på egne bein",
+      "tekst": "Lea har fortalt Mira om forvekslingen. Hun får to spørsmål, ingen bestilling. Mira vil gjerne være venn uten å være lydleverandør.",
+      "valg": [
+        {
+          "id": "rolig",
+          "tekst": "Bevar vennskapet med Mira uten nye lydforespørsler",
+          "konsekvensTekst": "Begge får arbeide videre på sine premisser.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "aerlig_mira_rolig",
+              "relasjon_lea_lyd_25_aerlig_mira": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fakta",
+          "tekst": "Velg dokumentert framdrift framfor en flott demo",
+          "konsekvensTekst": "Ingen kunde, finansiering eller avtale blir registrert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "aerlig_mira_fakta",
+              "relasjon_lea_lyd_25_aerlig_mira": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "aerlig",
+          "relasjon_lea_lyd_24_retning": "mira"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_lyd_aerlig_selv",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En konkret tilbakemelding",
+      "tekst": "Lea skriver ned hva som bør undersøkes videre. Den gamle lydskissen nevnes ikke i presentasjonen.",
+      "valg": [
+        {
+          "id": "rolig",
+          "tekst": "Bevar vennskapet med Mira uten nye lydforespørsler",
+          "konsekvensTekst": "Begge får arbeide videre på sine premisser.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "aerlig_selv_rolig",
+              "relasjon_lea_lyd_25_aerlig_selv": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fakta",
+          "tekst": "Velg dokumentert framdrift framfor en flott demo",
+          "konsekvensTekst": "Ingen kunde, finansiering eller avtale blir registrert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "aerlig_selv_fakta",
+              "relasjon_lea_lyd_25_aerlig_selv": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "aerlig",
+          "relasjon_lea_lyd_24_retning": "selv"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_lyd_utsett_mira",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som ble reddet ved å vente",
+      "tekst": "Lea forklarer Mira hvorfor hun utsatte. Mira var redd for å bli brukt, men er lettet over at Lea ikke forlangte musikken.",
+      "valg": [
+        {
+          "id": "rolig",
+          "tekst": "Bevar vennskapet med Mira uten nye lydforespørsler",
+          "konsekvensTekst": "Begge får arbeide videre på sine premisser.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "utsett_mira_rolig",
+              "relasjon_lea_lyd_25_utsett_mira": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fakta",
+          "tekst": "Velg dokumentert framdrift framfor en flott demo",
+          "konsekvensTekst": "Ingen kunde, finansiering eller avtale blir registrert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "utsett_mira_fakta",
+              "relasjon_lea_lyd_25_utsett_mira": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "utsett",
+          "relasjon_lea_lyd_24_retning": "mira"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_lyd_utsett_selv",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Å tåle å ikke være klar",
+      "tekst": "Lea lager en liste over hva som må være på plass før hun kan vise noe. En mulighet er kanskje borte, men prosjektet hviler på hennes eget arbeid.",
+      "valg": [
+        {
+          "id": "rolig",
+          "tekst": "Bevar vennskapet med Mira uten nye lydforespørsler",
+          "konsekvensTekst": "Begge får arbeide videre på sine premisser.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "utsett_selv_rolig",
+              "relasjon_lea_lyd_25_utsett_selv": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fakta",
+          "tekst": "Velg dokumentert framdrift framfor en flott demo",
+          "konsekvensTekst": "Ingen kunde, finansiering eller avtale blir registrert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_valg": "utsett_selv_fakta",
+              "relasjon_lea_lyd_25_utsett_selv": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_lea_lyd_23_retning": "utsett",
+          "relasjon_lea_lyd_24_retning": "selv"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_lea_lyd_slutt",
+      "threadId": "lea_etter_miras_lyd",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva som ble annerledes",
+      "tekst": "Tidligere valg og nye grenser er bevart i historieboka. Personene kan ha ulike oppfatninger uten at én scene avgjør framtiden for dem.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Ingen avtale, spillejobb, betaling eller møteplikt er opprettet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_lea_lyd_25_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_etter_miras_lyd": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "relasjon_lea_lyd_25_aerlig_mira",
+      "navn": "En idé på egne bein",
+      "tekst": "Lea har fortalt Mira om forvekslingen. Hun får to spørsmål, ingen bestilling. Mira vil gjerne være venn uten å være lydleverandør.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_lyd_25_aerlig_mira": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_lyd_25_aerlig_selv",
+      "navn": "Nøktern videreføring",
+      "tekst": "Lea skriver ned hva som bør undersøkes videre. Den gamle lydskissen nevnes ikke i presentasjonen.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_lyd_25_aerlig_selv": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_lyd_25_utsett_mira",
+      "navn": "Tillit viktigere enn demo",
+      "tekst": "Lea forklarer Mira hvorfor hun utsatte. Mira var redd for å bli brukt, men er lettet over at Lea ikke forlangte musikken.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_lyd_25_utsett_mira": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_lyd_25_utsett_selv",
+      "navn": "En utsettelse som kostet",
+      "tekst": "Lea lager en liste over hva som må være på plass før hun kan vise noe. En mulighet er kanskje borte, men prosjektet hviler på hennes eget arbeid.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_lea_lyd_25_utsett_selv": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_lea_lyd_standard",
+      "navn": "Et åpent forhold",
+      "tekst": "Historien forblir åpen uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
