@@ -1,0 +1,629 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "lea_etter_arvids_avstand",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "Lea: Å være gjest uten å være ansvarlig",
+  "sisteDag": 28,
+  "hovedtraad": "lea_og_den_nye_invitasjonen",
+  "threads": [
+    {
+      "id": "lea_og_den_nye_invitasjonen",
+      "tittel": "Lea: Å være gjest uten å være ansvarlig",
+      "type": "privatliv",
+      "startDag": 26,
+      "konflikt": "En ny invitasjon fra arrangørgruppen prøver grensene Lea og Arvid har etablert"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d26_felles_lea_avstand_ansvar_naer",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En invitasjon til et annet bord",
+      "tekst": "Arvid åpnet for vennskap uten tjenester og Lea svarte vennlig, men forsiktig. Nå inviterer en ny koordinator henne til samlingen bare som gjest. Arvid står ikke som avsender; Lea lurer på om invitasjonen likevel innebærer forventninger.",
+      "valg": [
+        {
+          "id": "vurdere",
+          "tekst": "La Lea undersøke hvem som faktisk har ansvar på samlingen",
+          "konsekvensTekst": "Hun spør koordinatoren om arrangementets praktiske kontaktperson, uten å melde seg på oppgaver.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "vurdere"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hjem",
+          "tekst": "Avslå invitasjonen høflig uten ytterligere forklaring",
+          "konsekvensTekst": "Lea bruker kvelden på eget arbeid. Hun behøver ikke begrunne overfor Arvid hvorfor hun ikke kommer.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "hjem"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_grense_25_result": "ansvar_naer"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_lea_avstand_ansvar_distanse",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et ja ingen fikk",
+      "tekst": "Arvid tok ansvar, men lot Lea få avstand. En ny koordinator sender en invitasjon til samlingen, uten arbeidsoppgaver. Lea vil ikke møte opp bare for å demonstrere at hun ikke er sint.",
+      "valg": [
+        {
+          "id": "vurdere",
+          "tekst": "La Lea undersøke hvem som faktisk har ansvar på samlingen",
+          "konsekvensTekst": "Hun spør koordinatoren om arrangementets praktiske kontaktperson, uten å melde seg på oppgaver.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "vurdere"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hjem",
+          "tekst": "Avslå invitasjonen høflig uten ytterligere forklaring",
+          "konsekvensTekst": "Lea bruker kvelden på eget arbeid. Hun behøver ikke begrunne overfor Arvid hvorfor hun ikke kommer.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "hjem"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_grense_25_result": "ansvar_distanse"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_lea_avstand_vern_naer",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et vennlig ord uten løfte",
+      "tekst": "Arvid beskyttet Leas privatliv og ønsket en stillere kontakt. En ny koordinator spør om hun vil komme på en åpen kveld som gjest. Lea kjenner savnet etter miljøet, men ikke etter gratisarbeidet.",
+      "valg": [
+        {
+          "id": "vurdere",
+          "tekst": "La Lea undersøke hvem som faktisk har ansvar på samlingen",
+          "konsekvensTekst": "Hun spør koordinatoren om arrangementets praktiske kontaktperson, uten å melde seg på oppgaver.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "vurdere"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hjem",
+          "tekst": "Avslå invitasjonen høflig uten ytterligere forklaring",
+          "konsekvensTekst": "Lea bruker kvelden på eget arbeid. Hun behøver ikke begrunne overfor Arvid hvorfor hun ikke kommer.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "hjem"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_grense_25_result": "vern_naer"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_lea_avstand_vern_distanse",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ingen flere samtaler akkurat nå",
+      "tekst": "Arvid holdt kontakten begrenset og Lea ba om fred. Koordinatoren sender en invitasjon med en enkel setning: «Du er velkommen, og vi forventer ingenting». Lea bestemmer om det er nok for henne.",
+      "valg": [
+        {
+          "id": "vurdere",
+          "tekst": "La Lea undersøke hvem som faktisk har ansvar på samlingen",
+          "konsekvensTekst": "Hun spør koordinatoren om arrangementets praktiske kontaktperson, uten å melde seg på oppgaver.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "vurdere"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hjem",
+          "tekst": "Avslå invitasjonen høflig uten ytterligere forklaring",
+          "konsekvensTekst": "Lea bruker kvelden på eget arbeid. Hun behøver ikke begrunne overfor Arvid hvorfor hun ikke kommer.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_26_retning": "hjem"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_grense_25_result": "vern_distanse"
+        }
+      }
+    },
+    {
+      "id": "d27_felles_lea_avstand_vurdere",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 27,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "vurdere",
+      "tekst": "Rollen som ingen har satt navn på",
+      "valg": [
+        {
+          "id": "klart",
+          "tekst": "Gi én tydelig beskjed om hva hun kan og ikke kan gjøre",
+          "konsekvensTekst": "Lea kan være gjest hvis hun ønsker, men ansvar for mottak og program må ligge hos arrangøren.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_27_retning": "klart"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "fred",
+          "tekst": "La avgjørelsen ligge uten videre korrespondanse",
+          "konsekvensTekst": "Lea overlater arrangementet til dem som har sagt ja til å drive det, og kjenner lettelse blandet med savn.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_27_retning": "fred"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "vurdere"
+        }
+      }
+    },
+    {
+      "id": "d27_felles_lea_avstand_hjem",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 27,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "hjem",
+      "tekst": "Et avslag som blir respektert",
+      "valg": [
+        {
+          "id": "klart",
+          "tekst": "Gi én tydelig beskjed om hva hun kan og ikke kan gjøre",
+          "konsekvensTekst": "Lea kan være gjest hvis hun ønsker, men ansvar for mottak og program må ligge hos arrangøren.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_27_retning": "klart"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "fred",
+          "tekst": "La avgjørelsen ligge uten videre korrespondanse",
+          "konsekvensTekst": "Lea overlater arrangementet til dem som har sagt ja til å drive det, og kjenner lettelse blandet med savn.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_27_retning": "fred"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "hjem"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_lea_avstand_vurdere_klart",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "vurdere",
+      "tekst": "klart",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Behold muligheten til å være gjest senere",
+          "konsekvensTekst": "Lea gir ingen generell tillatelse til oppgaver. En invitasjon må stå på sine egne vilkår hver gang.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "vurdere_klart_fortsett",
+              "felles_lea_avstand_28_vurdere_klart": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Skill videre frilansarbeid fullstendig fra miljøets forventninger",
+          "konsekvensTekst": "Lea lar sosiale relasjoner og faglige oppdrag være ulike ting, også dersom hun sier ja til noe senere.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "vurdere_klart_skille",
+              "felles_lea_avstand_28_vurdere_klart": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "vurdere",
+          "felles_lea_avstand_27_retning": "klart"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_lea_avstand_vurdere_fred",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "vurdere",
+      "tekst": "fred",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Behold muligheten til å være gjest senere",
+          "konsekvensTekst": "Lea gir ingen generell tillatelse til oppgaver. En invitasjon må stå på sine egne vilkår hver gang.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "vurdere_fred_fortsett",
+              "felles_lea_avstand_28_vurdere_fred": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Skill videre frilansarbeid fullstendig fra miljøets forventninger",
+          "konsekvensTekst": "Lea lar sosiale relasjoner og faglige oppdrag være ulike ting, også dersom hun sier ja til noe senere.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "vurdere_fred_skille",
+              "felles_lea_avstand_28_vurdere_fred": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "vurdere",
+          "felles_lea_avstand_27_retning": "fred"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_lea_avstand_hjem_klart",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "hjem",
+      "tekst": "klart",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Behold muligheten til å være gjest senere",
+          "konsekvensTekst": "Lea gir ingen generell tillatelse til oppgaver. En invitasjon må stå på sine egne vilkår hver gang.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "hjem_klart_fortsett",
+              "felles_lea_avstand_28_hjem_klart": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Skill videre frilansarbeid fullstendig fra miljøets forventninger",
+          "konsekvensTekst": "Lea lar sosiale relasjoner og faglige oppdrag være ulike ting, også dersom hun sier ja til noe senere.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "hjem_klart_skille",
+              "felles_lea_avstand_28_hjem_klart": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "hjem",
+          "felles_lea_avstand_27_retning": "klart"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_lea_avstand_hjem_fred",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "hjem",
+      "tekst": "fred",
+      "valg": [
+        {
+          "id": "fortsett",
+          "tekst": "Behold muligheten til å være gjest senere",
+          "konsekvensTekst": "Lea gir ingen generell tillatelse til oppgaver. En invitasjon må stå på sine egne vilkår hver gang.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "hjem_fred_fortsett",
+              "felles_lea_avstand_28_hjem_fred": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Skill videre frilansarbeid fullstendig fra miljøets forventninger",
+          "konsekvensTekst": "Lea lar sosiale relasjoner og faglige oppdrag være ulike ting, også dersom hun sier ja til noe senere.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_result": "hjem_fred_skille",
+              "felles_lea_avstand_28_hjem_fred": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_lea_avstand_26_retning": "hjem",
+          "felles_lea_avstand_27_retning": "fred"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_lea_avstand_slutt",
+      "threadId": "lea_og_den_nye_invitasjonen",
+      "dag": 28,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som nå er annerledes",
+      "tekst": "Valgene dine har endret praktiske planer og personlige relasjoner. Ingen enkelt samtale avgjør hvem de andre er, eller forplikter dem til en ny jobb, konsert eller tjeneste.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapittelet",
+          "konsekvensTekst": "Kapittelet er lagt i historieboka med valgene og relasjonsendringene.",
+          "effekter": {
+            "flagg": {
+              "felles_lea_avstand_28_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_og_den_nye_invitasjonen": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "felles_lea_avstand_28_vurdere_klart",
+      "navn": "En kveld som var hennes",
+      "tekst": "klart",
+      "kriterier": {
+        "flagg": {
+          "felles_lea_avstand_28_vurdere_klart": true
+        }
+      }
+    },
+    {
+      "id": "felles_lea_avstand_28_vurdere_fred",
+      "navn": "Invitasjonen uten svar",
+      "tekst": "fred",
+      "kriterier": {
+        "flagg": {
+          "felles_lea_avstand_28_vurdere_fred": true
+        }
+      }
+    },
+    {
+      "id": "felles_lea_avstand_28_hjem_klart",
+      "navn": "Et nei uten brudd",
+      "tekst": "klart",
+      "kriterier": {
+        "flagg": {
+          "felles_lea_avstand_28_hjem_klart": true
+        }
+      }
+    },
+    {
+      "id": "felles_lea_avstand_28_hjem_fred",
+      "navn": "Fellesskap på avstand",
+      "tekst": "fred",
+      "kriterier": {
+        "flagg": {
+          "felles_lea_avstand_28_hjem_fred": true
+        }
+      }
+    },
+    {
+      "id": "felles_lea_avstand_28_standard",
+      "navn": "Veien videre",
+      "tekst": "Tidligere beslutninger er bevart uten automatisk godkjenning eller ny forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
