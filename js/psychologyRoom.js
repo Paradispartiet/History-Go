@@ -1190,10 +1190,16 @@
     });
   }
 
-  function renderPathsList() {
+  function renderPathsList(workbenchEntryId = null) {
     setActiveSection("practice");
     const paths = dataCache?.paths || [];
-    setContent(shell(`${backButton()}<section class="psychology-room-section"><h3>7-dagersløp</h3><p class="psychology-room-muted">Start et kort selvhjelpsløp, fullfør én dag om gangen og få reward først når hele løpet er fullført.</p></section><section class="psychology-room-list">${paths.map((path) => {
+    const selectedEntry = getWorkbenchEntries().find((item) => item.id === workbenchEntryId);
+    const contextHtml = selectedEntry ?
+      '<section class="psychology-room-path-link"><span class="psychology-room-note-meta">DIN SITUASJON</span><strong>' +
+        escapeHtml(selectedEntry.situation.slice(0, 220)) +
+        '</strong><p>Velg selv hvilket av de seks løpene du ønsker å knytte til denne situasjonen.</p>' +
+        '<button type="button" class="psychology-room-back" data-psych-return-workbench="1">Tilbake til situasjonen</button></section>' : "";
+    setContent(shell(`${backButton()}${contextHtml}<section class="psychology-room-section"><h3>7-dagersløp</h3><p class="psychology-room-muted">Start et kort selvhjelpsløp, fullfør én dag om gangen og få reward først når hele løpet er fullført.</p></section><section class="psychology-room-list">${paths.map((path) => {
       const progress = getPathProgress(path.id);
       const completed = progress?.completed_days?.length || 0;
       const total = Array.isArray(path.days) ? path.days.length : Number(path.duration_days || 7);
@@ -1201,10 +1207,13 @@
       return `<button class="psychology-room-list-item psychology-room-card" type="button" data-path-id="${escapeHtml(path.id)}"><strong>${escapeHtml(path.title)}</strong><span>${escapeHtml(path.description || "")}</span>${renderTags([`${total} dager`, status, ...(path.focus || [])])}</button>`;
     }).join("") || `<p class="psychology-room-muted">Ingen løp funnet.</p>`}</section>`));
     bindBack();
+    document.querySelector("[data-psych-return-workbench]")?.addEventListener("click", () => {
+      if (selectedEntry) renderWorkbenchEntry(selectedEntry.id);
+    });
     document.querySelectorAll("[data-path-id]").forEach((/** @type {HTMLElement} */ button) => {
       button.addEventListener("click", () => {
         const path = findById(paths, button.dataset.pathId);
-        if (path) renderPathDetail(path);
+        if (path) renderPathDetail(path, selectedEntry?.id || null);
       });
     });
   }
