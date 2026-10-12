@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | Spillerens faktiske jobb eller livsposisjon | `data/Civication/lifestory/manifest.json`, career/life-position/Role World | Canonicales egne gater gjelder |
 | Hvilke People som finnes | `data/people/manifest.json` via `historyPeople_index.json` | Canonical historie, låsing etter History Go |
+| Seks individtilpassede People-ruter | [People-casting og relasjonsmatrise](CIVICATION_PEOPLE_CASTING_MATRIX_V1.md), [maskinlesbare kandidater](../data/Civication/lifestory/editorial/peopleScenarioCandidatesV1.json) | Konkret manusgrunnlag, ennå ikke interaktive NPC-er |
 | Hvilken historie som passer | [24 rolle- og People-synopsiser](CIVICATION_STORY_SYNOPSES_V1.md), [matrise](CIVICATION_ROLE_PEOPLE_STORY_MATRIX_V1.md) | Redaksjonell plan, ikke spillbarhetsbevis |
 | Hvor eksisterende scener og kapittel-ID-er ligger | [45-filers migreringsoversikt](CIVICATION_PEOPLE_STORY_MIGRATION_V1.md), [maskinlesbart ledger](../data/Civication/lifestory/editorial/storyProductionLedgerV1.json) | Eksisterende authored materiale, People-migrering ikke startet |
 | Hva Symposium kan dokumentere | [arkitektur og kontinuitetskrav](CIVICATION_PEOPLE_STORY_ARCHITECTURE_V1.md) | Designkrav, ikke ny state-eier |
