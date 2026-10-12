@@ -472,7 +472,7 @@
       + "<section class=\"civi-lifestory-summary\" aria-label=\"Dagsoppsummering\">"
       + "<div class=\"civi-lifestory-section-label\">Dagsoppsummering</div>"
       + "<h3>Dag " + escapeHtml(summary.dag) + " er over</h3>"
-      + (narrative ? "<p>" + escapeHtml(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
+      + (narrative ? "<p>" + escapeLiteral(narrative) + "</p>" : "<p class=\"muted\">Dagen er avsluttet og valgene dine er lagret i arkivet.</p>")
       + legacyArchiveNote(summary.valg)
       + stampHtml
       + "<h4>Meter-endringer siden morgenen</h4><div class=\"civi-lifestory-deltas\">" + (meterHtml || "<span class=\"muted\">Ingen målbare endringer.</span>") + "</div>"
@@ -541,7 +541,7 @@
     const plans = book.avtaler.map((a) => "<li>Dag " + escapeHtml(a.dag) + " · " + escapeHtml(viewPhaseName(a.fase)) + ": " + escapeHtml(a.tittel) + (a.sted ? " · " + escapeHtml(a.sted.navn) : "") + "</li>").join("");
     return "<section><details data-lifestory-symposium><summary>Historien så langt</summary>"
       + "<h4>" + escapeHtml(book.tittel) + "</h4>"
-      + (book.kapitler?.length ? "<h4>Avsluttede kapitler</h4><ul>" + book.kapitler.map((k) => "<li><strong>" + escapeHtml(k.tittel) + "</strong> · dag " + escapeHtml(k.fraDag) + "–" + escapeHtml(k.tilDag) + "<p>" + escapeHtml(k.ending.navn) + "</p><p>" + escapeHtml(k.ending.tekst) + "</p></li>").join("") + "</ul>" : "")
+      + (book.kapitler?.length ? "<h4>Avsluttede kapitler</h4><ul>" + book.kapitler.map((k) => "<li><strong>" + escapeLiteral(k.tittel) + "</strong> · dag " + escapeHtml(k.fraDag) + "–" + escapeHtml(k.tilDag) + "<p>" + escapeLiteral(k.ending.navn) + "</p><p>" + escapeLiteral(k.ending.tekst) + "</p></li>").join("") + "</ul>" : "")
       + (book.hovedtraad ? "<p>Tråden i forgrunnen: <strong>" + escapeHtml(book.hovedtraad.tittel) + "</strong></p>" : "")
       + (book.rollebro ? "<p>Videre rollekontekst: " + escapeHtml(book.rollebro.navn) + "</p>" : "")
       + (book.rollebroer?.length > 1 ? "<p>Mulige livsroller: " + book.rollebroer.map((b) => escapeHtml(b.navn)).join(" · ") + "</p>" : "")
