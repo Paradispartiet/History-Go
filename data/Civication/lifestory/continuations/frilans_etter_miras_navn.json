@@ -1,0 +1,505 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "frilans_etter_miras_navn",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "Leas ansvar for andres navn",
+  "sisteDag": 22,
+  "hovedtraad": "lea_etter_miras_navn",
+  "threads": [
+    {
+      "id": "lea_etter_miras_navn",
+      "tittel": "Leas ansvar for andres navn",
+      "type": "privatliv",
+      "startDag": 20,
+      "konflikt": "Lea vurderer sin egen plass i et utkast der Arvid har knyttet Miras navn til et program uten bestilling"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d20_ensemble_lea_navn_avklar_presiser",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et utkast som ble et eksempel",
+      "tekst": "Du forklarte Mira at invitasjonen ikke var en booking, og Arvid rettet den. Nå viser Lea fram et gammelt programutkast som eksempel på hvor lett en uferdig plan kan fremstå ferdig. Miras navn er fremdeles synlig i skjermbildet.",
+      "valg": [
+        {
+          "id": "anonym",
+          "tekst": "Be Lea lage et anonymisert eksempel uten navn",
+          "konsekvensTekst": "Lea skriver om prinsippet med fiktive roller i stedet for å dele Mira eller Arvids melding.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "anonym"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "samtykke",
+          "tekst": "Foreslå at Lea spør de involverte først",
+          "konsekvensTekst": "Lea spør om hun kan sitere hendelsen. Hun har ikke fått noe ja, og legger derfor publisering på vent.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "samtykke"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "avklar",
+          "samspill_mira19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_navn_avklar_stans",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar uten ny publisering",
+      "tekst": "Mira fikk vite at ingen spillejobb var bekreftet, og hun valgte selv videre kontakt. Lea spør om hun kan bruke denne saken i et frilansnotat om oppdragsvilkår. Mira har ikke sagt ja til å bli eksempel.",
+      "valg": [
+        {
+          "id": "anonym",
+          "tekst": "Be Lea lage et anonymisert eksempel uten navn",
+          "konsekvensTekst": "Lea skriver om prinsippet med fiktive roller i stedet for å dele Mira eller Arvids melding.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "anonym"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "samtykke",
+          "tekst": "Foreslå at Lea spør de involverte først",
+          "konsekvensTekst": "Lea spør om hun kan sitere hendelsen. Hun har ikke fått noe ja, og legger derfor publisering på vent.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "samtykke"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "avklar",
+          "samspill_mira19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_navn_skjerm_presiser",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Rettet hos Arvid, lagret hos Lea",
+      "tekst": "Du ba Arvid stoppe utkastet, og en rettelse ble sendt. Lea har allerede en kopi og spør om hun kan sende den til en mulig samarbeidspartner for å forklare hvordan forventninger oppstår.",
+      "valg": [
+        {
+          "id": "anonym",
+          "tekst": "Be Lea lage et anonymisert eksempel uten navn",
+          "konsekvensTekst": "Lea skriver om prinsippet med fiktive roller i stedet for å dele Mira eller Arvids melding.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "anonym"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "samtykke",
+          "tekst": "Foreslå at Lea spør de involverte først",
+          "konsekvensTekst": "Lea spør om hun kan sitere hendelsen. Hun har ikke fått noe ja, og legger derfor publisering på vent.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "samtykke"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "skjerm",
+          "samspill_mira19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_navn_skjerm_stans",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En gammel versjon i skrivebordsmappen",
+      "tekst": "Du forsøkte å stoppe delingen, og Mira beholdt retten til å svare selv. Lea finner den gamle invitasjonen i en mappe. Hun vil lage et privat notat, men er usikker på om andres navn må fjernes.",
+      "valg": [
+        {
+          "id": "anonym",
+          "tekst": "Be Lea lage et anonymisert eksempel uten navn",
+          "konsekvensTekst": "Lea skriver om prinsippet med fiktive roller i stedet for å dele Mira eller Arvids melding.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "anonym"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "samtykke",
+          "tekst": "Foreslå at Lea spør de involverte først",
+          "konsekvensTekst": "Lea spør om hun kan sitere hendelsen. Hun har ikke fått noe ja, og legger derfor publisering på vent.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_20_retning": "samtykke"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_mira17_spor": "skjerm",
+          "samspill_mira19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_lea_navn_anonym",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En setning som fortsatt er gjenkjennelig",
+      "tekst": "Lea har skrevet «musiker som ble annonsert uten avtale». Mira mener at folk i miljøet likevel vil skjønne hvem det gjelder. Hun vil helst ikke bli brukt som case.",
+      "valg": [
+        {
+          "id": "endre",
+          "tekst": "La Lea skrive om egne beslutninger, ikke andre personer",
+          "konsekvensTekst": "Lea erstatter hendelsen med en beskrivelse av sitt eget ansvar når en tekst skal deles. Hun bruker ikke gjenkjennelige meldinger.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_21_retning": "endre"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Behold notatet helt privat",
+          "konsekvensTekst": "Lea lagrer dokumentet for seg selv. Hun lover å ikke sende det til mulige oppdragsgivere.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_21_retning": "privat"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "anonym"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_lea_navn_samtykke",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et vennlig avslag",
+      "tekst": "Mira svarer at hun ikke vil ha saken brukt offentlig, selv anonymt i en liten krets. Lea er skuffet, men forstår at en nyttig illustrasjon ikke gir en rett til å publisere.",
+      "valg": [
+        {
+          "id": "endre",
+          "tekst": "La Lea skrive om egne beslutninger, ikke andre personer",
+          "konsekvensTekst": "Lea erstatter hendelsen med en beskrivelse av sitt eget ansvar når en tekst skal deles. Hun bruker ikke gjenkjennelige meldinger.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_21_retning": "endre"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Behold notatet helt privat",
+          "konsekvensTekst": "Lea lagrer dokumentet for seg selv. Hun lover å ikke sende det til mulige oppdragsgivere.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_21_retning": "privat"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "samtykke"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_navn_endre",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det Lea faktisk kan stå inne for",
+      "tekst": "Lea leser gjennom den nye teksten og ser at eksemplet nå handler om hennes egne avklaringer. Mira takker for at navnet og de kjennelige detaljene forsvant.",
+      "valg": [
+        {
+          "id": "beskytt",
+          "tekst": "Hold fast ved skillet mellom erfaring og samtykke",
+          "konsekvensTekst": "Lea står tryggere i hva hun selv kan fortelle om, uten å representere Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_22_ending": "endre",
+              "ensemble_lea_navn_22_endre": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "Ikke gjør hver erfaring til et prosjekt",
+          "konsekvensTekst": "Du lar Lea hvile fra notatene uten at noe oppdrag går tapt.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_22_ending": "endre",
+              "ensemble_lea_navn_22_endre": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_21_retning": "endre"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_navn_privat",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En tekst uten publikum",
+      "tekst": "Lea bestemmer at notatet ikke skal sirkulere. Hun kan fremdeles lære av hendelsen, men det blir ikke et frilansprodukt.",
+      "valg": [
+        {
+          "id": "beskytt",
+          "tekst": "Hold fast ved skillet mellom erfaring og samtykke",
+          "konsekvensTekst": "Lea står tryggere i hva hun selv kan fortelle om, uten å representere Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_22_ending": "privat",
+              "ensemble_lea_navn_22_privat": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "legg_bort",
+          "tekst": "Ikke gjør hver erfaring til et prosjekt",
+          "konsekvensTekst": "Du lar Lea hvile fra notatene uten at noe oppdrag går tapt.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_22_ending": "privat",
+              "ensemble_lea_navn_22_privat": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_21_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_navn_slutt",
+      "threadId": "lea_etter_miras_navn",
+      "dag": 22,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forhold som ikke er ferdig",
+      "tekst": "Du ser gjennom hvem som fikk informasjon, hvem som satte en grense, og hvem som fortsatt ikke skylder noen et svar. Den neste historien kan bygge på dette uten å omgjøre tidligere valg.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Samtalene og grensene blir bevart i historieboka. Ingen jobb, konsert, avtale, betaling eller adgang er registrert.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_navn_22_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_etter_miras_navn": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "ensemble_lea_navn_22_endre",
+      "navn": "Ansvar for egen fortelling",
+      "tekst": "Lea leser gjennom den nye teksten og ser at eksemplet nå handler om hennes egne avklaringer. Mira takker for at navnet og de kjennelige detaljene forsvant.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_lea_navn_22_endre": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_lea_navn_22_privat",
+      "navn": "Et privat notat",
+      "tekst": "Lea bestemmer at notatet ikke skal sirkulere. Hun kan fremdeles lære av hendelsen, men det blir ikke et frilansprodukt.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_lea_navn_22_privat": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_lea_navn_22_standard",
+      "navn": "Et uavsluttet forhold",
+      "tekst": "Historien beholder tidligere valg uten å opprette noen ny avtale.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
