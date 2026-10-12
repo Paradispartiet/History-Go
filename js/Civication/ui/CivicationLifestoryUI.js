@@ -345,7 +345,7 @@
     const m = state.meters;
     const items = [
       ["Rolle", content.role.navn], ["Dag", state.dag], ["Fase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
-      ["Psyke", m.psyke], ["Energi", m.energi], ["Penger", m.penger + " PC"]
+      ["Psyke", m.psyke], ["Energi", m.energi], ["Fortellingsøkonomi", m.penger]
     ];
     const stamp = lifestyleStamp();
     if (stamp) items.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
