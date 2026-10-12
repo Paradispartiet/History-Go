@@ -416,7 +416,7 @@
           "knowledge": "Utleiemodellen innebar at kompaniene produserte og viste forestillinger i avtalte spilleperioder.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "normal_opening",
           "year": null,
           "epoke_id": null,
@@ -468,7 +468,7 @@
           "knowledge": "Samarbeidet knyttet Black Box til BIT Teatergarasjen og Teaterhuset Avant Garden. Etableringsåret er ulikt datert i kildene.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "normal_opening",
           "year": null,
           "epoke_id": null,
@@ -624,7 +624,7 @@
           "knowledge": "Etter utflyttingen fra Stranden 3 spilte teatret midlertidig rundt i Oslo før innflyttingen i 2004.",
           "trivia": [],
           "difficulty": 2,
-          "question_type": "fact",
+          "question_type": "context",
           "question_layer": "normal_opening",
           "year": null,
           "epoke_id": null,
@@ -1404,7 +1404,8 @@
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked",
-          "method_id": "met_scenekunst_historisk_kildekritikk"
+          "method_id": "met_scenekunst_historisk_kildekritikk",
+          "topic_hook_id": "theory_scenekunst_historiografi_flyktig_hendelse"
         },
         {
           "id": "black_box_teater_quiz_27",
@@ -1468,15 +1469,15 @@
           "natureId": "",
           "targetId": "black_box_teater",
           "question_scope": "place",
-          "question": "Hva kan spilleplanen for «Konsert for Grønland» i 2004 dokumentere uten andre kilder?",
+          "question": "Hvorfor kan ikke et foto fra dagens Black Box-scene dokumentere hvordan en forestilling der ble spilt i 1999?",
           "options": [
-            "Publikums opplevelse av forestillingen",
-            "Den eksakte bruken av alle lys- og lydeffekter",
-            "Premieren og hvem som var kreditert som produsent og samprodusent"
+            "Fordi en scenefoto aldri kan brukes i historieforskning",
+            "Fordi Black Box ikke eksisterte i 1999",
+            "Fordi teatret da lå på Aker Brygge, ikke i Marstrandgata"
           ],
-          "answer": "Premieren og hvem som var kreditert som produsent og samprodusent",
+          "answer": "Fordi teatret da lå på Aker Brygge, ikke i Marstrandgata",
           "answerIndex": 2,
-          "knowledge": "En spilleplan dokumenterer dato og kreditering; publikums erfaringer og detaljert scenisk gjennomføring krever andre kildetyper.",
+          "knowledge": "Black Box var en etablert institusjon i 1999, men spilte da i Stranden 3. Dagens lokaler åpnet først i februar 2004. Både arkivets dato og riktig fysisk spillested må være kontrollert før et bilde brukes som dokumentasjon.",
           "trivia": [],
           "difficulty": 4,
           "question_type": "analysis",
@@ -1484,7 +1485,7 @@
           "year": null,
           "epoke_id": null,
           "epoke_domain": "scenekunst",
-          "emne_id": "em_scenekunst_dramaturgi_iscenesettelse",
+          "emne_id": "em_scenekunst_scenekunsthistorie_tradisjoner_brudd",
           "related_emner": [],
           "core_concepts": [],
           "concept_focus": [],
@@ -1497,11 +1498,12 @@
           ],
           "required_tags": [],
           "source": [
-            "konsert"
+            "teater_manu",
+            "sceneweb"
           ],
           "source_origin": "external",
-          "claim_basis": "Verdensteatrets «Konsert for Grønland» hadde premiere 4. mars 2004 på Black Box i Marstrandgata med Black Box teater som samprodusent.",
-          "claim_id": "claim_black_box_quiz_26",
+          "claim_basis": "«Hjelp vi får gjester» fra Teater Manus etableringsperiode ble spilt på Black Box på Aker Brygge i 1999, ikke på dagens scene i Marstrandgata.",
+          "claim_id": "claim_black_box_quiz_28",
           "primary_knowledge_unit_id": "ku_scenekunst_black_box_teater_28",
           "knowledge_unit_ids": [
             "ku_scenekunst_black_box_teater_28"
@@ -1510,7 +1512,8 @@
           "term_ids": [],
           "knowledge_contract_version": 1,
           "knowledge_link_status": "linked",
-          "method_id": "met_scenekunst_historisk_kildekritikk"
+          "method_id": "met_scenekunst_historisk_kildekritikk",
+          "topic_hook_id": "theory_scenekunst_historiografi_flyktig_hendelse"
         }
       ]
     }
@@ -1557,15 +1560,21 @@
       "em_scenekunst_arkiv_dokumentasjon_rekonstruksjon",
       "em_scenekunst_resepsjon_kritikk_publikumsdata"
     ],
-    "topic_hook_ids": [],
+    "topic_hook_ids": [
+      "theory_scenekunst_historiografi_flyktig_hendelse"
+    ],
     "method_ids": [
       "met_scenekunst_institusjonsanalyse",
       "met_scenekunst_historisk_kildekritikk",
       "met_scenekunst_forestillingsanalyse",
       "met_scenekunst_produksjonsanalyse"
     ],
-    "thinker_ids": [],
-    "works": [],
+    "thinker_ids": [
+      "christopher_b_balme"
+    ],
+    "works": [
+      "The Cambridge Introduction to Theatre Studies"
+    ],
     "source_review_status": "reviewed",
     "existing_quiz_audit": {
       "searched_paths": [
@@ -1597,6 +1606,8 @@
       "«Hjelp vi får gjester» (1999) må dobbelverifiseres mot Teater Manus spilleplan før quiz.",
       "Produksjonene «Konsert for Grønland» og «Ways of Seeing» trenger ikke forestillingsbilder for quiz, men bildebruk er ikke autorisert uten egne rettigheter.",
       "QuizCard og Knowledge må bygge på reelle ferdigredigerte spørsmål, ikke direkte på påstandsbanken."
-    ]
+    ],
+    "method_start_phase": "final",
+    "theory_start_phase": "final"
   }
 }
