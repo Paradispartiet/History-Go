@@ -122,6 +122,17 @@ for (const chapter of chapters) {
 assert.equal(crossRole.length, 21, 'cross-role predecessor cases must be reviewed explicitly');
 assert.equal(index.life_positions.filter(x => x.chapter_count > 0).length, 5);
 assert.equal(index.life_positions.filter(x => x.chapter_count === 0).length, 16);
+const peoplePlan = load(prefix + 'historicalPeoplePlanV1.json');
+assert.equal(peoplePlan.schema, 'civication_role_history_people_curation_plan_v1');
+assert.equal(peoplePlan.counts.roles, 36);
+assert.equal(peoplePlan.counts.verified_links, 0);
+assert.equal(peoplePlan.records.length, 36);
+sameSet(peoplePlan.records.map(x => x.role_id), [...index.formal_roles, ...index.life_positions].map(x => x.id), 'People planning coverage');
+for (const record of peoplePlan.records) {
+ assert.deepEqual(record.people_links, [], 'unverified People reference must not be approved');
+ assert.ok(exists(record.canonical_role_source));
+ sameSet(record.story_chapter_ids, index.life_positions.find(x => x.id === record.role_id)?.chapter_ids || [], 'People planning/story crosswalk');
+}
 assert.equal(cast.schema, 'civication_story_character_identity_v1');
 assert.equal(cast.counts.role_local_cast, 110);
 assert.equal(cast.role_local_cast.length, 110);
