@@ -22,6 +22,15 @@ Psykologrommet er et pedagogisk refleksjonsverktøy for selvinnsikt, hverdagsfen
 - Originalnotatet overskrives ikke. Gamle notater uten feltet `follow_ups` fungerer fremdeles; oppfølginger lagres i samme `hg_psychology_workbench_v1`-liste.
 - Oppfølging gir ikke kompetansepoeng, innsiktspoeng eller nye økter. Lagringsfeil gir beskjed i stedet for en falsk bekreftelse.
 
+## Frivillig kobling til 7-dagersløp
+
+- Fra en lagret situasjon kan brukeren se og velge blant alle de seks eksisterende løpene: uro, søvn, selvkritikk, oppmerksomhet, relasjoner og affektregulering. Ingen foreslås eller velges automatisk ut fra fritekst.
+- Når et løp startes fra situasjonen, lagres en referanse til notatets ID i eksisterende `hg_psychology_path_progress_v1`. Et pågående, ikke tilknyttet løp kan også knyttes manuelt. Et løp som allerede er tilknyttet et bevart notat, omkobles ikke uten videre.
+- Daglige løprefleksjoner ligger fortsatt i `hg_psychology_path_reflections_v1`. De vises lesbart under den opprinnelige situasjonen og leder tilbake til løpet, uten kopiering til `follow_ups` eller endring av originalens seks svar.
+- Brukeren kan fortsette å legge inn frivillige daterte oppfølginger separat. Sletting av Tankeverksted-notatet sletter ikke automatisk gamle løp eller dagrefleksjoner; et aktivt løp med slettet kobling kan knyttes på nytt.
+- Kobling og navigasjon gir ingen poeng, ny økt eller Civication-kompetanse. Løpets allerede eksisterende fullføringsbelønning beholdes uendret som egen mekanikk; den gis ikke ved kobling eller oppfølging.
+- Allerede lagrede, uavhengige løp fortsetter som før. Ingen automatisk migrering, profilering, diagnose eller deling av personlige data er innført.
+
 ## Eiergrenser
 
 **History Go:** Historie, steder, historiske personer, kildebaserte spørsmål og det kanoniske fagverket.
