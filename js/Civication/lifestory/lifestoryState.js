@@ -219,32 +219,20 @@
     getStorage()?.remove(STORAGE_KEY);
   }
 
-  /** A story type owns its relationship; a collected History Go person can
-   * represent it. Bind once, including a type-only fallback after an encounter.
-   * Canonical identity is snapshotted so later collection/index changes cannot
-   * recast somebody the player has already met. No History Go state is written.
-   * @param {any} state @param {any} content @param {any} bridge
+  /** Preserve the old save field, but only bind fictional character identities.
+   * Historical People and the legacy bridge are NEVER eligible scene actors.
+   * Old archived snapshots remain untouched after upgrading active cast.
+   * @param {any} state @param {any} content @param {any} [_bridge] Ignored legacy argument
    */
-  function bindPersonTypes(state, content, bridge) {
-    const cast = state.personRepresentanter || {};
+  function bindPersonTypes(state, content, _bridge) {
+    if (!state || !content?.role) return state;
+    const cast = Object.assign({}, state.personRepresentanter || {});
     for (const person of content.role.personer || []) {
-      if (!person.persontype || cast[person.id]) continue;
-      // An old save must never retroactively attribute fictional acts to a
-      // newly collected real person. New archive entries carry their own cast.
-      const encountered = (state.spilteScener || []).some(id => {
-        const scene = content.scenes.find(s => s.id === id);
-        const entry = state.arkiv.find(e => e.sceneId === id);
-        const choice = scene?.valg?.find(c => c.id === entry?.valgId);
-        return scene && sceneMentionsPerson(scene, person, choice);
-      });
-      const candidates = encountered ? [] : bridge?.getCollectedByIds?.(person.persontype.representanter) || [];
-      const selected = candidates.slice().sort((a, b) => a.id.localeCompare(b.id))[0];
-      if (selected) {
-        cast[person.id] = { typeId: person.persontype.id, personId: selected.id, navn: selected.name,
-          placeId: selected.placeId || null, beskrivelse: selected.desc || "" };
-      } else if (encountered) {
-        cast[person.id] = { typeId: person.persontype.id, personId: null, navn: person.navn, placeId: null, beskrivelse: "" };
-      }
+      if (!person.persontype) continue;
+      cast[person.id] = {
+        kind: "fictional", typeId: person.persontype.id, personId: null,
+        navn: person.fiktivtNavn || person.navn, placeId: null, beskrivelse: ""
+      };
     }
     if (Object.keys(cast).length) state.personRepresentanter = cast;
     return state;
@@ -252,38 +240,37 @@
 
   /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
   function sceneMentionsPerson(scene, person, choice) {
-    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
+    if (scene.avsender === person.id) return true;
+    const text = JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase();
+    return [person.navn, person.fiktivtNavn].filter(Boolean).some(name => text.includes(name.toLowerCase()));
   }
 
-  /** Snapshot the types actually present in this scene before archiving it.
+  /** Snapshot only the mentioned fictional characters in new archive entries.
    * @param {any} state @param {any} content @param {any} scene @param {any} choice @returns {any}
    */
   function lockScenePeople(state, content, scene, choice) {
+    bindPersonTypes(state, content, null);
     const cast = {};
     for (const person of content.role.personer || []) {
       if (!person.persontype || !sceneMentionsPerson(scene, person, choice)) continue;
-      state.personRepresentanter ||= {};
-      state.personRepresentanter[person.id] ||= { typeId: person.persontype.id, personId: null,
-        navn: person.navn, placeId: null, beskrivelse: "" };
       cast[person.id] = Object.assign({}, state.personRepresentanter[person.id]);
     }
     return cast;
   }
 
-  /** Resolve authored type names, never legacy archive names or technical IDs.
-   * @param {any} state @param {any} content @param {any} value @returns {string}
+  /** Consistent authored fictional names regardless of History Go collection.
+   * Archive text must be displayed literally, not processed through this.
+   * @param {any} _state @param {any} content @param {any} value @returns {string}
    */
-  function presentText(state, content, value) {
+  function presentText(_state, content, value) {
     let text = String(value == null ? "" : value);
     for (const person of content?.role?.personer || []) {
-      const cast = state?.personRepresentanter?.[person.id];
-      if (!person.persontype || !cast?.personId) continue;
-      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      // Norwegian type names contain letters outside ASCII \b, so delimit
-      // explicitly. Replace possessives before the plain name.
-      const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
+      const alias = person.fiktivtNavn;
+      if (!person.persontype || !alias || alias === person.navn) continue;
+      const escaped = person.navn.replace(/[.*+?^\${}()|[\]\\]/g, "\\$&");
+      const possessive = /[sxz]$/i.test(alias) ? alias + "’" : alias + "s";
       text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
-        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
+        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + alias);
     }
     return text;
   }

@@ -355,7 +355,7 @@
       const sted = steder.find((p) => p.id === scene?.stedId) || null;
       const authoredPerson = content.role.personer.find((p) => p.id === scene?.avsender) || null;
       const cast = entry.personRepresentanter?.[authoredPerson?.id];
-      const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.navn }) : null;
+      const person = authoredPerson ? Object.assign({}, authoredPerson, { navn: cast?.navn || authoredPerson.fiktivtNavn || authoredPerson.navn }) : null;
       return Object.assign({}, entry, { sted, person });
     });
     const avtaler = content.scenes.filter((s) =>
