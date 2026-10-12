@@ -29,15 +29,13 @@
           const name = String(person?.name || "Person");
           const desc = String(person?.description || "");
           const score = Number(person?.score || 0);
-          const hgPerson = person?.hg_person || null;
-          const archetypeName = String(person?.archetype_name || "");
-          const collectedLine = hgPerson
-            ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">✨ Fra History Go-samlingen din${archetypeName ? ` · Rolle i byen: ${archetypeName}` : ""}</div>`
+          const source = person?.history_go_learning_reference || null;
+          // A historical person is a factual learning reference, never this NPC.
+          const safePersonName = String(source?.name || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+          const collectedLine = source
+            ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">Historisk fagreferanse fra History Go: ${safePersonName}</div>`
             : "";
-          const image = String(hgPerson?.cardImage || hgPerson?.image || "");
-          const thumb = image
-            ? `<img src="${image}" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex:0 0 auto;" onerror="this.remove()">`
-            : "";
+          const thumb = "";
           return `
             <div style="padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
               <div style="display:flex;align-items:center;gap:10px;">
