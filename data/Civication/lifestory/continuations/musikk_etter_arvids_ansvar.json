@@ -1,0 +1,643 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_etter_arvids_ansvar",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Mira: Et navn er ikke et vennskap",
+  "sisteDag": 25,
+  "hovedtraad": "mira_etter_arvids_ansvar",
+  "threads": [
+    {
+      "id": "mira_etter_arvids_ansvar",
+      "tittel": "Mira: Et navn er ikke et vennskap",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Tidligere beslutninger setter lojalitet, grenser og tillit i spill mellom personene."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_relasjon_mira_arvid_vis_samlet",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Alle fikk rettelsen",
+      "tekst": "Arvid forklarte plakatfeilen til de frivillige, og Lea og Mira fikk samme rettelse. Nå spør Arvid om de «kan legge saken bak seg». Lea påpeker at en rettelse ikke er en tilgivelse.",
+      "valg": [
+        {
+          "id": "samtale",
+          "tekst": "La Mira snakke med Arvid uten Lea som mellomledd",
+          "konsekvensTekst": "Mira vil ha en konkret beklagelse og lover ingen forsoning.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "samtale"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Mira be om avstand",
+          "konsekvensTekst": "Mira vil ikke diskutere kulturkvelden med Arvid nå, og han skal ikke overtale henne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "vis",
+          "ensemble_arvid_program_21_retning": "samlet"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_arvid_vis_hver",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et riktig svar med ulik mottaker",
+      "tekst": "Arvid forklarte feilen, men lot Lea og Mira svare hver for seg. Mira har ikke svart. Arvid tolker stillheten hennes som om saken er løst.",
+      "valg": [
+        {
+          "id": "samtale",
+          "tekst": "La Mira snakke med Arvid uten Lea som mellomledd",
+          "konsekvensTekst": "Mira vil ha en konkret beklagelse og lover ingen forsoning.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "samtale"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Mira be om avstand",
+          "konsekvensTekst": "Mira vil ikke diskutere kulturkvelden med Arvid nå, og han skal ikke overtale henne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "vis",
+          "ensemble_arvid_program_21_retning": "hver"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_arvid_stopp_samlet",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den borttatte plakaten",
+      "tekst": "Utskriftene ble tatt ned og rettelsen nådde begge. En frivillig hevder fremdeles at Mira var bekreftet. Arvid vil at Lea skal forklare ham hva som egentlig skjedde.",
+      "valg": [
+        {
+          "id": "samtale",
+          "tekst": "La Mira snakke med Arvid uten Lea som mellomledd",
+          "konsekvensTekst": "Mira vil ha en konkret beklagelse og lover ingen forsoning.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "samtale"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Mira be om avstand",
+          "konsekvensTekst": "Mira vil ikke diskutere kulturkvelden med Arvid nå, og han skal ikke overtale henne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "stopp",
+          "ensemble_arvid_program_21_retning": "samlet"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_arvid_stopp_hver",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et spørsmål som ble hengende",
+      "tekst": "Plakaten ble fjernet, men de involverte fikk velge om de ville svare. Arvid ber nå Mira møtes for å få satt punktum. Hun kjenner at tilliten ikke er der.",
+      "valg": [
+        {
+          "id": "samtale",
+          "tekst": "La Mira snakke med Arvid uten Lea som mellomledd",
+          "konsekvensTekst": "Mira vil ha en konkret beklagelse og lover ingen forsoning.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "samtale"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Mira be om avstand",
+          "konsekvensTekst": "Mira vil ikke diskutere kulturkvelden med Arvid nå, og han skal ikke overtale henne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_23_retning": "avstand"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "stopp",
+          "ensemble_arvid_program_21_retning": "hver"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_mira_arvid_samtale",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arvid vil også bli forstått",
+      "tekst": "Arvid beklager, men forteller så om alt han selv har mistet. Mira merker at hun igjen blir bedt om å trøste ham.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Be Arvid ta ansvar uten å kreve svar",
+          "konsekvensTekst": "Han kan reparere rutinene, men ikke kreve at Mira erklærer saken løst.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "Skjerm Mira og Lea fra nye spørsmål",
+          "konsekvensTekst": "Ingen av dem blir bedt om å reparere Arvids omdømme.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_24_retning": "ro"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "samtale"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_mira_arvid_avstand",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En venn blir budbringer",
+      "tekst": "Arvid spør Lea om hun kan forklare Mira at han angrer. Lea nekter å bli budbringer mellom venner.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Be Arvid ta ansvar uten å kreve svar",
+          "konsekvensTekst": "Han kan reparere rutinene, men ikke kreve at Mira erklærer saken løst.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "Skjerm Mira og Lea fra nye spørsmål",
+          "konsekvensTekst": "Ingen av dem blir bedt om å reparere Arvids omdømme.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_24_retning": "ro"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_arvid_samtale_ansvar",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En beklagelse uten motytelse",
+      "tekst": "Arvid sier hva han gjorde galt, uten å liste egne tap. Mira hører ham ut. De kan hilse når de treffes, men tillit til invitasjonene hans må bygges over tid.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La muligheten for en frivillig samtale stå åpen",
+          "konsekvensTekst": "Mira bestemmer selv om og når kontakt er aktuelt.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "samtale_ansvar_senere",
+              "relasjon_mira_arvid_25_samtale_ansvar": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "grense",
+          "tekst": "Respekter Miras nåværende grense fullt ut",
+          "konsekvensTekst": "En beklagelse gir ikke adgang til en annen persons tid.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "samtale_ansvar_grense",
+              "relasjon_mira_arvid_25_samtale_ansvar": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "samtale",
+          "relasjon_mira_arvid_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_arvid_samtale_ro",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En samtale som fikk slutte",
+      "tekst": "Mira sier at hun har hørt nok. Arvid lar henne gå. Lea blir ikke ringt inn for å forhandle fram en rask fred.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La muligheten for en frivillig samtale stå åpen",
+          "konsekvensTekst": "Mira bestemmer selv om og når kontakt er aktuelt.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "samtale_ro_senere",
+              "relasjon_mira_arvid_25_samtale_ro": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "grense",
+          "tekst": "Respekter Miras nåværende grense fullt ut",
+          "konsekvensTekst": "En beklagelse gir ikke adgang til en annen persons tid.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "samtale_ro_grense",
+              "relasjon_mira_arvid_25_samtale_ro": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "samtale",
+          "relasjon_mira_arvid_24_retning": "ro"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_arvid_avstand_ansvar",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar uten krav",
+      "tekst": "Arvid skriver en kort beklagelse uten å be om svar. Mira legger den bort. Hun skylder ham ikke et møte.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La muligheten for en frivillig samtale stå åpen",
+          "konsekvensTekst": "Mira bestemmer selv om og når kontakt er aktuelt.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "avstand_ansvar_senere",
+              "relasjon_mira_arvid_25_avstand_ansvar": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "grense",
+          "tekst": "Respekter Miras nåværende grense fullt ut",
+          "konsekvensTekst": "En beklagelse gir ikke adgang til en annen persons tid.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "avstand_ansvar_grense",
+              "relasjon_mira_arvid_25_avstand_ansvar": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "avstand",
+          "relasjon_mira_arvid_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_arvid_avstand_ro",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vennskapet på pause",
+      "tekst": "Mira vil ikke kontaktes om arrangementet. Lea aksepterer at vennskap med begge ikke gir henne rett til å megle.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La muligheten for en frivillig samtale stå åpen",
+          "konsekvensTekst": "Mira bestemmer selv om og når kontakt er aktuelt.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "avstand_ro_senere",
+              "relasjon_mira_arvid_25_avstand_ro": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "grense",
+          "tekst": "Respekter Miras nåværende grense fullt ut",
+          "konsekvensTekst": "En beklagelse gir ikke adgang til en annen persons tid.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_valg": "avstand_ro_grense",
+              "relasjon_mira_arvid_25_avstand_ro": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_arvid_23_retning": "avstand",
+          "relasjon_mira_arvid_24_retning": "ro"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_arvid_slutt",
+      "threadId": "mira_etter_arvids_ansvar",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva som ble annerledes",
+      "tekst": "Tidligere valg og nye grenser er bevart i historieboka. Personene kan ha ulike oppfatninger uten at én scene avgjør framtiden for dem.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Ingen avtale, spillejobb, betaling eller møteplikt er opprettet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_arvid_25_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_etter_arvids_ansvar": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "relasjon_mira_arvid_25_samtale_ansvar",
+      "navn": "En forsiktig ny begynnelse",
+      "tekst": "Arvid sier hva han gjorde galt, uten å liste egne tap. Mira hører ham ut. De kan hilse når de treffes, men tillit til invitasjonene hans må bygges over tid.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_arvid_25_samtale_ansvar": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_arvid_25_samtale_ro",
+      "navn": "Samtalen fikk slutte",
+      "tekst": "Mira sier at hun har hørt nok. Arvid lar henne gå. Lea blir ikke ringt inn for å forhandle fram en rask fred.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_arvid_25_samtale_ro": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_arvid_25_avstand_ansvar",
+      "navn": "Beklagelsen uten svar",
+      "tekst": "Arvid skriver en kort beklagelse uten å be om svar. Mira legger den bort. Hun skylder ham ikke et møte.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_arvid_25_avstand_ansvar": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_arvid_25_avstand_ro",
+      "navn": "Vennskapet på pause",
+      "tekst": "Mira vil ikke kontaktes om arrangementet. Lea aksepterer at vennskap med begge ikke gir henne rett til å megle.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_arvid_25_avstand_ro": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_arvid_standard",
+      "navn": "Et åpent forhold",
+      "tekst": "Historien forblir åpen uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
