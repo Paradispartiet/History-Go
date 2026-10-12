@@ -116,13 +116,11 @@ try {
       `five distinct footer icon illustrations at ${width}`);
     assert.ok(actual.icons.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
       `each icon uses at least four genuine illustration colors at ${width}`);
-    // Yellow/gold accents must also be visible on the real button borders.
-    const goldBorder = value => {
-      const [r, g, b] = (value.match(/\d+(?:\.\d+)?/g) || []).slice(0, 3).map(Number);
-      return r >= g && g > b && g > 150;
-    };
-    assert.ok(actual.icons.every(icon => goldBorder(icon.border)),
-      `all footer buttons have warm golden border accents at ${width}`);
+    // Retain a mix of yellow, mint and blue accents instead of universal gold.
+    assert.equal(new Set(actual.icons.map(icon => icon.border)).size, 5,
+      `five distinct button-border accents at ${width}`);
+    // Unique browser-computed borders are a robust visual distinction check.
+    // The exact yellow/cool balance is enforced by the static SVG palette test.
     assert.deepEqual(actual.onsite.map(item => item.action), ["events", "meet"],
       `canonical Events and Meet live in footer at ${width}`);
     assert.ok(actual.onsite.every(icon => icon.image.includes("data:image/svg+xml")),
@@ -131,8 +129,8 @@ try {
       `Events and Meet have distinct illustrations at ${width}`);
     assert.ok(actual.onsite.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
       `Events and Meet illustrations use several colors at ${width}`);
-    assert.ok(actual.onsite.every(icon => goldBorder(icon.border)),
-      `Events and Meet buttons have warm golden border accents at ${width}`);
+    assert.notEqual(actual.onsite[0].border, actual.onsite[1].border,
+      `Events and Meet have different accent borders at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);
     assert.equal(actual.onsiteBoxHidden, true, `old Events/Meet box removed at ${width}`);
     assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);

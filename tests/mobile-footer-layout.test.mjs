@@ -120,11 +120,14 @@ test('footer is black with seven distinct polychrome SVG illustrations', () => {
     }).filter(item => item.vivid);
     const yellowGold = vibrant.filter(item => item.hue >= 28 && item.hue <= 64).length;
     const violet = vibrant.filter(item => item.hue >= 260 && item.hue <= 332).length;
-    assert.ok(yellowGold >= Math.ceil(vibrant.length / 2), 'yellow/gold dominates each icon');
+    const cool = vibrant.filter(item => item.hue >= 72 && item.hue <= 232).length;
+    assert.ok(yellowGold >= 1, 'each icon retains a yellow accent');
+    assert.ok(cool >= 1, 'each icon uses cool contrasts, not a gold wash');
+    assert.ok(yellowGold <= Math.floor(vibrant.length * .62), 'gold no longer dominates artwork');
     assert.equal(violet, 0, 'no vivid purple or magenta in footer icon artwork');
   }
-  assert.match(footerCSS, /#pcNote\{ border-color: rgba\(255,228,131,\.64\); \}/);
-  assert.match(footerCSS, /\.pc-onsite-action-meet\s*\{[^}]*border-color: rgba\(246,173,60,\.67\)/);
+  assert.match(footerCSS, /#pcNote\{ border-color: rgba\(120,169,208,\.52\); \}/);
+  assert.match(footerCSS, /\.pc-onsite-action-meet\s*\{[^}]*border-color: rgba\(233,163,132,\.56\)/);
   const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
   assert.match(surface, /function syncFooterActions\(place, force = false\)/);
   assert.match(surface, /footerOwnsCore/);
