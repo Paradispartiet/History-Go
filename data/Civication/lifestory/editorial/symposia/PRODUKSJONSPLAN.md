@@ -32,6 +32,7 @@ Spilleren er alltid den handlende hovedpersonen. Jobbrollen bestemmer arbeidshve
 | Formelle jobb- og systemroller | `formalRolesV1.json` | 15 |
 | Selvvalgte livsposisjoner | `lifePositions01V1.json` + `lifePositions02V1.json` | 21 |
 | Dokumenterte kapittelsymposier | `chapters01V1.json` + `chapters02V1.json` + `chapters03V1.json` | 45 |
+| People-fagkoblinger for samtlige roller – **ingen ferdig kildegodkjent** | `historicalPeoplePlanV1.json` | 36 rader, 0 godkjente koblinger |
 | Fiktive, rollespesifikke personposter | `charactersV1.json` | 110 |
 | Hovedregister med rolle → kapitler → kilder | `indexV1.json` | 36 roller/posisjoner + 45 kapitler |
 
