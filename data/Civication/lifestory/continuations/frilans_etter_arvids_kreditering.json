@@ -1,0 +1,505 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "frilans_etter_arvids_kreditering",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "Hvem bærer krediteringen?",
+  "sisteDag": 22,
+  "hovedtraad": "lea_etter_arvids_kreditering",
+  "threads": [
+    {
+      "id": "lea_etter_arvids_kreditering",
+      "tittel": "Hvem bærer krediteringen?",
+      "type": "privatliv",
+      "startDag": 20,
+      "konflikt": "Lea får regningen i form av omdømme og forventninger etter at Arvid omtalte henne som produksjonsansvarlig uten avtale"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d20_ensemble_lea_kreditering_kontakt_rette",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En rettelse som ikke når alle",
+      "tekst": "Arvid spurte Lea og sendte en offentlig rettelse etter hennes nei. Nå skriver en frivillig direkte til Lea med spørsmål om når hun kommer til prøven. Hun trodde saken var avklart.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Lea selv gi ett kort svar om at hun ikke deltar",
+          "konsekvensTekst": "Lea avklarer én gang at hun ikke har noen rolle. Hun henviser videre spørsmål til arrangøren.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "arvid",
+          "tekst": "Be Arvid kontakte de frivillige i stedet",
+          "konsekvensTekst": "Arvid må selv gi beskjed om at ansvarslinjen ikke omfatter Lea. Lea slipper å sende flere forklaringer.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "arvid"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "kontakt",
+          "kryss_frilans_arvid_19_ending": "rette"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_kreditering_kontakt_avgrense",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En samtale uten ansvar",
+      "tekst": "Arvid tok kontakt med Lea, men det ble bestemt at hun ikke skulle rydde opp for ham. Nå ber den frivillige henne om en vurdering av kveldens arbeidsplan. Lea vil være høflig uten å overta.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Lea selv gi ett kort svar om at hun ikke deltar",
+          "konsekvensTekst": "Lea avklarer én gang at hun ikke har noen rolle. Hun henviser videre spørsmål til arrangøren.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "arvid",
+          "tekst": "Be Arvid kontakte de frivillige i stedet",
+          "konsekvensTekst": "Arvid må selv gi beskjed om at ansvarslinjen ikke omfatter Lea. Lea slipper å sende flere forklaringer.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "arvid"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "kontakt",
+          "kryss_frilans_arvid_19_ending": "avgrense"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_kreditering_stopp_rette",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Navnet ble fjernet, spørsmålet ble igjen",
+      "tekst": "Du fikk Arvid til å fjerne krediteringen, og rettelsen gikk ut. Likevel kommer en melding om at Leas navn står i en delt kalender. Hun vil vite hvem som kan rette den.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Lea selv gi ett kort svar om at hun ikke deltar",
+          "konsekvensTekst": "Lea avklarer én gang at hun ikke har noen rolle. Hun henviser videre spørsmål til arrangøren.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "arvid",
+          "tekst": "Be Arvid kontakte de frivillige i stedet",
+          "konsekvensTekst": "Arvid må selv gi beskjed om at ansvarslinjen ikke omfatter Lea. Lea slipper å sende flere forklaringer.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "arvid"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "stopp",
+          "kryss_frilans_arvid_19_ending": "rette"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_lea_kreditering_stopp_avgrense",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En gammel liste har et langt liv",
+      "tekst": "Arvid strøk Leas navn, men den gamle teksten ble ikke fullt oppklart. Nå inviteres Lea til et planleggingsmøte hun aldri har sagt ja til. Hun er lei av å måtte avkrefte det samme.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Lea selv gi ett kort svar om at hun ikke deltar",
+          "konsekvensTekst": "Lea avklarer én gang at hun ikke har noen rolle. Hun henviser videre spørsmål til arrangøren.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "arvid",
+          "tekst": "Be Arvid kontakte de frivillige i stedet",
+          "konsekvensTekst": "Arvid må selv gi beskjed om at ansvarslinjen ikke omfatter Lea. Lea slipper å sende flere forklaringer.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_20_retning": "arvid"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "stopp",
+          "kryss_frilans_arvid_19_ending": "avgrense"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_lea_kreditering_direkte",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det korte svaret deles videre",
+      "tekst": "Lea oppdager at den frivillige har videresendt hennes melding som om hun var kontaktperson for programmet. Hun vil ikke skape en ny misforståelse ved å svare alle.",
+      "valg": [
+        {
+          "id": "rolle",
+          "tekst": "Insister på at arrangøren får én tydelig kontaktperson",
+          "konsekvensTekst": "Lea og Arvid blir enige om at den frivillige skal få beskjed fra arrangøren, ikke gjennom flere private meldinger.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_21_retning": "rolle"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Lea sette en grense for videre kontakt",
+          "konsekvensTekst": "Lea ber om at navnet hennes ikke brukes igjen. Arvid står selv for resten av oppryddingen.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_21_retning": "avstand"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_lea_kreditering_arvid",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arvid tar telefonen",
+      "tekst": "Arvid ringer den frivillige og retter kalenderen. Han sier etterpå at det føltes som en offentlig irettesettelse. Lea synes likevel det var riktig at han gjorde det.",
+      "valg": [
+        {
+          "id": "rolle",
+          "tekst": "Insister på at arrangøren får én tydelig kontaktperson",
+          "konsekvensTekst": "Lea og Arvid blir enige om at den frivillige skal få beskjed fra arrangøren, ikke gjennom flere private meldinger.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_21_retning": "rolle"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "La Lea sette en grense for videre kontakt",
+          "konsekvensTekst": "Lea ber om at navnet hennes ikke brukes igjen. Arvid står selv for resten av oppryddingen.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_21_retning": "avstand"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "arvid"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_kreditering_rolle",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny kontaktperson",
+      "tekst": "Arrangøren har utpekt én frivillig koordinator. Lea står ikke lenger på listen. Hun og Arvid kan møtes uten at samtalen handler om arbeid.",
+      "valg": [
+        {
+          "id": "grenser",
+          "tekst": "Ta vare på denne avklaringen til neste forespørsel",
+          "konsekvensTekst": "Lea vet hva hun må spørre om før hun eventuelt tar et nytt oppdrag, uten at dagens sak blir et oppdrag.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_22_ending": "rolle",
+              "ensemble_lea_kreditering_22_rolle": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La saken avsluttes uten ny samtale",
+          "konsekvensTekst": "Hun bruker kvelden til annet og lar Arvid håndtere sitt eget arrangement.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_22_ending": "rolle",
+              "ensemble_lea_kreditering_22_rolle": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_21_retning": "rolle"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_kreditering_avstand",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den vanskelige høfligheten",
+      "tekst": "Arvid godtar at Lea ikke vil svare flere fra arrangementet. Relasjonen er ikke reparert, men grensen er tydelig og kalenderen hennes er fri.",
+      "valg": [
+        {
+          "id": "grenser",
+          "tekst": "Ta vare på denne avklaringen til neste forespørsel",
+          "konsekvensTekst": "Lea vet hva hun må spørre om før hun eventuelt tar et nytt oppdrag, uten at dagens sak blir et oppdrag.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_22_ending": "avstand",
+              "ensemble_lea_kreditering_22_avstand": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La saken avsluttes uten ny samtale",
+          "konsekvensTekst": "Hun bruker kvelden til annet og lar Arvid håndtere sitt eget arrangement.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_22_ending": "avstand",
+              "ensemble_lea_kreditering_22_avstand": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_21_retning": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_lea_kreditering_slutt",
+      "threadId": "lea_etter_arvids_kreditering",
+      "dag": 22,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forhold som ikke er ferdig",
+      "tekst": "Du ser gjennom hvem som fikk informasjon, hvem som satte en grense, og hvem som fortsatt ikke skylder noen et svar. Den neste historien kan bygge på dette uten å omgjøre tidligere valg.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Samtalene og grensene blir bevart i historieboka. Ingen jobb, konsert, avtale, betaling eller adgang er registrert.",
+          "effekter": {
+            "flagg": {
+              "ensemble_lea_kreditering_22_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_etter_arvids_kreditering": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "ensemble_lea_kreditering_22_rolle",
+      "navn": "Rett ansvarslinje",
+      "tekst": "Arrangøren har utpekt én frivillig koordinator. Lea står ikke lenger på listen. Hun og Arvid kan møtes uten at samtalen handler om arbeid.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_lea_kreditering_22_rolle": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_lea_kreditering_22_avstand",
+      "navn": "En grense uten forsoning",
+      "tekst": "Arvid godtar at Lea ikke vil svare flere fra arrangementet. Relasjonen er ikke reparert, men grensen er tydelig og kalenderen hennes er fri.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_lea_kreditering_22_avstand": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_lea_kreditering_22_standard",
+      "navn": "Et uavsluttet forhold",
+      "tekst": "Historien beholder tidligere valg uten å opprette noen ny avtale.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
