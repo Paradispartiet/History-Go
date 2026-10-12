@@ -116,11 +116,11 @@ try {
       `five distinct footer icon illustrations at ${width}`);
     assert.ok(actual.icons.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
       `each icon uses at least four genuine illustration colors at ${width}`);
-    // Retain a mix of yellow, mint and blue accents instead of universal gold.
-    assert.equal(new Set(actual.icons.map(icon => icon.border)).size, 5,
-      `five distinct button-border accents at ${width}`);
-    // Unique browser-computed borders are a robust visual distinction check.
-    // The exact yellow/cool balance is enforced by the static SVG palette test.
+    // Every footer button keeps one recognizable bright-yellow outline,
+    // while the artwork within each icon retains additional colours.
+    const isLemonYellow = color => /245,\s*249,\s*62/.test(color);
+    assert.ok(actual.icons.every(icon => isLemonYellow(icon.border)),
+      `all five primary footer buttons have lemon-yellow borders at ${width}`);
     assert.deepEqual(actual.onsite.map(item => item.action), ["events", "meet"],
       `canonical Events and Meet live in footer at ${width}`);
     assert.ok(actual.onsite.every(icon => icon.image.includes("data:image/svg+xml")),
@@ -129,8 +129,8 @@ try {
       `Events and Meet have distinct illustrations at ${width}`);
     assert.ok(actual.onsite.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
       `Events and Meet illustrations use several colors at ${width}`);
-    assert.notEqual(actual.onsite[0].border, actual.onsite[1].border,
-      `Events and Meet have different accent borders at ${width}`);
+    assert.ok(actual.onsite.every(icon => isLemonYellow(icon.border)),
+      `Events and Meet use the same lemon-yellow border at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);
     assert.equal(actual.onsiteBoxHidden, true, `old Events/Meet box removed at ${width}`);
     assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);
