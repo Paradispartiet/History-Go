@@ -1,0 +1,641 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "arvid_etter_leas_tillit",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Arvid: En samling uten redningsperson",
+  "sisteDag": 28,
+  "hovedtraad": "arvid_og_ansvaret_for_fellesskapet",
+  "threads": [
+    {
+      "id": "arvid_og_ansvaret_for_fellesskapet",
+      "tittel": "Arvid: En samling uten redningsperson",
+      "type": "privatliv",
+      "startDag": 26,
+      "konflikt": "Etter valget om Leas grenser må Arvid bygge en organisering som ikke er avhengig av usagte tjenester"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d26_felles_arvid_ansvar_naer",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En venn er ikke en frivilligliste",
+      "tekst": "Lea åpnet for en samtale etter at Arvid tok ansvar. Han blir glad, men oppdager at en frivillig allerede har skrevet henne opp som hjelper på neste samling. Arvid vet at den nye kontakten ville bli ødelagt om han lot det stå.",
+      "valg": [
+        {
+          "id": "fordel",
+          "tekst": "La Arvid fordele nødvendige oppgaver bare blant dem som melder seg",
+          "konsekvensTekst": "Han lager en åpen oversikt med ubemannede oppgaver. Ingen føres opp uten å ha sagt ja.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "fordel"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "kutt",
+          "tekst": "La Arvid redusere programmet til det frivillige faktisk kan bære",
+          "konsekvensTekst": "Han fjerner en programpost. Noen blir misfornøyde, men han behøver ikke hente tilbake Lea.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "kutt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_25_result": "ansvar_naer"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_arvid_ansvar_distanse",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det riktige svaret uten belønning",
+      "tekst": "Lea sa at hun trengte avstand selv etter at Arvid hadde tatt ansvar. Neste kulturkveld nærmer seg, og to frivillige vil at han skal spørre henne igjen. De mener hennes ja til et møte ville løse bemanningen.",
+      "valg": [
+        {
+          "id": "fordel",
+          "tekst": "La Arvid fordele nødvendige oppgaver bare blant dem som melder seg",
+          "konsekvensTekst": "Han lager en åpen oversikt med ubemannede oppgaver. Ingen føres opp uten å ha sagt ja.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "fordel"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "kutt",
+          "tekst": "La Arvid redusere programmet til det frivillige faktisk kan bære",
+          "konsekvensTekst": "Han fjerner en programpost. Noen blir misfornøyde, men han behøver ikke hente tilbake Lea.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "kutt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_25_result": "ansvar_distanse"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_arvid_vern_naer",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kontakt på skjøre vilkår",
+      "tekst": "Lea ønsket beskyttet kontakt, men åpnet likevel for en samtale uten arbeidsroller. På et planleggingsmøte sier Joakim at hun sikkert kan ta imot folk som før. Arvid ser at han må gripe inn selv.",
+      "valg": [
+        {
+          "id": "fordel",
+          "tekst": "La Arvid fordele nødvendige oppgaver bare blant dem som melder seg",
+          "konsekvensTekst": "Han lager en åpen oversikt med ubemannede oppgaver. Ingen føres opp uten å ha sagt ja.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "fordel"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "kutt",
+          "tekst": "La Arvid redusere programmet til det frivillige faktisk kan bære",
+          "konsekvensTekst": "Han fjerner en programpost. Noen blir misfornøyde, men han behøver ikke hente tilbake Lea.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "kutt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_25_result": "vern_naer"
+        }
+      }
+    },
+    {
+      "id": "d26_felles_arvid_vern_distanse",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 26,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Stolen hun ikke skylder noen",
+      "tekst": "Lea valgte avstand og har fått ro. På gruppemøtet innrømmer en frivillig at de pleide å regne med at hun ordnet alt i siste øyeblikk. Flere vil avlyse uten å kontakte henne igjen.",
+      "valg": [
+        {
+          "id": "fordel",
+          "tekst": "La Arvid fordele nødvendige oppgaver bare blant dem som melder seg",
+          "konsekvensTekst": "Han lager en åpen oversikt med ubemannede oppgaver. Ingen føres opp uten å ha sagt ja.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "fordel"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "kutt",
+          "tekst": "La Arvid redusere programmet til det frivillige faktisk kan bære",
+          "konsekvensTekst": "Han fjerner en programpost. Noen blir misfornøyde, men han behøver ikke hente tilbake Lea.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_26_retning": "kutt"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_25_result": "vern_distanse"
+        }
+      }
+    },
+    {
+      "id": "d27_felles_arvid_fordel",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 27,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "fordel",
+      "tekst": "En tom vakt blir synlig",
+      "valg": [
+        {
+          "id": "aapent",
+          "tekst": "Forklar gruppen hva som faktisk er avklart og mangler",
+          "konsekvensTekst": "Arvid sier at oppgaver må velges frivillig, og at han selv eier endringen. Han nevner ikke Leas private svar.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_27_retning": "aapent"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "samtale",
+          "tekst": "Ta kritikken med Joakim privat og hold på grensen",
+          "konsekvensTekst": "Arvid hører på ham, men lar være å hente Lea inn. De frivillige får bare den oppdaterte planen.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_27_retning": "samtale"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "fordel"
+        }
+      }
+    },
+    {
+      "id": "d27_felles_arvid_kutt",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 27,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "kutt",
+      "tekst": "En frivillig føler seg tilsidesatt",
+      "valg": [
+        {
+          "id": "aapent",
+          "tekst": "Forklar gruppen hva som faktisk er avklart og mangler",
+          "konsekvensTekst": "Arvid sier at oppgaver må velges frivillig, og at han selv eier endringen. Han nevner ikke Leas private svar.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_27_retning": "aapent"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "samtale",
+          "tekst": "Ta kritikken med Joakim privat og hold på grensen",
+          "konsekvensTekst": "Arvid hører på ham, men lar være å hente Lea inn. De frivillige får bare den oppdaterte planen.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_27_retning": "samtale"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "kutt"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_arvid_fordel_aapent",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "fordel",
+      "tekst": "aapent",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Innfør dette som praksis også ved neste samling",
+          "konsekvensTekst": "Arvid forplikter seg til å spørre alle frivillige før de settes på programmet. Det gir ham mer arbeid, ikke flere gratis hjelpere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "fordel_aapent_behold",
+              "felles_arvid_28_fordel_aapent": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "slipp",
+          "tekst": "Trekk deg fra rollen som uoffisiell problemløser",
+          "konsekvensTekst": "Arvid lar den ansvarlige gruppen håndtere neste samling uten at hans vennskap blir en ressurs de kan disponere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "fordel_aapent_slipp",
+              "felles_arvid_28_fordel_aapent": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "fordel",
+          "felles_arvid_27_retning": "aapent"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_arvid_fordel_samtale",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "fordel",
+      "tekst": "samtale",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Innfør dette som praksis også ved neste samling",
+          "konsekvensTekst": "Arvid forplikter seg til å spørre alle frivillige før de settes på programmet. Det gir ham mer arbeid, ikke flere gratis hjelpere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "fordel_samtale_behold",
+              "felles_arvid_28_fordel_samtale": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "slipp",
+          "tekst": "Trekk deg fra rollen som uoffisiell problemløser",
+          "konsekvensTekst": "Arvid lar den ansvarlige gruppen håndtere neste samling uten at hans vennskap blir en ressurs de kan disponere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "fordel_samtale_slipp",
+              "felles_arvid_28_fordel_samtale": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "fordel",
+          "felles_arvid_27_retning": "samtale"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_arvid_kutt_aapent",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "kutt",
+      "tekst": "aapent",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Innfør dette som praksis også ved neste samling",
+          "konsekvensTekst": "Arvid forplikter seg til å spørre alle frivillige før de settes på programmet. Det gir ham mer arbeid, ikke flere gratis hjelpere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "kutt_aapent_behold",
+              "felles_arvid_28_kutt_aapent": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "slipp",
+          "tekst": "Trekk deg fra rollen som uoffisiell problemløser",
+          "konsekvensTekst": "Arvid lar den ansvarlige gruppen håndtere neste samling uten at hans vennskap blir en ressurs de kan disponere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "kutt_aapent_slipp",
+              "felles_arvid_28_kutt_aapent": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "kutt",
+          "felles_arvid_27_retning": "aapent"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_arvid_kutt_samtale",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 28,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "kutt",
+      "tekst": "samtale",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "Innfør dette som praksis også ved neste samling",
+          "konsekvensTekst": "Arvid forplikter seg til å spørre alle frivillige før de settes på programmet. Det gir ham mer arbeid, ikke flere gratis hjelpere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "kutt_samtale_behold",
+              "felles_arvid_28_kutt_samtale": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "slipp",
+          "tekst": "Trekk deg fra rollen som uoffisiell problemløser",
+          "konsekvensTekst": "Arvid lar den ansvarlige gruppen håndtere neste samling uten at hans vennskap blir en ressurs de kan disponere.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_result": "kutt_samtale_slipp",
+              "felles_arvid_28_kutt_samtale": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "felles_arvid_26_retning": "kutt",
+          "felles_arvid_27_retning": "samtale"
+        }
+      }
+    },
+    {
+      "id": "d28_felles_arvid_slutt",
+      "threadId": "arvid_og_ansvaret_for_fellesskapet",
+      "dag": 28,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som nå er annerledes",
+      "tekst": "Valgene dine har endret praktiske planer og personlige relasjoner. Ingen enkelt samtale avgjør hvem de andre er, eller forplikter dem til en ny jobb, konsert eller tjeneste.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapittelet",
+          "konsekvensTekst": "Kapittelet er lagt i historieboka med valgene og relasjonsendringene.",
+          "effekter": {
+            "flagg": {
+              "felles_arvid_28_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_og_ansvaret_for_fellesskapet": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "felles_arvid_28_fordel_aapent",
+      "navn": "Et ansvar som fordeles",
+      "tekst": "aapent",
+      "kriterier": {
+        "flagg": {
+          "felles_arvid_28_fordel_aapent": true
+        }
+      }
+    },
+    {
+      "id": "felles_arvid_28_fordel_samtale",
+      "navn": "En grense som varer",
+      "tekst": "samtale",
+      "kriterier": {
+        "flagg": {
+          "felles_arvid_28_fordel_samtale": true
+        }
+      }
+    },
+    {
+      "id": "felles_arvid_28_kutt_aapent",
+      "navn": "Færre løfter, mer fellesskap",
+      "tekst": "aapent",
+      "kriterier": {
+        "flagg": {
+          "felles_arvid_28_kutt_aapent": true
+        }
+      }
+    },
+    {
+      "id": "felles_arvid_28_kutt_samtale",
+      "navn": "Ingen trenger å redde alt",
+      "tekst": "samtale",
+      "kriterier": {
+        "flagg": {
+          "felles_arvid_28_kutt_samtale": true
+        }
+      }
+    },
+    {
+      "id": "felles_arvid_28_standard",
+      "navn": "Veien videre",
+      "tekst": "Tidligere beslutninger er bevart uten automatisk godkjenning eller ny forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
