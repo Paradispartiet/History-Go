@@ -285,6 +285,15 @@ jobs:
         run: npm run audit:categories
       - name: Audit canonical quiz templates
         run: npm run audit:quiz-templates
+      - name: TEMP Black Box context artifact generation for source parity
+        run: |
+          node scripts/build-quiz-production-context.mjs --category scenekunst --target black_box_teater --output data/quiz/production_context/scenekunst/black_box_teater.json
+          node - <<'NODE'
+          const fs = require('node:fs');
+          const t=fs.readFileSync('data/quiz/production_context/scenekunst/black_box_teater.json','utf8');
+          for(let i=0;i<t.length;i+=600) console.log('BBCTX_PART_'+String(i/600).padStart(4,'0')+'_'+t.slice(i,i+600).replace(/\n/g,'\\n'));
+          console.log('BBCTX_COUNT_'+Math.ceil(t.length/600));
+          NODE
       - name: Audit quiz production packages
         run: |
           npm run audit:quiz-production-context
