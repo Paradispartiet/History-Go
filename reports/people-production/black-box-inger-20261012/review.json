@@ -25,16 +25,42 @@
     "npm run audit:people-of-places",
     "npm run civication:history-people:check",
     "npm run place-open:check",
-    "reports/visual-qa/black-box-teater/20261012/people-browser-audit.mjs; Chromium 390 and 1440; both PASS; screenshots manually reviewed"
+    "reports/visual-qa/black-box-teater/20261012/people-browser-audit.mjs; Chromium 390 and 1440; both PASS; screenshots manually reviewed",
+    "node --experimental-strip-types scripts/build-civication-scenario-people-index.mts --check",
+    "node --test tests/civication-scenario-people.test.mjs"
   ],
   "baseline": "Global documentary people-image backlog remains: 261 missing local images and 1 unknown/disallowed legacy license. Editorial illustration audit is the applicable hard gate here. This change creates no new global image error. Unrelated media asset refresh in stale People-of-Places report excluded from commit; canonical readiness report and runtime rebuild retained.",
   "quality": [
-    {"dimension":"Korrekthet og evidens","score":4,"evidence":"Identity and role source review, complete field/sentence mapping, openly qualified conflicting dates."},
-    {"dimension":"Dekning og ferdigstillelse","score":5,"evidence":"Entire scoped person profile and both portrait files reviewed; no placeholder portrait."},
-    {"dimension":"Faglig/redaksjonell kvalitet","score":4,"evidence":"Person-specific career and institution history, no invented education or works; direct Aker Brygge boundary."},
-    {"dimension":"Teknisk integritet","score":5,"evidence":"Canonical validator, alpha audit, regression tests, runtime parity, real browser clicks and image decodes."},
-    {"dimension":"Sikkerhet og ansvarlighet","score":5,"evidence":"Only public professional history; reference photograph not republished; explicit illustration labeling and licensed original output."},
-    {"dimension":"Vedlikeholdbarhet og etterprøvbarhet","score":5,"evidence":"Existing canonical ID and manifest preserved, reproducible builders and reviewable source/claims/assets/screenshots."}
+    {
+      "dimension": "Korrekthet og evidens",
+      "score": 4,
+      "evidence": "Identity and role source review, complete field/sentence mapping, openly qualified conflicting dates."
+    },
+    {
+      "dimension": "Dekning og ferdigstillelse",
+      "score": 5,
+      "evidence": "Entire scoped person profile and both portrait files reviewed; no placeholder portrait."
+    },
+    {
+      "dimension": "Faglig/redaksjonell kvalitet",
+      "score": 4,
+      "evidence": "Person-specific career and institution history, no invented education or works; direct Aker Brygge boundary."
+    },
+    {
+      "dimension": "Teknisk integritet",
+      "score": 5,
+      "evidence": "Canonical validator, alpha audit, regression tests, runtime parity, real browser clicks and image decodes."
+    },
+    {
+      "dimension": "Sikkerhet og ansvarlighet",
+      "score": 5,
+      "evidence": "Only public professional history; reference photograph not republished; explicit illustration labeling and licensed original output."
+    },
+    {
+      "dimension": "Vedlikeholdbarhet og etterprøvbarhet",
+      "score": 5,
+      "evidence": "Existing canonical ID and manifest preserved, reproducible builders and reviewable source/claims/assets/screenshots."
+    }
   ],
   "quality_total": 28,
   "critical_blockers": []
