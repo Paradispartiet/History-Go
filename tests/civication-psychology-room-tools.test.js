@@ -175,6 +175,45 @@ async function run() {
   assert.strictEqual(window.PsychologyRoom.getProfile().insight_points, beforeFollowUpProfile.insight_points,
     'follow-ups do not grant insight points');
 
+
+  // Every existing path can be linked, explicitly, to a prior situation.
+  const sixPaths = JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/psychology/psychology_paths.json'), 'utf8')).paths;
+  assert.strictEqual(sixPaths.length, 6);
+  const beforeLinkProfile = window.PsychologyRoom.getProfile();
+  assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench(sixPaths[0].id, work.entry.id).reason,
+    'not_active', 'unstarted paths are not silently linked');
+  assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench('missing-path', work.entry.id).reason, 'unknown_path');
+  const existingProgress = {};
+  for (const pathDef of sixPaths) {
+    existingProgress[pathDef.id] = {
+      path_id: pathDef.id,
+      started_at: new Date().toISOString(),
+      current_day: 1,
+      completed_days: [],
+      completed_at: null,
+      reward_claimed_at: null
+    };
+  }
+  localStorage.setItem(window.PsychologyRoom.storageKeys.pathProgress, JSON.stringify(existingProgress));
+  for (const pathDef of sixPaths) {
+    assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench(pathDef.id, 'unknown-note').reason, 'not_found');
+    const linked = window.PsychologyRoom.linkPathToWorkbench(pathDef.id, work.entry.id);
+    assert.strictEqual(linked.linked, true, pathDef.id);
+    assert.strictEqual(window.PsychologyRoom.getPathProgress(pathDef.id).workbench_entry_id, work.entry.id);
+  }
+  const secondSituation = window.PsychologyRoom.saveWorkbench({ situation: 'En annen situasjon' });
+  assert.strictEqual(secondSituation.saved, true);
+  assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench(sixPaths[0].id, secondSituation.entry.id).reason,
+    'already_linked', 'one active path cannot be reassigned over an existing association');
+  assert.strictEqual(window.PsychologyRoom.getWorkbenchEntries()[0].follow_ups.length, 2,
+    'linking never duplicates or overwrites follow-ups');
+  assert.strictEqual(window.PsychologyRoom.getProfile().insight_points, beforeLinkProfile.insight_points,
+    'associating paths does not award insight');
+  assert.strictEqual(window.PsychologyRoom.getProfile().completed_sessions, beforeLinkProfile.completed_sessions,
+    'associating paths does not create a session');
+  assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), before,
+    'associating paths never changes Civication competence');
+
   // Unknown tool id is handled.
   const unknown = window.PsychologyRoom.completeTool('does_not_exist', { steps: ['x'] });
   assert.strictEqual(unknown.completed, false);
