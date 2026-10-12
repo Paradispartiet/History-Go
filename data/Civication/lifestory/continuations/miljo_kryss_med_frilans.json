@@ -1,0 +1,415 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_kryss_med_frilans",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Krediteringen som manglet et ja",
+  "sisteDag": 19,
+  "hovedtraad": "arvid_og_leas_oppdrag",
+  "threads": [
+    {
+      "id": "arvid_og_leas_oppdrag",
+      "tittel": "Krediteringen som manglet et ja",
+      "type": "privatliv",
+      "startDag": 17,
+      "konflikt": "Arvid vil bruke Leas navn i programteksten for et åpent arrangement, men det finnes ingen inngått oppdragsavtale."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d17_kryss_frilans_arvid_klar",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et avklart spørsmål blir til et oppdrag",
+      "tekst": "Du fikk avklart ett spørsmål om mulig frilansarbeid sammen med Lea, men ingen av dere inngikk en avtale. Nå sender Arvid et utkast med teksten «Lea – produksjonsansvarlig». Han sier at det bare er en praktisk kreditering. Lea har ikke sett utkastet.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Be Arvid kontakte Lea før han offentliggjør noe",
+          "konsekvensTekst": "Arvid sender Lea en konkret forespørsel og stanser publiseringen mens han avventer svar.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "kontakt"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta bort krediteringen med én gang",
+          "konsekvensTekst": "Arvid stryker Leas navn fra utkastet. Arrangementet kan beskrives uten å plassere ansvar på henne.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_16_klar": true
+        }
+      }
+    },
+    {
+      "id": "d17_kryss_frilans_arvid_egen",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Notatene noen andre vil bruke",
+      "tekst": "Du beholdt dine frilansnotater privat og lovet ingen leveranse. Arvid vil sette Leas navn på et program fordi han har hørt at dere har diskutert et prosjekt. Han har verken bestilling eller samtykke fra Lea.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Be Arvid kontakte Lea før han offentliggjør noe",
+          "konsekvensTekst": "Arvid sender Lea en konkret forespørsel og stanser publiseringen mens han avventer svar.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "kontakt"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta bort krediteringen med én gang",
+          "konsekvensTekst": "Arvid stryker Leas navn fra utkastet. Arrangementet kan beskrives uten å plassere ansvar på henne.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_16_egen": true
+        }
+      }
+    },
+    {
+      "id": "d17_kryss_frilans_arvid_pause",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En pause som ikke stod på plakaten",
+      "tekst": "Du lot frilanssporet hvile. Arvid er i ferd med å sende ut invitasjoner der Lea omtales som ansvarlig for gjennomføringen. Han mener navnet kan fjernes senere dersom hun protesterer.",
+      "valg": [
+        {
+          "id": "kontakt",
+          "tekst": "Be Arvid kontakte Lea før han offentliggjør noe",
+          "konsekvensTekst": "Arvid sender Lea en konkret forespørsel og stanser publiseringen mens han avventer svar.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "kontakt"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta bort krediteringen med én gang",
+          "konsekvensTekst": "Arvid stryker Leas navn fra utkastet. Arrangementet kan beskrives uten å plassere ansvar på henne.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_17_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "frilans_16_pause": true
+        }
+      }
+    },
+    {
+      "id": "d18_kryss_frilans_arvid_kontakt",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Leas svar er ikke et oppdrag",
+      "tekst": "Lea svarer at hun gjerne kan forklare hva samtalen handlet om, men ikke tar produksjonsansvar. Arvid ber deg om en formulering han kan bruke uten å skyve ansvaret tilbake på Lea.",
+      "valg": [
+        {
+          "id": "rette",
+          "tekst": "Be Arvid rette teksten også hos mottakerne",
+          "konsekvensTekst": "Du ber ham sende en kort rettelse til dem som fikk utkastet. Den sier hvem som faktisk organiserer kvelden, og at Lea ikke har påtatt seg ansvar.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_18_retning": "rette"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Si at Lea ikke skal trekkes inn i enda en opprydning",
+          "konsekvensTekst": "Du gjør det klart at dette er Arvids ansvar. Han får velge hvordan han vil rydde opp, men kan ikke bruke Leas tid som begrunnelse.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_18_retning": "avgrense"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "kontakt"
+        }
+      }
+    },
+    {
+      "id": "d18_kryss_frilans_arvid_stopp",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Utkastet ligger hos to frivillige",
+      "tekst": "Arvid fjernet Leas navn, men to frivillige har allerede fått den gamle teksten. En av dem har invitert andre på grunnlag av krediteringen. Arvid spør om han kan la dem ordne opp selv.",
+      "valg": [
+        {
+          "id": "rette",
+          "tekst": "Be Arvid rette teksten også hos mottakerne",
+          "konsekvensTekst": "Du ber ham sende en kort rettelse til dem som fikk utkastet. Den sier hvem som faktisk organiserer kvelden, og at Lea ikke har påtatt seg ansvar.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_18_retning": "rette"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Si at Lea ikke skal trekkes inn i enda en opprydning",
+          "konsekvensTekst": "Du gjør det klart at dette er Arvids ansvar. Han får velge hvordan han vil rydde opp, men kan ikke bruke Leas tid som begrunnelse.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_18_retning": "avgrense"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_17_retning": "stopp"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_frilans_arvid_rette",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Rettelsen når fram",
+      "tekst": "Arvid sender en korrigert invitasjon. En frivillig blir irritert over at navnet ble fjernet, men arrangøren overtar selv ansvaret for oppgavene. Lea takker for at hun slapp å forklare et oppdrag hun aldri tok.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "La avgjørelsen stå",
+          "konsekvensTekst": "Du lar Arvid bære sin egen beslutning. Lea får ingen ny oppgave, og tidligere notater er fortsatt dine.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_19_ending": "rette",
+              "kryss_frilans_arvid_19_rette": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Legg hendelsen i historieboka",
+          "konsekvensTekst": "Du beholder hvem som fikk beskjed og hvilken tekst som ble brukt. Ingen betaling eller oppdrag er opprettet.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_19_ending": "rette",
+              "kryss_frilans_arvid_19_rette": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_18_retning": "rette"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_frilans_arvid_avgrense",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Stillheten har en kostnad",
+      "tekst": "Arvid lar Lea være i fred. Den gamle teksten sirkulerer fortsatt hos én frivillig, som nå må spørre arrangøren direkte. Arvid får mindre kontroll over ryktet, men kan ikke gjøre det til Leas problem.",
+      "valg": [
+        {
+          "id": "behold",
+          "tekst": "La avgjørelsen stå",
+          "konsekvensTekst": "Du lar Arvid bære sin egen beslutning. Lea får ingen ny oppgave, og tidligere notater er fortsatt dine.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_19_ending": "avgrense",
+              "kryss_frilans_arvid_19_avgrense": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "arkiver",
+          "tekst": "Legg hendelsen i historieboka",
+          "konsekvensTekst": "Du beholder hvem som fikk beskjed og hvilken tekst som ble brukt. Ingen betaling eller oppdrag er opprettet.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_19_ending": "avgrense",
+              "kryss_frilans_arvid_19_avgrense": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_frilans_arvid_18_retning": "avgrense"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_frilans_arvid_slutt",
+      "threadId": "arvid_og_leas_oppdrag",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som ikke ble avtalt",
+      "tekst": "Det du gjorde, har endret en annen persons planer. Historieboka bevarer både den første beslutningen og rettelsene som kom senere. Ingen scene alene kan gjøre et utkast til en kontrakt.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Valgene er bevart, uten automatisk betaling, jobb, avtale eller opplåsing.",
+          "effekter": {
+            "flagg": {
+              "kryss_frilans_arvid_19_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_og_leas_oppdrag": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "kryss_frilans_arvid_19_rette",
+      "navn": "En offentlig rettelse",
+      "tekst": "Arvid sender en korrigert invitasjon. En frivillig blir irritert over at navnet ble fjernet, men arrangøren overtar selv ansvaret for oppgavene. Lea takker for at hun slapp å forklare et oppdrag hun aldri tok.",
+      "kriterier": {
+        "flagg": {
+          "kryss_frilans_arvid_19_rette": true
+        }
+      }
+    },
+    {
+      "id": "kryss_frilans_arvid_19_avgrense",
+      "navn": "Ansvar uten stedfortreder",
+      "tekst": "Arvid lar Lea være i fred. Den gamle teksten sirkulerer fortsatt hos én frivillig, som nå må spørre arrangøren direkte. Arvid får mindre kontroll over ryktet, men kan ikke gjøre det til Leas problem.",
+      "kriterier": {
+        "flagg": {
+          "kryss_frilans_arvid_19_avgrense": true
+        }
+      }
+    },
+    {
+      "id": "kryss_frilans_arvid_19_standard",
+      "navn": "Fortsatt uten avtale",
+      "tekst": "Kapitlet er bevart uten ny forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
