@@ -1,0 +1,641 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_etter_leas_notat",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Mira: Hvem får fortelle min historie?",
+  "sisteDag": 25,
+  "hovedtraad": "mira_etter_leas_notat",
+  "threads": [
+    {
+      "id": "mira_etter_leas_notat",
+      "tittel": "Mira: Hvem får fortelle min historie?",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Tidligere beslutninger setter lojalitet, grenser og tillit i spill mellom personene."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_relasjon_mira_notat_anonym_endre",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et gjenkjennelig tema",
+      "tekst": "Lea anonymiserte eksemplet og skrev om egne valg. Mira hører at Lea skal snakke om ansvar på en åpen kveld. Hun lurer på hva tilhørerne allerede vet.",
+      "valg": [
+        {
+          "id": "snakke",
+          "tekst": "La Mira fortelle Lea hvordan hun opplevde saken",
+          "konsekvensTekst": "Mira forklarer at antydningene gjorde det vanskelig å møte folk. Lea lytter uten å be om en offentlig redegjørelse.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "snakke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La Mira be om pause fra denne historien",
+          "konsekvensTekst": "Mira takker for rettelsen, men ønsker ikke flere samtaler om den nå.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "fri"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "anonym",
+          "ensemble_lea_navn_21_retning": "endre"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_notat_anonym_privat",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ryktet uten avsender",
+      "tekst": "Lea anonymiserte hendelsen og beholdt notatet privat. En bekjent sier likevel at det går en historie om Mira. Det er uklart hvem som har fortalt den.",
+      "valg": [
+        {
+          "id": "snakke",
+          "tekst": "La Mira fortelle Lea hvordan hun opplevde saken",
+          "konsekvensTekst": "Mira forklarer at antydningene gjorde det vanskelig å møte folk. Lea lytter uten å be om en offentlig redegjørelse.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "snakke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La Mira be om pause fra denne historien",
+          "konsekvensTekst": "Mira takker for rettelsen, men ønsker ikke flere samtaler om den nå.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "fri"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "anonym",
+          "ensemble_lea_navn_21_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_notat_samtykke_endre",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Spørsmålet etter avslaget",
+      "tekst": "Lea spurte om samtykke, fikk nei og skrev deretter bare om egne avgjørelser. En frivillig spør Mira hvorfor hun ikke ville «hjelpe Lea med teksten».",
+      "valg": [
+        {
+          "id": "snakke",
+          "tekst": "La Mira fortelle Lea hvordan hun opplevde saken",
+          "konsekvensTekst": "Mira forklarer at antydningene gjorde det vanskelig å møte folk. Lea lytter uten å be om en offentlig redegjørelse.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "snakke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La Mira be om pause fra denne historien",
+          "konsekvensTekst": "Mira takker for rettelsen, men ønsker ikke flere samtaler om den nå.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "fri"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "samtykke",
+          "ensemble_lea_navn_21_retning": "endre"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_mira_notat_samtykke_privat",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det første møtet etter et nei",
+      "tekst": "Lea respekterte Miras nei og lot notatet bli privat. Mira møter henne for første gang etterpå og er redd Lea tok avslaget personlig.",
+      "valg": [
+        {
+          "id": "snakke",
+          "tekst": "La Mira fortelle Lea hvordan hun opplevde saken",
+          "konsekvensTekst": "Mira forklarer at antydningene gjorde det vanskelig å møte folk. Lea lytter uten å be om en offentlig redegjørelse.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "snakke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "fri",
+          "tekst": "La Mira be om pause fra denne historien",
+          "konsekvensTekst": "Mira takker for rettelsen, men ønsker ikke flere samtaler om den nå.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_23_retning": "fri"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "samtykke",
+          "ensemble_lea_navn_21_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_mira_notat_snakke",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "God hensikt løser ikke alt",
+      "tekst": "Lea sier at hun forsøkte å gjøre det riktige. Mira svarer at gode hensikter ikke opphever belastningen ved å bli brukt som eksempel.",
+      "valg": [
+        {
+          "id": "respekt",
+          "tekst": "Be Lea bekrefte grensen uten detaljer",
+          "konsekvensTekst": "Lea sier bare at de håndterer saken privat. Mira blir ikke utlevert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_24_retning": "respekt"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stille",
+          "tekst": "La stillheten være et reelt valg",
+          "konsekvensTekst": "Ingen ny forklaring spres til dem som er nysgjerrige.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_24_retning": "stille"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "snakke"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_mira_notat_fri",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En felles bekjent spør",
+      "tekst": "En bekjent spør Lea om Mira er sint. Lea kan velge å ikke forklare Miras fravær eller gjengi private meldinger.",
+      "valg": [
+        {
+          "id": "respekt",
+          "tekst": "Be Lea bekrefte grensen uten detaljer",
+          "konsekvensTekst": "Lea sier bare at de håndterer saken privat. Mira blir ikke utlevert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_24_retning": "respekt"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stille",
+          "tekst": "La stillheten være et reelt valg",
+          "konsekvensTekst": "Ingen ny forklaring spres til dem som er nysgjerrige.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_24_retning": "stille"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "fri"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_notat_snakke_respekt",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den første samtalen om noe annet",
+      "tekst": "Lea spør forsiktig om musikken Mira lager. Mira svarer. De snakker om en sang framfor ryktet; en liten åpning, ikke full forsoning.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La en senere samtale være Miras avgjørelse",
+          "konsekvensTekst": "Lea eller Arvid kan ikke bestille forsoning på hennes vegne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "snakke_respekt_senere",
+              "relasjon_mira_notat_25_snakke_respekt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ferdig",
+          "tekst": "Avslutt denne kontakten foreløpig",
+          "konsekvensTekst": "Mira trenger ikke forklare fraværet sitt for andre.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "snakke_respekt_ferdig",
+              "relasjon_mira_notat_25_snakke_respekt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "snakke",
+          "relasjon_mira_notat_24_retning": "respekt"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_notat_snakke_stille",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samtalen fikk stoppe",
+      "tekst": "Mira har sagt det hun trengte. Lea lar henne gå uten å kreve at forholdet skal bli som før.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La en senere samtale være Miras avgjørelse",
+          "konsekvensTekst": "Lea eller Arvid kan ikke bestille forsoning på hennes vegne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "snakke_stille_senere",
+              "relasjon_mira_notat_25_snakke_stille": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ferdig",
+          "tekst": "Avslutt denne kontakten foreløpig",
+          "konsekvensTekst": "Mira trenger ikke forklare fraværet sitt for andre.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "snakke_stille_ferdig",
+              "relasjon_mira_notat_25_snakke_stille": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "snakke",
+          "relasjon_mira_notat_24_retning": "stille"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_notat_fri_respekt",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En grense som ble forstått",
+      "tekst": "Lea avviser spørsmål fra bekjente. Mira hører om det senere og føler seg mindre på vakt, men vil fortsatt ha tid for seg selv.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La en senere samtale være Miras avgjørelse",
+          "konsekvensTekst": "Lea eller Arvid kan ikke bestille forsoning på hennes vegne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "fri_respekt_senere",
+              "relasjon_mira_notat_25_fri_respekt": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ferdig",
+          "tekst": "Avslutt denne kontakten foreløpig",
+          "konsekvensTekst": "Mira trenger ikke forklare fraværet sitt for andre.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "fri_respekt_ferdig",
+              "relasjon_mira_notat_25_fri_respekt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "fri",
+          "relasjon_mira_notat_24_retning": "respekt"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_notat_fri_stille",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Sin egen historie",
+      "tekst": "Mira svarer ikke på flere spørsmål om utkastet. Hun vil heller bli kjent for musikken sin enn for det andre skrev.",
+      "valg": [
+        {
+          "id": "senere",
+          "tekst": "La en senere samtale være Miras avgjørelse",
+          "konsekvensTekst": "Lea eller Arvid kan ikke bestille forsoning på hennes vegne.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "fri_stille_senere",
+              "relasjon_mira_notat_25_fri_stille": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ferdig",
+          "tekst": "Avslutt denne kontakten foreløpig",
+          "konsekvensTekst": "Mira trenger ikke forklare fraværet sitt for andre.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_valg": "fri_stille_ferdig",
+              "relasjon_mira_notat_25_fri_stille": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_mira_notat_23_retning": "fri",
+          "relasjon_mira_notat_24_retning": "stille"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_mira_notat_slutt",
+      "threadId": "mira_etter_leas_notat",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva som ble annerledes",
+      "tekst": "Tidligere valg og nye grenser er bevart i historieboka. Personene kan ha ulike oppfatninger uten at én scene avgjør framtiden for dem.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Ingen avtale, spillejobb, betaling eller møteplikt er opprettet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_mira_notat_25_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_etter_leas_notat": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "relasjon_mira_notat_25_snakke_respekt",
+      "navn": "En liten åpning",
+      "tekst": "Lea spør forsiktig om musikken Mira lager. Mira svarer. De snakker om en sang framfor ryktet; en liten åpning, ikke full forsoning.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_notat_25_snakke_respekt": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_notat_25_snakke_stille",
+      "navn": "En samtale med slutt",
+      "tekst": "Mira har sagt det hun trengte. Lea lar henne gå uten å kreve at forholdet skal bli som før.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_notat_25_snakke_stille": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_notat_25_fri_respekt",
+      "navn": "Grenser respektert",
+      "tekst": "Lea avviser spørsmål fra bekjente. Mira hører om det senere og føler seg mindre på vakt, men vil fortsatt ha tid for seg selv.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_notat_25_fri_respekt": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_notat_25_fri_stille",
+      "navn": "Sin egen fortelling",
+      "tekst": "Mira svarer ikke på flere spørsmål om utkastet. Hun vil heller bli kjent for musikken sin enn for det andre skrev.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_mira_notat_25_fri_stille": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_mira_notat_standard",
+      "navn": "Et åpent forhold",
+      "tekst": "Historien forblir åpen uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
