@@ -86,4 +86,7 @@ En dramatisk type (C01–C24), et litterært spor (L01–L24) eller et av Booker
 - `CIVICATION_STORY_SYNOPSES_V1.md`: 24 konkrete synopsis + personspesifikke varianter.
 - `CIVICATION_PEOPLE_STORY_MIGRATION_V1.md`: eksisterende fortsettelsesfiler med migreringsrisiko.
 - `data/Civication/lifestory/editorial/peopleStoryPlanningV1.json`: maskinlesbar redaksjonell produksjonsliste.
+- `CIVICATION_SYMPOSIUM_MASTER_ATLAS_V1.md`: hovedoversikten med ni trinn, 45 kapittel-ID-er, rollestatus og produksjonsrekkefølge.
+- `CIVICATION_FOUNDATION_SYNOPSES_V1.md`: ti grunnkapittel-synopsiser for dag 8–13.
+- `data/Civication/lifestory/editorial/storyProductionLedgerV1.json`: maskinlesbar oversikt over alle 45 eksisterende pakker og deres reelle rolle-/tidsbindinger.
 - Eksisterende `data/Civication/lifestory/editorial/narrativeCrosswalkV1.json` forblir urørt inntil migrering er godkjent.
