@@ -269,8 +269,8 @@
       if (!person.persontype || !alias || alias === person.navn) continue;
       const escaped = person.navn.replace(/[.*+?^\${}()|[\]\\]/g, "\\$&");
       const possessive = /[sxz]$/i.test(alias) ? alias + "’" : alias + "s";
-      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
-        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + alias);
+      text = text.replace(new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped + "s(?=$|[^\\p{L}\\p{N}_])", "giu"), (_, prefix) => prefix + possessive)
+        .replace(new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped + "(?=$|[^\\p{L}\\p{N}_])", "giu"), (_, prefix) => prefix + alias);
     }
     return text;
   }

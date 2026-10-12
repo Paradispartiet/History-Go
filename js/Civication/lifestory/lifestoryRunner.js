@@ -418,7 +418,7 @@
     if (!canStartContinuation(state, baseContent, next) || mergedContent.fortsettelse?.id !== id || !ending) {
       throw new Error("[LifestoryRunner] fortsettelsen er ikke tilgjengelig nå");
     }
-    state.kapittelArkiv = (state.kapittelArkiv || []).concat([{ tittel: State.presentText(state, baseContent, baseContent.role.symposium.tittel),
+    state.kapittelArkiv = (state.kapittelArkiv || []).concat([{ tittel: baseContent.role.symposium.tittel,
       fraDag: baseContent.fortsettelse ? baseContent.fortsettelse.etterDag + 1 : 1, tilDag: state.dag,
       ending: JSON.parse(JSON.stringify(ending)) }]);
     state.fortsettelser = getContinuationIds(state).concat(id);

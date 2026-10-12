@@ -27,6 +27,10 @@ const aliases = { mira: 'Mira', lea: 'Lea', amir: 'Arvid' };
 (async () => {
   assert.deepEqual(types.map(p => p.id).sort(), ['amir', 'lea', 'mira']);
   assert.deepEqual(Object.fromEntries(types.map(p => [p.id, p.fiktivtNavn])), aliases);
+  assert.ok(types.every(p => !("representanter" in p.persontype)), 'fictional role data must contain no historical candidate IDs');
+  const invalid = clone(raw);
+  invalid.role.personer.find(p => p.id === 'mira').persontype.representanter = ['mari_boine'];
+  assert.throws(() => C.buildContent(invalid), /persontype/, 'mixed fictional/historical cast must fail validation');
 
   // No runtime lookup from collected People, even if the former bridge exists.
   let bridgeCalls = 0;
@@ -51,6 +55,7 @@ const aliases = { mira: 'Mira', lea: 'Lea', amir: 'Arvid' };
   assert.equal(S.presentText(blank, base, 'Medmusikeren og medmusikerens skisse; prosjektbyggeren og prosjektbyggerens idé; miljøkontakten og miljøkontaktens brev.'),
     'Mira og Miras skisse; Lea og Leas idé; Arvid og Arvids brev.');
   assert.equal(S.presentText(blank, base, 'prosjektet_og_lea'), 'prosjektet_og_lea', 'internal IDs must remain unchanged');
+  assert.equal(S.presentText(blank, base, 'miljoet_og_miljøkontakten'), 'miljoet_og_miljøkontakten', 'internal namespaced IDs remain unchanged');
   assert.equal(S.presentText(blank, base, 'Mira, Lea og Arvid'), 'Mira, Lea og Arvid');
   for (const p of types) {
     assert.ok(S.sceneMentionsPerson({ avsender: p.id, tittel: 'Test', tekst: 'En ny avtale' }, p));

@@ -306,9 +306,9 @@
         if (typeof startRelasjoner[person.id] !== "number") push(`symposium: personen ${person.id} mangler relasjon`);
         if (person.persontype) {
           const type = person.persontype;
-          if (!/^[a-z0-9_]+$/.test(type.id || "") || !Array.isArray(type.representanter) || type.representanter.length < 2
-            || type.representanter.some(id => typeof id !== "string" || !/^[a-z0-9_]+$/.test(id))
-            || new Set(type.representanter).size !== type.representanter.length) push(`symposium: ugyldig persontype ${person.id}`);
+          if (!/^[a-z0-9_]+$/.test(type.id || "")
+            || typeof person.fiktivtNavn !== "string" || !person.fiktivtNavn.trim()
+            || "representanter" in type) push(`symposium: ugyldig persontype ${person.id}`);
         }
       }
       const typeIds = (role.personer || []).filter(p => p.persontype).map(p => p.persontype.id);
