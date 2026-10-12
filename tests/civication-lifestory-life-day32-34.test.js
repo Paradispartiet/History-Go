@@ -109,6 +109,10 @@ for(const arc of arcs){
  assert.equal(pack.scenes.filter(x=>x.dag===32).length,8);
  assert.equal(pack.scenes.filter(x=>x.dag===33).length,2);
  assert.equal(pack.scenes.filter(x=>x.dag===34).length,5);
+ for(const scene of pack.scenes.filter(s=>s.dag===34&&s.valg.length===2)){
+  assert.ok(scene.tittel.length>15,'day-34 scene needs a narrative title, not a routing key: '+scene.id);
+  assert.ok(scene.tekst.length>100,'day-34 scene needs authored prose, not a routing key: '+scene.id);
+ }
  assert.ok(pack.scenes.every(s=>s.threadId===pack.hovedtraad));
  assert.ok(pack.scenes.every(s=>s.valg.every(v=>v.tekst&&v.konsekvensTekst&&v.effekter&&!v.effekter.meters?.penger&&!v.effekter.arbeid&&!v.effekter.inntekt)));
  assert.equal(new Set(pack.endings.filter(x=>!x.standard).map(e=>Object.keys(e.kriterier.flagg)[0])).size,8);
