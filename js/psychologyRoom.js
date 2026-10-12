@@ -1286,8 +1286,8 @@
       if (linkedEntry) renderWorkbenchEntry(linkedEntry.id);
     });
     document.querySelector("[data-psych-link-path]")?.addEventListener("click", (event) => {
-      const requestedId = event.currentTarget.dataset.psychLinkPath ||
-        document.getElementById("psychologyRoomPathWorkbenchPicker")?.value || "";
+      const requestedId = /** @type {HTMLElement} */ (event.currentTarget)?.dataset.psychLinkPath ||
+        /** @type {HTMLSelectElement|null} */ (document.getElementById("psychologyRoomPathWorkbenchPicker"))?.value || "";
       if (!requestedId) {
         window.showToast?.("Velg først en situasjon");
         return;
