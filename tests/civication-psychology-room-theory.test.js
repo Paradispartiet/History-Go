@@ -107,9 +107,13 @@ global.document = {
   }
 };
 const storage = new Map();
+let refusedStorageKey = null;
 global.localStorage = {
   getItem(key) { return storage.get(key) || null; },
-  setItem(key, value) { storage.set(key, String(value)); }
+  setItem(key, value) {
+    if (key === refusedStorageKey) throw new Error("Simulated storage quota failure");
+    storage.set(key, String(value));
+  }
 };
 global.window = global;
 global.Event = class { constructor(type) { this.type = type; } };
@@ -255,6 +259,8 @@ const press = (selector) => {
   assert.match(roomCss, /\.psychology-room-content\s*\{[^}]*overflow-y:\s*auto;/s);
   assert.match(roomCss, /\.psychology-room-footer\s*\{[^}]*grid-template-columns:\s*repeat\(5,/s);
   assert.match(roomCss, /\[data-active-section="theories"\]/);
+  assert.match(roomCss, /\.psychology-room-days-disclosure\s*>\s*summary/,
+    "the long day list must have a visible touch-accessible disclosure control");
   assert.equal(storage.size, 0, "theory navigation must not write personal data");
   press('[data-psych-nav="home"]');
   press("[data-psych-action='workbench']");
@@ -338,6 +344,18 @@ const press = (selector) => {
   assert.equal(window.PsychologyRoom.getPathProgress(linkedPathId).workbench_entry_id, localReflection.entry.id);
   assert.equal(window.PsychologyRoom.getProfile().insight_points, beforePathLink.insight_points,
     "starting a linked path grants no association bonus");
+  assert.match(rendered, /<details class="psychology-room-days-disclosure">/,
+    "seven-day plan stays collapsed until deliberately expanded");
+  assert.match(rendered, /Fenomen, verktøy og øvelse er frivillige/);
+  const dayReflectionKey = window.PsychologyRoom.storageKeys.pathReflections;
+  const previousReflectionStorage = storage.get(dayReflectionKey);
+  refusedStorageKey = dayReflectionKey;
+  press("[data-save-day-reflection]");
+  assert.equal(storage.get(dayReflectionKey), previousReflectionStorage,
+    "a failed save must not replace or invent a saved day");
+  refusedStorageKey = null;
+  assert.equal(window.PsychologyRoom.getPathProgress(linkedPathId).completed_days.length, 0,
+    "a failed reflection save leaves the course at the same step");
   press("[data-complete-path-day]");
   assert.equal(window.PsychologyRoom.getPathProgress(linkedPathId).completed_days.length, 1);
   press("[data-psych-open-linked-note]");
