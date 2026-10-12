@@ -13,7 +13,7 @@
 | Hvor eksisterende scener og kapittel-ID-er ligger | [45-filers migreringsoversikt](CIVICATION_PEOPLE_STORY_MIGRATION_V1.md), [maskinlesbart ledger](../data/Civication/lifestory/editorial/storyProductionLedgerV1.json) | Eksisterende authored materiale, People-migrering ikke startet |
 | Hva Symposium kan dokumentere | [arkitektur og kontinuitetskrav](CIVICATION_PEOPLE_STORY_ARCHITECTURE_V1.md) | Designkrav, ikke ny state-eier |
 
-**Grunnsynopsiser:** [ti kapittel-synopsiser for dag 8–13](CIVICATION_FOUNDATION_SYNOPSES_V1.md). **Litterært kart:** `data/Civication/lifestory/editorial/narrativeCrosswalkV1.json` med 24 L-spor, sju Booker-modeller, 24 C-typer og 35 senere kapittelreferanser.
+**Grunnsynopsiser:** [ti kapittel-synopsiser for dag 8–13](CIVICATION_FOUNDATION_SYNOPSES_V1.md). **Første migreringspilot:** [musikk dag 8–16, kontinuitets- og akseptmatrise](CIVICATION_MUSIC_PILOT_ACCEPTANCE_V1.md), kontrollert mot tre faktiske scene-filer. De tilhørende regresjonstestene ligger i `tests/civication-people-music-pilot-contract.test.js`; dette er en testkontrakt, ikke People-runtime. **Litterært kart:** `data/Civication/lifestory/editorial/narrativeCrosswalkV1.json` med 24 L-spor, sju Booker-modeller, 24 C-typer og 35 senere kapittelreferanser.
 
 ## Status – hva tallene betyr
 
