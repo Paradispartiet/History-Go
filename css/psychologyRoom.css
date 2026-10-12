@@ -1006,3 +1006,20 @@
 }
 .psychology-room-path-link button, .psychology-room-linked-path button { justify-self: start; max-width: 100%; }
 .psychology-room-panel select:focus-visible { outline: 2px solid #a0f1df; outline-offset: 3px; }
+
+/* 7-day paths: keep the active step in view; let people open the long plan. */
+.psychology-room-days-disclosure { min-width: 0; }
+.psychology-room-days-disclosure > summary {
+  min-height: 44px;
+  box-sizing: border-box;
+  display: list-item;
+  cursor: pointer;
+  padding: 12px 15px;
+  border: 1px solid rgba(136,239,217,.32);
+  border-radius: 12px;
+  background: #1a2d34;
+  color: #c4f6e9;
+  font-weight: 700;
+}
+.psychology-room-days-disclosure[open] > summary { margin-bottom: 12px; }
+.psychology-room-days-disclosure .psychology-room-day { margin-top: 10px; }
