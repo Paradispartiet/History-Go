@@ -483,7 +483,8 @@
       current_day: Number(item.current_day || 1),
       completed_days: Array.isArray(item.completed_days) ? item.completed_days.map(Number).filter(Boolean) : [],
       completed_at: item.completed_at || null,
-      reward_claimed_at: item.reward_claimed_at || null
+      reward_claimed_at: item.reward_claimed_at || null,
+      workbench_entry_id: typeof item.workbench_entry_id === "string" ? item.workbench_entry_id : null
     };
   }
 
@@ -523,7 +524,7 @@
     return entry;
   }
 
-  function startPath(path) {
+  function startPath(path, workbenchEntryId = null) {
     if (!path?.id) return;
     const existing = getPathProgress(path.id);
     if (existing?.started_at) {
@@ -537,10 +538,31 @@
       current_day: 1,
       completed_days: [],
       completed_at: null,
-      reward_claimed_at: null
+      reward_claimed_at: null,
+      workbench_entry_id: getWorkbenchEntries().some((item) => item.id === workbenchEntryId) ? workbenchEntryId : null
     });
     window.showToast?.(`Startet: ${path.title}`);
     renderPathDetail(path);
+  }
+
+  // Associations are a deliberate choice; neither linking nor viewing a note
+  // produces an exercise completion, score or Civication event.
+  function linkPathToWorkbench(pathId, entryId) {
+    if (!findById(dataCache?.paths || [], pathId)) return { linked: false, reason: "unknown_path" };
+    if (!getWorkbenchEntries().some((item) => item.id === entryId)) return { linked: false, reason: "not_found" };
+    const progress = getPathProgress(pathId);
+    if (!progress?.started_at || progress.completed_at) return { linked: false, reason: "not_active" };
+    if (progress.workbench_entry_id && progress.workbench_entry_id !== entryId &&
+        getWorkbenchEntries().some((item) => item.id === progress.workbench_entry_id)) {
+      return { linked: false, reason: "already_linked" };
+    }
+    savePathProgressItem(pathId, { ...progress, workbench_entry_id: entryId });
+    return { linked: true, path_id: pathId, workbench_entry_id: entryId };
+  }
+
+  function pathsForWorkbench(entryId) {
+    const progress = readPathProgress();
+    return (dataCache?.paths || []).filter((path) => progress[path.id]?.workbench_entry_id === entryId);
   }
 
   function completePathDay(path, dayNumber, reflectionText = "") {
@@ -1375,6 +1397,7 @@
     getWorkbenchEntries,
     saveWorkbench,
     saveWorkbenchFollowUp,
+    linkPathToWorkbench,
     completeTool,
     storageKeys: STORAGE_KEYS
   };
