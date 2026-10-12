@@ -10,9 +10,13 @@ const repoRoot = path.resolve(__dirname, '..');
 
 // --- fake localStorage ---
 const store = new Map();
+let refusedKey = null;
 global.localStorage = {
   getItem: (key) => (store.has(key) ? store.get(key) : null),
-  setItem: (key, value) => store.set(key, String(value)),
+  setItem: (key, value) => {
+    if (key === refusedKey) throw new Error("Simulated storage quota failure");
+    return store.set(key, String(value));
+  },
   removeItem: (key) => store.delete(key)
 };
 
@@ -179,6 +183,27 @@ async function run() {
   // Every existing path can be linked, explicitly, to a prior situation.
   const sixPaths = JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/psychology/psychology_paths.json'), 'utf8')).paths;
   assert.strictEqual(sixPaths.length, 6);
+  const phenomena = new Set(JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/psychology/psychology_phenomena.json'), 'utf8')).phenomena.map(x => x.id));
+  const tools = new Set(JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/psychology/cbt_tools.json'), 'utf8')).tools.map(x => x.id));
+  const exercises = new Set(JSON.parse(fs.readFileSync(path.join(repoRoot, 'data/psychology/psychology_exercises.json'), 'utf8')).exercises.map(x => x.id));
+  const descriptions = new Set();
+  let dayCount = 0;
+  for (const pathDef of sixPaths) {
+    assert.ok(pathDef.description.length > 80, pathDef.id + ' has a concrete description');
+    descriptions.add(pathDef.description);
+    assert.equal(pathDef.days.length, 7, pathDef.id + ' must have seven distinct days');
+    assert.deepStrictEqual(pathDef.days.map(day => day.day), [1, 2, 3, 4, 5, 6, 7]);
+    for (const day of pathDef.days) {
+      assert.ok(phenomena.has(day.phenomenon_id), pathDef.id + ' day ' + day.day + ' phenomenon');
+      assert.ok(tools.has(day.tool_id), pathDef.id + ' day ' + day.day + ' tool');
+      assert.ok(exercises.has(day.exercise_id), pathDef.id + ' day ' + day.day + ' exercise');
+      assert.ok(day.title && day.reflection_prompt.length > 25,
+        pathDef.id + ' day ' + day.day + ' needs an intelligible question');
+      dayCount++;
+    }
+  }
+  assert.equal(dayCount, 42, 'all daily links are checked');
+  assert.equal(descriptions.size, 6, 'courses must communicate their different practical purposes');
   const beforeLinkProfile = window.PsychologyRoom.getProfile();
   assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench(sixPaths[0].id, work.entry.id).reason,
     'not_active', 'unstarted paths are not silently linked');
@@ -213,6 +238,13 @@ async function run() {
     'associating paths does not create a session');
   assert.strictEqual(Number(window.CivicationPsyche.getPsychologyCompetence()), before,
     'associating paths never changes Civication competence');
+
+  refusedKey = window.PsychologyRoom.storageKeys.pathProgress;
+  assert.strictEqual(window.PsychologyRoom.linkPathToWorkbench(sixPaths[0].id, work.entry.id).reason,
+    'storage_failed', 'failed writes must not be reported as a successful association');
+  refusedKey = null;
+  assert.strictEqual(window.PsychologyRoom.getPathProgress(sixPaths[0].id).workbench_entry_id,
+    work.entry.id, 'failed write did not modify the earlier saved association');
 
   // Unknown tool id is handled.
   const unknown = window.PsychologyRoom.completeTool('does_not_exist', { steps: ['x'] });
