@@ -152,7 +152,7 @@
     chips.push({ kind: "phase", label: view.dagFerdig ? "Dagen er over" : String(view.fase?.navn || lifeState.fase || "Morgen") });
     chips.push({ kind: "meter", label: "Psyke " + asNumber(meters.psyke, 62) });
     chips.push({ kind: "meter", label: "Energi " + asNumber(meters.energi, 71) });
-    chips.push({ kind: "pc", label: asNumber(meters.penger, getWalletPC()) + " PC" });
+    chips.push({ kind: "pc", label: getWalletPC() + " PC" });
 
     return chips.filter(function (chip) { return chip && chip.label; });
   }
