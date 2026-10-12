@@ -1,0 +1,499 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_etter_arvids_tekst",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Hvem skrev at jeg skulle komme?",
+  "sisteDag": 22,
+  "hovedtraad": "mira_etter_arvids_tekst",
+  "threads": [
+    {
+      "id": "mira_etter_arvids_tekst",
+      "tittel": "Hvem skrev at jeg skulle komme?",
+      "type": "privatliv",
+      "startDag": 20,
+      "konflikt": "Mira vil vite hvordan Leas prosjekt havnet i Arvids invitasjon, uten å gjøre sitt eget forhold til Lea til et nytt oppdrag"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d20_ensemble_mira_tekst_avklar_presiser",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den korrigerte invitasjonen",
+      "tekst": "Du ba Arvid innhente Leas tillatelse og presiserte at hun selv må godkjenne omtale. Nå spør Mira om den nye invitasjonen også gjelder musikken hennes. Hun har ikke gitt noe tilsagn.",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Gi Mira hele tidslinjen uten å tolke Leas motiver",
+          "konsekvensTekst": "Mira får vite hva som stod i de ulike utkastene, og hva Lea faktisk sa. Hun bestemmer selv om hun vil svare.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "lea",
+          "tekst": "Spør Lea om hun vil forklare sitt prosjekt til Mira",
+          "konsekvensTekst": "Du spør Lea først. Hun sier at hun kan snakke om ideen, men ikke ønsker at møtet skal annonseres som en produksjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "lea"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "avklar",
+          "samspill_arvid19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_mira_tekst_avklar_stans",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det upubliserte utkastet",
+      "tekst": "Du ba Arvid spørre Lea, og utsendelsen ble stanset. Mira har likevel hørt at kulturkvelden skulle handle om Leas prosjekt. Hun spør om hun bør kontakte Lea; hun vil ikke fremstå som en del av et prosjekt hun ikke er invitert til.",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Gi Mira hele tidslinjen uten å tolke Leas motiver",
+          "konsekvensTekst": "Mira får vite hva som stod i de ulike utkastene, og hva Lea faktisk sa. Hun bestemmer selv om hun vil svare.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "lea",
+          "tekst": "Spør Lea om hun vil forklare sitt prosjekt til Mira",
+          "konsekvensTekst": "Du spør Lea først. Hun sier at hun kan snakke om ideen, men ikke ønsker at møtet skal annonseres som en produksjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "lea"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "avklar",
+          "samspill_arvid19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_mira_tekst_skjerm_presiser",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En invitasjon uten Leas navn",
+      "tekst": "Du ba Arvid ta prosjektet ut av programmet, og han rettet teksten. Mira vil vite hvorfor musikkposten nå også er borte; hun frykter at Lea tror hun avslo et samarbeid.",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Gi Mira hele tidslinjen uten å tolke Leas motiver",
+          "konsekvensTekst": "Mira får vite hva som stod i de ulike utkastene, og hva Lea faktisk sa. Hun bestemmer selv om hun vil svare.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "lea",
+          "tekst": "Spør Lea om hun vil forklare sitt prosjekt til Mira",
+          "konsekvensTekst": "Du spør Lea først. Hun sier at hun kan snakke om ideen, men ikke ønsker at møtet skal annonseres som en produksjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "lea"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "skjerm",
+          "samspill_arvid19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_mira_tekst_skjerm_stans",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Stoppet, men omtalt",
+      "tekst": "Arvid fjernet prosjektet og stanset utsendelsen. En gammel melding sirkulerer i musikkmiljøet. Mira skriver: «Jeg ser navnet mitt ved siden av Lea. Har noen spurt oss?»",
+      "valg": [
+        {
+          "id": "mira",
+          "tekst": "Gi Mira hele tidslinjen uten å tolke Leas motiver",
+          "konsekvensTekst": "Mira får vite hva som stod i de ulike utkastene, og hva Lea faktisk sa. Hun bestemmer selv om hun vil svare.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "mira"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "lea",
+          "tekst": "Spør Lea om hun vil forklare sitt prosjekt til Mira",
+          "konsekvensTekst": "Du spør Lea først. Hun sier at hun kan snakke om ideen, men ikke ønsker at møtet skal annonseres som en produksjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_20_retning": "lea"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_arvid17_spor": "skjerm",
+          "samspill_arvid19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_mira_tekst_mira",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En opplysning Mira ikke kjente",
+      "tekst": "Mira takker for tidslinjen. Hun reagerer på at Arvid aldri spurte henne direkte og ber deg la være å svare på hennes vegne.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Mira og Lea utveksle sine egne spørsmål",
+          "konsekvensTekst": "Du formidler kontaktinformasjon etter at begge har sagt ja. De står fritt til å avtale en samtale uten deg.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_21_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Be dem holde prosjekt og musikk adskilt foreløpig",
+          "konsekvensTekst": "Du gjør det klart at ingen må koble idéen og musikken bare fordi de stod i samme utkast.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_21_retning": "skille"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "mira"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_mira_tekst_lea",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "To forskjellige forventninger",
+      "tekst": "Lea vil snakke om prosjektideen. Mira trodde det dreide seg om en konsert. Begge oppdager at de hørte forskjellige versjoner av samme invitasjon.",
+      "valg": [
+        {
+          "id": "direkte",
+          "tekst": "La Mira og Lea utveksle sine egne spørsmål",
+          "konsekvensTekst": "Du formidler kontaktinformasjon etter at begge har sagt ja. De står fritt til å avtale en samtale uten deg.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_21_retning": "direkte"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "skille",
+          "tekst": "Be dem holde prosjekt og musikk adskilt foreløpig",
+          "konsekvensTekst": "Du gjør det klart at ingen må koble idéen og musikken bare fordi de stod i samme utkast.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_21_retning": "skille"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "lea"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_mira_tekst_direkte",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samtalen som fikk være liten",
+      "tekst": "Mira og Lea har utvekslet to meldinger. Lea har ikke lovet en framvisning, og Mira har ikke lovet musikk. Begge er lettet over å slippe Arvid som fortolker.",
+      "valg": [
+        {
+          "id": "lytt",
+          "tekst": "Ta vare på tilliten uten å lage en ny avtale",
+          "konsekvensTekst": "Mira får en trygg kanal for framtidige spørsmål, men ingen booking eller musikalsk forpliktelse.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_22_ending": "direkte",
+              "ensemble_mira_tekst_22_direkte": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "La begge få et opphold fra samtalen",
+          "konsekvensTekst": "Du holder kalenderen åpen uten å love noe for dem.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_22_ending": "direkte",
+              "ensemble_mira_tekst_22_direkte": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_21_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_mira_tekst_skille",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "To historier ved siden av hverandre",
+      "tekst": "Mira beholder musikken som sitt eget arbeid. Lea fortsetter å vurdere prosjektet uten lyd. De vet nå at de ikke har avslått hverandre som personer.",
+      "valg": [
+        {
+          "id": "lytt",
+          "tekst": "Ta vare på tilliten uten å lage en ny avtale",
+          "konsekvensTekst": "Mira får en trygg kanal for framtidige spørsmål, men ingen booking eller musikalsk forpliktelse.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_22_ending": "skille",
+              "ensemble_mira_tekst_22_skille": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "ro",
+          "tekst": "La begge få et opphold fra samtalen",
+          "konsekvensTekst": "Du holder kalenderen åpen uten å love noe for dem.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_22_ending": "skille",
+              "ensemble_mira_tekst_22_skille": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_21_retning": "skille"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_mira_tekst_slutt",
+      "threadId": "mira_etter_arvids_tekst",
+      "dag": 22,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forhold som ikke er ferdig",
+      "tekst": "Du ser gjennom hvem som fikk informasjon, hvem som satte en grense, og hvem som fortsatt ikke skylder noen et svar. Den neste historien kan bygge på dette uten å omgjøre tidligere valg.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Samtalene og grensene blir bevart i historieboka. Ingen jobb, konsert, avtale, betaling eller adgang er registrert.",
+          "effekter": {
+            "flagg": {
+              "ensemble_mira_tekst_22_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_etter_arvids_tekst": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "ensemble_mira_tekst_22_direkte",
+      "navn": "En samtale på egne premisser",
+      "tekst": "Mira og Lea har utvekslet to meldinger. Lea har ikke lovet en framvisning, og Mira har ikke lovet musikk. Begge er lettet over å slippe Arvid som fortolker.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_mira_tekst_22_direkte": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_mira_tekst_22_skille",
+      "navn": "To spor, ingen avvisning",
+      "tekst": "Mira beholder musikken som sitt eget arbeid. Lea fortsetter å vurdere prosjektet uten lyd. De vet nå at de ikke har avslått hverandre som personer.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_mira_tekst_22_skille": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_mira_tekst_22_standard",
+      "navn": "Et uavsluttet forhold",
+      "tekst": "Historien beholder tidligere valg uten å opprette noen ny avtale.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
