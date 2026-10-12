@@ -1,0 +1,505 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_etter_leas_program",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Papiret ved inngangen",
+  "sisteDag": 22,
+  "hovedtraad": "arvid_etter_leas_program",
+  "threads": [
+    {
+      "id": "arvid_etter_leas_program",
+      "tittel": "Papiret ved inngangen",
+      "type": "privatliv",
+      "startDag": 20,
+      "konflikt": "Arvid må håndtere en gammel plakat som kan gjøre Leas spørsmål om Mira til et falskt konsertløfte"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d20_ensemble_arvid_program_avklar_presiser",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et navn i den gamle utskriften",
+      "tekst": "Lea presiserte at Mira ikke er bekreftet. Du hjalp til med faktagrunnlaget, men en frivillig har tatt med en utskrift fra før rettelsen. Arvid sier at den henger ved inngangen, og flere spør når Mira skal spille.",
+      "valg": [
+        {
+          "id": "vis",
+          "tekst": "Be Arvid vise den korrigerte statusen til de frivillige",
+          "konsekvensTekst": "Arvid tar ansvar for å forklare at ingen opptreden er bekreftet, uten å legge skylden på Lea eller Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "vis"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta ned alle eldre utskrifter først",
+          "konsekvensTekst": "Han tar utskriftene ned. Det hindrer nye misforståelser, men de som allerede har lest dem trenger kanskje fortsatt svar.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "avklar",
+          "samspill_lea19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_program_avklar_stans",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En rettelse uten nytt program",
+      "tekst": "Du ga Lea de sikre opplysningene, og hun stanset programmet uten å føre opp Mira. Nå vil Arvid bruke det opprinnelige utkastet «bare som oversikt». Navnet står fremdeles der.",
+      "valg": [
+        {
+          "id": "vis",
+          "tekst": "Be Arvid vise den korrigerte statusen til de frivillige",
+          "konsekvensTekst": "Arvid tar ansvar for å forklare at ingen opptreden er bekreftet, uten å legge skylden på Lea eller Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "vis"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta ned alle eldre utskrifter først",
+          "konsekvensTekst": "Han tar utskriftene ned. Det hindrer nye misforståelser, men de som allerede har lest dem trenger kanskje fortsatt svar.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "avklar",
+          "samspill_lea19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_program_skjerm_presiser",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den blanke linjen fikk et rykte",
+      "tekst": "Du ba Lea fjerne musikkposten. Hun presiserte senere at ingen hadde avslått en spillejobb. Arvid hører noen si at Mira ble strøket etter en konflikt. Han vil at du skal forklare hva som skjedde.",
+      "valg": [
+        {
+          "id": "vis",
+          "tekst": "Be Arvid vise den korrigerte statusen til de frivillige",
+          "konsekvensTekst": "Arvid tar ansvar for å forklare at ingen opptreden er bekreftet, uten å legge skylden på Lea eller Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "vis"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta ned alle eldre utskrifter først",
+          "konsekvensTekst": "Han tar utskriftene ned. Det hindrer nye misforståelser, men de som allerede har lest dem trenger kanskje fortsatt svar.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "skjerm",
+          "samspill_lea19_ending": "presiser"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_program_skjerm_stans",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En tom plakat ved døren",
+      "tekst": "Du ba om at programmet skulle stå uten musikk og Lea stoppet utsendelsen. Arvid får likevel en gammel utskrift fra en frivillig som spør om den kan henges opp. Han vil slippe en vanskelig samtale.",
+      "valg": [
+        {
+          "id": "vis",
+          "tekst": "Be Arvid vise den korrigerte statusen til de frivillige",
+          "konsekvensTekst": "Arvid tar ansvar for å forklare at ingen opptreden er bekreftet, uten å legge skylden på Lea eller Mira.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "vis"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "stopp",
+          "tekst": "Be Arvid ta ned alle eldre utskrifter først",
+          "konsekvensTekst": "Han tar utskriftene ned. Det hindrer nye misforståelser, men de som allerede har lest dem trenger kanskje fortsatt svar.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_20_retning": "stopp"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "samspill_lea17_spor": "skjerm",
+          "samspill_lea19_ending": "stans"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_arvid_program_vis",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira ber om én tydelig setning",
+      "tekst": "Arvid har sagt at plakaten var feil. Mira har sett et bilde av den på telefonen til en bekjent og ber om én presis melding: navnet hennes var aldri knyttet til en avtalt konsert.",
+      "valg": [
+        {
+          "id": "samlet",
+          "tekst": "Be Arvid rette opplysningen hos både Lea og Mira",
+          "konsekvensTekst": "Arvid sender dem samme nøkterne beskjed om at den gamle utskriften var feil; ingen av dem står oppført som ansvarlige.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_21_retning": "samlet"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hver",
+          "tekst": "La hver av dem velge om de vil svare",
+          "konsekvensTekst": "Du videresender spørsmålet uten å tolke stillhet som samtykke. Arvid får ikke bruke noen av navnene i en ny versjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_21_retning": "hver"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "vis"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_arvid_program_stopp",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Lea står igjen med spørsmålene",
+      "tekst": "Arvid tok ned plakaten, men en frivillig spør Lea hvorfor konserten er avlyst. Lea ringer deg; hun vil ikke fortelle historien på Miras vegne.",
+      "valg": [
+        {
+          "id": "samlet",
+          "tekst": "Be Arvid rette opplysningen hos både Lea og Mira",
+          "konsekvensTekst": "Arvid sender dem samme nøkterne beskjed om at den gamle utskriften var feil; ingen av dem står oppført som ansvarlige.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_21_retning": "samlet"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hver",
+          "tekst": "La hver av dem velge om de vil svare",
+          "konsekvensTekst": "Du videresender spørsmålet uten å tolke stillhet som samtykke. Arvid får ikke bruke noen av navnene i en ny versjon.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_21_retning": "hver"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "stopp"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_program_samlet",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tre personer, samme faktum",
+      "tekst": "Arvid har sendt rettelsen til Lea og Mira. Mira svarer at hun setter pris på presisjonen, men hun ønsker fremdeles ikke en ny spilleforespørsel. Lea vil se neste tekst før den deles.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Behold Arvid som ansvarlig avsender",
+          "konsekvensTekst": "Arvid står ved at arrangøren må eie informasjonen den sender ut.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_22_ending": "samlet",
+              "ensemble_arvid_program_22_samlet": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Ikke påta deg mer mellommannsarbeid",
+          "konsekvensTekst": "Du trekker deg fra oppryddingen. Arvid må svare på egne vegne.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_22_ending": "samlet",
+              "ensemble_arvid_program_22_samlet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_21_retning": "samlet"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_program_hver",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En rettelse som ikke reparerer alt",
+      "tekst": "Lea har valgt å ikke svare flere frivillige. Mira sier at et navn på en utskrift allerede skapte forventninger. Arvid aksepterer at ingen av dem skylder ham en forklaring.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Behold Arvid som ansvarlig avsender",
+          "konsekvensTekst": "Arvid står ved at arrangøren må eie informasjonen den sender ut.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_22_ending": "hver",
+              "ensemble_arvid_program_22_hver": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "avstand",
+          "tekst": "Ikke påta deg mer mellommannsarbeid",
+          "konsekvensTekst": "Du trekker deg fra oppryddingen. Arvid må svare på egne vegne.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_22_ending": "hver",
+              "ensemble_arvid_program_22_hver": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_21_retning": "hver"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_program_slutt",
+      "threadId": "arvid_etter_leas_program",
+      "dag": 22,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forhold som ikke er ferdig",
+      "tekst": "Du ser gjennom hvem som fikk informasjon, hvem som satte en grense, og hvem som fortsatt ikke skylder noen et svar. Den neste historien kan bygge på dette uten å omgjøre tidligere valg.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Samtalene og grensene blir bevart i historieboka. Ingen jobb, konsert, avtale, betaling eller adgang er registrert.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_program_22_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_etter_leas_program": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "ensemble_arvid_program_22_samlet",
+      "navn": "Den felles rettelsen",
+      "tekst": "Arvid har sendt rettelsen til Lea og Mira. Mira svarer at hun setter pris på presisjonen, men hun ønsker fremdeles ikke en ny spilleforespørsel. Lea vil se neste tekst før den deles.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_arvid_program_22_samlet": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_arvid_program_22_hver",
+      "navn": "Grenser mellom venner",
+      "tekst": "Lea har valgt å ikke svare flere frivillige. Mira sier at et navn på en utskrift allerede skapte forventninger. Arvid aksepterer at ingen av dem skylder ham en forklaring.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_arvid_program_22_hver": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_arvid_program_22_standard",
+      "navn": "Et uavsluttet forhold",
+      "tekst": "Historien beholder tidligere valg uten å opprette noen ny avtale.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
