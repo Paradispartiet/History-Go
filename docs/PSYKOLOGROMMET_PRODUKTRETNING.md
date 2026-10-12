@@ -31,6 +31,15 @@ Psykologrommet er et pedagogisk refleksjonsverktøy for selvinnsikt, hverdagsfen
 - Kobling og navigasjon gir ingen poeng, ny økt eller Civication-kompetanse. Løpets allerede eksisterende fullføringsbelønning beholdes uendret som egen mekanikk; den gis ikke ved kobling eller oppfølging.
 - Allerede lagrede, uavhengige løp fortsetter som før. Ingen automatisk migrering, profilering, diagnose eller deling av personlige data er innført.
 
+## Kvalitetssikring av de seks 7-dagersløpene (12. oktober 2026)
+
+- Alle 42 dagene er kontrollert mot eksisterende fenomen-, verktøy- og øvelses-ID-er. Hvert løp har syv fortløpende dagstrinn og sin egen konkrete beskrivelse.
+- Femten dagstrinn har fått mer presise refleksjonsspørsmål og/eller faglig bedre tilpassede eksisterende verktøy og øvelser. Ingen nye øvelser, fenomener, diagnoser eller tilordninger er produsert.
+- Den aktive dagen vises direkte. Hele syvdagersoversikten kan åpnes ved behov, slik at lange oppsummeringer ikke skyver dagens handlinger ut av mobilvisningen. Verktøy, fagstoff og øvelser er frivillige; én lagret dagrefleksjon kreves for å fullføre dagens steg.
+- Start, frivillig situasjonskobling, dagsrefleksjoner og fremdrift skal ikke bekreftes som lagret hvis nettleserens lagring mislykkes. En lagringsfeil skal ikke gi fremdrift eller poeng.
+- Tidligere notater, dagrefleksjoner, allerede fullførte løp og eksisterende fullføringspoeng beholdes.
+- Automatiske regresjonstester verifiserer datakoblingene og hovednavigasjonen. **Visuell kontroll på fysisk iPad/mobil er en egen kontroll og er ikke automatisk godkjent av CI.**
+
 ## Eiergrenser
 
 **History Go:** Historie, steder, historiske personer, kildebaserte spørsmål og det kanoniske fagverket.
