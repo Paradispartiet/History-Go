@@ -327,6 +327,16 @@ jobs:
           node --check dist/web/knowledgeV2.js
           node --check js/knowledgePage.js
           node --check dist/scripts/knowledge-canonical-data.mjs
+      - name: TEMP Black Box Knowledge generator parity diagnostic
+        run: |
+          node dist/scripts/knowledge-canonical-data.mjs --write
+          git status --short
+          node - <<'NODE'
+          const fs=require('node:fs');
+          const t=fs.readFileSync('data/knowledge/subjects/scenekunst/knowledge_units.generated.json','utf8');
+          for(let i=0;i<t.length;i+=600)console.log('BBKN_PART_'+String(i/600).padStart(4,'0')+'_'+t.slice(i,i+600).replace(/\n/g,'\\n'));
+          console.log('BBKN_COUNT_'+Math.ceil(t.length/600));
+          NODE
       - name: Guard canonical Knowledge data and contract
         run: |
           npm run knowledge:canonical:check
