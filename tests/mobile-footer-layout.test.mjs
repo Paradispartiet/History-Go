@@ -118,16 +118,21 @@ test('footer is black with seven distinct polychrome SVG illustrations', () => {
       }
       return { hue, vivid: high > .56 && delta > .17 };
     }).filter(item => item.vivid);
-    const yellowGold = vibrant.filter(item => item.hue >= 28 && item.hue <= 64).length;
+    const lemon = vibrant.filter(item => item.hue >= 50 && item.hue <= 76).length;
     const violet = vibrant.filter(item => item.hue >= 260 && item.hue <= 332).length;
     const cool = vibrant.filter(item => item.hue >= 72 && item.hue <= 232).length;
-    assert.ok(yellowGold >= 1, 'each icon retains a yellow accent');
-    assert.ok(cool >= 1, 'each icon uses cool contrasts, not a gold wash');
-    assert.ok(yellowGold <= Math.floor(vibrant.length * .62), 'gold no longer dominates artwork');
+    assert.ok(lemon >= 1, 'each icon contains fresh lemon yellow');
+    assert.ok(cool >= 1, 'each icon retains multicolour contrasts');
+    assert.ok(lemon <= Math.floor(vibrant.length * .62), 'avoid solid yellow artwork');
     assert.equal(violet, 0, 'no vivid purple or magenta in footer icon artwork');
   }
-  assert.match(footerCSS, /#pcNote\{ border-color: rgba\(120,169,208,\.52\); \}/);
-  assert.match(footerCSS, /\.pc-onsite-action-meet\s*\{[^}]*border-color: rgba\(233,163,132,\.56\)/);
+  // Explicit lemon borders across all seven buttons, including Events and Meet.
+  for (const selector of ['#pcQuiz', '#pcVisit', '#pcRoute', '#pcObserve', '#pcNote']) {
+    assert.match(footerCSS, new RegExp('#' + selector.slice(1) + '\\s*\\{[^}]*border-color:\\s*rgba\\(245,249,62,\\.74\\)'));
+  }
+  for (const action of ['events', 'meet']) {
+    assert.match(footerCSS, new RegExp('\\.pc-onsite-action-' + action + '\\s*\\{[^}]*border-color:\\s*rgba\\(245,249,62,\\.74\\)'));
+  }
   const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
   assert.match(surface, /function syncFooterActions\(place, force = false\)/);
   assert.match(surface, /footerOwnsCore/);
