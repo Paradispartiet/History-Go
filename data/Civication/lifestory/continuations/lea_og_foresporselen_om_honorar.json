@@ -1,0 +1,867 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "lea_og_foresporselen_om_honorar",
+  "role_scope": "naeringsliv_frilanser",
+  "tittel": "Lea: En pris på arbeidet",
+  "sisteDag": 34,
+  "hovedtraad": "lea_frilansvilkaar_og_arbeidstid",
+  "threads": [
+    {
+      "id": "lea_frilansvilkaar_og_arbeidstid",
+      "tittel": "Lea: En pris på arbeidet",
+      "type": "privatliv",
+      "startDag": 32,
+      "konflikt": "Et konkret honorarspørsmål tester lønnsomhet og autonomi uten å kreditere spilleren med fiktiv betaling eller signert kontrakt."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d32_liv_lea_honorar_kontroll_versjon_metode",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel fra redaktøren",
+      "tekst": "Lea har kontrollert to versjoner av en rutine. Redaktøren vil nå at hun skal lage en grundigere tekst før fredag og spør hva det vil koste. Arbeidet krever flere kilder enn de hun allerede har lest. Lea vil dokumentere kilder og versjoner nøye. Nettopp derfor må tidsbruken synliggjøres før noen forventer en ferdig tekst.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "kontroll_versjon_metode"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_kontroll_versjon_grenser",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel fra redaktøren",
+      "tekst": "Lea har kontrollert to versjoner av en rutine. Redaktøren vil nå at hun skal lage en grundigere tekst før fredag og spør hva det vil koste. Arbeidet krever flere kilder enn de hun allerede har lest. Lea har valgt å avslutte oppdrag på tydelige vilkår. En ny henvendelse opphever ikke den avgjørelsen.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "kontroll_versjon_grenser"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_kontroll_retur_metode",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Materialet kom tilbake",
+      "tekst": "Lea sendte tidligere de motstridende dokumentene tilbake. Nå har organisasjonen ryddet i noen versjoner og spør om hun kan skrive en faglig oversikt. De nevner ingen betaling. Lea vil dokumentere kilder og versjoner nøye. Nettopp derfor må tidsbruken synliggjøres før noen forventer en ferdig tekst.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "kontroll_retur_metode"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_kontroll_retur_grenser",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Materialet kom tilbake",
+      "tekst": "Lea sendte tidligere de motstridende dokumentene tilbake. Nå har organisasjonen ryddet i noen versjoner og spør om hun kan skrive en faglig oversikt. De nevner ingen betaling. Lea har valgt å avslutte oppdrag på tydelige vilkår. En ny henvendelse opphever ikke den avgjørelsen.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "kontroll_retur_grenser"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_ramme_versjon_metode",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Sjekklisten fikk lesere",
+      "tekst": "Leas liste over ansvar og samtykke ble brukt internt. En ny kontaktperson vil at hun skal utvide den til et hefte og sier det vil være «god synlighet». Lea vil dokumentere kilder og versjoner nøye. Nettopp derfor må tidsbruken synliggjøres før noen forventer en ferdig tekst.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "ramme_versjon_metode"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_ramme_versjon_grenser",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Sjekklisten fikk lesere",
+      "tekst": "Leas liste over ansvar og samtykke ble brukt internt. En ny kontaktperson vil at hun skal utvide den til et hefte og sier det vil være «god synlighet». Lea har valgt å avslutte oppdrag på tydelige vilkår. En ny henvendelse opphever ikke den avgjørelsen.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "ramme_versjon_grenser"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_ramme_retur_metode",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det uavklarte oppdraget",
+      "tekst": "Lea avsluttet en ufullstendig vurdering fordi ansvarslinjene ikke var dokumentert. Nå spør gruppen om hun kan hjelpe å rydde videre, men forespørselen mangler både tidsramme og honorar. Lea vil dokumentere kilder og versjoner nøye. Nettopp derfor må tidsbruken synliggjøres før noen forventer en ferdig tekst.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "ramme_retur_metode"
+        }
+      }
+    },
+    {
+      "id": "d32_liv_lea_honorar_ramme_retur_grenser",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 32,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det uavklarte oppdraget",
+      "tekst": "Lea avsluttet en ufullstendig vurdering fordi ansvarslinjene ikke var dokumentert. Nå spør gruppen om hun kan hjelpe å rydde videre, men forespørselen mangler både tidsramme og honorar. Lea har valgt å avslutte oppdrag på tydelige vilkår. En ny henvendelse opphever ikke den avgjørelsen.",
+      "valg": [
+        {
+          "id": "tilbud",
+          "tekst": "Svar med skriftlig omfang, mulig tidsbruk og spørsmål om honorar",
+          "konsekvensTekst": "Lea ber om et avklart budsjett og hvem som skal godkjenne arbeidet. Ingen kontrakt er inngått.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "tilbud"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Avslå oppgaven som den er formulert og foreslå en mindre avklaring",
+          "konsekvensTekst": "Lea setter av tid til annet arbeid framfor å love ubetalt kildesøk.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_32_retning": "nei"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "lang_lea_kilder_31_result": "ramme_retur_grenser"
+        }
+      }
+    },
+    {
+      "id": "d33_liv_lea_honorar_tilbud",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 33,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et svar uten sum",
+      "tekst": "Redaktøren takker for oppstillingen, men spør om hun kan «bare begynne» mens de undersøker økonomien. Lea vet at kildesøk allerede er arbeid.",
+      "valg": [
+        {
+          "id": "klarhet",
+          "tekst": "Krev at omfang og betalingsvilkår avklares før faglig produksjon",
+          "konsekvensTekst": "Lea presiserer hva som må være skriftlig. Den andre parten kan velge å ikke gå videre.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_33_retning": "klarhet"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "tilbake",
+          "tekst": "Trekk interessen og prioriter andre inntektsmuligheter",
+          "konsekvensTekst": "Lea vil heller bruke en arbeidsdag på oppdrag med avklart ramme enn på en ubetalt forventning.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_33_retning": "tilbake"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "tilbud"
+        }
+      }
+    },
+    {
+      "id": "d33_liv_lea_honorar_nei",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 33,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En mindre tekst, samme problem",
+      "tekst": "Gruppen foreslår et kortere notat, men vil fremdeles ha kildehenvisninger og korrektur innen fredag. Arbeidstiden er redusert på papiret, ikke nødvendigvis i virkeligheten.",
+      "valg": [
+        {
+          "id": "klarhet",
+          "tekst": "Krev at omfang og betalingsvilkår avklares før faglig produksjon",
+          "konsekvensTekst": "Lea presiserer hva som må være skriftlig. Den andre parten kan velge å ikke gå videre.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_33_retning": "klarhet"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "tilbake",
+          "tekst": "Trekk interessen og prioriter andre inntektsmuligheter",
+          "konsekvensTekst": "Lea vil heller bruke en arbeidsdag på oppdrag med avklart ramme enn på en ubetalt forventning.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_33_retning": "tilbake"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "nei"
+        }
+      }
+    },
+    {
+      "id": "d34_liv_lea_honorar_tilbud_klarhet",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 34,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et budsjett som ikke fantes",
+      "tekst": "Redaktøren bekrefter at det ikke finnes et godkjent honorar. Lea avstår fra å starte arbeidet. Et mulig oppdrag gikk tapt, men ingen gratisleveranse er utført.",
+      "valg": [
+        {
+          "id": "oversikt",
+          "tekst": "Lag en realistisk oversikt over avklarte og uavklarte oppdrag",
+          "konsekvensTekst": "Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "tilbud_klarhet_oversikt",
+              "liv_lea_honorar_34_tilbud_klarhet_oversikt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "pauser",
+          "tekst": "Ta en pause fra denne kontakten og avgrense arbeidsdagen",
+          "konsekvensTekst": "Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "tilbud_klarhet_pauser",
+              "liv_lea_honorar_34_tilbud_klarhet_pauser": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "tilbud",
+          "liv_lea_honorar_33_retning": "klarhet"
+        }
+      }
+    },
+    {
+      "id": "d34_liv_lea_honorar_tilbud_tilbake",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 34,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En e-post som avsluttet forhandlingene",
+      "tekst": "Lea takker for forespørselen og sier nei så lenge rammen ikke er avklart. Hun fører ingen inntekt, men vet hva hun ikke skal bruke neste uke på.",
+      "valg": [
+        {
+          "id": "oversikt",
+          "tekst": "Lag en realistisk oversikt over avklarte og uavklarte oppdrag",
+          "konsekvensTekst": "Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "tilbud_tilbake_oversikt",
+              "liv_lea_honorar_34_tilbud_tilbake_oversikt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "pauser",
+          "tekst": "Ta en pause fra denne kontakten og avgrense arbeidsdagen",
+          "konsekvensTekst": "Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "tilbud_tilbake_pauser",
+              "liv_lea_honorar_34_tilbud_tilbake_pauser": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "tilbud",
+          "liv_lea_honorar_33_retning": "tilbake"
+        }
+      }
+    },
+    {
+      "id": "d34_liv_lea_honorar_nei_klarhet",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 34,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En bestilling som må vente",
+      "tekst": "Gruppen kan ikke oppgi verken budsjett eller dato for godkjenning. Lea lar oppgaven stå ubekreftet. Hun har ikke satt av arbeidstid som om den var betalt.",
+      "valg": [
+        {
+          "id": "oversikt",
+          "tekst": "Lag en realistisk oversikt over avklarte og uavklarte oppdrag",
+          "konsekvensTekst": "Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "nei_klarhet_oversikt",
+              "liv_lea_honorar_34_nei_klarhet_oversikt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "pauser",
+          "tekst": "Ta en pause fra denne kontakten og avgrense arbeidsdagen",
+          "konsekvensTekst": "Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "nei_klarhet_pauser",
+              "liv_lea_honorar_34_nei_klarhet_pauser": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "nei",
+          "liv_lea_honorar_33_retning": "klarhet"
+        }
+      }
+    },
+    {
+      "id": "d34_liv_lea_honorar_nei_tilbake",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 34,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et annet arbeid på skrivebordet",
+      "tekst": "Lea avslår forespørselen og jobber med egne tekster. Hun bekymrer seg fortsatt for inntekt, men valget gir henne bedre oversikt over hva som er faktisk arbeid og hva som er løfter.",
+      "valg": [
+        {
+          "id": "oversikt",
+          "tekst": "Lag en realistisk oversikt over avklarte og uavklarte oppdrag",
+          "konsekvensTekst": "Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "nei_tilbake_oversikt",
+              "liv_lea_honorar_34_nei_tilbake_oversikt": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2
+            }
+          }
+        },
+        {
+          "id": "pauser",
+          "tekst": "Ta en pause fra denne kontakten og avgrense arbeidsdagen",
+          "konsekvensTekst": "Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_result": "nei_tilbake_pauser",
+              "liv_lea_honorar_34_nei_tilbake_pauser": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "liv_lea_honorar_32_retning": "nei",
+          "liv_lea_honorar_33_retning": "tilbake"
+        }
+      }
+    },
+    {
+      "id": "d34_liv_lea_honorar_slutt",
+      "threadId": "lea_frilansvilkaar_og_arbeidstid",
+      "dag": 34,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Valgene varer lenger enn dagen",
+      "tekst": "Hendelsen er over, men beslutningene endrer hva personene faktisk kan gjøre senere. Ikke alle muligheter ble til avtaler, og det er en del av historien.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Kapittelet og relasjonsendringene er lagret uten automatisk jobb, betaling, reservasjon eller opptreden.",
+          "effekter": {
+            "flagg": {
+              "liv_lea_honorar_34_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_frilansvilkaar_og_arbeidstid": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "liv_lea_honorar_34_tilbud_klarhet_oversikt",
+      "navn": "tilbud – felles ansvar",
+      "tekst": "klarhet Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_tilbud_klarhet_oversikt": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_tilbud_klarhet_pauser",
+      "navn": "tilbud – eget valg",
+      "tekst": "klarhet Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_tilbud_klarhet_pauser": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_tilbud_tilbake_oversikt",
+      "navn": "tilbud – felles ansvar",
+      "tekst": "tilbake Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_tilbud_tilbake_oversikt": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_tilbud_tilbake_pauser",
+      "navn": "tilbud – eget valg",
+      "tekst": "tilbake Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_tilbud_tilbake_pauser": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_nei_klarhet_oversikt",
+      "navn": "nei – felles ansvar",
+      "tekst": "klarhet Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_nei_klarhet_oversikt": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_nei_klarhet_pauser",
+      "navn": "nei – eget valg",
+      "tekst": "klarhet Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_nei_klarhet_pauser": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_nei_tilbake_oversikt",
+      "navn": "nei – felles ansvar",
+      "tekst": "tilbake Lea teller bare bekreftede beløp som inntekt, ikke mulige avtaler eller høflig interesse.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_nei_tilbake_oversikt": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_nei_tilbake_pauser",
+      "navn": "nei – eget valg",
+      "tekst": "tilbake Lea bruker ikke mer tid på å forhandle om et oppdrag som fortsatt mangler rammer.",
+      "kriterier": {
+        "flagg": {
+          "liv_lea_honorar_34_nei_tilbake_pauser": true
+        }
+      }
+    },
+    {
+      "id": "liv_lea_honorar_34_standard",
+      "navn": "Historien fortsetter",
+      "tekst": "Tidligere valg er bevart uten nye automatiske forpliktelser.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
