@@ -1,0 +1,533 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "arvid_etter_leas_notat",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Arvid: Hvem eier historien?",
+  "sisteDag": 25,
+  "hovedtraad": "arvid_og_fortellingen",
+  "threads": [
+    {
+      "id": "arvid_og_fortellingen",
+      "tittel": "Arvid: Hvem eier historien?",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Lea har funnet en form for å beskrive eget ansvar; Arvid vil påvirke fortellingen, mens Miras grense for offentlig omtale fortsatt gjelder."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_rel_arvid_fortelling_anonym_endre",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et notat Arvid kjenner igjen",
+      "tekst": "Lea valgte et anonymt eksempel og skrev det så om til egne erfaringer. Arvid ser et kort utdrag der hun beskriver hva et navn i et utkast kan gjøre med folk. Han kjenner igjen hendelsen og mener han bør få forklare seg.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Be Arvid spørre Lea om en samtale, ikke om teksten",
+          "konsekvensTekst": "Arvid får ikke se private notater. Han kan fortelle hva han selv gjorde og lytte til hva det betydde for Lea.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Avslå å skaffe privat materiale",
+          "konsekvensTekst": "Du avviser forespørselen. Arvid får håndtere uroen uten å gjøre Leas skrivebord til en offentlig arena.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "hold"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "anonym",
+          "ensemble_lea_navn_21_retning": "endre"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_arvid_fortelling_anonym_privat",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ryktet om notatet",
+      "tekst": "Lea laget et anonymt notat, men bestemte seg for å beholde det privat. Arvid har hørt at hun skriver om «noen som legger press på andre» og tror det handler om ham. Han vet ikke hva hun har skrevet.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Be Arvid spørre Lea om en samtale, ikke om teksten",
+          "konsekvensTekst": "Arvid får ikke se private notater. Han kan fortelle hva han selv gjorde og lytte til hva det betydde for Lea.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Avslå å skaffe privat materiale",
+          "konsekvensTekst": "Du avviser forespørselen. Arvid får håndtere uroen uten å gjøre Leas skrivebord til en offentlig arena.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "hold"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "anonym",
+          "ensemble_lea_navn_21_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_arvid_fortelling_samtykke_endre",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei ble til et prinsipp",
+      "tekst": "Lea spurte først de involverte og fikk ikke lov til å bruke historien offentlig. Hun skrev i stedet om sine egne valg. Arvid liker ikke at hans feil er bakgrunnen, selv om han ikke er navngitt.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Be Arvid spørre Lea om en samtale, ikke om teksten",
+          "konsekvensTekst": "Arvid får ikke se private notater. Han kan fortelle hva han selv gjorde og lytte til hva det betydde for Lea.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Avslå å skaffe privat materiale",
+          "konsekvensTekst": "Du avviser forespørselen. Arvid får håndtere uroen uten å gjøre Leas skrivebord til en offentlig arena.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "hold"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "samtykke",
+          "ensemble_lea_navn_21_retning": "endre"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_arvid_fortelling_samtykke_privat",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En historie ingen har lest",
+      "tekst": "Lea spurte om tillatelse, fikk et nei og la notatet bort. Arvid spør deg om du kan skaffe en kopi. Han vil helst møte kritikken før den eksisterer, men teksten tilhører Lea.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Be Arvid spørre Lea om en samtale, ikke om teksten",
+          "konsekvensTekst": "Arvid får ikke se private notater. Han kan fortelle hva han selv gjorde og lytte til hva det betydde for Lea.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Avslå å skaffe privat materiale",
+          "konsekvensTekst": "Du avviser forespørselen. Arvid får håndtere uroen uten å gjøre Leas skrivebord til en offentlig arena.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_23_retning": "hold"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_navn_20_retning": "samtykke",
+          "ensemble_lea_navn_21_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_arvid_fortelling_snakk",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et vitnesbyrd han ikke kan styre",
+      "tekst": "Lea sier at historien handler om hennes egen grensesetting. Arvid innrømmer at han er redd andre vil tro han bevisst utnyttet folk. Lea nekter å love at hun aldri skal snakke om det som hendte.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "La Arvid eie sin egen feil uten å fortelle for Lea",
+          "konsekvensTekst": "Arvid formulerer hva han gjorde feil og hva han har endret. Han lar Lea og Mira beholde sine versjoner av hendelsen.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Be Arvid la være å diskutere andre offentlig",
+          "konsekvensTekst": "Arvid velger taushet om Leas og Miras opplevelser. Det beskytter dem, men gir ham ingen umiddelbar bekreftelse.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_24_retning": "vern"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_fortelling_23_retning": "snakk"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_arvid_fortelling_hold",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den ubesvarte frykten",
+      "tekst": "Arvid prøver å skrive sin egen versjon i en gruppechat. Halvveis forstår han at han må fortelle om både de gamle utkastene og rettelsene for å være redelig. Han kan ikke bruke Miras navn som forklaring.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "La Arvid eie sin egen feil uten å fortelle for Lea",
+          "konsekvensTekst": "Arvid formulerer hva han gjorde feil og hva han har endret. Han lar Lea og Mira beholde sine versjoner av hendelsen.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Be Arvid la være å diskutere andre offentlig",
+          "konsekvensTekst": "Arvid velger taushet om Leas og Miras opplevelser. Det beskytter dem, men gir ham ingen umiddelbar bekreftelse.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_24_retning": "vern"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_fortelling_23_retning": "hold"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_arvid_fortelling_ansvar",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En beklagelse uten publikum",
+      "tekst": "Arvid sender en kort privat beklagelse til Lea uten å kreve svar. Hun skriver at hun har sett meldingen, men ikke er klar til å snakke. Det er nok til at han må la saken ligge.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "La en framtidig samtale være frivillig",
+          "konsekvensTekst": "Arvid kan spørre Lea senere, men aksepterer at hun ikke skylder ham tilgang til sine notater.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_25_result": "ansvar_naer",
+              "rel_arvid_fortelling_25_ansvar_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "Ikke oppsøke Lea for å få frikjennelse",
+          "konsekvensTekst": "Arvid beholder avstanden. Han mister kanskje en mulighet til å forklare seg, men legger ikke byrden på henne.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_25_result": "ansvar_distanse",
+              "rel_arvid_fortelling_25_ansvar_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_fortelling_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_arvid_fortelling_vern",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Ikke alle trenger et svar",
+      "tekst": "Arvid legger telefonen bort. Han tenker fortsatt på hvordan andre ser ham, men han lar være å bruke en gruppechat til å forsvare seg mot en tekst ingen har publisert.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "La en framtidig samtale være frivillig",
+          "konsekvensTekst": "Arvid kan spørre Lea senere, men aksepterer at hun ikke skylder ham tilgang til sine notater.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_25_result": "vern_naer",
+              "rel_arvid_fortelling_25_vern_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "Ikke oppsøke Lea for å få frikjennelse",
+          "konsekvensTekst": "Arvid beholder avstanden. Han mister kanskje en mulighet til å forklare seg, men legger ikke byrden på henne.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_25_result": "vern_distanse",
+              "rel_arvid_fortelling_25_vern_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_arvid_fortelling_24_retning": "vern"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_arvid_fortelling_slutt",
+      "threadId": "arvid_og_fortellingen",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem kan kreve hva av et annet menneske?",
+      "tekst": "Det er mulig å være uenig, ta ansvar eller finne en forsiktig vei videre. Det som står igjen er konkrete tidligere valg og grenser, ikke en automatisk avtale. De andre menneskene bestemmer selv hva de vil gjøre neste gang.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Ta vare på kapitlet",
+          "konsekvensTekst": "Historien avsluttes med de relasjonene og forventningene valgene faktisk skapte.",
+          "effekter": {
+            "flagg": {
+              "rel_arvid_fortelling_25_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_og_fortellingen": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "rel_arvid_fortelling_25_ansvar_naer",
+      "navn": "Ansvar uten eierskap",
+      "tekst": "Arvid sender en kort privat beklagelse til Lea uten å kreve svar. Hun skriver at hun har sett meldingen, men ikke er klar til å snakke. Det er nok til at han må la saken ligge. Arvid kan spørre Lea senere, men aksepterer at hun ikke skylder ham tilgang til sine notater.",
+      "kriterier": {
+        "flagg": {
+          "rel_arvid_fortelling_25_ansvar_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_arvid_fortelling_25_ansvar_distanse",
+      "navn": "Ingen rett til svar",
+      "tekst": "Arvid sender en kort privat beklagelse til Lea uten å kreve svar. Hun skriver at hun har sett meldingen, men ikke er klar til å snakke. Det er nok til at han må la saken ligge. Arvid beholder avstanden. Han mister kanskje en mulighet til å forklare seg, men legger ikke byrden på henne.",
+      "kriterier": {
+        "flagg": {
+          "rel_arvid_fortelling_25_ansvar_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_arvid_fortelling_25_vern_naer",
+      "navn": "Et spørsmål som får vente",
+      "tekst": "Arvid legger telefonen bort. Han tenker fortsatt på hvordan andre ser ham, men han lar være å bruke en gruppechat til å forsvare seg mot en tekst ingen har publisert. Arvid kan spørre Lea senere, men aksepterer at hun ikke skylder ham tilgang til sine notater.",
+      "kriterier": {
+        "flagg": {
+          "rel_arvid_fortelling_25_vern_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_arvid_fortelling_25_vern_distanse",
+      "navn": "Historien tilhører flere",
+      "tekst": "Arvid legger telefonen bort. Han tenker fortsatt på hvordan andre ser ham, men han lar være å bruke en gruppechat til å forsvare seg mot en tekst ingen har publisert. Arvid beholder avstanden. Han mister kanskje en mulighet til å forklare seg, men legger ikke byrden på henne.",
+      "kriterier": {
+        "flagg": {
+          "rel_arvid_fortelling_25_vern_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_arvid_fortelling_25_standard",
+      "navn": "Et forhold under utvikling",
+      "tekst": "De faktiske valgene er bevart uten at andre personers samtykke eller forpliktelser er funnet på.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

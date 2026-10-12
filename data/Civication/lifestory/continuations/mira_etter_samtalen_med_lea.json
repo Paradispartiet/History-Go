@@ -1,0 +1,529 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "mira_etter_samtalen_med_lea",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Mira og Lea: Det som ikke ble sagt",
+  "sisteDag": 25,
+  "hovedtraad": "mira_og_leas_samtale",
+  "threads": [
+    {
+      "id": "mira_og_leas_samtale",
+      "tittel": "Mira og Lea: Det som ikke ble sagt",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Mira og Lea må tåle ulike ønsker for kontakten etter en invitasjon som ble formulert av andre; de kan være venner uten å lage musikk sammen."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_rel_mira_lea_mira_direkte",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En melding som ikke ble sendt",
+      "tekst": "Du ga Mira den fulle tidslinjen og hjalp henne og Lea å få direkte kontakt. Mira skrev et langt svar om hvordan hun følte seg omtalt som en tjeneste. Hun slettet det før hun sendte den korte, høflige meldingen. Lea tror kanskje at alt er løst.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "La Mira fortelle Lea hva som faktisk gjorde vondt",
+          "konsekvensTekst": "Mira sier at hun ikke trenger en rolle i Leas prosjekt, men vil bli spurt før hennes navn brukes. Lea får en mulighet til å svare som venn.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Beskytt vennskapet mot enda en utredning",
+          "konsekvensTekst": "Mira svarer varmt, men uten å gå inn i konflikten nå. Hun beholder et åpent spørsmål som hun kanskje må ta opp senere.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "mira",
+          "ensemble_mira_tekst_21_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lea_mira_skille",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vennskap uten prosjekt",
+      "tekst": "Mira fikk hele tidslinjen og valgte å holde prosjekt og musikk atskilt. Lea spør nå om de kan møtes til kaffe. Mira vil gjerne se henne, men er redd Lea tror det betyr at hun er åpen for en spillejobb.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "La Mira fortelle Lea hva som faktisk gjorde vondt",
+          "konsekvensTekst": "Mira sier at hun ikke trenger en rolle i Leas prosjekt, men vil bli spurt før hennes navn brukes. Lea får en mulighet til å svare som venn.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Beskytt vennskapet mot enda en utredning",
+          "konsekvensTekst": "Mira svarer varmt, men uten å gå inn i konflikten nå. Hun beholder et åpent spørsmål som hun kanskje må ta opp senere.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "mira",
+          "ensemble_mira_tekst_21_retning": "skille"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lea_lea_direkte",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "To som hørte forskjellige ting",
+      "tekst": "Du spurte Lea først, og Mira og Lea utvekslet meldinger. Lea trodde Mira var skuffet over at presentasjonen ikke ble noe av. Mira var egentlig såret over at noen brukte navnet hennes uten spørsmål.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "La Mira fortelle Lea hva som faktisk gjorde vondt",
+          "konsekvensTekst": "Mira sier at hun ikke trenger en rolle i Leas prosjekt, men vil bli spurt før hennes navn brukes. Lea får en mulighet til å svare som venn.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Beskytt vennskapet mot enda en utredning",
+          "konsekvensTekst": "Mira svarer varmt, men uten å gå inn i konflikten nå. Hun beholder et åpent spørsmål som hun kanskje må ta opp senere.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "lea",
+          "ensemble_mira_tekst_21_retning": "direkte"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lea_lea_skille",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det ene spørsmålet Lea ikke stilte",
+      "tekst": "Du lot Lea forklare ideen og hjalp dem å holde musikken atskilt. Nå spør Lea om Mira har blitt fjern. Mira synes det er vanskelig å forklare hvor mye en liten, feilaktig invitasjon påvirket henne.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "La Mira fortelle Lea hva som faktisk gjorde vondt",
+          "konsekvensTekst": "Mira sier at hun ikke trenger en rolle i Leas prosjekt, men vil bli spurt før hennes navn brukes. Lea får en mulighet til å svare som venn.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Beskytt vennskapet mot enda en utredning",
+          "konsekvensTekst": "Mira svarer varmt, men uten å gå inn i konflikten nå. Hun beholder et åpent spørsmål som hun kanskje må ta opp senere.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_mira_tekst_20_retning": "lea",
+          "ensemble_mira_tekst_21_retning": "skille"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_mira_lea_snakk",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En god intensjon som ikke var nok",
+      "tekst": "Lea sier at hun hadde håpet å skape noe fint sammen. Mira svarer at hun også kan like Lea uten å bli med på ideen. De merker at begge kan være oppriktige uten å ha samme plan.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Vær tydelig direkte med Lea, ikke via bekjente",
+          "konsekvensTekst": "Mira sier hva hun ønsker framover: vennskap kan fortsette, men ingen skal tolke høflighet som en produksjonsavtale.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Be om at andre ikke blir budbringere",
+          "konsekvensTekst": "Mira ber om ro og sier at hun vil ta initiativ selv hvis hun er klar. Lea kan velge å respektere det.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lea_23_retning": "snakk"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_mira_lea_hold",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Stillheten blir tolket",
+      "tekst": "Lea forteller en felles bekjent at hun er redd Mira misliker henne. Bekjenten spør Mira om det er sant. Mira oppdager hvor fort en privat pause kan bli en ny historie om dem.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Vær tydelig direkte med Lea, ikke via bekjente",
+          "konsekvensTekst": "Mira sier hva hun ønsker framover: vennskap kan fortsette, men ingen skal tolke høflighet som en produksjonsavtale.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Be om at andre ikke blir budbringere",
+          "konsekvensTekst": "Mira ber om ro og sier at hun vil ta initiativ selv hvis hun er klar. Lea kan velge å respektere det.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lea_23_retning": "hold"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lea_ansvar",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Kaffe uten utkast",
+      "tekst": "Lea og Mira sitter ved samme bord uten å ta fram en eneste fil. Lea innrømmer at hun trodde et samarbeid ville gjøre vennskapet enklere. Mira sier at det var omvendt. Begge forstår litt mer av den andre.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Gi vennskapet plass uten en plan",
+          "konsekvensTekst": "De kan fortsette å snakke som mennesker uten å love arbeid, lyd, møteplikt eller penger.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_25_result": "ansvar_naer",
+              "rel_mira_lea_25_ansvar_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "Ikke love nærhet bare for å skåne Lea",
+          "konsekvensTekst": "Mira sier at hun trenger mer avstand. Lea blir trist, men får et svar hun kan forholde seg til.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_25_result": "ansvar_distanse",
+              "rel_mira_lea_25_ansvar_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lea_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lea_vern",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En invitasjon uten svarfrist",
+      "tekst": "Lea sender en enkel invitasjon til en spasertur en annen dag. Mira svarer ikke med en gang. Ingen av dem bruker stillheten som bevis på avvisning.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Gi vennskapet plass uten en plan",
+          "konsekvensTekst": "De kan fortsette å snakke som mennesker uten å love arbeid, lyd, møteplikt eller penger.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_25_result": "vern_naer",
+              "rel_mira_lea_25_vern_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "Ikke love nærhet bare for å skåne Lea",
+          "konsekvensTekst": "Mira sier at hun trenger mer avstand. Lea blir trist, men får et svar hun kan forholde seg til.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_25_result": "vern_distanse",
+              "rel_mira_lea_25_vern_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "lea": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lea_24_retning": "vern"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lea_slutt",
+      "threadId": "mira_og_leas_samtale",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem kan kreve hva av et annet menneske?",
+      "tekst": "Det er mulig å være uenig, ta ansvar eller finne en forsiktig vei videre. Det som står igjen er konkrete tidligere valg og grenser, ikke en automatisk avtale. De andre menneskene bestemmer selv hva de vil gjøre neste gang.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Ta vare på kapitlet",
+          "konsekvensTekst": "Historien avsluttes med de relasjonene og forventningene valgene faktisk skapte.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lea_25_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_og_leas_samtale": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "rel_mira_lea_25_ansvar_naer",
+      "navn": "To venner uten prosjekt",
+      "tekst": "Lea og Mira sitter ved samme bord uten å ta fram en eneste fil. Lea innrømmer at hun trodde et samarbeid ville gjøre vennskapet enklere. Mira sier at det var omvendt. Begge forstår litt mer av den andre. De kan fortsette å snakke som mennesker uten å love arbeid, lyd, møteplikt eller penger.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lea_25_ansvar_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lea_25_ansvar_distanse",
+      "navn": "Et ærlig men vanskelig møte",
+      "tekst": "Lea og Mira sitter ved samme bord uten å ta fram en eneste fil. Lea innrømmer at hun trodde et samarbeid ville gjøre vennskapet enklere. Mira sier at det var omvendt. Begge forstår litt mer av den andre. Mira sier at hun trenger mer avstand. Lea blir trist, men får et svar hun kan forholde seg til.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lea_25_ansvar_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lea_25_vern_naer",
+      "navn": "En åpen dør på avstand",
+      "tekst": "Lea sender en enkel invitasjon til en spasertur en annen dag. Mira svarer ikke med en gang. Ingen av dem bruker stillheten som bevis på avvisning. De kan fortsette å snakke som mennesker uten å love arbeid, lyd, møteplikt eller penger.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lea_25_vern_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lea_25_vern_distanse",
+      "navn": "Ikke samme rytme",
+      "tekst": "Lea sender en enkel invitasjon til en spasertur en annen dag. Mira svarer ikke med en gang. Ingen av dem bruker stillheten som bevis på avvisning. Mira sier at hun trenger mer avstand. Lea blir trist, men får et svar hun kan forholde seg til.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lea_25_vern_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lea_25_standard",
+      "navn": "Et forhold under utvikling",
+      "tekst": "De faktiske valgene er bevart uten at andre personers samtykke eller forpliktelser er funnet på.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

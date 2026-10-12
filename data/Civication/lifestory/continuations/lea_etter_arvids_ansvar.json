@@ -1,0 +1,533 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "lea_etter_arvids_ansvar",
+  "role_scope": "naeringsliv_sideprosjektbygger",
+  "tittel": "Lea og Arvid: Tillit koster tid",
+  "sisteDag": 25,
+  "hovedtraad": "lea_og_arvids_tillit",
+  "threads": [
+    {
+      "id": "lea_og_arvids_tillit",
+      "tittel": "Lea og Arvid: Tillit koster tid",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Lea skal bestemme om vennskapet med Arvid tåler mer kontakt etter at han mistet kontrollen over plakaten. Hun må ikke bli arrangør for å bevise vennskap."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_rel_lea_arvid_vis_samlet",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Invitasjonen etter unnskyldningen",
+      "tekst": "Arvid rettet opplysningene for både Lea og Mira. En ukeplan for neste kulturkveld kommer nå fra ham, med en tom plass under «ansvarlige». Han har ikke satt opp Lea, men spør om hun vil hjelpe ham å sette den sammen. Lea kjenner at det gamle ja-presset kommer tilbake.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Ta imot en privat samtale, uten oppgaver",
+          "konsekvensTekst": "Lea sier at hun kan snakke med Arvid som venn, men at det ikke er en avtale om å bidra til kulturkvelden.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Be om ro og la Arvid ordne programmet alene",
+          "konsekvensTekst": "Lea sier nei til flere samtaler om arrangementet. Arvid blir skuffet, men må stå ved ansvaret sitt.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "vis",
+          "ensemble_arvid_program_21_retning": "samlet"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_lea_arvid_vis_hver",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Når én vil snakke og én ikke vil",
+      "tekst": "Arvid viste de frivillige den korrigerte plakaten, men lot Lea og Mira svare på egne vegne. Nå ber han Lea personlig om å forklare for en frivillig hvorfor musikken mangler. Lea har aldri lovet å være talsperson.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Ta imot en privat samtale, uten oppgaver",
+          "konsekvensTekst": "Lea sier at hun kan snakke med Arvid som venn, men at det ikke er en avtale om å bidra til kulturkvelden.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Be om ro og la Arvid ordne programmet alene",
+          "konsekvensTekst": "Lea sier nei til flere samtaler om arrangementet. Arvid blir skuffet, men må stå ved ansvaret sitt.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "vis",
+          "ensemble_arvid_program_21_retning": "hver"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_lea_arvid_stopp_samlet",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et ansvar han tok for sent",
+      "tekst": "Arvid tok ned den gamle plakaten og rettet siden opplysningene hos både Lea og Mira. Lea merker at han ønsker ros for oppryddingen. Hun har derimot mistet lysten til å komme til samlingen som gjest.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Ta imot en privat samtale, uten oppgaver",
+          "konsekvensTekst": "Lea sier at hun kan snakke med Arvid som venn, men at det ikke er en avtale om å bidra til kulturkvelden.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Be om ro og la Arvid ordne programmet alene",
+          "konsekvensTekst": "Lea sier nei til flere samtaler om arrangementet. Arvid blir skuffet, men må stå ved ansvaret sitt.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "stopp",
+          "ensemble_arvid_program_21_retning": "samlet"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_lea_arvid_stopp_hver",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det vanskelige møtet uten agenda",
+      "tekst": "Arvid tok ned plakaten og lot de involverte snakke for seg selv. Nå møter Lea ham tilfeldig utenfor butikken. Han spør om hun er sint. Hun er mest sliten av å bli gjort til den som må forklare alt.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Ta imot en privat samtale, uten oppgaver",
+          "konsekvensTekst": "Lea sier at hun kan snakke med Arvid som venn, men at det ikke er en avtale om å bidra til kulturkvelden.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Be om ro og la Arvid ordne programmet alene",
+          "konsekvensTekst": "Lea sier nei til flere samtaler om arrangementet. Arvid blir skuffet, men må stå ved ansvaret sitt.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_program_20_retning": "stopp",
+          "ensemble_arvid_program_21_retning": "hver"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_lea_arvid_snakk",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Unnskyldningen som kom med et ønske",
+      "tekst": "Arvid beklager at han brukte Leas navn og spør så om hun kan korrekturlese en ny plakat. Lea kjenner at unnskyldningen blir til en ny tjeneste. Hun ønsker å finne ut om han kan godta et nei uten å gjøre det personlig.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Si hva som skadet tilliten, uten å love hjelp",
+          "konsekvensTekst": "Lea beskriver hvordan hennes navn ble et middel for andres planer. Arvid lytter, men får ingen ny tjeneste av samtalen.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Svar kort og hold kontakten begrenset",
+          "konsekvensTekst": "Lea beholder avstanden. Arvid får ikke bruke spørsmålet om vennskap til å omgå grensen hun allerede satte.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_23_retning": "snakk"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_lea_arvid_hold",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En invitasjon på nytt papir",
+      "tekst": "Arvid sender en kort melding: «Jeg skjønner at du ikke vil være med. Kan vi likevel være venner?» Lea vil ikke svare mens hun fortsatt er irritert. Hun tenker på hvordan relasjonen var før alt ble et arrangement.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Si hva som skadet tilliten, uten å love hjelp",
+          "konsekvensTekst": "Lea beskriver hvordan hennes navn ble et middel for andres planer. Arvid lytter, men får ingen ny tjeneste av samtalen.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Svar kort og hold kontakten begrenset",
+          "konsekvensTekst": "Lea beholder avstanden. Arvid får ikke bruke spørsmålet om vennskap til å omgå grensen hun allerede satte.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_23_retning": "hold"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_lea_arvid_ansvar",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Han kommer uten plakat",
+      "tekst": "Arvid spør bare hvordan Lea har det, ikke hva hun kan gjøre. Lea merker forskjellen, men kjenner ennå ikke om hun kan stole på at den varer. En venn kan få en ny sjanse uten å få tilbake nøklene til kalenderen hennes.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Åpne for en samtale uten arbeidsroller",
+          "konsekvensTekst": "Lea åpner for sosial kontakt, men sier at framtidige forespørsler må stå på egne ben. Det finnes ingen avtale om arbeid.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_25_result": "ansvar_naer",
+              "rel_lea_arvid_25_ansvar_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 2
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "La tilliten være uavklart",
+          "konsekvensTekst": "Lea velger ikke å gjenoppta kontakten nå. Arvid må leve med at en rettelse ikke gir ham en ny sjanse automatisk.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_25_result": "ansvar_distanse",
+              "rel_lea_arvid_25_ansvar_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_lea_arvid_vern",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den tomme stolen ved bordet",
+      "tekst": "Arvid ordner neste samling uten å kontakte Lea. Hun savner noe av det de pleide å ha, men får endelig en kveld hvor ingen forventer at hun stiller opp. Arvid har foreløpig ikke funnet en vei tilbake til henne.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Åpne for en samtale uten arbeidsroller",
+          "konsekvensTekst": "Lea åpner for sosial kontakt, men sier at framtidige forespørsler må stå på egne ben. Det finnes ingen avtale om arbeid.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_25_result": "vern_naer",
+              "rel_lea_arvid_25_vern_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": 2
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "La tilliten være uavklart",
+          "konsekvensTekst": "Lea velger ikke å gjenoppta kontakten nå. Arvid må leve med at en rettelse ikke gir ham en ny sjanse automatisk.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_25_result": "vern_distanse",
+              "rel_lea_arvid_25_vern_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_lea_arvid_24_retning": "vern"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_lea_arvid_slutt",
+      "threadId": "lea_og_arvids_tillit",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem kan kreve hva av et annet menneske?",
+      "tekst": "Det er mulig å være uenig, ta ansvar eller finne en forsiktig vei videre. Det som står igjen er konkrete tidligere valg og grenser, ikke en automatisk avtale. De andre menneskene bestemmer selv hva de vil gjøre neste gang.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Ta vare på kapitlet",
+          "konsekvensTekst": "Historien avsluttes med de relasjonene og forventningene valgene faktisk skapte.",
+          "effekter": {
+            "flagg": {
+              "rel_lea_arvid_25_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "lea_og_arvids_tillit": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "rel_lea_arvid_25_ansvar_naer",
+      "navn": "En forsiktig ny start",
+      "tekst": "Arvid spør bare hvordan Lea har det, ikke hva hun kan gjøre. Lea merker forskjellen, men kjenner ennå ikke om hun kan stole på at den varer. En venn kan få en ny sjanse uten å få tilbake nøklene til kalenderen hennes. Lea åpner for sosial kontakt, men sier at framtidige forespørsler må stå på egne ben. Det finnes ingen avtale om arbeid.",
+      "kriterier": {
+        "flagg": {
+          "rel_lea_arvid_25_ansvar_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_lea_arvid_25_ansvar_distanse",
+      "navn": "Ord uten belønning",
+      "tekst": "Arvid spør bare hvordan Lea har det, ikke hva hun kan gjøre. Lea merker forskjellen, men kjenner ennå ikke om hun kan stole på at den varer. En venn kan få en ny sjanse uten å få tilbake nøklene til kalenderen hennes. Lea velger ikke å gjenoppta kontakten nå. Arvid må leve med at en rettelse ikke gir ham en ny sjanse automatisk.",
+      "kriterier": {
+        "flagg": {
+          "rel_lea_arvid_25_ansvar_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_lea_arvid_25_vern_naer",
+      "navn": "Et vennskap på avstand",
+      "tekst": "Arvid ordner neste samling uten å kontakte Lea. Hun savner noe av det de pleide å ha, men får endelig en kveld hvor ingen forventer at hun stiller opp. Arvid har foreløpig ikke funnet en vei tilbake til henne. Lea åpner for sosial kontakt, men sier at framtidige forespørsler må stå på egne ben. Det finnes ingen avtale om arbeid.",
+      "kriterier": {
+        "flagg": {
+          "rel_lea_arvid_25_vern_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_lea_arvid_25_vern_distanse",
+      "navn": "Grensen står",
+      "tekst": "Arvid ordner neste samling uten å kontakte Lea. Hun savner noe av det de pleide å ha, men får endelig en kveld hvor ingen forventer at hun stiller opp. Arvid har foreløpig ikke funnet en vei tilbake til henne. Lea velger ikke å gjenoppta kontakten nå. Arvid må leve med at en rettelse ikke gir ham en ny sjanse automatisk.",
+      "kriterier": {
+        "flagg": {
+          "rel_lea_arvid_25_vern_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_lea_arvid_25_standard",
+      "navn": "Et forhold under utvikling",
+      "tekst": "De faktiske valgene er bevart uten at andre personers samtykke eller forpliktelser er funnet på.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

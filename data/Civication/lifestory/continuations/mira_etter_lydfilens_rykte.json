@@ -1,0 +1,521 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "mira_etter_lydfilens_rykte",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Mira: Når musikken ikke føles trygg",
+  "sisteDag": 25,
+  "hovedtraad": "mira_og_lydfilens_spor",
+  "threads": [
+    {
+      "id": "mira_og_lydfilens_spor",
+      "tittel": "Mira: Når musikken ikke føles trygg",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Mira må velge mellom å beholde lyden privat eller forsiktig invitere andre inn igjen etter at en kopi av musikken ble spredd uten tillatelse."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_rel_mira_lyd_stans_slett",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Filen som fortsatt finnes i hodet",
+      "tekst": "Arvid stanset bruken og ba den frivillige slutte å dele lenken. Mira har ikke hørt klippet offentlig, men hver gang hun åpner musikkappen tenker hun på at noen allerede kan ha hørt det. Hun har sluttet å spille av sin egen skisse.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Fortell en betrodd venn hvorfor lyden har blitt vanskelig",
+          "konsekvensTekst": "Mira får sette ord på uroen uten at vennen ber om å høre opptaket. Hun bestemmer selv om musikken skal deles igjen.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Legg skissen bort uten å gjøre den til et nederlag",
+          "konsekvensTekst": "Mira lar filen ligge. Hun trenger ikke gjøre den ferdig for å vise at de andre tok feil.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "stans",
+          "ensemble_arvid_lyd_21_retning": "slett"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lyd_stans_begrens",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ny forespørsel i samme kanal",
+      "tekst": "Arvid stanset bruken, men lot Mira avgjøre om hun ville kontakte den frivillige. Nå får hun en høflig melding fra en annen musiker som spør om hun vil vise skissen. Hun kjenner ikke personen.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Fortell en betrodd venn hvorfor lyden har blitt vanskelig",
+          "konsekvensTekst": "Mira får sette ord på uroen uten at vennen ber om å høre opptaket. Hun bestemmer selv om musikken skal deles igjen.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Legg skissen bort uten å gjøre den til et nederlag",
+          "konsekvensTekst": "Mira lar filen ligge. Hun trenger ikke gjøre den ferdig for å vise at de andre tok feil.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "stans",
+          "ensemble_arvid_lyd_21_retning": "begrens"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lyd_sporr_slett",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et nei som måtte sies høyt",
+      "tekst": "Arvid spurte Mira direkte om status, hun sa nei, og lenken ble stoppet. En bekjent sier til Mira at Arvid tross alt prøvde å hjelpe. Hun er lei av å måtte være takknemlig for at noen sluttet å bruke materialet hennes.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Fortell en betrodd venn hvorfor lyden har blitt vanskelig",
+          "konsekvensTekst": "Mira får sette ord på uroen uten at vennen ber om å høre opptaket. Hun bestemmer selv om musikken skal deles igjen.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Legg skissen bort uten å gjøre den til et nederlag",
+          "konsekvensTekst": "Mira lar filen ligge. Hun trenger ikke gjøre den ferdig for å vise at de andre tok feil.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "sporr",
+          "ensemble_arvid_lyd_21_retning": "slett"
+        }
+      }
+    },
+    {
+      "id": "d23_rel_mira_lyd_sporr_begrens",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Arbeidet er fortsatt hennes",
+      "tekst": "Arvid spurte om status og lot Mira avgjøre videre kontakt. Hun har sagt at klippet ikke skal brukes. Når hun skal lage ny musikk, oppdager hun at hun nå spør seg hvem hun kan stole på med et uferdig opptak.",
+      "valg": [
+        {
+          "id": "snakk",
+          "tekst": "Fortell en betrodd venn hvorfor lyden har blitt vanskelig",
+          "konsekvensTekst": "Mira får sette ord på uroen uten at vennen ber om å høre opptaket. Hun bestemmer selv om musikken skal deles igjen.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "snakk"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "hold",
+          "tekst": "Legg skissen bort uten å gjøre den til et nederlag",
+          "konsekvensTekst": "Mira lar filen ligge. Hun trenger ikke gjøre den ferdig for å vise at de andre tok feil.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_23_retning": "hold"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "sporr",
+          "ensemble_arvid_lyd_21_retning": "begrens"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_mira_lyd_snakk",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En venn som ikke ber om en prøve",
+      "tekst": "Vennen spør ikke om lydfilen. I stedet foreslår hun at Mira kan komme innom for å spille piano helt uten opptak. Mira blir overrasket over at det finnes musikalsk selskap uten prestasjonspress.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Sett egne regler for hvem som kan få høre nye skisser",
+          "konsekvensTekst": "Mira lager en personlig grense: hun deler bare med folk hun faktisk ønsker tilbakemelding fra, uten videresending. Ingen får automatisk tilgang.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Velg å spille bare for deg selv foreløpig",
+          "konsekvensTekst": "Mira sier ikke at hun har gitt opp. Hun velger bare å ikke vise uferdig arbeid akkurat nå.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lyd_23_retning": "snakk"
+        }
+      }
+    },
+    {
+      "id": "d24_rel_mira_lyd_hold",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 24,
+      "fase": "ettermiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Rommet uten opptakslys",
+      "tekst": "Mira setter seg med instrumentet en kveld. Hun spiller noen takter, men skrur ikke på telefonen. Hun oppdager at hun fortsatt kan ha glede av musikk som ingen skal høre.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "Sett egne regler for hvem som kan få høre nye skisser",
+          "konsekvensTekst": "Mira lager en personlig grense: hun deler bare med folk hun faktisk ønsker tilbakemelding fra, uten videresending. Ingen får automatisk tilgang.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        },
+        {
+          "id": "vern",
+          "tekst": "Velg å spille bare for deg selv foreløpig",
+          "konsekvensTekst": "Mira sier ikke at hun har gitt opp. Hun velger bare å ikke vise uferdig arbeid akkurat nå.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_24_retning": "vern"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lyd_23_retning": "hold"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lyd_ansvar",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et lite rom med en lukket dør",
+      "tekst": "Mira kan invitere én betrodd person til å lytte hvis hun selv vil. Hun trenger ikke sende en fil. Arvid er ikke invitert, og han har ingen rett til å be om et nytt klipp.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Åpne for én frivillig lyttesamtale senere",
+          "konsekvensTekst": "Mira beholder kontrollen og kan velge en person hun stoler på. Det finnes ingen rett til å ta opptak eller dele musikken videre.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_25_result": "ansvar_naer",
+              "rel_mira_lyd_25_ansvar_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "La musikken forbli privat",
+          "konsekvensTekst": "Hun skylder verken Arvid, Lea eller andre en lydfil. Hun kan ta opp igjen arbeidet på sine egne premisser.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_25_result": "ansvar_distanse",
+              "rel_mira_lyd_25_ansvar_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lyd_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lyd_vern",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En melodi ingen får kreve",
+      "tekst": "Mira spiller den nye melodien alene. Hun vet at en venn kunne ha hørt den, men velger stillheten nå. Det er hennes valg, ikke et nederlag.",
+      "valg": [
+        {
+          "id": "naer",
+          "tekst": "Åpne for én frivillig lyttesamtale senere",
+          "konsekvensTekst": "Mira beholder kontrollen og kan velge en person hun stoler på. Det finnes ingen rett til å ta opptak eller dele musikken videre.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_25_result": "vern_naer",
+              "rel_mira_lyd_25_vern_naer": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 2
+            }
+          }
+        },
+        {
+          "id": "distanse",
+          "tekst": "La musikken forbli privat",
+          "konsekvensTekst": "Hun skylder verken Arvid, Lea eller andre en lydfil. Hun kan ta opp igjen arbeidet på sine egne premisser.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_25_result": "vern_distanse",
+              "rel_mira_lyd_25_vern_distanse": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "rel_mira_lyd_24_retning": "vern"
+        }
+      }
+    },
+    {
+      "id": "d25_rel_mira_lyd_slutt",
+      "threadId": "mira_og_lydfilens_spor",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hvem kan kreve hva av et annet menneske?",
+      "tekst": "Det er mulig å være uenig, ta ansvar eller finne en forsiktig vei videre. Det som står igjen er konkrete tidligere valg og grenser, ikke en automatisk avtale. De andre menneskene bestemmer selv hva de vil gjøre neste gang.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Ta vare på kapitlet",
+          "konsekvensTekst": "Historien avsluttes med de relasjonene og forventningene valgene faktisk skapte.",
+          "effekter": {
+            "flagg": {
+              "rel_mira_lyd_25_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_og_lydfilens_spor": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "rel_mira_lyd_25_ansvar_naer",
+      "navn": "Et nytt rom for musikk",
+      "tekst": "Mira kan invitere én betrodd person til å lytte hvis hun selv vil. Hun trenger ikke sende en fil. Arvid er ikke invitert, og han har ingen rett til å be om et nytt klipp. Mira beholder kontrollen og kan velge en person hun stoler på. Det finnes ingen rett til å ta opptak eller dele musikken videre.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lyd_25_ansvar_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lyd_25_ansvar_distanse",
+      "navn": "En dør på gløtt",
+      "tekst": "Mira kan invitere én betrodd person til å lytte hvis hun selv vil. Hun trenger ikke sende en fil. Arvid er ikke invitert, og han har ingen rett til å be om et nytt klipp. Hun skylder verken Arvid, Lea eller andre en lydfil. Hun kan ta opp igjen arbeidet på sine egne premisser.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lyd_25_ansvar_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lyd_25_vern_naer",
+      "navn": "Musikk uten publikum",
+      "tekst": "Mira spiller den nye melodien alene. Hun vet at en venn kunne ha hørt den, men velger stillheten nå. Det er hennes valg, ikke et nederlag. Mira beholder kontrollen og kan velge en person hun stoler på. Det finnes ingen rett til å ta opptak eller dele musikken videre.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lyd_25_vern_naer": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lyd_25_vern_distanse",
+      "navn": "Retten til å være stille",
+      "tekst": "Mira spiller den nye melodien alene. Hun vet at en venn kunne ha hørt den, men velger stillheten nå. Det er hennes valg, ikke et nederlag. Hun skylder verken Arvid, Lea eller andre en lydfil. Hun kan ta opp igjen arbeidet på sine egne premisser.",
+      "kriterier": {
+        "flagg": {
+          "rel_mira_lyd_25_vern_distanse": true
+        }
+      }
+    },
+    {
+      "id": "rel_mira_lyd_25_standard",
+      "navn": "Et forhold under utvikling",
+      "tekst": "De faktiske valgene er bevart uten at andre personers samtykke eller forpliktelser er funnet på.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
