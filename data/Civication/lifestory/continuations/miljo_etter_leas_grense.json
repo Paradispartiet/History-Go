@@ -1,0 +1,647 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_etter_leas_grense",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Arvid: Lojaliteten som kostet",
+  "sisteDag": 25,
+  "hovedtraad": "arvid_etter_leas_grense",
+  "threads": [
+    {
+      "id": "arvid_etter_leas_grense",
+      "tittel": "Arvid: Lojaliteten som kostet",
+      "type": "privatliv",
+      "startDag": 23,
+      "konflikt": "Tidligere beslutninger setter lojalitet, grenser og tillit i spill mellom personene."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d23_relasjon_arvid_lea_direkte_rolle",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et gammelt vennskap",
+      "tekst": "Lea avkreftet rollen selv, og arrangøren fikk en kontaktperson. Arvid oppdager at vennen Joakim skrev Leas navn i kalenderen uten å spørre henne.",
+      "valg": [
+        {
+          "id": "privat",
+          "tekst": "Snakk med Joakim før du reagerer overfor gruppen",
+          "konsekvensTekst": "Joakim forklarer at han fryktet arrangementet skulle mislykkes. Han blir såret over å bli konfrontert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "privat"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "apent",
+          "tekst": "Fortell de ansvarlige hva som faktisk skjedde",
+          "konsekvensTekst": "Arvid deler ikke Leas private svar. Joakim opplever det som illojalt og går fra møtet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "apent"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "direkte",
+          "ensemble_lea_kreditering_21_retning": "rolle"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_arvid_lea_direkte_avstand",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Tjenesten som ble byrde",
+      "tekst": "Lea svarte én gang og ba om fred. Joakim forteller Arvid at han kopierte navnet hennes for å redde arrangementet, og ber ham omtale det som en misforståelse.",
+      "valg": [
+        {
+          "id": "privat",
+          "tekst": "Snakk med Joakim før du reagerer overfor gruppen",
+          "konsekvensTekst": "Joakim forklarer at han fryktet arrangementet skulle mislykkes. Han blir såret over å bli konfrontert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "privat"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "apent",
+          "tekst": "Fortell de ansvarlige hva som faktisk skjedde",
+          "konsekvensTekst": "Arvid deler ikke Leas private svar. Joakim opplever det som illojalt og går fra møtet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "apent"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "direkte",
+          "ensemble_lea_kreditering_21_retning": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_arvid_lea_arvid_rolle",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Navnet bak feilen",
+      "tekst": "Arvid måtte selv rydde opp i kalenderen. Joakim innrømmer at han la inn Leas navn uten samtykke. Arvid må avgjøre om vennskapet skal beskytte ham fra ansvar.",
+      "valg": [
+        {
+          "id": "privat",
+          "tekst": "Snakk med Joakim før du reagerer overfor gruppen",
+          "konsekvensTekst": "Joakim forklarer at han fryktet arrangementet skulle mislykkes. Han blir såret over å bli konfrontert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "privat"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "apent",
+          "tekst": "Fortell de ansvarlige hva som faktisk skjedde",
+          "konsekvensTekst": "Arvid deler ikke Leas private svar. Joakim opplever det som illojalt og går fra møtet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "apent"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "arvid",
+          "ensemble_lea_kreditering_21_retning": "rolle"
+        }
+      }
+    },
+    {
+      "id": "d23_relasjon_arvid_lea_arvid_avstand",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 23,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Feilen ingen ville eie",
+      "tekst": "Lea trakk seg fra videre kontakt. Joakim sier at han «bare hjalp til» da han førte henne opp. Arvid vet at en slik forklaring legger ansvaret på Lea igjen.",
+      "valg": [
+        {
+          "id": "privat",
+          "tekst": "Snakk med Joakim før du reagerer overfor gruppen",
+          "konsekvensTekst": "Joakim forklarer at han fryktet arrangementet skulle mislykkes. Han blir såret over å bli konfrontert.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "privat"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "apent",
+          "tekst": "Fortell de ansvarlige hva som faktisk skjedde",
+          "konsekvensTekst": "Arvid deler ikke Leas private svar. Joakim opplever det som illojalt og går fra møtet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_23_retning": "apent"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": -1,
+              "lea": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_lea_kreditering_20_retning": "arvid",
+          "ensemble_lea_kreditering_21_retning": "avstand"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_arvid_lea_privat",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Vennskapets regnskap",
+      "tekst": "Joakim minner Arvid om tjenester han har gjort og ber ham omtale saken som en misforståelse. Han knytter lojalitet til taushet.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "La Joakim eie sin del uten å gjøre Lea til dommer",
+          "konsekvensTekst": "Arvid står ved fakta, og Lea slipper nye oppklaringsrunder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "dekke",
+          "tekst": "Ta all skyld selv for å bevare vennskapet",
+          "konsekvensTekst": "Joakim blir lettet, men skjønner ikke hvorfor det var galt å føre opp Lea.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_24_retning": "dekke"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d24_relasjon_arvid_lea_apent",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 24,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En ledig stol",
+      "tekst": "Joakim vil ikke komme tilbake som frivillig før Arvid sier at han gjorde rett. Gruppen savner ham, men vil ikke lenger føre opp navn uten spørsmål.",
+      "valg": [
+        {
+          "id": "ansvar",
+          "tekst": "La Joakim eie sin del uten å gjøre Lea til dommer",
+          "konsekvensTekst": "Arvid står ved fakta, og Lea slipper nye oppklaringsrunder.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_24_retning": "ansvar"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "lea": 2,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "dekke",
+          "tekst": "Ta all skyld selv for å bevare vennskapet",
+          "konsekvensTekst": "Joakim blir lettet, men skjønner ikke hvorfor det var galt å føre opp Lea.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_24_retning": "dekke"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": -2
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "apent"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_arvid_lea_privat_ansvar",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et vennskap som tåler ansvar",
+      "tekst": "Joakim innrømmer at han førte opp navnet uten avtale. Arvid sier at de kan være venner uten at han forsvarer handlingen.",
+      "valg": [
+        {
+          "id": "vei",
+          "tekst": "Gi Joakim en mulig vei tilbake med reelt ansvar",
+          "konsekvensTekst": "Vennskap er ingen billett til å bruke andres navn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "privat_ansvar_vei",
+              "relasjon_arvid_lea_25_privat_ansvar": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "brudd",
+          "tekst": "Godta at han kan velge å gå",
+          "konsekvensTekst": "Arvid skyver ikke følgene over på Lea for å beholde en venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "privat_ansvar_brudd",
+              "relasjon_arvid_lea_25_privat_ansvar": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "privat",
+          "relasjon_arvid_lea_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_arvid_lea_privat_dekke",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den gamle tjenesten kommer igjen",
+      "tekst": "Joakim ber Arvid føre opp en annen frivillig «så ordner jeg det etterpå». Arvid ser at han ikke har endret forventningene.",
+      "valg": [
+        {
+          "id": "vei",
+          "tekst": "Gi Joakim en mulig vei tilbake med reelt ansvar",
+          "konsekvensTekst": "Vennskap er ingen billett til å bruke andres navn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "privat_dekke_vei",
+              "relasjon_arvid_lea_25_privat_dekke": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "brudd",
+          "tekst": "Godta at han kan velge å gå",
+          "konsekvensTekst": "Arvid skyver ikke følgene over på Lea for å beholde en venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "privat_dekke_brudd",
+              "relasjon_arvid_lea_25_privat_dekke": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "privat",
+          "relasjon_arvid_lea_24_retning": "dekke"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_arvid_lea_apent_ansvar",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Fellesskapet tåler sannheten",
+      "tekst": "Joakim får forklare seg i gruppen. Noen er skeptiske, men reglene om samtykke gjelder også Arvids venner.",
+      "valg": [
+        {
+          "id": "vei",
+          "tekst": "Gi Joakim en mulig vei tilbake med reelt ansvar",
+          "konsekvensTekst": "Vennskap er ingen billett til å bruke andres navn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "apent_ansvar_vei",
+              "relasjon_arvid_lea_25_apent_ansvar": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "brudd",
+          "tekst": "Godta at han kan velge å gå",
+          "konsekvensTekst": "Arvid skyver ikke følgene over på Lea for å beholde en venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "apent_ansvar_brudd",
+              "relasjon_arvid_lea_25_apent_ansvar": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "apent",
+          "relasjon_arvid_lea_24_retning": "ansvar"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_arvid_lea_apent_dekke",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 25,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Feilen uten eier",
+      "tekst": "Arvid tok all skyld. Nye rutiner er innført, men Joakim mener fortsatt han gjorde rett. Lea ønsker ikke å høre mer.",
+      "valg": [
+        {
+          "id": "vei",
+          "tekst": "Gi Joakim en mulig vei tilbake med reelt ansvar",
+          "konsekvensTekst": "Vennskap er ingen billett til å bruke andres navn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "apent_dekke_vei",
+              "relasjon_arvid_lea_25_apent_dekke": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "lea": 1
+            }
+          }
+        },
+        {
+          "id": "brudd",
+          "tekst": "Godta at han kan velge å gå",
+          "konsekvensTekst": "Arvid skyver ikke følgene over på Lea for å beholde en venn.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_valg": "apent_dekke_brudd",
+              "relasjon_arvid_lea_25_apent_dekke": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "lea": 1,
+              "amir": -1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "relasjon_arvid_lea_23_retning": "apent",
+          "relasjon_arvid_lea_24_retning": "dekke"
+        }
+      }
+    },
+    {
+      "id": "d25_relasjon_arvid_lea_slutt",
+      "threadId": "arvid_etter_leas_grense",
+      "dag": 25,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Hva som ble annerledes",
+      "tekst": "Tidligere valg og nye grenser er bevart i historieboka. Personene kan ha ulike oppfatninger uten at én scene avgjør framtiden for dem.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Ingen avtale, spillejobb, betaling eller møteplikt er opprettet.",
+          "effekter": {
+            "flagg": {
+              "relasjon_arvid_lea_25_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_etter_leas_grense": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "relasjon_arvid_lea_25_privat_ansvar",
+      "navn": "Lojalitet med ansvar",
+      "tekst": "Joakim innrømmer at han førte opp navnet uten avtale. Arvid sier at de kan være venner uten at han forsvarer handlingen.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_arvid_lea_25_privat_ansvar": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_arvid_lea_25_privat_dekke",
+      "navn": "En dyr beskyttelse",
+      "tekst": "Joakim ber Arvid føre opp en annen frivillig «så ordner jeg det etterpå». Arvid ser at han ikke har endret forventningene.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_arvid_lea_25_privat_dekke": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_arvid_lea_25_apent_ansvar",
+      "navn": "En gruppe som lærer",
+      "tekst": "Joakim får forklare seg i gruppen. Noen er skeptiske, men reglene om samtykke gjelder også Arvids venner.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_arvid_lea_25_apent_ansvar": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_arvid_lea_25_apent_dekke",
+      "navn": "Feilen uten eier",
+      "tekst": "Arvid tok all skyld. Nye rutiner er innført, men Joakim mener fortsatt han gjorde rett. Lea ønsker ikke å høre mer.",
+      "kriterier": {
+        "flagg": {
+          "relasjon_arvid_lea_25_apent_dekke": true
+        }
+      }
+    },
+    {
+      "id": "relasjon_arvid_lea_standard",
+      "navn": "Et åpent forhold",
+      "tekst": "Historien forblir åpen uten automatisk forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
