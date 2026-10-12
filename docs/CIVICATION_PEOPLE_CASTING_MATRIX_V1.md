@@ -187,4 +187,4 @@ Etter dokumentert oppdagelse kan et fremtidig scenario invitere til en første i
 
 Begynn med `PPL-M01` og `PPL-M02`. Begge bruker `musikk_frilansmusiker` og C02, men skal ha **ulike dilemmaer, ulike scenevalg og ulike senere følger**. Kjør i tillegg en spiller uten noen av disse People og en spiller som låser opp People etter dag 13. Sistnevnte skal ikke få fortid skrevet om.
 
-Først når faktsimitets-/policyporten er eksplisitt avklart kan vi planlegge en navngitt simulert relasjon; foreløpig er manusene **spillersentrerte** og basert på dokumentert People-kontekst, med selvstendige fiktive sosialaktører der handling kreves.
+Først når faktisitets- og policyporten er eksplisitt avklart kan vi planlegge en navngitt simulert relasjon; foreløpig er manusene **spillersentrerte** og basert på dokumentert People-kontekst, med selvstendige fiktive sosialaktører der handling kreves.
