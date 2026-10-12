@@ -20,6 +20,7 @@ test("Black Box has reviewed source claims and a distinct registered 4×7 quiz",
   assert.equal(brief.profile_decision.questions_per_set, 7);
   assert.equal(brief.claims.length, 28);
   assert.equal(new Set(brief.claims.map(c => c.claim_id)).size, 28);
+  assert.deepEqual(brief.claims.map(c => c.order), Array.from({length:28},(_,i)=>i+1));
   assert.ok(brief.scope.site_boundary.includes("Aker Brygge"));
   assert.ok(brief.scope.site_boundary.includes("2004"));
   const canonical = new Map(production.claims.map(c => [c.id, c]));
@@ -29,7 +30,8 @@ test("Black Box has reviewed source claims and a distinct registered 4×7 quiz",
     assert.equal(c.statement, original.claim, c.claim_id);
     assert.ok(c.source_ids.some(id => brief.sources[id]?.url === original.sourceUrl), c.claim_id);
   }
-  assert.ok(brief.claims.find(c => c.origin_place_claim_id === "claim_blackbox_network_1991").review_caution);
+  assert.ok(!brief.claims.some(c => c.origin_place_claim_id === "claim_blackbox_network_1991"));
+  assert.ok(brief.held_back_candidates.some(note => note.includes("Nettverk for Scenekunst")));
   assert.deepEqual(quiz.sets.map(s => s.questions.length), [7, 7, 7, 7]);
   assert.deepEqual(quiz.sets.map(s => s.phase), ["opening", "middle", "bridge", "final"]);
   assert.ok(manifest.sets.some(s => s.targetId === "black_box_teater" && s.file === "data/quiz/scenekunst/black_box_teater_sets.json"));
