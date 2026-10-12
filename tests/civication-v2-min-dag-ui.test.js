@@ -75,6 +75,9 @@ async function main() {
   assert.ok(panel.querySelector(".civi-lifestory-scene"), "Min dag skal vise nå-scenen");
   assert.ok(panel.querySelector("button.civi-lifestory-choice[data-lifestory-choice]"), "Min dag skal vise store klikkbare valg");
   assert.ok(panel.querySelector(".civi-lifestory-status-chip"), "Min dag skal vise statuslinje med statuschips");
+  assert.ok(panel.textContent.includes("Fortellingsøkonomi"), "den interne pengeskalaen har egen etikett");
+  assert.ok(![...panel.querySelectorAll(".civi-lifestory-status-chip")].some(c => /\\bPC\\b/.test(c.textContent)),
+    "Life Story skal ikke vise intern pengevariabel som ParadiseCoin");
   // Ingen livsstilschip før noen valg har telt (stamp er null).
   assert.ok(![...panel.querySelectorAll(".civi-lifestory-status-chip")].some((c) => c.textContent.includes("Livsstil")),
     "livsstilschipen skal ikke vises før valgene har bygget en retning");
