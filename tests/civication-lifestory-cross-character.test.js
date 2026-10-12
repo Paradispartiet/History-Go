@@ -31,6 +31,22 @@ const journeys = [
     next: 'musikk_kryss_med_arvid', prefix: 'samspill_mira', priorPrefix: 'arvid16',
     priorValues: ['grense','avstand','uavklart'] }
 ];
+const editorial = read('data/Civication/lifestory/editorial/narrativeCrosswalkV1.json');
+assert.equal(editorial.literaryTracks.length,24);
+assert.equal(editorial.sevenPlotModels.length,7);
+assert.equal(editorial.contemporaryTypes.length,24);
+assert.deepEqual(editorial.crossCharacterProduction.map(p=>p.id),newIds);
+for(const item of editorial.crossCharacterProduction){
+  const d=descriptors.find(x=>x.id===item.id);
+  assert.ok(d && packs[item.id]);
+  assert.equal(d.etterDag,16);
+  assert.deepEqual(d.etterFortsettelser,[item.prior]);
+  assert.deepEqual(item.days,[17,18,19]);
+  assert.equal(item.characters.length,2);
+  for(const t of item.literaryTracks) assert.ok(editorial.literaryTracks.some(x=>x.id===t));
+  for(const t of item.contemporaryTypes) assert.ok(editorial.contemporaryTypes.some(x=>x.id===t));
+  for(const t of item.plotLenses) assert.ok(editorial.sevenPlotModels.some(x=>x.id===t));
+}
 let primary = null;
 globalThis.CivicationLifePositions = { getLifeContext: () => ({ primary_life_position: primary }) };
 function useRole(scope) {
