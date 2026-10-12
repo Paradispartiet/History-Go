@@ -1,0 +1,415 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "musikk_kryss_med_grunder",
+  "role_scope": "musikk_frilansmusiker",
+  "tittel": "Lyden som kunne selge en idé",
+  "sisteDag": 19,
+  "hovedtraad": "mira_og_leas_prototype",
+  "threads": [
+    {
+      "id": "mira_og_leas_prototype",
+      "tittel": "Lyden som kunne selge en idé",
+      "type": "privatliv",
+      "startDag": 17,
+      "konflikt": "Mira vil bruke en lydskisse ved demonstrasjon av Leas idé, uten at en kommersiell prototype eller musikkavtale eksisterer."
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d17_kryss_grunder_mira_klar",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Spørsmålet som ble et produkt",
+      "tekst": "Du fikk en avgrenset avklaring om Leas idé, ikke dokumentasjon på marked eller finansiering. Mira har hørt at Lea viser fram en skisse og spør om hun kan spille inn et kort lydspor til en presentasjon. Lea har ikke bedt henne om det.",
+      "valg": [
+        {
+          "id": "avtal",
+          "tekst": "Forklar Mira hva Lea faktisk har godkjent",
+          "konsekvensTekst": "Du presiserer at Lea må spørres om presentasjonen, og at lyd ikke kan knyttes til et prosjekt uten en konkret avtale.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "avtal"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Foreslå at Mira tester lyden privat for seg selv",
+          "konsekvensTekst": "Du sier at et privat musikalsk eksperiment er mulig, men ikke en demo som kan deles på Leas vegne.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "privat"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_16_klar": true
+        }
+      }
+    },
+    {
+      "id": "d17_kryss_grunder_mira_egen",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et uferdig utkast får tilhørere",
+      "tekst": "Du beholdt notatene om Leas idé privat. Mira har sett en muntlig omtale av prosjektet og vil sende et lydklipp videre som «musikken til prototypen». Det finnes verken ferdig prototype eller avtale om bruk av klippet.",
+      "valg": [
+        {
+          "id": "avtal",
+          "tekst": "Forklar Mira hva Lea faktisk har godkjent",
+          "konsekvensTekst": "Du presiserer at Lea må spørres om presentasjonen, og at lyd ikke kan knyttes til et prosjekt uten en konkret avtale.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "avtal"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Foreslå at Mira tester lyden privat for seg selv",
+          "konsekvensTekst": "Du sier at et privat musikalsk eksperiment er mulig, men ikke en demo som kan deles på Leas vegne.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "privat"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_16_egen": true
+        }
+      }
+    },
+    {
+      "id": "d17_kryss_grunder_mira_pause",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 17,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Forsøket som andre vil starte igjen",
+      "tekst": "Du valgte å legge Leas idé til side. Mira foreslår nå et lite lydklipp som kunne gjøre idéen lettere å forklare. Hun vet ikke at prosjektet ble satt på pause.",
+      "valg": [
+        {
+          "id": "avtal",
+          "tekst": "Forklar Mira hva Lea faktisk har godkjent",
+          "konsekvensTekst": "Du presiserer at Lea må spørres om presentasjonen, og at lyd ikke kan knyttes til et prosjekt uten en konkret avtale.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "avtal"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "privat",
+          "tekst": "Foreslå at Mira tester lyden privat for seg selv",
+          "konsekvensTekst": "Du sier at et privat musikalsk eksperiment er mulig, men ikke en demo som kan deles på Leas vegne.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_17_retning": "privat"
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "grunder_16_pause": true
+        }
+      }
+    },
+    {
+      "id": "d18_kryss_grunder_mira_avtal",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira vil ha et konkret svar",
+      "tekst": "Mira spør Lea om hun ønsker en lydskisse. Lea svarer at hun først må vite formålet, hvem som får høre den, og om den skal brukes offentlig. Mira foreslår å sende et kort klipp til en gruppe allerede i kveld.",
+      "valg": [
+        {
+          "id": "samtykke",
+          "tekst": "Be om uttrykkelig avklaring før lyd deles",
+          "konsekvensTekst": "Mira lar filen bli privat og ber Lea ta stilling til både bruk, kreditering og varighet før noe sendes videre.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_18_retning": "samtykke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egen",
+          "tekst": "La Mira fortsette musikken uten prosjektnavnet",
+          "konsekvensTekst": "Mira beholder lydideen som sitt eget arbeid. Hun fjerner koblingen til Lea og avtaler verken opptak, visning eller honorar.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_18_retning": "egen"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "avtal"
+        }
+      }
+    },
+    {
+      "id": "d18_kryss_grunder_mira_privat",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 18,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En fil med for mye navn",
+      "tekst": "Mira har laget et ti sekunders utkast på sin egen telefon. Før hun spiller det for andre, oppdager hun at filen er merket med Leas prosjektnavn. Hun spør om dette kan oppfattes som godkjenning.",
+      "valg": [
+        {
+          "id": "samtykke",
+          "tekst": "Be om uttrykkelig avklaring før lyd deles",
+          "konsekvensTekst": "Mira lar filen bli privat og ber Lea ta stilling til både bruk, kreditering og varighet før noe sendes videre.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_18_retning": "samtykke"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "egen",
+          "tekst": "La Mira fortsette musikken uten prosjektnavnet",
+          "konsekvensTekst": "Mira beholder lydideen som sitt eget arbeid. Hun fjerner koblingen til Lea og avtaler verken opptak, visning eller honorar.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_18_retning": "egen"
+            },
+            "meters": {
+              "energi": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "privat"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_grunder_mira_samtykke",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Demonstrasjonen uten lyd",
+      "tekst": "Lea sier at presentasjonen ikke er klar, og at hun derfor ikke ønsker lyd vedlagt nå. Mira takker for et tydelig svar. Den korte skissen blir ikke spredt, men de kan snakke om en ny forespørsel senere.",
+      "valg": [
+        {
+          "id": "forstaa",
+          "tekst": "Ta vare på forskjellen mellom idé og avtale",
+          "konsekvensTekst": "Du kan senere vise til hva som faktisk ble avklart, uten at en prototype, booking eller musikkrettighet oppstår.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_19_ending": "samtykke",
+              "kryss_grunder_mira_19_samtykke": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "lukk",
+          "tekst": "La samarbeidsmuligheten bli stående åpen",
+          "konsekvensTekst": "Mira og Lea kan ta kontakt ved en senere anledning. I dag er det ingen leveranse å vente på.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_19_ending": "samtykke",
+              "kryss_grunder_mira_19_samtykke": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_18_retning": "samtykke"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_grunder_mira_egen",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 19,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En melodi får stå alene",
+      "tekst": "Mira spiller lydideen for seg selv, uten prosjektetiketten. Lea får høre at navnet hennes ikke lenger brukes. Ingen blir kreditert for et samarbeid som aldri ble avtalt.",
+      "valg": [
+        {
+          "id": "forstaa",
+          "tekst": "Ta vare på forskjellen mellom idé og avtale",
+          "konsekvensTekst": "Du kan senere vise til hva som faktisk ble avklart, uten at en prototype, booking eller musikkrettighet oppstår.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_19_ending": "egen",
+              "kryss_grunder_mira_19_egen": true
+            },
+            "meters": {
+              "integritet": 1
+            }
+          }
+        },
+        {
+          "id": "lukk",
+          "tekst": "La samarbeidsmuligheten bli stående åpen",
+          "konsekvensTekst": "Mira og Lea kan ta kontakt ved en senere anledning. I dag er det ingen leveranse å vente på.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_19_ending": "egen",
+              "kryss_grunder_mira_19_egen": true
+            },
+            "meters": {
+              "handlingsrom": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_18_retning": "egen"
+        }
+      }
+    },
+    {
+      "id": "d19_kryss_grunder_mira_slutt",
+      "threadId": "mira_og_leas_prototype",
+      "dag": 19,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Det som ikke ble avtalt",
+      "tekst": "Det du gjorde, har endret en annen persons planer. Historieboka bevarer både den første beslutningen og rettelsene som kom senere. Ingen scene alene kan gjøre et utkast til en kontrakt.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Valgene er bevart, uten automatisk betaling, jobb, avtale eller opplåsing.",
+          "effekter": {
+            "flagg": {
+              "kryss_grunder_mira_19_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "mira_og_leas_prototype": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "kryss_grunder_mira_19_samtykke",
+      "navn": "Samtykke før visning",
+      "tekst": "Lea sier at presentasjonen ikke er klar, og at hun derfor ikke ønsker lyd vedlagt nå. Mira takker for et tydelig svar. Den korte skissen blir ikke spredt, men de kan snakke om en ny forespørsel senere.",
+      "kriterier": {
+        "flagg": {
+          "kryss_grunder_mira_19_samtykke": true
+        }
+      }
+    },
+    {
+      "id": "kryss_grunder_mira_19_egen",
+      "navn": "Musikk på egne vilkår",
+      "tekst": "Mira spiller lydideen for seg selv, uten prosjektetiketten. Lea får høre at navnet hennes ikke lenger brukes. Ingen blir kreditert for et samarbeid som aldri ble avtalt.",
+      "kriterier": {
+        "flagg": {
+          "kryss_grunder_mira_19_egen": true
+        }
+      }
+    },
+    {
+      "id": "kryss_grunder_mira_19_standard",
+      "navn": "Fortsatt uten avtale",
+      "tekst": "Kapitlet er bevart uten ny forpliktelse.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}

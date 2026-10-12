@@ -35,7 +35,7 @@ const editorial = read('data/Civication/lifestory/editorial/narrativeCrosswalkV1
 assert.equal(editorial.literaryTracks.length,24);
 assert.equal(editorial.sevenPlotModels.length,7);
 assert.equal(editorial.contemporaryTypes.length,24);
-assert.deepEqual(editorial.crossCharacterProduction.map(p=>p.id),newIds);
+assert.deepEqual(editorial.crossCharacterProduction.slice(0,newIds.length).map(p=>p.id),newIds, 'the three original arcs remain registered in order');
 for(const item of editorial.crossCharacterProduction){
   const d=descriptors.find(x=>x.id===item.id);
   assert.ok(d && packs[item.id]);
