@@ -8,8 +8,9 @@
 2. [15 formelle rollesymposier](formalRolesV1.json) viser jobb, ansvar, conflicts, relasjoner, aktører, avslutninger og faglige fortellerspor.
 3. [21 livsposisjoner, del 1](lifePositions01V1.json) og [del 2](lifePositions02V1.json) viser dramaturgi, rolleverdener, arketypiske bipersoner, 14-dagers beatplan, forsinkede følger og materialiseringskilder.
 4. [45 kapittelsymposier, del 1](chapters01V1.json), [del 2](chapters02V1.json) og [del 3](chapters03V1.json) viser originalscener, valg, betingelser, relasjonsendringer, kapitlenes åpning, komplikasjon og mulige utfall.
-5. [Person- og identitetsregister](charactersV1.json) viser **110 rollelokale Civication-bipersoner**, de seks redaksjonelle navn/alias-oppføringene og skillet til History Go People.
-6. [Produksjonsplan og godkjenningskrav](PRODUKSJONSPLAN.md) styrer hva som må kvalitetssikres før nye kapitler skrives.
+5. [People-fagkoblinger pr. rolle](historicalPeoplePlanV1.json) viser alle 36 rollenes koblingsfelt og hvilke virkelige People-referanser som fortsatt mangler kilderevisjon. **0 individuelle koblinger er godkjent hittil.**
+6. [Person- og identitetsregister](charactersV1.json) viser **110 rollelokale Civication-bipersoner**, de seks redaksjonelle navn/alias-oppføringene og skillet til History Go People.
+7. [Produksjonsplan og godkjenningskrav](PRODUKSJONSPLAN.md) styrer hva som må kvalitetssikres før nye kapitler skrives.
 
 Kanonisk autoritet: `data/Civication/lifestory/manifest.json` for formelle roller, `data/Civication/lifestory/roles/arbeidsledig/role.json#symposium.rollebroer` for livsposisjoner, `roleFirstStoryArchitectureV1.json` for redaksjonell typologi og de faktiske `continuations/*.json` for spillede kapitler. Verken symposiumfilene eller denne oversikten åpner roller, skifter jobb, gir Badge eller gir ParadiseCoin.
 
