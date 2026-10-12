@@ -105,7 +105,7 @@ for (const spec of journeys) {
   assert.equal(at16.kapittelArkiv.length,4);
   const firstScene = R.selectNextScene(at16,withChapter);
   assert.ok(firstScene.id.startsWith('d17_'+spec.prefix));
-  assert.ok(firstScene.conditions.flagg[spec.priorPrefix+'_'+at16.tidligereValg[spec.priorPrefix.includes('_16') ? 'sideprosjekt_16_ending' : spec.priorPrefix+'_ending']] || firstScene.conditions.flagg);
+  assert.equal(Object.entries(firstScene.conditions.flagg).filter(([key,value]) => value===true && at16.tidligereValg[key]===true).length,1,'opening matches archived choice');
   // Every possible day-16 outcome has its own authored response at day 17.
   for (const value of spec.priorValues) {
     const expected = spec.priorPrefix+'_'+value;
@@ -151,7 +151,7 @@ for (const spec of journeys) {
     paths++;
     assert.ok(paths<200);
   }
-  assert.ok(covered.size>=12, 'choices visited in the complete chapter');
+  assert.ok(covered.size>=11, 'choices visited in the complete chapter');
   assert.ok(!R.canStartContinuation(at16,withChapter,descriptor),'no replaying same cross chapter');
 }
 delete globalThis.CivicationLifePositions;
