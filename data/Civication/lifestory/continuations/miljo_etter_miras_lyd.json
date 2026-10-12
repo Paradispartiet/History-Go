@@ -1,0 +1,505 @@
+{
+  "schema": "civication_lifestory_continuation_v1",
+  "id": "miljo_etter_miras_lyd",
+  "role_scope": "subkultur_gangster",
+  "tittel": "Filen som ikke var bestilt",
+  "sisteDag": 22,
+  "hovedtraad": "arvid_etter_miras_lyd",
+  "threads": [
+    {
+      "id": "arvid_etter_miras_lyd",
+      "tittel": "Filen som ikke var bestilt",
+      "type": "privatliv",
+      "startDag": 20,
+      "konflikt": "Arvid blir tilbudt en ubestilt lydskisse som en frivillig feilaktig knytter til Leas prosjekt"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "d20_ensemble_arvid_lyd_avtal_samtykke",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et avslag andre ikke har hørt",
+      "tekst": "Du ba Mira avklare bruken med Lea, og Lea ønsket ikke lyd til presentasjonen. Arvid har fått høre at «det finnes en demo» og vil be en frivillig spille den under inngangen. Han vet ikke at Lea sa nei.",
+      "valg": [
+        {
+          "id": "stans",
+          "tekst": "Be Arvid avstå fra å bruke filen uten Miras ja",
+          "konsekvensTekst": "Arvid stanser planene om å spille klippet. Han må selv forklare dette for den frivillige som har lenken.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "stans"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be Arvid spørre Mira direkte om status",
+          "konsekvensTekst": "Arvid sender Mira ett konkret spørsmål om hvem som eier opptaket og om noen har fått lov til å spille det. Ingen avspilling avtales.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "avtal",
+          "kryss_grunder_mira_19_ending": "samtykke"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_lyd_avtal_egen",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En melodi uten prosjektnavn",
+      "tekst": "Mira ble oppfordret til å avklare en eventuell bruk og valgte å beholde musikken som eget arbeid. Arvid hører ti sekunder av skissen fra en bekjent og tror den kan brukes fritt.",
+      "valg": [
+        {
+          "id": "stans",
+          "tekst": "Be Arvid avstå fra å bruke filen uten Miras ja",
+          "konsekvensTekst": "Arvid stanser planene om å spille klippet. Han må selv forklare dette for den frivillige som har lenken.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "stans"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be Arvid spørre Mira direkte om status",
+          "konsekvensTekst": "Arvid sender Mira ett konkret spørsmål om hvem som eier opptaket og om noen har fått lov til å spille det. Ingen avspilling avtales.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "avtal",
+          "kryss_grunder_mira_19_ending": "egen"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_lyd_privat_samtykke",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Samtykket som aldri kom",
+      "tekst": "Du foreslo at Mira bare skulle eksperimentere privat. Lea ba senere om at lyden ikke ble knyttet til prosjektet. Arvid vil nå legge et lydklipp i en åpen spilleliste som om det tilhører kulturkvelden.",
+      "valg": [
+        {
+          "id": "stans",
+          "tekst": "Be Arvid avstå fra å bruke filen uten Miras ja",
+          "konsekvensTekst": "Arvid stanser planene om å spille klippet. Han må selv forklare dette for den frivillige som har lenken.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "stans"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be Arvid spørre Mira direkte om status",
+          "konsekvensTekst": "Arvid sender Mira ett konkret spørsmål om hvem som eier opptaket og om noen har fått lov til å spille det. Ingen avspilling avtales.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "privat",
+          "kryss_grunder_mira_19_ending": "samtykke"
+        }
+      }
+    },
+    {
+      "id": "d20_ensemble_arvid_lyd_privat_egen",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 20,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den private filen sirkulerer",
+      "tekst": "Mira laget et privat musikalsk utkast og fjernet prosjektnavnet. En frivillig har likevel lagret en eldre filversjon og sendt Arvid en lenke. Han spør om den kan brukes på arrangementet.",
+      "valg": [
+        {
+          "id": "stans",
+          "tekst": "Be Arvid avstå fra å bruke filen uten Miras ja",
+          "konsekvensTekst": "Arvid stanser planene om å spille klippet. Han må selv forklare dette for den frivillige som har lenken.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "stans"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "sporr",
+          "tekst": "Be Arvid spørre Mira direkte om status",
+          "konsekvensTekst": "Arvid sender Mira ett konkret spørsmål om hvem som eier opptaket og om noen har fått lov til å spille det. Ingen avspilling avtales.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_20_retning": "sporr"
+            },
+            "meters": {
+              "handlingsrom": 1
+            },
+            "relasjoner": {
+              "amir": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "kryss_grunder_mira_17_retning": "privat",
+          "kryss_grunder_mira_19_ending": "egen"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_arvid_lyd_stans",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Den frivillige spør hvorfor",
+      "tekst": "Arvid har sagt at filen ikke skal spilles. Den frivillige mener at et kort klipp på nettet er offentlig, men Mira har aldri lagt det ut for en slik bruk.",
+      "valg": [
+        {
+          "id": "slett",
+          "tekst": "Be Arvid fjerne lenken og varsle den frivillige om feil bruk",
+          "konsekvensTekst": "Arvid varsler at lenken ikke skal distribueres videre. Det er ikke mulig å vite om alle kopier er borte.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_21_retning": "slett"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "begrens",
+          "tekst": "La Mira selv formulere hva hun vil si videre",
+          "konsekvensTekst": "Du sørger for at Arvid lar være å bruke lyden, og Mira kan velge om hun vil kontakte den frivillige.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_21_retning": "begrens"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "stans"
+        }
+      }
+    },
+    {
+      "id": "d21_ensemble_arvid_lyd_sporr",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 21,
+      "fase": "formiddag",
+      "visningstype": "samtale",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Mira svarer om lyden",
+      "tekst": "Mira sier at lydskissen er hennes private arbeid og at hun ikke har gitt samtykke til bruk ved kulturkvelden. Arvid blir irritert på den som sendte lenken, men det løser ikke spørsmålet om kopier.",
+      "valg": [
+        {
+          "id": "slett",
+          "tekst": "Be Arvid fjerne lenken og varsle den frivillige om feil bruk",
+          "konsekvensTekst": "Arvid varsler at lenken ikke skal distribueres videre. Det er ikke mulig å vite om alle kopier er borte.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_21_retning": "slett"
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "mira": 1,
+              "amir": 1
+            }
+          }
+        },
+        {
+          "id": "begrens",
+          "tekst": "La Mira selv formulere hva hun vil si videre",
+          "konsekvensTekst": "Du sørger for at Arvid lar være å bruke lyden, og Mira kan velge om hun vil kontakte den frivillige.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_21_retning": "begrens"
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_20_retning": "sporr"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_lyd_slett",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "En lenke uten tilhørere",
+      "tekst": "Arvid har bedt den frivillige slutte å dele filen. Mira vil ikke opptre på arrangementet; hun takker likevel for at han tok ansvaret for det som ble gjort.",
+      "valg": [
+        {
+          "id": "forhold",
+          "tekst": "Si at Arvid må opparbeide tillit over tid",
+          "konsekvensTekst": "Arvid forstår at en rettelse ikke i seg selv gjør Mira trygg på miljøet. Hun avgjør selv om kontakten skal fortsette.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_22_ending": "slett",
+              "ensemble_arvid_lyd_22_slett": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Gi Mira fred fra nye forespørsler",
+          "konsekvensTekst": "Du stanser flere henvendelser om klippet. Arvid må finne musikk gjennom faktiske avtaler.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_22_ending": "slett",
+              "ensemble_arvid_lyd_22_slett": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_21_retning": "slett"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_lyd_begrens",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 22,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Musikken og miljøet skilles",
+      "tekst": "Mira har skrevet til Arvid at hun ikke ønsker filen brukt. Han respekterer det, men forholdet mellom dem er fortsatt formelt. Ingen ny konsert blir til.",
+      "valg": [
+        {
+          "id": "forhold",
+          "tekst": "Si at Arvid må opparbeide tillit over tid",
+          "konsekvensTekst": "Arvid forstår at en rettelse ikke i seg selv gjør Mira trygg på miljøet. Hun avgjør selv om kontakten skal fortsette.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_22_ending": "begrens",
+              "ensemble_arvid_lyd_22_begrens": true
+            },
+            "meters": {
+              "integritet": 1
+            },
+            "relasjoner": {
+              "amir": 1,
+              "mira": 1
+            }
+          }
+        },
+        {
+          "id": "avslutt",
+          "tekst": "Gi Mira fred fra nye forespørsler",
+          "konsekvensTekst": "Du stanser flere henvendelser om klippet. Arvid må finne musikk gjennom faktiske avtaler.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_22_ending": "begrens",
+              "ensemble_arvid_lyd_22_begrens": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "relasjoner": {
+              "mira": 1
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "ensemble_arvid_lyd_21_retning": "begrens"
+        }
+      }
+    },
+    {
+      "id": "d22_ensemble_arvid_lyd_slutt",
+      "threadId": "arvid_etter_miras_lyd",
+      "dag": 22,
+      "fase": "kveld",
+      "visningstype": "refleksjon",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 8,
+      "tittel": "Et forhold som ikke er ferdig",
+      "tekst": "Du ser gjennom hvem som fikk informasjon, hvem som satte en grense, og hvem som fortsatt ikke skylder noen et svar. Den neste historien kan bygge på dette uten å omgjøre tidligere valg.",
+      "valg": [
+        {
+          "id": "lukk",
+          "tekst": "Avslutt kapitlet",
+          "konsekvensTekst": "Samtalene og grensene blir bevart i historieboka. Ingen jobb, konsert, avtale, betaling eller adgang er registrert.",
+          "effekter": {
+            "flagg": {
+              "ensemble_arvid_lyd_22_kapittel_avsluttet": true
+            },
+            "meters": {
+              "energi": 1
+            },
+            "threads": {
+              "arvid_etter_miras_lyd": {
+                "status": "completed"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "moter": [],
+  "endings": [
+    {
+      "id": "ensemble_arvid_lyd_22_slett",
+      "navn": "Tillit må bygges",
+      "tekst": "Arvid har bedt den frivillige slutte å dele filen. Mira vil ikke opptre på arrangementet; hun takker likevel for at han tok ansvaret for det som ble gjort.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_arvid_lyd_22_slett": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_arvid_lyd_22_begrens",
+      "navn": "Musikken får fred",
+      "tekst": "Mira har skrevet til Arvid at hun ikke ønsker filen brukt. Han respekterer det, men forholdet mellom dem er fortsatt formelt. Ingen ny konsert blir til.",
+      "kriterier": {
+        "flagg": {
+          "ensemble_arvid_lyd_22_begrens": true
+        }
+      }
+    },
+    {
+      "id": "ensemble_arvid_lyd_22_standard",
+      "navn": "Et uavsluttet forhold",
+      "tekst": "Historien beholder tidligere valg uten å opprette noen ny avtale.",
+      "kriterier": {},
+      "standard": true
+    }
+  ]
+}
