@@ -9,6 +9,7 @@ const json = (name) => JSON.parse(fs.readFileSync(path.join(root, name), "utf8")
 const catalog = json("data/psychology/psychology_theories.json");
 const phenomena = json("data/psychology/psychology_phenomena.json").phenomena;
 const tools = json("data/psychology/cbt_tools.json").tools;
+const paths = json("data/psychology/psychology_paths.json").paths;
 const exercises = json("data/psychology/psychology_exercises.json").exercises;
 const tests = json("data/psychology/psychology_tests.json").tests;
 const ids = new Set();
@@ -73,6 +74,7 @@ global.document = {
   getElementById(id) {
     if (id === "psychologyRoomOverlay") return overlay;
     if (["psychologyRoomWorkbenchForm", "psychologyRoomExerciseForm", "psychologyRoomWorkbenchFollowUpForm"].includes(id)) return node("#" + id);
+    if (id === "psychologyRoomDayReflection") return { value: "Jeg prøvde å begynne i fem minutter." };
     return null;
   },
   createElement() { return node("overlay"); },
@@ -84,6 +86,12 @@ global.document = {
     if (selector === "[data-psych-action=\'workbench\']") return [node(selector)];
     if (selector === "[data-psych-open-workbench]") return (window.PsychologyRoom?.getWorkbenchEntries() || []).map((entry) =>
       node("workbench-entry:" + entry.id, { psychOpenWorkbench: entry.id }));
+    if (selector === "[data-path-id]") return paths.map((item) =>
+      node("path:" + item.id, { pathId: item.id }));
+    if (selector === "[data-complete-path-day]") return [node("[data-complete-path-day]", { completePathDay: "1" })];
+    if (selector === "[data-psych-open-linked-path]") return paths.filter((item) =>
+      window.PsychologyRoom?.getPathProgress(item.id)?.workbench_entry_id).map((item) =>
+        node("linked-path:" + item.id, { psychOpenLinkedPath: item.id }));
     if (selector === "[data-psych-focus]") return phenomena.map((item) => node("focus:" + item.id, { psychFocus: item.id }));
     if (selector === "[data-phenomenon-id]") return phenomena.map((item) => node("phenomenon:" + item.id, { phenomenonId: item.id }));
     if (selector === "[data-psych-next-theory]") return catalog.theories.map((item) => node("next-theory:" + item.id, { psychNextTheory: item.id }));
@@ -315,6 +323,29 @@ const press = (selector) => {
   assert.match(rendered, /1 oppfølging/);
   press("workbench-entry:" + localReflection.entry.id);
   assert.match(rendered, /Fem minutter på oppgaven/);
+  assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
+
+  // The same situation now leads to all six existing paths by deliberate choice.
+  const beforePathLink = window.PsychologyRoom.getProfile();
+  press("[data-psych-choose-linked-path]");
+  assert.match(rendered, /Velg selv hvilket av de seks løpene/);
+  assert.equal(paths.length, 6);
+  for (const pathInfo of paths) assert.ok(rendered.includes(pathInfo.title));
+  const linkedPathId = "sju_dager_med_oppmerksomhet_v1";
+  press("path:" + linkedPathId);
+  assert.match(rendered, /Når du starter løpet, knyttes det til denne situasjonen/);
+  press("[data-start-path]");
+  assert.equal(window.PsychologyRoom.getPathProgress(linkedPathId).workbench_entry_id, localReflection.entry.id);
+  assert.equal(window.PsychologyRoom.getProfile().insight_points, beforePathLink.insight_points,
+    "starting a linked path grants no association bonus");
+  press("[data-complete-path-day]");
+  assert.equal(window.PsychologyRoom.getPathProgress(linkedPathId).completed_days.length, 1);
+  press("[data-psych-open-linked-note]");
+  assert.match(rendered, /7-dagersløp knyttet til situasjonen/);
+  assert.match(rendered, /Jeg prøvde å begynne i fem minutter/);
+  assert.match(rendered, /Oppfølginger \(1\)/, "path days are not duplicated as follow-ups");
+  press("linked-path:" + linkedPathId);
+  assert.match(rendered, /7 dager med oppmerksomhet/);
   assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
 
   press('[data-psych-nav="phenomena"]');
