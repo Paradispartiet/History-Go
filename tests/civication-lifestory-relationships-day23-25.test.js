@@ -114,7 +114,7 @@ for(const arc of arcs){
  for(const a of arc.a)for(const b of arc.b){
   assert.equal(p.scenes.filter(s=>s.dag===23&&s.conditions?.flagg?.[arc.old20]===a&&s.conditions?.flagg?.[arc.old21]===b).length,1);
  }
- const statuses=new Set(p.endings.filter(x=>!x.standard).map(x=>Object.values(x.kriterier.flagg)[0]));
+ const statuses=new Set(p.endings.filter(x=>!x.standard).map(x=>Object.keys(x.kriterier.flagg)[0]));
  assert.equal(statuses.size,4,'four distinct relation outcomes');
 }
 let completePaths=0,reloads=0,roleGates=0;
