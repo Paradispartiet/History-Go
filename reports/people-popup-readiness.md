@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9e7c74`
+Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec70002`
 
 ## Sammendrag
 
@@ -17,10 +17,10 @@ Source fingerprint: `3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9
 | Presentasjon strong | 422 |
 | Presentasjon partial | 914 |
 | Presentasjon sparse | 15 |
-| People Profile v1 ready | 110 |
-| Legacy uten v1-claims | 1324 |
+| People Profile v1 ready | 111 |
+| Legacy uten v1-claims | 1323 |
 | Ødelagte bildereferanser | 260 |
-| Eksplisitt initialfallback | 984 |
+| Eksplisitt initialfallback | 983 |
 | Implisitt initialfallback | 26 |
 | Gjennomsnittspoeng | 66.1 |
 
@@ -28,7 +28,7 @@ Source fingerprint: `3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9
 
 | Presentasjonsdel | Dekket | Andel |
 |---|---:|---:|
-| identity | 153 | 10.7 % |
+| identity | 154 | 10.7 % |
 | popupDesc | 1413 | 98.5 % |
 | lifeData | 74 | 5.2 % |
 | contributionsDeclared | 73 | 5.1 % |
@@ -37,7 +37,7 @@ Source fingerprint: `3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9
 | placeGrounding | 1434 | 100 % |
 | sources | 494 | 34.4 % |
 | imageContract | 1174 | 81.9 % |
-| profileStandard | 109 | 7.6 % |
+| profileStandard | 110 | 7.7 % |
 
 ## Kategorier
 
@@ -51,7 +51,7 @@ Source fingerprint: `3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9
 | kunst | 87 | 11 | 64 | 12 | 0 | 14 | 73 | 74.2 |
 | by | 85 | 10 | 62 | 13 | 0 | 28 | 57 | 75.3 |
 | naeringsliv | 85 | 9 | 30 | 32 | 14 | 13 | 72 | 64.6 |
-| scenekunst | 49 | 2 | 16 | 31 | 0 | 3 | 46 | 65.1 |
+| scenekunst | 49 | 2 | 16 | 31 | 0 | 4 | 45 | 65.2 |
 | subkultur | 41 | 0 | 5 | 36 | 0 | 0 | 41 | 61.9 |
 | vitenskap | 34 | 0 | 3 | 30 | 1 | 0 | 34 | 57.9 |
 | media | 30 | 5 | 1 | 24 | 0 | 10 | 20 | 67.2 |

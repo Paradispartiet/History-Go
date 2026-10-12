@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "3a0f9e11454eb801bd6ac705712322dd5e3cd0c982489d9b92ece8723c9e7c74",
+  "sourceFingerprint": "b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec70002",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -22,16 +22,16 @@
     "strong": 422,
     "partial": 914,
     "sparse": 15,
-    "readyPeopleV1": 110,
-    "legacyUnreviewed": 1324,
+    "readyPeopleV1": 111,
+    "legacyUnreviewed": 1323,
     "brokenImages": 260,
-    "explicitFallbacks": 984,
+    "explicitFallbacks": 983,
     "implicitFallbacks": 26,
     "averageScore": 66.1
   },
   "fieldCoverage": {
     "identity": {
-      "count": 153,
+      "count": 154,
       "percent": 10.7
     },
     "popupDesc": {
@@ -67,8 +67,8 @@
       "percent": 81.9
     },
     "profileStandard": {
-      "count": 109,
-      "percent": 7.6
+      "count": 110,
+      "percent": 7.7
     }
   },
   "categories": [
@@ -167,9 +167,9 @@
       "strong": 16,
       "partial": 31,
       "sparse": 0,
-      "readyPeopleV1": 3,
-      "legacyUnreviewed": 46,
-      "averageScore": 65.1
+      "readyPeopleV1": 4,
+      "legacyUnreviewed": 45,
+      "averageScore": 65.2
     },
     {
       "category": "subkultur",
@@ -8687,23 +8687,6 @@
       ]
     },
     {
-      "placeId": "black_box_teater",
-      "totalIncomplete": 1,
-      "sparse": 0,
-      "partial": 0,
-      "strong": 1,
-      "averageScore": 72,
-      "people": [
-        {
-          "id": "inger_buresund",
-          "name": "Inger Buresund",
-          "score": 72,
-          "status": "strong",
-          "productionStatus": "legacy_unreviewed"
-        }
-      ]
-    },
-    {
       "placeId": "borgasen_etne",
       "totalIncomplete": 1,
       "sparse": 0,
@@ -10332,6 +10315,23 @@
           "score": 72,
           "status": "strong",
           "productionStatus": "legacy_unreviewed"
+        }
+      ]
+    },
+    {
+      "placeId": "black_box_teater",
+      "totalIncomplete": 1,
+      "sparse": 0,
+      "partial": 0,
+      "strong": 1,
+      "averageScore": 80,
+      "people": [
+        {
+          "id": "inger_buresund",
+          "name": "Inger Buresund",
+          "score": 80,
+          "status": "strong",
+          "productionStatus": "ready_people_v1"
         }
       ]
     },
@@ -59582,49 +59582,6 @@
       ]
     },
     {
-      "id": "inger_buresund",
-      "name": "Inger Buresund",
-      "category": "scenekunst",
-      "kindLabel": "",
-      "sourceFile": "data/people/scenekunst/oslo/black_box_teater/inger_buresund.json",
-      "primaryPlace": "black_box_teater",
-      "places": [
-        "black_box_teater"
-      ],
-      "score": 72,
-      "priority": 43,
-      "status": "strong",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 349,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 6,
-      "sourceCount": 2,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": true,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "inger_karin_larsen",
       "name": "Inger Karin Larsen",
       "category": "kunst",
@@ -68737,6 +68694,47 @@
       "sourceCount": 6,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/inga_bejer_engh.jpg",
+      "coverage": {
+        "identity": true,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "inger_buresund",
+      "name": "Inger Buresund",
+      "category": "scenekunst",
+      "kindLabel": "Teatersjef og koreograf",
+      "sourceFile": "data/people/scenekunst/oslo/black_box_teater/inger_buresund.json",
+      "primaryPlace": "black_box_teater",
+      "places": [
+        "black_box_teater"
+      ],
+      "score": 80,
+      "priority": 30,
+      "status": "strong",
+      "productionStatus": "ready_people_v1",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/scenekunst/oslo/black_box_teater/inger_buresund.claims.json",
+      "paragraphCount": 2,
+      "popupLength": 733,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 6,
+      "sourceCount": 4,
+      "imageState": "valid_image",
+      "imagePath": "bilder/kort/people/inger_buresund_illustrasjon_v1.webp",
       "coverage": {
         "identity": true,
         "popupDesc": true,
