@@ -1,0 +1,62 @@
+name: Black Box Fagverk projection sync (temporary)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'data/places/scenekunst/oslo/places_scenekunst/black_box_teater.json'
+      - 'data/places/scenekunst/oslo/black_box_teater/**'
+      - 'data/fagverk/fagverk_registry.json'
+      - '.github/workflows/black-box-fagverk-sync.yml'
+permissions:
+  contents: read
+concurrency:
+  group: black-box-fagverk-sync-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Regenerate canonical projections from source
+        run: |
+          node scripts/materialize-natur-final-registry.mjs
+          node scripts/build-fagverk-release-manifest.mjs
+          npm run places:index:build
+          npm run place-open:build
+          node scripts/audit-fagverk-place-pages.mjs --write
+      - name: Commit only expected derived files
+        shell: bash
+        run: |
+          set -euo pipefail
+          generated=(
+            data/fagverk/fagverk_registry.json
+            data/fagverk/fagverk_release.json
+            data/fagverk/subject_status.json
+            data/places/places_index.json
+            data/runtime/place-open/black_box_teater.json
+            reports/fagverk/fagverk-place-page-coverage-v2.json
+          )
+          unexpected="$(git diff --name-only | grep -Ev '^(data/fagverk/(fagverk_registry|fagverk_release|subject_status)\.json|data/places/places_index\.json|data/runtime/place-open/black_box_teater\.json|reports/fagverk/fagverk-place-page-coverage-v2\.json)$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "::error::Unexpected generated changes:"
+            echo "$unexpected"
+            exit 1
+          fi
+          git add -- "${generated[@]}"
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "Sync Black Box Fagverk and Place-open projections"
+            git push origin HEAD:${{ github.event.pull_request.head.ref }}
+          fi
