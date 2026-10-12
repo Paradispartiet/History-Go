@@ -444,6 +444,26 @@ body.hg-app #placeCard[data-current-place-id="arbeiderbladet_youngstorget"].is-u
   border-radius:4px;
 }
 
+/* Manu's book motif is an illustration, with its caption on a dark strip. */
+body.hg-app #placeCard:is([data-current-place-id="teater_manu"],[data-hg-unified-place-id="teater_manu"]).is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"] > img.pc-person-img{
+  object-fit:contain;
+  background:#111923;
+  padding:6px 6px 34px;
+  box-sizing:border-box;
+}
+body.hg-app #placeCard:is([data-current-place-id="teater_manu"],[data-hg-unified-place-id="teater_manu"]).is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection[data-collection-id="productions"]::after{
+  left:5px;
+  right:5px;
+  bottom:6px;
+  font-size:clamp(10px,2.8vw,13px);
+  text-align:center;
+}
+.hg-popup.placecard-round-popup [data-visual-round-item="teater_manu_pinocchio_2009"] > .pc-person-img,
+.hg-popup.placecard-round-popup [data-visual-round-item="teater_manu_jack_og_bonnestengelen_2012"] > .pc-person-img{
+  object-fit:contain;
+  border-radius:4px;
+}
+
 @media (prefers-reduced-motion: reduce){
   body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-explore-grid .pc-collection{
     transition: none;

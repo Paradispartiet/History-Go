@@ -38,7 +38,11 @@ test('runtime and CSS still implement the documented people popup surface', () =
   assert.match(runtime, /renderProfileBlock\("Temaer"/);
   assert.match(runtime, /data-person-quiz/);
   assert.match(runtime, /button\.remove\(\)/);
-  assert.match(css, /width:\s*min\(820px, calc\(100vw - 64px\)\)/);
+  // The active popup shares the map frame with PlaceCard and stays clear of
+  // the header/footer; the former centered 820px overlay is retired.
+  assert.match(css, /top:\s*calc\(var\(--hg-visual-header-height, 74px\) \+ 12px\)/);
+  assert.match(css, /bottom:\s*calc\(var\(--hg-bottom-nav-height, 72px\) \+ 12px\)/);
+  assert.match(css, /max-width:\s*760px/);
   assert.match(css, /\.hg-person-quiz-btn\.hg-quiz-btn\{[\s\S]*?width:\s*auto/);
 });
 
