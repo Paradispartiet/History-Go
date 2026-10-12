@@ -938,3 +938,41 @@
   .psychology-room-workbench-grid { grid-template-columns: minmax(0, 1fr); }
   .psychology-room-workbench .psychology-room-textarea-label { padding: 13px; }
 }
+
+/* Read and follow up on one saved situation, without replacing the original. */
+.psychology-room-workbench-entry {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+  margin: 10px 0;
+  padding: 15px 17px;
+  text-align: left;
+  background: #1a2530;
+  border: 1px solid rgba(199, 223, 230, .2);
+  border-radius: 14px;
+  color: #f0f3f2;
+}
+.psychology-room-workbench-entry:hover { background: #243641; border-color: #9ceede; }
+.psychology-room-workbench-entry strong { overflow-wrap: anywhere; font-size: 15px; line-height: 1.5; }
+.psychology-room-workbench-entry-arrow { color: #9deeda; font-weight: 700; font-size: 12px; }
+.psychology-room-note-meta { color: #a9d3d0; font-size: 12px; }
+.psychology-room-note-section { display: grid; gap: 14px; min-width: 0; }
+.psychology-room-note-section > h4,
+.psychology-room-workbench-detail form > h4 { margin: 0; font-size: 19px; color: #e8f5f1; }
+.psychology-room-note-fields, .psychology-room-followup-card { display: grid; gap: 10px; }
+.psychology-room-note-field {
+  padding: 13px 15px;
+  border-radius: 12px;
+  background: #1a2933;
+  border: 1px solid rgba(199, 223, 230, .15);
+  min-width: 0;
+}
+.psychology-room-note-field h4 { margin: 0 0 6px; font-size: 12px; color: #9deeda; }
+.psychology-room-note-field p { margin: 0; color: #eef1f1; overflow-wrap: anywhere; white-space: pre-wrap; line-height: 1.6; font-size: 14px; }
+.psychology-room-followup-card {
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(136, 239, 217, .28);
+  background: #182b33;
+}
+.psychology-room-workbench-detail .psychology-room-form { display: grid; gap: 14px; }

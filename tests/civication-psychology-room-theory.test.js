@@ -72,7 +72,7 @@ global.document = {
   body: { appendChild(value) { overlay = value; } },
   getElementById(id) {
     if (id === "psychologyRoomOverlay") return overlay;
-    if (["psychologyRoomWorkbenchForm", "psychologyRoomExerciseForm"].includes(id)) return node("#" + id);
+    if (["psychologyRoomWorkbenchForm", "psychologyRoomExerciseForm", "psychologyRoomWorkbenchFollowUpForm"].includes(id)) return node("#" + id);
     return null;
   },
   createElement() { return node("overlay"); },
@@ -82,6 +82,8 @@ global.document = {
   },
   querySelectorAll(selector) {
     if (selector === "[data-psych-action=\'workbench\']") return [node(selector)];
+    if (selector === "[data-psych-open-workbench]") return (window.PsychologyRoom?.getWorkbenchEntries() || []).map((entry) =>
+      node("workbench-entry:" + entry.id, { psychOpenWorkbench: entry.id }));
     if (selector === "[data-psych-focus]") return phenomena.map((item) => node("focus:" + item.id, { psychFocus: item.id }));
     if (selector === "[data-phenomenon-id]") return phenomena.map((item) => node("phenomenon:" + item.id, { phenomenonId: item.id }));
     if (selector === "[data-psych-next-theory]") return catalog.theories.map((item) => node("next-theory:" + item.id, { psychNextTheory: item.id }));
@@ -287,6 +289,33 @@ const press = (selector) => {
   assert.match(rendered, /data-psych-next-theory="behaviorisme"/);
   press("next-theory:behaviorisme");
   assert.match(rendered, /Fordypning i psykologifagverket/);
+
+  // Reopen the first situation from Min side, add an experience and revisit it.
+  press('[data-psych-nav="profile"]');
+  assert.match(rendered, /Åpne refleksjon/);
+  press("workbench-entry:" + localReflection.entry.id);
+  assert.match(rendered, /Den første refleksjonen/);
+  assert.match(rendered, /Jeg utsetter en oppgave/);
+  assert.match(rendered, /Oppfølginger \(0\)/);
+  const submitFollowUp = handlers.get("#psychologyRoomWorkbenchFollowUpForm:submit");
+  assert.equal(typeof submitFollowUp, "function");
+  submitFollowUp({ preventDefault() {}, currentTarget: { elements: {
+    tried: { value: "Fem minutter på oppgaven" },
+    outcome: { value: "Jeg begynte faktisk" },
+    new_view: { value: "Kanskje det er mulig <også>" },
+    next_step: { value: "Prøve igjen" }
+  } } });
+  assert.match(rendered, /Oppfølginger \(1\)/);
+  assert.match(rendered, /Kanskje det er mulig &lt;også&gt;/);
+  assert.doesNotMatch(rendered, /Kanskje det er mulig <også>/);
+  assert.equal(window.PsychologyRoom.getWorkbenchEntries().length, 2);
+  assert.equal(window.PsychologyRoom.getWorkbenchEntries()[0].follow_ups.length, 1);
+  assert.equal(window.PsychologyRoom.getWorkbenchEntries()[0].situation, "Jeg utsetter en oppgave.");
+  press('[data-psych-nav="profile"]');
+  assert.match(rendered, /1 oppfølging/);
+  press("workbench-entry:" + localReflection.entry.id);
+  assert.match(rendered, /Fem minutter på oppgaven/);
+  assert.equal(window.PsychologyRoom.getProfile().psychology_competence, 0);
 
   press('[data-psych-nav="phenomena"]');
   assert.match(rendered, /Fenomenleksikon/);
