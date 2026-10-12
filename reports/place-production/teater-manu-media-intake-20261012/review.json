@@ -1,0 +1,137 @@
+{
+  "schema": "history_go_place_media_intake_review_v1",
+  "place_id": "teater_manu",
+  "reviewed_at": "2026-10-12",
+  "base_sha": "ef2c4342133dc08d3427326008fd1a6d926da983",
+  "review_scope": "media_candidate_provenance_and_people_claim_repair",
+  "production_status": "blocked",
+  "visual_closeout": "NOT_COMPLETED",
+  "canonical_sources": {
+    "place": "data/places/scenekunst/oslo/teater_manu/teater_manu.json",
+    "person": "data/people/scenekunst/oslo/teater_manu/mira_zuckermann.json",
+    "research": "data/places/scenekunst/oslo/teater_manu/forestillinger_research_v1.json"
+  },
+  "observations": {
+    "people": 1,
+    "people_with_image": 0,
+    "loaded_productions": 0,
+    "research_productions": 5,
+    "frontImage": null,
+    "place_card_profile": null
+  },
+  "blockers": [
+    {
+      "id": "mira_portrait",
+      "reason": "Godkjent portrettlisens og canonical lokal bildefil mangler. Offisiell fotoidentitetskilde finnes; fotograf er Belinda Stoe.",
+      "owner": "docs/PEOPLE_IMAGES.md"
+    },
+    {
+      "id": "performance_media",
+      "reason": "Fem forestillinger har kildeverifisert tilknytning; ingen har bilde med dokumenterte publiseringsrettigheter. Fire offisielle bilde-URL-er og to Sceneweb-medieposter for Jack er registrert.",
+      "owner": "data/places/README_place_rounds.md"
+    },
+    {
+      "id": "separate_front_image",
+      "reason": "Canonical Place og place-open-payload mangler separat stående frontImage. Dagens image kan ikke kopieres til dette feltet.",
+      "owner": "docs/PLACE_PRODUCTION_CHECKLIST.md"
+    },
+    {
+      "id": "collection_profile",
+      "reason": "Canonical Place mangler place_card_profile. Kandidataudit og bildeklare PASS-samlinger må ferdigstilles før profilen settes.",
+      "owner": "data/places/README_place_rounds.md"
+    },
+    {
+      "id": "visual_closeout",
+      "reason": "Ingen visuell sluttgodkjenning utført. Lokal Playwright-nedlasting feilet; cloud-browser kunne ikke opprette tab.",
+      "owner": "docs/PLACE_PRODUCTION_CHECKLIST.md"
+    }
+  ],
+  "repaired": [
+    {
+      "id": "first_study_explicit_evidence",
+      "before": "Sterk påstand i popupDesc setning 1 manglet explicit claim.",
+      "after": "study_1987 gjengir første utredning og har explicit evidens fra teatrets historikk."
+    },
+    {
+      "id": "past_project_responsibility",
+      "before": "Validatorens substring leder traff den historiske tittelen prosjektleder og krevde current claim.",
+      "after": "Setningen sier fikk ansvaret for prøveprosjektet i 1998; historisk betydning og claim-mapping er bevart. Validatoren er uendret."
+    }
+  ],
+  "checks": [
+    {
+      "command": "node tools/audit-people-profile-canonical.mjs",
+      "result": "PASS",
+      "claims_files": 110
+    },
+    {
+      "command": "node --test tests/place-open-hyperfast.test.mjs tests/people-profile-canonical.test.mjs",
+      "result": "PASS",
+      "passed": 13,
+      "failed": 0
+    },
+    {
+      "command": "node scripts/build-place-open-payloads.mjs --check",
+      "result": "PASS",
+      "payloads": 1534
+    },
+    {
+      "check": "Mira claim/tekst og alle fem forestillinger gjennomgått mot navngitte kilder; sourceLocation og bildeholdback registrert",
+      "result": "PASS"
+    },
+    {
+      "check": "Runtime-diff sammenlignet med base: bare Mira-tekst i people-all/part-006 og Teater Manu place-open",
+      "result": "PASS"
+    }
+  ],
+  "browser_attempts": [
+    {
+      "environment": "local_Playwright",
+      "result": "FAILED_BEFORE_LAUNCH",
+      "detail": "Offisiell Chromium-nedlasting ga ugyldig ZIP: End of central directory record signature not found. Chromium/WebKit-kjøring ble ikke utført."
+    },
+    {
+      "environment": "cloud_browser",
+      "result": "FAILED_BEFORE_NAVIGATION",
+      "detail": "createBrowserTab feilet med transportfeil mot browser-tjenesten. Ingen livevisning ble vurdert."
+    }
+  ],
+  "quality_review": {
+    "scope": "Avgrenset kilde-/medieaudit og People-profilretting; ingen samlet stedsferdigmelding",
+    "dimensions": [
+      {
+        "name": "Korrekthet og evidens",
+        "score": 5,
+        "evidence": "Navngitte kildeplasseringer, dato-/spillestedsskille og eksplisitt første-utredning-claim."
+      },
+      {
+        "name": "Dekning og ferdigstillelse",
+        "score": 5,
+        "evidence": "Alle fem eksisterende kandidater og Mira-kandidaten er gjennomgått; alle identifiserte produksjonsmangler er listet. Denne scoren gjelder audit-scope."
+      },
+      {
+        "name": "Faglig/redaksjonell kvalitet",
+        "score": 4,
+        "evidence": "Presis historisk formulering; anomalien i 1999-spilleplanen beholdes som kildekonflikt fremfor rettet dato."
+      },
+      {
+        "name": "Teknisk integritet",
+        "score": 4,
+        "evidence": "110 claims-filer, 13 tester og 1534 deterministiske payloads består; browser-QA er uttrykkelig ikke fullført."
+      },
+      {
+        "name": "Sikkerhet og ansvarlighet",
+        "score": 5,
+        "evidence": "Ingen uavklart bildefil publisert; kreditering skilles fra lisens. Ingen meldinger sendt til bildeeiere."
+      },
+      {
+        "name": "Vedlikeholdbarhet og etterprøvbarhet",
+        "score": 5,
+        "evidence": "Canonical eiere, konkrete bilde-URL-er, kildelokasjoner, avgrenset runtime-diff og reproduksjonskommandoer."
+      }
+    ],
+    "total": 28,
+    "maximum": 30,
+    "conclusion": "Avgrenset audit-/profilretting kan reviewes. Teater Manu er fortsatt BLOCKED og ikke visuelt sluttgodkjent."
+  }
+}
