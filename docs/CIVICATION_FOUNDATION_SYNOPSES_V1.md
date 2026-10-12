@@ -83,7 +83,7 @@
 
 **People-port:** `existing_scene_pack` er ikke en ekte People-relasjon. Bevar historikk, lag egne personspesifikke scener når governance godkjenner simulering; ellers bruk People kun som dokumentert bakgrunn for en separat fiktiv rolle.
 
-## F07 – Etter lysten til å bygge
+## F05 – Etter lysten til å bygge
 
 **Eksisterende pakke:** `data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json` · `role_scope=naeringsliv_sideprosjektbygger` · dag 11–13.
 
@@ -99,7 +99,7 @@
 
 **People-port:** `existing_scene_pack` er ikke en ekte People-relasjon. Bevar historikk, lag egne personspesifikke scener når governance godkjenner simulering; ellers bruk People kun som dokumentert bakgrunn for en separat fiktiv rolle.
 
-## F08 – Før et tilbud sendes
+## F06 – Før et tilbud sendes
 
 **Eksisterende pakke:** `data/Civication/lifestory/continuations/frilans_neste_steg.json` · `role_scope=naeringsliv_frilanser` · dag 11–13.
 
@@ -115,7 +115,7 @@
 
 **People-port:** `existing_scene_pack` er ikke en ekte People-relasjon. Bevar historikk, lag egne personspesifikke scener når governance godkjenner simulering; ellers bruk People kun som dokumentert bakgrunn for en separat fiktiv rolle.
 
-## F09 – Et svar fra én person
+## F07 – Et svar fra én person
 
 **Eksisterende pakke:** `data/Civication/lifestory/continuations/grunder_neste_steg.json` · `role_scope=naeringsliv_grunderdrommer` · dag 11–13.
 
@@ -131,7 +131,7 @@
 
 **People-port:** `existing_scene_pack` er ikke en ekte People-relasjon. Bevar historikk, lag egne personspesifikke scener når governance godkjenner simulering; ellers bruk People kun som dokumentert bakgrunn for en separat fiktiv rolle.
 
-## F06 – Omfanget før spillejobben
+## F08 – Omfanget før spillejobben
 
 **Eksisterende pakke:** `data/Civication/lifestory/continuations/musikk_foresporselen.json` · `role_scope=musikk_frilansmusiker` · dag 11–13.
 
@@ -147,7 +147,7 @@
 
 **People-port:** `existing_scene_pack` er ikke en ekte People-relasjon. Bevar historikk, lag egne personspesifikke scener når governance godkjenner simulering; ellers bruk People kun som dokumentert bakgrunn for en separat fiktiv rolle.
 
-## F05 – Miljøkontakten og plassen din
+## F09 – Miljøkontakten og plassen din
 
 **Eksisterende pakke:** `data/Civication/lifestory/continuations/miljo_med_arvid.json` · `role_scope=subkultur_gangster` · dag 8–10.
 
