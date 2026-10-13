@@ -270,12 +270,16 @@
       }
     }
 
-    const storyEventId = "npc_story:" + streamId + ":" + storyletId + ":" + choiceId;
+    // The storylet is the event, independent of which answer the player chose.
+    // Replaying the same scene with another choice must not award a second beat.
+    const storyEventId = "npc_story:" + streamId + ":" + storyletId;
+    const priorRoleLabel = readState().characters[npcId]?.role;
     const reaction = updateCharacterThreadFromReaction({
       story_event_id: storyEventId,
       personId: npcId,
       personName: normStr(npc.name),
-      personType: "fictional_npc",
+      // Preserve the existing social role label; actor.role_ref owns job roles.
+      personType: normStr(priorRoleLabel || npc.title || "person"),
       subject: normStr(scene.subject),
       title: normStr(response.title),
       line: normStr(response.line),
