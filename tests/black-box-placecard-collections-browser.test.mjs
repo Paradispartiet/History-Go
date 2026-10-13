@@ -66,6 +66,7 @@ try {
     await page.goto(address+"/__audit__/black-box.html",{waitUntil:"load"});
     await page.waitForFunction(()=>window.__ready||window.__error,{timeout:30000});
     assert.equal(await page.evaluate(()=>window.__error||null),null);
+    console.log("BB_DIAG "+JSON.stringify(await page.evaluate(()=>({count:document.getElementById("placeCard").dataset.collectionCount,profile:window.PLACES[0].place_card_profile,productions:window.PLACES[0].productions?.map(x=>({name:x.name,image:x.image})),configured:window.HGPlaceCardCollections.getConfigured(window.PLACES[0]),categoryHtml:document.getElementById("pcCategoryCollectionIcon")?.outerHTML?.slice(0,900),peopleHtml:document.getElementById("pcPeopleIcon")?.outerHTML?.slice(0,900),categoryList:document.getElementById("pcCategoryCollectionList")?.innerHTML?.slice(0,600)}))));
     assert.equal(await page.locator("#placeCard").getAttribute("data-collection-count"),"2");
     assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-item-count"),"2");
     assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-profile-source"),null);
