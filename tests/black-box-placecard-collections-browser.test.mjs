@@ -67,8 +67,7 @@ try {
     await page.waitForFunction(()=>window.__ready||window.__error,{timeout:30000});
     assert.equal(await page.evaluate(()=>window.__error||null),null);
     assert.equal(await page.locator("#placeCard").getAttribute("data-collection-count"),"2");
-    assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-item-count"),null); // actual attribute is data-collection-item-count
-    assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-item-count"),null);
+    assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-item-count"),"2");
     assert.equal(await page.locator("#pcCategoryCollectionIcon").getAttribute("data-collection-profile-source"),null);
     assert.equal(await page.locator("#pcPeopleIcon").isVisible(),true);
     assert.equal(await page.locator("#pcCategoryCollectionIcon").isVisible(),true);
@@ -96,7 +95,7 @@ try {
     const imagePaths=await page.locator("#auditPopup [data-visual-round-item] img").evaluateAll(els=>els.map(el=>el.getAttribute("src")));
     assert.equal(imagePaths.length,2);
     assert.ok(imagePaths.every(s=>s.endsWith(".avif")));
-    await Promise.all(await page.locator("#auditPopup [data-visual-round-item] img").evaluateAll(els=>els.map(el=>el.decode())));
+    await page.locator("#auditPopup [data-visual-round-item] img").evaluateAll(async els=>{await Promise.all(els.map(el=>el.decode()));return true;});
     assert.deepEqual(errors,[]);
     await page.screenshot({path:path.join(out,"chromium-"+width+"-productions.png"),fullPage:true});
     results.push({width,engine:"chromium",status:"PASS",collections:2,productions:2,firstImage:image,errors,frontImage:"not_yet_integrated_license_pending",scope:"canonical_PlaceCard_DOM_collection_runtime_in_local_fixture"});
