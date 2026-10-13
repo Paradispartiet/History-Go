@@ -43,6 +43,7 @@
    * @property {string} rolle
    * @property {number} dag
    * @property {number} [livsdag] Felles fortellingsdag; eldre v2-saves mangler feltet
+   * @property {number} [kalenderDag] Siste Civication-kalenderdag som Life Story har fulgt
    * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
    * @property {Array<{fra: string, til: string, livsdag: number, fraDag: number, tilDag: number}>} [rolleBytter]
    * @property {string} fase
@@ -127,6 +128,7 @@
     delete currentSnapshot.rolleTilstander;
     delete currentSnapshot.rolleBytter;
     delete currentSnapshot.livsdag;
+    delete currentSnapshot.kalenderDag;
     inactive[saved.rolle] = currentSnapshot;
 
     const earlier = inactive[roleId];
@@ -137,6 +139,8 @@
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
     selected.livsdag = saved.livsdag;
+    // Kalendertilknytningen tilhører spilleren, ikke jobbrollens arkiv.
+    if (Number.isInteger(saved.kalenderDag) && saved.kalenderDag > 0) selected.kalenderDag = saved.kalenderDag;
     selected.rolleBytter = saved.rolleBytter.concat([{
       fra: saved.rolle, til: roleId, livsdag: selected.livsdag,
       fraDag: saved.dag, tilDag: selected.dag
