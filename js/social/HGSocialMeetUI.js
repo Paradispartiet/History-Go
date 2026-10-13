@@ -294,6 +294,9 @@
     currentData = loaded.inbox;
     currentWarning = loaded.warning || '';
     currentMode = loaded.mode || 'local';
+    if (!preserveTab) {
+      currentTab = TABS.map(([status]) => status).find(status => sourceForStatus(status, currentOptions).length > 0) || 'pending';
+    }
     render(currentOptions);
     return { ok: true, options: currentOptions, mode: loaded.mode };
   }
