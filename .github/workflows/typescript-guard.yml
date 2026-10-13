@@ -35,6 +35,7 @@ jobs:
       scripts: ${{ steps.scope.outputs.scripts }}
       tools: ${{ steps.scope.outputs.tools }}
       legacy: ${{ steps.scope.outputs.legacy }}
+      shared_ui: ${{ steps.scope.outputs.shared_ui }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,6 +57,7 @@ jobs:
               echo "scripts=true"
               echo "tools=true"
               echo "legacy=true"
+              echo "shared_ui=true"
             } >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -64,6 +66,7 @@ jobs:
           scripts=false
           tools=false
           legacy=false
+          shared_ui=false
 
           git diff --name-only "$BASE_SHA" "$HEAD_SHA" > /tmp/history-go-typescript-changed.txt
           cat /tmp/history-go-typescript-changed.txt
@@ -77,9 +80,11 @@ jobs:
                 scripts=true
                 tools=true
                 legacy=true
+                shared_ui=true
                 ;;
               tsconfig.web.json|build/*|dist/web/*)
                 web=true
+                shared_ui=true
                 ;;
               tsconfig.scripts.json|tsconfig.scripts.build.json|scripts/*)
                 scripts=true
@@ -93,14 +98,20 @@ jobs:
               schemas/*)
                 web=true
                 legacy=true
+                shared_ui=true
                 ;;
               js/*)
                 web=true
+                case "$path" in
+                  js/Civication/*) ;;
+                  *) shared_ui=true ;;
+                esac
                 case "$path" in
                   *.js) legacy=true ;;
                 esac
                 ;;
               *)
+                shared_ui=true
                 if [[ "$path" != */* && "$path" == *.js ]]; then
                   legacy=true
                   web=true
@@ -125,6 +136,7 @@ jobs:
             echo "scripts=$scripts"
             echo "tools=$tools"
             echo "legacy=$legacy"
+            echo "shared_ui=$shared_ui"
           } >> "$GITHUB_OUTPUT"
 
   typecheck-build:
@@ -231,11 +243,11 @@ jobs:
         run: npm run build:tools
 
       - name: Social Meet Spotmeeting browser smoke
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: npm run test:social-meet-spotmeeting-smoke
 
       - name: Explore Events and Møtes regression
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: |
           node --test tests/explore-events-social-meet.test.mjs tests/place-onsite-category-policy.test.mjs tests/torggata-phase9-onsite.test.mjs
           node tests/hg-social-meet-ui-backend.test.js
@@ -244,23 +256,23 @@ jobs:
           node tests/social-meet-profile-bridge.test.js
 
       - name: Test hidden developer mode
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: node tests/hg-test-mode.test.js && node tests/header-search-menu.test.js
 
       - name: NextUp progressive PlaceCard regression
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: node tests/nextup-progressive-placecard-state.test.js
 
       - name: People background loading regression
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: node tests/background-boot-pacing.test.js
 
       - name: Hyperfast place-open payload regression
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: npm run place-open:check && npm run test:place-open
 
       - name: Torggata canonical People regression
-        if: needs.scope.outputs.web == 'true'
+        if: needs.scope.outputs.shared_ui == 'true'
         run: node --test tests/torggata-phase12-people-links.test.mjs
 
       # For pull requests, root checkJs is a regression gate rather than a
