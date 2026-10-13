@@ -29,7 +29,7 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       // gates. An actual pending mail cannot be bypassed by this helper.
       const modal = page.locator('#civiNextActionModal.is-open');
       if (!(await modal.count())) {
-        await page.locator('#civiTopActionCard [data-civi-top-action], [data-civi-open-next-action]').first().click({ timeout: 12000 });
+        await page.locator('[data-lifestory-next-action], #civiTopActionCard [data-civi-top-action], [data-civi-open-next-action]').first().click({ timeout: 12000 });
         await modal.waitFor({ state: 'visible', timeout: 12000 });
       }
       const queued = modal.locator('[data-civi-next-action-open-queued]').first();
