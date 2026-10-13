@@ -60,6 +60,8 @@
   let continuationError = "";
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
+  // Jobbresolver og oppstart kan laste innhold samtidig. Siste rolle vinner.
+  let roleLoadSequence = 0;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -135,7 +137,9 @@
   async function loadRole(roleId) {
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
+    const sequence = ++roleLoadSequence;
     const base = await Content.loadContent(roleId);
+    if (sequence !== roleLoadSequence) return;
     const saved = State.selectRole(State.load(), base);
     // Restore content before reconciliation, even before the shell has booted.
     let restored = base;
