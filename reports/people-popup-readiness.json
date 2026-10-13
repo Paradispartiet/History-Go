@@ -3,7 +3,7 @@
   "contract": "docs/PEOPLE_POPUP_SYSTEM.md",
   "productionContract": "docs/PEOPLE_PROFILE_CANONICAL.md",
   "generatedBy": "tools/audit-people-popup-readiness.mts",
-  "sourceFingerprint": "2325fa4b8a36cc69b959c0e51ec72fe96abdccd6eb002bb4917c58372fb98dca",
+  "sourceFingerprint": "cf8398a5661ed2f281541ec0d158902f2b468f85968dcf30ac4d9e4c2fe0b521",
   "thresholds": {
     "complete": 85,
     "strong": 65,
@@ -19,15 +19,15 @@
   "summary": {
     "totalPeople": 1434,
     "complete": 83,
-    "strong": 459,
-    "partial": 877,
+    "strong": 464,
+    "partial": 872,
     "sparse": 15,
     "readyPeopleV1": 111,
-    "legacyUnreviewed": 1323,
+    "legacyUnreviewed": 1318,
     "brokenImages": 260,
     "explicitFallbacks": 983,
     "implicitFallbacks": 26,
-    "averageScore": 66.3
+    "averageScore": 66.4
   },
   "fieldCoverage": {
     "identity": {
@@ -59,16 +59,16 @@
       "percent": 100
     },
     "sources": {
-      "count": 531,
-      "percent": 37
+      "count": 536,
+      "percent": 37.4
     },
     "imageContract": {
       "count": 1174,
       "percent": 81.9
     },
     "profileStandard": {
-      "count": 110,
-      "percent": 7.7
+      "count": 115,
+      "percent": 8
     }
   },
   "categories": [
@@ -109,12 +109,12 @@
       "category": "musikk",
       "total": 124,
       "complete": 0,
-      "strong": 53,
-      "partial": 71,
+      "strong": 58,
+      "partial": 66,
       "sparse": 0,
       "readyPeopleV1": 0,
-      "legacyUnreviewed": 124,
-      "averageScore": 65.3
+      "legacyUnreviewed": 119,
+      "averageScore": 65.7
     },
     {
       "category": "politikk",
@@ -536,9 +536,9 @@
       "placeId": "det_norske_teatret",
       "totalIncomplete": 70,
       "sparse": 0,
-      "partial": 33,
-      "strong": 37,
-      "averageScore": 67.3,
+      "partial": 28,
+      "strong": 42,
+      "averageScore": 68,
       "people": [
         {
           "id": "astrid_folstad",
@@ -550,20 +550,6 @@
         {
           "id": "bjarne_andersen",
           "name": "Bjarne Andersen",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "bjorn_floberg",
-          "name": "Bjørn Floberg",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
-          "id": "bjorn_sundquist",
-          "name": "Bjørn Sundquist",
           "score": 62,
           "status": "partial",
           "productionStatus": "legacy_unreviewed"
@@ -604,13 +590,6 @@
           "productionStatus": "legacy_unreviewed"
         },
         {
-          "id": "iren_reppen",
-          "name": "Iren Reppen",
-          "score": 62,
-          "status": "partial",
-          "productionStatus": "legacy_unreviewed"
-        },
-        {
           "id": "jannike_kruse",
           "name": "Jannike Kruse",
           "score": 62,
@@ -620,6 +599,27 @@
         {
           "id": "lena_kristin_ellingsen",
           "name": "Lena Kristin Ellingsen",
+          "score": 62,
+          "status": "partial",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "marie_blokhus",
+          "name": "Marie Blokhus",
+          "score": 62,
+          "status": "partial",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "merete_skavlan",
+          "name": "Merete Skavlan",
+          "score": 62,
+          "status": "partial",
+          "productionStatus": "legacy_unreviewed"
+        },
+        {
+          "id": "mimmi_tamba",
+          "name": "Mimmi Tamba",
           "score": 62,
           "status": "partial",
           "productionStatus": "legacy_unreviewed"
@@ -25786,94 +25786,6 @@
       ]
     },
     {
-      "id": "bjorn_floberg",
-      "name": "Bjørn Floberg",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/bjorn_floberg.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 349,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "bjorn_sundquist",
-      "name": "Bjørn Sundquist",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/bjorn_sundquist.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 320,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "bjorn_wirkola",
       "name": "Bjørn Wirkola",
       "category": "sport",
@@ -33523,50 +33435,6 @@
       "sourceCount": 0,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/filantrop_placeholder.svg",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "iren_reppen",
-      "name": "Iren Reppen",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/iren_reppen.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 294,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
       "coverage": {
         "identity": false,
         "popupDesc": true,
@@ -45676,50 +45544,6 @@
       ]
     },
     {
-      "id": "rut_tellefsen",
-      "name": "Rut Tellefsen",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/rut_tellefsen.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 329,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
       "id": "ryoyu_kobayashi",
       "name": "Ryoyu Kobayashi",
       "category": "sport",
@@ -48559,50 +48383,6 @@
       "contributionCount": 0,
       "educationCount": 0,
       "practiceCount": 6,
-      "sourceCount": 0,
-      "imageState": "explicit_fallback",
-      "imagePath": "",
-      "coverage": {
-        "identity": false,
-        "popupDesc": true,
-        "lifeData": false,
-        "contributionsDeclared": false,
-        "educationDeclared": false,
-        "practiceDeclared": true,
-        "placeGrounding": true,
-        "sources": false,
-        "imageContract": true,
-        "profileStandard": false
-      },
-      "issues": [
-        "missing_role_label",
-        "missing_birth_data",
-        "missing_contributions_field",
-        "missing_sources",
-        "legacy_unreviewed"
-      ]
-    },
-    {
-      "id": "tom_tellefsen",
-      "name": "Tom Tellefsen",
-      "category": "musikk",
-      "kindLabel": "",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/tom_tellefsen.json",
-      "primaryPlace": "det_norske_teatret",
-      "places": [
-        "det_norske_teatret"
-      ],
-      "score": 62,
-      "priority": 67,
-      "status": "partial",
-      "productionStatus": "legacy_unreviewed",
-      "profileStandard": "",
-      "claimsFile": "",
-      "paragraphCount": 1,
-      "popupLength": 299,
-      "contributionCount": 0,
-      "educationCount": 0,
-      "practiceCount": 7,
       "sourceCount": 0,
       "imageState": "explicit_fallback",
       "imagePath": "",
@@ -67161,6 +66941,90 @@
       ]
     },
     {
+      "id": "bjorn_floberg",
+      "name": "Bjørn Floberg",
+      "category": "musikk",
+      "kindLabel": "",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/bjorn_floberg.json",
+      "primaryPlace": "det_norske_teatret",
+      "places": [
+        "det_norske_teatret"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "needs_research",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/musikk/oslo/det_norske_teatret/bjorn_floberg.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 455,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 7,
+      "sourceCount": 10,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "bjorn_sundquist",
+      "name": "Bjørn Sundquist",
+      "category": "musikk",
+      "kindLabel": "",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/bjorn_sundquist.json",
+      "primaryPlace": "det_norske_teatret",
+      "places": [
+        "det_norske_teatret"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "needs_research",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/musikk/oslo/det_norske_teatret/bjorn_sundquist.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 493,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 7,
+      "sourceCount": 8,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "christian_julius_schou",
       "name": "Christian Julius Schou",
       "category": "naeringsliv",
@@ -67375,6 +67239,48 @@
       ]
     },
     {
+      "id": "iren_reppen",
+      "name": "Iren Reppen",
+      "category": "musikk",
+      "kindLabel": "",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/iren_reppen.json",
+      "primaryPlace": "det_norske_teatret",
+      "places": [
+        "det_norske_teatret"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "needs_research",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/musikk/oslo/det_norske_teatret/iren_reppen.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 506,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 7,
+      "sourceCount": 8,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "kristin_auestad_danielsen",
       "name": "Kristin Auestad Danielsen",
       "category": "scenekunst",
@@ -67546,6 +67452,48 @@
       ]
     },
     {
+      "id": "rut_tellefsen",
+      "name": "Rut Tellefsen",
+      "category": "musikk",
+      "kindLabel": "",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/rut_tellefsen.json",
+      "primaryPlace": "det_norske_teatret",
+      "places": [
+        "det_norske_teatret"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "needs_research",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/musikk/oslo/det_norske_teatret/rut_tellefsen.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 559,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 7,
+      "sourceCount": 8,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
       "id": "thor_olsen",
       "name": "Thor Olsen",
       "category": "naeringsliv",
@@ -67569,6 +67517,48 @@
       "sourceCount": 2,
       "imageState": "valid_image",
       "imagePath": "bilder/kort/people/thor_olsen.webp",
+      "coverage": {
+        "identity": false,
+        "popupDesc": true,
+        "lifeData": false,
+        "contributionsDeclared": false,
+        "educationDeclared": false,
+        "practiceDeclared": true,
+        "placeGrounding": true,
+        "sources": true,
+        "imageContract": true,
+        "profileStandard": true
+      },
+      "issues": [
+        "missing_role_label",
+        "missing_birth_data",
+        "missing_contributions_field"
+      ]
+    },
+    {
+      "id": "tom_tellefsen",
+      "name": "Tom Tellefsen",
+      "category": "musikk",
+      "kindLabel": "",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/tom_tellefsen.json",
+      "primaryPlace": "det_norske_teatret",
+      "places": [
+        "det_norske_teatret"
+      ],
+      "score": 72,
+      "priority": 38,
+      "status": "strong",
+      "productionStatus": "needs_research",
+      "profileStandard": "people_profile_v1.0",
+      "claimsFile": "data/people/claims/musikk/oslo/det_norske_teatret/tom_tellefsen.claims.json",
+      "paragraphCount": 1,
+      "popupLength": 542,
+      "contributionCount": 0,
+      "educationCount": 0,
+      "practiceCount": 7,
+      "sourceCount": 8,
+      "imageState": "explicit_fallback",
+      "imagePath": "",
       "coverage": {
         "identity": false,
         "popupDesc": true,
