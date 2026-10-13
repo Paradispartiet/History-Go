@@ -19,7 +19,7 @@ function run(window, rel) { vm.runInContext(read(rel), window.__ctx, { filename:
 function text(node) { return String(node?.textContent || '').replace(/\s+/g, ' ').trim(); }
 function assertNoForbidden(scope) {
   const html = String(scope.innerHTML || '').toLowerCase();
-  for (const term of ['chat', 'fritekst-chat', 'live location', 'nearby users', 'followers', 'feed', 'dating']) {
+  for (const term of ['fritekst-chat', 'live location', 'nearby users', 'followers', 'feed', 'dating']) {
     assert(!html.includes(term), `forbidden UI term found: ${term}`);
   }
   assert(!scope.querySelector('textarea, input[type="text"], [data-social-feed], [data-followers], [data-nearby], [data-live-location]'), 'forbidden social controls must not render');
@@ -33,11 +33,13 @@ function assertNoForbidden(scope) {
   let sheet = fallbackWindow.document.getElementById('hgSocialMeetSheet');
   assert(result.ok, 'Social Meet UI opens without Supabase/backend config');
   assert(sheet && !sheet.hidden, 'Social Meet sheet is visible without backend config');
-  assert(sheet.textContent.includes('Social Meet'), 'popup renders Social Meet title');
-  for (const id of ['hg-meet-invite-inbox', 'hg-spotmeeting-inbox', 'hg-confirmed-meets', 'hg-social-progression', 'hg-learning-circles', 'hg-circle-activity', 'hg-social-history', 'hg-social-smoke-panel']) {
-    assert(fallbackWindow.document.getElementById(id), `popup renders profile-like block: ${id}`);
+  assert(sheet.querySelector('.hg-social-meet-head h2')?.textContent === 'Møtes', 'popup renders canonical Møtes title');
+  assert.strictEqual(sheet.querySelectorAll('[data-hg-social-meet-tab]').length, 4, 'one status tab per meeting state');
+  assert.strictEqual(sheet.querySelectorAll('.hg-social-block').length, 1, 'only one meeting list is visible');
+  for (const obsolete of ['hg-meet-invite-inbox', 'hg-spotmeeting-inbox', 'hg-confirmed-meets', 'hg-social-progression', 'hg-learning-circles', 'hg-circle-activity', 'hg-social-history', 'hg-social-smoke-panel']) {
+    assert(!fallbackWindow.document.getElementById(obsolete), `obsolete duplicate section must not render: ${obsolete}`);
   }
-  assert(sheet.textContent.includes('MiniProfile'), 'popup keeps MiniProfile anchor');
+  assert(!sheet.textContent.includes('MiniProfile'), 'placeholder profile removed');
   assert(sheet.textContent.includes('Demo sted'), 'local fallback data renders when backend is missing');
   assertNoForbidden(sheet);
 
@@ -76,9 +78,9 @@ function assertNoForbidden(scope) {
   run(errorWindow, 'js/social/HGSocialMeetUI.js');
   await errorWindow.HG_SocialMeetUI.open({ filter: 'all', sourceSurface: 'globalMenu' });
   sheet = errorWindow.document.getElementById('hgSocialMeetSheet');
-  assert(sheet.textContent.includes('Kunne ikke laste Social Meet. Viser lokal demo hvis tilgjengelig.'), 'backend errors show friendly fallback text');
+  assert(sheet.textContent.includes('Kunne ikke kontakte møteserveren.'), 'backend errors show a friendly, accurate error');
   assert(!sheet.textContent.includes('supabase exploded'), 'technical backend errors are hidden from user');
-  assert(sheet.textContent.includes('Lokal demo'), 'local fallback renders after backend error');
+  assert(!sheet.textContent.includes('Lokal demo'), 'real backend failure must not display local demo as genuine invite');
 
   console.log('hg-social-meet-ui-backend ok');
 })().catch(err => { console.error(err); process.exit(1); });
