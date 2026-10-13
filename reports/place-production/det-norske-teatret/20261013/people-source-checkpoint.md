@@ -26,7 +26,7 @@ Disse fem canonical profilene har nå naturlig biografisk popuptekst, oppgitte o
 
 Tre konkrete forestillinger kan undersøkes som produksjonsmedlemmer for dette huset:
 
-1. *Romeo og Julie*, åpningsforestillingen **19. september 1985**, må identifiseres mot 1985-oppsetningen. [Sceneweb, institusjonens produksjonsliste](https://sceneweb.no/nb/organisation/2673/Det_Norske%20Teatret).
+1. *Romeo og Julie*, åpningsforestillingen **19. september 1985**, er eksplisitt identifisert i [teatrets produksjonsarkiv FOREST](https://forest.detnorsketeatret.no/produksjon/romeo-og-julie-1985): **arkivnummer M732 F648 P629**, Hovudscenen, Pål Løkkeberg som regissør, Svein Tindberg som Romeo og Liv Bernhoft Osa som Julie. Arkivet oppgir også 31 forestillinger og siste spillekveld 19. oktober 1985. Dette er det riktige produksjonsobjektet for dagens hus; ikke den eldre versjonen fra 1975.
 2. *Cats*, norgespremiere på Hovudscenen **9. november 1985**, produksjon **52871**. [Sceneweb](https://sceneweb.no/nb/production/52871/Cats).
 3. *Tid for glede*, urpremiere **29. januar 2022**, produksjon **122927**. [Sceneweb](https://sceneweb.no/nb/production/122927/Tid_for%20glede).
 
