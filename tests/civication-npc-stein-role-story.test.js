@@ -64,7 +64,7 @@ function setup(backing = new Map(), chosenStream = stream) {
       getState() { return {}; },
       getActivePosition() { return { career_id: "fagarbeider", role_key: "fagarbeider" }; }
     },
-    CivicationCareerRoleResolver: { resolveCareerRoleScope: () => "fagarbeider" },
+    CivicationCareerRoleResolver: { resolveCareerRoleScope: active => active?.role_key || "fagarbeider" },
     CivicationWorkdayRuntime: { getWorkdayDayIndex: () => workday }
   };
   window.window = window;
@@ -324,4 +324,54 @@ test("Three NPC arcs and 12 chapters agree with their editorial matrix and liter
     assert(entry.narrative_crosswalk_candidates.c_story_ids.every(id => canonicalContemporaryIds.has(id)));
   }
   assert.equal(total, 12);
+});
+
+test("NPC narrative streams enforce player role gates even when requested directly", async () => {
+  const h = setup();
+  const adapter = h.window.CivicationNarrativeSceneSource.sourceAdapter;
+  const base = {
+    phaseId: "forenoon",
+    phase: { id: "forenoon" },
+    narrativeState: { active_streams: [stream.id], flags: [], stream_progress: {} }
+  };
+  const slot = await adapter.getScenes({
+    ...base, mode: "slot", active: { role_key: "politiker" },
+    candidate_stream_ids: [stream.id], used_storylet_keys: []
+  });
+  assert(!slot.some(event => event.narrative_stream_id === stream.id),
+    "A manually specified candidate ID cannot bypass the author's player-role scope");
+  const opened = await adapter.getScenes({
+    ...base, mode: "opened_streams", active: { role_key: "politiker" },
+    opened_stream_ids: [stream.id]
+  });
+  assert.equal(opened.length, 0,
+    "An existing active-stream ID must not bypass NPC role eligibility");
+});
+
+test("An opened NPC stream never resends answered chapters or skips the workday gate", async () => {
+  const h = setup();
+  const adapter = h.window.CivicationNarrativeSceneSource.sourceAdapter;
+  const first = await h.scene();
+  assert(first);
+  assert.equal((await h.answer(first, "A")).ok, true);
+  const query = () => adapter.getScenes({
+    mode: "opened_streams",
+    opened_stream_ids: [stream.id],
+    exclude_storylet_keys: [],
+    active: { role_key: "fagarbeider" },
+    narrativeState: {
+      active_streams: [stream.id],
+      flags: h.flags,
+      stream_progress: h.progress
+    }
+  });
+  assert.equal((await query()).length, 0,
+    "Completed first chapter must not be injected while the next one is gated");
+  h.advanceWorkdays(1);
+  const ready = await query();
+  assert.equal(ready.length, 1);
+  assert.equal(ready[0].narrative_storylet_id, "stein_job_opening");
+  assert.equal((await h.answer({ ...ready[0], scene_source_adapter: "narrative" }, "A")).ok, true);
+  assert.equal((await query()).length, 0,
+    "An already answered chapter cannot be injected again while waiting for its successor");
 });
