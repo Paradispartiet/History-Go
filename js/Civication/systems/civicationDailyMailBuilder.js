@@ -2024,6 +2024,9 @@
             storylet_id: norm(rowEvent.narrative_storylet_id),
             answered: true,
             choice_id: norm(choiceId),
+            // Narrative stage scheduling uses the real Civication workday index,
+            // not wall-clock elapsed time or an extra storage key.
+            answered_workday_day: Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? -1),
             updated_at: new Date().toISOString()
           }
         },
