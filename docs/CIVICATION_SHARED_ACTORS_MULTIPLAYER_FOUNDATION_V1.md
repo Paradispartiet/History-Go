@@ -65,6 +65,24 @@ Denne leveransen utvider samme PR med en **etterprøvbar, begrenset** binding av
 
 **Verifikasjon:** `tests/civication-npc-role-bridge.test.js` kontrollerer de tre eksakte koblingene, alle ti legacy-NPC-er, ingen eager role-fetch, null-resultat ved manglende indeks, stabil `npc:`-identitet, ingen `localStorage`-skriverett og lastrekkefølge i begge shell. Dette er første begrensede kodekobling, **ikke** allmenn karaktergenerering eller online-multiplayer.
 
+## Individuell NPC-historikk – eksisterende lager (videreføring 13. oktober)
+
+**Kontrollert eierskap:** `js/Civication/systems/day/dayNpcCharacterThreads.js` eier allerede `hg_civi_npc_character_threads_v1`, som lagrer karakterenes egne `trust_score`, `appearances`, `status`, `focus_families` og `beats`. Relasjoner via personlige meldinger forblir eid av `civicationFriendMessages.js` / `civicationRelationshipEngine.js` og kobles ikke automatisk til en likt navngitt NPC. Vi lager ikke et nytt karakterlager.
+
+| Handling | API | Vedvarende konsekvens |
+| --- | --- | --- |
+| Les aktør med aktuell rolle | `CivicationNPCs.resolveActor(npcId)` | Replayer tidligere godkjente rollebytter fra eksisterende karaktertrådlager uten skriving |
+| Forhåndsvis rollebytte | `CivicationNPCs.previewRoleTransition(npcId, nextRef, eventId)` | Ingen lagring eller jobbstatus; canonical validering |
+| Registrer eksplisitt solo-fortellingshendelse | `CivicationNpcCharacterThreads.recordRoleTransition(npcId, nextRef, eventId)` | Utvider samme lagrede karakter med `actor_id`, `role_ref` og kronologisk `role_history` |
+| NPC reagerer senere på en spillerbeslutning | Eksisterende `updateCharacterThreadFromReaction` | Oppdaterer fortsatt tillit og beats; beholder samtidig rollehistorikken |
+| Leser gammel lokal People-cache | `CivicationPeopleEngine.readState()` | Sanitiserer tidligere historiske NPC-navn **i minnet** før sosiale reaksjoner; gammel save overskrives ikke |
+
+Rollehistorikk krever eksplisitt NPC-ID, canonical `category/role_scope` og unik `event_id`. Samtidige forespørsler per NPC serialiseres. Ved replay må `from` matche faktisk forrige rolle, `to` være registrert og `event_id` unik; korrupte hendelser gir `null` heller enn å skape en fiktiv stilling. Historikken ligger i **eksisterende** `characters[npcId]` og er ikke en autoritet for ansettelse, lønn, pensjon, History Go-unlocks eller sosiale relasjoner. `lookup()` og eldre mail-ID-er beholder samme oppførsel.
+
+Merk at dette er en lokal **hendelses-API** for fremtidige valg/scener. Den genererer ingen rolleendringer selv, og kobler foreløpig bare de tre uttrykkelig mappede `naeringsliv`-NPC-ene til canonical rollekatalog. Senere eksplisitte sceneskripter må selv velge når en velbegrunnet rolleendringshendelse faktisk skjer. Det er **ikke** sanntids- eller nettbasert samspill.
+
+Testfiler: `tests/civication-npc-role-history-persistence.test.js` (reload, samme lagringsnøkkel, reaksjonshistorikk, samtidighet, duplikatvern og korrupt data), og `tests/civication-people-legacy-cache-guard.test.js` (gammel People-kobling holdes utenfor sosiale fiksjonsreaksjoner).
+
 ## Samspill i én spillverden: produksjonsmatrise
 
 | Interaksjon | I solo | I frivillig online | Eier og krav |
