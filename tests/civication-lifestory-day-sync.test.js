@@ -57,8 +57,9 @@ async function start() {
   const counters = { weeklySave: 0, weeklyFinalize: 0, enqueue: 0, workdayCompleted: 0 };
   window.saveDailySummaryToWeek = () => { counters.weeklySave++; };
   window.finalizeWeekIfNeeded = () => { counters.weeklyFinalize++; };
+  let queueItems = [];
   window.CivicationDailyMailBuilder = {
-    inspect: () => ({ runtime: { items: [] } }),
+    inspect: () => ({ runtime: { items: queueItems } }),
     enqueueNext: async () => { counters.enqueue++; }
   };
   window.CivicationMailEngine = { getInbox: () => [] };
@@ -70,7 +71,8 @@ async function start() {
   await waitFor(() => panel.querySelector("[data-lifestory-choice]") && current(), "Life Story first scene");
   return {
     window, dom, panel, current, calendar, counters,
-    setJob: pos => { activePosition = pos; }
+    setJob: pos => { activePosition = pos; },
+    setQueue: items => { queueItems = items; }
   };
 }
 async function playDay(app) {
@@ -107,6 +109,17 @@ async function main() {
   assert.equal(app.current().dag, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.match(panel.textContent, /Fullfør dagens jobb/);
+
+  // Even at day_end the queue must be empty; an undelivered mandatory
+  // mail cannot be silently discarded when Min dag asks for tomorrow.
+  app.setQueue([{ id: "required-day-end", phase: "day_end", status: "queued", required: true }]);
+  calendar.setPhase("day_end");
+  panel.querySelector("[data-lifestory-next-day]").click();
+  await delay();
+  assert.equal(calendar.getClock().dayIndex, 1, "queued day-end mail blocks rollover");
+  assert.equal(counters.weeklyFinalize, 0);
+  assert.equal(counters.enqueue, 0);
+  app.setQueue([]);
 
   // Finishing the shell day rolls the calendar and the story exactly once.
   calendar.setDailySummary({ choiceLog: [{ id: "daily-choice" }] });
