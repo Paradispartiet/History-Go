@@ -79,7 +79,7 @@ try {
       };
     });
     assert.equal(result.mode, "place-card-collections-v2", "canonical mode at " + width);
-    assert.equal(result.source, "canonical_profile", "profile at " + width);
+    assert.equal(result.source, "place_card_profile_v2", "profile at " + width);
     assert.equal(result.count, 2, "People + Productions at " + width);
     assert.equal(result.gridCount, 1, "only Productions in grid at " + width);
     assert.equal(result.id, "productions", "collection ID at " + width);
