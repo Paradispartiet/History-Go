@@ -5,6 +5,8 @@
   "use strict";
 
   const LS_KEY = "hg_civi_npc_character_threads_v1";
+  // Serialize asynchronous role changes for each NPC. No separate save key.
+  const roleChangeQueue = new Map();
 
   function normStr(v) {
     return String(v || "").trim();
@@ -142,6 +144,77 @@
     return (state.active_ids || []).map((id) => state.characters[id]).filter(Boolean);
   }
 
+  // Read-only role chronology for an explicitly catalog-mapped fictional NPC.
+  // Other Life Story characters remain untouched; no name-based matching.
+  function getRoleHistory(npcId) {
+    const id = normStr(npcId);
+    const npc = window.CivicationNPCs?.lookup?.(id);
+    if (!id || !npc?.role_ref) return [];
+    const record = readState().characters[id];
+    const history = record && Array.isArray(record.role_history) ? record.role_history : [];
+    return history.map((event) => ({
+      event_id: normStr(event?.event_id),
+      from: normStr(event?.from),
+      to: normStr(event?.to)
+    }));
+  }
+
+  // Explicit SOLO narrative role change. Only this existing character-thread
+  // owner writes role_history; it never writes employment, pay or relationships.
+  // No role is inferred from an NPC's display title. Event IDs are idempotent.
+  async function recordRoleTransition(npcId, nextRef, eventId) {
+    const id = normStr(npcId);
+    const event = normStr(eventId);
+    if (!id || !event) throw new TypeError("Role transition requires NPC ID and event ID");
+
+    const previous = roleChangeQueue.get(id) || Promise.resolve();
+    const pending = previous.catch(() => null).then(async () => {
+      const catalogApi = window.CivicationNPCs;
+      if (!catalogApi?.load || !catalogApi?.previewRoleTransition) return null;
+      await catalogApi.load();
+      const npc = catalogApi.lookup(id);
+      if (!npc?.role_ref) return null;
+
+      const actor = await catalogApi.previewRoleTransition(id, nextRef, event);
+      if (!actor) return null;
+
+      const state = readState();
+      const existing = state.characters[id] || {
+        id,
+        name: normStr(npc.name),
+        role: normStr(npc.title),
+        appearances: 0,
+        trust_score: 0,
+        status: "ustabil",
+        focus_families: [],
+        beats: [],
+        latest_title: "",
+        latest_line: "",
+        active: false
+      };
+      // Do not change name, social history, trust or role of existing scenes.
+      state.characters[id] = {
+        ...existing,
+        actor_id: actor.actor_id,
+        role_ref: {
+          category: actor.role_ref.category,
+          role_scope: actor.role_ref.role_scope
+        },
+        role_history: actor.role_history.map((item) => ({
+          event_id: item.event_id, from: item.from, to: item.to
+        }))
+      };
+      writeState(state);
+      return actor;
+    });
+    roleChangeQueue.set(id, pending);
+    try {
+      return await pending;
+    } finally {
+      if (roleChangeQueue.get(id) === pending) roleChangeQueue.delete(id);
+    }
+  }
+
   function patchReactionEvent() {
     if (window.__civiNpcCharacterThreadPatched) return;
     window.__civiNpcCharacterThreadPatched = true;
@@ -160,7 +233,9 @@
   window.CivicationNpcCharacterThreads = {
     getState: readState,
     getActiveCharacters,
-    updateCharacterThreadFromReaction
+    updateCharacterThreadFromReaction,
+    getRoleHistory,
+    recordRoleTransition
   };
 
   if (document.readyState === "loading") {
