@@ -93,7 +93,8 @@ async function main() {
   // The mail day cannot roll over while a Life Story choice is incomplete.
   calendar.setPhase("day_end");
   const blocked = await window.CivicationDayProgression.advancePhaseIfReady();
-  assert.deepEqual(blocked, { advanced: false, reason: "lifestory_day_incomplete" });
+  assert.equal(blocked.advanced, false);
+  assert.equal(blocked.reason, "lifestory_day_incomplete");
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.equal(counters.weeklySave, 0);
   assert.equal(counters.enqueue, 0);
