@@ -95,8 +95,9 @@
       // them here produces an actor view without creating a second save owner.
       const history = window.CivicationNpcCharacterThreads?.getRoleHistory?.(npc.id) || [];
       for (const entry of history) {
+        const from = actor.role_ref.category + "/" + actor.role_ref.role_scope;
         const to = String(entry?.to || "").split("/");
-        if (to.length !== 2 || !to[0] || !to[1]) return null;
+        if (entry?.from !== from || to.length !== 2 || !to[0] || !to[1]) return null;
         actor = contract.changeActorRole(catalog, actor, {
           category: to[0], role_scope: to[1]
         }, entry.event_id);
