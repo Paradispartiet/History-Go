@@ -170,7 +170,7 @@
     const previous = roleChangeQueue.get(id) || Promise.resolve();
     const pending = previous.catch(() => null).then(async () => {
       const catalogApi = window.CivicationNPCs;
-      if (!catalogApi?.load || !catalogApi?.previewRoleTransition) return null;
+      if (!catalogApi?.load || typeof catalogApi.previewRoleTransition !== "function") return null;
       await catalogApi.load();
       const npc = catalogApi.lookup(id);
       if (!npc?.role_ref) return null;
