@@ -133,11 +133,21 @@ function createHarness({ initialState = {}, backing = new Map(), firstDay = 0, i
   async function finishWorkday(date) {
     const queue = await build(date);
     const npc = queue.items.filter(row => storyIds.has(row.event?.narrative_stream_id));
-    for (const row of queue.items) {
-      if (row.phase === "forenoon" || row.phase === "workday") await answer(row);
+    // Choice effects can inject additional narrative rows into the live queue.
+    // A fixed snapshot would falsely report the day as completed or abandoned.
+    for (let index = 0; index < state.mail_day_runtime_v1.items.length; index += 1) {
+      assert(index < 180, "Unexpected unbounded daily narrative injection");
+      const row = state.mail_day_runtime_v1.items[index];
+      if ((row.phase === "forenoon" || row.phase === "workday") && row.status !== "answered") {
+        await answer(row);
+      }
     }
-    assert.equal(builder.workPhaseRequiredComplete(state.mail_day_runtime_v1), true,
-      "Work phase did not complete");
+    const remainingWork = state.mail_day_runtime_v1.items.filter(row =>
+      (row.phase === "forenoon" || row.phase === "workday") && row.status !== "answered" &&
+      row.optional !== true && row.suppressed_duplicate !== true);
+    assert.deepEqual(remainingWork.map(row => ({
+      phase: row.phase, status: row.status, id: row.event?.id
+    })), [], "Work phase did not complete");
     assert.equal(completed.has(date), true, "Workday counter did not advance");
     const ordered = npc.map(row => ({
       workday: workday - 1, npc_id: row.event.npc_story.npc_id,
