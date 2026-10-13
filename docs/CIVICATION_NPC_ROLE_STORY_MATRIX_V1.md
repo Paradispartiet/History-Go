@@ -1,6 +1,6 @@
 # Civication – NPC-rollebytter og tilbakevendende fortellinger (v1)
 
-**Status 13. oktober 2026: redaksjonell produksjonsmatrise, ikke spillbar runtime.** Dette dokumentet viderefører PR #6285. Formålet er å materialisere rollebytter som konsekvenser av eksisterende Civication-scener, ikke innføre en ny Scene Pipeline, NPC-lagring eller History Go-identitet.
+**Status 13. oktober 2026: Stein-vertikalsnitt implementert i eksisterende narrative adapter og ChoiceDirector, men fortsatt under CI og ikke merget.** Dette dokumentet viderefører PR #6285. Formålet er å materialisere rollebytter som konsekvenser av eksisterende Civication-scener, ikke innføre en ny Scene Pipeline, NPC-lagring eller History Go-identitet.
 
 ## Bekreftet teknisk grunnlag
 
@@ -32,7 +32,17 @@ Dette er **synopsiser**, ikke påstander om eksisterende spillscener eller forme
 
 **Synopsis:** Stein har lenge vært en kompetent, men beregnende sidestilt mellomleder. Under en krevende omlegging argumenterer han for tydeligere ansvarslinjer, mens spilleren får se hvordan argumentet rammer kollegaene. Noen scener senere får Stein ansvaret for en avdeling. Når de møtes igjen, kjenner han fortsatt spilleren – men den gamle kollegiale likestillingen finnes ikke lenger. En spiller som har støttet ham får større åpenhet; en spiller som har kritisert ham møter mer formell begrunnelse. Ingen av reaksjonene skal erstatte NPC-identiteten, skrive om gamle hendelser eller automatisk belønne spilleren med penger og myndighet.
 
-## Implementeringsgrense – neste kodearbeid
+## Implementert første vertikalsnitt – Stein
+
+- Kilde: `data/Civication/narratives/work/naeringsliv/stein_role_change.json`, registrert i eksisterende `data/Civication/narratives/manifest.json`. Fire scene-ID-er er styrt av tidligere svarflagg, og streamen gjelder foreløpig aktiv spillerrolle `fagarbeider`.
+- Scene-produsent: eksisterende `CivicationNarrativeSceneSource`, med eksplisitt `npc_story`-metadata i *det allerede runtime-materialiserte narrative stream-formatet*. Slik metadata er **ikke** lagt inn i den kompilerte work-scene-kontrakten og må ikke uten videre brukes i `mailFamilies`.
+- Svar og lagring: `CivicationChoiceDirector` registrerer en avgrenset handler i **eksisterende** `dayNpcCharacterThreads.js`. Den validerer NPC-ID, canonical rolle og hendelses-ID før `recordRoleTransition` skriver samme karakterlager. Reaksjonsbeat har en stabil ID, så duplikatsvar ikke dobbeltteller tillit.
+- Senere møte: Sceneadapteren leser historisk `trust_score`, velger utvidet replikk og krever persistert ny `role_ref` for siste scene. Den lager ingen nye personidentiteter.
+- Kontroll: `tests/civication-npc-stein-role-story.test.js` tester valg, rollehistorikk, idempotens, reload, tillitsvariant og mislykket svar. `civication-choice-director-daily-middleware.test.js` er utvidet for å kontrollere at feilet narrative svar ruller tilbake progresjonsflagg.
+
+Denne løypen gir ikke Stein en autoritativ stillingstildeling; rollebyttet er en narrativ Role World-referanse. Ingen spiller får lønn eller nye rettigheter av hendelsen. **Produksjonsgodkjenning krever bestått CI på siste commit og faktisk brukerreisetest.**
+
+## Implementeringsgrense – videre generalisering til kompilerte work-scener
 
 1. Velg en eksisterende **canonical authored source** og en faktisk scene-ID for S1–S4. Kontroller at den kompileres til `civication_scene_v1` og blir levert via `SceneDirector`; ikke bruk rå `jobbmails` som ny fallback.
 2. Definer én avgrenset, typet `npc_role_transition_ops` i scene-kontrakten: `npc_id`, `event_id`, `from`, `to` og grunnlag i scenevalg/bekreftet narrativ hendelse. Kun `fictional_npc` med eksplisitt katalogrolle kan berøres.
