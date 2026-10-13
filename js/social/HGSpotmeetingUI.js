@@ -308,7 +308,7 @@
     const mount = sheet.querySelector('[data-hg-place-status]');
     if (!mount || String(context?.contextType || '') !== 'place') return;
     if (backendMode() !== 'fastapi' || typeof root.HG_SocialMeetBackend?.getMyProfile !== 'function') {
-      mount.innerHTML = '<p>Stedssynlighet blir tilgjengelig når Social Meet-serveren er aktiv.</p>';
+      mount.innerHTML = '<p>Stedssynlighet blir tilgjengelig når møteserveren er aktiv.</p>';
       return;
     }
     let result;
@@ -337,7 +337,7 @@
       return;
     }
     const prefix = active ? 'Du viser deg midlertidig på et annet sted. ' : '';
-    mount.innerHTML = `<p><strong>Vis at du er her?</strong> ${escapeHTML(prefix)}Hvis du velger dette, kan andre Social Meet-brukere se profilen din på dette stedet i 60 minutter. Dette er selvoppgitt og deler ikke GPS.</p><button type="button" data-hg-place-status-set>Vis meg her i 60 min</button>`;
+    mount.innerHTML = `<p><strong>Vis at du er her?</strong> ${escapeHTML(prefix)}Hvis du velger dette, kan andre Møtes-brukere se profilen din på dette stedet i 60 minutter. Dette er selvoppgitt og deler ikke GPS.</p><button type="button" data-hg-place-status-set>Vis meg her i 60 min</button>`;
     mount.querySelector('[data-hg-place-status-set]')?.addEventListener('click', async event => {
       event.currentTarget.disabled = true;
       const saved = await root.HG_SocialMeetBackend.setPlaceStatus?.(context.contextId, 60);
@@ -403,11 +403,11 @@
       const message = reason === 'not_authenticated' || reason === 'supabase_auth_unavailable'
         ? 'Logg inn med AHA for å finne folk å møte.'
         : reason === 'profile_not_published'
-          ? 'Social Meet-profilen din må være oppdagbar før du kan finne andre matcher.'
+          ? 'Møtes-profilen din må være oppdagbar før du kan finne andre matcher.'
           : reason === 'backend_not_enabled'
             ? 'Personmatching er ikke aktivert på serveren ennå.'
             : reason === 'network_error' || reason === 'backend_unavailable'
-              ? 'Social Meet-serveren svarer ikke akkurat nå.'
+              ? 'Møtes-serveren svarer ikke akkurat nå.'
               : action === 'here'
                 ? 'Kunne ikke hente stedsstatus akkurat nå.'
                 : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
@@ -469,7 +469,7 @@
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail }));
     if (currentState) currentState.lastSentContext = context;
     const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>${socialMeetFollowUpButton(context, 'Mine møter')}`);
+    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Se Mine møter for oppfølging.</p>${socialMeetFollowUpButton(context, 'Mine møter')}`);
     return result;
   }
 
