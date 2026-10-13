@@ -26,8 +26,18 @@
     return String(value == null ? "" : value).trim();
   }
 
+  const COMPLETION_BASIS = "calendar_day_v1";
+
+  // A played Civication day is not necessarily a new real-world date. Use
+  // canonical game-day identity when the shell calendar is available; keep
+  // the previous UTC-date fallback for standalone/legacy workday tests.
+  function calendarDayKey() {
+    const index = Number(window.CivicationCalendar?.getClock?.()?.dayIndex);
+    return Number.isInteger(index) && index > 0 ? "calendar-day:" + index : "";
+  }
+
   function todayKey() {
-    return new Date().toISOString().slice(0, 10);
+    return calendarDayKey() || new Date().toISOString().slice(0, 10);
   }
 
   function getStateBag() {
@@ -49,13 +59,14 @@
     role_scope: "",
     active: false,
     started_date: "",
-    completed_dates: {}
+    completed_dates: {},
+    completion_basis: ""
   };
 
   function getRuntime() {
     const raw = getStateBag()?.[WORKDAY_KEY];
     const rt = raw && typeof raw === "object" ? raw : {};
-    return {
+    const normalized = {
       ...DEFAULT_RUNTIME,
       ...rt,
       completed_dates:
@@ -63,6 +74,25 @@
           ? rt.completed_dates
           : {}
     };
+    const key = calendarDayKey();
+    if (!key || normalized.completion_basis === COMPLETION_BASIS) return normalized;
+
+    // Legacy saves used today's UTC date for workday deduplication, even if
+    // the player had already moved to another in-game day. Adopt the existing
+    // completed flag for the CURRENT game day once. Subsequent game days get
+    // independent keys, without replaying past shifts or increasing salary.
+    const utcToday = new Date().toISOString().slice(0, 10);
+    const completedDates = { ...normalized.completed_dates };
+    if (completedDates[utcToday] === true) completedDates[key] = true;
+    const migrated = {
+      ...normalized,
+      completed_dates: completedDates,
+      completion_basis: COMPLETION_BASIS
+    };
+    if (raw && typeof window.CivicationState?.setState === "function") {
+      setRuntime(migrated);
+    }
+    return migrated;
   }
 
   function setRuntime(next) {
