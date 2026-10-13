@@ -186,6 +186,12 @@ test("12 actual workday queues: log NPC distribution, ordinary mail competition,
   }));
   assert.equal(h.workdayIndex(), 12, "Twelve fully answered workdays must be registered");
   assert.equal(scenes.length, 12, "The full three-actor, four-chapter lifecycle was not reached");
+  assert(days.every(day => day.npc.length === 1),
+    "One NPC chapter per workday: no synchronized triple-beat days or lost chapters");
+  assert.deepEqual(scenes.map(scene => scene.npc_id), [
+    ...npcStories.map(row => row[2]), ...npcStories.map(row => row[2]),
+    ...npcStories.map(row => row[2]), ...npcStories.map(row => row[2])
+  ], "Return to the least recently encountered NPC without breaking chapter order");
   for (const [name, streamId, npcId] of npcStories) {
     const authored = JSON.parse(read("data/Civication/narratives/work/naeringsliv/" +
       streamId.replace("_work_stream", "").replace("_role_change", "_role_change") + ".json"));
@@ -223,7 +229,7 @@ test("Unfinished workday cannot unlock chapter two or advance the day index", as
 
 test("NPC role outcomes survive a runtime restart without duplicate role events", async () => {
   const h = createHarness();
-  for (let n = 0; n < 6; n += 1) {
+  for (let n = 0; n < 12; n += 1) {
     await h.finishWorkday("2026-10-" + String(n + 1).padStart(2, "0"));
   }
   const after = h.win.CivicationNpcCharacterThreads.getState();
@@ -238,7 +244,7 @@ test("NPC role outcomes survive a runtime restart without duplicate role events"
       "Role history must survive page reload"
     );
   }
-  const replay = await resumed.build("2026-10-07");
+  const replay = await resumed.build("2026-10-13");
   assert(!replay.items.some(row => storyIds.has(row.event?.narrative_stream_id)),
     "Completed role stories must not reappear after a restart");
 });
@@ -258,6 +264,31 @@ test("Player career switch withholds mismatched stories and keeps accepted progr
     "Frode must remain eligible for a middle manager");
   h.setRole("fagarbeider");
   const returned = await h.build("2026-10-02");
-  assert(returned.items.some(row => row.event?.narrative_storylet_id === "stein_job_opening"),
-    "Returning to the matching role must preserve, not restart, chapter progress");
+  assert(!returned.items.some(row => row.event?.narrative_storylet_id === "stein_peer_priority"),
+    "Returning to the matching role must not restart Stein's first chapter");
+  assert.equal(h.state.narrative_state_v1.stream_progress[
+    "stein_role_change_work_stream::stein_peer_priority"
+  ]?.answered, true, "Stein progress must survive the change of player position");
+  assert(returned.items.some(row => row.event?.narrative_stream_id === "frode_role_change_work_stream"),
+    "The character not yet encountered gets the next available workday");
+});
+
+test("Same workday rebuild and opened-stream injection cannot queue a second NPC", async () => {
+  const h = createHarness();
+  const queue = await h.build("2026-10-01");
+  const first = queue.items.find(row => storyIds.has(row.event?.narrative_stream_id));
+  assert.equal(first?.event?.narrative_storylet_id, "stein_peer_priority");
+  await h.answer(first);
+  assert.equal(h.workdayIndex(), 0, "An unfinished workday still has the same index");
+  const rebuilt = await h.build("2026-10-01");
+  assert(!rebuilt.items.some(row => storyIds.has(row.event?.narrative_stream_id)),
+    "An answered chapter must occupy the day's NPC quota after queue rebuild");
+  const opened = await h.win.CivicationNarrativeSceneSource.sourceAdapter.getScenes({
+    mode: "opened_streams", opened_stream_ids: ["frode_role_change_work_stream"],
+    active: h.win.CivicationState.getActivePosition(),
+    narrativeState: h.state.narrative_state_v1,
+    exclude_storylet_keys: []
+  });
+  assert.equal(opened.length, 0,
+    "An opened story must not bypass the daily NPC quota");
 });
