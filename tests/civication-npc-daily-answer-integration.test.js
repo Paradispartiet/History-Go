@@ -140,7 +140,7 @@ test("Daily answer rejection restores narrative progress without touching NPC sa
   assert.equal(response.reason, "rejected_by_engine");
   assert.equal(JSON.stringify(h.state.narrative_state_v1), snapshot);
   assert.equal(h.state.mail_day_runtime_v1.items[0].status, "delivered");
-  assert.deepEqual(h.state.mail_day_runtime_v1.answered_ids, []);
+  assert.equal(h.state.mail_day_runtime_v1.answered_ids.length, 0);
   assert.equal(h.resolved.length, 0);
   assert.equal(h.writes.size, 0);
 });
