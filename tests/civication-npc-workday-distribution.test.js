@@ -24,7 +24,7 @@ const SOURCES = [
   "js/Civication/systems/civicationDailyMailBuilder.js"
 ];
 
-function createHarness({ initialState = {}, backing = new Map(), firstDay = 0, initialRole = "fagarbeider" } = {}) {
+function createHarness({ initialState = {}, backing = new Map(), firstDay = 0, initialRole = "fagarbeider", serializedWorkday = false } = {}) {
   const state = JSON.parse(JSON.stringify(initialState));
   let workday = firstDay;
   let role = initialRole;
@@ -68,7 +68,7 @@ function createHarness({ initialState = {}, backing = new Map(), firstDay = 0, i
       resolveCareerRoleScope(position) { return position?.role_key || "unknown"; }
     },
     CivicationWorkdayRuntime: {
-      getWorkdayDayIndex() { return workday; },
+      getWorkdayDayIndex() { return serializedWorkday ? String(workday) : workday; },
       hasActiveJob() { return true; },
       isWorkdayCompletedToday(date) { return completed.has(date); },
       completeWorkday({ date }) {
@@ -291,4 +291,15 @@ test("Same workday rebuild and opened-stream injection cannot queue a second NPC
   });
   assert.equal(opened.length, 0,
     "An opened story must not bypass the daily NPC quota");
+});
+
+test("Serialized numeric workday indices still enforce the NPC daily quota", async () => {
+  const h = createHarness({ serializedWorkday: true });
+  const first = await h.build("2026-10-01");
+  const npc = first.items.filter(row => storyIds.has(row.event?.narrative_stream_id));
+  assert.equal(npc.length, 1);
+  await h.answer(npc[0]);
+  const rebuilt = await h.build("2026-10-01");
+  assert(!rebuilt.items.some(row => storyIds.has(row.event?.narrative_stream_id)),
+    "String workday index must not bypass the answered-today quota");
 });
