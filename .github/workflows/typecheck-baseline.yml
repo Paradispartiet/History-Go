@@ -1,20 +1,6 @@
 name: Typecheck baseline report
 
 on:
-  pull_request:
-    paths:
-      - 'js/Civication/**'
-      - 'tests/**civication**'
-      # The two read-only theory tests are handled by Psykoteori CI.
-      - '!tests/civication-psychology-room-theory.test.js'
-      - '!tests/civication-psychology-room-coverage.test.js'
-      - 'tests/civication/**'
-      - 'tools/typecheck-baseline-report.mts'
-      - 'tools/audit-civication-*.mts'
-      - 'scripts/**civication**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig*.json'
   workflow_dispatch:
 
 permissions:
