@@ -339,8 +339,24 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
           assert.ok(++nativeGuard < 40);
         }
         assert.equal(secondReloadDays.size, 3);
-        assert.equal(await page.locator('[data-lifestory-continue]').count(), 0);
-        assert.equal(await page.locator('[data-lifestory-next-day]').count(), 0);
+        // The authored story continues beyond day 13 (next chapter begins
+        // on day 14). A completed chapter must offer the eligible, exact
+        // continuation, rather than incorrectly look like the end of the game.
+        const nextChapterByCurrent: Record<string, string> = {
+          musikk_foresporselen: 'musikk_etter_foresporselen',
+          sideprosjekt_neste_steg: 'sideprosjekt_etter_neste_steg',
+          frilans_neste_steg: 'frilans_etter_neste_steg',
+          grunder_neste_steg: 'grunder_etter_neste_steg',
+          miljo_navnet_ditt: 'miljo_etter_invitasjonen'
+        };
+        const expectedNextChapter = nextChapterByCurrent[secondId];
+        assert.ok(expectedNextChapter, scenario.id + ': documented continuation exists');
+        const availableNextChapter = page.locator('[data-lifestory-continue]');
+        assert.equal(await availableNextChapter.count(), 1, scenario.id + ': one eligible chapter follows day 13');
+        assert.equal(await availableNextChapter.getAttribute('data-lifestory-continue'), expectedNextChapter,
+          scenario.id + ': exact canonical third-chapter ID');
+        assert.equal(await page.locator('[data-lifestory-next-day]').count(), 0,
+          scenario.id + ': chapter transition is not an ordinary next-day rollover');
         assert.ok(state.threadState[scenario.route === 'musikk' ? 'musikk_omfang_og_tid' : scenario.route === 'miljo' ? 'arvid_navnet_pa_invitasjonen' : secondId.replace('_neste_steg', '_etter_forste_kapittel')].status === 'completed');
         if (scenario.route === 'miljo') {
           assert.ok(state.tidligereValg.arvid_kapittel13_avsluttet);
