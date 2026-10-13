@@ -29,7 +29,7 @@ function setup(backing = new Map()) {
     fetch: async url => {
       urlCalls.push(url);
       if (url === "data/Civication/npcs/naeringsliv.json") return { ok: true, json: async () => catalog };
-      if (url === "/data/Civication/roleWorlds/index.json") return { ok: true, json: async () => index };
+      if (url === "data/Civication/roleWorlds/index.json") return { ok: true, json: async () => index };
       throw new Error("Unexpected load " + url);
     }
   });
