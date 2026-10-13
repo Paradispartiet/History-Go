@@ -238,6 +238,34 @@ director.registerHandler("fixture_handler", () => {
     "active_post"
   ]);
 
+  // A failed narrative answer must not retain a story flag that could unlock
+  // a later role-change scene without a successful ChoiceDirector result.
+  order.length = 0;
+  resolved.length = 0;
+  failAnswer = true;
+  const narrativeEvent = {
+    ...makeEvent("narrative_failure"),
+    source_type: "narrative_stream",
+    narrative_stream_id: "stein_role_change_work_stream",
+    narrative_storylet_id: "stein_peer_priority",
+    narrative_effects: { adds_flags: ["stein_role_stage1"], opens_streams: [], risk_links: [] }
+  };
+  resetRuntime(narrativeEvent);
+  state.narrative_state_v1 = {
+    active_streams: ["stein_role_change_work_stream"],
+    flags: ["existing_flag"],
+    stream_progress: {},
+    choice_history: [],
+    updated_at: "before"
+  };
+  const storyBefore = JSON.stringify(state.narrative_state_v1);
+  const narrativeFailure = await engine.answer("narrative_failure", "A");
+  assert.equal(narrativeFailure.ok, false);
+  assert.equal(JSON.stringify(state.narrative_state_v1), storyBefore,
+    "feilet svar skal rulle tilbake flagg, storylet-progress og valghistorikk");
+  assert.equal(state[runtimeKey].items[0].status, "delivered");
+  assert.deepEqual(resolved, []);
+
   console.log("civication-choice-director-daily-middleware.test.js: PASS");
 })().catch((error) => {
   console.error(error);

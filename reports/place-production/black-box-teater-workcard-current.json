@@ -1,0 +1,263 @@
+{
+  "schema": "history_go_place_workcard_v2",
+  "place_id": "black_box_teater",
+  "category": "scenekunst",
+  "status": "in_progress",
+  "rule_preflight": {
+    "schema": "history_go_place_rule_preflight_v1",
+    "status": "PASS",
+    "place_id": "black_box_teater",
+    "category": "scenekunst",
+    "recorded_at": "2026-10-13T05:52:34.000Z",
+    "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
+    "files": [
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST.md",
+        "sha256": "21ef6553dcccf9a6c74fc0a33bf61d3df6c39b5064108b7110211ae232c95df6"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_CHECKLIST_REFERENCE_V1.md",
+        "sha256": "2fba6e0e7e6747b6c95266c57ca875ce7b6b2bfbe5e9e1abac79c02ad35aee0d"
+      },
+      {
+        "path": "docs/PLACE_PRODUCTION_PROFILES.md",
+        "sha256": "b42bb5cc086737acc0046d8d871c54f10b2b7fdf1d56cf0a447b02b9227feb8b"
+      },
+      {
+        "path": "data/quiz/regler/QUIZ_PRODUCTION_CANONICAL.md",
+        "sha256": "1a6f55b419891503b6d402b66d115c0c9cdf8abdd35d30b0bd4d4fd3fb9d6ecd"
+      },
+      {
+        "path": "data/places/README_place_rounds.md",
+        "sha256": "9e7eb88f4c701b8588473e63bb03697762f3c178df7716acdc12a16d406c4525"
+      },
+      {
+        "path": "data/badges/index.json",
+        "sha256": "7a796a0902c6ec0f651241d062363f2dfd8a196e9eebfc78baf960e4f507fdbf"
+      },
+      {
+        "path": "data/badges/place_production_routing_v1.json",
+        "sha256": "97e1b78c1797a5194492ef16a66f3c9d3d5b543c093a35962fd60bbb7be3d721"
+      },
+      {
+        "path": "docs/PLACE_OBJECTS_CANONICAL.md",
+        "sha256": "ccc3f438c8c235d9b60c9d0280a215c1862220b1988a4f6a7bca7060b53c1799"
+      },
+      {
+        "path": "data/brands/brand_rules_v1_1.json",
+        "sha256": "c8009c5f872560c46a164d3399e193cd7fd33d80ecb70f37496f8ad1b89b786a"
+      },
+      {
+        "path": "data/badges/scenekunst.json",
+        "sha256": "73c097c0b9331d699a248a09528f4b479144955eaec029d44362056200314812"
+      }
+    ],
+    "contract_snapshot": {
+      "full_place_collection_count": 4,
+      "candidate_collections": [
+        "people",
+        "objects",
+        "brands",
+        "productions"
+      ],
+      "category_expression": "productions",
+      "related_is_placecard_collection": false,
+      "no_filler": true,
+      "routing_order": [
+        "universal_canonical_core",
+        "primary_badge_family",
+        "active_underbadge_ids",
+        "place_specific_source_review",
+        "confirmed_production_profile",
+        "final_content_plan"
+      ]
+    }
+  },
+  "production_profile": "standard",
+  "profile_status": "confirmed",
+  "active_phase": "productions_integrated",
+  "collections": {
+    "people": "PASS",
+    "productions": "PASS",
+    "objects": "REVIEW_PENDING",
+    "brands": "REVIEW_PENDING"
+  },
+  "front_image_status": "BLOCKED_LICENSE",
+  "visual_qa_status": "PENDING",
+  "scope_note": "To stedbundne forestillinger på Marstrandgata fra 2004; historiske oppsetninger fra Aker Brygge er ikke ført til dette fysiske stedet. Illustrasjonene er originale og tydelig merket. Ingen separat lisensklarert frontImage er publisert.",
+  "next_required": [
+    "Lisensklarert separat, faktisk stående frontfoto av dagens Marstrandgata 8; ingen CSS-beskåret kopi av place.image.",
+    "Full PlaceCard ↔ QuizCard-flip på faktisk app-visning, touch/tastatur og manuell pikselkontroll mobil/desktop etter frontImage.",
+    "Enten kilde- og bildeklart historisk Bergene-merke som egen Brand, eller begrunnet uttak etter autentisk logo-/rettighetsaudit.",
+    "Objects: stedsspesifikt bevis for fysiske gjenstander med medlemsfoto, ellers avklar canonical source-bounded holdback; ikke fyll samlingen med verk eller motivillustrasjoner."
+  ],
+  "partial_browser_qa": {
+    "status": "PASS_COLLECTIONS_ONLY",
+    "verified_at": "2026-10-13",
+    "test_file": "tests/black-box-productions-browser-audit.test.mjs",
+    "pull_request": "https://github.com/Paradispartiet/History-Go/pull/6288",
+    "merge_commit": "575fe0d9c3185b01b4330cbf99b00ea9b5ebe3f8",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1280,
+        "height": 900
+      }
+    ],
+    "verified": [
+      "canonical People + Productions profile",
+      "two correctly dated Marstrandgata productions",
+      "actual AVIF member artwork decodes",
+      "People preview kept beside title",
+      "production collection opens with two source-bound works",
+      "no Aker Brygge-only productions in contemporary place collection",
+      "no document horizontal overflow in isolated fixture",
+      "no uncaught JS exceptions in isolated fixture"
+    ],
+    "not_verified": [
+      "separate portrait frontImage, missing",
+      "full app PlaceCard flip with front image and QuizCard",
+      "manual pixel-level visual assessment of complete PlaceCard"
+    ]
+  },
+  "front_image_research": {
+    "status": "NEEDS_EXPLICIT_REUSE_TERMS",
+    "existing_photo_role": "place.image: Rune Aakvik / Oslo Museum, CC BY-SA 4.0, not to be repurposed as frontImage",
+    "candidates": [
+      {
+        "source": "Sceneweb",
+        "title": "The façade of Black Box Teater, Marstrandgata 8 in Oslo, at night",
+        "url": "https://sceneweb.no/en/multimedia/25271",
+        "published_license_label": "Free licence / Fri lisens",
+        "issue": "Specific reuse terms and permission to publish a separately edited portrait rendition are not shown on the source record; photographer and credit should also be verified.",
+        "decision": "REVIEW_ONLY_NOT_PUBLISHED"
+      },
+      {
+        "source": "Black Box teater",
+        "title": "Exterior/entrance photo on official website",
+        "url": "https://blackbox.no/nb/black-box-teater-soker-administrativ-leder/",
+        "issue": "An image appearing on an official institutional website is not independent reuse permission.",
+        "decision": "REVIEW_ONLY_NOT_PUBLISHED"
+      }
+    ],
+    "source_rights_review": {
+      "checked_at": "2026-10-13",
+      "policy_url": "https://sceneweb.no/privacy",
+      "policy_text_summary": "Sceneweb oppgir at materiale merket «Free licence» eller Creative Commons kan brukes i ikke-kommersielle sammenhenger med kreditering. Annen bruk krever uttrykkelig tillatelse fra rettighetshaver.",
+      "sceneweb_object_url": "https://sceneweb.no/en/multimedia/25271",
+      "sceneweb_license_label": "Free licence",
+      "required_before_publication": [
+        "Identifiser fotograf og rettighetshaver for det konkrete Sceneweb-fotografiet.",
+        "Få uttrykkelig tillatelse til offentlig gjenbruk, inkludert eventuell kommersiell bruk og oppbevaring av separat avledet fil.",
+        "Avklar stående bearbeiding/beskjæring og korrekt kreditering.",
+        "Kontroller bilde av dagens faktiske bygg i riktig stående format (height > width)."
+      ],
+      "publication_decision": "HOLD; et ikke-kommersielt unntak uten spesifiserte bearbeidingsrettigheter gir ikke bevis for varig History Go-frontImage-bruk.",
+      "factual_photo_required": true
+    }
+  },
+  "collection_candidate_audit": {
+    "reviewed_at": "2026-10-13",
+    "brand_registry_checked": [
+      "data/brands/brands_master.json",
+      "data/brands/brands_by_place.json",
+      "data/brands/actors_by_place.json",
+      "data/brands/brand_rules_v1_1.json"
+    ],
+    "existing_canonical_match": "Ingen direkte Black Box-/Bergene-oppføring funnet i de tre registrene ved denne kontrollen. Fravær i registeret er ikke en N/A-beslutning.",
+    "brands": {
+      "status": "SOURCE_VERIFIED_CANDIDATE_ASSET_HOLDBACK",
+      "candidates": [
+        {
+          "name": "Bergene / A. Bergene Chokoladefabrik",
+          "classification": "historic_legacy_brand",
+          "place_relation": "Sjokoladeproduksjon i bygningen på Rodeløkka fra 1906, opphørt før teaterinnflytting i 2004.",
+          "source_urls": [
+            "https://snl.no/Bergene_A%252FS",
+            "https://snl.no/Anders_Bergene",
+            "https://www.nidar.no/om-nidar/historie/merkenes-historie/"
+          ],
+          "evidence": "SNL oppgir etableringen i 1906 og Nidar dokumenterer sammenslåing med Bergene i 1980 og fabrikknedleggelsen i 1988.",
+          "decision": "HOLD_FOR_AUTHENTIC_BRAND_ASSET",
+          "reason": "Reelt historisk merkenavn med dokumentert adressehistorie, men et autentisk, kildeklarert historisk ordmerke/logo er ennå ikke fastlagt. Ikke opprett tom Brands-samling."
+        },
+        {
+          "name": "Black Box teater",
+          "classification": "place_primary_institution",
+          "place_relation": "Nåværende teatersted, etablert 1985 og i Marstrandgata siden 2004.",
+          "source_urls": [
+            "https://blackbox.no/nb/historie/",
+            "https://blackbox.no/nb/organisering/"
+          ],
+          "decision": "KEEP_IN_PLACE_NOT_DUPLICATE_BRAND",
+          "reason": "Teatrets institusjonshistorie er selv den kanoniske Place-identiteten; ikke dupliser samme sted som Brand uten selvstendig begrunnet identitet."
+        },
+        {
+          "name": "Danse- og teatersentrum (tidligere Teatersentrum)",
+          "classification": "owner_and_founder_actor",
+          "place_relation": "Grunnla Black Box i 1985 og er heleier av teaterselskapet.",
+          "source_urls": [
+            "https://blackbox.no/nb/organisering/"
+          ],
+          "decision": "KEEP_AS_INSTITUTIONAL_RELATION_CANDIDATE",
+          "reason": "Autonom organisasjon, men her dokumentert som eier og historisk aktør – ikke verifisert som separat, visuelt publiserbar stedbundet Brand."
+        }
+      ],
+      "visible_collection": "NOT_PUBLISHED"
+    },
+    "objects": {
+      "status": "SOURCE_BOUNDED_HOLDBACK",
+      "candidate_families": [
+        "Autentiske rekvisitter, kostymer eller scenemodeller knyttet til dokumenterte forestillinger ved Marstrandgata.",
+        "Historiske sjokoladeprodukter/emballasje fra Bergene med konkret tilknytning til fabrikkanlegget, ikke bare merkevaren."
+      ],
+      "source_urls": [
+        "https://sceneweb.no/en/organisation/2679/black_box%20teater",
+        "https://snl.no/Bergene_A%252FS",
+        "https://www.nidar.no/om-nidar/historie/merkenes-historie/"
+      ],
+      "reason": "Kildene dokumenterer verk, produksjoner, tidligere fabrikk og historisk produktidentitet, men ikke minst to identifiserbare fysiske gjenstander med egen proveniens, gjenstandsfoto og tilstrekkelig direkte binding til akkurat Place. SNLs historiske foto av Bergene-produkt er ikke i seg selv bevis for at objektet stammer fra Marstrandgata.",
+      "publication_decision": "NOT_PUBLISHED_PENDING_OBJECT_PROVENANCE"
+    }
+  },
+  "quizcard_flip_browser_qa": {
+    "status": "PASS_SHIPPING_HANDLER_IN_ISOLATED_BROWSER_FIXTURE",
+    "verified_at": "2026-10-13",
+    "pull_request": "https://github.com/Paradispartiet/History-Go/pull/6291",
+    "workflow_run": "https://github.com/Paradispartiet/History-Go/actions/runs/38363088648",
+    "test_file": "tests/black-box-quiz-flip-browser.test.mjs",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1280,
+        "height": 900
+      }
+    ],
+    "verified": [
+      "Existing Scenekunst QuizCard-loader renders ten Black Box questions from registered canonical JSON",
+      "Actual bindPlaceCardQuizFlip from js/ui/place-card.js toggles through mouse click, Enter and Space",
+      "Expanded reading view uses rendered QuizCard, closes with Escape and retains focus semantics",
+      "Late legacy quiz image error does not disable the rendered QuizCard",
+      "Browser test finishes without uncaught page errors"
+    ],
+    "not_verified": [
+      "Full app PlaceCard with true image and navigation rather than a reduced fixture",
+      "Separate properly licensed factual portrait frontImage; a test-only neutral SVG was used, never published",
+      "Manual pixel-level visual assessment of complete PlaceCard on mobile and desktop"
+    ]
+  }
+}

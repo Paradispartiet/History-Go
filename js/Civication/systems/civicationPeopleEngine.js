@@ -138,24 +138,42 @@
     }
   }
 
+  function stripLegacyHistoryIdentity(row) {
+    if (!row || row.source !== "access_map" || !row.hg_person) return row;
+    const { hg_person: person, ...fictional } = row;
+    // Old local saves replaced the fictive name AND description with the
+    // historical person's biography. Restore a neutral fictional identity on
+    // read; preserve the collection as a separate knowledge reference only.
+    return {
+      ...fictional,
+      name: String(row.archetype_name || "Fiktiv miljøfigur"),
+      description: "",
+      history_go_learning_reference: {
+        id: String(person.id || ""),
+        name: String(person.name || ""),
+        category: String(person.category || ""),
+        description: String(person.desc || ""),
+        place_id: String(person.placeId || ""),
+        kind: "historical_knowledge_only"
+      }
+    };
+  }
+
   function readState() {
+    const fallback = {
+      updated_at: null, role_scope: null, career_id: null, available_people: []
+    };
     try {
       const parsed = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
-      return parsed && typeof parsed === "object"
-        ? parsed
-        : {
-            updated_at: null,
-            role_scope: null,
-            career_id: null,
-            available_people: []
-          };
-    } catch {
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return fallback;
       return {
-        updated_at: null,
-        role_scope: null,
-        career_id: null,
-        available_people: []
+        ...parsed,
+        available_people: Array.isArray(parsed.available_people)
+          ? parsed.available_people.map(stripLegacyHistoryIdentity)
+          : []
       };
+    } catch {
+      return fallback;
     }
   }
 

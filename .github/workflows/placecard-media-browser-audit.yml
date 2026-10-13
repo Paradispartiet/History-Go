@@ -30,6 +30,7 @@ on:
       - 'tests/christiania-torv-placecard-collections-v2.test.mjs'
       - 'tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs'
       - 'tests/placecard-media-hero-responsive-browser.test.mjs'
+      - 'tests/black-box-productions-browser-audit.test.mjs'
       - '.github/workflows/placecard-media-browser-audit.yml'
   workflow_dispatch:
 
@@ -56,6 +57,8 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Audit compact PlaceCard at mobile and desktop widths
         run: node tests/placecard-media-hero-responsive-browser.test.mjs
+      - name: Audit Black Box productions across mobile, tablet and desktop
+        run: node tests/black-box-productions-browser-audit.test.mjs
       - name: Verify PlaceCard status, title and category positions
         run: node tests/placecard-hero-meta-position-browser.test.mjs
       - name: Verify compact sticky photo and automatic heading contrast

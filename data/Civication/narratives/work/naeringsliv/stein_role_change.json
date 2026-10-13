@@ -1,0 +1,251 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "stein_role_change_work_stream",
+  "type": "work",
+  "title": "Stein og den ledige avdelingen",
+  "sociological_theme": "kollegial_tillit_og_organisatorisk_rollebytte",
+  "applies_when": {
+    "role_scopes": [
+      "fagarbeider"
+    ]
+  },
+  "time_slots": [
+    "work"
+  ],
+  "storylets": [
+    {
+      "id": "stein_peer_priority",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Stein Mæland",
+      "subject": "Stein vil omprioritere skiftet",
+      "situation": [
+        "Stein leder naboavdelingen. Han ber deg gi fra deg en erfaren medarbeider i to dager, selv om ditt eget skift ligger etter.",
+        "Han viser til en ny leveringsfrist, men sier lite om hvem som skal ta igjen arbeidet hos dere.",
+        "Dere har vært kolleger lenge nok til å vite at dette ikke bare er et spørsmål om tall."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Forklar konsekvensene og foreslå en tidsavgrenset løsning.",
+          "effect": 1,
+          "tags": [
+            "stein_peer_respect"
+          ],
+          "feedback": "Stein får en realistisk plan, men må gi fra seg noe av tidsgevinsten.",
+          "npc_response": {
+            "trust_delta": 2,
+            "title": "Stein husker den konkrete løsningen",
+            "line": "Du sa tydelig hva ditt skift kunne tåle, og ga meg en mulighet til å svare ordentlig."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Avvis forespørselen uten å diskutere alternativer.",
+          "effect": 0,
+          "tags": [
+            "stein_peer_distance"
+          ],
+          "feedback": "Du beskytter skiftet ditt, men Stein opplever svaret som en avvisning.",
+          "npc_response": {
+            "trust_delta": -2,
+            "title": "Stein husker avslaget",
+            "line": "Du hadde grunn til å si nei, men du ville ikke høre hva som sto på spill for oss."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder"
+      },
+      "adds_flags": [
+        "stein_role_stage1"
+      ]
+    },
+    {
+      "id": "stein_job_opening",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Stein Mæland",
+      "subject": "En avdelingslederstilling blir ledig",
+      "applies_when": {
+        "flags_all": [
+          "stein_role_stage1"
+        ]
+      },
+      "situation": [
+        "En avdelingsleder går av, og ledelsen åpner en intern prosess for å finne etterfølgeren.",
+        "Stein sier at han vurderer å søke. Han vil vite hvordan teamet oppfatter måten han har ledet naboavdelingen på.",
+        "Din vurdering kan bli hørt, men verken søknaden eller beslutningen ligger i dine hender."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gi en konkret, balansert vurdering av Steins arbeid.",
+          "effect": 1,
+          "tags": [
+            "stein_reference_balanced"
+          ],
+          "feedback": "Stein får en vurdering han kan bruke, også der den er kritisk.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Stein tar vurderingen med seg",
+            "line": "Det var mer nyttig enn ren støtte. Jeg vet bedre hva jeg må begrunne."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du ikke vil delta i vurderingen.",
+          "effect": 0,
+          "tags": [
+            "stein_reference_declined"
+          ],
+          "feedback": "Du holder avstand til ansettelsesprosessen.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Stein merker avstanden",
+            "line": "Du vil ikke knytte deg til prosessen. Det respekterer jeg, men jeg registrerer det."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "available_after": {
+          "storylet_id": "stein_peer_priority",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_role_stage2"
+      ]
+    },
+    {
+      "id": "stein_confirmed_appointment",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Administrasjonen",
+      "subject": "Stein er utnevnt til avdelingsleder",
+      "applies_when": {
+        "flags_all": [
+          "stein_role_stage2"
+        ]
+      },
+      "situation": [
+        "Ledelsen har avsluttet den interne prosessen. Stein har akseptert tilbudet om å lede avdelingen.",
+        "Han får nye rapporteringsoppgaver fra neste arbeidsperiode. Beslutningen er tatt av organisasjonen, ikke av deg.",
+        "Stein møter deg før overleveringen og spør hvordan dere skal håndtere uenighetene fra den siste tiden."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gratuler Stein og be om en tydelig avtale for samarbeidet.",
+          "effect": 1,
+          "tags": [
+            "stein_role_accepted_carefully"
+          ],
+          "feedback": "Dere avklarer hvilke beslutninger som fortsatt må tas gjennom ordinære rutiner.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Stein møtte deg etter utnevnelsen",
+            "line": "Du gratulerte, men minnet meg om at vi fortsatt må kunne si imot hverandre."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Hold samtalen saklig og påpek at ansvaret nå er hans.",
+          "effect": 0,
+          "tags": [
+            "stein_role_professional_distance"
+          ],
+          "feedback": "Samarbeidet er mulig, men mer formelt.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Stein møtte deg etter utnevnelsen",
+            "line": "Du lot ikke den nye tittelen viske ut spørsmålene fra før."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "role_transition": {
+          "event_id": "stein_role_story:confirmed_appointment",
+          "from": "naeringsliv/mellomleder",
+          "to": "naeringsliv/avdelingsleder"
+        },
+        "available_after": {
+          "storylet_id": "stein_job_opening",
+          "min_workdays": 2
+        }
+      },
+      "adds_flags": [
+        "stein_role_stage3"
+      ]
+    },
+    {
+      "id": "stein_new_role_followup",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Stein Mæland",
+      "subject": "En gammel uenighet i et nytt møte",
+      "applies_when": {
+        "flags_all": [
+          "stein_role_stage3"
+        ]
+      },
+      "situation": [
+        "På neste koordineringsmøte legger Stein frem en plan som påvirker begge avdelingene.",
+        "Tidligere satt dere som sidestilte kolleger. Nå har han et annet ansvar, mens den gamle uenigheten fortsatt finnes.",
+        "Stein tar deg til side før møtet."
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "trust_variants": {
+          "trusted": "Stein sier: «Du ga meg motstand jeg kunne arbeide med. Nå trenger jeg samme ærlighet i denne rollen.»",
+          "strained": "Stein sier: «Vi har ikke vært enige. Jeg vil likevel ha en konkret innvending, ikke en ny stillingskrig.»",
+          "neutral": "Stein sier: «Vi kjenner hverandres arbeidsmåte. Det bør gjøre samtalen tydeligere, ikke enklere.»"
+        },
+        "available_after": {
+          "storylet_id": "stein_confirmed_appointment",
+          "min_workdays": 1
+        }
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gå gjennom belastningen for begge skift og foreslå en justering.",
+          "effect": 1,
+          "tags": [
+            "stein_followup_dialogue"
+          ],
+          "feedback": "Stein må forklare prioriteringen sin på en måte som tåler motargumenter.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Stein svarer på en konkret innvending",
+            "line": "Dette var ubehagelig, men det gjorde planen mer gjennomførbar."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Godta den nye planen uten ytterligere diskusjon.",
+          "effect": 0,
+          "tags": [
+            "stein_followup_silence"
+          ],
+          "feedback": "Møtet går raskt, men belastningen på ditt skift er ikke avklart.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Stein registrerer tausheten",
+            "line": "Du protesterte ikke nå. Jeg vet ikke om det betyr at du er enig."
+          }
+        }
+      ],
+      "adds_flags": [
+        "stein_role_stage4"
+      ]
+    }
+  ]
+}
