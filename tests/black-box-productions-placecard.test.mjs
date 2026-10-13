@@ -28,7 +28,8 @@ test("Black Box has two source-bound productions on the current Marstrandgata st
     assert.equal(production.imageMeta.outputDimensions,"1024x512");
     assert.ok(!production.imageMeta.license || !/^CC BY/i.test(production.imageMeta.license));
     assert.ok(!production.imageMeta.licenseUrl);
-    assert.match(production.image,/^bilder\\/kort\\/productions\\/black_box_.+\\.avif$/);
+    assert.ok(production.image.startsWith("bilder/kort/productions/black_box_"));
+    assert.ok(production.image.endsWith(".avif"));
     const asset = fs.readFileSync(path.join(root,production.image));
     assert.ok(asset.byteLength > 20000);
     assert.equal(asset.toString("ascii",4,12),"ftypavif");
