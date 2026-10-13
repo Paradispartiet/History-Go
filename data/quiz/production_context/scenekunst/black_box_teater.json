@@ -75,8 +75,8 @@
   "source_files": {
     "brief": {
       "path": "data/quiz/production_briefs/scenekunst/black_box_teater.json",
-      "bytes": 20708,
-      "sha256": "6bc1aec4e1f476c1b4f1d05b95815e694d98f94e0890b68fe567d891e33eca49"
+      "bytes": 21375,
+      "sha256": "c82939b0f9256bd1d29ca60d4514ed467e03e9dd267aaad83cb5618291511780"
     },
     "target": {
       "path": "data/places/scenekunst/oslo/places_scenekunst/black_box_teater.json",
@@ -161,7 +161,8 @@
       "Bruk 25 eksisterende kildeverifiserte stedsclaims og tre egne produksjons-/stedsclaims som kandidatbank.",
       "Produser 14 lett tilgjengelige historiske spørsmål før teori/metode og kildekritikk kommer inn i siste sett.",
       "Ikke dikte historiske forestillingsbilder, premieredatoer eller representere Aker Brygge-forestillinger som spilt i Marstrandgata."
-    ]
+    ],
+    "knowledge_migration": "Ingen eldre aktiv stedsquiz eller dedikert Black Box Knowledge-quizpakke; 28 nye kildebundne quizspørsmål får stabile canonical Knowledge-enheter ved History Go-synkronisering. Eksisterende kunnskapsdata for andre steder beholdes."
   },
   "profile_decision": {
     "profile": "normal",
@@ -287,7 +288,8 @@
       "em_scenekunst_resepsjon_kritikk_publikumsdata"
     ],
     "topic_hook_ids": [
-      "theory_scenekunst_historiografi_flyktig_hendelse"
+      "theory_scenekunst_historiografi_flyktig_hendelse",
+      "theory_scenekunst_institusjon_repertoar_policy"
     ],
     "method_ids": [
       "met_scenekunst_institusjonsanalyse",
@@ -296,10 +298,12 @@
       "met_scenekunst_produksjonsanalyse"
     ],
     "thinker_ids": [
-      "christopher_b_balme"
+      "christopher_b_balme",
+      "david_throsby"
     ],
     "works": [
-      "The Cambridge Introduction to Theatre Studies"
+      "The Cambridge Introduction to Theatre Studies",
+      "The Economics of Cultural Policy"
     ]
   },
   "claim_bank": [
@@ -516,15 +520,17 @@
       "claim_id": "claim_black_box_quiz_17",
       "order": 16,
       "planned_phase": "bridge",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Blant kompaniene og kunstnerne Black Box har presentert, er Verdensteatret og Forced Entertainment.",
       "origin_place_claim_id": "claim_blackbox_artists",
       "source_ids": [
         "official"
       ],
       "source_origin": "external",
-      "emne_id": "em_scenekunst_dramaturgi_iscenesettelse",
-      "review_caution": ""
+      "emne_id": "em_scenekunst_teaterinstitusjon_repertoar",
+      "review_caution": "",
+      "method_id": "met_scenekunst_institusjonsanalyse",
+      "topic_hook_id": "theory_scenekunst_institusjon_repertoar_policy"
     },
     {
       "claim_id": "claim_black_box_quiz_18",
@@ -627,7 +633,7 @@
       "claim_id": "claim_black_box_quiz_24",
       "order": 24,
       "planned_phase": "final",
-      "family": "fact",
+      "family": "concept_theory",
       "statement": "Jørgen Knudsen tiltrådte som kunstnerisk leder i 2022 og sikret en ny 20-årig leieavtale for Marstrandgata 8.",
       "origin_place_claim_id": "claim_blackbox_knudsen_2022",
       "source_ids": [
@@ -635,7 +641,9 @@
       ],
       "source_origin": "external",
       "emne_id": "em_scenekunst_teaterinstitusjon_repertoar",
-      "review_caution": ""
+      "review_caution": "",
+      "method_id": "met_scenekunst_institusjonsanalyse",
+      "topic_hook_id": "theory_scenekunst_institusjon_repertoar_policy"
     },
     {
       "claim_id": "claim_black_box_quiz_25",
@@ -768,14 +776,14 @@
   "question_balance": {
     "total": 28,
     "counts": {
-      "fact": 18,
+      "fact": 16,
       "context": 7,
-      "concept_theory": 3
+      "concept_theory": 5
     },
     "ratios": {
-      "fact": 0.643,
+      "fact": 0.571,
       "context": 0.25,
-      "concept_theory": 0.107
+      "concept_theory": 0.179
     }
   }
 }
