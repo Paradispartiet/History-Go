@@ -17,6 +17,7 @@
   let currentWarning = '';
   let currentMode = 'local';
   let currentRequestId = 0;
+  let currentTab = 'pending';
 
   function escapeHTML(value){
     return String(value ?? '')
@@ -47,6 +48,11 @@
       #${SHEET_ID} .hg-social-meet-chat-close{min-height:40px;padding:6px 12px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:#222;color:#fff;cursor:pointer}
       @media(max-width:720px){#${SHEET_ID} .hg-social-meet-chat-layer iframe{min-height:65dvh}}
       #${SHEET_ID} .profile-social-stack{display:grid;gap:12px}
+      #${SHEET_ID} .hg-social-meet-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+      #${SHEET_ID} .hg-social-meet-tab{min-height:40px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.07);color:#fff;font-size:12px;font-weight:750;cursor:pointer}
+      #${SHEET_ID} .hg-social-meet-tab[aria-selected="true"]{border-color:#f7e2a3;background:rgba(247,226,163,.16);color:#f7e2a3}
+      #${SHEET_ID} .hg-social-meet-find{min-height:42px;border:1px solid rgba(247,226,163,.55);border-radius:12px;background:#f7e2a3;color:#241a0d;font-weight:800;cursor:pointer}
+      @media(max-width:520px){#${SHEET_ID} .hg-social-meet-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
       #${SHEET_ID} .section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
       #${SHEET_ID} .section-head h2{font-size:20px}
       #${SHEET_ID} .section-meta,#${SHEET_ID} .muted{color:rgba(255,255,255,.66);font-size:13px;line-height:1.35}
@@ -79,7 +85,7 @@
     base.completed = list(source.completed);
     base.declined = list(source.declined);
     base.cancelled = list(source.cancelled);
-    base.declinedCancelled = list(source.declinedCancelled).concat(base.declined, base.cancelled);
+    base.declinedCancelled = list(source.declinedCancelled).length ? list(source.declinedCancelled) : base.declined.concat(base.cancelled);
     return base;
   }
 
@@ -111,12 +117,23 @@
     if (backend?.listInvites) {
       try {
         const result = await backend.listInvites({ filter: requestOptions.filter, placeId: requestOptions.placeId, sourceSurface: requestOptions.sourceSurface });
-        if (result?.ok === false) throw new Error(result.reason || 'social_meet_backend_error');
+        if (result?.ok === false) {
+          const reason = String(result.reason || '');
+          const warning = ['not_authenticated', 'supabase_auth_unavailable'].includes(reason)
+            ? 'Logg inn med AHA for å se dine møter.'
+            : ['backend_not_enabled', 'missing_backend_url'].includes(reason)
+              ? 'Møteoversikten er ikke aktivert på serveren ennå.'
+              : 'Kunne ikke hente møter fra serveren. Prøv igjen senere.';
+          return { inbox: makeEmptyInbox(), warning, mode: 'unavailable' };
+        }
         if (result && Array.isArray(result.invites)) return { inbox: bucketInvites(result.invites), warning: '', mode: backend.health?.()?.mode || backend.health?.()?.backend || 'backend' };
         return { inbox: normalizeInbox(result), warning: '', mode: backend.health?.()?.mode || backend.health?.()?.backend || 'backend' };
       } catch (_err) {
-        return { inbox: localInbox(), warning: 'Kunne ikke laste Social Meet. Viser lokal demo hvis tilgjengelig.', mode: 'fallback' };
+        return { inbox: makeEmptyInbox(), warning: 'Kunne ikke kontakte møteserveren. Prøv igjen senere.', mode: 'unavailable' };
       }
+    }
+    if (root.HG_SOCIAL_MEET_BACKEND === 'fastapi') {
+      return { inbox: makeEmptyInbox(), warning: 'Møteserveren er ikke tilgjengelig.', mode: 'unavailable' };
     }
     return { inbox: localInbox(), warning: '', mode: 'local' };
   }
@@ -134,7 +151,8 @@
   }
 
   function getDeclinedCancelled(inbox){
-    return list(inbox.declinedCancelled || []).concat(list(inbox.declined), list(inbox.cancelled));
+    const combined = list(inbox.declinedCancelled);
+    return combined.length ? combined : list(inbox.declined).concat(list(inbox.cancelled));
   }
 
   function filterInvites(invites, options){
@@ -211,27 +229,27 @@
   }
 
   function renderProfileSocialContent(options){
-    const pending = sourceForStatus('pending', options);
-    const accepted = sourceForStatus('accepted', options);
-    const completed = sourceForStatus('completed', options);
-    const closed = sourceForStatus('declinedCancelled', options);
+    const groups = {
+      pending: ['Møteforslag', sourceForStatus('pending', options), 'Ingen møteforslag akkurat nå.'],
+      accepted: ['Avtalte møter', sourceForStatus('accepted', options), 'Ingen avtalte møter.'],
+      completed: ['Gjennomførte møter', sourceForStatus('completed', options), 'Ingen gjennomførte møter ennå.'],
+      declinedCancelled: ['Avslåtte og avbrutte', sourceForStatus('declinedCancelled', options), 'Ingen avslåtte eller avbrutte møter.']
+    };
+    const [heading, invites, empty] = groups[currentTab] || groups.pending;
+    const counts = Object.fromEntries(TABS.map(([status]) => [status, sourceForStatus(status, options).length]));
+    const tabs = TABS.map(([status, label]) =>
+      `<button type="button" class="hg-social-meet-tab" role="tab" aria-selected="${status === currentTab}" aria-controls="hg-meet-active-list" data-hg-social-meet-tab="${status}">${escapeHTML(label)} (${counts[status]})</button>`
+    ).join('');
+    const findPeople = options.filter === 'place' && options.placeId
+      ? '<button type="button" class="hg-social-meet-find" data-hg-social-meet-find="1">Finn folk å møte her</button>'
+      : '<p class="muted">For å finne folk: Åpne et sted på kartet og velg Møtes.</p>';
     return `
-      <section class="profile-section knowledge-match-section profile-social-stack" id="hgSocialMeetPopupLayer" aria-label="Social Meet">
-        <div class="section-head">
-          <h2>Social Meet</h2>
-          <span class="section-meta">Kunnskapsmøter, læringssirkler og sosial læringshistorikk.</span>
-        </div>
-        <p class="muted">Personvern styres i ⚙️ Innstillinger.</p>
+      <section class="profile-section knowledge-match-section profile-social-stack" id="hgSocialMeetPopupLayer" aria-label="Mine møter">
+        ${findPeople}
         ${currentWarning ? `<p class="muted" role="status">${escapeHTML(currentWarning)}</p>` : ''}
-        <div class="social-mini-profile-anchor">MiniProfile</div>
-        <div id="hg-meet-invite-inbox">${renderBlock('Møteforslag', pending, 'Ingen møteforslag akkurat nå.')}</div>
-        <div id="hg-spotmeeting-inbox">${renderBlock('Kunnskapsmøter', pending, 'Ingen ventende kunnskapsmøter.')}</div>
-        <div id="hg-confirmed-meets">${renderBlock('Avtalte møter', accepted, 'Ingen avtalte møter.')}</div>
-        <div id="hg-social-progression">${renderBlock('Sosial progresjon', completed, 'Ingen gjennomførte møter ennå.')}</div>
-        <div id="hg-learning-circles">${renderBlock('Læringssirkler', [], 'Ingen læringssirkler ennå.')}</div>
-        <div id="hg-circle-activity">${renderBlock('Sirkelaktivitet', [], 'Ingen sirkelaktivitet ennå.')}</div>
-        <div id="hg-social-history">${renderBlock('Sosial læringshistorikk', completed.concat(closed), 'Ingen sosial læringshistorikk ennå.')}</div>
-        <div id="hg-social-smoke-panel"></div>
+        <nav class="hg-social-meet-tabs" role="tablist" aria-label="Møtestatus">${tabs}</nav>
+        <div id="hg-meet-active-list" role="tabpanel">${renderBlock(heading, invites, empty)}</div>
+        <p class="muted">Meldinger åpnes i AHA Chat etter at et møte er godtatt.</p>
       </section>
     `;
   }
@@ -253,17 +271,18 @@
   function renderLoading(options = currentOptions){
     const sheet = ensureSheet();
     const title = options.filter === 'place' ? getPlaceTitle(options.placeId) : 'Alle møter';
-    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Social Meet</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body"><p class="muted" role="status">Laster Social Meet …</p></div></section>`;
+    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Møtes</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body"><p class="muted" role="status">Laster møter …</p></div></section>`;
   }
 
   function render(options = currentOptions){
     const sheet = ensureSheet();
     const title = options.filter === 'place' ? getPlaceTitle(options.placeId) : 'Alle møter';
-    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Social Meet</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body">${renderProfileSocialContent(options)}</div></section>`;
+    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Møtes</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body">${renderProfileSocialContent(options)}</div></section>`;
   }
 
-  async function open(options = {}){
+  async function open(options = {}, preserveTab = false){
     currentOptions = normalizeOptions(options);
+    if (!preserveTab) currentTab = 'pending';
     const sheet = ensureSheet();
     const requestId = ++currentRequestId;
     renderLoading(currentOptions);
@@ -275,12 +294,16 @@
     currentData = loaded.inbox;
     currentWarning = loaded.warning || '';
     currentMode = loaded.mode || 'local';
+    if (!preserveTab) {
+      currentTab = TABS.map(([status]) => status).find(status => sourceForStatus(status, currentOptions).length > 0) || 'pending';
+    }
     render(currentOptions);
     return { ok: true, options: currentOptions, mode: loaded.mode };
   }
 
   function close(){
     const sheet = root.document?.getElementById?.(SHEET_ID);
+    sheet?.querySelector('.hg-social-meet-chat-layer')?.remove();
     if (sheet) sheet.hidden = true;
   }
 
@@ -332,6 +355,8 @@
         break;
       }
     }
+    // A rejected server transition must never be replaced by a local success in production.
+    if (root.HG_SOCIAL_MEET_BACKEND === 'fastapi') return { ok: false };
     if (typeof root.HG_Spotmeeting?.[localMethod] === 'function') {
       try {
         const result = await root.HG_Spotmeeting[localMethod](id);
@@ -349,6 +374,7 @@
     currentData = loaded.inbox;
     currentWarning = loaded.warning || '';
     currentMode = loaded.mode || 'local';
+    currentTab = status === 'accepted' ? 'accepted' : status === 'completed' ? 'completed' : ['declined','cancelled'].includes(status) ? 'declinedCancelled' : 'pending';
     render(currentOptions);
     root.dispatchEvent?.(new root.CustomEvent('hg:spotmeetingChanged', { detail: { source: 'socialMeetStatusAction', inviteId, status } }));
     root.dispatchEvent?.(new root.CustomEvent('updateProfile', { detail: { source: 'socialMeetStatusAction' } }));
@@ -378,7 +404,7 @@
     panel.querySelector('.hg-social-meet-chat-layer')?.remove();
     const layer = root.document.createElement('section');
     layer.className = 'hg-social-meet-chat-layer';
-    layer.setAttribute('aria-label','Privat samtale i Social Meet');
+    layer.setAttribute('aria-label','Privat samtale i AHA Chat');
     const head = root.document.createElement('div');
     head.className = 'hg-social-meet-chat-head';
     const label = root.document.createElement('strong');
@@ -386,11 +412,11 @@
     const closeButton = root.document.createElement('button');
     closeButton.type = 'button';
     closeButton.className = 'hg-social-meet-chat-close';
-    closeButton.textContent = 'Tilbake til Social Meet';
+    closeButton.textContent = 'Tilbake til mine møter';
     closeButton.setAttribute('data-hg-social-meet-chat-close','1');
     head.append(label,closeButton);
     const frame = root.document.createElement('iframe');
-    frame.title = 'AHA privat chat – verifisert Social Meet-kontakt';
+    frame.title = 'AHA privat chat – verifisert møtekontakt';
     frame.src = 'https://paradispartiet.github.io/AHA-EchoNet/friend-chat.html?embed=1&meetInviteId='+encodeURIComponent(inviteId);
     frame.referrerPolicy = 'no-referrer';
     layer.append(head,frame);
@@ -398,8 +424,17 @@
     closeButton.focus();
   }
 
+  function openFindPeople(){
+    if (currentOptions.filter !== 'place' || !currentOptions.placeId) return;
+    const placeId = currentOptions.placeId;
+    const title = getPlaceTitle(placeId);
+    if (typeof root.HG_SpotmeetingUI?.open !== 'function') return;
+    close();
+    root.HG_SpotmeetingUI.open({ contextType: 'place', contextId: placeId, title, preferredAction: 'match', sourceSurface: 'socialMeetInbox' });
+  }
+
   function handleClick(event){
-    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close], [data-hg-social-meet-action], [data-hg-social-meet-chat], [data-hg-social-meet-chat-close]');
+    const target = event.target?.closest?.('[data-hg-social-meet-open], [data-hg-social-meet-close], [data-hg-social-meet-action], [data-hg-social-meet-chat], [data-hg-social-meet-chat-close], [data-hg-social-meet-tab], [data-hg-social-meet-find]');
     if (!target) return;
     event.preventDefault?.();
     event.stopPropagation?.();
@@ -407,6 +442,12 @@
     if (target.hasAttribute('data-hg-social-meet-chat-close')) { target.closest('.hg-social-meet-chat-layer')?.remove(); return; }
     if (target.hasAttribute('data-hg-social-meet-chat')) { openChat(String(target.getAttribute('data-hg-social-meet-chat') || '')); return; }
     if (target.hasAttribute('data-hg-social-meet-action')) { handleStatusClick(target); return; }
+    if (target.hasAttribute('data-hg-social-meet-find')) { openFindPeople(); return; }
+    if (target.hasAttribute('data-hg-social-meet-tab')) {
+      const tab = target.getAttribute('data-hg-social-meet-tab');
+      if (TABS.some(([status]) => status === tab)) { currentTab = tab; render(currentOptions); }
+      return;
+    }
     const mode = String(target.getAttribute('data-hg-social-meet-open') || 'all');
     const placeId = String(target.getAttribute('data-hg-social-meet-place') || '').trim();
     const filter = mode === 'place' ? 'place' : 'all';
@@ -419,7 +460,7 @@
     root.__HG_SOCIAL_MEET_UI_BOUND__ = true;
     injectStyles();
     root.document?.addEventListener?.('click', handleClick, true);
-    root.addEventListener?.('hg:spotmeetingChanged', () => { enhanceOnSiteLinks(); const sheet = root.document?.getElementById?.(SHEET_ID); if (sheet && !sheet.hidden) open(currentOptions); });
+    root.addEventListener?.('hg:spotmeetingChanged', () => { enhanceOnSiteLinks(); const sheet = root.document?.getElementById?.(SHEET_ID); if (sheet && !sheet.hidden) open(currentOptions, true); });
     enhanceOnSiteLinks();
   }
 

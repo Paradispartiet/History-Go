@@ -1,0 +1,37 @@
+name: Social Meet UI checks
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "js/social/HGSpotmeetingUI.js"
+      - "js/social/HGSocialMeetUI.js"
+      - "tests/hg-social-meet-aha-private-chat.test.js"
+      - "tests/hg-social-meet-unified-ui.test.js"
+      - "tests/social-meet-spotmeeting-browser-smoke.test.js"
+      - "tests/explore-events-social-meet.test.mjs"
+      - "package.json"
+      - ".github/workflows/social-meet-ui-checks.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: social-meet-ui-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  social-meet-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Social Meet and AHA Chat browser smoke
+        run: npm run test:social-meet-spotmeeting-smoke
+      - name: Explore and Møtes entry contracts
+        run: node --test tests/explore-events-social-meet.test.mjs

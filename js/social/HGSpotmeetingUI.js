@@ -199,7 +199,7 @@
   function socialMeetFollowUpButton(context, label){
     const placeId = String(context?.contextType === 'place' ? (context.contextId || '') : '').trim();
     const attrs = placeId ? `data-hg-social-meet-open="place" data-hg-social-meet-place="${escapeHTML(placeId)}"` : 'data-hg-social-meet-open="all"';
-    return `<button class="hg-spotmeeting-link" type="button" ${attrs} data-hg-spotmeeting-social-followup="1">${escapeHTML(label || 'Åpne Social Meet')}</button>`;
+    return `<button class="hg-spotmeeting-link" type="button" ${attrs} data-hg-spotmeeting-social-followup="1">${escapeHTML(label || 'Mine møter')}</button>`;
   }
 
   function socialMeetOpenOptions(context){
@@ -210,7 +210,9 @@
   }
 
   function openSocialMeetFollowUp(context){
-    return root.HG_SocialMeetUI?.open?.(socialMeetOpenOptions(context));
+    if (typeof root.HG_SocialMeetUI?.open !== 'function') return;
+    close();
+    return root.HG_SocialMeetUI.open(socialMeetOpenOptions(context));
   }
 
   function inviteContextForBackend(context){
@@ -298,7 +300,7 @@
       const disabled = duplicate ? ' disabled' : '';
       const status = duplicate ? 'Allerede sendt' : 'Send forslag';
       return `<article class="hg-spotmeeting-candidate"><div><strong>${escapeHTML(candidate.displayName || candidate.targetUserId || 'Kandidat')}</strong><p>${escapeHTML(candidate.reason || 'Deler kunnskap, ruter eller begreper')}</p></div><button type="button" data-hg-spotmeeting-send="1" data-hg-spotmeeting-target="${escapeHTML(candidate.targetUserId)}" data-hg-spotmeeting-preset="${escapeHTML(presetMessageId)}"${disabled}>${status}</button></article>`;
-    }).join('')}</div><p class="hg-spotmeeting-status">${escapeHTML(note)}</p>${socialMeetFollowUpButton(contextForAction, 'Åpne Social Meet')}`;
+    }).join('')}</div><p class="hg-spotmeeting-status">${escapeHTML(note)}</p>${socialMeetFollowUpButton(contextForAction, 'Mine møter')}`;
   }
 
   async function renderOwnPlaceStatus(context){
@@ -306,7 +308,7 @@
     const mount = sheet.querySelector('[data-hg-place-status]');
     if (!mount || String(context?.contextType || '') !== 'place') return;
     if (backendMode() !== 'fastapi' || typeof root.HG_SocialMeetBackend?.getMyProfile !== 'function') {
-      mount.innerHTML = '<p>Stedssynlighet blir tilgjengelig når Social Meet-serveren er aktiv.</p>';
+      mount.innerHTML = '<p>Stedssynlighet blir tilgjengelig når møteserveren er aktiv.</p>';
       return;
     }
     let result;
@@ -335,7 +337,7 @@
       return;
     }
     const prefix = active ? 'Du viser deg midlertidig på et annet sted. ' : '';
-    mount.innerHTML = `<p><strong>Vis at du er her?</strong> ${escapeHTML(prefix)}Hvis du velger dette, kan andre Social Meet-brukere se profilen din på dette stedet i 60 minutter. Dette er selvoppgitt og deler ikke GPS.</p><button type="button" data-hg-place-status-set>Vis meg her i 60 min</button>`;
+    mount.innerHTML = `<p><strong>Vis at du er her?</strong> ${escapeHTML(prefix)}Hvis du velger dette, kan andre Møtes-brukere se profilen din på dette stedet i 60 minutter. Dette er selvoppgitt og deler ikke GPS.</p><button type="button" data-hg-place-status-set>Vis meg her i 60 min</button>`;
     mount.querySelector('[data-hg-place-status-set]')?.addEventListener('click', async event => {
       event.currentTarget.disabled = true;
       const saved = await root.HG_SocialMeetBackend.setPlaceStatus?.(context.contextId, 60);
@@ -367,7 +369,7 @@
         return;
       }
       if (!suggestions.length) {
-        target.innerHTML = `${renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+        target.innerHTML = `${renderStatus('Ingen demo-kandidater akkurat nå. Seed HG Social demo først.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Mine møter')}`;
         return;
       }
       target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, label, { demoOnly:true });
@@ -377,7 +379,7 @@
     if (!canTryBackendDiscovery()) {
       const readiness = root.HG_SocialMeetProfileBridge?.statusSummary?.();
       const message = readiness?.label || 'Ekte personmatching er ikke koblet til server i denne versjonen ennå.';
-      target.innerHTML = `${renderStatus(message, 'backendDisabled')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      target.innerHTML = `${renderStatus(message, 'backendDisabled')}${socialMeetFollowUpButton(context, 'Mine møter')}`;
       return;
     }
 
@@ -401,20 +403,20 @@
       const message = reason === 'not_authenticated' || reason === 'supabase_auth_unavailable'
         ? 'Logg inn med AHA for å finne folk å møte.'
         : reason === 'profile_not_published'
-          ? 'Social Meet-profilen din må være oppdagbar før du kan finne andre matcher.'
+          ? 'Møtes-profilen din må være oppdagbar før du kan finne andre matcher.'
           : reason === 'backend_not_enabled'
             ? 'Personmatching er ikke aktivert på serveren ennå.'
             : reason === 'network_error' || reason === 'backend_unavailable'
-              ? 'Social Meet-serveren svarer ikke akkurat nå.'
+              ? 'Møtes-serveren svarer ikke akkurat nå.'
               : action === 'here'
                 ? 'Kunne ikke hente stedsstatus akkurat nå.'
                 : 'Kunne ikke hente kunnskapsmatcher akkurat nå.';
       const disabled = ['backend_not_enabled','profile_not_published','not_authenticated','supabase_auth_unavailable'].includes(reason);
-      target.innerHTML = `${renderStatus(message, disabled ? 'backendDisabled' : 'error')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      target.innerHTML = `${renderStatus(message, disabled ? 'backendDisabled' : 'error')}${socialMeetFollowUpButton(context, 'Mine møter')}`;
       return;
     }
     if (!suggestions.length) {
-      target.innerHTML = `${renderStatus(action === 'here' ? 'Ingen andre har valgt å vise seg her akkurat nå.' : 'Ingen trygge kunnskapsmatcher akkurat nå.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`;
+      target.innerHTML = `${renderStatus(action === 'here' ? 'Ingen andre har valgt å vise seg her akkurat nå.' : 'Ingen trygge kunnskapsmatcher akkurat nå.', 'noCandidates')}${socialMeetFollowUpButton(context, 'Mine møter')}`;
       return;
     }
     target.innerHTML = renderSuggestionCards(suggestions, contextForAction, presetMessageId, action === 'here' ? 'Folk her nå' : label, { placeStatus: action === 'here' });
@@ -429,7 +431,7 @@
       ? 'Velg mellom selvoppgitt, tidsbegrenset stedsstatus og vanlige kunnskapsmatcher. Stedsstatus bruker bare dette History GO-stedet — ikke GPS, avstand eller bakgrunnssporing.'
       : 'Basert på tema og kunnskap. Kun forhåndsvalg.';
     const visibleActions = placeEntry ? ACTIONS : ACTIONS.filter(action => action !== 'here');
-    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>${escapeHTML(heading)}</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">${escapeHTML(note)}</p>${placeEntry ? '<div class="hg-place-status" data-hg-place-status><p>Henter din stedsstatus …</p></div>' : ''}<div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${visibleActions.map(action => actionButton(action, selectedAction, context)).join('')}</div>${socialMeetFollowUpButton(context, 'Mine møter / Social Meet')}<div data-hg-spotmeeting-candidates>${renderStatus('Henter folk å møte …', 'ready')}</div></div></section>`;
+    sheet.innerHTML = `<section class="hg-spotmeeting-panel"><header class="hg-spotmeeting-head"><div><h2>${escapeHTML(heading)}</h2><p class="hg-spotmeeting-context">${escapeHTML(context.title || 'Sted')}</p></div><button class="hg-spotmeeting-close" type="button" data-hg-spotmeeting-close="1" aria-label="Lukk">×</button></header><div class="hg-spotmeeting-body"><p class="hg-spotmeeting-note">${escapeHTML(note)}</p>${placeEntry ? '<div class="hg-place-status" data-hg-place-status><p>Henter din stedsstatus …</p></div>' : ''}<div class="hg-spotmeeting-actions" aria-label="Velg inngang til kunnskapsmøte">${visibleActions.map(action => actionButton(action, selectedAction, context)).join('')}</div>${socialMeetFollowUpButton(context, 'Mine møter')}<div data-hg-spotmeeting-candidates>${renderStatus('Henter folk å møte …', 'ready')}</div></div></section>`;
     if (placeEntry) void renderOwnPlaceStatus(context);
     void renderCandidates(context, selectedAction);
   }
@@ -467,7 +469,7 @@
     root.dispatchEvent?.(new CustomEvent('updateProfile', { detail }));
     if (currentState) currentState.lastSentContext = context;
     const target = ensureSheet().querySelector('[data-hg-spotmeeting-candidates]');
-    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Følg opp i Social Meet.</p>${socialMeetFollowUpButton(context, 'Åpne Social Meet')}`);
+    if (target) target.insertAdjacentHTML('beforeend', `<p class="hg-spotmeeting-status" data-hg-spotmeeting-state="sent">Forslag sendt. Se Mine møter for oppfølging.</p>${socialMeetFollowUpButton(context, 'Mine møter')}`);
     return result;
   }
 

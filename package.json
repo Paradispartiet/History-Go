@@ -95,7 +95,7 @@
     "test:historical-routes:audit": "npm run build:tools && node dist/tools/audit-historical-routes.mjs",
     "test:social-review": "node tests/social-review-fixes.test.js",
     "test:social-demo-visible": "node tests/hg-social-demo-visible.test.js",
-    "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js && node tests/social-meet-fastapi-adapter.test.js",
+    "test:social-meet-spotmeeting-smoke": "node tests/social-meet-spotmeeting-browser-smoke.test.js && node tests/social-meet-fastapi-adapter.test.js && node tests/hg-social-meet-aha-private-chat.test.js && node tests/hg-social-meet-unified-ui.test.js",
     "audit:civication:role-packs": "node scripts/audit-civication-role-packs.mjs",
     "build:civication:career-gameplay-matrix": "node scripts/audit-civication-career-gameplay.mjs --write",
     "audit:civication:career-gameplay": "node scripts/audit-civication-career-gameplay.mjs --check",
