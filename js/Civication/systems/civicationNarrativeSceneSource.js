@@ -303,8 +303,11 @@
     for (const storylet of (Array.isArray(stream?.storylets) ? stream.storylets : [])) {
       const key = `${norm(stream?.id)}::${norm(storylet?.id)}`;
       const progress = narrativeState?.stream_progress?.[key];
-      const day = progress?.answered_workday_day;
-      if (progress?.answered && Number.isInteger(day) && day >= 0) last = Math.max(last, day);
+      const rawDay = progress?.answered_workday_day;
+      const day = Number(rawDay);
+      if (progress?.answered && rawDay != null && Number.isInteger(day) && day >= 0) {
+        last = Math.max(last, day);
+      }
     }
     return last;
   }
@@ -313,7 +316,7 @@
   // live in narrative_state_v1. Both are needed: a prebuilt queue must not get
   // another NPC chapter, and rebuilding after an answer must not bypass the day.
   function npcAssignedThisWorkday(streams, usedStorylets, narrativeState) {
-    const currentDay = window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.();
+    const currentDay = Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? NaN);
     for (const stream of streams) {
       if (!isNpcRoleStoryStream(stream)) continue;
       for (const storylet of (Array.isArray(stream?.storylets) ? stream.storylets : [])) {
@@ -321,7 +324,8 @@
         const progress = narrativeState?.stream_progress?.[key];
         if (usedStorylets.has(key) && !progress?.answered) return true;
         if (progress?.answered && Number.isInteger(currentDay) &&
-            progress.answered_workday_day === currentDay) return true;
+            progress.answered_workday_day != null &&
+            Number(progress.answered_workday_day) === currentDay) return true;
       }
     }
     return false;
@@ -342,14 +346,23 @@
       });
       if (next) picks.push({ stream, storylet: next, weight: storyletWeight(next, narrativeState, active, state) });
     }
-    // Preserve other narrative priorities. Between eligible NPC stories choose
-    // the least recently encountered character, with manifest order breaking ties.
-    picks.sort((a, b) => (b.weight - a.weight) || (
-      isNpcRoleStoryStream(a.stream) && isNpcRoleStoryStream(b.stream)
-        ? lastNpcWorkday(a.stream, narrativeState) - lastNpcWorkday(b.stream, narrativeState)
-        : 0
-    ));
-    return picks;
+    // Preserve the relative order of all other narratives and their weight.
+    // Reorder *only* the NPC positions inside each equal-priority group;
+    // an intervening ordinary stream must not upset NPC fairness.
+    picks.sort((a, b) => b.weight - a.weight);
+    const npcGroups = new Map();
+    for (const pick of picks) {
+      if (!isNpcRoleStoryStream(pick.stream)) continue;
+      if (!npcGroups.has(pick.weight)) npcGroups.set(pick.weight, []);
+      npcGroups.get(pick.weight).push(pick);
+    }
+    for (const group of npcGroups.values()) {
+      group.sort((a, b) => lastNpcWorkday(a.stream, narrativeState) -
+        lastNpcWorkday(b.stream, narrativeState));
+    }
+    return picks.map(pick => isNpcRoleStoryStream(pick.stream)
+      ? npcGroups.get(pick.weight).shift()
+      : pick);
   }
 
   function phasePreferenceForStreamType(streamType) {
