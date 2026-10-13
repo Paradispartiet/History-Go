@@ -96,6 +96,11 @@
       active: false
     };
 
+    // An authored narrative answer has a stable event ID, unlike ordinary
+    // one-off NPC reactions. Never apply the same choice twice after reload.
+    const storyEventId = normStr(reaction.story_event_id);
+    if (storyEventId && (existing.story_event_ids || []).includes(storyEventId)) return existing;
+
     const trustScore = Number(existing.trust_score || 0) + Number(reaction.trustDelta || 0);
     const appearances = Number(existing.appearances || 0) + 1;
     const focusFamilies = Array.from(new Set([...(existing.focus_families || []), ...inferFocusFamilies(reaction)])).slice(-6);
@@ -124,7 +129,10 @@
       ]).slice(-8),
       latest_title: normStr(reaction.title),
       latest_line: normStr(reaction.line),
-      active: appearances >= 2 || Math.abs(trustScore) >= 2
+      active: appearances >= 2 || Math.abs(trustScore) >= 2,
+      ...(storyEventId ? {
+        story_event_ids: [...(existing.story_event_ids || []), storyEventId].slice(-120)
+      } : {})
     };
 
     state.characters[id] = nextChar;
@@ -215,6 +223,74 @@
     }
   }
 
+  // A successfully answered canonical narrative scene may advance an
+  // explicit fictional actor, then append that character's own reaction beat.
+  // ChoiceDirector is the answer owner; this store remains the sole writer.
+  async function applyNpcStoryChoice(ctx) {
+    const scene = ctx?.eventObj;
+    const choice = ctx?.choice;
+    const story = scene?.npc_story;
+    if (scene?.source_type !== "narrative_stream" ||
+        scene?.scene_source_adapter !== "narrative" ||
+        story?.kind !== "npc_role_story_v1" || !choice) return null;
+
+    const npcId = normStr(story.npc_id);
+    const streamId = normStr(scene.narrative_stream_id);
+    const storyletId = normStr(scene.narrative_storylet_id);
+    const choiceId = normStr(choice.id);
+    const response = choice.npc_response;
+    if (!npcId || !streamId || !storyletId || !choiceId || !response ||
+        !Number.isFinite(Number(response.trust_delta))) return null;
+
+    const npcApi = window.CivicationNPCs;
+    if (!npcApi || typeof npcApi.load !== "function" ||
+        typeof npcApi.resolveActor !== "function") return null;
+    await npcApi.load();
+    const npc = npcApi.lookup?.(npcId);
+    if (!npc?.role_ref) return null;
+    let actor = await npcApi.resolveActor(npcId);
+    if (!actor || actor.actor_id !== "npc:" + npcId) return null;
+
+    const roleEvent = story.role_transition;
+    if (roleEvent) {
+      const eventId = normStr(roleEvent.event_id);
+      const from = normStr(roleEvent.from);
+      const to = normStr(roleEvent.to);
+      const dest = to.split("/");
+      if (!eventId || dest.length !== 2 || !dest[0] || !dest[1]) return null;
+      const previous = getRoleHistory(npcId).find(row => row.event_id === eventId);
+      if (previous) {
+        if (previous.from !== from || previous.to !== to) return null;
+      } else {
+        const current = actor.role_ref.category + "/" + actor.role_ref.role_scope;
+        if (current !== from) return null;
+        actor = await recordRoleTransition(npcId,
+          { category: dest[0], role_scope: dest[1] }, eventId);
+        if (!actor) return null;
+      }
+    }
+
+    const storyEventId = "npc_story:" + streamId + ":" + storyletId + ":" + choiceId;
+    const reaction = updateCharacterThreadFromReaction({
+      story_event_id: storyEventId,
+      personId: npcId,
+      personName: normStr(npc.name),
+      personType: "fictional_npc",
+      subject: normStr(scene.subject),
+      title: normStr(response.title),
+      line: normStr(response.line),
+      trustDelta: Number(response.trust_delta)
+    });
+    return reaction ? { npc_id: npcId, actor_id: actor.actor_id,
+      role_scope: actor.role_ref.role_scope, story_event_id: storyEventId } : null;
+  }
+
+  function patchStoryChoice() {
+    const director = window.CivicationChoiceDirector;
+    if (typeof director?.registerHandler !== "function") return;
+    director.registerHandler("npc_character_story", applyNpcStoryChoice, 65);
+  }
+
   function patchReactionEvent() {
     if (window.__civiNpcCharacterThreadPatched) return;
     window.__civiNpcCharacterThreadPatched = true;
@@ -238,9 +314,14 @@
     recordRoleTransition
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", patchReactionEvent, { once: true });
-  } else {
+  function register() {
     patchReactionEvent();
+    patchStoryChoice();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", register, { once: true });
+  } else {
+    register();
   }
 })();
