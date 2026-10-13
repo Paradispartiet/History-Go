@@ -73,11 +73,36 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
       return !!app.HG_CiviEngine && !!app.CivicationJobs?.getLatestPendingOffer &&
         !!app.CivicationState?.getActivePosition;
     }, null, { timeout: 90000 });
+    // Diagnostics retain the unmodified state before any recovery attempt.
+    await page.waitForTimeout(2500);
+    const offerDiagnostics = await page.evaluate(() => {
+      const app = globalThis as any;
+      const badge = app.BADGES?.find((b: any) => b.id === 'naeringsliv');
+      return {
+        merit: JSON.parse(localStorage.getItem('merits_by_category') || '{}').naeringsliv?.points,
+        active: app.CivicationState?.getActivePosition?.(),
+        pending: app.CivicationJobs?.getLatestPendingOffer?.(),
+        offers: app.CivicationJobs?.getOffers?.(),
+        canReceive: app.CivicationJobs?.canReceiveNewOffers?.(),
+        badgeCount: app.BADGES?.length,
+        firstTier: badge?.tiers?.[0],
+        hasRebuild: typeof app.rebuildJobOffersFromCurrentMerits === 'function'
+      };
+    });
+    console.log('Civication organic job-offer diagnostics BEFORE recovery', JSON.stringify(offerDiagnostics));
+    if (!offerDiagnostics.pending) {
+      const recoveryProbe = await page.evaluate(async () => {
+        const app = globalThis as any;
+        return await app.rebuildJobOffersFromCurrentMerits?.();
+      });
+      console.log('Civication organic explicit offer rebuild diagnostic', JSON.stringify(recoveryProbe));
+      if (recoveryProbe?.ok) throw new Error('Organic job offer was missing until explicit rebuild; automatic initialization failed');
+    }
     await page.waitForFunction(() => {
       const app = globalThis as any;
       const offer = app.CivicationJobs?.getLatestPendingOffer?.();
       return offer?.career_id === 'naeringsliv' && Number(offer?.threshold) === 5;
-    }, null, { timeout: 60000 });
+    }, null, { timeout: 12000 });
     const pending = await page.evaluate(() => (globalThis as any).CivicationJobs.getLatestPendingOffer());
     assert.match(String(pending.title), /Ekspeditør|butikkmedarbeider/i);
     assert.equal((await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').naeringsliv?.points)), 5);
