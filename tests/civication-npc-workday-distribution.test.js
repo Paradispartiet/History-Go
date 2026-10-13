@@ -232,8 +232,11 @@ test("NPC role outcomes survive a runtime restart without duplicate role events"
   });
   const reloaded = resumed.win.CivicationNpcCharacterThreads.getState();
   for (const [, , npcId] of npcStories) {
-    assert.deepEqual(reloaded.characters[npcId]?.role_history,
-      after.characters[npcId]?.role_history, "Role history must survive page reload");
+    assert.deepEqual(
+      JSON.parse(JSON.stringify(reloaded.characters[npcId]?.role_history)),
+      JSON.parse(JSON.stringify(after.characters[npcId]?.role_history)),
+      "Role history must survive page reload"
+    );
   }
   const replay = await resumed.build("2026-10-07");
   assert(!replay.items.some(row => storyIds.has(row.event?.narrative_stream_id)),
