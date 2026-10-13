@@ -226,5 +226,38 @@
       "reason": "Kildene dokumenterer verk, produksjoner, tidligere fabrikk og historisk produktidentitet, men ikke minst to identifiserbare fysiske gjenstander med egen proveniens, gjenstandsfoto og tilstrekkelig direkte binding til akkurat Place. SNLs historiske foto av Bergene-produkt er ikke i seg selv bevis for at objektet stammer fra Marstrandgata.",
       "publication_decision": "NOT_PUBLISHED_PENDING_OBJECT_PROVENANCE"
     }
+  },
+  "quizcard_flip_browser_qa": {
+    "status": "PASS_SHIPPING_HANDLER_IN_ISOLATED_BROWSER_FIXTURE",
+    "verified_at": "2026-10-13",
+    "pull_request": "https://github.com/Paradispartiet/History-Go/pull/6291",
+    "workflow_run": "https://github.com/Paradispartiet/History-Go/actions/runs/38363088648",
+    "test_file": "tests/black-box-quiz-flip-browser.test.mjs",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1280,
+        "height": 900
+      }
+    ],
+    "verified": [
+      "Existing Scenekunst QuizCard-loader renders ten Black Box questions from registered canonical JSON",
+      "Actual bindPlaceCardQuizFlip from js/ui/place-card.js toggles through mouse click, Enter and Space",
+      "Expanded reading view uses rendered QuizCard, closes with Escape and retains focus semantics",
+      "Late legacy quiz image error does not disable the rendered QuizCard",
+      "Browser test finishes without uncaught page errors"
+    ],
+    "not_verified": [
+      "Full app PlaceCard with true image and navigation rather than a reduced fixture",
+      "Separate properly licensed factual portrait frontImage; a test-only neutral SVG was used, never published",
+      "Manual pixel-level visual assessment of complete PlaceCard on mobile and desktop"
+    ]
   }
 }
