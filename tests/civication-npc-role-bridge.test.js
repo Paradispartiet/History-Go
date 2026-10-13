@@ -21,7 +21,7 @@ function createHarness(options = {}) {
     fetch: async url => {
       fetched.push(url);
       if (url === "data/Civication/npcs/naeringsliv.json") return { ok: true, json: async () => npcs };
-      if (url === "/data/Civication/roleWorlds/index.json") {
+      if (url === "data/Civication/roleWorlds/index.json") {
         return options.badIndex ? { ok: true, json: async () => ({ schema: "invalid", roles: [] }) } : { ok: true, json: async () => index };
       }
       throw new Error("Unexpected fetch: " + url);
