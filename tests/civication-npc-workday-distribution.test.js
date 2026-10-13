@@ -145,9 +145,10 @@ function createHarness({ initialState = {}, backing = new Map(), firstDay = 0, i
     const remainingWork = state.mail_day_runtime_v1.items.filter(row =>
       (row.phase === "forenoon" || row.phase === "workday") && row.status !== "answered" &&
       row.optional !== true && row.suppressed_duplicate !== true);
-    assert.deepEqual(remainingWork.map(row => ({
-      phase: row.phase, status: row.status, id: row.event?.id
-    })), [], "Work phase did not complete");
+    assert.equal(remainingWork.length, 0, "Unanswered required work mail(s): " +
+      JSON.stringify(Array.from(remainingWork, row => ({
+        phase: row.phase, status: row.status, id: row.event?.id
+      }))));
     assert.equal(completed.has(date), true, "Workday counter did not advance");
     const ordered = npc.map(row => ({
       workday: workday - 1, npc_id: row.event.npc_story.npc_id,
