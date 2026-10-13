@@ -424,10 +424,10 @@
         phaseId: fallbackPhase,
         slot: { slot: "injected_narrative" }
       }, stream, storylet);
-      event.narrative_source_meta = {
-        preferred_phases: preferredPhases
-      };
-      return [event];
+      return [{
+        ...event,
+        narrative_source_meta: { preferred_phases: preferredPhases }
+      }];
     }
 
     return [];
