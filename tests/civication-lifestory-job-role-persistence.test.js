@@ -37,7 +37,7 @@ async function boot(previousSave = null, initialPosition = null) {
   const { window } = dom;
   if (previousSave) window.localStorage.setItem(STORAGE_KEY, previousSave);
   window.fetch = async (resource) => {
-    const relative = String(resource).replace(/^\\.?\\//, "");
+    const relative = String(resource).replace(/^\.?\//, "");
     const absolute = path.join(ROOT, relative);
     if (!fs.existsSync(absolute)) return { ok: false, status: 404 };
     return { ok: true, status: 200, json: async () => JSON.parse(fs.readFileSync(absolute, "utf8")) };
