@@ -21,6 +21,8 @@ const stream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/stei
 const frodeStream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/frode_role_change.json"));
 const ingerStream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/inger_role_change.json"));
 const manifest = JSON.parse(read("data/Civication/narratives/manifest.json"));
+const editorialMatrix = JSON.parse(read("data/Civication/narratives/editorial/npcRoleStoryMatrixV1.json"));
+const literaryCrosswalk = JSON.parse(read("data/Civication/lifestory/editorial/narrativeCrosswalkV1.json"));
 const STORE_KEY = "hg_civi_npc_character_threads_v1";
 const STEIN = "stein_peer_mellomleder";
 const roleChanged = "stein_role_story:confirmed_appointment";
@@ -286,4 +288,40 @@ test("Frode and Inger retain identity through their own delayed role outcomes", 
     assert.equal(actor.role_history.length, 1);
     assert.equal((await resumed.window.CivicationNPCs.resolveActor(expected.id)).role_history.length, 1);
   }
+});
+
+test("Three NPC arcs and 12 chapters agree with their editorial matrix and literary candidates", () => {
+  assert.equal(editorialMatrix.schema, "civication_npc_role_story_editorial_matrix_v1");
+  assert.equal(editorialMatrix.editorial_only, true);
+  assert.equal(editorialMatrix.stories.length, 3);
+  const allStreams = [stream, frodeStream, ingerStream];
+  const canonicalContemporaryIds = new Set(literaryCrosswalk.contemporaryTypes.map(c => c.id));
+  let total = 0;
+  for (const entry of editorialMatrix.stories) {
+    const source = allStreams.find(x => x.id === entry.stream_id);
+    assert(source, "Unknown stream " + entry.stream_id);
+    assert(manifest.streams.some(x => x.id === entry.stream_id && x.path === entry.source_path));
+    const npc = npcs.npcs.find(x => x.id === entry.npc_id);
+    assert(npc && npc.role_ref, "Every narrative actor must have a fictional catalog role");
+    assert.deepEqual(entry.player_role_scopes, source.applies_when.role_scopes);
+    assert.deepEqual(entry.chapters.map(x => x.scene_id), source.storylets.map(x => x.id));
+    assert.equal(entry.role_transition.from,
+      npc.role_ref.category + "/" + npc.role_ref.role_scope);
+    assert.equal(source.storylets[2].npc_story.role_transition.event_id, entry.role_transition.event_id);
+    assert.equal(source.storylets[2].npc_story.role_transition.from, entry.role_transition.from);
+    assert.equal(source.storylets[2].npc_story.role_transition.to, entry.role_transition.to);
+    assert.equal(source.storylets[2].id, entry.role_transition.confirmation_chapter);
+    for (const [i, chapter] of entry.chapters.entries()) {
+      const authored = source.storylets[i];
+      assert.equal(authored.npc_story.npc_id, entry.npc_id);
+      assert(authored.choices.length >= 2);
+      assert(authored.choices.every(c => c.npc_response && Number.isFinite(c.npc_response.trust_delta)));
+      assert.equal(authored.npc_story.available_after?.min_workdays || 0,
+        chapter.minimum_workdays_after_prior);
+      if (chapter.role_required) assert.equal(authored.npc_story.requires_role_ref, chapter.role_required);
+      total += 1;
+    }
+    assert(entry.narrative_crosswalk_candidates.c_story_ids.every(id => canonicalContemporaryIds.has(id)));
+  }
+  assert.equal(total, 12);
 });
