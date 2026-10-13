@@ -178,6 +178,9 @@
     state.spilteScener.push(scene.id);
     const entry = {
       dag: state.dag,
+      // Fortellingsdag på tvers av jobbroller, uavhengig av shell-kalender.
+      livsdag: state.livsdag || state.dag,
+      rolle: state.rolle,
       fase: state.fase,
       sceneId: scene.id,
       sceneTittel: State.presentText(state, content, scene.tittel),
@@ -246,6 +249,9 @@
     if (isContinuationPaused(state, content)) throw new Error("[LifestoryRunner] fortsettelsen er satt på pause");
     if (!state.dagFerdig) throw new Error("[LifestoryRunner] dagen er ikke ferdig — kan ikke starte neste dag");
     if (content.role.symposium && state.dag >= content.role.symposium.sisteDag) throw new Error("[LifestoryRunner] neste kapittel må åpnes før neste dag");
+    // Én sammenhengende fortellingstid for arkivet. Hver rolle beholder
+    // dessuten sin lokale kapiteldag, som gjenopptas ved senere jobbbytte.
+    state.livsdag = (Number.isInteger(state.livsdag) && state.livsdag > 0 ? state.livsdag : state.dag) + 1;
     state.dag += 1;
     state.fase = content.faser[0].id;
     state.dagFerdig = false;

@@ -49,7 +49,10 @@
    * booter eller spilleren tar en jobb. Ukjent rolle-id feiler fast i
    * Content.loadContent (manifest-oppslag) — ingen stille fallback.
    */
-  let currentRoleId = EXPLICIT_ROLE_ID || DEFAULT_ROLE_ID;
+  // Ved nettleseromstart gjenopptas aktiv lagret rolle før shellen booter.
+  // Ellers ville standardrollen lage et unødvendig bytte på hver reload.
+  const persistedRoleId = /** @type {any} */ (window).CivicationLifestoryState?.load?.()?.rolle;
+  let currentRoleId = EXPLICIT_ROLE_ID || persistedRoleId || DEFAULT_ROLE_ID;
 
   /** @type {any} */ let content = null;
   /** @type {any} */ let baseContent = null;
@@ -57,6 +60,8 @@
   let continuationError = "";
   /** @type {any} */ let state = null;
   /** @type {Promise<void>|null} */ let loading = null;
+  // Jobbresolver og oppstart kan laste innhold samtidig. Siste rolle vinner.
+  let roleLoadSequence = 0;
   /** Siste konsekvenstekst (fortellingsmessig feedback etter et valg). */
   /** @type {{ tekst: string, valgTekst: string, deltas: Array<{ key: string, label: string, delta: number }>, dramatisert: boolean }|null} */ let sisteKonsekvens = null;
 
@@ -124,18 +129,18 @@
   }
 
   /**
-   * Last innhold + Player State for en rolle. Ny state når lagret state
-   * tilhører en annen rolle (én lagringsplass per spiller).
+   * Last riktig rolles fortelling fra den ene Player State-lagringen.
+   * Jobbbytte arkiverer forrige rolletilstand i samme save; retur fortsetter
+   * dens kapitler, relasjoner og valg. Ingen jobb-resolver kobles ut.
    * @param {string} roleId
    */
   async function loadRole(roleId) {
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
+    const sequence = ++roleLoadSequence;
     const base = await Content.loadContent(roleId);
-    let saved = State.load();
-    if (!saved || saved.rolle !== roleId) {
-      saved = State.createInitialState(base);
-    }
+    if (sequence !== roleLoadSequence) return;
+    const saved = State.selectRole(State.load(), base);
     // Restore content before reconciliation, even before the shell has booted.
     let restored = base;
     if (saved.fortsettelseId || saved.fortsettelser) {
@@ -345,7 +350,7 @@
     const m = state.meters;
     const items = [
       ["Rolle", content.role.navn], ["Dag", state.dag], ["Fase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
-      ["Psyke", m.psyke], ["Energi", m.energi], ["Penger", m.penger + " PC"]
+      ["Psyke", m.psyke], ["Energi", m.energi], ["Fortellingsøkonomi", m.penger]
     ];
     const stamp = lifestyleStamp();
     if (stamp) items.push(["Livsstil", (stamp.icon ? stamp.icon + " " : "") + stamp.name]);
@@ -615,7 +620,7 @@
       ["phase", view.dagFerdig ? "Dagen er over" : (view.fase ? view.fase.navn : state.fase)],
       ["meter", "Psyke " + m.psyke],
       ["meter", "Energi " + m.energi],
-      ["pc", m.penger + " PC"]
+      ["meter", "Fortellingsøkonomi " + m.penger]
     ];
     header.textContent = "";
     chips.map(function (chip) {
