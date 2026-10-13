@@ -1,6 +1,6 @@
 # Civication – NPC-rollebytter og tilbakevendende fortellinger (v1)
 
-**Status 13. oktober 2026: Stein-vertikalsnitt implementert i eksisterende narrative adapter og ChoiceDirector, men fortsatt under CI og ikke merget.** Dette dokumentet viderefører PR #6285. Formålet er å materialisere rollebytter som konsekvenser av eksisterende Civication-scener, ikke innføre en ny Scene Pipeline, NPC-lagring eller History Go-identitet.
+**Status 13. oktober 2026: Tre NPC-forløp (Stein, Frode, Inger) med 12 authored narrative scener, forsinket progresjon over arbeidsdager og egne rollehendelser. Målrettet CI har bestått, men PR #6285 er fremdeles draft.** Dette dokumentet viderefører PR #6285. Formålet er å materialisere rollebytter som konsekvenser av eksisterende Civication-scener, ikke innføre en ny Scene Pipeline, NPC-lagring eller History Go-identitet.
 
 ## Bekreftet teknisk grunnlag
 
@@ -41,6 +41,36 @@ Dette er **synopsiser**, ikke påstander om eksisterende spillscener eller forme
 - Kontroll: `tests/civication-npc-stein-role-story.test.js` tester valg, rollehistorikk, idempotens, reload, tillitsvariant og mislykket svar. `civication-choice-director-daily-middleware.test.js` er utvidet for å kontrollere at feilet narrative svar ruller tilbake progresjonsflagg.
 
 Denne løypen gir ikke Stein en autoritativ stillingstildeling; rollebyttet er en narrativ Role World-referanse. Ingen spiller får lønn eller nye rettigheter av hendelsen. **Produksjonsgodkjenning krever bestått CI på siste commit og faktisk brukerreisetest.**
+
+
+## Tre rollefortellinger – samlet produksjonsmatrise
+
+Den maskinlesbare redaksjonelle fasiten ligger i [`npcRoleStoryMatrixV1.json`](../data/Civication/narratives/editorial/npcRoleStoryMatrixV1.json). Den inneholder 3 selvstendige aktørtråder og 12 scene-ID-er og er **ikke** en ny runtime-motor. Autoritativt sceneinnhold er fortsatt de tre JSON-kildene, registrert i `narratives/manifest.json`.
+
+| NPC | Scene 1 – problem | Scene 2 – organisasjonens prosess | Scene 3 – faktisk rollehendelse | Scene 4 – forsinket ettervirkning |
+| --- | --- | --- | --- | --- |
+| Stein Mæland | `stein_peer_priority` – omstridt ressursfordeling, tillit | `stein_job_opening` – intern avdelingslederstilling | `stein_confirmed_appointment` – mellomleder → avdelingsleder | `stein_new_role_followup` – gammel uenighet i nytt koordineringsmøte |
+| Frode Aas | `frode_line_stop` – vibrasjoner, produksjonspress og ansvar | `frode_promotion_process` – utlysning, vurdering og dokumentasjon | `frode_confirmed_appointment` – formann → mellomleder | `frode_roster_followup` – belastende vaktplan og lojalitet til skiftet |
+| Inger Holm | `inger_cost_dispute` – kuttforslag og nattskiftets faktiske arbeid | `inger_reorganization_notice` – varslet sammenslåing | `inger_confirmed_reorganization` – avdelingsleder → mellomleder | `inger_knowledge_followup` – faglig kunnskap uten tidligere signaturmyndighet |
+
+**Tidsmatrise:** Kapittel 2 krever minst én fullført ny arbeidsdag etter kapittel 1; kapittel 3 krever ytterligere to; kapittel 4 krever minst én til. Dette er gater på `narrative_state_v1.stream_progress[*].answered_workday_day` kombinert med `CivicationWorkdayRuntime.getWorkdayDayIndex()`. Dermed er det ordinære spilldager, ikke brukerens virkelige ventetid, som styrer neste kapittel. Avvist svar rulles tilbake av den eksisterende DailyMailBuilder-middleware.
+
+**Frode – synopsis:** Et uavklart maskinavvik viser forskjellen mellom produktivitetspress og dokumenterbar sikkerhet. Spilleren kan bidra med konkrete observasjoner eller holde avstand. Frode får deretter muligheten til en mellomlederstilling gjennom en separat organisatorisk vurdering. Etter utnevnelsen må han lage en vaktplan som utsetter de samme kollegaene for mer belastning. Tilliten fra avvikssaken bestemmer hvordan han går inn i samtalen, mens spillerens innvendinger kan endre den faglige dialogen, ikke ansettelsesvedtaket.
+
+**Inger – synopsis:** Et nedbemanningsforslag baseres på målbare timer uten å fange opp oppgavene nattskiftet faktisk løser. En senere omorganisering gjør at Inger mister budsjett- og personalansvaret. Hennes faglige erfaring forsvinner ikke sammen med tittelen. Når en vedlikeholdsrutine mangler godkjenner, må spilleren velge mellom å bidra til en dokumentert overlevering og å la saken vente. Samtalen preges av om spilleren tidligere hjalp henne med konkrete opplysninger eller avviste henne.
+
+**Rollebasert avgrensning:** Steins serie er for `fagarbeider`; Frode og Inger er skrevet for `fagarbeider` og `mellomleder`. Denne avgrensningen ligger i scene-kildenes `applies_when.role_scopes`, og ikke i et nytt globalt NPC-rollesystem. Rollebyttet gjelder den fiktive bipersonens canonical Role World-referanse. Spillerens aktive jobb, lønn og myndighet er uendret.
+
+### Forhold til litterært atlas
+
+I PR #6283 er `narrativeCrosswalkV1.json` og 24 C-typer redaksjonelle kryssreferanser. Denne matrisen noterer **foreløpige tematiske kandidater**, ikke nye autoritative koblinger: Stein C06/C23 (faglig integritet og vedvarende feil), Frode C17/C23 (slitasje og et arbeidsproblem som ikke forsvinner), Inger C06/C23 (faglig integritet ved endret organisasjon). Bokers plot-koder og de 24 L-sporene endres ikke. En senere redaksjonell kontroll må ta stilling til konkrete L-/P-koblinger og om C-typene passer i spillerrollene; ingen tildeling er aktivert i runtime.
+
+### Test- og godkjenningsgrense
+
+- `tests/civication-npc-stein-role-story.test.js` dekker alle tre aktører, alle 12 authored scene-ID-er, reelle ChoiceDirector-valg, minstekravet mellom arbeidsdager, replikkvarianter for tillit, idempotens og rollehistorikk etter reload.
+- `civication-choice-director-daily-middleware.test.js` verifiserer rollback av narrative fremdriftsflagg når et svar ikke blir akseptert.
+- Fokusert NPC CI, TypeScript guard, dokumentasjon og workflow-routing har bestått i forrige kontrollrunde; full Civication-regresjon er separat påvirket av generert readiness-data som også finnes uendret i main.
+- **Ikke godkjent som sluttført brukerreise:** full nettlesergjennomgang fra dagskø via inbox, innslag i spilldialogen, visning etter neste spilldag og endelig PR-merge mangler dokumentert sluttbevis.
 
 ## Implementeringsgrense – videre generalisering til kompilerte work-scener
 
