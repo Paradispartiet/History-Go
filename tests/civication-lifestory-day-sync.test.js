@@ -104,6 +104,24 @@ async function main() {
   const archived = app.current().arkiv.length;
   assert.ok(archived > 0, "day one choices are stored");
 
+  // The blocked-player answer link is a real UI action, not an engine
+  // bypass: opening the modal must not move the shared calendar.
+  let openedAnswerSurface = 0;
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.CivicationNextActionUI = {
+    open: () => { openedAnswerSurface++; return true; }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
+  panel.querySelector("[data-lifestory-next-action]").click();
+  assert.equal(openedAnswerSurface, 1);
+  assert.equal(calendar.getClock().dayIndex, 1);
+  delete window.CivicationNextActionSelector;
+  delete window.CivicationNextActionUI;
+  window.CivicationLifestoryUI.render();
+
   // An unemployed player can skip empty phases, but may not skip an
   // unanswered required morning mail.
   app.setQueue([{ id: "required-morning", phase: "morning", status: "queued", required: true }]);
