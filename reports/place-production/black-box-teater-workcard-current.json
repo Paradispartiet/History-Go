@@ -86,8 +86,65 @@
   "visual_qa_status": "PENDING",
   "scope_note": "To stedbundne forestillinger på Marstrandgata fra 2004; historiske oppsetninger fra Aker Brygge er ikke ført til dette fysiske stedet. Illustrasjonene er originale og tydelig merket. Ingen separat lisensklarert frontImage er publisert.",
   "next_required": [
-    "Lisensklarert separat stående frontfoto",
-    "Mobil- og desktopkontroll av faktisk PlaceCard",
-    "Kildegjennomgang av eventuelle selvstendige Objects og Brands"
-  ]
+    "Dokumentert rett til separat, faktisk stående frontfoto (egen fil, ikke utsnitt eller kopi av eksisterende place.image)",
+    "Manuell kvalitetsvurdering og full PlaceCard/QuizCard-flip på faktisk stedsvisning, mobil og desktop",
+    "Kildegjennomgang av eventuelle selvstendige Objects og Brands (uten fyllstoff)"
+  ],
+  "partial_browser_qa": {
+    "status": "PASS_COLLECTIONS_ONLY",
+    "verified_at": "2026-10-13",
+    "test_file": "tests/black-box-productions-browser-audit.test.mjs",
+    "pull_request": "https://github.com/Paradispartiet/History-Go/pull/6288",
+    "merge_commit": "575fe0d9c3185b01b4330cbf99b00ea9b5ebe3f8",
+    "viewports": [
+      {
+        "width": 390,
+        "height": 844
+      },
+      {
+        "width": 768,
+        "height": 1024
+      },
+      {
+        "width": 1280,
+        "height": 900
+      }
+    ],
+    "verified": [
+      "canonical People + Productions profile",
+      "two correctly dated Marstrandgata productions",
+      "actual AVIF member artwork decodes",
+      "People preview kept beside title",
+      "production collection opens with two source-bound works",
+      "no Aker Brygge-only productions in contemporary place collection",
+      "no document horizontal overflow in isolated fixture",
+      "no uncaught JS exceptions in isolated fixture"
+    ],
+    "not_verified": [
+      "separate portrait frontImage, missing",
+      "full app PlaceCard flip with front image and QuizCard",
+      "manual pixel-level visual assessment of complete PlaceCard"
+    ]
+  },
+  "front_image_research": {
+    "status": "NEEDS_EXPLICIT_REUSE_TERMS",
+    "existing_photo_role": "place.image: Rune Aakvik / Oslo Museum, CC BY-SA 4.0, not to be repurposed as frontImage",
+    "candidates": [
+      {
+        "source": "Sceneweb",
+        "title": "The façade of Black Box Teater, Marstrandgata 8 in Oslo, at night",
+        "url": "https://sceneweb.no/en/multimedia/25271",
+        "published_license_label": "Free licence / Fri lisens",
+        "issue": "Specific reuse terms and permission to publish a separately edited portrait rendition are not shown on the source record; photographer and credit should also be verified.",
+        "decision": "REVIEW_ONLY_NOT_PUBLISHED"
+      },
+      {
+        "source": "Black Box teater",
+        "title": "Exterior/entrance photo on official website",
+        "url": "https://blackbox.no/nb/black-box-teater-soker-administrativ-leder/",
+        "issue": "An image appearing on an official institutional website is not independent reuse permission.",
+        "decision": "REVIEW_ONLY_NOT_PUBLISHED"
+      }
+    ]
+  }
 }
