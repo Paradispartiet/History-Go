@@ -599,6 +599,7 @@
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
+        + pendingDayActionHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
