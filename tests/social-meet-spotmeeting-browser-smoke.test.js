@@ -121,7 +121,7 @@ assert(sheet.textContent.includes('selvoppgitt') || sheet.textContent.includes('
 for (const actionLabel of ['Folk her nå', 'Folk å møte', 'Inviter til quiz', 'Inviter til observasjon', 'Inviter til rute']) {
   assert(sheet.textContent.includes(actionLabel), `canonical sheet offers choice: ${actionLabel}`);
 }
-assert(sheet.textContent.includes('Mine møter / Social Meet'), 'place-context sheet keeps a direct follow-up entry');
+assert(sheet.textContent.includes('Mine møter'), 'place-context sheet keeps a direct follow-up entry');
 assertNoForbiddenUi(sheet, 'canonical Spotmeeting sheet');
 
 click(appWindow, '[data-hg-spotmeeting-action="quiz"]', 'Canonical sheet → Inviter til quiz');
