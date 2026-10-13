@@ -86,16 +86,32 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
-    if (depth !== 'smoke') {
-      report.organicPlayer = await verifyOrganicPlayer(browser, origin);
-      console.log('Civication organic player acceptance ok', JSON.stringify(report.organicPlayer));
-      if (depth === 'full') {
+    const acceptanceFailures: string[] = [];
+    // These are independent gates. The organic job-offer test must not prevent
+    // collecting the results of all 20 multi-day scenarios, or vice versa.
+    if (depth === 'full') {
+      try {
         report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
         console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
+      } catch (error) {
+        report.arbeidsledigError = String((error as Error)?.message || error);
+        acceptanceFailures.push('arbeidsledig');
+        console.error('Civication Arbeidsledig browser failed:', report.arbeidsledigError);
+      }
+    }
+    if (depth !== 'smoke') {
+      try {
+        report.organicPlayer = await verifyOrganicPlayer(browser, origin);
+        console.log('Civication organic player acceptance ok', JSON.stringify(report.organicPlayer));
+      } catch (error) {
+        report.organicPlayerError = String((error as Error)?.message || error);
+        acceptanceFailures.push('organicPlayer');
+        console.error('Civication organic player browser failed:', report.organicPlayerError);
       }
     } else {
       console.log('Civication PR smoke passed; full Arbeidsledig scenarios run daily or by workflow_dispatch.');
     }
+    if (acceptanceFailures.length) throw new Error('Civication browser acceptance failed: ' + acceptanceFailures.join(', '));
   } finally {
     try { if (browser) await browser.close(); }
     finally {
