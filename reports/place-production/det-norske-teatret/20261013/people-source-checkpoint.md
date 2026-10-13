@@ -7,7 +7,7 @@ Dato: 13. oktober 2026. Kontrollgrunnlag: manifestløst snapshot `baseline.json`
 - **87/87** People-oppføringer fra manifestets stedsutvalg inspisert i sin faktiske kildefil (inkludert enkeltobjekt-formatet for Jon Eikemo).
 - **0/87** har utfylt `image`-felt i den eksisterende basislisten. Ikke fyll med generiske eller urettighetsavklarte portretter.
 - **11/87** har ett eller flere eksplisitte `externalLinks` eller `source_urls` i People-kildefilen. **76/87** mangler begge kildefeltene ved kontrollstart. At en profil har lenker, er ikke bevis for at de dekker akkurat Det Norske Teatret-tilknytningen.
-- **65/87** har gjenkjennelig intern begrunnelsesprosa etter maskinell søking etter blant annet «presist … anker», «profilanker», «kildeanker» og «Entryen»; enkelte andre formuleringer kan ha samme problem.
+- **66/87** har gjenkjennelig intern begrunnelsesprosa etter maskinell søking etter blant annet «presist … anker», «profilanker», «kildeanker» og «Entryen»; enkelte andre formuleringer kan ha samme problem.
 - Personens `year` og `placeId` alene er **ikke** verifikasjon av at vedkommende virket i dagens teaterhus. Flere årstall gjelder tiden før 1985.
 
 ## Rettet og kontrollert i denne avgrensede endringen
