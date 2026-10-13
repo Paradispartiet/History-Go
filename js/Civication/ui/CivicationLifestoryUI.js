@@ -590,6 +590,12 @@
     const continuationHtml = next
       ? '<button class="civi-btn primary" type="button" data-lifestory-continue="' + escapeHtml(next.id) + '"' + (continuing ? ' disabled' : '') + '>' + (continuing ? "Åpner fortsettelsen …" : escapeHtml(next.navn)) + '</button>'
       : "";
+    // A pending mail needs a reachable player action in Min dag, even when
+    // there is no active job or visible top-action card.
+    const pendingDayAction = window.CivicationNextActionSelector?.getCurrent?.();
+    const pendingDayActionHtml = pendingDayAction && !pendingDayAction.canStartNewDay
+      ? '<button class="civi-btn" type="button" data-lifestory-next-action>Gå til neste handling</button>'
+      : "";
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
@@ -597,6 +603,7 @@
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
+        + pendingDayActionHtml
         + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
         + "</div>";
     return ""
@@ -757,6 +764,10 @@
           choiceBtn.getAttribute("data-lifestory-scene") || "",
           choiceBtn.getAttribute("data-lifestory-choice") || ""
         );
+        return;
+      }
+      if (target.closest("[data-lifestory-next-action]")) {
+        window.CivicationNextActionUI?.open?.();
         return;
       }
       if (target.closest("[data-lifestory-next-day]")) { onNextDay(); return; }
