@@ -9,6 +9,7 @@ const { JSDOM } = require("jsdom");
 const ROOT = path.join(__dirname, "..");
 const STORAGE_KEY = "civication_lifestory_v1";
 const SCRIPTS = [
+  "js/Civication/civicationV2Config.js",
   "js/Civication/core/CivicationStorageAdapter.js",
   "js/Civication/core/civicationJsonStore.js",
   "js/Civication/lifestory/lifestoryContent.js",
