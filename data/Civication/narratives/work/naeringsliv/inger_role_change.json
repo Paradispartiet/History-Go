@@ -1,0 +1,252 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "inger_role_change_work_stream",
+  "type": "work",
+  "title": "Inger og den nye organisasjonen",
+  "sociological_theme": "myndighetstap_omorganisering_og_faglig_kontinuitet",
+  "applies_when": {
+    "role_scopes": [
+      "fagarbeider",
+      "mellomleder"
+    ]
+  },
+  "time_slots": [
+    "work"
+  ],
+  "storylets": [
+    {
+      "id": "inger_cost_dispute",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Inger Holm",
+      "subject": "Tallene fra nattskiftet",
+      "situation": [
+        "Inger legger frem et forslag om å redusere nattbemanningen etter et kvartal med færre bestillinger.",
+        "Forslaget tar utgangspunkt i timeverk og ordretall. Det viser ikke hvor ofte nattskiftet hjelper morgenlaget ved maskinstans.",
+        "Hun ber om eksempler før møtet med ledelsen, men sier at kuttene må vurderes uansett."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Legg frem konkrete hendelser der nattskiftet hindret driftsstans.",
+          "effect": 1,
+          "tags": [
+            "inger_role_inger_cost_dispute_0"
+          ],
+          "feedback": "Inger må regne inn oppgavene bemanningen faktisk løser.",
+          "npc_response": {
+            "trust_delta": 2,
+            "title": "Inger får et vanskeligere regnestykke",
+            "line": "Dette er det jeg manglet. Nå må vi regne inn det folk faktisk gjør."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at innsparingsforslaget er hennes ansvar alene.",
+          "effect": 0,
+          "tags": [
+            "inger_role_inger_cost_dispute_1"
+          ],
+          "feedback": "Du markerer avstand, men gir ikke informasjon som kan endre beregningen.",
+          "npc_response": {
+            "trust_delta": -2,
+            "title": "Inger får ingen opplysninger",
+            "line": "Ansvaret er mitt. Jeg ba om grunnlag, ikke enighet."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder"
+      },
+      "adds_flags": [
+        "inger_role_stage1"
+      ]
+    },
+    {
+      "id": "inger_reorganization_notice",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Administrasjonen",
+      "subject": "Planen om ny lederstruktur",
+      "situation": [
+        "Konsernledelsen varsler at to avdelinger skal få felles ledelse etter en økonomisk gjennomgang.",
+        "Inger forteller at hun har levert innsigelser til beregningen. Hun har ikke fått svar på om den nåværende lederstillingen blir videreført.",
+        "Du blir bedt om å beskrive hvilken fagkunnskap som risikerer å forsvinne når lederlinjene slås sammen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv rutiner og erfaringer som må tas vare på.",
+          "effect": 1,
+          "tags": [
+            "inger_role_inger_reorganization_notice_0"
+          ],
+          "feedback": "Oversikten legges ved høringsrunden, uavhengig av hvem som blir leder.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Inger leser gjennomgangen",
+            "line": "Det er lettere å forsvare arbeidet når vi kan vise nøyaktig hva som står på spill."
+          }
+        },
+        {
+          "id": "B",
+          "label": "La være å levere innspill til omorganiseringen.",
+          "effect": 0,
+          "tags": [
+            "inger_role_inger_reorganization_notice_1"
+          ],
+          "feedback": "Høringsfristen går ut uten eksemplene fra ditt skift.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Inger savner innspill",
+            "line": "Stillhet viser ikke hva avdelingen faktisk kan."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "available_after": {
+          "storylet_id": "inger_cost_dispute",
+          "min_workdays": 1
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "inger_role_stage1"
+        ]
+      },
+      "adds_flags": [
+        "inger_role_stage2"
+      ]
+    },
+    {
+      "id": "inger_confirmed_reorganization",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Administrasjonen",
+      "subject": "Inger får et smalere ansvarsområde",
+      "situation": [
+        "Omorganiseringen er vedtatt. Inger fortsetter i bedriften som mellomleder for faglig koordinering, men mister budsjett- og personalansvaret hun hadde som avdelingsleder.",
+        "Ledelsen har fastsatt organisasjonskartet. Ingen av spillerens valg tildeler eller trekker tilbake Ingers stilling.",
+        "Inger ber om en gjennomgang av de utestående sakene fra nattskiftet før overleveringen."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Møt henne med sakene og avklar hvem som nå beslutter hva.",
+          "effect": 1,
+          "tags": [
+            "inger_role_inger_confirmed_reorganization_0"
+          ],
+          "feedback": "Utestående saker får ansvarspersoner, mens Inger kan bidra med fagkunnskap.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Inger holder fast ved saken",
+            "line": "Dette er ikke enkelt. Men noen må sørge for at saken ikke blir borte."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Be henne sende spørsmålene til den nye avdelingslederen.",
+          "effect": 0,
+          "tags": [
+            "inger_role_inger_confirmed_reorganization_1"
+          ],
+          "feedback": "Ansvarsgrensen er tydelig, men avklaringen blir utsatt.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Inger får en kort beskjed",
+            "line": "Jeg har ikke myndigheten lenger. Det gjør ikke opplysningene uviktige."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "available_after": {
+          "storylet_id": "inger_reorganization_notice",
+          "min_workdays": 2
+        },
+        "role_transition": {
+          "event_id": "inger_role_story:confirmed_reorganization",
+          "from": "naeringsliv/avdelingsleder",
+          "to": "naeringsliv/mellomleder"
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "inger_role_stage2"
+        ]
+      },
+      "adds_flags": [
+        "inger_role_stage3"
+      ]
+    },
+    {
+      "id": "inger_knowledge_followup",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Inger Holm",
+      "subject": "Hva skjer med arbeidet etter omorganiseringen?",
+      "situation": [
+        "Etter omorganiseringen oppdager skiftet at en vedlikeholdsrutine mangler ny godkjenner.",
+        "Inger kjenner bakgrunnen for rutinen, men kan ikke lenger signere beslutningen. Den nye avdelingslederen har flere andre leveranser.",
+        "Hun møter deg for å finne en vei videre uten å gå utenom ansvarslinjene."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Skriv beslutningsgrunnlag med Inger og send det til rett leder.",
+          "effect": 1,
+          "tags": [
+            "inger_role_inger_knowledge_followup_0"
+          ],
+          "feedback": "Kunnskapen hennes brukes uten at gammel myndighet gjeninnføres.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Inger bidrar videre",
+            "line": "Jeg kan fortsatt bidra til saken, selv om signaturen nå tilhører en annen."
+          }
+        },
+        {
+          "id": "B",
+          "label": "La saken ligge til den nye lederen tar den opp.",
+          "effect": 0,
+          "tags": [
+            "inger_role_inger_knowledge_followup_1"
+          ],
+          "feedback": "Vedlikeholdsrutinen forblir uavklart.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Inger venter på avklaring",
+            "line": "Jeg kan ikke presse dette gjennom. Vi burde ha sendt grunnlaget likevel."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "available_after": {
+          "storylet_id": "inger_confirmed_reorganization",
+          "min_workdays": 1
+        },
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "trust_variants": {
+          "trusted": "Inger sier: «Du tok det jeg visste på alvor. Nå må vi få brukt det uten min gamle fullmakt.»",
+          "strained": "Inger sier: «Vi var uenige om kuttene. Jeg ber ikke om støtte, bare at rutinen behandles riktig.»",
+          "neutral": "Inger sier: «Organisasjonskartet er endret, men det tekniske problemet er akkurat det samme.»"
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "inger_role_stage3"
+        ]
+      },
+      "adds_flags": [
+        "inger_role_stage4"
+      ]
+    }
+  ]
+}
