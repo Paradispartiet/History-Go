@@ -1,0 +1,40 @@
+name: Civication A2 readiness refresh (temporary)
+
+on:
+  push:
+    branches:
+      - civication-a2-day-sync-2026-10-13
+    paths:
+      - .github/workflows/civication-a2-refresh-readiness-temporary.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate readiness artifacts from A2 canonical sources
+        run: |
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+          git diff --check
+          git diff --stat -- data/Civication/roleWorldRolloutReadiness.json reports/civication-role-world-rollout-readiness.md
+      - name: Check the five previously failing readiness tests
+        run: |
+          node tests/civication-administrasjonsmedarbeider-readiness-prerequisites.test.js
+          node tests/civication-film-tv-kurator-role-world-rollout.test.js
+          node tests/civication-film-tv-manusmedarbeider-role-world-rollout.test.js
+          node tests/civication-film-tv-produksjonsassistent-role-world-rollout.test.js
+          node tests/civication-role-world-rollout-readiness.test.js
+      - name: Commit only regenerated readiness outputs
+        run: |
+          git add -- data/Civication/roleWorldRolloutReadiness.json reports/civication-role-world-rollout-readiness.md
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'chore(civication): sync A2 Role Worlds readiness outputs'
+            git push origin HEAD:civication-a2-day-sync-2026-10-13
+          fi
