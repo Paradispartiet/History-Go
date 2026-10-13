@@ -32,6 +32,8 @@ const dataPaths = new Map([
 function setup(backing = new Map()) {
   let pending = null;
   let baseCalls = 0;
+  let workday = 0;
+  const progress = {};
   const adapters = new Map();
   const storage = {
     getItem: key => backing.get(key) || null,
@@ -56,7 +58,8 @@ function setup(backing = new Map()) {
       getState() { return {}; },
       getActivePosition() { return { career_id: "fagarbeider", role_key: "fagarbeider" }; }
     },
-    CivicationCareerRoleResolver: { resolveCareerRoleScope: () => "fagarbeider" }
+    CivicationCareerRoleResolver: { resolveCareerRoleScope: () => "fagarbeider" },
+    CivicationWorkdayRuntime: { getWorkdayDayIndex: () => workday }
   };
   window.window = window;
   const context = vm.createContext({
@@ -79,7 +82,7 @@ function setup(backing = new Map()) {
       active: { role_key: "fagarbeider" }, state: {},
       candidate_stream_ids: [stream.id],
       used_storylet_keys: used.map(id => stream.id + "::" + id),
-      narrativeState: { active_streams: [stream.id], flags, stream_progress: {} },
+      narrativeState: { active_streams: [stream.id], flags, stream_progress: progress },
       date: "2026-10-13", ordinal: used.length + 1
     });
     if (!available.length) return null;
@@ -91,12 +94,17 @@ function setup(backing = new Map()) {
     const result = await engine.answer(event.id, choiceId);
     if (result.ok) {
       used.push(event.narrative_storylet_id);
+      progress[stream.id + "::" + event.narrative_storylet_id] = {
+        answered: true, answered_workday_day: workday
+      };
       const sourceStory = stream.storylets.find(s => s.id === event.narrative_storylet_id);
       flags.push(...(sourceStory.adds_flags || []), ...(event.choices.find(c => c.id === choiceId)?.tags || []));
     }
     return result;
   }
-  return { window, backing, engine, scene, answer, used, flags, baseCalls: () => baseCalls };
+  return { window, backing, engine, scene, answer, used, flags, progress,
+    advanceWorkdays(n = 1) { workday += n; },
+    baseCalls: () => baseCalls };
 }
 
 test("Stein is authored in canonical narrative manifest and has four gated scenes", () => {
@@ -122,12 +130,18 @@ test("A real choice passes ChoiceDirector, preserves Stein and changes role once
   assert.equal(stateBefore.name, "Stein Mæland");
   assert.equal(stateBefore.role_history, undefined);
 
+  assert.equal(await h.scene(), null, "next chapter must not appear on the same workday");
+  h.advanceWorkdays(1);
   stage = await h.scene();
   assert.equal(stage.narrative_storylet_id, "stein_job_opening");
   result = await h.answer(stage, "A");
   assert.equal(result.ok, true);
   assert.equal(h.window.CivicationNpcCharacterThreads.getState().characters[STEIN].trust_score, 3);
 
+  assert.equal(await h.scene(), null, "appointment cannot happen on the same day as the opening");
+  h.advanceWorkdays(1);
+  assert.equal(await h.scene(), null, "appointment requires two completed workdays");
+  h.advanceWorkdays(1);
   stage = await h.scene();
   assert.equal(stage.narrative_storylet_id, "stein_confirmed_appointment");
   result = await h.answer(stage, "A");
@@ -157,6 +171,8 @@ test("A real choice passes ChoiceDirector, preserves Stein and changes role once
   assert.equal(afterRetry.beats.length, 3);
   assert.equal(afterRetry.trust_score, 4);
 
+  assert.equal(await h.scene(), null, "followup cannot occur immediately after appointment");
+  h.advanceWorkdays(1);
   const meeting = await h.scene();
   assert.equal(meeting.narrative_storylet_id, "stein_new_role_followup");
   assert(meeting.situation.some(x => x.includes("samme ærlighet")));
@@ -172,6 +188,12 @@ test("Later scene is gated on an actual recorded role, not just flags", async ()
   const h = setup();
   h.used.push("stein_peer_priority", "stein_job_opening", "stein_confirmed_appointment");
   h.flags.push("stein_role_stage1", "stein_role_stage2", "stein_role_stage3");
+  for (let i = 0; i < 3; i += 1) {
+    h.progress[stream.id + "::" + stream.storylets[i].id] = {
+      answered: true, answered_workday_day: i === 2 ? 3 : i
+    };
+  }
+  h.advanceWorkdays(4);
   assert.equal(await h.scene(), null);
   assert.equal(h.backing.size, 0);
 });
@@ -184,6 +206,7 @@ test("Low trust produces a different remembered reply and a successful role even
     assert(event);
     const result = await h.answer(event, "B");
     assert.equal(result.ok, true);
+    h.advanceWorkdays(i === 1 ? 2 : 1);
   }
   const meeting = await h.scene();
   assert(meeting.situation.some(x => x.includes("Vi har ikke vært enige")));
