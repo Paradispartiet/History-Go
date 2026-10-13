@@ -18,6 +18,8 @@ const sources = [
 const index = JSON.parse(read("data/Civication/roleWorlds/index.json"));
 const npcs = JSON.parse(read("data/Civication/npcs/naeringsliv.json"));
 const stream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/stein_role_change.json"));
+const frodeStream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/frode_role_change.json"));
+const ingerStream = JSON.parse(read("data/Civication/narratives/work/naeringsliv/inger_role_change.json"));
 const manifest = JSON.parse(read("data/Civication/narratives/manifest.json"));
 const STORE_KEY = "hg_civi_npc_character_threads_v1";
 const STEIN = "stein_peer_mellomleder";
@@ -26,10 +28,12 @@ const dataPaths = new Map([
   ["data/Civication/roleWorlds/index.json", index],
   ["data/Civication/npcs/naeringsliv.json", npcs],
   ["data/Civication/narratives/manifest.json", manifest],
-  ["data/Civication/narratives/work/naeringsliv/stein_role_change.json", stream]
+  ["data/Civication/narratives/work/naeringsliv/stein_role_change.json", stream],
+  ["data/Civication/narratives/work/naeringsliv/frode_role_change.json", frodeStream],
+  ["data/Civication/narratives/work/naeringsliv/inger_role_change.json", ingerStream]
 ]);
 
-function setup(backing = new Map()) {
+function setup(backing = new Map(), chosenStream = stream) {
   let pending = null;
   let baseCalls = 0;
   let workday = 0;
@@ -80,9 +84,9 @@ function setup(backing = new Map()) {
     const available = await source.sourceAdapter.getScenes({
       mode: "slot", phaseId: "forenoon", phase: { id: "forenoon" },
       active: { role_key: "fagarbeider" }, state: {},
-      candidate_stream_ids: [stream.id],
-      used_storylet_keys: used.map(id => stream.id + "::" + id),
-      narrativeState: { active_streams: [stream.id], flags, stream_progress: progress },
+      candidate_stream_ids: [chosenStream.id],
+      used_storylet_keys: used.map(id => chosenStream.id + "::" + id),
+      narrativeState: { active_streams: [chosenStream.id], flags, stream_progress: progress },
       date: "2026-10-13", ordinal: used.length + 1
     });
     if (!available.length) return null;
@@ -94,10 +98,10 @@ function setup(backing = new Map()) {
     const result = await engine.answer(event.id, choiceId);
     if (result.ok) {
       used.push(event.narrative_storylet_id);
-      progress[stream.id + "::" + event.narrative_storylet_id] = {
+      progress[chosenStream.id + "::" + event.narrative_storylet_id] = {
         answered: true, answered_workday_day: workday
       };
-      const sourceStory = stream.storylets.find(s => s.id === event.narrative_storylet_id);
+      const sourceStory = chosenStream.storylets.find(s => s.id === event.narrative_storylet_id);
       flags.push(...(sourceStory.adds_flags || []), ...(event.choices.find(c => c.id === choiceId)?.tags || []));
     }
     return result;
@@ -227,4 +231,59 @@ test("Rejected/invalid answers never write NPC role events or trust", async () =
   assert.equal(invalid.ok, false);
   assert.equal(h.backing.size, 0);
   assert.equal(h.used.length, 0);
+});
+
+test("Frode and Inger retain identity through their own delayed role outcomes", async () => {
+  const scenarios = [
+    { stream: frodeStream, id: "frode_formann", name: "Frode Aas", from: "formann",
+      to: "mellomleder", event: "frode_role_story:confirmed_appointment" },
+    { stream: ingerStream, id: "inger_avdelingsleder", name: "Inger Holm",
+      from: "avdelingsleder", to: "mellomleder",
+      event: "inger_role_story:confirmed_reorganization" }
+  ];
+  for (const expected of scenarios) {
+    assert(manifest.streams.some(x => x.id === expected.stream.id),
+      "Narrative must be registered in canonical manifest");
+    assert.equal(expected.stream.storylets.length, 4);
+    assert(expected.stream.storylets.every(x => x.npc_story?.npc_id === expected.id));
+    assert.equal(expected.stream.storylets[2].npc_story.role_transition.from,
+      "naeringsliv/" + expected.from);
+    assert.equal(expected.stream.storylets[2].npc_story.role_transition.to,
+      "naeringsliv/" + expected.to);
+
+    const h = setup(new Map(), expected.stream);
+    for (let stage = 0; stage < 4; stage += 1) {
+      const event = await h.scene();
+      assert(event, "Expected available stage " + stage + " for " + expected.id);
+      assert.equal(event.narrative_storylet_id, expected.stream.storylets[stage].id);
+      assert.equal(event.npc_story.npc_id, expected.id);
+      const result = await h.answer(event, stage < 3 ? "B" : "A");
+      assert.equal(result.ok, true);
+      if (stage < 3) {
+        assert.equal(await h.scene(), null, "Workday gap must be enforced");
+        h.advanceWorkdays(stage === 1 ? 2 : 1);
+      }
+      if (stage === 2) {
+        const handler = result.choice_director.handler_results.find(x => x.name === "npc_character_story");
+        assert.equal(handler.ok, true);
+        assert.equal(handler.value.role_scope, expected.to);
+      }
+    }
+    const record = h.window.CivicationNpcCharacterThreads.getState().characters[expected.id];
+    assert.equal(record.name, expected.name);
+    assert.equal(record.role_history.length, 1);
+    assert.equal(record.role_history[0].event_id, expected.event);
+    assert.equal(record.role_history[0].from, "naeringsliv/" + expected.from);
+    assert.equal(record.role_history[0].to, "naeringsliv/" + expected.to);
+    assert.equal(record.beats.length, 4);
+    assert.equal(record.trust_score, -3);
+    assert.deepEqual([...h.backing.keys()], [STORE_KEY]);
+    assert(!Object.hasOwn(record, "salary"), "No NPC story may allocate salary");
+    const resumed = setup(h.backing, expected.stream);
+    const actor = await resumed.window.CivicationNPCs.resolveActor(expected.id);
+    assert.equal(actor.actor_id, "npc:" + expected.id);
+    assert.equal(actor.role_ref.role_scope, expected.to);
+    assert.equal(actor.role_history.length, 1);
+    assert.equal((await resumed.window.CivicationNPCs.resolveActor(expected.id)).role_history.length, 1);
+  }
 });
