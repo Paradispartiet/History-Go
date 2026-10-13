@@ -108,8 +108,12 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
     assert.equal((await page.evaluate(() => JSON.parse(localStorage.getItem('merits_by_category') || '{}').kunst?.points)), 5);
 
     await page.locator('.civi-footer button[data-category="karriere"]').click();
-    await page.locator('#civiOfferAccept').waitFor({ state: 'visible', timeout: 30000 });
-    await page.locator('#civiOfferAccept').click();
+    // Civication uses mini cards; offer actions live in the role popup, not
+    // directly in the career category grid.
+    await page.locator('#activeJobSection .civi-mini-card [data-civi-mini-open]').waitFor({ state: 'visible', timeout: 30000 });
+    await page.locator('#activeJobSection .civi-mini-card [data-civi-mini-open]').click();
+    await page.locator('#civiSectionPopup.is-open #civiOfferAccept').waitFor({ state: 'visible', timeout: 30000 });
+    await page.locator('#civiSectionPopup.is-open #civiOfferAccept').click();
     await page.waitForFunction(() => {
       const app = globalThis as any;
       return app.CivicationState?.getActivePosition?.()?.career_id === 'kunst';
