@@ -43,7 +43,7 @@ async function nextDayViaUi(page: any, scenarioId: string, day: number) {
       continue;
     }
 
-    const close = page.locator('#civiNextActionModal.is-open [data-civi-next-action-close]').first();
+    const close = page.locator('#civiNextActionModal.is-open button[data-civi-next-action-close]').first();
     if (await close.count()) await close.click();
     await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
     await page.waitForTimeout(180);
