@@ -1,0 +1,81 @@
+name: Civication PR6285 report sync
+on:
+  push:
+    branches:
+      - civication-shared-actors-multiplayer-foundation-20261012
+permissions:
+  contents: write
+jobs:
+  regenerate:
+    if: github.repository == 'Paradispartiet/History-Go'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Regenerate existing career and life-position audit outputs
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+          git diff --stat -- data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+          git diff --check
+      - name: Require stable canonical role classification and inventory
+        run: |
+          node <<'NODE'
+          const assert = require('node:assert/strict');
+          const fs = require('node:fs');
+          const cp = require('node:child_process');
+          const old = (p) => JSON.parse(cp.execFileSync('git',['show', 'HEAD:'+p], {maxBuffer: 25*1024*1024}).toString());
+          const current = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
+          const careerFile = 'data/Civication/careerGameplayMatrix.json';
+          const lifeFile = 'data/Civication/lifePositionRoleWorldReadiness.json';
+          const beforeCareer = old(careerFile);
+          const afterCareer = current(careerFile);
+          const statuses = (data, kind) => Object.fromEntries(
+            (data[kind] || []).map((x) => [x.key, kind === 'worlds' ? x.status : x.career_status])
+              .sort(([a],[b])=>a.localeCompare(b))
+          );
+          for (const kind of ['worlds', 'noncareer_worlds', 'support_worlds']) {
+            assert.deepStrictEqual(statuses(afterCareer, kind), statuses(beforeCareer, kind),
+              'Career '+kind+' inventory or status changed; inspect source before syncing.');
+          }
+          console.log('Career role inventories and rollout statuses unchanged.');
+          const beforeLife = old(lifeFile);
+          const afterLife = current(lifeFile);
+          const lifeStatuses = (data) => Object.fromEntries(
+            (data.positions || []).map((x) => [x.key, x.classification + '|' + x.role_world_status])
+              .sort(([a],[b])=>a.localeCompare(b))
+          );
+          assert.deepStrictEqual(lifeStatuses(afterLife), lifeStatuses(beforeLife),
+            'Life position classifications or canonical inventory changed; inspect source.');
+          assert.deepStrictEqual(afterLife.summary.classifications, beforeLife.summary.classifications);
+          console.log('Life position inventories and readiness classifications unchanged.');
+          console.log('Before career summary:', JSON.stringify(beforeCareer.summary));
+          console.log('After career summary:', JSON.stringify(afterCareer.summary));
+          console.log('Before life summary:', JSON.stringify(beforeLife.summary));
+          console.log('After life summary:', JSON.stringify(afterLife.summary));
+          NODE
+      - name: Verify both generated reports and targeted regression tests
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --check
+          node tests/civication-career-gameplay-matrix.test.js
+          node tests/civication-life-position-role-world-readiness.test.js
+      - name: Run complete Civication regression suite
+        run: npm run test:civication
+      - name: Commit only synchronized generated audit outputs
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md data/Civication/lifePositionRoleWorldReadiness.json reports/civication-life-position-role-world-readiness.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Civication: sync generated role readiness and career audit outputs'
+            git push origin HEAD:refs/heads/civication-shared-actors-multiplayer-foundation-20261012
+          fi
