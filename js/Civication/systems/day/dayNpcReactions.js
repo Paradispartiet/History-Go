@@ -294,6 +294,11 @@
   function applyNpcReaction(ctx) {
     const { eventObj, choice } = ctx;
 
+    // Explicit fictional NPC story beats are handled by the existing character
+    // thread owner, not by the generic People-based reaction selector.
+    if (eventObj?.source_type === "narrative_stream" &&
+        eventObj?.npc_story?.kind === "npc_role_story_v1") return null;
+
     const person = choosePerson(eventObj);
     if (!person) return null;
 
