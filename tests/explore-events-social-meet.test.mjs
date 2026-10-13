@@ -25,7 +25,7 @@ test("Events og Møtes vises ikke som globale Utforsk-tabs", () => {
   assert.doesNotMatch(index, /id="leftEventsList"/);
   assert.doesNotMatch(index, /id="leftSocialList"/);
   assert.match(index, /id="btnSocialMeet"/);
-  assert.match(index, /Møtes \/ Social Meet/);
+  assert.match(index, /aria-label="Møtes"/);
   assert.match(nearbyCss, /\.nearby-tabs\{[\s\S]*flex-wrap:\s*wrap[\s\S]*overflow:\s*visible/);
 });
 
@@ -96,7 +96,7 @@ test("PlaceCard-Møtes går direkte til Folk å møte her og beholder Social Mee
   assert.match(spotmeetingUi, /Vis meg her i 60 min/);
   assert.match(spotmeetingUi, /place_status/);
   assert.match(spotmeetingUi, /selvoppgitt/i);
-  assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
+  assert.match(spotmeetingUi, /Mine møter/);
   assert.match(spotmeetingUi, /clearPlaceStatus/);
   assert.match(spotmeetingUi, /discoverCandidates/);
   assert.match(spotmeetingUi, /data-hg-spotmeeting-send/);
@@ -135,7 +135,7 @@ test("PlaceCard har canonicale snarveier til Events og samlet Møtes", () => {
   assert.match(onsite, /CORE_SHORTCUTS = \["events", "meet"\]/);
   assert.doesNotMatch(onsite, /data-hg-meet-hub-action/);
   assert.match(onsite, /HG_SpotmeetingUI\?\.open/);
-  assert.match(spotmeetingUi, /Mine møter \/ Social Meet/);
+  assert.match(spotmeetingUi, /Mine møter/);
 
   // Social Meet skal fortsatt ikke injisere en separat automatisk statusflate i PlaceCard.
   assert.doesNotMatch(socialUi, /renderPlaceSummary|insertAdjacentHTML\(['"]beforeend['"],\s*html\)/);
