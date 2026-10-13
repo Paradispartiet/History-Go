@@ -93,6 +93,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     arvid_videre_avbrutt: { type: 'amir', id: 'sossen_krohg', name: 'Sossen Krohg' }
   };
   const reports: any[] = [];
+  const failures: any[] = [];
   for (const scenario of cases) {
     const representative = representatives[scenario.id];
     const context = await browser.newContext({ viewport: scenario.id === 'musikk_booket' ? { width: 1024, height: 768 } : { width: 390, height: 844 } });
@@ -389,8 +390,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       }).catch(() => null);
       console.error('Arbeidsledig browser failure', JSON.stringify({ scenario: scenario.id, trace, snapshot, pageErrors: errors }));
       await page.screenshot({ path: join(outputDir, `arbeidsledig-${scenario.id}-failure.png`), fullPage: true }).catch(() => {});
-      throw error;
+      failures.push({ id: scenario.id, error: String((error as Error)?.message || error), trace, snapshot, pageErrors: errors });
     } finally { await context.close(); }
+  }
+  if (failures.length) {
+    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + cases.length
+      + ' passed; failures=' + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
 }
