@@ -231,6 +231,11 @@
     return true;
   }
 
+  function isNpcRoleStoryStream(stream) {
+    return (Array.isArray(stream?.storylets) ? stream.storylets : [])
+      .some((storylet) => storylet?.npc_story?.kind === "npc_role_story_v1");
+  }
+
   function storyletMatchesContext(storylet, stream, active, state, narrativeState) {
     const appliesOk = matchesRule(storylet?.applies_when, narrativeState, active, state);
     if (!appliesOk) return false;
@@ -241,6 +246,10 @@
     // the existing character-thread store; it neither confers employment nor
     // creates a new narrative save owner.
     const story = storylet?.npc_story;
+    // Choice history, not just the daily queue, prevents a finished chapter
+    // from being re-injected by an opened narrative stream.
+    if (story?.kind === "npc_role_story_v1" &&
+        narrativeState?.stream_progress?.[norm(stream?.id) + "::" + norm(storylet?.id)]?.answered) return false;
     if (story?.kind === "npc_role_story_v1" && story.available_after) {
       const after = story.available_after;
       const progressKey = norm(stream?.id) + "::" + norm(after.storylet_id);
@@ -396,6 +405,11 @@
     let candidateStreams = candidateIds.length
       ? streams.filter(stream => candidateIdSet.has(norm(stream?.id)))
       : streams;
+    // Narrative source requests with no candidate IDs predate this contract.
+    // Preserve that behavior for other streams, but never leak NPC stories
+    // into a role where their applies_when rule is not satisfied.
+    candidateStreams = candidateStreams.filter(stream =>
+      !isNpcRoleStoryStream(stream) || streamMatches(stream, active, state, narrativeState));
     if (context.exclude_work_streams === true) {
       candidateStreams = candidateStreams.filter(stream => !WORK_STREAM_TYPES.has(slugify(stream?.type)));
     }
@@ -415,6 +429,7 @@
     for (const streamId of openedStreamIds) {
       const stream = streams.find(candidate => norm(candidate?.id) === streamId);
       if (!stream) continue;
+      if (isNpcRoleStoryStream(stream) && !streamMatches(stream, active, state, narrativeState)) continue;
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
       const storylet = storylets
         .filter(candidate => {
