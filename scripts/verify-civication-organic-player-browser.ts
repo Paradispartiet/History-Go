@@ -43,11 +43,11 @@ export default async function verifyOrganicPlayer(browser: any, origin: string) 
       app.QuizEngine.init({ quizFeedbackMs: 120 });
     });
     await page.locator('#pcQuiz').click({ timeout: 20000 });
-    await page.waitForFunction(() => location.hash.startsWith('#/quiz/ringnes_bryggeri'), null, { timeout: 20000 });
+    await page.waitForFunction(() => (globalThis as any).location.hash.startsWith('#/quiz/ringnes_bryggeri'), null, { timeout: 20000 });
     for (const [si, set] of sets.entries()) {
       for (const question of set.questions) {
         await page.waitForFunction((expected: string) =>
-          document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
+          (globalThis as any).document.querySelector('#quizQuestion')?.textContent?.trim() === expected,
         question.question, { timeout: 25000 });
         await page.locator('#quizChoices').getByRole('button', { name: question.answer, exact: true }).click({ timeout: 20000 });
       }
