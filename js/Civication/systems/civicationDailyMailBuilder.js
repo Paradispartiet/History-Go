@@ -2100,6 +2100,11 @@
     const eventId = norm(eventObj?.id || ctx?.eventId);
     const choiceId = norm(ctx?.choiceId);
     const daily = isDailyEvent(eventObj);
+    // Story flags are written by markAnswered before the inner answer. Keep
+    // their original value so a rejected answer cannot unlock the next story.
+    const narrativeBefore = daily && norm(eventObj?.source_type) === "narrative_stream"
+      ? (getState()?.[NARRATIVE_KEY] ?? null)
+      : undefined;
 
     // Mark the daily runtime before the remaining inner answer pipeline runs so
     // dayPatches/onAppOpen can advance to the next runtime item, but keep the
@@ -2125,6 +2130,7 @@
 
     if (daily && result?.ok === false) {
       // Restore as delivered if the answer did not go through.
+      if (narrativeBefore !== undefined) setState({ [NARRATIVE_KEY]: narrativeBefore });
       const runtime = getRuntime();
       if (runtime && Array.isArray(runtime.items)) {
         const items = runtime.items.map(row => {
