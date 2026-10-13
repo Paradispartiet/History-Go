@@ -5,7 +5,8 @@
 // livsfortellingen skrives HIT (og bare hit) via applyEffects; UI leser og
 // viser. DOM-fri, fetch-fri, testbar rett i Node.
 //
-// Lagring: én versjonert nøkkel i localStorage via CivicationStorageAdapter
+// Lagring: én versjonert nøkkel med aktiv rolle og inaktive rollesnapshots
+// (ingen parallell sannhetskilde) via CivicationStorageAdapter
 // når den finnes, ellers localStorage direkte. I Node (tester) er lagring
 // no-op — state sendes eksplisitt rundt.
 
@@ -78,6 +79,10 @@
       version: VERSION,
       rolle: String(content.role.id),
       dag: 1,
+      // Fortellingsdager på tvers av rollene; ikke shell-kalenderen (A2).
+      livsdag: 1,
+      rolleTilstander: {},
+      rolleBytter: [],
       fase: content.faser[0].id,
       meters,
       relasjoner: Object.assign({}, content.role.startState.relasjoner),
@@ -91,6 +96,49 @@
       dagFerdig: false
     };
     return state;
+  }
+
+  /**
+   * Behold alle rolleerfaringer ved ordinært jobbbytte. Aktiv rolle ligger
+   * fortsatt på toppnivå for kompatibilitet med eksisterende saves og UI;
+   * inaktive roller har komplette, uavhengige snapshots i samme lagringsnøkkel.
+   * Historisk dag/arkiv/relasjoner fortsetter der de slapp ved retur til en
+   * rolle. `livsdag` følger spilleren, mens `dag` følger fortellingspakken.
+   * @param {LifestoryState|null} saved
+   * @param {any} content
+   * @returns {LifestoryState}
+   */
+  function selectRole(saved, content) {
+    const roleId = String(content?.role?.id || "");
+    if (!roleId) throw new Error("[LifestoryState] mangler rolle-id");
+    if (!saved) return createInitialState(content);
+
+    // Eksisterende v2-saves (uten rollehistorikk) oppgraderes på stedet.
+    saved.livsdag = Number.isInteger(saved.livsdag) && saved.livsdag > 0 ? saved.livsdag : saved.dag;
+    saved.rolleTilstander ||= {};
+    saved.rolleBytter ||= [];
+    if (saved.rolle === roleId) return saved;
+
+    const inactive = Object.assign({}, saved.rolleTilstander);
+    const currentSnapshot = JSON.parse(JSON.stringify(saved));
+    delete currentSnapshot.rolleTilstander;
+    delete currentSnapshot.rolleBytter;
+    delete currentSnapshot.livsdag;
+    inactive[saved.rolle] = currentSnapshot;
+
+    const earlier = inactive[roleId];
+    if (earlier && (earlier.version !== VERSION || earlier.rolle !== roleId)) {
+      throw new Error("[LifestoryState] ugyldig lagret rolle: " + roleId);
+    }
+    const selected = earlier || createInitialState(content);
+    delete inactive[roleId];
+    selected.rolleTilstander = inactive;
+    selected.livsdag = saved.livsdag;
+    selected.rolleBytter = saved.rolleBytter.concat([{
+      fra: saved.rolle, til: roleId, livsdag: selected.livsdag,
+      fraDag: saved.dag, tilDag: selected.dag
+    }]);
+    return selected;
   }
 
   /**
@@ -288,7 +336,7 @@
     return text;
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
