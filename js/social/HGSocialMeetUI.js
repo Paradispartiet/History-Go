@@ -355,6 +355,8 @@
         break;
       }
     }
+    // A rejected server transition must never be replaced by a local success in production.
+    if (root.HG_SOCIAL_MEET_BACKEND === 'fastapi') return { ok: false };
     if (typeof root.HG_Spotmeeting?.[localMethod] === 'function') {
       try {
         const result = await root.HG_Spotmeeting[localMethod](id);
