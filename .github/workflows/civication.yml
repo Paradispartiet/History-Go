@@ -61,5 +61,8 @@ jobs:
       - name: Verify chapter-boundary and narrative mapping regressions
         run: node tests/run-civication-tests.mjs narrative-three-level-continuations lifestory-arvid-continuation lifestory-project-continuations
 
+      - name: Verify Life Story persistence and unified calendar
+        run: node tests/run-civication-tests.mjs lifestory-job-role-persistence lifestory-day-sync v2-min-dag-ui
+
       - name: Run complete Civication suite
         run: npm run test:civication
