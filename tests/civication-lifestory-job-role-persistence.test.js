@@ -116,7 +116,8 @@ async function main() {
   assert.equal(JSON.stringify(switched.rolleTilstander.arbeidsledig.arkiv), oldHistory);
   assert.deepEqual(switched.rolleBytter.map(event => event.til),
     ["renholder", "ekspeditor", "renholder"], "job transitions are recorded");
-  assert.ok(!("rolleTilstander" in switched.rolleTilstander.renholder || false),
+  assert.ok(!("renholder" in switched.rolleTilstander), "active role is stored only at the top level");
+  assert.ok(Object.values(switched.rolleTilstander).every(snapshot => !("rolleTilstander" in snapshot)),
     "inactive snapshots are not recursively nested");
 
   const previous = app.window.localStorage.getItem(STORAGE_KEY);
