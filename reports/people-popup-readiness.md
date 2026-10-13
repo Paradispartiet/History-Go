@@ -6,7 +6,7 @@ Rapporten måler om runtime kan presentere tilgjengelige canonical People-felt. 
 
 People-produksjon, claims og ferdigstatus eies av `docs/PEOPLE_PROFILE_CANONICAL.md`. Profiler uten v1-claims er `legacy_unreviewed`, selv når presentasjonsstatusen er `complete`.
 
-Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec70002`
+Source fingerprint: `cf8398a5661ed2f281541ec0d158902f2b468f85968dcf30ac4d9e4c2fe0b521`
 
 ## Sammendrag
 
@@ -14,15 +14,15 @@ Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec
 |---|---:|
 | Personer | 1434 |
 | Presentasjon complete | 83 |
-| Presentasjon strong | 422 |
-| Presentasjon partial | 914 |
+| Presentasjon strong | 464 |
+| Presentasjon partial | 872 |
 | Presentasjon sparse | 15 |
 | People Profile v1 ready | 111 |
-| Legacy uten v1-claims | 1323 |
+| Legacy uten v1-claims | 1318 |
 | Ødelagte bildereferanser | 260 |
 | Eksplisitt initialfallback | 983 |
 | Implisitt initialfallback | 26 |
-| Gjennomsnittspoeng | 66.1 |
+| Gjennomsnittspoeng | 66.4 |
 
 ## Feltdekning
 
@@ -35,9 +35,9 @@ Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec
 | educationDeclared | 71 | 5 % |
 | practiceDeclared | 1416 | 98.7 % |
 | placeGrounding | 1434 | 100 % |
-| sources | 494 | 34.4 % |
+| sources | 536 | 37.4 % |
 | imageContract | 1174 | 81.9 % |
-| profileStandard | 110 | 7.7 % |
+| profileStandard | 115 | 8 % |
 
 ## Kategorier
 
@@ -46,7 +46,7 @@ Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec
 | sport | 324 | 0 | 24 | 300 | 0 | 0 | 324 | 62.4 |
 | historie | 240 | 5 | 117 | 118 | 0 | 9 | 231 | 65.7 |
 | litteratur | 167 | 36 | 23 | 108 | 0 | 16 | 151 | 71.1 |
-| musikk | 124 | 0 | 16 | 108 | 0 | 0 | 124 | 62.3 |
+| musikk | 124 | 0 | 58 | 66 | 0 | 0 | 119 | 65.7 |
 | politikk | 114 | 5 | 50 | 59 | 0 | 17 | 97 | 68.1 |
 | kunst | 87 | 11 | 64 | 12 | 0 | 14 | 73 | 74.2 |
 | by | 85 | 10 | 62 | 13 | 0 | 28 | 57 | 75.3 |
@@ -67,7 +67,7 @@ Source fingerprint: `b7e29e6e26d35033eb5ff6b3377e740146f064b5a1edf8d1067973d76ec
 | holmenkollen_nasjonalanlegg | 109 | 0 | 109 | 0 | 61.8 | Kjetil André Aamodt (57; legacy_unreviewed), Lasse Kjus (57; legacy_unreviewed), Marit Bjørgen (57; legacy_unreviewed), Therese Johaug (57; legacy_unreviewed), Adam Małysz (62; legacy_unreviewed) |
 | nationaltheatret | 101 | 0 | 80 | 1 | 69.6 | Erik Kristen-Johanssen (62; legacy_unreviewed), Espen Skjønberg (62; legacy_unreviewed), Fridtjov Såheim (62; legacy_unreviewed), Frøydis Armand (62; legacy_unreviewed), Gard B. Eidsvold (62; legacy_unreviewed) |
 | bislett_stadion | 76 | 0 | 76 | 0 | 61.6 | Andreas Thorkildsen (57; legacy_unreviewed), Ingrid Kristiansen (57; legacy_unreviewed), Jakob Ingebrigtsen (57; legacy_unreviewed), Karsten Warholm (57; legacy_unreviewed), Trine Hattestad (57; legacy_unreviewed) |
-| det_norske_teatret | 70 | 0 | 70 | 0 | 62 | Amund Rydland (62; legacy_unreviewed), Ane Dahl Torp (62; legacy_unreviewed), Anton Heiberg (62; legacy_unreviewed), Arne Garborg (62; legacy_unreviewed), Arne Lygre (62; legacy_unreviewed) |
+| det_norske_teatret | 70 | 0 | 28 | 42 | 68 | Astrid Folstad (62; legacy_unreviewed), Bjarne Andersen (62; legacy_unreviewed), Ellen Dorrit Petersen (62; legacy_unreviewed), Elsa Lystad (62; legacy_unreviewed), Gisle Straume (62; legacy_unreviewed) |
 | ullevaal_stadion | 55 | 0 | 55 | 0 | 61.3 | Ada Hegerberg (57; legacy_unreviewed), Cecilie Leganger (57; legacy_unreviewed), Erling Braut Haaland (57; legacy_unreviewed), Lyn Fotball (57; legacy_unreviewed), Nils Arne Eggen (57; legacy_unreviewed) |
 | eidsvollsbygningen | 40 | 0 | 38 | 2 | 62.1 | Carsten Anker (57; legacy_unreviewed), Christian Magnus Falsen (57; legacy_unreviewed), Wilhelm Frimann Koren Christie (57; legacy_unreviewed), Anders Lysgaard (62; legacy_unreviewed), Andreas Rogert (62; legacy_unreviewed) |
 | akershus_festning | 38 | 0 | 35 | 3 | 61.2 | Alv Erlingsson (57; legacy_unreviewed), Erik av Pommern (57; legacy_unreviewed), Eufemia av Rügen (57; legacy_unreviewed), Gregers Gram (57; legacy_unreviewed), Gunnar Sønsteby (57; legacy_unreviewed) |

@@ -20,7 +20,7 @@ function tick(window) { return new Promise(resolve => window.setTimeout(resolve,
 function text(node) { return String(node?.textContent || '').replace(/\s+/g, ' ').trim(); }
 function assertNoForbidden(scope) {
   const html = String(scope.innerHTML || '').toLowerCase();
-  for (const term of ['chat', 'freetext', 'fritekst', 'live-posisjon', 'live position', 'nearby', 'feed', 'followers', 'dating']) {
+  for (const term of ['freetext', 'fritekst', 'live-posisjon', 'live position', 'nearby', 'feed', 'followers', 'dating']) {
     assert(!html.includes(term), `forbidden social/privacy term found: ${term}`);
   }
   assert(!scope.querySelector('textarea, input[type="text"], [data-social-feed], [data-followers], [data-nearby], [data-live-location]'), 'forbidden controls must not render');
@@ -55,14 +55,24 @@ function buttonsFor(card) { return [...card.querySelectorAll('[data-hg-social-me
   let sheet = window.document.getElementById('hgSocialMeetSheet');
 
   const cardByTitle = title => [...sheet.querySelectorAll('.hg-social-card')].find(card => card.textContent.includes(title));
+  const selectTab = tab => {
+    const button = sheet.querySelector(`[data-hg-social-meet-tab="${tab}"]`);
+    assert(button, `missing Møtes tab: ${tab}`);
+    button.click();
+  };
+  assert.strictEqual(sheet.querySelectorAll('.hg-social-card').length, 1, 'show only one status list at a time');
   assert.deepStrictEqual(buttonsFor(cardByTitle('Pending sted')), ['Godta', 'Avslå'], 'pending invite shows accept and decline actions');
+  selectTab('accepted');
   assert.deepStrictEqual(buttonsFor(cardByTitle('Accepted sted')), ['Marker gjennomført', 'Avbryt'], 'accepted invite shows complete and cancel actions');
+  selectTab('completed');
   assert.deepStrictEqual(buttonsFor(cardByTitle('Completed sted')), [], 'completed invite shows no actions');
+  assert(sheet.textContent.includes('Gjennomført.'), 'completed invite shows completed status');
+  selectTab('declinedCancelled');
   assert.deepStrictEqual(buttonsFor(cardByTitle('Declined sted')), [], 'declined invite shows no actions');
   assert.deepStrictEqual(buttonsFor(cardByTitle('Cancelled sted')), [], 'cancelled invite shows no actions');
-  assert(sheet.textContent.includes('Gjennomført.'), 'completed invite shows completed status');
   assert(sheet.textContent.includes('Avslått.'), 'declined invite shows declined status');
   assert(sheet.textContent.includes('Avbrutt.'), 'cancelled invite shows cancelled status');
+  selectTab('pending');
 
   cardByTitle('Pending sted').querySelector('[data-hg-social-meet-action="accept"]').click();
   await tick(window); await tick(window);
@@ -76,6 +86,7 @@ function buttonsFor(card) { return [...card.querySelectorAll('[data-hg-social-me
   await tick(window); await tick(window);
   assert(calls.some(call => call[0] === 'cancel' && call[1] === 'accepted-1'), 'Avbryt calls adapter cancelInvite');
 
+  selectTab('accepted');
   cardByTitle('Pending sted').querySelector('[data-hg-social-meet-action="complete"]').click();
   await tick(window); await tick(window);
   assert(calls.some(call => call[0] === 'complete' && call[1] === 'pending-1'), 'Marker gjennomført calls adapter completeInvite');

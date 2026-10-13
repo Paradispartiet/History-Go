@@ -53,9 +53,9 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Run Civication browser boot smoke
         env:
-          # A2 acceptance branch: execute all 20 actual browser playthrough scenarios
-          # on this PR to verify compatibility with the unified calendar.
-          CIVICATION_BROWSER_DEPTH: full
+          # PRs verify boot, People UI and map. Nightly/manual also exercise all 20
+          # multi-day Arbeidsledig scenarios; no scenario is deleted.
+          CIVICATION_BROWSER_DEPTH: ${{ github.event_name == 'pull_request' && 'smoke' || 'full' }}
         run: npm run civication:boot-smoke
       - name: Upload browser diagnostics
         if: always()

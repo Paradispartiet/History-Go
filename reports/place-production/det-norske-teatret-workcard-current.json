@@ -3,12 +3,17 @@
   "place_id": "det_norske_teatret",
   "category": "scenekunst",
   "status": "in_progress",
-  "active_phase": "preflight_evidence",
-  "active_merge_boundary": "A: nullmåling, identitet, kildegjennomgang og innholdsplan",
+  "active_phase": "canonical_content",
+  "active_merge_boundary": "B: historiske tekster, Place-eid Fagverk, hovedfoto, kilder og oversettelser",
   "source_file": "data/places/scenekunst/oslo/places_scenekunst/det_norske_teatret.json",
-  "reference_commit": "d7eb68ab50d4e3e1cc5390149d64cba433cd096b",
+  "reference_commit": "bc760241137443d67db5bf3534bb47e8fe14f24b",
   "identity": "Det Norske Teatrets nåværende hovedhus i Kristian IVs gate 8, med eksplisitt avgrenset kontekst om institusjonens eldre spillesteder.",
-  "underbadge_ids_current": [],
+  "underbadge_ids_current": [
+    "teater",
+    "musikkteater",
+    "sceneproduksjon",
+    "dramaturgi"
+  ],
   "underbadge_ids_proposed": [
     "teater",
     "musikkteater",
@@ -83,7 +88,7 @@
   "placecard_collections_publishable_now": [],
   "objects_category_expression_boundary": "Forestillinger eier oppsetningen; Objects eier identifiserbare fysiske rekvisitter/kostymer/eksemplarer. Sceneteppet som kunstverk og fysisk funksjon avklares hos riktig eier uten duplisering.",
   "content_plan": {
-    "description_and_fagverk": "PRODUSER sammen fra det leste kildegrunnlaget. Behold source-ID, adresse og eksisterende koordinatmetadata. Erstatt generisk læringsprosa med historisk ingress og selvstendig artikkel; løs Scenekunst-emner gjennom fagmanifestet.",
+    "description_and_fagverk": "PRODUSERT i checkpoint B: historisk ingress/artikkel og selvstendig full Fagverk; Scenekunst-emner/kapitler løst. Full Place er fortsatt BLOCKED.",
     "chronology": "PRODUSER bygge-/åpningsankere og eksplisitt institusjonskontekst. Eksisterende 1913-Story er ikke bevis for hendelse i bygningen fra 1985.",
     "language": "PRODUSER stedsspesifikt navne-/scenespråkspor. Enkeltinstitusjon, ingen area-eid dialektoppføring.",
     "stories": "REVIEW eksisterende Teaterslaget: kildekontroller, navngi Bøndernes hus og korrekt fysisk eier. Ingen automatisk sletting eller flytting i evidence-fasen.",
@@ -92,9 +97,9 @@
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
     "quiz": "SEPARAT QUIZLØP: aktiv Musikk-pakke har 5 × 6 spørsmål og 30/30 answerIndex 0. Bevar dokumenterte fakta og Knowledge-ID-er, revider mot Scenekunst-kontrakten før migrering. Profil/eksakt settantall ikke forhåndslåst.",
     "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
-    "images": "BLOCKED: image og frontImage mangler. Eksisterende Commons-seed vurderes bare som hovedfoto. Separat stående frontImage kreves.",
+    "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
-    "translations": "REFRESH en/es/pt og _sourceHash i samme tekstcheckpoint.",
+    "translations": "PRODUSERT en/es/pt med seksavsnittsartikkel og aktuell _sourceHash.",
     "player_status": "REVIEW besøk, favoritt, quiz og profillesing ved integrasjon. Ingen ny state-eier."
   },
   "manual_reviews": {
@@ -120,18 +125,30 @@
     "final_ui": {
       "status": "PENDING",
       "reason": "Fullproduksjon mangler."
+    },
+    "content": {
+      "status": "LOCAL_CHECKPOINT_REVIEW_PASSED",
+      "verified_at": "2026-10-13",
+      "report": "reports/place-production/det-norske-teatret/20261013/content-review.json",
+      "limitations": [
+        "GitHub CI kontrolleres på eksakt PR-head før merge.",
+        "Live desktop og full mobil/iPad-closeout er ikke erklært bestått.",
+        "Eldre global i18n-quality-audit har samme 741 feil per språk på base og head; stedsspesifikk freshness består.",
+        "Fullproduksjon har dokumenterte restpunkter."
+      ]
     }
   },
   "checkpoints": [
     {
       "id": "preflight_evidence",
-      "status": "READY_FOR_REVIEW",
-      "scope": "Bare reports/place-production/det-norske-teatret*; ingen brukerrettede source-endringer."
+      "status": "MERGED",
+      "scope": "Bare reports/place-production/det-norske-teatret*; ingen brukerrettede source-endringer.",
+      "pr": 6293
     },
     {
       "id": "canonical_content",
-      "status": "NOT_STARTED",
-      "scope": "Historiske beskrivelser, Place-eid Fagverk, språk, chronology, brukerrettede kilder og relevante samlinger."
+      "status": "READY_FOR_REVIEW",
+      "scope": "Checkpoint B: beskrivelser, Fagverk, hovedfoto, kilder, oversettelser og generert synkronisering. Samlinger og øvrige innholdsspor er neste delcheckpoint."
     },
     {
       "id": "quiz_revision",
@@ -149,7 +166,7 @@
     "status": "PASS",
     "place_id": "det_norske_teatret",
     "category": "scenekunst",
-    "recorded_at": "2026-10-13T08:50:42.788Z",
+    "recorded_at": "2026-10-13T11:44:44.271Z",
     "rule": "Files must be read in full before this evidence is recorded; hashes prove freshness, not comprehension.",
     "files": [
       {
@@ -215,7 +232,8 @@
     }
   },
   "quality_review": {
-    "scope": "Preflight/evidence only; not full Place completion",
+    "scope": "Checkpoint B only; not full Place completion",
+    "status": "LOCAL_PASS_PENDING_EXACT_HEAD_CI",
     "scores": [
       5,
       4,
@@ -225,6 +243,6 @@
       5
     ],
     "total": 27,
-    "report": "reports/place-production/det-norske-teatret/20261013/README.md"
+    "report": "reports/place-production/det-norske-teatret/20261013/content-checkpoint.md"
   }
 }
