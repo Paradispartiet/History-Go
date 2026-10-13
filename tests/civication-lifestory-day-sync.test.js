@@ -165,6 +165,33 @@ async function main() {
   assert.equal(counters.workdayCompleted, 1);
   assert.equal(app.current().kalenderDag, 3);
 
+  // Day three happens on the SAME wall-clock date as day two. A new in-game
+  // workday is available and must count once, without a fictitious clock roll.
+  assert.equal(workday.isWorkdayCompletedToday(), false, "new game day unlocks work");
+  assert.equal(flow.getNextAction(flow.getFlowState()), "go_to_work");
+  flow.goToWork();
+  flow.finishWorkday();
+  flow.finishWorkday();
+  assert.equal(workday.getWorkdayDayIndex(), 2);
+  assert.equal(counters.workdayCompleted, 2);
+  assert.equal(calendar.getClock().dayIndex, 3);
+  assert.equal(app.current().dag, 3);
+
+  // Older workday saves used YYYY-MM-DD and are mapped to the current
+  // simulated day once, not treated as completed on every simulated day.
+  const legacyDate = new Date().toISOString().slice(0, 10);
+  window.CivicationState.setState({
+    [workday.WORKDAY_KEY]: {
+      schema: workday.WORKDAY_KEY, workday_day_index: 1,
+      completed_dates: { [legacyDate]: true }
+    }
+  });
+  assert.equal(workday.isWorkdayCompletedToday(), true, "legacy completed shift retained");
+  assert.equal(workday.getRuntime().completion_basis, "calendar_day_v1");
+  assert.equal(workday.getRuntime().completed_dates["calendar-day:3"], true);
+  calendar.resetForNewDay();
+  assert.equal(workday.isWorkdayCompletedToday(), false, "legacy flag does not block next game day");
+
   // Switching jobs may change role-local narrative day, never the player's
   // shared Civication calendar checkpoint or already-earned global lifetime.
   const State = require("../js/Civication/lifestory/lifestoryState.js");
