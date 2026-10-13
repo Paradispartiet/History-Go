@@ -83,6 +83,10 @@ Merk at dette er en lokal **hendelses-API** for fremtidige valg/scener. Den gene
 
 Testfiler: `tests/civication-npc-role-history-persistence.test.js` (reload, samme lagringsnøkkel, reaksjonshistorikk, samtidighet, duplikatvern og korrupt data), og `tests/civication-people-legacy-cache-guard.test.js` (gammel People-kobling holdes utenfor sosiale fiksjonsreaksjoner).
 
+## Synopsiser for NPC-rollebytter
+
+Tre eksisterende fiktive NPC-er har nå en egen [produksjonsmatrise med rollebytte- og oppfølgingssynopsiser](./CIVICATION_NPC_ROLE_STORY_MATRIX_V1.md). Dokumentet skiller planlagt storyinnhold fra implementert runtime og identifiserer at scene-kontrakten og compiler må støtte en eksplisitt rollehendelse før slike scener kan være spillbare. Ingen rolle- eller relasjonsoppdateringer aktiveres av planfilen.
+
 ## Samspill i én spillverden: produksjonsmatrise
 
 | Interaksjon | I solo | I frivillig online | Eier og krav |
