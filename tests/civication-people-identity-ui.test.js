@@ -40,3 +40,35 @@ test("Civication's social panel keeps the fictional identity and only cites coll
   assert.doesNotMatch(host.innerHTML, /Fra History Go-samlingen din/);
   assert.doesNotMatch(host.innerHTML, /<img /);
 });
+
+test("Old saved hg_person is not rendered as a fictional character's name or biography", () => {
+  const host = { innerHTML: "" };
+  const sandbox = {
+    document: {
+      getElementById(id) { return id === "civiPeoplePanel" ? host : null; },
+      addEventListener() {}
+    },
+    window: {
+      CivicationState: { getActivePosition() { return { career_id: "kunst" }; } },
+      CivicationPeopleEngine: {
+        getAvailablePeople() {
+          return [{
+            id: "person_artist_001", type: "artist",
+            name: "Edvard Munch",
+            description: "Denne biografien er IKKE en fiktiv NPC-beskrivelse.",
+            archetype_name: "Kunstneren i omløp",
+            hg_person: { id: "edvard_munch", name: "Edvard Munch", image: "/bilder/people/munch.jpg" }
+          }];
+        }
+      },
+      addEventListener() {}
+    }
+  };
+  vm.runInNewContext(uiSource, sandbox);
+  sandbox.window.CivicationPeopleUI.render();
+  assert.match(host.innerHTML, /<div style="font-weight:700;">Kunstneren i omløp<\/div>/);
+  assert.match(host.innerHTML, /Historisk fagreferanse fra History Go: Edvard Munch/);
+  assert.doesNotMatch(host.innerHTML, /<div style="font-weight:700;">Edvard Munch<\/div>/);
+  assert.doesNotMatch(host.innerHTML, /Denne biografien er IKKE/);
+  assert.doesNotMatch(host.innerHTML, /<img /);
+});
