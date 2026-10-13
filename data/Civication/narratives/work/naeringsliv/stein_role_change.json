@@ -110,7 +110,11 @@
       ],
       "npc_story": {
         "kind": "npc_role_story_v1",
-        "npc_id": "stein_peer_mellomleder"
+        "npc_id": "stein_peer_mellomleder",
+        "available_after": {
+          "storylet_id": "stein_peer_priority",
+          "min_workdays": 1
+        }
       },
       "adds_flags": [
         "stein_role_stage2"
@@ -169,6 +173,10 @@
           "event_id": "stein_role_story:confirmed_appointment",
           "from": "naeringsliv/mellomleder",
           "to": "naeringsliv/avdelingsleder"
+        },
+        "available_after": {
+          "storylet_id": "stein_job_opening",
+          "min_workdays": 2
         }
       },
       "adds_flags": [
@@ -199,6 +207,10 @@
           "trusted": "Stein sier: «Du ga meg motstand jeg kunne arbeide med. Nå trenger jeg samme ærlighet i denne rollen.»",
           "strained": "Stein sier: «Vi har ikke vært enige. Jeg vil likevel ha en konkret innvending, ikke en ny stillingskrig.»",
           "neutral": "Stein sier: «Vi kjenner hverandres arbeidsmåte. Det bør gjøre samtalen tydeligere, ikke enklere.»"
+        },
+        "available_after": {
+          "storylet_id": "stein_confirmed_appointment",
+          "min_workdays": 1
         }
       },
       "choices": [
