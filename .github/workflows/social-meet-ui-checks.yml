@@ -13,6 +13,13 @@ on:
       - "package.json"
       - ".github/workflows/social-meet-ui-checks.yml"
 
+permissions:
+  contents: read
+
+concurrency:
+  group: social-meet-ui-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   social-meet-ui:
     runs-on: ubuntu-latest
