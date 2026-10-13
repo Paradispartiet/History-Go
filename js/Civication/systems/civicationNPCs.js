@@ -59,7 +59,7 @@
     if (_roleCatalogLoading) return _roleCatalogLoading;
     _roleCatalogLoading = (async () => {
       try {
-        const response = await fetch("/data/Civication/roleWorlds/index.json", { cache: "no-store" });
+        const response = await fetch("data/Civication/roleWorlds/index.json", { cache: "no-store" });
         if (!response.ok) return null;
         return contract.buildRoleCatalog(await response.json());
       } catch (error) {
