@@ -29,7 +29,7 @@
 
 Én fiktiv karakter kan skifte stilling uten å skifte identitet. En arbeidsplass kan få ny innehaver uten at den forrige karakteren slettes eller at deres vennskaps-/scenehistorie endres.
 
-`js/Civication/systems/civicationActorRoleContract.js` er et **rent, opt-in kontraktsbibliotek** som ikke lastes av en side. Det gjør følgende, og bare dette:
+`js/Civication/systems/civicationActorRoleContract.js` er et **rent, opt-in kontraktsbibliotek** som lastes før NPC-katalogen, men som ikke skriver lagring eller starter scener på egen hånd. Det gjør følgende, og bare dette:
 
 - Validerer `(category, role_scope)` mot den **faktiske** Role World-indeksen.
 - Lager separate `player:`- og `npc:`-identiteter som kan referere til nøyaktig samme rolle.
