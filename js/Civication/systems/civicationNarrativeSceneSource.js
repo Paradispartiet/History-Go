@@ -235,7 +235,18 @@
     const appliesOk = matchesRule(storylet?.applies_when, narrativeState, active, state);
     if (!appliesOk) return false;
     const avoidHit = matchesRule(storylet?.avoid_when, narrativeState, active, state);
-    return !storylet?.avoid_when || !avoidHit;
+    if (storylet?.avoid_when && avoidHit) return false;
+
+    // Optional NPC role gate for existing, authored narrative scenes. This reads
+    // the existing character-thread store; it neither confers employment nor
+    // creates a new narrative save owner.
+    const story = storylet?.npc_story;
+    if (story?.kind === "npc_role_story_v1" && norm(story.requires_role_ref)) {
+      const record = window.CivicationNpcCharacterThreads?.getState?.()?.characters?.[norm(story.npc_id)];
+      const current = record?.role_ref;
+      if (!current || (norm(current.category) + "/" + norm(current.role_scope)) !== norm(story.requires_role_ref)) return false;
+    }
+    return true;
   }
 
   function storyletWeight(storylet, narrativeState, active, state) {
@@ -294,6 +305,19 @@
     return [];
   }
 
+  function narrativeSituation(storylet) {
+    const base = Array.isArray(storylet?.situation)
+      ? storylet.situation.map(norm).filter(Boolean)
+      : [norm(storylet?.situation)].filter(Boolean);
+    const story = storylet?.npc_story;
+    if (story?.kind !== "npc_role_story_v1" || !story.trust_variants) return base;
+    const record = window.CivicationNpcCharacterThreads?.getState?.()?.characters?.[norm(story.npc_id)];
+    const score = Number(record?.trust_score || 0);
+    const band = score >= 1 ? "trusted" : score <= -1 ? "strained" : "neutral";
+    const line = norm(story.trust_variants[band]);
+    return line ? [...base, line] : base;
+  }
+
   function storyletToEvent(context, stream, storylet) {
     const active = context.active || null;
     const phase = context.phase && typeof context.phase === "object"
@@ -330,8 +354,9 @@
       role_id: privateScope ? "" : norm(active?.role_id),
       employer_id: privateScope ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       subject: norm(storylet?.subject),
-      situation: Array.isArray(storylet?.situation) ? storylet.situation.map(norm).filter(Boolean) : [norm(storylet?.situation)].filter(Boolean),
+      situation: narrativeSituation(storylet),
       choices: normalizeChoices(storylet?.choices),
+      ...(storylet?.npc_story?.kind === "npc_role_story_v1" ? { npc_story: storylet.npc_story } : {}),
       narrative_effects: {
         opens_streams: uniqueStrings(storylet?.opens_streams),
         adds_flags: uniqueStrings(storylet?.adds_flags),
