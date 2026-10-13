@@ -124,18 +124,16 @@
   }
 
   /**
-   * Last innhold + Player State for en rolle. Ny state når lagret state
-   * tilhører en annen rolle (én lagringsplass per spiller).
+   * Last riktig rolles fortelling fra den ene Player State-lagringen.
+   * Jobbbytte arkiverer forrige rolletilstand i samme save; retur fortsetter
+   * dens kapitler, relasjoner og valg. Ingen jobb-resolver kobles ut.
    * @param {string} roleId
    */
   async function loadRole(roleId) {
     const Content = /** @type {any} */ (window).CivicationLifestoryContent;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     const base = await Content.loadContent(roleId);
-    let saved = State.load();
-    if (!saved || saved.rolle !== roleId) {
-      saved = State.createInitialState(base);
-    }
+    const saved = State.selectRole(State.load(), base);
     // Restore content before reconciliation, even before the shell has booted.
     let restored = base;
     if (saved.fortsettelseId || saved.fortsettelser) {
