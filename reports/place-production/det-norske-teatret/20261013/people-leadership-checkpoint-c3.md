@@ -13,7 +13,7 @@ Dagens teaterhus i Kristian IVs gate åpnet i 1985. Institusjonen ble stiftet i 
 | Vidar Sandem | Skuespiller ved DNT fra 1977, teatersjef 1997–2010; Open Scene og Utan Filter | Tidlig tilknytning ved tidligere scene, lederperiode i huset fra 1985 |
 | Otto Homlung | Teatersjef 1990–1997; tidligere regi og institusjonsarbeid i Bergen/Trøndelag | Ledelse i dagens bygg |
 | Svein Erik Brodal | Ansatt 1962–2009; teatersjef 1975–1976 og 1979–1990; overgang til nytt hus 1985 | Leder på begge sider av flyttingen |
-| Tormod Skagestad | Teatersjef 1961–1975 og 1976–1979; byggekomanes arbeid før nybygget i 1985 | Institusjonsleder før 1985, senere hus via dokumentert byggekomité |
+| Tormod Skagestad | Teatersjef 1961–1975 og 1976–1979; byggekomiteens arbeid før nybygget i 1985 | Institusjonsleder før 1985, senere hus via dokumentert byggekomité |
 | Nils Sletbak | Styreleder 1932–1935, økonomisjef, teatersjef 1953–1961 | Stortingsgata 16, ikke dagens bygg |
 | Knut Hergel | Teatersjef 1936–1942 og 1945–1946, regi av Medmenneske 1937, Fri Norsk Scene i Sverige, Antigone 1945 | Tidligere spillesteder |
 | Cally Monrad | Nasjonal Samling fra 1940, utnevnt som teatersjef i november 1942; publikumsboikott; dom etter krigen | Okkupasjonstid ved tidligere spillested, saklig historisk framstilling |
