@@ -1,4 +1,4 @@
-// Pure, opt-in editorial/runtime-boundary contract. NOT loaded by Civication pages.
+// Pure, opt-in role contract. Loaded by Civication but no automatic mutations.
 // Player and fictional NPC actors can reference the SAME canonical Role World.
 // No persistence, entitlement, network, History Go mutation or scene scheduling.
 (function (scope, factory) {
