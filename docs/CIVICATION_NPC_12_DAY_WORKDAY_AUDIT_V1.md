@@ -24,7 +24,7 @@ Dermed dokumenterer testen **reell valg-/dagskølogikk under kontrollerte
 forutsetninger**, ikke en bekreftet produksjonsopplevelse på iPad eller en
 validering av samtlige alternative spillerprofiler.
 
-## Observert arbeidsdagfordeling – fagarbeider
+## Observert arbeidsdagfordeling før retting – fagarbeider
 
 | Arbeidsdag | Stein Mæland | Frode Aas | Inger Holm | Andre jobbmailer |
 | --- | --- | --- | --- | ---: |
@@ -74,7 +74,7 @@ vurderes separat.
   utilgjengelig mens Frode er fortsatt kvalifisert. Retur til
   `fagarbeider` viderefører Steins kapittelprogresjon.
 
-## Avgrenset konklusjon og neste beslutning
+## Avgrenset konklusjon fra første kontroll (før retting)
 
 **Funksjonell progresjon:** Implementert.  
 **Sammenhengende, individuelt fordelt livsforløp:** Ikke godt nok dokumentert;
@@ -90,3 +90,67 @@ mot ordinære arbeidsmail.
 regresjon, browser-smoke, typecheck og dokumentasjonskontroll må alle
 vurderes på siste commit. Sluttkontroll av faktisk innboks/visning
 gjenstår og er ikke dokumentert av denne node-baserte simuleringen.
+
+## Oppfølging 13. oktober – fordelingsfeilen rettet i samme PR
+
+**Status:** `civicationNarrativeSceneSource.js` er oppdatert til å fordele
+NPC-rollekapitler mellom arbeidsdager uten ny lagring, egen scheduler eller
+endringer i eksisterende JSON-kapitler.
+
+### Eksisterende eiere og regelverk
+
+- `CivicationDailyMailBuilder` velger fortsatt scener til ordinære
+  arbeidsdagsplasser og beholder jobbmails og døgnfaser.
+- `narrative_state_v1.stream_progress` beholder svar og arbeidsdag for hvert
+  kapittel; dataene blir lest, ikke kopiert til en ny tilstandsmodell.
+- `hg_civi_npc_character_threads_v1` beholder rollehendelser, tillit og
+  NPC-identitet. `recordRoleTransition` er uendret.
+- Den eksisterende `CivicationWorkdayRuntime.getWorkdayDayIndex()` avgjør om
+  en karakter allerede har fått et kapittel på aktuell arbeidsdag.
+- Dagens kø fører `used_storylet_keys`. Disse sammenholdes med tidligere
+  svar for å fange opp allerede kølagte kapitler, også før spillerens svar.
+- Blant samtidige kvalifiserte NPC-kapitler kommer den *minst nylig møtte*
+  karakteren først; umøtte karakterer prioriteres. Ved likhet beholdes
+  manifestrekkefølgen. Andre narrative strømmer beholder sin opprinnelige
+  vektprioritet.
+- Den samme dagssperren gjelder når en narrativ strøm forsøkes åpnet via
+  `opened_streams` etter et valg.
+
+### Bekreftet ny 12-dagersfordeling
+
+| Arbeidsdag | NPC | Scene-ID |
+| ---: | --- | --- |
+| 1 | Stein | `stein_peer_priority` |
+| 2 | Frode | `frode_line_stop` |
+| 3 | Inger | `inger_cost_dispute` |
+| 4 | Stein | `stein_job_opening` |
+| 5 | Frode | `frode_promotion_process` |
+| 6 | Inger | `inger_reorganization_notice` |
+| 7 | Stein | `stein_confirmed_appointment` |
+| 8 | Frode | `frode_confirmed_appointment` |
+| 9 | Inger | `inger_confirmed_reorganization` |
+| 10 | Stein | `stein_new_role_followup` |
+| 11 | Frode | `frode_roster_followup` |
+| 12 | Inger | `inger_knowledge_followup` |
+
+**Resultat:** 12 av 12, én NPC-rollefortelling per arbeidsdag,
+null synkroniserte trippelkapitler, åtte andre jobbmeldinger per dag.
+Alle minimumsavstander, valg-/rollehendelser og karakternavn er beholdt.
+
+Testen kontrollerer nå i tillegg at samme arbeidsdag ikke får en ny
+NPC-scene etter svar og ombygging av køen, og at `opened_streams`
+ikke omgår fordelingsregelen. Den kontrollerer omstart med alle 12
+kapitlene fullført og spillerens midlertidige rollebytte.
+
+**Bestått test:** [NPC workflow #38370414203](https://github.com/Paradispartiet/History-Go/actions/runs/38370414203).
+
+### Begrensning ved verifiseringen
+
+Fordelingen er dynamisk, ikke en hardkodet dagtabell. En annen startrolle,
+avbrutte dager, annen narrativ prioritet eller andre allerede åpne strømmer
+kan gi en annen rekkefølge. Én NPC-scene **maksimalt** per reell arbeidsdag
+er målet. Dette er en deterministisk integrasjonstest, ikke en manuell
+nettleserverifikasjon på fysisk enhet.
+
+Dette tiltaket retter den påviste synkroniseringen. Full Civication-CI
+og browser-smoke er egne merge-kriterier.
