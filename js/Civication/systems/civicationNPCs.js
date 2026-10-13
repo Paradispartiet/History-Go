@@ -11,6 +11,8 @@
   const _by = new Map();
   let _loaded = false;
   let _loading = null;
+  let _roleCatalog = null;
+  let _roleCatalogLoading = null;
 
   async function load() {
     if (_loaded) return;
@@ -47,7 +49,55 @@
     return Array.from(_by.values());
   }
 
-  window.CivicationNPCs = { load, lookup, all };
+  // An explicit canonical role_ref may exist on a fictional catalog NPC.
+  // Load the shared index ONLY for an actual actor lookup, never on normal
+  // mail lookup/render. Old mail IDs and display names remain unchanged.
+  async function getRoleCatalog() {
+    const contract = window.CivicationActorRoleContract;
+    if (!contract?.buildRoleCatalog) return null;
+    if (_roleCatalog) return _roleCatalog;
+    if (_roleCatalogLoading) return _roleCatalogLoading;
+    _roleCatalogLoading = (async () => {
+      try {
+        const response = await fetch("/data/Civication/roleWorlds/index.json", { cache: "no-store" });
+        if (!response.ok) return null;
+        return contract.buildRoleCatalog(await response.json());
+      } catch (error) {
+        if (window.DEBUG) console.warn("[CivicationNPCs] rolleindeks kunne ikke leses", error);
+        return null;
+      }
+    })();
+    try {
+      const catalog = await _roleCatalogLoading;
+      if (catalog) _roleCatalog = catalog;
+      return catalog;
+    } finally {
+      _roleCatalogLoading = null;
+    }
+  }
+
+  async function resolveActor(id) {
+    await load();
+    const npc = lookup(id);
+    // Unmapped NPCs remain fully valid mail senders, but must never receive
+    // an invented role by interpreting their title or social archetype.
+    if (!npc?.role_ref) return null;
+    const contract = window.CivicationActorRoleContract;
+    const catalog = await getRoleCatalog();
+    if (!catalog || !contract?.createActor) return null;
+    try {
+      return contract.createActor(catalog, {
+        actor_id: "npc:" + npc.id,
+        actor_type: "fictional_npc",
+        role_ref: npc.role_ref
+      });
+    } catch (error) {
+      if (window.DEBUG) console.warn("[CivicationNPCs] ugyldig eksplisitt rolle", npc.id, error);
+      return null;
+    }
+  }
+
+  window.CivicationNPCs = { load, lookup, all, resolveActor };
 
   // Last automatisk ved boot.
   if (document.readyState === "loading") {
