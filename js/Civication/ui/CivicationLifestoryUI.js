@@ -275,6 +275,20 @@
     if (currentDay > state.kalenderDag) return true;
     const Calendar = /** @type {any} */ (window).CivicationCalendar;
     const Progression = /** @type {any} */ (window).CivicationDayProgression;
+
+    // Without an active job there is no workday queue to drive the calendar.
+    // Only skip genuinely empty phases: pending private messages, queued mail
+    // and other phase blockers are still owned by DayProgression.inspect().
+    // The player must answer those in the normal Next Action UI first.
+    if (!window.CivicationState?.getActivePosition?.() && Progression?.inspect && Progression?.advancePhaseIfReady) {
+      const maxEmptyPhases = Array.isArray(Calendar?.DAY_PHASES) ? Calendar.DAY_PHASES.length : 8;
+      for (let i = 0; i < maxEmptyPhases && Calendar?.getPhase?.() !== "day_end"; i++) {
+        const inspection = Progression.inspect();
+        if (!inspection?.canAdvance) break;
+        const advanced = await Progression.advancePhaseIfReady();
+        if (!advanced?.advanced) break;
+      }
+    }
     if (Calendar?.getPhase?.() !== "day_end" || !Progression?.advancePhaseIfReady) {
       continuationError = "Fullfør dagens jobb, meldinger og kveld i Civication før neste dag.";
       return false;
