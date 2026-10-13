@@ -1,0 +1,252 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "frode_role_change_work_stream",
+  "type": "work",
+  "title": "Frode og B-skiftets ansvar",
+  "sociological_theme": "arbeidssikkerhet_lojalitet_og_lederansvar",
+  "applies_when": {
+    "role_scopes": [
+      "fagarbeider",
+      "mellomleder"
+    ]
+  },
+  "time_slots": [
+    "work"
+  ],
+  "storylets": [
+    {
+      "id": "frode_line_stop",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Frode Aas",
+      "subject": "Avviket som ingen vil eie",
+      "situation": [
+        "B-skiftet melder gjentatte vibrasjoner fra en mateenhet. Operatørene har redusert hastigheten, men feilen kommer tilbake når produksjonen øker.",
+        "Frode mener linjen må tas ut for kontroll. Leveringen er allerede forsinket, og produksjonsplanen forutsetter at dere fortsetter.",
+        "Han ber deg legge frem det du selv har sett, før det blir et spørsmål om hvem som satte ned tempoet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Noter målingene og be om kontroll med tydelig ansvar.",
+          "effect": 1,
+          "tags": [
+            "frode_role_frode_line_stop_0"
+          ],
+          "feedback": "Vedlikehold får konkrete observasjoner å vurdere.",
+          "npc_response": {
+            "trust_delta": 2,
+            "title": "Frode fikk dokumentasjon",
+            "line": "Det gjorde en forskjell at du skrev ned hva som faktisk skjedde."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Be Frode ta saken videre uten å involvere deg.",
+          "effect": 0,
+          "tags": [
+            "frode_role_frode_line_stop_1"
+          ],
+          "feedback": "Du unngår uenigheten, men Frode mangler opplysninger som kunne avklart den.",
+          "npc_response": {
+            "trust_delta": -2,
+            "title": "Frode sto alene",
+            "line": "Du så det samme som meg. Jeg hadde trengt at du sa det høyt."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann"
+      },
+      "adds_flags": [
+        "frode_role_stage1"
+      ]
+    },
+    {
+      "id": "frode_promotion_process",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Administrasjonen",
+      "subject": "En mellomlederstilling skal fylles",
+      "situation": [
+        "Etter kontrollen ved mateenheten legger bedriften frem en ny plan for skiftkoordinering. En mellomlederstilling blir utlyst internt.",
+        "Frode blir bedt om å beskrive arbeidet under avviket. Han vet ikke om erfaringen fra produksjonsgulvet blir vurdert som en styrke.",
+        "En leder spør deg hvordan Frode håndterte dokumentasjon og bemanning. Svaret ditt er ikke en ansettelsesbeslutning."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Beskriv både tiltakene Frode tok og hva han burde fulgt opp.",
+          "effect": 1,
+          "tags": [
+            "frode_role_frode_promotion_process_0"
+          ],
+          "feedback": "Ledelsen får en etterprøvbar vurdering.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Frode kjenner igjen rapporten",
+            "line": "Du pyntet ikke på det, men lot heller ikke alt ansvaret falle på én person."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Unngå å uttale deg om Frodes innsats.",
+          "effect": 0,
+          "tags": [
+            "frode_role_frode_promotion_process_1"
+          ],
+          "feedback": "Du slipper å ta stilling, men beslutningsgrunnlaget får færre opplysninger fra skiftet.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Frode savnet vurderingen",
+            "line": "Det var din rett å la være. Jeg merket likevel hvem som sto med rapporten."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "available_after": {
+          "storylet_id": "frode_line_stop",
+          "min_workdays": 1
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "frode_role_stage1"
+        ]
+      },
+      "adds_flags": [
+        "frode_role_stage2"
+      ]
+    },
+    {
+      "id": "frode_confirmed_appointment",
+      "message_type": "story",
+      "time_slot": "work",
+      "from": "Administrasjonen",
+      "subject": "Frode tar over skiftkoordineringen",
+      "situation": [
+        "Ledelsen har avsluttet ansettelsesprosessen og utnevnt Frode til mellomleder med ansvar for koordineringen av to skift.",
+        "Stillingen gir ham ansvar for frister og rapportering han tidligere kunne kritisere uten selv å eie dem. Den endrer ikke spillerens fullmakter.",
+        "Frode ber deg snakke med ham før den første bemanningsplanen sendes ut."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Gratuler ham og be om en åpen gjennomgang av bemanningsplanen.",
+          "effect": 1,
+          "tags": [
+            "frode_role_frode_confirmed_appointment_0"
+          ],
+          "feedback": "Frode får en konkret måte å beholde kontakten med skiftet på.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Frode ber om et møte",
+            "line": "Jeg trenger at noen sier fra når planen ikke stemmer med gulvet."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Be ham sende planen formelt, som andre mellomledere.",
+          "effect": 0,
+          "tags": [
+            "frode_role_frode_confirmed_appointment_1"
+          ],
+          "feedback": "Dere får en ryddig rapporteringslinje, men mindre rom for fortrolige innspill.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Frode aksepterer avstanden",
+            "line": "Det er jobben min å få dette riktig. Jeg hadde likevel håpet vi kunne snakke først."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "available_after": {
+          "storylet_id": "frode_promotion_process",
+          "min_workdays": 2
+        },
+        "role_transition": {
+          "event_id": "frode_role_story:confirmed_appointment",
+          "from": "naeringsliv/formann",
+          "to": "naeringsliv/mellomleder"
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "frode_role_stage2"
+        ]
+      },
+      "adds_flags": [
+        "frode_role_stage3"
+      ]
+    },
+    {
+      "id": "frode_roster_followup",
+      "message_type": "people",
+      "time_slot": "work",
+      "from": "Frode Aas",
+      "subject": "Ny tittel, vanskelig vaktplan",
+      "situation": [
+        "Frode legger frem den første planen som mellomleder. Planen dekker produksjonsmålet, men setter de samme erfarne operatørene på to krevende oppgaver etter hverandre.",
+        "Under den gamle ordningen ville Frode vært blant dem som protesterte først. Nå må han selv begrunne bemanningen.",
+        "Han oppsøker deg før møtet med B-skiftet."
+      ],
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå en konkret omfordeling, selv om leveringen forskyves.",
+          "effect": 1,
+          "tags": [
+            "frode_role_frode_roster_followup_0"
+          ],
+          "feedback": "Frode må ta stilling til den reelle kostnaden ved alternativet.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Frode lyttet til skiftet",
+            "line": "Planen må tåle det du peker på, selv om ingen blir helt fornøyde."
+          }
+        },
+        {
+          "id": "B",
+          "label": "Godta planen og la skiftet ta belastningen.",
+          "effect": 0,
+          "tags": [
+            "frode_role_frode_roster_followup_1"
+          ],
+          "feedback": "Planen står, og uroen blant operatørene blir ikke behandlet.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Frode hører stillheten",
+            "line": "Jeg vet at dette rammer de samme folkene. Jeg skulle tatt det opp før."
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "available_after": {
+          "storylet_id": "frode_confirmed_appointment",
+          "min_workdays": 1
+        },
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "trust_variants": {
+          "trusted": "Frode sier: «Du sa fra da avviket oppsto. Jeg trenger at du gjør det nå også.»",
+          "strained": "Frode sier: «Vi var uenige om ansvaret. Nå er det mitt. Gi meg et konkret forslag.»",
+          "neutral": "Frode sier: «Jeg kjenner arbeidet fra gulvet, men denne planen ser annerledes ut fra kontoret.»"
+        }
+      },
+      "applies_when": {
+        "flags_all": [
+          "frode_role_stage3"
+        ]
+      },
+      "adds_flags": [
+        "frode_role_stage4"
+      ]
+    }
+  ]
+}

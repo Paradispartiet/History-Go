@@ -5,6 +5,8 @@
   "use strict";
 
   const LS_KEY = "hg_civi_npc_character_threads_v1";
+  // Serialize asynchronous role changes for each NPC. No separate save key.
+  const roleChangeQueue = new Map();
 
   function normStr(v) {
     return String(v || "").trim();
@@ -94,6 +96,11 @@
       active: false
     };
 
+    // An authored narrative answer has a stable event ID, unlike ordinary
+    // one-off NPC reactions. Never apply the same choice twice after reload.
+    const storyEventId = normStr(reaction.story_event_id);
+    if (storyEventId && (existing.story_event_ids || []).includes(storyEventId)) return existing;
+
     const trustScore = Number(existing.trust_score || 0) + Number(reaction.trustDelta || 0);
     const appearances = Number(existing.appearances || 0) + 1;
     const focusFamilies = Array.from(new Set([...(existing.focus_families || []), ...inferFocusFamilies(reaction)])).slice(-6);
@@ -122,7 +129,10 @@
       ]).slice(-8),
       latest_title: normStr(reaction.title),
       latest_line: normStr(reaction.line),
-      active: appearances >= 2 || Math.abs(trustScore) >= 2
+      active: appearances >= 2 || Math.abs(trustScore) >= 2,
+      ...(storyEventId ? {
+        story_event_ids: [...(existing.story_event_ids || []), storyEventId].slice(-120)
+      } : {})
     };
 
     state.characters[id] = nextChar;
@@ -140,6 +150,149 @@
   function getActiveCharacters() {
     const state = readState();
     return (state.active_ids || []).map((id) => state.characters[id]).filter(Boolean);
+  }
+
+  // Read-only role chronology for an explicitly catalog-mapped fictional NPC.
+  // Other Life Story characters remain untouched; no name-based matching.
+  function getRoleHistory(npcId) {
+    const id = normStr(npcId);
+    const npc = window.CivicationNPCs?.lookup?.(id);
+    if (!id || !npc?.role_ref) return [];
+    const record = readState().characters[id];
+    const history = record && Array.isArray(record.role_history) ? record.role_history : [];
+    return history.map((event) => ({
+      event_id: normStr(event?.event_id),
+      from: normStr(event?.from),
+      to: normStr(event?.to)
+    }));
+  }
+
+  // Explicit SOLO narrative role change. Only this existing character-thread
+  // owner writes role_history; it never writes employment, pay or relationships.
+  // No role is inferred from an NPC's display title. Event IDs are idempotent.
+  async function recordRoleTransition(npcId, nextRef, eventId) {
+    const id = normStr(npcId);
+    const event = normStr(eventId);
+    if (!id || !event) throw new TypeError("Role transition requires NPC ID and event ID");
+
+    const previous = roleChangeQueue.get(id) || Promise.resolve();
+    const pending = previous.catch(() => null).then(async () => {
+      const catalogApi = window.CivicationNPCs;
+      if (!catalogApi?.load || typeof catalogApi.previewRoleTransition !== "function") return null;
+      await catalogApi.load();
+      const npc = catalogApi.lookup(id);
+      if (!npc?.role_ref) return null;
+
+      const actor = await catalogApi.previewRoleTransition(id, nextRef, event);
+      if (!actor) return null;
+
+      const state = readState();
+      const existing = state.characters[id] || {
+        id,
+        name: normStr(npc.name),
+        role: normStr(npc.title),
+        appearances: 0,
+        trust_score: 0,
+        status: "ustabil",
+        focus_families: [],
+        beats: [],
+        latest_title: "",
+        latest_line: "",
+        active: false
+      };
+      // Do not change name, social history, trust or role of existing scenes.
+      state.characters[id] = {
+        ...existing,
+        actor_id: actor.actor_id,
+        role_ref: {
+          category: actor.role_ref.category,
+          role_scope: actor.role_ref.role_scope
+        },
+        role_history: actor.role_history.map((item) => ({
+          event_id: item.event_id, from: item.from, to: item.to
+        }))
+      };
+      writeState(state);
+      return actor;
+    });
+    roleChangeQueue.set(id, pending);
+    try {
+      return await pending;
+    } finally {
+      if (roleChangeQueue.get(id) === pending) roleChangeQueue.delete(id);
+    }
+  }
+
+  // A successfully answered canonical narrative scene may advance an
+  // explicit fictional actor, then append that character's own reaction beat.
+  // ChoiceDirector is the answer owner; this store remains the sole writer.
+  async function applyNpcStoryChoice(ctx) {
+    const scene = ctx?.eventObj;
+    const choice = ctx?.choice;
+    const story = scene?.npc_story;
+    if (scene?.source_type !== "narrative_stream" ||
+        scene?.scene_source_adapter !== "narrative" ||
+        story?.kind !== "npc_role_story_v1" || !choice) return null;
+
+    const npcId = normStr(story.npc_id);
+    const streamId = normStr(scene.narrative_stream_id);
+    const storyletId = normStr(scene.narrative_storylet_id);
+    const choiceId = normStr(choice.id);
+    const response = choice.npc_response;
+    if (!npcId || !streamId || !storyletId || !choiceId || !response ||
+        !Number.isFinite(Number(response.trust_delta))) return null;
+
+    const npcApi = window.CivicationNPCs;
+    if (!npcApi || typeof npcApi.load !== "function" ||
+        typeof npcApi.resolveActor !== "function") return null;
+    await npcApi.load();
+    const npc = npcApi.lookup?.(npcId);
+    if (!npc?.role_ref) return null;
+    let actor = await npcApi.resolveActor(npcId);
+    if (!actor || actor.actor_id !== "npc:" + npcId) return null;
+
+    const roleEvent = story.role_transition;
+    if (roleEvent) {
+      const eventId = normStr(roleEvent.event_id);
+      const from = normStr(roleEvent.from);
+      const to = normStr(roleEvent.to);
+      const dest = to.split("/");
+      if (!eventId || dest.length !== 2 || !dest[0] || !dest[1]) return null;
+      const previous = getRoleHistory(npcId).find(row => row.event_id === eventId);
+      if (previous) {
+        if (previous.from !== from || previous.to !== to) return null;
+      } else {
+        const current = actor.role_ref.category + "/" + actor.role_ref.role_scope;
+        if (current !== from) return null;
+        actor = await recordRoleTransition(npcId,
+          { category: dest[0], role_scope: dest[1] }, eventId);
+        if (!actor) return null;
+      }
+    }
+
+    // The storylet is the event, independent of which answer the player chose.
+    // Replaying the same scene with another choice must not award a second beat.
+    const storyEventId = "npc_story:" + streamId + ":" + storyletId;
+    const priorRoleLabel = readState().characters[npcId]?.role;
+    const reaction = updateCharacterThreadFromReaction({
+      story_event_id: storyEventId,
+      personId: npcId,
+      personName: normStr(npc.name),
+      // Preserve the existing social role label; actor.role_ref owns job roles.
+      personType: normStr(priorRoleLabel || npc.title || "person"),
+      subject: normStr(scene.subject),
+      title: normStr(response.title),
+      line: normStr(response.line),
+      trustDelta: Number(response.trust_delta)
+    });
+    return reaction ? { npc_id: npcId, actor_id: actor.actor_id,
+      role_scope: actor.role_ref.role_scope, story_event_id: storyEventId } : null;
+  }
+
+  function patchStoryChoice() {
+    const director = window.CivicationChoiceDirector;
+    if (typeof director?.registerHandler !== "function") return;
+    director.registerHandler("npc_character_story", applyNpcStoryChoice, 65);
   }
 
   function patchReactionEvent() {
@@ -160,12 +313,19 @@
   window.CivicationNpcCharacterThreads = {
     getState: readState,
     getActiveCharacters,
-    updateCharacterThreadFromReaction
+    updateCharacterThreadFromReaction,
+    getRoleHistory,
+    recordRoleTransition
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", patchReactionEvent, { once: true });
-  } else {
+  function register() {
     patchReactionEvent();
+    patchStoryChoice();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", register, { once: true });
+  } else {
+    register();
   }
 })();

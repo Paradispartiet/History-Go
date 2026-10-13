@@ -2,10 +2,9 @@
 // CivicationHistoryPeopleBridge — History Go-samlingen → ekte personer i Civication.
 //
 // Prinsipp (hybridmodellen):
-// - Arketypene i people_access_map.json beholder mekanikken (access, scoring,
-//   social_style). Har spilleren SAMLET en History Go-person i en av arketypens
-//   `hg_categories`, vises den ekte personen som identitet i stedet for det
-//   konstruerte arketypenavnet.
+// - Fiktive access_map-arketyper beholder navn, beskrivelse og sosial identitet.
+// - Samlede History Go-personer kan bare følge med som eksplisitt faglig
+//   kunnskapsreferanse (ikke venn, NPC, portrett eller talende karakter).
 // - Hverdags-NPC-ene i mailflyten (data/Civication/npcs/**) forblir fiktive.
 // - RoleModelRuntime bruker samme oppslag til å legge samlede personer som
 //   faglige forbilder (`history_people`) på role_model_meta.
@@ -108,10 +107,9 @@
     return Math.abs(h);
   }
 
-  // Velger den samlede personen som legemliggjør en arketype. Startpunktet i
-  // kandidatlisten er en stabil hash av arketype-id-en (variasjon mellom
-  // arketyper), deretter skannes fremover forbi personer som allerede er i
-  // bruk (usedIds) så to arketyper ikke viser samme person.
+  // Velger en faglig referanse til arketypens kunnskapsområde. Dette er
+  // ikke en relasjon eller en ny identitet for arketypen. Hashen gir et
+  // deterministisk, variert oppslag uten å endre noen spillrelasjon.
   function pickForArchetype(archetypeId, hgCategories, usedIds) {
     const seen = new Set();
     const candidates = [];
@@ -134,8 +132,8 @@
     return null; // alle kandidatene er alt i bruk – behold arketypen
   }
 
-  // Dekorerer PeopleEngine-rader (available_people): access_map-arketyper med
-  // hg_categories får identiteten til en samlet person. Radene ellers urørt.
+  // Dekorerer bare med en kildeforankret History Go-læringsreferanse.
+  // Fiktiv person forblir fiktiv: navn, beskrivelse, ID og bilde erstattes aldri.
   async function decorateAvailablePeople(rows) {
     if (!Array.isArray(rows) || !rows.length) return rows;
     const relevant = rows.some(
@@ -157,18 +155,13 @@
 
       return {
         ...row,
-        name: String(person.name || row.name),
-        description: String(person.desc || row.description || ""),
-        archetype_name: row.name,
-        hg_person: {
+        history_go_learning_reference: {
           id: person.id,
           name: person.name,
           category: person.category,
-          desc: person.desc || "",
-          placeId: person.placeId || "",
-          year: Number.isFinite(Number(person.year)) ? Number(person.year) : null,
-          image: person.image || "",
-          cardImage: person.cardImage || ""
+          description: person.desc || "",
+          place_id: person.placeId || "",
+          kind: "historical_knowledge_only"
         }
       };
     });

@@ -24,20 +24,26 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
         ${people.map(function (person) {
-          const style = String(person?.social_style || "generic");
-          const type = String(person?.type || "person");
-          const name = String(person?.name || "Person");
-          const desc = String(person?.description || "");
+          const escapeHtml = function (value) {
+            return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+          };
+          const style = escapeHtml(person?.social_style || "generic");
+          const type = escapeHtml(person?.type || "person");
+          // Pre-migration local saves could still contain a historical person's
+          // name and bio over a fictional archetype. Never render that as an NPC.
+          const legacyHistoryPerson = person?.hg_person || null;
+          const name = escapeHtml(legacyHistoryPerson
+            ? (person?.archetype_name || "Fiktiv miljøfigur")
+            : (person?.name || "Person"));
+          const desc = escapeHtml(legacyHistoryPerson ? "" : (person?.description || ""));
           const score = Number(person?.score || 0);
-          const hgPerson = person?.hg_person || null;
-          const archetypeName = String(person?.archetype_name || "");
-          const collectedLine = hgPerson
-            ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">✨ Fra History Go-samlingen din${archetypeName ? ` · Rolle i byen: ${archetypeName}` : ""}</div>`
+          const source = person?.history_go_learning_reference || legacyHistoryPerson;
+          // A historical person is a factual learning reference, never this NPC.
+          const safePersonName = escapeHtml(source?.name);
+          const collectedLine = source
+            ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">Historisk fagreferanse fra History Go: ${safePersonName}</div>`
             : "";
-          const image = String(hgPerson?.cardImage || hgPerson?.image || "");
-          const thumb = image
-            ? `<img src="${image}" alt="" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex:0 0 auto;" onerror="this.remove()">`
-            : "";
+          const thumb = "";
           return `
             <div style="padding:12px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;background:rgba(255,255,255,0.04);">
               <div style="display:flex;align-items:center;gap:10px;">

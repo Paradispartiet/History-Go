@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Verifiserer CivicationHistoryPeopleBridge (hybridmodellen):
-// samlede History Go-personer legemliggjør access_map-arketyper deterministisk,
+// Verifiserer History Go som KUNNSKAP, ikke som fiktive NPC-identiteter.
+// Samlede personer kan være faglige referanser for en fiktiv arketype,
 // ukjente/usamlede kategorier lar arketypen stå urørt, og RoleModelRuntime
 // legger samlede personer som history_people på role_model_meta.
 
@@ -94,18 +94,19 @@ async function run() {
     const bridge = freshEnv([]);
     const rows = await bridge.decorateAvailablePeople([archetypeRow()]);
     assert.strictEqual(rows[0].name, "Kunstneren i omløp");
-    assert.strictEqual(rows[0].hg_person, undefined);
+    assert.strictEqual(rows[0].history_go_learning_reference, undefined);
   }
 
-  // 2) Samlet person i kategorien -> identitetsbytte, mekanikken beholdes.
+  // 2) En samlet person blir faglig referanse, ikke arketypens identitet.
   {
     const bridge = freshEnv(["edvard_munch"]);
     const rows = await bridge.decorateAvailablePeople([archetypeRow()]);
-    assert.strictEqual(rows[0].name, "Edvard Munch");
-    assert.strictEqual(rows[0].description, "Maler.");
-    assert.strictEqual(rows[0].archetype_name, "Kunstneren i omløp");
-    assert.strictEqual(rows[0].hg_person.id, "edvard_munch");
-    assert.strictEqual(rows[0].hg_person.placeId, "ekely");
+    assert.strictEqual(rows[0].name, "Kunstneren i omløp");
+    assert.strictEqual(rows[0].description, "Konstruert arketype.");
+    assert.strictEqual(rows[0].hg_person, undefined);
+    assert.strictEqual(rows[0].history_go_learning_reference.id, "edvard_munch");
+    assert.strictEqual(rows[0].history_go_learning_reference.place_id, "ekely");
+    assert.strictEqual(rows[0].history_go_learning_reference.kind, "historical_knowledge_only");
     // Mekanikk-feltene er urørt.
     assert.strictEqual(rows[0].id, "person_artist_001");
     assert.strictEqual(rows[0].source, "access_map");
@@ -117,18 +118,20 @@ async function run() {
     const bridge = freshEnv(["edvard_munch", "gustav_vigeland"]);
     const first = await bridge.decorateAvailablePeople([archetypeRow()]);
     const second = await bridge.decorateAvailablePeople([archetypeRow()]);
-    assert.strictEqual(first[0].hg_person.id, second[0].hg_person.id);
+    assert.strictEqual(first[0].history_go_learning_reference.id, second[0].history_go_learning_reference.id);
   }
 
-  // 4) To arketyper i samme kategori viser aldri samme person.
+  // 4) To arketyper kan få to ulike faglige referanser uten identitetsbytte.
   {
     const bridge = freshEnv(["edvard_munch", "gustav_vigeland"]);
     const rows = await bridge.decorateAvailablePeople([
       archetypeRow(),
       archetypeRow({ id: "person_curator_001", name: "Kuratoren" })
     ]);
-    assert.ok(rows[0].hg_person && rows[1].hg_person);
-    assert.notStrictEqual(rows[0].hg_person.id, rows[1].hg_person.id);
+    assert.ok(rows[0].history_go_learning_reference && rows[1].history_go_learning_reference);
+    assert.notStrictEqual(rows[0].history_go_learning_reference.id, rows[1].history_go_learning_reference.id);
+    assert.strictEqual(rows[0].name, "Kunstneren i omløp");
+    assert.strictEqual(rows[1].name, "Kuratoren");
   }
 
   // 5) Kun én samlet person og to arketyper -> den andre beholder arketypen.
@@ -138,9 +141,9 @@ async function run() {
       archetypeRow(),
       archetypeRow({ id: "person_curator_001", name: "Kuratoren" })
     ]);
-    const decorated = rows.filter((r) => r.hg_person);
+    const decorated = rows.filter((r) => r.history_go_learning_reference);
     assert.strictEqual(decorated.length, 1);
-    const untouched = rows.find((r) => !r.hg_person);
+    const untouched = rows.find((r) => !r.history_go_learning_reference);
     assert.ok(["Kunstneren i omløp", "Kuratoren"].includes(untouched.name));
   }
 
@@ -150,7 +153,7 @@ async function run() {
     const roleBase = { id: "npc_x", name: "Fiktiv kollega", source: "role_base", hg_categories: ["kunst"] };
     const rows = await bridge.decorateAvailablePeople([roleBase, archetypeRow()]);
     assert.strictEqual(rows[0].name, "Fiktiv kollega");
-    assert.strictEqual(rows[0].hg_person, undefined);
+    assert.strictEqual(rows[0].history_go_learning_reference, undefined);
   }
 
   // 7) Samlet person i annen kategori enn arketypens -> ingen bytte.
