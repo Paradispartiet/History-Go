@@ -25,9 +25,14 @@ jobs:
         run: |
           node scripts/build-quiz-production-context.mjs --category scenekunst --target black_box_teater --output data/quiz/production_context/scenekunst/black_box_teater.json
           node scripts/build-quiz-production-context.mjs --category scenekunst --target black_box_teater --output data/quiz/production_context/scenekunst/black_box_teater.json --check
-      - name: Commit only regenerated context
+      - name: Regenerate deterministic Fagverk release manifest
+        run: |
+          node scripts/build-fagverk-release-manifest.mjs
+          node scripts/build-fagverk-release-manifest.mjs --check
+      - name: Commit regenerated context and release
         run: |
           git add data/quiz/production_context/scenekunst/black_box_teater.json
+          git add data/fagverk/fagverk_release.json
           git diff --cached --stat
           if git diff --cached --quiet; then echo 'Already synchronized'; exit 0; fi
           git config user.name 'github-actions[bot]'
