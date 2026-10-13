@@ -1,0 +1,38 @@
+name: Civication NPC story
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/civication-npc-story.yml'
+      - 'data/Civication/narratives/**'
+      - 'data/Civication/npcs/**'
+      - 'data/Civication/roleWorlds/index.json'
+      - 'js/Civication/systems/civicationActorRoleContract.js'
+      - 'js/Civication/systems/civicationNPCs.js'
+      - 'js/Civication/systems/civicationNarrativeSceneSource.js'
+      - 'js/Civication/systems/civicationSceneInteraction.js'
+      - 'js/Civication/systems/day/dayChoiceDirector.js'
+      - 'js/Civication/systems/day/dayNpcCharacterThreads.js'
+      - 'js/Civication/systems/day/dayNpcReactions.js'
+      - 'tests/civication-npc-*.test.js'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  npc-story:
+    name: NPC story and persistence regression
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate role story lifecycle and persistence
+        run: |
+          node --test tests/civication-npc-role-history-persistence.test.js
+          node --test tests/civication-npc-role-bridge.test.js
+          node --test tests/civication-npc-stein-role-story.test.js
