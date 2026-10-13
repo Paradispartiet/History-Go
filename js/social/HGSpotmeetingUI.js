@@ -210,7 +210,9 @@
   }
 
   function openSocialMeetFollowUp(context){
-    return root.HG_SocialMeetUI?.open?.(socialMeetOpenOptions(context));
+    if (typeof root.HG_SocialMeetUI?.open !== 'function') return;
+    close();
+    return root.HG_SocialMeetUI.open(socialMeetOpenOptions(context));
   }
 
   function inviteContextForBackend(context){
