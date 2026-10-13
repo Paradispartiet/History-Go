@@ -271,7 +271,7 @@
   function renderLoading(options = currentOptions){
     const sheet = ensureSheet();
     const title = options.filter === 'place' ? getPlaceTitle(options.placeId) : 'Alle møter';
-    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Møtes</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body"><p class="muted" role="status">Laster Social Meet …</p></div></section>`;
+    sheet.innerHTML = `<section class="hg-social-meet-panel"><header class="hg-social-meet-head"><div><h2>Møtes</h2><p class="hg-social-meet-context">${escapeHTML(title)}</p></div><button class="hg-social-meet-close" type="button" data-hg-social-meet-close="1" aria-label="Lukk">×</button></header><div class="hg-social-meet-body"><p class="muted" role="status">Laster møter …</p></div></section>`;
   }
 
   function render(options = currentOptions){
@@ -404,7 +404,7 @@
     panel.querySelector('.hg-social-meet-chat-layer')?.remove();
     const layer = root.document.createElement('section');
     layer.className = 'hg-social-meet-chat-layer';
-    layer.setAttribute('aria-label','Privat samtale i Social Meet');
+    layer.setAttribute('aria-label','Privat samtale i AHA Chat');
     const head = root.document.createElement('div');
     head.className = 'hg-social-meet-chat-head';
     const label = root.document.createElement('strong');
@@ -416,7 +416,7 @@
     closeButton.setAttribute('data-hg-social-meet-chat-close','1');
     head.append(label,closeButton);
     const frame = root.document.createElement('iframe');
-    frame.title = 'AHA privat chat – verifisert Social Meet-kontakt';
+    frame.title = 'AHA privat chat – verifisert møtekontakt';
     frame.src = 'https://paradispartiet.github.io/AHA-EchoNet/friend-chat.html?embed=1&meetInviteId='+encodeURIComponent(inviteId);
     frame.referrerPolicy = 'no-referrer';
     layer.append(head,frame);
