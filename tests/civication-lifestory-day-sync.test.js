@@ -164,6 +164,25 @@ async function main() {
   assert.equal(counters.workdayCompleted, 1);
   assert.equal(app.current().kalenderDag, 3);
 
+  // Switching jobs may change role-local narrative day, never the player's
+  // shared Civication calendar checkpoint or already-earned global lifetime.
+  const State = require("../js/Civication/lifestory/lifestoryState.js");
+  const saved = app.current();
+  const otherRole = State.selectRole(saved, {
+    role: { id: "renholder", startState: { meters: {}, relasjoner: {} } },
+    faser: [{ id: "morgen" }], threads: []
+  });
+  assert.equal(otherRole.kalenderDag, 3);
+  assert.equal(otherRole.livsdag, 3);
+  assert.equal(otherRole.dag, 1);
+  const restored = State.selectRole(otherRole, {
+    role: { id: "arbeidsledig", startState: { meters: {}, relasjoner: {} } },
+    faser: [{ id: "morgen" }], threads: []
+  });
+  assert.equal(restored.kalenderDag, 3);
+  assert.equal(restored.dag, 3);
+  assert.equal(restored.arkiv.length, app.current().arkiv.length);
+
   app.dom.window.close();
   console.log("civication lifestory day sync ok (shell blocks, calendar rolls once, workday idempotent)");
 }
