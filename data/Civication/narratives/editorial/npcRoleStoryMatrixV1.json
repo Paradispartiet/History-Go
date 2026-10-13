@@ -1,0 +1,176 @@
+{
+  "schema": "civication_npc_role_story_editorial_matrix_v1",
+  "version": 1,
+  "status": "authored_unmerged_targeted_tests_required",
+  "editorial_only": true,
+  "authority": {
+    "scene_manifest": "data/Civication/narratives/manifest.json",
+    "scene_source_adapter": "CivicationNarrativeSceneSource",
+    "choice_owner": "CivicationChoiceDirector",
+    "npc_catalog": "data/Civication/npcs/naeringsliv.json",
+    "character_store": "hg_civi_npc_character_threads_v1",
+    "narrative_progress_state": "narrative_state_v1",
+    "role_catalog": "data/Civication/roleWorlds/index.json"
+  },
+  "rules": {
+    "no_history_go_people_as_npc": true,
+    "no_grant_of_player_employment": true,
+    "no_separate_npc_save": true,
+    "confirmed_role_event_required": true,
+    "workday_interval_source": "CivicationWorkdayRuntime.getWorkdayDayIndex"
+  },
+  "stories": [
+    {
+      "stream_id": "stein_role_change_work_stream",
+      "source_path": "data/Civication/narratives/work/naeringsliv/stein_role_change.json",
+      "npc_id": "stein_peer_mellomleder",
+      "fictional_name": "Stein Mæland",
+      "player_role_scopes": [
+        "fagarbeider"
+      ],
+      "role_transition": {
+        "event_id": "stein_role_story:confirmed_appointment",
+        "from": "naeringsliv/mellomleder",
+        "to": "naeringsliv/avdelingsleder",
+        "confirmation_chapter": "stein_confirmed_appointment"
+      },
+      "chapters": [
+        {
+          "scene_id": "stein_peer_priority",
+          "synopsis": "Kollegial prioritering; tidligere tillit skapes",
+          "minimum_workdays_after_prior": 0,
+          "role_required": null
+        },
+        {
+          "scene_id": "stein_job_opening",
+          "synopsis": "Ledig stilling; spillerens saklige vurdering",
+          "minimum_workdays_after_prior": 1,
+          "role_required": null
+        },
+        {
+          "scene_id": "stein_confirmed_appointment",
+          "synopsis": "Organisatorisk bekreftelse av opprykk",
+          "minimum_workdays_after_prior": 2,
+          "role_required": null
+        },
+        {
+          "scene_id": "stein_new_role_followup",
+          "synopsis": "Samme kollega, ny myndighet; senere tillitsvariant",
+          "minimum_workdays_after_prior": 1,
+          "role_required": "naeringsliv/avdelingsleder"
+        }
+      ],
+      "narrative_crosswalk_candidates": {
+        "source": "PR #6283 / narrativeCrosswalkV1.json",
+        "status": "editorial_candidate_not_canonical_binding",
+        "c_story_ids": [
+          "C06",
+          "C23"
+        ]
+      },
+      "next_untested_step": "full_inbox_browser_playthrough_and_further_branching"
+    },
+    {
+      "stream_id": "frode_role_change_work_stream",
+      "source_path": "data/Civication/narratives/work/naeringsliv/frode_role_change.json",
+      "npc_id": "frode_formann",
+      "fictional_name": "Frode Aas",
+      "player_role_scopes": [
+        "fagarbeider",
+        "mellomleder"
+      ],
+      "role_transition": {
+        "event_id": "frode_role_story:confirmed_appointment",
+        "from": "naeringsliv/formann",
+        "to": "naeringsliv/mellomleder",
+        "confirmation_chapter": "frode_confirmed_appointment"
+      },
+      "chapters": [
+        {
+          "scene_id": "frode_line_stop",
+          "synopsis": "Driftsavvik, ansvar og dokumentasjon",
+          "minimum_workdays_after_prior": 0,
+          "role_required": null
+        },
+        {
+          "scene_id": "frode_promotion_process",
+          "synopsis": "Utlysning og etterprøvbar vurdering",
+          "minimum_workdays_after_prior": 1,
+          "role_required": null
+        },
+        {
+          "scene_id": "frode_confirmed_appointment",
+          "synopsis": "Formell lederutnevnelse fra administrasjonen",
+          "minimum_workdays_after_prior": 2,
+          "role_required": null
+        },
+        {
+          "scene_id": "frode_roster_followup",
+          "synopsis": "Ansvar for vaktplan, tidligere gulvlojalitet og senere tillit",
+          "minimum_workdays_after_prior": 1,
+          "role_required": "naeringsliv/mellomleder"
+        }
+      ],
+      "narrative_crosswalk_candidates": {
+        "source": "PR #6283 / narrativeCrosswalkV1.json",
+        "status": "editorial_candidate_not_canonical_binding",
+        "c_story_ids": [
+          "C17",
+          "C23"
+        ]
+      },
+      "next_untested_step": "full_inbox_browser_playthrough_and_further_branching"
+    },
+    {
+      "stream_id": "inger_role_change_work_stream",
+      "source_path": "data/Civication/narratives/work/naeringsliv/inger_role_change.json",
+      "npc_id": "inger_avdelingsleder",
+      "fictional_name": "Inger Holm",
+      "player_role_scopes": [
+        "fagarbeider",
+        "mellomleder"
+      ],
+      "role_transition": {
+        "event_id": "inger_role_story:confirmed_reorganization",
+        "from": "naeringsliv/avdelingsleder",
+        "to": "naeringsliv/mellomleder",
+        "confirmation_chapter": "inger_confirmed_reorganization"
+      },
+      "chapters": [
+        {
+          "scene_id": "inger_cost_dispute",
+          "synopsis": "Bemanningsforslag og praktisk dokumentasjon",
+          "minimum_workdays_after_prior": 0,
+          "role_required": null
+        },
+        {
+          "scene_id": "inger_reorganization_notice",
+          "synopsis": "Varsel om ny lederstruktur",
+          "minimum_workdays_after_prior": 1,
+          "role_required": null
+        },
+        {
+          "scene_id": "inger_confirmed_reorganization",
+          "synopsis": "Formelt vedtatt omorganisering og begrenset myndighet",
+          "minimum_workdays_after_prior": 2,
+          "role_required": null
+        },
+        {
+          "scene_id": "inger_knowledge_followup",
+          "synopsis": "Faglig kontinuitet uten gammel signaturmyndighet",
+          "minimum_workdays_after_prior": 1,
+          "role_required": "naeringsliv/mellomleder"
+        }
+      ],
+      "narrative_crosswalk_candidates": {
+        "source": "PR #6283 / narrativeCrosswalkV1.json",
+        "status": "editorial_candidate_not_canonical_binding",
+        "c_story_ids": [
+          "C06",
+          "C23"
+        ]
+      },
+      "next_untested_step": "full_inbox_browser_playthrough_and_further_branching"
+    }
+  ]
+}

@@ -231,11 +231,42 @@
     return true;
   }
 
+  function isNpcRoleStoryStream(stream) {
+    return (Array.isArray(stream?.storylets) ? stream.storylets : [])
+      .some((storylet) => storylet?.npc_story?.kind === "npc_role_story_v1");
+  }
+
   function storyletMatchesContext(storylet, stream, active, state, narrativeState) {
     const appliesOk = matchesRule(storylet?.applies_when, narrativeState, active, state);
     if (!appliesOk) return false;
     const avoidHit = matchesRule(storylet?.avoid_when, narrativeState, active, state);
-    return !storylet?.avoid_when || !avoidHit;
+    if (storylet?.avoid_when && avoidHit) return false;
+
+    // Optional NPC role gate for existing, authored narrative scenes. This reads
+    // the existing character-thread store; it neither confers employment nor
+    // creates a new narrative save owner.
+    const story = storylet?.npc_story;
+    // Choice history, not just the daily queue, prevents a finished chapter
+    // from being re-injected by an opened narrative stream.
+    if (story?.kind === "npc_role_story_v1" &&
+        narrativeState?.stream_progress?.[norm(stream?.id) + "::" + norm(storylet?.id)]?.answered) return false;
+    if (story?.kind === "npc_role_story_v1" && story.available_after) {
+      const after = story.available_after;
+      const progressKey = norm(stream?.id) + "::" + norm(after.storylet_id);
+      const previous = narrativeState?.stream_progress?.[progressKey];
+      const currentDay = Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? NaN);
+      const answeredDay = Number(previous?.answered_workday_day);
+      const gap = Number(after.min_workdays);
+      // Missing or old save timestamps must never unlock a new chapter by accident.
+      if (!previous?.answered || !Number.isInteger(currentDay) || !Number.isInteger(answeredDay) ||
+          !Number.isInteger(gap) || gap < 1 || currentDay < answeredDay + gap) return false;
+    }
+    if (story?.kind === "npc_role_story_v1" && norm(story.requires_role_ref)) {
+      const record = window.CivicationNpcCharacterThreads?.getState?.()?.characters?.[norm(story.npc_id)];
+      const current = record?.role_ref;
+      if (!current || (norm(current.category) + "/" + norm(current.role_scope)) !== norm(story.requires_role_ref)) return false;
+    }
+    return true;
   }
 
   function storyletWeight(storylet, narrativeState, active, state) {
@@ -267,10 +298,44 @@
     };
   }
 
-  function storyletsForSlot(streams, phaseId, usedStorylets, active, state, narrativeState) {
+  function lastNpcWorkday(stream, narrativeState) {
+    let last = -1; // Unmet characters get a turn before repeated encounters.
+    for (const storylet of (Array.isArray(stream?.storylets) ? stream.storylets : [])) {
+      const key = `${norm(stream?.id)}::${norm(storylet?.id)}`;
+      const progress = narrativeState?.stream_progress?.[key];
+      const rawDay = progress?.answered_workday_day;
+      const day = Number(rawDay);
+      if (progress?.answered && rawDay != null && Number.isInteger(day) && day >= 0) {
+        last = Math.max(last, day);
+      }
+    }
+    return last;
+  }
+
+  // The daily queue already owns queued storylet keys; answered chapter timestamps
+  // live in narrative_state_v1. Both are needed: a prebuilt queue must not get
+  // another NPC chapter, and rebuilding after an answer must not bypass the day.
+  function npcAssignedThisWorkday(streams, usedStorylets, narrativeState) {
+    const currentDay = Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? NaN);
+    for (const stream of streams) {
+      if (!isNpcRoleStoryStream(stream)) continue;
+      for (const storylet of (Array.isArray(stream?.storylets) ? stream.storylets : [])) {
+        const key = `${norm(stream.id)}::${norm(storylet?.id)}`;
+        const progress = narrativeState?.stream_progress?.[key];
+        if (usedStorylets.has(key) && !progress?.answered) return true;
+        if (progress?.answered && Number.isInteger(currentDay) &&
+            progress.answered_workday_day != null &&
+            Number(progress.answered_workday_day) === currentDay) return true;
+      }
+    }
+    return false;
+  }
+
+  function storyletsForSlot(streams, phaseId, usedStorylets, active, state, narrativeState, npcAlreadyAssigned) {
     const allow = SLOT_MAP[phaseId] || [];
     const picks = [];
     for (const stream of streams) {
+      if (npcAlreadyAssigned && isNpcRoleStoryStream(stream)) continue;
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
       const next = storylets.find(storylet => {
         const key = `${stream.id}::${norm(storylet.id)}`;
@@ -281,8 +346,23 @@
       });
       if (next) picks.push({ stream, storylet: next, weight: storyletWeight(next, narrativeState, active, state) });
     }
+    // Preserve the relative order of all other narratives and their weight.
+    // Reorder *only* the NPC positions inside each equal-priority group;
+    // an intervening ordinary stream must not upset NPC fairness.
     picks.sort((a, b) => b.weight - a.weight);
-    return picks;
+    const npcGroups = new Map();
+    for (const pick of picks) {
+      if (!isNpcRoleStoryStream(pick.stream)) continue;
+      if (!npcGroups.has(pick.weight)) npcGroups.set(pick.weight, []);
+      npcGroups.get(pick.weight).push(pick);
+    }
+    for (const group of npcGroups.values()) {
+      group.sort((a, b) => lastNpcWorkday(a.stream, narrativeState) -
+        lastNpcWorkday(b.stream, narrativeState));
+    }
+    return picks.map(pick => isNpcRoleStoryStream(pick.stream)
+      ? npcGroups.get(pick.weight).shift()
+      : pick);
   }
 
   function phasePreferenceForStreamType(streamType) {
@@ -292,6 +372,19 @@
     if (type === "class_case" || type === "class_cases") return ["lunch", "afternoon"];
     if (type === "work") return ["forenoon", "workday"];
     return [];
+  }
+
+  function narrativeSituation(storylet) {
+    const base = Array.isArray(storylet?.situation)
+      ? storylet.situation.map(norm).filter(Boolean)
+      : [norm(storylet?.situation)].filter(Boolean);
+    const story = storylet?.npc_story;
+    if (story?.kind !== "npc_role_story_v1" || !story.trust_variants) return base;
+    const record = window.CivicationNpcCharacterThreads?.getState?.()?.characters?.[norm(story.npc_id)];
+    const score = Number(record?.trust_score || 0);
+    const band = score >= 1 ? "trusted" : score <= -1 ? "strained" : "neutral";
+    const line = norm(story.trust_variants[band]);
+    return line ? [...base, line] : base;
   }
 
   function storyletToEvent(context, stream, storylet) {
@@ -330,8 +423,9 @@
       role_id: privateScope ? "" : norm(active?.role_id),
       employer_id: privateScope ? "" : (window.CivicationWorkdayRuntime?.getEmployerId?.(active) || norm(active?.brand_id)),
       subject: norm(storylet?.subject),
-      situation: Array.isArray(storylet?.situation) ? storylet.situation.map(norm).filter(Boolean) : [norm(storylet?.situation)].filter(Boolean),
+      situation: narrativeSituation(storylet),
       choices: normalizeChoices(storylet?.choices),
+      ...(storylet?.npc_story?.kind === "npc_role_story_v1" ? { npc_story: storylet.npc_story } : {}),
       narrative_effects: {
         opens_streams: uniqueStrings(storylet?.opens_streams),
         adds_flags: uniqueStrings(storylet?.adds_flags),
@@ -360,10 +454,16 @@
     let candidateStreams = candidateIds.length
       ? streams.filter(stream => candidateIdSet.has(norm(stream?.id)))
       : streams;
+    // Narrative source requests with no candidate IDs predate this contract.
+    // Preserve that behavior for other streams, but never leak NPC stories
+    // into a role where their applies_when rule is not satisfied.
+    candidateStreams = candidateStreams.filter(stream =>
+      !isNpcRoleStoryStream(stream) || streamMatches(stream, active, state, narrativeState));
     if (context.exclude_work_streams === true) {
       candidateStreams = candidateStreams.filter(stream => !WORK_STREAM_TYPES.has(slugify(stream?.type)));
     }
-    const picks = storyletsForSlot(candidateStreams, phaseId, usedStorylets, active, state, narrativeState);
+    const npcAlreadyAssigned = npcAssignedThisWorkday(streams, usedStorylets, narrativeState);
+    const picks = storyletsForSlot(candidateStreams, phaseId, usedStorylets, active, state, narrativeState, npcAlreadyAssigned);
     return picks.map(pick => storyletToEvent({ ...context, active, state, phaseId }, pick.stream, pick.storylet));
   }
 
@@ -379,6 +479,9 @@
     for (const streamId of openedStreamIds) {
       const stream = streams.find(candidate => norm(candidate?.id) === streamId);
       if (!stream) continue;
+      if (isNpcRoleStoryStream(stream) &&
+          (!streamMatches(stream, active, state, narrativeState) ||
+           npcAssignedThisWorkday(streams, excluded, narrativeState))) continue;
       const storylets = Array.isArray(stream?.storylets) ? stream.storylets : [];
       const storylet = storylets
         .filter(candidate => {
@@ -399,10 +502,10 @@
         phaseId: fallbackPhase,
         slot: { slot: "injected_narrative" }
       }, stream, storylet);
-      event.narrative_source_meta = {
-        preferred_phases: preferredPhases
-      };
-      return [event];
+      return [{
+        ...event,
+        narrative_source_meta: { preferred_phases: preferredPhases }
+      }];
     }
 
     return [];

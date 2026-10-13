@@ -42,6 +42,7 @@ on:
       - 'docs/PLACE_UNIFIED_SURFACE_PLAN.md'
       - 'scripts/build-place-open-payloads.mjs'
       - 'tests/place-open-hyperfast.test.mjs'
+      - 'tests/black-box-productions-placecard.test.mjs'
       - 'tests/place-popup-lesespor-place-open-race.test.mjs'
       - 'tests/place-popup-v2-unified-target.test.mjs'
       - 'tests/place-popup-root-scoped-decorators.test.mjs'
@@ -90,8 +91,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Verify payload sync and runtime contract
-        run: npm run place-open:check && npm run test:place-open
+      - name: Verify payload sync, production media and runtime contract
+        run: |
+          npm run place-open:check
+          npm run test:place-open
+          node --test tests/black-box-productions-placecard.test.mjs
 
       - name: Verify unified Place surface build and parity contract
         run: |
