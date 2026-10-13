@@ -42,6 +42,9 @@
    * @property {number} version
    * @property {string} rolle
    * @property {number} dag
+   * @property {number} [livsdag] Felles fortellingsdag; eldre v2-saves mangler feltet
+   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
+   * @property {Array<{fra: string, til: string, livsdag: number, fraDag: number, tilDag: number}>} [rolleBytter]
    * @property {string} fase
    * @property {Record<string, number>} meters
    * @property {Record<string, number>} relasjoner
