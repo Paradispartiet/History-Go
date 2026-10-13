@@ -1,0 +1,35 @@
+name: Black Box QuizCard browser regression
+
+on:
+  pull_request:
+    paths:
+      - 'tests/black-box-quiz-flip-browser.test.mjs'
+      - '.github/workflows/black-box-quiz-flip-browser.yml'
+      - 'js/ui/place-card.js'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'css/placeCard.css'
+      - 'data/quizcards/scenekunst/black_box_teater_quizkort_v1.json'
+      - 'data/places/scenekunst/oslo/places_scenekunst/black_box_teater.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  black-box-flip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Check Black Box QuizCard wiring and browser flip
+        run: |
+          node --test tests/black-box-productions-placecard.test.mjs
+          node tests/black-box-quiz-flip-browser.test.mjs
