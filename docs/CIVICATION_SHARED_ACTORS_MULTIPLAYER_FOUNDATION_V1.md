@@ -47,6 +47,24 @@ Ny kontrakt: arketypen beholder eget navn og egen beskrivelse; en eventuell saml
 
 Gamle lagrede scenevalg, actor-ID-er, `personRepresentanter` og archive-snapshots omskrives ikke i denne PR-en. Andre legacy People/NPC-koblinger skal kartlegges før en bredere migrering.
 
+## Første solo-integrasjon: eksisterende NPC-er
+
+Denne leveransen utvider samme PR med en **etterprøvbar, begrenset** binding av allerede eksisterende fiktive katalogkarakterer. Det opprettes ikke nye fiktive identiteter og ingen scene/mailer skrives om.
+
+| Eksisterende NPC-ID | Katalogtittel | Canonical Role World | Identitet |
+| --- | --- | --- | --- |
+| `inger_avdelingsleder` | Avdelingsleder | `naeringsliv/avdelingsleder` | `npc:inger_avdelingsleder` |
+| `stein_peer_mellomleder` | Mellomleder, naboavdeling | `naeringsliv/mellomleder` | `npc:stein_peer_mellomleder` |
+| `frode_formann` | Formann, B-skift | `naeringsliv/formann` | `npc:frode_formann` |
+
+**Hvorfor bare tre?** Katalogen har ti fiktive NPC-er. De øvrige syv har ikke et uttrykkelig samsvar mellom sin konkrete tittel og en kontrollert canonical Role World i denne produksjonspakken; derfor får de ingen gjetningsbasert rolle. De fortsetter som fullverdige eksisterende mail-avsendere.
+
+`data/Civication/npcs/naeringsliv.json` beholder alle ti NPC-ID-er/navn; kun de tre har nå eksplisitte `role_ref`. `civicationNPCs.js` bevarer `lookup`, `all`, `load` og eksisterende mail-oppførsel. En ny `resolveActor(npcId)` gjør et behovsstyrt oppslag i canonical `roleWorlds/index.json` og validerer bindingen via `CivicationActorRoleContract`. Den returnerer `null` for umappet NPC, manglende indeks eller ugyldig rolle; ingen fallback som gir oppdiktet myndighet.
+
+`civicationShellLoader.js` laster rollekontrakten før NPC-katalogen i både standard- og legacy-shell. Ingen ekstra nedlasting av hele rollekatalogen skjer ved vanlig NPC-mailoppslag; den skjer først ved eksplisitt `resolveActor`-kall. En slik aktørreferanse er foreløpig **read-only** og gir ikke en faktisk jobb, frie relasjoner, offline-handlinger, lagringsmigrering eller simulert jobbkarriere.
+
+**Verifikasjon:** `tests/civication-npc-role-bridge.test.js` kontrollerer de tre eksakte koblingene, alle ti legacy-NPC-er, ingen eager role-fetch, null-resultat ved manglende indeks, stabil `npc:`-identitet, ingen `localStorage`-skriverett og lastrekkefølge i begge shell. Dette er første begrensede kodekobling, **ikke** allmenn karaktergenerering eller online-multiplayer.
+
 ## Samspill i én spillverden: produksjonsmatrise
 
 | Interaksjon | I solo | I frivillig online | Eier og krav |
