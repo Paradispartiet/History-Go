@@ -49,7 +49,10 @@
    * booter eller spilleren tar en jobb. Ukjent rolle-id feiler fast i
    * Content.loadContent (manifest-oppslag) — ingen stille fallback.
    */
-  let currentRoleId = EXPLICIT_ROLE_ID || DEFAULT_ROLE_ID;
+  // Ved nettleseromstart gjenopptas aktiv lagret rolle før shellen booter.
+  // Ellers ville standardrollen lage et unødvendig bytte på hver reload.
+  const persistedRoleId = /** @type {any} */ (window).CivicationLifestoryState?.load?.()?.rolle;
+  let currentRoleId = EXPLICIT_ROLE_ID || persistedRoleId || DEFAULT_ROLE_ID;
 
   /** @type {any} */ let content = null;
   /** @type {any} */ let baseContent = null;
