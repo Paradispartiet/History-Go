@@ -24,14 +24,22 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
         ${people.map(function (person) {
-          const style = String(person?.social_style || "generic");
-          const type = String(person?.type || "person");
-          const name = String(person?.name || "Person");
-          const desc = String(person?.description || "");
+          const escapeHtml = function (value) {
+            return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+          };
+          const style = escapeHtml(person?.social_style || "generic");
+          const type = escapeHtml(person?.type || "person");
+          // Pre-migration local saves could still contain a historical person's
+          // name and bio over a fictional archetype. Never render that as an NPC.
+          const legacyHistoryPerson = person?.hg_person || null;
+          const name = escapeHtml(legacyHistoryPerson
+            ? (person?.archetype_name || "Fiktiv miljøfigur")
+            : (person?.name || "Person"));
+          const desc = escapeHtml(legacyHistoryPerson ? "" : (person?.description || ""));
           const score = Number(person?.score || 0);
-          const source = person?.history_go_learning_reference || null;
+          const source = person?.history_go_learning_reference || legacyHistoryPerson;
           // A historical person is a factual learning reference, never this NPC.
-          const safePersonName = String(source?.name || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+          const safePersonName = escapeHtml(source?.name);
           const collectedLine = source
             ? `<div style="font-size:0.85rem;margin-top:4px;color:#ffd479;">Historisk fagreferanse fra History Go: ${safePersonName}</div>`
             : "";
