@@ -366,6 +366,14 @@
     const calendar = getCalendar();
     const fromPhase = state.phase;
 
+    // Den kanoniske kalenderen kan ikke hoppe over uferdige Min dag-valg.
+    // Life Story gjør aldri kalender-, mail- eller ukes-tick selv.
+    // Null betyr at Min dag ikke finnes på siden, og beholder gammel flyt.
+    const lifeStory = window.CivicationLifestoryUI?.getDaySyncState?.() || null;
+    if (fromPhase === "day_end" && lifeStory && !lifeStory.dagFerdig) {
+      return { advanced: false, reason: "lifestory_day_incomplete" };
+    }
+
     // PR F: dagsrullnings (day_end → ny dag) skal ferdigstille ukesoppsummeringen. For daily-events
     // kjører ikke lenger dayPatches.answer sin day_end-gren (PR A), så `saveDailySummaryToWeek` +
     // `finalizeWeekIfNeeded` var foreldreløse — uke-review ble aldri skrevet, og det inert-gjorde
