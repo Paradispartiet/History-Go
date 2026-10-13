@@ -118,6 +118,8 @@
       && norm(inspection?.phase) === "day_end"
       && Number(inspection?.openItemsInPhase || 0) === 0;
     if (!atDayEndComplete) return null;
+    const lifeStory = window.CivicationLifestoryUI?.getDaySyncState?.() || null;
+    if (lifeStory && !lifeStory.dagFerdig) return null;
     return {
       source: "day_phase_advance",
       id: "start_new_day:" + norm(inspection.phase),

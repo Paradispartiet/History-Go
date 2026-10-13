@@ -3,6 +3,64 @@
 import assert from 'node:assert/strict';
 import { join } from 'node:path';
 
+// One browser day through real controls. No direct writes to the game clock
+// and no test invocation of the phase-advance API.
+async function nextDayViaUi(page: any, scenarioId: string, day: number) {
+  for (let step = 0; step < 55; step++) {
+    const before = await page.evaluate(() => {
+      const app = globalThis as any;
+      return {
+        day: Number(app.CivicationCalendar?.getClock?.().dayIndex),
+        phase: app.CivicationCalendar?.getPhase?.(),
+        story: app.CivicationLifestoryState?.load?.(),
+        next: app.CivicationNextActionSelector?.getCurrent?.(),
+        blocking: app.CivicationDayProgression?.inspect?.()?.blockingReason
+      };
+    });
+    if (before.day === day + 1) {
+      assert.equal(before.story.kalenderDag, day + 1, `${scenarioId}: calendar/story day remain synchronized`);
+      return;
+    }
+    assert.equal(before.day, day, `${scenarioId}: only one calendar rollover`);
+    assert.equal(before.story?.dagFerdig, true, `${scenarioId}: unfinished Life Story cannot roll over`);
+
+    if (before.next && !before.next.canStartNewDay) {
+      // Visit the canonical answer surface, including queued mail and task
+      // gates. An actual pending mail cannot be bypassed by this helper.
+      const modal = page.locator('#civiNextActionModal.is-open');
+      if (!(await modal.count())) {
+        await page.locator('[data-lifestory-next-action], #civiTopActionCard [data-civi-top-action], [data-civi-open-next-action]').first().click({ timeout: 12000 });
+        await modal.waitFor({ state: 'visible', timeout: 12000 });
+      }
+      const queued = modal.locator('[data-civi-next-action-open-queued]').first();
+      const task = modal.locator('[data-civi-next-action-task]').first();
+      const answer = modal.locator('[data-civi-next-action-answer]').first();
+      if (await queued.count()) await queued.click();
+      else if (await task.count()) await task.click();
+      else if (await answer.count()) await answer.click();
+      else throw Error(`${scenarioId}: no player answer for ${JSON.stringify(before.next)}`);
+      await page.waitForTimeout(160);
+      continue;
+    }
+
+    const close = page.locator('#civiNextActionModal.is-open button[data-civi-next-action-close]').first();
+    if (await close.count()) await close.click();
+    await page.locator('[data-lifestory-next-day]').click({ timeout: 12000 });
+    await page.waitForTimeout(180);
+    const after = await page.evaluate(() => ({
+      day: Number((globalThis as any).CivicationCalendar?.getClock?.().dayIndex),
+      phase: (globalThis as any).CivicationCalendar?.getPhase?.(),
+      next: (globalThis as any).CivicationNextActionSelector?.getCurrent?.(),
+      blocking: (globalThis as any).CivicationDayProgression?.inspect?.()?.blockingReason
+    }));
+    if (after.day !== day && after.day !== day + 1) throw Error(`${scenarioId}: calendar jumped from day ${day} to ${after.day}`);
+    if (after.day === day && after.phase === before.phase && !after.next) {
+      throw Error(`${scenarioId}: calendar stuck: ${JSON.stringify({ before: { phase: before.phase, blocking: before.blocking }, after })}`);
+    }
+  }
+  throw Error(`${scenarioId}: more than 55 real UI actions on calendar day ${day}`);
+}
+
 export default async function verifyArbeidsledig(browser: any, origin: string, outputDir: string) {
   const cases: any[] = [
     { id: 'musikk_booket', route: 'musikk', choices: { d7_musikk_videre: 'rolleflaten' } },
@@ -35,6 +93,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
     arvid_videre_avbrutt: { type: 'amir', id: 'sossen_krohg', name: 'Sossen Krohg' }
   };
   const reports: any[] = [];
+  const failures: any[] = [];
   for (const scenario of cases) {
     const representative = representatives[scenario.id];
     const context = await browser.newContext({ viewport: scenario.id === 'musikk_booket' ? { width: 1024, height: 768 } : { width: 390, height: 844 } });
@@ -77,7 +136,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
         state = await readState();
         if (state.dagFerdig) {
           if (state.dag === 7) break;
-          await page.locator('[data-lifestory-next-day]').click();
+          await nextDayViaUi(page, scenario.id, state.dag);
           continue;
         }
         const sceneId = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
@@ -191,7 +250,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
           state = await readState();
           if (state.dagFerdig) {
             if (state.dag === 10) break;
-            await page.locator('[data-lifestory-next-day]').click();
+            await nextDayViaUi(page, scenario.id, state.dag);
             continue;
           }
           const sceneId = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
@@ -256,7 +315,7 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
           state = await readState();
           if (state.dagFerdig) {
             if (state.dag === 13) break;
-            await page.locator('[data-lifestory-next-day]').click();
+            await nextDayViaUi(page, scenario.id, state.dag);
             continue;
           }
           const sceneId = await page.evaluate(() => (globalThis as any).CivicationLifestoryUI.getCurrentSceneInfo().sceneId);
@@ -280,8 +339,24 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
           assert.ok(++nativeGuard < 40);
         }
         assert.equal(secondReloadDays.size, 3);
-        assert.equal(await page.locator('[data-lifestory-continue]').count(), 0);
-        assert.equal(await page.locator('[data-lifestory-next-day]').count(), 0);
+        // The authored story continues beyond day 13 (next chapter begins
+        // on day 14). A completed chapter must offer the eligible, exact
+        // continuation, rather than incorrectly look like the end of the game.
+        const nextChapterByCurrent: Record<string, string> = {
+          musikk_foresporselen: 'musikk_etter_foresporselen',
+          sideprosjekt_neste_steg: 'sideprosjekt_etter_neste_steg',
+          frilans_neste_steg: 'frilans_etter_neste_steg',
+          grunder_neste_steg: 'grunder_etter_neste_steg',
+          miljo_navnet_ditt: 'miljo_etter_invitasjonen'
+        };
+        const expectedNextChapter = nextChapterByCurrent[secondId];
+        assert.ok(expectedNextChapter, scenario.id + ': documented continuation exists');
+        const availableNextChapter = page.locator('[data-lifestory-continue]');
+        assert.equal(await availableNextChapter.count(), 1, scenario.id + ': one eligible chapter follows day 13');
+        assert.equal(await availableNextChapter.getAttribute('data-lifestory-continue'), expectedNextChapter,
+          scenario.id + ': exact canonical third-chapter ID');
+        assert.equal(await page.locator('[data-lifestory-next-day]').count(), 0,
+          scenario.id + ': chapter transition is not an ordinary next-day rollover');
         assert.ok(state.threadState[scenario.route === 'musikk' ? 'musikk_omfang_og_tid' : scenario.route === 'miljo' ? 'arvid_navnet_pa_invitasjonen' : secondId.replace('_neste_steg', '_etter_forste_kapittel')].status === 'completed');
         if (scenario.route === 'miljo') {
           assert.ok(state.tidligereValg.arvid_kapittel13_avsluttet);
@@ -331,8 +406,12 @@ export default async function verifyArbeidsledig(browser: any, origin: string, o
       }).catch(() => null);
       console.error('Arbeidsledig browser failure', JSON.stringify({ scenario: scenario.id, trace, snapshot, pageErrors: errors }));
       await page.screenshot({ path: join(outputDir, `arbeidsledig-${scenario.id}-failure.png`), fullPage: true }).catch(() => {});
-      throw error;
+      failures.push({ id: scenario.id, error: String((error as Error)?.message || error), trace, snapshot, pageErrors: errors });
     } finally { await context.close(); }
+  }
+  if (failures.length) {
+    throw new Error('Arbeidsledig full browser acceptance: ' + reports.length + '/' + cases.length
+      + ' passed; failures=' + JSON.stringify(failures.map(({ id, error }) => ({ id, error }))));
   }
   return { cases: reports, fullShell: true, productionFunctionsReplaced: false };
 }

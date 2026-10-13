@@ -3,6 +3,7 @@ import { spawn } from 'child_process';
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import verifyArbeidsledig from './verify-civication-arbeidsledig-browser.js';
+import verifyOrganicPlayer from './verify-civication-organic-player-browser.js';
 
 let playwright: any;
 try { playwright = require('playwright'); } catch { console.error('Playwright not installed'); process.exit(2); }
@@ -10,7 +11,7 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
 (async () => {
   // Default remains exhaustive for manual/nightly runs; PR smoke skips only
   // the 20 multi-day Arbeidsledig playthrough scenarios.
-  const depth = process.env.CIVICATION_BROWSER_DEPTH === 'smoke' ? 'smoke' : 'full';
+  const depth = process.env.CIVICATION_BROWSER_DEPTH === 'smoke' ? 'smoke' : process.env.CIVICATION_BROWSER_DEPTH === 'organic' ? 'organic' : 'full';
   const origin = 'http://127.0.0.1:4173';
   const manifest = JSON.parse(readFileSync(join(process.cwd(), 'data/places/manifest.json'), 'utf8'));
   const sourceHttpErrors = require(join(process.cwd(), 'scripts/civication-source-http-gate.cjs'));
@@ -85,12 +86,32 @@ try { playwright = require('playwright'); } catch { console.error('Playwright no
     const verifyPeople = require(join(process.cwd(), 'scripts/verify-civication-people-browser.cjs'));
     report.people = await verifyPeople(browser, origin, outputDir);
     console.log('Civication People browser ok', JSON.stringify(report.people));
+    const acceptanceFailures: string[] = [];
+    // These are independent gates. The organic job-offer test must not prevent
+    // collecting the results of all 20 multi-day scenarios, or vice versa.
     if (depth === 'full') {
-      report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
-      console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
+      try {
+        report.arbeidsledig = await verifyArbeidsledig(browser, origin, outputDir);
+        console.log('Civication Arbeidsledig browser ok', JSON.stringify(report.arbeidsledig));
+      } catch (error) {
+        report.arbeidsledigError = String((error as Error)?.message || error);
+        acceptanceFailures.push('arbeidsledig');
+        console.error('Civication Arbeidsledig browser failed:', report.arbeidsledigError);
+      }
+    }
+    if (depth !== 'smoke') {
+      try {
+        report.organicPlayer = await verifyOrganicPlayer(browser, origin);
+        console.log('Civication organic player acceptance ok', JSON.stringify(report.organicPlayer));
+      } catch (error) {
+        report.organicPlayerError = String((error as Error)?.message || error);
+        acceptanceFailures.push('organicPlayer');
+        console.error('Civication organic player browser failed:', report.organicPlayerError);
+      }
     } else {
       console.log('Civication PR smoke passed; full Arbeidsledig scenarios run daily or by workflow_dispatch.');
     }
+    if (acceptanceFailures.length) throw new Error('Civication browser acceptance failed: ' + acceptanceFailures.join(', '));
   } finally {
     try { if (browser) await browser.close(); }
     finally {

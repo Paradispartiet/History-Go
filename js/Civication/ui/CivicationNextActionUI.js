@@ -706,8 +706,12 @@
 
     const existing = getCurrentAction();
     const active = getActiveRole();
-    if (existing && !active) return { ok: true, action: existing, stage: "current" };
-    if (!active) return { ok: true, action: null, stage: "no_active_role" };
+    if (!active) {
+      // No workday exists for an unemployed player. Progress through empty
+      // phases only; the controller stops at any unanswered private message.
+      const advance = existing ? null : await advanceUntilNextRealAction();
+      return { ok: true, action: advance?.action || getCurrentAction(), stage: "no_active_role", advance };
+    }
 
     let initialInspection = null;
     try { initialInspection = window.CivicationDailyMailBuilder?.inspect?.() || null; } catch (_e) { initialInspection = null; }

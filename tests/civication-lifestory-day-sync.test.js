@@ -104,12 +104,33 @@ async function main() {
   const archived = app.current().arkiv.length;
   assert.ok(archived > 0, "day one choices are stored");
 
-  // Pressing the story next-day button cannot bypass required shell actions.
+  // The blocked-player answer link is a real UI action, not an engine
+  // bypass: opening the modal must not move the shared calendar.
+  let openedAnswerSurface = 0;
+  window.CivicationNextActionSelector = {
+    getCurrent: () => ({ id: "required-morning", canStartNewDay: false })
+  };
+  window.CivicationNextActionUI = {
+    open: () => { openedAnswerSurface++; return true; }
+  };
+  window.CivicationLifestoryUI.render();
+  assert.ok(panel.querySelector("[data-lifestory-next-action]"), "pending mail reachable from Min dag");
+  panel.querySelector("[data-lifestory-next-action]").click();
+  assert.equal(openedAnswerSurface, 1);
+  assert.equal(calendar.getClock().dayIndex, 1);
+  delete window.CivicationNextActionSelector;
+  delete window.CivicationNextActionUI;
+  window.CivicationLifestoryUI.render();
+
+  // An unemployed player can skip empty phases, but may not skip an
+  // unanswered required morning mail.
+  app.setQueue([{ id: "required-morning", phase: "morning", status: "queued", required: true }]);
   panel.querySelector("[data-lifestory-next-day]").click();
   await delay();
   assert.equal(app.current().dag, 1);
   assert.equal(calendar.getClock().dayIndex, 1);
   assert.match(panel.textContent, /Fullfør dagens jobb/);
+  app.setQueue([]);
 
   // Even at day_end the queue must be empty; an undelivered mandatory
   // mail cannot be silently discarded when Min dag asks for tomorrow.
@@ -122,9 +143,10 @@ async function main() {
   assert.equal(counters.enqueue, 0);
   app.setQueue([]);
 
-  // Finishing the shell day rolls the calendar and the story exactly once.
+  // From morning with no job and no open mail, the player's real button
+  // passes empty phases and rolls the canonical calendar exactly once.
   calendar.setDailySummary({ choiceLog: [{ id: "daily-choice" }] });
-  calendar.setPhase("day_end");
+  calendar.setPhase("morning");
   panel.querySelector("[data-lifestory-next-day]").click();
   await waitFor(() => app.current().dag === 2, "single rollover");
   assert.equal(calendar.getClock().dayIndex, 2);
@@ -132,7 +154,7 @@ async function main() {
   assert.equal(app.current().livsdag, 2);
   assert.equal(app.current().arkiv.length, archived, "archived choices survived");
   assert.deepEqual({ ...counters }, {
-    weeklySave: 1, weeklyFinalize: 1, enqueue: 1, workdayCompleted: 0
+    weeklySave: 1, weeklyFinalize: 1, enqueue: calendar.DAY_PHASES.length, workdayCompleted: 0
   }, "weekly review and inbox queue were emitted once; no fake workday");
   assert.equal(app.current().dagFerdig, false, "next Life Story day is playable");
 
@@ -161,7 +183,7 @@ async function main() {
   assert.equal(app.current().dag, 3, "shell-only rollover synchronizes story");
   assert.equal(app.current().livsdag, 3);
   assert.equal(counters.weeklyFinalize, 2);
-  assert.equal(counters.enqueue, 2);
+  assert.equal(counters.enqueue, calendar.DAY_PHASES.length + 1);
   assert.equal(counters.workdayCompleted, 1);
   assert.equal(app.current().kalenderDag, 3);
 
