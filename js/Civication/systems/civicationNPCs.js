@@ -86,18 +86,39 @@
     const catalog = await getRoleCatalog();
     if (!catalog || !contract?.createActor) return null;
     try {
-      return contract.createActor(catalog, {
+      let actor = contract.createActor(catalog, {
         actor_id: "npc:" + npc.id,
         actor_type: "fictional_npc",
         role_ref: npc.role_ref
       });
+      // Role events are owned by the existing character-thread store. Replaying
+      // them here produces an actor view without creating a second save owner.
+      const history = window.CivicationNpcCharacterThreads?.getRoleHistory?.(npc.id) || [];
+      for (const entry of history) {
+        const to = String(entry?.to || "").split("/");
+        if (to.length !== 2 || !to[0] || !to[1]) return null;
+        actor = contract.changeActorRole(catalog, actor, {
+          category: to[0], role_scope: to[1]
+        }, entry.event_id);
+      }
+      return actor;
     } catch (error) {
-      if (window.DEBUG) console.warn("[CivicationNPCs] ugyldig eksplisitt rolle", npc.id, error);
+      if (window.DEBUG) console.warn("[CivicationNPCs] ugyldig eksplisitt rolle eller rollehistorikk", npc.id, error);
       return null;
     }
   }
 
-  window.CivicationNPCs = { load, lookup, all, resolveActor };
+  // Pure preview. Only CivicationNpcCharacterThreads may persist the event.
+  async function previewRoleTransition(id, nextRef, eventId) {
+    const actor = await resolveActor(id);
+    const contract = window.CivicationActorRoleContract;
+    if (!actor || !contract?.changeActorRole) return null;
+    const catalog = await getRoleCatalog();
+    if (!catalog) return null;
+    return contract.changeActorRole(catalog, actor, nextRef, eventId);
+  }
+
+  window.CivicationNPCs = { load, lookup, all, resolveActor, previewRoleTransition };
 
   // Last automatisk ved boot.
   if (document.readyState === "loading") {
