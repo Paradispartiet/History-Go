@@ -138,6 +138,7 @@ test("A real choice passes ChoiceDirector, preserves Stein and changes role once
 
   const stored = h.window.CivicationNpcCharacterThreads.getState().characters[STEIN];
   assert.equal(stored.name, "Stein Mæland");
+  assert.equal(stored.role, "Mellomleder, naboavdeling", "original social label survives role transition");
   assert.equal(stored.role_history.length, 1);
   assert.equal(stored.role_history[0].event_id, roleChanged);
   assert.equal(stored.role_history[0].from, "naeringsliv/mellomleder");
@@ -149,8 +150,8 @@ test("A real choice passes ChoiceDirector, preserves Stein and changes role once
     assert.equal(stored[field], undefined);
   }
 
-  const retry = await h.engine.answer(stage.id, "A");
-  assert.equal(retry.ok, true, "duplicate answer has no second actor transition or trust event");
+  const retry = await h.engine.answer(stage.id, "B");
+  assert.equal(retry.ok, true, "a replay with a different choice must not grant another beat");
   const afterRetry = h.window.CivicationNpcCharacterThreads.getState().characters[STEIN];
   assert.equal(afterRetry.role_history.length, 1);
   assert.equal(afterRetry.beats.length, 3);
