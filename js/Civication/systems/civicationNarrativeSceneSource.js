@@ -241,6 +241,17 @@
     // the existing character-thread store; it neither confers employment nor
     // creates a new narrative save owner.
     const story = storylet?.npc_story;
+    if (story?.kind === "npc_role_story_v1" && story.available_after) {
+      const after = story.available_after;
+      const progressKey = norm(stream?.id) + "::" + norm(after.storylet_id);
+      const previous = narrativeState?.stream_progress?.[progressKey];
+      const currentDay = Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? NaN);
+      const answeredDay = Number(previous?.answered_workday_day);
+      const gap = Number(after.min_workdays);
+      // Missing or old save timestamps must never unlock a new chapter by accident.
+      if (!previous?.answered || !Number.isInteger(currentDay) || !Number.isInteger(answeredDay) ||
+          !Number.isInteger(gap) || gap < 1 || currentDay < answeredDay + gap) return false;
+    }
     if (story?.kind === "npc_role_story_v1" && norm(story.requires_role_ref)) {
       const record = window.CivicationNpcCharacterThreads?.getState?.()?.characters?.[norm(story.npc_id)];
       const current = record?.role_ref;
