@@ -228,10 +228,15 @@ function normalizedLicenseUrl(ext: any, license: string): string {
 function candidateFromMeta(e: Entry, qid: string, file: string, info: any, identity?: Identity, sourceScore = 0): Candidate | null {
   const ext = info?.extmetadata || {}; const license = cleanHtml(ext.LicenseShortName?.value || ext.UsageTerms?.value);
   const url = reqStr(info?.url); if (!url || !isAllowedLicense(license)) return null;
+  // An image without author/credit cannot enter a publishable candidate queue.
+  // Reject it during discovery, not after an otherwise complete bulk scan.
+  const creator = cleanHtml(ext.Artist?.value || ext.Credit?.value);
+  const credit = cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value);
+  if (!creator && !credit) return null;
   try { assertCommonsUrl(url); } catch { return null; }
   const commons = `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/^File:/, '').replace(/ /g, '_'))}`;
   const commonsFileName = file.replace(/^File:/, ''); const personId = reqStr(e.person.id); const q = unavailableAnalysisQuality(Number(info.width || 0), Number(info.height || 0));
-  return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
+  return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator, credit, license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
 }
 export async function fetchImageBufferWithRetry(url: string, fetcher: Fetcher = fetch, options: { timeoutMs?: number; sleepMs?: (ms: number) => Promise<void> } = {}): Promise<Uint8Array> {
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
