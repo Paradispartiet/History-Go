@@ -1,0 +1,43 @@
+
+> history-go@0.0.0 people:images:apply:write
+> npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write --review-payload={"version":2,"selections":[{"personId":"henny_moan","candidateId":"henny_moan__henny_moan_1958_cropped_jpg","approvalMode":"normal"},{"personId":"alfred_maurstad","candidateId":"alfred_maurstad__alfred_maurstad_jpg","approvalMode":"normal"},{"personId":"ane_dahl_torp","candidateId":"ane_dahl_torp__ane_dahl_torp_jpg","approvalMode":"normal"},{"personId":"renate_reinsve","candidateId":"renate_reinsve__renate_reinsve_9937_jpg","approvalMode":"normal"},{"personId":"ingrid_bolso_berdal","candidateId":"ingrid_bolso_berdal__ingrid_bolso_berdal_by_gage_skidmore_jpg","approvalMode":"normal"}]}
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "mode": "write",
+  "selected": [
+    {
+      "personId": "henny_moan",
+      "personName": "Henny Moan",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/henny_moan.json",
+      "imageFile": "bilder/kort/people/henny_moan"
+    },
+    {
+      "personId": "alfred_maurstad",
+      "personName": "Alfred Maurstad",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/alfred_maurstad.json",
+      "imageFile": "bilder/kort/people/alfred_maurstad"
+    },
+    {
+      "personId": "ane_dahl_torp",
+      "personName": "Ane Dahl Torp",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/ane_dahl_torp.json",
+      "imageFile": "bilder/kort/people/ane_dahl_torp"
+    },
+    {
+      "personId": "renate_reinsve",
+      "personName": "Renate Reinsve",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/renate_reinsve.json",
+      "imageFile": "bilder/kort/people/renate_reinsve"
+    },
+    {
+      "personId": "ingrid_bolso_berdal",
+      "personName": "Ingrid Bolsø Berdal",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/ingrid_bolso_berdal.json",
+      "imageFile": "bilder/kort/people/ingrid_bolso_berdal"
+    }
+  ]
+}
