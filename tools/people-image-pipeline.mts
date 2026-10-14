@@ -20,7 +20,7 @@ type Identity = { status: 'strong' | 'review' | 'insufficient'; source: string; 
 type Candidate = { candidateId: string; personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number; identity: Identity; quality: Quality; faceDetection: FaceDetection; rank: number; recommendedForReview: boolean; bestAvailable: boolean };
 type ReviewSelection = { personId: string; candidateId: string; approvalMode?: 'normal' | 'best_available'; bestAvailableReason?: string };
 type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null; selections: ReviewSelection[] | null };
-const MAX_APPROVED_APPLY = 5;
+const MAX_APPROVED_APPLY = 20;
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
 type HeaderMap = Record<string, string>;
