@@ -39,32 +39,54 @@
   "collections": {
     "people": {
       "status": "BLOCKED",
-      "reason": "C9 har kildegjennomgått 87/87 DNT-personrelasjoner. C15–C19 har nå publisert ti individuelt Commons-klarerte People-portretter i canonical People, lokale bildefiler, bildekreditering og People-/Place-open-runtime. 77 av de 87 mangler fremdeles portrett, så full People-v1 er ikke ferdig.",
-      "plan": "C20: 20 nye individuelt identifiserte Commons-kandidater (Wikidata P18, lisens og kreditering) står i kontrollert apply-request. Samme produksjonskjøring skal levere lokale bilder, kanoniske People-data, attribusjonsregister og deterministiske People-/Place-open-visningsdata i én draft PR. Ti portretter er allerede publisert; de 20 nye telles først etter vellykket merge.",
+      "reason": "C9 har kildegjennomgått alle 87 People-koblingene. C15–C20 har publisert 30 lisensdokumenterte Commons-personbilder med canonical People, bildekreditering og synkronisert People-/Place-open-runtime. De resterende 57 mangler portrett.",
+      "plan": "C21: ti ytterligere personer med Wikidata P18 og åpne Commons-kilder er valgt i portrait_image_apply_request.json. Ett målrettet produksjonsløp skal levere lokal fil, metadata og generert runtime i samme draft PR. Fortsett senere med uavklarte personidentiteter og øvrige bildekilder uten navnforveksling eller gruppebilder som påståtte portretter.",
       "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
       "portrait_batch_request": "data/people/portrait_image_batch_request.json",
-      "portraits_published_count": 10,
-      "portraits_remaining_count": 77,
+      "portraits_published_count": 30,
+      "portraits_remaining_count": 57,
       "portraits_published_ids": [
         "alfred_maurstad",
         "ane_dahl_torp",
+        "anne_marit_jacobsen",
+        "anton_heiberg",
+        "arild_brinchmann",
+        "astrid_folstad",
         "bjorn_sundquist",
+        "cally_monrad",
+        "carl_fredrik_engelstad",
+        "charlotte_frogner",
+        "edvard_drablos",
+        "gisle_straume",
         "henny_moan",
+        "ingjald_haaland",
         "ingrid_bolso_berdal",
+        "iren_reppen",
+        "knut_hergel_det_norske_teatret",
+        "lise_fjeldstad",
+        "merete_skavlan",
         "monna_tandberg_det_norske_teatret",
+        "nils_ole_oftebro",
+        "nils_sletbak",
+        "oddgeir_thune",
+        "pal_sverre_hagen",
         "pia_tjelta",
         "ragnhild_hald",
         "renate_reinsve",
-        "svein_erik_brodal"
+        "rut_tellefsen",
+        "svein_erik_brodal",
+        "svein_tindberg"
       ],
       "portrait_candidate_pr": 6316,
       "portrait_image_prs": [
         6319,
-        6323
+        6323,
+        6329
       ],
       "portrait_runtime_prs": [
         6321,
-        6325
+        6325,
+        6329
       ]
     },
     "objects": {
@@ -226,8 +248,15 @@
     },
     {
       "id": "people_portraits_c20_bulk",
-      "status": "REQUEST_READY_NOT_YET_PUBLISHED",
-      "scope": "Én ny batch med 20 P18-tilknyttede kandidatbilder med Commons-kreditering; én apply-PR skal også generere tilhørende People- og Place-open-runtime. 1434 People-ID-er og 87 teaterkoblinger skal bestå.",
+      "status": "MERGED_PORTRAITS_AND_RUNTIME",
+      "scope": "20 dokumenterte fotografier, People image/cardImage, Commons-kreditering og synkroniserte visningsdata i samme PR. Kontrollert 1434 People-ID-er og 87 DNT-koblinger.",
+      "request": "data/people/portrait_image_apply_request.json",
+      "pr": 6329
+    },
+    {
+      "id": "people_portraits_c21_ten",
+      "status": "SOURCE_SELECTED_APPLY_PENDING",
+      "scope": "10 Commons/Wikidata P18-portrertter bestilt som én kildekontrollert produksjon med runtime i samme PR; de telles ikke som publisert før merge.",
       "request": "data/people/portrait_image_apply_request.json"
     }
   ],
