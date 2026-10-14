@@ -142,6 +142,27 @@ for (const bad of [
 
 
 {
+{
+  // A licence alone is insufficient: photos without author or credit are
+  // excluded before they can invalidate a large place portrait batch.
+  const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
+  const dir = await fixture();
+  await withCwd(dir, async () => {
+    await writeFile('data/people/folder/array.json', JSON.stringify({ people: [{ id: 'ada', name: 'Ada', wikidataId: 'Q1' }] }));
+    await buildCandidates(['--ids=ada', '--limit=1'], async (url) => {
+      const u = String(url);
+      if (u.includes('Q1.json')) return wikidataEntityResponse('Q1', { P31: [humanClaim()], P18: [p18Claim('Ada.jpg')] });
+      if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{
+        url: 'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', width: 800, height: 600,
+        extmetadata: { LicenseShortName: { value: 'CC BY-SA 4.0' } }
+      }] } } } }));
+      throw new Error('Photo lacking creator should not be downloaded: ' + u);
+    });
+    const out = JSON.parse(await readFile('data/people/people_image_candidates.json', 'utf8'));
+    assert.deepEqual(out, [], 'missing author and credit cannot produce a candidate');
+  });
+}
+
   assert.equal(candidateIdFor('Rolv_Wesenlund', '57196 Rolv Wesenlund.jpg'), 'rolv_wesenlund__57196_rolv_wesenlund_jpg', 'candidateId is stable');
   const ranked = rankCandidates([candidateFor('p18', { quality: { ...candidateFor('p18').quality, score: 45, tier: 'best_available', warnings: ['lav_kontrast'] } }), candidateFor('better', { personId: 'p18', candidateId: candidateIdFor('p18','Better.jpg'), commonsFileName: 'Better.jpg', quality: { ...candidateFor('p18').quality, score: 95, tier: 'recommended' } })]);
   assert.equal(ranked[0].commonsFileName, 'Better.jpg', 'better strong identity candidate can outrank weak P18');
