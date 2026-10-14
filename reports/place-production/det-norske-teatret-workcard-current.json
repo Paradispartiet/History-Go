@@ -39,10 +39,33 @@
   "collections": {
     "people": {
       "status": "BLOCKED",
-      "reason": "C9 har kjeldegjennomgått alle 87 DNT-relasjonane. C11 har ei fullstendig portrettkø for 87 personar og åtte konkrete Commons-kjeldeleads; bileta er framleis ikkje innhenta, identitetsgodkjende eller publiserte.",
-      "plan": "C12: Éi produksjonsbestilling for alle 87 canonical People blir trigga ved merge til main og skriv forskingskandidatar til ein eigen draft PR. Ingen automatisk portrettgodkjenning; identitet og rettar må avklarast før publisering.",
+      "reason": "C9 har kildegjennomgått 87/87 DNT-personrelasjoner. C15–C19 har nå publisert ti individuelt Commons-klarerte People-portretter i canonical People, lokale bildefiler, bildekreditering og People-/Place-open-runtime. 77 av de 87 mangler fremdeles portrett, så full People-v1 er ikke ferdig.",
+      "plan": "Fortsett bildeproduksjonen fra godkjente kildekandidater i data/people/people_image_candidates.json. Bruk DNT-specifikke personkilder og Commons-identitet, ikke godkjenn navnelike feiltreff; aktuell apply-request ligger i data/people/portrait_image_apply_request.json. Gjør ett målrettet apply-løp og bygg tilhørende runtime per produksjonsgruppe. People-v1 ferdig først når alle nødvendige felter og bilder er på plass.",
       "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
-      "portrait_batch_request": "data/people/portrait_image_batch_request.json"
+      "portrait_batch_request": "data/people/portrait_image_batch_request.json",
+      "portraits_published_count": 10,
+      "portraits_remaining_count": 77,
+      "portraits_published_ids": [
+        "alfred_maurstad",
+        "ane_dahl_torp",
+        "bjorn_sundquist",
+        "henny_moan",
+        "ingrid_bolso_berdal",
+        "monna_tandberg_det_norske_teatret",
+        "pia_tjelta",
+        "ragnhild_hald",
+        "renate_reinsve",
+        "svein_erik_brodal"
+      ],
+      "portrait_candidate_pr": 6316,
+      "portrait_image_prs": [
+        6319,
+        6323
+      ],
+      "portrait_runtime_prs": [
+        6321,
+        6325
+      ]
     },
     "objects": {
       "status": "BLOCKED",
@@ -182,9 +205,24 @@
     },
     {
       "id": "people_portrait_candidate_intake_c12",
-      "status": "REQUEST_COMMITTED_AWAITING_PUSH_RUN",
-      "scope": "Oppdatert GitHub Actions-kandidatjobben slik at eintydig place_id validerast korrekt, og ei endring i produksjonsbestillingsfila på main automatisk køyrer éin bildesøkebatch. Prosessen legg til Commons-kandidatar utan å skrive over eksisterande kandidatar eller manuelle godkjenningar.",
-      "request": "data/people/portrait_image_batch_request.json"
+      "status": "COMPLETE_CANDIDATES_MERGED",
+      "scope": "85 nye bildevalg for 54 av 87 teaterpersoner, pluss 29 tidligere kandidatposter; kandidat-PR #6316 er merget. Feilidentifiserte treffer holdes tilbake.",
+      "request": "data/people/portrait_image_batch_request.json",
+      "pr": 6316
+    },
+    {
+      "id": "people_portraits_c15_to_c19",
+      "status": "TEN_LICENSED_PORTRAITS_MERGED_RUNTIME_SYNCED",
+      "scope": "To kildegjennomgåtte grupper à fem Commons-portretter. 10 av 87 DNT-tilknyttede People har lokal image/cardImage, Commons imageMeta og genererte People-/Place-open-filer; alle 1434 kanoniske People-ID-er er bevart. Ingen endringer i quiz eller Civication.",
+      "portrait_image_prs": [
+        6319,
+        6323
+      ],
+      "runtime_prs": [
+        6321,
+        6325
+      ],
+      "remaining_without_portrait": 77
     }
   ],
   "rule_preflight": {
