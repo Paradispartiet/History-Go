@@ -1,16 +1,13 @@
 # People image candidate verification
 
-- Selected people: leif_juster, einar_schanke, lalla_carlsen, kari_diesen, ernst_diesen, per_kvist, arvid_nilssen, willie_hoel, dan_fosse, rolv_wesenlund
-- Processed people: 10
-- Candidates: 22
+- Selected people: agnes_mowinckel, alfred_maurstad, amund_rydland, andrea_braein_hovig, ane_dahl_torp, anne_marie_ottersen, anne_marit_jacobsen, anneke_von_der_lippe, anton_heiberg, arild_brinchmann, arne_garborg, arne_lygre, astrid_folstad, bab_christensen, bjarne_andersen, bjorn_floberg, bjorn_skagestad, bjorn_sundquist, britt_langlie, cally_monrad, carl_fredrik_engelstad, charlotte_frogner, edvard_drablos, egil_monn_iversen, ellen_dorrit_petersen, elsa_lystad, erik_ulfsby, frank_kjosas, gisle_straume, gudrun_waadeland, hans_jacob_nilsen, harald_saeverud, heidi_gjermundsen_broch, henny_moan, hulda_garborg, ingjald_haaland, ingrid_bolso_berdal, iren_reppen, jan_gronli, jannike_kruse, jon_eikemo, jorunn_kjellsby, kjersti_horn, knut_hergel_det_norske_teatret, lars_tvinde, lasse_kolstad, lena_kristin_ellingsen, lise_fjeldstad, marie_blokhus, merete_skavlan, mimmi_tamba, monna_tandberg_det_norske_teatret, morten_svartveit, nils_ole_oftebro, nils_sletbak, nils_sletta, oddgeir_thune, ola_b_johannessen, olav_hoprekstad, ole_barman, ole_jorgen_nilsen, otto_homlung, pal_sverre_hagen, per_jansen, per_sunderland, pia_tjelta, ragnhild_hald, ragnhild_hilt, ragnhild_nygaard, rasmus_rasmussen, reidar_sorensen, renate_reinsve, rolf_just_nilsen, rut_tellefsen, sigurd_eldegard, silje_storstein, sossen_krohg_det_norske_teatret, svein_erik_brodal, svein_tindberg, sverre_solberg, tom_tellefsen, tordis_maurstad, tore_segelcke, tormod_skagestad, ulrikke_hansen_dovigen, vidar_magnussen, vidar_sandem
+- Processed people: 87
+- Candidates: 85
 - Lookup errors: 0
-- Wikidata IDs: Q15401825, Q1770390, Q2798546, Q4251738, Q4583800, Q4587315, Q552512, Q5621826, Q6480458
-- Licenses: CC BY, CC BY-SA, Public Domain
-- All candidates have approved: false: yes
-
-## Main synchronization
-
-The candidate registry has been synchronized with current `main` by candidate ID. Newer candidates and any manual review state already present on `main` were preserved. This PR still publishes no images and applies no candidate to a person record.
+- Wikidata IDs: Q11978210, Q1261054, Q15436798, Q1681799, Q17111456, Q1771063, Q1778390, Q1778602, Q1779434, Q1779957, Q1792394, Q1801830, Q1812635, Q2013068, Q2419067, Q2576903, Q2692035, Q26948086, Q28718257, Q3143008, Q3432206, Q3435326, Q3437448, Q440759, Q4580093, Q4580475, Q4580920, Q4582744, Q4582832, Q4583370, Q4584228, Q4586402, Q4588033, Q467497, Q4693097, Q472172, Q4775797, Q4919937, Q4952064, Q4967637, Q4981995, Q5085947, Q5347995, Q5587000, Q5708084, Q6063983, Q6335404, Q66501550, Q6819064, Q7082843, Q7310028, Q7651876, Q7678522, Q7825932
+- Licenses: CC BY, CC BY-SA, CC0, Public Domain
+- Pixel analysis: complete 85, unavailable 0, failed 0
+- New candidates have no auto-approval; previous approvals preserved: yes
 
 ## Errors
 - None
