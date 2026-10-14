@@ -40,7 +40,7 @@
     "people": {
       "status": "BLOCKED",
       "reason": "C9 har kildegjennomgått 87/87 DNT-personrelasjoner. C15–C19 har nå publisert ti individuelt Commons-klarerte People-portretter i canonical People, lokale bildefiler, bildekreditering og People-/Place-open-runtime. 77 av de 87 mangler fremdeles portrett, så full People-v1 er ikke ferdig.",
-      "plan": "Fortsett bildeproduksjonen fra godkjente kildekandidater i data/people/people_image_candidates.json. Bruk DNT-specifikke personkilder og Commons-identitet, ikke godkjenn navnelike feiltreff; aktuell apply-request ligger i data/people/portrait_image_apply_request.json. Gjør ett målrettet apply-løp og bygg tilhørende runtime per produksjonsgruppe. People-v1 ferdig først når alle nødvendige felter og bilder er på plass.",
+      "plan": "C20: 20 nye individuelt identifiserte Commons-kandidater (Wikidata P18, lisens og kreditering) står i kontrollert apply-request. Samme produksjonskjøring skal levere lokale bilder, kanoniske People-data, attribusjonsregister og deterministiske People-/Place-open-visningsdata i én draft PR. Ti portretter er allerede publisert; de 20 nye telles først etter vellykket merge.",
       "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
       "portrait_batch_request": "data/people/portrait_image_batch_request.json",
       "portraits_published_count": 10,
@@ -126,7 +126,7 @@
     "before_after": "RESEARCH sammenlignbart historisk og senere bilde av dagens hus; Commons-kandidat fra 2006 er ikke dagens foto og er ikke hele sammenligningen.",
     "news": "RESEARCH ferske, daterte institusjonsnotiser; aktivt teater skal ikke få N/A ut fra tomt datasett.",
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
-    "quiz": "SEPARAT QUIZLØP: aktiv Musikk-pakke har 5 × 6 spørsmål og 30/30 answerIndex 0. Bevar dokumenterte fakta og Knowledge-ID-er, revider mot Scenekunst-kontrakten før migrering. Profil/eksakt settantall ikke forhåndslåst.",
+    "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
     "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
     "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
@@ -223,6 +223,12 @@
         6325
       ],
       "remaining_without_portrait": 77
+    },
+    {
+      "id": "people_portraits_c20_bulk",
+      "status": "REQUEST_READY_NOT_YET_PUBLISHED",
+      "scope": "Én ny batch med 20 P18-tilknyttede kandidatbilder med Commons-kreditering; én apply-PR skal også generere tilhørende People- og Place-open-runtime. 1434 People-ID-er og 87 teaterkoblinger skal bestå.",
+      "request": "data/people/portrait_image_apply_request.json"
     }
   ],
   "rule_preflight": {

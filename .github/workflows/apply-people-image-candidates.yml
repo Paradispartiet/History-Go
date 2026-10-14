@@ -68,7 +68,7 @@ jobs:
           const request = JSON.parse(fs.readFileSync('data/people/portrait_image_apply_request.json', 'utf8'));
           if (request.schema !== 'history_go_people_portrait_apply_request_v1') throw new Error('Unexpected apply request schema');
           if (request.place_id !== 'det_norske_teatret') throw new Error('Unexpected place request');
-          if (!Array.isArray(request.selections) || !request.selections.length || request.selections.length > 5) throw new Error('Must select 1-5 reviewed candidates');
+          if (!Array.isArray(request.selections) || !request.selections.length || request.selections.length > 20) throw new Error('Must select 1-20 reviewed candidates');
           for (const entry of request.selections) {
             if (!entry.personId || !entry.candidateId || entry.approvalMode !== 'normal' || entry.identity_review !== 'verified' || entry.license_review !== 'verified' || !entry.review_evidence?.commons_page) {
               throw new Error('Selection missing documented identity and license review: ' + entry.personId);
@@ -90,7 +90,7 @@ jobs:
           if (!payload && !ids.length) throw new Error("review_payload or approved_ids must contain at least one selection.");
           if (payload) { const parsed = JSON.parse(payload); if (parsed.version !== 2 || !Array.isArray(parsed.selections) || !parsed.selections.length) throw new Error("review_payload must be version 2 with selections."); console.log(`review_payload selections=${parsed.selections.length}`); process.exit(0); }
           if (new Set(ids).size !== ids.length) throw new Error("approved_ids contains duplicate IDs.");
-          if (ids.length > 5) throw new Error("approved_ids can contain at most five people IDs.");
+          if (ids.length > 20) throw new Error("approved_ids can contain at most twenty people IDs.");
           const candidates = JSON.parse(fs.readFileSync(process.env.CANDIDATE_FILE, "utf8"));
           if (!Array.isArray(candidates)) throw new Error(`${process.env.CANDIDATE_FILE} must be a top-level array.`);
           for (const id of ids) {
@@ -132,7 +132,7 @@ jobs:
           const candidates = JSON.parse(fs.readFileSync('data/people/people_image_candidates.json', 'utf8'));
           const attributions = JSON.parse(fs.readFileSync('data/people/people_image_attributions.json', 'utf8'));
           const selections = request.selections || [];
-          if (selections.length < 1 || selections.length > 5) throw new Error('Invalid apply batch scope');
+          if (selections.length < 1 || selections.length > 20) throw new Error('Invalid apply batch scope');
           for (const selected of selections) {
             const candidate = candidates.find(c => c.personId === selected.personId && c.candidateId === selected.candidateId);
             if (!candidate) throw new Error('Unknown candidate for ' + selected.personId);
@@ -152,6 +152,25 @@ jobs:
           console.log('Scoped portrait verification passed for ' + selections.length + ' people');
           NODE
           npm run test:people-images | tee "$REPORT_DIR/people-images-tests.txt"
+          # Derived data must ship with the canonical portraits, not in a
+          # separate five-person production/CI cycle.
+          npm run place-open:build
+          node <<'NODE' | tee "$REPORT_DIR/runtime-audit.txt"
+          const fs = require('node:fs');
+          const req = JSON.parse(fs.readFileSync('data/people/portrait_image_apply_request.json', 'utf8'));
+          const ids = req.selections.map(s => s.personId);
+          const manifest = JSON.parse(fs.readFileSync('data/runtime/people-all.json', 'utf8'));
+          const people = manifest.files.flatMap(file => JSON.parse(fs.readFileSync(file, 'utf8')));
+          if (people.length !== 1434 || new Set(people.map(p => p.id)).size !== 1434) throw new Error('People identity count was changed');
+          const dnt = JSON.parse(fs.readFileSync('data/runtime/place-open/det_norske_teatret.json', 'utf8'));
+          if (dnt.people.length !== 87 || new Set(dnt.people.map(p => p.id)).size !== 87) throw new Error('Det Norske Teatret must retain its 87 person links');
+          for (const id of ids) {
+            const p = people.find(x => x.id === id);
+            const inPlace = dnt.people.find(x => x.id === id);
+            if (!p || !inPlace || !p.image || p.image !== p.cardImage || !fs.existsSync(p.image) || p.image !== inPlace.image || p.imageMeta?.candidateId !== inPlace.imageMeta?.candidateId) throw new Error('Missing or mismatched runtime portrait: ' + id);
+          }
+          console.log('People 1434, DNT 87, synchronized images ' + ids.length + ': PASS');
+          NODE
 
       - name: Upload people image apply report
         uses: actions/upload-artifact@v4
@@ -175,6 +194,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
           git add data/people/people_image_attributions.json bilder/kort/people
+          git add data/runtime/people-all.json data/runtime/people-all data/runtime/place-open
           git add -f reports/people-image-apply
           node <<'NODE'
           const fs = require('node:fs');
@@ -189,4 +209,4 @@ jobs:
           if git diff --cached --quiet; then echo "No applied people image output changes to commit."; exit 0; fi
           git commit -m "chore(data): apply reviewed people images"
           git push --set-upstream origin HEAD
-          gh pr create --draft --base main --head "$branch" --title "DNT: reviewed person portrait images" --body "Applies separately reviewed Commons portraits for: $APPROVED_IDS. Contains local images, canonical People metadata and attribution. Review before merge."
+          gh pr create --draft --base main --head "$branch" --title "DNT: reviewed portrait batch and runtime" --body "Reviewed Commons portraits for: $APPROVED_IDS. One production PR includes the local images, People JSON, media attribution and derived People/Place-open runtime. 1434 People IDs and 87 theater links verified. No quiz or Civication changes."

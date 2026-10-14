@@ -380,7 +380,7 @@ function candidateFor(id, overrides = {}) {
 for (const [args, message] of [
   [['--approved-ids=missing'], /must exist exactly once/],
   [['--approved-ids=ada,ada'], /duplicate/],
-  [['--approved-ids=a,b,c,d,e,f'], /at most 5/]
+  [['--approved-ids=' + Array.from({ length: 21 }, (_, i) => `id${i}`).join(',')], /at most 20/]
 ]) {
   const dir = await fixture();
   await withCwd(dir, async()=>{
