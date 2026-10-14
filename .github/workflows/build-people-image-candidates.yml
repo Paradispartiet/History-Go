@@ -293,6 +293,9 @@ jobs:
             data = [];
           }
 
+          const oldCandidates = JSON.parse(fs.readFileSync(path.join(reportDir, 'people_image_candidates.before.json'), 'utf8'));
+          if (!Array.isArray(oldCandidates)) throw new Error('Original candidate snapshot must be an array.');
+          const beforeById = new Map(oldCandidates.map((candidate) => [candidate.candidateId, candidate]));
           const scopedCandidates = data.filter((candidate) => selectedIds.includes(reqStr(candidate && candidate.personId)));
           const candidatePeople = new Set(scopedCandidates.map((candidate) => reqStr(candidate && candidate.personId)).filter(Boolean));
           const analysis = { complete: 0, unavailable: 0, failed: 0 };
@@ -303,8 +306,9 @@ jobs:
             }
             const personId = reqStr(candidate.personId) || '(missing personId)';
             if (selectedIds.length && !selectedIds.includes(personId)) errors.push(`${personId}: candidate was not requested in people_ids.`);
-            if (candidate.approved !== false) errors.push(`${personId}: candidate must have approved: false.`);
-            if (candidate.approved === true) errors.push(`${personId}: candidate is automatically approved.`);
+            const previouslyApproved = beforeById.get(candidate.candidateId)?.approved === true;
+            if (previouslyApproved && candidate.approved !== true) errors.push(`${personId}: prior candidate approval must be preserved.`);
+            if (!previouslyApproved && candidate.approved !== false) errors.push(`${personId}: newly discovered candidate cannot be automatically approved.`);
             if (!reqStr(candidate.wikidataId)) errors.push(`${personId}: missing wikidataId.`);
             else wikidataIds.add(reqStr(candidate.wikidataId));
             if (!reqStr(candidate.commonsFileName)) errors.push(`${personId}: missing Commons filename.`);
@@ -347,7 +351,7 @@ jobs:
             wikidataIds: [...wikidataIds].sort(),
             licenses: [...licenseFamilies].sort(),
             analysis,
-            allCandidatesApprovedFalse: scopedCandidates.every((candidate) => candidate && candidate.approved === false),
+            noNewAutoApprovals: scopedCandidates.every((candidate) => candidate && (beforeById.get(candidate.candidateId)?.approved === true ? candidate.approved === true : candidate.approved === false)),
             errors,
             warnings
           };
@@ -363,7 +367,7 @@ jobs:
             `- Wikidata IDs: ${summary.wikidataIds.join(', ') || '(none)'}`,
             `- Licenses: ${summary.licenses.join(', ') || '(none)'}`,
             `- Pixel analysis: complete ${analysis.complete}, unavailable ${analysis.unavailable}, failed ${analysis.failed}`,
-            `- All candidates have approved: false: ${summary.allCandidatesApprovedFalse ? 'yes' : 'no'}`,
+            `- New candidates have no auto-approval; previous approvals preserved: ${summary.noNewAutoApprovals ? 'yes' : 'no'}`,
             '',
             '## Errors',
             ...(errors.length ? errors.map((error) => `- ${error}`) : ['- None']),
