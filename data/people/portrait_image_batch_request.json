@@ -1,14 +1,14 @@
 {
   "schema": "history_go_people_image_batch_request_v1",
-  "request_id": "det_norske_teatret_portraits_c12_20261014_retry1",
+  "request_id": "det_norske_teatret_portraits_c13_20261014_rights_filtered",
   "place_id": "det_norske_teatret",
   "limit": 100,
   "max_candidates_per_person": 2,
   "candidate_mode": "preserve_existing_and_add_new",
   "publication": "draft_pr_candidates_only",
-  "no_automatic_approval": true,
   "requested_at": "2026-10-14",
   "purpose": "Research Wikimedia Commons portraits for all 87 canonical People linked to Det Norske Teatret, with candidate identity and license metadata. No photos or canonical People fields change before human review.",
   "source_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
-  "retry_reason": "The first push run passed network access but a stale string assertion in the existing people-images test rejected the new draft-PR condition before candidate generation. The assertion has been updated to check the actual push/dispatch semantics."
+  "retry_reason": "Previous C12 discovery found 86 image candidates across 55 of 87 people but 2 lacked required author/credit. C13 excludes uncredited files at discovery; no other source or test reruns have been requested.",
+  "no_automatic_approval": true
 }
