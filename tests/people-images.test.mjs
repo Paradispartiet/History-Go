@@ -119,6 +119,22 @@ for (const bad of [
 
 
 {
+  const dir = await fixture();
+  await withCwd(dir, async () => {
+    await writeFile('data/people/people_image_candidates.json', JSON.stringify([candidate()], null, 2));
+    let calls = 0;
+    await applyCandidates(['--write'], async () => {
+      calls++;
+      if (calls === 1) return new Response(null, { status: 429, headers: { 'retry-after': '0' } });
+      return new Response(new Uint8Array([1, 2, 3]), { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    });
+    assert.equal(calls, 2, 'temporary Wikimedia 429 must be retried');
+    assert.equal((await readFile('data/people/folder/array.json', 'utf8')).includes('bilder/kort/people/ada.jpg'), true, 'retry saved the canonical image');
+  });
+}
+
+
+{
   const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
   const jpeg = await sharp({ create: { width: 640, height: 480, channels: 3, background: { r: 120, g: 140, b: 160 } } }).jpeg().toBuffer();
   const dir = await fixture();
