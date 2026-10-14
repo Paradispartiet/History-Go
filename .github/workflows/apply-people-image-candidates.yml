@@ -123,7 +123,7 @@ jobs:
           if [ -n "$REVIEW_PAYLOAD" ]; then npm run people:images:apply:write -- --review-payload="$REVIEW_PAYLOAD" | tee "$REPORT_DIR/write.txt"; else npm run people:images:apply:write -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/write.txt"; fi
           after="$(sha256sum "$CANDIDATE_FILE")"
           test "$before" = "$after"
-          # Validate only the five changed people. The older global People-image
+          # Validate only the selected people. The older global People-image
           # backlog is tracked separately and must not block a valid local batch.
           node --input-type=module <<'NODE' | tee "$REPORT_DIR/scope-audit.txt"
           import fs from 'node:fs';
@@ -153,7 +153,7 @@ jobs:
           NODE
           npm run test:people-images | tee "$REPORT_DIR/people-images-tests.txt"
           # Derived data must ship with the canonical portraits, not in a
-          # separate five-person production/CI cycle.
+          # separate runtime production/CI cycle.
           npm run place-open:build
           node <<'NODE' | tee "$REPORT_DIR/runtime-audit.txt"
           const fs = require('node:fs');
