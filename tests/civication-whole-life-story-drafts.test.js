@@ -132,53 +132,87 @@ test("Draft scope is explicit; all existing catalog characters and 24 story type
       "Private drafts must not be deployed before the day-rhythm blocker is resolved");
     assert.deepEqual(arc.chapter_scene_ids.flatMap(x => x.scene_ids),
       drafts[i].storylets.map(x => x.id));
-    assert.equal(drafts[i].storylets.length, 9);
-    assert(drafts[i].storylets.every(s => s.choices.length === 2 &&
+    assert.equal(drafts[i].storylets.length, arc.authored_scene_variants);
+    assert(drafts[i].storylets.every(s => s.choices.length >= 1 &&
       s.choices.every(c => c.effect === 0 && c.feedback && c.npc_response?.line)));
   }
 });
 
 for (const [arcIndex, arc] of editorial.arcs.entries()) {
-  test(arc.stream_id + ": all 64 six-chapter paths use actual source, answer and narrative-state owners", async () => {
+  test(arc.stream_id + ": actual choices reach consequences and endings without inventing participation", async t => {
     const visited = new Set();
-    for (let mask = 0; mask < 64; mask++) {
-      let h = await enter(arcIndex);
-      const entryRecord = h.window.CivicationNpcCharacterThreads.getState().characters[arc.npc_id];
-      const roleHistory = JSON.parse(JSON.stringify(entryRecord.role_history));
-      for (let chapter = 0; chapter < 6; chapter++) {
-        assert.equal(await h.scene(arc.stream_id, "forenoon"), null,
-          "Private cultural chapters cannot enter the job phase");
-        const event = await h.scene(arc.stream_id);
-        assert(event, "Missing chapter " + (chapter + 1) + " in route " + mask);
-        assert(arc.chapter_scene_ids[chapter].scene_ids.includes(event.narrative_storylet_id));
-        visited.add(event.narrative_storylet_id);
-        assert.equal(event.channel, "private");
-        assert.equal(event.workday_related, false);
-        assert.equal(event.employer_id, "");
-        const result = await h.answer(event, mask & (1 << chapter) ? "B" : "A");
+    const paths = [];
+    async function walk(h, history = []) {
+      assert(history.length <= 8, "Narrative route must terminate");
+      assert.equal(await h.scene(arc.stream_id, "forenoon"), null);
+      const event = await h.scene(arc.stream_id);
+      if (!event) {
+        assert(h.state.narrative_state_v1.flags.includes(arc.terminal_flag),
+          "No eligible chapter without an ending is a dead end");
+        paths.push(history);
+        const record = h.window.CivicationNpcCharacterThreads.getState().characters[arc.npc_id];
+        assert.equal(record.story_event_ids.length, 4 + history.length);
+        assert.equal(record.role_history.length, 1);
+        assert(!Object.hasOwn(record, "salary"));
+        assert.deepEqual([...h.backing.keys()], ["hg_civi_npc_character_threads_v1"]);
+        return;
+      }
+      assert(!h.state.narrative_state_v1.flags.includes(arc.terminal_flag));
+      assert(arc.scene_ids.includes(event.narrative_storylet_id));
+      visited.add(event.narrative_storylet_id);
+      assert.equal(event.channel, "private");
+      assert.equal(event.workday_related, false);
+      assert.equal(event.employer_id, "");
+      for (const choice of event.choices) {
+        const branch = harness({
+          state: JSON.parse(JSON.stringify(h.state)), backing: new Map(h.backing), day: h.day()
+        });
+        if (history.length > 0) branch.active.role_key = "ekspeditor";
+        const before = branch.window.CivicationNpcCharacterThreads.getState().characters[arc.npc_id];
+        const roleHistory = JSON.parse(JSON.stringify(before.role_history));
+        const result = await branch.answer(event, choice.id);
         assert.equal(result.ok, true);
-        assert.equal(result.dailyRuntimeAnswered, true,
-          "DailyMailBuilder must persist actual chosen tags and progress");
+        assert.equal(result.dailyRuntimeAnswered, true);
         const handler = result.choice_director.handler_results.find(r => r.name === "npc_character_story");
         assert.equal(handler.ok, true);
         assert.equal(handler.value.npc_id, arc.npc_id);
-        assert.equal(await h.scene(arc.stream_id), null, "Current one-per-workday limit remains intact");
-        h.advance();
-        if (chapter === 2) {
-          h = harness({ state: h.state, backing: h.backing, day: h.day() });
-          h.active.role_key = "ekspeditor"; // Private ties survive an employed player changing career.
+        const after = branch.window.CivicationNpcCharacterThreads.getState().characters[arc.npc_id];
+        assert.equal(after.name, before.name);
+        assert.deepEqual(JSON.parse(JSON.stringify(after.role_history)), roleHistory);
+        assert.equal(await branch.scene(arc.stream_id), null);
+        branch.advance();
+        await walk(branch, [...history, { scene: event.narrative_storylet_id, choice: choice.id }]);
+      }
+    }
+    await walk(await enter(arcIndex));
+    assert.deepEqual([...visited].sort(), arc.scene_ids.slice().sort());
+    if (arc.npc_id === "stein_peer_mellomleder") {
+      for (const route of paths) {
+        if (route[0].choice === "nei") assert(!route.some(r => r.scene === "stein_rw_kamp"));
+      }
+    }
+    if (arc.npc_id === "frode_formann") {
+      for (const route of paths) {
+        if (route[0].choice === "nei") {
+          assert(!route.some(r => ["frode_rw_konsert", "frode_rw_reaksjon"].includes(r.scene)));
+        }
+        const photo = route.find(r => r.scene === "frode_rw_konsert");
+        if (photo?.choice === "behold") {
+          assert(route.some(r => r.scene === "frode_rw_privat_bilde"));
+          assert(!route.some(r => r.scene === "frode_rw_reaksjon"));
         }
       }
-      assert.equal(await h.scene(arc.stream_id), null, "Finished scenes do not repeat");
-      const record = h.window.CivicationNpcCharacterThreads.getState().characters[arc.npc_id];
-      assert.equal(record.name, entryRecord.name);
-      assert.deepEqual(JSON.parse(JSON.stringify(record.role_history)), roleHistory);
-      assert.equal(record.story_event_ids.length, 10); // Four work + six private chapters.
-      assert(!Object.hasOwn(record, "salary"));
-      assert.deepEqual([...h.backing.keys()], ["hg_civi_npc_character_threads_v1"]);
     }
-    assert.deepEqual([...visited].sort(), drafts[arcIndex].storylets.map(s => s.id).sort(),
-      "Every authored branch must be reached by a real choice route");
+    if (arc.npc_id === "inger_avdelingsleder") {
+      for (const route of paths) {
+        if (route[0].choice === "nei") {
+          assert(!route.some(r => r.scene === "inger_rw_telefon"));
+          assert(route.some(r => r.scene === "inger_rw_svar_uten_deg"));
+        }
+      }
+    }
+    t.diagnostic(JSON.stringify({ stream: arc.stream_id, visited_variants: visited.size,
+      completed_choice_paths: paths.length, chapter_counts: [...new Set(paths.map(p => p.length))] }));
   });
 }
 

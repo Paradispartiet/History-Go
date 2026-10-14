@@ -1,91 +1,83 @@
-# Civication – sammenhengende liv og karakterhumor
+# Civication – personer, roller og sammenhengende historier
 
-Status: **redaksjonelt underkjent; de tre buene må omskrives**. Nye scener er ikke registrert i produksjonsmanifestet.
+Status: De tre underkjente buene er omskrevet som **uregistrerte innholdsutkast**. Aktivering i produksjonsinnboksen gjenstår. Den opprinnelige vurderingen på 4/5 og 25/30 er fortsatt trukket tilbake.
 
-Hele bolken er gjennomgått i [redaksjonell gjennomgang, 14. oktober 2026](CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md). Den tidligere redaksjonelle scoren og totalsummen er trukket tilbake.
+Den tidligere versjonen er gjennomgått i [redaksjonell gjennomgang](CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md). Den rapporten gjelder commit `74b1d092876c0b8025cd82f2d6ae987f655ee86a` og bevares som historikk.
 
-## Hva vi bygger
+## Hvem personene og spilleren er
 
-Civication skal simulere arbeidsliv, privatliv, sosialt liv og kultur gjennom sammenhengende historier. Den samme personen kan være leder på jobb, usikker venn på telefonen og nybegynner i en lesesirkel. Et rollebytte endrer ansvar og muligheter; personens fortid og relasjoner følger med.
+Frode Aas, Stein Mæland og Inger Holm er navngitte fiktive NPC-er som allerede finnes i `data/Civication/npcs/naeringsliv.json`. De har stabile ID-er. En rolleendring skal ikke skape en ny person.
 
-Historiene skal romme ambisjon, tilhørighet, kjærlighet, familie, praktiske tjenester, penger, kropp, tap, forbruk, fritid, kunnskap og små hverdagsgleder. En vanlig middag eller en god konsert kan bære et kapittel. Det må også finnes rolige dager, sammenstøt, dårlige valg, framgang, stagnasjon og åpne avslutninger.
+Spilleren er brukerens spillfigur. Brukeren velger dens handlinger, mens NPC-ene får handlinger fra skrevne forløp og lagret tilstand. Spiller og NPC-er kan referere til samme canonical rollekatalog gjennom `civicationActorRoleContract.js`.
 
-## Arketype, stereotypi og individ
+| Person | Utgangsrolle | Etter fullført eksisterende arbeidsbue | Egenskaper i kataloget |
+| --- | --- | --- | --- |
+| Frode Aas | Formann | Mellomleder | Lojal til folkene, varsom med ord, kjenner gulvet |
+| Stein Mæland | Mellomleder | Avdelingsleder | Kollegial, målbevisst, konkurranseorientert |
+| Inger Holm | Avdelingsleder | Mellomleder | Tallorientert, lite synlig på gulvet, presset ovenfra |
 
-**Arketypen** gir en drivkraft: den ambisiøse, beskytteren, skaperen, hjelperen, opprøreren, eksperten, nykommeren, den hjemvendte, overleveren eller spøkefuglen. Flere kan finnes i samme menneske, og drivkraften kan forandre seg.
+Arbeidsbuene åpnes for bestemte spillerroller: Stein for Fagarbeider, Frode og Inger for Fagarbeider eller Mellomleder. Derfor må scenene respektere spillerens faktiske handlingsrom. En Fagarbeider kan gi observasjoner og innspill; en samtale med en leder etablerer ikke myndighet til å disponere andre ansatte.
 
-**Stereotypien** gir sosial gjenkjennelighet: den rutineglade HR-konsulenten, den kulturivrige besserwisseren, den slitne pendleren, den praktiske veteranen, den ustoppelige arrangøren eller mellomlederen som bruker jobbspråk ved middagsbordet. Særpreget ligger i ordvalg, vaner, ting, rytme og små handlinger.
+## Nivåene må skilles
 
-**Individet** får eget ønske, egen frykt, en motsetning, et liv utenfor hovedrollen og evne til å overraske. Den skeptiske beskytteren kan trenge hjelp. Den ambisiøse kan gi fra seg kontroll. Spøkefuglen kan ønske et alvorlig svar.
-
-Det finnes ingen lukket liste over «alle arketyper». Produksjonen starter i eksisterende personer, roller, livsposisjoner og de 24 samtidige fortellingstypene. Dekning betyr konkrete skrevne liv, og må kunne utvides når nye miljøer og figurer kommer til.
-
-## Fire livsdomener i hver større bue
-
-| Domene | Det som kan drive historien | Senere tilbakekomst |
+| Nivå | Hva det beskriver | Forhold til rollebytte |
 | --- | --- | --- |
-| Arbeidsliv | Oppgaver, makt, penger, fag, kolleger, stilling, lojalitet | En beslutning endrer neste møte eller hvem som ber om hjelp |
-| Privatliv | Hvile, hjem, familie, kjærlighet, selvbilde, egne timer | Dagen før påvirker kapasitet, språk eller en privat avtale |
-| Sosialt liv | Vennskap, tjenester, rykter, nettverk, utenforskap | Folk husker et ja, et nei eller et løfte |
-| Kultur | Musikk, bøker, film, teater, idrett, smak, miljøer | En interesse åpner et fellesskap eller skaper en ny uenighet |
+| Identitet | Hvem personen er, stabil ID og navn | Bevares |
+| Egenskaper og motiver | Temperament, verdier, ønsker og vaner | Forandres ikke automatisk av en stilling |
+| Kompetanse | Erfaring og ferdigheter personen faktisk har | Kan utvikles gjennom erfaring og opplæring |
+| Rolle | Sosial eller organisatorisk posisjon, ansvar og forventninger | Kan endres ved konkrete hendelser |
+| Livssituasjon | Arbeid, bolig, økonomi, familie, tid og kapasitet | Kan endres på andre måter enn rollebytte |
+| Relasjoner og historie | Hvem personen kjenner og hva som har skjedd mellom dem | Følger personen gjennom rolleendringer |
 
-En scene kan berøre flere domener. Leveringen følger fortsatt den faktiske situasjonen: en privat invitasjon til en filmkveld er en personlig melding selv om avsenderen også er leder på jobb.
+Den aktuelle aktørkontrakten har én `role_ref` og eksplisitt rollehistorikk. For disse tre NPC-ene er referansen en karriererolle. Den er ikke i seg selv en registrering av lønn, ansettelse, autorisasjon eller personlig relasjon.
 
-## Hvordan sammenhengen skrives
+NPC-katalogets `voice` og `tags` gir en begrenset karakterbeskrivelse. De er ikke en full runtime-modell av temperament, individuelle ferdigheter eller familie. Karaktergrunnlaget i denne bolkens redaksjonelle oversikt beskriver disse nivåene for forfattingen; det er ikke en ny motor eller nye simulerte personlighetsskårer.
 
-Hver større bue trenger et kjent utgangspunkt, et eget mål, konkrete møter, valg med kostnader, en synlig reaksjon og en senere tilbakekomst. En invitasjon er ikke et gjennomført møte. Et avslag skal få sin egen fortsettelse. En person kan handle mellom møtene, men spillerens handlinger må følge lagrede valg.
+En arketype kan være utgangspunkt for drivkraft og konflikt. En stereotypi kan gi gjenkjennelig språk og sosial atferd. Historien må likevel bygge på den konkrete personens egenskaper, rolle, situasjon, relasjoner og tidligere handlinger.
 
-Vi skriver hele buer i bolker. Begynnelse, midtparti, forgreninger og flere sluttretninger produseres sammen. Ingen obligatorisk lykkelig slutt: et vennskap kan bli lettere, mer formelt, mer sjeldent eller stå åpent. Et jobbproblem kan bestå samtidig som privatlivet får et nytt rom.
+Frodes lojalitet får en konflikt når han selv setter vaktplanen. Steins målbevissthet møter større forventninger når han blir avdelingsleder. Inger beholder kunnskap når hun mister beslutningsmyndighet. Dette er forbindelser mellom person og rolle som er forankret i de eksisterende arbeidsbuene.
 
-Valg skal handle om hva spilleren vil bruke tid, penger, nærhet og innflytelse på. To muligheter kan begge være rimelige. Spilleren skal også få velge kortsiktig, egenrådig, ambisiøst eller unnvikende når historien bærer det. En scene trenger ikke omgjøre alt til et spørsmål om god oppførsel.
+## Omskrivingen
 
-## Humor som varer
-
-Humor kommer fra språket mellom miljøene, misforholdet mellom selvbilde og handling, tilbakevendende vaner og små overraskelser. Et særtrekk får først en konkret form, gjentas med en forskjell, og kan senere gi en overraskelse.
-
-Hendelser skal først ha en forståelig årsak og personer med egne motiver. Humor kan oppstå i det som faktisk skjer. De tidligere eksemplene med møteagenda, konsertstol og budsjett for spontanitet er underkjent fordi de gjorde jobbtittelen til hele personen og brukte påfunn for å demonstrere et særtrekk.
-
-Karakterene skal kunne le av seg selv, misforstå hverandre, bomme på en spøk og bruke humor for å slippe et vanskelig spørsmål. Spilleren må også kunne være morsom. Særtrekk hentes fra dokumentert fiktiv stemme og sosial situasjon, og får individuell utvikling.
-
-## Første bolk – underkjent utkast
-
-| Person | Utgangspunkt | Seks kapitler |
+| Bue | Konkret motiv og utløsende hendelse | Videre følger |
 | --- | --- | --- |
-| Stein Mæland | Avdelingsleder etter eksisterende arbeidsbue | Invitasjon → kveld eller telefon → tjeneste i privatkanalen → vennskapets grense → film som egen interesse → gjensidig eller åpen kontakt |
-| Frode Aas | Mellomleder etter eksisterende arbeidsbue | Konsertinvitasjon → musikk eller etterprat → forespørsel om frivillig hjelp → plass som deltaker → lederstemme hjemme → sang og kontakt |
-| Inger Holm | Mellomleder etter eksisterende omorganisering | Kaffeinvitasjon → kaffe eller telefon → lesesirkel → uenighet eller venting → økonomi og egen lyst → kontakt uten statusrapport |
+| Stein: Kampen etter arbeidstid | Stein inviterer til sin og Bjarnes fotballkveld. Solveig tar opp den omstridte bemanningen. | Deltakelse, avslag og jobbinnspill har egne fortsettelser; en lovnad om gjennomgang skilles fra en vedtatt endring. |
+| Frode: Brorens konsert | Frode vil høre broren Per spille etter å ha gått glipp av konserter på grunn av vakter. | Et bilde i kollegagruppa møter den eksisterende vaktplankonflikten; et privat bilde og et avslag får andre følger. |
+| Inger: En referanse og et jobbtilbud | Inger har søkt nytt lederansvar og ber om en referanse fra saker spilleren kjenner. | Hva spilleren sier, påvirker samtalen mellom dem. Inger vurderer tilbudets reising og takker selv nei. |
 
-Utkastet består av **18 kapitler og 27 scenevarianter**. De tekniske testene gjennomløper 64 kombinasjoner av svar per person; dette er ikke et mål på antall selvstendige historier eller redaksjonell kvalitet. Kapittel 2, 4 og 6 leser det konkrete foregående valget. Tillit og rollehistorikk bruker eksisterende NPC-eier. Nye historier kan først åpnes etter respektive eksisterende arbeidsbue og faktisk lagret NPC-rolle.
+Det er 28 scenevarianter. Stein og Frode har forløp med tre eller fire kapitler, Inger med fire. Enkelte slutt- og informasjonsscener har ett lesevalg. Lengde og valgform følger innholdet.
 
-Redaksjonell oversikt: [wholeLifeStoryBatchV1.json](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json).
-Scenekilder: [Stein](../data/Civication/narratives/leisure/stein_hele_livet.json), [Frode](../data/Civication/narratives/leisure/frode_hele_livet.json), [Inger](../data/Civication/narratives/leisure/inger_hele_livet.json).
+Nye opplysninger etableres før de brukes: Per er Frodes bror, Stein og Bjarne pleier å se fotball sammen, og Inger ønsker begrenset reising. Dette er nye fiktive detaljer i de uregistrerte scenene, ikke påstander om tidligere lagret spillhistorie.
 
-Oversikten navngir også arketypiske drivkrefter og motsetninger for alle ti personer i næringslivets NPC-katalog og de seks personene i det eksisterende sosiale kataloget. Disse øvrige profilene er redaksjonelle utgangspunkter, ikke ferdige historier. De 24 samtidige fortellingstypene føres videre som eksisterende planreferanser.
+Scenekildene bruker eksisterende narrative-format og karakterlager:
+- [Stein](../data/Civication/narratives/leisure/stein_hele_livet.json)
+- [Frode](../data/Civication/narratives/leisure/frode_hele_livet.json)
+- [Inger](../data/Civication/narratives/leisure/inger_hele_livet.json)
 
-## Aktivering i spillet
+[Redaksjonell oversikt](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json) inneholder personenes katalogegenskaper, kompetansegrunnlag, rolle, mål, nye kontekstopplysninger og relasjon til spilleren. De øvrige ti-/seks-katalogprofilene beholder synlig status som forslag som trenger videre vurdering.
 
-Utkastene bruker eksisterende narrative-format, SceneCatalog-adapter, ChoiceDirector og karakterlager. De endrer ingen motor, lagringsnøkkel, historisk People-profil eller opptjent spillerrolle.
+## Hva som er kontrollert og hva som gjenstår
 
-Det er en konkret aktiveringsblokkering: NPC-kapitlene bruker én felles arbeidsdagskvote. Private kapitler kan dermed fortrenge uavsluttede arbeidskapitler og slutte å gå frem ved arbeidsledighet. Før registrering må eksisterende dagmodell gi private kapitler en tydelig fremdrift på simulerte dager og bevare rytmen i arbeidshistoriene. Første integrasjon skal bevise ett forløp gjennom jobb, privat kveld, jobbbytte og en dag uten jobb. En ny fortellingsmotor trengs ikke.
+Én målrettet kjøring:
+`node --test tests/civication-whole-life-story-drafts.test.js` — 5/5 bestått.
 
-De målrettede testene av denne bolken verifiserer skrevne ruter og eksisterende kilde-/svaradapter. De beviser ikke at produksjonsinnboksen leverer de uregistrerte historiene eller at en hel livssimulering er ferdig.
+Den besøker alle 28 varianter gjennom faktisk kildeadapter, ChoiceDirector, DailyMailBuilder og NPC-lagring. Den kontrollerer blant annet at avslag ikke blir konsert-/pubdeltakelse, private bilder ikke gir reaksjonen på deling i kollegagruppa, og avslag på referanse ikke oppretter spillerens referansesamtale. Den kontrollerer også avslutninger og bevart aktøridentitet.
 
-## Videre produksjon
+Manuell gjennomgang av alle varianter har undersøkt motiv, etablerte opplysninger, spillerens handlingsrom og årsak til neste hendelse. Dette er en redaksjonell egenvurdering. Testresultatet er ikke bevis på kunstnerisk kvalitet.
 
-Før ny bolk produseres, må disse tre buene få nye historieutgangspunkt: personens konkrete ønske, spillerens rolle, den utløsende hendelsen og faktiske følger av valgene. Karakter- og humorprofilene i oversikten er forslag som trenger redaksjonell vurdering; de etablerer ikke alene personenes atferd.
+Produksjonsmanifestet er bevart. Eksisterende NPC-kapitler bruker en arbeidsdagskvote; privat fremdrift ved arbeidsledighet og samspill med innboksen er fortsatt en faktisk aktiveringsblokkering. De opprinnelige svakhetene i Steins arbeidsbue, blant annet teksten om sidestilte kolleger, er dokumentert og ikke endret i denne innholdsbolken.
 
-Senere bolker fyller de øvrige eksisterende personene og rollene med egne liv. Arbeidsplassfigurene får hjem, relasjoner og kulturvaner; vennene får arbeidskonflikter og privat etterklang. Mira, Lea og Arvid videreføres fra sin faktiske lagrede historie. Familie og kjærlighet får konkrete personer og relasjoner før deres forløp begynner.
+Tillit, valg og scenehistorikk lagres. Reisetid, tidsbruk, billett og NPC-ens eksterne jobbsøknad er beskrevet i fiksjonen, ikke implementert som nye kalender-/økonomitransaksjoner. Ingen eksterne referansetelefoner eller bildedelinger er gjennomført.
 
-Dekningen følges per arketypisk drivkraft, sosialt miljø, livsdomene, skrevet bue og faktisk aktivering. Mengde og en grønn schema-test er ikke alene sammenheng. Kontroller følger den endrede bolken; større regresjon brukes ved milepæler.
+## Kvalitetsvurdering av uregistrert revisjon
 
-## Kvalitetsvurdering – trukket tilbake
+| Dimensjon | Score | Grunnlag og begrensning |
+| --- | --- | --- |
+| Korrekthet og evidens | 4/5 | Roller, inngangsflagg og eksisterende egenskaper lest; ny fiksjon merket som ny kontekst. |
+| Dekning og ferdigstillelse | 4/5 | Alle tre buer omskrevet og alle varianter gjennomgått; aktivering og videre karakterutvikling gjenstår. |
+| Redaksjonell kvalitet | 3/5 | Motiver og årsakskjeder er konkretisert; ny versjon har bare forfatterens vurdering og er fortsatt et utkast. |
+| Teknisk integritet | 3/5 | Målrettet test består; innbokslevering og privat dagfremdrift er ikke løst. |
+| Sikkerhet og ansvarlighet | 5/5 | Fiktive NPC-er, avgrensede spillhandlinger, ingen eksterne konto- eller personhandlinger. |
+| Vedlikeholdbarhet og etterprøvbarhet | 4/5 | Eksisterende format og lagringseier; eksplisitt karaktergrunnlag, avslutninger og referanser. |
 
-Vurderingen på 4/5 for redaksjonell kvalitet og totalsummen 25/30 var ikke underbygget godt nok. Fiktive historier kan ha faktiske brudd i motivasjon, årsakssammenheng og spillerrolle selv om rolleflagg og lagring er teknisk riktige.
-
-De tre buene er redaksjonelt underkjent. [Gjennomgangen](CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md) beskriver funn for samtlige 27 scenevarianter og de 12 arbeidslivsscenene de bygger på.
-
-De tidligere testresultatene står som tekniske resultater:
-- `node --test tests/civication-whole-life-story-drafts.test.js` — 5/5 bestått i opprinnelig bolk.
-- `node --test tests/civication-npc-stein-role-story.test.js` — 9/9 bestått i opprinnelig bolk.
-
-Ingen ny test- eller fullregresjonskjøring er startet for denne redaksjonelle gjennomgangen. Nye scener forblir utenfor produksjonsmanifestet.
+**23/30. Uregistrert revisjon, ikke produksjonsklart eller klassifisert som høy kvalitet.**

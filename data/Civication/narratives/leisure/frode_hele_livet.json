@@ -2,8 +2,8 @@
   "schema": "civication_narrative_stream_v1",
   "id": "frode_hele_livet_stream",
   "type": "leisure",
-  "title": "Frode: En kveld uten verktøy",
-  "sociological_theme": "fagstolthet_hjelp_og_kulturell_tilhoerighet",
+  "title": "Frode: Brorens konsert",
+  "sociological_theme": "familie_fritid_og_lojalitet_til_skiftet",
   "applies_when": {
     "requires_flags": [
       "frode_role_stage4"
@@ -14,16 +14,16 @@
   ],
   "storylets": [
     {
-      "id": "frode_liv_1",
+      "id": "frode_rw_invitasjon",
       "message_type": "people",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Frode inviterer deg til en amatørkonsert",
+      "subject": "Frode vil høre broren spille",
       "situation": [
-        "Frode er blitt mellomleder, men de som kjenner ham fra før, sender fortsatt alle praktiske problemer til ham. Nå inviterer en bekjent til en liten amatørkonsert.",
-        "Frode sender invitasjonen videre til deg. «Jeg tenkte å komme som publikum», skriver han. «Har ikke bestemt om jeg skal ta med verktøy.» Du har ikke sagt at du vil bli med."
+        "Frode forteller at broren Per spiller trommer i et band. Han har gått glipp av de siste konsertene på grunn av vakter. Nå har han fri den kvelden de spiller, og han har en ekstra billett han vil tilby deg.",
+        "Flere av de gamle skiftkameratene skal jobbe den kvelden. Etter uenigheten om Frodes første bemanningsplan har tonen vært anstrengt. Han vil likevel høre broren. «Jeg har sagt til Per at jeg kommer. Vil du være med?»"
       ],
       "applies_when": {
         "flags_all": [
@@ -32,31 +32,31 @@
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Si ja til konserten som publikum.",
+          "id": "ja",
+          "label": "Ta imot billetten og bli med.",
           "effect": 0,
           "tags": [
-            "frode_konsert_ja"
+            "frode_rw_deltar"
           ],
-          "feedback": "Dere avtaler å høre musikken. Frode vet at du ikke har meldt deg som riggehjelp.",
+          "feedback": "Frode avtaler å møte deg ved inngangen. Billetten han tilbyr, er allerede kjøpt.",
           "npc_response": {
-            "trust_delta": 1,
-            "title": "To plasser blant publikum",
-            "line": "«Greit. Jeg lar verktøyet ligge. Kanskje.»"
+            "trust_delta": 0,
+            "title": "Frode vil høre broren spille",
+            "line": "«Bra. Jeg sender deg tidspunktet.»"
           }
         },
         {
-          "id": "B",
-          "label": "Takke nei og foreslå at han forteller om kvelden etterpå.",
+          "id": "nei",
+          "label": "Takke nei til konserten.",
           "effect": 0,
           "tags": [
-            "frode_konsert_nei"
+            "frode_rw_avslag"
           ],
-          "feedback": "Frode må velge om han vil gå uten deg. Du holder din egen kveld fri.",
+          "feedback": "Frode beholder den ekstra billetten og går uten deg.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Du lot invitasjonen passere",
-            "line": "«Det går fint. Jeg kan sikkert sitte stille alene også.»"
+            "title": "Frode vil høre broren spille",
+            "line": "«Greit. Jeg spør noen andre.»"
           }
         }
       ],
@@ -66,53 +66,53 @@
         "requires_role_ref": "naeringsliv/mellomleder"
       },
       "adds_flags": [
-        "frode_hele_livet_stage1"
+        "frode_rw_seen_invitasjon"
       ]
     },
     {
-      "id": "frode_liv_2_ja",
+      "id": "frode_rw_konsert",
       "message_type": "people",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Den skjeve stolen",
+      "subject": "Et bilde etter siste låt",
       "situation": [
-        "Du og Frode er kommet til konserten. Han setter seg på en stol som vipper, bytter plass og legger en sammenbrettet serviett under ett stolbein.",
-        "«Nå er den i vater», hvisker han. Fra scenen kommer den første tonen. En frivillig ser servietten og spør om han også kan se på de andre stolene."
+        "Per kommer ut fra scenen etter konserten og finner Frode ved døren. De to brødrene begynner straks å snakke om hvor høyt Per spilte på det første øvingsrommet deres. Frode ler og sier at naboene aldri hadde savnet bandet.",
+        "Du tar et bilde av dem. Begge sier det er greit å dele det. Frode foreslår den uformelle meldingsgruppa for kollegene, der flere har spurt hva broren driver med."
       ],
       "applies_when": {
         "flags_all": [
-          "frode_konsert_ja"
+          "frode_rw_deltar"
         ]
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Minne ham på at dere kom for å høre musikk.",
+          "id": "del",
+          "label": "Del bildet i kollegagruppa med en kort hilsen fra konserten.",
           "effect": 0,
           "tags": [
-            "frode_kveld_lytte"
+            "frode_rw_bilde_delt"
           ],
-          "feedback": "Frode blir sittende. Den frivillige må finne en annen løsning for stolene.",
+          "feedback": "Du deler bildet av Frode og Per. Kollegene får se hvor Frode tilbrakte frikvelden.",
           "npc_response": {
-            "trust_delta": 1,
-            "title": "Han lot en stol være skjev",
-            "line": "«Det går an å høre en hel sang selv om noe burde vært fikset.»"
+            "trust_delta": 0,
+            "title": "Et bilde etter siste låt",
+            "line": "«Send meg originalen også. Per vil ha den.»"
           }
         },
         {
-          "id": "B",
-          "label": "Tilby å hjelpe med noen få stoler i pausen sammen med ham.",
+          "id": "behold",
+          "label": "Send bildet bare til Frode og Per.",
           "effect": 0,
           "tags": [
-            "frode_kveld_hjelp"
+            "frode_rw_bilde_privat"
           ],
-          "feedback": "Dere blir sittende til pausen og tar en avgrenset oppgave da. Det gir mindre tid til å snakke.",
+          "feedback": "Brødrene får bildet. Du publiserer ingenting i kollegagruppa.",
           "npc_response": {
-            "trust_delta": 1,
-            "title": "Hjelpen fikk et tidspunkt",
-            "line": "«I pausen, ja. Da kan vi faktisk høre første del.»"
+            "trust_delta": 0,
+            "title": "Et bilde etter siste låt",
+            "line": "«Fint bilde. Mor kommer til å bli glad for det.»"
           }
         }
       ],
@@ -121,58 +121,58 @@
         "npc_id": "frode_formann",
         "requires_role_ref": "naeringsliv/mellomleder",
         "available_after": {
-          "storylet_id": "frode_liv_1",
+          "storylet_id": "frode_rw_invitasjon",
           "min_workdays": 1
         }
       },
       "adds_flags": [
-        "frode_hele_livet_stage2"
+        "frode_rw_seen_konsert"
       ]
     },
     {
-      "id": "frode_liv_2_nei",
+      "id": "frode_rw_ikke_med",
       "message_type": "people",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "En konsertanmeldelse på fire ord",
+      "subject": "Frode sender en hilsen fra konserten",
       "situation": [
-        "Du takket nei. Frode gikk til konserten uten deg og sender etterpå: «Bra. Litt dårlig stoler.» Du spør om han fikk hørt musikken.",
-        "Han svarer at han likte en langsom sang, men ikke husker tittelen. Så forteller han om en serviett som løste mer enn han hadde ventet."
+        "Du ble ikke med. Frode sender etterpå et bilde av seg selv og Per, tatt av en annen i publikum. Han forteller at Per var glad for at han kom.",
+        "Du har ikke sett konserten. Meldingen gir deg mulighet til å svare på det han faktisk forteller."
       ],
       "applies_when": {
         "flags_all": [
-          "frode_konsert_nei"
+          "frode_rw_avslag"
         ]
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Be ham fortelle om den langsomme sangen.",
+          "id": "sporr",
+          "label": "Spør hvordan konserten var, og hvordan det gikk med Per.",
           "effect": 0,
           "tags": [
-            "frode_kveld_lytte"
+            "frode_rw_spurte_om_per"
           ],
-          "feedback": "Frode må lete etter ord som ikke handler om utstyr. Samtalen blir lengre enn anmeldelsen.",
+          "feedback": "Frode forteller at bandet måtte starte en låt på nytt fordi sangeren kom inn for tidlig. Per tok det med et smil.",
           "npc_response": {
             "trust_delta": 1,
-            "title": "Han husket mer enn stolene",
-            "line": "«Det var noe med at de lot tonen stå. Jeg har ikke bedre ord enn det.»"
+            "title": "Frode sender en hilsen fra konserten",
+            "line": "«Det var fint å være der igjen. Han har blitt mye bedre.»"
           }
         },
         {
-          "id": "B",
-          "label": "Le med ham om servietten og spør hvem han traff.",
+          "id": "kort",
+          "label": "Svar med en kort hilsen til dem begge.",
           "effect": 0,
           "tags": [
-            "frode_kveld_hjelp"
+            "frode_rw_kort_hilsen"
           ],
-          "feedback": "Frode forteller om de frivillige og det lille miljøet rundt konserten.",
+          "feedback": "Du sender en hilsen uten å starte en lengre samtale.",
           "npc_response": {
-            "trust_delta": 1,
-            "title": "Et miljø rundt musikken",
-            "line": "«De var hyggelige. Jeg tror de så at jeg kunne bli en vane.»"
+            "trust_delta": 0,
+            "title": "Frode sender en hilsen fra konserten",
+            "line": "«Jeg skal hilse ham.»"
           }
         }
       ],
@@ -181,114 +181,58 @@
         "npc_id": "frode_formann",
         "requires_role_ref": "naeringsliv/mellomleder",
         "available_after": {
-          "storylet_id": "frode_liv_1",
+          "storylet_id": "frode_rw_invitasjon",
           "min_workdays": 1
         }
       },
       "adds_flags": [
-        "frode_hele_livet_stage2"
+        "frode_rw_seen_ikke_med"
       ]
     },
     {
-      "id": "frode_liv_3",
+      "id": "frode_rw_reaksjon",
       "message_type": "people",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Den frivillige har funnet telefonnummeret",
+      "subject": "Bildet blir lest som en kommentar til vaktplanen",
       "situation": [
-        "En av de frivillige kontakter Frode om neste konsert. Det trengs folk til å sette frem stoler og rydde etterpå. Han viser deg meldingen før han svarer.",
-        "«Jeg har fått jobb uten å søke», sier han. Samtidig liker han at noen vil ha ham med. Han spør hva du tenker, men avgjørelsen er hans."
+        "Bjarne Røed svarer i kollegagruppa: «Noen har fått bedre vakter etter opprykket.» Han viser til bildet du delte av Frode og Per. Frode sier til deg at han hadde fri etter planen, men at han forstår hvorfor kommentaren kom nå.",
+        "Du vet at Frodes første bemanningsplan var omstridt. Bildet sier ingenting om den planen, men nå er de to tingene blitt blandet i den samme samtalen."
       ],
       "applies_when": {
         "flags_all": [
-          "frode_hele_livet_stage2"
+          "frode_rw_bilde_delt"
         ]
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Foreslå at han tilbyr én tydelig avgrenset økt.",
+          "id": "fritid",
+          "label": "Svar i gruppa at bildet var fra en frikveld med broren.",
           "effect": 0,
           "tags": [
-            "frode_hjelp_avgrenset"
+            "frode_rw_forklarte_bildet"
           ],
-          "feedback": "Frode tilbyr hjelp før konserten og sier at han vil sitte i salen etterpå. Arrangøren har ennå ikke svart.",
+          "feedback": "Du forklarer sammenhengen med bildet. Du tar ikke stilling til om bemanningsplanen er rettferdig.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Han sendte et konkret tilbud",
-            "line": "«Jeg skrev når jeg er ferdig. Det er visst en uvant setning.»"
+            "title": "Bildet blir lest som en kommentar til vaktplanen",
+            "line": "«Takk. Jeg tar spørsmålet om vaktene på jobb.»"
           }
         },
         {
-          "id": "B",
-          "label": "Foreslå at han takker nei til rigging og ber om å få komme som publikum.",
+          "id": "plan",
+          "label": "La bildet stå, og be Frode svare selv på spørsmålet om vaktene.",
           "effect": 0,
           "tags": [
-            "frode_hjelp_publikum"
+            "frode_rw_frode_svarte"
           ],
-          "feedback": "Frode takker nei til oppgaven, men sier at han gjerne vil høre konserten.",
+          "feedback": "Du går ikke inn i uenigheten på hans vegne. Frode skriver at bemanningen må diskuteres med skiftet.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Han svarte som publikum",
-            "line": "«Hvis de bare ville ha stolene mine, får de si det.»"
-          }
-        }
-      ],
-      "npc_story": {
-        "kind": "npc_role_story_v1",
-        "npc_id": "frode_formann",
-        "requires_role_ref": "naeringsliv/mellomleder"
-      },
-      "adds_flags": [
-        "frode_hele_livet_stage3"
-      ]
-    },
-    {
-      "id": "frode_liv_4_avgrenset",
-      "message_type": "people",
-      "time_slot": [
-        "leisure"
-      ],
-      "from": "Frode Aas",
-      "subject": "Et ja med en klokkeslettgrense",
-      "situation": [
-        "Arrangøren har svart på Frodes avgrensede tilbud: De kan bruke hjelpen før konserten. Etterpå skal en annen frivillig overta. Frode virker lettet, men leser likevel meldingen to ganger.",
-        "«De skrev faktisk hvem som tar resten», sier han. Han spør om du har lyst til å møte ham før musikken eller bare holde kontakt som før."
-      ],
-      "applies_when": {
-        "flags_all": [
-          "frode_hjelp_avgrenset"
-        ]
-      },
-      "choices": [
-        {
-          "id": "A",
-          "label": "Si at du gjerne møter ham som publikum hvis dere finner en dag som passer.",
-          "effect": 0,
-          "tags": [
-            "frode_venn_mulighet"
-          ],
-          "feedback": "Du er åpen for en ny konsert, men har ikke påtatt deg rigging eller avtalt en dato.",
-          "npc_response": {
-            "trust_delta": 1,
-            "title": "Dere kan møtes uten å jobbe",
-            "line": "«Da skal jeg allerede sitte når du kommer.»"
-          }
-        },
-        {
-          "id": "B",
-          "label": "Si at du helst vil snakke en annen kveld.",
-          "effect": 0,
-          "tags": [
-            "frode_venn_samtale"
-          ],
-          "feedback": "Du velger kontakt uten arrangementet. Frode beholder sin egen plan.",
-          "npc_response": {
-            "trust_delta": 0,
-            "title": "En annen kveld er også kontakt",
-            "line": "«Greit. Det er ikke alle venner som trenger samme fritid.»"
+            "title": "Bildet blir lest som en kommentar til vaktplanen",
+            "line": "«Det er mitt ansvar. Jeg svarer dem.»"
           }
         }
       ],
@@ -297,174 +241,44 @@
         "npc_id": "frode_formann",
         "requires_role_ref": "naeringsliv/mellomleder",
         "available_after": {
-          "storylet_id": "frode_liv_3",
+          "storylet_id": "frode_rw_konsert",
           "min_workdays": 1
         }
       },
       "adds_flags": [
-        "frode_hele_livet_stage4"
+        "frode_rw_seen_reaksjon"
       ]
     },
     {
-      "id": "frode_liv_4_publikum",
-      "message_type": "people",
-      "time_slot": [
-        "leisure"
-      ],
-      "from": "Frode Aas",
-      "subject": "Invitert uten arbeidsbeskrivelse",
-      "situation": [
-        "Frode takket nei til rigging. Arrangøren svarte: «Kom gjerne og hør.» Han viser deg meldingen som om den trenger en faglig vurdering.",
-        "«Det står ikke noe etter punktum», sier han. Han spør om du har lyst til å møte ham på en senere konsert, eller om dere heller skal holde kontakten utenfor dette miljøet."
-      ],
-      "applies_when": {
-        "flags_all": [
-          "frode_hjelp_publikum"
-        ]
-      },
-      "choices": [
-        {
-          "id": "A",
-          "label": "Si at du gjerne møter ham som publikum hvis dere finner en dag som passer.",
-          "effect": 0,
-          "tags": [
-            "frode_venn_mulighet"
-          ],
-          "feedback": "Du er åpen for konserten. Ingen dato eller praktisk oppgave er avtalt.",
-          "npc_response": {
-            "trust_delta": 1,
-            "title": "En invitasjon uten verktøy",
-            "line": "«Da går det kanskje an å være til stede uten å være nyttig.»"
-          }
-        },
-        {
-          "id": "B",
-          "label": "Si at du helst vil snakke en annen kveld.",
-          "effect": 0,
-          "tags": [
-            "frode_venn_samtale"
-          ],
-          "feedback": "Du velger en annen form for kontakt. Frode kan bruke konsertmiljøet selv.",
-          "npc_response": {
-            "trust_delta": 0,
-            "title": "Dere trenger ikke gjøre alt sammen",
-            "line": "«Vi finner noe annet. Det går fint.»"
-          }
-        }
-      ],
-      "npc_story": {
-        "kind": "npc_role_story_v1",
-        "npc_id": "frode_formann",
-        "requires_role_ref": "naeringsliv/mellomleder",
-        "available_after": {
-          "storylet_id": "frode_liv_3",
-          "min_workdays": 1
-        }
-      },
-      "adds_flags": [
-        "frode_hele_livet_stage4"
-      ]
-    },
-    {
-      "id": "frode_liv_5",
-      "message_type": "people",
-      "time_slot": [
-        "leisure"
-      ],
-      "from": "Frode Aas",
-      "subject": "Den gamle stemmen følger med hjem",
-      "situation": [
-        "Frode forteller om en arbeidsdag der han måtte gi beskjed om en upopulær endring. En tidligere skiftkamerat sa at han hadde begynt å snakke som ledelsen. Om kvelden tar han seg i å bruke den samme tonen på telefon.",
-        "«Jeg ba noen følge opp middagssituasjonen», sier han. «Det var meg selv.» Han vet ikke om han trenger å le, snakke alvorlig eller legge bort hele dagen."
-      ],
-      "applies_when": {
-        "flags_all": [
-          "frode_hele_livet_stage4"
-        ]
-      },
-      "choices": [
-        {
-          "id": "A",
-          "label": "Le med ham og spør hvordan han ønsker å si det neste gang.",
-          "effect": 0,
-          "tags": [
-            "frode_stemme_snakk"
-          ],
-          "feedback": "Frode finner sine egne ord for beskjeden. Det gjør ikke arbeidsendringen mer populær.",
-          "npc_response": {
-            "trust_delta": 1,
-            "title": "Han fant igjen sin egen setning",
-            "line": "«Jeg kan si noe vanskelig uten å høres ut som en veggplakat.»"
-          }
-        },
-        {
-          "id": "B",
-          "label": "Foreslå at han lar jobbpraten ligge og setter på den langsomme sangen hvis han finner den.",
-          "effect": 0,
-          "tags": [
-            "frode_stemme_pause"
-          ],
-          "feedback": "Frode tar en pause fra saken. Samtalen løser ikke arbeidsuenigheten.",
-          "npc_response": {
-            "trust_delta": 0,
-            "title": "Han lot dagen få en ende",
-            "line": "«Det kan jeg gjøre. Jeg får lete etter sangen, ikke en bedre rapport.»"
-          }
-        }
-      ],
-      "npc_story": {
-        "kind": "npc_role_story_v1",
-        "npc_id": "frode_formann",
-        "requires_role_ref": "naeringsliv/mellomleder"
-      },
-      "adds_flags": [
-        "frode_hele_livet_stage5"
-      ]
-    },
-    {
-      "id": "frode_liv_6_snakk",
+      "id": "frode_rw_privat_bilde",
       "message_type": "consequence",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "En beskjed uten plakatstemme",
+      "subject": "Bildet blir værende hos familien",
       "situation": [
-        "Frode sier at han prøvde å gi den vanskelige beskjeden med sine egne ord. Den gamle skiftkameraten var fortsatt uenig, men samtalen var lettere å forstå.",
-        "Senere fikk Frode navnet på den langsomme sangen fra konsertarrangøren. Han sender det til deg uten kommentar om stoler eller lydutstyr."
+        "Du sendte bildet bare til brødrene. Frode forteller at Per har sendt det videre til moren deres. Hun har spurt når de to sist var ute sammen, og ingen av dem husker det helt.",
+        "Konserten endrer ikke uenigheten på jobb. Frode fikk likevel en kveld med Per, og de har avtalt å ringes før neste konsert."
       ],
       "applies_when": {
         "flags_all": [
-          "frode_stemme_snakk"
+          "frode_rw_bilde_privat"
         ]
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Spør om dere skal høre den og snakke en liten stund.",
+          "id": "lest",
+          "label": "Les meldingen.",
           "effect": 0,
           "tags": [
-            "frode_slutt_sang"
+            "frode_rw_avsluttet_privat"
           ],
-          "feedback": "Du åpner for et kort møte. Tid og sted må fortsatt avtales.",
-          "npc_response": {
-            "trust_delta": 1,
-            "title": "Dere har noe å møtes om",
-            "line": "«Ja. Vi kan kanskje la sangen gå helt ferdig før vi sier noe.»"
-          }
-        },
-        {
-          "id": "B",
-          "label": "Takke for sangen og hold kontakten åpen.",
-          "effect": 0,
-          "tags": [
-            "frode_slutt_aapen"
-          ],
-          "feedback": "Frode får en liten respons uten en ny avtale.",
+          "feedback": "Bildet har blitt en del av familiens kveld. Du delte det ikke i kollegagruppa.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "En sang, ikke en oppgave",
-            "line": "«Bare hyggelig. Den trenger ingen oppfølging.»"
+            "title": "Bildet blir værende hos familien",
+            "line": "«Per takker for bildet.»"
           }
         }
       ],
@@ -473,58 +287,45 @@
         "npc_id": "frode_formann",
         "requires_role_ref": "naeringsliv/mellomleder",
         "available_after": {
-          "storylet_id": "frode_liv_5",
+          "storylet_id": "frode_rw_konsert",
           "min_workdays": 1
         }
       },
       "adds_flags": [
-        "frode_hele_livet_stage6"
+        "frode_rw_seen_privat_bilde",
+        "frode_rw_finished"
       ]
     },
     {
-      "id": "frode_liv_6_pause",
+      "id": "frode_rw_etter_samtalen",
       "message_type": "consequence",
       "time_slot": [
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Sangen lå i en melding",
+      "subject": "En bror du har hørt mer om",
       "situation": [
-        "Frode fulgte forslaget om å la jobbpraten ligge. Arbeidsuenigheten er fortsatt der. Nå har konsertarrangøren sendt ham tittelen på den langsomme sangen.",
-        "Han sender den videre til deg. «Fant den», står det. Meldingen krever ingen vurdering av hvordan han håndterte dagen."
+        "Du spurte om Per etter konserten. Frode sender en kort video bandet selv har lagt ut, og peker på stedet der sangeren kom inn for tidlig. Denne gangen kan du se hva han mente.",
+        "Frode har begynt å snakke med deg om noe fra sitt eget liv. Dere var ikke på konserten sammen, men samtalen ga deg kjennskap til broren hans."
       ],
       "applies_when": {
         "flags_all": [
-          "frode_stemme_pause"
+          "frode_rw_spurte_om_per"
         ]
       },
       "choices": [
         {
-          "id": "A",
-          "label": "Spør om dere skal høre den og snakke en liten stund.",
+          "id": "lest",
+          "label": "Se videoen han sendte.",
           "effect": 0,
           "tags": [
-            "frode_slutt_sang"
+            "frode_rw_avsluttet_samtale"
           ],
-          "feedback": "Du åpner for et kort møte. Det betyr ikke at dere har løst arbeidsuenigheten.",
-          "npc_response": {
-            "trust_delta": 1,
-            "title": "Et lite rom uten arbeidsdagen",
-            "line": "«Ja. Vi kan snakke om noe som ikke skal godkjennes.»"
-          }
-        },
-        {
-          "id": "B",
-          "label": "Takke for sangen og hold kontakten åpen.",
-          "effect": 0,
-          "tags": [
-            "frode_slutt_aapen"
-          ],
-          "feedback": "Du svarer uten å binde dere til en kveld. Frode har både musikken og kontakten.",
+          "feedback": "Du følger opp samtalen om konserten.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Han sendte noe som kunne få stå",
-            "line": "«Da har du den også.»"
+            "title": "En bror du har hørt mer om",
+            "line": "«Der har du det. Per lo av det etterpå også.»"
           }
         }
       ],
@@ -533,12 +334,154 @@
         "npc_id": "frode_formann",
         "requires_role_ref": "naeringsliv/mellomleder",
         "available_after": {
-          "storylet_id": "frode_liv_5",
+          "storylet_id": "frode_rw_ikke_med",
           "min_workdays": 1
         }
       },
       "adds_flags": [
-        "frode_hele_livet_stage6"
+        "frode_rw_seen_etter_samtalen",
+        "frode_rw_finished"
+      ]
+    },
+    {
+      "id": "frode_rw_etter_hilsenen",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "En kort hilsen var nok",
+      "situation": [
+        "Du svarte kort på bildet. Frode hilste Per fra deg og lot samtalen bli med det. Han sender ikke flere videoer eller nye invitasjoner i denne omgang.",
+        "På jobb er uenigheten om bemanningen fortsatt der. Den private hilsenen din var ikke et standpunkt i den saken."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_rw_kort_hilsen"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Avslutt samtalen.",
+          "effect": 0,
+          "tags": [
+            "frode_rw_avsluttet_hilsen"
+          ],
+          "feedback": "Kontakten forblir kort i denne omgang.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En kort hilsen var nok",
+            "line": "«Vi snakkes.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_rw_ikke_med",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_rw_seen_etter_hilsenen",
+        "frode_rw_finished"
+      ]
+    },
+    {
+      "id": "frode_rw_etter_forklaringen",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Frodes frikveld og skiftets belastning",
+      "situation": [
+        "Du forklarte at bildet var tatt da Frode hadde fri. Bjarne svarer at han skjønte det, men at han fortsatt mener bemanningen er skjev. Frode har avtalt å gå gjennom planen med skiftet.",
+        "Forklaringen ryddet opp i hva bildet viste. Den avgjorde ikke hvem som skal ta de krevende oppgavene. Frode må fortsatt stå for den planen han har laget."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_rw_forklarte_bildet"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les svaret i samtalen.",
+          "effect": 0,
+          "tags": [
+            "frode_rw_avsluttet_forklart"
+          ],
+          "feedback": "Du har forklart din egen melding. Arbeidsspørsmålet blir stående til gjennomgangen med skiftet.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Frodes frikveld og skiftets belastning",
+            "line": "«Jeg følger opp planen.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_rw_reaksjon",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_rw_seen_etter_forklaringen",
+        "frode_rw_finished"
+      ]
+    },
+    {
+      "id": "frode_rw_etter_frodes_svar",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Frode tok svaret selv",
+      "situation": [
+        "Du ba Frode svare selv på kommentaren om vaktene. Han skriver i gruppa at Per er broren hans og at han hadde fri. Deretter avtaler han en gjennomgang av bemanningen med skiftet.",
+        "Du har ikke forsvart planen eller sendt inn nye opplysninger om den. Frode har selv svart for både konserten og ansvaret på jobb."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_rw_frode_svarte"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les Frodes svar.",
+          "effect": 0,
+          "tags": [
+            "frode_rw_avsluttet_frode_svar"
+          ],
+          "feedback": "Samtalen om bildet er avsluttet. Bemanningen må fortsatt behandles med dem som er berørt.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Frode tok svaret selv",
+            "line": "«Da tar jeg resten med skiftet.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_rw_reaksjon",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_rw_seen_etter_frodes_svar",
+        "frode_rw_finished"
       ]
     }
   ]

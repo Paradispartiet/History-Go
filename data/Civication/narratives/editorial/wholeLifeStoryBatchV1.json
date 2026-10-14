@@ -1,6 +1,6 @@
 {
   "schema": "civication_whole_life_editorial_v1",
-  "version": 1,
+  "version": 2,
   "editorial_only": true,
   "status": "authored_not_registered",
   "purpose": "Sammenhengende liv der arbeid, privatliv, sosialt liv og kultur påvirker de samme fiktive menneskene.",
@@ -83,30 +83,30 @@
     },
     {
       "npc_id": "inger_avdelingsleder",
-      "archetype": "Den falne lederen",
-      "desire": "beholde verdi etter statusendring",
-      "contradiction": "vil kontrollere, men savner uformell kontakt",
-      "humour": "planlegger spontanitet i et regneark",
+      "archetype": "Den erfarne lederen som søker nytt ansvar",
+      "desire": "få budsjett- og personalansvar igjen og samtidig begrense reisebelastningen",
+      "contradiction": "søker et større ansvar, men takker nei når arbeidsdagen ikke passer livet hennes",
+      "humour": "ingen pålagt humor; dialogen handler om den konkrete søknaden",
       "status": "first_arc_authored",
-      "profile_approval": "rejected_as_story_premise"
+      "profile_approval": "rewritten_editorial_proposal"
     },
     {
       "npc_id": "stein_peer_mellomleder",
-      "archetype": "Den ambisiøse organisatoren",
-      "desire": "bli likt uten å ordne alt",
-      "contradiction": "søker anerkjennelse, men vil kunne gi fra seg kontroll",
-      "humour": "lager agenda for en kveld uten agenda",
+      "archetype": "Den ambisiøse kollegaen som har blitt leder",
+      "desire": "beholde kontakten med gamle kolleger og håndtere bemanningsansvaret",
+      "contradiction": "inviterer til en privat kveld, men blir møtt med forventninger om jobbavgjørelser",
+      "humour": "kameratenes fotballprat og kjente uenigheter om dommeren",
       "status": "first_arc_authored",
-      "profile_approval": "rejected_as_story_premise"
+      "profile_approval": "rewritten_editorial_proposal"
     },
     {
       "npc_id": "frode_formann",
-      "archetype": "Den lojale problemløseren",
-      "desire": "være nyttig og bevare sin egen stemme",
-      "contradiction": "vil hjelpe, men trenger et rom uten oppgaver",
-      "humour": "kommer som publikum og oppdager en skjev stol",
+      "archetype": "Den lojale kollegaen med et nytt lederansvar",
+      "desire": "være til stede for broren uten at fritiden leses som et standpunkt i arbeidskonflikten",
+      "contradiction": "har legitim fri mens kolleger står i en belastning han er ansvarlig for",
+      "humour": "brødrene husker bandets første øvingsrom forskjellig",
       "status": "first_arc_authored",
-      "profile_approval": "rejected_as_story_premise"
+      "profile_approval": "rewritten_editorial_proposal"
     }
   ],
   "social_archetypes": [
@@ -310,7 +310,7 @@
       "npc_id": "stein_peer_mellomleder",
       "stream_id": "stein_hele_livet_stream",
       "source_path": "data/Civication/narratives/leisure/stein_hele_livet.json",
-      "chapters": 6,
+      "chapters": 4,
       "authored_scene_variants": 9,
       "entry_flag": "stein_role_stage4",
       "required_actor_role": "naeringsliv/avdelingsleder",
@@ -325,50 +325,87 @@
         {
           "chapter": 1,
           "scene_ids": [
-            "stein_liv_1"
+            "stein_rw_invitasjon"
           ]
         },
         {
           "chapter": 2,
           "scene_ids": [
-            "stein_liv_2_ja",
-            "stein_liv_2_nei"
+            "stein_rw_kamp",
+            "stein_rw_uten_kampen"
           ]
         },
         {
           "chapter": 3,
           "scene_ids": [
-            "stein_liv_3"
+            "stein_rw_sak_tatt_opp",
+            "stein_rw_kamp_etterklang",
+            "stein_rw_skriftlig_etterklang",
+            "stein_rw_avslag_etterklang"
           ]
         },
         {
           "chapter": 4,
           "scene_ids": [
-            "stein_liv_4_skillet",
-            "stein_liv_4_formell"
-          ]
-        },
-        {
-          "chapter": 5,
-          "scene_ids": [
-            "stein_liv_5"
-          ]
-        },
-        {
-          "chapter": 6,
-          "scene_ids": [
-            "stein_liv_6_samtale",
-            "stein_liv_6_alene"
+            "stein_rw_motegrunnlag",
+            "stein_rw_venter_pa_motet"
           ]
         }
       ],
-      "editorial_approval": "rejected_needs_rewrite"
+      "editorial_approval": "rewritten_pending_reader_review",
+      "minimum_played_chapters": 3,
+      "scene_ids": [
+        "stein_rw_invitasjon",
+        "stein_rw_kamp",
+        "stein_rw_uten_kampen",
+        "stein_rw_sak_tatt_opp",
+        "stein_rw_kamp_etterklang",
+        "stein_rw_skriftlig_etterklang",
+        "stein_rw_avslag_etterklang",
+        "stein_rw_motegrunnlag",
+        "stein_rw_venter_pa_motet"
+      ],
+      "terminal_flag": "stein_rw_finished",
+      "start_scene_id": "stein_rw_invitasjon",
+      "synopsis": "En privat fotballkveld gjør uavklart bemanning til et spørsmål om hva den nye lederen har lovet.",
+      "character_basis": {
+        "identity": {
+          "npc_id": "stein_peer_mellomleder",
+          "name": "Stein Mæland",
+          "actor_type": "fictional_npc"
+        },
+        "catalog_source": "data/Civication/npcs/naeringsliv.json",
+        "catalog_traits": [
+          "kollegial",
+          "målbevisst",
+          "konkurranseorientert"
+        ],
+        "demonstrated_competence": [
+          "samordning mellom avdelinger",
+          "kjennskap til produksjonsplanen"
+        ],
+        "role": {
+          "initial_ref": "naeringsliv/mellomleder",
+          "entry_ref": "naeringsliv/avdelingsleder",
+          "source": "data/Civication/roleWorlds/index.json"
+        },
+        "current_goal": "bevare kontakt med kolleger samtidig som han tar ansvar som avdelingsleder",
+        "authored_new_context": [
+          "Han og Bjarne pleier å se fotball sammen; dette introduseres i invitasjonen."
+        ],
+        "relationship_with_player": {
+          "origin": "Den eksisterende arbeidsbuen. Privat vennskap er ikke gitt på forhånd.",
+          "state_owner": "CivicationNpcCharacterThreads",
+          "trust_and_previous_choices": "Bevares uavhengig av stilling."
+        },
+        "status": "editorial_character_basis_not_new_runtime_variables"
+      }
     },
     {
       "npc_id": "frode_formann",
       "stream_id": "frode_hele_livet_stream",
       "source_path": "data/Civication/narratives/leisure/frode_hele_livet.json",
-      "chapters": 6,
+      "chapters": 4,
       "authored_scene_variants": 9,
       "entry_flag": "frode_role_stage4",
       "required_actor_role": "naeringsliv/mellomleder",
@@ -383,51 +420,88 @@
         {
           "chapter": 1,
           "scene_ids": [
-            "frode_liv_1"
+            "frode_rw_invitasjon"
           ]
         },
         {
           "chapter": 2,
           "scene_ids": [
-            "frode_liv_2_ja",
-            "frode_liv_2_nei"
+            "frode_rw_konsert",
+            "frode_rw_ikke_med"
           ]
         },
         {
           "chapter": 3,
           "scene_ids": [
-            "frode_liv_3"
+            "frode_rw_reaksjon",
+            "frode_rw_privat_bilde",
+            "frode_rw_etter_samtalen",
+            "frode_rw_etter_hilsenen"
           ]
         },
         {
           "chapter": 4,
           "scene_ids": [
-            "frode_liv_4_avgrenset",
-            "frode_liv_4_publikum"
-          ]
-        },
-        {
-          "chapter": 5,
-          "scene_ids": [
-            "frode_liv_5"
-          ]
-        },
-        {
-          "chapter": 6,
-          "scene_ids": [
-            "frode_liv_6_snakk",
-            "frode_liv_6_pause"
+            "frode_rw_etter_forklaringen",
+            "frode_rw_etter_frodes_svar"
           ]
         }
       ],
-      "editorial_approval": "rejected_needs_rewrite"
+      "editorial_approval": "rewritten_pending_reader_review",
+      "minimum_played_chapters": 3,
+      "scene_ids": [
+        "frode_rw_invitasjon",
+        "frode_rw_konsert",
+        "frode_rw_ikke_med",
+        "frode_rw_reaksjon",
+        "frode_rw_privat_bilde",
+        "frode_rw_etter_samtalen",
+        "frode_rw_etter_hilsenen",
+        "frode_rw_etter_forklaringen",
+        "frode_rw_etter_frodes_svar"
+      ],
+      "terminal_flag": "frode_rw_finished",
+      "start_scene_id": "frode_rw_invitasjon",
+      "synopsis": "En kveld med brorens band blir oppfattet forskjellig når et bilde deles med kollegene.",
+      "character_basis": {
+        "identity": {
+          "npc_id": "frode_formann",
+          "name": "Frode Aas",
+          "actor_type": "fictional_npc"
+        },
+        "catalog_source": "data/Civication/npcs/naeringsliv.json",
+        "catalog_traits": [
+          "lojal til folkene",
+          "varsom med ord",
+          "kjenner produksjonsgulvet"
+        ],
+        "demonstrated_competence": [
+          "driftsavvik",
+          "bemanning og koordinering av skift"
+        ],
+        "role": {
+          "initial_ref": "naeringsliv/formann",
+          "entry_ref": "naeringsliv/mellomleder",
+          "source": "data/Civication/roleWorlds/index.json"
+        },
+        "current_goal": "tilbringe tid med broren og håndtere uenigheten om sin første bemanningsplan",
+        "authored_new_context": [
+          "Broren Per spiller trommer i et band; slektskap og interesse introduseres før konserten."
+        ],
+        "relationship_with_player": {
+          "origin": "Den eksisterende arbeidsbuen. Privat vennskap er ikke gitt på forhånd.",
+          "state_owner": "CivicationNpcCharacterThreads",
+          "trust_and_previous_choices": "Bevares uavhengig av stilling."
+        },
+        "status": "editorial_character_basis_not_new_runtime_variables"
+      }
     },
     {
       "npc_id": "inger_avdelingsleder",
       "stream_id": "inger_hele_livet_stream",
       "source_path": "data/Civication/narratives/leisure/inger_hele_livet.json",
-      "chapters": 6,
-      "authored_scene_variants": 9,
+      "chapters": 4,
+      "authored_scene_variants": 10,
       "entry_flag": "inger_role_stage4",
       "required_actor_role": "naeringsliv/mellomleder",
       "domains": [
@@ -441,53 +515,110 @@
         {
           "chapter": 1,
           "scene_ids": [
-            "inger_liv_1"
+            "inger_rw_referanse"
           ]
         },
         {
           "chapter": 2,
           "scene_ids": [
-            "inger_liv_2_ja",
-            "inger_liv_2_nei"
+            "inger_rw_telefon",
+            "inger_rw_annen_referanse"
           ]
         },
         {
           "chapter": 3,
           "scene_ids": [
-            "inger_liv_3"
+            "inger_rw_etter_fagreferansen",
+            "inger_rw_etter_helreferansen",
+            "inger_rw_tilbud_uten_deg"
           ]
         },
         {
           "chapter": 4,
           "scene_ids": [
-            "inger_liv_4_leser",
-            "inger_liv_4_sporre"
-          ]
-        },
-        {
-          "chapter": 5,
-          "scene_ids": [
-            "inger_liv_5"
-          ]
-        },
-        {
-          "chapter": 6,
-          "scene_ids": [
-            "inger_liv_6_prioritere",
-            "inger_liv_6_onske"
+            "inger_rw_svar_fag",
+            "inger_rw_svar_avklart",
+            "inger_rw_svar_uenighet",
+            "inger_rw_svar_uten_deg"
           ]
         }
       ],
-      "editorial_approval": "rejected_needs_rewrite"
+      "editorial_approval": "rewritten_pending_reader_review",
+      "minimum_played_chapters": 4,
+      "scene_ids": [
+        "inger_rw_referanse",
+        "inger_rw_telefon",
+        "inger_rw_annen_referanse",
+        "inger_rw_etter_fagreferansen",
+        "inger_rw_etter_helreferansen",
+        "inger_rw_tilbud_uten_deg",
+        "inger_rw_svar_fag",
+        "inger_rw_svar_avklart",
+        "inger_rw_svar_uenighet",
+        "inger_rw_svar_uten_deg"
+      ],
+      "terminal_flag": "inger_rw_finished",
+      "start_scene_id": "inger_rw_referanse",
+      "synopsis": "En referanse gir Inger et nytt jobbtilbud å vurdere; reisebelastningen gjør at hun takker nei.",
+      "character_basis": {
+        "identity": {
+          "npc_id": "inger_avdelingsleder",
+          "name": "Inger Holm",
+          "actor_type": "fictional_npc"
+        },
+        "catalog_source": "data/Civication/npcs/naeringsliv.json",
+        "catalog_traits": [
+          "opptatt av tall",
+          "lite synlig på gulvet",
+          "presset ovenfra"
+        ],
+        "demonstrated_competence": [
+          "grunnlaget for bemanningsberegninger",
+          "bakgrunnen for vedlikeholdsrutiner"
+        ],
+        "role": {
+          "initial_ref": "naeringsliv/avdelingsleder",
+          "entry_ref": "naeringsliv/mellomleder",
+          "source": "data/Civication/roleWorlds/index.json"
+        },
+        "current_goal": "få større beslutningsansvar igjen, uten en arbeidsdag med for mye reising",
+        "authored_new_context": [
+          "Hun har selv søkt en annen jobb; ønsket om begrenset reising introduseres før tilbudet."
+        ],
+        "relationship_with_player": {
+          "origin": "Den eksisterende arbeidsbuen. Privat vennskap er ikke gitt på forhånd.",
+          "state_owner": "CivicationNpcCharacterThreads",
+          "trust_and_previous_choices": "Bevares uavhengig av stilling."
+        },
+        "status": "editorial_character_basis_not_new_runtime_variables"
+      }
     }
   ],
   "editorial_review": {
-    "status": "rejected_needs_rewrite",
+    "status": "rewritten_pending_reader_review",
     "date": "2026-10-14",
     "report_path": "docs/CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md",
     "reviewed_scene_variants": 27,
     "reviewed_baseline_scenes": 12,
     "previous_editorial_score_withdrawn": true,
-    "character_profiles": "editorial_proposals_not_canonical_character_facts"
+    "character_profiles": "editorial_proposals_not_canonical_character_facts",
+    "current_revision": 2,
+    "current_status": "rewritten_pending_reader_review",
+    "original_status": "rejected_needs_rewrite",
+    "rewrite_scope": "Alle tre nye buer er skrevet om fra motiv, hendelse og konsekvens. Den opprinnelige gjennomgangen bevares som historikk."
+  },
+  "authored_context": {
+    "fictional": true,
+    "new_detail_status": "authored_in_unregistered_scenes",
+    "per": "Frodes bror Per introduseres i første scene, som trommeslager. Han er ikke en ny runtime-aktør eller historisk People-profil.",
+    "social_messages": "Bildedeling og referansetelefon er hendelser i fiksjonen, ikke handlinger mot eksterne kontoer.",
+    "effects_limit": "Tillit, valg og scenehistorikk registreres i eksisterende eiere. Opplevelsen av tidsbruk og reising er skrevet tekst og er ikke implementert som kostnad i kalender eller økonomimodell."
+  },
+  "player_basis": {
+    "actor_type": "player",
+    "control": "Brukeren velger handlinger for sin egen spillfigur.",
+    "entry_roles": "De eksisterende arbeidsbuene bruker fagarbeider, og for Frode/Inger også mellomleder.",
+    "authority": "Spillerens aktive rolle og faktiske fullmakter gjelder. Samtale med en leder gjør ikke spilleren til leder.",
+    "role_and_character": "Spiller og NPC-er bruker samme rollekatalog. Identitet, rolle, kompetanse, relasjoner og livssituasjon må skilles."
   }
 }
