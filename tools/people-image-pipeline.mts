@@ -370,7 +370,35 @@ function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
   return { selected, approvedIds, selections: null };
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
-async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
+async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> {
+  // Wikimedia Commons can throttle runs that download many originals. Respect
+  // Retry-After and retry only transient HTTP statuses; never bypass licensing.
+  let result: Response | undefined;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const response = await fetcher(url, { headers: { 'User-Agent': UA, Accept: 'image/*,*/*' } });
+    if (response.ok && response.body) { result = response; break; }
+    const code = response.status;
+    const retryable = RETRY_STATUSES.has(code);
+    if (!retryable || attempt === 5) throw new Error(`Download failed HTTP ${code} for ${path.basename(destBase)} after ${attempt} attempt(s)`);
+    const retryMs = retryAfterMs(response.headers.get('retry-after')) ?? Math.min((code === 429 ? 8000 : 1500) * 2 ** (attempt - 1), 30_000);
+    await response.body?.cancel();
+    console.warn(`Commons returned HTTP ${code} for ${path.basename(destBase)}; retrying in ${retryMs} ms (attempt ${attempt}/5)`);
+    await sleep(retryMs);
+  }
+  if (!result?.body) throw new Error('No image body after retries');
+  const ext = extFromMime(result.headers.get('content-type') || 'image/jpeg');
+  const dest = destBase + ext;
+  if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`);
+  const tmp = `${dest}.${process.pid}.tmp`;
+  try {
+    await pipeline(result.body as any, createWriteStream(tmp, { flags: 'wx' }));
+    await rename(tmp, dest);
+    return path.relative(ROOT(), dest).replace(/\\/g, '/');
+  } catch (e) {
+    await rm(tmp, { force: true });
+    throw e;
+  }
+}
 export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
@@ -397,6 +425,7 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
       console.log(`[dry-run] would apply ${c.personId} (${c.personName}) from ${c.commonsFileName} to ${plannedImage}`);
       continue;
     }
+    if (selected.length > 5) await sleep(1500); // Polite pacing for large Commons batches.
     const local = await download(c.originalImageUrl, imageBase, fetcher);
     if (/^https?:/.test(local)) throw new Error(`Internal error: external image URL generated for ${c.personId}`);
     e.person.image = local;
