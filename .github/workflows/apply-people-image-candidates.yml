@@ -1,6 +1,11 @@
 name: Apply approved people image candidates (manual, safe)
 
 on:
+  # Controlled, reviewed source-selection request; generates a draft PR only.
+  push:
+    branches: [main]
+    paths:
+      - data/people/portrait_image_apply_request.json
   workflow_dispatch:
     inputs:
       approved_ids:
@@ -54,6 +59,28 @@ jobs:
           npm run build:tools
           mkdir -p "$REPORT_DIR"
 
+      - name: Load reviewed selections from production request
+        if: ${{ github.event_name == 'push' }}
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const request = JSON.parse(fs.readFileSync('data/people/portrait_image_apply_request.json', 'utf8'));
+          if (request.schema !== 'history_go_people_portrait_apply_request_v1') throw new Error('Unexpected apply request schema');
+          if (request.place_id !== 'det_norske_teatret') throw new Error('Unexpected place request');
+          if (!Array.isArray(request.selections) || !request.selections.length || request.selections.length > 5) throw new Error('Must select 1-5 reviewed candidates');
+          for (const entry of request.selections) {
+            if (!entry.personId || !entry.candidateId || entry.approvalMode !== 'normal' || entry.identity_review !== 'verified' || entry.license_review !== 'verified' || !entry.review_evidence?.commons_page) {
+              throw new Error('Selection missing documented identity and license review: ' + entry.personId);
+            }
+          }
+          const ids = request.selections.map(s => s.personId);
+          if (new Set(ids).size !== ids.length) throw new Error('Duplicate selection IDs');
+          const payload = JSON.stringify({ version: 2, selections: request.selections.map(({ personId, candidateId, approvalMode }) => ({ personId, candidateId, approvalMode })) });
+          fs.appendFileSync(process.env.GITHUB_ENV, 'REVIEW_PAYLOAD=' + payload + '\nAPPROVED_IDS=' + ids.join(',') + '\n');
+          console.log('Reviewed persons in source request: ' + ids.join(', '));
+          NODE
+
       - name: Preflight approved IDs
         run: |
           node <<'NODE' | tee "$REPORT_DIR/preflight.txt"
@@ -75,7 +102,7 @@ jobs:
           NODE
 
       - name: Run dry-run apply
-        if: ${{ inputs.write_output == 'false' }}
+        if: ${{ github.event_name != 'push' && inputs.write_output == 'false' }}
         run: |
           set -euo pipefail
           before="$(sha256sum "$CANDIDATE_FILE")"
@@ -89,7 +116,7 @@ jobs:
           fi
 
       - name: Run write apply
-        if: ${{ inputs.write_output == 'true' }}
+        if: ${{ github.event_name == 'push' || inputs.write_output == 'true' }}
         run: |
           set -euo pipefail
           before="$(sha256sum "$CANDIDATE_FILE")"
@@ -102,7 +129,7 @@ jobs:
       - name: Upload people image apply report
         uses: actions/upload-artifact@v4
         with:
-          name: people-image-apply-${{ inputs.write_output }}
+          name: people-image-apply-${{ github.run_id }}
           path: |
             reports/people-image-apply/**
             data/people/people_image_attributions.json
@@ -110,7 +137,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Open PR for applied people images
-        if: ${{ inputs.write_output == 'true' && inputs.open_draft_pr == true }}
+        if: ${{ github.event_name == 'push' || (inputs.write_output == 'true' && inputs.open_draft_pr == true) }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -120,7 +147,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
-          git add data/people/people_image_attributions.json bilder/kort/people reports/people-image-apply
+          git add data/people/people_image_attributions.json bilder/kort/people
+          git add -f reports/people-image-apply
           node <<'NODE'
           const fs = require('node:fs');
           const ids = process.env.APPROVED_IDS.split(',').map((id) => id.trim()).filter(Boolean);
@@ -134,4 +162,4 @@ jobs:
           if git diff --cached --quiet; then echo "No applied people image output changes to commit."; exit 0; fi
           git commit -m "chore(data): apply reviewed people images"
           git push --set-upstream origin HEAD
-          gh pr create --base main --head "$branch" --title "Apply reviewed people images" --body "Applies reviewed people image candidates for: $APPROVED_IDS"
+          gh pr create --draft --base main --head "$branch" --title "DNT: reviewed person portrait images" --body "Applies separately reviewed Commons portraits for: $APPROVED_IDS. Contains local images, canonical People metadata and attribution. Review before merge."
