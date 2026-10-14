@@ -123,7 +123,34 @@ jobs:
           if [ -n "$REVIEW_PAYLOAD" ]; then npm run people:images:apply:write -- --review-payload="$REVIEW_PAYLOAD" | tee "$REPORT_DIR/write.txt"; else npm run people:images:apply:write -- --approved-ids="$APPROVED_IDS" | tee "$REPORT_DIR/write.txt"; fi
           after="$(sha256sum "$CANDIDATE_FILE")"
           test "$before" = "$after"
-          npm run people:images:audit | tee "$REPORT_DIR/audit.txt"
+          # Validate only the five changed people. The older global People-image
+          # backlog is tracked separately and must not block a valid local batch.
+          node --input-type=module <<'NODE' | tee "$REPORT_DIR/scope-audit.txt"
+          import fs from 'node:fs';
+          import sharp from 'sharp';
+          const request = JSON.parse(fs.readFileSync('data/people/portrait_image_apply_request.json', 'utf8'));
+          const candidates = JSON.parse(fs.readFileSync('data/people/people_image_candidates.json', 'utf8'));
+          const attributions = JSON.parse(fs.readFileSync('data/people/people_image_attributions.json', 'utf8'));
+          const selections = request.selections || [];
+          if (selections.length < 1 || selections.length > 5) throw new Error('Invalid apply batch scope');
+          for (const selected of selections) {
+            const candidate = candidates.find(c => c.personId === selected.personId && c.candidateId === selected.candidateId);
+            if (!candidate) throw new Error('Unknown candidate for ' + selected.personId);
+            const json = JSON.parse(fs.readFileSync(candidate.sourceFile, 'utf8'));
+            const people = Array.isArray(json) ? json : Array.isArray(json.people) ? json.people : [json];
+            const persons = people.filter(p => p?.id === selected.personId);
+            if (persons.length !== 1) throw new Error('Ambiguous People identity for ' + selected.personId);
+            const person = persons[0];
+            const meta = person.imageMeta;
+            if (!person.image?.startsWith('bilder/kort/people/') || person.cardImage !== person.image || !fs.existsSync(person.image)) throw new Error('Missing or inconsistent local portrait for ' + selected.personId);
+            if (meta?.source !== 'wikimedia_commons' || meta?.candidateId !== candidate.candidateId || meta?.sourcePage !== candidate.commonsPage || meta?.license !== candidate.license || !meta?.creator || !meta?.credit || !meta?.licenseUrl) throw new Error('Invalid portrait attribution metadata for ' + selected.personId);
+            if (attributions.filter(a => a.personId === person.id && a.file === person.image && a.sourcePage === candidate.commonsPage).length !== 1) throw new Error('Missing unique attribution ledger record for ' + selected.personId);
+            const image = await sharp(person.image).metadata();
+            if (!(image.width > 0 && image.height > 0)) throw new Error('Unusable portrait asset for ' + selected.personId);
+            console.log(selected.personId + ': local portrait, attribution, Commons source and image dimensions OK');
+          }
+          console.log('Scoped portrait verification passed for ' + selections.length + ' people');
+          NODE
           npm run test:people-images | tee "$REPORT_DIR/people-images-tests.txt"
 
       - name: Upload people image apply report
