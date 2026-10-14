@@ -1,7 +1,7 @@
 {
   "schema": "history_go_people_portrait_apply_request_v1",
   "place_id": "det_norske_teatret",
-  "request_id": "det_norske_teatret_portrait_apply_c20_20261014",
+  "request_id": "det_norske_teatret_portrait_apply_c20_20261014_retry429",
   "reviewed_at": "2026-10-14",
   "status": "APPROVED_FOR_DRAFT_APPLY_ONLY",
   "selections": [
@@ -393,5 +393,6 @@
     "Hulda Garborg has bunad-related object photos, not individual portraits",
     "Mimmi Tamba candidate appears to show a production ensemble and does not prove portrait identity",
     "Agnes Mowinckel 1918 photograph has incomplete US public-domain tagging and requires license review before release"
-  ]
+  ],
+  "retry_reason": "Previous run #38595470806 was blocked by Wikimedia Commons HTTP 429 during first multi-person download, not by identity or source errors. C20 retries politely with exponential backoff and a 1.5-second download interval."
 }
