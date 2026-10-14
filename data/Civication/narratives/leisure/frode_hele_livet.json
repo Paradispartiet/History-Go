@@ -1,0 +1,545 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "frode_hele_livet_stream",
+  "type": "leisure",
+  "title": "Frode: En kveld uten verktøy",
+  "sociological_theme": "fagstolthet_hjelp_og_kulturell_tilhoerighet",
+  "applies_when": {
+    "requires_flags": [
+      "frode_role_stage4"
+    ]
+  },
+  "time_slots": [
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "frode_liv_1",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Frode inviterer deg til en amatørkonsert",
+      "situation": [
+        "Frode er blitt mellomleder, men de som kjenner ham fra før, sender fortsatt alle praktiske problemer til ham. Nå inviterer en bekjent til en liten amatørkonsert.",
+        "Frode sender invitasjonen videre til deg. «Jeg tenkte å komme som publikum», skriver han. «Har ikke bestemt om jeg skal ta med verktøy.» Du har ikke sagt at du vil bli med."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_role_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja til konserten som publikum.",
+          "effect": 0,
+          "tags": [
+            "frode_konsert_ja"
+          ],
+          "feedback": "Dere avtaler å høre musikken. Frode vet at du ikke har meldt deg som riggehjelp.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "To plasser blant publikum",
+            "line": "«Greit. Jeg lar verktøyet ligge. Kanskje.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Takke nei og foreslå at han forteller om kvelden etterpå.",
+          "effect": 0,
+          "tags": [
+            "frode_konsert_nei"
+          ],
+          "feedback": "Frode må velge om han vil gå uten deg. Du holder din egen kveld fri.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Du lot invitasjonen passere",
+            "line": "«Det går fint. Jeg kan sikkert sitte stille alene også.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage1"
+      ]
+    },
+    {
+      "id": "frode_liv_2_ja",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Den skjeve stolen",
+      "situation": [
+        "Du og Frode er kommet til konserten. Han setter seg på en stol som vipper, bytter plass og legger en sammenbrettet serviett under ett stolbein.",
+        "«Nå er den i vater», hvisker han. Fra scenen kommer den første tonen. En frivillig ser servietten og spør om han også kan se på de andre stolene."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_konsert_ja"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Minne ham på at dere kom for å høre musikk.",
+          "effect": 0,
+          "tags": [
+            "frode_kveld_lytte"
+          ],
+          "feedback": "Frode blir sittende. Den frivillige må finne en annen løsning for stolene.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Han lot en stol være skjev",
+            "line": "«Det går an å høre en hel sang selv om noe burde vært fikset.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Tilby å hjelpe med noen få stoler i pausen sammen med ham.",
+          "effect": 0,
+          "tags": [
+            "frode_kveld_hjelp"
+          ],
+          "feedback": "Dere blir sittende til pausen og tar en avgrenset oppgave da. Det gir mindre tid til å snakke.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hjelpen fikk et tidspunkt",
+            "line": "«I pausen, ja. Da kan vi faktisk høre første del.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "frode_liv_2_nei",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "En konsertanmeldelse på fire ord",
+      "situation": [
+        "Du takket nei. Frode gikk til konserten uten deg og sender etterpå: «Bra. Litt dårlig stoler.» Du spør om han fikk hørt musikken.",
+        "Han svarer at han likte en langsom sang, men ikke husker tittelen. Så forteller han om en serviett som løste mer enn han hadde ventet."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_konsert_nei"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Be ham fortelle om den langsomme sangen.",
+          "effect": 0,
+          "tags": [
+            "frode_kveld_lytte"
+          ],
+          "feedback": "Frode må lete etter ord som ikke handler om utstyr. Samtalen blir lengre enn anmeldelsen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Han husket mer enn stolene",
+            "line": "«Det var noe med at de lot tonen stå. Jeg har ikke bedre ord enn det.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Le med ham om servietten og spør hvem han traff.",
+          "effect": 0,
+          "tags": [
+            "frode_kveld_hjelp"
+          ],
+          "feedback": "Frode forteller om de frivillige og det lille miljøet rundt konserten.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Et miljø rundt musikken",
+            "line": "«De var hyggelige. Jeg tror de så at jeg kunne bli en vane.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "frode_liv_3",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Den frivillige har funnet telefonnummeret",
+      "situation": [
+        "En av de frivillige kontakter Frode om neste konsert. Det trengs folk til å sette frem stoler og rydde etterpå. Han viser deg meldingen før han svarer.",
+        "«Jeg har fått jobb uten å søke», sier han. Samtidig liker han at noen vil ha ham med. Han spør hva du tenker, men avgjørelsen er hans."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_hele_livet_stage2"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå at han tilbyr én tydelig avgrenset økt.",
+          "effect": 0,
+          "tags": [
+            "frode_hjelp_avgrenset"
+          ],
+          "feedback": "Frode tilbyr hjelp før konserten og sier at han vil sitte i salen etterpå. Arrangøren har ennå ikke svart.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Han sendte et konkret tilbud",
+            "line": "«Jeg skrev når jeg er ferdig. Det er visst en uvant setning.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Foreslå at han takker nei til rigging og ber om å få komme som publikum.",
+          "effect": 0,
+          "tags": [
+            "frode_hjelp_publikum"
+          ],
+          "feedback": "Frode takker nei til oppgaven, men sier at han gjerne vil høre konserten.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Han svarte som publikum",
+            "line": "«Hvis de bare ville ha stolene mine, får de si det.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage3"
+      ]
+    },
+    {
+      "id": "frode_liv_4_avgrenset",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Et ja med en klokkeslettgrense",
+      "situation": [
+        "Arrangøren har svart på Frodes avgrensede tilbud: De kan bruke hjelpen før konserten. Etterpå skal en annen frivillig overta. Frode virker lettet, men leser likevel meldingen to ganger.",
+        "«De skrev faktisk hvem som tar resten», sier han. Han spør om du har lyst til å møte ham før musikken eller bare holde kontakt som før."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_hjelp_avgrenset"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du gjerne møter ham som publikum hvis dere finner en dag som passer.",
+          "effect": 0,
+          "tags": [
+            "frode_venn_mulighet"
+          ],
+          "feedback": "Du er åpen for en ny konsert, men har ikke påtatt deg rigging eller avtalt en dato.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Dere kan møtes uten å jobbe",
+            "line": "«Da skal jeg allerede sitte når du kommer.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du helst vil snakke en annen kveld.",
+          "effect": 0,
+          "tags": [
+            "frode_venn_samtale"
+          ],
+          "feedback": "Du velger kontakt uten arrangementet. Frode beholder sin egen plan.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En annen kveld er også kontakt",
+            "line": "«Greit. Det er ikke alle venner som trenger samme fritid.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "frode_liv_4_publikum",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Invitert uten arbeidsbeskrivelse",
+      "situation": [
+        "Frode takket nei til rigging. Arrangøren svarte: «Kom gjerne og hør.» Han viser deg meldingen som om den trenger en faglig vurdering.",
+        "«Det står ikke noe etter punktum», sier han. Han spør om du har lyst til å møte ham på en senere konsert, eller om dere heller skal holde kontakten utenfor dette miljøet."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_hjelp_publikum"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si at du gjerne møter ham som publikum hvis dere finner en dag som passer.",
+          "effect": 0,
+          "tags": [
+            "frode_venn_mulighet"
+          ],
+          "feedback": "Du er åpen for konserten. Ingen dato eller praktisk oppgave er avtalt.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "En invitasjon uten verktøy",
+            "line": "«Da går det kanskje an å være til stede uten å være nyttig.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du helst vil snakke en annen kveld.",
+          "effect": 0,
+          "tags": [
+            "frode_venn_samtale"
+          ],
+          "feedback": "Du velger en annen form for kontakt. Frode kan bruke konsertmiljøet selv.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Dere trenger ikke gjøre alt sammen",
+            "line": "«Vi finner noe annet. Det går fint.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "frode_liv_5",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Den gamle stemmen følger med hjem",
+      "situation": [
+        "Frode forteller om en arbeidsdag der han måtte gi beskjed om en upopulær endring. En tidligere skiftkamerat sa at han hadde begynt å snakke som ledelsen. Om kvelden tar han seg i å bruke den samme tonen på telefon.",
+        "«Jeg ba noen følge opp middagssituasjonen», sier han. «Det var meg selv.» Han vet ikke om han trenger å le, snakke alvorlig eller legge bort hele dagen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_hele_livet_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Le med ham og spør hvordan han ønsker å si det neste gang.",
+          "effect": 0,
+          "tags": [
+            "frode_stemme_snakk"
+          ],
+          "feedback": "Frode finner sine egne ord for beskjeden. Det gjør ikke arbeidsendringen mer populær.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Han fant igjen sin egen setning",
+            "line": "«Jeg kan si noe vanskelig uten å høres ut som en veggplakat.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Foreslå at han lar jobbpraten ligge og setter på den langsomme sangen hvis han finner den.",
+          "effect": 0,
+          "tags": [
+            "frode_stemme_pause"
+          ],
+          "feedback": "Frode tar en pause fra saken. Samtalen løser ikke arbeidsuenigheten.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Han lot dagen få en ende",
+            "line": "«Det kan jeg gjøre. Jeg får lete etter sangen, ikke en bedre rapport.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage5"
+      ]
+    },
+    {
+      "id": "frode_liv_6_snakk",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "En beskjed uten plakatstemme",
+      "situation": [
+        "Frode sier at han prøvde å gi den vanskelige beskjeden med sine egne ord. Den gamle skiftkameraten var fortsatt uenig, men samtalen var lettere å forstå.",
+        "Senere fikk Frode navnet på den langsomme sangen fra konsertarrangøren. Han sender det til deg uten kommentar om stoler eller lydutstyr."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_stemme_snakk"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om dere skal høre den og snakke en liten stund.",
+          "effect": 0,
+          "tags": [
+            "frode_slutt_sang"
+          ],
+          "feedback": "Du åpner for et kort møte. Tid og sted må fortsatt avtales.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Dere har noe å møtes om",
+            "line": "«Ja. Vi kan kanskje la sangen gå helt ferdig før vi sier noe.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Takke for sangen og hold kontakten åpen.",
+          "effect": 0,
+          "tags": [
+            "frode_slutt_aapen"
+          ],
+          "feedback": "Frode får en liten respons uten en ny avtale.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En sang, ikke en oppgave",
+            "line": "«Bare hyggelig. Den trenger ingen oppfølging.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage6"
+      ]
+    },
+    {
+      "id": "frode_liv_6_pause",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Frode Aas",
+      "subject": "Sangen lå i en melding",
+      "situation": [
+        "Frode fulgte forslaget om å la jobbpraten ligge. Arbeidsuenigheten er fortsatt der. Nå har konsertarrangøren sendt ham tittelen på den langsomme sangen.",
+        "Han sender den videre til deg. «Fant den», står det. Meldingen krever ingen vurdering av hvordan han håndterte dagen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "frode_stemme_pause"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør om dere skal høre den og snakke en liten stund.",
+          "effect": 0,
+          "tags": [
+            "frode_slutt_sang"
+          ],
+          "feedback": "Du åpner for et kort møte. Det betyr ikke at dere har løst arbeidsuenigheten.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Et lite rom uten arbeidsdagen",
+            "line": "«Ja. Vi kan snakke om noe som ikke skal godkjennes.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Takke for sangen og hold kontakten åpen.",
+          "effect": 0,
+          "tags": [
+            "frode_slutt_aapen"
+          ],
+          "feedback": "Du svarer uten å binde dere til en kveld. Frode har både musikken og kontakten.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Han sendte noe som kunne få stå",
+            "line": "«Da har du den også.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "frode_formann",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "frode_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "frode_hele_livet_stage6"
+      ]
+    }
+  ]
+}

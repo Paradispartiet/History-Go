@@ -1,0 +1,545 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "inger_hele_livet_stream",
+  "type": "leisure",
+  "title": "Inger: Livet mellom kolonnene",
+  "sociological_theme": "statusfall_privatsprak_og_ny_tilhoerighet",
+  "applies_when": {
+    "requires_flags": [
+      "inger_role_stage4"
+    ]
+  },
+  "time_slots": [
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "inger_liv_1",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Kaffe med en tidligere avdelingsleder",
+      "situation": [
+        "Etter omorganiseringen arbeider Inger som mellomleder. Hun spør om dere kan ta en kaffe utenfor jobben. Meldingen inneholder et forslag til tidspunkt og et estimat på varighet.",
+        "«Jeg har ikke laget noen saksliste», skriver hun. Like under står: «Vi kan eventuelt snakke om overgangen.» Hun prøver å holde kontakten, men vet ikke helt hvilken tone hun skal bruke."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_role_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja til kaffen som en privat samtale.",
+          "effect": 0,
+          "tags": [
+            "inger_kaffe_ja"
+          ],
+          "feedback": "Dere avtaler en kaffe. Du har ikke tilbudt jobbveiledning eller lovet å hjelpe henne tilbake i en annen stilling.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun skrev deg inn som menneske",
+            "line": "«Da møtes vi. Jeg skal prøve å la saken være hjemme.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Takke nei til møtet og tilby en kort telefonsamtale.",
+          "effect": 0,
+          "tags": [
+            "inger_kaffe_nei"
+          ],
+          "feedback": "Du velger en mindre krevende form for kontakt. Inger får et svar hun kan forholde seg til.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En samtale i mindre format",
+            "line": "«En telefon passer. Jeg trenger ikke hele bordet.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage1"
+      ]
+    },
+    {
+      "id": "inger_liv_2_ja",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Hun retter på ordet hun nettopp brukte",
+      "situation": [
+        "Dere møtes til kaffe. Inger begynner å si «min avdeling», stopper og endrer det til «avdelingen». Så spør hun hvordan du har det.",
+        "Hun hører selv hvor fort hun vender tilbake til jobben. «Jeg kan snakke om noe annet», sier hun. «Jeg har bare ikke øvd på det i arbeidstiden.»"
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_kaffe_ja"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell noe fra ditt eget liv og la samtalen gå derfra.",
+          "effect": 0,
+          "tags": [
+            "inger_kveld_personlig"
+          ],
+          "feedback": "Inger må lytte uten å styre retningen. Dere bruker kaffen på mer enn rollebyttet.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun lot deg velge emnet",
+            "line": "«Det var godt at samtalen ikke begynte med min plass i organisasjonen.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "La henne snakke om overgangen, men si hvor lenge du kan bli.",
+          "effect": 0,
+          "tags": [
+            "inger_kveld_overgang"
+          ],
+          "feedback": "Inger får rom til å beskrive tapet av ansvar. Du setter en slutt på møtet.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "En kaffe var nok for nå",
+            "line": "«Takk. Jeg trengte å si det høyt, ikke å få det løst i dag.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "inger_liv_2_nei",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Telefonen som ikke ble et møte",
+      "situation": [
+        "Du takket nei til kaffen. Inger ringer i stedet til avtalt tid. Hun spør først om det fortsatt passer.",
+        "Hun har skrevet noen ord på et ark, men sier at hun har snudd det. «Hvis jeg ser på dem, blir dette en statusrapport», sier hun."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_kaffe_nei"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell noe fra ditt eget liv og la samtalen gå derfra.",
+          "effect": 0,
+          "tags": [
+            "inger_kveld_personlig"
+          ],
+          "feedback": "Inger lytter. Telefonsamtalen blir en kontakt mellom dere, ikke en vurdering av henne.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun hørte noe hun ikke skulle rapportere",
+            "line": "«Det var fint å høre hvordan du har det.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Spør hvordan overgangen har vært, men hold samtalen til avtalt tid.",
+          "effect": 0,
+          "tags": [
+            "inger_kveld_overgang"
+          ],
+          "feedback": "Inger får snakket om endringen uten at du påtar deg mer enn telefonen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun fikk brukt ordene sine",
+            "line": "«Jeg har fortsatt noe å si. Resten kan vente.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "inger_liv_3",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "En lesesirkel uten referent",
+      "situation": [
+        "Inger vurderer en liten lesesirkel som en bekjent har tipset henne om. Hun har lest invitasjonen og merket seg at ingen er satt opp som møteleder.",
+        "«Hvem sørger da for at de blir ferdige med boka?» spør hun. Hun skjønner at dette er fritid, men er usikker på om hun kan bidra uten å gjøre seg uunnværlig."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_hele_livet_stage2"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Oppmuntre henne til å delta som leser og ta med ett eget spørsmål.",
+          "effect": 0,
+          "tags": [
+            "inger_lesesirkel_leser"
+          ],
+          "feedback": "Inger sier at hun vil prøve én kveld med ett spørsmål. Hun trenger ikke ta ansvar for gruppa.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et spørsmål var nok å ta med",
+            "line": "«Jeg får se om de tåler at jeg ikke har konklusjonen.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Foreslå at hun spør hvordan gruppa fungerer før hun bestemmer seg.",
+          "effect": 0,
+          "tags": [
+            "inger_lesesirkel_sporre"
+          ],
+          "feedback": "Inger skriver til kontaktpersonen. Hun har ennå ikke bestemt seg for å delta.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hun ba om informasjon først",
+            "line": "«Jeg kan spørre uten å foreslå ny organisering.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage3"
+      ]
+    },
+    {
+      "id": "inger_liv_4_leser",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Et spørsmål som forble ubesvart",
+      "situation": [
+        "Inger prøvde lesesirkelen som leser. Hun hadde med ett spørsmål. De andre ble uenige, gikk videre og kom tilbake til det uten å finne et felles svar.",
+        "«Ingen oppsummerte», sier hun. Hun var irritert på vei hjem, men oppdaget at hun fortsatt tenkte på boka. Hun vil høre om du kjenner den følelsen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_lesesirkel_leser"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk om hva uenigheten fikk henne til å legge merke til.",
+          "effect": 0,
+          "tags": [
+            "inger_venn_uenighet"
+          ],
+          "feedback": "Inger begynner å undersøke samtalen uten å gjøre den til en feil som må rettes.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Boka ble større enn møtet",
+            "line": "«Det var kanskje et godt spørsmål fordi vi ikke ble ferdige med det.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du ikke kjenner boka, men gjerne hører hvordan kvelden var.",
+          "effect": 0,
+          "tags": [
+            "inger_venn_hverdag"
+          ],
+          "feedback": "Du gir plass til opplevelsen uten å late som du deler kunnskapen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun kunne fortelle uten et pensum",
+            "line": "«Jeg kan vel si hvordan det var, uten å gi deg hele boka først.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "inger_liv_4_sporre",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Ingen ba henne lage en arbeidsfordeling",
+      "situation": [
+        "Inger spurte hvordan lesesirkelen fungerer. Kontaktpersonen svarte at folk leser så langt de rekker, og at den som vil, kan ta med et spørsmål.",
+        "Hun har fortsatt ikke bestemt seg for å gå. «De mangler ikke en leder», sier hun. «De svarte i hvert fall ikke som om de gjorde det.»"
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_lesesirkel_sporre"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva hun selv ville ha lyst til å lese og diskutere.",
+          "effect": 0,
+          "tags": [
+            "inger_venn_uenighet"
+          ],
+          "feedback": "Inger må finne en egen interesse før hun tar stilling til deltakelsen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun begynte med boka",
+            "line": "«Det finnes et kapittel jeg gjerne ville snakket med noen om.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at hun også kan la invitasjonen ligge denne uka.",
+          "effect": 0,
+          "tags": [
+            "inger_venn_hverdag"
+          ],
+          "feedback": "Du gir henne rom til å vente. Hun har ikke meldt seg på og trenger ikke forklare et fravær.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En mulighet kunne få vente",
+            "line": "«Da lar jeg den stå åpen. Den er ikke et avvik.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "inger_liv_5",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Hun har laget et budsjett for å slippe å tenke på det",
+      "situation": [
+        "Inger forteller at hun har sett gjennom sine egne små utgifter. Hun vil finne plass til bøker og kaffe uten å gjøre hver kveld til en beregning.",
+        "Arket har en kolonne hun har kalt «spontant». «Det fungerer dårlig», sier hun. «Jeg blir overrasket over hvor nøye jeg planlegger overraskelser.» Hun ber om et innspill, ikke innsyn i kontoen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_hele_livet_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå at hun velger én ting hun vil prioritere og lar resten stå foreløpig.",
+          "effect": 0,
+          "tags": [
+            "inger_rom_prioritere"
+          ],
+          "feedback": "Inger velger en prioritering å tenke videre på. Ingen kjøp eller endring i kontoen er registrert.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hun valgte en retning",
+            "line": "«Jeg kan begynne med én bok. Jeg trenger ikke vedta hele privatlivet.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at hun kjenner økonomien sin best, og snakk heller om hva hun har lyst til å gjøre.",
+          "effect": 0,
+          "tags": [
+            "inger_rom_onske"
+          ],
+          "feedback": "Du lar beregningen være hennes og hjelper henne å formulere et ønske.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et ønske før et regnestykke",
+            "line": "«Jeg har lyst til å ha noe å fortelle som ikke begynner med organisasjonen.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage5"
+      ]
+    },
+    {
+      "id": "inger_liv_6_prioritere",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Den spontane kolonnen står fortsatt tom",
+      "situation": [
+        "Inger valgte å begynne med én prioritering. Hun sier nå at hun vil ha tid til å lese, og at hun har latt flere andre muligheter vente. Hun forteller ikke at hun har kjøpt noe.",
+        "Hun har beholdt budsjettarket, men fjernet kolonnen «spontant». «Den ble mest en påminnelse om alt jeg ikke hadde planlagt», sier hun. Så spør hun om dere skal holde kontakten uten å ha et emne klart."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rom_prioritere"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja til uformell kontakt og fortell noe du selv tenker på.",
+          "effect": 0,
+          "tags": [
+            "inger_slutt_gjensidig"
+          ],
+          "feedback": "Dere kan bruke kontakten begge veier. Ingen fast samtaletid er avtalt.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Samtalen fikk to retninger",
+            "line": "«Fortell. Jeg trenger ikke sette det inn i en kolonne.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du gjerne snakker når du har kapasitet, men ikke fast.",
+          "effect": 0,
+          "tags": [
+            "inger_slutt_aapen"
+          ],
+          "feedback": "Du holder kontakten åpen med en tydelig grense for din egen tid.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hun kunne tåle et åpent tidspunkt",
+            "line": "«Det er fint. Du kan svare når det passer.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage6"
+      ]
+    },
+    {
+      "id": "inger_liv_6_onske",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Et spørsmål uten estimert varighet",
+      "situation": [
+        "Du lot økonomiberegningen være Ingers og spurte hva hun hadde lyst til å gjøre. Nå sender hun et spørsmål om en bok hun vurderer å lese.",
+        "Under spørsmålet står: «Du trenger ikke ha lest den.» Hun har fortsatt jobben og omorganiseringen å forholde seg til. Meldingen gir plass til noe annet også."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rom_onske"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar med et eget spørsmål og la samtalen være gjensidig.",
+          "effect": 0,
+          "tags": [
+            "inger_slutt_gjensidig"
+          ],
+          "feedback": "Dere får en samtale uten krav om en felles konklusjon.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Hun ventet på ditt spørsmål",
+            "line": "«Det hadde jeg ikke tenkt på. Vi kan undersøke det hver for oss også.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du gjerne snakker når du har kapasitet, men ikke fast.",
+          "effect": 0,
+          "tags": [
+            "inger_slutt_aapen"
+          ],
+          "feedback": "Du gir en ramme for kontakten uten å avvise interessen hennes.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Ingen svarfrist ble satt",
+            "line": "«Det er fint. Boka går ingen steder.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "inger_hele_livet_stage6"
+      ]
+    }
+  ]
+}

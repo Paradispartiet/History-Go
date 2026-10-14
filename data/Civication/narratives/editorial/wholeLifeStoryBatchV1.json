@@ -1,0 +1,465 @@
+{
+  "schema": "civication_whole_life_editorial_v1",
+  "version": 1,
+  "editorial_only": true,
+  "status": "authored_not_registered",
+  "purpose": "Sammenhengende liv der arbeid, privatliv, sosialt liv og kultur påvirker de samme fiktive menneskene.",
+  "existing_authority": {
+    "npc_catalog": "data/Civication/npcs/naeringsliv.json",
+    "social_catalog": "data/Civication/social/characters.json",
+    "literary_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+    "source_adapter": "CivicationNarrativeSceneSource",
+    "choice_owner": "CivicationChoiceDirector",
+    "character_owner": "CivicationNpcCharacterThreads"
+  },
+  "activation": {
+    "manifest_changed": false,
+    "reason": "NPC-kapitler deler én arbeidsdagskvote. Privatliv kan da utkonkurrere uavsluttede arbeidsbuer, og kapittelfremdrift kan stoppe uten en aktiv jobb. Privat døgnfremdrift må avklares i eksisterende dagmodell før registrering.",
+    "runtime_change_in_this_batch": false
+  },
+  "character_archetypes": [
+    {
+      "npc_id": "egil_kontrollrom",
+      "archetype": "Den erfarne vokteren",
+      "desire": "trygg drift",
+      "contradiction": "vil ikke bli avhengig av de nye",
+      "humour": "svarer på store planer med små praktiske spørsmål",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "marit_hr",
+      "archetype": "Omsorgspersonen i systemet",
+      "desire": "rettferdig behandling",
+      "contradiction": "vil hjelpe, men trenger dokumentasjonen",
+      "humour": "har en rutine for å fortelle deg at samtalen er uformell",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "roger_verneombud",
+      "archetype": "Den skeptiske beskytteren",
+      "desire": "sikkerhet og lojalitet",
+      "contradiction": "mistenker makt, men må bruke den selv",
+      "humour": "leser også sikkerhetsinstruksen til kaffemaskinen",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "solveig_kollega",
+      "archetype": "Den praktiske hjelperen",
+      "desire": "gjensidighet",
+      "contradiction": "er hjelpsom, men blir lei av å være en selvfølge",
+      "humour": "løser problemet mens andre navngir det",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "bjarne_naboarbeider",
+      "archetype": "Den slitne spøkefuglen",
+      "desire": "holde ut og høre til",
+      "contradiction": "bruker ironi, men vil bli tatt alvorlig",
+      "humour": "sier at han har fått mer fritid fordi lunsjen gikk bort",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "tor_verksmester",
+      "archetype": "Håndverkeren og eksperten",
+      "desire": "faglig presisjon",
+      "contradiction": "liker sikre tall, men arbeider med usikkerhet",
+      "humour": "måler et bord før han spør hvem som skal sitte der",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "liv_laerling",
+      "archetype": "Den ivrige nykommeren",
+      "desire": "lære og få ansvar",
+      "contradiction": "spør ofte, men kan oppdage det veteranene overser",
+      "humour": "noterer et gammelt uttrykk som en ny prosedyre",
+      "status": "further_authoring"
+    },
+    {
+      "npc_id": "inger_avdelingsleder",
+      "archetype": "Den falne lederen",
+      "desire": "beholde verdi etter statusendring",
+      "contradiction": "vil kontrollere, men savner uformell kontakt",
+      "humour": "planlegger spontanitet i et regneark",
+      "status": "first_arc_authored"
+    },
+    {
+      "npc_id": "stein_peer_mellomleder",
+      "archetype": "Den ambisiøse organisatoren",
+      "desire": "bli likt uten å ordne alt",
+      "contradiction": "søker anerkjennelse, men vil kunne gi fra seg kontroll",
+      "humour": "lager agenda for en kveld uten agenda",
+      "status": "first_arc_authored"
+    },
+    {
+      "npc_id": "frode_formann",
+      "archetype": "Den lojale problemløseren",
+      "desire": "være nyttig og bevare sin egen stemme",
+      "contradiction": "vil hjelpe, men trenger et rom uten oppgaver",
+      "humour": "kommer som publikum og oppdager en skjev stol",
+      "status": "first_arc_authored"
+    }
+  ],
+  "social_archetypes": [
+    {
+      "character_id": "friend_jonas_berg",
+      "archetype": "Den observante hverdagsvennen",
+      "desire": "hvile og anerkjennelse",
+      "contradiction": "ser alle andre, men håper noen spør ham",
+      "status": "further_authoring"
+    },
+    {
+      "character_id": "friend_mina_sandaker",
+      "archetype": "Den strukturerte portvokteren",
+      "desire": "kontroll og faglig respekt",
+      "contradiction": "ordner dokumenter på jobb, men utsetter egne brev",
+      "status": "further_authoring"
+    },
+    {
+      "character_id": "friend_sana_hassan",
+      "archetype": "Den varme realisten",
+      "desire": "gjensidighet og hvile",
+      "contradiction": "har en rolig stemme og svært lite tid",
+      "status": "further_authoring"
+    },
+    {
+      "character_id": "friend_erik_lien",
+      "archetype": "Den rastløse lojale",
+      "desire": "økonomisk pusterom",
+      "contradiction": "tar ekstravakter og går glipp av ting han savner",
+      "status": "further_authoring"
+    },
+    {
+      "character_id": "friend_vetle_mo",
+      "archetype": "Den uavklarte skaperen",
+      "desire": "retning og bekreftelse",
+      "contradiction": "har mange ideer og ett ledig rom som snart må forlates",
+      "status": "further_authoring"
+    },
+    {
+      "character_id": "friend_amir_nouri",
+      "archetype": "Den mobile overleveren",
+      "desire": "stabilitet og en ordentlig pause",
+      "contradiction": "kjenner hele byen, men finner lite tid til å bruke den",
+      "status": "further_authoring"
+    }
+  ],
+  "story_type_coverage": [
+    {
+      "id": "C01",
+      "title": "Jobbtap og verdighet",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C02",
+      "title": "Muligheten uten garanti",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C03",
+      "title": "Drømmen og regningene",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C04",
+      "title": "Forespørselen som ikke er en kontrakt",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C05",
+      "title": "Byråkratiet og personen",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C06",
+      "title": "Faglig integritet under press",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C07",
+      "title": "Tilhørighet mot frihet",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C08",
+      "title": "Tjenesten som blir en gjeld",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C09",
+      "title": "Vennskapet som glir fra",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C10",
+      "title": "Kjærlighet på feil tidspunkt",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C11",
+      "title": "Familien som trenger deg",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C12",
+      "title": "Grensen du ikke satte",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C13",
+      "title": "Hjemmet på usikker grunn",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C14",
+      "title": "Ryktet løper fra deg",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C15",
+      "title": "Det digitale dobbeltlivet",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C16",
+      "title": "Klassereisen og kodene",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C17",
+      "title": "Å arbeide seg tom",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C18",
+      "title": "Ensom midt blant folk",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C19",
+      "title": "Å begynne på nytt",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C20",
+      "title": "Fellesskapet uten helt",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C21",
+      "title": "Byen som skifter ansikt",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C22",
+      "title": "Kunnskap du ikke kan bekrefte",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C23",
+      "title": "Den lille feilen som ikke forsvinner",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    },
+    {
+      "id": "C24",
+      "title": "Den ufullstendige forsoningen",
+      "source": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+      "status": "existing_editorial_reference_not_completion"
+    }
+  ],
+  "arcs": [
+    {
+      "npc_id": "stein_peer_mellomleder",
+      "stream_id": "stein_hele_livet_stream",
+      "source_path": "data/Civication/narratives/leisure/stein_hele_livet.json",
+      "chapters": 6,
+      "authored_scene_variants": 9,
+      "entry_flag": "stein_role_stage4",
+      "required_actor_role": "naeringsliv/avdelingsleder",
+      "domains": [
+        "arbeidslivets_etterklang",
+        "privatliv",
+        "sosialt_liv",
+        "kultur"
+      ],
+      "status": "authored_not_registered",
+      "chapter_scene_ids": [
+        {
+          "chapter": 1,
+          "scene_ids": [
+            "stein_liv_1"
+          ]
+        },
+        {
+          "chapter": 2,
+          "scene_ids": [
+            "stein_liv_2_ja",
+            "stein_liv_2_nei"
+          ]
+        },
+        {
+          "chapter": 3,
+          "scene_ids": [
+            "stein_liv_3"
+          ]
+        },
+        {
+          "chapter": 4,
+          "scene_ids": [
+            "stein_liv_4_skillet",
+            "stein_liv_4_formell"
+          ]
+        },
+        {
+          "chapter": 5,
+          "scene_ids": [
+            "stein_liv_5"
+          ]
+        },
+        {
+          "chapter": 6,
+          "scene_ids": [
+            "stein_liv_6_samtale",
+            "stein_liv_6_alene"
+          ]
+        }
+      ]
+    },
+    {
+      "npc_id": "frode_formann",
+      "stream_id": "frode_hele_livet_stream",
+      "source_path": "data/Civication/narratives/leisure/frode_hele_livet.json",
+      "chapters": 6,
+      "authored_scene_variants": 9,
+      "entry_flag": "frode_role_stage4",
+      "required_actor_role": "naeringsliv/mellomleder",
+      "domains": [
+        "arbeidslivets_etterklang",
+        "privatliv",
+        "sosialt_liv",
+        "kultur"
+      ],
+      "status": "authored_not_registered",
+      "chapter_scene_ids": [
+        {
+          "chapter": 1,
+          "scene_ids": [
+            "frode_liv_1"
+          ]
+        },
+        {
+          "chapter": 2,
+          "scene_ids": [
+            "frode_liv_2_ja",
+            "frode_liv_2_nei"
+          ]
+        },
+        {
+          "chapter": 3,
+          "scene_ids": [
+            "frode_liv_3"
+          ]
+        },
+        {
+          "chapter": 4,
+          "scene_ids": [
+            "frode_liv_4_avgrenset",
+            "frode_liv_4_publikum"
+          ]
+        },
+        {
+          "chapter": 5,
+          "scene_ids": [
+            "frode_liv_5"
+          ]
+        },
+        {
+          "chapter": 6,
+          "scene_ids": [
+            "frode_liv_6_snakk",
+            "frode_liv_6_pause"
+          ]
+        }
+      ]
+    },
+    {
+      "npc_id": "inger_avdelingsleder",
+      "stream_id": "inger_hele_livet_stream",
+      "source_path": "data/Civication/narratives/leisure/inger_hele_livet.json",
+      "chapters": 6,
+      "authored_scene_variants": 9,
+      "entry_flag": "inger_role_stage4",
+      "required_actor_role": "naeringsliv/mellomleder",
+      "domains": [
+        "arbeidslivets_etterklang",
+        "privatliv",
+        "sosialt_liv",
+        "kultur"
+      ],
+      "status": "authored_not_registered",
+      "chapter_scene_ids": [
+        {
+          "chapter": 1,
+          "scene_ids": [
+            "inger_liv_1"
+          ]
+        },
+        {
+          "chapter": 2,
+          "scene_ids": [
+            "inger_liv_2_ja",
+            "inger_liv_2_nei"
+          ]
+        },
+        {
+          "chapter": 3,
+          "scene_ids": [
+            "inger_liv_3"
+          ]
+        },
+        {
+          "chapter": 4,
+          "scene_ids": [
+            "inger_liv_4_leser",
+            "inger_liv_4_sporre"
+          ]
+        },
+        {
+          "chapter": 5,
+          "scene_ids": [
+            "inger_liv_5"
+          ]
+        },
+        {
+          "chapter": 6,
+          "scene_ids": [
+            "inger_liv_6_prioritere",
+            "inger_liv_6_onske"
+          ]
+        }
+      ]
+    }
+  ]
+}

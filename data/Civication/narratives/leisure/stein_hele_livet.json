@@ -1,0 +1,545 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "stein_hele_livet_stream",
+  "type": "leisure",
+  "title": "Stein: Alt som ikke står i planen",
+  "sociological_theme": "ambisjon_fritid_og_vennskap",
+  "applies_when": {
+    "requires_flags": [
+      "stein_role_stage4"
+    ]
+  },
+  "time_slots": [
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "stein_liv_1",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "Stein sender en møteinnkalling til fredag",
+      "situation": [
+        "Stein har blitt avdelingsleder. Nå sender han deg en privat invitasjon til en liten filmkveld noen venner arrangerer. Emnefeltet er «Sosial samhandling uten agenda». Under står likevel tre punkter og et tidspunkt for evaluering.",
+        "«Jeg øver på å gjøre noe uten mål», skriver han. «Det ble litt uklart, så jeg laget en plan.» Han spør om du vil komme. Du har ikke svart ennå."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_role_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Si ja til filmkvelden, men be ham legge bort programmet.",
+          "effect": 0,
+          "tags": [
+            "stein_film_ja"
+          ],
+          "feedback": "Stein stryker evalueringen. Du har sagt ja til én kveld, ikke til å organisere den.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Det blir en kveld",
+            "line": "«Da kommer du. Jeg skal prøve å la være å telle hvor mange som koser seg.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Takke nei til filmkvelden og foreslå en kort telefonsamtale.",
+          "effect": 0,
+          "tags": [
+            "stein_film_nei"
+          ],
+          "feedback": "Du beholder kvelden din. Stein tar imot et mindre tilbud om kontakt.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En annen form for kontakt",
+            "line": "«Greit. En telefon trenger vel bare ett punkt.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder"
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage1"
+      ]
+    },
+    {
+      "id": "stein_liv_2_ja",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "En stol uten ansvarsområde",
+      "situation": [
+        "Du kommer til filmkvelden. Stein har plassert stolene i to rader, men ingen setter seg der han hadde tenkt. En venn spør om han er ferdig med å lede avdelingen for i dag.",
+        "Stein ler først. Så begynner han å forklare hvorfor stolrekkene var praktiske. Filmen starter mens han fortsatt forklarer. Du sitter ved siden av ham."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_film_ja"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Hvisk at forklaringen kan vente, og se filmen sammen.",
+          "effect": 0,
+          "tags": [
+            "stein_kveld_film"
+          ],
+          "feedback": "Stein blir stille. Etterpå vil han høre hva du syntes om filmen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Dere så den samme filmen",
+            "line": "«Det var behagelig at noe fikk skje uten at jeg skulle forbedre det.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Bli med ham ut på kjøkkenet og la ham snakke ferdig.",
+          "effect": 0,
+          "tags": [
+            "stein_kveld_samtale"
+          ],
+          "feedback": "Stein får snakket ut, men dere går glipp av begynnelsen og må spørre de andre hva som skjedde.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Filmen gikk videre uten dere",
+            "line": "«Du hørte på meg. Vi får leve med at vi ikke vet hvem mannen med kofferten var.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "stein_liv_2_nei",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "Telefonsamtalen med bare ett punkt",
+      "situation": [
+        "Du takket nei til filmkvelden. Senere ringer Stein som foreslått. Han forteller at stolplanen kollapset før noen hadde satt seg.",
+        "«Ingen tok ansvar for hyggen», sier han. Det går et øyeblikk før han selv begynner å le. Han spør om dere kan snakke om noe som ikke handler om avdelingen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_film_nei"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Spør hva ved filmen han faktisk likte.",
+          "effect": 0,
+          "tags": [
+            "stein_kveld_film"
+          ],
+          "feedback": "Stein prøver å beskrive én scene uten å vurdere om kvelden var effektiv.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Han husker en scene",
+            "line": "«Jeg likte at de satt stille. Det hadde jeg ikke godkjent i et møte.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du har et kvarter, og la ham snakke om uka.",
+          "effect": 0,
+          "tags": [
+            "stein_kveld_samtale"
+          ],
+          "feedback": "Samtalen blir kort og nær. Filmen blir liggende som noe han gjorde med andre.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Et kvarter var avtalen",
+            "line": "«Takk for at du sa hvor lenge du hadde. Da slapp jeg å gjette.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_1",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage2"
+      ]
+    },
+    {
+      "id": "stein_liv_3",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "En tjeneste sendt til feil kanal",
+      "situation": [
+        "Et par dager senere får du en privat melding fra Stein. En av hans venner håper å få byttet en vakt. Stein vil høre om du tror vedkommende er til å stole på.",
+        "Du har sett hvor glad han er for endelig å bli invitert med utenfor jobben. Nå kommer en arbeidsforespørsel gjennom det samme vennskapet. Stein skriver: «Jeg trenger et råd, ikke en attest.»"
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_hele_livet_stage2"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk om hvorfor vennen spør, men hold vurderingen av vakten utenfor.",
+          "effect": 0,
+          "tags": [
+            "stein_tjeneste_skillet"
+          ],
+          "feedback": "Stein får hjelp til å forstå forespørselen. Selve vaktbyttet må fortsatt behandles i arbeidsrutinen.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "En samtale og en arbeidsbeslutning",
+            "line": "«Jeg kan høre på en venn uten å love ham en vakt.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Be Stein ta arbeidsforespørselen i jobbkanalen og la denne samtalen stoppe her.",
+          "effect": 0,
+          "tags": [
+            "stein_tjeneste_formell"
+          ],
+          "feedback": "Du trekker en tydelig grense. Stein må finne noen andre å drøfte saken med.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Du avsluttet arbeidspraten",
+            "line": "«Du vil ikke ha dette i privaten. Jeg registrerer det.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder"
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage3"
+      ]
+    },
+    {
+      "id": "stein_liv_4_skillet",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "Stein trenger ikke være nyttig hele tiden",
+      "situation": [
+        "Stein fulgte rådet om å holde selve vaktbyttet i arbeidsrutinen. Vennen ble skuffet over at en hyggelig kveld ikke ga en snarvei.",
+        "Nå spør Stein om folk egentlig liker ham, eller bare at han kan ordne ting. Han har formulert spørsmålet så saklig at det nesten høres ut som en medarbeiderundersøkelse."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_tjeneste_skillet"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell hva du liker ved ham når han ikke ordner noe.",
+          "effect": 0,
+          "tags": [
+            "stein_venn_personlig"
+          ],
+          "feedback": "Du gir et personlig svar. Det forandrer ikke utfallet av vaktforespørselen.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Et svar han ikke kunne telle",
+            "line": "«Jeg vet ikke helt hvor jeg skal gjøre av det svaret. Det var kanskje poenget.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Foreslå en ny kort samtale en annen dag; du har ikke kapasitet nå.",
+          "effect": 0,
+          "tags": [
+            "stein_venn_tid"
+          ],
+          "feedback": "Du gir ham et konkret tidspunkt uten å gjøre hans uro til kveldens oppgave.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et tidspunkt, ikke en løsning",
+            "line": "«Greit. Jeg setter av tiden. Denne gangen uten evalueringspunkt.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "stein_liv_4_formell",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "En kollega som savner den gamle tonen",
+      "situation": [
+        "Du ba Stein flytte arbeidspraten ut av privaten. Han har latt være å sende flere slike spørsmål. Nå kommer en kort melding: «Vi kan vel fortsatt snakke?»",
+        "Han forsøker å spøke om at dere har opprettet en egen avdeling for alt dere ikke skal snakke om. Bak spøken ligger usikkerhet om hvordan kontakten blir videre."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_tjeneste_formell"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Svar personlig og spør om noe fra hverdagen hans.",
+          "effect": 0,
+          "tags": [
+            "stein_venn_personlig"
+          ],
+          "feedback": "Stein får vite at grensen gjaldt arbeidsforespørselen, og dere begynner en annen samtale.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Dere fant en annen tone",
+            "line": "«Da kan jeg fortelle at jeg har kjøpt en plante. Den følger ingen rutiner.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Bekreft at dere kan snakke, men foreslå et annet tidspunkt.",
+          "effect": 0,
+          "tags": [
+            "stein_venn_tid"
+          ],
+          "feedback": "Du holder både grensen og døren åpen. Stein må vente på neste samtale.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Kontakten kan vente uten å slutte",
+            "line": "«Da snakkes vi senere. Jeg lar resten av kvelden din være i fred.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_3",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage4"
+      ]
+    },
+    {
+      "id": "stein_liv_5",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "Ingen trenger å evaluere latteren",
+      "situation": [
+        "Stein vurderer å bli med på en åpen samtale om filmen fra den første kvelden. Han har skrevet noen stikkord, og alle starter med «læringsutbytte».",
+        "«Jeg likte jo filmen», sier han. «Jeg vet bare ikke hvordan jeg skal si det uten å høres ut som jeg har kjøpt den.» Han spør om dere skal snakke om den sammen før han bestemmer seg."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_hele_livet_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Snakk gjennom en scene dere begge kan undersøke, og la resten være åpent.",
+          "effect": 0,
+          "tags": [
+            "stein_kultur_samtale"
+          ],
+          "feedback": "Du blir med på en avgrenset filmsamtale. Stein trenger ikke gjøre samtalen til et arrangement.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "En scene var nok å begynne med",
+            "line": "«Da sier jeg bare hva jeg så. Det er overraskende vanskelig.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Foreslå at han går alene denne gangen.",
+          "effect": 0,
+          "tags": [
+            "stein_kultur_alene"
+          ],
+          "feedback": "Stein må møte de andre uten deg som støtte. Du får beholde din egen kveld.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et miljø han kan bruke selv",
+            "line": "«Jeg kan vel bli med uten å ha med meg noen fra jobben.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder"
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage5"
+      ]
+    },
+    {
+      "id": "stein_liv_6_samtale",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "En replikk som ikke ble et tiltak",
+      "situation": [
+        "Dere snakket om en scene fra filmen. På neste telefonsamtale forteller Stein at han brukte ett av spørsmålene deres i filmgruppa. Samtalen tok en helt annen retning enn han hadde tenkt.",
+        "«Ingen fulgte opp stikkordene mine», sier han. «Det var faktisk en god samtale.» Han har lyst til å fortsette kontakten, men spør denne gangen hva som passer deg."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_kultur_samtale"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Foreslå en ny kort filmsamtale når dere begge har tid.",
+          "effect": 0,
+          "tags": [
+            "stein_slutt_egen_rytme"
+          ],
+          "feedback": "Dere har en mulig vane å bygge videre på. Ingen kveld er avtalt før dere finner et tidspunkt.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Et vennskap med plass til to",
+            "line": "«Du kan jo foreslå filmen neste gang. Jeg skal tåle å ikke ha valgt den.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Si at du vil holde kontakten uten en fast vane.",
+          "effect": 0,
+          "tags": [
+            "stein_slutt_aapen"
+          ],
+          "feedback": "Stein får en åpen kontakt, men ingen regelmessig avtale.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Kontakten fikk stå åpen",
+            "line": "«Da lar vi det være en mulighet. Jeg skal prøve å ikke lage en frekvens.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage6"
+      ]
+    },
+    {
+      "id": "stein_liv_6_alene",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Stein Mæland",
+      "subject": "Stein kom hjem med et spørsmål",
+      "situation": [
+        "Du foreslo at Stein kunne prøve filmgruppa alene. Han forteller at han gikk, satt ved siden av noen han ikke kjente, og hørte tre helt forskjellige tolkninger.",
+        "Han hadde ikke en arbeidsrolle der. «Jeg stilte et spørsmål og fikk ikke ansvar for oppfølgingen», skriver han. Nå spør han hvordan uka di har vært."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "stein_kultur_alene"
+        ]
+      },
+      "choices": [
+        {
+          "id": "A",
+          "label": "Fortell ham om noe fra ditt eget liv.",
+          "effect": 0,
+          "tags": [
+            "stein_slutt_egen_rytme"
+          ],
+          "feedback": "Samtalen får plass til deg også. Stein lytter uten å tilby en tiltaksplan.",
+          "npc_response": {
+            "trust_delta": 1,
+            "title": "Han spurte før han planla",
+            "line": "«Jeg tror jeg bare skal høre på. Du kan si fra hvis du vil ha råd.»"
+          }
+        },
+        {
+          "id": "B",
+          "label": "Svar kort og la kontakten være uformell.",
+          "effect": 0,
+          "tags": [
+            "stein_slutt_aapen"
+          ],
+          "feedback": "Du holder kontakten lett. Stein får ikke en ny oppgave eller et nytt løfte.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Ingen oppfølgingsfrist",
+            "line": "«Greit. Vi snakkes når det passer.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "stein_peer_mellomleder",
+        "requires_role_ref": "naeringsliv/avdelingsleder",
+        "available_after": {
+          "storylet_id": "stein_liv_5",
+          "min_workdays": 1
+        }
+      },
+      "adds_flags": [
+        "stein_hele_livet_stage6"
+      ]
+    }
+  ]
+}
