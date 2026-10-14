@@ -1,6 +1,6 @@
 
 > history-go@0.0.0 people:images:apply:write
-> npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write --review-payload={"version":2,"selections":[{"personId":"monna_tandberg_det_norske_teatret","candidateId":"monna_tandberg_det_norske_teatret__monna_tandberg_jpg","approvalMode":"normal"},{"personId":"svein_erik_brodal","candidateId":"svein_erik_brodal__62176_svein_erik_brodal_jpg","approvalMode":"normal"},{"personId":"ragnhild_hald","candidateId":"ragnhild_hald__ragnhild_hald_ca_1935_1940_thorleif_warden_r_oslo_museum_tm_t03249_cropped_jpg","approvalMode":"normal"},{"personId":"bjorn_sundquist","candidateId":"bjorn_sundquist__bj_rn_sundquist_jpg","approvalMode":"normal"},{"personId":"pia_tjelta","candidateId":"pia_tjelta__pia_tjelta_jpg","approvalMode":"normal"}]}
+> npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write --review-payload={"version":2,"selections":[{"personId":"anne_marit_jacobsen","candidateId":"anne_marit_jacobsen__annemaritjacobsen_dex_fs_001095_cropped_jpg","approvalMode":"normal"},{"personId":"anton_heiberg","candidateId":"anton_heiberg__antonscheelheiberg_ob_f05955_jpg","approvalMode":"normal"},{"personId":"arild_brinchmann","candidateId":"arild_brinchmann__arildbrinchmann_ob_f13320a_jpg","approvalMode":"normal"},{"personId":"astrid_folstad","candidateId":"astrid_folstad__astrid_folstad_jpg","approvalMode":"normal"},{"personId":"cally_monrad","candidateId":"cally_monrad__cally_monrad_jpg","approvalMode":"normal"},{"personId":"carl_fredrik_engelstad","candidateId":"carl_fredrik_engelstad__carl_fredrik_engelstad_jpg","approvalMode":"normal"},{"personId":"charlotte_frogner","candidateId":"charlotte_frogner__charlotte_frogner_seoul_2009_adj_jpg","approvalMode":"normal"},{"personId":"edvard_drablos","candidateId":"edvard_drablos__60863_edvard_drabl_s_jpg","approvalMode":"normal"},{"personId":"gisle_straume","candidateId":"gisle_straume__gisle_straume_jpg","approvalMode":"normal"},{"personId":"ingjald_haaland","candidateId":"ingjald_haaland__ingjald_haaland_jpg","approvalMode":"normal"},{"personId":"iren_reppen","candidateId":"iren_reppen__iren_2017_2_jpg","approvalMode":"normal"},{"personId":"knut_hergel_det_norske_teatret","candidateId":"knut_hergel_det_norske_teatret__knut_hergel_ca_1946_oslo_museum_tm_t01549_jpg","approvalMode":"normal"},{"personId":"lise_fjeldstad","candidateId":"lise_fjeldstad__lise_fjeldstad_jpg","approvalMode":"normal"},{"personId":"merete_skavlan","candidateId":"merete_skavlan__46336_merete_skavlan_jpg","approvalMode":"normal"},{"personId":"nils_ole_oftebro","candidateId":"nils_ole_oftebro__km2012_bibel_panel_oftebro_crop_jpg","approvalMode":"normal"},{"personId":"nils_sletbak","candidateId":"nils_sletbak__nilssletbak_ob_53_1420_jpg","approvalMode":"normal"},{"personId":"oddgeir_thune","candidateId":"oddgeir_thune__oddgeir_thune_004_jpg","approvalMode":"normal"},{"personId":"pal_sverre_hagen","candidateId":"pal_sverre_hagen__p_l_sverre_valheim_hagen_jpg","approvalMode":"normal"},{"personId":"rut_tellefsen","candidateId":"rut_tellefsen__50193_rut_tellefsen_jpg","approvalMode":"normal"},{"personId":"svein_tindberg","candidateId":"svein_tindberg__tindberg_jpg","approvalMode":"normal"}]}
 
 
 > history-go@0.0.0 build:tools
@@ -10,34 +10,124 @@
   "mode": "write",
   "selected": [
     {
-      "personId": "monna_tandberg_det_norske_teatret",
-      "personName": "Monna Tandberg",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/monna_tandberg_det_norske_teatret.json",
-      "imageFile": "bilder/kort/people/monna_tandberg_det_norske_teatret"
+      "personId": "anne_marit_jacobsen",
+      "personName": "Anne Marit Jacobsen",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/anne_marit_jacobsen.json",
+      "imageFile": "bilder/kort/people/anne_marit_jacobsen"
     },
     {
-      "personId": "svein_erik_brodal",
-      "personName": "Svein Erik Brodal",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/svein_erik_brodal.json",
-      "imageFile": "bilder/kort/people/svein_erik_brodal"
+      "personId": "anton_heiberg",
+      "personName": "Anton Heiberg",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/anton_heiberg.json",
+      "imageFile": "bilder/kort/people/anton_heiberg"
     },
     {
-      "personId": "ragnhild_hald",
-      "personName": "Ragnhild Hald",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/ragnhild_hald.json",
-      "imageFile": "bilder/kort/people/ragnhild_hald"
+      "personId": "arild_brinchmann",
+      "personName": "Arild Brinchmann",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/arild_brinchmann.json",
+      "imageFile": "bilder/kort/people/arild_brinchmann"
     },
     {
-      "personId": "bjorn_sundquist",
-      "personName": "Bjørn Sundquist",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/bjorn_sundquist.json",
-      "imageFile": "bilder/kort/people/bjorn_sundquist"
+      "personId": "astrid_folstad",
+      "personName": "Astrid Folstad",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/astrid_folstad.json",
+      "imageFile": "bilder/kort/people/astrid_folstad"
     },
     {
-      "personId": "pia_tjelta",
-      "personName": "Pia Tjelta",
-      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/pia_tjelta.json",
-      "imageFile": "bilder/kort/people/pia_tjelta"
+      "personId": "cally_monrad",
+      "personName": "Cally Monrad",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/cally_monrad.json",
+      "imageFile": "bilder/kort/people/cally_monrad"
+    },
+    {
+      "personId": "carl_fredrik_engelstad",
+      "personName": "Carl Fredrik Engelstad",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/carl_fredrik_engelstad.json",
+      "imageFile": "bilder/kort/people/carl_fredrik_engelstad"
+    },
+    {
+      "personId": "charlotte_frogner",
+      "personName": "Charlotte Frogner",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/charlotte_frogner.json",
+      "imageFile": "bilder/kort/people/charlotte_frogner"
+    },
+    {
+      "personId": "edvard_drablos",
+      "personName": "Edvard Drabløs",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/edvard_drablos.json",
+      "imageFile": "bilder/kort/people/edvard_drablos"
+    },
+    {
+      "personId": "gisle_straume",
+      "personName": "Gisle Straume",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/gisle_straume.json",
+      "imageFile": "bilder/kort/people/gisle_straume"
+    },
+    {
+      "personId": "ingjald_haaland",
+      "personName": "Ingjald Haaland",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/ingjald_haaland.json",
+      "imageFile": "bilder/kort/people/ingjald_haaland"
+    },
+    {
+      "personId": "iren_reppen",
+      "personName": "Iren Reppen",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/iren_reppen.json",
+      "imageFile": "bilder/kort/people/iren_reppen"
+    },
+    {
+      "personId": "knut_hergel_det_norske_teatret",
+      "personName": "Knut Hergel",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/knut_hergel_det_norske_teatret.json",
+      "imageFile": "bilder/kort/people/knut_hergel_det_norske_teatret"
+    },
+    {
+      "personId": "lise_fjeldstad",
+      "personName": "Lise Fjeldstad",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/lise_fjeldstad.json",
+      "imageFile": "bilder/kort/people/lise_fjeldstad"
+    },
+    {
+      "personId": "merete_skavlan",
+      "personName": "Merete Skavlan",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/merete_skavlan.json",
+      "imageFile": "bilder/kort/people/merete_skavlan"
+    },
+    {
+      "personId": "nils_ole_oftebro",
+      "personName": "Nils Ole Oftebro",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/nils_ole_oftebro.json",
+      "imageFile": "bilder/kort/people/nils_ole_oftebro"
+    },
+    {
+      "personId": "nils_sletbak",
+      "personName": "Nils Sletbak",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/nils_sletbak.json",
+      "imageFile": "bilder/kort/people/nils_sletbak"
+    },
+    {
+      "personId": "oddgeir_thune",
+      "personName": "Oddgeir Thune",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/oddgeir_thune.json",
+      "imageFile": "bilder/kort/people/oddgeir_thune"
+    },
+    {
+      "personId": "pal_sverre_hagen",
+      "personName": "Pål Sverre Hagen",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/pal_sverre_hagen.json",
+      "imageFile": "bilder/kort/people/pal_sverre_hagen"
+    },
+    {
+      "personId": "rut_tellefsen",
+      "personName": "Rut Tellefsen",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/rut_tellefsen.json",
+      "imageFile": "bilder/kort/people/rut_tellefsen"
+    },
+    {
+      "personId": "svein_tindberg",
+      "personName": "Svein Tindberg",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/svein_tindberg.json",
+      "imageFile": "bilder/kort/people/svein_tindberg"
     }
   ]
 }
