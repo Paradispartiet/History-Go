@@ -1,6 +1,12 @@
 name: Build people image candidates
 
 on:
+  # A change to this controlled request file starts a candidate-production batch.
+  # Generated candidate PRs do not modify the request, avoiding recursive runs.
+  push:
+    branches: [main]
+    paths:
+      - data/people/portrait_image_batch_request.json
   workflow_dispatch:
     inputs:
       people_ids:
@@ -129,6 +135,8 @@ jobs:
           PEOPLE_IDS: ${{ inputs.people_ids }}
           PLACE_ID: ${{ inputs.place_id }}
           LIMIT: ${{ inputs.limit }}
+          MAX_CANDIDATES_PER_PERSON: ${{ inputs.max_candidates_per_person }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           set -euo pipefail
           mkdir -p "$REPORT_DIR"
@@ -137,14 +145,21 @@ jobs:
           const fs = require('node:fs');
           const path = require('node:path');
 
-          let ids = String(process.env.PEOPLE_IDS || '')
+          const request = process.env.EVENT_NAME === 'push'
+            ? JSON.parse(fs.readFileSync('data/people/portrait_image_batch_request.json', 'utf8'))
+            : null;
+          if (request && (typeof request !== 'object' || Array.isArray(request))) throw new Error('Portrait batch request must be an object.');
+          const explicitIds = String(request?.people_ids || process.env.PEOPLE_IDS || '')
             .split(',')
             .map((id) => id.trim())
             .filter(Boolean);
-          const placeId = String(process.env.PLACE_ID || '').trim();
+          let ids = [...explicitIds];
+          const placeId = String(request?.place_id || process.env.PLACE_ID || '').trim();
           const matchingPlaceIds = [];
-          const limitRaw = String(process.env.LIMIT || '').trim();
+          const limitRaw = String(request?.limit ?? process.env.LIMIT ?? '100').trim();
+          const maxRaw = String(request?.max_candidates_per_person ?? process.env.MAX_CANDIDATES_PER_PERSON ?? '5').trim();
           const limit = Number(limitRaw);
+          const maxCandidates = Number(maxRaw);
           const errors = [];
 
           function readJson(file) {
@@ -179,10 +194,11 @@ jobs:
           }
 
           if (placeId) ids = [...new Set(matchingPlaceIds)].sort();
-          if (placeId && ids.length) errors.push('Specify either place_id or people_ids, not both.');
+          if (placeId && explicitIds.length) errors.push('Specify either place_id or people_ids, not both.');
           if (!ids.length) errors.push('At least one people ID or a place_id with linked people is required.');
           if (ids.length > 100) errors.push(`Too many people IDs: ${ids.length}. Maximum is 100.`);
           if (!Number.isInteger(limit) || limit < 1 || limit > 100) errors.push(`limit must be an integer from 1 to 100, got: ${limitRaw}`);
+          if (!Number.isInteger(maxCandidates) || maxCandidates < 1 || maxCandidates > 8) errors.push(`max_candidates_per_person must be from 1 to 8, got: ${maxRaw}`);
           if (limit < ids.length) errors.push(`limit ${limit} is lower than selected person count ${ids.length}.`);
           const seen = new Set();
           for (const id of ids) {
@@ -197,8 +213,8 @@ jobs:
             if (rows.length > 1) errors.push(`Ambiguous people ID in manifest data: ${id} (${rows.join(', ')})`);
           }
 
-          const summary = { ids, placeId: placeId || null, count: ids.length, limit, errors };
-          if (!errors.length) fs.appendFileSync(process.env.GITHUB_OUTPUT, `people_ids=${ids.join(',')}\n`);
+          const summary = { ids, placeId: placeId || null, count: ids.length, limit, maxCandidates, errors };
+          if (!errors.length) fs.appendFileSync(process.env.GITHUB_OUTPUT, `people_ids=${ids.join(',')}\nlimit=${limit}\nmax_candidates_per_person=${maxCandidates}\n`);
           console.log(JSON.stringify(summary, null, 2));
           if (errors.length) process.exit(1);
           NODE
@@ -211,8 +227,8 @@ jobs:
           cp "$CANDIDATE_FILE" "$REPORT_DIR/people_image_candidates.before.json"
           npm run people:images:candidates -- \
             --ids="${{ steps.validate_inputs.outputs.people_ids }}" \
-            --limit="${{ inputs.limit }}" \
-            --max-candidates-per-person="${{ inputs.max_candidates_per_person }}" \
+            --limit="${{ steps.validate_inputs.outputs.limit }}" \
+            --max-candidates-per-person="${{ steps.validate_inputs.outputs.max_candidates_per_person }}" \
             --merge-existing \
             2>&1 | tee "$REPORT_DIR/candidates.txt"
 
@@ -277,6 +293,9 @@ jobs:
             data = [];
           }
 
+          const oldCandidates = JSON.parse(fs.readFileSync(path.join(reportDir, 'people_image_candidates.before.json'), 'utf8'));
+          if (!Array.isArray(oldCandidates)) throw new Error('Original candidate snapshot must be an array.');
+          const beforeById = new Map(oldCandidates.map((candidate) => [candidate.candidateId, candidate]));
           const scopedCandidates = data.filter((candidate) => selectedIds.includes(reqStr(candidate && candidate.personId)));
           const candidatePeople = new Set(scopedCandidates.map((candidate) => reqStr(candidate && candidate.personId)).filter(Boolean));
           const analysis = { complete: 0, unavailable: 0, failed: 0 };
@@ -287,8 +306,9 @@ jobs:
             }
             const personId = reqStr(candidate.personId) || '(missing personId)';
             if (selectedIds.length && !selectedIds.includes(personId)) errors.push(`${personId}: candidate was not requested in people_ids.`);
-            if (candidate.approved !== false) errors.push(`${personId}: candidate must have approved: false.`);
-            if (candidate.approved === true) errors.push(`${personId}: candidate is automatically approved.`);
+            const previouslyApproved = beforeById.get(candidate.candidateId)?.approved === true;
+            if (previouslyApproved && candidate.approved !== true) errors.push(`${personId}: prior candidate approval must be preserved.`);
+            if (!previouslyApproved && candidate.approved !== false) errors.push(`${personId}: newly discovered candidate cannot be automatically approved.`);
             if (!reqStr(candidate.wikidataId)) errors.push(`${personId}: missing wikidataId.`);
             else wikidataIds.add(reqStr(candidate.wikidataId));
             if (!reqStr(candidate.commonsFileName)) errors.push(`${personId}: missing Commons filename.`);
@@ -331,7 +351,7 @@ jobs:
             wikidataIds: [...wikidataIds].sort(),
             licenses: [...licenseFamilies].sort(),
             analysis,
-            allCandidatesApprovedFalse: scopedCandidates.every((candidate) => candidate && candidate.approved === false),
+            noNewAutoApprovals: scopedCandidates.every((candidate) => candidate && (beforeById.get(candidate.candidateId)?.approved === true ? candidate.approved === true : candidate.approved === false)),
             errors,
             warnings
           };
@@ -347,7 +367,7 @@ jobs:
             `- Wikidata IDs: ${summary.wikidataIds.join(', ') || '(none)'}`,
             `- Licenses: ${summary.licenses.join(', ') || '(none)'}`,
             `- Pixel analysis: complete ${analysis.complete}, unavailable ${analysis.unavailable}, failed ${analysis.failed}`,
-            `- All candidates have approved: false: ${summary.allCandidatesApprovedFalse ? 'yes' : 'no'}`,
+            `- New candidates have no auto-approval; previous approvals preserved: ${summary.noNewAutoApprovals ? 'yes' : 'no'}`,
             '',
             '## Errors',
             ...(errors.length ? errors.map((error) => `- ${error}`) : ['- None']),
@@ -398,7 +418,7 @@ jobs:
           retention-days: 14
 
       - name: Open draft PR for candidate batch
-        if: ${{ inputs.open_draft_pr == true }}
+        if: ${{ github.event_name == 'push' || inputs.open_draft_pr == true }}
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}

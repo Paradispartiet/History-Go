@@ -40,8 +40,9 @@
     "people": {
       "status": "BLOCKED",
       "reason": "C9 har kjeldegjennomgått alle 87 DNT-relasjonane. C11 har ei fullstendig portrettkø for 87 personar og åtte konkrete Commons-kjeldeleads; bileta er framleis ikkje innhenta, identitetsgodkjende eller publiserte.",
-      "plan": "Køyr éin samansett kandidatrunde med place_id=det_norske_teatret i den oppdaterte GitHub-workflowen, vurder Commons-kandidatar med personidentitet og lisens før godkjend apply; gjenbruk canonical People utan å opprette dublettidentitetar.",
-      "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json"
+      "plan": "C12: Éi produksjonsbestilling for alle 87 canonical People blir trigga ved merge til main og skriv forskingskandidatar til ein eigen draft PR. Ingen automatisk portrettgodkjenning; identitet og rettar må avklarast før publisering.",
+      "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
+      "portrait_batch_request": "data/people/portrait_image_batch_request.json"
     },
     "objects": {
       "status": "BLOCKED",
@@ -178,6 +179,12 @@
       "status": "SOURCE_LEADS_PREPARED_IMAGES_NOT_PUBLISHED",
       "scope": "87/87 bildebehov registrerte, åtte spesifikke Commons-kjeldeforslag dokumenterte. Kandidatworkflowen støttar alle People knytte til eitt Place og bevarer eksisterande kandidatar.",
       "report": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json"
+    },
+    {
+      "id": "people_portrait_candidate_intake_c12",
+      "status": "REQUEST_COMMITTED_AWAITING_PUSH_RUN",
+      "scope": "Oppdatert GitHub Actions-kandidatjobben slik at eintydig place_id validerast korrekt, og ei endring i produksjonsbestillingsfila på main automatisk køyrer éin bildesøkebatch. Prosessen legg til Commons-kandidatar utan å skrive over eksisterande kandidatar eller manuelle godkjenningar.",
+      "request": "data/people/portrait_image_batch_request.json"
     }
   ],
   "rule_preflight": {
