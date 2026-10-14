@@ -289,7 +289,30 @@ export async function buildCandidates(args: string[], fetcher: Fetcher = fetch):
       for (const src of found.files) { if (perPerson.length >= maxCandRaw) break; const norm = normalizeCommonsFileName(src.file).toLowerCase(); if (seen.has(norm)) continue; seen.add(norm); await sleep(120); const meta = await commonsMeta(src.file, fetcher); const c = candidateFromMeta(e, found.qid, src.file, meta, src.identity, src.sourceScore); if (c) perPerson.push(await analyzeCandidate(c, fetcher)); }
       if (perPerson.length) { candidates.push(...rankCandidates(perPerson)); processedPeople++; }
     } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
-  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates for ${processedPeople} people to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
+  // Scoped bulk jobs preserve all earlier reviewed candidates and approvals.
+  // A previously known candidate is never silently replaced by a fresh network result.
+  let combined = candidates;
+  if (args.includes('--merge-existing')) {
+    const previous = await readJson(CANDIDATES());
+    if (!Array.isArray(previous)) throw new Error('Existing people image candidate file must be an array');
+    const known = new Set<string>();
+    for (const item of previous) {
+      const id = reqStr((item as any)?.candidateId);
+      if (!id || known.has(id)) throw new Error('Existing image candidates have missing/duplicate candidateId');
+      known.add(id);
+    }
+    combined = [...previous];
+    for (const candidate of candidates) {
+      if (known.has(candidate.candidateId)) continue;
+      combined.push(candidate);
+      known.add(candidate.candidateId);
+    }
+    combined.sort((a, b) => reqStr(a.personId).localeCompare(reqStr(b.personId), 'nb') || Number(a.rank || 0) - Number(b.rank || 0) || reqStr(a.candidateId).localeCompare(reqStr(b.candidateId)));
+  }
+  await writeJsonAtomic(CANDIDATES(), combined);
+  console.log(`Wrote ${combined.length} total candidates, ${candidates.length} researched in this batch for ${processedPeople} people to ${path.relative(ROOT(), CANDIDATES())}`);
+  console.log(`Lookup errors: ${lookupErrors.length}`);
+  if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
 function validateCandidate(c: any, requireApproved = true): asserts c is Candidate {
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
