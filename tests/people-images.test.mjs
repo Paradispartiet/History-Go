@@ -257,7 +257,8 @@ console.log('people image pipeline tests passed');
   const workflow = await readFile('.github/workflows/build-people-image-candidates.yml', 'utf8');
   const draftPrStep = workflow.slice(workflow.indexOf('- name: Open draft PR for candidate batch'));
 
-  assert.match(draftPrStep, /if: \$\{\{ inputs\.open_draft_pr == true \}\}/, 'open_draft_pr false skips draft PR step');
+  assert.match(draftPrStep, /if: \$\{\{ github\.event_name == 'push' \|\| inputs\.open_draft_pr == true \}\}/, 'request pushes publish draft PRs while manual dispatch remains opt-in');
+  assert.match(workflow, /if \(placeId && explicitIds\.length\)/, 'place-based discovery must distinguish explicit people IDs from resolved IDs');
   assert.match(draftPrStep, /branch="automation\/people-image-candidates-\$\{\{ github\.run_id \}\}"/, 'draft PR branch uses unique run ID');
   assert.match(draftPrStep, /git add "\$CANDIDATE_FILE"/, 'candidate file is staged explicitly');
   assert.match(draftPrStep, /git add -f "\$REPORT_DIR\/verification\.json" "\$REPORT_DIR\/verification\.md"/, 'ignored verification reports are force-staged explicitly');
