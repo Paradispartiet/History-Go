@@ -1,14 +1,30 @@
 {
   "schema": "history_go_people_image_batch_request_v1",
-  "request_id": "det_norske_teatret_portraits_c13_20261014_rights_filtered",
-  "place_id": "det_norske_teatret",
-  "limit": 100,
-  "max_candidates_per_person": 2,
+  "request_id": "det_norske_teatret_portraits_c29_remaining_30_20261016",
+  "place_id": "",
+  "people_ids": "anne_marie_ottersen,anneke_von_der_lippe,arne_lygre,bjorn_floberg,britt_langlie,ellen_dorrit_petersen,erik_ulfsby,gudrun_waadeland,heidi_gjermundsen_broch,jon_eikemo,jorunn_kjellsby,kjersti_horn,lena_kristin_ellingsen,marie_blokhus,morten_svartveit,nils_sletta,ola_b_johannessen,ole_barman,ole_jorgen_nilsen,otto_homlung,per_jansen,ragnhild_hilt,ragnhild_nygaard,rolf_just_nilsen,silje_storstein,sossen_krohg_det_norske_teatret,sverre_solberg,ulrikke_hansen_dovigen,vidar_magnussen,vidar_sandem",
+  "limit": 30,
+  "max_candidates_per_person": 5,
   "candidate_mode": "preserve_existing_and_add_new",
   "publication": "draft_pr_candidates_only",
-  "requested_at": "2026-10-14",
-  "purpose": "Research Wikimedia Commons portraits for all 87 canonical People linked to Det Norske Teatret, with candidate identity and license metadata. No photos or canonical People fields change before human review.",
+  "requested_at": "2026-10-16",
+  "purpose": "One source-discovery batch for exactly the 30 Det Norske Teatret people not represented in the canonical portrait attribution ledger after C28; preserve 57 published portraits and avoid unrelated people.",
   "source_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
-  "retry_reason": "Previous C12 discovery found 86 image candidates across 55 of 87 people but 2 lacked required author/credit. C13 excludes uncredited files at discovery; no other source or test reruns have been requested.",
+  "source_leads": [
+    {
+      "person_id": "ola_b_johannessen",
+      "commons_page": "https://commons.wikimedia.org/wiki/File:Ola_B_Johannessen_and_Knut_%C3%98degaard_1980-08-07.png",
+      "source_status": "already_in_candidate_manifest",
+      "license": "CC BY-SA 4.0",
+      "review_note": "Wikidata identifies Ola B. Johannessen on image left; only 252x408 pixels and two people; identity-aware crop and final quality check required."
+    },
+    {
+      "person_id": "rolf_just_nilsen",
+      "commons_page": "https://commons.wikimedia.org/wiki/File:Rolf_Just_Nilsen_(11097023936)_(cropped).jpg",
+      "source_status": "new_manual_source_lead",
+      "license": "No known copyright restrictions (Flickr Commons, Norwegian National Archives)",
+      "review_note": "Strong depicted-person evidence and archival object PA-0797_U_9888_002_018, photographer Arne Nielsen. Review reuse status as NKNCR, not as CC or Public domain."
+    }
+  ],
   "no_automatic_approval": true
 }
