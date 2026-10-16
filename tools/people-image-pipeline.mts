@@ -334,7 +334,7 @@ function validateCandidate(c: any, requireApproved = true): asserts c is Candida
       throw new Error('Sceneweb image must use a direct, approved Sceneweb download link');
     }
     if (!/^https:\/\/sceneweb\.no\/nb\/multimedia\/\d+$/.test(c.commonsPage)) throw new Error('Invalid Sceneweb source page');
-    if (!/public domain/i.test(c.license)) throw new Error('Sceneweb image must explicitly state Public domain');
+    if (!/public domain/i.test(c.license) && !/^CC BY-SA 4\.0$/i.test(c.license)) throw new Error('Sceneweb image must explicitly state Public domain or CC BY-SA 4.0');
   } else {
     assertCommonsUrl(c.originalImageUrl);
     if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
