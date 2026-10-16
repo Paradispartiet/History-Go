@@ -52,3 +52,9 @@ I tillegg består målrettede tester for alle 28 private scenevarianter, ordinæ
 | Vedlikeholdbarhet og etterprøvbarhet | 4/5 | To eksisterende motorfiler, additive tilstandsfelt, avgrenset datakontrakt og en samlet integrasjonstestfil. |
 
 **27/30 for den tekniske støtten.** Ingen teknisk aktiveringsblokkering gjenstår i det testede omfanget. Produksjonsregistrering av historiene er fortsatt en separat innholdsbeslutning. Personmodellen, generelle kunnskapslag og litterær produksjon har sine egne avgrensninger.
+
+## Avledet synkronisering som blokkerte PR-kontrollen
+
+Den faste TypeScript-jobben bestod typesjekk og bygging, men stoppet deretter i `place-open:check`. Det samme avviket finnes på basen `666c1307`: Historiene i `data/runtime/stories-all/part-001.json` til `part-006.json` hadde foreldede shardgrenser. Generatoren og alle dens historiekilder er identiske mellom basen og denne PR-en.
+
+Eksisterende `build-place-open-payloads.mjs` er brukt til å regenerere de seks filene. Den flate sekvensen med **552 historieobjekter er kontrollert som identisk før og etter**, inkludert ID-er, innhold og rekkefølge. Ingen kildehistorie eller History Go-kjernelogikk er endret. Alle seks filer følger generatorens 240 000-byte-grense, og `node scripts/build-place-open-payloads.mjs --check` består for alle 1 534 Place-open-payloads. Dette er en avledet synkronisering for å fjerne den konkrete CI-blokkeringen.
