@@ -143,7 +143,7 @@ jobs:
             const person = persons[0];
             const meta = person.imageMeta;
             if (!person.image?.startsWith('bilder/kort/people/') || person.cardImage !== person.image || !fs.existsSync(person.image)) throw new Error('Missing or inconsistent local portrait for ' + selected.personId);
-            if (meta?.source !== 'wikimedia_commons' || meta?.candidateId !== candidate.candidateId || meta?.sourcePage !== candidate.commonsPage || meta?.license !== candidate.license || !meta?.creator || !meta?.credit || !meta?.licenseUrl) throw new Error('Invalid portrait attribution metadata for ' + selected.personId);
+            if (meta?.source !== (candidate.sourceProvider === 'sceneweb' ? 'sceneweb' : 'wikimedia_commons') || meta?.candidateId !== candidate.candidateId || meta?.sourcePage !== candidate.commonsPage || meta?.license !== candidate.license || !meta?.creator || !meta?.credit || !meta?.licenseUrl) throw new Error('Invalid portrait attribution metadata for ' + selected.personId);
             if (attributions.filter(a => a.personId === person.id && a.file === person.image && a.sourcePage === candidate.commonsPage).length !== 1) throw new Error('Missing unique attribution ledger record for ' + selected.personId);
             const image = await sharp(person.image).metadata();
             if (!(image.width > 0 && image.height > 0)) throw new Error('Unusable portrait asset for ' + selected.personId);
