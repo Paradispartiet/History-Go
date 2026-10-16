@@ -1,0 +1,55 @@
+
+> history-go@0.0.0 people:images:apply:write
+> npm run build:tools && node dist/tools/people-image-pipeline.mjs apply --write --review-payload={"version":2,"selections":[{"personId":"agnes_mowinckel","candidateId":"agnes_mowinckel__agnes_mowinckel_1918_jpg","approvalMode":"normal"},{"personId":"bab_christensen","candidateId":"bab_christensen__bab_christensen_jpg","approvalMode":"normal"},{"personId":"egil_monn_iversen","candidateId":"egil_monn_iversen__the_monn_keys_cropped_egil_monn_iversen_jpg","approvalMode":"normal"},{"personId":"jannike_kruse","candidateId":"jannike_kruse__dsc_1716_7248550350_jpg","approvalMode":"normal"},{"personId":"per_sunderland","candidateId":"per_sunderland__per_sunderland_som_sigurd_i_sigurd_slembe_av_bj_rnstjerne_bj_rnson_nationaltheatret_1960_no_nb_digifoto_20160712_00177_bldsa_bb1080_jpg","approvalMode":"normal"},{"personId":"sigurd_eldegard","candidateId":"sigurd_eldegard__sigurd_eldegard_tm_t03098a_jpg","approvalMode":"normal"},{"personId":"tom_tellefsen","candidateId":"tom_tellefsen__tom_tellefsen_jpg","approvalMode":"normal"}]}
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+{
+  "mode": "write",
+  "selected": [
+    {
+      "personId": "agnes_mowinckel",
+      "personName": "Agnes Mowinckel",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/agnes_mowinckel.json",
+      "imageFile": "bilder/kort/people/agnes_mowinckel"
+    },
+    {
+      "personId": "bab_christensen",
+      "personName": "Bab Christensen",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/bab_christensen.json",
+      "imageFile": "bilder/kort/people/bab_christensen"
+    },
+    {
+      "personId": "egil_monn_iversen",
+      "personName": "Egil Monn-Iversen",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/egil_monn_iversen.json",
+      "imageFile": "bilder/kort/people/egil_monn_iversen"
+    },
+    {
+      "personId": "jannike_kruse",
+      "personName": "Jannike Kruse",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/jannike_kruse.json",
+      "imageFile": "bilder/kort/people/jannike_kruse"
+    },
+    {
+      "personId": "per_sunderland",
+      "personName": "Per Sunderland",
+      "sourceFile": "data/people/litteratur/oslo/nationaltheatret/per_sunderland.json",
+      "imageFile": "bilder/kort/people/per_sunderland"
+    },
+    {
+      "personId": "sigurd_eldegard",
+      "personName": "Sigurd Eldegard",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/sigurd_eldegard.json",
+      "imageFile": "bilder/kort/people/sigurd_eldegard"
+    },
+    {
+      "personId": "tom_tellefsen",
+      "personName": "Tom Tellefsen",
+      "sourceFile": "data/people/musikk/oslo/det_norske_teatret/tom_tellefsen.json",
+      "imageFile": "bilder/kort/people/tom_tellefsen"
+    }
+  ]
+}

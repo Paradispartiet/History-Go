@@ -39,8 +39,67 @@
   "collections": {
     "people": {
       "status": "BLOCKED",
-      "reason": "87 unike manifestlastede personkoblinger; alle image-felt er tomme. Koblings- og redaksjonell audit samt portretter gjenstår.",
-      "plan": "Gjenbruk eksisterende canonical profiler. Prioriter initiativtakere, ledelse og utøvere med direkte kilder; skill historisk institusjonstilknytning fra arbeid i dagens bygg."
+      "reason": "C9 har kildegjennomgått alle 87 teaterkoblingene. C15–C21 har publisert 40 kildeførte Commons-personbilder i canonical People med lokale bildefiler, bildemetadata og synkroniserte runtime-data. 47 av 87 mangler fortsatt portrett.",
+      "plan": "Fortsett fotoarbeidet med dokumenterte enkeltpersoner og godkjente Commons-lisenser; 47 gjenstår, hvorav flere trenger nye kildebilder. Unngå navnforveksling, gruppefoto som personportrett og uklar public-domain-status. Publiser i større endringsavgrensede batcher med runtime i samme PR.",
+      "portrait_review_queue": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json",
+      "portrait_batch_request": "data/people/portrait_image_batch_request.json",
+      "portraits_published_count": 40,
+      "portraits_remaining_count": 47,
+      "portraits_published_ids": [
+        "alfred_maurstad",
+        "ane_dahl_torp",
+        "anne_marit_jacobsen",
+        "anton_heiberg",
+        "arild_brinchmann",
+        "astrid_folstad",
+        "bjorn_sundquist",
+        "cally_monrad",
+        "carl_fredrik_engelstad",
+        "charlotte_frogner",
+        "edvard_drablos",
+        "elsa_lystad",
+        "frank_kjosas",
+        "gisle_straume",
+        "hans_jacob_nilsen",
+        "harald_saeverud",
+        "henny_moan",
+        "ingjald_haaland",
+        "ingrid_bolso_berdal",
+        "iren_reppen",
+        "jan_gronli",
+        "knut_hergel_det_norske_teatret",
+        "lars_tvinde",
+        "lise_fjeldstad",
+        "merete_skavlan",
+        "monna_tandberg_det_norske_teatret",
+        "nils_ole_oftebro",
+        "nils_sletbak",
+        "oddgeir_thune",
+        "pal_sverre_hagen",
+        "pia_tjelta",
+        "ragnhild_hald",
+        "rasmus_rasmussen",
+        "reidar_sorensen",
+        "renate_reinsve",
+        "rut_tellefsen",
+        "svein_erik_brodal",
+        "svein_tindberg",
+        "tore_segelcke",
+        "tormod_skagestad"
+      ],
+      "portrait_candidate_pr": 6316,
+      "portrait_image_prs": [
+        6319,
+        6323,
+        6329,
+        6331
+      ],
+      "portrait_runtime_prs": [
+        6321,
+        6325,
+        6329,
+        6331
+      ]
     },
     "objects": {
       "status": "BLOCKED",
@@ -97,11 +156,11 @@
     "description_and_fagverk": "PRODUSERT i checkpoint B: historisk ingress/artikkel og selvstendig full Fagverk; Scenekunst-emner/kapitler løst. Full Place er fortsatt BLOCKED.",
     "chronology": "PRODUSER bygge-/åpningsankere og eksplisitt institusjonskontekst. Eksisterende 1913-Story er ikke bevis for hendelse i bygningen fra 1985.",
     "language": "PRODUSER stedsspesifikt navne-/scenespråkspor. Enkeltinstitusjon, ingen area-eid dialektoppføring.",
-    "stories": "REVIEW eksisterende Teaterslaget: kildekontroller, navngi Bøndernes hus og korrekt fysisk eier. Ingen automatisk sletting eller flytting i evidence-fasen.",
+    "stories": "OPPDATERT KILDE- OG STEDSPRESISERING: 1913-Teaterslaget skjedde ved Bøndernes Hus, Rosenkrantz' gate 8, ikke dagens hovedhus i Kristian IVs gate 8 (åpnet 1985). Canonical Story-tekst, kilder og tilhørende Story-/Place-open-visning oppdatert i C22. `place_id` er fortsatt institusjonstilknytningen til Det Norske Teatret; eget canonical Place for Bøndernes Hus mangler og fysisk stedseierskap kan derfor ikke markeres fullført.",
     "before_after": "RESEARCH sammenlignbart historisk og senere bilde av dagens hus; Commons-kandidat fra 2006 er ikke dagens foto og er ikke hele sammenligningen.",
     "news": "RESEARCH ferske, daterte institusjonsnotiser; aktivt teater skal ikke få N/A ut fra tomt datasett.",
     "reading_trails": "PRODUSER fordypningsspor fra tilgjengelige institusjonsartikler/arkiv med riktig leseeier; avklar rettigheter før tekst vises.",
-    "quiz": "SEPARAT QUIZLØP: aktiv Musikk-pakke har 5 × 6 spørsmål og 30/30 answerIndex 0. Bevar dokumenterte fakta og Knowledge-ID-er, revider mot Scenekunst-kontrakten før migrering. Profil/eksakt settantall ikke forhåndslåst.",
+    "quiz": "SEPARAT QUIZLØP: 5 eksisterende sett med 6 spørsmål og etablerte Knowledge-ID-er. Svaralternativene stokkes i runtime; answerIndex=0 i kildefilen krever ingen omorganisering. Konsentrer senere revisjon om kildefakta, scenekunstfaglig innhold og QuizCard, ikke svarrekkefølge.",
     "quizcard": "BLOCKED: faktisk live PlaceCard sier Quizkort mangler. Produser og bind kortet etter quiz-audit.",
     "images": "HOVEDFOTO PRODUSERT: uendret fasadefoto fra 2006 med CC BY-SA 3.0-kreditering. Separat stående frontImage gjenstår.",
     "relations": "REVIEW canonical eldre spillesteder og Rommen. Bruk relasjoner, ikke lånt samlingsinnhold.",
@@ -171,6 +230,57 @@
       "status": "SOURCE_REGISTER_PREPARED_MEDIA_BLOCKED",
       "scope": "Åtte dokumenterte oppsetningar med premieredato, scene/eigaravgrensing, kjeldeadresser og People-ID-koplingar. Ingen bilde eller runtime-/PlaceCard-samling publisert.",
       "report": "reports/place-production/det-norske-teatret/20261013/productions-c10.json"
+    },
+    {
+      "id": "people_portrait_research_c11",
+      "status": "SOURCE_LEADS_PREPARED_IMAGES_NOT_PUBLISHED",
+      "scope": "87/87 bildebehov registrerte, åtte spesifikke Commons-kjeldeforslag dokumenterte. Kandidatworkflowen støttar alle People knytte til eitt Place og bevarer eksisterande kandidatar.",
+      "report": "reports/place-production/det-norske-teatret/20261013/portrait-c11-review-queue.json"
+    },
+    {
+      "id": "people_portrait_candidate_intake_c12",
+      "status": "COMPLETE_CANDIDATES_MERGED",
+      "scope": "85 nye bildevalg for 54 av 87 teaterpersoner, pluss 29 tidligere kandidatposter; kandidat-PR #6316 er merget. Feilidentifiserte treffer holdes tilbake.",
+      "request": "data/people/portrait_image_batch_request.json",
+      "pr": 6316
+    },
+    {
+      "id": "people_portraits_c15_to_c19",
+      "status": "TEN_LICENSED_PORTRAITS_MERGED_RUNTIME_SYNCED",
+      "scope": "To kildegjennomgåtte grupper à fem Commons-portretter. 10 av 87 DNT-tilknyttede People har lokal image/cardImage, Commons imageMeta og genererte People-/Place-open-filer; alle 1434 kanoniske People-ID-er er bevart. Ingen endringer i quiz eller Civication.",
+      "portrait_image_prs": [
+        6319,
+        6323
+      ],
+      "runtime_prs": [
+        6321,
+        6325
+      ],
+      "remaining_without_portrait": 77
+    },
+    {
+      "id": "people_portraits_c20_bulk",
+      "status": "MERGED_PORTRAITS_AND_RUNTIME",
+      "scope": "20 dokumenterte fotografier, People image/cardImage, Commons-kreditering og synkroniserte visningsdata i samme PR. Kontrollert 1434 People-ID-er og 87 DNT-koblinger.",
+      "request": "data/people/portrait_image_apply_request.json",
+      "pr": 6329
+    },
+    {
+      "id": "people_portraits_c21_ten",
+      "status": "MERGED_PORTRAITS_AND_RUNTIME",
+      "scope": "10 nye dokumenterte personportretter med autor, lisens, lokal fil, People-data og genererte People/Place-open i samme PR. Dermed 40/87 ferdig.",
+      "request": "data/people/portrait_image_apply_request.json",
+      "pr": 6331
+    },
+    {
+      "id": "teaterslaget_1913_historical_venue_c22",
+      "status": "STORY_TEXT_CORRECTED_PHYSICAL_PLACE_PENDING",
+      "scope": "Kildebasert 1913-ankring i Bøndernes Hus (Rosenkrantz' gate 8) og tidsmessig grense mot teaterhuset fra 1985. Story eies foreløpig institusjonelt av DNT til Bøndernes Hus har egen Place.",
+      "source": "data/stories/stories_det_norske_teatret.json",
+      "runtime": [
+        "data/runtime/stories-all/part-001.json",
+        "data/runtime/place-open/det_norske_teatret.json"
+      ]
     }
   ],
   "rule_preflight": {

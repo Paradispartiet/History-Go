@@ -1,0 +1,86 @@
+
+> history-go@0.0.0 test:people-images
+> npm run build:tools && node tests/people-images.test.mjs
+
+
+> history-go@0.0.0 build:tools
+> tsc -p tsconfig.tools.build.json
+
+[dry-run] would apply ada (Ada) from Ada.jpg to bilder/kort/people/ada
+{
+  "mode": "dry-run",
+  "selected": [
+    {
+      "personId": "ada",
+      "personName": "Ada",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/ada"
+    }
+  ]
+}
+{
+  "mode": "write",
+  "selected": [
+    {
+      "personId": "ada",
+      "personName": "Ada",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/ada"
+    }
+  ]
+}
+{
+  "mode": "write",
+  "selected": [
+    {
+      "personId": "ada",
+      "personName": "Ada",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/ada"
+    }
+  ]
+}
+Wrote 1 total candidates, 1 researched in this batch for 1 people to data/people/people_image_candidates.json
+Lookup errors: 0
+Wrote 0 total candidates, 0 researched in this batch for 0 people to data/people/people_image_candidates.json
+Lookup errors: 0
+people image pipeline tests passed
+Wrote 1 total candidates, 1 researched in this batch for 1 people to data/people/people_image_candidates.json
+Lookup errors: 1
+- ada: Fetch failed after 3 attempts: temporary lookup failure
+[dry-run] would apply ada (Ada) from ada.jpg to bilder/kort/people/ada
+[dry-run] would apply hopper (Grace Hopper) from hopper.jpg to bilder/kort/people/hopper
+{
+  "mode": "dry-run",
+  "selected": [
+    {
+      "personId": "ada",
+      "personName": "Ada",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/ada"
+    },
+    {
+      "personId": "hopper",
+      "personName": "Grace Hopper",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/hopper"
+    }
+  ]
+}
+{
+  "mode": "write",
+  "selected": [
+    {
+      "personId": "ada",
+      "personName": "Ada",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/ada"
+    },
+    {
+      "personId": "hopper",
+      "personName": "Grace Hopper",
+      "sourceFile": "data/people/folder/array.json",
+      "imageFile": "bilder/kort/people/hopper"
+    }
+  ]
+}

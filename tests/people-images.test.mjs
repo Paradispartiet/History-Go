@@ -119,6 +119,22 @@ for (const bad of [
 
 
 {
+  const dir = await fixture();
+  await withCwd(dir, async () => {
+    await writeFile('data/people/people_image_candidates.json', JSON.stringify([candidate()], null, 2));
+    let calls = 0;
+    await applyCandidates(['--write'], async () => {
+      calls++;
+      if (calls === 1) return new Response(null, { status: 429, headers: { 'retry-after': '0' } });
+      return new Response(new Uint8Array([1, 2, 3]), { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    });
+    assert.equal(calls, 2, 'temporary Wikimedia 429 must be retried');
+    assert.equal((await readFile('data/people/folder/array.json', 'utf8')).includes('bilder/kort/people/ada.jpg'), true, 'retry saved the canonical image');
+  });
+}
+
+
+{
   const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
   const jpeg = await sharp({ create: { width: 640, height: 480, channels: 3, background: { r: 120, g: 140, b: 160 } } }).jpeg().toBuffer();
   const dir = await fixture();
@@ -142,6 +158,27 @@ for (const bad of [
 
 
 {
+{
+  // A licence alone is insufficient: photos without author or credit are
+  // excluded before they can invalidate a large place portrait batch.
+  const { buildCandidates } = await import('../dist/tools/people-image-pipeline.mjs');
+  const dir = await fixture();
+  await withCwd(dir, async () => {
+    await writeFile('data/people/folder/array.json', JSON.stringify({ people: [{ id: 'ada', name: 'Ada', wikidataId: 'Q1' }] }));
+    await buildCandidates(['--ids=ada', '--limit=1'], async (url) => {
+      const u = String(url);
+      if (u.includes('Q1.json')) return wikidataEntityResponse('Q1', { P31: [humanClaim()], P18: [p18Claim('Ada.jpg')] });
+      if (u.includes('commons.wikimedia.org')) return new Response(JSON.stringify({ query: { pages: { 1: { imageinfo: [{
+        url: 'https://upload.wikimedia.org/wikipedia/commons/a/ada.jpg', width: 800, height: 600,
+        extmetadata: { LicenseShortName: { value: 'CC BY-SA 4.0' } }
+      }] } } } }));
+      throw new Error('Photo lacking creator should not be downloaded: ' + u);
+    });
+    const out = JSON.parse(await readFile('data/people/people_image_candidates.json', 'utf8'));
+    assert.deepEqual(out, [], 'missing author and credit cannot produce a candidate');
+  });
+}
+
   assert.equal(candidateIdFor('Rolv_Wesenlund', '57196 Rolv Wesenlund.jpg'), 'rolv_wesenlund__57196_rolv_wesenlund_jpg', 'candidateId is stable');
   const ranked = rankCandidates([candidateFor('p18', { quality: { ...candidateFor('p18').quality, score: 45, tier: 'best_available', warnings: ['lav_kontrast'] } }), candidateFor('better', { personId: 'p18', candidateId: candidateIdFor('p18','Better.jpg'), commonsFileName: 'Better.jpg', quality: { ...candidateFor('p18').quality, score: 95, tier: 'recommended' } })]);
   assert.equal(ranked[0].commonsFileName, 'Better.jpg', 'better strong identity candidate can outrank weak P18');
@@ -257,7 +294,8 @@ console.log('people image pipeline tests passed');
   const workflow = await readFile('.github/workflows/build-people-image-candidates.yml', 'utf8');
   const draftPrStep = workflow.slice(workflow.indexOf('- name: Open draft PR for candidate batch'));
 
-  assert.match(draftPrStep, /if: \$\{\{ inputs\.open_draft_pr == true \}\}/, 'open_draft_pr false skips draft PR step');
+  assert.match(draftPrStep, /if: \$\{\{ github\.event_name == 'push' \|\| inputs\.open_draft_pr == true \}\}/, 'request pushes publish draft PRs while manual dispatch remains opt-in');
+  assert.match(workflow, /if \(placeId && explicitIds\.length\)/, 'place-based discovery must distinguish explicit people IDs from resolved IDs');
   assert.match(draftPrStep, /branch="automation\/people-image-candidates-\$\{\{ github\.run_id \}\}"/, 'draft PR branch uses unique run ID');
   assert.match(draftPrStep, /git add "\$CANDIDATE_FILE"/, 'candidate file is staged explicitly');
   assert.match(draftPrStep, /git add -f "\$REPORT_DIR\/verification\.json" "\$REPORT_DIR\/verification\.md"/, 'ignored verification reports are force-staged explicitly');
@@ -358,7 +396,7 @@ function candidateFor(id, overrides = {}) {
 for (const [args, message] of [
   [['--approved-ids=missing'], /must exist exactly once/],
   [['--approved-ids=ada,ada'], /duplicate/],
-  [['--approved-ids=a,b,c,d,e,f'], /at most 5/]
+  [['--approved-ids=' + Array.from({ length: 21 }, (_, i) => `id${i}`).join(',')], /at most 20/]
 ]) {
   const dir = await fixture();
   await withCwd(dir, async()=>{

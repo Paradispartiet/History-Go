@@ -4,6 +4,8 @@ Status: De tre underkjente buene er omskrevet som **uregistrerte innholdsutkast*
 
 Revisjon 3, 16. oktober 2026: [Personmodellen](CIVICATION_PERSON_MODEL_V1.md) avklarer felles begreper for spiller og NPC-er, kildeavgrensede profiler, ukjente opplysninger og spillerens kunnskap. Steins eksisterende arbeidsbue er samtidig rettet til fagarbeiderens handlingsrom. De tre private historieutkastene er ikke utvidet eller aktivert.
 
+Revisjon 4: Dag- og leveringsblokkeringen er rettet i eksisterende kildeadapter og dagsbygger. Private kapitler følger kalenderens `dayIndex`, har egen dagkvote og kan leveres uten jobb. Den normale private fasekilden slipper nå gjennom private NPC-kapitler. Se [implementasjon og avgrensning](CIVICATION_PRIVATE_NPC_DAY_INBOX_V1.md). Produksjonsmanifestet er fortsatt uendret; historieutkastene aktiveres ikke av denne rettelsen.
+
 Den tidligere versjonen er gjennomgått i [redaksjonell gjennomgang](CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md). Den rapporten gjelder commit `74b1d092876c0b8025cd82f2d6ae987f655ee86a` og bevares som historikk.
 
 ## Hvem personene og spilleren er
@@ -60,6 +62,8 @@ Scenekildene bruker eksisterende narrative-format og karakterlager:
 
 ## Hva som er kontrollert og hva som gjenstår
 
+Revisjon 4: Sju nye integrasjonstester består med faktisk kalender, SceneCatalog, private fasekilde, innboks, ChoiceDirector, NPC-lagring og dagprogresjon. Alle tre buer fullføres uten at arbeidsdagstelleren flyttes. Tilleggskontroller dekker ordinær jobbfordeling, ventende svar, private faser, innbokskanaler og arbeidsledig-flyten. Den redaksjonelle vurderingen av historiene nedenfor er historikk og er ikke automatisk oppgradert av tekniske tester.
+
 Revisjon 3: De to målrettede filene `civication-npc-stein-role-story.test.js` og `civication-whole-life-story-drafts.test.js` bestod samlet **14/14** i én kjøring. Profilenes 22 scenehenvisninger og tre valgkoblinger er slått opp, og Steins mekanikkfelter er identiske med tidligere versjon. Se [personmodellens avgrensede vurdering](CIVICATION_PERSON_MODEL_V1.md) på 27/30. Dette endrer ikke aktiveringsstatusen eller den separate vurderingen av selve historieutkastene nedenfor.
 
 Tidligere kontroll av revisjon 2:
@@ -69,11 +73,11 @@ Den besøker alle 28 varianter gjennom faktisk kildeadapter, ChoiceDirector, Dai
 
 Manuell gjennomgang av alle varianter har undersøkt motiv, etablerte opplysninger, spillerens handlingsrom og årsak til neste hendelse. Dette er en redaksjonell egenvurdering. Testresultatet er ikke bevis på kunstnerisk kvalitet.
 
-Produksjonsmanifestet er bevart. Eksisterende NPC-kapitler bruker en arbeidsdagskvote; privat fremdrift ved arbeidsledighet og samspill med innboksen er fortsatt en faktisk aktiveringsblokkering. Steins arbeidsbue er rettet: Spilleren gir observasjoner og forslag som fagarbeider, mens lederne avklarer utlån og bemanning. Den tidligere påstanden om sidestilte ledere er fjernet. Scene-ID-er, valg-ID-er, effekter, tillitsendringer, flagg, dagkrav og rollehendelse er bevart.
+Produksjonsmanifestet er bevart. Eksisterende NPC-kapitler bruker en arbeidsdagskvote; privat fremdrift og innbokslevering er rettet og testet i revisjon 4. Innholdsutkastene forblir uregistrerte. Steins arbeidsbue er rettet: Spilleren gir observasjoner og forslag som fagarbeider, mens lederne avklarer utlån og bemanning. Den tidligere påstanden om sidestilte ledere er fjernet. Scene-ID-er, valg-ID-er, effekter, tillitsendringer, flagg, dagkrav og rollehendelse er bevart.
 
 Tillit, valg og scenehistorikk lagres. Reisetid, tidsbruk, billett og NPC-ens eksterne jobbsøknad er beskrevet i fiksjonen, ikke implementert som nye kalender-/økonomitransaksjoner. Ingen eksterne referansetelefoner eller bildedelinger er gjennomført.
 
-## Kvalitetsvurdering av uregistrert revisjon
+## Historisk kvalitetsvurdering av uregistrert revisjon 2
 
 | Dimensjon | Score | Grunnlag og begrensning |
 | --- | --- | --- |

@@ -20,7 +20,7 @@ type Identity = { status: 'strong' | 'review' | 'insufficient'; source: string; 
 type Candidate = { candidateId: string; personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number; identity: Identity; quality: Quality; faceDetection: FaceDetection; rank: number; recommendedForReview: boolean; bestAvailable: boolean };
 type ReviewSelection = { personId: string; candidateId: string; approvalMode?: 'normal' | 'best_available'; bestAvailableReason?: string };
 type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null; selections: ReviewSelection[] | null };
-const MAX_APPROVED_APPLY = 5;
+const MAX_APPROVED_APPLY = 20;
 
 type Fetcher = (url: string, init?: RequestInit) => Promise<Response>;
 type HeaderMap = Record<string, string>;
@@ -228,10 +228,15 @@ function normalizedLicenseUrl(ext: any, license: string): string {
 function candidateFromMeta(e: Entry, qid: string, file: string, info: any, identity?: Identity, sourceScore = 0): Candidate | null {
   const ext = info?.extmetadata || {}; const license = cleanHtml(ext.LicenseShortName?.value || ext.UsageTerms?.value);
   const url = reqStr(info?.url); if (!url || !isAllowedLicense(license)) return null;
+  // An image without author/credit cannot enter a publishable candidate queue.
+  // Reject it during discovery, not after an otherwise complete bulk scan.
+  const creator = cleanHtml(ext.Artist?.value || ext.Credit?.value);
+  const credit = cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value);
+  if (!creator && !credit) return null;
   try { assertCommonsUrl(url); } catch { return null; }
   const commons = `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file.replace(/^File:/, '').replace(/ /g, '_'))}`;
   const commonsFileName = file.replace(/^File:/, ''); const personId = reqStr(e.person.id); const q = unavailableAnalysisQuality(Number(info.width || 0), Number(info.height || 0));
-  return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator: cleanHtml(ext.Artist?.value || ext.Credit?.value), credit: cleanHtml(ext.Credit?.value || ext.Attribution?.value || ext.Artist?.value), license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
+  return { candidateId: candidateIdFor(personId, commonsFileName), personId, personName: reqStr(e.person.name), sourceFile: e.file, personIndex: e.index, pointer: e.index === null ? '/' : `/${e.index}`, wikidataId: qid, commonsFileName, originalImageUrl: url, commonsPage: commons, creator, credit, license, licenseUrl: normalizedLicenseUrl(ext, license), width: Number(info.width || 0), height: Number(info.height || 0), approved: false, reason: 'Commons metadata with allowed license', score: 100 + sourceScore, identity: identity || { status: 'review', source: 'commons_name_search', wikidataId: qid, evidence: ['Conservative Commons filename match; requires explicit manual identity confirmation'] }, quality: q.quality, faceDetection: q.faceDetection, rank: 0, recommendedForReview: false, bestAvailable: false };
 }
 export async function fetchImageBufferWithRetry(url: string, fetcher: Fetcher = fetch, options: { timeoutMs?: number; sleepMs?: (ms: number) => Promise<void> } = {}): Promise<Uint8Array> {
   const timeoutMs = options.timeoutMs ?? DEFAULT_TIMEOUT_MS;
@@ -289,7 +294,30 @@ export async function buildCandidates(args: string[], fetcher: Fetcher = fetch):
       for (const src of found.files) { if (perPerson.length >= maxCandRaw) break; const norm = normalizeCommonsFileName(src.file).toLowerCase(); if (seen.has(norm)) continue; seen.add(norm); await sleep(120); const meta = await commonsMeta(src.file, fetcher); const c = candidateFromMeta(e, found.qid, src.file, meta, src.identity, src.sourceScore); if (c) perPerson.push(await analyzeCandidate(c, fetcher)); }
       if (perPerson.length) { candidates.push(...rankCandidates(perPerson)); processedPeople++; }
     } catch (err) { const message = (err as Error).message; lookupErrors.push({ personId: reqStr(e.person.id), personName: reqStr(e.person.name), message }); console.warn(`Skipping ${e.person.id}: ${message}`); } }
-  await writeJsonAtomic(CANDIDATES(), candidates); console.log(`Wrote ${candidates.length} candidates for ${processedPeople} people to ${path.relative(ROOT(), CANDIDATES())}`); console.log(`Lookup errors: ${lookupErrors.length}`); if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
+  // Scoped bulk jobs preserve all earlier reviewed candidates and approvals.
+  // A previously known candidate is never silently replaced by a fresh network result.
+  let combined = candidates;
+  if (args.includes('--merge-existing')) {
+    const previous = await readJson(CANDIDATES());
+    if (!Array.isArray(previous)) throw new Error('Existing people image candidate file must be an array');
+    const known = new Set<string>();
+    for (const item of previous) {
+      const id = reqStr((item as any)?.candidateId);
+      if (!id || known.has(id)) throw new Error('Existing image candidates have missing/duplicate candidateId');
+      known.add(id);
+    }
+    combined = [...previous];
+    for (const candidate of candidates) {
+      if (known.has(candidate.candidateId)) continue;
+      combined.push(candidate);
+      known.add(candidate.candidateId);
+    }
+    combined.sort((a, b) => reqStr(a.personId).localeCompare(reqStr(b.personId), 'nb') || Number(a.rank || 0) - Number(b.rank || 0) || reqStr(a.candidateId).localeCompare(reqStr(b.candidateId)));
+  }
+  await writeJsonAtomic(CANDIDATES(), combined);
+  console.log(`Wrote ${combined.length} total candidates, ${candidates.length} researched in this batch for ${processedPeople} people to ${path.relative(ROOT(), CANDIDATES())}`);
+  console.log(`Lookup errors: ${lookupErrors.length}`);
+  if (lookupErrors.length) for (const err of lookupErrors) console.log(`- ${err.personId}: ${err.message}`);
 }
 function validateCandidate(c: any, requireApproved = true): asserts c is Candidate {
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
@@ -342,7 +370,35 @@ function selectApplyCandidates(candidates: any[], args: string[]): ApplyPlan {
   return { selected, approvedIds, selections: null };
 }
 function extFromMime(mime: string): string { if (mime.includes('png')) return '.png'; if (mime.includes('webp')) return '.webp'; if (mime.includes('gif')) return '.gif'; return '.jpg'; }
-async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> { const res = await fetcher(url, { headers: { 'User-Agent': UA } }); if (!res.ok || !res.body) throw new Error(`Download failed ${res.status}`); const ext = extFromMime(res.headers.get('content-type') || 'image/jpeg'); const dest = destBase + ext; if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`); const tmp = `${dest}.${process.pid}.tmp`; try { await pipeline(res.body as any, createWriteStream(tmp, { flags: 'wx' })); await rename(tmp, dest); return path.relative(ROOT(), dest).replace(/\\/g, '/'); } catch (e) { await rm(tmp, { force: true }); throw e; } }
+async function download(url: string, destBase: string, fetcher: Fetcher): Promise<string> {
+  // Wikimedia Commons can throttle runs that download many originals. Respect
+  // Retry-After and retry only transient HTTP statuses; never bypass licensing.
+  let result: Response | undefined;
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const response = await fetcher(url, { headers: { 'User-Agent': UA, Accept: 'image/*,*/*' } });
+    if (response.ok && response.body) { result = response; break; }
+    const code = response.status;
+    const retryable = RETRY_STATUSES.has(code);
+    if (!retryable || attempt === 5) throw new Error(`Download failed HTTP ${code} for ${path.basename(destBase)} after ${attempt} attempt(s)`);
+    const retryMs = retryAfterMs(response.headers.get('retry-after')) ?? Math.min((code === 429 ? 8000 : 1500) * 2 ** (attempt - 1), 30_000);
+    await response.body?.cancel();
+    console.warn(`Commons returned HTTP ${code} for ${path.basename(destBase)}; retrying in ${retryMs} ms (attempt ${attempt}/5)`);
+    await sleep(retryMs);
+  }
+  if (!result?.body) throw new Error('No image body after retries');
+  const ext = extFromMime(result.headers.get('content-type') || 'image/jpeg');
+  const dest = destBase + ext;
+  if (await exists(dest)) throw new Error(`Refusing to overwrite existing image: ${dest}`);
+  const tmp = `${dest}.${process.pid}.tmp`;
+  try {
+    await pipeline(result.body as any, createWriteStream(tmp, { flags: 'wx' }));
+    await rename(tmp, dest);
+    return path.relative(ROOT(), dest).replace(/\\/g, '/');
+  } catch (e) {
+    await rm(tmp, { force: true });
+    throw e;
+  }
+}
 export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
@@ -369,6 +425,7 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
       console.log(`[dry-run] would apply ${c.personId} (${c.personName}) from ${c.commonsFileName} to ${plannedImage}`);
       continue;
     }
+    if (selected.length > 5) await sleep(1500); // Polite pacing for large Commons batches.
     const local = await download(c.originalImageUrl, imageBase, fetcher);
     if (/^https?:/.test(local)) throw new Error(`Internal error: external image URL generated for ${c.personId}`);
     e.person.image = local;

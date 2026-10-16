@@ -1,0 +1,81 @@
+name: Sync reviewed people portrait runtime
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - data/people/portrait_runtime_sync_request.json
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build:
+    name: Generate People shards and Place-open payloads
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Rebuild derived runtime from canonical source
+        run: |
+          set -euo pipefail
+          npm run place-open:build
+
+      - name: Confirm five selected portraits reached runtime
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const req = JSON.parse(fs.readFileSync('data/people/portrait_runtime_sync_request.json', 'utf8'));
+          const ids = req.person_ids || [];
+          if (req.schema !== 'history_go_people_portrait_runtime_sync_v1' || req.place_id !== 'det_norske_teatret' || ids.length !== 5) throw Error('Invalid runtime sync request');
+          const manifest = JSON.parse(fs.readFileSync('data/runtime/people-all.json', 'utf8'));
+          const people = manifest.files.flatMap(file => JSON.parse(fs.readFileSync(file, 'utf8')));
+          if (people.length !== 1434 || new Set(people.map(p => p.id)).size !== 1434) throw Error('People count or identity changed');
+          const dnt = JSON.parse(fs.readFileSync('data/runtime/place-open/det_norske_teatret.json', 'utf8'));
+          const national = JSON.parse(fs.readFileSync('data/runtime/place-open/nationaltheatret.json', 'utf8'));
+          for (const id of ids) {
+            const rows = people.filter(p => p.id === id);
+            const matches = dnt.people.filter(p => p.id === id);
+            if (rows.length !== 1 || matches.length !== 1) throw Error('Ambiguous person in runtime: ' + id);
+            const p = rows[0], linked = matches[0];
+            if (!p.image || p.cardImage !== p.image || !fs.existsSync(p.image) || p.imageMeta?.source !== 'wikimedia_commons') throw Error('Missing image in People runtime: ' + id);
+            if (linked.image !== p.image || linked.imageMeta?.candidateId !== p.imageMeta.candidateId) throw Error('Place-open image mismatch: ' + id);
+            if (id === 'alfred_maurstad' && national.people.find(q => q.id === id)?.image !== p.image) throw Error('Nationaltheatret image mismatch for Alfred');
+          }
+          console.log('Five portrait mappings and 1434 unique People IDs verified');
+          NODE
+
+      - name: Publish generated runtime as a draft PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch="automation/dnt-people-runtime-${{ github.run_id }}"
+          git diff --check
+          changed="$(git diff --name-only -- data/runtime)"
+          if [ -z "$changed" ]; then echo "Runtime already current."; exit 0; fi
+          while IFS= read -r file; do
+            case "$file" in
+              data/runtime/people-all.json|data/runtime/people-all/part-*.json|data/runtime/place-open/*.json) ;;
+              *) echo "Unexpected runtime change: $file" >&2; exit 1 ;;
+            esac
+          done <<< "$changed"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add data/runtime/people-all.json data/runtime/people-all data/runtime/place-open
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "build(runtime): synchronize reviewed people portrait assets"
+          git push --set-upstream origin HEAD
+          gh pr create --draft --base main --head "$branch" \
+            --title "Det Norske Teatret: synchronize five approved People portraits in runtime" \
+            --body "Deterministic generated People shards and Place-open media based on five published canonical portraits. Verified 1434 unique People, five DNT portraits, and Alfred Maurstad at Nationaltheatret. No quiz or Civication changes."

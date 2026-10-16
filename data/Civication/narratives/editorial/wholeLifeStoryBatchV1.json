@@ -1,6 +1,6 @@
 {
   "schema": "civication_whole_life_editorial_v1",
-  "version": 3,
+  "version": 4,
   "editorial_only": true,
   "status": "authored_not_registered",
   "purpose": "Sammenhengende liv der arbeid, privatliv, sosialt liv og kultur påvirker de samme fiktive menneskene.",
@@ -14,8 +14,13 @@
   },
   "activation": {
     "manifest_changed": false,
-    "reason": "NPC-kapitler deler én arbeidsdagskvote. Privatliv kan da utkonkurrere uavsluttede arbeidsbuer, og kapittelfremdrift kan stoppe uten en aktiv jobb. Privat døgnfremdrift må avklares i eksisterende dagmodell før registrering.",
-    "runtime_change_in_this_batch": false
+    "reason": "Dag- og leveringsblokkeringen er rettet og målrettet testet. De tre private buene forblir uregistrerte innholdsutkast; denne leveransen aktiverer ikke historiene.",
+    "runtime_change_in_this_batch": true,
+    "day_progression": "private: CivicationCalendar.dayIndex / min_days; work: CivicationWorkdayRuntime / min_workdays",
+    "daily_quota": "Én privat NPC-scene per kalenderdag, uavhengig av én jobb-NPC-scene per arbeidsdag.",
+    "verification": "tests/civication-private-npc-day-inbox.test.js",
+    "technical_blockers_resolved": true,
+    "content_approval": "rewritten_pending_reader_review"
   },
   "character_archetypes": [
     {
@@ -911,12 +916,13 @@
     "reviewed_baseline_scenes": 12,
     "previous_editorial_score_withdrawn": true,
     "character_profiles": "editorial_proposals_not_canonical_character_facts",
-    "current_revision": 3,
+    "current_revision": 4,
     "current_status": "rewritten_pending_reader_review",
     "original_status": "rejected_needs_rewrite",
     "rewrite_scope": "Alle tre nye buer er skrevet om fra motiv, hendelse og konsekvens. Den opprinnelige gjennomgangen bevares som historikk.",
     "person_model_review_date": "2026-10-16",
-    "person_model_scope": "Redaksjonelt grunnlag og tre kildeavgrensede profiler. Ingen nye historier eller runtime for personlighet/kunnskap. Steins arbeidsbue får tekstlig fullmaktsretting med samme ID-er, valg-ID-er, effekter, flagg og rollehendelse."
+    "person_model_scope": "Redaksjonelt grunnlag og tre kildeavgrensede profiler. Ingen nye historier eller runtime for personlighet/kunnskap. Steins arbeidsbue får tekstlig fullmaktsretting med samme ID-er, valg-ID-er, effekter, flagg og rollehendelse.",
+    "runtime_revision": "Privat dagfremdrift, turfordeling og normal innbokslevering virker også uten aktiv jobb. Historiene er ikke registrert i produksjonsmanifestet."
   },
   "authored_context": {
     "fictional": true,

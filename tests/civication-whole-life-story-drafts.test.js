@@ -57,6 +57,7 @@ function harness({ state = {}, backing = new Map(), day = 0 } = {}) {
       setState(patch) { Object.assign(state, patch); return state; }
     },
     CivicationCareerRoleResolver: { resolveCareerRoleScope: a => a?.role_key || "fagarbeider" },
+    CivicationCalendar: { getClock: () => ({ dayIndex: workday + 1 }) },
     CivicationWorkdayRuntime: {
       getWorkdayDayIndex: () => workday,
       hasActiveJob: () => true, isWorkdayCompletedToday: () => true

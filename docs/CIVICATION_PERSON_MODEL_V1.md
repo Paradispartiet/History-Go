@@ -142,4 +142,4 @@ En separat filkontroll slo opp alle **22 scenehenvisninger**, derav **3 med eksp
 | Sikkerhet og ansvarlighet | 5/5 | Spillfigur og fiktive NPC-er holdes adskilt fra brukerbiografi og History Go People. Kompetanse, fullmakt og ukjent bakgrunn skilles uttrykkelig. |
 | Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Eksisterende redaksjonell fil og runtime-eiere brukes; konkrete scene-/valgreferanser, avgrensninger og ukjente forhold er synlige. |
 
-**27/30 for personmodell og fullmaktsretting.** Vurderingen omfatter ikke produksjonsaktivering av de private historiene. PR-en inneholder fortsatt uregistrerte historieutkast med den tidligere separate vurderingen 23/30; dagfremdrift og innbokslevering må løses før de aktiveres.
+**27/30 for personmodell og fullmaktsretting.** Vurderingen omfatter ikke produksjonsaktivering av de private historiene. PR-en inneholder fortsatt uregistrerte historieutkast med den tidligere separate vurderingen 23/30; dagfremdrift og innbokslevering er senere rettet og målrettet testet i [revisjon 4](CIVICATION_PRIVATE_NPC_DAY_INBOX_V1.md). Historiene forblir uregistrerte; tekniske tester godkjenner ikke deres litterære kvalitet.
