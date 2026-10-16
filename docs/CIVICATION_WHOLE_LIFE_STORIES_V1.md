@@ -2,6 +2,8 @@
 
 Status: De tre underkjente buene er omskrevet som **uregistrerte innholdsutkast**. Aktivering i produksjonsinnboksen gjenstår. Den opprinnelige vurderingen på 4/5 og 25/30 er fortsatt trukket tilbake.
 
+Revisjon 3, 16. oktober 2026: [Personmodellen](CIVICATION_PERSON_MODEL_V1.md) avklarer felles begreper for spiller og NPC-er, kildeavgrensede profiler, ukjente opplysninger og spillerens kunnskap. Steins eksisterende arbeidsbue er samtidig rettet til fagarbeiderens handlingsrom. De tre private historieutkastene er ikke utvidet eller aktivert.
+
 Den tidligere versjonen er gjennomgått i [redaksjonell gjennomgang](CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md). Den rapporten gjelder commit `74b1d092876c0b8025cd82f2d6ae987f655ee86a` og bevares som historikk.
 
 ## Hvem personene og spilleren er
@@ -54,18 +56,20 @@ Scenekildene bruker eksisterende narrative-format og karakterlager:
 - [Frode](../data/Civication/narratives/leisure/frode_hele_livet.json)
 - [Inger](../data/Civication/narratives/leisure/inger_hele_livet.json)
 
-[Redaksjonell oversikt](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json) inneholder personenes katalogegenskaper, kompetansegrunnlag, rolle, mål, nye kontekstopplysninger og relasjon til spilleren. De øvrige ti-/seks-katalogprofilene beholder synlig status som forslag som trenger videre vurdering.
+[Redaksjonell oversikt](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json) inneholder personenes bakgrunn, egenskaper med styrker og begrensninger, kompetanse med kilde og avgrensning, verdikonflikter, roller, livssituasjon, mål, relasjon til spilleren og kunnskapsgrenser. Hver opplysning skiller mellom kataloggrunnlag, etablerte arbeidsscener, betingede valg, ny utkastfiksjon og redaksjonell tolkning. Ukjente forhold er uttrykkelig oppført. De øvrige katalogprofilene beholder status som forslag som trenger videre vurdering.
 
 ## Hva som er kontrollert og hva som gjenstår
 
-Én målrettet kjøring:
+Revisjon 3: De to målrettede filene `civication-npc-stein-role-story.test.js` og `civication-whole-life-story-drafts.test.js` bestod samlet **14/14** i én kjøring. Profilenes 22 scenehenvisninger og tre valgkoblinger er slått opp, og Steins mekanikkfelter er identiske med tidligere versjon. Se [personmodellens avgrensede vurdering](CIVICATION_PERSON_MODEL_V1.md) på 27/30. Dette endrer ikke aktiveringsstatusen eller den separate vurderingen av selve historieutkastene nedenfor.
+
+Tidligere kontroll av revisjon 2:
 `node --test tests/civication-whole-life-story-drafts.test.js` — 5/5 bestått.
 
 Den besøker alle 28 varianter gjennom faktisk kildeadapter, ChoiceDirector, DailyMailBuilder og NPC-lagring. Den kontrollerer blant annet at avslag ikke blir konsert-/pubdeltakelse, private bilder ikke gir reaksjonen på deling i kollegagruppa, og avslag på referanse ikke oppretter spillerens referansesamtale. Den kontrollerer også avslutninger og bevart aktøridentitet.
 
 Manuell gjennomgang av alle varianter har undersøkt motiv, etablerte opplysninger, spillerens handlingsrom og årsak til neste hendelse. Dette er en redaksjonell egenvurdering. Testresultatet er ikke bevis på kunstnerisk kvalitet.
 
-Produksjonsmanifestet er bevart. Eksisterende NPC-kapitler bruker en arbeidsdagskvote; privat fremdrift ved arbeidsledighet og samspill med innboksen er fortsatt en faktisk aktiveringsblokkering. De opprinnelige svakhetene i Steins arbeidsbue, blant annet teksten om sidestilte kolleger, er dokumentert og ikke endret i denne innholdsbolken.
+Produksjonsmanifestet er bevart. Eksisterende NPC-kapitler bruker en arbeidsdagskvote; privat fremdrift ved arbeidsledighet og samspill med innboksen er fortsatt en faktisk aktiveringsblokkering. Steins arbeidsbue er rettet: Spilleren gir observasjoner og forslag som fagarbeider, mens lederne avklarer utlån og bemanning. Den tidligere påstanden om sidestilte ledere er fjernet. Scene-ID-er, valg-ID-er, effekter, tillitsendringer, flagg, dagkrav og rollehendelse er bevart.
 
 Tillit, valg og scenehistorikk lagres. Reisetid, tidsbruk, billett og NPC-ens eksterne jobbsøknad er beskrevet i fiksjonen, ikke implementert som nye kalender-/økonomitransaksjoner. Ingen eksterne referansetelefoner eller bildedelinger er gjennomført.
 
