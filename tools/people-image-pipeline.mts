@@ -17,7 +17,8 @@ const UA = 'History-Go people-image-rights-pipeline/1.0 (https://github.com/Para
 type Person = Record<string, unknown> & { id?: string; name?: string; image?: string; cardImage?: string; wikidataId?: string; imageMeta?: Record<string, unknown> };
 type Entry = { file: string; abs: string; index: number | null; person: Person; container: unknown; mode: 'array' | 'people' | 'single' };
 type Identity = { status: 'strong' | 'review' | 'insufficient'; source: string; wikidataId: string; evidence: string[] };
-type Candidate = { candidateId: string; personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number; identity: Identity; quality: Quality; faceDetection: FaceDetection; rank: number; recommendedForReview: boolean; bestAvailable: boolean };
+type PortraitCrop = { x: number; y: number; width: number; height: number };
+type Candidate = { crop?: PortraitCrop; candidateId: string; personId: string; personName: string; sourceFile: string; personIndex: number | null; pointer: string; wikidataId: string; commonsFileName: string; originalImageUrl: string; commonsPage: string; creator: string; credit: string; license: string; licenseUrl: string; width: number; height: number; approved: boolean; reason: string; score: number; identity: Identity; quality: Quality; faceDetection: FaceDetection; rank: number; recommendedForReview: boolean; bestAvailable: boolean };
 type ReviewSelection = { personId: string; candidateId: string; approvalMode?: 'normal' | 'best_available'; bestAvailableReason?: string };
 type ApplyPlan = { selected: Candidate[]; approvedIds: string[] | null; selections: ReviewSelection[] | null };
 const MAX_APPROVED_APPLY = 20;
@@ -323,10 +324,44 @@ function validateCandidate(c: any, requireApproved = true): asserts c is Candida
   for (const k of ['personId','personName','sourceFile','wikidataId','commonsFileName','originalImageUrl','commonsPage','creator','credit','license','licenseUrl']) if (!reqStr(c[k])) throw new Error(`Candidate missing ${k}`);
   if (requireApproved && c.approved !== true) throw new Error(`Candidate ${c.personId} is not manually approved`);
   if (c.identity?.status === 'insufficient') throw new Error(`Candidate ${c.personId} has insufficient identity`);
+  if (c.crop && !validPortraitCrop(c.crop)) throw new Error(`Candidate ${c.personId} has invalid crop`);
   if (c.quality?.tier === 'unusable' || (Array.isArray(c.quality?.hardErrors) && c.quality.hardErrors.length)) throw new Error(`Candidate ${c.personId} has absolute quality errors`);
   if (!isAllowedLicense(c.license)) throw new Error(`Candidate ${c.personId} has disallowed license: ${c.license}`);
   if (!reqStr(c.creator || c.credit)) throw new Error(`Candidate ${c.personId} is missing attribution`);
   assertCommonsUrl(c.originalImageUrl); if (!c.commonsPage.startsWith('https://commons.wikimedia.org/wiki/File:')) throw new Error('Invalid Commons page');
+}
+function validPortraitCrop(crop: unknown): crop is PortraitCrop {
+  if (!isObj(crop)) return false;
+  const { x, y, width, height } = crop;
+  if (![x, y, width, height].every(v => typeof v === 'number' && Number.isFinite(v))) return false;
+  const [left, top, cropWidth, cropHeight] = [Number(x), Number(y), Number(width), Number(height)];
+  return left >= 0 && top >= 0 && cropWidth > 0 && cropHeight > 0
+    && left + cropWidth <= 1.000001 && top + cropHeight <= 1.000001
+    && cropWidth >= 0.1 && cropHeight >= 0.1;
+}
+
+async function applyPortraitCrop(localFile: string, crop: PortraitCrop): Promise<void> {
+  if (!validPortraitCrop(crop)) throw new Error('Invalid reviewed portrait crop');
+  // Normalize EXIF orientation first; crop coordinates refer to the upright source.
+  if (!/\.jpe?g$/i.test(localFile)) throw new Error('Reviewed crop currently requires a JPEG source');
+  const upright = await sharp(localFile, { failOn: 'error', limitInputPixels: 100_000_000 }).rotate().jpeg({ quality: 90 }).toBuffer();
+  const dims = await sharp(upright).metadata();
+  if (!dims.width || !dims.height) throw new Error('Missing dimensions for portrait crop');
+  const left = Math.floor(crop.x * dims.width);
+  const top = Math.floor(crop.y * dims.height);
+  const width = Math.floor(crop.width * dims.width);
+  const height = Math.floor(crop.height * dims.height);
+  if (width < 180 || height < 250 || left + width > dims.width || top + height > dims.height) {
+    throw new Error('Portrait crop out of bounds or too small');
+  }
+  const temporaryFile = localFile + '.crop.jpg';
+  try {
+    await sharp(upright).extract({ left, top, width, height }).jpeg({ quality: 88, mozjpeg: true }).toFile(temporaryFile);
+    await rename(temporaryFile, localFile);
+  } catch (error) {
+    await rm(temporaryFile, { force: true });
+    throw error;
+  }
 }
 function parseReviewPayload(args: string[]): ReviewSelection[] | null {
   const arg = args.find(a => a.startsWith('--review-payload=')); if (!arg) return null;
@@ -399,7 +434,7 @@ async function download(url: string, destBase: string, fetcher: Fetcher): Promis
     throw e;
   }
 }
-export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
+export async function regenerateAttributions(entries?: Entry[], write = false): Promise<void> { const sourceEntries = entries ?? await loadPeople(); const rows = sourceEntries.filter(e => reqStr(e.person.image) && isObj(e.person.imageMeta)).map(e => ({ personId: reqStr(e.person.id), name: reqStr(e.person.name), file: reqStr(e.person.image), source: reqStr(e.person.imageMeta?.source), sourcePage: reqStr(e.person.imageMeta?.sourcePage), creator: reqStr(e.person.imageMeta?.creator), credit: reqStr(e.person.imageMeta?.credit), license: reqStr(e.person.imageMeta?.license), licenseUrl: reqStr(e.person.imageMeta?.licenseUrl), ...(reqStr(e.person.imageMeta?.modification) ? { modification: reqStr(e.person.imageMeta?.modification) } : {}) })).filter(r => ['wikimedia_commons', 'history_go_editorial_illustration'].includes(r.source)).sort((a,b) => a.personId.localeCompare(b.personId) || a.file.localeCompare(b.file)); const unique = Array.from(new Map(rows.map(r => [`${r.personId}\0${r.file}`, r])).values()); if (write) await writeJsonAtomic(ATTRIBUTIONS(), unique); }
 export async function applyCandidates(args: string[], fetcher: Fetcher = fetch): Promise<void> {
   const write = args.includes('--write');
   const candidateJson = await readJson(CANDIDATES());
@@ -427,11 +462,12 @@ export async function applyCandidates(args: string[], fetcher: Fetcher = fetch):
     }
     if (selected.length > 5) await sleep(1500); // Polite pacing for large Commons batches.
     const local = await download(c.originalImageUrl, imageBase, fetcher);
+    if (c.crop) await applyPortraitCrop(local, c.crop);
     if (/^https?:/.test(local)) throw new Error(`Internal error: external image URL generated for ${c.personId}`);
     e.person.image = local;
     e.person.cardImage = local;
     e.person.wikidataId = c.wikidataId;
-    e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved', candidateId: c.candidateId, approvalMode: selections?.find(s => s.candidateId === c.candidateId)?.approvalMode || 'legacy' };
+    e.person.imageMeta = { source: 'wikimedia_commons', sourcePage: c.commonsPage, creator: c.creator, credit: c.credit, license: c.license, licenseUrl: c.licenseUrl, ...(c.crop ? { modification: 'Individual portrait cropped from the credited source photograph', crop: c.crop } : {}), retrievedAt: new Date().toISOString().slice(0,10), reviewStatus: 'manually_approved', candidateId: c.candidateId, approvalMode: selections?.find(s => s.candidateId === c.candidateId)?.approvalMode || 'legacy' };
     changed.add(e.abs);
   }
   console.log(JSON.stringify({ mode: write ? 'write' : 'dry-run', selected: planned }, null, 2));
