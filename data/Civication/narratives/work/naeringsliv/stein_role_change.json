@@ -20,37 +20,37 @@
       "from": "Stein Mæland",
       "subject": "Stein vil omprioritere skiftet",
       "situation": [
-        "Stein leder naboavdelingen. Han ber deg gi fra deg en erfaren medarbeider i to dager, selv om ditt eget skift ligger etter.",
-        "Han viser til en ny leveringsfrist, men sier lite om hvem som skal ta igjen arbeidet hos dere.",
-        "Dere har vært kolleger lenge nok til å vite at dette ikke bare er et spørsmål om tall."
+        "Stein leder naboavdelingen og vil be skiftlederen din om å låne en erfaren operatør i to dager. Før han tar saken videre, spør han deg som fagarbeider hvilke oppgaver på linjen som vil bli berørt.",
+        "Han viser til en ny leveringsfrist. Ditt eget skift ligger etter, og du kjenner arbeidet som fortsatt må gjøres hos dere.",
+        "Du kan beskrive belastningen og foreslå alternativer. Lederne må avklare om noen skal flyttes, og hvem som i så fall dekker oppgavene."
       ],
       "choices": [
         {
           "id": "A",
-          "label": "Forklar konsekvensene og foreslå en tidsavgrenset løsning.",
+          "label": "Beskriv oppgavene som blir stående, og foreslå at lederne vurderer kortere utlån.",
           "effect": 1,
           "tags": [
             "stein_peer_respect"
           ],
-          "feedback": "Stein får en realistisk plan, men må gi fra seg noe av tidsgevinsten.",
+          "feedback": "Stein tar observasjonene og forslaget med til skiftlederen. Ingen bemanningsendring er avtalt.",
           "npc_response": {
             "trust_delta": 2,
             "title": "Stein husker den konkrete løsningen",
-            "line": "Du sa tydelig hva ditt skift kunne tåle, og ga meg en mulighet til å svare ordentlig."
+            "line": "Da har jeg konkrete oppgaver å vise til når jeg snakker med skiftlederen din."
           }
         },
         {
           "id": "B",
-          "label": "Avvis forespørselen uten å diskutere alternativer.",
+          "label": "Be Stein ta bemanningsspørsmålet med skiftlederen uten innspill fra deg.",
           "effect": 0,
           "tags": [
             "stein_peer_distance"
           ],
-          "feedback": "Du beskytter skiftet ditt, men Stein opplever svaret som en avvisning.",
+          "feedback": "Du gir ingen opplysninger nå. Stein må ta forespørselen videre til skiftlederen; svaret ditt avgjør ikke bemanningen.",
           "npc_response": {
             "trust_delta": -2,
             "title": "Stein husker avslaget",
-            "line": "Du hadde grunn til å si nei, men du ville ikke høre hva som sto på spill for oss."
+            "line": "Jeg tar det med skiftlederen. Jeg hadde håpet å få høre hva du har sett på linjen først."
           }
         }
       ],
@@ -195,9 +195,9 @@
         ]
       },
       "situation": [
-        "På neste koordineringsmøte legger Stein frem en plan som påvirker begge avdelingene.",
-        "Tidligere satt dere som sidestilte kolleger. Nå har han et annet ansvar, mens den gamle uenigheten fortsatt finnes.",
-        "Stein tar deg til side før møtet."
+        "Stein har invitert deg til koordineringsmøtet for å beskrive oppgavene på linjen. Som avdelingsleder legger han frem en plan som påvirker begge avdelingene.",
+        "Du deltar fortsatt som fagarbeider. Stein har fått større ansvar, og belastningen du kjente fra skiftet, er ennå ikke avklart.",
+        "Før møtet spør Stein om du har observasjoner til planen. Lederne skal avgjøre prioriteringen."
       ],
       "npc_story": {
         "kind": "npc_role_story_v1",
@@ -216,12 +216,12 @@
       "choices": [
         {
           "id": "A",
-          "label": "Gå gjennom belastningen for begge skift og foreslå en justering.",
+          "label": "Beskriv belastningen du kjenner fra eget skift, og foreslå en justering til vurdering.",
           "effect": 1,
           "tags": [
             "stein_followup_dialogue"
           ],
-          "feedback": "Stein må forklare prioriteringen sin på en måte som tåler motargumenter.",
+          "feedback": "Møtet får konkrete observasjoner fra linjen. Stein og de andre lederne må vurdere justeringen før de beslutter bemanningen.",
           "npc_response": {
             "trust_delta": 1,
             "title": "Stein svarer på en konkret innvending",
@@ -230,12 +230,12 @@
         },
         {
           "id": "B",
-          "label": "Godta den nye planen uten ytterligere diskusjon.",
+          "label": "Si at du ikke har flere innspill til planen nå.",
           "effect": 0,
           "tags": [
             "stein_followup_silence"
           ],
-          "feedback": "Møtet går raskt, men belastningen på ditt skift er ikke avklart.",
+          "feedback": "Du gir ingen nye innspill. Belastningen på skiftet er fortsatt uavklart, og tausheten din er ingen godkjenning av planen.",
           "npc_response": {
             "trust_delta": -1,
             "title": "Stein registrerer tausheten",

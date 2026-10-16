@@ -1,0 +1,519 @@
+{
+  "schema": "civication_narrative_stream_v1",
+  "id": "inger_hele_livet_stream",
+  "type": "leisure",
+  "title": "Inger: En referanse og et jobbtilbud",
+  "sociological_theme": "faglig_verdi_og_valg_av_arbeidsliv",
+  "applies_when": {
+    "requires_flags": [
+      "inger_role_stage4"
+    ]
+  },
+  "time_slots": [
+    "leisure"
+  ],
+  "storylets": [
+    {
+      "id": "inger_rw_referanse",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Inger har søkt en annen jobb",
+      "situation": [
+        "Inger forteller at hun har søkt en avdelingslederstilling i en annen produksjonsbedrift og er innkalt til intervju. Etter omorganiseringen savner hun muligheten til å beslutte bemanning og budsjett. Hun vil undersøke om den nye jobben gir henne det ansvaret igjen.",
+        "Bedriften har to anlegg. Hun vet ennå ikke hvor mye hun må reise mellom dem. Hun ønsker å fortsette å bo der hun bor. Nå spør hun om arbeidsgiveren kan ringe deg som referanse, siden du kjenner arbeidet med nattskiftet og vedlikeholdsrutinen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_role_stage4"
+        ]
+      },
+      "choices": [
+        {
+          "id": "ja",
+          "label": "Si ja til å være referanse for det du selv kjenner fra arbeidet.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_ja"
+          ],
+          "feedback": "Inger gir arbeidsgiveren nummeret ditt og sier hvilke saker dere har vært i kontakt om.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Inger har søkt en annen jobb",
+            "line": "«Takk. Jeg sier at du kjenner de sakene, ikke hele arbeidet mitt.»"
+          }
+        },
+        {
+          "id": "nei",
+          "label": "Si at du ikke ønsker å være referanse.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_nei"
+          ],
+          "feedback": "Inger må bruke en annen referanse. Du påtar deg ikke oppgaven.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Inger har søkt en annen jobb",
+            "line": "«Greit. Da spør jeg Roger, som har jobbet med bemanningssaken.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder"
+      },
+      "adds_flags": [
+        "inger_rw_seen_referanse"
+      ]
+    },
+    {
+      "id": "inger_rw_telefon",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Hva vil du fortelle arbeidsgiveren?",
+      "situation": [
+        "Arbeidsgiveren ringer som avtalt og spør hva Inger har bidratt med. Du husker at hun kjente bakgrunnen for vedlikeholdsrutinen, selv etter at hun mistet myndigheten til å godkjenne den.",
+        "Du husker også forslaget hennes om lavere nattbemanning. Beregningen tok ikke med hvor ofte nattskiftet hjalp morgenlaget ved maskinstans. Du ble bedt om eksempler før forslaget skulle vurderes videre."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_ja"
+        ]
+      },
+      "choices": [
+        {
+          "id": "fag",
+          "label": "Beskriv fagkunnskapen hennes i saken om vedlikeholdsrutinen.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_fag"
+          ],
+          "feedback": "Du gir et konkret eksempel på hva Inger visste. Du uttaler deg ikke om hele lederarbeidet hennes.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hva vil du fortelle arbeidsgiveren?",
+            "line": "Inger får senere vite at arbeidsgiveren har snakket med deg. «Takk for at du tok telefonen.»"
+          }
+        },
+        {
+          "id": "helhet",
+          "label": "Beskriv både fagkunnskapen og det som manglet i bemanningsberegningen.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_begge"
+          ],
+          "feedback": "Du forteller om to forhold du kjenner: kunnskapen om rutinen og begrensningen i bemanningsforslaget.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hva vil du fortelle arbeidsgiveren?",
+            "line": "Inger får senere vite at arbeidsgiveren har snakket med deg. «De ville høre mer om bemanningsforslaget.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_referanse",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_telefon"
+      ]
+    },
+    {
+      "id": "inger_rw_annen_referanse",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Roger tok referansesamtalen",
+      "situation": [
+        "Du takket nei til å være referanse. Inger forteller senere at Roger sa ja og tok samtalen. Hun har gjennomført intervjuet og venter på svar.",
+        "Hun sier at den nye bedriften vil ha en leder som følger opp begge anleggene. Hvor mye reising det innebærer, skal avklares før hun tar stilling til noe tilbud."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_nei"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Ønsk henne lykke til med svaret.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_venter_uten_referanse"
+          ],
+          "feedback": "Du svarer på det hun forteller. Du har ikke gitt noen referanse.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Roger tok referansesamtalen",
+            "line": "«Takk. Jeg får vite mer når de ringer igjen.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_referanse",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_annen_referanse"
+      ]
+    },
+    {
+      "id": "inger_rw_etter_fagreferansen",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Tilbudet innebærer mer reising enn hun ønsket",
+      "situation": [
+        "Inger har fått tilbud om avdelingslederstillingen. Arbeidsgiveren har vist til erfaringen hennes og de konkrete opplysningene de fikk om fagkunnskapen. Tilbudet innebærer at hun skal være på det andre anlegget tre dager i uka.",
+        "Hun forteller at reisen dit vil ta godt over en time hver vei. Det gir henne større ansvar, men mindre tid hjemme. Hun ber om et par dager til å svare arbeidsgiveren."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_fag"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les det hun forteller om tilbudet.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_tilbud_fag"
+          ],
+          "feedback": "Inger undersøker arbeidsdagen tilbudet faktisk innebærer før hun svarer.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Tilbudet innebærer mer reising enn hun ønsket",
+            "line": "«Jeg ville ha mer ansvar. Jeg må se om jeg vil ha akkurat denne hverdagen også.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_telefon",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_etter_fagreferansen"
+      ]
+    },
+    {
+      "id": "inger_rw_etter_helreferansen",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Inger spør om bemanningsforslaget",
+      "situation": [
+        "Inger har fått tilbud om stillingen, men arbeidsgiveren spurte i intervjuet om forslaget om lavere nattbemanning. Hun spør deg hva du fortalte. Du beskrev det som et forslag med mangler i beregningen, ikke som et vedtatt kutt.",
+        "Tilbudet innebærer dessuten tre dager i uka på det andre anlegget, med godt over en times reise hver vei. Det er mer reising enn Inger hadde håpet."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_begge"
+        ]
+      },
+      "choices": [
+        {
+          "id": "forklar",
+          "label": "Forklar nøyaktig hvilke opplysninger du ga om forslaget.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_avklart"
+          ],
+          "feedback": "Du gjentar skillet mellom beregningen og en vedtatt endring. Inger kan være uenig i vurderingen, men vet hva du faktisk sa.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Inger spør om bemanningsforslaget",
+            "line": "«Jeg skulle gjerne gitt deg resten av grunnlaget først. Nå vet jeg i hvert fall hva de fikk høre.»"
+          }
+        },
+        {
+          "id": "vis",
+          "label": "Vis til den samme saken og si at du står for beskrivelsen du ga.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_referanse_uenighet"
+          ],
+          "feedback": "Du går ikke gjennom referansesamtalen på nytt. Inger vet at du ikke vil endre vurderingen for å hjelpe søknaden.",
+          "npc_response": {
+            "trust_delta": -1,
+            "title": "Inger spør om bemanningsforslaget",
+            "line": "«Jeg mener bildet ble for smalt. Men jeg skjønner at du står for det.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_telefon",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_etter_helreferansen"
+      ]
+    },
+    {
+      "id": "inger_rw_tilbud_uten_deg",
+      "message_type": "people",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Et tilbud du ikke bidro til å vurdere",
+      "situation": [
+        "Inger forteller at hun har fått tilbud om stillingen. Roger var referanse. Du kjenner ikke hva han sa i samtalen, og Inger ber deg ikke vurdere det.",
+        "Den nye arbeidsdagen innebærer tre dager i uka på det andre anlegget, med godt over en times reise hver vei. Inger har bedt om tid til å svare. Hun vil ha lederansvaret, men hadde håpet på mindre reising."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_venter_uten_referanse"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les meldingen om tilbudet.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_tilbud_uten_deg"
+          ],
+          "feedback": "Inger vurderer tilbudet selv. Du har ikke deltatt i referansesamtalene.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et tilbud du ikke bidro til å vurdere",
+            "line": "«Jeg skal regne på hvor mye av uka som går på veien før jeg svarer.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_annen_referanse",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_tilbud_uten_deg"
+      ]
+    },
+    {
+      "id": "inger_rw_svar_fag",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Inger takket nei",
+      "situation": [
+        "Inger har takket nei til jobben. Hun sier at hun kunne akseptert stillingen hvis hoveddelen av arbeidet lå på det nærmeste anlegget. Arbeidsgiveren kunne ikke tilby det.",
+        "Hun blir derfor i den nåværende jobben. Du ga et konkret eksempel på fagkunnskapen hennes, og hun takker for referansen selv om hun ikke tok stillingen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_tilbud_fag"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les svaret hennes.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_avsluttet_fag"
+          ],
+          "feedback": "Jobbsøknaden er avsluttet. Inger beholder den nåværende stillingen.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Inger takket nei",
+            "line": "«Det var godt å få et tilbud. Jeg vil likevel ikke bruke så mye av uka på reising.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_etter_fagreferansen",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_svar_fag",
+        "inger_rw_finished"
+      ]
+    },
+    {
+      "id": "inger_rw_svar_avklart",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Et nei til jobben, ikke til referansen",
+      "situation": [
+        "Inger har takket nei til stillingen på grunn av reisebelastningen. Arbeidsgiveren kunne ikke redusere antallet dager på det andre anlegget. Hun blir i den nåværende jobben.",
+        "Hun viser også til samtalen om referansen. Dere vurderer bemanningsforslaget ulikt, men hun vet nå hvilke konkrete forhold du beskrev. Hun takker for at du tok telefonen."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_avklart"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les meldingen hennes.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_avsluttet_avklart"
+          ],
+          "feedback": "Jobbsøknaden er avsluttet. Uenigheten om beregningen er kjent og blir ikke skrevet om til enighet.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Et nei til jobben, ikke til referansen",
+            "line": "«Vi får ta resten av bemanningssaken der den hører hjemme.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_etter_helreferansen",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_svar_avklart",
+        "inger_rw_finished"
+      ]
+    },
+    {
+      "id": "inger_rw_svar_uenighet",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Hun blir, og uenigheten blir med",
+      "situation": [
+        "Inger har takket nei til jobben fordi arbeidsgiveren ikke kunne redusere reisingen mellom anleggene. Hun blir i den nåværende stillingen.",
+        "Hun gir deg beskjed om utfallet, men tar ikke opp referansen igjen. Dere er fortsatt uenige om hvordan bemanningsforslaget ble beskrevet. Søknaden ga henne et alternativ å vurdere, men reparerte ikke den uenigheten."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_referanse_uenighet"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les beskjeden.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_avsluttet_uenighet"
+          ],
+          "feedback": "Du kjenner utfallet av søknaden. Det er ikke avtalt noen ny samtale mellom dere.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Hun blir, og uenigheten blir med",
+            "line": "«Jeg blir her. Da vet du det.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_etter_helreferansen",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_svar_uenighet",
+        "inger_rw_finished"
+      ]
+    },
+    {
+      "id": "inger_rw_svar_uten_deg",
+      "message_type": "consequence",
+      "time_slot": [
+        "leisure"
+      ],
+      "from": "Inger Holm",
+      "subject": "Søknaden ble hennes egen beslutning",
+      "situation": [
+        "Inger forteller at hun har takket nei til tilbudet. Hun ønsket større ansvar, men arbeidsgiveren kunne ikke redusere reisingen mellom de to anleggene.",
+        "Hun fortsetter i den nåværende jobben. Du takket nei til referanseoppgaven og deltok ikke i vurderingen av tilbudet. Hun har likevel valgt å fortelle deg hvordan det gikk."
+      ],
+      "applies_when": {
+        "flags_all": [
+          "inger_rw_tilbud_uten_deg"
+        ]
+      },
+      "choices": [
+        {
+          "id": "lest",
+          "label": "Les meldingen.",
+          "effect": 0,
+          "tags": [
+            "inger_rw_avsluttet_uten_deg"
+          ],
+          "feedback": "Du får vite hva hun besluttet uten å bli gjort til deltaker i referansesamtalen.",
+          "npc_response": {
+            "trust_delta": 0,
+            "title": "Søknaden ble hennes egen beslutning",
+            "line": "«De må finne en annen til stillingen. Jeg blir her foreløpig.»"
+          }
+        }
+      ],
+      "npc_story": {
+        "kind": "npc_role_story_v1",
+        "npc_id": "inger_avdelingsleder",
+        "requires_role_ref": "naeringsliv/mellomleder",
+        "available_after": {
+          "storylet_id": "inger_rw_tilbud_uten_deg",
+          "min_days": 1
+        }
+      },
+      "adds_flags": [
+        "inger_rw_seen_svar_uten_deg",
+        "inger_rw_finished"
+      ]
+    }
+  ]
+}

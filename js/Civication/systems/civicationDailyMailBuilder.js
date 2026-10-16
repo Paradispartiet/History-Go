@@ -104,6 +104,13 @@
       .slice(0, 80);
   }
 
+  function calendarDay() {
+    const raw = window.CivicationCalendar?.getClock?.()?.dayIndex;
+    if (raw == null || raw === "") return null;
+    const day = Number(raw);
+    return Number.isInteger(day) && day > 0 ? day : null;
+  }
+
   function todayKey() {
     return new Date().toISOString().slice(0, 10);
   }
@@ -1361,9 +1368,11 @@
       ? `__run_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}`
       : "";
     const roleScope = resolveRoleScope(active);
+    const hasActiveJob = window.CivicationWorkdayRuntime?.hasActiveJob?.(active)
+      ?? !!norm(active?.career_id);
     const program = await loadJson(DAY_PROGRAM_PATH) || defaultProgram();
-    const plan = await loadJson(getPlanPath(active));
-    const pool = await loadCatalogMails(active);
+    const plan = hasActiveJob ? await loadJson(getPlanPath(active)) : null;
+    const pool = hasActiveJob ? await loadCatalogMails(active) : [];
     const sceneCatalog = /** @type {any} */ (window.CivicationSceneCatalog);
     const narrativeSourceAdapter = sceneCatalog?.getSourceAdapter?.("narrative") || null;
     const narrativeState = getNarrativeState(state);
@@ -1378,7 +1387,7 @@
       updated_at: new Date().toISOString()
     };
     setState({ [NARRATIVE_KEY]: nextNarrativeState });
-    const plannedPrimary = await getPlannedPrimary(active, state);
+    const plannedPrimary = hasActiveJob ? await getPlannedPrimary(active, state) : null;
     const usedSourceIds = consumedSet(state);
     // Dagens planmail eier sin tråd: er den en case-variant, skal ingen annen
     // variant av samme case kunne plukkes fra katalogen samme dag.
@@ -1402,8 +1411,6 @@
 
     // Har spilleren en aktiv jobb? Da skal morgenen lede til «Gå til jobb», og
     // jobbinnhold skal kun fylle arbeidsfasene — ikke de private døgnfasene.
-    const hasActiveJob = window.CivicationWorkdayRuntime?.hasActiveJob?.(active)
-      ?? !!norm(active?.career_id);
     let goToWorkInjected = false;
 
     // 4G-A: private fasemaler er en registrert kildeadapter. Daily kjenner ikke
@@ -1414,10 +1421,39 @@
       typeof sceneCatalog?.getSourceScenes === "function" &&
       !!sceneCatalog?.getSourceAdapter?.("private");
 
+    async function narrativeForSlot(phase, slot, npcOnly = false) {
+      if (typeof sceneCatalog?.getSourceScenes !== "function" || !narrativeSourceAdapter) return null;
+      const scenes = await sceneCatalog.getSourceScenes("narrative", {
+        mode: "slot", phaseId: norm(phase?.id), phase, slot, active, state,
+        narrativeState: nextNarrativeState,
+        candidate_stream_ids: candidateNarrativeStreamIds,
+        used_storylet_keys: [...answeredNarrativeStorylets, ...queuedNarrativeStorylets],
+        exclude_work_streams: isPrivatePhase(phase?.id),
+        npc_only: npcOnly,
+        date, ordinal,
+        consumer: "daily_mail_builder_narrative_slot"
+      });
+      const event = Array.isArray(scenes) ? scenes[0] || null : null;
+      if (event) queuedNarrativeStorylets.add(`${norm(event.narrative_stream_id)}::${norm(event.narrative_storylet_id)}`);
+      return event;
+    }
+
     for (const phase of phases) {
       const phaseId = norm(phase?.id || "morning");
       const privatePhase = isPrivatePhase(phaseId);
       const slots = Array.isArray(phase?.mail_slots) ? phase.mail_slots : [];
+      if (!hasActiveJob && !privatePhase) continue;
+
+      // Without a job this queue carries only ongoing NPC correspondence. The
+      // existing unemployed life-mail loop remains responsible for other content.
+      if (!hasActiveJob) {
+        const event = await narrativeForSlot(phase, { slot: "private_npc" }, true);
+        if (event) {
+          ordinal += 1;
+          items.push({ status: "queued", phase: phaseId, slot: "private_npc", event });
+        }
+        continue;
+      }
 
       // Morgenens første melding er overgangen til arbeidsdag (ikke en case-mail).
       if (phaseId === "morning" && hasActiveJob && !goToWorkInjected) {
@@ -1438,7 +1474,8 @@
       if (privatePhase && usePrivateSourceAdapter && phaseId !== "day_end") {
         const skipMorningContent = phaseId === "morning" && hasActiveJob;
         if (!skipMorningContent) {
-          const privateScenes = await sceneCatalog.getSourceScenes("private", {
+          const narrativeEvent = await narrativeForSlot(phase, { slot: "private_npc" }, true);
+          const privateScenes = narrativeEvent ? [narrativeEvent] : await sceneCatalog.getSourceScenes("private", {
             phaseId,
             active,
             date,
@@ -1482,28 +1519,8 @@
             continue;
           }
 
-          const narrativeUsed = new Set([...answeredNarrativeStorylets, ...queuedNarrativeStorylets]);
-          const narrativeScenes = typeof sceneCatalog?.getSourceScenes === "function" && narrativeSourceAdapter
-            ? await sceneCatalog.getSourceScenes("narrative", {
-              mode: "slot",
-              phaseId,
-              phase,
-              slot,
-              active,
-              state,
-              narrativeState: nextNarrativeState,
-              candidate_stream_ids: candidateNarrativeStreamIds,
-              used_storylet_keys: [...narrativeUsed],
-              exclude_work_streams: privatePhase,
-              date,
-              ordinal,
-              consumer: "daily_mail_builder_narrative_slot"
-            })
-            : [];
-          const narrativeEvent = Array.isArray(narrativeScenes) ? narrativeScenes[0] || null : null;
+          const narrativeEvent = await narrativeForSlot(phase, slot);
           if (narrativeEvent) {
-            const storyletKey = `${norm(narrativeEvent.narrative_stream_id)}::${norm(narrativeEvent.narrative_storylet_id)}`;
-            queuedNarrativeStorylets.add(storyletKey);
             items.push({ status: "queued", phase: phaseId, slot: norm(slot?.slot || slot?.type), event: narrativeEvent });
             continue;
           }
@@ -1541,6 +1558,7 @@
     return {
       version: 1,
       date,
+      calendar_day: calendarDay(),
       role_scope: roleScope,
       role_id: norm(active?.role_id),
       career_id: norm(active?.career_id),
@@ -1619,6 +1637,7 @@
     const reusable = existing &&
       existing.date === date &&
       existing.role_scope === roleScope &&
+      (calendarDay() === null || existing.calendar_day == null || existing.calendar_day === calendarDay()) &&
       Array.isArray(existing.items) &&
       existing.items.length &&
       options.forceNew !== true;
@@ -1842,7 +1861,6 @@
 
   async function enqueuePhaseBundle(engine, options = {}) {
     const active = options.active || getActive();
-    if (!active) return { enqueued: false, reason: "no_active_role" };
     const runtime = await ensureRuntime(active, options);
     const phase = norm(options.phase || window.CivicationCalendar?.getPhase?.() || "morning");
     const limit = Math.max(1, Math.min(5, Number(options.limit || 5)));
@@ -1880,7 +1898,6 @@
 
   async function enqueueNext(engine, options = {}) {
     const active = options.active || getActive();
-    if (!active) return { enqueued: false, reason: "no_active_role" };
     if (!options.ignorePending && hasPending(engine)) return { enqueued: false, reason: "pending_exists" };
 
     const runtime = await ensureRuntime(active, options);
@@ -2027,6 +2044,7 @@
             // Narrative stage scheduling uses the real Civication workday index,
             // not wall-clock elapsed time or an extra storage key.
             answered_workday_day: Number(window.CivicationWorkdayRuntime?.getWorkdayDayIndex?.() ?? -1),
+            answered_calendar_day: calendarDay(),
             updated_at: new Date().toISOString()
           }
         },
@@ -2193,9 +2211,9 @@
       const active = getActive();
       const skipDaily = opts && opts.skipDailyMailBuilder === true;
 
-      if (active && !skipDaily && !hasPending(this)) {
+      if (!skipDaily && !hasPending(this)) {
         const result = await enqueueNext(this, { active, forceNew: opts.forceNewDailyMail === true });
-        if (result?.enqueued || result?.reason === "day_complete") return result;
+        if (result?.enqueued || (active && result?.reason === "day_complete")) return result;
       }
 
       return previousOnAppOpen.call(this, opts);
@@ -2208,7 +2226,6 @@
   async function startToday(options = {}) {
     const engine = options.engine || window.HG_CiviEngine || null;
     const active = options.active || getActive();
-    if (!active) return { ok: false, reason: "no_active_role" };
     const runtime = await ensureRuntime(active, { forceNew: options.forceNew === true });
     if (options.enqueue === false) return { ok: true, runtime };
     const enq = await enqueueNext(engine, { active, ignorePending: options.ignorePending === true });
