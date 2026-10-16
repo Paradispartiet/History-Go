@@ -425,3 +425,28 @@ for (const [args, message] of [
     assert.equal(await readFile('data/people/people_image_candidates.json','utf8'), before, 'candidate file remains unchanged after write');
   });
 }
+
+
+{
+  // Cropping one documented sitter must yield a genuine single-person local
+  // derivative, not leave the original multi-person image on the Person card.
+  const dir = await fixture();
+  await withCwd(dir, async () => {
+    const src = await sharp({ create: { width: 1000, height: 1200, channels: 3,
+      background: { r: 95, g: 125, b: 140 } } }).jpeg().toBuffer();
+    const selection = candidate({
+      crop: { x: 0.1, y: 0.2, width: 0.5, height: 0.5 }
+    });
+    await writeFile('data/people/people_image_candidates.json', JSON.stringify([selection]));
+    await applyCandidates(['--write'], async () =>
+      new Response(new Uint8Array(src), { headers: { 'content-type': 'image/jpeg' } }));
+    const meta = await sharp('bilder/kort/people/ada.jpg').metadata();
+    assert.equal(meta.width, 500, 'reviewed crop width');
+    assert.equal(meta.height, 600, 'reviewed crop height');
+    const person = JSON.parse(await readFile('data/people/folder/array.json', 'utf8')).people[0];
+    assert.match(person.imageMeta.modification, /cropped/i);
+    assert.deepEqual(person.imageMeta.crop, selection.crop);
+    const credits = JSON.parse(await readFile('data/people/people_image_attributions.json', 'utf8'));
+    assert.match(credits[0].modification, /cropped/i, 'disclose the adaptation in credits');
+  });
+}
