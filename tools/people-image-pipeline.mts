@@ -333,9 +333,10 @@ function validateCandidate(c: any, requireApproved = true): asserts c is Candida
 function validPortraitCrop(crop: unknown): crop is PortraitCrop {
   if (!isObj(crop)) return false;
   const { x, y, width, height } = crop;
-  return [x, y, width, height].every(v => typeof v === 'number' && Number.isFinite(v))
-    && x >= 0 && y >= 0 && width > 0 && height > 0
-    && x + width <= 1.000001 && y + height <= 1.000001
+  if (![x, y, width, height].every(v => typeof v === 'number' && Number.isFinite(v))) return false;
+  const [left, top, cropWidth, cropHeight] = [Number(x), Number(y), Number(width), Number(height)];
+  return left >= 0 && top >= 0 && cropWidth > 0 && cropHeight > 0
+    && left + cropWidth <= 1.000001 && top + cropHeight <= 1.000001
     && width >= 0.1 && height >= 0.1;
 }
 
