@@ -337,7 +337,7 @@ function validPortraitCrop(crop: unknown): crop is PortraitCrop {
   const [left, top, cropWidth, cropHeight] = [Number(x), Number(y), Number(width), Number(height)];
   return left >= 0 && top >= 0 && cropWidth > 0 && cropHeight > 0
     && left + cropWidth <= 1.000001 && top + cropHeight <= 1.000001
-    && width >= 0.1 && height >= 0.1;
+    && cropWidth >= 0.1 && cropHeight >= 0.1;
 }
 
 async function applyPortraitCrop(localFile: string, crop: PortraitCrop): Promise<void> {
