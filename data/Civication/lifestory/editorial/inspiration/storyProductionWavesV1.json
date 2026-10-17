@@ -1,0 +1,1833 @@
+{
+  "schema": "civication_story_waves_editorial_plan_v1",
+  "version": 1,
+  "created": "2026-10-17",
+  "status": "editorial_worklist_not_runtime",
+  "canonical_sources": {
+    "types": "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
+    "role_manifest": "data/Civication/lifestory/manifest.json",
+    "continuation_root": "data/Civication/lifestory/continuations/",
+    "read_filter": "scripts/import-goodreads-literature-canon.mjs",
+    "film_repo": "Paradispartiet/HG_Film_Producer"
+  },
+  "production_rules": {
+    "wave_size": 8,
+    "coherent_arc_min_chapters": 4,
+    "copying": "original_scenes_only",
+    "editorial_branch_gate": "no_prior_events_assumed_without_confirmed_game_state",
+    "role_authority": "role_or_life_position_does_not_confer_personal_capability_or_organizational_decision_rights",
+    "source_verification": "IMDb identity not film-theme proof; Goodreads read 4+ not yet matched",
+    "release_gate": "one targeted validation per completed writing batch; ordinary PR CI",
+    "scene_delivery": "Scene is gameplay unit; do not force interactive A/B choices on info/ack deliveries; five modes are candidate presentations only."
+  },
+  "waves": [
+    {
+      "wave": 1,
+      "title": "Eksisterende arbeid og levevei",
+      "focus": "Spillbare roller og eksisterende videreføringer med tydelige situasjoner; kildekontroll kan være pending for vanskelig verk, men ikke markert ferdig.",
+      "type_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C05",
+        "C06",
+        "C07",
+        "C17",
+        "C23"
+      ]
+    },
+    {
+      "wave": 2,
+      "title": "Relasjoner og fellesskap som får følger",
+      "focus": "Bygg på faktisk møtte NPC-er og tidligere valg; ikke overkjør relasjoner med tilfeldige nye hendelser.",
+      "type_ids": [
+        "C04",
+        "C08",
+        "C09",
+        "C12",
+        "C19",
+        "C20",
+        "C21",
+        "C24"
+      ]
+    },
+    {
+      "wave": 3,
+      "title": "Nye livsområder og kunnskapskonflikter",
+      "focus": "Bolig, kjærlighet og digitalt liv krever etablering av fakta; kan ikke publiseres på antatt personhistorikk.",
+      "type_ids": [
+        "C10",
+        "C11",
+        "C13",
+        "C14",
+        "C15",
+        "C16",
+        "C18",
+        "C22"
+      ]
+    }
+  ],
+  "stories": [
+    {
+      "story_type_id": "C01",
+      "title": "Jobbtap og verdighet",
+      "wave": 1,
+      "life_domains": [
+        "økonomi",
+        "arbeid",
+        "vennskap"
+      ],
+      "source_ids": {
+        "literary_track_id": "L03",
+        "film_imdb_id": "tt5168192",
+        "film_producer_scenario_id": "scenario_i_daniel_blake_2016",
+        "book_work": "Ellison – Invisible Man",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et betalingsvarsel faller samme dag som en invitasjon fra Jonas; valget gjelder hvordan spilleren håndterer både frist og kontakt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En redusert vaktplan gjør det dyrt å delta på den samme typen sosiale samling; her handler konflikten om inntektstimer, ikke jobbtap.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Invitasjonen må komme etter et faktisk bekreftet tap eller kutt; et første møte er ikke et minne.",
+        "later_return": "Vennen svarer på den konkrete invitasjonen, og den økonomiske saken følger sitt eget forløp.",
+        "forbidden_assumption": "Ikke skriv at arbeid er tapt hvis spilleren fortsatt har aktiv jobb."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "precarity",
+        "status_anxiety",
+        "alienation"
+      ],
+      "planned_scene_functions": [
+        "people",
+        "conflict",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C02",
+      "title": "Muligheten uten garanti",
+      "wave": 1,
+      "life_domains": [
+        "kultur",
+        "arbeid",
+        "vennskap"
+      ],
+      "source_ids": {
+        "literary_track_id": "L17",
+        "film_imdb_id": "tt2125608",
+        "film_producer_scenario_id": "scenario_searching_for_sugar_man_2012",
+        "book_work": "Munro – Runaway",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "musikk_frilansmusiker",
+          "binding_source": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "En ubekreftet forespørsel om mulig spilling kolliderer med Miras avtalte øving; ingen booking kan opprettes uten bekreftelse.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "sport_utover",
+          "binding_source": "data/Civication/lifestory/roles/sport_utover/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et uformelt tilbud om å være reserve til konkurranse kolliderer med betalt jobb og restitusjon; uttak er ikke bekreftet.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Forespørselen kommer på skjermen med presise vilkår og frist, ikke som en fullført avtale.",
+        "later_return": "En senere beskjed bekrefter enten plass, avslag eller fortsatt usikkerhet på grunnlag av faktiske hendelser.",
+        "forbidden_assumption": "Tidligere musikkøving må være avtalt i spillerens gren, ellers introduseres et nytt mulig tidspunkt."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "ambition_stagnation",
+        "precarity",
+        "public_attention"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C03",
+      "title": "Drømmen og regningene",
+      "wave": 1,
+      "life_domains": [
+        "økonomi",
+        "fritid",
+        "arbeid"
+      ],
+      "source_ids": {
+        "literary_track_id": "L06",
+        "film_imdb_id": "tt5247022",
+        "film_producer_scenario_id": "scenario_paterson_2016",
+        "book_work": "Balzac – Tapte illusjoner",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "naeringsliv_sideprosjektbygger",
+          "binding_source": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Lea må velge ett realistisk forsøk etter jobb når en uventet utgift begrenser mulighetene.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et selvvalgt prosjekt må avgrenses når dokumentasjonssøknader og økonomi tar kapasitet; ingen automatisk etablering av bedrift.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "En konkret regning og en forespørsel presenteres i scenen; ingen antatt eksisterende kunde.",
+        "later_return": "Etter en uke ser spilleren hva som faktisk ble prøvd, lagt bort eller utsatt.",
+        "forbidden_assumption": "Ikke skap firma, produktlansering, salg eller kontrakt fra kreativ motivasjon alene."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "ambition_stagnation",
+        "consumption",
+        "public_private_leakage"
+      ],
+      "planned_scene_functions": [
+        "story",
+        "knowledge",
+        "conflict",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C04",
+      "title": "Forespørselen som ikke er en kontrakt",
+      "wave": 2,
+      "life_domains": [
+        "arbeid",
+        "økonomi",
+        "tillit"
+      ],
+      "source_ids": {
+        "literary_track_id": "L12",
+        "film_imdb_id": "tt0109445",
+        "film_producer_scenario_id": "scenario_clerks_1994",
+        "book_work": "Ford – The Good Soldier",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "naeringsliv_frilanser",
+          "binding_source": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Lea får en forespørsel om liten tekstjobb som vokser før pris og frist er avtalt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "ekspeditor",
+          "binding_source": "data/Civication/lifestory/roles/ekspeditor/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En bekjent av butikken vil ha arbeid etter stengetid uten avtalt betaling eller autorisasjon.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Mottakeren beskriver oppgaven før spilleren har akseptert noe.",
+        "later_return": "Oppfølgingen handler om faktisk avklart omfang og eventuell nei-respons.",
+        "forbidden_assumption": "Et spørsmål om oppdrag er aldri en signert kontrakt eller inntekt."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "precarity",
+        "invisible_work",
+        "social_mask"
+      ],
+      "planned_scene_functions": [
+        "job",
+        "people",
+        "conflict",
+        "followup"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C05",
+      "title": "Byråkratiet og personen",
+      "wave": 1,
+      "life_domains": [
+        "økonomi",
+        "arbeid",
+        "forvaltning"
+      ],
+      "source_ids": {
+        "literary_track_id": "L18",
+        "film_imdb_id": "tt0088846",
+        "film_producer_scenario_id": "scenario_brazil_1985",
+        "book_work": "Kafka – Prosessen",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et etterspurt vedlegg finnes kanskje blant spillerens kvitteringer, men ikke i saksbehandlerens skjerm.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En saksbehandler mottar to uforenlige versjoner av et dokument og må registrere usikkerheten før videre behandling.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Avklar hva som er kjent via dokument eller utsagn før spilleren tar stilling.",
+        "later_return": "Saken forblir uavklart eller blir dokumentert; et vedtak oppstår bare ved eksplisitt oppfølging.",
+        "forbidden_assumption": "Spilleren har ikke myndighet over NAV eller politisk vedtak."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "bureaucratic_power",
+        "numerical_control"
+      ],
+      "planned_scene_functions": [
+        "knowledge",
+        "job",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "mail",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C06",
+      "title": "Faglig integritet under press",
+      "wave": 1,
+      "life_domains": [
+        "arbeid",
+        "fag",
+        "lokaldemokrati"
+      ],
+      "source_ids": {
+        "literary_track_id": "L07",
+        "film_imdb_id": "tt0050083",
+        "film_producer_scenario_id": "scenario_12_angry_men_1957",
+        "book_work": "Camus – Pesten",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En sikkerhetsvurdering om skolevei mangler en måling idet plansjefen trenger et notat.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "controller",
+          "binding_source": "data/Civication/lifestory/roles/controller/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En økonomisk rapport mangler underlagsbilag mens en leder vil sende tallene videre.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Kildemangelen må konkretiseres, ikke bare hevdes som personlig tvil.",
+        "later_return": "Senere møte svarer på nøyaktig hvilken reservasjon spilleren tok.",
+        "forbidden_assumption": "Et faglig innspill er ikke et formelt politisk vedtak eller ledergodkjenning."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "local_knowledge_vs_system",
+        "loyalty_up_down",
+        "professional_culture"
+      ],
+      "planned_scene_functions": [
+        "job",
+        "conflict",
+        "knowledge",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "meeting",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C07",
+      "title": "Tilhørighet mot frihet",
+      "wave": 1,
+      "life_domains": [
+        "vennskap",
+        "fritid",
+        "fellesskap"
+      ],
+      "source_ids": {
+        "literary_track_id": "L03",
+        "film_imdb_id": "tt4082068",
+        "film_producer_scenario_id": "scenario_dheepan_2015",
+        "book_work": "Ellison – Invisible Man",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "subkultur_gangster",
+          "binding_source": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Arvid tilbyr plass ved et arrangement, men en takk for invitasjonen tolkes som et ja til flere dugnader.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En kollega inviterer til et sosialt nettverk der det gradvis forventes at spilleren alltid bytter vakt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Invitasjon, uuttalt forventning og faktisk forespørsel må skje i riktig rekkefølge.",
+        "later_return": "Kontakten kan fortsette både etter et begrenset ja og et høflig nei.",
+        "forbidden_assumption": "Ingen kriminalitet eller gjeld følger automatisk av miljøidentitet eller bekjentskap."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "class_power",
+        "loyalty_up_down",
+        "social_mask"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C08",
+      "title": "Tjenesten som blir en gjeld",
+      "wave": 2,
+      "life_domains": [
+        "tillit",
+        "vennskap",
+        "arbeid"
+      ],
+      "source_ids": {
+        "literary_track_id": "L17",
+        "film_imdb_id": "tt0276919",
+        "film_producer_scenario_id": "scenario_dogville_2003",
+        "book_work": "Tsjekhov – Damen med hunden",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "subkultur_gangster",
+          "binding_source": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Et lånt lokale fører til et konkret krav om gjentjeneste som aldri var avklart.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En kollega som tidligere byttet skift, forventer nå hjelp på en umulig vakt uten å spørre først.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Hjelpen etableres i samme eller faktisk tidligere scene; ikke finn på gammelt lån.",
+        "later_return": "Senere dialog avklarer hva den andre faktisk oppfattet som avtalt.",
+        "forbidden_assumption": "Et frivillig bidrag gir ikke livslang forpliktelse eller formell myndighet."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "class_power",
+        "invisible_work"
+      ],
+      "planned_scene_functions": [
+        "people",
+        "conflict",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "mail"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C09",
+      "title": "Vennskapet som glir fra",
+      "wave": 2,
+      "life_domains": [
+        "vennskap",
+        "tid",
+        "ensomhet"
+      ],
+      "source_ids": {
+        "literary_track_id": "L09",
+        "film_imdb_id": "tt0335266",
+        "film_producer_scenario_id": "scenario_lost_in_translation_2003",
+        "book_work": "Fosse – Septologien",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Jonas og spilleren har gjentatte ganger forsøkt å finne et tidspunkt, men ingen vet om kontakten er svekket.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Ulike skiftplaner gjør at vennene mister sin faste lunsj, uten at noen har avvist den andre.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Et faktisk forsøkt møte eller avslag må være kjent; ellers etabler ny kontakt i nåtid.",
+        "later_return": "Responsen skiller mellom avstand, travelhet og det som fortsatt er ukjent.",
+        "forbidden_assumption": "Taushet alene er ikke bevis på at et vennskap er over."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "night_work",
+        "alienation"
+      ],
+      "planned_scene_functions": [
+        "micro",
+        "people",
+        "followup",
+        "story"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "notification"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C10",
+      "title": "Kjærlighet på feil tidspunkt",
+      "wave": 3,
+      "life_domains": [
+        "kjærlighet",
+        "tid",
+        "relasjoner"
+      ],
+      "source_ids": {
+        "literary_track_id": "L10",
+        "film_imdb_id": "tt0112471",
+        "film_producer_scenario_id": "scenario_before_sunrise_1995",
+        "book_work": "Austen – Stolthet og fordom",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En gjensidig interesse kan utvikles mens spilleren vurderer flytting, men forholdet er ikke opprettet før begge velger det.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Ulike arbeidstider gjør en ny bekjent vanskelig å møte uten at den andre automatisk er uinteressert.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Møtet må introduseres som nytt; ikke anta partner, datoer eller intimitet.",
+        "later_return": "Et nytt møte, utsatt møte eller vennlig avslutning blir ulike lagrede utfall.",
+        "forbidden_assumption": "En annen person avgjør selv om vedkommende ønsker videre kontakt."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "public_private_leakage",
+        "night_work"
+      ],
+      "planned_scene_functions": [
+        "story",
+        "people",
+        "event",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C11",
+      "title": "Familien som trenger deg",
+      "wave": 3,
+      "life_domains": [
+        "familie",
+        "omsorg",
+        "arbeid"
+      ],
+      "source_ids": {
+        "literary_track_id": "L08",
+        "film_imdb_id": "tt0775529",
+        "film_producer_scenario_id": "scenario_the_savages_2007",
+        "book_work": "Ernaux – Årene",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Søsteren ber om praktisk hjelp til en avtale mens spilleren har et annet tidskritisk møte.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En søster trenger skyss samtidig med en bemannet vakt som spilleren ikke ensidig kan forlate.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Omsorgsbehov og familieforhold skal komme fra etablert relasjon eller ny eksplisitt scene.",
+        "later_return": "Familiens plan viser hvem som faktisk tok hvilken oppgave.",
+        "forbidden_assumption": "Å være i familie gir ikke automatisk medisinsk informasjon eller omsorgsfullmakt."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "care_vs_efficiency",
+        "night_work"
+      ],
+      "planned_scene_functions": [
+        "people",
+        "conflict",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C12",
+      "title": "Grensen du ikke satte",
+      "wave": 2,
+      "life_domains": [
+        "fritid",
+        "makt",
+        "arbeid"
+      ],
+      "source_ids": {
+        "literary_track_id": "L17",
+        "film_imdb_id": "tt4995790",
+        "film_producer_scenario_id": "scenario_the_square_2017",
+        "book_work": "Munro – Runaway",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En frivillig klubb lar én åpnevakt bli en permanent forventning uten nytt samtykke.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "barnehageassistent",
+          "binding_source": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En kollega ber spilleren gjøre ekstra organisering som ligger utenfor avtalte oppgaver og sikkerhetsansvar.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Avklar hva spilleren faktisk tidligere sa ja til.",
+        "later_return": "Vaktlisten eller ansvarskjeden må korrigeres etter det som faktisk ble valgt.",
+        "forbidden_assumption": "Frivillig oppgave, arbeidsoppgave og autorisert ansvar er ikke det samme."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "invisible_work",
+        "class_power"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "job",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C13",
+      "title": "Hjemmet på usikker grunn",
+      "wave": 3,
+      "life_domains": [
+        "bolig",
+        "økonomi",
+        "familie"
+      ],
+      "source_ids": {
+        "literary_track_id": "L22",
+        "film_imdb_id": "tt5649144",
+        "film_producer_scenario_id": "scenario_the_florida_project_2017",
+        "book_work": "Vesaas – Fuglane",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En mulig husleieendring presser spilleren til å spørre etter dokumentasjon og reelle alternativer.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "ekspeditor",
+          "binding_source": "data/Civication/lifestory/roles/ekspeditor/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Ustabile arbeidstimer skaper usikkerhet om neste husleie mens utleier ber om skriftlig svar.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Leieforhold og vilkår må etableres før en økning kan være del av plottet.",
+        "later_return": "Etterfølgende respons handler om dokumentasjon, samtale eller avklart alternativ.",
+        "forbidden_assumption": "Ikke konkluder juridisk gyldighet av leieøkningen uten konkret grunnlag."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "precarity",
+        "consumption",
+        "class_power"
+      ],
+      "planned_scene_functions": [
+        "knowledge",
+        "people",
+        "conflict",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C14",
+      "title": "Ryktet løper fra deg",
+      "wave": 3,
+      "life_domains": [
+        "omdømme",
+        "arbeid",
+        "digitalt"
+      ],
+      "source_ids": {
+        "literary_track_id": "L12",
+        "film_imdb_id": "tt2106476",
+        "film_producer_scenario_id": "scenario_the_hunt_2012",
+        "book_work": "Ford – The Good Soldier",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et utsnitt av et fagnotat sirkulerer som om det var politisk vedtak.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "sport_utover",
+          "binding_source": "data/Civication/lifestory/roles/sport_utover/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et klipp fra en trening tolkes som en offentlig uttalelse om en medutøver.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Innlegget og konteksten vises, uten å anta usette meldinger eller mottakere.",
+        "later_return": "Korrigeringen kan nå noen men ikke alle; omdømme endres gradvis.",
+        "forbidden_assumption": "Ikke gjør spekulasjon, offentlig rykte eller tredjepartspåstand til etablert fakta."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "public_attention",
+        "shame_reputation"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C15",
+      "title": "Det digitale dobbeltlivet",
+      "wave": 3,
+      "life_domains": [
+        "digitalt",
+        "identitet",
+        "vennskap"
+      ],
+      "source_ids": {
+        "literary_track_id": "L14",
+        "film_imdb_id": "tt0120382",
+        "film_producer_scenario_id": "scenario_the_truman_show_1998",
+        "book_work": "Borges – Ficciones",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "musikk_frilansmusiker",
+          "binding_source": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Et bilde fra en jam deles som om Mira har takket ja til et nytt musikkprosjekt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En positiv offentlig oppdatering tolkes som et løfte om deltakelse i et fellestiltak.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Et eventuelt innlegg skapes som en synlig hendelse, ikke usynlig fortid.",
+        "later_return": "Etterfølgende invitasjoner og avslag leser faktisk samtykke.",
+        "forbidden_assumption": "Synlighet er ikke kontrakt, tilhørighet, opptreden eller arbeidsavtale."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "social_mask",
+        "public_attention"
+      ],
+      "planned_scene_functions": [
+        "micro",
+        "people",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "mail"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C16",
+      "title": "Klassereisen og kodene",
+      "wave": 3,
+      "life_domains": [
+        "klasse",
+        "tilhørighet",
+        "kultur"
+      ],
+      "source_ids": {
+        "literary_track_id": "L23",
+        "film_imdb_id": "tt1068646",
+        "film_producer_scenario_id": "scenario_the_class_2008",
+        "book_work": "Smith – White Teeth",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En ny kulturgruppe bruker uuttalte penge- og omgangskoder som spilleren ikke kjenner.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et faglig nettverksmøte forutsetter sosiale markører som kan forveksles med kompetanse.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Invitasjonen og forventningen må være konkret og legitim, ikke klassestereotyp.",
+        "later_return": "Senere samvær viser om gruppen gjør adgang lettere eller beholder tersklene.",
+        "forbidden_assumption": "Kulturell trygghet må ikke behandles som medfødt evne, moral eller jobbkvalifikasjon."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "status_anxiety",
+        "class_power"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "story",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "meeting",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C17",
+      "title": "Å arbeide seg tom",
+      "wave": 1,
+      "life_domains": [
+        "arbeid",
+        "helse",
+        "økonomi"
+      ],
+      "source_ids": {
+        "literary_track_id": "L06",
+        "film_imdb_id": "tt0361862",
+        "film_producer_scenario_id": "scenario_the_machinist_2004",
+        "book_work": "Balzac – Tapte illusjoner",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Kari må fordele flere soner etter sykdom, men Amina peker på uforsvarlig tempo.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "barnehageassistent",
+          "binding_source": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En kollega er syk; spilleren må melde begrensninger i bemanning uten å ta pedagogisk lederansvar.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Bemanningsmangel og oppgavene presenteres, ikke hentet fra antatt global utbrenthet.",
+        "later_return": "Neste vakt følger hvilke oppgaver som ble nedprioritert og hvem som fikk beskjed.",
+        "forbidden_assumption": "Slitenhet gir ikke diagnose, og spilleren kan ikke disponere kollegaers stillinger."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "body_discipline",
+        "emotional_labor",
+        "invisible_work"
+      ],
+      "planned_scene_functions": [
+        "job",
+        "knowledge",
+        "conflict",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "task",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C18",
+      "title": "Ensom midt blant folk",
+      "wave": 3,
+      "life_domains": [
+        "ensomhet",
+        "fritid",
+        "digitalt"
+      ],
+      "source_ids": {
+        "literary_track_id": "L09",
+        "film_imdb_id": "tt2611652",
+        "film_producer_scenario_id": "scenario_virgin_mountain_2015",
+        "book_work": "Beckett – Mens vi venter på Godot",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Bilder fra en sosial kveld vekker følelsen av å ha blitt utelatt uten at spilleren kjenner årsaken.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "ekspeditor",
+          "binding_source": "data/Civication/lifestory/roles/ekspeditor/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Etter sene butikkvakter er det vanskelig å holde en kontakt ved like, samtidig som kolleger legger ut bilder.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Det som er offentlig og det spilleren faktisk vet må skilles.",
+        "later_return": "Kontakt eller avstand etterspørres uten å kreve at andre røper privatliv.",
+        "forbidden_assumption": "Sosiale medier avslører ikke automatisk motiv eller gjensidige følelser."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "alienation",
+        "night_work"
+      ],
+      "planned_scene_functions": [
+        "micro",
+        "story",
+        "people",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C19",
+      "title": "Å begynne på nytt",
+      "wave": 2,
+      "life_domains": [
+        "utdanning",
+        "arbeid",
+        "identitet"
+      ],
+      "source_ids": {
+        "literary_track_id": "L04",
+        "film_imdb_id": "tt0311519",
+        "film_producer_scenario_id": "scenario_the_man_without_a_past_2002",
+        "book_work": "Homer – Odysseen",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et kurs kan hjelpe spilleren å lære noe nytt, men tilbyr ingen garanti for jobb.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "renholder",
+          "binding_source": "data/Civication/lifestory/roles/renholder/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Tilbud om kompetanseheving konkurrerer med vakter og restitusjon; arbeidsgiver styrer eventuell frigivelse.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Kurs, kostnad og inntaksvilkår må være konkret tilbud, ikke et sikkert opprykk.",
+        "later_return": "Et kurs kan fullføres, utsettes eller avbrytes og gir avgrenset læring.",
+        "forbidden_assumption": "Læringstiltak gir ikke automatisk formell kompetanse, stilling eller Badge."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "ambition_stagnation",
+        "precarity"
+      ],
+      "planned_scene_functions": [
+        "knowledge",
+        "job",
+        "event",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "notification",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C20",
+      "title": "Fellesskapet uten helt",
+      "wave": 2,
+      "life_domains": [
+        "lokalsamfunn",
+        "fellesskap",
+        "frivillighet"
+      ],
+      "source_ids": {
+        "literary_track_id": "L11",
+        "film_imdb_id": "tt0112379",
+        "film_producer_scenario_id": "scenario_antonia_s_line_1995",
+        "book_work": "Dickens – Bleak House",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et møtested trenger åpnevakter og må fordele ansvar før en samling kan holdes.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "barnehageassistent",
+          "binding_source": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et foreldre-/lokalinitiativ ber om hjelp uten at spilleren kan representere barnehagen privat.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Et arrangement må bygges som ny aktivitet med tydelige ansvarlige.",
+        "later_return": "Planen kan skaleres ned, utsettes eller deles mellom flere uten automatisk seier.",
+        "forbidden_assumption": "Ingen enkeltperson redder et helt lokalsamfunn; jobbrolle gir ingen frivillig fullmakt."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "care_vs_efficiency",
+        "invisible_work"
+      ],
+      "planned_scene_functions": [
+        "event",
+        "people",
+        "story",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "meeting",
+        "conversation"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C21",
+      "title": "Byen som skifter ansikt",
+      "wave": 2,
+      "life_domains": [
+        "by",
+        "historie",
+        "tilhørighet"
+      ],
+      "source_ids": {
+        "literary_track_id": "L22",
+        "film_imdb_id": "tt0114478",
+        "film_producer_scenario_id": "scenario_smoke_1995",
+        "book_work": "Thoreau – Walden",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "En eldre møteplass omtales som ubrukt areal, men lokale innspill viser dagens bruk.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "arbeidsledig",
+          "binding_source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "En person kjenner stedet fra eget hverdagsliv og vil sende et innspill uten å representere alle andre.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Faktisk område og dokumenterbar sak må velges før scenen skrives.",
+        "later_return": "Følg hva som er sendt inn og hva som er politisk bestemt – ikke likestill.",
+        "forbidden_assumption": "Minnene til én person er ikke fasit på byhistorien eller hele befolkningen."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "local_knowledge_vs_system",
+        "bureaucratic_power"
+      ],
+      "planned_scene_functions": [
+        "knowledge",
+        "people",
+        "event",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "meeting",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C22",
+      "title": "Kunnskap du ikke kan bekrefte",
+      "wave": 3,
+      "life_domains": [
+        "natur",
+        "kunnskap",
+        "makt"
+      ],
+      "source_ids": {
+        "literary_track_id": "L20",
+        "film_imdb_id": "tt6742252",
+        "film_producer_scenario_id": "scenario_the_guilty_2018",
+        "book_work": "Didion – The White Album",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "arealplanlegger",
+          "binding_source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "lead_candidate",
+          "premise": "Et eldre artsbilde sirkulerer som om det dokumenterer et aktuelt utbyggingsområde.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "forsker_psykologi",
+          "binding_source": "data/Civication/lifestory/roles/forsker_psykologi/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et lite utvalg fra en undersøkelse blir fremstilt som generelt funn før metode og samtykke er avklart.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Spillerens tilgang til evidens og mandat må være definert i aktuell rolle.",
+        "later_return": "En datagrense omtales senere som fortsatt usikker eller eksplisitt oppdatert.",
+        "forbidden_assumption": "Usikre data gir ikke ny ekspertfullmakt eller rett til å offentliggjøre opplysninger."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "professional_culture",
+        "numerical_control",
+        "local_knowledge_vs_system"
+      ],
+      "planned_scene_functions": [
+        "knowledge",
+        "story",
+        "conflict",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "task",
+        "meeting"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C23",
+      "title": "Den lille feilen som ikke forsvinner",
+      "wave": 1,
+      "life_domains": [
+        "kommunikasjon",
+        "arbeid",
+        "vennskap"
+      ],
+      "source_ids": {
+        "literary_track_id": "L01",
+        "film_imdb_id": "tt0116282",
+        "film_producer_scenario_id": "scenario_fargo_1996",
+        "book_work": "Kafka – Forvandlingen",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "naeringsliv_sideprosjektbygger",
+          "binding_source": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Lea sender en tidlig skisse til flere enn planlagt; noen kan tro den er vedtatt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "controller",
+          "binding_source": "data/Civication/lifestory/roles/controller/role.json",
+          "binding_kind": "life_story_manifest_role",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Et foreløpig regneark deles uten forbehold og leses som endelig budsjett.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Mottakerlisten og den faktiske feilutsendelsen vises i scenen.",
+        "later_return": "Oppfølgingen må følge dem som fikk presisering og dem som ikke gjorde det.",
+        "forbidden_assumption": "Feilutsendelsen oppretter ikke automatisk en avtale, finansiering eller vedtak."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "shame_reputation",
+        "professional_culture"
+      ],
+      "planned_scene_functions": [
+        "job",
+        "people",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "mail",
+        "task"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    },
+    {
+      "story_type_id": "C24",
+      "title": "Den ufullstendige forsoningen",
+      "wave": 2,
+      "life_domains": [
+        "vennskap",
+        "tillit",
+        "forandring"
+      ],
+      "source_ids": {
+        "literary_track_id": "L09",
+        "film_imdb_id": "tt4034228",
+        "film_producer_scenario_id": "scenario_manchester_by_the_sea_2016",
+        "book_work": "Fosse – Septologien",
+        "goodreads_status": "not_checked"
+      },
+      "role_adaptations": [
+        {
+          "role_id": "musikk_frilansmusiker",
+          "binding_source": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "lead_candidate",
+          "premise": "Mira møter Lea etter en korrigert omtale, men samtykke til nytt samarbeid er ikke gitt.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        },
+        {
+          "role_id": "naeringsliv_frilanser",
+          "binding_source": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+          "binding_kind": "existing_continuation_scope",
+          "perspective": "contrasting_role_candidate",
+          "premise": "Lea og Arvid kan snakke etter en feilaktig kreditering uten at vennskap og arbeid blir løst samtidig.",
+          "eligibility": "editorial_candidate_requires_state_and_actor_check",
+          "approval": "not_reviewed"
+        }
+      ],
+      "causal_requirements": {
+        "entry_and_trigger": "Bare faktiske tidligere konflikter i spillerens gren kan brukes; alternativt skriv en ny selvstendig forhistorie.",
+        "later_return": "Scener etter samtalen respekterer et ja, avstand eller nølende kontakt.",
+        "forbidden_assumption": "Ingen kan tilgi, glemme eller gjenoppta samarbeid på vegne av NPC-en."
+      },
+      "editorial_status": "planned_not_written",
+      "minimum_chapters": 4,
+      "possible_outcomes": [
+        "distinct_consequence_branch_A",
+        "distinct_consequence_branch_B",
+        "later_return_conditional_on_choice"
+      ],
+      "role_world_theme_ids": [
+        "shame_reputation",
+        "public_private_leakage"
+      ],
+      "planned_scene_functions": [
+        "people",
+        "story",
+        "followup",
+        "consequence"
+      ],
+      "possible_deliveries": [
+        "conversation",
+        "mail"
+      ],
+      "interaction_plan": [
+        "info",
+        "info",
+        "decision",
+        "ack"
+      ],
+      "scene_function_boundary": "Editorial choices only: scene is gameplay unit; delivery and mail family are source/form mappings, not additional runtime."
+    }
+  ],
+  "literary_coverage_gap_plan": [
+    {
+      "literary_track_id": "L02",
+      "story_type_id": "C23",
+      "purpose": "En person rasjonaliserer sin egen feil, men mottakeren har et selvstendig perspektiv.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L05",
+      "story_type_id": "C13",
+      "purpose": "Boligusikkerhet som begrenser handlingsrom; ikke likestill flytting med flukt i krig.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L13",
+      "story_type_id": "C20",
+      "purpose": "Samme lokale hendelse fra frivilliges, deltakernes og arrangørens ulike perspektiver.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L15",
+      "story_type_id": "C09",
+      "purpose": "Gjentatte uavklarte invitasjoner endrer vennskapets rytme uten å tvinge dramatikk.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L16",
+      "story_type_id": "C05",
+      "purpose": "Feilregistrert dokument som ordinært systemproblem, ikke surrealistisk handling.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L19",
+      "story_type_id": "C21",
+      "purpose": "Vitnesbyrd om stedets bruk holdes atskilt fra arkivfakta og folkevalgt beslutning.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L21",
+      "story_type_id": "C21",
+      "purpose": "Tidsserier av kart og bilder gir visuell fortellingsform med kilde- og bruksrettskrav.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    },
+    {
+      "literary_track_id": "L24",
+      "story_type_id": "C18",
+      "purpose": "Kort, tilbakevendende konkret observasjon av hverdagsensomhet framfor abstrakt moral.",
+      "status": "proposed_form_or_lens_not_book_match",
+      "needs_goodreads_work": "Any new concrete book reference must meet read / >=4 rule and age routing."
+    }
+  ],
+  "scorecard_baseline": {
+    "C_types_with_candidate_synopsis": 24,
+    "literary_tracks_already_mapped_to_candidates": 16,
+    "literary_tracks_gap_candidates": 8,
+    "booker_optional_plot_lenses_mapped": 7,
+    "goodreads_matches_verified_in_this_crosswalk": 0,
+    "role_adaptations_proposed": 48,
+    "role_blueprints_approved": 0,
+    "new_runtime_stories_registered_from_plan": 0,
+    "role_world_theme_bank_ids_planned": 20,
+    "source_mail_function_families_planned": 9,
+    "presentation_delivery_modes_planned": 5
+  }
+}

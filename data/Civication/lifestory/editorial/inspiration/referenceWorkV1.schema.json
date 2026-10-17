@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civication – kildeverk (bok eller film) v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "work_id",
+    "kind",
+    "title",
+    "creators",
+    "source_locator",
+    "metadata_status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "civication_reference_work_v1"
+    },
+    "work_id": {
+      "type": "string",
+      "pattern": "^(book|film)-[a-z0-9-]+$"
+    },
+    "kind": {
+      "enum": [
+        "book",
+        "film"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 2
+    },
+    "creators": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "year": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0
+    },
+    "source_locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "path",
+        "record_key"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "record_key": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "metadata_status": {
+      "enum": [
+        "imported_unverified",
+        "checked_against_source",
+        "needs_correction"
+      ]
+    },
+    "book_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "goodreads_match",
+        "age_route",
+        "source_status"
+      ],
+      "properties": {
+        "goodreads_match": {
+          "enum": [
+            "not_checked",
+            "verified_read_4_plus",
+            "not_eligible"
+          ]
+        },
+        "age_route": {
+          "enum": [
+            "adult",
+            "children_or_ya",
+            "undetermined"
+          ]
+        },
+        "source_status": {
+          "enum": [
+            "literary_crosswalk_candidate",
+            "goodreads_import_verified"
+          ]
+        },
+        "private_data_policy": {
+          "const": "do_not_store_personal_rating_dates_review_notes_or_shelves"
+        }
+      }
+    },
+    "film_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "imdb_id",
+        "imdb_url",
+        "film_producer_scenario_id",
+        "scenario_status"
+      ],
+      "properties": {
+        "imdb_id": {
+          "type": "string",
+          "pattern": "^tt[0-9]{5,12}$"
+        },
+        "imdb_url": {
+          "type": "string",
+          "pattern": "^https://www\\.imdb\\.com/title/tt[0-9]+/$"
+        },
+        "film_producer_scenario_id": {
+          "type": "string",
+          "pattern": "^scenario_[a-z0-9_]+$"
+        },
+        "scenario_status": {
+          "enum": [
+            "imported_seed_needs_film_specific_design",
+            "film_specific_research_reviewed"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "book"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "required": [
+          "book_source"
+        ],
+        "not": {
+          "required": [
+            "film_source"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "film"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "required": [
+          "film_source"
+        ],
+        "not": {
+          "required": [
+            "book_source"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "book_source": {
+            "properties": {
+              "goodreads_match": {
+                "const": "verified_read_4_plus"
+              }
+            },
+            "required": [
+              "goodreads_match"
+            ]
+          }
+        },
+        "required": [
+          "book_source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "book_source": {
+            "properties": {
+              "age_route": {
+                "const": "adult"
+              },
+              "source_status": {
+                "const": "goodreads_import_verified"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

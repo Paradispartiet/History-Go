@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civication literary and film story inspiration coverage v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "coverage",
+    "source_contract",
+    "entries"
+  ],
+  "properties": {
+    "schema": {
+      "const": "civication_book_film_story_inspiration_v1"
+    },
+    "version": {
+      "const": 1
+    },
+    "status": {
+      "const": "editorial_production_plan_not_runtime"
+    },
+    "coverage": {
+      "type": "object"
+    },
+    "source_contract": {
+      "type": "object"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type_name",
+        "primary_role_or_character",
+        "proposed_role_binding",
+        "thematic_problem",
+        "improved_synopsis",
+        "meaningful_choices",
+        "literary_inspiration",
+        "film_inspiration",
+        "optional_plot_lenses",
+        "story_status",
+        "entry_conditions",
+        "rights_note"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^C(0[1-9]|1[0-9]|2[0-4])$"
+        },
+        "type_name": {
+          "type": "string",
+          "minLength": 3
+        },
+        "primary_role_or_character": {
+          "type": "string"
+        },
+        "proposed_role_binding": {
+          "type": "string"
+        },
+        "thematic_problem": {
+          "type": "string",
+          "minLength": 10
+        },
+        "improved_synopsis": {
+          "type": "string",
+          "minLength": 100
+        },
+        "meaningful_choices": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 25
+          }
+        },
+        "literary_inspiration": {
+          "type": "object",
+          "required": [
+            "literary_track_id",
+            "work",
+            "source_crosswalk",
+            "goodreads_read_four_plus_match",
+            "use"
+          ],
+          "properties": {
+            "literary_track_id": {
+              "type": "string",
+              "pattern": "^L[0-9]{2}$"
+            },
+            "work": {
+              "type": "string"
+            },
+            "source_crosswalk": {
+              "type": "string"
+            },
+            "goodreads_read_four_plus_match": {
+              "enum": [
+                "not_yet_verified",
+                "verified_in_read_four_plus_canon",
+                "excluded_child_or_ya"
+              ]
+            },
+            "use": {
+              "type": "string"
+            }
+          }
+        },
+        "film_inspiration": {
+          "type": "object",
+          "required": [
+            "title",
+            "year",
+            "imdb_id",
+            "imdb_url",
+            "imdb_list_position",
+            "film_producer_scenario_id",
+            "film_producer_seed_status",
+            "use"
+          ],
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "year": {
+              "type": "integer"
+            },
+            "imdb_id": {
+              "type": "string",
+              "pattern": "^tt[0-9]+$"
+            },
+            "imdb_url": {
+              "type": "string"
+            },
+            "imdb_list_position": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "film_producer_scenario_id": {
+              "type": "string"
+            },
+            "film_producer_seed_status": {
+              "type": "string"
+            },
+            "use": {
+              "type": "string"
+            }
+          }
+        },
+        "optional_plot_lenses": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^P0[1-7]$"
+          }
+        },
+        "story_status": {
+          "const": "editorial_synopsis_not_playable"
+        },
+        "entry_conditions": {
+          "type": "string"
+        },
+        "rights_note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
