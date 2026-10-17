@@ -35,7 +35,7 @@ const raw = {
 // --- Pakken består de fire lovene (buildContent kaster ellers) ---
 const content = Content.buildContent(raw);
 assert.strictEqual(content.role.id, "renholder");
-assert.strictEqual(raw.roleThreads.threads.length, 5, "fem arbeidstråder for renholder");
+assert.strictEqual(raw.roleThreads.threads.length, 6, "fem opprinnelige arbeidstråder og C17");
 assert.ok(content.threads.length >= 9, "arbeidstråder + delte privattråder");
 assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rolletrådene er arbeidsliv");
 
@@ -43,7 +43,7 @@ assert.ok(raw.roleThreads.threads.every((t) => t.type === "arbeidsliv"), "rollet
 const threadIds = raw.roleThreads.threads.map((t) => t.id);
 assert.deepStrictEqual(threadIds.sort(), [
   "rommet_som_saa_rent_ut", "ryggen_sier_fra", "soelet_i_fellesarealet",
-  "tidsvinduet_krymper", "usynlig_arbeid"
+  "tidsvinduet_krymper", "usynlig_arbeid", "wave_a_c17"
 ].sort());
 
 // Personene kommer fra rollens actor-grammatikk og finnes i startState.
@@ -151,3 +151,4 @@ assert.ok(uiSource.includes("lifestoryRole"), "dev-/testparameteren ?lifestoryRo
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "dev-parameteren persisteres i localStorage");
 
 console.log("civication lifestory renholder ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
+

@@ -1,6 +1,6 @@
 # Civication – bolk A: verksforankring og åtte historieplaner
 
-**Dato:** 17. oktober 2026. **Status:** Kildesjekket sekundærmateriale, redaksjonelle temaanalyser og gjennomskrevne synopsis-/kapittelplaner. **Ingen nye scener registrert som spillbare.**
+**Dato:** 17. oktober 2026. **Status:** De første spillbare kapitlene i alle åtte historier er registrert i eksisterende Life Story-pakker: **33 scener og 66 valg**. Den målrettede runner-testen består. Dette sluttfører ikke de åtte hele buene; planens minimum fire kapitler per full bue står fortsatt ved lag. Verksanalysene er redaksjonelle utkast basert på sekundærmateriale, ikke dokumentert nærlesning.
 
 Dette dokumentet bygger videre på det allerede publiserte skjema- og synopsisgrunnlaget i `main`. Kildene til grunnfortellinger er:
 **(1)** bøker fra brukerens kuraterte Goodreads-arbeidsbok, **(2)** IMDb-filmreferanser, **(3)** tilsvarende HG Film Producer-scenario-ID-er.
@@ -29,18 +29,57 @@ IMDb-film og Film Producer-scenario er fortsatt én felles filmreferanse sett gj
 
 ### Fortellingskrav for bolken
 
-De åtte blueprints har **40 konkrete beats**, det vil si i hovedsak fem per historie: foranledning, nytt press, spillerhandling, umiddelbar ettervirkning og senere tilbakekomst. De har **16 forskjellige handlingsvalg**, hver med egen kostnad og senere respons, og minst to betingede mulige avslutninger per historie. Det er ikke 40 registrerte runtime-scener.
+Planbaselinen før kapittelskriving: De åtte blueprints har **40 konkrete beats**, det vil si i hovedsak fem per historie: foranledning, nytt press, spillerhandling, umiddelbar ettervirkning og senere tilbakekomst. De har **16 forskjellige handlingsvalg**, hver med egen kostnad og senere respons, og minst to betingede mulige avslutninger per historie. Det er ikke 40 registrerte runtime-scener.
 
-Ingen fortelling forutsetter at et møte, en innsending, en arbeidsoppgave eller et familiært faktum har skjedd bare fordi forfatteren planla det. Grensene ligger i `continuity.choice_gate_plan` og `continuity.forbidden_assumptions`, og må senere oversettes til faktiske eksisterende scene- og player-state-krav før publisering. Der en NPC skal bestemme noe, bestemmer NPC-en det selv.
+Ingen fortelling forutsetter at et møte, en innsending, en arbeidsoppgave eller et familiært faktum har skjedd bare fordi forfatteren planla det. Grensene ligger i `continuity.choice_gate_plan` og `continuity.forbidden_assumptions`, og er nå oversatt til scenevilkår og valgflagg for de første kapitlene. Senere kapitler må beholde samme krav. Der en NPC skal bestemme noe, bestemmer NPC-en det selv.
 
 **Felles produksjonsfiler:**
 
 - [`waveAUniversalProblemsV1.json`](../data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json) – åtte særskilte, kildebelagte **utkast** til verks- og samfunnsanalyse, som følger `universalProblemV1.schema.json`.
-- [`waveARoleStoryBlueprintsV1.json`](../data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json) – åtte konkrete **utkast** til rollespesifikke historier som følger `roleStoryBlueprintV1.schema.json`. `production.playable=false` for alle.
-- [`storyCoverageInventoryV1.json`](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json) – C01, C02, C03, C05, C06, C07, C17 og C23 har fått `blueprint=candidate` og konkret ID. De øvrige 16 er uforandret.
+- [`waveARoleStoryBlueprintsV1.json`](../data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json) – åtte konkrete **utkast** til rollespesifikke historier som følger `roleStoryBlueprintV1.schema.json`. Planfilens opprinnelige `production.playable=false` beholdes som blueprint-baseline. Faktisk kapittelstatus eies nå av `waveAChapterBindingsV1.json` og de konkrete runtime-filene, ikke av en retrospektiv oppgradering av alle planens framtidige beats.
+- [`storyCoverageInventoryV1.json`](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json) – C01, C02, C03, C05, C06, C07, C17 og C23 har konkrete blueprint-ID-er og `runtime=registered_first_installment`. De øvrige 16 er uforandret.
+
+## Første spillbare kapitler
+
+| Historie | Faktisk innholdspakke | Dager | Nytt innhold |
+| --- | --- | --- | --- |
+| C01 | arbeidsledig/scenes.json | 4–6 | Invitasjon, Jonas sitt svar, bekreftet eller avlyst tur. Et privat nei deler ikke regningen. |
+| C02 | musikk_med_mira.json | 8–9 | To åpninger for avtalt prøve eller hjemmearbeid; sendte spørsmål og ubekreftet tilbud holdes adskilt. Pausegrenen får ingen ny forespørsel. |
+| C03 | sideprosjekt_med_lea.json | 8–10 | Prosjektbyggerens egen pappmodell; avgrenset test, avlysning og pause har hver sin tilbakekomst. Spillerens prosjekt er fortsatt en annen sak. |
+| C05 | arbeidsledig/scenes.json | 5–7 | Nytt, spesifisert vedlegg om arbeidstid, separat fra tidligere sluttdato. Kontaktforsøk, presisering og rettidig/sen mottakskvittering er ulike hendelser. |
+| C06 | arealplanlegger/scenes.json | 3–4 | Eksisterende snarveitelling kan ikke fylle hullet ved nedkjørselen. Plansjefens faktiske svar bestemmer dokumentflyten. |
+| C07 | miljo_med_arvid.json | 8–10 | Sosial invitasjon og separat vaktforespørsel; én time, avlysning, gjestebesøk og hjemmevalg. Aktiv avstandsgren får ingen ny invitasjon. |
+| C17 | renholder/scenes.json | 3–4 | Registrert sonearbeid, manglende tilkomst og lederprioritering. Registrert avvik er ikke det samme som flyttet hylle. |
+| C23 | sideprosjekt_neste_steg.json | 11–13 | To dokumenterte mottakere; teksthjelp eller mottakssporing. Sendt presisering gir ikke automatisk lesebekreftelse fra begge. |
+
+`waveAChapterBindingsV1.json` kobler hver historie til blueprint, problemanalyse, bok-/film-ID-er og nøyaktige scene-ID-er. IMDb og Film Producer-sporet kan følges videre gjennom de eksisterende problemanalysene. Ingen nye kildepåstander om verkene innføres i kapitteltekstene.
+
+**Identitet:** Spilleren er hovedperson. Mira = `mira`/medmusikeren, Lea = `lea`/prosjektbyggeren og Arvid = den eksisterende `amir`/miljøkontakten. Ingen nye spillerroller eller historiske biografier opprettes. Representantvalget og alle tidligere scener er bevart.
+
+**Avgrensning:** NAV-dokumentet, regningen, målepunktet og romstatusen er nye fakta i fiktive scener. De er ikke påstander om brukerens forhold, generelle NAV-regler eller faktiske kommunale saker. Regningen er omtalt som bakgrunn for et sosialt valg; denne bolken betaler den ikke og oppretter ikke automatisk gjeld eller inntekt.
+
+**Lagring:** Nye flagg har prefikset `wa_`. Nye tråder har prefikset `wave_a_`. De eksisterende sceneobjektene, valgeffektene, personene og representantene endres ikke. Eldre saves får ikke tilbakedaterte valg eller møter; kapitler på allerede passerte dager fylles ikke inn som gjennomførte. Pakker og tråder lastes gjennom dagens manifest og fortsettelsesdeklarasjoner uten ny motor eller loader.
+
+### Kontroll og kvalitetsvurdering
+
+`node tests/civication-source-grounded-wave-a.test.js` spiller alle **66 nye valg i 33 scener**, fordelt på **84 avgrensede forløp**, med **1 559 serialiseringer og gjenopptakelser**. Den kontrollerer også kildebindinger, avlyste møter, private avslag, ubekreftet konsert, avstandsgren, mottakeravhengig kunnskap, gammel historikk, penger og retur etter rollebytte. Dette er runner-integrasjon, ikke en nettleserverifisering eller bevis på litterær kvalitet. Eksisterende målrettede tester for renholder og Life Story-motoren er også kjørt.
+
+Alle 33 nye scenetekster og alle 66 konsekvenstekster er manuelt gjennomgått for årsakssammenheng, kunnskapsgrenser, rollemyndighet og emnespesifisitet. Verksanalysenes opprinnelige kildestatus beholdes.
+
+| Dimensjon | Score | Etterprøvbart grunnlag |
+| --- | --- | --- |
+| Korrekthet og evidens | 4/5 | Konkrete rolle-/aktør-ID-er og kildebindingsfil; ingen påstand om ny nærlesning. |
+| Dekning og ferdigstillelse | 5/5 | Første kapitler for alle åtte avtalte historier; alle nye valg faktisk spilt. Hele buer er videre produksjon. |
+| Redaksjonell kvalitet | 4/5 | Samtlige nye tekster gjennomgått; ulike konkrete problemer, egne interesser og avgrensede handlinger. |
+| Teknisk integritet | 4/5 | Eksisterende validator og runner, arkivbevaring, grenrekkevidde og rollebytte. Ingen ny nettlesertest. |
+| Sikkerhet og ansvarlighet | 5/5 | Original fiksjon, ingen persondata eller diagnostikk, ingen automatisk økonomi eller vedtak. |
+| Vedlikeholdbarhet | 5/5 | Data i eksisterende pakker, egne flagg og åtte eksplisitte kilde-/scenebindinger med kjørbar test. |
+
+**Sum: 27/30 for denne avgrensede kapittelbolken.** Vurderingen er en egenvurdering av innhold og teknisk integrasjon, ikke uavhengig fagfellevurdering eller godkjenning av de fullstendige buene. Ordinær GitHub-CI må bestå på sluttcommit før merge.
 
 ## Neste produksjonssteg
 
-Ta **alle åtte**, kontroller rolle-/aktør-ID, faktiske inngangsvilkår og hvilken delivery-form som allerede finnes. Skriv de konkrete scenene med et realistisk antall `info`, `decision`, `ack`, `meeting` og private ettervirkninger – **uten å gi falske A/B-valg til informasjonsscener**. Gjenbruk eksisterende kontinuasjoner for Mira, Lea og Arvid, og eksisterende Life Story-/Role World-rammer for arbeidsledig, arealplanlegger og renholder. Etter at alle åtte historier er skrevet: én målrettet scenetest på den ferdige bolken og ordinær PR-CI, ikke repeated full-regression.
+Utvid de åtte påbegynte buene mot minimum fire kapitler hver. Behold fullførte, avlyste og åpne utfall som ulike innganger; senere kapitler skal også kunne starte etter eldre saves som aldri har spilt denne bolkens første scener. Skriv neste samlede innholdsbolk før ny målrettet kontroll.
 
 **Merk:** En publisert synopsis er ikke det samme som et utkast fra denne kildeplanen. Stein, Frode og Inger er fremdeles tre registrerte historier uten påstått film-/bokattribusjon. Ikke legg inn retrospektiv inspirasjon som et historisk faktum uten særskilt verk- og sceneanalyse.
+

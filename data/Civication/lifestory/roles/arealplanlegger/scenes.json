@@ -1172,6 +1172,121 @@
           "konsekvensTekst": "«Supert, da siterer jeg deg på det i styret.» Du hører setningen bli til referat mens han sier den."
         }
       ]
+    },
+    {
+      "id": "wave_a_c06_hullet",
+      "threadId": "wave_a_c06",
+      "dag": 3,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "prioritet": 6,
+      "tittel": "Tellingen dekker ikke nedkjørselen",
+      "tekst": "Du går gjennom skoleveismappa før neste saksnotat. Skolekontaktens telling viser barn på snarveien. Den viser ikke hvor mange som krysser ved den foreslåtte nedkjørselen mellom 07.45 og 08.15. Plansjefen ber om en kort anbefaling før dokumentlista lukkes i morgen. Du kan beskrive det eksisterende materialet, men ikke fylle inn det manglende tallet.",
+      "valg": [
+        {
+          "id": "faglig_reservasjon",
+          "tekst": "Lever et avgrenset fagnotat som peker ut kunnskapshullet",
+          "konsekvensTekst": "Du skriver hva tellingen dekker og hva den ikke viser. Du anbefaler en egen observasjon ved nedkjørselen og sender notatet til plansjefen. Du gir ingen garanti om skoleveiens sikkerhet.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_valg": "forbehold"
+            }
+          }
+        },
+        {
+          "id": "foresla_utsettelse",
+          "tekst": "Be plansjefen vurdere å vente med anbefalingen til punktet er undersøkt",
+          "konsekvensTekst": "Du sender en begrunnet forespørsel om mer tid. Den manglende observasjonen er navngitt. Du har ikke selv utsatt saken eller bestilt en måling.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_valg": "utsettelse"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_a_c06_notatet_videre",
+      "threadId": "wave_a_c06",
+      "dag": 4,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "prioritet": 6,
+      "tittel": "Forbeholdet følger dokumentet",
+      "tekst": "Plansjefen svarer: «Jeg legger fagnotatet ditt ved. Vi rekker ikke en ny observasjon før denne utsendingen.» I dokumentlista står notatet med forbeholdet ditt. Ingen ny måling er lagt til. Du ser at sammendraget bare sier «skolevei vurdert».",
+      "valg": [
+        {
+          "id": "presiser",
+          "tekst": "Be om at sammendraget viser det konkrete forbeholdet",
+          "konsekvensTekst": "Du sender en presis rettelse: Kryssingen ved nedkjørselen er ikke observert i det aktuelle tidsrommet. Plansjefen bekrefter at setningen tas inn. Saken går videre med synlig usikkerhet.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_oppfolging": "presisert"
+            }
+          }
+        },
+        {
+          "id": "behold_vedlegg",
+          "tekst": "La forbeholdet stå i vedlegget og noter hvor det finnes",
+          "konsekvensTekst": "Du lar sammendraget stå og beholder en henvisning til fagnotatet. Forbeholdet finnes i vedlegget, men er mindre synlig i kortversjonen.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_oppfolging": "vedlegg"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c06_valg": "forbehold"
+        }
+      },
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_a_c06_svaret_om_tid",
+      "threadId": "wave_a_c06",
+      "dag": 4,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "prioritet": 6,
+      "tittel": "Mer tid til et avgrenset punkt",
+      "tekst": "Plansjefen svarer at anbefalingen kan vente, mens resten av saksmappa sendes videre. Han ber deg beskrive én observasjon ved nedkjørselen. Det er ikke en politisk utsettelse av hele saken, og ingen observasjon er utført ennå.",
+      "valg": [
+        {
+          "id": "beskriv",
+          "tekst": "Beskriv tidsrom, sted og hva observatøren skal registrere",
+          "konsekvensTekst": "Du avgrenser en observasjon til kryssingen mellom 07.45 og 08.15 og sender opplegget til plansjefen. Han må fortsatt avklare bemanning. Opplegget må gjennomføres før det kan gi et resultat.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_oppfolging": "observasjon_foreslaatt"
+            }
+          }
+        },
+        {
+          "id": "avklar_ansvar",
+          "tekst": "Be om ansvarlig person og tidspunkt før du lover et ferdig notat",
+          "konsekvensTekst": "Du spør hvem som kan utføre observasjonen og når. Plansjefen svarer at bemanningen ikke er avklart. Anbefalingen forblir åpen.",
+          "effekter": {
+            "flagg": {
+              "wa_c06_oppfolging": "bemanning_uavklart"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c06_valg": "utsettelse"
+        }
+      },
+      "avsender": "plansjef"
     }
   ]
 }

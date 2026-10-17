@@ -5745,6 +5745,318 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_a_c01_invitasjon",
+      "threadId": "wave_a_c01",
+      "dag": 4,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Prisen for en vanlig kveld",
+      "tekst": "Jonas sender lenken til en kafé ved torget: «Har du lyst til å treffes på dag 6 klokka 18?» Du åpner menyen, men ser også en ny strømregning på 280 kroner med frist dag 7. Du har ikke betalt den ennå. Du vil gjerne se Jonas; du vil også beholde kontrollen over utgiftene. Han har ikke sett regningen.",
+      "valg": [
+        {
+          "id": "foresla_gatur",
+          "tekst": "Fortell at du vil spare pengene, og foreslå en gratis tur på samme tidspunkt",
+          "konsekvensTekst": "Du skriver at du må prioritere regningen og foreslår en tur. Jonas har fått forslaget, men har ennå ikke svart. Ingen penger er brukt.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_svar": "tur"
+            }
+          }
+        },
+        {
+          "id": "takk_nei",
+          "tekst": "Takk nei denne kvelden uten å forklare økonomien",
+          "konsekvensTekst": "Du skriver at kvelden ikke passer. Jonas får ingen opplysninger om regningen. Du har ikke lovet å finne en ny dato.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_svar": "nei"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_a_c01_jonas_svarer",
+      "threadId": "wave_a_c01",
+      "dag": 5,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Et annet møtested",
+      "tekst": "Jonas svarer: «En tur passer. Skal vi starte utenfor kafeen klokka 18 i morgen? Vi trenger ikke gå inn.» Han har tatt imot forslaget ditt, men dere må fortsatt bekrefte avtalen.",
+      "valg": [
+        {
+          "id": "bekreft",
+          "tekst": "Bekreft turen på dag 6 klokka 18",
+          "konsekvensTekst": "Du bekrefter møtested og tidspunkt. Jonas svarer «Da sees vi». Regningen står fortsatt til separat oppfølging.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_tur_avtalt": true
+            }
+          }
+        },
+        {
+          "id": "avsta",
+          "tekst": "Si at du likevel trenger kvelden for deg selv",
+          "konsekvensTekst": "Du trekker forslaget før dere har møttes. Jonas svarer at det er greit. Det finnes ingen gjennomført tur.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_tur_avtalt": false
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c01_svar": "tur"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_a_c01_neiet_mottatt",
+      "threadId": "wave_a_c01",
+      "dag": 5,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Det korte svaret",
+      "tekst": "Jonas svarer på avslaget ditt: «Greit. Jeg spør en annen gang.» Han spør ikke om begrunnelsen. Du kjenner lysten til å forklare mer, men kan også la et vanlig nei stå.",
+      "valg": [
+        {
+          "id": "behold_privatsak",
+          "tekst": "Svar kort og la økonomien forbli privat",
+          "konsekvensTekst": "Du takker for forståelsen uten å dele noe mer. Jonas kjenner avslaget, ikke regningen.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_privatsak": true
+            }
+          }
+        },
+        {
+          "id": "hold_kontakt",
+          "tekst": "Send Jonas et bilde fra dagen din",
+          "konsekvensTekst": "Du sender et bilde av himmelen utenfor. Jonas svarer med et bilde fra sin dag. Dere har kontakt uten en ny møteavtale.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_bildekontakt": true
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c01_svar": "nei"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_a_c01_turen",
+      "threadId": "wave_a_c01",
+      "dag": 6,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Utenfor kafeen",
+      "tekst": "Klokka nærmer seg 18. Den gratis turen med Jonas er avtalt, og han skriver at han er ved kafeen. Regningen er ikke blitt betalt av at dere fant et billigere møtested.",
+      "valg": [
+        {
+          "id": "gaa",
+          "tekst": "Gå til møtestedet og ta turen med Jonas",
+          "konsekvensTekst": "Du møter Jonas. Dere går langs elva og snakker om uka hans også. Når dere skilles, er turen gjennomført; strømregningen er fortsatt en egen oppgave.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_tur_gjennomfort": true
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Ring og avlys før Jonas venter lenger",
+          "konsekvensTekst": "Du ringer. Jonas hadde satt av tida og er skuffet over det sene varselet, men sier at han går turen alene. Dere har ikke møttes.",
+          "effekter": {
+            "flagg": {
+              "wa_c01_tur_avlyst": true
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c01_tur_avtalt": true
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_a_c05_mangelmelding",
+      "threadId": "wave_a_c05",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Ett bestemt vedlegg",
+      "tekst": "I den digitale søknadsoversikten ligger en ny beskjed: «Vi mangler siden med avtalt ukentlig arbeidstid. Frist: dag 6 klokka 12.» Det er et annet punkt enn sluttdatoen dere tok opp tidligere. Arbeidsavtalen ligger i mappa, men du finner ikke en kvittering som viser hvilke sider som fulgte med. Du kan ikke slå fast om siden ble sendt.",
+      "valg": [
+        {
+          "id": "ny_innsending",
+          "tekst": "Send den relevante siden på nytt og be om mottaksbekreftelse",
+          "konsekvensTekst": "Du kontrollerer at siden viser arbeidstida og sender den i dokumentkanalen. Innsendingssiden viser en kvittering med dokumentnavnet. Det er en kvittering for mottak, ikke et vedtak.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_valg": "sendt",
+              "wa_c05_kvittering": true
+            }
+          }
+        },
+        {
+          "id": "ring_forst",
+          "tekst": "Ring for å få presisert hvilken side som mangler",
+          "konsekvensTekst": "Du forsøker å ringe, men kommer ikke gjennom før telefontida slutter. Kontaktforsøket er gjort; du har ikke snakket med veilederen eller sendt siden.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_valg": "ringt"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_a_c05_uten_svar",
+      "threadId": "wave_a_c05",
+      "dag": 6,
+      "fase": "morgen",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Fristen står der fortsatt",
+      "tekst": "Kontaktforsøket i går ga ingen samtale. Dokumentfristen er klokka 12 i dag. Du finner siden med arbeidstida i avtalen. Den gamle dokumentmappa forteller ikke om akkurat denne siden er mottatt.",
+      "valg": [
+        {
+          "id": "send",
+          "tekst": "Send siden nå og lagre kvitteringen",
+          "konsekvensTekst": "Du sender den kontrollerte siden før fristen. Mottakskvitteringen ligger i oversikten. Ingen har ennå vurdert innholdet.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_kvittering": true,
+              "wa_c05_oppfolging": "sendt"
+            }
+          }
+        },
+        {
+          "id": "be_presisering",
+          "tekst": "Send et skriftlig spørsmål om dokumentnavnet",
+          "konsekvensTekst": "Du sender spørsmålet før fristen, men siden er fortsatt ikke sendt. Det kommer ingen bekreftelse på forlenget frist. Du beholder spørsmålet i historikken.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_oppfolging": "spurt"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c05_valg": "ringt"
+        }
+      }
+    },
+    {
+      "id": "wave_a_c05_mottaket",
+      "threadId": "wave_a_c05",
+      "dag": 7,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Mottatt er ikke ferdig behandlet",
+      "tekst": "Veilederen skriver: «Siden med ukentlig arbeidstid vises nå i dokumentoversikten. Den følger saken videre.» Du sammenholder beskjeden med kvitteringen du lagret. Det står ikke at søknaden er innvilget eller avslått.",
+      "valg": [
+        {
+          "id": "arkiver",
+          "tekst": "Arkiver bekreftelsen sammen med kvitteringen",
+          "konsekvensTekst": "Du samler de to dokumentene. Du vet hva som er registrert, mens utfallet fortsatt er uavklart.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_avslutning": "mottak_dokumentert"
+            }
+          }
+        },
+        {
+          "id": "be_status",
+          "tekst": "Spør om det gjenstår flere dokumenter",
+          "konsekvensTekst": "Du sender et avgrenset spørsmål om dokumentlista. Det er registrert mottak av siden; du venter fortsatt på svar om resten.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_avslutning": "venter_status"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c05_kvittering": true
+        }
+      },
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_a_c05_fortsatt_mangel",
+      "threadId": "wave_a_c05",
+      "dag": 7,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Spørsmålet besvarer ikke kravet",
+      "tekst": "Veilederen svarer på spørsmålet: «Det gjelder siden med ukentlig arbeidstid.» Du har fått presiseringen du ba om. Siden står fortsatt som manglende, og fristen fra dag 6 er passert. Meldingen sier ingenting om utfallet av søknaden.",
+      "valg": [
+        {
+          "id": "ettersend",
+          "tekst": "Send siden med henvisning til den opprinnelige beskjeden",
+          "konsekvensTekst": "Du sender siden og får mottakskvittering. Innsendingen er etter den oppgitte fristen; du har ikke fått beskjed om hvordan det påvirker saken.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_sen_kvittering": true,
+              "wa_c05_avslutning": "sent_mottak"
+            }
+          }
+        },
+        {
+          "id": "be_hjelp",
+          "tekst": "Be om hjelp til å finne riktig side før du sender",
+          "konsekvensTekst": "Du ber om en konkret dokumentavklaring. Kravet står åpent, og ingen kvittering for vedlegget finnes ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_c05_avslutning": "aapent"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c05_oppfolging": "spurt"
+        }
+      },
+      "avsender": "nav_veileder"
     }
   ]
 }
