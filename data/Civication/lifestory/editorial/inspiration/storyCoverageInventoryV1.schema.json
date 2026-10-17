@@ -44,7 +44,12 @@
           "synopsis",
           "blueprint",
           "runtime",
-          "evidence_refs"
+          "evidence_refs",
+          "literary_track_ids",
+          "plot_lens_ids",
+          "film_imdb_id",
+          "film_producer_scenario_id",
+          "role_adaptations"
         ],
         "properties": {
           "type_id": {
@@ -120,6 +125,75 @@
             "items": {
               "type": "string",
               "minLength": 3
+            }
+          },
+          "literary_track_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^L[0-9]{2}$"
+            },
+            "uniqueItems": true
+          },
+          "plot_lens_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^P0[1-7]$"
+            },
+            "uniqueItems": true
+          },
+          "film_imdb_id": {
+            "type": "string",
+            "pattern": "^tt[0-9]+$"
+          },
+          "film_producer_scenario_id": {
+            "type": "string",
+            "pattern": "^scenario_[a-z0-9_]+$"
+          },
+          "role_adaptations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "role_id",
+                "applicability",
+                "reason",
+                "blueprint_ids",
+                "runtime_paths"
+              ],
+              "properties": {
+                "role_id": {
+                  "type": "string",
+                  "minLength": 3
+                },
+                "applicability": {
+                  "enum": [
+                    "candidate",
+                    "appropriate",
+                    "not_appropriate"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 10
+                },
+                "blueprint_ids": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "pattern": "^blueprint-[a-z0-9-]+$"
+                  }
+                },
+                "runtime_paths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 3
+                  }
+                }
+              }
             }
           }
         }
