@@ -53,7 +53,8 @@
         "optional_plot_lenses",
         "story_status",
         "entry_conditions",
-        "rights_note"
+        "rights_note",
+        "goodreads_primary"
       ],
       "properties": {
         "id": {
@@ -175,6 +176,53 @@
         },
         "rights_note": {
           "type": "string"
+        },
+        "goodreads_primary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "title",
+            "author",
+            "genre",
+            "source",
+            "selection_status",
+            "textual_analysis"
+          ],
+          "properties": {
+            "title": {
+              "type": "string",
+              "minLength": 2
+            },
+            "author": {
+              "type": "string",
+              "minLength": 2
+            },
+            "genre": {
+              "enum": [
+                "adult_work_genre_not_verified",
+                "memoir_or_essay_requires_analysis"
+              ]
+            },
+            "source": {
+              "const": "private_editorial_workbook_curated_159"
+            },
+            "selection_status": {
+              "const": "verified_in_workbook_subset"
+            },
+            "textual_analysis": {
+              "enum": [
+                "not_reviewed",
+                "work_specific_reviewed"
+              ]
+            },
+            "replacement_reason": {
+              "type": "string"
+            },
+            "publisher_source": {
+              "type": "string",
+              "pattern": "^https://"
+            }
+          }
         }
       }
     }
