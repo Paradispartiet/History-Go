@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 8,
       "konflikt": "Byggelyst vs tid til resten av livet"
+    },
+    {
+      "id": "wave_a_c03",
+      "tittel": "En time ved prosjektbordet",
+      "type": "privatliv",
+      "konflikt": "Avgrenset hjelp til en prototype møter egen kapasitet og prosjektbyggerens økonomi.",
+      "startDag": 8
     }
   ],
   "scenes": [
@@ -442,6 +449,200 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_a_c03_en_funksjon",
+      "threadId": "wave_a_c03",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "En time til en annens idé",
+      "tekst": "Prosjektbyggeren sender et bilde av sin egen pappmodell for å sortere små notatkort. Kortene setter seg fast når lokket lukkes. Prosjektbyggeren spør om du kan prøve akkurat dette sammen med prosjektbyggeren. Prosjektbyggeren vil ikke kjøpe nye materialer før strømregningen prosjektbyggerens er betalt. Samtalen dere eventuelt har om ditt prosjekt, er en annen avtale.",
+      "valg": [
+        {
+          "id": "en_time",
+          "tekst": "Tilby én time på telefon i morgen kveld for å prøve kortsporet",
+          "konsekvensTekst": "Du tilbyr én time, uten å love reparasjon eller salg. Prosjektbyggeren svarer ja til telefonprøven på dag 9 klokka 18 og beholder ansvaret for modellen.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_valg": "time",
+              "wa_c03_avtalt": true
+            }
+          }
+        },
+        {
+          "id": "ta_pause",
+          "tekst": "Si at du ikke har kapasitet til å hjelpe med modellen denne uka",
+          "konsekvensTekst": "Du sier nei til denne oppgaven. Prosjektbyggeren svarer at prosjektbyggeren legger modellen til side til prosjektbyggeren har mer tid. Avslaget gjelder prosjektbyggerens kortspor, ikke automatisk alle andre avtaler.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_valg": "pause"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c03_proven",
+      "threadId": "wave_a_c03",
+      "dag": 9,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Kortene kommer ikke rundt svingen",
+      "tekst": "Klokka er 18. Prosjektbyggeren ringer som avtalt og holder modellen foran kameraet. Prosjektbyggeren har beholdt de samme materialene. Du ser at kortet må bøyes for å komme gjennom svingen, men vet ennå ikke om en bredere åpning vil hjelpe.",
+      "valg": [
+        {
+          "id": "test",
+          "tekst": "Bruk den avtalte timen til å prøve bredere åpning og notere resultatet",
+          "konsekvensTekst": "Prosjektbyggeren flytter pappkanten mens du følger med. Kortet kommer gjennom to ganger, men kiler seg tredje gang. Dere skriver ned alle tre forsøkene og avslutter etter en time. Modellen er ikke ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_test_gjennomfort": true
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Forklar at du likevel ikke kan bruke timen nå",
+          "konsekvensTekst": "Du avslutter samtalen før dere tester. Prosjektbyggeren er irritert fordi prosjektbyggeren hadde satt av tida. Dere har ikke et testresultat eller en ny dato.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avlyst": true
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avtalt": true
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c03_etter_testen",
+      "threadId": "wave_a_c03",
+      "dag": 10,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Et funn som gjør planen mindre",
+      "tekst": "Prosjektbyggeren sender bildet av forsøksnotatet fra i går: to kort kom gjennom, ett satte seg fast. «Jeg lar resten vente og ser bare på svingen», skriver prosjektbyggeren. Prosjektbyggeren spør om du vil ha oppdatering når prosjektbyggeren har prøvd mer.",
+      "valg": [
+        {
+          "id": "oppdatering",
+          "tekst": "Si ja til en oppdatering uten å love mer arbeid",
+          "konsekvensTekst": "Du ber om å få høre hvordan det går. Dere avtaler ingen ny arbeidsøkt.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "folg_med"
+            }
+          }
+        },
+        {
+          "id": "avslutt_bidrag",
+          "tekst": "Si at dette var bidraget ditt for nå",
+          "konsekvensTekst": "Du takker for timen og avslutter ditt bidrag. Forsøksnotatet blir hos prosjektbyggeren; resultatet blir ikke borte selv om du stopper.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "bidrag_avsluttet"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c03_test_gjennomfort": true
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c03_etter_avlysning",
+      "threadId": "wave_a_c03",
+      "dag": 10,
+      "fase": "morgen",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Timen dere ikke brukte",
+      "tekst": "Den avtalte testen ble avlyst av deg i går. Prosjektbyggeren har ikke sendt et forsøksnotat. Du kan beklage det sene varselet uten å tilby enda en time du kanskje ikke har.",
+      "valg": [
+        {
+          "id": "beklag",
+          "tekst": "Beklag det sene varselet uten en ny avtale",
+          "konsekvensTekst": "Du sender en kort beklagelse. Prosjektbyggeren svarer at prosjektbyggeren planlegger videre selv. Ingen test er gjennomført.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "beklaget"
+            }
+          }
+        },
+        {
+          "id": "la_staa",
+          "tekst": "La avslaget stå uten å love noe mer",
+          "konsekvensTekst": "Du sender ingen ny melding. Avlysningen står i historikken; det gjør ikke en reparert modell.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "avlyst"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avlyst": true
+        }
+      }
+    },
+    {
+      "id": "wave_a_c03_etter_pausen",
+      "threadId": "wave_a_c03",
+      "dag": 10,
+      "fase": "morgen",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Modellen kan vente",
+      "tekst": "Du takket nei til å teste prosjektbyggerens kortspor. Prosjektbyggeren har ikke bestilt nye materialer eller bedt deg om en ny time. Bildet av modellen ligger i meldingstråden uten et resultat fra deg.",
+      "valg": [
+        {
+          "id": "spor_senere",
+          "tekst": "Send en hilsen og si at du er nysgjerrig på prosjektbyggerens videre arbeid",
+          "konsekvensTekst": "Du sender en hilsen uten å tilby en arbeidsøkt. Prosjektbyggeren får interesse, ikke et tidsløfte.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "hilsen"
+            }
+          }
+        },
+        {
+          "id": "behold_pause",
+          "tekst": "Behold pausen fra denne oppgaven",
+          "konsekvensTekst": "Du lar modellen ligge. Du har tid igjen til egne planer.",
+          "effekter": {
+            "flagg": {
+              "wa_c03_avslutning": "pause"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c03_valg": "pause"
+        }
+      }
     }
   ],
   "moter": [

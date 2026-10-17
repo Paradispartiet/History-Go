@@ -1,0 +1,98 @@
+# Civication – bolk A: verksforankring og åtte historieplaner
+
+**Dato:** 17. oktober 2026. **Status:** De første spillbare kapitlene i alle åtte historier er registrert i eksisterende Life Story-pakker: **33 scener og 66 valg**. Den målrettede runner-testen består. Dette sluttfører ikke de åtte hele buene; planens minimum fire kapitler per full bue står fortsatt ved lag. Verksanalysene er redaksjonelle utkast basert på sekundærmateriale, ikke dokumentert nærlesning.
+
+Dette dokumentet bygger videre på det allerede publiserte skjema- og synopsisgrunnlaget i `main`. Kildene til grunnfortellinger er:
+**(1)** bøker fra brukerens kuraterte Goodreads-arbeidsbok, **(2)** IMDb-filmreferanser, **(3)** tilsvarende HG Film Producer-scenario-ID-er.
+Disse tre mediekildene er ikke de samme som litterære spor `L01–L24`, de sju valgfrie Booker-linsene `P01–P07` og Civications fortellingstyper `C01–C24`; de tre sistnevnte er analyse- og dekningsakser.
+
+## Faktisk kildegrunnlag
+
+Den tidligere lagrede, private arbeidsboken `Civication_samtidsfortellinger_og_litteraere_modeller.xlsx` inneholder et kuratert register `Alle 159` og arket `Civication 2026` med konkrete referanseverk for C01–C24. På grunnlag av disse er nå **24 av 24** synopsisene koblet til et faktisk verk fra arbeidsbokens 4–5-stjernersutvalg. Dette er en kontroll av **arbeidsbokens metadata**, ikke av en fersk original CSV og ikke en påstand om at bøkene nå er nærleset. Brukerens egne stjerner, datoer og notater lagres ikke i GitHub.
+
+Tidligere `literary_inspiration.work` beholdes som **klassisk/litterær referansekandidat**, selv om denne ikke er del av det private Goodreads-utvalget. Det nye feltet `goodreads_primary` eier den verifiserte *verktilhørigheten til arbeidsboken*. **C14** er et konkret eksempel på viktig korreksjon: bildeboken *Dette er ikke min hatt* i eldre Civication-ark ble erstattet i voksensporet med *Fugletribunalet* av Agnes Ravatn, som står i `Alle 159`; barne- og ungdomsbøker går separat.
+
+IMDb-film og Film Producer-scenario er fortsatt én felles filmreferanse sett gjennom **to kildesystemer**; ett ID-treff betyr ikke at filmanalysen er godkjent. Bolk A bruker dokumenterte forlagsomtaler, litteraturfaglig omtale og filmfaglige kilder for *avgrensede* påstander. Vi skal aldri gi en kildekontrollert synopsis et falskt skinn av at forfatteren har lest hele filmen eller boken ut fra disse kildene alene.
+
+## Åtte historier – litterær og filmatisk inspirert fortelling, ny Civication-handling
+
+| Civication | Kuratert Goodreads-bok | IMDb/Film Producer | Hva som overføres | Original Civication-historie |
+| --- | --- | --- | --- | --- |
+| **C01 – Jobbtap og verdighet** | [*Vernon Subutex 1*](https://www.gyldendal.no/skjonnlitteratur/romaner/vernon-subutex-1-9788205520141), Virginie Despentes | [*I, Daniel Blake*](https://www.bfi.org.uk/sight-and-sound/reviews/i-daniel-blake-first-look) – `scenario_i_daniel_blake_2016` | Sosial status og verdighet under økonomisk usikkerhet | Jonas inviterer til en kveld som koster penger samme dag som spilleren har en privat frist. Åpen grense og privat avslag får forskjellige senere samtaler. |
+| **C02 – Muligheten uten garanti** | [*The Brooklyn Follies*](https://www2.publishersweekly.com/978-0-8050-7714-8), Paul Auster | [*Searching for Sugar Man*](https://player.bfi.org.uk/rentals/film/watch-searching-for-sugar-man-2012-online) – `scenario_searching_for_sugar_man_2012` | Kunstnerisk håp uten kontroll over hvordan andre reagerer | Mira får en mulig spilleforespørsel. Spilleren kan bidra til avklaring eller holde fast ved øving; hun bestemmer selv om hun svarer arrangøren. |
+| **C03 – Drømmen og regningene** | [*Imot kunsten*](https://www.gyldendal.no/skjonnlitteratur/romaner/imot-kunsten-9788205396166), Tomas Espedal | [*Paterson*](https://www.bfi.org.uk/lists/10-great-films-about-poets) – `scenario_paterson_2016` | Hverdagslig arbeid som kan være skapende uten karrieremyte | Lea ønsker hjelp til én konkret prototypedetalj. Spilleren kan bidra en time eller sette en grense; ingen av handlingene etablerer en bedrift. |
+| **C05 – Byråkratiet og personen** | [*Jesu barndom*](https://www.cappelendamm.no/boker/jesu-barndom-jm-coetzee-9788202477356), J. M. Coetzee | [*Brazil*](https://www.bfi.org.uk/film/bb840dfa-f69d-576b-bd99-dfa28efd4595/brazil) – `scenario_brazil_1985` | Ulikt systeminnsyn og personens behov for å bli forstått | NAV trenger et vedlegg; spilleren kan sende med sporbar kvittering eller søke konkret avklaring. Ingen av grenene gir automatisk vedtak. |
+| **C06 – Faglig integritet** | [*Professor Andersens natt*](https://septentrio.uit.no/index.php/nordlit/nb/article/view/8012), Dag Solstad | [*12 Angry Men*](https://www.bfi.org.uk/lists/sidney-lumet-network-10-essential-films) – `scenario_12_angry_men_1957` | Ansvar for handling/unnlatelse og beslutning ved ufullstendige fakta | Arealplanleggeren mangler en skoleveimåling. Faglig forbehold eller forespørsel om utsettelse har ulike følger; politikerne avgjør selv. |
+| **C07 – Tilhørighet mot frihet** | [*Vernon Subutex 1*](https://www.gyldendal.no/skjonnlitteratur/romaner/vernon-subutex-1-9788205520141), Virginie Despentes | [*Dheepan*](https://player.bfi.org.uk/rentals/film/watch-dheepan-2015-online) – `scenario_dheepan_2015` | Grenser og egeninteresser i et fellesskap; ikke likestilling av frivillighet og flukt fra krig | Arvid inviterer først som gjest, så kommer en egen forespørsel om vakter. Et begrenset ja og et nei er begge troverdige. |
+| **C17 – Å arbeide seg tom** | [*Genanse og verdighet*](https://bergenbibliotek.no/litteraturen/til-kjernen/kjerneboker/solstad-dag-genanse-og-verdighet-1994), Dag Solstad | [*The Machinist*](https://www.paramountpictures.com/movies/the-machinist) – `scenario_the_machinist_2004` | Arbeidsidentitet, skam og sikkerhet, men uten å overføre ekstrem søvnmangel eller filmens psykologiske plott | Renholderen får for mange soner. Spilleren kan be Kari prioritere eller melde et konkret HMS-avvik; lederen eier bemanningen. |
+| **C23 – Feilen som ikke forsvinner** | [*Genanse og verdighet*](https://bergenbibliotek.no/litteraturen/til-kjernen/kjerneboker/solstad-dag-genanse-og-verdighet-1994), Dag Solstad | [*Fargo*](https://www.bfi.org.uk/sight-and-sound/features/joel-ethan-coen-brothers-fargo-1996) – `scenario_fargo_1996` | En begrenset feil med senere, ulike sosiale konsekvenser | En mottaker oppfatter Leas skisse som et tilbud. Spilleren kan hjelpe med en presisering eller avgrense hvem som fikk den. Ingen kriminalitet eller automatisk kontrakt. |
+
+### Fortellingskrav for bolken
+
+Planbaselinen før kapittelskriving: De åtte blueprints har **40 konkrete beats**, det vil si i hovedsak fem per historie: foranledning, nytt press, spillerhandling, umiddelbar ettervirkning og senere tilbakekomst. De har **16 forskjellige handlingsvalg**, hver med egen kostnad og senere respons, og minst to betingede mulige avslutninger per historie. Det er ikke 40 registrerte runtime-scener.
+
+Ingen fortelling forutsetter at et møte, en innsending, en arbeidsoppgave eller et familiært faktum har skjedd bare fordi forfatteren planla det. Grensene ligger i `continuity.choice_gate_plan` og `continuity.forbidden_assumptions`, og er nå oversatt til scenevilkår og valgflagg for de første kapitlene. Senere kapitler må beholde samme krav. Der en NPC skal bestemme noe, bestemmer NPC-en det selv.
+
+**Felles produksjonsfiler:**
+
+- [`waveAUniversalProblemsV1.json`](../data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json) – åtte særskilte, kildebelagte **utkast** til verks- og samfunnsanalyse, som følger `universalProblemV1.schema.json`.
+- [`waveARoleStoryBlueprintsV1.json`](../data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json) – åtte konkrete **utkast** til rollespesifikke historier som følger `roleStoryBlueprintV1.schema.json`. Planfilens opprinnelige `production.playable=false` beholdes som blueprint-baseline. Faktisk kapittelstatus eies nå av `waveAChapterBindingsV1.json` og de konkrete runtime-filene, ikke av en retrospektiv oppgradering av alle planens framtidige beats.
+- [`storyCoverageInventoryV1.json`](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json) – C01, C02, C03, C05, C06, C07, C17 og C23 har konkrete blueprint-ID-er og `runtime=registered_first_installment`. De øvrige 16 er uforandret.
+
+## Første spillbare kapitler
+
+| Historie | Faktisk innholdspakke | Dager | Nytt innhold |
+| --- | --- | --- | --- |
+| C01 | arbeidsledig/scenes.json | 4–6 | Invitasjon, Jonas sitt svar, bekreftet eller avlyst tur. Et privat nei deler ikke regningen. |
+| C02 | musikk_med_mira.json | 8–9 | To åpninger for avtalt prøve eller hjemmearbeid; sendte spørsmål og ubekreftet tilbud holdes adskilt. Pausegrenen får ingen ny forespørsel. |
+| C03 | sideprosjekt_med_lea.json | 8–10 | Prosjektbyggerens egen pappmodell; avgrenset test, avlysning og pause har hver sin tilbakekomst. Spillerens prosjekt er fortsatt en annen sak. |
+| C05 | arbeidsledig/scenes.json | 5–7 | Nytt, spesifisert vedlegg om arbeidstid, separat fra tidligere sluttdato. Kontaktforsøk, presisering og rettidig/sen mottakskvittering er ulike hendelser. |
+| C06 | arealplanlegger/scenes.json | 3–4 | Eksisterende snarveitelling kan ikke fylle hullet ved nedkjørselen. Plansjefens faktiske svar bestemmer dokumentflyten. |
+| C07 | miljo_med_arvid.json | 8–10 | Sosial invitasjon og separat vaktforespørsel; én time, avlysning, gjestebesøk og hjemmevalg. Aktiv avstandsgren får ingen ny invitasjon. |
+| C17 | renholder/scenes.json | 3–4 | Registrert sonearbeid, manglende tilkomst og lederprioritering. Registrert avvik er ikke det samme som flyttet hylle. |
+| C23 | sideprosjekt_neste_steg.json | 11–13 | To dokumenterte mottakere; teksthjelp eller mottakssporing. Sendt presisering gir ikke automatisk lesebekreftelse fra begge. |
+
+`waveAChapterBindingsV1.json` kobler hver historie til blueprint, problemanalyse, bok-/film-ID-er og nøyaktige scene-ID-er. IMDb og Film Producer-sporet kan følges videre gjennom de eksisterende problemanalysene. Ingen nye kildepåstander om verkene innføres i kapitteltekstene.
+
+**Identitet:** Spilleren er hovedperson. Mira = `mira`/medmusikeren, Lea = `lea`/prosjektbyggeren og Arvid = den eksisterende `amir`/miljøkontakten. Ingen nye spillerroller eller historiske biografier opprettes. Representantvalget og alle tidligere scener er bevart.
+
+**Avgrensning:** NAV-dokumentet, regningen, målepunktet og romstatusen er nye fakta i fiktive scener. De er ikke påstander om brukerens forhold, generelle NAV-regler eller faktiske kommunale saker. Regningen er omtalt som bakgrunn for et sosialt valg; denne bolken betaler den ikke og oppretter ikke automatisk gjeld eller inntekt.
+
+**Lagring:** Nye flagg har prefikset `wa_`. Nye tråder har prefikset `wave_a_`. De eksisterende sceneobjektene, valgeffektene, personene og representantene endres ikke. Eldre saves får ikke tilbakedaterte valg eller møter; kapitler på allerede passerte dager fylles ikke inn som gjennomførte. Pakker og tråder lastes gjennom dagens manifest og fortsettelsesdeklarasjoner uten ny motor eller loader.
+
+### Kontroll og kvalitetsvurdering
+
+`node tests/civication-source-grounded-wave-a.test.js` spiller alle **66 nye valg i 33 scener**, fordelt på **84 avgrensede forløp**, med **1 559 serialiseringer og gjenopptakelser**. Den kontrollerer også kildebindinger, avlyste møter, private avslag, ubekreftet konsert, avstandsgren, mottakeravhengig kunnskap, gammel historikk, penger og retur etter rollebytte. Dette er runner-integrasjon, ikke en nettleserverifisering eller bevis på litterær kvalitet. Eksisterende målrettede tester for renholder og Life Story-motoren er også kjørt.
+
+Alle 33 nye scenetekster og alle 66 konsekvenstekster er manuelt gjennomgått for årsakssammenheng, kunnskapsgrenser, rollemyndighet og emnespesifisitet. Verksanalysenes opprinnelige kildestatus beholdes.
+
+| Dimensjon | Score | Etterprøvbart grunnlag |
+| --- | --- | --- |
+| Korrekthet og evidens | 4/5 | Konkrete rolle-/aktør-ID-er og kildebindingsfil; ingen påstand om ny nærlesning. |
+| Dekning og ferdigstillelse | 5/5 | Første kapitler for alle åtte avtalte historier; alle nye valg faktisk spilt. Hele buer er videre produksjon. |
+| Redaksjonell kvalitet | 4/5 | Samtlige nye tekster gjennomgått; ulike konkrete problemer, egne interesser og avgrensede handlinger. |
+| Teknisk integritet | 4/5 | Eksisterende validator og runner, arkivbevaring, grenrekkevidde og rollebytte. Ingen ny nettlesertest. |
+| Sikkerhet og ansvarlighet | 5/5 | Original fiksjon, ingen persondata eller diagnostikk, ingen automatisk økonomi eller vedtak. |
+| Vedlikeholdbarhet | 5/5 | Data i eksisterende pakker, egne flagg og åtte eksplisitte kilde-/scenebindinger med kjørbar test. |
+
+**Sum: 27/30 for denne avgrensede kapittelbolken.** Vurderingen er en egenvurdering av innhold og teknisk integrasjon, ikke uavhengig fagfellevurdering eller godkjenning av de fullstendige buene. Ordinær GitHub-CI må bestå på sluttcommit før merge.
+
+## Neste produksjonssteg
+
+Utvid de åtte påbegynte buene mot minimum fire kapitler hver. Behold fullførte, avlyste og åpne utfall som ulike innganger; senere kapitler skal også kunne starte etter eldre saves som aldri har spilt denne bolkens første scener. Skriv neste samlede innholdsbolk før ny målrettet kontroll.
+
+**Merk:** En publisert synopsis er ikke det samme som et utkast fra denne kildeplanen. Stein, Frode og Inger er fremdeles tre registrerte historier uten påstått film-/bokattribusjon. Ikke legg inn retrospektiv inspirasjon som et historisk faktum uten særskilt verk- og sceneanalyse.
+
+## Integrasjonsrettelser etter ordinær PR-kontroll
+
+Den første ordinære kontrollen bestod 706 av 719 testfiler. Ti avvik kom fra samme utdaterte karrierematrise: den nye kapitteltesten skulle inngå i evidenslisten for arealplanlegger og renholder. Matrisen er regenerert; ingen karriereterskler eller rollekrav er endret.
+
+De tre øvrige avvikene håndteres i de berørte testene:
+
+- Mira-testen spiller nå den nye C02-scenen før dagsoppsummering og omstart, og kontrollerer at pause/gjenopptakelse beholder akkurat denne scenen.
+- Kapitteltesten identifiserer en faktisk avslutningsscene gjennom effekten som fullfører hovedtråden, uavhengig av rekkefølgen i JSON-filen.
+- Arvid-testen beholder alle opprinnelige valgkombinasjoner, tidligere historier, senere kapitler og gjenopptakelser. Den uavhengige C07-tråden spilles med standardvalg i denne testen for å unngå et voksende kryssprodukt; samtlige nye C07-valg og avstandsgrenen dekkes av den egne bolktesten. Ingen timeout økes, og ingen spillscene fjernes.
+
+Målrettet kontroll: `node tests/run-civication-tests.mjs source-grounded-wave-a lifestory-arvid-continuation lifestory-mira-continuation narrative-three-level-continuations career-gameplay-matrix`. Ordinær GitHub-CI må bestå på sluttcommit før merge.
+
+Etter matriseregenereringen bestod 714 av 719 testfiler i ordinær CI, inkludert alle kapitteltestene. De fem resterende testfilene pekte på én avhengig, utdatert rapport: `roleWorldRolloutReadiness.json`. Denne er regenerert i samme avhengighetskjede. Diffen legger kun til den nye bolktesten i kildehenvisningene for arealplanlegger og renholder; rolleklassifikasjoner, produksjonspolitikk og den lesbare rapporten er uendret. De fem berørte readiness-/filmproduksjonstestene består samlet på 11,8 sekunder.

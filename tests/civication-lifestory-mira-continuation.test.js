@@ -185,9 +185,15 @@ async function uiTest() {
   assert.ok(chapters.includes("Avsluttede kapitler") && chapters.includes(day8.kapittelArkiv[0].ending.navn));
   reload.panel.querySelector('[data-lifestory-choice="hjemme"]').click();
   assert.equal(reload.w.CivicationLifestoryState.load().arkiv.length, day8.arkiv.length + 1);
+  const pendingAfterChoice = reload.w.CivicationLifestoryUI.getCurrentSceneInfo().sceneId;
+  assert.equal(pendingAfterChoice, 'wave_a_c02_foresporsel_hjemme');
   reload.setRole(null);
   assert.equal(reload.panel.querySelector("[data-lifestory-next-day]"), null);
   reload.setRole(musician);
+  assert.equal(reload.w.CivicationLifestoryUI.getCurrentSceneInfo().sceneId, pendingAfterChoice,
+    'pause resumes the newly authored scene instead of skipping to the day summary');
+  reload.panel.querySelector('[data-lifestory-choice="behold_egen_tid"]').click();
+  assert.ok(reload.w.CivicationLifestoryState.load().dagFerdig);
   reload.panel.querySelector("[data-lifestory-restart]").click();
   const reset = reload.w.CivicationLifestoryState.load();
   assert.equal(reset.dag, 1); assert.equal(reset.fortsettelseId, undefined); assert.equal(reset.arkiv.length, 0);

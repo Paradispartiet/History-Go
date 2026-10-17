@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 8,
       "konflikt": "Tilhørighet og gjensidig hjelp møter forventninger om å bestemme over en annens tid."
+    },
+    {
+      "id": "wave_a_c07",
+      "tittel": "Gjest eller frivillig",
+      "type": "privatliv",
+      "konflikt": "Sosial tilhørighet og behov for hjelp må ha hver sine avtaler.",
+      "startDag": 8
     }
   ],
   "scenes": [
@@ -565,6 +572,165 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_a_c07_invitasjon",
+      "threadId": "wave_a_c07",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Invitert uten arbeidsliste",
+      "tekst": "Miljøkontakten sender informasjon om en åpen kveld i bakrommet på dag 10 fra klokka 18. «Du kan komme som gjest. Det er gratis inngang», står det. Invitasjonen gjelder ikke samtalen på puben i morgen. Miljøkontakten spør om du vil få den praktiske informasjonen.",
+      "valg": [
+        {
+          "id": "send_info",
+          "tekst": "Be om informasjonen og behold muligheten for å komme",
+          "konsekvensTekst": "Miljøkontakten sender tidspunkt og inngang. Du har fått en invitasjon, men har ikke lovet å møte eller ta en oppgave.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_invitasjon": "interessert"
+            }
+          }
+        },
+        {
+          "id": "nei",
+          "tekst": "Takk nei til denne kvelden",
+          "konsekvensTekst": "Du takker nei til den åpne kvelden. Miljøkontakten svarer «Greit». Svaret endrer ikke det dere har avtalt separat om praten på puben.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_invitasjon": "nei"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "arvid_valg8": "kontakt"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_a_c07_vaktene",
+      "threadId": "wave_a_c07",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Tre ledige ruter",
+      "tekst": "Miljøkontakten sender en egen forespørsel etter invitasjonen: Tre vakter ved informasjonsbordet står tomme på dag 10, klokka 18–19, 19–20 og 20–21. Miljøkontakten spør om du kan ta alle. Det er mer enn bare å komme innom. Miljøkontakten skriver at kvelden fortsatt er åpen for gjester.",
+      "valg": [
+        {
+          "id": "en_vakt",
+          "tekst": "Tilby bare vakten 18–19 og be miljøkontakten finne andre til resten",
+          "konsekvensTekst": "Du tilbyr én time. Miljøkontakten bekrefter vakten 18–19 og skriver at miljøkontakten spør andre om resten. Du er ikke ansvarlig for å fylle de to andre rutene.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_vakt_avtalt": true
+            }
+          }
+        },
+        {
+          "id": "som_gjest",
+          "tekst": "Si nei til vaktene og behold muligheten til å komme som gjest",
+          "konsekvensTekst": "Du avslår vaktforespørselen. Miljøkontakten svarer at du fortsatt er velkommen. Ingen vakt er avtalt med deg.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_bare_gjest": true
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c07_invitasjon": "interessert"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_a_c07_vakt",
+      "threadId": "wave_a_c07",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Bare den første timen",
+      "tekst": "Vakten 18–19 er bekreftet. Før du går hjemmefra, skriver miljøkontakten at den siste timen fortsatt mangler folk. Miljøkontakten spør om du kan bli til 21 likevel. Den nye forespørselen er ikke en endring dere allerede har avtalt.",
+      "valg": [
+        {
+          "id": "hold_timen",
+          "tekst": "Svar at du kommer 18–19, og gjennomfør den avtalte timen",
+          "konsekvensTekst": "Du møter ved informasjonsbordet klokka 18 og går klokka 19. Miljøkontakten overtar bordet da du går. Den siste vakten er miljøkontaktens oppgave å løse.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_vakt_gjennomfort": true
+            }
+          }
+        },
+        {
+          "id": "avlys",
+          "tekst": "Avlys vakten og si tydelig at du ikke kommer",
+          "konsekvensTekst": "Du melder fra før oppmøtet. Miljøkontakten svarer at miljøkontakten nå må dekke også den første timen. Du har ingen gjennomført vakt.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_vakt_avlyst": true
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c07_vakt_avtalt": true
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_a_c07_gjesten",
+      "threadId": "wave_a_c07",
+      "dag": 10,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Å komme uten å stå på lista",
+      "tekst": "Du takket nei til vaktene. Den åpne kvelden begynner klokka 18, og du står ikke på arbeidslista. Du kan bruke invitasjonen uten å gjøre avslaget om til et nytt løfte.",
+      "valg": [
+        {
+          "id": "gaa_som_gjest",
+          "tekst": "Gå innom som gjest en kort stund",
+          "konsekvensTekst": "Du går innom og hilser på miljøkontakten. Miljøkontakten er opptatt med bordet, og dere får bare snakket kort. Du går igjen uten å ha tatt en vakt.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_gjest_gjennomfort": true
+            }
+          }
+        },
+        {
+          "id": "bli_hjemme",
+          "tekst": "Bli hjemme denne kvelden",
+          "konsekvensTekst": "Du blir hjemme. Du har verken uteblitt fra en avtalt vakt eller gjennomført et besøk.",
+          "effekter": {
+            "flagg": {
+              "wa_c07_gjest_gjennomfort": false
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c07_bare_gjest": true
+        }
+      }
     }
   ],
   "moter": [

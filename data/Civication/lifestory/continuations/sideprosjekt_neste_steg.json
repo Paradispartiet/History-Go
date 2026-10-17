@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 11,
       "konflikt": "Bruk av et lite prosjekt vs tid til vedlikehold"
+    },
+    {
+      "id": "wave_a_c23",
+      "tittel": "Utkastet som ikke var et tilbud",
+      "type": "privatliv",
+      "konflikt": "En uklar skisse skaper ulike forventninger hos mottakere som ikke vet det samme.",
+      "startDag": 11
     }
   ],
   "scenes": [
@@ -363,6 +370,241 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_a_c23_skissen",
+      "threadId": "wave_a_c23",
+      "dag": 11,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Kan dere levere på fredag?",
+      "tekst": "Prosjektbyggeren viser deg en egen skisse, merket «utkast 0.2», som prosjektbyggeren har sendt til to deltakere på verkstedet. Under bildet står «mulig prøve fredag». Én av dem har svart: «Fint, da regner jeg med å få en ferdig modell fredag.» Det er første gang du ser denne skissen. Prosjektbyggeren har verken avtalt pris eller bestemt om modellen skal bygges.",
+      "valg": [
+        {
+          "id": "presis_tekst",
+          "tekst": "Tilby å lese en presisering som skiller utkast fra leveringsløfte",
+          "konsekvensTekst": "Du tilbyr å kontrollere ordlyden før prosjektbyggeren sender noe. Prosjektbyggeren ber deg se på et utkast i morgen. Ingen mottaker har fått en rettelse ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_valg": "tekst"
+            }
+          }
+        },
+        {
+          "id": "spor_mottak",
+          "tekst": "Tilby å kontrollere de to opprinnelige mottakerne sammen med prosjektbyggeren",
+          "konsekvensTekst": "Du tilbyr å gå gjennom den sendte meldingen. Prosjektbyggeren sier ja til gjennomgangen i morgen. Du har ikke kontaktet noen eller sett bevis for videresending.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_valg": "mottak"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c23_ordlyden",
+      "threadId": "wave_a_c23",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "En rettelse til begge",
+      "tekst": "Prosjektbyggeren sender tekstutkastet: «Skisse 0.2 var en idé til utprøving, ikke en avtale om ferdig modell fredag. Jeg har ikke satt en leveringsdato.» Prosjektbyggeren viser de to opprinnelige mottakerne. Prosjektbyggeren spør om du vil lese setningene én gang til før prosjektbyggeren sender.",
+      "valg": [
+        {
+          "id": "les",
+          "tekst": "Les presiseringen og be prosjektbyggeren beholde versjonsnummeret",
+          "konsekvensTekst": "Du bekrefter at teksten viser hvilken skisse det gjelder. Prosjektbyggeren bestemmer seg for å sende den og viser deg meldingen til begge opprinnelige mottakere. At den er sendt, viser ikke at begge har lest den.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_rettelse": "begge"
+            }
+          }
+        },
+        {
+          "id": "ikke_na",
+          "tekst": "Si at du ikke rekker gjennomlesingen nå",
+          "konsekvensTekst": "Du sier fra om kapasiteten din. Prosjektbyggeren svarer at prosjektbyggeren vil lese selv før prosjektbyggeren sender. Du har ikke sett en sendt rettelse.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_rettelse": "ikke_bekreftet"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c23_valg": "tekst"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c23_mottakerne",
+      "threadId": "wave_a_c23",
+      "dag": 12,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "To adresser, én misforståelse",
+      "tekst": "Dere går gjennom prosjektbyggerens sendte melding på skjermen. Den har to mottakere. Bare den ene har skrevet at en ferdig modell ventes fredag. Dere finner ingen videresending i materialet prosjektbyggeren viser. Prosjektbyggeren vurderer hvem prosjektbyggeren skal kontakte først.",
+      "valg": [
+        {
+          "id": "den_ene",
+          "tekst": "Foreslå et direkte svar til den som forventer levering",
+          "konsekvensTekst": "Du peker ut det konkrete spørsmålet. Prosjektbyggeren sender selv en presisering til denne personen og viser deg den sendte meldingen. Den andre mottakeren har fortsatt bare originalskissen.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_rettelse": "en"
+            }
+          }
+        },
+        {
+          "id": "begge",
+          "tekst": "Foreslå samme presisering til begge opprinnelige mottakere",
+          "konsekvensTekst": "Prosjektbyggeren velger å sende en presisering til begge og viser meldingen. Dere har fortsatt ikke dokumentasjon på at skissen er delt videre.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_rettelse": "begge"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c23_valg": "mottak"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c23_svar_fra_en",
+      "threadId": "wave_a_c23",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Den andre vet ikke det samme",
+      "tekst": "Prosjektbyggeren viser svaret fra personen prosjektbyggeren presiserte til: «Takk, da har jeg ingen modell å hente fredag.» Den andre mottakeren har ikke fått presiseringen. At én person har forstått, sier ingenting om den andre.",
+      "valg": [
+        {
+          "id": "foresla_andre",
+          "tekst": "Foreslå at prosjektbyggeren avklarer med den andre også",
+          "konsekvensTekst": "Du anbefaler en egen avklaring. Prosjektbyggeren sier at prosjektbyggeren vil følge opp, men har ennå ikke vist en ny sendt melding. Bare det første svaret er bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "en_avklart"
+            }
+          }
+        },
+        {
+          "id": "overlat",
+          "tekst": "La prosjektbyggeren avgjøre resten selv",
+          "konsekvensTekst": "Du avslutter hjelpen. Prosjektbyggeren beholder ansvaret for kontakten med den andre. Hjelpen din stanser ved denne gjennomgangen.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "ansvar_tilbake"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "en"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c23_svar_fra_begge",
+      "threadId": "wave_a_c23",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Sendt til to, lest av én",
+      "tekst": "Begge fikk presiseringen fra prosjektbyggeren. Én svarer at det er forstått og at ingen modell ventes fredag. Den andre har ikke svart. Prosjektbyggeren spør om prosjektbyggeren bør omtale misforståelsen som ferdig ryddet.",
+      "valg": [
+        {
+          "id": "skill",
+          "tekst": "Skill mellom sendt presisering og bekreftet forståelse",
+          "konsekvensTekst": "Du peker på at bare én har bekreftet forståelsen. Prosjektbyggeren noterer den andre som uavklart. Skissen er fortsatt et utkast.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "en_bekreftet_en_uavklart"
+            }
+          }
+        },
+        {
+          "id": "be_lesebekreftelse",
+          "tekst": "Foreslå et kort spørsmål til den som ikke svarte",
+          "konsekvensTekst": "Du foreslår å spørre om presiseringen er lest. Prosjektbyggeren skriver at prosjektbyggeren vil vurdere det. Det finnes fortsatt bare ett bekreftet svar.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "foreslaatt_oppfolging"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "begge"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_a_c23_ikke_sendt",
+      "threadId": "wave_a_c23",
+      "dag": 13,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Utkastet ligger fortsatt der",
+      "tekst": "Prosjektbyggeren sier at prosjektbyggeren ennå ikke har sendt presiseringen. Det gamle svaret om fredag står ubesvart. Du takket nei til gjennomlesingen, men det ga verken prosjektbyggeren eller mottakerne en avklaring.",
+      "valg": [
+        {
+          "id": "minn",
+          "tekst": "Minn om det konkrete spørsmålet som fortsatt venter",
+          "konsekvensTekst": "Du minner om at én person venter en modell fredag. Prosjektbyggeren tar ansvaret for å svare. Du har ikke sett en sendt rettelse eller en bekreftet forståelse.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "minnet_om_aapent_sporsmal"
+            }
+          }
+        },
+        {
+          "id": "avgrens",
+          "tekst": "Si at du ikke kan overta korrespondansen",
+          "konsekvensTekst": "Du setter en tydelig grense for hjelpen din. Prosjektbyggeren beholder ansvaret; misforståelsen er fortsatt uavklart.",
+          "effekter": {
+            "flagg": {
+              "wa_c23_avslutning": "uavklart"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "ikke_bekreftet"
+        }
+      },
+      "avsender": "lea"
     }
   ],
   "moter": [],

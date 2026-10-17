@@ -1,7 +1,7 @@
 {
   "schema": "civication_story_coverage_inventory_v1",
   "legacy_register": "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-  "status_note": "24/24 redaksjonelle synopsis-kandidater: IKKE godkjente blueprints eller nye publiserte scener. Goodreads-read-4+ er ennå ikke matchet. Filmidentitet er fra Film Producer seed; temafortolkning uferdig.",
+  "status_note": "24 synopsis-kandidater; åtte har nå første spillbare kapitler registrert i eksisterende Life Story-pakker og testet i runneren. Se waveAChapterBindingsV1.json. Hele buer og nærlesningsbasert kildegodkjenning er ikke ferdige. Goodreads-verksmedlemskap er kontrollert mot kuratert arbeidsbok.",
   "updated_date": "2026-10-17",
   "types": [
     {
@@ -9,17 +9,20 @@
       "name": "Jobbtap og verdighet",
       "legacy_synopsis_id": "C01",
       "role_candidate": "arbeidsledig",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c01",
+      "runtime_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L03"
@@ -32,10 +35,14 @@
       "role_adaptations": [
         {
           "role_id": "arbeidsledig",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Et betalingsvarsel faller samme dag som en invitasjon fra Jonas; valget gjelder hvordan spilleren håndterer både frist og kontakt.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c01"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/roles/arbeidsledig/scenes.json"
+          ]
         },
         {
           "role_id": "renholder",
@@ -51,17 +58,20 @@
       "name": "Muligheten uten garanti",
       "legacy_synopsis_id": "C02",
       "role_candidate": "Mira / musikk_frilansmusiker",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c02",
+      "runtime_path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L17"
@@ -74,10 +84,14 @@
       "role_adaptations": [
         {
           "role_id": "musikk_frilansmusiker",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "En ubekreftet forespørsel om mulig spilling kolliderer med Miras avtalte øving; ingen booking kan opprettes uten bekreftelse.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c02"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/continuations/musikk_med_mira.json"
+          ]
         },
         {
           "role_id": "sport_utover",
@@ -93,17 +107,20 @@
       "name": "Drømmen og regningene",
       "legacy_synopsis_id": "C03",
       "role_candidate": "Lea / naeringsliv_sideprosjektbygger",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c03",
+      "runtime_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L06"
@@ -116,10 +133,14 @@
       "role_adaptations": [
         {
           "role_id": "naeringsliv_sideprosjektbygger",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Lea må velge ett realistisk forsøk etter jobb når en uventet utgift begrenser mulighetene.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c03"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json"
+          ]
         },
         {
           "role_id": "arbeidsledig",
@@ -135,7 +156,7 @@
       "name": "Forespørselen som ikke er en kontrakt",
       "legacy_synopsis_id": "C04",
       "role_candidate": "Lea / naeringsliv_frilanser",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -175,17 +196,20 @@
       "name": "Byråkratiet og personen",
       "legacy_synopsis_id": "C05",
       "role_candidate": "arbeidsledig / NAV",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c05",
+      "runtime_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L18"
@@ -198,10 +222,14 @@
       "role_adaptations": [
         {
           "role_id": "arbeidsledig",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Et etterspurt vedlegg finnes kanskje blant spillerens kvitteringer, men ikke i saksbehandlerens skjerm.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c05"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/roles/arbeidsledig/scenes.json"
+          ]
         },
         {
           "role_id": "arealplanlegger",
@@ -217,17 +245,20 @@
       "name": "Faglig integritet under press",
       "legacy_synopsis_id": "C06",
       "role_candidate": "arealplanlegger",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c06",
+      "runtime_path": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L07"
@@ -240,10 +271,14 @@
       "role_adaptations": [
         {
           "role_id": "arealplanlegger",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "En sikkerhetsvurdering om skolevei mangler en måling idet plansjefen trenger et notat.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c06"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/roles/arealplanlegger/scenes.json"
+          ]
         },
         {
           "role_id": "controller",
@@ -259,17 +294,20 @@
       "name": "Tilhørighet mot frihet",
       "legacy_synopsis_id": "C07",
       "role_candidate": "Arvid / sosialt miljø",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c07",
+      "runtime_path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L03"
@@ -280,10 +318,14 @@
       "role_adaptations": [
         {
           "role_id": "subkultur_gangster",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Arvid tilbyr plass ved et arrangement, men en takk for invitasjonen tolkes som et ja til flere dugnader.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c07"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/continuations/miljo_med_arvid.json"
+          ]
         },
         {
           "role_id": "renholder",
@@ -299,7 +341,7 @@
       "name": "Tjenesten som blir en gjeld",
       "legacy_synopsis_id": "C08",
       "role_candidate": "Arvid / bekjentskap",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -339,7 +381,7 @@
       "name": "Vennskapet som glir fra",
       "legacy_synopsis_id": "C09",
       "role_candidate": "Jonas / vennskap",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -381,7 +423,7 @@
       "name": "Kjærlighet på feil tidspunkt",
       "legacy_synopsis_id": "C10",
       "role_candidate": "ny privatlivstråd / gjensidig interesse",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -423,7 +465,7 @@
       "name": "Familien som trenger deg",
       "legacy_synopsis_id": "C11",
       "role_candidate": "søsteren / familierelasjon",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -463,7 +505,7 @@
       "name": "Grensen du ikke satte",
       "legacy_synopsis_id": "C12",
       "role_candidate": "Sara / frivillig klubb",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -503,7 +545,7 @@
       "name": "Hjemmet på usikker grunn",
       "legacy_synopsis_id": "C13",
       "role_candidate": "ny boligtråd / arbeidsledig",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -543,7 +585,7 @@
       "name": "Ryktet løper fra deg",
       "legacy_synopsis_id": "C14",
       "role_candidate": "sosiale medier / kollegarelasjon",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -585,7 +627,7 @@
       "name": "Det digitale dobbeltlivet",
       "legacy_synopsis_id": "C15",
       "role_candidate": "digital identitet / privatliv",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -625,7 +667,7 @@
       "name": "Klassereisen og kodene",
       "legacy_synopsis_id": "C16",
       "role_candidate": "Daniel / kulturmiljø",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -667,17 +709,20 @@
       "name": "Å arbeide seg tom",
       "legacy_synopsis_id": "C17",
       "role_candidate": "renholder / driftsleder",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c17",
+      "runtime_path": "data/Civication/lifestory/roles/renholder/scenes.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L06"
@@ -690,10 +735,14 @@
       "role_adaptations": [
         {
           "role_id": "renholder",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Kari må fordele flere soner etter sykdom, men Amina peker på uforsvarlig tempo.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c17"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/roles/renholder/scenes.json"
+          ]
         },
         {
           "role_id": "barnehageassistent",
@@ -709,7 +758,7 @@
       "name": "Ensom midt blant folk",
       "legacy_synopsis_id": "C18",
       "role_candidate": "Jonas / Daniel / sosialt liv",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -749,7 +798,7 @@
       "name": "Å begynne på nytt",
       "legacy_synopsis_id": "C19",
       "role_candidate": "arbeidsledig / opplæringsspor",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -792,7 +841,7 @@
       "name": "Fellesskapet uten helt",
       "legacy_synopsis_id": "C20",
       "role_candidate": "Sara og Nora / lokalt fellesskap",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -832,7 +881,7 @@
       "name": "Byen som skifter ansikt",
       "legacy_synopsis_id": "C21",
       "role_candidate": "Ivar / arealplanlegger",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -874,7 +923,7 @@
       "name": "Kunnskap du ikke kan bekrefte",
       "legacy_synopsis_id": "C22",
       "role_candidate": "Nora / natur og undersøkelse",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
@@ -914,17 +963,20 @@
       "name": "Den lille feilen som ikke forsvinner",
       "legacy_synopsis_id": "C23",
       "role_candidate": "Lea / arbeid og privatliv",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",
-      "blueprint": "missing",
-      "runtime": "no_new_scenes",
-      "blueprint_id": null,
-      "runtime_path": null,
+      "blueprint": "candidate",
+      "runtime": "registered_first_installment",
+      "blueprint_id": "blueprint-wave-a-c23",
+      "runtime_path": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
       "evidence_refs": [
         "data/Civication/lifestory/editorial/storyInspirationCoverageV1.json",
-        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json"
+        "Paradispartiet/HG_Film_Producer/data/film/scenarios/film_scenarios_seed.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json",
+        "data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json"
       ],
       "literary_track_ids": [
         "L01"
@@ -937,10 +989,14 @@
       "role_adaptations": [
         {
           "role_id": "naeringsliv_sideprosjektbygger",
-          "applicability": "candidate",
+          "applicability": "runtime_first_installment",
           "reason": "Lea sender en tidlig skisse til flere enn planlagt; noen kan tro den er vedtatt.",
-          "blueprint_ids": [],
-          "runtime_paths": []
+          "blueprint_ids": [
+            "blueprint-wave-a-c23"
+          ],
+          "runtime_paths": [
+            "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json"
+          ]
         },
         {
           "role_id": "controller",
@@ -956,7 +1012,7 @@
       "name": "Den ufullstendige forsoningen",
       "legacy_synopsis_id": "C24",
       "role_candidate": "Mira, Lea og Arvid / relasjoner",
-      "book_selection": "goodreads_not_checked",
+      "book_selection": "read_four_plus_verified",
       "film_identity": "matched_imdb_film_producer",
       "film_analysis": "not_reviewed",
       "synopsis": "legacy_candidate",

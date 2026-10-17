@@ -111,7 +111,10 @@ function applyChapter(saved,content,id,overrides={}) {
   R.startNextDay(saved,merged);
  }
  assert.equal(saved.threadState[pack.hovedtraad].status,'completed');
- assert.ok(saved.tidligereValg[Object.keys(pack.scenes.at(-1).valg[0].effekter.flagg)[0]],'chapter closed');
+ const closers=pack.scenes.filter(scene=>scene.valg.some(choice=>
+   choice.effekter.threads?.[pack.hovedtraad]?.status==='completed'));
+ assert.ok(closers.some(scene=>saved.spilteScener.includes(scene.id)),
+   'played an actual main-thread closing scene, independent of file order');
  assert.equal(saved.meters.penger,previous.meters.penger,'story does not mint ParadiseCoin');
  assert.ok(E.isFinalDay(saved,merged));
  assert.deepEqual(saved.fortsettelser.at(-1),id);

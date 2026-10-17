@@ -1018,6 +1018,121 @@
           "konsekvensTekst": "Kari noterer. «Bra du sier fra — det er sånt som ender i møter hvis det får gro.»"
         }
       ]
+    },
+    {
+      "id": "wave_a_c17_status",
+      "threadId": "wave_a_c17",
+      "dag": 3,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "prioritet": 6,
+      "tittel": "To soner ferdige, tre igjen",
+      "tekst": "Kari har flyttet en medarbeider til et annet bygg resten av vakten. På dagens plan står fem soner; du har fullført toalettene og inngangspartiet, mens kontorene, trappa og lageret gjenstår. Det er 45 minutter igjen. Amina viser deg at en tung hylle sperrer for renholdet på lageret. Hun ber deg ikke flytte den alene. Kari spør hva som blir ferdig.",
+      "valg": [
+        {
+          "id": "be_prioritering",
+          "tekst": "Send nøyaktig status og be Kari prioritere resten innen vaktslutt",
+          "konsekvensTekst": "Du markerer bare de to utførte sonene som ferdige. Du beskriver hylla og tiden som gjenstår, og ber Kari velge prioritering. Kari har ansvaret for bemanningen.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_valg": "prioritering"
+            }
+          }
+        },
+        {
+          "id": "melde_avvik",
+          "tekst": "Meld den blokkerte tilkomsten og be om vurdering før lageret tas",
+          "konsekvensTekst": "Du registrerer den blokkerte tilkomsten som avvik og sender Kari samme status for sonene. Lageret står uferdig. Kari får både oppgavestatusen og beskrivelsen av hindringen.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_valg": "avvik"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_a_c17_prioritert",
+      "threadId": "wave_a_c17",
+      "dag": 4,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "prioritet": 6,
+      "tittel": "Den gule ruta på planen",
+      "tekst": "Karis svar fra slutten av forrige vakt ligger på planen: «Ta trappa. Kontorene utsettes; lageret må vi avklare.» Du avsluttet vakten etter den tilgjengelige tiden uten å registrere flere soner ferdige. Nå spør hun hvilke oppgaver som skal stå åpne fra i går.",
+      "valg": [
+        {
+          "id": "behold_status",
+          "tekst": "Behold kontorene og lageret åpne, og avklar om trappa ble ferdig",
+          "konsekvensTekst": "Du beholder de åpne oppgavene og går gjennom trappestatusen med Kari. Dere finner ingen registrering på at trappa ble fullført. Den står også åpen til noen faktisk tar den.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_oppfolging": "aapen_plan"
+            }
+          }
+        },
+        {
+          "id": "fordel_dag",
+          "tekst": "Be Kari lage dagens rekkefølge med de åpne oppgavene synlig",
+          "konsekvensTekst": "Du ber om en ny rekkefølge som inkluderer gårsdagens restarbeid. Kari setter kontorene først og beholder lageret til avklaring. Ingen gamle ruter merkes ferdige.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_oppfolging": "ny_rekkefolge"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c17_valg": "prioritering"
+        }
+      },
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_a_c17_avviket_aapent",
+      "threadId": "wave_a_c17",
+      "dag": 4,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "prioritet": 6,
+      "tittel": "Registrert, men fortsatt sperret",
+      "tekst": "Kari bekrefter at hun har lest avviket om hylla. På morgenrunden ser du at den fortsatt står der. Det finnes ingen melding fra Ole eller avtale om vernerunde for dette avviket. Kari spør hva hun må ta videre.",
+      "valg": [
+        {
+          "id": "vis_stedet",
+          "tekst": "Vis Kari hvor tilkomsten er blokkert",
+          "konsekvensTekst": "Du viser Kari stedet. Hun tar ansvar for å avklare hvem som kan flytte hylla. Lageret står fortsatt uferdig, og du fortsetter med oppgavene hun prioriterer utenfor lageret.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_oppfolging": "vist_leder"
+            }
+          }
+        },
+        {
+          "id": "be_tid",
+          "tekst": "Be om tidspunkt for avklaring og behold lageret åpent",
+          "konsekvensTekst": "Du ber om en konkret oppfølgingstid. Kari sier hun må undersøke først. Avviket er fortsatt åpent, og renholdet på lageret er ikke registrert som utført.",
+          "effekter": {
+            "flagg": {
+              "wa_c17_oppfolging": "venter_avklaring"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c17_valg": "avvik"
+        }
+      },
+      "avsender": "driftsleder"
     }
   ]
 }

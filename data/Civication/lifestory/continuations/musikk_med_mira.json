@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 8,
       "konflikt": "Ønske om å spille sammen vs tid, kapasitet og egne arbeidsmåter"
+    },
+    {
+      "id": "wave_a_c02",
+      "tittel": "Før spillejobben finnes",
+      "type": "privatliv",
+      "konflikt": "Håpet om å spille møter retten til å beholde tid uten et bekreftet tilbud.",
+      "startDag": 8
     }
   ],
   "scenes": [
@@ -540,6 +547,168 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_a_c02_foresporsel_prove",
+      "threadId": "wave_a_c02",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Før noe står i programmet",
+      "tekst": "Medmusikeren videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Dere har allerede avtalt en prøve på dag 10 klokka 14. Medmusikeren spør hva du selv har kapasitet til.",
+      "valg": [
+        {
+          "id": "avklar_vilkar",
+          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
+          "konsekvensTekst": "Du foreslår tre spørsmål. Medmusikeren svarer at medmusikeren vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_valg": "sporsmal",
+              "wa_c02_sporsmal_sendt": true
+            }
+          }
+        },
+        {
+          "id": "behold_egen_tid",
+          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
+          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Medmusikeren svarer at medmusikeren håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_valg": "egen_tid"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "prove"
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_a_c02_foresporsel_hjemme",
+      "threadId": "wave_a_c02",
+      "dag": 8,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Før noe står i programmet",
+      "tekst": "Medmusikeren videresender et spørsmål fra en lokal arrangør: «Vi vurderer et kort innslag en kveld neste uke. Er dere interesserte hvis det blir plass?» Verken dato eller honorar står i meldingen. Du har valgt å arbeide hjemme. Dere har ikke avtalt en ny prøve. Medmusikeren spør hva du selv har kapasitet til.",
+      "valg": [
+        {
+          "id": "avklar_vilkar",
+          "tekst": "Tilby å lese gjennom et spørsmål om dato, svarfrist og honorar",
+          "konsekvensTekst": "Du foreslår tre spørsmål. Medmusikeren svarer at medmusikeren vil sende dem, og viser deg deretter den sendte meldingen. Du har ikke svart ja til en opptreden.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_valg": "sporsmal",
+              "wa_c02_sporsmal_sendt": true
+            }
+          }
+        },
+        {
+          "id": "behold_egen_tid",
+          "tekst": "Si at du beholder egne planer til det finnes et konkret tilbud",
+          "konsekvensTekst": "Du sier at du ikke setter av mer tid nå. Medmusikeren svarer at medmusikeren håndterer kontakten med arrangøren. Ingen avtale med deg er endret.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_valg": "egen_tid"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "musikk_videre_valg": "hjemme"
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_a_c02_svaret",
+      "threadId": "wave_a_c02",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Arrangøren vet heller ikke ennå",
+      "tekst": "Medmusikeren viser svaret på spørsmålene dere formulerte: «Programmet er ikke klart. Vi kan ikke bekrefte dato eller honorar nå.» Medmusikeren vil fortsette kontakten. Du må avgjøre om du vil bruke mer av din tid på muligheten.",
+      "valg": [
+        {
+          "id": "sett_grense",
+          "tekst": "Be om et konkret tilbud før dere snakker om din deltakelse",
+          "konsekvensTekst": "Du ber medmusikeren ta kontakt hvis det kommer et konkret tilbud. Medmusikeren bekrefter at du ikke står som deltaker.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_oppfolging": "avventer_tilbud"
+            }
+          }
+        },
+        {
+          "id": "trekk_interessen",
+          "tekst": "Si at du ikke vil være aktuell denne gangen",
+          "konsekvensTekst": "Du trekker din interesse. Medmusikeren sier medmusikeren vil vurdere opplegget på egen hånd. Du bestemmer ikke om medmusikeren skal spille.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_oppfolging": "trukket"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c02_sporsmal_sendt": true
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_a_c02_kalenderen",
+      "threadId": "wave_a_c02",
+      "dag": 9,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "prioritet": 6,
+      "tittel": "Din tid er fortsatt din",
+      "tekst": "Medmusikeren sender en kort oppdatering: Arrangøren har fortsatt ikke satt dato. Du tilbød ingen hjelp med spørsmålene og har ikke satt av ny tid. Medmusikeren spør om medmusikeren kan sende et konkret tilbud senere, hvis det kommer et.",
+      "valg": [
+        {
+          "id": "konkret_tilbud",
+          "tekst": "Si at du kan lese et konkret tilbud senere",
+          "konsekvensTekst": "Du sier ja til å motta informasjon. Det er ikke en aksept av en spillejobb eller et nytt tidspunkt.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_oppfolging": "informasjon"
+            }
+          }
+        },
+        {
+          "id": "ingen_ny_kontakt",
+          "tekst": "Be medmusikeren la denne forespørselen ligge for din del",
+          "konsekvensTekst": "Medmusikeren svarer at medmusikeren ikke følger opp denne muligheten med deg. Musikken ellers kan dere avtale separat.",
+          "effekter": {
+            "flagg": {
+              "wa_c02_oppfolging": "trukket"
+            }
+          }
+        }
+      ],
+      "tilgjengelighet": "start",
+      "conditions": {
+        "flagg": {
+          "wa_c02_valg": "egen_tid"
+        }
+      },
+      "avsender": "mira"
     }
   ],
   "moter": [
