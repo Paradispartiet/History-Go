@@ -1,16 +1,15 @@
-/* Footer and header share the same History Go toolbar design language.
-   Keep fixed-layer geometry in layout.css. The canonical header yellow is
-   --yellow (#f6c800); no gold, extra button frames or competing accents. */
+/* Footer and header share History Go's black-and-yellow visual language.
+   Actions float without outlined circles or capsules; the bars' simple
+   separating lines remain. Geometry lives in css/layout.css. */
 :root{
   --hg-toolbar-yellow: var(--yellow, #f6c800);
-  --hg-toolbar-edge: rgba(246,200,0,.86);
   --hg-toolbar-bg: #000;
   --hg-toolbar-button: #151515;
   --hg-toolbar-hover: #242419;
   --hg-toolbar-text: #f8f8f1;
 }
 
-/* Match the two visible toolbars and their outlines. */
+/* Keep structural dividers, but never draw a frame around action icons. */
 body.hg-app .site-header{
   border-bottom: 1px solid var(--hg-toolbar-yellow);
   background: var(--hg-toolbar-bg);
@@ -19,26 +18,26 @@ body.hg-app .site-header .iconbtn,
 body.hg-app .site-header #nearbyExploreToggle,
 body.hg-app .site-header #miniProfile{
   box-sizing: border-box;
-  border: 1px solid var(--hg-toolbar-edge);
-  background: var(--hg-toolbar-button);
+  border: 0;
+  background: transparent;
   color: var(--hg-toolbar-text);
   box-shadow: none;
 }
 body.hg-app .site-header #nearbyExploreToggle[aria-expanded="true"]{
-  background: var(--hg-toolbar-hover);
-  border-color: var(--hg-toolbar-yellow);
+  background: transparent;
+  color: var(--hg-toolbar-yellow);
 }
 body.hg-app .site-header .iconbtn:hover,
 body.hg-app .site-header #nearbyExploreToggle:hover,
 body.hg-app .site-header #miniProfile:hover{
-  background: var(--hg-toolbar-hover);
-  border-color: var(--hg-toolbar-yellow);
+  background: transparent;
+  color: var(--hg-toolbar-yellow);
 }
 body.hg-app .site-header .iconbtn:focus-visible,
 body.hg-app .site-header #nearbyExploreToggle:focus-visible,
 body.hg-app .site-header #miniProfile:focus-visible{
-  outline: 2px solid var(--hg-toolbar-yellow);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: inset 0 -2px 0 var(--hg-toolbar-yellow);
 }
 
 body.hg-app .app-footer{
@@ -54,7 +53,7 @@ body.hg-app .app-footer{
   gap: 8px;
 }
 
-/* Collapsed place thumbnail uses the same yellow framing as miniProfile. */
+/* The collapsed thumbnail also has no decorative frame. */
 .pc-mini{
   display: none;
   width: 56px;
@@ -62,8 +61,8 @@ body.hg-app .app-footer{
   border-radius: 12px;
   box-sizing: border-box;
   overflow: hidden;
-  background: var(--hg-toolbar-button);
-  border: 1px solid var(--hg-toolbar-edge);
+  background: transparent;
+  border: 0;
   flex: 0 0 auto;
 }
 .pc-mini img{ width:100%;height:100%;display:block;object-fit:contain; }
@@ -86,8 +85,8 @@ body.hg-app .app-footer{
 .app-actions::-webkit-scrollbar{display:none}
 .app-actions > button{flex:0 0 auto}
 
-/* Every footer action is the same compact, dark, yellow-framed capsule.
-   Short visible names complement the unmistakable pictograms. */
+/* Unframed actions: retain full touch targets without drawn capsules.
+   Text labels and seven distinct pictograms still make functions clear. */
 body.hg-app .app-footer .app-actions button,
 body.hg-app .app-footer .app-actions .pc-action{
   box-sizing: border-box;
@@ -100,10 +99,10 @@ body.hg-app .app-footer .app-actions .pc-action{
   min-width: 0;
   flex: 0 0 auto;
   padding: 0 12px;
-  border: 1px solid var(--hg-toolbar-edge);
-  border-radius: 999px;
+  border: 0;
+  border-radius: 0;
   color: var(--hg-toolbar-text);
-  background: var(--hg-toolbar-button);
+  background: transparent;
   box-shadow: none;
   font: 750 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;
   white-space: nowrap;
@@ -111,12 +110,12 @@ body.hg-app .app-footer .app-actions .pc-action{
 }
 body.hg-app .app-footer .app-actions button:hover,
 body.hg-app .app-footer .app-actions button:active{
-  background: var(--hg-toolbar-hover);
-  border-color: var(--hg-toolbar-yellow);
+  background: transparent;
+  color: var(--hg-toolbar-yellow);
 }
 body.hg-app .app-footer .app-actions button:focus-visible{
-  outline: 2px solid var(--hg-toolbar-yellow);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: inset 0 -2px 0 var(--hg-toolbar-yellow);
 }
 body.hg-app .app-footer .app-actions button:disabled{
   opacity: .72;
@@ -185,9 +184,9 @@ body.hg-app .app-footer .app-actions #pcVisit{
   width: 100%;
   height: 38px;
   padding: 0 12px;
-  border: 1px solid var(--hg-toolbar-edge);
-  border-radius: 999px;
-  background: var(--hg-toolbar-button);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--hg-toolbar-text);
   font-size: 13px;
   font-weight: 700;
@@ -195,10 +194,12 @@ body.hg-app .app-footer .app-actions #pcVisit{
 }
 .pc-route-menu button:hover,
 .pc-route-menu button:focus-visible{
-  background: var(--hg-toolbar-hover);
-  border-color: var(--hg-toolbar-yellow);
-  outline: 2px solid var(--hg-toolbar-yellow);
-  outline-offset: 1px;
+  background: transparent;
+  color: var(--hg-toolbar-yellow);
+}
+.pc-route-menu button:focus-visible{
+  outline: none;
+  box-shadow: inset 0 -2px 0 var(--hg-toolbar-yellow);
 }
 
 .app-nextup:not(.footer-nextup-panel){display:none}
@@ -220,9 +221,9 @@ body.hg-app .app-footer .pc-onsite-footer .pc-onsite-action{
   height: 46px;
   min-height: 46px;
   padding: 0 11px 0 8px;
-  border-color: var(--hg-toolbar-edge);
+  border: 0;
   color: var(--hg-toolbar-text);
-  background: var(--hg-toolbar-button);
+  background: transparent;
 }
 .app-actions .pc-onsite-footer .pc-onsite-action-icon{
   display: inline-grid;
