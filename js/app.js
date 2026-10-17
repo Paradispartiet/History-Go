@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
-    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261010-front-flip-recovery1"));
+    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261017-footer-actions1"));
     await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261010-editorial6"));
     await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260913-place-status1"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // A place may be selected as soon as the router starts. Ensure the Rute
     // action has its existing navigation API from the very first selection.
     await safeRun("loadHistoricalRoutesRuntime", () => loadScriptOnce("js/historical-routes.js"));
-    await safeRun("loadRoutesRuntime", () => loadScriptOnce("js/routes.js"));
+    await safeRun("loadRoutesRuntime", () => loadScriptOnce("js/routes.js?v=20261017-footer-actions1"));
 
     await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
