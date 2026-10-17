@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civication – temaanalyse av bok/film og sosialt problem v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "analysis_id",
+    "story_type_ids",
+    "universal_problem",
+    "social_historical_context",
+    "competing_interests",
+    "reference_works",
+    "original_civication_translation",
+    "analysis_status"
+  ],
+  "properties": {
+    "schema": {
+      "const": "civication_universal_problem_v1"
+    },
+    "analysis_id": {
+      "type": "string",
+      "pattern": "^problem-[a-z0-9-]+$"
+    },
+    "story_type_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^C(0[1-9]|1[0-9]|2[0-4])$"
+      }
+    },
+    "universal_problem": {
+      "type": "string",
+      "minLength": 25
+    },
+    "social_historical_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "period",
+        "conditions",
+        "claim_status",
+        "evidence"
+      ],
+      "properties": {
+        "period": {
+          "type": "string",
+          "minLength": 3
+        },
+        "conditions": {
+          "type": "string",
+          "minLength": 25
+        },
+        "claim_status": {
+          "enum": [
+            "editorial_hypothesis",
+            "source_checked"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "ref",
+              "kind",
+              "claim_boundary"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string",
+                "minLength": 3
+              },
+              "kind": {
+                "enum": [
+                  "source_metadata",
+                  "work_specific_analysis",
+                  "civication_scene",
+                  "editorial_inference"
+                ]
+              },
+              "claim_boundary": {
+                "type": "string",
+                "minLength": 8
+              }
+            }
+          }
+        }
+      }
+    },
+    "competing_interests": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "position",
+          "legitimate_interest",
+          "cost_or_risk"
+        ],
+        "properties": {
+          "position": {
+            "type": "string",
+            "minLength": 4
+          },
+          "legitimate_interest": {
+            "type": "string",
+            "minLength": 12
+          },
+          "cost_or_risk": {
+            "type": "string",
+            "minLength": 12
+          }
+        }
+      }
+    },
+    "reference_works": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "work_id",
+          "inspiration_layer",
+          "interpretation",
+          "review_status",
+          "evidence"
+        ],
+        "properties": {
+          "work_id": {
+            "type": "string",
+            "pattern": "^(book|film)-[a-z0-9-]+$"
+          },
+          "inspiration_layer": {
+            "enum": [
+              "social_theme",
+              "moral_conflict",
+              "character_pressure",
+              "narrative_form",
+              "historical_context"
+            ]
+          },
+          "interpretation": {
+            "type": "string",
+            "minLength": 25
+          },
+          "review_status": {
+            "enum": [
+              "hypothesis",
+              "work_specific_reviewed"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "ref",
+                "kind",
+                "claim_boundary"
+              ],
+              "properties": {
+                "ref": {
+                  "type": "string",
+                  "minLength": 3
+                },
+                "kind": {
+                  "enum": [
+                    "source_metadata",
+                    "work_specific_analysis",
+                    "civication_scene",
+                    "editorial_inference"
+                  ]
+                },
+                "claim_boundary": {
+                  "type": "string",
+                  "minLength": 8
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "original_civication_translation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contemporary_context",
+        "what_is_transformed",
+        "do_not_copy"
+      ],
+      "properties": {
+        "contemporary_context": {
+          "type": "string",
+          "minLength": 30
+        },
+        "what_is_transformed": {
+          "type": "string",
+          "minLength": 25
+        },
+        "do_not_copy": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    },
+    "analysis_status": {
+      "enum": [
+        "draft",
+        "reviewed"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "analysis_status": {
+            "const": "reviewed"
+          }
+        },
+        "required": [
+          "analysis_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "social_historical_context": {
+            "properties": {
+              "claim_status": {
+                "const": "source_checked"
+              },
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          },
+          "reference_works": {
+            "items": {
+              "properties": {
+                "review_status": {
+                  "const": "work_specific_reviewed"
+                },
+                "evidence": {
+                  "minItems": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "social_historical_context": {
+            "properties": {
+              "claim_status": {
+                "const": "source_checked"
+              }
+            },
+            "required": [
+              "claim_status"
+            ]
+          }
+        },
+        "required": [
+          "social_historical_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "social_historical_context": {
+            "properties": {
+              "evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
