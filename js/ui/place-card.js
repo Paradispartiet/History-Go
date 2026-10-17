@@ -2542,8 +2542,11 @@ if (btnRoute) {
           modeSelect.dispatchEvent(new Event("change", { bubbles: true }));
         }
         if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
+        else window.HGLeftPanelMode?.setMode?.("routes");
+        // The route panel is a closed drawer until explicitly opened. Selecting
+        // the Ruter tab without opening that drawer looked like a dead button.
+        window.HGNearbyDrawer?.open?.();
         if (typeof window.renderLeftRoutesList === "function") window.renderLeftRoutesList();
-        window.showToast?.(tt("ui.routes.shownInExplorePanel", "Ruter vises i utforsk-panelet"));
       }
     });
 
@@ -2570,8 +2573,13 @@ if (btnRoute) {
 }
 
 // --- Notat ---
-if (btnNote && typeof window.handlePlaceNote === "function") {
-  btnNote.onclick = () => window.handlePlaceNote(place);
+if (btnNote) {
+  btnNote.onclick = () => {
+    if (typeof window.handlePlaceNote === "function") {
+      return window.handlePlaceNote(place);
+    }
+    window.showToast?.(tt("ui.notes.notLoaded", "Notatfunksjonen er ikke klar ennå"));
+  };
 }
 
 // --- Observasjon ---
