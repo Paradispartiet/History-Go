@@ -1,0 +1,846 @@
+{
+  "schema": "civication_book_film_story_inspiration_v1",
+  "version": 1,
+  "status": "editorial_production_plan_not_runtime",
+  "coverage": {
+    "contemporary_story_types": 24,
+    "literary_tracks_in_existing_crosswalk": 24,
+    "booker_plot_lenses_in_existing_crosswalk": 7,
+    "imdb_film_list_size": 161,
+    "goodreads_adult_match_verified": 0,
+    "source_note": "0 verified means this crosswalk has not been joined to the private Goodreads read 4+ canon, not that those works are absent from the collection."
+  },
+  "source_contract": {
+    "literary_type_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+    "existing_types_document": "docs/CIVICATION_CONTEMPORARY_STORY_PATTERNS_V1.md",
+    "goodreads_import": "scripts/import-goodreads-literature-canon.mjs",
+    "goodreads_rule": "read shelf AND user rating >= 4; exclude children's and YA to their separate game; do not publish ratings or private fields",
+    "imdb_list_repo": "Paradispartiet/HG_Film_Producer",
+    "imdb_list_path": "data/film/imdb_ls000064637_titles.md",
+    "film_producer_seed": "data/film/scenarios/film_scenarios_seed.json",
+    "canonical_role_status": "proposals require role/character/state anchoring before any runtime manifest entry"
+  },
+  "entries": [
+    {
+      "id": "C01",
+      "type_name": "Jobbtap og verdighet",
+      "primary_role_or_character": "Arbeidsledig",
+      "proposed_role_binding": "arbeidsledig",
+      "thematic_problem": "tap av arbeidsrolle, økonomisk knapphet og sosial verdighet",
+      "improved_synopsis": "Etter at arbeidsforholdet opphører, får spilleren en invitasjon til en gammel kollegasamling samme dag som et økonomisk krav må besvares. Jonas spør om spilleren vil bli med; svaret handler like mye om selvrespekt som om penger.",
+      "meaningful_choices": [
+        "Fortelle Jonas at økonomien er trang, og foreslå en gratis gåtur i stedet.",
+        "Takke ja til samlingen og utsette svaret på kravet til neste dag."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L03",
+        "work": "Ellison – Invisible Man",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "I, Daniel Blake",
+        "year": 2016,
+        "imdb_id": "tt5168192",
+        "imdb_url": "https://www.imdb.com/title/tt5168192/",
+        "imdb_list_position": 114,
+        "film_producer_scenario_id": "scenario_i_daniel_blake_2016",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P02"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C02",
+      "type_name": "Muligheten uten garanti",
+      "primary_role_or_character": "Mira",
+      "proposed_role_binding": "Mira / musikk_frilansmusiker",
+      "thematic_problem": "kunstnerisk ambisjon, uforpliktende tilbud og tid brukt uten garanti",
+      "improved_synopsis": "En arrangør sier at Mira kan få spille dersom en annen artist trekker seg. Mira blir bedt om å holde lørdagen ledig, men hun har allerede lovet å øve med en kollega. Spilleren blir spurt om å hjelpe med et svar som ikke skaper en falsk booking.",
+      "meaningful_choices": [
+        "Be arrangøren om frist og skriftlig avklaring før Mira endrer avtalen sin.",
+        "Beholde øvingen og svare at Mira bare er tilgjengelig ved en konkret bekreftelse."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L17",
+        "work": "Munro – Runaway",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Searching for Sugar Man",
+        "year": 2012,
+        "imdb_id": "tt2125608",
+        "imdb_url": "https://www.imdb.com/title/tt2125608/",
+        "imdb_list_position": 40,
+        "film_producer_scenario_id": "scenario_searching_for_sugar_man_2012",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P03"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C03",
+      "type_name": "Drømmen og regningene",
+      "primary_role_or_character": "Lea",
+      "proposed_role_binding": "Lea / naeringsliv_sideprosjektbygger",
+      "thematic_problem": "ambisjon mot ordinær økonomi og begrenset kapasitet",
+      "improved_synopsis": "Lea har laget en første demonstrasjon av en idé etter jobben. Samme uke kommer en nødvendig regning, og en venn ber om mer arbeid uten honorar. Spilleren kan hjelpe henne å avgrense prosjektet, men kan ikke love at ideen blir en bedrift.",
+      "meaningful_choices": [
+        "Be Lea velge én liten forbedring som kan prøves innenfor tiden hun har.",
+        "Anbefale henne å legge demonstrasjonen i skuffen til økonomien er mer stabil."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L06",
+        "work": "Balzac – Tapte illusjoner",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Paterson",
+        "year": 2016,
+        "imdb_id": "tt5247022",
+        "imdb_url": "https://www.imdb.com/title/tt5247022/",
+        "imdb_list_position": 111,
+        "film_producer_scenario_id": "scenario_paterson_2016",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P03"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C04",
+      "type_name": "Forespørselen som ikke er en kontrakt",
+      "primary_role_or_character": "Lea",
+      "proposed_role_binding": "Lea / naeringsliv_frilanser",
+      "thematic_problem": "løse forventninger, avtaleforståelse og ulønnet arbeid",
+      "improved_synopsis": "Lea får en melding fra en bekjent som vil ha «en rask tekst» før fredag. Etter to meldinger vokser oppgaven fra korrektur til å skrive alt. Ingen har nevnt honorar, rettigheter eller hvor mange runder som forventes.",
+      "meaningful_choices": [
+        "Be om konkret omfang, pris og frist før hun svarer ja.",
+        "Tilby en kort engangslesning uten betaling og takke nei til større arbeid."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L12",
+        "work": "Ford – The Good Soldier",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Clerks",
+        "year": 1994,
+        "imdb_id": "tt0109445",
+        "imdb_url": "https://www.imdb.com/title/tt0109445/",
+        "imdb_list_position": 119,
+        "film_producer_scenario_id": "scenario_clerks_1994",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C05",
+      "type_name": "Byråkratiet og personen",
+      "primary_role_or_character": "NAV",
+      "proposed_role_binding": "arbeidsledig / NAV",
+      "thematic_problem": "forvaltningssystem, dokumentasjon og ulik tilgang til informasjon",
+      "improved_synopsis": "En digital søknad ber om et vedlegg spilleren allerede har levert. Fristen går ut i morgen, og veilederen kan ikke se dokumentet i sitt system. Spilleren må velge hvordan dette dokumenteres uten å anta at saken er avgjort.",
+      "meaningful_choices": [
+        "Sende vedlegget på nytt med kvittering og be om bekreftelse.",
+        "Ringe veilederen for å avklare hva som faktisk mangler før noe sendes igjen."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L18",
+        "work": "Kafka – Prosessen",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Brazil",
+        "year": 1985,
+        "imdb_id": "tt0088846",
+        "imdb_url": "https://www.imdb.com/title/tt0088846/",
+        "imdb_list_position": 155,
+        "film_producer_scenario_id": "scenario_brazil_1985",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P01"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C06",
+      "type_name": "Faglig integritet under press",
+      "primary_role_or_character": "Arealplanlegger",
+      "proposed_role_binding": "arealplanlegger",
+      "thematic_problem": "faglig integritet, tidsfrister og politiske beslutningsgrunnlag",
+      "improved_synopsis": "Et saksnotat om en skolevei skal legges frem samme ettermiddag. Plansjefen ønsker en kort konklusjon, men trafikkmålingen fra morgenrushet mangler. Spilleren må svare på hva notatet kan hevde før en beslutning tas.",
+      "meaningful_choices": [
+        "Levere notatet med en tydelig begrensning og foreslå ny måling.",
+        "Be om utsettelse av saken til observasjonen er gjort."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L07",
+        "work": "Camus – Pesten",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "12 Angry Men",
+        "year": 1957,
+        "imdb_id": "tt0050083",
+        "imdb_url": "https://www.imdb.com/title/tt0050083/",
+        "imdb_list_position": 4,
+        "film_producer_scenario_id": "scenario_12_angry_men_1957",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P06"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C07",
+      "type_name": "Tilhørighet mot frihet",
+      "primary_role_or_character": "Arvid",
+      "proposed_role_binding": "Arvid / sosialt miljø",
+      "thematic_problem": "tilhørighet, uformell makt og retten til egne grenser",
+      "improved_synopsis": "Arvid inviterer spilleren til å bli med i en lokal arrangørgruppe. Første møtet handler om musikk og fellesskap; etterpå blir spilleren bedt om å stille gratis på tre vakter. Et ja til invitasjonen var aldri et ja til alle vaktene.",
+      "meaningful_choices": [
+        "Takke ja til én konkret vakt og be gruppa fordele resten.",
+        "Avslå vaktene, men si at spilleren gjerne deltar som gjest."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L03",
+        "work": "Ellison – Invisible Man",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Dheepan",
+        "year": 2015,
+        "imdb_id": "tt4082068",
+        "imdb_url": "https://www.imdb.com/title/tt4082068/",
+        "imdb_list_position": 32,
+        "film_producer_scenario_id": "scenario_dheepan_2015",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C08",
+      "type_name": "Tjenesten som blir en gjeld",
+      "primary_role_or_character": "Arvid",
+      "proposed_role_binding": "Arvid / bekjentskap",
+      "thematic_problem": "gjensidighet, usagt motytelse og frivillighet",
+      "improved_synopsis": "En bekjent hjelper spilleren med å få låne et rom til en øvelse. Uken etter omtaler han hjelpen som en grunn til at spilleren bør skaffe frivillige til arrangementet hans. Spilleren har takket for lånet, ikke avtalt motytelser.",
+      "meaningful_choices": [
+        "Takke for rommet og forklare at videre arbeid må avtales separat.",
+        "Tilby en avgrenset praktisk tjeneste og presisere at den avslutter saken."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L17",
+        "work": "Tsjekhov – Damen med hunden",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Dogville",
+        "year": 2003,
+        "imdb_id": "tt0276919",
+        "imdb_url": "https://www.imdb.com/title/tt0276919/",
+        "imdb_list_position": 28,
+        "film_producer_scenario_id": "scenario_dogville_2003",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C09",
+      "type_name": "Vennskapet som glir fra",
+      "primary_role_or_character": "Jonas",
+      "proposed_role_binding": "Jonas / vennskap",
+      "thematic_problem": "vennskapets endrede rytme, stillhet og uavklarte forventninger",
+      "improved_synopsis": "Jonas og spilleren pleide å møtes på søndager. Nå har to avtaler blitt flyttet, og Jonas skriver «vi tar det senere» uten nytt forslag. Spilleren vet ikke om Jonas trenger avstand eller bare har det travelt.",
+      "meaningful_choices": [
+        "Spørre om Jonas fortsatt ønsker å møtes, uten å kreve en forklaring.",
+        "Si at døren er åpen og la Jonas foreslå neste treff."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L09",
+        "work": "Fosse – Septologien",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Lost in Translation",
+        "year": 2003,
+        "imdb_id": "tt0335266",
+        "imdb_url": "https://www.imdb.com/title/tt0335266/",
+        "imdb_list_position": 3,
+        "film_producer_scenario_id": "scenario_lost_in_translation_2003",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P05"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C10",
+      "type_name": "Kjærlighet på feil tidspunkt",
+      "primary_role_or_character": "Nytt privatliv",
+      "proposed_role_binding": "ny privatlivstråd / gjensidig interesse",
+      "thematic_problem": "nærhet, livsvalg og samtykke uten skjebnebestemt romantikk",
+      "improved_synopsis": "To personer som nylig har møtt hverandre, ønsker å treffes igjen. Den ene vurderer flytting for jobb; den andre vil ikke innlede noe med uklare forventninger. Ingen av dem har gitt løfter om et forhold.",
+      "meaningful_choices": [
+        "Foreslå et nytt møte og være åpen om at fremtiden ennå er usikker.",
+        "Si at timingen er vanskelig og la forbindelsen forbli et godt møte."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L10",
+        "work": "Austen – Stolthet og fordom",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Before Sunrise",
+        "year": 1995,
+        "imdb_id": "tt0112471",
+        "imdb_url": "https://www.imdb.com/title/tt0112471/",
+        "imdb_list_position": 112,
+        "film_producer_scenario_id": "scenario_before_sunrise_1995",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P05"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C11",
+      "type_name": "Familien som trenger deg",
+      "primary_role_or_character": "Søsteren",
+      "proposed_role_binding": "søsteren / familierelasjon",
+      "thematic_problem": "omsorgsarbeid, arbeidstid og fordeling av ansvar",
+      "improved_synopsis": "Søsteren spør om spilleren kan hjelpe en forelder til en undersøkelse mens hun selv er på jobb. Spilleren har en viktig arbeidsavtale samme formiddag. Begge ønsker å bidra, men ingen kan være to steder samtidig.",
+      "meaningful_choices": [
+        "Spørre om familien kan dele kjøring og oppfølging mellom seg.",
+        "Be søsteren finne et alternativ og tilby hjelp senere samme kveld."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L08",
+        "work": "Ernaux – Årene",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Savages",
+        "year": 2007,
+        "imdb_id": "tt0775529",
+        "imdb_url": "https://www.imdb.com/title/tt0775529/",
+        "imdb_list_position": 123,
+        "film_producer_scenario_id": "scenario_the_savages_2007",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C12",
+      "type_name": "Grensen du ikke satte",
+      "primary_role_or_character": "Sara",
+      "proposed_role_binding": "Sara / frivillig klubb",
+      "thematic_problem": "usynlig arbeid, forventninger og ansvar uten mandat",
+      "improved_synopsis": "Sara minner spilleren om nøkkelen til et klubblokale og sier at «du pleier jo å ordne» stoler og oppvask. Spilleren sa ja til å åpne lokalet én gang, men oppgaven har blitt stående på vaktplanen uten en ny samtale.",
+      "meaningful_choices": [
+        "Si at spilleren kan åpne denne gangen, men be om ny turnus fra neste møte.",
+        "Avslå den nye vakten og la styret finne en person med avtalt ansvar."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L17",
+        "work": "Munro – Runaway",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Square",
+        "year": 2017,
+        "imdb_id": "tt4995790",
+        "imdb_url": "https://www.imdb.com/title/tt4995790/",
+        "imdb_list_position": 122,
+        "film_producer_scenario_id": "scenario_the_square_2017",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C13",
+      "type_name": "Hjemmet på usikker grunn",
+      "primary_role_or_character": "Ny boligtråd",
+      "proposed_role_binding": "ny boligtråd / arbeidsledig",
+      "thematic_problem": "boligusikkerhet, forhandlingsmakt og knappe alternativer",
+      "improved_synopsis": "En utleier sier at husleien øker fra neste måned. Spilleren kan ikke se at endringen følger kontrakten, men trenger et sted å bo og har lite økonomisk handlingsrom. En venn tilbyr en midlertidig sofa uten klare betingelser.",
+      "meaningful_choices": [
+        "Be utleier om skriftlig grunnlag og undersøke rettigheter før spilleren svarer.",
+        "Spørre vennen konkret om varighet og grenser for et mulig kort opphold."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L22",
+        "work": "Vesaas – Fuglane",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Florida Project",
+        "year": 2017,
+        "imdb_id": "tt5649144",
+        "imdb_url": "https://www.imdb.com/title/tt5649144/",
+        "imdb_list_position": 129,
+        "film_producer_scenario_id": "scenario_the_florida_project_2017",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C14",
+      "type_name": "Ryktet løper fra deg",
+      "primary_role_or_character": "Sosiale medier",
+      "proposed_role_binding": "sosiale medier / kollegarelasjon",
+      "thematic_problem": "rykte, fragmentert kontekst og hvem som eier forklaringen",
+      "improved_synopsis": "Et utsnitt av en intern samtale legges ut i en gruppechat uten det opprinnelige spørsmålet. Flere tolker spillerens svar som at en kollega har fått skylden. Spilleren har tilgang til sin egen melding, men ikke til alle andres samtaler.",
+      "meaningful_choices": [
+        "Vise hele egen melding og forklare hva den faktisk gjaldt.",
+        "Ta kontakt med kollegaen først og spørre hva vedkommende ønsker avklart."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L12",
+        "work": "Ford – The Good Soldier",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Hunt",
+        "year": 2012,
+        "imdb_id": "tt2106476",
+        "imdb_url": "https://www.imdb.com/title/tt2106476/",
+        "imdb_list_position": 53,
+        "film_producer_scenario_id": "scenario_the_hunt_2012",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P06"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C15",
+      "type_name": "Det digitale dobbeltlivet",
+      "primary_role_or_character": "Digital identitet",
+      "proposed_role_binding": "digital identitet / privatliv",
+      "thematic_problem": "selviscenesettelse, offentlig tolkning og samtykke",
+      "improved_synopsis": "Spilleren bruker en offentlig profil der alt ser vellykket ut. En venn leser innleggene som tegn på at spilleren har lovet å støtte et prosjekt, selv om bildene bare viser et besøk. Vennen ber nå om å bruke spillerens navn i en annonse.",
+      "meaningful_choices": [
+        "Avklare offentlig at besøket ikke var et løfte eller et samarbeid.",
+        "Be vennen fjerne navnet privat før noe nytt publiseres."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L14",
+        "work": "Borges – Ficciones",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Truman Show",
+        "year": 1998,
+        "imdb_id": "tt0120382",
+        "imdb_url": "https://www.imdb.com/title/tt0120382/",
+        "imdb_list_position": 36,
+        "film_producer_scenario_id": "scenario_the_truman_show_1998",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C16",
+      "type_name": "Klassereisen og kodene",
+      "primary_role_or_character": "Daniel",
+      "proposed_role_binding": "Daniel / kulturmiljø",
+      "thematic_problem": "klassekoder, adgang og uuttalte fellesskapskrav",
+      "improved_synopsis": "Daniel tar spilleren med til et arrangement der mange kjenner de uuttalte reglene. Etterpå spør verten hvorfor spilleren ikke deltok i en innsamlingsrunde som ingen hadde forklart på forhånd. Daniel mener det var opplagt.",
+      "meaningful_choices": [
+        "Si at forventningen var ukjent, og spørre hva pengene skal brukes til.",
+        "Takke for kvelden og velge å ikke gå inn i gruppas faste forpliktelser."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L23",
+        "work": "Smith – White Teeth",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Class",
+        "year": 2008,
+        "imdb_id": "tt1068646",
+        "imdb_url": "https://www.imdb.com/title/tt1068646/",
+        "imdb_list_position": 42,
+        "film_producer_scenario_id": "scenario_the_class_2008",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P04"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C17",
+      "type_name": "Å arbeide seg tom",
+      "primary_role_or_character": "Renholder",
+      "proposed_role_binding": "renholder / driftsleder",
+      "thematic_problem": "arbeidspress, HMS, fagstolthet og begrenset kapasitet",
+      "improved_synopsis": "En renholder får stadig flere områder på samme vakt fordi en kollega er borte. Arbeidet ser ferdig ut på rapporten, men pausen er falt bort og en tung oppgave er ikke risikovurdert. Driftslederen ber om bekreftelse før vaktens slutt.",
+      "meaningful_choices": [
+        "Opplyse hvilke områder som ble gjort, og be om prioritering av resten.",
+        "Be om en felles gjennomgang av bemanning og arbeidsbelastning neste vakt."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L06",
+        "work": "Balzac – Tapte illusjoner",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Machinist",
+        "year": 2004,
+        "imdb_id": "tt0361862",
+        "imdb_url": "https://www.imdb.com/title/tt0361862/",
+        "imdb_list_position": 1,
+        "film_producer_scenario_id": "scenario_the_machinist_2004",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P06"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C18",
+      "type_name": "Ensom midt blant folk",
+      "primary_role_or_character": "Jonas",
+      "proposed_role_binding": "Jonas / Daniel / sosialt liv",
+      "thematic_problem": "ensomhet, sosial synlighet og usikkerhet om andres hensikter",
+      "improved_synopsis": "Venner deler bilder fra en kveld spilleren ikke ble invitert til. Spilleren vet ikke om det var bevisst, og er usikker på om det er ønskelig å ta kontakt. En gammel avtale om å møtes henger fortsatt ubesvart.",
+      "meaningful_choices": [
+        "Sende en konkret invitasjon til én venn uten å kreve forklaring på bildene.",
+        "Gi det litt tid og finne et annet sosialt fellesskap denne uken."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L09",
+        "work": "Beckett – Mens vi venter på Godot",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Virgin Mountain",
+        "year": 2015,
+        "imdb_id": "tt2611652",
+        "imdb_url": "https://www.imdb.com/title/tt2611652/",
+        "imdb_list_position": 120,
+        "film_producer_scenario_id": "scenario_virgin_mountain_2015",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C19",
+      "type_name": "Å begynne på nytt",
+      "primary_role_or_character": "Arbeidsledig",
+      "proposed_role_binding": "arbeidsledig / opplæringsspor",
+      "thematic_problem": "ny orientering etter tap, mestring og usikre overganger",
+      "improved_synopsis": "Et kort kurs åpner for et nytt fagområde, men gir ingen jobbgaranti. Spilleren har erfaring fra tidligere arbeid som kan være nyttig, men mangler noen formelle krav. Veilederen spør om det er verdt tiden.",
+      "meaningful_choices": [
+        "Søke kurset og undersøke nøyaktig hvilke ferdigheter og krav som gjelder.",
+        "Velge en kortere praksisnær aktivitet og beholde muligheten for kurset senere."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L04",
+        "work": "Homer – Odysseen",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Man Without a Past",
+        "year": 2002,
+        "imdb_id": "tt0311519",
+        "imdb_url": "https://www.imdb.com/title/tt0311519/",
+        "imdb_list_position": 126,
+        "film_producer_scenario_id": "scenario_the_man_without_a_past_2002",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P07",
+        "P02"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C20",
+      "type_name": "Fellesskapet uten helt",
+      "primary_role_or_character": "Sara og Nora",
+      "proposed_role_binding": "Sara og Nora / lokalt fellesskap",
+      "thematic_problem": "kollektivt ansvar, usynlige bidrag og fellesskap uten redningshelt",
+      "improved_synopsis": "Et lokalt møtested mister en av sine faste frivillige rett før et åpent arrangement. Sara foreslår at én person tar ansvar for alt; Nora vil heller redusere programmet slik at flere kan bidra uten å bli uunnværlige.",
+      "meaningful_choices": [
+        "Foreslå et mindre arrangement med navngitte, avgrensede oppgaver.",
+        "Avlyse denne gangen og invitere til et nytt planleggingsmøte."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L11",
+        "work": "Dickens – Bleak House",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Antonia's Line",
+        "year": 1995,
+        "imdb_id": "tt0112379",
+        "imdb_url": "https://www.imdb.com/title/tt0112379/",
+        "imdb_list_position": 66,
+        "film_producer_scenario_id": "scenario_antonia_s_line_1995",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C21",
+      "type_name": "Byen som skifter ansikt",
+      "primary_role_or_character": "Ivar",
+      "proposed_role_binding": "Ivar / arealplanlegger",
+      "thematic_problem": "byendring, stedstilhørighet, minne og representasjon",
+      "improved_synopsis": "Ivar oppdager at den gamle møteplassen hans blir omtalt som «ubrukt areal» i et forslag til ny gateplan. Han har bilder og minner, mens saksbehandleren har trafikkdata. Spørsmålet er hvilke erfaringer som faktisk må frem i høringen.",
+      "meaningful_choices": [
+        "Hjelpe Ivar å levere dokumenterbare minner som innspill, adskilt fra måledata.",
+        "Foreslå et møte der flere berørte beskriver dagens bruk før Ivar uttaler seg for alle."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L22",
+        "work": "Thoreau – Walden",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Smoke",
+        "year": 1995,
+        "imdb_id": "tt0114478",
+        "imdb_url": "https://www.imdb.com/title/tt0114478/",
+        "imdb_list_position": 41,
+        "film_producer_scenario_id": "scenario_smoke_1995",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P04"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C22",
+      "type_name": "Kunnskap du ikke kan bekrefte",
+      "primary_role_or_character": "Nora",
+      "proposed_role_binding": "Nora / natur og undersøkelse",
+      "thematic_problem": "kunnskapsusikkerhet, offentlig beslutning og kildekrav",
+      "improved_synopsis": "Nora har en observasjon som kan tyde på at et grøntområde brukes av en sårbar art. Et gammelt bilde sirkulerer allerede som «bevis», men ingen vet når det ble tatt. Kommunens svarfrist nærmer seg.",
+      "meaningful_choices": [
+        "Levere det som faktisk er observert, med dato og tydelig usikkerhet.",
+        "Bruke tiden på et nytt feltbesøk og si fra at grunnlaget ennå ikke er godt nok."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L20",
+        "work": "Didion – The White Album",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "The Guilty",
+        "year": 2018,
+        "imdb_id": "tt6742252",
+        "imdb_url": "https://www.imdb.com/title/tt6742252/",
+        "imdb_list_position": 149,
+        "film_producer_scenario_id": "scenario_the_guilty_2018",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C23",
+      "type_name": "Den lille feilen som ikke forsvinner",
+      "primary_role_or_character": "Arbeid og privatliv",
+      "proposed_role_binding": "Lea / arbeid og privatliv",
+      "thematic_problem": "små feil, informasjonsforskyvning og ansvar over flere dager",
+      "improved_synopsis": "Lea sender ved en feil et tidlig prosjektutkast til en større mottakergruppe. Én person svarer som om planen allerede er vedtatt, og en annen har satt av arbeidstid. Hun kan ikke trekke tilbake at meldingen er lest.",
+      "meaningful_choices": [
+        "Rette opp misforståelsen til alle mottakere og oppgi hva som fortsatt er uavklart.",
+        "Kontakte dem som har svart, én for én, før hun sender felles presisering."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L01",
+        "work": "Kafka – Forvandlingen",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Fargo",
+        "year": 1996,
+        "imdb_id": "tt0116282",
+        "imdb_url": "https://www.imdb.com/title/tt0116282/",
+        "imdb_list_position": 137,
+        "film_producer_scenario_id": "scenario_fargo_1996",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P06"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    },
+    {
+      "id": "C24",
+      "type_name": "Den ufullstendige forsoningen",
+      "primary_role_or_character": "Mira, Lea, Arvid",
+      "proposed_role_binding": "Mira, Lea og Arvid / relasjoner",
+      "thematic_problem": "ettervirkninger, tillit og forsoning uten total avslutning",
+      "improved_synopsis": "Etter en offentlig misforståelse har Mira og Lea begynt å snakke igjen. Arvid har rettet sin egen melding, men Mira vil fortsatt ikke bruke prosjektgruppen som møtested. Lea ønsker et nytt samarbeid; hun vet ikke om de andre er klare.",
+      "meaningful_choices": [
+        "Foreslå en privat samtale uten krav om nytt prosjekt eller full tilgivelse.",
+        "Respektere avstanden nå og avtale at ingen bruker hverandres navn uten samtykke."
+      ],
+      "literary_inspiration": {
+        "literary_track_id": "L09",
+        "work": "Fosse – Septologien",
+        "source_crosswalk": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "goodreads_read_four_plus_match": "not_yet_verified",
+        "use": "thematic_or_narrative_lens_only"
+      },
+      "film_inspiration": {
+        "title": "Manchester by the Sea",
+        "year": 2016,
+        "imdb_id": "tt4034228",
+        "imdb_url": "https://www.imdb.com/title/tt4034228/",
+        "imdb_list_position": 110,
+        "film_producer_scenario_id": "scenario_manchester_by_the_sea_2016",
+        "film_producer_seed_status": "imported_seed_needs_film_specific_design",
+        "use": "universal_conflict_or_form_not_plot_copy"
+      },
+      "optional_plot_lenses": [
+        "P07"
+      ],
+      "story_status": "editorial_synopsis_not_playable",
+      "entry_conditions": "must_bind_to_existing_role_and_observed_player_state",
+      "rights_note": "original_civication_story_not_adaptation"
+    }
+  ]
+}
