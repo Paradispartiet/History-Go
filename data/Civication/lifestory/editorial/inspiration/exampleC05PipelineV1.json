@@ -1,0 +1,219 @@
+{
+  "schema": "civication_story_pipeline_example_v1",
+  "status": "instructional_example_not_verified_or_playable",
+  "works": [
+    {
+      "schema": "civication_reference_work_v1",
+      "work_id": "book-kafka-prosessen",
+      "kind": "book",
+      "title": "Prosessen",
+      "creators": [
+        "Franz Kafka"
+      ],
+      "year": null,
+      "metadata_status": "imported_unverified",
+      "source_locator": {
+        "repository": "Paradispartiet/History-Go",
+        "path": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+        "record_key": "L18"
+      },
+      "book_source": {
+        "goodreads_match": "not_checked",
+        "age_route": "undetermined",
+        "source_status": "literary_crosswalk_candidate",
+        "private_data_policy": "do_not_store_personal_rating_dates_review_notes_or_shelves"
+      }
+    },
+    {
+      "schema": "civication_reference_work_v1",
+      "work_id": "film-tt0088846",
+      "kind": "film",
+      "title": "Brazil",
+      "creators": [
+        "Terry Gilliam"
+      ],
+      "year": 1985,
+      "metadata_status": "imported_unverified",
+      "source_locator": {
+        "repository": "Paradispartiet/HG_Film_Producer",
+        "path": "data/film/scenarios/film_scenarios_seed.json",
+        "record_key": "scenario_brazil_1985"
+      },
+      "film_source": {
+        "imdb_id": "tt0088846",
+        "imdb_url": "https://www.imdb.com/title/tt0088846/",
+        "film_producer_scenario_id": "scenario_brazil_1985",
+        "scenario_status": "imported_seed_needs_film_specific_design"
+      }
+    }
+  ],
+  "analysis": {
+    "schema": "civication_universal_problem_v1",
+    "analysis_id": "problem-c05-dokumentasjonen",
+    "story_type_ids": [
+      "C05"
+    ],
+    "universal_problem": "Når et forvaltningssystem mister oversikten, må den enkelte bruke sin begrensede tid på å dokumentere det som skulle være registrert.",
+    "social_historical_context": {
+      "period": "Moderne digital forvaltning, med litterære og filmatiske referanser fra ulike perioder",
+      "conditions": "Store organisasjoner krever dokumentasjon som flere ledd skal behandle; feil og uklare fullmakter kan ramme den som er avhengig av vedtak.",
+      "claim_status": "editorial_hypothesis",
+      "evidence": []
+    },
+    "competing_interests": [
+      {
+        "position": "Personen som søker",
+        "legitimate_interest": "Få behandlet saken rettidig uten å måtte bevise alt om igjen.",
+        "cost_or_risk": "Fristtap og mye tidsbruk på oppfølging."
+      },
+      {
+        "position": "Saksbehandleren",
+        "legitimate_interest": "Ha etterprøvbar informasjon før vedkommende svarer.",
+        "cost_or_risk": "Kan ikke bekrefte mottak som ikke vises i systemet."
+      }
+    ],
+    "reference_works": [
+      {
+        "work_id": "book-kafka-prosessen",
+        "inspiration_layer": "social_theme",
+        "interpretation": "Foreløpig redaksjonell idé: Den enkelte opplever avstand mellom et system og den konkrete saken. Må ettergås mot selve verket.",
+        "review_status": "hypothesis",
+        "evidence": []
+      },
+      {
+        "work_id": "film-tt0088846",
+        "inspiration_layer": "moral_conflict",
+        "interpretation": "Foreløpig redaksjonell idé: Bygg et hverdagslig dilemma om dokumentasjon, uten å hente filmens karakterer, satirehandlingen eller konkrete scener.",
+        "review_status": "hypothesis",
+        "evidence": []
+      }
+    ],
+    "original_civication_translation": {
+      "contemporary_context": "En arbeidsledig spiller møter en etterspørsel etter et vedlegg som kanskje allerede er innsendt; fristen gjør valget mellom telefon og ny innsending krevende.",
+      "what_is_transformed": "Vi bruker byråkratisk informasjonsasymmetri som problem, men skriver en selvstendig nåtidig sak med vanlige frister og praktiske valg.",
+      "do_not_copy": "Ingen navngitte karakterer, replikker, særegne scener eller avsløringer fra bok eller film."
+    },
+    "analysis_status": "draft"
+  },
+  "blueprint": {
+    "schema": "civication_role_story_blueprint_v1",
+    "blueprint_id": "blueprint-c05-vedlegget",
+    "story_type_ids": [
+      "C05"
+    ],
+    "problem_ids": [
+      "problem-c05-dokumentasjonen"
+    ],
+    "work_ids": [
+      "book-kafka-prosessen",
+      "film-tt0088846"
+    ],
+    "role_context": {
+      "domain": "system_role",
+      "binding_status": "proposed",
+      "role_or_position_id": "arbeidsledig",
+      "evidence_path": null,
+      "authority_boundary": "Spilleren kan svare på egne henvendelser, ikke avgjøre NAVs behandling eller vedtak.",
+      "competence_boundary": "Spilleren kjenner egne innsendte dokumenter, ikke det interne saksbehandlingssystemet."
+    },
+    "characters": [
+      {
+        "label": "Spilleren",
+        "actor_id": null,
+        "fact_status": "established_in_scene",
+        "source_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+        "wants": "Få behandlet søknaden før fristen.",
+        "constraints": "Tid og opplysninger hos forvaltningen er begrenset.",
+        "knowledge_boundary": "Vet bare hva egen kvittering og mottatte beskjeder viser."
+      },
+      {
+        "label": "Veilederen",
+        "actor_id": null,
+        "fact_status": "new_authored_fiction",
+        "source_path": null,
+        "wants": "Finne hvilket dokument som faktisk mangler.",
+        "constraints": "Har kun tilgang til det som vises i eget arbeidsverktøy.",
+        "knowledge_boundary": "Kjenner ikke nødvendigvis detaljer fra spillerens tidligere innsending."
+      }
+    ],
+    "story": {
+      "title": "Vedlegget som mangler",
+      "synopsis": "Torsdag ettermiddag får spilleren varsel om at et dokument mangler i en pågående søknad. Vedkommende husker å ha sendt det, men veilederen kan ikke finne det i systemet. Fristen utløper dagen etter. Spilleren kan sende vedlegget på nytt med en tydelig merknad eller kontakte veilederen før ny innsending. Begge handlingene kan være fornuftige, men tar tid og kan føre til ulike behov for oppfølging. Ingen av valgene gir automatisk innvilgelse.",
+      "specific_time_place": "Torsdag ettermiddag ved spillerens egen innboks, med frist fredag.",
+      "inciting_event": "Et nytt varsel sier at søknadens vedlegg mangler i saksbehandlers oversikt.",
+      "stakes": "Tid og muligheten for korrekt behandling, ikke en automatisk rett til vedtak.",
+      "beats": [
+        {
+          "stage": "setup",
+          "event": "Spilleren leser varselet og undersøker egen kvittering.",
+          "initiator": "Spilleren"
+        },
+        {
+          "stage": "escalation",
+          "event": "Veilederen opplyser at dokumentet ikke finnes i visningen vedkommende har.",
+          "initiator": "Veilederen"
+        },
+        {
+          "stage": "decision",
+          "event": "Spilleren må velge mellom ny innsending og umiddelbar avklaring før fristen.",
+          "initiator": "Spilleren"
+        },
+        {
+          "stage": "later_return",
+          "event": "Oppfølgingen neste dag viser hva som ble mottatt, ikke et oppfunnet vedtak.",
+          "initiator": "Forvaltningen"
+        }
+      ],
+      "choices": [
+        {
+          "choice_id": "send_pa_nytt",
+          "player_action": "Sende dokumentet på nytt med kopi av tidligere kvittering.",
+          "legitimate_reason": "Få en ny, sporbar innsending mens fristen fortsatt er åpen.",
+          "immediate_consequence": "Systemet gir en ny kvittering; det har fortsatt ikke gitt svar på vedtaket.",
+          "later_callback": "Neste dag vises begge innsendingene, og veilederen må avklare om de gjelder samme vedlegg.",
+          "npc_owns_their_decision": "Veilederen avgjør selv hva som kan bekreftes i saken."
+        },
+        {
+          "choice_id": "ring_forst",
+          "player_action": "Ringe veilederen for å finne ut hva som mangler før ny innsending.",
+          "legitimate_reason": "Unngå å sende sensitive dokumenter unødvendig mange ganger.",
+          "immediate_consequence": "Spilleren får bekreftet hva veilederen kan se, men bruker tid før fristen.",
+          "later_callback": "Neste dag avhenger oppfølgingen av hva samtalen faktisk avklarte og om noe ble sendt.",
+          "npc_owns_their_decision": "Veilederen kan forklare rutiner, men ikke love automatisk innvilgelse."
+        }
+      ],
+      "possible_endings": [
+        {
+          "outcome": "Mottaket er dokumentert, men saksbehandlingen fortsetter.",
+          "conditional_not_guaranteed": true
+        },
+        {
+          "outcome": "Feilen er ennå ikke avklart, og spilleren må følge opp senere.",
+          "conditional_not_guaranteed": true
+        }
+      ]
+    },
+    "continuity": {
+      "required_past": [],
+      "forbidden_assumptions": [
+        "Ikke anta tidligere innsending uten en faktisk lagret kvittering eller en scene som introduserer den.",
+        "Ikke anta at NAV har avgjort søknaden, eller at veilederen kjenner spilleren fra før."
+      ],
+      "choice_gate_plan": [
+        {
+          "prior_condition": "Spilleren har faktisk kvittering for opprinnelig innsending.",
+          "if_true": "Vis kvittering som dokument i spillerens innboks.",
+          "if_false": "Presenter opplysningen som spillerens minne uten å hevde lagret dokumentbevis."
+        }
+      ],
+      "how_new_information_reaches_player": "Ny informasjon kommer bare gjennom det konkrete varselet, dokumentene spilleren åpner og samtalen spilleren eventuelt har."
+    },
+    "production": {
+      "stage": "synopsis_candidate",
+      "playable": false,
+      "editorial_review": "pending",
+      "runtime_paths": []
+    },
+    "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+  }
+}
