@@ -1,5 +1,7 @@
 # Civication – konkret produksjonsrekkefølge og rollematrise v1
 
+**Oppdatert faktisk produksjonsstatus 17. oktober:** `storyProductionWavesV1.json` har nå 24 primære Goodreads-bokkoblinger bekreftet mot privat kuratert 159-verk-arbeidsbok, og **åtte** konkrete synopsis-/kapittelblueprints for bolk A i [egen kilde- og historiepakke](CIVICATION_SOURCE_GROUNDED_WAVE_A_V1.md). Disse er **kandidater**, ikke redaksjonelt godkjente eller spillbare historier. Tallene om null Goodreads-verifisering og manglende blueprints nedenfor er den opprinnelige historiske baselinen.
+
 **17. oktober 2026 – kun planlegging, ingen scene-publisering.**
 
 Dette dokumentet bygger på [fire etablerte schema-kontrakter](CIVICATION_BOOK_FILM_STORY_SCHEMAS_V1.md), [synopsis-kandidatbanken](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md) og det [maskinlesbare arbeidskortet](../data/Civication/lifestory/editorial/inspiration/storyProductionWavesV1.json). Vi fortsetter med store, sammenhengende innholdsbolker, ikke en PR per verk eller én scene om gangen.
