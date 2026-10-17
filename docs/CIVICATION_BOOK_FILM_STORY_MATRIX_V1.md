@@ -10,6 +10,12 @@
 - **Filmer / IMDb:** Film Producer har den faktiske `imdb_ls000064637`-listen med 161 titler; `film_scenarios_seed.json` inneholder IMDb-ID og ett produksjonsscenario per film. Disse scenariene er fremdeles importerte seeds med eget behov for filmspesifikk berikelse. Filmenes tematiske bruk her er en **redaksjonell tolkning**, ikke kvalitetssikret analyse fra Film Producer.
 - **History Go:** personer, steder og verk forblir felles kanon; Film Producer og Skrivekunstakademiet er selvstendige spill. Civication skriver **egne originale** livsfortellinger og lenker til referanser, ikke gjenbrukte scener eller produksjonssimulering.
 
+## Synopsis-ID og de tre kildene
+
+[Direkte koblingsregister for synopsisene](../data/Civication/lifestory/editorial/inspiration/synopsisThreeSourceLinksV1.json) oppgir for hver C01–C24 **Goodreads-kandidat, IMDb-ID og Film Producer-scenario-ID** i ett samlet datasett, med tre uavhengige statusfelt. [Koblingsskjemaet](../data/Civication/lifestory/editorial/inspiration/synopsisThreeSourceLinksV1.schema.json) definerer formatet.
+
+**Viktig avgrensning:** Dette er foreløpig **24 synopsis-kandidater**, ikke 24 utgitte fortellinger. I samme register er de **tre registrerte private NPC-historiene** Stein, Frode og Inger dokumentert med synopsis og eksisterende scene-kildesti, men uten påstått kildeattribusjon. Vi må analysere hver av disse tre historiene før vi velger film- og bokinspirasjon i ettertid. Ingen Goodreads-kandidat er ennå bekreftet mot faktisk `read`/4+-utvalg.
+
 ## Hvor mye er faktisk kartlagt?
 
 | Lag | Verifisert grunnlag | Nåværende status |
