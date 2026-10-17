@@ -1,0 +1,1131 @@
+{
+  "schema": "civication_symposium_catalog_v1",
+  "version": 1,
+  "created": "2026-10-12",
+  "scope": "Editorial-only; does not change the runtime, grant badges, unlock roles or rewrite saved chapters.",
+  "counts": {
+    "formal_roles": 15,
+    "life_positions": 21,
+    "continuation_chapters": 45,
+    "literary_tracks": 24,
+    "basic_plot_lenses": 7,
+    "contemporary_story_types": 24,
+    "role_packs_with_scene_registry": 15
+  },
+  "parts": {
+    "formal_roles": "data/Civication/lifestory/editorial/symposia/formalRolesV1.json",
+    "life_positions": [
+      "data/Civication/lifestory/editorial/symposia/lifePositions01V1.json",
+      "data/Civication/lifestory/editorial/symposia/lifePositions02V1.json"
+    ],
+    "chapters": [
+      "data/Civication/lifestory/editorial/symposia/chapters01V1.json",
+      "data/Civication/lifestory/editorial/symposia/chapters02V1.json",
+      "data/Civication/lifestory/editorial/symposia/chapters03V1.json"
+    ],
+    "typology": "data/Civication/lifestory/editorial/narrativeCrosswalkV1.json",
+    "role_authority": "data/Civication/lifestory/editorial/roleFirstStoryArchitectureV1.json",
+    "cast": "data/Civication/lifestory/editorial/symposia/charactersV1.json",
+    "readme": "data/Civication/lifestory/editorial/symposia/README.md",
+    "historical_people_plan": "data/Civication/lifestory/editorial/symposia/historicalPeoplePlanV1.json"
+  },
+  "formal_roles": [
+    {
+      "id": "arbeidsledig",
+      "name": "Arbeidsledig",
+      "plot": "P02",
+      "literary": "L03",
+      "contemporary": "C01",
+      "source": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+      "scene_source": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "system_role": true,
+      "content_only": false
+    },
+    {
+      "id": "arealplanlegger",
+      "name": "Arealplanlegger",
+      "plot": "P03",
+      "literary": "L17",
+      "contemporary": "C06",
+      "source": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+      "scene_source": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "renholder",
+      "name": "Renholder",
+      "plot": "P06",
+      "literary": "L06",
+      "contemporary": "C17",
+      "source": "data/Civication/lifestory/roles/renholder/role.json",
+      "scene_source": "data/Civication/lifestory/roles/renholder/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "ekspeditor",
+      "name": "Ekspeditør",
+      "plot": "P03",
+      "literary": "L17",
+      "contemporary": "C23",
+      "source": "data/Civication/lifestory/roles/ekspeditor/role.json",
+      "scene_source": "data/Civication/lifestory/roles/ekspeditor/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "psykologi_miljoarbeid",
+      "name": "Miljøarbeid og oppfølging",
+      "plot": "P03",
+      "literary": "L11",
+      "contemporary": "C12",
+      "source": "data/Civication/lifestory/roles/psykologi_miljoarbeid/role.json",
+      "scene_source": "data/Civication/lifestory/roles/psykologi_miljoarbeid/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "psykologi_arbeids_og_karriereveiledning",
+      "name": "Arbeids- og karriereveiledning",
+      "plot": "P04",
+      "literary": "L17",
+      "contemporary": "C19",
+      "source": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/role.json",
+      "scene_source": "data/Civication/lifestory/roles/psykologi_arbeids_og_karriereveiledning/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "psykolog",
+      "name": "Psykolog",
+      "plot": "P03",
+      "literary": "L17",
+      "contemporary": "C06",
+      "source": "data/Civication/lifestory/roles/psykolog/role.json",
+      "scene_source": "data/Civication/lifestory/roles/psykolog/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "spesialistpsykolog",
+      "name": "Spesialistpsykolog",
+      "plot": "P03",
+      "literary": "L13",
+      "contemporary": "C22",
+      "source": "data/Civication/lifestory/roles/spesialistpsykolog/role.json",
+      "scene_source": "data/Civication/lifestory/roles/spesialistpsykolog/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "fagansvarlig",
+      "name": "Fagansvarlig",
+      "plot": "P03",
+      "literary": "L19",
+      "contemporary": "C22",
+      "source": "data/Civication/lifestory/roles/fagansvarlig/role.json",
+      "scene_source": "data/Civication/lifestory/roles/fagansvarlig/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "klinikkleder",
+      "name": "Klinikkleder",
+      "plot": "P06",
+      "literary": "L07",
+      "contemporary": "C06",
+      "source": "data/Civication/lifestory/roles/klinikkleder/role.json",
+      "scene_source": "data/Civication/lifestory/roles/klinikkleder/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "forsker_psykologi",
+      "name": "Forsker (psykologi)",
+      "plot": "P03",
+      "literary": "L20",
+      "contemporary": "C22",
+      "source": "data/Civication/lifestory/roles/forsker_psykologi/role.json",
+      "scene_source": "data/Civication/lifestory/roles/forsker_psykologi/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "professor_psykologi",
+      "name": "Professor (psykologi)",
+      "plot": "P07",
+      "literary": "L13",
+      "contemporary": "C20",
+      "source": "data/Civication/lifestory/roles/professor_psykologi/role.json",
+      "scene_source": "data/Civication/lifestory/roles/professor_psykologi/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "barnehageassistent",
+      "name": "Barnehageassistent / pedagogisk medarbeider",
+      "plot": "P03",
+      "literary": "L11",
+      "contemporary": "C20",
+      "source": "data/Civication/lifestory/roles/barnehageassistent/role.json",
+      "scene_source": "data/Civication/lifestory/roles/barnehageassistent/scenes.json",
+      "system_role": false,
+      "content_only": true
+    },
+    {
+      "id": "controller",
+      "name": "Controller",
+      "plot": "P03",
+      "literary": "L12",
+      "contemporary": "C22",
+      "source": "data/Civication/lifestory/roles/controller/role.json",
+      "scene_source": "data/Civication/lifestory/roles/controller/scenes.json",
+      "system_role": false,
+      "content_only": false
+    },
+    {
+      "id": "sport_utover",
+      "name": "Profesjonell utøver",
+      "plot": "P02",
+      "literary": "L15",
+      "contemporary": "C19",
+      "source": "data/Civication/lifestory/roles/sport_utover/role.json",
+      "scene_source": "data/Civication/lifestory/roles/sport_utover/scenes.json",
+      "system_role": false,
+      "content_only": false
+    }
+  ],
+  "life_positions": [
+    {
+      "id": "musikk_frilansmusiker",
+      "name": "Frilansmusiker",
+      "plot": "P07",
+      "literary": "L15",
+      "contemporary": "C19",
+      "badge_id": "musikk",
+      "world": "data/Civication/roleWorlds/musikk/musikk_frilansmusiker.json",
+      "stream": "data/Civication/narratives/leisure/musikk_frilansmusiker.json",
+      "chapter_ids": [
+        "musikk_med_mira",
+        "musikk_foresporselen",
+        "musikk_etter_foresporselen",
+        "musikk_kryss_med_arvid",
+        "musikk_kryss_med_grunder",
+        "musikk_etter_arvids_tekst",
+        "mira_etter_samtalen_med_lea",
+        "mira_etter_lydfilens_rykte",
+        "mira_etter_nye_takter",
+        "mira_og_musikken_i_hverdagen",
+        "mira_og_invitasjonen_fra_musikeren"
+      ],
+      "chapter_count": 11
+    },
+    {
+      "id": "subkultur_gangster",
+      "name": "Gangster",
+      "plot": "P03",
+      "literary": "L02",
+      "contemporary": "C07",
+      "badge_id": "subkultur",
+      "world": "data/Civication/roleWorlds/subkultur/subkultur_gangster.json",
+      "stream": "data/Civication/narratives/leisure/subkultur_gangster.json",
+      "chapter_ids": [
+        "miljo_med_arvid",
+        "miljo_navnet_ditt",
+        "miljo_etter_invitasjonen",
+        "miljo_kryss_med_lea",
+        "miljo_kryss_med_frilans",
+        "miljo_etter_leas_program",
+        "miljo_etter_miras_lyd",
+        "arvid_etter_leas_notat",
+        "arvid_etter_leas_grense",
+        "arvid_etter_leas_tillit",
+        "arvid_og_det_aapne_lokalet",
+        "arvid_og_nokkelen_til_lokalet"
+      ],
+      "chapter_count": 12
+    },
+    {
+      "id": "naeringsliv_sideprosjektbygger",
+      "name": "Sideprosjektbygger",
+      "plot": "P03",
+      "literary": "L17",
+      "contemporary": "C03",
+      "badge_id": "naeringsliv",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_sideprosjektbygger.json",
+      "stream": "data/Civication/narratives/leisure/naeringsliv_sideprosjektbygger.json",
+      "chapter_ids": [
+        "sideprosjekt_med_lea",
+        "sideprosjekt_neste_steg",
+        "sideprosjekt_etter_neste_steg",
+        "sideprosjekt_kryss_med_mira",
+        "lea_etter_arvids_ansvar",
+        "lea_etter_miras_vennskap",
+        "lea_og_sporsmaalene_som_gjenstaar",
+        "lea_og_den_foerste_hypotesen"
+      ],
+      "chapter_count": 8
+    },
+    {
+      "id": "naeringsliv_frilanser",
+      "name": "Frilanser",
+      "plot": "P03",
+      "literary": "L20",
+      "contemporary": "C04",
+      "badge_id": "naeringsliv",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_frilanser.json",
+      "stream": "data/Civication/narratives/leisure/naeringsliv_frilanser.json",
+      "chapter_ids": [
+        "frilans_med_lea",
+        "frilans_neste_steg",
+        "frilans_etter_neste_steg",
+        "frilans_etter_miras_navn",
+        "frilans_etter_arvids_kreditering",
+        "lea_etter_arvids_fortelling",
+        "lea_etter_arvids_avstand",
+        "lea_og_kildene_i_skrivearbeidet",
+        "lea_og_fellesskapet_uten_plikt",
+        "lea_og_foresporselen_om_honorar",
+        "lea_og_elins_vanskelige_uke"
+      ],
+      "chapter_count": 11
+    },
+    {
+      "id": "naeringsliv_grunderdrommer",
+      "name": "Gründerdrømmer",
+      "plot": "P02",
+      "literary": "L06",
+      "contemporary": "C03",
+      "badge_id": "naeringsliv",
+      "world": "data/Civication/roleWorlds/naeringsliv/naeringsliv_grunderdrommer.json",
+      "stream": "data/Civication/narratives/leisure/naeringsliv_grunderdrommer.json",
+      "chapter_ids": [
+        "grunder_med_lea",
+        "grunder_neste_steg",
+        "grunder_etter_neste_steg"
+      ],
+      "chapter_count": 3
+    },
+    {
+      "id": "litteratur_skrivebordspoet",
+      "name": "Skrivebordspoet",
+      "plot": "P07",
+      "literary": "L24",
+      "contemporary": "C19",
+      "badge_id": "litteratur",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_skrivebordspoet.json",
+      "stream": "data/Civication/narratives/leisure/skrivebordspoet.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "kunst_ateliermenneske",
+      "name": "Ateliermenneske",
+      "plot": "P07",
+      "literary": "L21",
+      "contemporary": "C19",
+      "badge_id": "kunst",
+      "world": "data/Civication/roleWorlds/kunst/kunst_ateliermenneske.json",
+      "stream": "data/Civication/narratives/leisure/kunst_ateliermenneske.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "scenekunst_improentusiast",
+      "name": "Improentusiast",
+      "plot": "P05",
+      "literary": "L13",
+      "contemporary": "C20",
+      "badge_id": "scenekunst",
+      "world": "data/Civication/roleWorlds/scenekunst/scenekunst_improentusiast.json",
+      "stream": "data/Civication/narratives/leisure/scenekunst_improentusiast.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "sport_klubbmenneske",
+      "name": "Klubbmenneske",
+      "plot": "P05",
+      "literary": "L11",
+      "contemporary": "C20",
+      "badge_id": "sport",
+      "world": "data/Civication/roleWorlds/sport/sport_klubbmenneske.json",
+      "stream": "data/Civication/narratives/leisure/sport_klubbmenneske.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "politikk_grasrotbygger",
+      "name": "Grasrotbygger",
+      "plot": "P03",
+      "literary": "L19",
+      "contemporary": "C20",
+      "badge_id": "politikk",
+      "world": "data/Civication/roleWorlds/politikk/politikk_grasrotbygger.json",
+      "stream": "data/Civication/narratives/leisure/politikk_grasrotbygger.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "politikk_organisasjonsmenneske",
+      "name": "Organisasjonsmenneske",
+      "plot": "P06",
+      "literary": "L07",
+      "contemporary": "C08",
+      "badge_id": "politikk",
+      "world": "data/Civication/roleWorlds/politikk/politikk_organisasjonsmenneske.json",
+      "stream": "data/Civication/narratives/leisure/politikk_organisasjonsmenneske.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "by_byvandrer",
+      "name": "Byvandrer",
+      "plot": "P04",
+      "literary": "L22",
+      "contemporary": "C21",
+      "badge_id": "by",
+      "world": "data/Civication/roleWorlds/by/by_byvandrer.json",
+      "stream": "data/Civication/narratives/leisure/by_byvandrer.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "by_flanor",
+      "name": "Flanør",
+      "plot": "P04",
+      "literary": "L09",
+      "contemporary": "C21",
+      "badge_id": "by",
+      "world": "data/Civication/roleWorlds/by/by_flanor.json",
+      "stream": "data/Civication/narratives/leisure/by_flanor.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "historie_lokalhistoriker",
+      "name": "Lokalhistoriker",
+      "plot": "P03",
+      "literary": "L20",
+      "contemporary": "C22",
+      "badge_id": "historie",
+      "world": "data/Civication/roleWorlds/historie/historie_lokalhistoriker.json",
+      "stream": "data/Civication/narratives/leisure/historie_lokalhistoriker.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "natur_fuglekikker",
+      "name": "Fuglekikker",
+      "plot": "P04",
+      "literary": "L22",
+      "contemporary": "C22",
+      "badge_id": "natur",
+      "world": "data/Civication/roleWorlds/natur/natur_fuglekikker.json",
+      "stream": "data/Civication/narratives/leisure/natur_fuglekikker.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "natur_sanker",
+      "name": "Sanker",
+      "plot": "P03",
+      "literary": "L17",
+      "contemporary": "C22",
+      "badge_id": "natur",
+      "world": "data/Civication/roleWorlds/natur/natur_sanker.json",
+      "stream": "data/Civication/narratives/leisure/natur_sanker.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "vitenskap_folkeforsker",
+      "name": "Folkeforsker",
+      "plot": "P03",
+      "literary": "L20",
+      "contemporary": "C22",
+      "badge_id": "vitenskap",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_folkeforsker.json",
+      "stream": "data/Civication/narratives/leisure/vitenskap_folkeforsker.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "vitenskap_maker",
+      "name": "Maker",
+      "plot": "P02",
+      "literary": "L17",
+      "contemporary": "C23",
+      "badge_id": "vitenskap",
+      "world": "data/Civication/roleWorlds/vitenskap/vitenskap_maker.json",
+      "stream": "data/Civication/narratives/leisure/vitenskap_maker.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "film_tv_filmklubbmenneske",
+      "name": "Filmklubbmenneske",
+      "plot": "P05",
+      "literary": "L13",
+      "contemporary": "C20",
+      "badge_id": "film_tv",
+      "world": "data/Civication/roleWorlds/film_tv/film_tv_filmklubbmenneske.json",
+      "stream": "data/Civication/narratives/leisure/filmklubbmenneske.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "litteratur_bokklubbmenneske",
+      "name": "Bokklubbmenneske",
+      "plot": "P05",
+      "literary": "L13",
+      "contemporary": "C20",
+      "badge_id": "litteratur",
+      "world": "data/Civication/roleWorlds/litteratur/litteratur_bokklubbmenneske.json",
+      "stream": "data/Civication/narratives/leisure/litteratur_bokklubbmenneske.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    },
+    {
+      "id": "musikk_konsertgjenger",
+      "name": "Konsertgjenger",
+      "plot": "P04",
+      "literary": "L23",
+      "contemporary": "C02",
+      "badge_id": "musikk",
+      "world": "data/Civication/roleWorlds/musikk/musikk_konsertgjenger.json",
+      "stream": "data/Civication/narratives/leisure/musikk_konsertgjenger.json",
+      "chapter_ids": [],
+      "chapter_count": 0
+    }
+  ],
+  "chapters": [
+    {
+      "id": "musikk_med_mira",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Fortsett med medmusikeren",
+      "source": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+      "start_day": 8,
+      "after_day": 7,
+      "prerequisite_chapters": [],
+      "origin_thread": "musikken_og_mira",
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "sideprosjekt_med_lea",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Fortsett med prosjektbyggeren som Sideprosjektbygger",
+      "source": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+      "start_day": 8,
+      "after_day": 7,
+      "prerequisite_chapters": [],
+      "origin_thread": "prosjektet_og_lea",
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "frilans_med_lea",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Fortsett med prosjektbyggeren som Frilanser",
+      "source": "data/Civication/lifestory/continuations/frilans_med_lea.json",
+      "start_day": 8,
+      "after_day": 7,
+      "prerequisite_chapters": [],
+      "origin_thread": "prosjektet_og_lea",
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "grunder_med_lea",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "title": "Fortsett med prosjektbyggeren som Gründerdrømmer",
+      "source": "data/Civication/lifestory/continuations/grunder_med_lea.json",
+      "start_day": 8,
+      "after_day": 7,
+      "prerequisite_chapters": [],
+      "origin_thread": "prosjektet_og_lea",
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "sideprosjekt_neste_steg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Neste kapittel som Sideprosjektbygger",
+      "source": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
+      "start_day": 11,
+      "after_day": 10,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ]
+    },
+    {
+      "id": "frilans_neste_steg",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Neste kapittel som Frilanser",
+      "source": "data/Civication/lifestory/continuations/frilans_neste_steg.json",
+      "start_day": 11,
+      "after_day": 10,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "sideprosjekt_med_lea",
+        "grunder_med_lea"
+      ]
+    },
+    {
+      "id": "grunder_neste_steg",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "title": "Neste kapittel som Gründerdrømmer",
+      "source": "data/Civication/lifestory/continuations/grunder_neste_steg.json",
+      "start_day": 11,
+      "after_day": 10,
+      "prerequisite_chapters": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea",
+        "grunder_med_lea"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "sideprosjekt_med_lea",
+        "frilans_med_lea"
+      ]
+    },
+    {
+      "id": "musikk_foresporselen",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Fortsett med spilleforespørselen",
+      "source": "data/Civication/lifestory/continuations/musikk_foresporselen.json",
+      "start_day": 11,
+      "after_day": 10,
+      "prerequisite_chapters": [
+        "musikk_med_mira"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "miljo_med_arvid",
+      "role_scope": "subkultur_gangster",
+      "title": "Fortsett med miljøkontakten",
+      "source": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+      "start_day": 8,
+      "after_day": 7,
+      "prerequisite_chapters": [],
+      "origin_thread": "miljoet_og_amir",
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "miljo_navnet_ditt",
+      "role_scope": "subkultur_gangster",
+      "title": "Fortsett med navnet ditt på invitasjonen",
+      "source": "data/Civication/lifestory/continuations/miljo_navnet_ditt.json",
+      "start_day": 11,
+      "after_day": 10,
+      "prerequisite_chapters": [
+        "miljo_med_arvid"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "musikk_etter_foresporselen",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Etter forespørselen",
+      "source": "data/Civication/lifestory/continuations/musikk_etter_foresporselen.json",
+      "start_day": 14,
+      "after_day": 13,
+      "prerequisite_chapters": [
+        "musikk_foresporselen"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "sideprosjekt_etter_neste_steg",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Prosjektet som tåler et nei",
+      "source": "data/Civication/lifestory/continuations/sideprosjekt_etter_neste_steg.json",
+      "start_day": 14,
+      "after_day": 13,
+      "prerequisite_chapters": [
+        "sideprosjekt_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "frilans_etter_neste_steg",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Utkastet og grensen",
+      "source": "data/Civication/lifestory/continuations/frilans_etter_neste_steg.json",
+      "start_day": 14,
+      "after_day": 13,
+      "prerequisite_chapters": [
+        "frilans_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "grunder_etter_neste_steg",
+      "role_scope": "naeringsliv_grunderdrommer",
+      "title": "Lea: Én mening er ikke et marked",
+      "source": "data/Civication/lifestory/continuations/grunder_etter_neste_steg.json",
+      "start_day": 14,
+      "after_day": 13,
+      "prerequisite_chapters": [
+        "grunder_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "miljo_etter_invitasjonen",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Et navn er ikke en avtale",
+      "source": "data/Civication/lifestory/continuations/miljo_etter_invitasjonen.json",
+      "start_day": 14,
+      "after_day": 13,
+      "prerequisite_chapters": [
+        "miljo_navnet_ditt"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "sideprosjekt_kryss_med_mira",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Programmet etter Miras valg",
+      "source": "data/Civication/lifestory/continuations/sideprosjekt_kryss_med_mira.json",
+      "start_day": 17,
+      "after_day": 16,
+      "prerequisite_chapters": [
+        "musikk_etter_foresporselen"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "musikk_etter_foresporselen"
+      ]
+    },
+    {
+      "id": "miljo_kryss_med_lea",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Invitasjonen etter Leas prosjekt",
+      "source": "data/Civication/lifestory/continuations/miljo_kryss_med_lea.json",
+      "start_day": 17,
+      "after_day": 16,
+      "prerequisite_chapters": [
+        "sideprosjekt_etter_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "sideprosjekt_etter_neste_steg"
+      ]
+    },
+    {
+      "id": "musikk_kryss_med_arvid",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Invitasjonen etter Arvids valg",
+      "source": "data/Civication/lifestory/continuations/musikk_kryss_med_arvid.json",
+      "start_day": 17,
+      "after_day": 16,
+      "prerequisite_chapters": [
+        "miljo_etter_invitasjonen"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "miljo_etter_invitasjonen"
+      ]
+    },
+    {
+      "id": "miljo_kryss_med_frilans",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Leas frilansnotat på plakaten",
+      "source": "data/Civication/lifestory/continuations/miljo_kryss_med_frilans.json",
+      "start_day": 17,
+      "after_day": 16,
+      "prerequisite_chapters": [
+        "frilans_etter_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "frilans_etter_neste_steg"
+      ]
+    },
+    {
+      "id": "musikk_kryss_med_grunder",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Lyden i Leas idé",
+      "source": "data/Civication/lifestory/continuations/musikk_kryss_med_grunder.json",
+      "start_day": 17,
+      "after_day": 16,
+      "prerequisite_chapters": [
+        "grunder_etter_neste_steg"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "grunder_etter_neste_steg"
+      ]
+    },
+    {
+      "id": "miljo_etter_leas_program",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Papiret ved inngangen",
+      "source": "data/Civication/lifestory/continuations/miljo_etter_leas_program.json",
+      "start_day": 20,
+      "after_day": 19,
+      "prerequisite_chapters": [
+        "sideprosjekt_kryss_med_mira"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "sideprosjekt_kryss_med_mira"
+      ]
+    },
+    {
+      "id": "musikk_etter_arvids_tekst",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Hvem skrev at jeg skulle komme?",
+      "source": "data/Civication/lifestory/continuations/musikk_etter_arvids_tekst.json",
+      "start_day": 20,
+      "after_day": 19,
+      "prerequisite_chapters": [
+        "miljo_kryss_med_lea"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "miljo_kryss_med_lea"
+      ]
+    },
+    {
+      "id": "frilans_etter_miras_navn",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Ansvar for andres navn",
+      "source": "data/Civication/lifestory/continuations/frilans_etter_miras_navn.json",
+      "start_day": 20,
+      "after_day": 19,
+      "prerequisite_chapters": [
+        "musikk_kryss_med_arvid"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "musikk_kryss_med_arvid"
+      ]
+    },
+    {
+      "id": "frilans_etter_arvids_kreditering",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Hvem bærer krediteringen?",
+      "source": "data/Civication/lifestory/continuations/frilans_etter_arvids_kreditering.json",
+      "start_day": 20,
+      "after_day": 19,
+      "prerequisite_chapters": [
+        "miljo_kryss_med_frilans"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "miljo_kryss_med_frilans"
+      ]
+    },
+    {
+      "id": "miljo_etter_miras_lyd",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Filen som ikke var bestilt",
+      "source": "data/Civication/lifestory/continuations/miljo_etter_miras_lyd.json",
+      "start_day": 20,
+      "after_day": 19,
+      "prerequisite_chapters": [
+        "musikk_kryss_med_grunder"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "musikk_kryss_med_grunder"
+      ]
+    },
+    {
+      "id": "lea_etter_arvids_ansvar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Tillit koster tid",
+      "source": "data/Civication/lifestory/continuations/lea_etter_arvids_ansvar.json",
+      "start_day": 23,
+      "after_day": 22,
+      "prerequisite_chapters": [
+        "miljo_etter_leas_program"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "miljo_etter_leas_program"
+      ]
+    },
+    {
+      "id": "mira_etter_samtalen_med_lea",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Det som ikke ble sagt",
+      "source": "data/Civication/lifestory/continuations/mira_etter_samtalen_med_lea.json",
+      "start_day": 23,
+      "after_day": 22,
+      "prerequisite_chapters": [
+        "musikk_etter_arvids_tekst"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "arvid_etter_leas_notat",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Hvem eier historien?",
+      "source": "data/Civication/lifestory/continuations/arvid_etter_leas_notat.json",
+      "start_day": 23,
+      "after_day": 22,
+      "prerequisite_chapters": [
+        "frilans_etter_miras_navn"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "frilans_etter_miras_navn"
+      ]
+    },
+    {
+      "id": "arvid_etter_leas_grense",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Et vennskap etter et nei",
+      "source": "data/Civication/lifestory/continuations/arvid_etter_leas_grense.json",
+      "start_day": 23,
+      "after_day": 22,
+      "prerequisite_chapters": [
+        "frilans_etter_arvids_kreditering"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "frilans_etter_arvids_kreditering"
+      ]
+    },
+    {
+      "id": "mira_etter_lydfilens_rykte",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Når musikken ikke føles trygg",
+      "source": "data/Civication/lifestory/continuations/mira_etter_lydfilens_rykte.json",
+      "start_day": 23,
+      "after_day": 22,
+      "prerequisite_chapters": [
+        "miljo_etter_miras_lyd"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "miljo_etter_miras_lyd"
+      ]
+    },
+    {
+      "id": "arvid_etter_leas_tillit",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: En samling uten redningsperson",
+      "source": "data/Civication/lifestory/continuations/arvid_etter_leas_tillit.json",
+      "start_day": 26,
+      "after_day": 25,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_ansvar"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "lea_etter_arvids_ansvar"
+      ]
+    },
+    {
+      "id": "lea_etter_miras_vennskap",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Ideen trenger ikke en musiker",
+      "source": "data/Civication/lifestory/continuations/lea_etter_miras_vennskap.json",
+      "start_day": 26,
+      "after_day": 25,
+      "prerequisite_chapters": [
+        "mira_etter_samtalen_med_lea"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "mira_etter_samtalen_med_lea"
+      ]
+    },
+    {
+      "id": "lea_etter_arvids_fortelling",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: En historie hun selv kan stå for",
+      "source": "data/Civication/lifestory/continuations/lea_etter_arvids_fortelling.json",
+      "start_day": 26,
+      "after_day": 25,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_notat"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "arvid_etter_leas_notat"
+      ]
+    },
+    {
+      "id": "lea_etter_arvids_avstand",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Å være gjest uten å være ansvarlig",
+      "source": "data/Civication/lifestory/continuations/lea_etter_arvids_avstand.json",
+      "start_day": 26,
+      "after_day": 25,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_grense"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": [
+        "arvid_etter_leas_grense"
+      ]
+    },
+    {
+      "id": "mira_etter_nye_takter",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Musikken etter stillheten",
+      "source": "data/Civication/lifestory/continuations/mira_etter_nye_takter.json",
+      "start_day": 26,
+      "after_day": 25,
+      "prerequisite_chapters": [
+        "mira_etter_lydfilens_rykte"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "arvid_og_det_aapne_lokalet",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Hvem åpner døren?",
+      "source": "data/Civication/lifestory/continuations/arvid_og_det_aapne_lokalet.json",
+      "start_day": 29,
+      "after_day": 28,
+      "prerequisite_chapters": [
+        "arvid_etter_leas_tillit"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_sporsmaalene_som_gjenstaar",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Spørsmålet som ikke passer i presentasjonen",
+      "source": "data/Civication/lifestory/continuations/lea_og_sporsmaalene_som_gjenstaar.json",
+      "start_day": 29,
+      "after_day": 28,
+      "prerequisite_chapters": [
+        "lea_etter_miras_vennskap"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_kildene_i_skrivearbeidet",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: En setning må kunne etterprøves",
+      "source": "data/Civication/lifestory/continuations/lea_og_kildene_i_skrivearbeidet.json",
+      "start_day": 29,
+      "after_day": 28,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_fortelling"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_fellesskapet_uten_plikt",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Det finnes flere dører",
+      "source": "data/Civication/lifestory/continuations/lea_og_fellesskapet_uten_plikt.json",
+      "start_day": 29,
+      "after_day": 28,
+      "prerequisite_chapters": [
+        "lea_etter_arvids_avstand"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "mira_og_musikken_i_hverdagen",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Stykket som trenger tid",
+      "source": "data/Civication/lifestory/continuations/mira_og_musikken_i_hverdagen.json",
+      "start_day": 29,
+      "after_day": 28,
+      "prerequisite_chapters": [
+        "mira_etter_nye_takter"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "arvid_og_nokkelen_til_lokalet",
+      "role_scope": "subkultur_gangster",
+      "title": "Arvid: Nøkkelen ingen kan love bort",
+      "source": "data/Civication/lifestory/continuations/arvid_og_nokkelen_til_lokalet.json",
+      "start_day": 32,
+      "after_day": 31,
+      "prerequisite_chapters": [
+        "arvid_og_det_aapne_lokalet"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_den_foerste_hypotesen",
+      "role_scope": "naeringsliv_sideprosjektbygger",
+      "title": "Lea: Når en god idé møter et dårlig svar",
+      "source": "data/Civication/lifestory/continuations/lea_og_den_foerste_hypotesen.json",
+      "start_day": 32,
+      "after_day": 31,
+      "prerequisite_chapters": [
+        "lea_og_sporsmaalene_som_gjenstaar"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_foresporselen_om_honorar",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: En pris på arbeidet",
+      "source": "data/Civication/lifestory/continuations/lea_og_foresporselen_om_honorar.json",
+      "start_day": 32,
+      "after_day": 31,
+      "prerequisite_chapters": [
+        "lea_og_kildene_i_skrivearbeidet"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "lea_og_elins_vanskelige_uke",
+      "role_scope": "naeringsliv_frilanser",
+      "title": "Lea: Vennskapet får en vanskelig uke",
+      "source": "data/Civication/lifestory/continuations/lea_og_elins_vanskelige_uke.json",
+      "start_day": 32,
+      "after_day": 31,
+      "prerequisite_chapters": [
+        "lea_og_fellesskapet_uten_plikt"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    },
+    {
+      "id": "mira_og_invitasjonen_fra_musikeren",
+      "role_scope": "musikk_frilansmusiker",
+      "title": "Mira: Den første tonen sammen",
+      "source": "data/Civication/lifestory/continuations/mira_og_invitasjonen_fra_musikeren.json",
+      "start_day": 32,
+      "after_day": 31,
+      "prerequisite_chapters": [
+        "mira_og_musikken_i_hverdagen"
+      ],
+      "origin_thread": null,
+      "cross_role_predecessors": []
+    }
+  ]
+}
