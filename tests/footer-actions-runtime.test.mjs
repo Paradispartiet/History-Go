@@ -39,7 +39,10 @@ test("Notat executes the original private place-note save flow", () => {
   });
   try {
     const w = dom.window;
-    w.eval('const userNotes = []; const el = {btnSeeMap:null,btnExitMap:null}; function saveUserNotes(){window.__savedNotes=userNotes.slice();} function showToast(message){window.__toast=message;}');
+    w.userNotes = [];
+    w.el = {btnSeeMap: null, btnExitMap: null};
+    w.saveUserNotes = () => { w.__savedNotes = w.userNotes.slice(); };
+    w.showToast = message => { w.__toast = message; };
     w.prompt = () => "Et faktisk observert forhold.";
     w.eval(read("js/ui/interactions.js"));
     assert.equal(typeof w.handlePlaceNote, "function");
