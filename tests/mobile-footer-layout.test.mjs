@@ -51,7 +51,7 @@ function renderViewport(width, height) {
   return { vars, classes, viewport: window.HGViewport };
 }
 
-test('phone footer is one 48px row plus 12px control padding', () => {
+test('phone footer stays a single row with 44px icon-and-label buttons', () => {
   const { vars, classes, viewport } = renderViewport(390, 844);
   assert.equal(classes.has('hg-phone'), true);
   assert.equal(viewport.footerHeight, 60);
@@ -59,7 +59,7 @@ test('phone footer is one 48px row plus 12px control padding', () => {
   assert.equal(vars.get('--hg-design-footer-offset'), `${60 / viewport.scale}px`);
   assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-footer\s*\{[^}]*padding:\s*6px 8px calc\(6px \+ env\(safe-area-inset-bottom, 0px\)\)/);
   assert.match(footerCSS, /body\.hg-app\.hg-phone \.pc-mini\s*\{[^}]*width:\s*48px;[^}]*height:\s*48px;[^}]*flex:\s*0 0 48px/);
-  assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-actions button\s*\{[^}]*height:\s*48px/);
+  assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-actions button\s*\{[^}]*height:\s*44px/);
 });
 
 test('tablet footer keeps original height', () => {
@@ -74,7 +74,7 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.match(layoutCSS, /--hg-bottom-nav-height:\s*calc\(\s*var\(--hg-bottom-nav-content-height\) \+ var\(--hg-safe-area-bottom\)/);
   assert.match(footerCSS, /\.app-actions\s*\{[^}]*min-width:\s*0;[^}]*overflow-x:\s*auto/);
   assert.match(footerCSS, /body\.hg-app\.hg-phone \.app-actions\s*\{[^}]*overflow-x:\s*auto/);
-  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*#000/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*var\(--hg-toolbar-bg\)/);
   assert.doesNotMatch(indexHTML, /id="pcInfo"/);
   for (const id of ["pcQuiz", "pcVisit", "pcRoute", "pcObserve", "pcNote"]) {
     assert.match(footerCSS, new RegExp("#" + id + "::before\\s*\\{[^}]*background-image:"));
@@ -83,56 +83,37 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
 
-test('footer is black with seven distinct polychrome SVG illustrations', () => {
+test('same header yellow linework and seven clear, accessible action icons', () => {
   assert.match(indexHTML, /id="pcOnSiteFooter" class="pc-onsite-footer"/);
-  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*background:\s*#000/);
+  assert.match(footerCSS, /--hg-toolbar-yellow:\s*var\(--yellow, #f6c800\)/);
+  assert.match(footerCSS, /--hg-toolbar-edge:\s*rgba\(246,200,0,\.86\)/);
+  assert.match(footerCSS, /body\.hg-app \.site-header\s*\{[^}]*border-bottom:\s*1px solid var\(--hg-toolbar-yellow\)/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*border-top:\s*1px solid var\(--hg-toolbar-yellow\)/);
+  assert.match(footerCSS, /\.pc-mini\s*\{[^}]*border:\s*1px solid var\(--hg-toolbar-edge\)/);
+  assert.match(footerCSS, /\.pc-route-menu\s*\{[^}]*border:\s*1px solid var\(--hg-toolbar-yellow\)/);
   assert.doesNotMatch(footerCSS, /(?:-webkit-)?mask-image:/);
-  for (const selector of [
-    '#pcQuiz::before', '#pcVisit::before', '#pcRoute::before',
-    '#pcObserve::before', '#pcNote::before'
+  for (const [id, label] of [
+    ['pcQuiz','Ta quiz'], ['pcVisit','Registrer besøk'],
+    ['pcRoute','Rute'], ['pcObserve','Observer'], ['pcNote','Notat']
   ]) {
-    assert.match(footerCSS, new RegExp(selector + '\\s*\\{[^}]*background-image:'));
+    assert.match(indexHTML, new RegExp('id="' + id + '"[^>]*>' + label + '</button>'),
+      id + ' has visible, meaningful text');
+    assert.match(footerCSS, new RegExp('#' + id + '::before\\s*\\{[^}]*background-image:'),
+      id + ' has a dedicated icon');
   }
-  assert.match(footerCSS, /\.pc-onsite-action-events \.pc-onsite-action-icon::before\s*\{[^}]*background-image:/);
-  assert.match(footerCSS, /\.pc-onsite-action-meet \.pc-onsite-action-icon::before\s*\{[^}]*background-image:/);
-  const dataImages = [...footerCSS.matchAll(/background-image:\s*url\("data:image\/svg\+xml,([^"]+)"\)/g)];
-  assert.equal(dataImages.length, 7, 'seven illustrated SVGs, including Quiz and Visit');
-  const art = dataImages.map(([, raw]) => decodeURIComponent(raw));
-  assert.equal(new Set(art).size, 7, 'no generic reused artwork');
-  for (const svg of art) {
+  for (const action of ['events','meet']) {
+    assert.match(footerCSS, new RegExp('\\.pc-onsite-action-' + action + ' \\.pc-onsite-action-icon::before\\s*\\{[^}]*background-image:'));
+  }
+  const encoded = [...footerCSS.matchAll(/background-image:\s*url\("data:image\/svg\+xml,([^"]+)"\)/g)];
+  assert.equal(encoded.length, 7, 'all seven footer actions have brand-new pictograms');
+  const svgs = encoded.map(([, data]) => decodeURIComponent(data));
+  assert.equal(new Set(svgs).size, 7, 'different icons for every action');
+  for (const svg of svgs) {
     assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-    assert.ok(new Set(svg.match(/#[a-fA-F0-9]{6}/g) || []).size >= 4,
-      'each illustrated icon has multiple saturated colours');
-    const colors = [...new Set((svg.match(/#[a-fA-F0-9]{6}/g) || []).map(x => x.toLowerCase()))];
-    const vibrant = colors.map(hex => {
-      const [r, g, b] = [1, 3, 5].map(pos => parseInt(hex.slice(pos, pos + 2), 16) / 255);
-      const high = Math.max(r, g, b);
-      const low = Math.min(r, g, b);
-      const delta = high - low;
-      let hue = 0;
-      if (delta > 0) {
-        if (high === r) hue = ((g - b) / delta) % 6;
-        else if (high === g) hue = (b - r) / delta + 2;
-        else hue = (r - g) / delta + 4;
-        hue = (hue * 60 + 360) % 360;
-      }
-      return { hue, vivid: high > .56 && delta > .17 };
-    }).filter(item => item.vivid);
-    const lemon = vibrant.filter(item => item.hue >= 50 && item.hue <= 76).length;
-    const violet = vibrant.filter(item => item.hue >= 260 && item.hue <= 332).length;
-    const cool = vibrant.filter(item => item.hue >= 72 && item.hue <= 232).length;
-    assert.ok(lemon >= 1, 'each icon contains fresh lemon yellow');
-    assert.ok(cool >= 1, 'each icon retains multicolour contrasts');
-    assert.ok(lemon <= Math.floor(vibrant.length * .62), 'avoid solid yellow artwork');
-    assert.equal(violet, 0, 'no vivid purple or magenta in footer icon artwork');
+    assert.match(svg, /#f6c800/, 'header yellow is used in the icon');
+    assert.match(svg, /#f8f8f1/, 'crisp white linework complements the yellow');
   }
-  // Explicit lemon borders across all seven buttons, including Events and Meet.
-  for (const selector of ['#pcQuiz', '#pcVisit', '#pcRoute', '#pcObserve', '#pcNote']) {
-    assert.match(footerCSS, new RegExp('#' + selector.slice(1) + '\\s*\\{[^}]*border-color:\\s*rgba\\(245,249,62,\\.74\\)'));
-  }
-  for (const action of ['events', 'meet']) {
-    assert.match(footerCSS, new RegExp('\\.pc-onsite-action-' + action + '\\s*\\{[^}]*border-color:\\s*rgba\\(245,249,62,\\.74\\)'));
-  }
+  assert.match(footerCSS, /\.app-actions \.pc-onsite-footer \.pc-onsite-action-count\s*\{[^}]*background:\s*var\(--hg-toolbar-yellow\)/);
   const surface = readFileSync(new URL('../js/ui/place-onsite-surface.js', import.meta.url), 'utf8');
   assert.match(surface, /function syncFooterActions\(place, force = false\)/);
   assert.match(surface, /footerOwnsCore/);

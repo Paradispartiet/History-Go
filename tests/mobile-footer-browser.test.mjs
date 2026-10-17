@@ -17,6 +17,7 @@ const fixture = [
   '<link rel="stylesheet" href="/css/layout.css">',
   '<link rel="stylesheet" href="/css/footer.css">',
   '</head><body class="hg-app">',
+  '<header class="site-header"><button id="nearbyExploreToggle">Utforsk</button><a id="miniProfile" href="#">Profil</a><button class="iconbtn" type="button">☰</button></header>',
   '<div id="mapLayer"></div><div class="app-shell"></div>',
   '<div id="placeCard" class="is-open is-place-sheet-direct" data-current-place-id="test_place"><div class="pc-body"><div id="pcEventsBox"></div></div></div>',
   footerMarkup,
@@ -79,11 +80,18 @@ try {
         actionsScroll: { scrollWidth: actions.scrollWidth, clientWidth: actions.clientWidth, overflowX: getComputedStyle(actions).overflowX },
         footerBackground: getComputedStyle(footer).backgroundColor,
         footerImage: getComputedStyle(footer).backgroundImage,
+        footerLine: getComputedStyle(footer).borderTopColor,
+        headerBackground: getComputedStyle(document.querySelector(".site-header")).backgroundColor,
+        headerLine: getComputedStyle(document.querySelector(".site-header")).borderBottomColor,
+        headerBorders: ["nearbyExploreToggle","miniProfile"].map(id => getComputedStyle(document.getElementById(id)).borderTopColor).concat(getComputedStyle(document.querySelector(".site-header .iconbtn")).borderTopColor),
+        miniBorder: getComputedStyle(mini).borderTopColor,
         hasMoreInfo: Boolean(document.getElementById("pcInfo")),
         icons: ["pcQuiz", "pcVisit", "pcRoute", "pcObserve", "pcNote"].map(id => ({
           id,
           image: getComputedStyle(document.getElementById(id), "::before").backgroundImage,
-          border: getComputedStyle(document.getElementById(id)).borderTopColor
+          border: getComputedStyle(document.getElementById(id)).borderTopColor,
+          text: document.getElementById(id).textContent.trim(),
+          background: getComputedStyle(document.getElementById(id)).backgroundColor
         })),
         onsite: [...document.querySelectorAll("#pcOnSiteFooter button")].map(el => ({
           action: el.dataset.hgOnsiteAction,
@@ -107,30 +115,39 @@ try {
       (b.top + b.bottom) / 2 - (actual.buttons[0].top + actual.buttons[0].bottom) / 2
     ) < 1), `footer buttons stay vertically centered in one row at ${width}`);
     assert.ok(actual.mini.height <= (isPhone ? 48 : 56), `mini fits row at ${width}`);
-    assert.equal(actual.footerBackground, "rgb(0, 0, 0)", `solid black footer at ${width}`);
-    assert.equal(actual.footerImage, "none", `no transparent gradient overlay at ${width}`);
-    assert.equal(actual.hasMoreInfo, false, `obsolete info button removed at ${width}`);
+    assert.equal(actual.footerBackground, "rgb(0, 0, 0)", `black footer at ${width}`);
+    assert.equal(actual.headerBackground, "rgb(0, 0, 0)", `black header at ${width}`);
+    assert.equal(actual.footerImage, "none", `no gradient fill at ${width}`);
+    assert.equal(actual.footerLine, "rgb(246, 200, 0)", `header-yellow footer perimeter at ${width}`);
+    assert.equal(actual.headerLine, actual.footerLine, `both bars use the same yellow line at ${width}`);
+    const yellowFrame = "rgba(246, 200, 0, 0.86)";
+    assert.ok(actual.headerBorders.every(value => value === yellowFrame),
+      `header controls share yellow outlines at ${width}`);
+    assert.equal(actual.miniBorder, yellowFrame, `collapsed place icon has yellow frame at ${width}`);
+    assert.equal(actual.hasMoreInfo, false, `obsolete info button absent at ${width}`);
     assert.ok(actual.icons.every(icon => icon.image.includes("data:image/svg+xml")),
-      `five illustrated SVG icons render at ${width}`);
+      `all five principal icons render at ${width}`);
     assert.equal(new Set(actual.icons.map(icon => icon.image)).size, 5,
-      `five distinct footer icon illustrations at ${width}`);
-    assert.ok(actual.icons.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
-      `each icon uses at least four genuine illustration colors at ${width}`);
-    // Every footer button keeps one recognizable bright-yellow outline,
-    // while the artwork within each icon retains additional colours.
-    const isLemonYellow = color => /245,\s*249,\s*62/.test(color);
-    assert.ok(actual.icons.every(icon => isLemonYellow(icon.border)),
-      `all five primary footer buttons have lemon-yellow borders at ${width}`);
+      `different pictogram per action at ${width}`);
+    assert.deepEqual(actual.icons.map(icon => icon.text),
+      ["Ta quiz", "Registrer besøk", "Rute", "Observer", "Notat"],
+      `visible labels identify every action at ${width}`);
+    assert.ok(actual.icons.every(icon => icon.border === yellowFrame),
+      `all footer buttons use the exact header-yellow stroke at ${width}`);
+    assert.ok(actual.icons.every(icon => icon.background === "rgb(21, 21, 21)"),
+      `all footer buttons match the dark header surface at ${width}`);
+    assert.ok(actual.icons.every(icon => {
+      const art = decodeURIComponent(icon.image);
+      return art.includes("#f6c800") && art.includes("#f8f8f1");
+    }), `all footer glyphs have unified yellow and white strokes at ${width}`);
     assert.deepEqual(actual.onsite.map(item => item.action), ["events", "meet"],
-      `canonical Events and Meet live in footer at ${width}`);
+      `canonical Events and Meet are in footer at ${width}`);
     assert.ok(actual.onsite.every(icon => icon.image.includes("data:image/svg+xml")),
-      `Events and Meet have full-colour SVG icons at ${width}`);
+      `Event and Meet icons render at ${width}`);
     assert.notEqual(actual.onsite[0].image, actual.onsite[1].image,
-      `Events and Meet have distinct illustrations at ${width}`);
-    assert.ok(actual.onsite.every(icon => new Set(decodeURIComponent(icon.image).match(/#[a-fA-F0-9]{6}/g) || []).size >= 4),
-      `Events and Meet illustrations use several colors at ${width}`);
-    assert.ok(actual.onsite.every(icon => isLemonYellow(icon.border)),
-      `Events and Meet use the same lemon-yellow border at ${width}`);
+      `Events and Meet are visually distinct at ${width}`);
+    assert.ok(actual.onsite.every(icon => icon.border === yellowFrame),
+      `Events and Meet match all other yellow button frames at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);
     assert.equal(actual.onsiteBoxHidden, true, `old Events/Meet box removed at ${width}`);
     assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);
