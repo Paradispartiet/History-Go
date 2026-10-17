@@ -1,5 +1,7 @@
 # Civication – skjemaer og produksjonsstandard for bok- og filminspirerte historier
 
+**Statusoppdatering 17. oktober:** Det kuraterte Goodreads-arbeidsarket med 159 verk er funnet og sammenholdt med C01–C24. De primære bokreferansene er ført i `goodreads_primary` og [synopsis-/kilderegisteret](../data/Civication/lifestory/editorial/inspiration/synopsisThreeSourceLinksV1.json) som kvalifisert mot **arbeidsboken**, ikke en nyimportert rå CSV. Verksanalysene er fortsatt foreløpige. Se [bolk A: åtte kildeforankrede fortellinger](CIVICATION_SOURCE_GROUNDED_WAVE_A_V1.md). Historiske eksempler på «0 verifiserte» lenger ned beskriver starten på prosjektet.
+
 **Revisjon 1 · 17. oktober 2026 · Redaksjonell kontrakt, ikke ny runtime.** Dette dokumentet er arbeidsgrunnlaget som skal brukes *før* vi skriver flere Civication-historier. Det supplerer [synopsismatrisen](CIVICATION_BOOK_FILM_STORY_MATRIX_V1.md), [personmodellen](CIVICATION_PERSON_MODEL_V1.md), [fortellingsprinsippene](CIVICATION_SYMPOSIUM_NARRATIVE_PRINCIPLES.md) og [Life Story-systemet](civication-life-story-system.md). Gamle scener, manifests, IDs, spilltilstand og eksisterende registrerte historier endres ikke av skjemaene.
 
 ## Hvorfor fire skjemaer?
