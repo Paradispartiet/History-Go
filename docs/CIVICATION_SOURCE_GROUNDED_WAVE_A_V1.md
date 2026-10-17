@@ -83,3 +83,14 @@ Utvid de åtte påbegynte buene mot minimum fire kapitler hver. Behold fullført
 
 **Merk:** En publisert synopsis er ikke det samme som et utkast fra denne kildeplanen. Stein, Frode og Inger er fremdeles tre registrerte historier uten påstått film-/bokattribusjon. Ikke legg inn retrospektiv inspirasjon som et historisk faktum uten særskilt verk- og sceneanalyse.
 
+## Integrasjonsrettelser etter ordinær PR-kontroll
+
+Den første ordinære kontrollen bestod 706 av 719 testfiler. Ti avvik kom fra samme utdaterte karrierematrise: den nye kapitteltesten skulle inngå i evidenslisten for arealplanlegger og renholder. Matrisen er regenerert; ingen karriereterskler eller rollekrav er endret.
+
+De tre øvrige avvikene håndteres i de berørte testene:
+
+- Mira-testen spiller nå den nye C02-scenen før dagsoppsummering og omstart, og kontrollerer at pause/gjenopptakelse beholder akkurat denne scenen.
+- Kapitteltesten identifiserer en faktisk avslutningsscene gjennom effekten som fullfører hovedtråden, uavhengig av rekkefølgen i JSON-filen.
+- Arvid-testen beholder alle opprinnelige valgkombinasjoner, tidligere historier, senere kapitler og gjenopptakelser. Den uavhengige C07-tråden spilles med standardvalg i denne testen for å unngå et voksende kryssprodukt; samtlige nye C07-valg og avstandsgrenen dekkes av den egne bolktesten. Ingen timeout økes, og ingen spillscene fjernes.
+
+Målrettet kontroll: `node tests/run-civication-tests.mjs source-grounded-wave-a lifestory-arvid-continuation lifestory-mira-continuation narrative-three-level-continuations career-gameplay-matrix`. Ordinær GitHub-CI må bestå på sluttcommit før merge.

@@ -151,4 +151,3 @@ assert.ok(uiSource.includes("lifestoryRole"), "dev-/testparameteren ?lifestoryRo
 assert.ok(uiSource.includes("civication_lifestory_role_v1"), "dev-parameteren persisteres i localStorage");
 
 console.log("civication lifestory renholder ok (" + state.arkiv.length + " scener over 2 dager, begge dag-2-grener verifisert)");
-
