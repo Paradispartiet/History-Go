@@ -1,5 +1,7 @@
 # Civication – Goodreads × IMDb × Film Producer: historieplan og synopsismatrise v1
 
+**Skjema først:** Bruk [produksjonsstandarden og de fire dataskjemaene](CIVICATION_BOOK_FILM_STORY_SCHEMAS_V1.md) før videre historieforfatting. Denne 24-raders matrisen er en **kandidatbank**, ikke et godkjent sett av rollespesifikke blueprints. Faktisk status for kilder, roller og spillbarhet står i [dekningsregisteret](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json).
+
 **Status 17. oktober 2026:** Redaksjonell produksjonsplan, ikke publiserte spillscener. Kartleggingen er delvis utført: 24 samtidige fortellingstyper (`C01–C24`), 24 litterære spor (`L01–L24`) og 7 mulige plottlinser (`P01–P07`) finnes allerede i `narrativeCrosswalkV1.json`. Her får **alle 24 C-typer** et konkret synopsisutkast og en sporbart knyttet film fra Film Producers 161-filmers IMDb-grunnlag. Verken Goodreads-importen eller direkte rolle-/spillerstate-binding for disse 24 utkastene er bekreftet.
 
 ## Kildene og regelen vi har avtalt
