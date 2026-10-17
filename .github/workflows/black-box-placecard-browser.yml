@@ -1,0 +1,35 @@
+name: Black Box PlaceCard browser QA
+
+on:
+  pull_request:
+    paths:
+      - 'tests/black-box-placecard-collections-browser.test.mjs'
+      - 'data/places/scenekunst/oslo/places_scenekunst/black_box_teater.json'
+      - 'bilder/kort/productions/black_box_*.avif'
+      - '.github/workflows/black-box-placecard-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  black-box-collections:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps chromium
+      - name: Black Box canonical PlaceCard collections at 390 and 1440px
+        run: node tests/black-box-placecard-collections-browser.test.mjs
+      - name: Attach browser reports and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: black-box-placecard-visual-qa
+          path: reports/visual-qa/black-box-teater/placecard-collections-20261013/
+          if-no-files-found: warn
