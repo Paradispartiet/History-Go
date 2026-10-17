@@ -1,0 +1,501 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civication – rolleforankret synopsis og sceneplan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "blueprint_id",
+    "story_type_ids",
+    "problem_ids",
+    "work_ids",
+    "role_context",
+    "characters",
+    "story",
+    "continuity",
+    "production",
+    "copyright_policy"
+  ],
+  "properties": {
+    "schema": {
+      "const": "civication_role_story_blueprint_v1"
+    },
+    "blueprint_id": {
+      "type": "string",
+      "pattern": "^blueprint-[a-z0-9-]+$"
+    },
+    "story_type_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^C(0[1-9]|1[0-9]|2[0-4])$"
+      }
+    },
+    "problem_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^problem-[a-z0-9-]+$"
+      }
+    },
+    "work_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(book|film)-[a-z0-9-]+$"
+      }
+    },
+    "role_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "domain",
+        "binding_status",
+        "role_or_position_id",
+        "authority_boundary",
+        "competence_boundary"
+      ],
+      "properties": {
+        "domain": {
+          "enum": [
+            "job",
+            "system_role",
+            "life_position",
+            "private_life",
+            "relationship"
+          ]
+        },
+        "binding_status": {
+          "enum": [
+            "proposed",
+            "verified_existing_role"
+          ]
+        },
+        "role_or_position_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authority_boundary": {
+          "type": "string",
+          "minLength": 20
+        },
+        "competence_boundary": {
+          "type": "string",
+          "minLength": 15
+        }
+      }
+    },
+    "characters": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "label",
+          "actor_id",
+          "fact_status",
+          "wants",
+          "constraints",
+          "knowledge_boundary"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actor_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fact_status": {
+            "enum": [
+              "catalog_fact",
+              "established_in_scene",
+              "conditional_prior_choice",
+              "new_authored_fiction",
+              "unknown"
+            ]
+          },
+          "source_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "wants": {
+            "type": "string",
+            "minLength": 12
+          },
+          "constraints": {
+            "type": "string",
+            "minLength": 12
+          },
+          "knowledge_boundary": {
+            "type": "string",
+            "minLength": 15
+          }
+        }
+      }
+    },
+    "story": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "synopsis",
+        "specific_time_place",
+        "inciting_event",
+        "stakes",
+        "beats",
+        "choices",
+        "possible_endings"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 4
+        },
+        "synopsis": {
+          "type": "string",
+          "minLength": 125
+        },
+        "specific_time_place": {
+          "type": "string",
+          "minLength": 15
+        },
+        "inciting_event": {
+          "type": "string",
+          "minLength": 20
+        },
+        "stakes": {
+          "type": "string",
+          "minLength": 20
+        },
+        "beats": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "stage",
+              "event",
+              "initiator"
+            ],
+            "properties": {
+              "stage": {
+                "enum": [
+                  "setup",
+                  "escalation",
+                  "decision",
+                  "aftermath",
+                  "later_return"
+                ]
+              },
+              "event": {
+                "type": "string",
+                "minLength": 20
+              },
+              "initiator": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          }
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "choice_id",
+              "player_action",
+              "legitimate_reason",
+              "immediate_consequence",
+              "later_callback",
+              "npc_owns_their_decision"
+            ],
+            "properties": {
+              "choice_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]*$"
+              },
+              "player_action": {
+                "type": "string",
+                "minLength": 15
+              },
+              "legitimate_reason": {
+                "type": "string",
+                "minLength": 15
+              },
+              "immediate_consequence": {
+                "type": "string",
+                "minLength": 20
+              },
+              "later_callback": {
+                "type": "string",
+                "minLength": 25
+              },
+              "npc_owns_their_decision": {
+                "type": "string",
+                "minLength": 15
+              }
+            }
+          }
+        },
+        "possible_endings": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "outcome",
+              "conditional_not_guaranteed"
+            ],
+            "properties": {
+              "outcome": {
+                "type": "string",
+                "minLength": 20
+              },
+              "conditional_not_guaranteed": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_past",
+        "forbidden_assumptions",
+        "choice_gate_plan",
+        "how_new_information_reaches_player"
+      ],
+      "properties": {
+        "required_past": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbidden_assumptions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 8
+          }
+        },
+        "choice_gate_plan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "prior_condition",
+              "if_true",
+              "if_false"
+            ],
+            "properties": {
+              "prior_condition": {
+                "type": "string",
+                "minLength": 1
+              },
+              "if_true": {
+                "type": "string",
+                "minLength": 1
+              },
+              "if_false": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        "how_new_information_reaches_player": {
+          "type": "string",
+          "minLength": 25
+        }
+      }
+    },
+    "production": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "playable",
+        "editorial_review",
+        "runtime_paths"
+      ],
+      "properties": {
+        "stage": {
+          "enum": [
+            "synopsis_candidate",
+            "blueprint_ready_for_review",
+            "editorially_approved",
+            "authored_unregistered",
+            "registered_playable"
+          ]
+        },
+        "playable": {
+          "type": "boolean"
+        },
+        "editorial_review": {
+          "enum": [
+            "pending",
+            "passed",
+            "needs_revision"
+          ]
+        },
+        "runtime_paths": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 3
+          }
+        }
+      }
+    },
+    "copyright_policy": {
+      "const": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "production": {
+            "properties": {
+              "playable": {
+                "const": true
+              }
+            },
+            "required": [
+              "playable"
+            ]
+          }
+        },
+        "required": [
+          "production"
+        ]
+      },
+      "then": {
+        "properties": {
+          "production": {
+            "properties": {
+              "stage": {
+                "const": "registered_playable"
+              },
+              "editorial_review": {
+                "const": "passed"
+              },
+              "runtime_paths": {
+                "minItems": 1
+              }
+            }
+          },
+          "role_context": {
+            "properties": {
+              "binding_status": {
+                "const": "verified_existing_role"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "production": {
+            "properties": {
+              "stage": {
+                "const": "registered_playable"
+              }
+            },
+            "required": [
+              "stage"
+            ]
+          }
+        },
+        "required": [
+          "production"
+        ]
+      },
+      "then": {
+        "properties": {
+          "production": {
+            "properties": {
+              "playable": {
+                "const": true
+              },
+              "runtime_paths": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "role_context": {
+            "properties": {
+              "binding_status": {
+                "const": "verified_existing_role"
+              }
+            },
+            "required": [
+              "binding_status"
+            ]
+          }
+        },
+        "required": [
+          "role_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "role_context": {
+            "required": [
+              "evidence_path"
+            ],
+            "properties": {
+              "evidence_path": {
+                "type": "string",
+                "minLength": 3
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
