@@ -83,20 +83,22 @@ try {
         footerLine: getComputedStyle(footer).borderTopColor,
         headerBackground: getComputedStyle(document.querySelector(".site-header")).backgroundColor,
         headerLine: getComputedStyle(document.querySelector(".site-header")).borderBottomColor,
-        headerBorders: ["nearbyExploreToggle","miniProfile"].map(id => getComputedStyle(document.getElementById(id)).borderTopColor).concat(getComputedStyle(document.querySelector(".site-header .iconbtn")).borderTopColor),
-        miniBorder: getComputedStyle(mini).borderTopColor,
+        headerBorderWidths: ["nearbyExploreToggle","miniProfile"].map(id => getComputedStyle(document.getElementById(id)).borderTopWidth).concat(getComputedStyle(document.querySelector(".site-header .iconbtn")).borderTopWidth),
+        headerButtonBackgrounds: ["nearbyExploreToggle","miniProfile"].map(id => getComputedStyle(document.getElementById(id)).backgroundColor).concat(getComputedStyle(document.querySelector(".site-header .iconbtn")).backgroundColor),
+        miniBorderWidth: getComputedStyle(mini).borderTopWidth,
         hasMoreInfo: Boolean(document.getElementById("pcInfo")),
         icons: ["pcQuiz", "pcVisit", "pcRoute", "pcObserve", "pcNote"].map(id => ({
           id,
           image: getComputedStyle(document.getElementById(id), "::before").backgroundImage,
-          border: getComputedStyle(document.getElementById(id)).borderTopColor,
+          borderWidth: getComputedStyle(document.getElementById(id)).borderTopWidth,
           text: document.getElementById(id).textContent.trim(),
           background: getComputedStyle(document.getElementById(id)).backgroundColor
         })),
         onsite: [...document.querySelectorAll("#pcOnSiteFooter button")].map(el => ({
           action: el.dataset.hgOnsiteAction,
           image: getComputedStyle(el.querySelector(".pc-onsite-action-icon"), "::before").backgroundImage,
-          border: getComputedStyle(el).borderTopColor,
+          borderWidth: getComputedStyle(el).borderTopWidth,
+          background: getComputedStyle(el).backgroundColor,
           label: el.getAttribute("aria-label")
         })),
         onsiteBoxHidden: document.getElementById("pcEventsBox").hidden,
@@ -120,10 +122,11 @@ try {
     assert.equal(actual.footerImage, "none", `no gradient fill at ${width}`);
     assert.equal(actual.footerLine, "rgb(246, 200, 0)", `header-yellow footer perimeter at ${width}`);
     assert.equal(actual.headerLine, actual.footerLine, `both bars use the same yellow line at ${width}`);
-    const yellowFrame = "rgba(246, 200, 0, 0.86)";
-    assert.ok(actual.headerBorders.every(value => value === yellowFrame),
-      `header controls share yellow outlines at ${width}`);
-    assert.equal(actual.miniBorder, yellowFrame, `collapsed place icon has yellow frame at ${width}`);
+    assert.ok(actual.headerBorderWidths.every(value => value === "0px"),
+      `no frames around header icons or profile at ${width}`);
+    assert.ok(actual.headerButtonBackgrounds.every(value => value === "rgba(0, 0, 0, 0)"),
+      `header actions have no circular background fills at ${width}`);
+    assert.equal(actual.miniBorderWidth, "0px", `collapsed thumbnail has no decorative frame at ${width}`);
     assert.equal(actual.hasMoreInfo, false, `obsolete info button absent at ${width}`);
     assert.ok(actual.icons.every(icon => icon.image.includes("data:image/svg+xml")),
       `all five principal icons render at ${width}`);
@@ -132,10 +135,10 @@ try {
     assert.deepEqual(actual.icons.map(icon => icon.text),
       ["Ta quiz", "Registrer besøk", "Rute", "Observer", "Notat"],
       `visible labels identify every action at ${width}`);
-    assert.ok(actual.icons.every(icon => icon.border === yellowFrame),
-      `all footer buttons use the exact header-yellow stroke at ${width}`);
-    assert.ok(actual.icons.every(icon => icon.background === "rgb(21, 21, 21)"),
-      `all footer buttons match the dark header surface at ${width}`);
+    assert.ok(actual.icons.every(icon => icon.borderWidth === "0px"),
+      `all footer buttons are entirely unframed at ${width}`);
+    assert.ok(actual.icons.every(icon => icon.background === "rgba(0, 0, 0, 0)"),
+      `all footer actions have transparent, uncircled backgrounds at ${width}`);
     assert.ok(actual.icons.every(icon => {
       const art = decodeURIComponent(icon.image);
       return art.includes("#f6c800") && art.includes("#f8f8f1");
@@ -146,8 +149,8 @@ try {
       `Event and Meet icons render at ${width}`);
     assert.notEqual(actual.onsite[0].image, actual.onsite[1].image,
       `Events and Meet are visually distinct at ${width}`);
-    assert.ok(actual.onsite.every(icon => icon.border === yellowFrame),
-      `Events and Meet match all other yellow button frames at ${width}`);
+    assert.ok(actual.onsite.every(icon => icon.borderWidth === "0px" && icon.background === "rgba(0, 0, 0, 0)"),
+      `Events and Meet are unframed like the other footer actions at ${width}`);
     assert.equal(actual.footerOnsiteHidden, false, `on-site footer actions visible at ${width}`);
     assert.equal(actual.onsiteBoxHidden, true, `old Events/Meet box removed at ${width}`);
     assert.equal(actual.actionsScroll.overflowX, "auto", `horizontal scroll enabled at ${width}`);
