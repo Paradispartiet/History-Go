@@ -18,6 +18,24 @@ Vi skal ikke lenger gå direkte fra «en film handler om noe interessant» til g
 
 **Konkrete produksjonsbolker og rollematrise:** [24 historiebuer i tre bolker](CIVICATION_BOOK_FILM_STORY_WAVES_V1.md) viser to ulike rolletilpasninger per type, kapittelplan for første bolk, åtte ubrukte litterære grep samt dekningsforslag mot eksisterende Theme Bank og scene-/mailfamilier. Dette er et *planforslag*, ikke 48 godkjente rollehistorier eller et nytt runtime-register.
 
+## Direkte kobling mellom synopsis og de tre inspirasjonskildene
+
+De **fire produksjonsskjemaene** over regulerer kildeverk, verkfortolkning, rollespesifikke historier og dekning. I tillegg finnes en **femte, smal koblingskontrakt**: [`synopsisThreeSourceLinksV1.schema.json`](../data/Civication/lifestory/editorial/inspiration/synopsisThreeSourceLinksV1.schema.json), med faktisk [koblingsregister](../data/Civication/lifestory/editorial/inspiration/synopsisThreeSourceLinksV1.json).
+
+Dette registeret binder **synopsis-ID** direkte til tre navngitte kildesystemer:
+
+| Kilde | Felt i `source_links` | Hva det beviser |
+| --- | --- | --- |
+| Goodreads-bøker | `goodreads.book_work` og `goodreads.status` | Foreløpig litterær kandidat; `unverified_candidate` er *ikke* kontrollert mot read + 4+ |
+| IMDb-filmer | `imdb.film_title`, `imdb.imdb_id` og `imdb.status` | Identifisert film og IMDb-ID, ikke verifisert tematolkning |
+| HG Film Producer | `film_producer.scenario_id` og `film_producer.status` | Konkret Film Producer-scenario; importert seed er ikke kildekontrollert filmanalyse |
+
+Registeret inneholder **24 nye synopsis-kandidater**, med de tre kildesporene eksplisitt angitt, og **tre faktisk registrerte historier** fra `wholeLifeStoryBatchV1.json` (Stein, Frode og Inger). For de tre sistnevnte er synopsis og runtime-kilde dokumentert, men alle tre inspirasjonslenkene er foreløpig `not_matched`. **Ikke tilskriv dem bøker eller filmer uten redaksjonell gjennomgang av deres faktiske scener.**
+
+Tre forskjellige begreper må fortsatt holdes fra hverandre: (a) **de tre kildesystemene** Goodreads, IMDb og Film Producer; (b) **de tre narrative analysenivåene** 24 litterære spor, syv Booker-modeller og 24 samtidige historietyper; og (c) **de fire produksjonslagene** verk, temaanalyse, rolleblueprint og dekningsstatus. Alle lag skal kobles ved stabil ID, men de er ikke samme kategorier.
+
+Disse koblingene er foreløpig redaksjonelle og oppretter ingen ny runtime-, synopsis-/scene-ID eller historikk.
+
 ## 1. Bok- og filmkildene – nøyaktige regler
 
 ### Goodreads
