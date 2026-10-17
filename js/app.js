@@ -78,6 +78,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     // lastet før quiz/app-runtime trenger window.saveVisitedFromQuiz.
     await safeRun("loadPersistence", () => loadScriptOnce("js/state/persistence.js"));
     await safeRun("loadFavorites", () => loadScriptOnce("js/state/favorites.js"));
+    // The footer's Notat and Observer buttons use these existing canonical
+    // runtimes. They were not loaded by the app entry, so clicks silently did
+    // nothing (Notat) or showed "ikke lastet" (Observer). Bind before the
+    // first PlaceCard opens; do not create competing action/storage paths.
+    await safeRun("loadPlaceInteractions", () => loadScriptOnce("js/ui/interactions.js"));
+    await safeRun("loadObservations", () => loadScriptOnce("js/observations.js"));
+    window.HGObservations?.init?.({ showToast: msg => window.showToast?.(msg) });
     // Statuslinjen i PlaceCard må kunne rendres ved aller første åpning.
     // Readeren lastes derfor før routeren, ikke som en post-ready-forbedring.
     await safeRun("loadProfileProgressReader", () => loadScriptOnce("js/progress/profileProgressReader.js"));
@@ -230,14 +237,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       await loadScriptOnce("js/hgNavigator.js");
       await loadScriptOnce("js/nextUpRuntime.js");
     });
+    // A place may be selected as soon as the router starts. Ensure the Rute
+    // action has its existing navigation API from the very first selection.
+    await safeRun("loadHistoricalRoutesRuntime", () => loadScriptOnce("js/historical-routes.js"));
+    await safeRun("loadRoutesRuntime", () => loadScriptOnce("js/routes.js"));
 
     await safeRun("HGAppRouter.start", () => window.HGAppRouter?.start?.());
 
     // Ikke blokker app-ready på søk/tunge bakgrunnsdata. Ruteruntime må derimot
     // finnes før HGRoutes.init planlegges.
     runAfterReady("loadGlobalSearch", () => loadScriptOnce("js/ui/search.js"));
-    await safeRun("loadHistoricalRoutesRuntime", () => loadScriptOnce("js/historical-routes.js"));
-    await safeRun("loadRoutesRuntime", () => loadScriptOnce("js/routes.js"));
     runAfterReady("HGRoutes.init", () => window.HGRoutes?.init?.());
     runAfterReady("bootBackground", window.bootBackground);
 
