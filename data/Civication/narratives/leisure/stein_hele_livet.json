@@ -20,10 +20,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Vil du se kampen med oss?",
+      "subject": "En plass ved bordet",
       "situation": [
-        "Stein sender en melding etter arbeidstid. Han og Bjarne Røed fra naboskiftet pleier å se fotball på en pub. Solveig Andresen har også tenkt å komme. Stein spør om du vil bli med denne gangen.",
-        "Det er første gang han inviterer deg med. Dere har nylig vært uenige om bemanning, og nå er han avdelingsleder. «Vi blir der fra før avspark», skriver han. «Bjarne har visst allerede bestemt seg for at dommeren er dårlig.»"
+        "Stein sender en melding: Han og Bjarne Røed pleier å se fotball på en pub, og Solveig Andresen blir med denne gangen. De har plass til en til. «Vil du komme? Vi møtes før avspark.»",
+        "Du har møtt Stein i sakene om bemanning og den nye avdelingslederstillingen. Dette er første gang han inviterer deg ut. Han legger til: «Bjarne sier han slutter å følge laget hvis de taper igjen. Han sa det sist også.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -33,30 +33,30 @@
       "choices": [
         {
           "id": "ja",
-          "label": "Si ja og avtal å møte dem før kampen.",
+          "label": "Si ja og møt dem før kampen.",
           "effect": 0,
           "tags": [
             "stein_rw_deltar"
           ],
-          "feedback": "Stein sender tidspunkt og navnet på puben.",
+          "feedback": "Stein sender navnet på puben og tidspunktet de møtes.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Vil du se kampen med oss?",
-            "line": "«Fint. Jeg gir beskjed til de andre.»"
+            "title": "En plass ved bordet",
+            "line": "«Fint. Jeg ber dem holde av en stol.»"
           }
         },
         {
           "id": "nei",
-          "label": "Takke nei til denne gangen.",
+          "label": "Takke nei denne gangen.",
           "effect": 0,
           "tags": [
             "stein_rw_avslag"
           ],
-          "feedback": "Du svarer at du ikke blir med. Stein lar invitasjonen stå som et tilbud.",
+          "feedback": "Stein tar imot avslaget uten å be om en forklaring.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Vil du se kampen med oss?",
-            "line": "«Greit. Vi snakkes.»"
+            "title": "En plass ved bordet",
+            "line": "«Greit. Ha en fin kveld.»"
           }
         }
       ],
@@ -76,10 +76,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Jobbprat før avspark",
+      "subject": "Før avspark",
       "situation": [
-        "På puben har Bjarne og Solveig funnet et bord. Bjarne forteller om en kamp han så med faren som gutt. Stein avbryter for å bestille mat, og Solveig minner ham på at han skylder henne en porsjon pommes frites fra sist.",
-        "Mens dere venter på sendingen, spør Solveig om bemanningsplanen Stein la frem på det siste møtet. Bjarne sier at de samme folkene får de tyngste oppgavene. Stein svarer at han skal se på det. Du husker den planen."
+        "Bjarne har sikret seg stolen med best utsikt til skjermen. Han forteller om den første kampen faren tok ham med på. Stein mener han husker feil resultat, men Bjarne husker både regnet og scoringen. Solveig ber dem bestille mat før de begynner å lete på telefonen.",
+        "Mens dere venter, spør Solveig hvem som skal dekke oppgavene i avdelingen det skal lånes folk fra. Du kjenner spørsmålet fra planen Stein la frem. «Jeg skal gå gjennom det med de andre lederne», svarer han. Bjarne lener seg frem: «Så dere gjør om planen?» Stein nøler før han sier at den må vurderes først."
       ],
       "applies_when": {
         "flags_all": [
@@ -89,30 +89,30 @@
       "choices": [
         {
           "id": "sak",
-          "label": "Ta opp den konkrete belastningen i planen mens alle er til stede.",
+          "label": "Spør hvordan oppgavene skal dekkes mens operatøren er borte.",
           "effect": 0,
           "tags": [
             "stein_rw_sak_ved_bordet"
           ],
-          "feedback": "Du ber Stein forklare hvordan behovene i begge avdelingene er regnet inn. Han sier at han vil ta spørsmålet med til neste bemanningsmøte.",
+          "feedback": "Stein sier han vil legge frem spørsmålet i bemanningsmøtet. Bjarne nikker og vender seg mot skjermen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Jobbprat før avspark",
-            "line": "«Jeg skjønner hva dere mener. Jeg skal ta det opp på møtet, men jeg lover ikke en ny plan her.»"
+            "title": "Før avspark",
+            "line": "«Fristen min er den samme. Men jeg må kunne svare på hva som blir stående hos de andre.»"
           }
         },
         {
           "id": "kamp",
-          "label": "La de andre snakke om planen og spør Bjarne om kampen han nevnte.",
+          "label": "La jobbpraten ligge og spør Bjarne hvordan kampen med faren endte.",
           "effect": 0,
           "tags": [
             "stein_rw_kveld_med_folk"
           ],
-          "feedback": "Bjarne fortsetter historien om turen med faren. Jobbpraten stilner når sendingen begynner. Bemanningsspørsmålet er fortsatt uavklart.",
+          "feedback": "Bjarne tegner den avgjørende scoringen mellom glassene. Stein finner resultatet på telefonen akkurat idet sendingen begynner.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Jobbprat før avspark",
-            "line": "«Den kampen husker han bedre enn noe vi har gjort på jobb», sier Stein."
+            "title": "Før avspark",
+            "line": "«Du hadde rett om resultatet, Bjarne. Jeg gir meg.»"
           }
         }
       ],
@@ -136,10 +136,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Spørsmålet du ikke fikk tatt opp",
+      "subject": "Stein spør om planen",
       "situation": [
-        "Du var ikke med på puben. Senere sender Stein en kort melding og takker for svaret på invitasjonen. Han skriver også at Solveig tok opp bemanningen før kampen.",
-        "Du har sett planen han la frem. Du kan sende innvendingen din nå, men da blir en privat samtale med avdelingslederen brukt til en sak flere er berørt av."
+        "Etter kampen sender Stein en ny melding. «Solveig spurte hvem som dekker oppgavene når vi låner folk. Vi skal gå gjennom planen med lederne. Har du noe fra det du så på linjen som bør være med?»",
+        "Du var ikke på puben. Det du har å bygge på, er planen du fikk se i arbeidssaken og oppgavene du kjente derfra."
       ],
       "applies_when": {
         "flags_all": [
@@ -149,30 +149,30 @@
       "choices": [
         {
           "id": "send",
-          "label": "Send den konkrete innvendingen og be om at den tas med til bemanningsmøtet.",
+          "label": "Send innvendingen om oppgavene som blir stående, til bemanningsmøtet.",
           "effect": 0,
           "tags": [
             "stein_rw_sak_skriftlig"
           ],
-          "feedback": "Stein mottar spørsmålet ditt skriftlig. Han sier at det må behandles sammen med innspillene fra skiftet.",
+          "feedback": "Du skriver hvilke oppgaver i planen som mangler dekning. Stein ber om å få legge meldingen ved saken.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Spørsmålet du ikke fikk tatt opp",
-            "line": "«Jeg tar det med sammen med det Solveig og Bjarne sa.»"
+            "title": "Stein spør om planen",
+            "line": "«Det er dette vi må få avklart. Jeg legger det sammen med de andre innspillene.»"
           }
         },
         {
           "id": "la",
-          "label": "Svar kort på meldingen og la jobbspørsmålet vente.",
+          "label": "Si at du ikke vil gå inn i bemanningssaken i denne samtalen.",
           "effect": 0,
           "tags": [
             "stein_rw_ingen_privat_sak"
           ],
-          "feedback": "Du sender ikke innvendingen i denne samtalen. Stein har fortsatt bare innspillene fra de andre.",
+          "feedback": "Du lar være å sende et nytt innspill. Stein avslutter jobbpraten.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Spørsmålet du ikke fikk tatt opp",
-            "line": "«Da snakkes vi på jobb eller en annen gang.»"
+            "title": "Stein spør om planen",
+            "line": "«Greit. Jeg tar det videre med dem som har meldt inn noe.»"
           }
         }
       ],
@@ -196,10 +196,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Bjarne forventer en endring",
+      "subject": "Hva ble egentlig lovet?",
       "situation": [
-        "Stein sender deg en melding før bemanningsmøtet. Etter samtalen på puben har Bjarne fortalt flere at planen skal endres. Stein sier at han lovet å ta saken opp, ikke at han allerede hadde bestemt utfallet.",
-        "Du var til stede og hørte begge deler: Bjarne beskrev belastningen, og Stein sa at han skulle se på den. Nå spør Stein om du kan bekrefte hva du selv sa, skriftlig, så det kan følge saken."
+        "Stein ringer. Bjarne har fortalt flere at det blir en annen bemanningsplan etter samtalen på puben. «Jeg var nok for rask med å si at jeg skulle se på det», sier Stein. «Nå høres det ut som om jeg bare mangler å sende den ut.»",
+        "Han vil legge spørsmålet ditt om udekkede oppgaver frem for lederne. Før møtet ber han deg skrive det ned. «Jeg forklarer Bjarne hva jeg mente. Kan du sende meg det du sa om oppgavene?»"
       ],
       "applies_when": {
         "flags_all": [
@@ -209,30 +209,30 @@
       "choices": [
         {
           "id": "bekreft",
-          "label": "Skriv den samme konkrete innvendingen du tok opp på puben.",
+          "label": "Skriv ned spørsmålet du tok opp ved bordet.",
           "effect": 0,
           "tags": [
             "stein_rw_innspill_bekreftet"
           ],
-          "feedback": "Du sender innvendingen uten å hevde at en endring var avtalt. Stein legger den ved innspillene til møtet.",
+          "feedback": "Du sender den konkrete innvendingen. Stein bekrefter at den følger saken.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Bjarne forventer en endring",
-            "line": "«Takk. Da har vi selve problemet skrevet ned.»"
+            "title": "Hva ble egentlig lovet?",
+            "line": "«Takk. Da får de se hva du faktisk pekte på.»"
           }
         },
         {
           "id": "mote",
-          "label": "Si at du vil fremføre innvendingen på møtet i stedet.",
+          "label": "Si at du heller vil forklare vurderingen i møtet.",
           "effect": 0,
           "tags": [
             "stein_rw_innspill_i_mote"
           ],
-          "feedback": "Du sender ikke noe skriftlig nå. Stein må forklare at din vurdering kommer i møtet.",
+          "feedback": "Stein tilbyr deg å delta i den delen av møtet der planen gjennomgås. Du sier ja til det.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Bjarne forventer en endring",
-            "line": "«Greit. Jeg sier fra at du vil ta det der.»"
+            "title": "Hva ble egentlig lovet?",
+            "line": "«Da setter jeg av tid til deg. Jeg avklarer misforståelsen med Bjarne før vi møtes.»"
           }
         }
       ],
@@ -256,10 +256,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Et spørsmål ved siden av jobben",
+      "subject": "Bjarne fant bildet",
       "situation": [
-        "Stein sender en melding etter pubkvelden. Han har funnet et gammelt bilde fra kampen Bjarne fortalte om, og videresender det med kommentaren: «Han var faktisk der. Jeg trodde historien hadde vokst litt med årene.»",
-        "Dere hadde en kveld sammen, men den løste ikke uenigheten om bemanningen. Stein spør om du vil bli med neste gang de ser kamp."
+        "Stein videresender et bilde Bjarne har funnet fra kampen han så med faren. En liten gutt står i altfor stor regnjakke ved siden av en mann med skjerf. «Han ba meg sende dette. Han glemte å vise deg jakka da han fortalte.»",
+        "Stein spør om han skal si fra neste gang de ser kamp. «Bjarne har visst bestemt seg for å følge laget litt til.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -269,30 +269,30 @@
       "choices": [
         {
           "id": "aapen",
-          "label": "Svar at du gjerne blir spurt igjen.",
+          "label": "Si at du gjerne vil bli spurt igjen.",
           "effect": 0,
           "tags": [
             "stein_rw_invitasjon_aapen"
           ],
-          "feedback": "Stein vet at han kan invitere deg, men dere avtaler ingen ny kveld.",
+          "feedback": "Stein svarer at han skal sende en melding når de vet hvilken kamp de skal se.",
           "npc_response": {
             "trust_delta": 1,
-            "title": "Et spørsmål ved siden av jobben",
-            "line": "«Det skal jeg gjøre.»"
+            "title": "Bjarne fant bildet",
+            "line": "«Hyggelig. Jeg sier fra.»"
           }
         },
         {
           "id": "avstand",
-          "label": "Si at du helst vil holde kontakten til jobben foreløpig.",
+          "label": "Si at du helst vil holde kontakten til arbeidssakene foreløpig.",
           "effect": 0,
           "tags": [
             "stein_rw_kontakt_jobben"
           ],
-          "feedback": "Du gir ham en tydelig beskjed om hva slags kontakt du ønsker.",
+          "feedback": "Stein takker for kvelden og lar en ny invitasjon ligge.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Et spørsmål ved siden av jobben",
-            "line": "«Det respekterer jeg.»"
+            "title": "Bjarne fant bildet",
+            "line": "«Greit. Takk for at du ble med denne gangen.»"
           }
         }
       ],
@@ -317,10 +317,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Spørsmålet står i sakspapirene",
+      "subject": "Stein sender ordlyden videre",
       "situation": [
-        "Stein sender en kopi av punktene til bemanningsmøtet. Innvendingen din står sammen med innspillene fra skiftet. Det er fortsatt flere hensyn som må vurderes, og ingen ny plan er vedtatt.",
-        "Det du sendte privat, har dermed fått en synlig plass i den felles saken. Stein spør ikke om at du skal ordne noe eller godkjenne planen."
+        "Stein sender deg utdraget han har lagt ved bemanningssaken. Han har tatt med spørsmålet ditt om hvilke oppgaver som blir stående ved utlån, med navnet ditt under. Solveigs innspill står ved siden av.",
+        "«Se om dette ble riktig», skriver han. «Jeg har bedt lederne for begge avdelingene svare på dekningen før vi går videre.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -330,16 +330,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les punktene og bekreft at innvendingen din er gjengitt riktig.",
+          "label": "Bekreft at innspillet ditt er gjengitt riktig.",
           "effect": 0,
           "tags": [
             "stein_rw_avsluttet_skriftlig"
           ],
-          "feedback": "Du bekrefter ordlyden. Spørsmålet må fortsatt behandles i bemanningsmøtet.",
+          "feedback": "Stein beholder ordlyden du har bekreftet i grunnlaget for møtet.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Spørsmålet står i sakspapirene",
-            "line": "«Da bruker vi den ordlyden.»"
+            "title": "Stein sender ordlyden videre",
+            "line": "«Takk. Jeg gir beskjed når vi har et svar.»"
           }
         }
       ],
@@ -364,10 +364,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Kvelden gikk uten deg",
+      "subject": "Samtalen rundes av",
       "situation": [
-        "Du deltok ikke på puben og tok heller ikke opp jobbspørsmålet i meldingene. Stein sender ingen ny forespørsel. Kontakten mellom dere fortsetter som før rundt arbeidet.",
-        "På neste møte vil bemanningsplanen fortsatt stå på agendaen. At du takket nei til en privat invitasjon, blir ikke brukt som et svar på saken."
+        "Stein svarer på beskjeden om at du vil la bemanningssaken ligge i denne samtalen: «Da lar vi det være med det her. Ha det fint.»",
+        "Du lukker meldingen. Pubkvelden ble gjennomført uten deg, og det kom ingen ny avtale mellom dere."
       ],
       "applies_when": {
         "flags_all": [
@@ -382,10 +382,10 @@
           "tags": [
             "stein_rw_avsluttet_avslag"
           ],
-          "feedback": "Du lar den private samtalen være ferdig.",
+          "feedback": "Meldingsutvekslingen er avsluttet.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Kvelden gikk uten deg",
+            "title": "Samtalen rundes av",
             "line": "«Vi snakkes.»"
           }
         }
@@ -411,10 +411,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "En lovnad og et faktisk innspill",
+      "subject": "Bjarne har fått en avklaring",
       "situation": [
-        "Stein bekrefter at den skriftlige innvendingen din er lagt ved saken. Bjarne har fortsatt forventninger om en endring, men Stein har sendt samme beskjed til alle: Bemanningen skal gjennomgås før noe vedtas.",
-        "Samtalen på puben har ført til et konkret innspill. Det gjenstår å se hvordan Stein håndterer det når avdelingene møtes."
+        "Stein sender deg kopi av beskjeden han har gitt Bjarne og Solveig. Han skriver at han uttrykte seg uklart på puben: Lederne skal vurdere hvordan oppgavene dekkes før de avgjør utlånet. Det er ennå ingen ny plan.",
+        "Han har lagt ved innvendingen du skrev. Bjarne svarer i tråden: «Da vet vi det. Jeg venter på svaret om dekningen.» Stein lar svaret stå og bekrefter at det er det møtet skal avklare."
       ],
       "applies_when": {
         "flags_all": [
@@ -424,16 +424,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les bekreftelsen.",
+          "label": "Les avklaringen og innspillet som følger med.",
           "effect": 0,
           "tags": [
             "stein_rw_avsluttet_bekreftet"
           ],
-          "feedback": "Innvendingen din er sendt videre. Utfallet av bemanningsmøtet ligger fortsatt foran dere.",
+          "feedback": "Spørsmålet ditt er med i møtegrunnlaget. Bjarne har fått en annen forventning enn den han tok med seg fra puben.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "En lovnad og et faktisk innspill",
-            "line": "«Vi tar resten i møtet.»"
+            "title": "Bjarne har fått en avklaring",
+            "line": "«Jeg skulle sagt det tydeligere ved bordet.»"
           }
         }
       ],
@@ -458,10 +458,10 @@
         "leisure"
       ],
       "from": "Stein Mæland",
-      "subject": "Du har beholdt innvendingen til møtet",
+      "subject": "Plass til din forklaring",
       "situation": [
-        "Du valgte å fremføre innvendingen i bemanningsmøtet. Stein har skrevet i møteinnkallingen at spørsmålet skal tas opp. Bjarne har derfor fått vite at pubpraten ikke var en ferdig beslutning.",
-        "Du må fortsatt forklare din egen vurdering når møtet kommer. Ingen har fremlagt den på dine vegne."
+        "Stein sender tidspunktet for delen av bemanningsmøtet du har sagt ja til å delta i. Punktet i innkallingen er «Dekning av oppgaver ved utlån». Du står oppført for å forklare det du kjenner fra linjen.",
+        "Han skriver også at han har snakket med Bjarne. «Nå vet han at vi skal vurdere planen. Han venter på et svar, men ikke på en endring jeg allerede har lovet.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -471,16 +471,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les møteinnkallingen.",
+          "label": "Bekreft tidspunktet.",
           "effect": 0,
           "tags": [
             "stein_rw_avsluttet_mote"
           ],
-          "feedback": "Du har valgt den felles samtalen fremfor en skriftlig avklaring med Stein.",
+          "feedback": "Stein setter deg opp til den avtalte delen. Du får fremføre innvendingen selv når lederne gjennomgår planen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Du har beholdt innvendingen til møtet",
-            "line": "«Da hører vi vurderingen din der.»"
+            "title": "Plass til din forklaring",
+            "line": "«Da sees vi der. Jeg har satt av tid til spørsmål også.»"
           }
         }
       ],

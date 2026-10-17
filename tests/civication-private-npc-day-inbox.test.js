@@ -8,7 +8,6 @@ const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const json = p => JSON.parse(read(p));
 const arcs = json('data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json').arcs;
-const productionManifest = json('data/Civication/narratives/manifest.json');
 const sources = [
   'js/Civication/core/civicationCalendar.js',
   'js/Civication/systems/day/dayCalendarBridge.js',
@@ -61,10 +60,6 @@ async function harness({ state = {}, backing = new Map(), active = null } = {}) 
   win.window = win;
   win.fetch = async url => {
     const p = String(url).split('?')[0];
-    // Registration is local to this integration test. Drafts remain inactive in production.
-    if (p === 'data/Civication/narratives/manifest.json') return { ok: true, json: async () => ({
-      ...productionManifest, streams: [...productionManifest.streams, ...arcs.map(a => ({ id: a.stream_id, path: a.source_path }))]
-    }) };
     if (!p.startsWith('data/') || p.includes('..') || !fs.existsSync(path.join(root, p))) return { ok: false };
     return { ok: true, json: async () => json(p) };
   };

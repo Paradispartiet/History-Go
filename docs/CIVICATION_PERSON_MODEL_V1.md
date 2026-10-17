@@ -1,8 +1,8 @@
 # Civication – personmodell og karaktergrunnlag
 
-Status 16. oktober 2026: Redaksjonell kontrakt for spilleren og fiktive NPC-er, med konkret grunnlag for Frode Aas, Stein Mæland og Inger Holm. Dette fastsetter hva videre historier kan bygge på. Generell simulering av personlighet, NPC-kompetanse og aktørkunnskap er ikke implementert.
+Oppdatert 17. oktober 2026: Redaksjonell kontrakt for spilleren og fiktive NPC-er, med konkret grunnlag for Frode Aas, Stein Mæland og Inger Holm. Dette fastsetter hva videre historier kan bygge på. Generell simulering av personlighet, NPC-kompetanse og aktørkunnskap er ikke implementert.
 
-Maskinlesbart grunnlag: [`wholeLifeStoryBatchV1.json`](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json), feltene `person_model`, `player_basis` og hver bues `character_basis`. Opplysningene der er redaksjonelle og lastes ikke som nye runtime-egenskaper. Scenefilene eier fortsatt hendelsene. Nye livshistorier er fortsatt uregistrerte utkast.
+Maskinlesbart grunnlag: [`wholeLifeStoryBatchV1.json`](../data/Civication/narratives/editorial/wholeLifeStoryBatchV1.json), feltene `person_model`, `player_basis` og hver bues `character_basis`. Opplysningene der er redaksjonelle og lastes ikke som nye runtime-egenskaper. Scenefilene eier fortsatt hendelsene. De tre private historiene er redigert og registrert i revisjon 5. Ny fiksjon blir kjent gjennom opplevde scener, ikke ved registreringen alene.
 
 ## En person kan ha flere roller
 
@@ -41,14 +41,15 @@ Kompetanse og myndighet må også skilles: En fagarbeider kan ha det beste kunns
 
 ## Fakta, utkast og spillerens kjennskap
 
-Her betyr kanon en etablert opplysning i fiksjonen, ikke et historisk faktum om et virkelig menneske. Katalogen og de registrerte arbeidsbuene er eksisterende grunnlag. De private historiene er foreløpig forslag til nye hendelser.
+Her betyr kanon en etablert opplysning i fiksjonen, ikke et historisk faktum om et virkelig menneske. Katalogen og de registrerte arbeidsbuene er eksisterende grunnlag. De private historiene innfører nye hendelser først når de spilles. Registrering gjør dem tilgjengelige; den skriver ikke hendelsene inn som allerede opplevd.
 
 | Status i data | Bruk |
 | --- | --- |
 | `catalog_fact` | Finnes i NPC-katalogen. En kilde for forfatteren, men ikke automatisk noe spilleren vet. |
 | `established_in_work_scene` | Etablert i en registrert scene. Må først være opplevd i det aktuelle spillerforløpet. |
 | `conditional_work_choice` | Gjelder bare hvis det oppgitte valget er tatt. |
-| `authored_draft` | Ny fiksjon som innføres i et uregistrert utkast. |
+| `authored_draft` | Ny fiksjon i et uregistrert forslag. |
+| `authored_in_registered_scene` | Skrevet fiksjon i en registrert scene; kjent for spilleren først etter faktisk opplevelse eller mottatt beskjed. |
 | `editorial_interpretation` | Begrunnet forfattertolkning, med rom for andre lesninger. Skal ikke omtales som bevist motiv. |
 | `unknown` | Ikke etablert. Etternavn, yrke eller arketype kan ikke fylle hullet. |
 
@@ -56,7 +57,7 @@ Hver kompetanseopplysning har kildefil, scene, eventuelt valg, observasjon og be
 
 Forfatteren kan vite hvorfor en NPC handler. NPC-en kan kjenne egen bakgrunn og ha en vurdering av spilleren. Spilleren kjenner det vedkommende har opplevd og fått fortalt. Ingen av disse perspektivene skal automatisk arve de andres informasjon.
 
-Tre konkrete grenser i de eksisterende utkastene:
+Tre konkrete grenser i de private historiene:
 
 - Avslår spilleren Steins pubinvitasjon, er samtalen der ikke et eget minne. Steins senere melding kan gi kjennskap til hva han sier skjedde.
 - Avslår spilleren Frodes konsertinvitasjon, kan vedkommende spørre hvordan det gikk. Spilleren kan ikke senere fortelle hva han selv så fra salen.
@@ -72,7 +73,7 @@ Frode begynner som formann på B-skiftet. Katalogen beskriver ham som lojal til 
 
 Etter utnevnelsen til mellomleder lager han en plan som dekker produksjonsmålet og samtidig legger krevende oppgaver på de samme operatørene. Hans kjennskap til gulvet og lojalitet er derfor ikke tilstrekkelig til å lage en god plan. Verdikonflikten er mellom hensynet til kollegene og leveringskravene han nå selv må svare for. Han kan lytte og endre vurdering uten at alle innvendinger automatisk forsvinner.
 
-I fritidsutkastet introduseres broren Per og ønsket om å høre bandet hans. Dette gir Frode et konkret privat mål. Det fastsetter ikke partner, barn, økonomi eller en hel livshistorie. Referansen til moren deres tilhører grenen der brødrene får bildet privat. Katalogtaggen `tillitsvalgt_uten_tittel` etablerer ikke et formelt verv.
+I fritidshistorien introduseres broren Per og ønsket om å høre bandet hans. Dette gir Frode et konkret privat mål. Det fastsetter ikke partner, barn, økonomi eller en hel livshistorie. Referansen til moren deres tilhører grenen der brødrene får bildet privat. Katalogtaggen `tillitsvalgt_uten_tittel` etablerer ikke et formelt verv.
 
 Forholdet til spilleren begynner i arbeidet. En invitasjon kan gi en felles opplevelse hvis den aksepteres. Den gjør dem ikke automatisk til nære venner. Frodes varsomhet kan prege hvordan han sier fra; den skal ikke tvinge ham til å snakke i gåter.
 
@@ -84,7 +85,7 @@ Arbeidsbuen viser at han kjenner en frist, etterspør ressurser og legger frem e
 
 Utnevnelsen til avdelingsleder gir et nytt ansvar. Spilleren er fortsatt fagarbeider i denne buen. De har aldri vært etablert som sidestilte ledere. Spillerens kritikk gjelder arbeidet og krever ikke personlig fiendskap. Tilsvarende kan Stein huske et avslag uten at det blir en ny generell egenskap ved spilleren.
 
-Fotballvanen med Bjarne er ny fiksjon i fritidsutkastet. Den gir Stein et ønske om sosial kontakt som også kan møtes med et avslag. Hvis jobbprat oppstår, må han skille mellom å høre et innspill, love en gjennomgang og beslutte en endring. Felles etternavn med Liv Mæland gir ingen etablert slektsrelasjon.
+Fotballvanen med Bjarne er ny fiksjon i fritidshistorien. Den gir Stein et ønske om sosial kontakt som også kan møtes med et avslag. Hvis jobbprat oppstår, må han skille mellom å høre et innspill, love en gjennomgang og beslutte en endring. Felles etternavn med Liv Mæland gir ingen etablert slektsrelasjon.
 
 ## Inger Holm
 
@@ -92,7 +93,7 @@ Inger begynner som avdelingsleder. Katalogen beskriver henne som tallorientert, 
 
 Etter omorganiseringen fortsetter hun med faglig koordinering som mellomleder og mister sitt tidligere budsjett- og personalansvar. Dette er et konkret organisasjonsvedtak. Andre mellomledere kan ha andre fullmakter. Hun kjenner fortsatt bakgrunnen for vedlikeholdsrutinen og kan bidra til grunnlaget, selv om en annen må godkjenne det.
 
-Fritidsutkastet gir henne ønsket om større ansvar igjen og en grense for hvor mye reising hun vil godta. Hun har egen søknad og tar selv stilling til tilbudet. Ønsket om å bo der hun bor fastsetter ingen adresse, familieforpliktelse eller økonomisk årsak. «Lite synlig på gulvet» gir heller ikke belegg for å skrive henne som sosialt hjelpeløs eller følelseskald.
+Fritidshistorien gir henne ønsket om større ansvar igjen og en grense for hvor mye reising hun vil godta. Hun har egen søknad og tar selv stilling til tilbudet. Ønsket om å bo der hun bor fastsetter ingen adresse, familieforpliktelse eller økonomisk årsak. «Lite synlig på gulvet» gir heller ikke belegg for å skrive henne som sosialt hjelpeløs eller følelseskald.
 
 Spilleren kan være referanse for sakene de har møttes i. Det er ikke en vurdering av hele hennes lederkarriere. At hun får et tilbud, gjør heller ikke spillerens referanse til den eneste årsaken. Et avslag på tilbudet endrer ikke hennes nåværende rolle.
 
@@ -127,7 +128,7 @@ Ukjente biografiske detaljer fylles først inn når historien trenger dem og de 
 
 I denne revisjonen er Steins første og siste arbeidsscene rettet til fagarbeiderens handlingsrom. ID-er, valg-ID-er, numeriske effekter, tillitsendringer, flagg, dagkrav og rollehendelse er bevart. Ingen ny lagringsmodell eller migrering følger av tekstendringen. Allerede lagrede tekstlige reaksjoner beholdes som historikk; rettingen endrer nye scenevisninger.
 
-## Vurdering av denne avgrensede revisjonen
+## Historisk vurdering av personmodellrevisjonen 16. oktober
 
 Kontroll 16. oktober 2026: Én kjøring av `node --test tests/civication-npc-stein-role-story.test.js tests/civication-whole-life-story-drafts.test.js` bestod **14/14**. Den dekker de tre eksisterende rollebuene, bevart historikk etter reload og alle 28 private utkastvarianter. Ingen fullregresjon eller nettleserjobb ble startet.
 
@@ -142,4 +143,4 @@ En separat filkontroll slo opp alle **22 scenehenvisninger**, derav **3 med eksp
 | Sikkerhet og ansvarlighet | 5/5 | Spillfigur og fiktive NPC-er holdes adskilt fra brukerbiografi og History Go People. Kompetanse, fullmakt og ukjent bakgrunn skilles uttrykkelig. |
 | Vedlikeholdbarhet og etterprøvbarhet | 5/5 | Eksisterende redaksjonell fil og runtime-eiere brukes; konkrete scene-/valgreferanser, avgrensninger og ukjente forhold er synlige. |
 
-**27/30 for personmodell og fullmaktsretting.** Vurderingen omfatter ikke produksjonsaktivering av de private historiene. PR-en inneholder fortsatt uregistrerte historieutkast med den tidligere separate vurderingen 23/30; dagfremdrift og innbokslevering er senere rettet og målrettet testet i [revisjon 4](CIVICATION_PRIVATE_NPC_DAY_INBOX_V1.md). Historiene forblir uregistrerte; tekniske tester godkjenner ikke deres litterære kvalitet.
+**27/30 for personmodell og fullmaktsretting.** Vurderingen omfatter ikke produksjonsaktivering av de private historiene. PR-en inneholder fortsatt uregistrerte historieutkast med den tidligere separate vurderingen 23/30; dagfremdrift og innbokslevering er senere rettet og målrettet testet i [revisjon 4](CIVICATION_PRIVATE_NPC_DAY_INBOX_V1.md). Dette beskriver status ved revisjon 4. Revisjon 5 har en egen gjennomgang av alle 28 varianter og registrering i [historierapporten](CIVICATION_WHOLE_LIFE_STORIES_V1.md). Tekniske tester godkjenner ikke alene litterær kvalitet.

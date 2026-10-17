@@ -30,13 +30,7 @@ const data = new Map([
   ["data/Civication/npcs/naeringsliv.json", npcCatalog],
   ...workPaths.map((p, i) => [p, workStreams[i]]),
   ...editorial.arcs.map((arc, i) => [arc.source_path, drafts[i]]),
-  // Test-only registration: production manifest remains unchanged.
-  ["data/Civication/narratives/manifest.json", {
-    ...manifest, streams: [
-      ...workPaths.map((p, i) => ({ path: p, id: workStreams[i].id })),
-      ...editorial.arcs.map(arc => ({ path: arc.source_path, id: arc.stream_id }))
-    ]
-  }]
+  ["data/Civication/narratives/manifest.json", manifest]
 ]);
 
 function harness({ state = {}, backing = new Map(), day = 0 } = {}) {
@@ -105,21 +99,22 @@ function harness({ state = {}, backing = new Map(), day = 0 } = {}) {
     day: () => workday, advance: (gap = 1) => { workday += gap; } };
 }
 
-async function enter(arcIndex) {
+async function enter(arcIndex, workChoices = 15) {
   const h = harness();
   const work = workStreams[arcIndex];
   for (let chapter = 0; chapter < 4; chapter++) {
     const event = await h.scene(work.id, "forenoon");
     assert(event, "Existing work chapter is reachable");
-    assert.equal((await h.answer(event, "A")).ok, true);
+    assert.equal((await h.answer(event, workChoices & (1 << chapter) ? "A" : "B")).ok, true);
     h.advance(chapter === 1 ? 2 : 1);
   }
   assert(h.state.narrative_state_v1.flags.includes(editorial.arcs[arcIndex].entry_flag));
   return h;
 }
 
-test("Draft scope is explicit; all existing catalog characters and 24 story types are accounted for", () => {
-  assert.equal(editorial.status, "authored_not_registered");
+test("Three approved arcs are registered once; other character and story-type proposals retain their scope", () => {
+  assert.equal(editorial.status, "registered");
+  assert.equal(editorial.activation.content_approval, "editorially_approved");
   assert.deepEqual(editorial.character_archetypes.map(x => x.npc_id).sort(),
     npcCatalog.npcs.map(x => x.id).sort());
   const social = json("data/Civication/social/characters.json");
@@ -129,8 +124,8 @@ test("Draft scope is explicit; all existing catalog characters and 24 story type
   assert.deepEqual(editorial.story_type_coverage.map(x => x.id),
     crosswalk.contemporaryTypes.map(x => x.id));
   for (const [i, arc] of editorial.arcs.entries()) {
-    assert(!manifest.streams.some(s => s.id === arc.stream_id || s.path === arc.source_path),
-      "Private drafts must not be deployed before the day-rhythm blocker is resolved");
+    assert.deepEqual(manifest.streams.filter(s => s.id === arc.stream_id || s.path === arc.source_path),
+      [{ id: arc.stream_id, path: arc.source_path }], "Use the actual production registration exactly once");
     assert.deepEqual(arc.chapter_scene_ids.flatMap(x => x.scene_ids),
       drafts[i].storylets.map(x => x.id));
     assert.equal(drafts[i].storylets.length, arc.authored_scene_variants);
@@ -185,7 +180,8 @@ for (const [arcIndex, arc] of editorial.arcs.entries()) {
         await walk(branch, [...history, { scene: event.narrative_storylet_id, choice: choice.id }]);
       }
     }
-    await walk(await enter(arcIndex));
+    // Every combination of the four earlier work choices may enter the private arc.
+    for (let workChoices = 0; workChoices < 16; workChoices++) await walk(await enter(arcIndex, workChoices));
     assert.deepEqual([...visited].sort(), arc.scene_ids.slice().sort());
     if (arc.npc_id === "stein_peer_mellomleder") {
       for (const route of paths) {
@@ -213,7 +209,8 @@ for (const [arcIndex, arc] of editorial.arcs.entries()) {
       }
     }
     t.diagnostic(JSON.stringify({ stream: arc.stream_id, visited_variants: visited.size,
-      completed_choice_paths: paths.length, chapter_counts: [...new Set(paths.map(p => p.length))] }));
+      work_choice_combinations: 16, completed_choice_paths: paths.length,
+      chapter_counts: [...new Set(paths.map(p => p.length))] }));
   });
 }
 
