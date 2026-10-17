@@ -1,0 +1,259 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Civication – synopsis-to-three-sources editorial linkage v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "canonical_basis",
+    "candidate_synopses",
+    "registered_story_synopses"
+  ],
+  "properties": {
+    "schema": {
+      "const": "civication_synopsis_three_source_links_v1"
+    },
+    "version": {
+      "const": 1
+    },
+    "status": {
+      "const": "editorial_mapping_not_runtime"
+    },
+    "canonical_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synopsis_candidates",
+        "registered_story_arcs",
+        "film_producer_scenarios",
+        "goodreads_import_rule"
+      ],
+      "properties": {
+        "synopsis_candidates": {
+          "type": "string"
+        },
+        "registered_story_arcs": {
+          "type": "string"
+        },
+        "film_producer_scenarios": {
+          "type": "string"
+        },
+        "goodreads_import_rule": {
+          "type": "string"
+        }
+      }
+    },
+    "candidate_synopses": {
+      "type": "array",
+      "minItems": 24,
+      "maxItems": 24,
+      "items": {
+        "$ref": "#/$defs/candidate"
+      }
+    },
+    "registered_story_synopses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/registered"
+      }
+    }
+  },
+  "$defs": {
+    "source3": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "goodreads",
+        "imdb",
+        "film_producer"
+      ],
+      "properties": {
+        "goodreads": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "book_work",
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "book_work": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "unverified_candidate",
+                "verified_read_4_plus",
+                "not_matched"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 8
+            }
+          }
+        },
+        "imdb": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "film_title",
+            "imdb_id",
+            "status"
+          ],
+          "properties": {
+            "film_title": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "imdb_id": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^tt[0-9]+$"
+            },
+            "status": {
+              "enum": [
+                "metadata_matched",
+                "not_matched"
+              ]
+            }
+          }
+        },
+        "film_producer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scenario_id",
+            "status"
+          ],
+          "properties": {
+            "scenario_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "status": {
+              "enum": [
+                "seed_matched_no_theme_review",
+                "film_theme_reviewed",
+                "not_matched"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synopsis_id",
+        "synopsis_text",
+        "type_id",
+        "literary_track_ids",
+        "plot_lens_ids",
+        "source_links",
+        "source_analysis_status",
+        "production_status"
+      ],
+      "properties": {
+        "synopsis_id": {
+          "type": "string",
+          "pattern": "^C(0[1-9]|1[0-9]|2[0-4])$"
+        },
+        "synopsis_text": {
+          "type": "string",
+          "minLength": 100
+        },
+        "type_id": {
+          "type": "string",
+          "pattern": "^C(0[1-9]|1[0-9]|2[0-4])$"
+        },
+        "literary_track_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^L[0-9]{2}$"
+          }
+        },
+        "plot_lens_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^P0[1-7]$"
+          }
+        },
+        "source_links": {
+          "$ref": "#/$defs/source3"
+        },
+        "source_analysis_status": {
+          "enum": [
+            "not_reviewed",
+            "theme_reviewed"
+          ]
+        },
+        "production_status": {
+          "const": "editorial_synopsis_not_playable"
+        }
+      }
+    },
+    "registered": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "synopsis_ref",
+        "stream_id",
+        "npc_id",
+        "synopsis_text",
+        "runtime_source_path",
+        "production_status",
+        "source_links",
+        "link_status"
+      ],
+      "properties": {
+        "synopsis_ref": {
+          "type": "string",
+          "pattern": "^data/Civication/narratives/editorial/wholeLifeStoryBatchV1\\.json#arcs/[0-9]+/synopsis$"
+        },
+        "stream_id": {
+          "type": "string"
+        },
+        "npc_id": {
+          "type": "string"
+        },
+        "synopsis_text": {
+          "type": "string",
+          "minLength": 25
+        },
+        "runtime_source_path": {
+          "type": "string",
+          "minLength": 5
+        },
+        "production_status": {
+          "const": "registered"
+        },
+        "source_links": {
+          "$ref": "#/$defs/source3"
+        },
+        "link_status": {
+          "enum": [
+            "not_mapped_to_three_sources",
+            "editorial_candidates",
+            "reviewed"
+          ]
+        }
+      }
+    }
+  }
+}
