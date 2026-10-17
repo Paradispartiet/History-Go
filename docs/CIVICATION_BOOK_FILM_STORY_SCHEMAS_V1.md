@@ -15,6 +15,9 @@ Vi skal ikke lenger gå direkte fra «en film handler om noe interessant» til g
 
 **Eksempelfil:** [`exampleC05PipelineV1.json`](../data/Civication/lifestory/editorial/inspiration/exampleC05PipelineV1.json) viser de tre første skjemaene fylt ut for **C05: Byråkratiet og personen**, med Kafka-kandidat og *Brazil* fra Film Producer. Det er et didaktisk eksempel; status er uttrykkelig **uverifisert og ikke spillbar**. **Faktisk [dekningsregister](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json)** har alle 24 radene og er ikke det samme som eksempelfilen.
 
+
+**Konkrete produksjonsbolker og rollematrise:** [24 historiebuer i tre bolker](CIVICATION_BOOK_FILM_STORY_WAVES_V1.md) viser to ulike rolletilpasninger per type, kapittelplan for første bolk, åtte ubrukte litterære grep samt dekningsforslag mot eksisterende Theme Bank og scene-/mailfamilier. Dette er et *planforslag*, ikke 48 godkjente rollehistorier eller et nytt runtime-register.
+
 ## 1. Bok- og filmkildene – nøyaktige regler
 
 ### Goodreads
