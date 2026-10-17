@@ -1,0 +1,1018 @@
+{
+  "schema": "civication_wave_a_story_blueprints_pack_v1",
+  "version": 1,
+  "status": "editorial_blueprints_pending_role_and_state_review_not_playable",
+  "created": "2026-10-17",
+  "individual_schema": "data/Civication/lifestory/editorial/inspiration/roleStoryBlueprintV1.schema.json",
+  "problem_analyses": "data/Civication/lifestory/editorial/inspiration/waveAUniversalProblemsV1.json",
+  "blueprints": [
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c01",
+      "story_type_ids": [
+        "C01"
+      ],
+      "problem_ids": [
+        "problem-c01-jobbtap-og-verdighet"
+      ],
+      "work_ids": [
+        "book-vernon-subutex-1-vernon-subutex-1",
+        "film-tt5168192"
+      ],
+      "role_context": {
+        "domain": "life_position",
+        "binding_status": "proposed",
+        "role_or_position_id": "arbeidsledig",
+        "evidence_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+        "authority_boundary": "Spilleren kan besvare egen invitasjon, ikke bestemme Jonas' følelser eller tidspunkt.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Jonas",
+          "actor_id": "venn",
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "wants": "Ønsker å treffe vennen uten å gjøre møtet til en vurdering av økonomien.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Den kvelden vi kunne møtes",
+        "synopsis": "En regning med en konkret frist kommer samme dag som Jonas foreslår å møtes et sted som koster penger. Historien er plassert i spillerens innboks tirsdag, med svarfrist fredag. Spilleren må ivareta egen økonomi og vennskap uten å påstå at arbeidsledighet betyr betalingsmislighold. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "Spillerens innboks tirsdag, med svarfrist fredag",
+        "inciting_event": "En regning med en konkret frist kommer samme dag som Jonas foreslår å møtes et sted som koster penger.",
+        "stakes": "Spilleren må ivareta egen økonomi og vennskap uten å påstå at arbeidsledighet betyr betalingsmislighold.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Spilleren leser regningen og Jonas' invitasjon; beløp og tidspunkt oppgis som nye fakta.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "Jonas foreslår et møtested uten å kjenne den private regningen.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren velger hvordan en avgrenset invitasjon skal besvares.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Jonas reagerer på det faktiske svaret; økonomisk frist behandles separat.",
+            "initiator": "Jonas"
+          },
+          {
+            "stage": "later_return",
+            "event": "Neste møte bygger på om spilleren faktisk møtte Jonas eller takket nei.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "foresla_gatur",
+            "player_action": "Si at penger er knappe og foreslå en gratis gåtur.",
+            "legitimate_reason": "Gir et åpent alternativ uten ny utgift.",
+            "immediate_consequence": "Jonas får tilbud om gåtur, ikke automatisk bekreftelse.",
+            "later_callback": "Senere historie omtaler økonomisamtalen bare i denne grenen.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "takk_nei",
+            "player_action": "Takke nei til kvelden uten å dele økonomiske opplysninger.",
+            "legitimate_reason": "Spilleren har rett til privatliv.",
+            "immediate_consequence": "Jonas kjenner avslaget, men ikke begrunnelsen.",
+            "later_callback": "Senere kontakt kan starte med en ny invitasjon uten minne om økonomisamtale.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Gåturen kan skje hvis Jonas svarer ja, mens regningen fortsatt krever separat oppfølging.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Kvelden blir ikke noe av, men vennskapet er verken avsluttet eller løst.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ikke anta eksisterende gjeld, gjennomført vennekveld eller at Jonas kjenner økonomien.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Jonas har faktisk invitert spilleren tidligere i denne grenen.",
+            "if_true": "Vis den eksisterende invitasjonen uten å gjenta hendelsen.",
+            "if_false": "Introduser invitasjonen nå; ikke hev at den har blitt forsøkt tidligere."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c02",
+      "story_type_ids": [
+        "C02"
+      ],
+      "problem_ids": [
+        "problem-c02-muligheten-uten-garanti"
+      ],
+      "work_ids": [
+        "book-the-brooklyn-follies",
+        "film-tt2125608"
+      ],
+      "role_context": {
+        "domain": "private_life",
+        "binding_status": "proposed",
+        "role_or_position_id": "musikk_frilansmusiker",
+        "evidence_path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+        "authority_boundary": "Spilleren bestemmer bare egen tid; Mira og arrangøren eier sine avtaler.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Mira",
+          "actor_id": "mira",
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+          "wants": "Vil spille musikk, men trenger en reell dato før hun endrer andre avtaler.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Før spillejobben finnes",
+        "synopsis": "Mira får en betinget forespørsel om mulig opptreden, men ingen dato eller honorar er bekreftet. Historien er plassert i en dag med mulig øving og svarfrist fra lokal arrangør. En faktisk øving kan ikke avlyses bare fordi arrangøren lufter en mulighet. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "En dag med mulig øving og svarfrist fra lokal arrangør",
+        "inciting_event": "Mira får en betinget forespørsel om mulig opptreden, men ingen dato eller honorar er bekreftet.",
+        "stakes": "En faktisk øving kan ikke avlyses bare fordi arrangøren lufter en mulighet.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Mira viser meldingen der arrangøren uttrykkelig ikke har bekreftet programmet.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "En mulig eller eksisterende øving konkurrerer med den uavklarte konserten.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren velger hva slags avgrenset hjelp og egen tid som tilbys.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Mira bestemmer selv hva hun svarer; arrangøren bestemmer sitt program.",
+            "initiator": "Mira"
+          },
+          {
+            "stage": "later_return",
+            "event": "Senere scene leser faktisk avtalt øving og eventuell bekreftelse, aldri en antatt booking.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "avklar_vilkar",
+            "player_action": "Tilby å hjelpe Mira formulere spørsmål om svarfrist og vilkår.",
+            "legitimate_reason": "Et presist spørsmål kan hindre dobbeltbooking.",
+            "immediate_consequence": "Spilleren tilbyr et utkast, men sender ikke på Miras vegne.",
+            "later_callback": "Et senere svar kan omtale spørsmål bare hvis Mira faktisk valgte å sende det.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "behold_oving",
+            "player_action": "Holde fast ved egen øvingstid inntil et konkret tilbud foreligger.",
+            "legitimate_reason": "Den eksisterende avtalen er mer reell enn en mulig booking.",
+            "immediate_consequence": "Spillerens kalender endres ikke.",
+            "later_callback": "Et senere møte følger øvingsgrenen; ingen konsert er automatisk avtalt.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Mira kan beholde musikkontakten uten ny spillejobb.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Et nytt konkret tilbud kan senere komme, men krever egen aksept.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ingen konsert, betaling, platekontrakt eller opptreden er automatisk resultat av reservespørsmålet.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Valgflagget fra Mira-tråden viser en faktisk bekreftet øving.",
+            "if_true": "Bruk dato fra lagret valg.",
+            "if_false": "La en øving først foreslås i denne scenen, uten falsk historikk."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c03",
+      "story_type_ids": [
+        "C03"
+      ],
+      "problem_ids": [
+        "problem-c03-dr-mmen-og-regningene"
+      ],
+      "work_ids": [
+        "book-imot-kunsten",
+        "film-tt5247022"
+      ],
+      "role_context": {
+        "domain": "private_life",
+        "binding_status": "proposed",
+        "role_or_position_id": "naeringsliv_sideprosjektbygger",
+        "evidence_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+        "authority_boundary": "Spilleren eier eget tidsbidrag; Lea bestemmer sitt prosjekt og sine utgifter.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Lea",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "wants": "Ønsker å forbedre ett lite punkt uten å miste styringen over egen tid.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "En time ved prosjektbordet",
+        "synopsis": "Lea ber om innspill på én uklar detalj i en skisse samtidig som en nødvendig regning tar oppmerksomhet. Historien er plassert i etter en arbeidsdag, ved et frivillig prosjektbord. Prosjektet kan utvikles uten å bli et selskap, og samarbeid gir ikke automatisk eierskap. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "Etter en arbeidsdag, ved et frivillig prosjektbord",
+        "inciting_event": "Lea ber om innspill på én uklar detalj i en skisse samtidig som en nødvendig regning tar oppmerksomhet.",
+        "stakes": "Prosjektet kan utvikles uten å bli et selskap, og samarbeid gir ikke automatisk eierskap.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Lea viser én konkret feil i en tidligere eller ny demonstrasjon.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "En annen forespørsel gjør tid og penger til reelle begrensninger.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren svarer med en avgrenset innsats eller en tydelig pause.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Lea bestemmer selv om demonstrasjonen skal testes.",
+            "initiator": "Lea"
+          },
+          {
+            "stage": "later_return",
+            "event": "En uke senere er bare faktisk avtalt arbeid utført; en pause har sin egen oppfølging.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "en_time",
+            "player_action": "Tilby nøyaktig én time til å teste én bestemt funksjon.",
+            "legitimate_reason": "Små forsøk kan gi kunnskap uten ubegrenset ansvar.",
+            "immediate_consequence": "Lea får tilbud om en test, ikke et løfte om salg.",
+            "later_callback": "Bare dersom Lea sa ja og testen ble gjennomført omtales et testresultat senere.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "ta_pause",
+            "player_action": "Si nei denne uken og foreslå en kort avklaring senere.",
+            "legitimate_reason": "Spilleren har egne tidsgrenser.",
+            "immediate_consequence": "Det blir ingen testavtale nå.",
+            "later_callback": "Senere dialog begynner fra en pause, ikke et produkt som ble ferdig.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Én test gir Lea grunnlag for neste lille beslutning, uten kommersiell garanti.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Lea lar ideen ligge og relasjonen kan fortsette uavhengig av prosjektet.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ingen selskapsetablering, oppdragskontrakt eller automatisk kompetanse hevdes.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Tidligere Lea-scene dokumenterer en demonstrasjon.",
+            "if_true": "Vis etablert versjon uten å omskrive tidligere spillhistorikk.",
+            "if_false": "La Lea vise første skisse her uten at tidligere felles arbeid antas."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c05",
+      "story_type_ids": [
+        "C05"
+      ],
+      "problem_ids": [
+        "problem-c05-byrakratiet-og-personen"
+      ],
+      "work_ids": [
+        "book-jesu-barndom",
+        "film-tt0088846"
+      ],
+      "role_context": {
+        "domain": "life_position",
+        "binding_status": "proposed",
+        "role_or_position_id": "arbeidsledig",
+        "evidence_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+        "authority_boundary": "Spilleren kan følge opp egne opplysninger, ikke styre NAVs system eller vedtak.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "NAV-veilederen",
+          "actor_id": "nav_veileder",
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arbeidsledig/role.json",
+          "wants": "Vil vite hvilket dokument systemet faktisk viser før hun gir videre beskjed.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Vedlegget som mangler",
+        "synopsis": "Systemet etterspør et bestemt vedlegg som spilleren mener kan ha blitt sendt inn tidligere. Historien er plassert i digital søknadsoversikt torsdag med frist dagen etter. Faktisk dokumentasjon og frister, ikke et oppdiktet positivt eller negativt vedtak. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "Digital søknadsoversikt torsdag med frist dagen etter",
+        "inciting_event": "Systemet etterspør et bestemt vedlegg som spilleren mener kan ha blitt sendt inn tidligere.",
+        "stakes": "Faktisk dokumentasjon og frister, ikke et oppdiktet positivt eller negativt vedtak.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "En ny mangelmelding vises med frist og dokumentnavn.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "Veilederen kan ikke bekrefte et vedlegg hun ikke ser.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren velger ny innsending eller konkret avklaringssamtale.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Det som sendes eller sies logges som hendelse, ikke vedtak.",
+            "initiator": "NAV-veilederen"
+          },
+          {
+            "stage": "later_return",
+            "event": "Neste oppfølging leser faktisk kvittering eller faktisk oppnådd samtale.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "ny_innsending",
+            "player_action": "Sende det relevante dokumentet på nytt i riktig kanal og be om kvittering.",
+            "legitimate_reason": "En sporbar innsending kan minske usikkerhet.",
+            "immediate_consequence": "Bare innsending og mottak registreres, ikke behandlingens utfall.",
+            "later_callback": "Senere scene viser kvittering hvis den faktisk ble mottatt.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "ring_forst",
+            "player_action": "Ringe og be om å få presisert hva systemet mangler.",
+            "legitimate_reason": "Unngår unødvendig duplisering av dokumenter.",
+            "immediate_consequence": "Det finnes et kontaktforsøk; samtale er ikke garantert.",
+            "later_callback": "Oppfølgingen gjengir bare opplysningene spilleren faktisk fikk.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Et vedlegg er registrert og saksbehandling fortsetter.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Problemet står fortsatt åpent med ny presis informasjon om hva som mangler.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ikke anta at dokumentet er sendt, at NAV gjør feil eller at saken avgjøres automatisk.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "En tidligere kvittering finnes i spillerens opplevde dokumenthistorikk.",
+            "if_true": "Vis virkelig kvitteringsdato.",
+            "if_false": "Skildre tidligere innsending som usikker hukommelse, ikke fastslått faktum."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c06",
+      "story_type_ids": [
+        "C06"
+      ],
+      "problem_ids": [
+        "problem-c06-faglig-integritet-under-press"
+      ],
+      "work_ids": [
+        "book-professor-andersens-natt",
+        "film-tt0050083"
+      ],
+      "role_context": {
+        "domain": "job",
+        "binding_status": "proposed",
+        "role_or_position_id": "arealplanlegger",
+        "evidence_path": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+        "authority_boundary": "Arealplanleggeren skriver faglig notat, men vedtak og saksflyt eies av rett instans.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Plansjefen",
+          "actor_id": "plansjef",
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/arealplanlegger/role.json",
+          "wants": "Ønsker fremdrift i en sak og et etterprøvbart grunnlag for videre behandling.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Målingen fra morgenrushet",
+        "synopsis": "Plansjefen ber om en konklusjon om skoleveien, men et målepunkt fra morgenrushet mangler. Historien er plassert i kommunalt kontor før saksnotat sendes ut. Spillerens faglige forbehold må være presist, og ingen politisk beslutning kan tas av spilleren. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "Kommunalt kontor før saksnotat sendes ut",
+        "inciting_event": "Plansjefen ber om en konklusjon om skoleveien, men et målepunkt fra morgenrushet mangler.",
+        "stakes": "Spillerens faglige forbehold må være presist, og ingen politisk beslutning kan tas av spilleren.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Spilleren finner hvilket målepunkt som mangler i notatet.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "Skolekontaktens observasjon og fristen gjør vurderingen tidssensitiv.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren sender faglig forbehold eller ber plansjefen vurdere utsettelse.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Plansjefen beslutter selv om dokumentet skal revideres eller sendes.",
+            "initiator": "Plansjefen"
+          },
+          {
+            "stage": "later_return",
+            "event": "Neste møte viser hva som faktisk ble sendt, målt og besluttet.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "faglig_reservasjon",
+            "player_action": "Levere notat med navngitt usikkerhet og forslag til ny måling.",
+            "legitimate_reason": "Gir brukbar informasjon uten å late som dataene er komplette.",
+            "immediate_consequence": "Forbeholdet blir synlig i notatet.",
+            "later_callback": "Neste møte omtaler dette forbeholdet også hvis saken likevel går videre.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "foresla_utsettelse",
+            "player_action": "Be plansjefen vurdere utsettelse inntil observasjonen er gjort.",
+            "legitimate_reason": "Et kritisk kunnskapshull kan endre vurderingen.",
+            "immediate_consequence": "En forespørsel om utsettelse er sendt, ikke innvilget.",
+            "later_callback": "En senere scene følger plansjefens faktiske svar.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Saken går videre med uttrykkelig dokumentert usikkerhet.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "En ekstra måling planlegges eller blir avslått av den som har myndighet.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ingen manglende måling er fiktivt gjennomført, og fagrollen gir ikke politisk beslutningsmyndighet.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Tidligere planarbeid inneholder et relevant skoleveisnotat.",
+            "if_true": "Bruk korrekt sak og tidligere innspill.",
+            "if_false": "Introduser oppgaven som en ny konkret bestilling uten falsk møtehistorikk."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c07",
+      "story_type_ids": [
+        "C07"
+      ],
+      "problem_ids": [
+        "problem-c07-tilh-righet-mot-frihet"
+      ],
+      "work_ids": [
+        "book-vernon-subutex-1-vernon-subutex-1",
+        "film-tt4082068"
+      ],
+      "role_context": {
+        "domain": "private_life",
+        "binding_status": "proposed",
+        "role_or_position_id": "subkultur_gangster",
+        "evidence_path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+        "authority_boundary": "Spilleren disponerer egen tid, ikke arrangørens øvrige vakter.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Arvid, miljøkontakten",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/miljo_med_arvid.json",
+          "wants": "Ønsker både åpen deltakelse og hjelp til konkrete arrangøroppgaver.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Gjest eller frivillig",
+        "synopsis": "Arvid inviterer til et sosialt treff og spør senere separat om tre frivillige vakter. Historien er plassert i en lokal arrangørkveld og en vaktforespørsel noen dager senere. Spilleren kan ønske sosial tilhørighet uten å samtykke til skjulte arbeidsforpliktelser. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "En lokal arrangørkveld og en vaktforespørsel noen dager senere",
+        "inciting_event": "Arvid inviterer til et sosialt treff og spør senere separat om tre frivillige vakter.",
+        "stakes": "Spilleren kan ønske sosial tilhørighet uten å samtykke til skjulte arbeidsforpliktelser.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Invitasjonen gjelder bare sosial deltakelse, uten vakter i avtalen.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "En senere konkret forespørsel om tre frivillige vakter kommer.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren velger et avgrenset vaktløfte eller et høflig nei.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Arvid reagerer og fordeler det som fortsatt mangler.",
+            "initiator": "Arvid, miljøkontakten"
+          },
+          {
+            "stage": "later_return",
+            "event": "Senere møte bygger på eventuelle faktisk bekreftede og gjennomførte vakter.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "en_vakt",
+            "player_action": "Tilby én konkret vakt og be arrangøren finne andre til resten.",
+            "legitimate_reason": "Bevarer frivillighet og gir en reell håndsrekning.",
+            "immediate_consequence": "Arvid har tilbud om én, ikke tre, vakter.",
+            "later_callback": "Oppfølging kan bare omtale utført innsats hvis vakten ble avtalt og gjennomført.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "som_gjest",
+            "player_action": "Takke nei til alle vakter, men si ja til muligheten for å være gjest.",
+            "legitimate_reason": "Sosial deltakelse er ikke løfte om gratis arbeid.",
+            "immediate_consequence": "Arvid vet at spilleren ikke har vaktansvar.",
+            "later_callback": "Senere kontakt kan fortsatt være vennlig, uten gjeld eller obligatorisk forsoning.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Et avgrenset bidrag kan gi videre kontakt uten ubegrenset forventning.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Spilleren møter bare som gjest eller ikke i det hele tatt; relasjonen kan fortsette.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ingen kriminalitet, trusler, lojalitetsplikt eller skjult gjeld følger av miljøtilhørighet.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Spilleren har tidligere møtt Arvid i sin faktiske sosiale gren.",
+            "if_true": "Bruk eksisterende relasjon og eventuelle grenavslag.",
+            "if_false": "Introduser invitasjonen som første kontakt uten oppdiktet gammel gjeld."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c17",
+      "story_type_ids": [
+        "C17"
+      ],
+      "problem_ids": [
+        "problem-c17-a-arbeide-seg-tom"
+      ],
+      "work_ids": [
+        "book-genanse-og-verdighet",
+        "film-tt0361862"
+      ],
+      "role_context": {
+        "domain": "job",
+        "binding_status": "proposed",
+        "role_or_position_id": "renholder",
+        "evidence_path": "data/Civication/lifestory/roles/renholder/role.json",
+        "authority_boundary": "Spilleren melder avvik og utført arbeid; Kari eier bemannings- og prioriteringsbeslutninger.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/renholder/role.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Kari, driftslederen",
+          "actor_id": "driftsleder",
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/roles/renholder/role.json",
+          "wants": "Vil kunne planlegge neste renholdsrunde ut fra pålitelig status.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Hvilke rom er faktisk ferdige?",
+        "synopsis": "En kollega er borte og Kari ber om status på en soneplan som ikke lenger lar seg fullføre forsvarlig. Historien er plassert i renholdsvakt med redusert bemanning og oppfølging neste morgen. Fagstolthet, hygiene, oppgavesikkerhet og ærlig rapportering om utført arbeid. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "Renholdsvakt med redusert bemanning og oppfølging neste morgen",
+        "inciting_event": "En kollega er borte og Kari ber om status på en soneplan som ikke lenger lar seg fullføre forsvarlig.",
+        "stakes": "Fagstolthet, hygiene, oppgavesikkerhet og ærlig rapportering om utført arbeid.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Spilleren får en konkret oversikt over fravær og planlagte soner.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "Amina peker på et risikabelt eller tidkrevende område.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren rapporterer status og ber om prioritering eller melder avvik.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Kari må selv avgjøre fordeling og eventuell oppfølging.",
+            "initiator": "Kari, driftslederen"
+          },
+          {
+            "stage": "later_return",
+            "event": "Neste vakt viser hvilke soner og avvik som faktisk gjenstår.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "be_prioritering",
+            "player_action": "Sende oversikt over utførte soner og be Kari prioritere resten.",
+            "legitimate_reason": "Lederen får grunnlag for forsvarlig omplanlegging.",
+            "immediate_consequence": "Bare utførte oppgaver markeres som ferdige.",
+            "later_callback": "Neste plan følger Karis faktiske prioriteringsbeslutning.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "melde_avvik",
+            "player_action": "Melde konkret HMS-avvik og foreslå gjennomgang før tung oppgave gjøres.",
+            "legitimate_reason": "Sikkerhet kan kreve oppfølging uansett resultatmål.",
+            "immediate_consequence": "Avvik blir dokumentert, ikke automatisk løst.",
+            "later_callback": "Senere scene omtaler verneombud eller leder bare hvis de faktisk har fulgt opp.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "En nedjustert soneplan gjør arbeidet etterprøvbart.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Oppgaven avventer vurdering og må omtales som uferdig neste vakt.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ikke diagnostiser utbrenthet eller la renholderen disponere andre ansatte.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Fraværet eller en lignende sonehendelse er allerede etablert i aktuell vakt.",
+            "if_true": "Bruk kjent oppgavestruktur og korrekt faktisk status.",
+            "if_false": "Presenter et nytt konkret fravær uten å gjøre det til gjentakende sykdomshistorikk."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    },
+    {
+      "schema": "civication_role_story_blueprint_v1",
+      "blueprint_id": "blueprint-wave-a-c23",
+      "story_type_ids": [
+        "C23"
+      ],
+      "problem_ids": [
+        "problem-c23-den-lille-feilen-som-ikke-forsvinner"
+      ],
+      "work_ids": [
+        "book-genanse-og-verdighet",
+        "film-tt0116282"
+      ],
+      "role_context": {
+        "domain": "private_life",
+        "binding_status": "proposed",
+        "role_or_position_id": "naeringsliv_sideprosjektbygger",
+        "evidence_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+        "authority_boundary": "Lea bestemmer over eget dokument og kontaktliste; spilleren kan bare tilby hjelp.",
+        "competence_boundary": "Rolle og kjennskap til situasjonen innebærer ikke dokumentert generell fagkompetanse eller delegert myndighet."
+      },
+      "characters": [
+        {
+          "label": "Spilleren",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "wants": "Treffe et konkret, selvstendig valg uten å avgjøre andre personers handlinger.",
+          "constraints": "Tid, kapasitet og egen myndighet avgrenses av faktisk spillerrolle og fortid.",
+          "knowledge_boundary": "Kjenner bare opplevde scener og synlige nye dokumenter."
+        },
+        {
+          "label": "Lea",
+          "actor_id": null,
+          "fact_status": "catalog_fact",
+          "source_path": "data/Civication/lifestory/continuations/sideprosjekt_med_lea.json",
+          "wants": "Vil rette opp misforståelse uten at skissen blir bindende bestilling.",
+          "constraints": "Har eget handlingsrom og kan svare annerledes enn spilleren forventer.",
+          "knowledge_boundary": "Kjenner bare det vedkommende har erfart eller faktisk fått fortalt."
+        }
+      ],
+      "story": {
+        "title": "Utkastet som ikke var et tilbud",
+        "synopsis": "En mottaker har lest Leas foreløpige skisse som et bindende tilbud, selv om Lea ennå ikke har avklart omfang. Historien er plassert i to ettermiddager rundt en konkret delt prosjektskisse. Presis kommunikasjon og hva ulike mottakere faktisk har lest og forstått. Først etableres dokumenterbare fakta og begge personers interesser. Deretter gis spilleren et konkret valg mellom to rimelige handlinger, ikke et forhåndsbestemt moralsk riktig alternativ. Andre personer velger selv om de vil svare eller akseptere en forespørsel. Oppfølgingen må vise konsekvensene av det som faktisk ble gjort; taushet, avslag eller utsettelse kan være fullverdige utfall.",
+        "specific_time_place": "To ettermiddager rundt en konkret delt prosjektskisse",
+        "inciting_event": "En mottaker har lest Leas foreløpige skisse som et bindende tilbud, selv om Lea ennå ikke har avklart omfang.",
+        "stakes": "Presis kommunikasjon og hva ulike mottakere faktisk har lest og forstått.",
+        "beats": [
+          {
+            "stage": "setup",
+            "event": "Lea viser faktisk versjon av skissen og mottakerliste.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "escalation",
+            "event": "En mottaker stiller et oppfølgingsspørsmål som viser misforståelsen.",
+            "initiator": "Situasjonen / en etablert aktør"
+          },
+          {
+            "stage": "decision",
+            "event": "Spilleren tilbyr en felles presisering eller hjelp med mottakeroversikten.",
+            "initiator": "Spilleren"
+          },
+          {
+            "stage": "aftermath",
+            "event": "Lea avgjør selv om og til hvem rettelsen sendes.",
+            "initiator": "Lea"
+          },
+          {
+            "stage": "later_return",
+            "event": "Etterpå varierer mottakernes kunnskap med hvilke meldinger de faktisk mottok.",
+            "initiator": "Situasjonen / en etablert aktør"
+          }
+        ],
+        "choices": [
+          {
+            "choice_id": "presis_tekst",
+            "player_action": "Tilby å gjennomlese en presisering med versjonsnummer før Lea sender den.",
+            "legitimate_reason": "Lik ordlyd kan minske nye feillesninger.",
+            "immediate_consequence": "Lea får et forslag, ingen melding sendes på hennes vegne.",
+            "later_callback": "Bare faktiske mottakere av rettelsen kan ha oppdaterte opplysninger.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          },
+          {
+            "choice_id": "spor_mottak",
+            "player_action": "Hjelpe Lea å kontrollere hvem som faktisk fikk den opprinnelige skissen.",
+            "legitimate_reason": "Presis mottakeroversikt kan være viktigere enn et stort felles svar.",
+            "immediate_consequence": "Spilleren kartlegger mottakere uten å anta videresending.",
+            "later_callback": "Senere oppfølging kan nevne bare de personene som ble verifisert.",
+            "npc_owns_their_decision": "Andre personer må samtykke til møter, avtaler og beslutninger; spilleren kan ikke gjøre det på deres vegne."
+          }
+        ],
+        "possible_endings": [
+          {
+            "outcome": "Flere mottakere får en klarere versjon uten automatisk kontrakt.",
+            "conditional_not_guaranteed": true
+          },
+          {
+            "outcome": "Noen misforståelser forblir uavklart, og Lea må følge opp konkret.",
+            "conditional_not_guaranteed": true
+          }
+        ]
+      },
+      "continuity": {
+        "required_past": [],
+        "forbidden_assumptions": [
+          "Ikke konstruer kontrakt, kunde eller betalingskrav ut fra en tvetydig skisse.",
+          "En scene som ikke er spilt kan aldri omtales som et faktisk minne."
+        ],
+        "choice_gate_plan": [
+          {
+            "prior_condition": "Leas skisse og mottakerliste er kjent fra tidligere scene.",
+            "if_true": "Bruk eksisterende versjonsnummer og riktig avsender.",
+            "if_false": "La Lea vise og sende en ny foreløpig skisse i den aktuelle scenen."
+          }
+        ],
+        "how_new_information_reaches_player": "Nye fakta må introduseres i faktisk opplevd scene, melding, møte eller dokument; tidligere handlinger vises bare gjennom oppfylte valgvilkår."
+      },
+      "production": {
+        "stage": "blueprint_ready_for_review",
+        "playable": false,
+        "editorial_review": "pending",
+        "runtime_paths": []
+      },
+      "copyright_policy": "original_civication_story_no_protected_character_dialogue_or_plot_copy"
+    }
+  ]
+}
