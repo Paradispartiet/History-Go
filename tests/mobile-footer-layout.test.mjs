@@ -83,14 +83,21 @@ test('footer safe area is counted once and buttons remain in one scrolling row',
   assert.equal((indexHTML.match(/<footer class="site-footer app-footer"/g) || []).length, 1);
 });
 
-test('same header yellow linework and seven clear, accessible action icons', () => {
+test('unframed header/footer icons retain clear labels, seven glyphs and structural dividers', () => {
   assert.match(indexHTML, /id="pcOnSiteFooter" class="pc-onsite-footer"/);
   assert.match(footerCSS, /--hg-toolbar-yellow:\s*var\(--yellow, #f6c800\)/);
-  assert.match(footerCSS, /--hg-toolbar-edge:\s*rgba\(246,200,0,\.86\)/);
+  assert.doesNotMatch(footerCSS, /--hg-toolbar-edge:/);
   assert.match(footerCSS, /body\.hg-app \.site-header\s*\{[^}]*border-bottom:\s*1px solid var\(--hg-toolbar-yellow\)/);
   assert.match(footerCSS, /body\.hg-app \.app-footer\s*\{[^}]*border-top:\s*1px solid var\(--hg-toolbar-yellow\)/);
-  assert.match(footerCSS, /\.pc-mini\s*\{[^}]*border:\s*1px solid var\(--hg-toolbar-edge\)/);
-  assert.match(footerCSS, /\.pc-route-menu\s*\{[^}]*border:\s*1px solid var\(--hg-toolbar-yellow\)/);
+  assert.match(footerCSS, /\.pc-mini\s*\{[^}]*border:\s*0;/);
+  // Header action controls and footer actions must not draw icon circles.
+  assert.match(footerCSS, /body\.hg-app \.site-header \.iconbtn,[\s\S]*?body\.hg-app \.site-header #miniProfile\s*\{[^}]*border:\s*0;[^}]*background:\s*transparent;/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer \.app-actions button,[\s\S]*?body\.hg-app \.app-footer \.app-actions \.pc-action\s*\{[^}]*border:\s*0;[^}]*border-radius:\s*0;[^}]*background:\s*transparent;/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer \.pc-onsite-footer \.pc-onsite-action\s*\{[^}]*border:\s*0;[^}]*background:\s*transparent;/);
+  assert.match(footerCSS, /\.pc-route-menu button\s*\{[^}]*border:\s*0;[^}]*border-radius:\s*0;/);
+  // Accessible focus stays visible as an underline, not a drawn circle.
+  assert.match(footerCSS, /body\.hg-app \.site-header #miniProfile:focus-visible\s*\{[^}]*box-shadow:\s*inset 0 -2px 0 var\(--hg-toolbar-yellow\)/);
+  assert.match(footerCSS, /body\.hg-app \.app-footer \.app-actions button:focus-visible\s*\{[^}]*box-shadow:\s*inset 0 -2px 0 var\(--hg-toolbar-yellow\)/);
   assert.doesNotMatch(footerCSS, /(?:-webkit-)?mask-image:/);
   for (const [id, label] of [
     ['pcQuiz','Ta quiz'], ['pcVisit','Registrer besøk'],
