@@ -30,6 +30,12 @@ For Places som er migrert til Place Production v3 følger den operative workflow
 
 - `docs/PLACE_PRODUCTION_V3.md`
 
+For **dekning i to trinn** (historisk tekst, publiserbart bilde, ti faktaspørsmål og QuizCard først; deretter komplett produksjon), se også:
+
+- `docs/PLACE_PRODUCTION_MINIMUM_V1.md`
+
+**v1 er en foreløpig publiserings-/modenhetsmilepæl og ikke et unntak fra canonical fullproduksjon.** `vFerdig` betyr fullført etter hele denne sjekklisten. v1 får aldri V3-`state: complete`, og ti-spørsmålsprofilen må integreres og valideres særskilt før bred publisering.
+
 V3 endrer ikke de faglige kravene i denne sjekklisten. `data/places/production/<place_id>.json` beholder factuality-/claim-eierskapet; `data/places/workflow/<place_id>.json` eier bare workflow-state. Workcard og quality-gate for migrerte V3-Places er genererte projeksjoner og skal ikke håndredigeres.
 
 > **Hovedregel:** Alle ordinære Places har samme harde canonical core. Hovedbadge og underbadges bestemmer hva produksjonen skal undersøke; stedets faktiske kilder bestemmer hvilke kandidater og samlinger som faktisk kvalifiserer; produksjonsprofilen bestemmer hvor dypt vi går. Et lettere sted er smalere ferdig — aldri halvferdig.

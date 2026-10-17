@@ -8,6 +8,10 @@ Place Production v3 gjør produksjonen enklere ved å skille **faglig/faktuell s
 
 V3 endrer ikke kravene i `docs/PLACE_PRODUCTION_CHECKLIST.md`, `docs/PLACE_PRODUCTION_PROFILES.md`, `data/places/README_place_rounds.md` eller subsystemenes egne canonicale kontrakter.
 
+## To innholdsnivåer uten å endre V3-state
+
+Stedsprogrammet gjennomføres som **v1 → vFerdig**, dokumentert i `docs/PLACE_PRODUCTION_MINIMUM_V1.md`. v1 er en egen innholdsmilepæl, ikke en femte produksjonsprofil, ikke `complete` og ikke en tillatelse til å markere åpne samlinger som `PASS`. V3-`complete` gjelder fortsatt bare fullført ordinær produksjon (`vFerdig`). Før ny, kort 10-spørsmålsquiz brukes aktivt må quiz- og PlaceCard-integrasjon støtte formatet. Store bolker og bare endringsrelevante tester prioriteres; vFerdig bruker eksisterende verifikasjonsløp.
+
 ## Én arbeidsflyt
 
 For et Place som er migrert til V3 er den operative rekkefølgen:

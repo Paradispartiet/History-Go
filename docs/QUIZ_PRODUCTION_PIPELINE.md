@@ -10,6 +10,12 @@ Stedsproduksjon og quizproduksjon kan foregå uavhengig og i separate PR-er, men
 - **Quizproduksjonen** eier eksistensaudit, faktisk eksternt kildegrunnlag, påstandsbank, utvalg, adaptiv settplan, spørsmål, troverdige feilalternativer, kilde- og Knowledge-koblinger, quizregistrering og quiz-QA.
 - **Integrasjonen** kontrollerer at riktig `categoryId` og `targetId` når riktig quiz, at ingen legacy-alias eller person/sted-ID er forvekslet, og at den fysiske besøksgaten og QuizCard-handlingen virker.
 
+## Først dekning med v1, så faglig fullproduksjon
+
+`docs/PLACE_PRODUCTION_MINIMUM_V1.md` beskriver første pass for alle gjenstående steder: **ti konkrete, kildebaserte spørsmål og samme ti i QuizCard** sammen med historisk tekst og et korrekt publiserbart stedbilde. Bruk eksisterende godkjente fullquizsett når de finnes – ikke krymp dem. Formatet `minimum_v1_1x10` er en særskilt implementeringsoppgave og må bestå runtime-/schema- og quiz-/Knowledge-integrasjon før nye steder kan telles som publisert v1. Eksisterende fullquizprofil (3×7/4×7 osv.) og global 2×7-åpning for flersettquizer er uendret. Svaralternativer stokkes av runtime og skal ikke omorganiseres mekanisk i kildefilene.
+
+Produser 20–50 steder per batch, med én kildestyrt innholdsrunde, gjenbruk av tidligere spørsmål, eksisterende quizkortaudit og én målrettet integrasjonskontroll av sluttbolken. Steder med uavklarte bilderettigheter skal i egen bildekø, ikke blokkere andre steder eller få oppdiktede illustrasjoner.
+
 ## Fra dekningsrapport til aktiv quizoppgave
 
 Utgangspunkt per 8. oktober 2026: `reports/quiz-place-coverage-2026-10-08.csv`. Rapporten viste 308 av 1 533 steder med eksplisitt quizkobling. Rapportstatus er et *snapshot*, ikke sannhet etter senere merges; oppdater og sammenlign mot gjeldende manifest og stedsindeks før en ny produksjonsbatch.

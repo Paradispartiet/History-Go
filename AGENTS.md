@@ -63,6 +63,12 @@ Når brukeren allerede har instruert agenten om å gjennomføre et GitHub-arbeid
 
 Denne regelen gjelder både lokal `gh`-flyt og connector-flyt.
 
+## Stedsproduksjon i to trinn og store batcher
+
+Når målet er å gi hele katalogen grunninnhold, brukes metoden i `docs/PLACE_PRODUCTION_MINIMUM_V1.md`: først **v1** med kildebelagt historisk tekst, publiserbart bilde, ti konkrete faktaspørsmål og samsvarende QuizCard, deretter **vFerdig** med full stedscheckliste. Dette er redaksjonelle modenhetsnivåer, ikke nye V3-statusverdier. Uferdige/ikke-validerte v1-spørsmål eller bildefiler merkes ikke publisert. Reell fullføringsstatus i canonical V3 oppnås først etter full kontroll.
+
+Prioriter 20–50 steder per batch, gjenbruk allerede korrekt innhold, flytt kildetunge og rettighetsblokkerte saker til egen kø, kjør én relevant kontroll etter ferdig innholdsbolk, og ikke kjør full browser-/katalogregresjon gjentatte ganger. Dagens README/checklist og READ-FIRST for fullproduksjon gjelder fremdeles. En særskilt 1×10 quizprofil kan ikke kalles produksjonsklar før parser, manifest, Knowledge og QuizCard er tilpasset og validert.
+
 ## Place production: obligatorisk READ-FIRST-gate
 
 Disse reglene gjelder hver gang en agent, assistent eller automasjon oppretter, fullfører eller vesentlig reviderer et canonical Place.
