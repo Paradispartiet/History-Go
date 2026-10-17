@@ -115,3 +115,30 @@ En idé er **ikke klar til skriving** dersom den krever ukjent familie-, helse-,
 - **En publisert bue:** Scenene er lagt til i eksisterende Civication-manifest/registrering og kan spilles, med målrettede tester bestått. Ingen ny parallell motor, score eller forced-plot-funksjon.
 
 Arbeidslisten ligger i [`storyProductionWavesV1.json`](../data/Civication/lifestory/editorial/inspiration/storyProductionWavesV1.json); [`storyCoverageInventoryV1.json`](../data/Civication/lifestory/editorial/inspiration/storyCoverageInventoryV1.json) viser 48 rollekandidater med `candidate` og null godkjente/publiserte nye rollehistorier. Målet er **flere troverdige, menneskelig interessante livshistorier**, ikke administrasjon for administrasjonens skyld.
+
+
+## 6. Den eksisterende Civication-formen skal også dekkes
+
+Temaene ovenfor er ikke scenetyper. Civication har allerede en **Role World Theme Bank** (`data/Civication/roleWorldThemeBank.json`, 20 abstrakte `theme_id`-er), og en eldre inndeling i **ni mail-/source-funksjoner** (`job`, `micro`, `people`, `conflict`, `followup`, `story`, `event`, `knowledge`, `consequence`). Disse kobles nå til arbeidslisten på **planleggingsnivå**, slik at vi kan produsere riktige scener fra eksisterende innholdssystem.
+
+**Faktisk planlagt dekning:**
+
+| Uavhengig dimensjon | Omfang planlagt | Bruk |
+| --- | --- | --- |
+| Samtidig problem / historieklasse | 24 av 24 C-typer | Hva fortellingen undersøker |
+| Canonical Role World Theme Bank | 20 av 20 `theme_id`-er brukt som redaksjonelle forslag | Menneskelig og samfunnsmessig spenning |
+| Legacy source-/mailfamilier | 9 av 9 brukt som **mulige funksjoner** | Om et beat er jobb, person, konflikt, informasjon, oppfølging eller følge |
+| Scenelevering | 5 presentasjonsformer representert i forslagene | `mail`, `conversation`, `meeting`, `task`, `notification` |
+| Interaksjon | `info`, `decision`, `ack` og etter behov `task` | Meldingen må få riktig interaksjonssemantikk – ikke ekstra valg for hvert beat |
+| Litterære hovedspor | 16 koblet, 8 utpekt til supplerende dekning | Redaksjonell form og tradisjon; mangler kildeverifisering |
+| Booker-linser | Alle syv finnes som valgfrie sammenligningsmodeller | Ingen pålagt plotstruktur |
+
+`storyProductionWavesV1.json` har per C-type `role_world_theme_ids`, `planned_scene_functions`, `possible_deliveries` og et **foreløpig** `interaction_plan`. Alle er produksjonsforslag, **ikke** en ny parser, delivery-motor, manifest eller garanti for faktisk kjøring. Velg riktig kilde-/sceneformat når tekstene skrives. Bruk ikke `job`-familien i en privat scene bare fordi feltet finnes i en plan; et jobb-beat må komme fra et reelt arbeidsscope. En `ack` eller `info` er ikke et kunstig spørsmål med to svar.
+
+Se [Mail Standard](CIVICATION_MAIL_STANDARD.md), [Role World Standard](CIVICATION_ROLE_WORLD_STANDARD.md) og eksisterende `SCENE_PIPELINE_V1.md`. Rollen får ikke ny autoritet av en tematag. En egen storyboard-rad er ikke et nytt oppdrag; kun en faktisk scene kan settes i gameplay. De 20 tematagene er allerede definert i prosjektet – denne planen bygger **ikke** en konkurrerende Theme Bank.
+
+## 7. Prioritert avgjørelse før produksjon
+
+**Første praktiske leveranse etter denne PR-en:** Ta **bolk A** med de åtte utpekte C-typene, velg egnede verifiserte kildeverk (hold ubekreftede Goodreads-kandidater i ventekø), bekreft rollekontekst og skriv åtte fullstendige blueprints. Begynn deretter på de minimum 32 kapitlene, med minst én tydelig reell beslutning og senere grenavhengig etterklang per historie. Varslinger og små oppfølginger skal være korte og uten falske valg.
+
+Etter at hele bolken er ferdig, er én endringsrelevant kontroll nok lokalt. Civications ordinære PR-CI er sluttporten. Ingen ny full regresjon skal legges til bare fordi denne typen planleggingsdokument er endret.
