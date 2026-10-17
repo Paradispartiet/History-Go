@@ -94,3 +94,5 @@ De tre øvrige avvikene håndteres i de berørte testene:
 - Arvid-testen beholder alle opprinnelige valgkombinasjoner, tidligere historier, senere kapitler og gjenopptakelser. Den uavhengige C07-tråden spilles med standardvalg i denne testen for å unngå et voksende kryssprodukt; samtlige nye C07-valg og avstandsgrenen dekkes av den egne bolktesten. Ingen timeout økes, og ingen spillscene fjernes.
 
 Målrettet kontroll: `node tests/run-civication-tests.mjs source-grounded-wave-a lifestory-arvid-continuation lifestory-mira-continuation narrative-three-level-continuations career-gameplay-matrix`. Ordinær GitHub-CI må bestå på sluttcommit før merge.
+
+Etter matriseregenereringen bestod 714 av 719 testfiler i ordinær CI, inkludert alle kapitteltestene. De fem resterende testfilene pekte på én avhengig, utdatert rapport: `roleWorldRolloutReadiness.json`. Denne er regenerert i samme avhengighetskjede. Diffen legger kun til den nye bolktesten i kildehenvisningene for arealplanlegger og renholder; rolleklassifikasjoner, produksjonspolitikk og den lesbare rapporten er uendret. De fem berørte readiness-/filmproduksjonstestene består samlet på 11,8 sekunder.
