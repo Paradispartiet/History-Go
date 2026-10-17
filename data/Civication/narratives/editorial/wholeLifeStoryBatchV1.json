@@ -1,8 +1,8 @@
 {
   "schema": "civication_whole_life_editorial_v1",
-  "version": 4,
+  "version": 5,
   "editorial_only": true,
-  "status": "authored_not_registered",
+  "status": "registered",
   "purpose": "Sammenhengende liv der arbeid, privatliv, sosialt liv og kultur påvirker de samme fiktive menneskene.",
   "existing_authority": {
     "npc_catalog": "data/Civication/npcs/naeringsliv.json",
@@ -13,14 +13,14 @@
     "character_owner": "CivicationNpcCharacterThreads"
   },
   "activation": {
-    "manifest_changed": false,
-    "reason": "Dag- og leveringsblokkeringen er rettet og målrettet testet. De tre private buene forblir uregistrerte innholdsutkast; denne leveransen aktiverer ikke historiene.",
-    "runtime_change_in_this_batch": true,
+    "manifest_changed": true,
+    "reason": "Alle 28 varianter er redigert mot personmodell og faktiske arbeidsvalg. Tre private strømmer registreres etter redaksjonell gjennomgang og målrettet integrasjonskontroll.",
+    "runtime_change_in_this_batch": false,
     "day_progression": "private: CivicationCalendar.dayIndex / min_days; work: CivicationWorkdayRuntime / min_workdays",
     "daily_quota": "Én privat NPC-scene per kalenderdag, uavhengig av én jobb-NPC-scene per arbeidsdag.",
     "verification": "tests/civication-private-npc-day-inbox.test.js",
     "technical_blockers_resolved": true,
-    "content_approval": "rewritten_pending_reader_review"
+    "content_approval": "editorially_approved"
   },
   "character_archetypes": [
     {
@@ -92,8 +92,8 @@
       "desire": "få budsjett- og personalansvar igjen og samtidig begrense reisebelastningen",
       "contradiction": "søker et større ansvar, men takker nei når arbeidsdagen ikke passer livet hennes",
       "humour": "ingen pålagt humor; dialogen handler om den konkrete søknaden",
-      "status": "first_arc_authored",
-      "profile_approval": "rewritten_editorial_proposal"
+      "status": "first_arc_registered",
+      "profile_approval": "source_bounded_profile_reviewed"
     },
     {
       "npc_id": "stein_peer_mellomleder",
@@ -101,8 +101,8 @@
       "desire": "beholde kontakten med gamle kolleger og håndtere bemanningsansvaret",
       "contradiction": "inviterer til en privat kveld, men blir møtt med forventninger om jobbavgjørelser",
       "humour": "kameratenes fotballprat og kjente uenigheter om dommeren",
-      "status": "first_arc_authored",
-      "profile_approval": "rewritten_editorial_proposal"
+      "status": "first_arc_registered",
+      "profile_approval": "source_bounded_profile_reviewed"
     },
     {
       "npc_id": "frode_formann",
@@ -110,8 +110,8 @@
       "desire": "være til stede for broren uten at fritiden leses som et standpunkt i arbeidskonflikten",
       "contradiction": "har legitim fri mens kolleger står i en belastning han er ansvarlig for",
       "humour": "brødrene husker bandets første øvingsrom forskjellig",
-      "status": "first_arc_authored",
-      "profile_approval": "rewritten_editorial_proposal"
+      "status": "first_arc_registered",
+      "profile_approval": "source_bounded_profile_reviewed"
     }
   ],
   "social_archetypes": [
@@ -325,7 +325,7 @@
         "sosialt_liv",
         "kultur"
       ],
-      "status": "authored_not_registered",
+      "status": "registered",
       "chapter_scene_ids": [
         {
           "chapter": 1,
@@ -357,7 +357,7 @@
           ]
         }
       ],
-      "editorial_approval": "rewritten_pending_reader_review",
+      "editorial_approval": "editorially_approved",
       "minimum_played_chapters": 3,
       "scene_ids": [
         "stein_rw_invitasjon",
@@ -470,7 +470,7 @@
             "conflict": "Behovet i hans avdeling konkurrerer med oppgavene hos dem han ber om hjelp."
           },
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/stein_hele_livet.json",
             "scene_id": "stein_rw_kamp",
             "values": [
@@ -482,10 +482,10 @@
         ],
         "life_situation": [
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/stein_hele_livet.json",
             "observation": "Har en vane med å se fotball med Bjarne og inviterer spilleren for første gang.",
-            "limitation": "Dette er foreslått ny sosial bakgrunn, ikke et tidligere lagret vennskap.",
+            "limitation": "Dette er ny sosial bakgrunn i invitasjonen, ikke et tidligere lagret vennskap.",
             "scene_id": "stein_rw_invitasjon"
           }
         ],
@@ -502,9 +502,9 @@
         "knowledge_boundaries": [
           "Spilleren kjenner forespørselen etter stein_peer_priority; ingen erfaring fra før scenen skal oppfinnes.",
           "Fotballvanen blir kjent i utkastets invitasjon; det som skjedde på puben er bare direkte erfart i deltakelsesgrenen.",
-          "Ved avslag er Solveigs pubinnspill kjent gjennom Steins melding, ikke som en samtale spilleren overvar."
+          "Ved avslag er Solveigs pubinnspill kjent gjennom Steins melding, ikke som en samtale spilleren overvar. Innledningen forutsetter ingen tidligere protest fra spilleren."
         ],
-        "current_goal_status": "authored_draft"
+        "current_goal_status": "authored_in_registered_scene"
       }
     },
     {
@@ -521,7 +521,7 @@
         "sosialt_liv",
         "kultur"
       ],
-      "status": "authored_not_registered",
+      "status": "registered",
       "chapter_scene_ids": [
         {
           "chapter": 1,
@@ -553,7 +553,7 @@
           ]
         }
       ],
-      "editorial_approval": "rewritten_pending_reader_review",
+      "editorial_approval": "editorially_approved",
       "minimum_played_chapters": 3,
       "scene_ids": [
         "frode_rw_invitasjon",
@@ -658,7 +658,7 @@
             "conflict": "Han må nå selv begrunne belastningen han tidligere ville ha protestert mot."
           },
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/frode_hele_livet.json",
             "scene_id": "frode_rw_invitasjon",
             "values": [
@@ -670,16 +670,16 @@
         ],
         "life_situation": [
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/frode_hele_livet.json",
             "observation": "Broren Per spiller trommer. Frode har gått glipp av konserter på grunn av vakter og har nå en ekstra billett.",
-            "limitation": "Broren, billetten og frikvelden innføres i utkastet; ingen familieøkonomi eller fast fritidsplan er etablert.",
+            "limitation": "Broren, billetten og frikvelden innføres i scenen; ingen familieøkonomi eller fast fritidsplan er etablert.",
             "scene_id": "frode_rw_invitasjon"
           },
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/frode_hele_livet.json",
-            "observation": "Brødrene omtaler moren i grenen der bildet sendes privat.",
+            "observation": "Frode omtaler moren i valget der bildet sendes privat; Per sender bildet videre til henne i denne grenen.",
             "limitation": "Spilleren skal ikke kjenne denne samtalen fra en annen gren.",
             "scene_id": "frode_rw_konsert",
             "choice_id": "behold"
@@ -699,7 +699,7 @@
           "Ved avslag på konserten får spilleren informasjon fra Frodes melding; det gir ikke et minne om å ha sett bandet.",
           "Et privat bilde gir ingen reaksjon fra kollegagruppa. Vennskap skal ikke tildeles bare fordi invitasjonen aksepteres."
         ],
-        "current_goal_status": "authored_draft"
+        "current_goal_status": "authored_in_registered_scene"
       }
     },
     {
@@ -716,7 +716,7 @@
         "sosialt_liv",
         "kultur"
       ],
-      "status": "authored_not_registered",
+      "status": "registered",
       "chapter_scene_ids": [
         {
           "chapter": 1,
@@ -749,7 +749,7 @@
           ]
         }
       ],
-      "editorial_approval": "rewritten_pending_reader_review",
+      "editorial_approval": "editorially_approved",
       "minimum_played_chapters": 4,
       "scene_ids": [
         "inger_rw_referanse",
@@ -765,7 +765,7 @@
       ],
       "terminal_flag": "inger_rw_finished",
       "start_scene_id": "inger_rw_referanse",
-      "synopsis": "En referanse gir Inger et nytt jobbtilbud å vurdere; reisebelastningen gjør at hun takker nei.",
+      "synopsis": "Inger søker større ansvar og får et jobbtilbud. Spilleren kan være referanse eller avslå; reisebelastningen gjør at Inger selv takker nei.",
       "character_basis": {
         "identity": {
           "npc_id": "inger_avdelingsleder",
@@ -863,7 +863,7 @@
             "conflict": "Må vurdere reduksjon i bemanning samtidig som beregningen mangler utført arbeid."
           },
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/inger_hele_livet.json",
             "scene_id": "inger_rw_referanse",
             "values": [
@@ -875,17 +875,17 @@
         ],
         "life_situation": [
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/inger_hele_livet.json",
             "observation": "Har søkt lederjobb ved en bedrift med to anlegg og ønsker å fortsette å bo der hun bor.",
             "limitation": "Ønsket etablerer ikke et bestemt bosted, familieansvar eller en økonomisk nødvendighet.",
             "scene_id": "inger_rw_referanse"
           },
           {
-            "status": "authored_draft",
+            "status": "authored_in_registered_scene",
             "source_path": "data/Civication/narratives/leisure/inger_hele_livet.json",
             "observation": "Avslår et tilbud med stor reisebelastning og fortsetter i nåværende jobb.",
-            "limitation": "Bare et utkastutfall. Referansens innhold må følge valgt gren, og avslag gir ingen ny rolleovergang.",
+            "limitation": "Skrevet utfall etter opplevd sluttkapittel. Referansens innhold følger valgt gren, og avslaget gir ingen ny rolleovergang.",
             "scene_id": "inger_rw_svar_uten_deg"
           }
         ],
@@ -896,7 +896,7 @@
           "privatøkonomi",
           "konkret bosted",
           "partner og barn",
-          "årsaken til at hun vil begrense reising"
+          "eventuelle familie- eller økonomiforhold bak ønsket om tid hjemme"
         ],
         "role_behavior": "Før omorganiseringen har hun det beskrevne budsjett- og personalansvaret. Etterpå kan hun bidra til beslutningsgrunnlag, men må sende godkjenning til rett leder. Kunnskapen slettes ikke sammen med fullmakten.",
         "knowledge_boundaries": [
@@ -904,29 +904,32 @@
           "En referanse skal begrenses til sakene spilleren kjenner, og kan ikke omtale hele lederkarrieren som observert.",
           "Når spilleren avslår referanseoppgaven, kjenner spilleren bare Ingers beskrivelse av Rogers deltakelse, ikke innholdet i samtalen."
         ],
-        "current_goal_status": "authored_draft"
+        "current_goal_status": "authored_in_registered_scene"
       }
     }
   ],
   "editorial_review": {
-    "status": "rewritten_pending_reader_review",
+    "status": "editorially_approved",
     "date": "2026-10-14",
     "report_path": "docs/CIVICATION_WHOLE_LIFE_EDITORIAL_REVIEW_2026_10_14.md",
     "reviewed_scene_variants": 27,
     "reviewed_baseline_scenes": 12,
     "previous_editorial_score_withdrawn": true,
-    "character_profiles": "editorial_proposals_not_canonical_character_facts",
-    "current_revision": 4,
-    "current_status": "rewritten_pending_reader_review",
+    "character_profiles": "source_bounded_profiles_with_branch_dependent_authored_context",
+    "current_revision": 5,
+    "current_status": "editorially_approved",
     "original_status": "rejected_needs_rewrite",
-    "rewrite_scope": "Alle tre nye buer er skrevet om fra motiv, hendelse og konsekvens. Den opprinnelige gjennomgangen bevares som historikk.",
+    "rewrite_scope": "Alle 28 varianter: motiv, dialog, årsak, konsekvens, grenminner og avslutning. Historiske vurderinger bevares.",
     "person_model_review_date": "2026-10-16",
     "person_model_scope": "Redaksjonelt grunnlag og tre kildeavgrensede profiler. Ingen nye historier eller runtime for personlighet/kunnskap. Steins arbeidsbue får tekstlig fullmaktsretting med samme ID-er, valg-ID-er, effekter, flagg og rollehendelse.",
-    "runtime_revision": "Privat dagfremdrift, turfordeling og normal innbokslevering virker også uten aktiv jobb. Historiene er ikke registrert i produksjonsmanifestet."
+    "runtime_revision": "Kalenderfremdrift og innboksstøtte fra revisjon 4 brukes uendret. Revisjon 5 registrerer de tre redigerte strømmene.",
+    "current_review_date": "2026-10-17",
+    "current_review_report_path": "docs/CIVICATION_WHOLE_LIFE_STORIES_V1.md",
+    "current_reviewed_scene_variants": 28
   },
   "authored_context": {
     "fictional": true,
-    "new_detail_status": "authored_in_unregistered_scenes",
+    "new_detail_status": "authored_in_registered_scenes_revealed_by_play",
     "per": "Frodes bror Per introduseres i første scene, som trommeslager. Han er ikke en ny runtime-aktør eller historisk People-profil.",
     "social_messages": "Bildedeling og referansetelefon er hendelser i fiksjonen, ikke handlinger mot eksterne kontoer.",
     "effects_limit": "Tillit, valg og scenehistorikk registreres i eksisterende eiere. Opplevelsen av tidsbruk og reising er skrevet tekst og er ikke implementert som kostnad i kalender eller økonomimodell."
@@ -967,7 +970,8 @@
       "conditional_work_choice": "Handling eller reaksjon som bare gjelder etter det oppgitte valget.",
       "authored_draft": "Ny fiksjon i en uregistrert scene. Ikke allerede skjedd i spillet.",
       "editorial_interpretation": "Forfatterens tolkning av kilder, ikke observert egenskap eller bevist motiv.",
-      "unknown": "Ikke etablert. Kan ikke fylles inn fra yrkestittel, navn eller arketype."
+      "unknown": "Ikke etablert. Kan ikke fylles inn fra yrkestittel, navn eller arketype.",
+      "authored_in_registered_scene": "Ny skrevet fiksjon i en registrert scene. Blir kjent i det aktuelle spillerforløpet når scenen eller den aktuelle grenen oppleves."
     },
     "competence_rule": "Rollens krav, personens egen påstand, en konkret demonstrasjon og varig mestring er ulike opplysninger. Rollebytte alene beviser ingen av de tre siste.",
     "authority_rule": "Kompetanse, tillit og vennskap gir ingen fullmakt. Rolle og eksplisitt mandat må passe beslutningen i den konkrete scenen.",

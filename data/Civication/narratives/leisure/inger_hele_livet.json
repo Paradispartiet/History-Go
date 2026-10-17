@@ -20,10 +20,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Inger har søkt en annen jobb",
+      "subject": "Inger vil søke seg videre",
       "situation": [
-        "Inger forteller at hun har søkt en avdelingslederstilling i en annen produksjonsbedrift og er innkalt til intervju. Etter omorganiseringen savner hun muligheten til å beslutte bemanning og budsjett. Hun vil undersøke om den nye jobben gir henne det ansvaret igjen.",
-        "Bedriften har to anlegg. Hun vet ennå ikke hvor mye hun må reise mellom dem. Hun ønsker å fortsette å bo der hun bor. Nå spør hun om arbeidsgiveren kan ringe deg som referanse, siden du kjenner arbeidet med nattskiftet og vedlikeholdsrutinen."
+        "Inger forteller at hun er innkalt til intervju for en avdelingslederstilling i en annen produksjonsbedrift. «Jeg savner å kunne avgjøre bemanningen og stå for budsjettet. Nå skal jeg gi råd, og så venter jeg på at andre bestemmer.»",
+        "Bedriften har to anlegg. Hun vil fortsette å bo der hun bor, og har spurt hvor ofte hun må være på det andre anlegget. Det skal de snakke om i intervjuet. Før det spør hun om hun kan oppgi deg som referanse for sakene om nattbemanning og vedlikeholdsrutinen."
       ],
       "applies_when": {
         "flags_all": [
@@ -33,16 +33,16 @@
       "choices": [
         {
           "id": "ja",
-          "label": "Si ja til å være referanse for det du selv kjenner fra arbeidet.",
+          "label": "Si ja til å være referanse for sakene du kjenner.",
           "effect": 0,
           "tags": [
             "inger_rw_referanse_ja"
           ],
-          "feedback": "Inger gir arbeidsgiveren nummeret ditt og sier hvilke saker dere har vært i kontakt om.",
+          "feedback": "Inger oppgir deg som kontakt for de to sakene. Hun sier arbeidsgiveren vil avtale tidspunkt for samtalen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Inger har søkt en annen jobb",
-            "line": "«Takk. Jeg sier at du kjenner de sakene, ikke hele arbeidet mitt.»"
+            "title": "Inger vil søke seg videre",
+            "line": "«Takk. Du kjenner hvordan jeg arbeidet med dem. Det er det jeg vil de skal spørre om.»"
           }
         },
         {
@@ -52,11 +52,11 @@
           "tags": [
             "inger_rw_referanse_nei"
           ],
-          "feedback": "Inger må bruke en annen referanse. Du påtar deg ikke oppgaven.",
+          "feedback": "Inger tar imot avslaget og sier hun vil spørre Roger, som har fulgt bemanningssaken.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Inger har søkt en annen jobb",
-            "line": "«Greit. Da spør jeg Roger, som har jobbet med bemanningssaken.»"
+            "title": "Inger vil søke seg videre",
+            "line": "«Greit. Jeg spør ham.»"
           }
         }
       ],
@@ -76,10 +76,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Hva vil du fortelle arbeidsgiveren?",
+      "subject": "Referansesamtalen",
       "situation": [
-        "Arbeidsgiveren ringer som avtalt og spør hva Inger har bidratt med. Du husker at hun kjente bakgrunnen for vedlikeholdsrutinen, selv etter at hun mistet myndigheten til å godkjenne den.",
-        "Du husker også forslaget hennes om lavere nattbemanning. Beregningen tok ikke med hvor ofte nattskiftet hjalp morgenlaget ved maskinstans. Du ble bedt om eksempler før forslaget skulle vurderes videre."
+        "Arbeidsgiveren ringer til avtalt tid etter intervjuet med Inger. Samtalen gjelder hvordan hun arbeider med beslutningsgrunnlag. Du blir bedt om et eksempel fra kontakten dere har hatt.",
+        "Du kjenner saken der hun visste bakgrunnen for vedlikeholdsrutinen, men ikke lenger kunne godkjenne den. Du fikk også se forslaget om lavere nattbemanning: Timeverk og ordre var regnet inn, mens nattskiftets hjelp ved maskinstans manglet."
       ],
       "applies_when": {
         "flags_all": [
@@ -89,30 +89,30 @@
       "choices": [
         {
           "id": "fag",
-          "label": "Beskriv fagkunnskapen hennes i saken om vedlikeholdsrutinen.",
+          "label": "Bruk vedlikeholdsrutinen som eksempel på hva Inger kjente til.",
           "effect": 0,
           "tags": [
             "inger_rw_referanse_fag"
           ],
-          "feedback": "Du gir et konkret eksempel på hva Inger visste. Du uttaler deg ikke om hele lederarbeidet hennes.",
+          "feedback": "Du beskriver kunnskapen hun bidro med i denne saken. Arbeidsgiveren noterer eksemplet og takker for samtalen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Hva vil du fortelle arbeidsgiveren?",
-            "line": "Inger får senere vite at arbeidsgiveren har snakket med deg. «Takk for at du tok telefonen.»"
+            "title": "Referansesamtalen",
+            "line": "Inger sender senere en melding: «De sa de hadde fått snakket med deg. Takk for at du tok deg tid.»"
           }
         },
         {
           "id": "helhet",
-          "label": "Beskriv både fagkunnskapen og det som manglet i bemanningsberegningen.",
+          "label": "Beskriv rutinekunnskapen og mangelen i bemanningsforslaget.",
           "effect": 0,
           "tags": [
             "inger_rw_referanse_begge"
           ],
-          "feedback": "Du forteller om to forhold du kjenner: kunnskapen om rutinen og begrensningen i bemanningsforslaget.",
+          "feedback": "Du beskriver begge sakene og sier at nattbemanningen var et forslag til vurdering. Arbeidsgiveren vil stille Inger oppfølgingsspørsmål om beregningen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Hva vil du fortelle arbeidsgiveren?",
-            "line": "Inger får senere vite at arbeidsgiveren har snakket med deg. «De ville høre mer om bemanningsforslaget.»"
+            "title": "Referansesamtalen",
+            "line": "Inger sender senere en melding: «De har ringt igjen om bemanningssaken. Jeg tar den samtalen med dem.»"
           }
         }
       ],
@@ -136,10 +136,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Roger tok referansesamtalen",
+      "subject": "Inger venter på svar",
       "situation": [
-        "Du takket nei til å være referanse. Inger forteller senere at Roger sa ja og tok samtalen. Hun har gjennomført intervjuet og venter på svar.",
-        "Hun sier at den nye bedriften vil ha en leder som følger opp begge anleggene. Hvor mye reising det innebærer, skal avklares før hun tar stilling til noe tilbud."
+        "Inger skriver at intervjuet er gjennomført. Roger sa ja til å være referanse og har snakket med arbeidsgiveren. «Nå venter jeg på dem. Jeg tror det er en jobb jeg kunne tenke meg.»",
+        "Hun fikk ikke et fast antall reisedager i intervjuet. Bedriften vil avklare fordelingen mellom anleggene før de gir et tilbud."
       ],
       "applies_when": {
         "flags_all": [
@@ -149,16 +149,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Ønsk henne lykke til med svaret.",
+          "label": "Ønsk henne lykke til og be henne si fra hvordan det går.",
           "effect": 0,
           "tags": [
             "inger_rw_venter_uten_referanse"
           ],
-          "feedback": "Du svarer på det hun forteller. Du har ikke gitt noen referanse.",
+          "feedback": "Du ber om å få høre utfallet. Inger sier hun skal sende en melding når hun vet mer.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Roger tok referansesamtalen",
-            "line": "«Takk. Jeg får vite mer når de ringer igjen.»"
+            "title": "Inger venter på svar",
+            "line": "«Det skal jeg. Jeg håper de har et tydelig svar om anleggene også.»"
           }
         }
       ],
@@ -182,10 +182,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Tilbudet innebærer mer reising enn hun ønsket",
+      "subject": "Tre dager på det andre anlegget",
       "situation": [
-        "Inger har fått tilbud om avdelingslederstillingen. Arbeidsgiveren har vist til erfaringen hennes og de konkrete opplysningene de fikk om fagkunnskapen. Tilbudet innebærer at hun skal være på det andre anlegget tre dager i uka.",
-        "Hun forteller at reisen dit vil ta godt over en time hver vei. Det gir henne større ansvar, men mindre tid hjemme. Hun ber om et par dager til å svare arbeidsgiveren."
+        "Inger har fått tilbud om stillingen. Hun sender deg en melding og takker igjen for referansen. «De spurte mer om hvordan jeg har fulgt opp rutiner. Det var fint å kunne vise til en sak noen andre også kjente.»",
+        "Tilbudet krever tre dager i uka på det andre anlegget, godt over en time hjemmefra hver vei. Hun har bedt om tid til å svare og spurt om flere av dagene kan legges til det nærmeste anlegget. «Jeg vil ha ansvaret. Jeg vil helst ha noen kvelder igjen også.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -195,16 +195,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les det hun forteller om tilbudet.",
+          "label": "Les meldingen om tilbudet.",
           "effect": 0,
           "tags": [
             "inger_rw_tilbud_fag"
           ],
-          "feedback": "Inger undersøker arbeidsdagen tilbudet faktisk innebærer før hun svarer.",
+          "feedback": "Inger venter på svar om fordelingen mellom anleggene før hun bestemmer seg.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Tilbudet innebærer mer reising enn hun ønsket",
-            "line": "«Jeg ville ha mer ansvar. Jeg må se om jeg vil ha akkurat denne hverdagen også.»"
+            "title": "Tre dager på det andre anlegget",
+            "line": "«Jeg har sagt hva som skal til for at jeg kan takke ja.»"
           }
         }
       ],
@@ -228,10 +228,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Inger spør om bemanningsforslaget",
+      "subject": "Hva fortalte du om bemanningen?",
       "situation": [
-        "Inger har fått tilbud om stillingen, men arbeidsgiveren spurte i intervjuet om forslaget om lavere nattbemanning. Hun spør deg hva du fortalte. Du beskrev det som et forslag med mangler i beregningen, ikke som et vedtatt kutt.",
-        "Tilbudet innebærer dessuten tre dager i uka på det andre anlegget, med godt over en times reise hver vei. Det er mer reising enn Inger hadde håpet."
+        "Inger har fått tilbud om stillingen. I oppfølgingssamtalen etter referansene måtte hun forklare bemanningsberegningen. Nå ringer hun deg: «De spurte hvorfor hjelpen ved maskinstans ikke var med. Hva sa du om forslaget?»",
+        "Hun mener beregningen ble fremstilt løsrevet fra presset om å spare. Samtidig må hun svare på et tilbud med tre dager i uka ved det andre anlegget, godt over en times reise hjemmefra hver vei. Hun har spurt om arbeidsgiveren kan redusere reisingen."
       ],
       "applies_when": {
         "flags_all": [
@@ -241,30 +241,30 @@
       "choices": [
         {
           "id": "forklar",
-          "label": "Forklar nøyaktig hvilke opplysninger du ga om forslaget.",
+          "label": "Gjengi hva du sa, og forklar at du beskrev et forslag til vurdering.",
           "effect": 0,
           "tags": [
             "inger_rw_referanse_avklart"
           ],
-          "feedback": "Du gjentar skillet mellom beregningen og en vedtatt endring. Inger kan være uenig i vurderingen, men vet hva du faktisk sa.",
+          "feedback": "Du gjentar de to eksemplene og at beregningen manglet oppgaver. Inger sier at hun savner bakgrunnen om sparekravet, men takker for gjennomgangen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Inger spør om bemanningsforslaget",
-            "line": "«Jeg skulle gjerne gitt deg resten av grunnlaget først. Nå vet jeg i hvert fall hva de fikk høre.»"
+            "title": "Hva fortalte du om bemanningen?",
+            "line": "«Jeg er fortsatt uenig i vektingen. Men nå vet jeg hvilke ord du brukte.»"
           }
         },
         {
           "id": "vis",
-          "label": "Vis til den samme saken og si at du står for beskrivelsen du ga.",
+          "label": "Si at du står for beskrivelsen og ikke vil gå gjennom samtalen igjen.",
           "effect": 0,
           "tags": [
             "inger_rw_referanse_uenighet"
           ],
-          "feedback": "Du går ikke gjennom referansesamtalen på nytt. Inger vet at du ikke vil endre vurderingen for å hjelpe søknaden.",
+          "feedback": "Inger forsøker å spørre om ordlyden, men du gjentar at du står for vurderingen. Hun avslutter samtalen kort.",
           "npc_response": {
             "trust_delta": -1,
-            "title": "Inger spør om bemanningsforslaget",
-            "line": "«Jeg mener bildet ble for smalt. Men jeg skjønner at du står for det.»"
+            "title": "Hva fortalte du om bemanningen?",
+            "line": "«Da kommer vi ikke lenger med det nå.»"
           }
         }
       ],
@@ -288,10 +288,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Et tilbud du ikke bidro til å vurdere",
+      "subject": "Hun fikk tilbudet",
       "situation": [
-        "Inger forteller at hun har fått tilbud om stillingen. Roger var referanse. Du kjenner ikke hva han sa i samtalen, og Inger ber deg ikke vurdere det.",
-        "Den nye arbeidsdagen innebærer tre dager i uka på det andre anlegget, med godt over en times reise hver vei. Inger har bedt om tid til å svare. Hun vil ha lederansvaret, men hadde håpet på mindre reising."
+        "Inger følger opp som avtalt: Hun har fått tilbud om jobben. «Roger har fått en takk for samtalen. Du ville høre hvordan det gikk, så nå vet du det også.»",
+        "Fordelingen er endelig avklart: Tre dager i uka skal være på det andre anlegget, godt over en time hjemmefra hver vei. Hun har spurt om færre reisedager og bedt om tid til å svare. «Det var mer enn jeg så for meg.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -301,16 +301,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les meldingen om tilbudet.",
+          "label": "Les oppdateringen fra henne.",
           "effect": 0,
           "tags": [
             "inger_rw_tilbud_uten_deg"
           ],
-          "feedback": "Inger vurderer tilbudet selv. Du har ikke deltatt i referansesamtalene.",
+          "feedback": "Inger vil gi beskjed når hun har svart på tilbudet.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Et tilbud du ikke bidro til å vurdere",
-            "line": "«Jeg skal regne på hvor mye av uka som går på veien før jeg svarer.»"
+            "title": "Hun fikk tilbudet",
+            "line": "«Jeg venter på om de kan endre fordelingen.»"
           }
         }
       ],
@@ -334,10 +334,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Inger takket nei",
+      "subject": "Inger har svart",
       "situation": [
-        "Inger har takket nei til jobben. Hun sier at hun kunne akseptert stillingen hvis hoveddelen av arbeidet lå på det nærmeste anlegget. Arbeidsgiveren kunne ikke tilby det.",
-        "Hun blir derfor i den nåværende jobben. Du ga et konkret eksempel på fagkunnskapen hennes, og hun takker for referansen selv om hun ikke tok stillingen."
+        "Arbeidsgiveren kunne ikke redusere reisedagene. Inger skriver at hun har takket nei. «Jeg tok tiden fra dør til dør. Det blir for mye hver uke. Jeg skulle ønske de kunne tilbudt noe annet.»",
+        "Hun fortsetter som faglig koordinator. «Takk for referansen. Jeg søker gjerne igjen hvis den rette jobben kommer. Det hjalp å vite at de ville ha meg.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -352,11 +352,11 @@
           "tags": [
             "inger_rw_avsluttet_fag"
           ],
-          "feedback": "Jobbsøknaden er avsluttet. Inger beholder den nåværende stillingen.",
+          "feedback": "Inger har avsluttet søknadsprosessen og takket for hjelpen din.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Inger takket nei",
-            "line": "«Det var godt å få et tilbud. Jeg vil likevel ikke bruke så mye av uka på reising.»"
+            "title": "Inger har svart",
+            "line": "«Jeg gir beskjed før jeg oppgir deg igjen, hvis det blir aktuelt.»"
           }
         }
       ],
@@ -381,10 +381,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Et nei til jobben, ikke til referansen",
+      "subject": "Et tilbud hun lot gå",
       "situation": [
-        "Inger har takket nei til stillingen på grunn av reisebelastningen. Arbeidsgiveren kunne ikke redusere antallet dager på det andre anlegget. Hun blir i den nåværende jobben.",
-        "Hun viser også til samtalen om referansen. Dere vurderer bemanningsforslaget ulikt, men hun vet nå hvilke konkrete forhold du beskrev. Hun takker for at du tok telefonen."
+        "Inger skriver at hun har takket nei. Arbeidsgiveren holdt fast ved tre dager på det andre anlegget. «Det ble for mye reising. Jeg blir her foreløpig.»",
+        "Hun viser også til telefonsamtalen deres: «Takk for at du forklarte referansen. Jeg skulle gjerne fått frem sparekravet bedre selv. Vi ser fortsatt ulikt på beregningen.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -399,11 +399,11 @@
           "tags": [
             "inger_rw_avsluttet_avklart"
           ],
-          "feedback": "Jobbsøknaden er avsluttet. Uenigheten om beregningen er kjent og blir ikke skrevet om til enighet.",
+          "feedback": "Inger har gitt beskjed om utfallet og takket for at du gikk gjennom samtalen med henne.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Et nei til jobben, ikke til referansen",
-            "line": "«Vi får ta resten av bemanningssaken der den hører hjemme.»"
+            "title": "Et tilbud hun lot gå",
+            "line": "«Hvis jeg ber deg igjen, tar vi en prat om hvilke saker jeg oppgir deg for først.»"
           }
         }
       ],
@@ -428,10 +428,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Hun blir, og uenigheten blir med",
+      "subject": "En kort beskjed fra Inger",
       "situation": [
-        "Inger har takket nei til jobben fordi arbeidsgiveren ikke kunne redusere reisingen mellom anleggene. Hun blir i den nåværende stillingen.",
-        "Hun gir deg beskjed om utfallet, men tar ikke opp referansen igjen. Dere er fortsatt uenige om hvordan bemanningsforslaget ble beskrevet. Søknaden ga henne et alternativ å vurdere, men reparerte ikke den uenigheten."
+        "Inger sender deg en melding: «Jeg takket nei. De kunne ikke endre reisingen, og tre dager der borte blir for mye. Jeg fortsetter her.»",
+        "Hun skriver ikke mer om referansen. Sist dere snakket, avsluttet hun samtalen da du ikke ville gå gjennom ordlyden. Nå har hun bare gitt beskjed om utfallet."
       ],
       "applies_when": {
         "flags_all": [
@@ -446,11 +446,11 @@
           "tags": [
             "inger_rw_avsluttet_uenighet"
           ],
-          "feedback": "Du kjenner utfallet av søknaden. Det er ikke avtalt noen ny samtale mellom dere.",
+          "feedback": "Meldingen inneholder ingen ny forespørsel fra Inger.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Hun blir, og uenigheten blir med",
-            "line": "«Jeg blir her. Da vet du det.»"
+            "title": "En kort beskjed fra Inger",
+            "line": "«Da vet du hvordan det gikk.»"
           }
         }
       ],
@@ -475,10 +475,10 @@
         "leisure"
       ],
       "from": "Inger Holm",
-      "subject": "Søknaden ble hennes egen beslutning",
+      "subject": "Svaret hun lovet å sende",
       "situation": [
-        "Inger forteller at hun har takket nei til tilbudet. Hun ønsket større ansvar, men arbeidsgiveren kunne ikke redusere reisingen mellom de to anleggene.",
-        "Hun fortsetter i den nåværende jobben. Du takket nei til referanseoppgaven og deltok ikke i vurderingen av tilbudet. Hun har likevel valgt å fortelle deg hvordan det gikk."
+        "Inger gir deg den siste oppdateringen: Arbeidsgiveren kunne ikke tilby færre dager ved det andre anlegget, og hun har takket nei. «Jeg vil ha større ansvar igjen. Jeg får lete etter noe som er nærmere.»",
+        "Hun fortsetter i den nåværende stillingen. «Takk for lykkeønskningen. Det var godt å få et tilbud, selv om jeg lot det gå.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -488,16 +488,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les meldingen.",
+          "label": "Les oppdateringen.",
           "effect": 0,
           "tags": [
             "inger_rw_avsluttet_uten_deg"
           ],
-          "feedback": "Du får vite hva hun besluttet uten å bli gjort til deltaker i referansesamtalen.",
+          "feedback": "Inger har gitt deg beskjed om utfallet slik dere avtalte.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Søknaden ble hennes egen beslutning",
-            "line": "«De må finne en annen til stillingen. Jeg blir her foreløpig.»"
+            "title": "Svaret hun lovet å sende",
+            "line": "«Vi får se hva som dukker opp.»"
           }
         }
       ],

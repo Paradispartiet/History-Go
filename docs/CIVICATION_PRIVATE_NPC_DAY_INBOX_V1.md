@@ -1,6 +1,6 @@
 # Civication – private NPC-kapitler i dag og innboks
 
-Status 16. oktober 2026: Teknisk støtte implementert i de eksisterende eierne. Frode, Stein og Ingers private historier er fortsatt uregistrerte utkast. `narratives/manifest.json` er uendret.
+Historisk implementasjonsrapport, revisjon 4, 16. oktober 2026. Teknisk støtte ble levert med historiene uregistrert og manifestet uendret. I [revisjon 5](CIVICATION_WHOLE_LIFE_STORIES_V1.md) er alle 28 varianter redigert og de tre strømmene registrert. Testene bruker nå produksjonsmanifestet direkte; runtime-støtten nedenfor brukes uendret. Øvrige omtaler av utkast og manglende registrering nedenfor gjelder revisjon 4.
 
 ## Årsak og rettelse
 

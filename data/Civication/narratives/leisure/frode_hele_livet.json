@@ -20,10 +20,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Frode vil høre broren spille",
+      "subject": "Frode har en ekstra billett",
       "situation": [
-        "Frode forteller at broren Per spiller trommer i et band. Han har gått glipp av de siste konsertene på grunn av vakter. Nå har han fri den kvelden de spiller, og han har en ekstra billett han vil tilby deg.",
-        "Flere av de gamle skiftkameratene skal jobbe den kvelden. Etter uenigheten om Frodes første bemanningsplan har tonen vært anstrengt. Han vil likevel høre broren. «Jeg har sagt til Per at jeg kommer. Vil du være med?»"
+        "Frode forteller at broren Per spiller trommer i et band. De siste gangene bandet har spilt, har Frode hatt vakt. Nå har han fri og har kjøpt to billetter. «Per pleier å spørre om jeg bare vil se bilder etterpå. Denne gangen skal jeg være der. Vil du bli med?»",
+        "Noen fra B-skiftet skal jobbe den kvelden. Du kjenner planen der de samme erfarne operatørene fikk to krevende oppgaver etter hverandre. Frode har selv satt opp den planen. Nå står han med konsertbillettene fremme på telefonen."
       ],
       "applies_when": {
         "flags_all": [
@@ -38,11 +38,11 @@
           "tags": [
             "frode_rw_deltar"
           ],
-          "feedback": "Frode avtaler å møte deg ved inngangen. Billetten han tilbyr, er allerede kjøpt.",
+          "feedback": "Frode sender deg billetten og avtaler å møte deg ved inngangen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Frode vil høre broren spille",
-            "line": "«Bra. Jeg sender deg tidspunktet.»"
+            "title": "Frode har en ekstra billett",
+            "line": "«Bra. Vi må komme før første låt, ellers får jeg høre det.»"
           }
         },
         {
@@ -52,11 +52,11 @@
           "tags": [
             "frode_rw_avslag"
           ],
-          "feedback": "Frode beholder den ekstra billetten og går uten deg.",
+          "feedback": "Frode beholder den ekstra billetten og spør en annen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Frode vil høre broren spille",
-            "line": "«Greit. Jeg spør noen andre.»"
+            "title": "Frode har en ekstra billett",
+            "line": "«Greit. Jeg skal hilse Per hvis jeg får snakket med ham etterpå.»"
           }
         }
       ],
@@ -76,10 +76,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Et bilde etter siste låt",
+      "subject": "Brødrene etter konserten",
       "situation": [
-        "Per kommer ut fra scenen etter konserten og finner Frode ved døren. De to brødrene begynner straks å snakke om hvor høyt Per spilte på det første øvingsrommet deres. Frode ler og sier at naboene aldri hadde savnet bandet.",
-        "Du tar et bilde av dem. Begge sier det er greit å dele det. Frode foreslår den uformelle meldingsgruppa for kollegene, der flere har spurt hva broren driver med."
+        "Du og Frode står nær døren når Per kommer fra scenen. «Du ble helt til slutt», sier Per. Frode svarer at han nesten gikk under trommesoloen. Per ler og sier at det var Frode som pleide å be ham spille høyere i det første øvingsrommet.",
+        "Du tar et bilde av dem. Frode vil ha originalen og foreslår at du deler det i den uformelle kollegagruppa også. Flere der har spurt om bandet. Per sier det er greit. «Men skriv trommeslager, ikke han som bråkte i kjelleren.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -89,16 +89,16 @@
       "choices": [
         {
           "id": "del",
-          "label": "Del bildet i kollegagruppa med en kort hilsen fra konserten.",
+          "label": "Del bildet og en hilsen fra konserten i kollegagruppa.",
           "effect": 0,
           "tags": [
             "frode_rw_bilde_delt"
           ],
-          "feedback": "Du deler bildet av Frode og Per. Kollegene får se hvor Frode tilbrakte frikvelden.",
+          "feedback": "Du deler bildet med en kort tekst om Per og bandet. Du sender også originalen til brødrene.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Et bilde etter siste låt",
-            "line": "«Send meg originalen også. Per vil ha den.»"
+            "title": "Brødrene etter konserten",
+            "line": "«Der ble vi jo nesten ordentlige begge to», sier Frode."
           }
         },
         {
@@ -108,11 +108,11 @@
           "tags": [
             "frode_rw_bilde_privat"
           ],
-          "feedback": "Brødrene får bildet. Du publiserer ingenting i kollegagruppa.",
+          "feedback": "Brødrene får originalen. Du sender ingenting i kollegagruppa.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Et bilde etter siste låt",
-            "line": "«Fint bilde. Mor kommer til å bli glad for det.»"
+            "title": "Brødrene etter konserten",
+            "line": "«Det sender vi til mor», sier Frode. «Hun har spurt etter et bilde av oss.»"
           }
         }
       ],
@@ -136,10 +136,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Frode sender en hilsen fra konserten",
+      "subject": "En hilsen fra Frode og Per",
       "situation": [
-        "Du ble ikke med. Frode sender etterpå et bilde av seg selv og Per, tatt av en annen i publikum. Han forteller at Per var glad for at han kom.",
-        "Du har ikke sett konserten. Meldingen gir deg mulighet til å svare på det han faktisk forteller."
+        "Frode sender et bilde etter konserten. En annen i publikum har tatt det; Frode og Per står ved scenedøren. «Han ba om bevis på at jeg hadde vært der», skriver Frode. «Så nå har vi begge det.»",
+        "Han legger til at han rakk hele konserten. Per fikk øye på ham under den første låten og løftet den ene trommestikka."
       ],
       "applies_when": {
         "flags_all": [
@@ -149,30 +149,30 @@
       "choices": [
         {
           "id": "sporr",
-          "label": "Spør hvordan konserten var, og hvordan det gikk med Per.",
+          "label": "Spør hvordan konserten gikk.",
           "effect": 0,
           "tags": [
             "frode_rw_spurte_om_per"
           ],
-          "feedback": "Frode forteller at bandet måtte starte en låt på nytt fordi sangeren kom inn for tidlig. Per tok det med et smil.",
+          "feedback": "Frode forteller at sangeren startet et vers for tidlig. Bandet måtte stoppe og telle inn på nytt, mens Per satt og lo bak trommene.",
           "npc_response": {
             "trust_delta": 1,
-            "title": "Frode sender en hilsen fra konserten",
-            "line": "«Det var fint å være der igjen. Han har blitt mye bedre.»"
+            "title": "En hilsen fra Frode og Per",
+            "line": "«Jeg trodde først det skulle være sånn. Per sa at det trodde sangeren også.»"
           }
         },
         {
           "id": "kort",
-          "label": "Svar med en kort hilsen til dem begge.",
+          "label": "Send en kort hilsen til dem begge.",
           "effect": 0,
           "tags": [
             "frode_rw_kort_hilsen"
           ],
-          "feedback": "Du sender en hilsen uten å starte en lengre samtale.",
+          "feedback": "Du ber Frode hilse Per. Han svarer at han skal gjøre det.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Frode sender en hilsen fra konserten",
-            "line": "«Jeg skal hilse ham.»"
+            "title": "En hilsen fra Frode og Per",
+            "line": "«Det skal jeg. Takk.»"
           }
         }
       ],
@@ -196,10 +196,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Bildet blir lest som en kommentar til vaktplanen",
+      "subject": "Bjarne svarer på bildet",
       "situation": [
-        "Bjarne Røed svarer i kollegagruppa: «Noen har fått bedre vakter etter opprykket.» Han viser til bildet du delte av Frode og Per. Frode sier til deg at han hadde fri etter planen, men at han forstår hvorfor kommentaren kom nå.",
-        "Du vet at Frodes første bemanningsplan var omstridt. Bildet sier ingenting om den planen, men nå er de to tingene blitt blandet i den samme samtalen."
+        "Under bildet i kollegagruppa skriver Bjarne: «Noen har fått bedre vakter etter opprykket.» Frode sender deg en egen melding. «Jeg hadde fri etter planen. Men han står på et av skiftene vi la mye på.»",
+        "Frode har begynt på et svar i gruppa, men ennå ikke sendt det. Han spør om du vil si noe om bildet ditt først."
       ],
       "applies_when": {
         "flags_all": [
@@ -209,30 +209,30 @@
       "choices": [
         {
           "id": "fritid",
-          "label": "Svar i gruppa at bildet var fra en frikveld med broren.",
+          "label": "Skriv at du delte et bilde fra konserten med broren hans.",
           "effect": 0,
           "tags": [
             "frode_rw_forklarte_bildet"
           ],
-          "feedback": "Du forklarer sammenhengen med bildet. Du tar ikke stilling til om bemanningsplanen er rettferdig.",
+          "feedback": "Du forklarer anledningen til bildet. Frode tar over samtalen om planen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Bildet blir lest som en kommentar til vaktplanen",
-            "line": "«Takk. Jeg tar spørsmålet om vaktene på jobb.»"
+            "title": "Bjarne svarer på bildet",
+            "line": "«Takk. Jeg svarer Bjarne om vaktene.»"
           }
         },
         {
           "id": "plan",
-          "label": "La bildet stå, og be Frode svare selv på spørsmålet om vaktene.",
+          "label": "Be Frode svare på kommentaren selv.",
           "effect": 0,
           "tags": [
             "frode_rw_frode_svarte"
           ],
-          "feedback": "Du går ikke inn i uenigheten på hans vegne. Frode skriver at bemanningen må diskuteres med skiftet.",
+          "feedback": "Du sender ingen ny melding i gruppa. Frode sier at han skal svare Bjarne.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Bildet blir lest som en kommentar til vaktplanen",
-            "line": "«Det er mitt ansvar. Jeg svarer dem.»"
+            "title": "Bjarne svarer på bildet",
+            "line": "«Ja. Det er meg han spør.»"
           }
         }
       ],
@@ -256,10 +256,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Bildet blir værende hos familien",
+      "subject": "Per sendte bildet videre",
       "situation": [
-        "Du sendte bildet bare til brødrene. Frode forteller at Per har sendt det videre til moren deres. Hun har spurt når de to sist var ute sammen, og ingen av dem husker det helt.",
-        "Konserten endrer ikke uenigheten på jobb. Frode fikk likevel en kveld med Per, og de har avtalt å ringes før neste konsert."
+        "Frode skriver at moren deres har ringt etter at Per sendte henne bildet. Hun ville vite når de sist var ute sammen. «Jeg sa et par år. Per mente det var nærmere fem.»",
+        "De har avtalt at Per skal ringe før neste konsert, før Frode binder seg til noe annet. «Han kunne visst spille en hel kveld uten å ha meg ved døren», skriver Frode. «Men det var fint å være der.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -269,16 +269,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les meldingen.",
+          "label": "Les hilsenen fra brødrene.",
           "effect": 0,
           "tags": [
             "frode_rw_avsluttet_privat"
           ],
-          "feedback": "Bildet har blitt en del av familiens kveld. Du delte det ikke i kollegagruppa.",
+          "feedback": "Frode har sendt takken fra Per sammen med meldingen.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Bildet blir værende hos familien",
-            "line": "«Per takker for bildet.»"
+            "title": "Per sendte bildet videre",
+            "line": "«Han ba meg si at bildet ble bra.»"
           }
         }
       ],
@@ -303,10 +303,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "En bror du har hørt mer om",
+      "subject": "Låten som måtte begynne på nytt",
       "situation": [
-        "Du spurte om Per etter konserten. Frode sender en kort video bandet selv har lagt ut, og peker på stedet der sangeren kom inn for tidlig. Denne gangen kan du se hva han mente.",
-        "Frode har begynt å snakke med deg om noe fra sitt eget liv. Dere var ikke på konserten sammen, men samtalen ga deg kjennskap til broren hans."
+        "Frode følger opp spørsmålet ditt med en video bandet har lagt ut. Du hører sangeren begynne alene, så stopper han. Per slår fire tydelige slag med stikkene før de starter igjen.",
+        "«Der har du det», skriver Frode. «Per har allerede sendt klippet til sangeren tre ganger.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -316,16 +316,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Se videoen han sendte.",
+          "label": "Se videoen.",
           "effect": 0,
           "tags": [
             "frode_rw_avsluttet_samtale"
           ],
-          "feedback": "Du følger opp samtalen om konserten.",
+          "feedback": "Du ser opptrinnet Frode fortalte om fra konserten.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "En bror du har hørt mer om",
-            "line": "«Der har du det. Per lo av det etterpå også.»"
+            "title": "Låten som måtte begynne på nytt",
+            "line": "«Jeg sier fra hvis de legger ut resten også.»"
           }
         }
       ],
@@ -350,10 +350,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "En kort hilsen var nok",
+      "subject": "Hilsenen kom frem",
       "situation": [
-        "Du svarte kort på bildet. Frode hilste Per fra deg og lot samtalen bli med det. Han sender ikke flere videoer eller nye invitasjoner i denne omgang.",
-        "På jobb er uenigheten om bemanningen fortsatt der. Den private hilsenen din var ikke et standpunkt i den saken."
+        "Frode sender et kort svar etter at han har snakket med Per: «Han takker for hilsenen. Vi fant noen som kunne bruke den siste billetten også.»",
+        "Du lukker samtalen etter den korte beskjeden fra ham."
       ],
       "applies_when": {
         "flags_all": [
@@ -363,16 +363,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Avslutt samtalen.",
+          "label": "Les svaret.",
           "effect": 0,
           "tags": [
             "frode_rw_avsluttet_hilsen"
           ],
-          "feedback": "Kontakten forblir kort i denne omgang.",
+          "feedback": "Hilsenen din er gitt videre til Per.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "En kort hilsen var nok",
-            "line": "«Vi snakkes.»"
+            "title": "Hilsenen kom frem",
+            "line": "«Ha det fint.»"
           }
         }
       ],
@@ -397,10 +397,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Frodes frikveld og skiftets belastning",
+      "subject": "Bildet og vaktene",
       "situation": [
-        "Du forklarte at bildet var tatt da Frode hadde fri. Bjarne svarer at han skjønte det, men at han fortsatt mener bemanningen er skjev. Frode har avtalt å gå gjennom planen med skiftet.",
-        "Forklaringen ryddet opp i hva bildet viste. Den avgjorde ikke hvem som skal ta de krevende oppgavene. Frode må fortsatt stå for den planen han har laget."
+        "Bjarne svarer på forklaringen din: «Skjønte at det var broren. Det er fortsatt vi som får de to tunge oppgavene.» Frode skriver at han vil gå gjennom fordelingen med B-skiftet og legger ut tidspunktet.",
+        "Til deg skriver han: «Jeg ba deg dele bildet. Så ble du stående med svaret til Bjarne. Det skulle jeg tatt med en gang.» Han sender også en takk fra Per for originalen."
       ],
       "applies_when": {
         "flags_all": [
@@ -410,16 +410,16 @@
       "choices": [
         {
           "id": "lest",
-          "label": "Les svaret i samtalen.",
+          "label": "Les svarene fra Bjarne og Frode.",
           "effect": 0,
           "tags": [
             "frode_rw_avsluttet_forklart"
           ],
-          "feedback": "Du har forklart din egen melding. Arbeidsspørsmålet blir stående til gjennomgangen med skiftet.",
+          "feedback": "Frode har svart på kritikken selv og avtalt en gjennomgang med skiftet.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Frodes frikveld og skiftets belastning",
-            "line": "«Jeg følger opp planen.»"
+            "title": "Bildet og vaktene",
+            "line": "«Jeg har bedt dem ta med alternativene til fordelingen.»"
           }
         }
       ],
@@ -444,10 +444,10 @@
         "leisure"
       ],
       "from": "Frode Aas",
-      "subject": "Frode tok svaret selv",
+      "subject": "Frode svarer i gruppa",
       "situation": [
-        "Du ba Frode svare selv på kommentaren om vaktene. Han skriver i gruppa at Per er broren hans og at han hadde fri. Deretter avtaler han en gjennomgang av bemanningen med skiftet.",
-        "Du har ikke forsvart planen eller sendt inn nye opplysninger om den. Frode har selv svart for både konserten og ansvaret på jobb."
+        "Frode skriver under bildet at Per er broren hans, og at konserten var på en planlagt frikveld. Så svarer han på vaktspørsmålet: «Jeg satte opp fordelingen. Jeg vil gå gjennom de to oppgavene med dere.» Han foreslår et tidspunkt, og Bjarne bekrefter.",
+        "Frode sender deg en kort melding etterpå: «Nå er det avtalt. Per takker for bildet, forresten.»"
       ],
       "applies_when": {
         "flags_all": [
@@ -462,11 +462,11 @@
           "tags": [
             "frode_rw_avsluttet_frode_svar"
           ],
-          "feedback": "Samtalen om bildet er avsluttet. Bemanningen må fortsatt behandles med dem som er berørt.",
+          "feedback": "Frode har tatt samtalen videre med Bjarne. Bildet av brødrene ligger fortsatt i tråden.",
           "npc_response": {
             "trust_delta": 0,
-            "title": "Frode tok svaret selv",
-            "line": "«Da tar jeg resten med skiftet.»"
+            "title": "Frode svarer i gruppa",
+            "line": "«Jeg tar planen med til gjennomgangen.»"
           }
         }
       ],
