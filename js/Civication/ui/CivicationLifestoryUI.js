@@ -860,6 +860,9 @@
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : "")))
       + renderPanelsHtml(view);
+    // When an asynchronous role adoption finishes, retire the prior role\x27s
+    // unanswerable inbox projection and expose this role\x27s current scene.
+    window.CivicationWaveAInboxBridge?.sync?.();
   }
 
   function bindDelegation(panel) {
