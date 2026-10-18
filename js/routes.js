@@ -650,9 +650,17 @@ async function fetchORSRouteGeoJSON(from, to) {
 }
 
 async function showWalkingRouteToPlace(place) {
+  const lat = Number(place?.lat);
+  const lon = Number(place?.lon ?? place?.lng);
+  if (!place || !Number.isFinite(lat) || !Number.isFinite(lon)) {
+    _toast("Stedet mangler kartkoordinater. Kan ikke vise gangrute.");
+    return;
+  }
   const map = _getMap();
-  if (!map) return;
-  if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return;
+  if (!map) {
+    _toast("Kartet er ikke klart. Prøv ruten igjen.");
+    return;
+  }
 
   if (typeof map.isStyleLoaded === "function" && !map.isStyleLoaded()) {
     map.once("load", () => showWalkingRouteToPlace(place));
@@ -666,7 +674,7 @@ async function showWalkingRouteToPlace(place) {
   }
 
   const from = [pos.lon, pos.lat];
-  const to   = [place.lon, place.lat];
+  const to   = [lon, lat];
 
   clearNavRoute();
 
