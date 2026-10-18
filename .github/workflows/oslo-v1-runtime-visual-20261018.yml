@@ -6,6 +6,9 @@ on:
     paths:
       - 'tests/oslo-v1-actual-runtime-visual-browser-audit.mjs'
       - '.github/workflows/oslo-v1-runtime-visual-20261018.yml'
+concurrency:
+  group: oslo-v1-visual-batch-20261018
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -70,4 +73,6 @@ jobs:
           git add reports/oslo-v1-runtime-visual-20261018/
           git diff --cached --quiet && exit 1
           git commit -m "report(oslo): capture actual app runtime PlaceCards at 390 and 768 pixels"
+          git fetch origin audit/oslo-v1-runtime-visual-20261018
+          git rebase origin/audit/oslo-v1-runtime-visual-20261018
           git push origin HEAD:audit/oslo-v1-runtime-visual-20261018
