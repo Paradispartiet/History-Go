@@ -2727,14 +2727,23 @@ function bindFooterActionsOnce() {
         window.showToast?.(tUI("ui.observations.notLoaded", "Observasjoner er ikke lastet"));
         return;
       }
+      const categoryId = String(place.categoryId || place.category || "").trim().toLowerCase();
+      // Observe what is relevant to the place, never impose a city-life lens
+      // on a cemetery, forest, stadium or an unrelated knowledge category.
+      const observation = ({
+        by: ["by", "by_byliv"],
+        historie: ["historie", "historie_spor"],
+        natur: ["natur", "natur_spor"],
+        sport: ["sport", "sport_anlegg"]
+      })[categoryId] || ["generell", "generell_spor"];
       void Promise.resolve(window.HGObservations.start({
         target: {
           targetId: String(place.id).trim(), targetType: "place",
-          subject_id: "by",
-          categoryId: String(place.categoryId || place.category || "by").trim(),
+          subject_id: observation[0],
+          categoryId: categoryId || "generell",
           title: place.name || place.title || String(place.id)
         },
-        lensId: "by_byliv"
+        lensId: observation[1]
       })).catch(error => {
         console.warn("[footer observer]", error);
         window.showToast?.("Kunne ikke åpne observasjonen.");
