@@ -1,0 +1,48 @@
+name: Compress Oslo browser evidence once
+on:
+  push:
+    branches:
+      - audit/oslo-v1-runtime-visual-20261018
+    paths:
+      - '.github/workflows/compress-oslo-v1-evidence-20261018.yml'
+permissions:
+  contents: write
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Keep actual screenshot overviews below report budget
+        run: |
+          python -m pip install --disable-pip-version-check pillow
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          out=Path("reports/oslo-v1-runtime-visual-20261018")
+          for w in (390,768):
+              dest=out/f"actual-placecard-{w}.jpg"
+              with Image.open(dest) as source:
+                  img=source.convert("RGB")
+                  img.thumbnail((1560,1900),Image.Resampling.LANCZOS)
+                  img.save(dest,"JPEG",quality=69,optimize=True,progressive=True)
+              size=dest.stat().st_size
+              print(dest,size)
+              if size>450_000: raise SystemExit("Contact sheet exceeds compact report budget")
+          PY
+      - name: Commit only compressed evidence
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/oslo-v1-runtime-visual-20261018/actual-placecard-390.jpg reports/oslo-v1-runtime-visual-20261018/actual-placecard-768.jpg
+          git diff --cached --quiet && exit 1
+          git commit -m "report(oslo): compress real browser evidence below repository budget"
+          git fetch origin audit/oslo-v1-runtime-visual-20261018
+          git rebase origin/audit/oslo-v1-runtime-visual-20261018
+          git push origin HEAD:audit/oslo-v1-runtime-visual-20261018
