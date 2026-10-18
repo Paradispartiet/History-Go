@@ -6,6 +6,17 @@ Dette dokumentet bygger videre på det allerede publiserte skjema- og synopsisgr
 **(1)** bøker fra brukerens kuraterte Goodreads-arbeidsbok, **(2)** IMDb-filmreferanser, **(3)** tilsvarende HG Film Producer-scenario-ID-er.
 Disse tre mediekildene er ikke de samme som litterære spor `L01–L24`, de sju valgfrie Booker-linsene `P01–P07` og Civications fortellingstyper `C01–C24`; de tre sistnevnte er analyse- og dekningsakser.
 
+
+## Tredje produksjonsbolk – Wave C (18. oktober 2026)
+
+Den tredje bolken er samlet i `data/Civication/lifestory/editorial/inspiration/waveAThirdInstallmentsV1.json` og i de eksisterende, validerte rolle- og fortsettelsespakkene. Den omfatter **17 nye scener og 34 valg** fordelt på alle de åtte typene (C01/C02/C03/C05/C06/C07/C17: to hver; C23: tre). Samlet innhold etter denne PR-en vil være **91 scener / 182 valg** på tvers av Wave A, B og C. Disse er ulike betingede scener, ikke én påtvunget spillerreise.
+
+Wave C er *konsekvensstyrt*: Ingen scene er automatisk tilgjengelig bare fordi spilleren har nådd en kalenderdag. Den krever et konkret valg fra Wave B og bruker samme `LifestoryRunner`, `LifestoryState` og innboksadapter som før. Hvis grunnlaget mangler i en eldre lagringsfil, finnes det ikke noe retrospektivt møte, besøk, vedtak, betaling, rengjort rom, publisering eller svar fra en person.
+
+Produksjonskontrollen ligger i `tests/civication-source-grounded-wave-c.test.js` og skal kontrollere hver av de **34 valgrutene** mot faktisk kandidatutvelgelse, valgeffekt og uforandret historikk. Kontrollerte fortsettelsespakker for C02, C03, C07 og C23 beholder sine opprinnelige livsrolle- og badge-vilkår. Fortsettelseskravene om minst fire dramaturgiske kapitler per historie er ikke automatisk oppfylt av tre bolker, og full nettlesergjennomspilling av hvert enkelt spor er ennå ikke dokumentert.
+
+**Kildepolitikk:** Tredje bolk arver `problem_ids`, `blueprint_id` og `work_ids` fra de kildeforankrede grunnsynopsene og dermed lenkingen mellom den kuraterte Goodreads-arbeidsboken, IMDb og Film Producer. Fortellerkonfliktene er redaksjonelle, ikke kopierte handlingsforløp eller påstått dokumentasjon fra nærlesning.
+
 ## Faktisk kildegrunnlag
 
 Den tidligere lagrede, private arbeidsboken `Civication_samtidsfortellinger_og_litteraere_modeller.xlsx` inneholder et kuratert register `Alle 159` og arket `Civication 2026` med konkrete referanseverk for C01–C24. På grunnlag av disse er nå **24 av 24** synopsisene koblet til et faktisk verk fra arbeidsbokens 4–5-stjernersutvalg. Dette er en kontroll av **arbeidsbokens metadata**, ikke av en fersk original CSV og ikke en påstand om at bøkene nå er nærleset. Brukerens egne stjerner, datoer og notater lagres ikke i GitHub.
