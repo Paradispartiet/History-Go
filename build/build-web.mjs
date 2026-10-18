@@ -156,6 +156,13 @@ async function run() {
   await build(mappedOptions);
   await build(startupOptions);
   await build(compactStartupOptions);
+  // Diagnostic only on the PR branch: expose exact generated difference so the
+  // committed browser bundle can be synced without changing deployment logic.
+  if (process.env.CI) {
+    const { execFileSync } = await import("node:child_process");
+    const diff = execFileSync("git", ["diff", "--", "dist/web/place-card-quizcards-patch.js"], { encoding: "utf8" });
+    if (diff) console.log("[footer bundle sync diff]\\n" + diff.slice(0, 16000));
+  }
   console.log(`[build:web] built ${SOURCE_MAPPED_ENTRIES.length + STARTUP_ENTRIES.length + COMPACT_STARTUP_ENTRIES.length} entry/entries -> dist/web`);
 }
 
