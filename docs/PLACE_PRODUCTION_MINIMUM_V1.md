@@ -20,6 +20,15 @@ Et ordinært sted kan betegnes `v1` først når alle disse punktene er oppfylt:
 4. **QuizCard:** Ett reelt quizkort for samme sted med **de samme ti spørsmålene** og korrekt fasit. Gjenbruk et eksisterende QuizCard framfor å lage dubletter. Registrer korrekt `categoryId`, `targetId` og runtime-/PlaceCard-kobling.
 5. **Publiserbar integrasjon:** Riktig quizregistrering, image/QuizCard-binding og nødvendig materialisering til runtime; én målrettet relevant kontroll av den ferdige bolken, samt ordinær PR-mergeport.
 
+### Visuell bildekvalitet er en del av v1-porten
+
+- **Velg motivet før du beskjærer:** Bildet skal dokumentere det konkrete stedet og være visuelt leselig som liten miniatyr, stående PlaceCard og bredt toppbilde. Et tilfeldig hyggelig bilde fra serveringsstedet, nabolaget eller en konsert er ikke automatisk et godt stedsbilde. Unngå dominante biler, reklameflater, tom himmel og utsnitt som skjuler selve objektet.
+- **Tre selvstendige bildevarianter:** `image` for stedsflaten, `frontImage` for stående PlaceCard og `cardImage` for kort/listning. Produksjonsmål for nye foto er henholdsvis **1400×900**, **900×1350** og **900×600** WebP. Velg og forhåndsvis hvert av de tre utsnittene fra lisensiert original, ikke bare ett felles sentrert autokutt.
+- **Utsnitt i appen:** For historiske eller brede motiver som fungerer forskjellig i mobil og toppbanner, lagre `imageComposition.portraitPosition` og `imageComposition.heroPosition` som prosentverdier, f.eks. `"50% 60%"`. Stedsfoto kan fylle med `cover`; **hele QuizCard-illustrasjonen skal alltid vises med `contain`**, uten ekstra zoom.
+- **Visuell gjennomgang:** Se et oversiktsark med faktisk stående 3:4-bilde og en simulert bred toppbeskjæring for hvert sted. Kontroller at hovedmotiv, skilting, arkitektur eller landskap fortsatt er synlig. Når mulig skal også PlaceCard, flipping til QuizCard, miniatur og toppbilde kontrolleres i kjørende app med smal mobilskjerm og bredere skjerm.
+- **Rettigheter, representasjon og status:** Registrer fotograf, lisens, Commons-kilde og bearbeiding. Historiske malerier eller fotografier må merkes som slike, ikke som dagens utsikt. Et forhåndsvist bilde eller bestått CSS-/datatest gir **ikke** automatisk `v1`: faktisk app-visning må være dokumentert, ellers behold `v1_candidate` og registrer hva som gjenstår.
+- **Effektivitet:** Gjennomfør motivvalg, tre utsnitt, visuell kontroll, stedsmetadata og runtime-materialisering som én produksjonsbolk. Hopp over uegnede eller rettighetsuavklarte motiver uten å blokkere resten. Bare endringsrelevante tester og ordinær PR-CI, ikke full katalogregresjon for hvert bilde.
+
 **Eksisterende gode pakker skal ikke nedgraderes.** Hvis et sted har en større, kildebasert quiz, behold denne og bruk ti passende spørsmål på QuizCard – ikke fjern spørsmål bare for å oppnå nøyaktig ti. Tallet ti er *minimumet og målet for ny v1-quiz*, ikke et tak for tidligere fullført innhold.
 
 ### Teknisk kontrakt for ti-spørsmålsquiz
