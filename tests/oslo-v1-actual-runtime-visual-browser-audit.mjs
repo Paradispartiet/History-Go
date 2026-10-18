@@ -57,6 +57,9 @@ try{
    // Let app/router startup settle before opening the first place, otherwise
    // a late initial-hide can race with the first PlaceCard request.
    await page.waitForTimeout(850);
+   // A delayed first-visit modal can reopen after the first dismissal.
+   // Use its actual close control; do not hide it with test-only CSS.
+   await page.evaluate(()=>document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
   }catch(e){report.blockers.push({width,reason:"Native index/app boot unavailable",error:String(e).slice(0,380),pageErrors:errs.slice(0,6)});}
   for(const place of places){
    const problems=[],snapshots=[];
@@ -74,6 +77,10 @@ try{
      },place)!==false;
      if(!open)problems.push("openPlaceCard returned false");
      await page.waitForTimeout(450);
+     // Check for a delayed onboarding overlay after each actual PlaceCard open.
+     await page.evaluate(()=>document.querySelector("#hgOnboardingModal .hg-onb-close")?.click());
+     const overlay=await page.locator("#hgOnboardingModal").evaluate(m=>m.getAttribute("aria-hidden")==="false" && getComputedStyle(m).display!=="none").catch(()=>false);
+     if(overlay)problems.push("Welcome modal still obstructs PlaceCard");
     }catch(e){problems.push("openPlaceCard: "+String(e).slice(0,240));}
     try{
      media=await page.evaluate(()=>{
