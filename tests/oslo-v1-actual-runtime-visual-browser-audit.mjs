@@ -129,7 +129,12 @@ try{
            !!content.querySelector(".pc-rendered-quiz-card");
        },{timeout:10000});
        await page.waitForTimeout(250);
-       await page.locator("#pcFrontCardFlip").click({timeout:5500,force:true});
+       const flipCard=page.locator("#pcFrontCardFlip");
+       const bounds=await flipCard.boundingBox();
+       if(!bounds)throw Error("QuizCard has no clickable bounds");
+       // The pinned hero may cover the card center after screenshot scrolling.
+       // Click its visible lower-left area with normal pointer-hit checks.
+       await flipCard.click({timeout:5500,position:{x:20,y:Math.max(20,bounds.height-24)}});
        await page.waitForTimeout(500);
        flip=await page.evaluate(()=>{
         const card=document.querySelector("#pcFrontCardFlip");
