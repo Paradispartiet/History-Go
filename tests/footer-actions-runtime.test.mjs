@@ -211,3 +211,35 @@ test("Events and Meet work for a selected place missing from the lightweight PLA
     dom.window.close();
   }
 });
+
+test("collapsed PlaceCard thumbnail reopens the selected card through its real controller", () => {
+  const dom = new JSDOM('<!doctype html><body>' +
+    '<div id="placeCard" data-current-place-id="test-place"></div>' +
+    '<button id="pcMini" type="button" aria-hidden="true"><img id="pcMiniImg" alt=""></button>' +
+    '</body>', {url: "https://history-go.test/", runScripts: "outside-only"});
+  try {
+    const w = dom.window;
+    const transitions = [];
+    w.bottomSheetController = {
+      hide: () => transitions.push("hide"),
+      open: () => transitions.push("open"),
+    };
+    const start = card.indexOf("function setPlaceCardMiniVisible(on)");
+    const end = card.indexOf('window.addEventListener("hg:langchange"', start);
+    assert.ok(start !== -1 && end > start, "actual PlaceCard collapse controller found");
+    w.eval(card.slice(start, end));
+    w.initPlaceCardCollapse();
+    w.collapsePlaceCard();
+    const mini = w.document.getElementById("pcMini");
+    assert.equal(w.isPlaceCardCollapsed(), true);
+    assert.equal(mini.style.display, "block");
+    assert.equal(mini.getAttribute("aria-hidden"), "false");
+    mini.click();
+    assert.equal(w.isPlaceCardCollapsed(), false);
+    assert.equal(mini.style.display, "none");
+    assert.equal(mini.getAttribute("aria-hidden"), "true");
+    assert.deepEqual(transitions.slice(-2), ["hide", "open"]);
+  } finally {
+    dom.window.close();
+  }
+});
