@@ -22,7 +22,10 @@ test("canonical Note, Observation and Routes APIs load before place selection", 
   assert.ok(notes < placeCard && observations < placeCard, "both actions available before PlaceCard binding");
   assert.ok(routes > placeCard && routes < routerStart, "Routes available before the first routed place");
   assert.equal((app.match(/loadScriptOnce\("js\/routes\.js/g) || []).length, 1, "one route-runtime load");
-  assert.match(card, /if \(btnNote\) \{\s*btnNote\.onclick = \(\) => \{/);
+  assert.match(card, /function bindFooterActionsOnce\(\)/);
+  assert.match(card, /function getFooterActionPlace\(\)/);
+  assert.match(card, /document\.addEventListener\("click", \(e\) => \{/);
+  assert.doesNotMatch(card, /btn(?:Quiz|Route|Note|Obs)\.onclick\s*=/);
   assert.match(card, /window\.handlePlaceNote\(place\)/);
   assert.match(card, /window\.HGObservations\.start\(\{/);
   assert.match(card, /window\.HGNearbyDrawer\?\.open\?\.\(\)/);
