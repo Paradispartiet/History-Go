@@ -98,16 +98,6 @@
     return true;
   }
 
-  /**
-   * Scener spilleren kan stå i akkurat nå: riktig dag og fase, tråden er
-   * spillbar (active/escalated), scenen er ikke spilt, conditions er
-   * oppfylt, og den er enten en start-scene eller eksplisitt låst opp av
-   * et tidligere valg.
-   * @param {any} state
-   * @param {any} content
-   * @returns {any[]}
-   */
-
   // Fortsettelser i delt privatliv bruker spillerens livsdag, ikke den
   // aktive jobbrollens lokale kapiteldag.
   function sceneDue(state, scene) {
@@ -126,6 +116,13 @@
       && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => state.tidligereValg[key] === value));
   }
 
+  /**
+   * Scener spilleren kan stå i akkurat nå: riktig dag, fase, aktiv tråd
+   * og eventuelle tidsankre fra faktisk spilte private valg.
+   * @param {any} state
+   * @param {any} content
+   * @returns {any[]}
+   */
   function getCandidateScenes(state, content) {
     if (isContinuationPaused(state, content)) return [];
     return content.scenes.filter((scene) =>
