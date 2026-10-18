@@ -111,7 +111,7 @@ test('C01: single source of truth for Min dag, inbox answer, rejection and dupli
     assert.equal(mail.getMail(event.id).resolved, true);
     const snapshot = clone(state);
     assert.equal((await mail.answerMail(event.id, event.choices[0].id)).ok, false);
-    assert.deepEqual(window.CivicationLifestoryState.load(), snapshot);
+    assert.deepEqual(clone(window.CivicationLifestoryState.load()), snapshot);
   } finally { h.dom.window.close(); }
 });
 
@@ -139,7 +139,7 @@ test('pause and return preserve a private wave-A agreement and pending envelope'
     assert.ok(pause, 'real pause control');
     pause.click();
     assert.equal(mail.getMail(pending.id).archived, true);
-    assert.deepEqual(window.CivicationLifestoryState.load().arkiv, archiveBefore);
+    assert.deepEqual(clone(window.CivicationLifestoryState.load().arkiv), archiveBefore);
     const resume = panel.querySelector('[data-wave-a-thread="wave_a_c01"][data-wave-a-command="resume"]');
     assert.ok(resume, 'real resume control');
     resume.click();
@@ -154,7 +154,7 @@ test('pause and return preserve a private wave-A agreement and pending envelope'
     ui.getPendingWaveAEvent = original; // Return to the previous active role.
     window.CivicationWaveAInboxBridge.sync();
     assert.equal(mail.getMail(pending.id).archived, false);
-    assert.deepEqual(window.CivicationLifestoryState.load().arkiv, archiveBefore);
+    assert.deepEqual(clone(window.CivicationLifestoryState.load().arkiv), archiveBefore);
   } finally { h.dom.window.close(); }
 });
 
