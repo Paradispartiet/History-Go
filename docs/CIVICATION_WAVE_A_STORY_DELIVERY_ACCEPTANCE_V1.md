@@ -48,3 +48,14 @@ Når den nye bolken med 89 scener er committed, føyes **én målrettet innboks/
 ### Kilde- og redaksjonsgrense
 
 De tre inspirasjonssporene – kuratert Goodreads, IMDb og HG Film Producer – beholdes fra første bolks dokumenterte bindingsfiler. En sceneovergang validerer ikke nærlesning av bok/film, kanonisering av innhold eller litterær sluttgodkjenning. Ingen ny personbiografi, rettighetsfullmakt eller økonomisk handling skapes implisitt.
+
+## Teknisk implementasjon i denne PR-en
+
+- `js/Civication/lifestory/civicationWaveAInboxBridge.js` oppretter en *projeksjon* av den nåværende, faktisk kvalifiserte Life Story-scenen i den kanoniske Civication-innboksen. Hendelsen har stabil scene-/rolle-ID og sendes kun når runneren tilbyr scenen. Den er **ikke** en ny fortellingsmotor eller et alternativt kildearkiv.
+- `CivicationMailEngine.answerMail` sender disse spesifikt merkede meldingene til `CivicationLifestoryUI.answerWaveAChoice`. Bare den eksisterende `LifestoryRunner.applyChoice` og `LifestoryState.save` oppdaterer spillerens fortelling. Et svar fra «Min dag» løser også innbokskopien; et svar fra innboksen dukker umiddelbart opp i den samme «Min dag»-historikken.
+- `ChoiceDirector` får en avgrenset middleware for eldre direkte EventEngine-svarflater; den hindrer at ordinær EventEngine-poengberegning brukes som en ny valgeffekt på Life Story-valg.
+- Ved jobb-/rollebytte eller pause arkiveres en foreløpig utilgjengelig Wave-A-melding uten å bli markert som besvart. Retur til **samme kvalifiserte scene** åpner den identiske ubesvarte meldingen. En eksplisitt avslutning bruker den etablerte `threadState`, ikke en ny statusdatabase.
+- «Min dag» viser åtte C-spor samlet på tvers av aktuell rolle og inaktive rollesnapshots og merker tidligere rolle som historikk. Særlig avtalt tur, prøve og vakt vises som **uavklart gjennomføring** til et eksplisitt utfall finnes.
+- `tests/civication-wave-a-inbox-integration.test.js` kontrollerer faktisk DOM, kanonisk innboks og valgrunner for C01/C06, avviste/doble svar, pause/retur samt kildebindningene til alle åtte. `tests/civication-wave-a-transition-safety.test.js` dekker overgangsreglene i Life Story.
+
+**Gjenstående avgrensning:** Dette er en adapter for publiserte Life Story-scener (**74 / 148**), ikke en utgivelse av den nevnte upubliserte **89 / 178**-bolken. Privat historikk vises etter rollebytte og kan gjenopptas når scenen igjen er kvalifisert, men kontinuerlig levering av *alle* private kapitler mens spilleren er i en annen aktiv jobbrolle krever fortsatt en situasjonsstyrt sceneinstallasjon i den ordinære narrativkilden. Den er ikke implementert eller testet av denne adapteren. Likeledes er full browserakseptanse for hvert C-spor ikke dokumentert før reelle nettleserforløp er kjørt. Ikke merk hele integrasjonen som godkjent på grunnlag av bare denne PR-en.
