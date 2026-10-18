@@ -44,7 +44,7 @@
    * @property {number} dag
    * @property {number} [livsdag] Felles fortellingsdag; eldre v2-saves mangler feltet
    * @property {number} [kalenderDag] Siste Civication-kalenderdag som Life Story har fulgt
-   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
+   * @property {any} [privatHistorie] Felles C01/C05-arkiv med flagg, tidsankre og relasjoner\n   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
    * @property {Array<{fra: string, til: string, livsdag: number, fraDag: number, tilDag: number}>} [rolleBytter]
    * @property {string} fase
    * @property {Record<string, number>} meters
