@@ -1,0 +1,569 @@
+{
+  "version": 1,
+  "status": "authored_wave_d_pending_ci",
+  "installment": 4,
+  "scope_note": "Fjerde avgrensede dramaturgiske innholdsbolk: 34 valgspesifikke konsekvensscener og 68 valg fra 34 faktiske Wave C-alternativer. Ikke likestilt med et komplett fjerde, tidsmessig separat kapittel for alle historier: enkelte tilbakekomster er samme spilledag fordi gjeldende kapittel slutter denne dagen. Ingen nye jobb-/privatlivsroller eller vedtaksmyndighet er opprettet.",
+  "verification": {
+    "command": "node --test tests/civication-source-grounded-wave-d.test.js",
+    "stories": 8,
+    "new_scenes": 34,
+    "new_choices": 68,
+    "prior_scenes": 91,
+    "prior_choices": 182,
+    "expected_total_scenes": 125,
+    "expected_total_choices": 250,
+    "browser_verified": false
+  },
+  "stories": [
+    {
+      "story_type_id": "C01",
+      "blueprint_id": "blueprint-wave-a-c01",
+      "problem_ids": [
+        "problem-c01-jobbtap-og-verdighet"
+      ],
+      "work_ids": [
+        "book-vernon-subutex-1-vernon-subutex-1",
+        "film-tt5168192"
+      ],
+      "runtime_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "thread_ids": [
+        "wave_d_c01"
+      ],
+      "scene_ids": [
+        "wave_d_c01_selskap_uten_rad_avtal_grense",
+        "wave_d_c01_selskap_uten_rad_behold_telefon",
+        "wave_d_c01_sporsmal_uten_dom_sett_ord",
+        "wave_d_c01_sporsmal_uten_dom_ta_tiden"
+      ],
+      "days": [
+        7
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c01_selskap_uten_rad_avtal_grense",
+          "after_scene": "wave_c_c01_selskap_uten_rad",
+          "after_choice": "avtal_grense",
+          "after_flag": {
+            "wa_c_c01_etterspill": "dato_senere"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c01_selskap_uten_rad_behold_telefon",
+          "after_scene": "wave_c_c01_selskap_uten_rad",
+          "after_choice": "behold_telefon",
+          "after_flag": {
+            "wa_c_c01_etterspill": "telefon_foreslaatt"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c01_sporsmal_uten_dom_sett_ord",
+          "after_scene": "wave_c_c01_sporsmal_uten_dom",
+          "after_choice": "sett_ord",
+          "after_flag": {
+            "wa_c_c01_etterspill": "grense_forklart"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c01_sporsmal_uten_dom_ta_tiden",
+          "after_scene": "wave_c_c01_sporsmal_uten_dom",
+          "after_choice": "ta_tiden",
+          "after_flag": {
+            "wa_c_c01_etterspill": "pause_respektert"
+          },
+          "day": 7,
+          "phase": "kveld"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C02",
+      "blueprint_id": "blueprint-wave-a-c02",
+      "problem_ids": [
+        "problem-c02-muligheten-uten-garanti"
+      ],
+      "work_ids": [
+        "book-the-brooklyn-follies",
+        "film-tt2125608"
+      ],
+      "runtime_path": "data/Civication/lifestory/continuations/musikk_med_mira.json",
+      "thread_ids": [
+        "wave_d_c02"
+      ],
+      "scene_ids": [
+        "wave_d_c02_gi_skuffelsen_plass_del_egen_erfaring",
+        "wave_d_c02_gi_skuffelsen_plass_behold_grensen",
+        "wave_d_c02_egen_laat_ett_innspill",
+        "wave_d_c02_egen_laat_be_om_tid"
+      ],
+      "days": [
+        10
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c02_gi_skuffelsen_plass_del_egen_erfaring",
+          "after_scene": "wave_c_c02_gi_skuffelsen_plass",
+          "after_choice": "del_egen_erfaring",
+          "after_flag": {
+            "wa_c_c02_etterspill": "erfaring_delt"
+          },
+          "day": 10,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c02_gi_skuffelsen_plass_behold_grensen",
+          "after_scene": "wave_c_c02_gi_skuffelsen_plass",
+          "after_choice": "behold_grensen",
+          "after_flag": {
+            "wa_c_c02_etterspill": "grense_bekreftet"
+          },
+          "day": 10,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c02_egen_laat_ett_innspill",
+          "after_scene": "wave_c_c02_egen_laat",
+          "after_choice": "ett_innspill",
+          "after_flag": {
+            "wa_c_c02_etterspill": "ett_rad"
+          },
+          "day": 10,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c02_egen_laat_be_om_tid",
+          "after_scene": "wave_c_c02_egen_laat",
+          "after_choice": "be_om_tid",
+          "after_flag": {
+            "wa_c_c02_etterspill": "lytting_utsatt"
+          },
+          "day": 10,
+          "phase": "kveld"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C03",
+      "blueprint_id": "blueprint-wave-a-c03",
+      "problem_ids": [
+        "problem-c03-dr-mmen-og-regningene"
+      ],
+      "work_ids": [
+        "book-imot-kunsten",
+        "film-tt5247022"
+      ],
+      "runtime_path": "data/Civication/lifestory/continuations/sideprosjekt_neste_steg.json",
+      "thread_ids": [
+        "wave_d_c03"
+      ],
+      "scene_ids": [
+        "wave_d_c03_prototypens_grense_legg_ved_begrensning",
+        "wave_d_c03_prototypens_grense_vent_med_deling",
+        "wave_d_c03_aapent_forsok_velg_ett_maal",
+        "wave_d_c03_aapent_forsok_stopp_paastanden"
+      ],
+      "days": [
+        12
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c03_prototypens_grense_legg_ved_begrensning",
+          "after_scene": "wave_c_c03_prototypens_grense",
+          "after_choice": "legg_ved_begrensning",
+          "after_flag": {
+            "wa_c_c03_deling": "begrenset_foreslaatt"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c03_prototypens_grense_vent_med_deling",
+          "after_scene": "wave_c_c03_prototypens_grense",
+          "after_choice": "vent_med_deling",
+          "after_flag": {
+            "wa_c_c03_deling": "utsatt"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c03_aapent_forsok_velg_ett_maal",
+          "after_scene": "wave_c_c03_aapent_forsok",
+          "after_choice": "velg_ett_maal",
+          "after_flag": {
+            "wa_c_c03_deling": "test_planlagt"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c03_aapent_forsok_stopp_paastanden",
+          "after_scene": "wave_c_c03_aapent_forsok",
+          "after_choice": "stopp_paastanden",
+          "after_flag": {
+            "wa_c_c03_deling": "paastand_trukket"
+          },
+          "day": 12,
+          "phase": "kveld"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C05",
+      "blueprint_id": "blueprint-wave-a-c05",
+      "problem_ids": [
+        "problem-c05-byrakratiet-og-personen"
+      ],
+      "work_ids": [
+        "book-jesu-barndom",
+        "film-tt0088846"
+      ],
+      "runtime_path": "data/Civication/lifestory/roles/arbeidsledig/scenes.json",
+      "thread_ids": [
+        "wave_d_c05"
+      ],
+      "scene_ids": [
+        "wave_d_c05_mottak_uten_vedtak_skill_mottak",
+        "wave_d_c05_mottak_uten_vedtak_sjekk_riktig_tid",
+        "wave_d_c05_lesbarheten_be_om_presist_svar",
+        "wave_d_c05_lesbarheten_lagre_begrensning"
+      ],
+      "days": [
+        7
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c05_mottak_uten_vedtak_skill_mottak",
+          "after_scene": "wave_c_c05_mottak_uten_vedtak",
+          "after_choice": "skill_mottak",
+          "after_flag": {
+            "wa_c_c05_saksstatus": "mottak_ikke_vedtak"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c05_mottak_uten_vedtak_sjekk_riktig_tid",
+          "after_scene": "wave_c_c05_mottak_uten_vedtak",
+          "after_choice": "sjekk_riktig_tid",
+          "after_flag": {
+            "wa_c_c05_saksstatus": "egen_paminnelse"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c05_lesbarheten_be_om_presist_svar",
+          "after_scene": "wave_c_c05_lesbarheten",
+          "after_choice": "be_om_presist_svar",
+          "after_flag": {
+            "wa_c_c05_saksstatus": "lesbarhet_etterspurt"
+          },
+          "day": 7,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c05_lesbarheten_lagre_begrensning",
+          "after_scene": "wave_c_c05_lesbarheten",
+          "after_choice": "lagre_begrensning",
+          "after_flag": {
+            "wa_c_c05_saksstatus": "kontroll_uavklart"
+          },
+          "day": 7,
+          "phase": "kveld"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C06",
+      "blueprint_id": "blueprint-wave-a-c06",
+      "problem_ids": [
+        "problem-c06-faglig-integritet-under-press"
+      ],
+      "work_ids": [
+        "book-professor-andersens-natt",
+        "film-tt0050083"
+      ],
+      "runtime_path": "data/Civication/lifestory/roles/arealplanlegger/scenes.json",
+      "thread_ids": [
+        "wave_d_c06"
+      ],
+      "scene_ids": [
+        "wave_d_c06_det_delvise_notatet_merk_utvalget",
+        "wave_d_c06_det_delvise_notatet_be_faglig_kontroll",
+        "wave_d_c06_hullet_i_saken_skriv_reservasjon",
+        "wave_d_c06_hullet_i_saken_be_om_tid"
+      ],
+      "days": [
+        7
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c06_det_delvise_notatet_merk_utvalget",
+          "after_scene": "wave_c_c06_det_delvise_notatet",
+          "after_choice": "merk_utvalget",
+          "after_flag": {
+            "wa_c_c06_dokumentasjon": "begrensning_merket"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c06_det_delvise_notatet_be_faglig_kontroll",
+          "after_scene": "wave_c_c06_det_delvise_notatet",
+          "after_choice": "be_faglig_kontroll",
+          "after_flag": {
+            "wa_c_c06_dokumentasjon": "kontroll_forespurt"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c06_hullet_i_saken_skriv_reservasjon",
+          "after_scene": "wave_c_c06_hullet_i_saken",
+          "after_choice": "skriv_reservasjon",
+          "after_flag": {
+            "wa_c_c06_dokumentasjon": "faglig_reservasjon"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c06_hullet_i_saken_be_om_tid",
+          "after_scene": "wave_c_c06_hullet_i_saken",
+          "after_choice": "be_om_tid",
+          "after_flag": {
+            "wa_c_c06_dokumentasjon": "lederavklaring_spurt"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C07",
+      "blueprint_id": "blueprint-wave-a-c07",
+      "problem_ids": [
+        "problem-c07-tilh-righet-mot-frihet"
+      ],
+      "work_ids": [
+        "book-vernon-subutex-1-vernon-subutex-1",
+        "film-tt4082068"
+      ],
+      "runtime_path": "data/Civication/lifestory/continuations/miljo_navnet_ditt.json",
+      "thread_ids": [
+        "wave_d_c07"
+      ],
+      "scene_ids": [
+        "wave_d_c07_vil_vaere_der_sporramme",
+        "wave_d_c07_vil_vaere_der_tilby_en_gang",
+        "wave_d_c07_egen_avstand_si_det_tydelig",
+        "wave_d_c07_egen_avstand_stopp_varsel"
+      ],
+      "days": [
+        12
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c07_vil_vaere_der_sporramme",
+          "after_scene": "wave_c_c07_vil_vaere_der",
+          "after_choice": "sporramme",
+          "after_flag": {
+            "wa_c_c07_grense": "besok_uten_vakt"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c07_vil_vaere_der_tilby_en_gang",
+          "after_scene": "wave_c_c07_vil_vaere_der",
+          "after_choice": "tilby_en_gang",
+          "after_flag": {
+            "wa_c_c07_grense": "oppgave_betinget"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c07_egen_avstand_si_det_tydelig",
+          "after_scene": "wave_c_c07_egen_avstand",
+          "after_choice": "si_det_tydelig",
+          "after_flag": {
+            "wa_c_c07_grense": "ikke_pa_liste"
+          },
+          "day": 12,
+          "phase": "kveld"
+        },
+        {
+          "scene_id": "wave_d_c07_egen_avstand_stopp_varsel",
+          "after_scene": "wave_c_c07_egen_avstand",
+          "after_choice": "stopp_varsel",
+          "after_flag": {
+            "wa_c_c07_grense": "gruppepause"
+          },
+          "day": 12,
+          "phase": "kveld"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C17",
+      "blueprint_id": "blueprint-wave-a-c17",
+      "problem_ids": [
+        "problem-c17-a-arbeide-seg-tom"
+      ],
+      "work_ids": [
+        "book-genanse-og-verdighet",
+        "film-tt0361862"
+      ],
+      "runtime_path": "data/Civication/lifestory/roles/renholder/scenes.json",
+      "thread_ids": [
+        "wave_d_c17"
+      ],
+      "scene_ids": [
+        "wave_d_c17_hyllen_staar_hold_aapent",
+        "wave_d_c17_hyllen_staar_fordel_ansvar",
+        "wave_d_c17_to_forskjellige_rom_vis_to_statuser",
+        "wave_d_c17_to_forskjellige_rom_be_leder_svare"
+      ],
+      "days": [
+        7
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c17_hyllen_staar_hold_aapent",
+          "after_scene": "wave_c_c17_hyllen_staar",
+          "after_choice": "hold_aapent",
+          "after_flag": {
+            "wa_c_c17_status": "tilkomst_blokkert"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c17_hyllen_staar_fordel_ansvar",
+          "after_scene": "wave_c_c17_hyllen_staar",
+          "after_choice": "fordel_ansvar",
+          "after_flag": {
+            "wa_c_c17_status": "ansvar_etterspurt"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c17_to_forskjellige_rom_vis_to_statuser",
+          "after_scene": "wave_c_c17_to_forskjellige_rom",
+          "after_choice": "vis_to_statuser",
+          "after_flag": {
+            "wa_c_c17_status": "to_omraader_forklart"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c17_to_forskjellige_rom_be_leder_svare",
+          "after_scene": "wave_c_c17_to_forskjellige_rom",
+          "after_choice": "be_leder_svare",
+          "after_flag": {
+            "wa_c_c17_status": "leder_oppfolging"
+          },
+          "day": 7,
+          "phase": "ettermiddag"
+        }
+      ]
+    },
+    {
+      "story_type_id": "C23",
+      "blueprint_id": "blueprint-wave-a-c23",
+      "problem_ids": [
+        "problem-c23-den-lille-feilen-som-ikke-forsvinner"
+      ],
+      "work_ids": [
+        "book-genanse-og-verdighet",
+        "film-tt0116282"
+      ],
+      "runtime_path": "data/Civication/lifestory/continuations/sideprosjekt_etter_neste_steg.json",
+      "thread_ids": [
+        "wave_d_c23"
+      ],
+      "scene_ids": [
+        "wave_d_c23_rettelsen_koster_erkjenn_kostnaden",
+        "wave_d_c23_rettelsen_koster_behold_ansvaret",
+        "wave_d_c23_malen_etter_feilen_skill_ny_praksis",
+        "wave_d_c23_malen_etter_feilen_be_om_evaluering",
+        "wave_d_c23_venter_pa_status_marker_ubekreftet",
+        "wave_d_c23_venter_pa_status_la_ansvaret_ligge"
+      ],
+      "days": [
+        16
+      ],
+      "entry_conditions": [
+        {
+          "scene_id": "wave_d_c23_rettelsen_koster_erkjenn_kostnaden",
+          "after_scene": "wave_c_c23_rettelsen_koster",
+          "after_choice": "erkjenn_kostnaden",
+          "after_flag": {
+            "wa_c_c23_etterspill": "kostnad_erkjent"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c23_rettelsen_koster_behold_ansvaret",
+          "after_scene": "wave_c_c23_rettelsen_koster",
+          "after_choice": "behold_ansvaret",
+          "after_flag": {
+            "wa_c_c23_etterspill": "dialog_aapen"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c23_malen_etter_feilen_skill_ny_praksis",
+          "after_scene": "wave_c_c23_malen_etter_feilen",
+          "after_choice": "skill_ny_praksis",
+          "after_flag": {
+            "wa_c_c23_etterspill": "ny_praksis_med_forbehold"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c23_malen_etter_feilen_be_om_evaluering",
+          "after_scene": "wave_c_c23_malen_etter_feilen",
+          "after_choice": "be_om_evaluering",
+          "after_flag": {
+            "wa_c_c23_etterspill": "evaluering_foreslaatt"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c23_venter_pa_status_marker_ubekreftet",
+          "after_scene": "wave_c_c23_venter_pa_status",
+          "after_choice": "marker_ubekreftet",
+          "after_flag": {
+            "wa_c_c23_etterspill": "svar_mangler"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        },
+        {
+          "scene_id": "wave_d_c23_venter_pa_status_la_ansvaret_ligge",
+          "after_scene": "wave_c_c23_venter_pa_status",
+          "after_choice": "la_ansvaret_ligge",
+          "after_flag": {
+            "wa_c_c23_etterspill": "ansvar_avgrenset"
+          },
+          "day": 16,
+          "phase": "ettermiddag"
+        }
+      ]
+    }
+  ]
+}
