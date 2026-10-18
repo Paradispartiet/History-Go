@@ -2475,135 +2475,7 @@ window.HGVisualPlaceRounds?.apply?.(place);
   
 if (btnInfo) btnInfo.onclick = () => window.showPlacePopup?.(place);
 
-// --- Quiz (ny motor) ---
-if (btnQuiz) {
-  btnQuiz.onclick = () => {
-    const targetId = String(place.id || "").trim();
-    if (!targetId) return;
-
-    const next = `#/quiz/${encodeURIComponent(targetId)}`;
-    if (window.HGAppRouter?.navigate) {
-      window.HGAppRouter.navigate(next);
-    } else if (location.hash !== next) {
-      location.hash = next;
-    }
-  };
-}
-
-// --- Rute ---
-if (btnRoute) {
-  btnRoute.onclick = (e) => {
-    e?.preventDefault?.();
-    e?.stopPropagation?.();
-
-    const wasOpen = Boolean(document.getElementById("pcRouteMenu"));
-    if (typeof window.__closePcRouteMenu === "function") {
-      window.__closePcRouteMenu();
-      if (wasOpen) return;
-    }
-
-    const footer = btnRoute.closest(".app-footer") || document.body;
-    const menu = document.createElement("div");
-    menu.id = "pcRouteMenu";
-    menu.className = "pc-route-menu";
-    menu.setAttribute("role", "menu");
-    menu.setAttribute("aria-label", tt("ui.routes.menuLabel", "Rutevalg"));
-    menu.innerHTML = `
-      <button type="button" role="menuitem" data-route-action="go">${tt("ui.routes.goHere", "Gå Hit")}</button>
-      <button type="button" role="menuitem" data-route-action="routes">${tt("ui.tabs.routes", "Ruter")}</button>
-    `;
-
-    const placeMenu = () => {
-      const footerRect = footer.getBoundingClientRect();
-      const btnRect = btnRoute.getBoundingClientRect();
-      menu.style.left = `${btnRect.left - footerRect.left + (btnRect.width / 2)}px`;
-    };
-
-    menu.addEventListener("click", (menuEvent) => {
-      menuEvent.preventDefault();
-      menuEvent.stopPropagation();
-
-      const action = /** @type {any} */ (menuEvent.target)?.closest?.("[data-route-action]")?.dataset?.routeAction;
-      if (!action) return;
-
-      window.__closePcRouteMenu?.();
-
-      if (action === "go") {
-        if (typeof window.showNavRouteToPlace === "function") return window.showNavRouteToPlace(place);
-        if (typeof window.showRouteTo === "function") return window.showRouteTo(place);
-        window.showToast?.(tt("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
-        return;
-      }
-
-      if (action === "routes") {
-        const modeSelect = /** @type {HTMLSelectElement|null} */ (document.getElementById("leftPanelMode"));
-        if (modeSelect) {
-          modeSelect.value = "routes";
-          modeSelect.dispatchEvent(new Event("change", { bubbles: true }));
-        }
-        if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
-        else window.HGLeftPanelMode?.setMode?.("routes");
-        // The route panel is a closed drawer until explicitly opened. Selecting
-        // the Ruter tab without opening that drawer looked like a dead button.
-        window.HGNearbyDrawer?.open?.();
-        if (typeof window.renderLeftRoutesList === "function") window.renderLeftRoutesList();
-      }
-    });
-
-    footer.appendChild(menu);
-    placeMenu();
-
-    const closeOnOutsideClick = (outsideEvent) => {
-      if (menu.contains(outsideEvent.target) || btnRoute.contains(outsideEvent.target)) return;
-      window.__closePcRouteMenu?.();
-    };
-
-    const closeOnResize = () => window.__closePcRouteMenu?.();
-
-    window.__closePcRouteMenu = () => {
-      menu.remove();
-      document.removeEventListener("click", closeOnOutsideClick);
-      window.removeEventListener("resize", closeOnResize);
-      if (window.__closePcRouteMenu) window.__closePcRouteMenu = null;
-    };
-
-    document.addEventListener("click", closeOnOutsideClick);
-    window.addEventListener("resize", closeOnResize);
-  };
-}
-
-// --- Notat ---
-if (btnNote) {
-  btnNote.onclick = () => {
-    if (typeof window.handlePlaceNote === "function") {
-      return window.handlePlaceNote(place);
-    }
-    window.showToast?.(tt("ui.notes.notLoaded", "Notatfunksjonen er ikke klar ennå"));
-  };
-}
-
-// --- Observasjon ---
-if (btnObs) {
-  btnObs.onclick = () => {
-    if (!window.HGObservations || typeof window.HGObservations.start !== "function") {
-      window.showToast?.(tt("ui.observations.notLoaded", "Observasjoner er ikke lastet"));
-      return;
-    }
-
-    window.HGObservations.start({
-      target: {
-        targetId: String(place.id || "").trim(),
-        targetType: "place",
-        // The deployed observation catalogue is the shared urban `by` lens.
-        // Preserve the place category separately for learning-log ownership.
-        subject_id: "by",
-        categoryId: String(place.categoryId || place.category || "by").trim(),
-        title: place.name
-      },
-      lensId: "by_byliv"
-    });
-  };
-}
+// Footer actions are owned by one global listener below, not by each PlaceCard render.
 
 // --- UNLOCK GATE ---
 let _unlockTimer = null;
@@ -2752,9 +2624,125 @@ requestAnimationFrame(() => {
 });
 
 forcePlaceCardOpenState(card, nextPlaceId);
+window.__HG_LAST_FOOTER_PLACE = place;
 placeCardPerfMark(placeId, "first paint", pcStart);
 return true;
 };
+
+
+// Read the current place at the time of each click, not when PlaceCard last
+// rendered. All five permanent footer buttons work even before first render.
+function getFooterActionPlace() {
+  const id = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
+  if (!id) return null;
+  const loaded = window.HGPlaceOpen?.getPlace?.(id);
+  if (loaded && String(loaded.id || "").trim() === id) return loaded;
+  const last = window.__HG_LAST_FOOTER_PLACE;
+  if (last && String(last.id || "").trim() === id) return last;
+  const listed = Array.isArray(window.PLACES) ? window.PLACES.find(p => String(p?.id || "").trim() === id) : null;
+  return listed || { id, name: String(document.getElementById("pcTitle")?.textContent || id) };
+}
+function openFooterRoutesDrawer() {
+  const select = /** @type {HTMLSelectElement|null} */ (document.getElementById("leftPanelMode"));
+  if (select) {
+    select.value = "routes";
+    select.dispatchEvent(new Event("change", { bubbles:true }));
+  }
+  if (typeof window.setLeftPanelMode === "function") window.setLeftPanelMode("routes");
+  else window.HGLeftPanelMode?.setMode?.("routes");
+  window.HGNearbyDrawer?.open?.();
+  if (typeof window.renderLeftRoutesList === "function") void window.renderLeftRoutesList();
+}
+function bindFooterActionsOnce() {
+  if (window.__HG_FOOTER_ACTIONS_BOUND__) return;
+  window.__HG_FOOTER_ACTIONS_BOUND__ = true;
+  const closeRoute = () => window.__closePcRouteMenu?.();
+  window.addEventListener("hg:place-selected", closeRoute);
+  window.addEventListener("hashchange", closeRoute);
+  document.addEventListener("click", (e) => {
+    const button = e.target instanceof Element ? e.target.closest("#pcQuiz, #pcRoute, #pcObserve, #pcNote") : null;
+    if (!button?.closest(".app-footer")) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const place = getFooterActionPlace();
+    if (button.id === "pcRoute") {
+      const alreadyOpen = Boolean(document.getElementById("pcRouteMenu"));
+      closeRoute();
+      if (alreadyOpen) return;
+      if (!place) {
+        openFooterRoutesDrawer(); // Routes is usable even without a selected place.
+        return;
+      }
+      const footer = button.closest(".app-footer");
+      const menu = document.createElement("div");
+      menu.id = "pcRouteMenu";
+      menu.className = "pc-route-menu";
+      menu.setAttribute("role", "menu");
+      menu.setAttribute("aria-label", tUI("ui.routes.menuLabel", "Rutevalg"));
+      menu.innerHTML = '<button type="button" role="menuitem" data-route-action="go">' +
+        tUI("ui.routes.goHere", "Gå Hit") + '</button><button type="button" role="menuitem" data-route-action="routes">' +
+        tUI("ui.tabs.routes", "Ruter") + '</button>';
+      menu.addEventListener("click", (ev) => {
+        const choice = ev.target instanceof Element ? ev.target.closest("[data-route-action]")?.dataset.routeAction : null;
+        if (!choice) return;
+        ev.preventDefault();
+        ev.stopPropagation();
+        closeRoute();
+        const selected = getFooterActionPlace();
+        if (choice === "routes") return openFooterRoutesDrawer();
+        if (!selected) return window.showToast?.("Velg et sted på kartet først.");
+        if (typeof window.showNavRouteToPlace === "function") return void window.showNavRouteToPlace(selected);
+        if (typeof window.showRouteTo === "function") return window.showRouteTo(selected);
+        window.showToast?.(tUI("ui.routes.notLoaded", "Rute-funksjon ikke lastet"));
+      });
+      footer.appendChild(menu);
+      const footerRect = footer.getBoundingClientRect();
+      const buttonRect = button.getBoundingClientRect();
+      menu.style.left = String(buttonRect.left - footerRect.left + buttonRect.width / 2) + "px";
+      const outside = ev => { if (!menu.contains(ev.target) && !button.contains(ev.target)) closeRoute(); };
+      const escape = ev => { if (ev.key === "Escape") closeRoute(); };
+      const resize = () => closeRoute();
+      window.__closePcRouteMenu = () => {
+        menu.remove();
+        document.removeEventListener("click", outside);
+        document.removeEventListener("keydown", escape);
+        window.removeEventListener("resize", resize);
+        window.__closePcRouteMenu = null;
+      };
+      document.addEventListener("click", outside);
+      document.addEventListener("keydown", escape);
+      window.addEventListener("resize", resize);
+      return;
+    }
+    if (!place) return window.showToast?.("Velg et sted på kartet først.");
+    if (button.id === "pcQuiz") {
+      const next = "#/quiz/" + encodeURIComponent(String(place.id).trim());
+      if (window.HGAppRouter?.navigate) window.HGAppRouter.navigate(next);
+      else if (location.hash !== next) location.hash = next;
+    } else if (button.id === "pcNote") {
+      if (typeof window.handlePlaceNote === "function") window.handlePlaceNote(place);
+      else window.showToast?.(tUI("ui.notes.notLoaded", "Notatfunksjonen er ikke klar ennå"));
+    } else if (button.id === "pcObserve") {
+      if (typeof window.HGObservations?.start !== "function") {
+        window.showToast?.(tUI("ui.observations.notLoaded", "Observasjoner er ikke lastet"));
+        return;
+      }
+      void Promise.resolve(window.HGObservations.start({
+        target: {
+          targetId: String(place.id).trim(), targetType: "place",
+          subject_id: "by",
+          categoryId: String(place.categoryId || place.category || "by").trim(),
+          title: place.name || place.title || String(place.id)
+        },
+        lensId: "by_byliv"
+      })).catch(error => {
+        console.warn("[footer observer]", error);
+        window.showToast?.("Kunne ikke åpne observasjonen.");
+      });
+    }
+  });
+}
+bindFooterActionsOnce();
 
 // ============================================================
 // PLACE CARD – bottom sheet bridge (engine-controlled)

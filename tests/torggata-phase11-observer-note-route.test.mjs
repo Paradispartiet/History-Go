@@ -63,7 +63,7 @@ test('Notat bruker eksisterende privat place-note-flow', () => {
 });
 
 test('Rute bruker eksisterende navigasjon uten å konstruere historisk Torggata-rute', () => {
-  assert.match(card, /window\.showNavRouteToPlace\(place\)/);
+  assert.match(card, /window\.showNavRouteToPlace\(selected\)/);
   assert.match(card, /window\.renderLeftRoutesList\(\)/);
 
   const historicalPlaceIds = allHistoricalChapterPlaceIds(historicalRoutes);

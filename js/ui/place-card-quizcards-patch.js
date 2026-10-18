@@ -354,6 +354,8 @@
     };
     const applyForPlace = async (place) => {
       const cardData = await resolveQuizCard(place);
+      const showingId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
+      if (showingId && showingId !== String(place?.id || "").trim()) return false;
       return cardData ? applyQuizCard(cardData) : false;
     };
     return { prewarm, applyForPlace };
@@ -508,10 +510,22 @@
     if (typeof originalOpenPlaceCard !== "function") return;
     runtime.openPlaceCard = async function patchedOpenPlaceCard(place, ...args) {
       const result = await originalOpenPlaceCard.call(this, place, ...args);
+      // Two rapid place selections may resolve out of order. Never replace
+      // pcVisit with an onclick handler for a place that is no longer active,
+      // and never bind to an unhydrated index row when the full record exists.
+      const cardNode = document.getElementById("placeCard");
+      const activeId = String(cardNode?.dataset?.currentPlaceId || "").trim();
+      // In production, the active card ID must match. Standalone QuizCard/visit
+      // consumers have no PlaceCard node, and must keep working independently.
+      if (result === false || (activeId && activeId !== String(place?.id || "").trim())) return result;
+      const resolvedId = activeId || String(place?.id || "").trim();
+      const activePlace = runtime.HGPlaceOpen?.getPlace?.(resolvedId)
+        || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null)
+        || place;
       quizCards.prewarm();
-      visitButton.patch(place);
+      visitButton.patch(activePlace);
       try {
-        await quizCards.applyForPlace(place);
+        await quizCards.applyForPlace(activePlace);
       } catch (error) {
         console.warn(
           "[place-card-quizcards-patch] kunne ikke aktivere quizkort",
