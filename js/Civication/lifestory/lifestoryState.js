@@ -68,6 +68,57 @@
    * @param {any} content
    * @returns {LifestoryState}
    */
+
+  // C01 og C05 er privatliv, ikke eiendeler til den siste arbeidsgiveren.
+  // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
+  // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
+  const PRIVATE_FLAG = /^wa_(?:[bcd]_)?c0[15]_/;
+  const PRIVATE_SCENE = /^wave_[abcde]_c0[15]_/;
+  function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
+  function capturePrivateStory(state) {
+    const story = emptyPrivateStory();
+    const merge = source => {
+      if (!source) return;
+      const previous = source.privatHistorie || {};
+      Object.assign(story.flagg, previous.flagg || {});
+      Object.assign(story.flaggDager, previous.flaggDager || {});
+      Object.assign(story.relasjoner, previous.relasjoner || {});
+      for (const id of previous.spilteScener || []) if (PRIVATE_SCENE.test(id) && !story.spilteScener.includes(id)) story.spilteScener.push(id);
+      for (const e of previous.arkiv || []) if (PRIVATE_SCENE.test(e.sceneId || "") && !story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
+      for (const [key,value] of Object.entries(source.tidligereValg || {})) if (PRIVATE_FLAG.test(key)) story.flagg[key] = value;
+      for (const id of source.spilteScener || []) if (PRIVATE_SCENE.test(id) && !story.spilteScener.includes(id)) story.spilteScener.push(id);
+      for (const e of source.arkiv || []) {
+        if (!PRIVATE_SCENE.test(e.sceneId || "")) continue;
+        if (!story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
+        // En lagret, faktisk Wave D-hendelse er et tidsanker. Ikke utled
+        // dato fra et flagg uten den tilhørende hendelsen.
+        const match = /^wave_d_(c0[15])_/.exec(e.sceneId);
+        if (match && Number.isInteger(e.livsdag || e.dag)) story.flaggDager["wa_d_" + match[1] + "_status"] = e.livsdag || e.dag;
+      }
+      for (const key of ["venn","familie"]) {
+        if (typeof source.relasjoner?.[key] === "number") story.relasjoner[key] = source.relasjoner[key];
+      }
+    };
+    // Historiske snapshots først, felles minne deretter, aktivt liv sist.
+    for (const snap of Object.values(state.rolleTilstander || {})) merge(snap);
+    merge({ privatHistorie: state.privatHistorie });
+    merge(state);
+    state.privatHistorie = story;
+    return story;
+  }
+  function hydratePrivateStory(state, story) {
+    state.privatHistorie = JSON.parse(JSON.stringify(story));
+    state.tidligereValg ||= {};
+    state.spilteScener ||= [];
+    state.arkiv ||= [];
+    state.relasjoner ||= {};
+    Object.assign(state.tidligereValg, story.flagg);
+    Object.assign(state.relasjoner, story.relasjoner);
+    for (const id of story.spilteScener) if (!state.spilteScener.includes(id)) state.spilteScener.push(id);
+    for (const e of story.arkiv) if (!state.arkiv.some(x => x.sceneId === e.sceneId)) state.arkiv.push(JSON.parse(JSON.stringify(e)));
+    return state;
+  }
+
   function createInitialState(content) {
     if (!content?.role?.startState) {
       throw new Error("[LifestoryState] innholdspakken mangler role.startState");
@@ -121,7 +172,8 @@
     saved.livsdag = Number.isInteger(saved.livsdag) && saved.livsdag > 0 ? saved.livsdag : saved.dag;
     saved.rolleTilstander ||= {};
     saved.rolleBytter ||= [];
-    if (saved.rolle === roleId) return saved;
+    const privateStory = capturePrivateStory(saved);
+    if (saved.rolle === roleId) return hydratePrivateStory(saved, privateStory);
 
     const inactive = Object.assign({}, saved.rolleTilstander);
     const currentSnapshot = JSON.parse(JSON.stringify(saved));
@@ -138,6 +190,7 @@
     const selected = earlier || createInitialState(content);
     delete inactive[roleId];
     selected.rolleTilstander = inactive;
+    hydratePrivateStory(selected, privateStory);
     selected.livsdag = saved.livsdag;
     // Kalendertilknytningen tilhører spilleren, ikke jobbrollens arkiv.
     if (Number.isInteger(saved.kalenderDag) && saved.kalenderDag > 0) selected.kalenderDag = saved.kalenderDag;
@@ -197,6 +250,11 @@
     }
     for (const [key, value] of Object.entries(effekter.flagg || {})) {
       state.tidligereValg[key] = value;
+      if (PRIVATE_FLAG.test(key)) {
+        state.privatHistorie ||= emptyPrivateStory();
+        state.privatHistorie.flagg[key] = value;
+        state.privatHistorie.flaggDager[key] = state.livsdag || state.dag;
+      }
     }
     return state;
   }
@@ -260,6 +318,7 @@
         state.threadState[thread.id] = { status: "active", step: 0, lastSceneId: null };
       }
     }
+    hydratePrivateStory(state, capturePrivateStory(state));
     return state;
   }
 
@@ -343,7 +402,7 @@
     return text;
   }
 
-  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
+  const api = { STORAGE_KEY, VERSION, CLAMPED_METERS, THREAD_STATUSES, createInitialState, selectRole, reconcileContent, applyEffects, capturePrivateStory, hydratePrivateStory, snapshotThreadStatus, save, load, reset, bindPersonTypes, lockScenePeople, presentText, sceneMentionsPerson };
   /** @type {any} */ (globalScope).CivicationLifestoryState = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof window !== "undefined" ? window : globalThis);
