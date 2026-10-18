@@ -10,6 +10,8 @@ const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
 const clone = v => JSON.parse(JSON.stringify(v));
 const manifest = read(C.MANIFEST_PATH);
 const bindings = read('data/Civication/lifestory/editorial/inspiration/waveAChapterBindingsV1.json');
+const second = read('data/Civication/lifestory/editorial/inspiration/waveASecondInstallmentsV1.json');
+const isWave = id => /^wave_[ab]_/.test(id);
 const blueprints = read('data/Civication/lifestory/editorial/inspiration/waveARoleStoryBlueprintsV1.json');
 const seen = new Set();
 let runs = 0, reloads = 0;
@@ -31,7 +33,7 @@ function playTo(state, content, end, overrides = {}, visit = () => {}) {
       const oldMoney = state.meters.penger;
       R.applyChoice(state, content, scene.id, id);
       assert.deepEqual(state.arkiv.slice(0, past.length), past, 'choice preserves previous archive');
-      if (scene.id.startsWith('wave_a_')) {
+      if (isWave(scene.id)) {
         const choice = scene.valg.find(c => c.id === id);
         assert.ok(choice);
         assert.equal(state.meters.penger, oldMoney, 'new fiction cannot spend or grant money');
@@ -54,7 +56,7 @@ function explore(content, start, end, initial = {}) {
   while (queue.length) {
     const override = queue.shift(), actual = { ...initial };
     const final = playTo(clone(start), content, end, override, (s, scene, chosen) => {
-      if (scene.id.startsWith('wave_a_')) {
+      if (isWave(scene.id)) {
         const key = scene.id + '/' + chosen;
         if (!covered.has(key)) {
           covered.add(key);
@@ -79,9 +81,22 @@ for (const state of finals) {
   if (f.wa_c01_svar === 'nei') assert.ok(!f.wa_c01_tur_avtalt);
   if (f.wa_c05_valg === 'ringt' && f.wa_c05_oppfolging === 'spurt') assert.ok(!f.wa_c05_kvittering);
   if (f.wa_c05_avslutning === 'mottak_dokumentert') assert.ok(f.wa_c05_kvittering);
+  if (f.wa_b_c05_ny_kvittering) assert.equal(f.wa_c05_avslutning, 'aapent');
+  if (f.wa_b_c05_status === 'bistand_forespurt') assert.ok(!f.wa_b_c05_ny_kvittering);
+  assert.ok(!f.wa_b_c05_vedtak, 'receipts never grant benefits');
 }
 const roleStarts = { renholder: base('renholder'), arealplanlegger: base('arealplanlegger') };
-for (const c of Object.values(roleStarts)) explore(c, S.createInitialState(c), 4);
+for (const [role, c] of Object.entries(roleStarts)) {
+  for (const final of explore(c, S.createInitialState(c), 6)) {
+    const f = final.tidligereValg;
+    if (role === 'arealplanlegger') assert.equal(!!f.wa_b_c06_observert, f.wa_b_c06_spor === 'observer');
+    if (role === 'renholder' && f.wa_b_c17_inngang_ferdig) {
+      assert.equal(f.wa_b_c17_spor, 'annen_oppgave');
+      assert.equal(f.wa_b_c17_utfall, 'adskilt_status');
+    }
+    assert.ok(!f.wa_b_c17_lager_ferdig, 'blocked storage is never recorded as cleaned');
+  }
+}
 
 function chapterState(firstId, prior = {}) {
   const week = playTo(S.createInitialState(a), a, 7, prior);
@@ -103,6 +118,7 @@ for (const prior of [{}, { d8_mira_etter_settet: 'hjemme' }, { d8_mira_etter_set
   }
 }
 {
+  const c23Inputs = new Set();
   const [c, s] = chapterState('sideprosjekt_med_lea', { d2_en_retning: 'prosjekt' });
   for (const final of explore(c, s, 10)) {
     const f = final.tidligereValg;
@@ -118,6 +134,24 @@ for (const prior of [{}, { d8_mira_etter_settet: 'hjemme' }, { d8_mira_etter_set
       if (e.wa_c23_rettelse === 'en') assert.ok(['en_avklart', 'ansvar_tilbake'].includes(e.wa_c23_avslutning));
       if (e.wa_c23_rettelse === 'begge') assert.ok(['en_bekreftet_en_uavklart', 'foreslaatt_oppfolging'].includes(e.wa_c23_avslutning));
       if (e.wa_c23_rettelse === 'ikke_bekreftet') assert.ok(['minnet_om_aapent_sporsmal', 'uavklart'].includes(e.wa_c23_avslutning));
+      // C23 is independent of C03. Explore each actual correction state once,
+      // rather than multiplying every prior project choice across this chapter.
+      if (!c23Inputs.has(e.wa_c23_rettelse)) {
+        c23Inputs.add(e.wa_c23_rettelse);
+        const d = next.role.symposium.fortsettelser.find(d => d.id === 'sideprosjekt_etter_neste_steg');
+        const third = C.appendContinuation(next, read(d.path));
+        const start = clone(end), archive = clone(end.arkiv);
+        R.startContinuation(start, next, third, d.id, { id: 'test-boundary' });
+        for (const last of explore(third, start, 16)) {
+          assert.deepEqual(last.arkiv.slice(0, archive.length), archive);
+          const f = last.tidligereValg;
+          if (f.wa_b_c23_begge_forstatt) {
+            assert.equal(f.wa_b_c23_spor, 'fulgt_opp');
+            assert.equal(f.wa_b_c23_ny_utsending, true);
+          } else assert.ok(!String(f.wa_b_c23_utfall).startsWith('avklart_'));
+        }
+      }
+
     }
   }
 }
@@ -129,17 +163,35 @@ for (const prior of [{}, { d8_arvid_etter_oppdraget: 'avstand' }]) {
     if (f.wa_c07_vakt_gjennomfort) assert.equal(f.wa_c07_vakt_avtalt, true);
     if (f.wa_c07_bare_gjest) assert.ok(!f.wa_c07_vakt_avtalt);
     assert.ok(!(f.wa_c07_vakt_gjennomfort && f.wa_c07_vakt_avlyst));
+    const descriptor = c.role.symposium.fortsettelser.find(d => d.id === 'miljo_navnet_ditt');
+    const next = C.appendContinuation(c, read(descriptor.path));
+    const start = clone(final);
+    R.startContinuation(start, c, next, descriptor.id, { id: 'test-boundary' });
+    explore(next, start, 13);
+
   }
 }
 // A completed save is not retroactively populated with invented new memories.
 const legacy = clone(finals[0]);
 for (const key of Object.keys(legacy.tidligereValg)) if (key.startsWith('wa_')) delete legacy.tidligereValg[key];
-legacy.arkiv = legacy.arkiv.filter(e => !e.sceneId.startsWith('wave_a_'));
-legacy.spilteScener = legacy.spilteScener.filter(id => !id.startsWith('wave_a_'));
-for (const key of Object.keys(legacy.threadState)) if (key.startsWith('wave_a_')) delete legacy.threadState[key];
+legacy.arkiv = legacy.arkiv.filter(e => !isWave(e.sceneId));
+legacy.spilteScener = legacy.spilteScener.filter(id => !isWave(id));
+for (const key of Object.keys(legacy.threadState)) if (isWave(key)) delete legacy.threadState[key];
 S.reconcileContent(legacy, a);
 assert.ok(!Object.keys(legacy.tidligereValg).some(k => k.startsWith('wa_')));
-assert.ok(!legacy.arkiv.some(e => e.sceneId.startsWith('wave_a_')));
+assert.ok(!legacy.arkiv.some(e => isWave(e.sceneId)));
+for (const [id, day] of [['sideprosjekt_med_lea', 10], ['miljo_med_arvid', 10]]) {
+  const [content, initial] = chapterState(id, id === 'sideprosjekt_med_lea' ? { d2_en_retning: 'prosjekt' } : { d2_en_retning: 'miljo' });
+  const past = playTo(initial, content, day);
+  for (const k of Object.keys(past.tidligereValg)) if (k.startsWith('wa_')) delete past.tidligereValg[k];
+  const nextId = id === 'sideprosjekt_med_lea' ? 'sideprosjekt_neste_steg' : 'miljo_navnet_ditt';
+  const d = content.role.symposium.fortsettelser.find(d => d.id === nextId);
+  const next = C.appendContinuation(content, read(d.path));
+  R.startContinuation(past, content, next, d.id, { id: 'legacy-boundary' });
+  playTo(past, next, 13, {}, (state, scene) => {
+    assert.ok(!scene.id.startsWith(id === 'sideprosjekt_med_lea' ? 'wave_b_c03_' : 'wave_b_c07_'), 'no invented previous participation');
+  });
+}
 const old = clone(finals[0]);
 const switched = S.selectRole(clone(old), roleStarts.renholder);
 const back = S.selectRole(switched, a);
@@ -148,7 +200,7 @@ assert.deepEqual(back.tidligereValg, old.tidligereValg);
 
 let sceneCount = 0, choiceCount = 0;
 assert.equal(bindings.stories.length, 8);
-for (const b of bindings.stories) {
+for (const b of [...bindings.stories, ...second.stories]) {
   const bp = blueprints.blueprints.find(x => x.blueprint_id === b.blueprint_id);
   assert.ok(bp && bp.story_type_ids.includes(b.story_type_id));
   assert.deepEqual(b.work_ids, bp.work_ids);
@@ -163,4 +215,4 @@ for (const b of bindings.stories) {
     }
   }
 }
-console.log(JSON.stringify({ stories: 8, scenes: sceneCount, choices: choiceCount, runs, reloads, status: 'passed' }));
+console.log(JSON.stringify({ stories: 8, installments: 2, scenes: sceneCount, choices: choiceCount, runs, reloads, status: 'passed' }));

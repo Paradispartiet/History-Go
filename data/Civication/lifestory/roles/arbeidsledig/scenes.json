@@ -6057,6 +6057,323 @@
         }
       },
       "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_b_c01_etter_turen",
+      "threadId": "wave_b_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det du lot være å si",
+      "tekst": "Jonas sender en ny melding etter turen langs elva i går: «Vil du helst at jeg spør om hvordan det går med jobb, eller vil du få tenke på andre ting når vi møtes?» Du fortalte om regningen da du foreslo turen. Det ga ham innsyn i én utgift, men ikke et svar på hva slags støtte du ønsker nå.",
+      "conditions": {
+        "flagg": {
+          "wa_c01_tur_gjennomfort": true
+        }
+      },
+      "valg": [
+        {
+          "id": "be_om_selskap",
+          "tekst": "Si at du ønsker selskap, uten jobbråd.",
+          "konsekvensTekst": "Du skriver at du gjerne vil gå igjen, men trenger en venn mer enn forslag til ledige stillinger. Jonas svarer at han kan la rådene vente. Dere har ikke satt en ny dato.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "selskap"
+            }
+          }
+        },
+        {
+          "id": "fortell_litt",
+          "tekst": "Fortell at spørsmål om jobb lett kjennes som vurdering.",
+          "konsekvensTekst": "Du skriver at spørsmål om jobb lett får deg til å føle deg vurdert. Jonas svarer at han hadde tenkt å vise interesse. Du har forklart følelsen uten å dele flere beløp eller be om penger.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "fortalt"
+            }
+          }
+        }
+      ],
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_b_c01_etter_avlysning",
+      "threadId": "wave_b_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En halvtime ved benken",
+      "tekst": "Jonas svarer kort på gårsdagens avlysning: «Jeg hadde allerede gått ut. Kunne du sagt fra før?» Han spør om tiden sin, ikke om regningen din. Du kan anerkjenne ventingen uten å love at du alltid vil orke å møtes.",
+      "conditions": {
+        "flagg": {
+          "wa_c01_tur_avlyst": true
+        }
+      },
+      "valg": [
+        {
+          "id": "ta_ansvar",
+          "tekst": "Beklag den sene beskjeden og foreslå å spørre samme dag neste gang.",
+          "konsekvensTekst": "Du beklager ventingen. Jonas svarer at en avtale samme dag kan passe bedre, men at han ikke alltid vil være ledig. Ingen ny tur er avtalt.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "kort_varsel"
+            }
+          }
+        },
+        {
+          "id": "be_om_pause",
+          "tekst": "Beklag ventingen og be om en pause fra avtaler.",
+          "konsekvensTekst": "Du beklager at han gikk forgjeves og sier at du trenger noen dager uten nye planer. Jonas skriver «greit». Skuffelsen er ikke dermed borte.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "pause"
+            }
+          }
+        }
+      ],
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_b_c01_uten_tur",
+      "threadId": "wave_b_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et forslag som fikk et nei",
+      "tekst": "Du ser igjen forslaget ditt om en gratis tur og svaret der du likevel takket nei da Jonas sa ja. Du avlyste ikke et møte ute i gaten; du lot være å inngå avtalen. Samtalen har blitt liggende der, og du må selv velge om du vil åpne den igjen.",
+      "conditions": {
+        "flagg": {
+          "wa_c01_tur_avtalt": false
+        }
+      },
+      "valg": [
+        {
+          "id": "aapne",
+          "tekst": "Send Jonas en hilsen uten å foreslå et møte.",
+          "konsekvensTekst": "Du spør hvordan dagen hans har vært. Meldingen er sendt; du har ikke fått svar eller etablert en ny avtale.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "hilsen"
+            }
+          }
+        },
+        {
+          "id": "la_hvile",
+          "tekst": "La samtalen hvile denne kvelden.",
+          "konsekvensTekst": "Du legger bort telefonen. Det kommer ingen ny beskjed om turen denne kvelden. Du har verken forklart mer eller lovet å komme senere.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "hvile"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c01_privat_nei",
+      "threadId": "wave_b_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et bilde uten forklaring",
+      "tekst": "Det opprinnelige avslaget ditt til Jonas står fortsatt uten noen økonomisk forklaring. Du ser et bilde på telefonen som du kunne sendt ham. Det ville være en liten kontakt, ikke et svar på alle spørsmålene om hvordan du har det.",
+      "conditions": {
+        "flagg": {
+          "wa_c01_svar": "nei"
+        }
+      },
+      "valg": [
+        {
+          "id": "send_bilde",
+          "tekst": "Send bildet med en kort hilsen.",
+          "konsekvensTekst": "Du sender bildet og skriver «tenkte du ville le av denne». Du åpner for kontakt uten å dele regningen. Jonas har ennå ikke svart.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "bilde"
+            }
+          }
+        },
+        {
+          "id": "behold_ro",
+          "tekst": "Behold kvelden for deg selv.",
+          "konsekvensTekst": "Bildet blir på telefonen. Du har fortsatt lov til å holde grunnen til avslaget privat, og du har heller ikke gitt Jonas ny informasjon å svare på.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c01_kontakt": "ro"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c05_kvitteringen",
+      "threadId": "wave_b_c05",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "To forskjellige spørsmål",
+      "tekst": "Kvitteringen du arkiverte viser at arbeidstidsvedlegget kom inn. Når du åpner saksoversikten, står det fremdeles «under behandling». Dagens dokumentasjon kan svare på om filen kom frem. Den kan ikke svare på når du får penger.",
+      "conditions": {
+        "flagg": {
+          "wa_c05_avslutning": "mottak_dokumentert"
+        }
+      },
+      "valg": [
+        {
+          "id": "lag_oversikt",
+          "tekst": "Samle kvitteringen og den åpne statusen i ett notat.",
+          "konsekvensTekst": "Du skriver datoen på kvitteringen og «behandling ikke avklart» på to separate linjer. Du avslutter dokumentarbeidet for i dag; utfallet er fortsatt åpent.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "ordnet"
+            }
+          }
+        },
+        {
+          "id": "spor_lesbarhet",
+          "tekst": "Send ett spørsmål om vedlegget er lesbart og knyttet til saken.",
+          "konsekvensTekst": "Du sender spørsmålet med kvitteringsreferansen. Det er et nytt kontaktforsøk, ikke en bekreftelse på at en saksbehandler har kontrollert filen.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "spurt_lesbarhet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c05_statussporsmalet",
+      "threadId": "wave_b_c05",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et svar med begrenset rekkevidde",
+      "tekst": "NAV-veilederen svarer på statusspørsmålet ditt: «Vedlegget er registrert på saken. Jeg kan ikke gi deg en dato for avgjørelsen nå.» Det er mer enn en automatisk kvittering, men fremdeles ikke et vedtak. På bordet ligger også andre ting du skulle ha gjort i dag.",
+      "conditions": {
+        "flagg": {
+          "wa_c05_avslutning": "venter_status"
+        }
+      },
+      "valg": [
+        {
+          "id": "avslutt_dagen",
+          "tekst": "Noter svaret og bruk resten av ettermiddagen på andre ting.",
+          "konsekvensTekst": "Du lagrer meldingen som bekreftelse på registrering. Du har ingen avgjørelsesdato, men velger å stoppe oppfølgingen for i dag.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "registrert"
+            }
+          }
+        },
+        {
+          "id": "spor_neste",
+          "tekst": "Spør om det nå mangler noe mer fra deg.",
+          "konsekvensTekst": "Du sender et avgrenset spørsmål om dine neste oppgaver. Du har ikke fått svar på det ennå; du bestiller ikke en avgjørelse ved å spørre.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "spurt_neste"
+            }
+          }
+        }
+      ],
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_b_c05_sen_innsending",
+      "threadId": "wave_b_c05",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Mottatt etter fristen",
+      "tekst": "Den nye kvitteringen ligger på telefonen etter ettersendingen din i morges. Tidsstempelet er senere enn fristen i mangelmeldingen. Filen er mottatt, men skjermen sier ingenting om hvordan forsinkelsen blir vurdert. Du kan vise hva som faktisk hendte uten å gjøre kvitteringen om til en fristforlengelse.",
+      "conditions": {
+        "flagg": {
+          "wa_c05_avslutning": "sent_mottak"
+        }
+      },
+      "valg": [
+        {
+          "id": "forklar",
+          "tekst": "Send en kort tidslinje for kontaktforsøk og innsending.",
+          "konsekvensTekst": "Du sender datoene du faktisk kan dokumentere, sammen med kvitteringsreferansen. Du har forklart forsinkelsen, ikke fått den godkjent.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "forklaring_sendt"
+            }
+          }
+        },
+        {
+          "id": "behold_bevis",
+          "tekst": "Lagre kvitteringen og avvent behandling.",
+          "konsekvensTekst": "Du tar vare på beviset for den sene innsendingen. Ingen melding lover at forsinkelsen er uten betydning.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "sen_kvittering_lagret"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c05_hjelpen",
+      "threadId": "wave_b_c05",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Riktig side, fortsatt ditt valg",
+      "tekst": "NAV-veilederen svarer på forespørselen om hjelp: «Det er siden med stillingsprosent og avtalt ukentlig arbeidstid vi trenger, ikke bare sluttdatoen.» Du finner den siden i arbeidsavtalen. Dette er første gang du har et konkret svar på presiseringsspørsmålet. Dokumentet er ikke sendt ennå.",
+      "conditions": {
+        "flagg": {
+          "wa_c05_avslutning": "aapent"
+        }
+      },
+      "valg": [
+        {
+          "id": "send_siden",
+          "tekst": "Send den identifiserte siden nå.",
+          "konsekvensTekst": "Du sender siden og får en ny mottakskvittering med dagens tidsstempel. Fristen er passert. Innholdet er ikke kontrollert og saken er ikke avgjort.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "sendt_etter_hjelp",
+              "wa_b_c05_ny_kvittering": true
+            }
+          }
+        },
+        {
+          "id": "be_om_bistand",
+          "tekst": "Be om bistand til selve innsendingen før du går videre.",
+          "konsekvensTekst": "Du ber om hjelp og lar dokumentet ligge klart. Det er fortsatt ikke sendt, og du har ingen ny mottakskvittering.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c05_status": "bistand_forespurt"
+            }
+          }
+        }
+      ],
+      "avsender": "nav_veileder"
     }
   ]
 }

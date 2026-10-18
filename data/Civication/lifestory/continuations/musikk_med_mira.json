@@ -19,6 +19,13 @@
       "type": "privatliv",
       "konflikt": "Håpet om å spille møter retten til å beholde tid uten et bekreftet tilbud.",
       "startDag": 8
+    },
+    {
+      "id": "wave_b_c02",
+      "tittel": "Prisen for å holde av tid",
+      "type": "privatliv",
+      "konflikt": "Mulig arbeid krever tid før noen har gitt et forpliktende tilbud.",
+      "startDag": 10
     }
   ],
   "scenes": [
@@ -708,6 +715,165 @@
           "wa_c02_valg": "egen_tid"
         }
       },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_b_c02_holde_av",
+      "threadId": "wave_b_c02",
+      "dag": 10,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En plass i kalenderen er også noe",
+      "tekst": "Medmusikeren viser en ny beskjed fra arrangøren: De vurderer flere, og vil vite innen klokken tolv om det fortsatt er aktuelt å diskutere en kveld neste måned. Dato og betaling er ennå ikke oppgitt. «Jeg har en annen ting jeg kan gjøre den kvelden», sier Medmusikeren. «Jeg vil ikke sitte klar hele måneden.» Dette er fortsatt forespørselen til Medmusikeren, ikke en jobb dere har fått sammen.",
+      "conditions": {
+        "flagg": {
+          "wa_c02_oppfolging": "avventer_tilbud"
+        }
+      },
+      "valg": [
+        {
+          "id": "foresla_frist",
+          "tekst": "Foreslå en frist for et konkret tilbud.",
+          "konsekvensTekst": "Du foreslår at et konkret tilbud må komme innen i kveld. Medmusikeren sender selv svaret: Interesse er mulig, men ingen kveld holdes av ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "frist"
+            }
+          }
+        },
+        {
+          "id": "foresla_slipp",
+          "tekst": "Si at du ville sluppet denne muligheten nå.",
+          "konsekvensTekst": "Du begrunner rådet med den ubestemte datoen. Medmusikeren velger å trekke interessen i denne runden, uten å avvise senere konkrete forespørsler.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "sluppet"
+            }
+          }
+        }
+      ],
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_b_c02_bare_informasjon",
+      "threadId": "wave_b_c02",
+      "dag": 10,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Informasjon uten at du stiller opp",
+      "tekst": "Medmusikeren sender det du ba om: Arrangøren har fortsatt ikke oppgitt dato eller betaling. «Jeg svarer selv. Du trenger ikke forberede noe for min skyld.» Du har ikke tilbudt å spille, men du kan påvirke om denne kontakten skal fortsette å ta oppmerksomhet fra ditt eget arbeid.",
+      "conditions": {
+        "flagg": {
+          "wa_c02_oppfolging": "informasjon"
+        }
+      },
+      "valg": [
+        {
+          "id": "ett_svar",
+          "tekst": "Be om én beskjed hvis det kommer et fullstendig tilbud.",
+          "konsekvensTekst": "Du ber om dato, honorar og oppgave i samme beskjed før du vil vurdere noe. Ingen har dermed fått disponere tiden din.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "ett_tilbud"
+            }
+          }
+        },
+        {
+          "id": "stopp_oppdatering",
+          "tekst": "Be om å slippe flere oppdateringer om denne forespørselen.",
+          "konsekvensTekst": "Du takker for informasjonen og stopper oppdateringene om akkurat denne saken. Det sier ingenting om den andre kontakten deres rundt musikk.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "ingen_oppdatering"
+            }
+          }
+        }
+      ],
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_b_c02_trukket",
+      "threadId": "wave_b_c02",
+      "dag": 10,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Arbeidet som ikke venter på en arrangør",
+      "tekst": "Du har trukket deg fra videre involvering i den ubekreftede forespørselen. På telefonen ligger din egen korte musikkskisse. Du kan bruke en halvtime på den nå, eller la også dette få hvile. Ingen av delene er et svar til arrangøren, og dagens eventuelle øvingsavtale står i sin egen samtale.",
+      "conditions": {
+        "flagg": {
+          "wa_c02_oppfolging": "trukket"
+        }
+      },
+      "valg": [
+        {
+          "id": "lag_variant",
+          "tekst": "Bruk en halvtime på en annen avslutning i skissen.",
+          "konsekvensTekst": "Du lager en kort variant og lagrer begge avslutningene. Du har et konkret arbeidsresultat, uten publisering, betaling eller respons fra andre.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "egen_variant"
+            }
+          }
+        },
+        {
+          "id": "fri_formiddag",
+          "tekst": "Ta fri fra musikken denne formiddagen.",
+          "konsekvensTekst": "Du lukker skissen. Du har ikke mistet et bekreftet oppdrag, og du har heller ikke laget en ny versjon i dag.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_spor": "fri"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c02_frist_ute",
+      "threadId": "wave_b_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det kom ikke et tilbud",
+      "tekst": "Fristen Medmusikeren satte i formiddag er ute. En ny beskjed fra arrangøren sier bare at de trenger flere dager. Medmusikeren viser deg svaret og frigjør kvelden som var under vurdering. «Litt surt. Men jeg får gjort den andre tingen.» Muligheten forsvant uten at noen konsert ble avlyst.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c02_spor": "frist"
+        }
+      },
+      "valg": [
+        {
+          "id": "snakk_skuffelse",
+          "tekst": "Gi plass til skuffelsen uten å foreslå mer oppfølging.",
+          "konsekvensTekst": "Du sier at det går an å være skuffet selv om det aldri var en avtale. Medmusikeren svarer at det hjelper at du skjønner forskjellen.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_utfall": "skuffelse_delt"
+            }
+          }
+        },
+        {
+          "id": "snakk_arbeid",
+          "tekst": "Spør hva Medmusikeren vil arbeide med videre.",
+          "konsekvensTekst": "Medmusikeren forteller om en låt som har stått stille. Dere snakker om den, uten å sette opp en ny arbeidsøkt eller gjøre tapet til en karrierelære.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c02_utfall": "samtale_om_arbeid"
+            }
+          }
+        }
+      ],
       "avsender": "mira"
     }
   ],

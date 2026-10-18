@@ -63,7 +63,7 @@ function verify(s, c, old, pack) {
   assert.ok(pack.scenes.every(scene => !scene.avsender || c.role.personer.some(p => p.id === scene.avsender)));
 }
 // All original Arvid choice combinations, including repairs after overpromising.
-// Wave A has its own exhaustive scene/choice coverage in
+// Wave A installments have its own exhaustive scene/choice coverage in
 // civication-source-grounded-wave-a.test.js. Play it here without multiplying
 // that independent guest/vakt thread across every original two-chapter path.
 function explore(start, content, pack, old) {
@@ -86,7 +86,7 @@ function explore(start, content, pack, old) {
     }
     const scene = R.selectNextScene(s, c);
     assert.ok(scene && pack.scenes.some(p => p.id === scene.id), 'every day has authored content');
-    const choices = scene.id.startsWith('wave_a_') ? scene.valg.slice(0, 1) : scene.valg;
+    const choices = /^wave_[ab]_/.test(scene.id) ? scene.valg.slice(0, 1) : scene.valg;
     for (const choice of choices) {
       seen.add(scene.id + '/' + choice.id);
       const next = clone(s);
@@ -136,7 +136,7 @@ for (const pub of ['avklar', 'ja_uten_ramme']) for (const past of pasts) {
 }
 assert.equal(openings.size, 4);
 assert.equal(endings.size, 6);
-for (const p of packs.filter(p => p.sisteDag <= 13)) for (const scene of p.scenes.filter(s => !s.id.startsWith('wave_a_'))) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
+for (const p of packs.filter(p => p.sisteDag <= 13)) for (const scene of p.scenes.filter(s => !/^wave_[ab]_/.test(s.id))) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
 const s = week({}), text = JSON.stringify(s);
 for (const wrong of [null, { badge_id: 'musikk', label: 'Gangster' }, { badge_id: 'subkultur', label: 'Crew' }]) {
   primary = wrong;

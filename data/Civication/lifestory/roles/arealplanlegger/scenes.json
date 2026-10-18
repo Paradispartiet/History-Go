@@ -1287,6 +1287,247 @@
         }
       },
       "avsender": "plansjef"
+    },
+    {
+      "id": "wave_b_c06_presisert",
+      "threadId": "wave_b_c06",
+      "dag": 5,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et mulig tidsrom, ikke en ferdig måling",
+      "tekst": "Plansjefen har med den presise formuleringen din i arbeidsnotatet: Snarveitellingen dekker ikke kryssingen ved den planlagte nedkjørselen. «Du kan være der 07.45 til 08.00», sier plansjefen. «Mer har jeg ikke frigjort.» Dokumentasjonshullet gjelder 07.45–08.15. Et kvarter kan gi nye opplysninger; det kan ikke dekke hele halvtimen.",
+      "conditions": {
+        "flagg": {
+          "wa_c06_oppfolging": "presisert"
+        }
+      },
+      "valg": [
+        {
+          "id": "observer",
+          "tekst": "Bruk kvarteret, med tidsavgrensningen skrevet inn på forhånd.",
+          "konsekvensTekst": "Du avtaler observasjon 07.45–08.00 i morgen og skriver at resten av tidsrommet vil mangle. Du har ennå ikke observert noen kryssing.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "observer"
+            }
+          }
+        },
+        {
+          "id": "be_om_helhet",
+          "tekst": "Be om en plan som dekker hele tidsrommet før du teller.",
+          "konsekvensTekst": "Du ber plansjefen om bemanning eller tid til hele perioden. Du tar ikke imot kvarteret som om det løste oppgaven. Det er ikke avtalt noen observasjon fra din side.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "plan"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_b_c06_vedlegg",
+      "threadId": "wave_b_c06",
+      "dag": 5,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et mulig tidsrom, ikke en ferdig måling",
+      "tekst": "Plansjefen har beholdt forbeholdet ditt i vedlegget. I sammendraget står fortsatt bare snarveitellingen. Den forskjellen ser du når dokumentene legges ved siden av hverandre. «Du kan være der 07.45 til 08.00», sier plansjefen. «Mer har jeg ikke frigjort.» Dokumentasjonshullet gjelder 07.45–08.15. Et kvarter kan gi nye opplysninger; det kan ikke dekke hele halvtimen.",
+      "conditions": {
+        "flagg": {
+          "wa_c06_oppfolging": "vedlegg"
+        }
+      },
+      "valg": [
+        {
+          "id": "observer",
+          "tekst": "Bruk kvarteret, med tidsavgrensningen skrevet inn på forhånd.",
+          "konsekvensTekst": "Du avtaler observasjon 07.45–08.00 i morgen og skriver at resten av tidsrommet vil mangle. Du har ennå ikke observert noen kryssing.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "observer"
+            }
+          }
+        },
+        {
+          "id": "be_om_helhet",
+          "tekst": "Be om en plan som dekker hele tidsrommet før du teller.",
+          "konsekvensTekst": "Du ber plansjefen om bemanning eller tid til hele perioden. Du tar ikke imot kvarteret som om det løste oppgaven. Det er ikke avtalt noen observasjon fra din side.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "plan"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_b_c06_forslaget",
+      "threadId": "wave_b_c06",
+      "dag": 5,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et mulig tidsrom, ikke en ferdig måling",
+      "tekst": "Du foreslo observasjon i morgenrushet. Plansjefen svarer nå at det kan settes av tid i din egen arbeidsplan til en avgrenset observasjon i morgen. Ingen har målt kryssingen ennå. «Du kan være der 07.45 til 08.00», sier plansjefen. «Mer har jeg ikke frigjort.» Dokumentasjonshullet gjelder 07.45–08.15. Et kvarter kan gi nye opplysninger; det kan ikke dekke hele halvtimen.",
+      "conditions": {
+        "flagg": {
+          "wa_c06_oppfolging": "observasjon_foreslaatt"
+        }
+      },
+      "valg": [
+        {
+          "id": "observer",
+          "tekst": "Bruk kvarteret, med tidsavgrensningen skrevet inn på forhånd.",
+          "konsekvensTekst": "Du avtaler observasjon 07.45–08.00 i morgen og skriver at resten av tidsrommet vil mangle. Du har ennå ikke observert noen kryssing.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "observer"
+            }
+          }
+        },
+        {
+          "id": "be_om_helhet",
+          "tekst": "Be om en plan som dekker hele tidsrommet før du teller.",
+          "konsekvensTekst": "Du ber plansjefen om bemanning eller tid til hele perioden. Du tar ikke imot kvarteret som om det løste oppgaven. Det er ikke avtalt noen observasjon fra din side.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "plan"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_b_c06_bemanning",
+      "threadId": "wave_b_c06",
+      "dag": 5,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et mulig tidsrom, ikke en ferdig måling",
+      "tekst": "Du ba om å få avklart hvem som skulle samle den manglende dokumentasjonen. Plansjefen svarer nå at ingen er tildelt hele oppgaven, men at du kan få et kort tidsrom i morgen til en første observasjon. «Du kan være der 07.45 til 08.00», sier plansjefen. «Mer har jeg ikke frigjort.» Dokumentasjonshullet gjelder 07.45–08.15. Et kvarter kan gi nye opplysninger; det kan ikke dekke hele halvtimen.",
+      "conditions": {
+        "flagg": {
+          "wa_c06_oppfolging": "bemanning_uavklart"
+        }
+      },
+      "valg": [
+        {
+          "id": "observer",
+          "tekst": "Bruk kvarteret, med tidsavgrensningen skrevet inn på forhånd.",
+          "konsekvensTekst": "Du avtaler observasjon 07.45–08.00 i morgen og skriver at resten av tidsrommet vil mangle. Du har ennå ikke observert noen kryssing.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "observer"
+            }
+          }
+        },
+        {
+          "id": "be_om_helhet",
+          "tekst": "Be om en plan som dekker hele tidsrommet før du teller.",
+          "konsekvensTekst": "Du ber plansjefen om bemanning eller tid til hele perioden. Du tar ikke imot kvarteret som om det løste oppgaven. Det er ikke avtalt noen observasjon fra din side.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_spor": "plan"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_b_c06_observasjonen",
+      "threadId": "wave_b_c06",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Sju kryssinger i et kvarter",
+      "tekst": "Du står ved kryssingspunktet fra 07.45 til 08.00. Du noterer sju gående som krysser den eksisterende kjøreveien, tre av dem med skolesekk. Du har ikke spurt om alder eller reisemål. Den planlagte nedkjørselen finnes ikke ennå. På kontoret vil plansjefen bruke «sju kryssinger» som nøkkeltall. Notatet ditt sier ingenting om 08.00–08.15 eller en framtidig utbygging.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c06_spor": "observer"
+        }
+      },
+      "valg": [
+        {
+          "id": "avgrens_tallet",
+          "tekst": "Send tallet med sted, klokkeslett og det som fortsatt mangler.",
+          "konsekvensTekst": "Du sender observasjonen med alle avgrensningene og ber om at de følger tallet i sammendraget. Du har dokumentert et kvarter, ikke trafikksikkerheten etter utbygging.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_utfall": "delobservasjon",
+              "wa_b_c06_observert": true
+            }
+          }
+        },
+        {
+          "id": "egen_del",
+          "tekst": "Lever observasjonen separat og fraråd at den brukes som totalmål.",
+          "konsekvensTekst": "Du legger ved rånotatet og skriver hvorfor tallet ikke bør stå alene som dekning av skoleveien. Plansjefen har mottatt anbefalingen; det politiske utfallet er fortsatt ukjent.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_utfall": "separat_notat",
+              "wa_b_c06_observert": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c06_uten_telling",
+      "threadId": "wave_b_c06",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ingen ekstra hender",
+      "tekst": "Plansjefen svarer på forespørselen din: Det er ikke frigjort noen til den andre halvdelen av tidsrommet. Ingen observasjon er gjennomført av deg. «Vi må beskrive det vi mangler», sier plansjefen, men ønsker et kort sammendrag i dag. Det du kan levere nå er en presis kunnskapsstatus eller en anbefaling om mer tid.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c06_spor": "plan"
+        }
+      },
+      "valg": [
+        {
+          "id": "kunnskapsstatus",
+          "tekst": "Skriv hvilke data som finnes og hvilket spørsmål de ikke besvarer.",
+          "konsekvensTekst": "Du sender en kunnskapsstatus som skiller snarveitellingen fra det udokumenterte kryssingspunktet. Du oppretter ikke et nytt tall.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_utfall": "hull_synlig"
+            }
+          }
+        },
+        {
+          "id": "anbefal_tid",
+          "tekst": "Anbefal at saksframlegget venter på den manglende undersøkelsen.",
+          "konsekvensTekst": "Du sender en faglig anbefaling om mer tid. Anbefalingen er ikke en vedtatt utsettelse; plansjefen må håndtere den videre.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c06_utfall": "utsettelse_anbefalt"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
     }
   ]
 }

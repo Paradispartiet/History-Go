@@ -1133,6 +1133,245 @@
         }
       },
       "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_b_c17_aapen",
+      "threadId": "wave_b_c17",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et lager i arbeidsplanen",
+      "tekst": "Du beholdt de tre uavklarte sonene som åpne i oversikten. Kari ser på listen sammen med deg. Kari sier at drift kan komme klokken ti i morgen og vurdere flytting. Det er ingen bekreftelse på at hyllen blir flyttet da. På morgendagens liste har lageret likevel fått en vanlig tidsramme, uten ekstra tid til å vente eller rydde tilkomst.",
+      "conditions": {
+        "flagg": {
+          "wa_c17_oppfolging": "aapen_plan"
+        }
+      },
+      "valg": [
+        {
+          "id": "skill_tid",
+          "tekst": "Be Kari skille tilkomst og renhold i morgendagens plan.",
+          "konsekvensTekst": "Kari legger inn et eget punkt for tilkomst før renholdet. Sonen er fortsatt åpen. Drift har ikke kommet, og den nye planen gjør ikke arbeidet ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "egen_tid"
+            }
+          }
+        },
+        {
+          "id": "behold_avvik",
+          "tekst": "Behold hindringen i statusen og be om en ny oppgave mens du venter.",
+          "konsekvensTekst": "Kari setter deg til en ny ordinær runde i inngangspartiet i morgen tidlig. Lageret står fortsatt som utilgjengelig. Runden er tildelt, ikke utført.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "annen_oppgave"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_b_c17_rekkefolge",
+      "threadId": "wave_b_c17",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et lager i arbeidsplanen",
+      "tekst": "Kari satte kontorene først i den nye rekkefølgen. Det var en prioritering, ikke en bekreftelse på at kontorene eller de andre sonene var ferdige. Kari sier at drift kan komme klokken ti i morgen og vurdere flytting. Det er ingen bekreftelse på at hyllen blir flyttet da. På morgendagens liste har lageret likevel fått en vanlig tidsramme, uten ekstra tid til å vente eller rydde tilkomst.",
+      "conditions": {
+        "flagg": {
+          "wa_c17_oppfolging": "ny_rekkefolge"
+        }
+      },
+      "valg": [
+        {
+          "id": "skill_tid",
+          "tekst": "Be Kari skille tilkomst og renhold i morgendagens plan.",
+          "konsekvensTekst": "Kari legger inn et eget punkt for tilkomst før renholdet. Sonen er fortsatt åpen. Drift har ikke kommet, og den nye planen gjør ikke arbeidet ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "egen_tid"
+            }
+          }
+        },
+        {
+          "id": "behold_avvik",
+          "tekst": "Behold hindringen i statusen og be om en ny oppgave mens du venter.",
+          "konsekvensTekst": "Kari setter deg til en ny ordinær runde i inngangspartiet i morgen tidlig. Lageret står fortsatt som utilgjengelig. Runden er tildelt, ikke utført.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "annen_oppgave"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_b_c17_vist",
+      "threadId": "wave_b_c17",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et lager i arbeidsplanen",
+      "tekst": "Du viste Kari hyllen som stengte lageret. I dag står den fremdeles på samme sted. At lederen har sett hindringen har ikke fjernet den. Kari sier at drift kan komme klokken ti i morgen og vurdere flytting. Det er ingen bekreftelse på at hyllen blir flyttet da. På morgendagens liste har lageret likevel fått en vanlig tidsramme, uten ekstra tid til å vente eller rydde tilkomst.",
+      "conditions": {
+        "flagg": {
+          "wa_c17_oppfolging": "vist_leder"
+        }
+      },
+      "valg": [
+        {
+          "id": "skill_tid",
+          "tekst": "Be Kari skille tilkomst og renhold i morgendagens plan.",
+          "konsekvensTekst": "Kari legger inn et eget punkt for tilkomst før renholdet. Sonen er fortsatt åpen. Drift har ikke kommet, og den nye planen gjør ikke arbeidet ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "egen_tid"
+            }
+          }
+        },
+        {
+          "id": "behold_avvik",
+          "tekst": "Behold hindringen i statusen og be om en ny oppgave mens du venter.",
+          "konsekvensTekst": "Kari setter deg til en ny ordinær runde i inngangspartiet i morgen tidlig. Lageret står fortsatt som utilgjengelig. Runden er tildelt, ikke utført.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "annen_oppgave"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_b_c17_venter",
+      "threadId": "wave_b_c17",
+      "dag": 5,
+      "fase": "morgen",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et lager i arbeidsplanen",
+      "tekst": "Du ba om tid til å avklare lageret. Nå kommer Kari til døren og ser selv hyllen foran tilkomsten. Kari sier at drift kan komme klokken ti i morgen og vurdere flytting. Det er ingen bekreftelse på at hyllen blir flyttet da. På morgendagens liste har lageret likevel fått en vanlig tidsramme, uten ekstra tid til å vente eller rydde tilkomst.",
+      "conditions": {
+        "flagg": {
+          "wa_c17_oppfolging": "venter_avklaring"
+        }
+      },
+      "valg": [
+        {
+          "id": "skill_tid",
+          "tekst": "Be Kari skille tilkomst og renhold i morgendagens plan.",
+          "konsekvensTekst": "Kari legger inn et eget punkt for tilkomst før renholdet. Sonen er fortsatt åpen. Drift har ikke kommet, og den nye planen gjør ikke arbeidet ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "egen_tid"
+            }
+          }
+        },
+        {
+          "id": "behold_avvik",
+          "tekst": "Behold hindringen i statusen og be om en ny oppgave mens du venter.",
+          "konsekvensTekst": "Kari setter deg til en ny ordinær runde i inngangspartiet i morgen tidlig. Lageret står fortsatt som utilgjengelig. Runden er tildelt, ikke utført.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_spor": "annen_oppgave"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_b_c17_drift_vurderer",
+      "threadId": "wave_b_c17",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Drift kommer, hyllen står",
+      "tekst": "Klokken ti kommer en fra drift. Vedkommende ser at hyllen er festet til veggen og sier at den må tømmes og løsnes av drift før den kan flyttes. Det skjer ikke i dette besøket. Du har tid i planen til tilkomst, men fortsatt ingen fri vei inn. Kari spør hva hun skal føre om lageret i dagens status.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c17_spor": "egen_tid"
+        }
+      },
+      "valg": [
+        {
+          "id": "beskriv_hindring",
+          "tekst": "Registrer besøket og at renhold ikke er påbegynt.",
+          "konsekvensTekst": "Du fører tidspunktet for besøket og «tilkomst fortsatt blokkert – renhold ikke påbegynt». Kari må legge en ny plan for drift og renhold. Du løfter ikke hyllen selv.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_utfall": "besok_uten_tilkomst"
+            }
+          }
+        },
+        {
+          "id": "be_felles_plan",
+          "tekst": "Be Kari og drift avtale neste trinn før sonen får ny frist.",
+          "konsekvensTekst": "Du ber om tidspunkt og ansvar for tømming og flytting. Kari sender forespørselen til drift. Du registrerer samtidig lageret som utilgjengelig; et nytt tidspunkt er ennå ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_utfall": "plan_forespurt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c17_runden",
+      "threadId": "wave_b_c17",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En ny runde eller en ny prioritering",
+      "tekst": "Du har hentet utstyr til den nye runden i inngangspartiet som Kari satte opp. På vei dit ser du at hyllen fortsatt blokkerer lageret. Kari spør om du først kan føre «morgenvakt gjennomført» så hun får sendt oversikten. Den planlagte runden er ennå ikke gjort, og lageret er fortsatt utilgjengelig.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c17_spor": "annen_oppgave"
+        }
+      },
+      "valg": [
+        {
+          "id": "to_linjer",
+          "tekst": "Gjennomfør inngangsrunden og registrer de to sonene hver for seg.",
+          "konsekvensTekst": "Du vasker inngangspartiet og fører denne nye runden som ferdig. Lageret registrerer du som utilgjengelig. Ingen av de andre åpne sonene kvitteres ut.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_utfall": "adskilt_status",
+              "wa_b_c17_inngang_ferdig": true
+            }
+          }
+        },
+        {
+          "id": "forklar_muntlig",
+          "tekst": "Be Kari prioritere før du starter, siden oversikten ikke kan ferdigføres ennå.",
+          "konsekvensTekst": "Du forklarer at runden gjenstår og lageret er blokkert. Kari ber deg vente mens hun avklarer resten av vakten. Du registrerer ingen oppgave som ferdig i denne scenen.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c17_utfall": "venter_prioritering"
+            }
+          }
+        }
+      ]
     }
   ]
 }
