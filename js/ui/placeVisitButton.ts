@@ -71,20 +71,24 @@ export function createPlaceVisitButtonController(options: {
       if (!gate.ok) {
         const reason = "reason" in gate ? gate.reason : "too_far";
         if (reason === "no_pos") {
-          setButton(true, tUI("ui.position.loading", "Henter posisjon…"));
+          setButton(false, tUI("ui.visit.enablePosition", "Aktiver posisjon"));
+          return;
+        }
+        if (reason === "no_anchor") {
+          setButton(false, tUI("ui.visit.missingCoordinates", "Mangler kartpunkt"));
           return;
         }
         if (gate.d != null) {
           const left = Math.max(0, Math.ceil(gate.d - gate.r));
           setButton(
-            true,
+            false,
             tfUI("ui.unlock.goCloserMeters", "Gå nærmere: {meters} m", {
               meters: left
             })
           );
           return;
         }
-        setButton(true, tUI("ui.unlock.goCloser", "Gå nærmere"));
+        setButton(false, tUI("ui.unlock.goCloser", "Gå nærmere"));
         return;
       }
 
@@ -107,7 +111,11 @@ export function createPlaceVisitButtonController(options: {
       if (!gate.ok) {
         const reason = "reason" in gate ? gate.reason : "too_far";
         if (reason === "no_pos") {
-          runtime.showToast?.(tUI("ui.position.loading", "Henter posisjon…"));
+          runtime.showToast?.(tUI("ui.visit.positionRequired", "Aktiver posisjonstjenester for å registrere besøk."));
+          return;
+        }
+        if (reason === "no_anchor") {
+          runtime.showToast?.(tUI("ui.visit.locationMissing", "Stedet mangler kartkoordinater. Besøk kan ikke registreres ennå."));
           return;
         }
         const left = gate.d != null
