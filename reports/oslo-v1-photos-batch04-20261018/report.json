@@ -40,7 +40,7 @@
         "portrait": "bilder/places/oslo-v1-20261018-batch04/ankerbrua_portrait.webp",
         "card": "bilder/places/oslo-v1-20261018-batch04/ankerbrua_card.webp"
       },
-      "review_status": "materialized_pending_visual_review"
+      "review_status": "editorially_reviewed_and_chromium_verified"
     },
     {
       "id": "hausmannsbrua",
@@ -80,7 +80,7 @@
         "portrait": "bilder/places/oslo-v1-20261018-batch04/hausmannsbrua_portrait.webp",
         "card": "bilder/places/oslo-v1-20261018-batch04/hausmannsbrua_card.webp"
       },
-      "review_status": "materialized_pending_visual_review"
+      "review_status": "editorially_reviewed_and_chromium_verified"
     },
     {
       "id": "hausmania",
@@ -120,7 +120,7 @@
         "portrait": "bilder/places/oslo-v1-20261018-batch04/hausmania_portrait.webp",
         "card": "bilder/places/oslo-v1-20261018-batch04/hausmania_card.webp"
       },
-      "review_status": "materialized_pending_visual_review"
+      "review_status": "editorially_reviewed_and_chromium_verified"
     }
   ],
   "held": [
@@ -139,5 +139,22 @@
     "held": 2,
     "v1_promoted": 0
   },
-  "policy": "Image-only update; retain canonical production profile and editorial v1_candidate status."
+  "policy": "Image-only update; retain canonical production profile and editorial v1_candidate status.",
+  "browser_review": {
+    "run": "https://github.com/Paradispartiet/History-Go/actions/runs/39161850902",
+    "asset_commit": "23d3c5a5483ad808f036921e943d864dbed85f3f",
+    "viewports": [
+      390,
+      768
+    ],
+    "passed": 6,
+    "blocked": 0,
+    "report": "reports/oslo-v1-photos-batch04-20261018/browser-report.json",
+    "physical_device_verified": false
+  },
+  "editorial_notes": {
+    "ankerbrua": "Same verified 2008 original retained; separate crops keep the main arch and river visible.",
+    "hausmannsbrua": "The 2011 north-side photograph replaces the small 2008 source; arch and ironwork remain the main subjects.",
+    "hausmania": "The 2017 riverside facade is used as the main photograph; portrait is an intentional central facade detail, so the full inscription is only shown in the wide/card crops."
+  }
 }
