@@ -221,7 +221,11 @@ const models = (modelManifest.files || []).map((rel) => ({ rel, json: readJson(r
 // has runtime coverage, even when text mentions the psychology badge/role ID.
 const testFiles = walk('tests').filter((rel) =>
   /^tests\/civication-.*\.test\.js$/.test(rel) &&
-  !/^tests\/civication-psychology-room-/.test(rel)
+  !/^tests\/civication-psychology-room-/.test(rel) &&
+  // Wave-A narrative integration verifies the shared inbox and historical
+  // personal choices. Mentions of a career in its fixture are not evidence
+  // that the career's workday or competency gameplay is implemented.
+  !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel)
 );
 const testTexts = testFiles.map((rel) => ({ rel, text: fs.readFileSync(abs(rel), 'utf8') }));
 const globalRuntimeTests = [
