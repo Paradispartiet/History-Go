@@ -396,27 +396,31 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            setButton(true, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            setButton(false, tUI("ui.visit.enablePosition", "Aktiver posisjon"));
+            return;
+          }
+          if (reason === "no_anchor") {
+            setButton(false, tUI("ui.visit.missingCoordinates", "Mangler kartpunkt"));
             return;
           }
           if (gate.d != null) {
             const left = Math.max(0, Math.ceil(gate.d - gate.r));
             setButton(
-              true,
+              false,
               tfUI("ui.unlock.goCloserMeters", "G\xE5 n\xE6rmere: {meters} m", {
                 meters: left
               })
             );
             return;
           }
-          setButton(true, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
+          setButton(false, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
           return;
         }
         const label = runtime.TEST_MODE ? `${tUI("ui.visit.register", "Registrer bes\xF8k")} (test)` : tUI("ui.visit.register", "Registrer bes\xF8k");
         setButton(false, label);
       };
       button.onclick = () => {
-        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
         if ((_a2 = runtime.HGPhysicalVisits) == null ? void 0 : _a2.isVisited(placeId)) {
           (_b2 = runtime.showToast) == null ? void 0 : _b2.call(
             runtime,
@@ -429,11 +433,15 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.visit.positionRequired", "Aktiver posisjonstjenester for \xE5 registrere bes\xF8k."));
+            return;
+          }
+          if (reason === "no_anchor") {
+            (_d = runtime.showToast) == null ? void 0 : _d.call(runtime, tUI("ui.visit.locationMissing", "Stedet mangler kartkoordinater. Bes\xF8k kan ikke registreres enn\xE5."));
             return;
           }
           const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
-          (_d = runtime.showToast) == null ? void 0 : _d.call(
+          (_e = runtime.showToast) == null ? void 0 : _e.call(
             runtime,
             left != null ? tfUI("ui.unlock.goCloserMeters", "G\xE5 n\xE6rmere: {meters} m", {
               meters: left
@@ -441,22 +449,22 @@
           );
           return;
         }
-        const result = ((_e = runtime.HGPhysicalVisits) == null ? void 0 : _e.record(place)) || {
+        const result = ((_f = runtime.HGPhysicalVisits) == null ? void 0 : _f.record(place)) || {
           ok: false,
           reason: "persistence_unavailable"
         };
         if (!result.ok) {
-          (_f = runtime.showToast) == null ? void 0 : _f.call(
+          (_g = runtime.showToast) == null ? void 0 : _g.call(
             runtime,
             tUI("ui.visit.saveFailed", "Kunne ikke registrere bes\xF8ket")
           );
           return;
         }
-        (_h = runtime.pulseMarker) == null ? void 0 : _h.call(runtime, place.lat, (_g = place.lon) != null ? _g : place.lng);
-        (_k = runtime.showToast) == null ? void 0 : _k.call(
+        (_i = runtime.pulseMarker) == null ? void 0 : _i.call(runtime, place.lat, (_h = place.lon) != null ? _h : place.lng);
+        (_l = runtime.showToast) == null ? void 0 : _l.call(
           runtime,
           `${tUI("ui.visit.registered", "Bes\xF8k registrert")}: ${String(
-            (_j = (_i = place.name) != null ? _i : place.title) != null ? _j : placeId
+            (_k = (_j = place.name) != null ? _j : place.title) != null ? _k : placeId
           )} \u2705`
         );
         update();

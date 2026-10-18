@@ -23,15 +23,17 @@ test("Torggata fase 15 bruker canonical fysisk visit-gate og holder quiz separat
   let hasPosition = false;
   let distance = 500;
   let physicalWrites = 0;
+  const toasts = [];
+  let missingAnchor = false;
   w.TEST_MODE = false;
   w.visited = {};
   w.HG_I18N = { t: (_key, fallback) => fallback };
   w.getPos = () => hasPosition ? { lat: place.lat, lon: place.lon } : null;
   w.distMeters = () => distance;
-  w.getPlaceDistanceTargets = candidate => [{ lat: candidate.lat, lon: candidate.lon, r: candidate.r }];
+  w.getPlaceDistanceTargets = candidate => missingAnchor ? [] : [{ lat: candidate.lat, lon: candidate.lon, r: candidate.r }];
   w.saveVisitedFromQuiz = id => { physicalWrites += 1; w.visited[String(id)] = true; };
   w.openPlaceCard = async () => undefined;
-  w.showToast = () => undefined;
+  w.showToast = message => { toasts.push(message); };
   w.pulseMarker = () => undefined;
   w.setInterval = () => 1;
   w.clearInterval = () => undefined;
@@ -43,16 +45,30 @@ test("Torggata fase 15 bruker canonical fysisk visit-gate og holder quiz separat
 
   await w.openPlaceCard(place);
   let button = w.document.getElementById("pcVisit");
-  assert.equal(button.disabled, true);
-  assert.equal(button.textContent, "Henter posisjon…");
+  assert.equal(button.disabled, false);
+  assert.equal(button.textContent, "Aktiver posisjon");
+  button.click();
+  assert.match(toasts.at(-1), /Aktiver posisjonstjenester/);
+  assert.equal(physicalWrites, 0);
 
   hasPosition = true;
   await w.openPlaceCard(place);
   button = w.document.getElementById("pcVisit");
-  assert.equal(button.disabled, true);
+  assert.equal(button.disabled, false);
   assert.equal(button.textContent, "Gå nærmere: 320 m");
   button.click();
+  assert.match(toasts.at(-1), /Gå nærmere: 320 m/);
   assert.equal(physicalWrites, 0);
+
+  missingAnchor = true;
+  await w.openPlaceCard(place);
+  button = w.document.getElementById("pcVisit");
+  assert.equal(button.disabled, false);
+  assert.equal(button.textContent, "Mangler kartpunkt");
+  button.click();
+  assert.match(toasts.at(-1), /mangler kartkoordinater/);
+  assert.equal(physicalWrites, 0);
+  missingAnchor = false;
 
   distance = 180;
   await w.openPlaceCard(place);
