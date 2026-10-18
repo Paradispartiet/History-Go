@@ -148,3 +148,7 @@ Oppfølgingsbolkens første ordinære CI bestod **718/719 testfiler**. Den enest
 ## Akseptanse for situasjonsstyrte innganger og historikk
 
 [Overgangskontrakten for de åtte historiene](CIVICATION_WAVE_A_STORY_DELIVERY_ACCEPTANCE_V1.md) beskriver hva som må testes i felles kalender, innboks og «Min dag»: passert avtaletid uten oppmøtebevis, jobb-/arbeidsstedsbytte, dobbelt svar, avvist svar, gamle lagringer og pause/avslutning. Den nye målrettede `civication-wave-a-transition-safety.test.js` dekker foreløpig bare grunnmotorens transaksjonsgrenser; den godkjenner **ikke** en ikke-committed inngangsproduksjon med 89 scener/178 valg. Dette avsnittet endrer ikke eksisterende scenestatus eller verksanalyse.
+
+### Wave C – etterkontroll mot eksisterende regresjoner
+
+Wave C bruker eksisterende innholdspakker. Både C01 og C05 er i `roles/arbeidsledig/scenes.json`, derfor avgrenser Wave C-regresjonen nye scener per `story_type_id` før den kontrollerer forgjengervalg; et generelt `wave_c_`-filter ville blande fortellingene. Arvid-testen beholder sine opprinnelige fullstendige kapittelvalg, men lar Wave A–C håndteres av de dedikerte bolktestene. Renholderpakken har nå fem opprinnelige arbeidstråder og tre C17-ledd, ikke to. Den genererte karrierematrisen er synkronisert mot disse innholdsendringene uten å endre policy. Ordinær CI er fortsatt selvstendig mergevilkår.
