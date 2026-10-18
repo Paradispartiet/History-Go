@@ -142,6 +142,28 @@ def main():
     manifest = json.loads(MANIFEST.read_text())
     if manifest["schema"] != "history_go_oslo_photo_candidate_selection_v1":
         raise ValueError("Unsupported candidate manifest")
+    # Published bindings can point at these immutable files. A repeat invocation
+    # must validate them without deleting/recreating them or resetting review status.
+    expected = [OUT / (c["place_id"] + "_" + kind + ".webp")
+                for c in manifest["candidates"] for kind in manifest["outputs"]]
+    if any(path.exists() for path in expected):
+        if not all(path.is_file() for path in expected):
+            raise SystemExit("Partial existing photo batch; refusing to overwrite or delete assets")
+        prior = json.loads((REPORT / "report.json").read_text())
+        records = {entry["place_id"]: entry for entry in prior["produced"]}
+        for candidate in manifest["candidates"]:
+            entry = records[candidate["place_id"]]
+            if entry["commons_source"] != candidate["source_page"] or entry["license"] != candidate["license"]:
+                raise SystemExit("Existing photo source differs; use a new batch directory")
+            for kind, size in manifest["outputs"].items():
+                expected_path = OUT / (candidate["place_id"] + "_" + kind + ".webp")
+                if ROOT / entry["output"][kind] != expected_path:
+                    raise SystemExit("Existing photo path differs from manifest")
+                with Image.open(expected_path) as photo:
+                    if photo.format != "WEBP" or list(photo.size) != size:
+                        raise SystemExit("Existing photo is invalid")
+        print("EXISTING PHOTO BATCH VALIDATED; assets and review status preserved", flush=True)
+        return
     REPORT.mkdir(parents=True, exist_ok=True)
     report = {
         "schema": "history_go_oslo_photo_candidates_artifacts_v1",

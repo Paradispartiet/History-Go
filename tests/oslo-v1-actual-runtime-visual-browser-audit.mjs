@@ -97,10 +97,16 @@ try{
         naturalWidth:x.naturalWidth,naturalHeight:x.naturalHeight,fit:st.objectFit,
         position:st.objectPosition,width:Math.round(rect.width),height:Math.round(rect.height)};
       };
+      const title=document.querySelector("#pcTitle")?.getBoundingClientRect();
+      const hero=document.querySelector("#pcHeaderHero")?.getBoundingClientRect();
       return{visible:document.querySelector("#placeCard")?.classList.contains("is-open"),
+       titleVisible:!!title && !!hero && title.width>0 && title.height>0 &&
+        title.top>=hero.top-1 && title.bottom<=hero.bottom+1 &&
+        title.left>=hero.left-1 && title.right<=hero.right+1,
        hero:get("#pcHeaderImage"),portrait:get("#pcFrontImage"),quiz:get("#pcQuizCardImage")};
      });
      if(!media.visible)problems.push("PlaceCard not visible");
+     if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
      if(media.hero?.fit!=="cover")problems.push("Hero CSS does not use cover");
