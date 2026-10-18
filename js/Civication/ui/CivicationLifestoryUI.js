@@ -340,6 +340,10 @@
     let accepted = false;
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
+    // The shell may have adopted another job while a previous scene's
+    // button is still in the DOM. Never overwrite that newer role save.
+    const persistedRole = State.load()?.rolle;
+    if (persistedRole && persistedRole !== state?.rolle) return false;
     try {
       const scene = content.scenes.find((s) => s.id === sceneId);
       const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
@@ -982,6 +986,8 @@
   // One canonical Life Story scene; inbox receives a read/action projection.
   function getPendingWaveAEvent() {
     if (!state || !content || state.dagFerdig) return null;
+    const currentSaveRole = window.CivicationLifestoryState?.load?.()?.rolle;
+    if (currentSaveRole && currentSaveRole !== state.rolle) return null;
     const Runner = window.CivicationLifestoryRunner;
     const State = window.CivicationLifestoryState;
     const scene = Runner.selectNextScene(state, content);
