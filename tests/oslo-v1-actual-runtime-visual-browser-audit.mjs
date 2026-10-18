@@ -54,6 +54,9 @@ try{
    await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:1800}).catch(async()=>{
      await page.evaluate(()=>window.HGOnboarding?.close?.());
    });
+   // Let app/router startup settle before opening the first place, otherwise
+   // a late initial-hide can race with the first PlaceCard request.
+   await page.waitForTimeout(850);
   }catch(e){report.blockers.push({width,reason:"Native index/app boot unavailable",error:String(e).slice(0,380),pageErrors:errs.slice(0,6)});}
   for(const place of places){
    const problems=[],snapshots=[];
