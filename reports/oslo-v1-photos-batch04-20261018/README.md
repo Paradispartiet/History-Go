@@ -20,6 +20,18 @@ Hero er 1400×900, portrett er 900×1350 og kort er 900×600. Hvert format har e
 
 Dette er én målrettet kjøring for de tre berørte stedene. Det er ikke gjennomført ny full katalog- eller nettleserregresjon for tidligere godkjente bilder. Fysisk mobil er ikke kontrollert; `v1_candidate` og fullproduksjonsstatus er uendret.
 
+## Reproduksjon av quizkontekst
+
+Bildestiene og bildemetadataene inngår i Place-filens og lettindeksens deterministiske kontrollsummer. Etter materialisering regenereres derfor bare de tre berørte quizkontekstene:
+
+```bash
+node scripts/build-quiz-production-context.mjs --category by --target ankerbrua --output data/quiz/production_context/by/ankerbrua.json
+node scripts/build-quiz-production-context.mjs --category by --target hausmannsbrua --output data/quiz/production_context/by/hausmannsbrua.json
+node scripts/build-quiz-production-context.mjs --category subkultur --target hausmania --output data/quiz/production_context/subkultur/hausmania.json
+```
+
+Diffen endrer bare `bytes`/`sha256` for target og `selection_bytes`/`selection_sha256` for indeksutvalget i hvert kontekstarkiv. Ingen spørsmål, kildeclaims eller quizprofiler endres. Alle ni WebP-filer er separat dekodet og kontrollert mot eksakte dimensjoner; canonical, indeks og runtime peker på samme filer, og alle ni rettighetsregistreringene samsvarer.
+
 ## To åpne bildesaker
 
 | Sted | Det som mangler | Neste nødvendige kilde |
