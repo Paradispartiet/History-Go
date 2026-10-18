@@ -146,3 +146,10 @@ report.summary={places:ids.length,checks:report.places.length,
 report.status=report.summary.blocked?"BLOCKED":"BROWSER_PASS_VISUAL_EDITORIAL_REVIEW_PENDING";
 fs.writeFileSync(OUT+"/report.json",JSON.stringify(report,null,2)+"\n");
 console.log("AUDIT_SUMMARY",JSON.stringify(report.summary));
+// Groruddammen is a documented cold-start hold, not an approved v1.
+// Any additional browser regression must fail this targeted check.
+const unexpected=report.places.filter(item=>item.problems.length && item.id!=="groruddammen");
+if(unexpected.length){
+ console.error("Unexpected Oslo browser blockers:",unexpected.map(x=>x.id+"/"+x.width));
+ process.exitCode=1;
+}
