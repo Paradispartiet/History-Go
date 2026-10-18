@@ -33,6 +33,12 @@ test("canonical Note, Observation and Routes APIs load before place selection", 
   assert.match(card, /window\.HGAppRouter\.navigate\(next\)/);
   const visitPatch = read("js/ui/place-card-quizcards-patch.js");
   assert.match(visitPatch, /getPhysicalVisitGate\(runtime, place\)/);
+  assert.match(visitPatch, /ui\.visit\.enablePosition/);
+  assert.match(visitPatch, /ui\.visit\.locationMissing/);
+  const routes = read("js/routes.js");
+  assert.match(routes, /Stedet mangler kartkoordinater\. Kan ikke vise gangrute/);
+  assert.match(routes, /Kartet er ikke klart\. Prøv ruten igjen/);
+  assert.match(routes, /Number\(place\?\.lon \?\? place\?\.lng\)/);
   assert.match(visitPatch, /runtime\.HGPhysicalVisits/);
 });
 
