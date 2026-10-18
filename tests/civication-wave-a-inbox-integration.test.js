@@ -51,7 +51,8 @@ const scripts = [
   'js/Civication/lifestory/lifestoryEndings.js',
   'js/Civication/systems/civicationMailEngine.js',
   'js/Civication/ui/CivicationLifestoryUI.js',
-  'js/Civication/lifestory/civicationWaveAInboxBridge.js'
+  'js/Civication/lifestory/civicationWaveAInboxBridge.js',
+  'js/Civication/lifestory/civicationWaveAPrivateRoleBridge.js'
 ];
 const tick = () => new Promise(resolve => setTimeout(resolve, 0));
 async function waitFor(predicate, label) {
@@ -155,6 +156,44 @@ test('pause and return preserve a private wave-A agreement and pending envelope'
     window.CivicationWaveAInboxBridge.sync();
     assert.equal(mail.getMail(pending.id).archived, false);
     assert.deepEqual(clone(window.CivicationLifestoryState.load().arkiv), archiveBefore);
+  } finally { h.dom.window.close(); }
+});
+
+test('an eligible private scene survives role change and answers into the inactive snapshot only', async () => {
+  const h = await harness('arbeidsledig', 'c01');
+  try {
+    const { window } = h;
+    const State = window.CivicationLifestoryState;
+    const roleContent = await window.CivicationLifestoryContent.loadContent('arealplanlegger');
+    const before = State.selectRole(State.load(), roleContent);
+    const activeArchive = clone(before.arkiv);
+    const inactiveArchive = clone(before.rolleTilstander.arbeidsledig.arkiv);
+    State.save(before);
+    const ui = window.CivicationLifestoryUI;
+    const original = ui.getPendingWaveAEvent;
+    // UI role adoption is asynchronous; simulate the moment it has adopted
+    // the new active role, so the old role is only represented by its save.
+    ui.getPendingWaveAEvent = () => null;
+    try {
+      await window.CivicationWaveAPrivateRoleBridge.refresh();
+      const privateEvent = window.CivicationWaveAPrivateRoleBridge.getPendingEvent();
+      assert.ok(privateEvent, 'qualifying personal scene from inactive role is still playable');
+      assert.equal(privateEvent.lifestory_role, 'arbeidsledig');
+      assert.equal(privateEvent.channel, 'private');
+      const beforeInvalid = clone(State.load());
+      assert.equal((await window.CivicationMailEngine.answerMail(privateEvent.id, 'bad-id')).ok, false);
+      assert.deepEqual(clone(State.load()), beforeInvalid);
+      assert.equal((await window.CivicationMailEngine.answerMail(
+        privateEvent.id, privateEvent.choices[0].id)).ok, true);
+      const after = State.load();
+      assert.equal(after.rolle, 'arealplanlegger', 'active job role is unchanged');
+      assert.deepEqual(clone(after.arkiv), activeArchive, 'job-role archive is unchanged');
+      assert.equal(after.rolleTilstander.arbeidsledig.arkiv.length, inactiveArchive.length + 1);
+      assert.equal(after.rolleTilstander.arbeidsledig.arkiv.at(-1).sceneId, privateEvent.lifestory_scene_id);
+      assert.equal(window.CivicationMailEngine.getMail(privateEvent.id).resolved, true);
+      assert.equal((await window.CivicationMailEngine.answerMail(
+        privateEvent.id, privateEvent.choices[0].id)).ok, false, 'cannot answer inactive scene twice');
+    } finally { ui.getPendingWaveAEvent = original; }
   } finally { h.dom.window.close(); }
 });
 
