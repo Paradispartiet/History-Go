@@ -86,7 +86,7 @@ function explore(start, content, pack, old) {
     }
     const scene = R.selectNextScene(s, c);
     assert.ok(scene && pack.scenes.some(p => p.id === scene.id), 'every day has authored content');
-    const choices = /^wave_[abc]_/.test(scene.id) ? scene.valg.slice(0, 1) : scene.valg;
+    const choices = /^wave_[abcd]_/.test(scene.id) ? scene.valg.slice(0, 1) : scene.valg;
     for (const choice of choices) {
       seen.add(scene.id + '/' + choice.id);
       const next = clone(s);
@@ -136,7 +136,7 @@ for (const pub of ['avklar', 'ja_uten_ramme']) for (const past of pasts) {
 }
 assert.equal(openings.size, 4);
 assert.equal(endings.size, 6);
-for (const p of packs.filter(p => p.sisteDag <= 13)) for (const scene of p.scenes.filter(s => !/^wave_[abc]_/.test(s.id))) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
+for (const p of packs.filter(p => p.sisteDag <= 13)) for (const scene of p.scenes.filter(s => !/^wave_[abcd]_/.test(s.id))) for (const choice of scene.valg) assert.ok(seen.has(scene.id + '/' + choice.id), 'played ' + scene.id + '/' + choice.id);
 const s = week({}), text = JSON.stringify(s);
 for (const wrong of [null, { badge_id: 'musikk', label: 'Gangster' }, { badge_id: 'subkultur', label: 'Crew' }]) {
   primary = wrong;
