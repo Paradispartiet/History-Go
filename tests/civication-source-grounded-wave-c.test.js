@@ -130,7 +130,7 @@ test("eight stories, 17 real third-wave scenes and 34 choices", () => {
     assert.ok(original && binding.work_ids.join("|") === original.work_ids.join("|"),
       "Goodreads/IMDb/Film Producer source binding is preserved");
     const content = fullPackage(binding.story_type_id);
-    const authored = read(binding.runtime_path).scenes.filter(s => /^wave_c_/.test(s.id));
+    const authored = read(binding.runtime_path).scenes.filter(s => s.id.startsWith("wave_c_" + binding.story_type_id.toLowerCase() + "_"));
     assert.deepEqual(authored.map(s => s.id), binding.scene_ids);
     const threadIds = new Set(content.threads.map(t => t.id));
     for (const child of authored) {
