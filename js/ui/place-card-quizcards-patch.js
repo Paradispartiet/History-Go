@@ -517,7 +517,7 @@
       const activeId = String(cardNode?.dataset?.currentPlaceId || "").trim();
       // In production, the active card ID must match. Standalone QuizCard/visit
       // consumers have no PlaceCard node, and must keep working independently.
-      if (result === false || (cardNode && activeId !== String(place?.id || "").trim())) return result;
+      if (result === false || (activeId && activeId !== String(place?.id || "").trim())) return result;
       const resolvedId = activeId || String(place?.id || "").trim();
       const activePlace = runtime.HGPlaceOpen?.getPlace?.(resolvedId)
         || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null)
