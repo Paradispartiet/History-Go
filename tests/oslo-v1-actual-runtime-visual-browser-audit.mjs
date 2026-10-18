@@ -50,6 +50,10 @@ try{
    await page.goto("http://127.0.0.1:"+port+"/index.html",{waitUntil:"domcontentloaded",timeout:28000});
    await page.waitForFunction(()=>typeof window.openPlaceCard==="function"&&!!document.getElementById("pcFrontImage"),{timeout:16000});
    booted=true;
+   // Close the actual app onboarding using its public start button before taking screenshots.
+   await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:1800}).catch(async()=>{
+     await page.evaluate(()=>window.HGOnboarding?.close?.());
+   });
   }catch(e){report.blockers.push({width,reason:"Native index/app boot unavailable",error:String(e).slice(0,380),pageErrors:errs.slice(0,6)});}
   for(const place of places){
    const problems=[],snapshots=[];
