@@ -97,3 +97,111 @@ test("Observer opens real By-lens and records selected data in learning log", as
     dom.window.close();
   }
 });
+
+
+test("all four always-present footer actions respond before and after selection, using the live place", async () => {
+  const dom = new JSDOM('<!doctype html><html><body>' +
+    '<div id="placeCard" data-current-place-id=""><h2 id="pcTitle">Valgt sted</h2></div>' +
+    '<div class="app-footer"><div class="app-actions">' +
+    '<button id="pcQuiz">Quiz</button><button id="pcRoute">Rute</button>' +
+    '<button id="pcObserve">Observer</button><button id="pcNote">Notat</button>' +
+    '</div></div></body></html>', {
+      url: "https://history-go.test/", runScripts: "outside-only"
+    });
+  try {
+    const w = dom.window;
+    const calls = { route: [], note: [], obs: [], quiz: [], mode: [], toast: [], drawer: 0 };
+    w.tUI = (_key, fallback) => fallback;
+    w.showToast = msg => calls.toast.push(msg);
+    w.HGNearbyDrawer = { open: () => { calls.drawer++; } };
+    w.setLeftPanelMode = mode => calls.mode.push(mode);
+    w.renderLeftRoutesList = () => calls.mode.push("rendered");
+    w.HGAppRouter = { navigate: hash => calls.quiz.push(hash) };
+    w.HGObservations = { start: options => { calls.obs.push(options); return Promise.resolve(); } };
+    w.handlePlaceNote = place => calls.note.push(place.id);
+    w.showNavRouteToPlace = place => calls.route.push(place.id);
+    const places = {
+      torggata: {id:"torggata", name:"Torggata", category:"by"},
+      stortorget: {id:"stortorget", name:"Stortorget", category:"historie"}
+    };
+    w.PLACES = Object.values(places);
+    w.HGPlaceOpen = {getPlace: id => places[id]};
+    const start = card.indexOf("// Read the current place at the time of each click");
+    const end = card.indexOf("// PLACE CARD – bottom sheet bridge", start);
+    assert.ok(start > 0 && end > start, "production footer controller extraction");
+    const controller = card.slice(start, card.lastIndexOf("// ============================================================", end));
+    w.eval(controller);
+
+    const press = id => w.document.getElementById(id).click();
+    press("pcQuiz"); press("pcNote"); press("pcObserve");
+    assert.equal(calls.toast.length, 3, "no action is silently inert without a selected place");
+    assert.ok(calls.toast.every(msg => /Velg et sted/.test(msg)));
+    press("pcRoute");
+    assert.equal(calls.drawer, 1, "Rute opens the real routes drawer even without a selected place");
+    assert.ok(calls.mode.includes("routes"));
+
+    w.document.getElementById("placeCard").dataset.currentPlaceId = "torggata";
+    press("pcQuiz");
+    assert.deepEqual(calls.quiz, ["#/quiz/torggata"]);
+    press("pcNote");
+    assert.deepEqual(calls.note, ["torggata"]);
+    press("pcObserve");
+    await Promise.resolve();
+    assert.equal(calls.obs.length, 1);
+    assert.equal(calls.obs[0].target.targetId, "torggata");
+    assert.equal(calls.obs[0].lensId, "by_byliv");
+
+    press("pcRoute");
+    assert.ok(w.document.querySelector("#pcRouteMenu"), "route menu really opens");
+    w.document.querySelector('[data-route-action="go"]').click();
+    assert.deepEqual(calls.route, ["torggata"]);
+    assert.equal(w.document.querySelector("#pcRouteMenu"), null, "route menu closes after navigation");
+
+    // Switching place without re-rendering the footer must still target the new ID.
+    w.document.getElementById("placeCard").dataset.currentPlaceId = "stortorget";
+    press("pcQuiz"); press("pcNote"); press("pcObserve");
+    assert.equal(calls.quiz.at(-1), "#/quiz/stortorget");
+    assert.equal(calls.note.at(-1), "stortorget");
+    assert.equal(calls.obs.at(-1).target.targetId, "stortorget");
+    press("pcRoute");
+    w.document.querySelector('[data-route-action="go"]').click();
+    assert.equal(calls.route.at(-1), "stortorget");
+    assert.equal(w.__HG_FOOTER_ACTIONS_BOUND__, true);
+  } finally {
+    dom.window.close();
+  }
+});
+
+test("Events and Meet work for a selected place missing from the lightweight PLACES index", async () => {
+  const dom = new JSDOM('<!doctype html><html><body>' +
+    '<div id="placeCard" data-current-place-id="orphan"><h2 id="pcTitle">Historisk sted</h2>' +
+    '<div id="pcEventsBox"></div></div>' +
+    '<footer><div id="pcOnSiteFooter" hidden></div></footer></body></html>', {
+      url: "https://history-go.test/", runScripts: "outside-only"
+    });
+  try {
+    const w = dom.window;
+    w.PLACES = [];
+    w.HGPlaceOpen = {getPlace: id => id === "orphan" ? {id, name:"Historisk sted"} : null};
+    w.HGEvents = {ready:true, getUpcomingByPlace: () => [{title:"Arrangement"}]};
+    w.fetch = async () => ({ok:false});
+    w.__events = []; w.__meet = [];
+    w.showPlaceCardRoundPopup = value => w.__events.push(value);
+    w.HG_SpotmeetingUI = {open: value => w.__meet.push(value)};
+    w.eval(read("js/ui/place-onsite-surface.js"));
+    w.document.dispatchEvent(new w.Event("DOMContentLoaded", {bubbles:true}));
+    const events = w.document.querySelector('#pcOnSiteFooter [data-hg-onsite-action="events"]');
+    const meet = w.document.querySelector('#pcOnSiteFooter [data-hg-onsite-action="meet"]');
+    assert.ok(events && meet, "footer actions are present for hydrated orphan place");
+    events.click(); meet.click();
+    await Promise.resolve();
+    assert.equal(w.__events.length, 1);
+    assert.equal(w.__events[0].kind, "events");
+    assert.equal(w.__meet[0].contextId, "orphan");
+    w.document.getElementById("placeCard").dataset.currentPlaceId = "";
+    w.HGPlaceOnSiteSurface.decorate(true);
+    assert.equal(w.document.getElementById("pcOnSiteFooter").hidden, true);
+  } finally {
+    dom.window.close();
+  }
+});
