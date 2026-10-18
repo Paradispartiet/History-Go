@@ -36,26 +36,40 @@ test("canonical Note, Observation and Routes APIs load before place selection", 
   assert.match(visitPatch, /runtime\.HGPhysicalVisits/);
 });
 
-test("Notat executes the original private place-note save flow", () => {
-  const dom = new JSDOM('<!doctype html><body><div id="placeCard"><p id="pcDesc"></p></div></body>', {
+test("Notat opens a private place editor supporting save, edit, history and deletion", () => {
+  const dom = new JSDOM('<!doctype html><body><div id="placeCard"></div></body>', {
     url: "https://history-go.test/", runScripts: "outside-only"
   });
   try {
     const w = dom.window;
     w.userNotes = [];
     w.el = {btnSeeMap: null, btnExitMap: null};
-    w.saveUserNotes = () => { w.__savedNotes = w.userNotes.slice(); };
+    w.saveUserNotes = () => { w.__savedNotes = w.userNotes.map(n => ({...n})); };
     w.showToast = message => { w.__toast = message; };
-    w.prompt = () => "Et faktisk observert forhold.";
     w.eval(read("js/ui/interactions.js"));
-    assert.equal(typeof w.handlePlaceNote, "function");
     w.handlePlaceNote({ id: "torggata", name: "Torggata", category: "by" });
+    const editor = w.document.getElementById("hg-place-note-editor");
+    assert.ok(editor, "a real note editor opens instead of window.prompt");
+    const field = editor.querySelector("#hg-place-note-text");
+    field.value = "Et faktisk observert forhold.";
+    editor.querySelector('[data-note-action="save"]').click();
     assert.equal(w.__savedNotes.length, 1);
     assert.equal(w.__savedNotes[0].placeId, "torggata");
     assert.equal(w.__savedNotes[0].type, "place");
     assert.equal(w.__savedNotes[0].visibility, "private");
     assert.equal(w.__savedNotes[0].text, "Et faktisk observert forhold.");
-    assert.match(w.__toast, /lagret/);
+    assert.match(editor.textContent, /Tidligere notater/);
+    editor.querySelector(".hg-note-entry button").click();
+    assert.equal(field.value, "Et faktisk observert forhold.");
+    field.value = "Rettet notat.";
+    editor.querySelector('[data-note-action="save"]').click();
+    assert.equal(w.__savedNotes.length, 1, "editing updates instead of duplicating");
+    assert.equal(w.__savedNotes[0].text, "Rettet notat.");
+    editor.querySelectorAll(".hg-note-entry button")[1].click();
+    assert.equal(w.__savedNotes.length, 0, "deleting removes the persisted note");
+    assert.match(editor.textContent, /Ingen notater/);
+    editor.querySelector('[data-note-action="close"]').click();
+    assert.equal(w.document.getElementById("hg-place-note-editor"), null);
   } finally {
     dom.window.close();
   }
@@ -150,6 +164,7 @@ test("all four always-present footer actions respond before and after selection,
     assert.equal(calls.obs.length, 1);
     assert.equal(calls.obs[0].target.targetId, "torggata");
     assert.equal(calls.obs[0].lensId, "by_byliv");
+    assert.equal(calls.obs[0].target.subject_id, "by");
 
     press("pcRoute");
     assert.ok(w.document.querySelector("#pcRouteMenu"), "route menu really opens");
@@ -163,6 +178,8 @@ test("all four always-present footer actions respond before and after selection,
     assert.equal(calls.quiz.at(-1), "#/quiz/stortorget");
     assert.equal(calls.note.at(-1), "stortorget");
     assert.equal(calls.obs.at(-1).target.targetId, "stortorget");
+    assert.equal(calls.obs.at(-1).target.subject_id, "historie");
+    assert.equal(calls.obs.at(-1).lensId, "historie_spor");
     press("pcRoute");
     w.document.querySelector('[data-route-action="go"]').click();
     assert.equal(calls.route.at(-1), "stortorget");
