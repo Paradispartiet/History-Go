@@ -1372,6 +1372,86 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_c_c17_hyllen_staar",
+      "threadId": "wave_c_c17",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "En arbeidsplan som ikke flytter en hylle",
+      "tekst": "Drift har undersøkt hyllen, men den står fortsatt fast. Kari skal sende status videre før lunsj. Hun spør om du kan sette lageret til ferdig siden det nå finnes en plan. Du vet at tilkomsten fremdeles er stengt og at ingen har vasket området.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c17_utfall": "besok_uten_tilkomst"
+        }
+      },
+      "valg": [
+        {
+          "id": "hold_aapent",
+          "tekst": "Behold lageret som ikke utført og noter at drift har vært innom",
+          "konsekvensTekst": "Kari registrerer at befaringen er gjort, men at lageret ikke er rengjort. Et besøk fra drift er ikke det samme som fri tilkomst.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c17_status": "tilkomst_blokkert"
+            }
+          }
+        },
+        {
+          "id": "fordel_ansvar",
+          "tekst": "Be Kari registrere hvem som må frigjøre lageret før nytt renhold kan planlegges",
+          "konsekvensTekst": "Kari sender en oppgave om å avklare ansvar for hyllen. Arbeidet er fortsatt ikke utført; tidspunkt for flytting mangler.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c17_status": "ansvar_etterspurt"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_c_c17_to_forskjellige_rom",
+      "threadId": "wave_c_c17",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Det ferdige inngangspartiet og det åpne lageret",
+      "tekst": "Du har gjort en ordinær runde i inngangspartiet. Lageret er fortsatt blokkert av hyllen, men begge områdene står på den samme statuslinjen. En kontorbruker spør hvorfor «alt ikke er ferdig». Du kan forklare hva som faktisk er gjort uten å ta ansvar for driftens manglende tilkomst.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c17_utfall": "adskilt_status"
+        }
+      },
+      "valg": [
+        {
+          "id": "vis_to_statuser",
+          "tekst": "Vis at inngangspartiet er ferdig, mens lageret venter på tilkomst",
+          "konsekvensTekst": "Kontorbrukeren får en presis forklaring. Det rengjorte området er dokumentert ferdig; lageret forblir åpent.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c17_status": "to_omraader_forklart"
+            }
+          }
+        },
+        {
+          "id": "be_leder_svare",
+          "tekst": "Be Kari formidle tilkomsthindringen på sin egen driftslinje",
+          "konsekvensTekst": "Kari sier hun skal svare kontorbrukeren. Du har meldt avviket videre, men kan ikke påstå at driftsbeskjeden allerede er sendt.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c17_status": "leder_oppfolging"
+            }
+          }
+        }
+      ],
+      "avsender": "driftsleder"
     }
   ]
 }
