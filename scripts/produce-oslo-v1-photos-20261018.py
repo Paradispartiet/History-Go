@@ -34,7 +34,7 @@ SOURCES = {
 EXISTING_PHOTO_IDS = {"ankerbrua", "hausmannsbrua", "hausmania", "torggata_blad"}
 ALLOWED = {"Public domain", "CC0", "CC BY-SA 3.0", "CC BY-SA 4.0",
            "CC BY 3.0", "CC BY 4.0", "CC BY-SA 3.0 NO", "CC BY-SA 2.0",
-           "CC BY 2.0"}
+           "CC BY 2.0", "CC BY-SA 3.0 no"}
 MAX_DOWNLOAD = 30 * 1024 * 1024
 
 def request_json(url):
@@ -112,6 +112,26 @@ def main():
         image_path = "bilder/places/" + id + ".webp"
         portrait_path = "bilder/places/" + id + "_front_portrait.webp"
         card_path = "bilder/kort/places/" + id + ".webp"
+        if all((ROOT / asset).is_file() for asset in [image_path, portrait_path, card_path]) and (
+                place.get("image") == image_path and place.get("frontImage") == portrait_path
+                and place.get("cardImage") == card_path
+                and "commons.wikimedia.org/wiki/File:" in place.get("imageSourceUrl", "")):
+            # Already materialized earlier in the same batch: keep it, do not redownload
+            # or demote to an erroneous hold status on an incremental retry.
+            p["photo_status"] = "local_photo_and_rights_record_produced"
+            p["frontImage_status"] = "separate_local_portrait_file_produced"
+            p["photo_source"] = place["imageSourceUrl"]
+            p["photo_license"] = place.get("imageLicense", "")
+            p["photo_author"] = place.get("imageCredit", "").replace(" / Wikimedia Commons", "")
+            report["produced"].append({
+                "place_id": id, "file": p["place_file"],
+                "image": image_path, "frontImage": portrait_path, "cardImage": card_path,
+                "source_url": place["imageSourceUrl"], "author": p["photo_author"],
+                "license": p["photo_license"],
+                "transformation": "Landscape, portrait and card: separately generated WebP; same source licence applies",
+                "runtime_verification": "pending",
+            })
+            continue
         if any((ROOT / path).exists() for path in [image_path, portrait_path, card_path]):
             report["held"].append({"place_id": id, "reason": "Would overwrite an existing image asset"})
             continue
