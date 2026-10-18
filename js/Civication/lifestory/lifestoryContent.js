@@ -196,6 +196,8 @@
       }
       if (!faseIds.has(scene.fase)) push(`scene ${sid}: ukjent fase "${scene.fase}"`);
       if (typeof scene.dag !== "number" || scene.dag < 1) push(`scene ${sid}: ugyldig dag`);
+      if (scene.livsdagFra !== undefined && (!Number.isInteger(scene.livsdagFra) || scene.livsdagFra < 2 || scene.threadId && !scene.threadId.startsWith("wave_e_"))) push(`scene ${sid}: ugyldig privat livsdag`);
+      if (scene.etterValgDager !== undefined && (!scene.livsdagFra || typeof scene.etterValgDager.flagg !== "string" || !/^wa_[de]_c0[15]_/.test(scene.etterValgDager.flagg) || !Number.isInteger(scene.etterValgDager.dager) || scene.etterValgDager.dager < 1)) push(`scene ${sid}: ugyldig relativ oppfølging`);
       if (SCENE_TYPES.indexOf(scene.visningstype) === -1) push(`scene ${sid}: ukjent visningstype "${scene.visningstype}"`);
       if (scene.tilgjengelighet !== "start" && scene.tilgjengelighet !== "laast") {
         push(`scene ${sid}: tilgjengelighet må være "start" eller "laast"`);
