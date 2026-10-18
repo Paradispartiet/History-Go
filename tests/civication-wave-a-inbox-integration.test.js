@@ -176,6 +176,7 @@ test('an eligible private scene survives role change and answers into the inacti
     ui.getPendingWaveAEvent = () => null;
     try {
       await window.CivicationWaveAPrivateRoleBridge.refresh();
+      await waitFor(() => window.CivicationWaveAPrivateRoleBridge.getPendingEvent(), 'inactive private story');
       const privateEvent = window.CivicationWaveAPrivateRoleBridge.getPendingEvent();
       assert.ok(privateEvent, 'qualifying personal scene from inactive role is still playable');
       assert.equal(privateEvent.lifestory_role, 'arbeidsledig');
