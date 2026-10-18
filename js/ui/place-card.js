@@ -17,6 +17,7 @@
  *   image?: string,
  *   frontImage?: string,
  *   cardImage?: string,
+ *   imageComposition?: { portraitPosition?: string, heroPosition?: string },
  *   quizCardImage?: string,
  *   quizCard?: string,
  *   quiz_card_image?: string,
