@@ -6534,6 +6534,326 @@
         }
       ],
       "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_d_c01_selskap_uten_rad_avtal_grense",
+      "threadId": "wave_d_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Ingen dato er det samme som ingen avtale",
+      "tekst": "Jonas svarer at han også vil møtes uten jobbråd, men han vet ikke når. Du kan holde kontakten varm uten å føre en uavklart invitasjon som en avtale.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Send en vennlig hilsen uten å foreslå dato",
+          "konsekvensTekst": "Du takker for invitasjonen og lar kalenderen stå tom. Dere er fortsatt venner; noe besøk er ikke avtalt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "hilsen_uten_avtale"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be ham komme tilbake med et konkret tidspunkt",
+          "konsekvensTekst": "Jonas sier han kan undersøke helgen. Han har fortsatt ikke bekreftet verken dag eller oppmøte.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "tidspunkt_etterspurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c01_etterspill": "dato_senere"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_d_c01_selskap_uten_rad_behold_telefon",
+      "threadId": "wave_d_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En telefon er heller ikke et besøk",
+      "tekst": "Jonas liker forslaget om å snakke først. Han skriver at han kan ringe dersom han får en rolig kveld. Det finnes ennå ikke noe avtalt klokkeslett.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Fortell at det ikke haster å ringe",
+          "konsekvensTekst": "Du svarer at han kan ta kontakt når det passer. Du legger ikke inn en telefonavtale som ingen har bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "telefon_aapen"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be om å avtale et klokkeslett senere",
+          "konsekvensTekst": "Du ber ham foreslå et tidspunkt før du setter av tid. Forholdet får en tydeligere ramme uten et oppdiktet møte.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "telefon_tid_etterspurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c01_etterspill": "telefon_foreslaatt"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_d_c01_sporsmal_uten_dom_sett_ord",
+      "threadId": "wave_d_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Vennen som prøver på en ny måte",
+      "tekst": "Jonas svarer at han skal spørre mer om hvordan du har det og mindre om antall søknader. Han har hørt ønsket ditt, men du vet ikke om vanen vil endre seg med én gang.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Takk ham for at han forsøker",
+          "konsekvensTekst": "Du takker for forsøket og lar neste samtale vise hvordan det faktisk fungerer. Ingen unnskyldning garanterer endret atferd.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "ny_samtale_aapen"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Si at du trenger noen dager før neste prat",
+          "konsekvensTekst": "Jonas svarer kort at det er i orden. Du beholder retten til en pause uten å avslutte vennskapet.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "avstand_en_stund"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c01_etterspill": "grense_forklart"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_d_c01_sporsmal_uten_dom_ta_tiden",
+      "threadId": "wave_d_c01",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En pause må ikke fylles",
+      "tekst": "Jonas skriver ikke mer etter at du ba om ro. Stillheten er verken et brudd eller et løfte om at han vil forstå alt. Du kan la grensen stå.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Legg bort telefonen for resten av kvelden",
+          "konsekvensTekst": "Du bruker kvelden uten nye forklaringer. Ingen blir invitert eller avvist på dine vegne.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "pause_holdes"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Send en kort takk uten å starte ny diskusjon",
+          "konsekvensTekst": "Du takker for at han lyttet. Beskjeden oppretter ikke et nytt krav om å fortelle om jobbsøkingen.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c01_status": "takk_uten_krav"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c01_etterspill": "pause_respektert"
+        }
+      },
+      "avsender": "venn"
+    },
+    {
+      "id": "wave_d_c05_mottak_uten_vedtak_skill_mottak",
+      "threadId": "wave_d_c05",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et presist svar til en venn",
+      "tekst": "Vennen svarer at hun hadde tolket «mottatt» som «godkjent». Du kan rette misforståelsen uten å spekulere i saksbehandlerens arbeid.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Gjenta at saken fortsatt er under behandling",
+          "konsekvensTekst": "Du skriver hva portalen faktisk viser. Ingen avgjørelse eller utbetaling blir registrert.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "under_behandling_presisert"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Send kun kvitteringsdatoen og la resten stå åpent",
+          "konsekvensTekst": "Du oppgir datoen for mottak. Vennen vet nå hva som er sikkert, og hva som ikke er avgjort.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "kvittering_delt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c05_saksstatus": "mottak_ikke_vedtak"
+        }
+      },
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_d_c05_mottak_uten_vedtak_sjekk_riktig_tid",
+      "threadId": "wave_d_c05",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En påminnelse avgjør ingenting",
+      "tekst": "Du har notert å følge opp senere. Portalen har ikke lagt ut ny behandlingstid. En påminnelse er din egen arbeidsmåte, ikke en frist gitt av etaten.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Behold påminnelsen som privat notat",
+          "konsekvensTekst": "Du lar notatet ligge uten å sende en ny henvendelse nå. Saksstatusen er uendret.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "privat_paminnelse"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Legg til at status må leses i portalen på nytt",
+          "konsekvensTekst": "Notatet angir en kilde til fremtidig kontroll. Ingen fremtidig status er opprettet.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "kontrollkilde_notert"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c05_saksstatus": "egen_paminnelse"
+        }
+      },
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_d_c05_lesbarheten_be_om_presist_svar",
+      "threadId": "wave_d_c05",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Den konkrete siden mangler bekreftelse",
+      "tekst": "Du har bedt om en presis vurdering av arbeidstidssiden. Svaret i portalen er fortsatt bare «registrert». Du kan tydeliggjøre spørsmålet uten å late som dokumentet er sjekket.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Beskriv sidetallet og hvorfor det er viktig",
+          "konsekvensTekst": "Du sender en konkret presisering om siden som må kunne leses. Saksbehandler har ennå ikke bekreftet kontroll.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "side_presisert"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Lagre spørsmålet og vent på faktisk tilbakemelding",
+          "konsekvensTekst": "Du dokumenterer hva du har spurt om. Lesbarheten er fremdeles uavklart.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "svar_avventes"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c05_saksstatus": "lesbarhet_etterspurt"
+        }
+      },
+      "avsender": "nav_veileder"
+    },
+    {
+      "id": "wave_d_c05_lesbarheten_lagre_begrensning",
+      "threadId": "wave_d_c05",
+      "dag": 7,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et arkiv med riktige ord",
+      "tekst": "Du lagret portalmeldingen uten å tolke den som kontroll. Du skal forklare saken for en veileder, men kan bare dokumentere at filen ble registrert.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Vis veilederen den faktiske portalmeldingen",
+          "konsekvensTekst": "Veilederen får se formuleringen. Vedkommende kan ikke utstede et vedtak på grunnlag av den.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "melding_vist"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Oppsummer skriftlig hva du ennå ikke vet",
+          "konsekvensTekst": "Du lager en kort oversikt over manglende lesbarhetsbekreftelse. Den blir et notat, ikke et offentlig svar.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c05_status": "mangel_oppsummert"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c05_saksstatus": "kontroll_uavklart"
+        }
+      },
+      "avsender": "nav_veileder"
     }
   ]
 }

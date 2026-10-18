@@ -26,6 +26,13 @@
       "type": "privatliv",
       "konflikt": "Kontakt i miljøet må være frivillig og kan ikke gjøres om til en skjult gjeld.",
       "startDag": 11
+    },
+    {
+      "id": "wave_d_c07",
+      "tittel": "Tilhørighet med egen stemme",
+      "type": "privatliv",
+      "konflikt": "Egne valg får konkrete, dokumenterbare følger uten å skape fiktive avtaler eller vedtak.",
+      "startDag": 12
     }
   ],
   "scenes": [
@@ -877,6 +884,166 @@
           }
         }
       ],
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_d_c07_vil_vaere_der_sporramme",
+      "threadId": "wave_d_c07",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Invitasjonen uten oppgaveliste",
+      "tekst": "Dagen etter skriver Miljøkontakten at du gjerne kan komme for å prate, men det er uklart om vertene forventer riggehjelp. Du har ikke sagt ja til en vakt.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Be om å bli invitert som gjest, ikke frivillig",
+          "konsekvensTekst": "Du formulerer forventningen din tydelig. Et besøk må fortsatt avtales med tidspunkt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "gjesterolle_forklart"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Avvent til noen bekrefter at besøket er uten oppgave",
+          "konsekvensTekst": "Du lar invitasjonen stå åpen. Ingen vakt eller oppmøte er akseptert.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "bekreftelse_avventes"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c07_grense": "besok_uten_vakt"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_d_c07_vil_vaere_der_tilby_en_gang",
+      "threadId": "wave_d_c07",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En oppgave uten tidspunkt",
+      "tekst": "Miljøkontakten spør om du kan bære utstyr «en gang neste uke». Det er ikke oppgitt sted, varighet eller ansvarlig person. Du har bare sagt at du kan vurdere noe avgrenset.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Be om sted, varighet og ansvarlig før du svarer",
+          "konsekvensTekst": "Du stiller konkrete spørsmål uten å binde deg. En vakt er fortsatt ikke avtalt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "rammer_etterspurt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Si at tilbudet bortfaller uten en tydelig ramme",
+          "konsekvensTekst": "Du gjør det klart at åpne forespørsler ikke automatisk blir ditt ansvar.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "ubundet_tilbud"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c07_grense": "oppgave_betinget"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_d_c07_egen_avstand_si_det_tydelig",
+      "threadId": "wave_d_c07",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Bekjentskap uten innkalling",
+      "tekst": "Miljøkontakten svarer at han ikke skal føre deg på oppgavelister. Likevel ligger du fortsatt i gruppesamtalen, og invitasjoner kan dukke opp.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Takk for svaret og behold sosial kontakt",
+          "konsekvensTekst": "Du anerkjenner beskjeden. Du har ikke akseptert noen oppgave eller neste samling.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "bekjentskap_beholdt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be om å bli fjernet fra praktiske vaktmeldinger",
+          "konsekvensTekst": "Du ber om færre oppgavevarsler. Selve fjerningen er ikke bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "vaktvarsler_stopp_forespurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c07_grense": "ikke_pa_liste"
+        }
+      },
+      "avsender": "amir"
+    },
+    {
+      "id": "wave_d_c07_egen_avstand_stopp_varsel",
+      "threadId": "wave_d_c07",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Pausen skal gjelde i praksis",
+      "tekst": "Etter ønsket om gruppepause får du én ny automatisk invitasjon. Det er uklart om den ble sendt før beskjeden ble lest.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Gjenta kort at du ønsker pause fra invitasjoner",
+          "konsekvensTekst": "Du sender én tydelig beskjed. Ingen ny avtale eller plikt følger av svaret.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "gruppepause_gjentatt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Skru av varsler lokalt og la samtalen ligge",
+          "konsekvensTekst": "Du styrer dine egne varsler. Det betyr ikke at andre har slettet deg fra gruppen.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c07_status": "lokal_varselro"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c07_grense": "gruppepause"
+        }
+      },
       "avsender": "amir"
     }
   ],

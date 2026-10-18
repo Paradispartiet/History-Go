@@ -33,6 +33,13 @@
       "type": "privatliv",
       "konflikt": "En prototype bør ha navngitte begrensninger før den brukes av andre.",
       "startDag": 12
+    },
+    {
+      "id": "wave_d_c03",
+      "tittel": "Hva prosjektet kan påstå",
+      "type": "privatliv",
+      "konflikt": "Egne valg får konkrete, dokumenterbare følger uten å skape fiktive avtaler eller vedtak.",
+      "startDag": 12
     }
   ],
   "scenes": [
@@ -975,6 +982,166 @@
           }
         }
       ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_d_c03_prototypens_grense_legg_ved_begrensning",
+      "threadId": "wave_d_c03",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Skjermbildet trenger en ramme",
+      "tekst": "Lea vil lage en bildetekst som viser at bare en enkel funksjon virket i én prøve. Hun har ennå ikke fått samtykke fra noen ny testperson.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Foreslå å vise bare et anonymt eksempel først",
+          "konsekvensTekst": "Dere lager et utkast uten personopplysninger. Det er ikke publisert eller delt med en tredjepart.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "anonymt_utkast"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be om samtykke før en eventuell fremvisning",
+          "konsekvensTekst": "Lea noterer at fremvisning må avklares med den som deltok. Ingen tillatelse er gitt ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "samtykke_etterspurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c03_deling": "begrenset_foreslaatt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_d_c03_prototypens_grense_vent_med_deling",
+      "threadId": "wave_d_c03",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En test som ikke må bli markedsføring",
+      "tekst": "Lea godtar å vente. En bekjent spør hva dere arbeider med, men skjermbildet ligger fortsatt hos dere. Det kan være fristende å kalle løsningen klar.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Fortell bare hvilket problem dere undersøker",
+          "konsekvensTekst": "Du beskriver formålet uten å hevde at løsningen virker. Bekjenten har ikke fått programmet.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "formaal_beskrevet"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Behold prototypen helt intern til neste test",
+          "konsekvensTekst": "Du og Lea utsetter fremvisningen. Ingen bruker utenfor prosjektet er registrert.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "intern_videre"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c03_deling": "utsatt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_d_c03_aapent_forsok_velg_ett_maal",
+      "threadId": "wave_d_c03",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Målingen må kunne mislykkes",
+      "tekst": "Lea har skrevet opp én frivillig testoppgave. Hun spør hvordan dere skal føre et negativt resultat. Ingen har ennå prøvd den nye versjonen.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Skriv inn kriterier for både suksess og feil",
+          "konsekvensTekst": "Dere lager et måleskjema som også rommer avbrudd. Skjemaet er klart, men forsøket er ikke gjennomført.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "aapne_kriterier"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "La en uavhengig deltaker foreslå hva nytte betyr",
+          "konsekvensTekst": "Lea vil spørre en frivillig før test. Ingen deltaker har samtykket eller svart ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "deltaker_foreslaatt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c03_deling": "test_planlagt"
+        }
+      },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_d_c03_aapent_forsok_stopp_paastanden",
+      "threadId": "wave_d_c03",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Å trekke en påstand tilbake",
+      "tekst": "Lea fjerner ordet «nyttig» fra beskrivelsen. Hun spør om dere likevel kan dele idéen som et ubekreftet forsøk. Endringen i teksten er gjort; virkningen er uprøvd.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Bruk en tydelig merkelapp med «ikke testet»",
+          "konsekvensTekst": "Dere skriver en intern presentasjon som skiller idé og måling. Den er ikke sendt ut.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "ikke_testet_merket"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Vent med en presentasjon til dere har dokumentasjon",
+          "konsekvensTekst": "Lea legger presentasjonen til side. Ingen ekstern anbefaling blir gitt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c03_status": "presentasjon_utsatt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c03_deling": "paastand_trukket"
+        }
+      },
       "avsender": "lea"
     }
   ],

@@ -1608,6 +1608,166 @@
         }
       ],
       "avsender": "plansjef"
+    },
+    {
+      "id": "wave_d_c06_det_delvise_notatet_merk_utvalget",
+      "threadId": "wave_d_c06",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Notatet blir lest neste arbeidsdag",
+      "tekst": "Plansjefen leser forslaget ditt til metodefelt. Hun mener teksten er ryddig, men spør om «representativt» kan stå i sammendraget. Observasjonen dekker fortsatt bare et kort tidsrom.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Be om at ordet «representativt» fjernes",
+          "konsekvensTekst": "Du forklarer at utvalget ikke gir grunnlag for ordet. Forslaget er faglig, mens endelig saksfremstilling fortsatt må kvalitetssikres.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "representativt_avvist"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Foreslå et presist tidsstempel i sammendraget",
+          "konsekvensTekst": "Du foreslår å vise når observasjonen faktisk ble gjort. Det fyller ikke inn de timene dere mangler.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "tidsrom_synlig"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c06_dokumentasjon": "begrensning_merket"
+        }
+      },
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_d_c06_det_delvise_notatet_be_faglig_kontroll",
+      "threadId": "wave_d_c06",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Kollegaen har ikke svart ennå",
+      "tekst": "Du ba om en faglig kontroll før møtematerialet brukes. Kollegens kalender er full, og plansjefen vil vite om hun kan sende saken nå.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Oppgi at kontrollen er forespurt, ikke utført",
+          "konsekvensTekst": "Du sender en tydelig status. Ingen kollegagodkjenning eller politisk beslutning tilføyes.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "kontroll_ikke_ferdig"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Spør om et kort møte for å avklare kapasiteten",
+          "konsekvensTekst": "Du foreslår et møte, men har ikke fått et bekreftet tidspunkt. Saksstatusen er fortsatt åpen.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "mote_foreslaatt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c06_dokumentasjon": "kontroll_forespurt"
+        }
+      },
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_d_c06_hullet_i_saken_skriv_reservasjon",
+      "threadId": "wave_d_c06",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et forbehold som ikke må forsvinne",
+      "tekst": "Plansjefen setter den faglige reservasjonen i utkastet, men en kollega vil flytte den til et vedlegg. Det manglende tidsrommet gjelder elevenes sikkerhet.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Be om at hovedteksten henviser tydelig til mangelen",
+          "konsekvensTekst": "Du begrunner behovet for en synlig reservasjon. Ingen observasjon blir funnet opp.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "hovedtekst_forbehold"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Godta vedlegg bare med eksplisitt krysshenvisning",
+          "konsekvensTekst": "Du foreslår et dokumentert spor til vedlegget. Beslutningen om fremleggelse ligger fortsatt hos ansvarlig leder.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "vedlegg_henvisning"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c06_dokumentasjon": "faglig_reservasjon"
+        }
+      },
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_d_c06_hullet_i_saken_be_om_tid",
+      "threadId": "wave_d_c06",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "plankontor",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Hvem kan utsette en sak?",
+      "tekst": "Plansjefen har mottatt forespørselen om utsettelse, men har ikke bestemt seg. Du er fagperson og kan ikke fatte vedtak om politisk saksgang.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Oppsummer risikoen og la lederen beslutte",
+          "konsekvensTekst": "Du gir et avgrenset faglig grunnlag. Saken står fortsatt uten avklart møtedato.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "risiko_oversendt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be om at beslutningen og begrunnelsen dokumenteres",
+          "konsekvensTekst": "Du ber om sporbarhet, ikke om å bestemme utfallet. En formell avgjørelse er ikke registrert.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c06_status": "beslutning_etterspurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c06_dokumentasjon": "lederavklaring_spurt"
+        }
+      },
+      "avsender": "plansjef"
     }
   ]
 }

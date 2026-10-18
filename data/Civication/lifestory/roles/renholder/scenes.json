@@ -1452,6 +1452,166 @@
         }
       ],
       "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_d_c17_hyllen_staar_hold_aapent",
+      "threadId": "wave_d_c17",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Lageret står fortsatt urørt",
+      "tekst": "Neste arbeidsdag viser oversikten lageret som «venter på tilkomst». Kari spør om du kan ta en ekstra runde mens drift vurderer tiltak. Ingen har flyttet hyllen.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Tilby arbeid i tilgjengelige rom, ikke i lageret",
+          "konsekvensTekst": "Du avgrenser oppgaven til områder du faktisk kan nå. Lageret forblir uferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "andre_rom_tilbudt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be om en dokumentert plan før nytt lagerforsøk",
+          "konsekvensTekst": "Du etterspør ansvar og tilkomst. Ingen fremtidig rengjøring bokføres som utført.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "plan_forespurt"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c17_status": "tilkomst_blokkert"
+        }
+      },
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_d_c17_hyllen_staar_fordel_ansvar",
+      "threadId": "wave_d_c17",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Ansvar uten en ferdig løsning",
+      "tekst": "Kari har sendt forespørsel til drift om hvem som kan frigjøre lageret. Drift har ennå ikke oppgitt dato, og oppgaven blir stående på din liste.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Be Kari synliggjøre driftens uavklarte tilkomst",
+          "konsekvensTekst": "Du skiller tilkomstansvaret fra renholdet. Ingen har kvittert ut vasken.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "drift_status_synlig"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Dokumenter bare hindringen du selv kan observere",
+          "konsekvensTekst": "Du beskriver hyllen som sperrer området uten å konkludere på vegne av drift.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "hindring_dokumentert"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c17_status": "ansvar_etterspurt"
+        }
+      },
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_d_c17_to_forskjellige_rom_vis_to_statuser",
+      "threadId": "wave_d_c17",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "To statuslinjer på morgentavla",
+      "tekst": "Neste arbeidsdag er inngangspartiet registrert som ferdig, mens lageret fremdeles står på vent. En kollega spør om én samlet grønn status hadde vært enklere.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Behold separate linjer med hver sin begrunnelse",
+          "konsekvensTekst": "Du sørger for at utført arbeid og manglende tilkomst kan leses hver for seg.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "status_adskilt"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Forklar forskjellen direkte til kollegaen",
+          "konsekvensTekst": "Kollegaen hører hvorfor én grønn linje ville gitt feil informasjon. Lageret er fortsatt ikke ferdig.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "status_forklart"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c17_status": "to_omraader_forklart"
+        }
+      },
+      "avsender": "driftsleder"
+    },
+    {
+      "id": "wave_d_c17_to_forskjellige_rom_be_leder_svare",
+      "threadId": "wave_d_c17",
+      "dag": 7,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "renholdssone",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "En beskjed videre i driftslinjen",
+      "tekst": "Kari har sagt at hun skal videreformidle hindringen. Kontorbrukeren spør likevel når lageret blir klart. Du har ikke fått ny informasjon fra drift.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Vis til Karis ansvar uten å love dato",
+          "konsekvensTekst": "Du gir riktig kontaktvei og unngår en ubegrunnet ferdigfrist.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "ingen_dato_lovet"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Noter brukerens spørsmål i arbeidsloggen",
+          "konsekvensTekst": "Du registrerer etterspørselen, men verken flytting eller vask blir oppført som utført.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c17_status": "sporsmal_loggfort"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c17_status": "leder_oppfolging"
+        }
+      },
+      "avsender": "driftsleder"
     }
   ]
 }
