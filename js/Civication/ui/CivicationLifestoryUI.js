@@ -642,6 +642,7 @@
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
+        + continuationHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
         + pendingDayActionHtml
         + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
