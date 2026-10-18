@@ -114,9 +114,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Leksikon-hubben rendrer Wonderkammer-rader med data-wonderkammer-entry;
     // entry-handleren må derfor være lastet før brukeren kan klikke dem.
     await safeRun("loadWonderkammerEntry", () => loadScriptOnce("js/ui/wonderkammer-entry.js"));
-    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261017-footer-actions1"));
+    await safeRun("loadPlaceCard", () => loadScriptOnce("js/ui/place-card.js?v=20261018-footer-actions2"));
     await safeRun("loadPlaceCardReader", () => loadScriptOnce("js/ui/place-card-reader.js?v=20261010-editorial6"));
-    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20260913-place-status1"));
+    await safeRun("loadPlaceOnsiteSurface", () => loadScriptOnce("js/ui/place-onsite-surface.js?v=20261018-footer-actions2"));
     await safeRun("loadMicroPlaceCard", () => loadScriptOnce("js/ui/micro-place-card.js"));
     await safeRun("loadPlacePopupV2", () => loadScriptOnce("js/ui/place-popup-v2.js"));
     await safeRun("loadPlacePopupTabs", () => loadScriptOnce("js/ui/place-popup-tabs.js"));
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await safeRun("loadCaravanBadges", () => loadScriptOnce("js/caravan-badges.js"));
     await safeRun("loadCaravanPanel", () => loadScriptOnce("js/ui/caravan-panel.js"));
 
-    await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js"));
+    await safeRun("loadPlaceCardQuizcardsPatch", () => loadScriptOnce("js/ui/place-card-quizcards-patch.js?v=20261018-footer-actions2"));
 
     // Disse lastes fra app-entry for å slippe å gjøre index.html mer skjør.
     await safeRun("loadBootFast", () => loadScriptOnce("js/boot-fast.js"));
