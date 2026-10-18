@@ -10,11 +10,12 @@ BATCH=ROOT/"data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.j
 REPORT=ROOT/"data/places/production-tiers/v1-oslo-image-design-review-20261018.json"
 PREVIEW=ROOT/"reports/oslo-v1-image-composition-preview-20261018.jpg"
 AGENT="HistoryGoOsloMediaReview/1.0 (Wikimedia attribution; github.com/Paradispartiet/History-Go)"
+# Blå candidate reviewed and rejected: a cocktail-only frame is not a recognizable venue;
+# a second Commons request was rate-limited, so keep the previously licensed venue photo.
 # An image must depict the named location, have a Commons-verified reuse licence,
 # and be preferable when previewed in BOTH a 3:4 portrait and a wide header.
 REPLACEMENTS={
   "groruddammen":{"file":"Groruddammen seen from above..JPG","expected":None,"portrait":(0.52,0.52),"landscape":(0.50,0.55),"card":(0.50,0.56),"caption":"Groruddammen sett ovenfra; faktisk dam og parkanlegg."},
-  "blaa":{"file":"Blå .jpg","expected":"CC BY-SA 4.0","portrait":(0.50,0.52),"landscape":(0.50,0.52),"card":(0.50,0.55),"caption":"Blå konsertsted i Brenneriveien fotografert en kveld i 2016."},
   "vulkan_industriomrade":{"file":"Vulkan Oslo 2022-08-17 01.jpg","expected":"CC0","portrait":(0.50,0.50),"landscape":(0.50,0.50),"card":(0.50,0.55),"caption":"Vulkan-området ved Akerselva fotografert i august 2022."},
   "glads_molle":{"file":"Sagene Glads Moelle 86157 IMG 3925.jpg","expected":None,"portrait":(0.50,0.44),"landscape":(0.50,0.52),"card":(0.50,0.50),"caption":"Glads mølle, den historiske fabrikkbygningen ved Akerselva."}
 }
