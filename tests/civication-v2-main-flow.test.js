@@ -28,6 +28,7 @@ const STATIC_SCRIPTS = [
   "js/Civication/ui/CivicationLifestoryActions.js",
   "js/Civication/ui/CivicationLifestoryUI.js",
   "js/Civication/lifestory/civicationWaveAInboxBridge.js",
+  "js/Civication/lifestory/civicationWaveAPrivateRoleBridge.js",
   "js/Civication/systems/civicationSpatialDayBridge.js",
   "js/Civication/civicationShellLoader.js"
 ];
