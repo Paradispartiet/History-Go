@@ -17,7 +17,7 @@
     if (!mail?.getInbox || !mail?.getMail || !ui?.getPendingWaveAEvent || synchronizing) return false;
     synchronizing = true;
     try {
-      const pending = ui.getPendingWaveAEvent();
+      const pending = ui.getPendingWaveAEvent() || window.CivicationWaveAPrivateRoleBridge?.getPendingEvent?.() || null;
       // Never keep an unreachable Life Story action blocking a new job or
       // day. Archiving is NOT answering, canceling or claiming completion.
       for (const item of mail.getInbox()) {
@@ -47,14 +47,16 @@
 
   async function answer(eventId, choiceId) {
     const ui = window.CivicationLifestoryUI;
-    const event = ui?.getPendingWaveAEvent?.();
+    const event = ui?.getPendingWaveAEvent?.() || window.CivicationWaveAPrivateRoleBridge?.getPendingEvent?.() || null;
     const id = String(eventId || "").trim();
     const choice = String(choiceId || "").trim();
     if (!event || event.id !== id) return { ok: false, reason: "story_scene_not_current" };
     if (!event.choices.some(row => row.id === choice)) return { ok: false, reason: "bad_choice" };
     const mail = window.CivicationMailEngine?.getMail?.(id);
     if (!mail || mail.resolved || mail.archived) return { ok: false, reason: "mail_not_open" };
-    const result = ui.answerWaveAChoice?.(id, choice);
+    const result = event.lifestory_inactive_role === true
+      ? await window.CivicationWaveAPrivateRoleBridge?.answer?.(id, choice)
+      : ui.answerWaveAChoice?.(id, choice);
     return result?.ok === true ? { ...result, waveAInboxAnswered: true } :
       { ok: false, reason: result?.reason || "story_answer_rejected" };
   }
