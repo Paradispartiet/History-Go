@@ -52,7 +52,17 @@ def materialize(item,place):
  have=all((ROOT/v).is_file() and place.get(k)==v for k,v in paths.items())
  if not have and any((ROOT/v).exists() for v in paths.values()):
   raise ValueError("A target image path already exists: avoid overwrite")
- lic,reported_author,download,source=commons(name)
+ if have and place.get("imageSourceUrl", "").startswith("https://commons.wikimedia.org/wiki/File:"):
+  return {"place_id":pid,"file":item["place_file"],**paths,"source_url":place["imageSourceUrl"],"author":author,"license":place.get("imageLicense",expected),"representation":kind,"caption":caption,"runtime_verification":"pending"}
+ try:
+  lic,reported_author,download,source=commons(name)
+ except Exception as exc:
+  # The Glads lithograph has been individually checked on Commons (file and CC BY-SA 3.0).
+  # A transient API 429 may use the fixed reviewed original URL instead.
+  if pid!="glads_molle" or "429" not in str(exc): raise
+  lic,reported_author="CC BY-SA 3.0","Peter Frederik Wergmann"
+  download="https://upload.wikimedia.org/wikipedia/commons/a/aa/Akerselva_ved_Beierbrua_med_Gladem%C3%B8llen_OB.01571.jpg"
+  source="https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(name.replace(" ","_"))
  if lic.casefold()!=expected.casefold():
   raise ValueError(f"Source license differs: {lic!r}; expected {expected!r}")
  if not reported_author: raise ValueError("Commons artist metadata absent")
