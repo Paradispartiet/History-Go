@@ -83,3 +83,35 @@ test("visit button requests geolocation instead of disabling itself and never by
     assert.equal(button.disabled,true,"recorded visits cannot duplicate");
   }finally{dom.window.close();}
 });
+
+test("Go Here requests GPS and draws walking route only for real coordinates", async () => {
+  const dom = new JSDOM("<!doctype html><body></body>", {
+    url:"https://history-go.test/",runScripts:"outside-only"
+  });
+  try {
+    const w=dom.window;
+    let current=null,requests=0,fetches=0;
+    const map={
+      getLayer:()=>false,getSource:()=>false,
+      isStyleLoaded:()=>true,
+      addSource:()=>{},
+      addLayer:()=>{},
+      fitBounds:()=>{w.__routeFitted=true;}
+    };
+    w.MAP=map;
+    w.getPos=()=>current;
+    w.HGPos={request:async()=>{requests++;current={lat:59.91,lon:10.75};return current;}};
+    w.maplibregl={LngLatBounds:class {extend(){return this;}}};
+    w.fetch=async()=>{fetches++;return {ok:true,json:async()=>({
+      features:[{type:"Feature",geometry:{type:"LineString",coordinates:[[10.75,59.91],[10.76,59.92]]},
+        properties:{summary:{distance:900,duration:720}}}]
+    })};};
+    w.eval(source("js/routes.js"));
+    await w.HGRoutes.showToPlace({id:"site",lat:59.92,lon:10.76,name:"Målet"});
+    assert.equal(requests,1,"walking route requests location on demand");
+    assert.equal(fetches,1,"actual routing API is reached");
+    assert.equal(w.__routeFitted,true,"walking route draws on map");
+    await w.HGRoutes.showToPlace({id:"bad",lat:null,lon:null});
+    assert.equal(fetches,1,"missing place coordinates never trigger fake route");
+  } finally { dom.window.close(); }
+});
