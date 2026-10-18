@@ -152,3 +152,5 @@ Oppfølgingsbolkens første ordinære CI bestod **718/719 testfiler**. Den enest
 ### Wave C – etterkontroll mot eksisterende regresjoner
 
 Wave C bruker eksisterende innholdspakker. Både C01 og C05 er i `roles/arbeidsledig/scenes.json`, derfor avgrenser Wave C-regresjonen nye scener per `story_type_id` før den kontrollerer forgjengervalg; et generelt `wave_c_`-filter ville blande fortellingene. Arvid-testen beholder sine opprinnelige fullstendige kapittelvalg, men lar Wave A–C håndteres av de dedikerte bolktestene. Renholderpakken har nå fem opprinnelige arbeidstråder og tre C17-ledd, ikke to. Den genererte karrierematrisen er synkronisert mot disse innholdsendringene uten å endre policy. Ordinær CI er fortsatt selvstendig mergevilkår.
+
+Role World Rollout Readiness-rapporten er regenerert etter Wave C med den eksisterende audit-generatoren. Den står som avledet revisjonsgrunnlag, ikke som ny fortellingskilde eller automatisk tillatelse til å rulle ut jobbroller.
