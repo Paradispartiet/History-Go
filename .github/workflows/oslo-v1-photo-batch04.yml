@@ -1,0 +1,62 @@
+name: Oslo remaining photo batch 04
+on:
+  push:
+    branches: [content/oslo-remaining-photo-batch04-20261018]
+    paths:
+      - scripts/produce-oslo-v1-photos-batch04-20261018.py
+      - .github/workflows/oslo-v1-photo-batch04.yml
+permissions:
+  contents: write
+jobs:
+  photos:
+    name: Produce and inspect three licensed Place photo sets
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: python -m pip install Pillow==11.3.0
+      - name: Materialize three photographic subjects and their runtime bindings
+        run: python scripts/produce-oslo-v1-photos-batch04-20261018.py
+      - name: Save generated assets and canonical binding on the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/oslo-v1-20261018-batch04 reports/oslo-v1-photos-batch04-20261018
+          git add data/places/natur/oslo/places_oslo_natur_akerselvarute/ankerbrua.json data/places/natur/oslo/places_oslo_natur_akerselvarute/hausmannsbrua.json data/places/subkultur/oslo/places_subkultur/hausmania.json
+          git add data/places/places_index.json data/places/production-tiers/v1-oslo-nature-music-20261017-batch02.json
+          git add data/runtime/place-open/ankerbrua.json data/runtime/place-open/hausmannsbrua.json data/runtime/place-open/hausmania.json
+          git commit -m 'assets(oslo): materialize three licensed photo triplets and runtime bindings'
+          git push origin HEAD:content/oslo-remaining-photo-batch04-20261018
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify six real PlaceCard views with the existing audit
+        env:
+          HG_VISUAL_PLACES: ankerbrua,hausmannsbrua,hausmania
+          HG_VISUAL_OUT: .tmp/batch04-browser-report
+          HG_VISUAL_CAPTURES: .tmp/batch04-captures
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          source=Path('tests/oslo-v1-actual-runtime-visual-browser-audit.mjs').read_text()
+          source=source.replace('const allIds=[','const allIds=["ankerbrua","hausmannsbrua","hausmania",',1)
+          Path('.tmp/batch04-browser-audit.mjs').write_text(source)
+          PY
+          node .tmp/batch04-browser-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-batch04-photo-review
+          include-hidden-files: true
+          path: |
+            reports/oslo-v1-photos-batch04-20261018/
+            .tmp/batch04-browser-report/
+            .tmp/batch04-captures/
+          if-no-files-found: error
