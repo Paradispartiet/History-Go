@@ -270,7 +270,9 @@
         "wave_c_c23"
       ],
       "scene_ids": [
-        "wave_c_c23_rettelsen_koster"
+        "wave_c_c23_rettelsen_koster",
+        "wave_c_c23_malen_etter_feilen",
+        "wave_c_c23_venter_pa_status"
       ],
       "days": [
         15
@@ -281,6 +283,18 @@
           "after_flag": {
             "wa_b_c23_utfall": "avklart_med_kostnad"
           }
+        },
+        {
+          "scene_id": "wave_c_c23_malen_etter_feilen",
+          "after_flag": {
+            "wa_b_c23_utfall": "avklart_ny_praksis"
+          }
+        },
+        {
+          "scene_id": "wave_c_c23_venter_pa_status",
+          "after_flag": {
+            "wa_b_c23_utfall": "status_forespurt"
+          }
         }
       ]
     }
@@ -288,13 +302,13 @@
   "verification": {
     "command": "node --test tests/civication-source-grounded-wave-c.test.js",
     "stories": 8,
-    "new_scenes": 15,
-    "new_choices": 30,
+    "new_scenes": 17,
+    "new_choices": 34,
     "prior_scenes": 74,
     "prior_choices": 148,
-    "expected_total_scenes": 89,
-    "expected_total_choices": 178,
+    "expected_total_scenes": 91,
+    "expected_total_choices": 182,
     "browser_verified": false
   },
-  "scope_note": "Innholdet er nytt og kronologisk betinget av tidligere faktiske valg. Et flagg om en plan, kvittering eller forespørsel er aldri bevis for utført handling. Historiene utvides innen eksisterende rolles tidsvindu; denne bolken oppretter ikke nye spillmotorer eller omgår Badge/livsrollekrav."
+  "scope_note": "Tredje avgrensede bolk med 17 konsekvensscener i åtte ulike fortellingstyper. Scenene krever dokumenterte valg fra tidligere kapitler og registrerer ikke avtaler, betaling, besøk eller vedtak uten en eksplisitt spillhandling. Antallet er katalogdekning, ikke scener én og samme spiller opplever i ett løp."
 }
