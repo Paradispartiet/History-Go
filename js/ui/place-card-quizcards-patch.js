@@ -365,6 +365,7 @@
   function createPlaceVisitButtonController(options) {
     const { runtime, document: document2, tUI, tfUI } = options;
     let physicalVisitTimer = null;
+    let requestingPosition = false;
     const clear = () => {
       if (physicalVisitTimer === null) return;
       clearInterval(physicalVisitTimer);
@@ -398,7 +399,7 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            setButton(true, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            setButton(requestingPosition, requestingPosition ? "Henter posisjon…" : "Hent posisjon");
             return;
           }
           if (gate.d != null) {
@@ -411,7 +412,7 @@
             );
             return;
           }
-          setButton(true, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
+          setButton(true, reason === "no_anchor" ? "Stedet mangler koordinater" : tUI("ui.unlock.goCloser", "Gå nærmere"));
           return;
         }
         const label = runtime.TEST_MODE ? `${tUI("ui.visit.register", "Registrer bes\xF8k")} (test)` : tUI("ui.visit.register", "Registrer bes\xF8k");
@@ -431,7 +432,21 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            if (requestingPosition) return;
+            if (typeof runtime.HGPos?.request !== "function") {
+              runtime.showToast?.("Posisjonsfunksjonen er ikke tilgjengelig på denne enheten.");
+              return;
+            }
+            requestingPosition = true;
+            update();
+            void Promise.resolve(runtime.HGPos.request()).then((position) => {
+              runtime.showToast?.(position
+                ? "Posisjon funnet. Registrer besøket når du er nær stedet."
+                : "Fant ikke posisjonen. Kontroller stedstilgang i nettleseren.");
+            }).catch(() => runtime.showToast?.("Kunne ikke hente posisjonen.")).finally(() => {
+              requestingPosition = false;
+              update();
+            });
             return;
           }
           const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
