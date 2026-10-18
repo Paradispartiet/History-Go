@@ -319,6 +319,14 @@
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
   window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
+  window.addEventListener("civi:waveAPrivateStoryChanged", () => {
+    const stored = window.CivicationLifestoryState?.load?.();
+    if (stored && state?.rolle === stored.rolle) {
+      state.rolleTilstander = stored.rolleTilstander || {};
+      state.rolleBytter = stored.rolleBytter || [];
+    }
+    render();
+  });
 
   /**
    * @param {string} sceneId
@@ -337,6 +345,14 @@
       sisteKonsekvens = result.konsekvensTekst || deltas.length
         ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
+      // A private scene may have been answered from the inactive role's
+      // inbox while this job scene was open. Preserve those snapshots
+      // instead of overwriting them with this UI's older in-memory copy.
+      const latest = State.load();
+      if (latest?.rolle === state.rolle) {
+        state.rolleTilstander = latest.rolleTilstander || {};
+        state.rolleBytter = latest.rolleBytter || [];
+      }
       State.save(state);
       accepted = true;
       if (WAVE_A_SCENE_ID.test(sceneId)) {
@@ -696,7 +712,8 @@
     const histories = roles.flatMap(({ id, save }) => (save?.arkiv || [])
       .filter(entry => WAVE_A_SCENE_ID.test(String(entry.sceneId || "")))
       .map(entry => ({ ...entry, savedRole: id })));
-    const pending = getPendingWaveAEvent();
+    const pending = getPendingWaveAEvent() ||
+      window.CivicationWaveAPrivateRoleBridge?.getPendingEvent?.();
     const rows = Object.entries(WAVE_A_TITLES).map(([type, title]) => {
       const matching = histories.filter(entry => {
         const id = String(entry.sceneId);
