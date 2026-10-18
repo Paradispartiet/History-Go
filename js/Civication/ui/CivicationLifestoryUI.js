@@ -165,6 +165,10 @@
     State.bindPersonTypes?.(state, content, null);
     State.save(state);
     currentRoleId = roleId;
+    // The selected role is already persisted here; the asynchronous shell
+    // adoption must now make any eligible private scenes in the *former*
+    // role snapshot visible without waiting for another profile event.
+    window.CivicationWaveAPrivateRoleBridge?.refresh?.();
     ensureCalendarCheckpoint();
     syncToShellCalendar();
     await refreshPersonTypes();
