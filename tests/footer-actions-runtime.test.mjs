@@ -35,7 +35,7 @@ test("canonical Note, Observation and Routes APIs load before place selection", 
   assert.match(visitPatch, /getPhysicalVisitGate\(runtime, place\)/);
   assert.match(visitPatch, /ui\.visit\.enablePosition/);
   assert.match(visitPatch, /ui\.visit\.locationMissing/);
-  const routeSource = read("js/routeSource.js");
+  const routeSource = read("js/routes.js");
   assert.match(routeSource, /Stedet mangler kartkoordinater\. Kan ikke vise gangrute/);
   assert.match(routeSource, /Kartet er ikke klart\. Prøv ruten igjen/);
   assert.match(routeSource, /Number\(place\?\.lon \?\? place\?\.lng\)/);
