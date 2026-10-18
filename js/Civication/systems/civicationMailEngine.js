@@ -512,6 +512,21 @@
       store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, archived: true } : m);
       saveStore(store);
     },
+    // Used by the Life Story projection when employment changes: an
+    // unanswerable envelope leaves the active inbox without being resolved.
+    // Returning to the role can restore that *same* unanswered envelope.
+    setArchived(mailId, archived) {
+      const store = migrateOldInboxIfNeeded();
+      let changed = false;
+      store.items = (store.items || []).map(m => {
+        if (m.id !== mailId && m?.event?.id !== mailId) return m;
+        if (m.resolved || m.archived === !!archived) return m;
+        changed = true;
+        return { ...m, archived: !!archived };
+      });
+      if (changed) saveStore(store);
+      return changed;
+    },
     deleteMail(mailId) {
       const store = migrateOldInboxIfNeeded();
       store.items = (store.items || []).map((m) => m.id === mailId || m?.event?.id === mailId ? { ...m, deleted: true } : m);
@@ -520,6 +535,13 @@
     async answerMail(mailId, choiceId) {
       const mail = this.getMail(mailId);
       const eventId = mail?.event?.id || mailId;
+      // Wave-A is one Life Story scene with two presentation surfaces.
+      // Do not send its choice through EventEngine's unrelated numeric
+      // scoring logic; the canonical Life Story runner is the sole writer.
+      if (mail?.event?.source_type === "lifestory_wave_a") {
+        return window.CivicationWaveAInboxBridge?.answer?.(eventId, choiceId) ||
+          { ok: false, reason: "wave_a_bridge_unavailable" };
+      }
       const result = /** @type {{ ok?: unknown, dailyRuntimeAnswered?: unknown }} */ (window.HG_CiviEngine?.answer
         ? await window.HG_CiviEngine.answer(eventId, choiceId)
         : { ok: false, reason: "no_event_engine" });

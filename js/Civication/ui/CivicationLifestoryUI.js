@@ -18,6 +18,15 @@
   // bytter til jobbens rolle. Arealplanlegger er pilotrolle, ikke standard.
   const DEFAULT_ROLE_ID = "arbeidsledig";
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
+  const WAVE_A_SCENE_ID = /^wave_[ab]_(c01|c02|c03|c05|c06|c07|c17|c23)_/;
+  const WAVE_A_TITLES = {
+    c01: "Jobbtap og verdighet", c02: "Muligheten uten garanti",
+    c03: "Drømmen og regningene", c05: "Byråkratiet og personen",
+    c06: "Faglig integritet", c07: "Tilhørighet mot frihet",
+    c17: "Å arbeide seg tom", c23: "Feilen som ikke forsvinner"
+  };
+  const WAVE_A_THREAD_ID = /^wave_[ab]_c(?:01|02|03|05|06|07|17|23)$/;
+
 
   /**
    * DEV-/TESTVERKTØY — ikke produktflate. Roller velges aldri av spilleren;
@@ -156,6 +165,10 @@
     State.bindPersonTypes?.(state, content, null);
     State.save(state);
     currentRoleId = roleId;
+    // The selected role is already persisted here; the asynchronous shell
+    // adoption must now make any eligible private scenes in the *former*
+    // role snapshot visible without waiting for another profile event.
+    window.CivicationWaveAPrivateRoleBridge?.refresh?.();
     ensureCalendarCheckpoint();
     syncToShellCalendar();
     await refreshPersonTypes();
@@ -310,14 +323,27 @@
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
   window.addEventListener("updateProfile", () => { maybeAdoptShellRole(); refreshPersonTypes(); render(); });
+  window.addEventListener("civi:waveAPrivateStoryChanged", () => {
+    const stored = window.CivicationLifestoryState?.load?.();
+    if (stored && state?.rolle === stored.rolle) {
+      state.rolleTilstander = stored.rolleTilstander || {};
+      state.rolleBytter = stored.rolleBytter || [];
+    }
+    render();
+  });
 
   /**
    * @param {string} sceneId
    * @param {string} choiceId
    */
   function onChoose(sceneId, choiceId) {
+    let accepted = false;
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
+    // The shell may have adopted another job while a previous scene's
+    // button is still in the DOM. Never overwrite that newer role save.
+    const persistedRole = State.load()?.rolle;
+    if (persistedRole && persistedRole !== state?.rolle) return false;
     try {
       const scene = content.scenes.find((s) => s.id === sceneId);
       const valg = scene ? (scene.valg || []).find((c) => c.id === choiceId) : null;
@@ -327,7 +353,19 @@
       sisteKonsekvens = result.konsekvensTekst || deltas.length
         ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
+      // A private scene may have been answered from the inactive role's
+      // inbox while this job scene was open. Preserve those snapshots
+      // instead of overwriting them with this UI's older in-memory copy.
+      const latest = State.load();
+      if (latest?.rolle === state.rolle) {
+        state.rolleTilstander = latest.rolleTilstander || {};
+        state.rolleBytter = latest.rolleBytter || [];
+      }
       State.save(state);
+      accepted = true;
+      if (WAVE_A_SCENE_ID.test(sceneId)) {
+        window.CivicationWaveAInboxBridge?.afterChoice?.(state.rolle, sceneId, choiceId);
+      }
       // Énveis konsekvensbro: faktiske meter-endringer (etter clamping)
       // skrives til skallets psyke, så dashboardet speiler dagens valg.
       // Broen eier mappingen og testmodus-gaten (lifestoryShellBridge).
@@ -353,6 +391,7 @@
       console.error("[CivicationLifestoryUI] valg feilet", error);
     }
     render();
+    return accepted;
   }
 
   async function onNextDay() {
@@ -665,8 +704,108 @@
       + "<section><h4>Aktive tråder</h4><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></section>"
       + "<section><h4>Senere i dag</h4><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></section>"
       + "<section><h4>Arkiv / tidligere valg</h4><ul>" + arkivHtml + "</ul></section>"
+      + renderWaveAOverviewHtml()
       + renderSymposiumHtml(symposium)
       + "</aside>";
+  }
+
+
+  // A projection of the SAME saved Life Story state, including role snapshots.
+  // No past visit/meeting is invented from a scheduled calendar entry.
+  function renderWaveAOverviewHtml() {
+    if (!state) return "";
+    const roles = [{ id: state.rolle, save: state }].concat(
+      Object.entries(state.rolleTilstander || {}).map(([id, save]) => ({ id, save }))
+    );
+    const histories = roles.flatMap(({ id, save }) => (save?.arkiv || [])
+      .filter(entry => WAVE_A_SCENE_ID.test(String(entry.sceneId || "")))
+      .map(entry => ({ ...entry, savedRole: id })));
+    const pending = getPendingWaveAEvent() ||
+      window.CivicationWaveAPrivateRoleBridge?.getPendingEvent?.();
+    const rows = Object.entries(WAVE_A_TITLES).map(([type, title]) => {
+      const matching = histories.filter(entry => {
+        const id = String(entry.sceneId);
+        return id.startsWith("wave_a_" + type + "_") || id.startsWith("wave_b_" + type + "_");
+      });
+      const last = matching[matching.length - 1];
+      const detail = pending?.story_type_id === type.toUpperCase()
+        ? "Klar til svar i Min dag og innboksen"
+        : last ? "Siste valg: " + String(last.sceneTittel || last.sceneId)
+          + " (" + (last.savedRole === state.rolle ? "gjeldende rolle" : "tidligere rolle: " + last.savedRole) + ")"
+        : "Ikke startet";
+      return "<li><strong>" + escapeLiteral(type.toUpperCase() + " · " + title)
+        + "</strong> – " + escapeLiteral(detail)
+        + (last ? " <small>(" + matching.length + " lagrede valg)</small>" : "")
+        + "</li>";
+    }).join("");
+    const contracts = [
+      ["wa_c01_tur_avtalt", "wa_c01_tur_gjennomfort", "wa_c01_tur_avlyst", "Tur med Jonas"],
+      ["wa_c03_avtalt", "wa_c03_test_gjennomfort", "wa_c03_avlyst", "Prøve med Lea"],
+      ["wa_c07_vakt_avtalt", "wa_c07_vakt_gjennomfort", "wa_c07_vakt_avlyst", "Vakt hos Arvid"]
+    ];
+    const agreements = roles.flatMap(({ id, save }) => contracts
+      .filter(([agreed, done, canceled]) => save?.tidligereValg?.[agreed] === true &&
+        save.tidligereValg[done] !== true && save.tidligereValg[canceled] !== true)
+      .map(([, , , title]) => "<li>" + escapeLiteral(title + " (" + id + ")")
+        + " – avtalt, gjennomføring ikke dokumentert</li>"));
+    const buttons = Object.entries(state.threadState || {}).filter(([id, progress]) =>
+      WAVE_A_THREAD_ID.test(id) && content?.threads?.some(thread => thread.id === id) &&
+      (["active", "escalated"].includes(progress.status) ||
+        (progress.status === "dormant" && state.tidligereValg["wa_paused_" + id]))
+    ).map(([id, progress]) => {
+      const paused = progress.status === "dormant";
+      const label = paused ? "Fortsett" : "Sett på pause";
+      const command = paused ? "resume" : "pause";
+      return "<li>" + escapeLiteral(id.toUpperCase().replace(/_/g, " "))
+        + " <button type='button' data-wave-a-thread='" + escapeLiteral(id)
+        + "' data-wave-a-command='" + command + "'>" + label + "</button>"
+        + (paused ? "" : " <button type='button' data-wave-a-thread='"
+          + escapeLiteral(id) + "' data-wave-a-command='end'>Avslutt historien</button>")
+        + "</li>";
+    }).join("");
+    return "<section data-wave-a-overview><h4>Åtte historier – pågående og tidligere</h4><ul>"
+      + rows + "</ul><h4>Åpne avtaler</h4><ul>"
+      + (agreements.length ? agreements.join("") :
+        "<li class='muted'>Ingen dokumentert åpen avtale.</li>")
+      + "</ul>" + (buttons ? "<h4>Styr dine historier</h4><ul>" + buttons + "</ul>" : "")
+      + "</section>";
+  }
+
+  // Pause, resume and terminate operate on the canonical thread state. A
+  // paused scene is not recorded as played; a terminated one is not replayed.
+  function changeWaveAThread(id, command) {
+    if (!WAVE_A_THREAD_ID.test(id) || !content?.threads?.some(t => t.id === id)) return false;
+    const current = state?.threadState?.[id];
+    if (!current || current.status === "completed") return false;
+    const State = window.CivicationLifestoryState;
+    const pauseFlag = "wa_paused_" + id;
+    let next = null, pausedBefore = false;
+    if (command === "pause" && ["active", "escalated"].includes(current.status)) {
+      next = "dormant"; pausedBefore = current.status;
+    } else if (command === "resume" && current.status === "dormant" &&
+      ["active", "escalated"].includes(state.tidligereValg[pauseFlag])) {
+      next = state.tidligereValg[pauseFlag];
+    } else if (command === "end" && ["active", "escalated", "dormant"].includes(current.status)) {
+      next = "completed";
+    }
+    if (!next) return false;
+    State.applyEffects(state, {
+      threads: { [id]: { status: next } },
+      flagg: {
+        [pauseFlag]: pausedBefore,
+        ["wa_ended_" + id]: command === "end"
+      }
+    });
+    // The runner, not this UI, advances past newly unavailable scenes.
+    // Without this, ending the only visible thread strands Min dag on an
+    // unanswerable, unfinished phase and blocks the canonical calendar.
+    // Ending a thread may close an otherwise empty phase. Pausing must NOT
+    // consume that day: resuming should restore the exact unanswered scene.
+    if (command === "end") window.CivicationLifestoryRunner.advance(state, content);
+    State.save(state);
+    window.dispatchEvent(new Event("civi:lifestoryChanged"));
+    render();
+    return true;
   }
 
   /** Den fulle historien kan åpnes uten å fylle NÅ-flaten med metadata. */
@@ -752,6 +891,9 @@
         ? '<section data-lifestory-paused><h3>Historien er satt på pause</h3><p>Velg ' + escapeHtml(continuationRole) + ' som hovedrolle i livsprofilen for å fortsette der du slapp.</p><button type="button" data-lifestory-life-profile>Åpne livsprofilen</button></section>'
         : (view.dagFerdig ? renderSummaryHtml(view) : (view.scene ? renderSceneHtml(view.scene) : "")))
       + renderPanelsHtml(view);
+    // When an asynchronous role adoption finishes, retire the prior role\x27s
+    // unanswerable inbox projection and expose this role\x27s current scene.
+    window.CivicationWaveAInboxBridge?.sync?.();
   }
 
   function bindDelegation(panel) {
@@ -765,6 +907,12 @@
           choiceBtn.getAttribute("data-lifestory-scene") || "",
           choiceBtn.getAttribute("data-lifestory-choice") || ""
         );
+        return;
+      }
+      const threadBtn = target.closest("[data-wave-a-thread][data-wave-a-command]");
+      if (threadBtn) {
+        changeWaveAThread(threadBtn.getAttribute("data-wave-a-thread") || "",
+          threadBtn.getAttribute("data-wave-a-command") || "");
         return;
       }
       if (target.closest("[data-lifestory-next-action]")) {
@@ -834,6 +982,69 @@
     start();
   }
 
+
+  // One canonical Life Story scene; inbox receives a read/action projection.
+  function getPendingWaveAEvent() {
+    if (!state || !content || state.dagFerdig) return null;
+    const currentSaveRole = window.CivicationLifestoryState?.load?.()?.rolle;
+    if (currentSaveRole && currentSaveRole !== state.rolle) return null;
+    const Runner = window.CivicationLifestoryRunner;
+    const State = window.CivicationLifestoryState;
+    const scene = Runner.selectNextScene(state, content);
+    if (!scene || !WAVE_A_SCENE_ID.test(scene.id)) return null;
+    const storyId = scene.id.match(WAVE_A_SCENE_ID)[1];
+    const isJob = storyId === "c06" || storyId === "c17";
+    const phases = {
+      morgen: "morning", formiddag: "forenoon", arbeidsdag: "workday",
+      lunsj: "lunch", ettermiddag: "afternoon",
+      middag: "dinner", kveld: "evening", natt: "day_end"
+    };
+    // The shell owns its phase clock. Never deliver an afternoon scene as
+    // an actionable morning mail just because Min dag has reached it first.
+    const shellPhase = window.CivicationCalendar?.getPhase?.();
+    const order = ["morning", "forenoon", "workday", "lunch",
+      "afternoon", "dinner", "evening", "day_end"];
+    if (shellPhase && order.includes(shellPhase) &&
+        order.indexOf(shellPhase) < order.indexOf(phases[scene.fase] || "afternoon")) return null;
+    const text = State.presentText(state, content, scene.tekst || "");
+    return {
+      id: "wa_lifestory__" + state.rolle + "__" + scene.id,
+      source_type: "lifestory_wave_a",
+      lifestory_role: state.rolle,
+      lifestory_scene_id: scene.id,
+      lifestory_thread_id: scene.threadId,
+      story_type_id: storyId.toUpperCase(),
+      thread_key: "lifestory.wave_a." + state.rolle + "." + scene.id,
+      from: State.presentText(state, content, scene.avsender || "Min dag"),
+      source: "Min dag",
+      subject: State.presentText(state, content, scene.tittel),
+      situation: Array.isArray(text) ? text : [String(text)],
+      mail_type: "story",
+      mail_class: isJob ? "daily_workday" : "daily_private",
+      channel: isJob ? "job" : "private",
+      messageChannel: isJob ? "job" : "private",
+      workday_related: isJob,
+      phase_tag: phases[scene.fase] || "afternoon",
+      lifestory_day: state.dag,
+      choices: (scene.valg || []).map(choice => ({
+        id: choice.id,
+        label: State.presentText(state, content, choice.tekst),
+        feedback: State.presentText(state, content, choice.konsekvensTekst || ""),
+        effect: 0
+      }))
+    };
+  }
+
+  function answerWaveAChoice(eventId, choiceId) {
+    const pending = getPendingWaveAEvent();
+    if (!pending || pending.id !== eventId) return { ok: false, reason: "story_scene_not_current" };
+    const choice = pending.choices.find(row => row.id === choiceId);
+    if (!choice) return { ok: false, reason: "bad_choice" };
+    return onChoose(pending.lifestory_scene_id, choiceId)
+      ? { ok: true, feedback: choice.feedback }
+      : { ok: false, reason: "runner_rejected_choice" };
+  }
+
   /** Forslaget er et lagret ønske, ikke en aktivert identitet. */
   function getRoleSuggestion() {
     if (!content?.role?.symposium?.rollevalgFlagg || !state) return null;
@@ -847,5 +1058,8 @@
     return state && getPanel() ? { dagFerdig: !!state.dagFerdig, rolle: state.rolle, kalenderDag: state.kalenderDag || null } : null;
   }
 
-  window.CivicationLifestoryUI = { render, refresh: render, getCurrentSceneInfo, getRoleSuggestion, getDaySyncState };
+  window.CivicationLifestoryUI = {
+    render, refresh: render, getCurrentSceneInfo, getRoleSuggestion, getDaySyncState,
+    getPendingWaveAEvent, answerWaveAChoice
+  };
 })();

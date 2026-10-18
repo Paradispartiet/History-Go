@@ -133,3 +133,7 @@ Målrettet kontroll på oppfølgingsbolken: **7/7 testfiler bestått (47,7 sekun
 
 
 Oppfølgingsbolkens første ordinære CI bestod **718/719 testfiler**. Den eneste feilen lå i `civication-lifestory-project-continuations.test.js`: utvalget ved kapittelovergang tok med beholdt/parkert hovedprosjekt, men ikke alle uavhengige C03-utfall. Testen fører nå også faktisk avlyst test, beklagelse, pause, avsluttet bidrag og oppdateringsønske videre til `sideprosjekt_neste_steg`. Alle ni opprinnelige rolleoverganger og kravet om å spille alle valg beholdes. Ingen spillscene, valgeffekt, timeout eller dekningsassert fjernes. Den reparerte prosjekttesten og bolktesten består samlet **2/2 (40,4 sekunder)**. Ordinær CI kjøres på den nye sluttcommit før merge.
+
+## Akseptanse for situasjonsstyrte innganger og historikk
+
+[Overgangskontrakten for de åtte historiene](CIVICATION_WAVE_A_STORY_DELIVERY_ACCEPTANCE_V1.md) beskriver hva som må testes i felles kalender, innboks og «Min dag»: passert avtaletid uten oppmøtebevis, jobb-/arbeidsstedsbytte, dobbelt svar, avvist svar, gamle lagringer og pause/avslutning. Den nye målrettede `civication-wave-a-transition-safety.test.js` dekker foreløpig bare grunnmotorens transaksjonsgrenser; den godkjenner **ikke** en ikke-committed inngangsproduksjon med 89 scener/178 valg. Dette avsnittet endrer ikke eksisterende scenestatus eller verksanalyse.
