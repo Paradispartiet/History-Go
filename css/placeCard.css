@@ -332,6 +332,44 @@
   color: #dbdbdc;
 }
 
+
+/* Keep the complete QuizCard heading readable on a 3:4 mobile card.
+   Scale only the compact reverse face; the expanded reader retains its
+   full-size type. The questions intentionally scroll inside the card. */
+.pc-card-face-back .pc-quiz-card-content{
+  container-type: inline-size;
+  padding: clamp(6px, 1.5cqi, 11px);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.pc-card-face-back .pc-rendered-quiz-card{
+  gap: clamp(7px, 5cqi, 14px);
+  padding: clamp(11px, 8cqi, 23px) clamp(7px, 5cqi, 15px) 16px;
+}
+.pc-card-face-back .pc-rendered-quiz-head{
+  padding: 5px 1px clamp(9px, 6cqi, 17px);
+}
+.pc-card-face-back .pc-rendered-quiz-head h3{
+  font-size: clamp(12px, 9cqi, 22px);
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.pc-card-face-back .pc-rendered-quiz-kicker{
+  font-size: clamp(9px, 6cqi, 12px);
+  letter-spacing: .09em;
+  overflow-wrap: anywhere;
+}
+.pc-card-face-back .pc-rendered-quiz-head p{
+  font-size: clamp(10px, 7cqi, 13px);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.pc-card-face-back .pc-rendered-quiz-list{
+  font-size: clamp(12px, 8cqi, 15px);
+}
+
 .pc-rendered-quiz-list{
   counter-reset: pc-quiz-question;
   list-style: none;
