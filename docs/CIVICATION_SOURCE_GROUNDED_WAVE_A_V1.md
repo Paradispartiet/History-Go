@@ -152,3 +152,26 @@ Oppfølgingsbolkens første ordinære CI bestod **718/719 testfiler**. Den enest
 ### Wave C – etterkontroll mot eksisterende regresjoner
 
 Wave C bruker eksisterende innholdspakker. Både C01 og C05 er i `roles/arbeidsledig/scenes.json`, derfor avgrenser Wave C-regresjonen nye scener per `story_type_id` før den kontrollerer forgjengervalg; et generelt `wave_c_`-filter ville blande fortellingene. Arvid-testen beholder sine opprinnelige fullstendige kapittelvalg, men lar Wave A–C håndteres av de dedikerte bolktestene. Renholderpakken har nå fem opprinnelige arbeidstråder og tre C17-ledd, ikke to. Den genererte karrierematrisen er synkronisert mot disse innholdsendringene uten å endre policy. Ordinær CI er fortsatt selvstendig mergevilkår.
+
+## Wave D – fjerde dramaturgiske innholdsbolk (34 scener, 68 valg)
+
+Det er skrevet **34 nye scener** som dekker **begge faktiske valg fra samtlige 17 Wave C-scener**, og to nye alternativer i hver av disse oppfølgingene (**68 nye valg**). Samlet for de fire redaksjonelle innholdsbolkene er kataloggrunnlaget **125 scener og 250 valg**. Dette er en sum av forfatterstyrte alternativer, ikke innhold én spiller får i samme gjennomspilling.
+
+| Historie | Scener | Spilledag | Historisk årsak og videre konsekvens |
+| --- | ---: | ---: | --- |
+| C01 – Vennskap og grenser | 4 | 7, kveld | Jonas, invitasjon og retten til kontakt uten rapporteringsplikt; ingen avtalt dato oppstår uten svar fra begge. |
+| C02 – Muligheter uten garantier | 4 | 10, kveld | Medmusikeren kan bearbeide skuffelse og låtinnspill uten at et ubekreftet oppdrag blir til konsert. |
+| C03 – Prosjekt og dokumentert nytte | 4 | 12, kveld | Forsøksstatus, samtykke og målekriterier er separate fra publisering, bruk og dokumentert nytte. |
+| C05 – Dokumentasjon og uavklarte vedtak | 4 | 7, kveld | Registrert dokument, kontrollert lesbarhet og formelt vedtak får aldri samme betydning. |
+| C06 – Faglige forbehold | 4 | 7, ettermiddag | Neste arbeidsdag: ansvarlig leder og fagperson er forskjellige, manglende observasjoner blir ikke fylt med antakelser. |
+| C07 – Tilhørighet og grenser | 4 | 12, kveld | Neste dag: privat kontakt og frivillig innsats er forskjellige; sosialt ønske er ikke en vaktavtale. |
+| C17 – Arbeidskapasitet og tilkomst | 4 | 7, ettermiddag | Neste arbeidsdag: rengjort inngang og blokkert lager beholdes med ulike statuslinjer. |
+| C23 – Feilinformasjon og tillit | 6 | 16, ettermiddag | Neste dag: korreksjon, faktisk forståelse, dokumentert mottak og mulig tillitsbrudd håndteres hver for seg. |
+
+**Kausal kontrakt:** Hver Wave D-scene krever nøyaktig ett `wa_c_*`-flagg, skrevet av ett bestemt *valg* i den kanoniske Wave C-scenen. Ingen ny utgang aktiveres ved ukjent eller annet tidligere valg. Wave D skriver egne `wa_d_*`-flagg og ikke lønn, stønadsvedtak, godkjenning, oppmøte, avtalt booking eller utført renhold.
+
+**Redaksjonell kapittelgrense:** «Fjerde bolk» betyr fjerde produksjonslag, **ikke** et teknisk selvstendig kapittel for alle historiene. C01, C02, C03 og C05 får et sammenhengende etterspill den samme siste kapiteldagen; de fire øvrige historiene får minst én ny spilledag. Et fremtidig eget, senere kapittel for samtlige åtte krever eksplisitte fortsettelsespakker og innkobling i eksisterende kalender, innboks og «Min dag». Det skal ikke simuleres ved å endre lokalt klokkeflagg eller finne på gjennomførte handlinger.
+
+Verkskoblinger fra Goodreads og IMDb, med den eksisterende Film Producer-proveniensen, følger uendret fra Wave A–C. Registeret `data/Civication/lifestory/editorial/inspiration/waveAFourthInstallmentsV1.json` dokumenterer for hvert scene-ID både bok/film, problem, parent scene, eksakt parent choice og inngangsflagg. Det er ikke fremsatt noen ny påstand om nærlesning eller ny verksanalytisk verifikasjon.
+
+Den nye målrettede `tests/civication-source-grounded-wave-d.test.js` er ment å utføre **68 runner-ruter**, kontrollere proveniens, låsing før tidligere valg, én aktiv konsekvens etter hvert valg, lagringsarkiv og manglende automatisk betaling. Dager som krever seinere kalenderhendelser testes ved en *syntetisk testklokke* med allerede registrert foregående faktisk valg; dette erstatter **ikke** full ende-til-ende-avspilling av den mellomliggende dagen. Test- og CI-status holdes adskilt fra at innholdet er forfattet.
