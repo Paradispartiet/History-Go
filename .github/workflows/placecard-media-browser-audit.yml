@@ -31,6 +31,8 @@ on:
       - 'tests/christiania-torv-placecard-collections-v2-browser-audit.test.mjs'
       - 'tests/placecard-media-hero-responsive-browser.test.mjs'
       - 'tests/black-box-productions-browser-audit.test.mjs'
+      - 'tests/oslo-v1-actual-runtime-visual-browser-audit.mjs'
+      - 'tests/oslo-v1-quizcard-manifest-binding.test.mjs'
       - '.github/workflows/placecard-media-browser-audit.yml'
   workflow_dispatch:
 
@@ -75,3 +77,7 @@ jobs:
         run: node --test --test-name-pattern="person surface follows PlaceCard framing" tests/person-popup-v2.test.js
       - name: Audit People popup map and footer framing at all widths
         run: node tests/person-popup-placecard-layout-browser.test.mjs
+      - name: Verify all sixteen Oslo v1 candidate QuizCards and real image compositions
+        run: |
+          node --test tests/oslo-v1-quizcard-manifest-binding.test.mjs
+          node tests/oslo-v1-actual-runtime-visual-browser-audit.mjs
