@@ -19,6 +19,13 @@
       "type": "privatliv",
       "konflikt": "En uklar skisse skaper ulike forventninger hos mottakere som ikke vet det samme.",
       "startDag": 11
+    },
+    {
+      "id": "wave_b_c03",
+      "tittel": "En ny prøve, en mindre ramme",
+      "type": "privatliv",
+      "konflikt": "En konkret forbedring må tåle både begrensede materialer og begrenset hjelp.",
+      "startDag": 11
     }
   ],
   "scenes": [
@@ -604,6 +611,283 @@
           "wa_c23_rettelse": "ikke_bekreftet"
         }
       },
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c03_ny_prove",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Samme papp, en annen kant",
+      "tekst": "Prosjektbyggeren sender oppdateringen du ba om etter testen. Et bilde viser den samme pappmodellen, nå med en brettet kant ved hjørnet der kortet satte seg fast. «Har brukt det jeg hadde. Hvis du orker ti minutter på telefon nå, kan vi prøve ett tynt og ett tykt kort. Ikke mer i kveld.» Det er Prosjektbyggerens forsøk, separat fra prosjektet du selv arbeider med.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "folg_med"
+        }
+      },
+      "valg": [
+        {
+          "id": "test_kort",
+          "tekst": "Ta den avgrensede prøven nå.",
+          "konsekvensTekst": "På video ser du det tynne kortet passere tre ganger. Det tykkere stopper to ganger ved bretten. Prosjektbyggeren skriver resultatene på pappen og avslutter etter ti minutter.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "testet",
+              "wa_b_c03_tynt_pass": true,
+              "wa_b_c03_tykt_stopp": true
+            }
+          }
+        },
+        {
+          "id": "ingen_test",
+          "tekst": "Si at du ikke har kapasitet til en ny test nå.",
+          "konsekvensTekst": "Du svarer at du gjerne ser oppdateringen, men ikke kan delta i kveld. Prosjektbyggeren legger ikke en prøve inn i kalenderen din.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "ingen_test"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c03_etter_beklagelsen",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En beklagelse er ikke en timeavtale",
+      "tekst": "Du ser meldingen der du beklaget at du avlyste telefonprøven. Prosjektbyggeren har ikke bedt deg prøve igjen. Du kan ta et lite initiativ selv, men du vet ikke om modellen er endret siden forsøket dere aldri gjennomførte.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "beklaget"
+        }
+      },
+      "valg": [
+        {
+          "id": "spor_om_oppdatering",
+          "tekst": "Spør om Prosjektbyggeren vil vise status en annen dag.",
+          "konsekvensTekst": "Du sender spørsmålet med forbehold om kapasitet hos dere begge. Ingen ny prøve har funnet sted, og du har ikke fått svar ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "spurt"
+            }
+          }
+        },
+        {
+          "id": "la_beklagelsen_staa",
+          "tekst": "La beklagelsen stå uten å tilby mer arbeid.",
+          "konsekvensTekst": "Du lukker samtalen. Beklagelsen er fortsatt sendt, men det finnes ingen ny test eller ny avtale mellom dere.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "avsluttet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c03_etter_hilsenen",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et spørsmål du selv kan stille",
+      "tekst": "Du valgte å spørre om modellen senere da du tok pause fra forsøket. Nå er det senere, men du har fortsatt ikke sett en prøve. Det lille løftet om interesse kan bli en kort hilsen; det trenger ikke bli en arbeidskveld.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "hilsen"
+        }
+      },
+      "valg": [
+        {
+          "id": "spor_status",
+          "tekst": "Spør hvordan det går, uten å tilby en test.",
+          "konsekvensTekst": "Du spør hvordan modellen utvikler seg og skriver at du ikke kan teste nå. Du har vist interesse uten å opprette en arbeidsavtale.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "spurt"
+            }
+          }
+        },
+        {
+          "id": "utsett_hilsen",
+          "tekst": "Vent med å ta kontakt.",
+          "konsekvensTekst": "Du sender ingenting. Prosjektbyggeren har ikke fått en ny frist fra deg, og du har ikke mottatt noen ny status.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "venter"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c03_bidrag_avsluttet",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et ferdig bidrag, ikke en ferdig modell",
+      "tekst": "Du gjennomførte den første testen og sa så at bidraget ditt var avsluttet. Du vet at modellen satte seg fast ved tredje forsøk den gangen. Du vet ikke hva som har skjedd siden. Du kan notere det du lærte til ditt eget arbeid, uten å hente inn Prosjektbyggeren igjen.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "bidrag_avsluttet"
+        }
+      },
+      "valg": [
+        {
+          "id": "hilsen",
+          "tekst": "Send en kort hilsen uten å tilby arbeid.",
+          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "hilsen"
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Behold tiden for deg selv.",
+          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "egen_tid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c03_avlyst",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Forsøket du ikke var med på",
+      "tekst": "Telefonprøven ble avlyst, og du lot den sene avlysningen stå uten videre forklaring. Du har ikke noe testresultat å bruke. Hvis du vil gjøre noe med kontakten nå, må det begynne med den avlysningen, ikke med råd om en modell du ikke prøvde.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "avlyst"
+        }
+      },
+      "valg": [
+        {
+          "id": "hilsen",
+          "tekst": "Send en kort hilsen uten å tilby arbeid.",
+          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "hilsen"
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Behold tiden for deg selv.",
+          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "egen_tid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c03_pause",
+      "threadId": "wave_b_c03",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En pause som fortsatt gjelder",
+      "tekst": "Du beholdt pausen fra Prosjektbyggerens test. Det er ikke kommet noen avtale om et nytt bidrag. Når du ser navnet i meldingslisten, kan du velge en sosial hilsen eller la arbeidsroen vare. Ingen av valgene innebærer at du har sett modellen virke.",
+      "conditions": {
+        "flagg": {
+          "wa_c03_avslutning": "pause"
+        }
+      },
+      "valg": [
+        {
+          "id": "hilsen",
+          "tekst": "Send en kort hilsen uten å tilby arbeid.",
+          "konsekvensTekst": "Du sender en personlig hilsen og lar spørsmålet om modellen ligge. Det er ikke kommet svar eller en ny avtale ennå.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "hilsen"
+            }
+          }
+        },
+        {
+          "id": "egen_tid",
+          "tekst": "Behold tiden for deg selv.",
+          "konsekvensTekst": "Du lar samtalen ligge og gjør ingen ny avtale. Det tidligere utfallet blir stående; ingen test fylles inn i ettertid.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_spor": "egen_tid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c03_etter_proven",
+      "threadId": "wave_b_c03",
+      "dag": 12,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Hva kan en liten modell være?",
+      "tekst": "Etter gårsdagens prøve sender Prosjektbyggeren to bilder: ett av bretten og ett av en eske med de tynne kortene. «Kunne bare skrive at den er for disse. Men da er den mindre nyttig enn jeg håpet.» Første prøve ga to vellykkede passeringer og én stopp; gårsdagens viste at tykkelsen også spiller inn. Ingen av delene er en ferdig kvalitetskontroll.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c03_spor": "testet"
+        }
+      },
+      "valg": [
+        {
+          "id": "avgrens_bruk",
+          "tekst": "Foreslå å merke prototypen for tynne kort før flere funksjoner.",
+          "konsekvensTekst": "Prosjektbyggeren velger å merke den «prøve for tynne kort» og legge de tykke til side. Det er en mindre ambisjon, men en beskrivelse som passer det dere faktisk så.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_utfall": "smal_prototype"
+            }
+          }
+        },
+        {
+          "id": "behold_sporsmal",
+          "tekst": "Foreslå å la spørsmålet om tykkelse stå åpent.",
+          "konsekvensTekst": "Prosjektbyggeren velger å skrive begge resultatene på modellen og vente med ny materialbruk. Det finnes et konkret undersøkelsesspørsmål, men ingen ny test eller bestilling.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c03_utfall": "aapent_forsok"
+            }
+          }
+        }
+      ],
       "avsender": "lea"
     }
   ],

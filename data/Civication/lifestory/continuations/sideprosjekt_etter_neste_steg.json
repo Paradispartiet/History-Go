@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 14,
       "konflikt": "Eget prosjekt møter forventninger, arbeidstid og behov for klare grenser"
+    },
+    {
+      "id": "wave_b_c23",
+      "tittel": "Den andre mottakeren",
+      "type": "privatliv",
+      "konflikt": "En rettelse får først sosial virkning når mottakeren har fått og forstått den.",
+      "startDag": 14
     }
   ],
   "scenes": [
@@ -411,6 +418,210 @@
               "sideprosjekt_etter_valget": {
                 "status": "completed"
               }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c23_begge_sendt",
+      "threadId": "wave_b_c23",
+      "dag": 14,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Sendt er fortsatt ikke lest",
+      "tekst": "Prosjektbyggeren viser samtalen om utkast 0.2. Rettelsen gikk til begge verksteddeltakerne, men bare den ene har bekreftet å ha forstått at «mulig prøve fredag» ikke var en ferdig levering. Den andre har ikke svart. At tiden går, fyller ikke inn det manglende svaret.",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "begge"
+        }
+      },
+      "valg": [
+        {
+          "id": "sjekk_sammen",
+          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
+          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "fulgt_opp",
+              "wa_b_c23_ny_utsending": true
+            }
+          }
+        },
+        {
+          "id": "overlat",
+          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
+          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "overlatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c23_bare_en",
+      "threadId": "wave_b_c23",
+      "dag": 14,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Den andre har den gamle teksten",
+      "tekst": "Prosjektbyggeren åpner meldingshistorikken om utkast 0.2. Bare den første mottakeren fikk presiseringen og svarte. Hos den andre ligger fortsatt skissen med «mulig prøve fredag». Du vet hvem som mangler rettelsen, men ikke hva vedkommende har rukket å planlegge.",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "en"
+        }
+      },
+      "valg": [
+        {
+          "id": "sjekk_sammen",
+          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
+          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "fulgt_opp",
+              "wa_b_c23_ny_utsending": true
+            }
+          }
+        },
+        {
+          "id": "overlat",
+          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
+          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "overlatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c23_ikke_bekreftet",
+      "threadId": "wave_b_c23",
+      "dag": 14,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ingen synlig utsending",
+      "tekst": "Du får en ny melding fra Prosjektbyggeren om utkast 0.2: «Jeg finner ikke igjen at jeg sendte presiseringen. Må rydde opp i dette.» Det du vet fra før er fortsatt begrenset: Du har ikke sett en utsending av rettelsen. Den første misforståelsen er ikke dokumentert løst.",
+      "conditions": {
+        "flagg": {
+          "wa_c23_rettelse": "ikke_bekreftet"
+        }
+      },
+      "valg": [
+        {
+          "id": "sjekk_sammen",
+          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
+          "konsekvensTekst": "Prosjektbyggeren åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "fulgt_opp",
+              "wa_b_c23_ny_utsending": true
+            }
+          }
+        },
+        {
+          "id": "overlat",
+          "tekst": "La Prosjektbyggeren følge opp selv uten mer bistand fra deg.",
+          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Prosjektbyggeren har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_spor": "overlatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c23_svaret",
+      "threadId": "wave_b_c23",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Ingen levering, men en tapt formiddag",
+      "tekst": "Prosjektbyggeren viser svarene etter gårsdagens utsending. Begge mottakerne har nå svart at de forstår at ingen ferdig levering er avtalt. Den ene skriver også: «Jeg hadde holdt av fredag formiddag og bedt en kollega komme. Det burde stått tydeligere fra starten.» En misforståelse er avklart, men tidskostnaden er allerede oppstått. Det finnes ikke noe krav om betaling i meldingene.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c23_spor": "fulgt_opp"
+        }
+      },
+      "valg": [
+        {
+          "id": "anerkjenn",
+          "tekst": "Foreslå at svaret anerkjenner den bortkastede planleggingen.",
+          "konsekvensTekst": "Prosjektbyggeren velger å beklage den uklare teksten og at den andre holdt av tid. Avklaringen lover ingen erstatningslevering. Du har sett forståelsesbekreftelsene, ikke mottakerens reaksjon på beklagelsen.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_utfall": "avklart_med_kostnad",
+              "wa_b_c23_begge_forstatt": true
+            }
+          }
+        },
+        {
+          "id": "ny_merking",
+          "tekst": "Foreslå tydelig merking og egen bekreftelse i framtidige skisser.",
+          "konsekvensTekst": "Prosjektbyggeren velger å skille «utkast» fra «avtalt prøve» i en ny tom mal. Det kan hjelpe neste gang. Det endrer ikke at en mottaker allerede satte av tid på grunn av den gamle teksten.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_utfall": "avklart_ny_praksis",
+              "wa_b_c23_begge_forstatt": true
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_b_c23_uten_innsyn",
+      "threadId": "wave_b_c23",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det du ikke lenger følger",
+      "tekst": "Du avsluttet bistanden til oppfølgingen av utkast 0.2. Du har ikke fått noen ny melding om mottakernes forståelse. Det er fristende å tenke at noen sikkert har ordnet det, men din egen oversikt kan bare skille det du så fra det du ikke har fulgt videre.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c23_spor": "overlatt"
+        }
+      },
+      "valg": [
+        {
+          "id": "noter_grense",
+          "tekst": "Noter hvor din egen kunnskap stopper.",
+          "konsekvensTekst": "Du skriver at du ikke har bekreftet en samlet avklaring. Notatet er privat og sender ingen ny påminnelse til Prosjektbyggeren.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_utfall": "uavklart_uten_innsyn"
+            }
+          }
+        },
+        {
+          "id": "spor_kort",
+          "tekst": "Send ett spørsmål om det nå er avklart hos begge.",
+          "konsekvensTekst": "Du sender spørsmålet uten å ta på deg en ny mottakerrunde. Det er ikke kommet svar ennå, og du registrerer ikke saken som løst.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c23_utfall": "status_forespurt"
             }
           }
         }

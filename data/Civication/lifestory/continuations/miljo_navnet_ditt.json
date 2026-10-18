@@ -12,6 +12,13 @@
       "type": "privatliv",
       "startDag": 11,
       "konflikt": "Synlighet i miljøet møter andres forventninger til tilgang og løfter du kan stå for."
+    },
+    {
+      "id": "wave_b_c07",
+      "tittel": "Plassen etter besøket",
+      "type": "privatliv",
+      "konflikt": "Faktisk deltakelse og eget ønske om tilhørighet gir ikke andre fullmakt til nye oppgaver.",
+      "startDag": 11
     }
   ],
   "scenes": [
@@ -585,6 +592,201 @@
               "arvid_navnet_pa_invitasjonen": {
                 "status": "completed"
               }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c07_etter_vakten",
+      "threadId": "wave_b_c07",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Den timen som faktisk var din",
+      "tekst": "Du tenker tilbake på gårsdagens vakt fra 18 til 19. Miljøkontakten tok over da timen var ute. Nå kjenner du både lyst til å komme tilbake og behov for tid uten oppgaver. Erfaringen gjelder den ene vakten; den svarer ikke automatisk på de nye spørsmålene om navnet ditt og kommende arrangementer.",
+      "conditions": {
+        "flagg": {
+          "wa_c07_vakt_gjennomfort": true
+        }
+      },
+      "valg": [
+        {
+          "id": "sosialt_rom",
+          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
+          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "sosialt"
+            }
+          }
+        },
+        {
+          "id": "egen_avstand",
+          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
+          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "avstand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c07_etter_gjestebesoket",
+      "threadId": "wave_b_c07",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En plass uten vaktliste",
+      "tekst": "Du var innom som gjest i går uten å ta en vakt. Når du tenker på et nytt besøk, merker du at ønsket om å høre til og ønsket om å bestemme over egen tid fortsatt trekker i hver sin retning. Besøket har ikke etablert en ny forpliktelse, og det avgjør ikke dagens andre spørsmål om framtidig kontakt.",
+      "conditions": {
+        "flagg": {
+          "wa_c07_gjest_gjennomfort": true
+        }
+      },
+      "valg": [
+        {
+          "id": "sosialt_rom",
+          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
+          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "sosialt"
+            }
+          }
+        },
+        {
+          "id": "egen_avstand",
+          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
+          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "avstand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c07_etter_avlysningen",
+      "threadId": "wave_b_c07",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et ja som ble trukket tilbake",
+      "tekst": "Du avlyste den avtalte vakten. Du vet ikke hvordan de løste bemanningen etterpå. Du kan ønske deg kontakt og samtidig erkjenne at et ja skapte en forventning du senere endret. Dagens spørsmål om framtidig kontakt er en annen avtale enn den vakten som ikke ble gjennomført.",
+      "conditions": {
+        "flagg": {
+          "wa_c07_vakt_avlyst": true
+        }
+      },
+      "valg": [
+        {
+          "id": "sosialt_rom",
+          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
+          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "sosialt"
+            }
+          }
+        },
+        {
+          "id": "egen_avstand",
+          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
+          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "avstand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c07_hjemmekvelden",
+      "threadId": "wave_b_c07",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Du ble hjemme",
+      "tekst": "Du takket ja til informasjon som gjest, men ble hjemme da kvelden kom. Du vet ikke hvem som møttes eller hvordan det ble. Den stillheten kan kjennes både god og ensom. En ny preferanse for kontakt er noe du kan formulere nå, uten å gjøre gårsdagen om til et besøk.",
+      "conditions": {
+        "flagg": {
+          "wa_c07_gjest_gjennomfort": false
+        }
+      },
+      "valg": [
+        {
+          "id": "sosialt_rom",
+          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
+          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "sosialt"
+            }
+          }
+        },
+        {
+          "id": "egen_avstand",
+          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
+          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "avstand"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_b_c07_etter_neiet",
+      "threadId": "wave_b_c07",
+      "dag": 11,
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Invitasjonen du avslo",
+      "tekst": "Du sa nei til invitasjonen. Det finnes ingen avtalt vakt og ikke noe besøk å ta æren eller skylden for. Likevel kan miljøet oppta plass i tankene: Var det oppgavene du ville slippe, eller selve samlingen? Du trenger ikke gi noen andre et svar denne kvelden.",
+      "conditions": {
+        "flagg": {
+          "wa_c07_invitasjon": "nei"
+        }
+      },
+      "valg": [
+        {
+          "id": "sosialt_rom",
+          "tekst": "Noter at du ønsker sosial kontakt uten automatisk vaktansvar.",
+          "konsekvensTekst": "Du skriver en privat påminnelse om hva du ønsker å spørre etter neste gang. Notatet sender ingen melding, gir ingen fullmakt og endrer ingen avtalte oppgaver.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "sosialt"
+            }
+          }
+        },
+        {
+          "id": "egen_avstand",
+          "tekst": "Noter at du vil ha mer avstand før du tar nye initiativ.",
+          "konsekvensTekst": "Du setter ord på behovet for avstand i et privat notat. Det trekker ikke tilbake en annen avtale du måtte ha inngått; en slik endring må tas med den det gjelder.",
+          "effekter": {
+            "flagg": {
+              "wa_b_c07_onske": "avstand"
             }
           }
         }

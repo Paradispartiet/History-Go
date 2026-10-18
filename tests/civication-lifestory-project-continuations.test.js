@@ -111,7 +111,16 @@ for (const first of projects) for (const [index, past] of pasts.entries()) {
   const prefix = first.id.replace('_med_lea', '');
   const representativeEndings = ['beholdt', 'lagt_bort'].map(flag => finals.find(final => final.tidligereValg[prefix + '_' + flag]));
   assert.ok(representativeEndings.every(Boolean));
-  for (const firstFinal of representativeEndings) for (const second of descriptors.filter(n => n.etterFortsettelser?.includes(first.id))) {
+  // Keep the retained/parked project handoffs, and carry each actual C03
+  // outcome into its follow-up. Those independent outcomes can differ even
+  // when the original project's ending is the same.
+  const originalEndings = [...representativeEndings];
+  if (first.id === 'sideprosjekt_med_lea') {
+    for (const final of finals) {
+      if (!representativeEndings.some(s => s.tidligereValg.wa_c03_avslutning === final.tidligereValg.wa_c03_avslutning)) representativeEndings.push(final);
+    }
+  }
+  for (const firstFinal of representativeEndings) for (const second of descriptors.filter(n => n.etterFortsettelser?.includes(first.id) && (originalEndings.includes(firstFinal) || n.id === 'sideprosjekt_neste_steg'))) {
     s = clone(firstFinal);
     const archive = clone(s.arkiv), priorChapter = clone(s.kapittelArkiv), priorEnding = E.resolveEnding(s, c);
     // A different primary role can take over at a completed chapter boundary.
