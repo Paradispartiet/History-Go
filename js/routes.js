@@ -19,6 +19,7 @@ console.log("routes.js start");
  *   HG_NEARBY_BADGE_FILTER?: string,
  *   HG_getActiveBadgeFilter?: () => string,
  *   getPos?: () => any,
+ *   HGPos?: {request?: () => Promise<unknown>},
  *   userLat?: number,
  *   userLon?: number,
  *   userLng?: number,
