@@ -19,6 +19,14 @@
   const DEFAULT_ROLE_ID = "arbeidsledig";
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
   const WAVE_A_SCENE_ID = /^wave_[ab]_(c01|c02|c03|c05|c06|c07|c17|c23)_/;
+  const WAVE_A_TITLES = {
+    c01: "Jobbtap og verdighet", c02: "Muligheten uten garanti",
+    c03: "Drømmen og regningene", c05: "Byråkratiet og personen",
+    c06: "Faglig integritet", c07: "Tilhørighet mot frihet",
+    c17: "Å arbeide seg tom", c23: "Feilen som ikke forsvinner"
+  };
+  const WAVE_A_THREAD_ID = /^wave_[ab]_c(?:01|02|03|05|06|07|17|23)$/;
+
 
   /**
    * DEV-/TESTVERKTØY — ikke produktflate. Roller velges aldri av spilleren;
@@ -672,8 +680,101 @@
       + "<section><h4>Aktive tråder</h4><ul>" + (traaderHtml || "<li class=\"muted\">Ingen tråder ennå.</li>") + "</ul></section>"
       + "<section><h4>Senere i dag</h4><ul>" + (kalenderHtml + senereHtml || "<li class=\"muted\">Ingen flere planlagte scener.</li>") + "</ul></section>"
       + "<section><h4>Arkiv / tidligere valg</h4><ul>" + arkivHtml + "</ul></section>"
+      + renderWaveAOverviewHtml()
       + renderSymposiumHtml(symposium)
       + "</aside>";
+  }
+
+
+  // A projection of the SAME saved Life Story state, including role snapshots.
+  // No past visit/meeting is invented from a scheduled calendar entry.
+  function renderWaveAOverviewHtml() {
+    if (!state) return "";
+    const roles = [{ id: state.rolle, save: state }].concat(
+      Object.entries(state.rolleTilstander || {}).map(([id, save]) => ({ id, save }))
+    );
+    const histories = roles.flatMap(({ id, save }) => (save?.arkiv || [])
+      .filter(entry => WAVE_A_SCENE_ID.test(String(entry.sceneId || "")))
+      .map(entry => ({ ...entry, savedRole: id })));
+    const pending = getPendingWaveAEvent();
+    const rows = Object.entries(WAVE_A_TITLES).map(([type, title]) => {
+      const matching = histories.filter(entry => {
+        const id = String(entry.sceneId);
+        return id.startsWith("wave_a_" + type + "_") || id.startsWith("wave_b_" + type + "_");
+      });
+      const last = matching[matching.length - 1];
+      const detail = pending?.story_type_id === type.toUpperCase()
+        ? "Klar til svar i Min dag og innboksen"
+        : last ? "Siste valg: " + String(last.sceneTittel || last.sceneId)
+          + " (" + (last.savedRole === state.rolle ? "gjeldende rolle" : "tidligere rolle: " + last.savedRole) + ")"
+        : "Ikke startet";
+      return "<li><strong>" + escapeLiteral(type.toUpperCase() + " · " + title)
+        + "</strong> – " + escapeLiteral(detail)
+        + (last ? " <small>(" + matching.length + " lagrede valg)</small>" : "")
+        + "</li>";
+    }).join("");
+    const contracts = [
+      ["wa_c01_tur_avtalt", "wa_c01_tur_gjennomfort", "wa_c01_tur_avlyst", "Tur med Jonas"],
+      ["wa_c03_avtalt", "wa_c03_test_gjennomfort", "wa_c03_avlyst", "Prøve med Lea"],
+      ["wa_c07_vakt_avtalt", "wa_c07_vakt_gjennomfort", "wa_c07_vakt_avlyst", "Vakt hos Arvid"]
+    ];
+    const agreements = roles.flatMap(({ id, save }) => contracts
+      .filter(([agreed, done, canceled]) => save?.tidligereValg?.[agreed] === true &&
+        save.tidligereValg[done] !== true && save.tidligereValg[canceled] !== true)
+      .map(([, , , title]) => "<li>" + escapeLiteral(title + " (" + id + ")")
+        + " – avtalt, gjennomføring ikke dokumentert</li>"));
+    const buttons = Object.entries(state.threadState || {}).filter(([id, progress]) =>
+      WAVE_A_THREAD_ID.test(id) && content?.threads?.some(thread => thread.id === id) &&
+      (["active", "escalated"].includes(progress.status) ||
+        (progress.status === "dormant" && state.tidligereValg["wa_paused_" + id]))
+    ).map(([id, progress]) => {
+      const paused = progress.status === "dormant";
+      const label = paused ? "Fortsett" : "Sett på pause";
+      const command = paused ? "resume" : "pause";
+      return "<li>" + escapeLiteral(id.toUpperCase().replace(/_/g, " "))
+        + " <button type='button' data-wave-a-thread='" + escapeLiteral(id)
+        + "' data-wave-a-command='" + command + "'>" + label + "</button>"
+        + (paused ? "" : " <button type='button' data-wave-a-thread='"
+          + escapeLiteral(id) + "' data-wave-a-command='end'>Avslutt historien</button>")
+        + "</li>";
+    }).join("");
+    return "<section data-wave-a-overview><h4>Åtte historier – pågående og tidligere</h4><ul>"
+      + rows + "</ul><h4>Åpne avtaler</h4><ul>"
+      + (agreements.length ? agreements.join("") :
+        "<li class='muted'>Ingen dokumentert åpen avtale.</li>")
+      + "</ul>" + (buttons ? "<h4>Styr dine historier</h4><ul>" + buttons + "</ul>" : "")
+      + "</section>";
+  }
+
+  // Pause, resume and terminate operate on the canonical thread state. A
+  // paused scene is not recorded as played; a terminated one is not replayed.
+  function changeWaveAThread(id, command) {
+    if (!WAVE_A_THREAD_ID.test(id) || !content?.threads?.some(t => t.id === id)) return false;
+    const current = state?.threadState?.[id];
+    if (!current || current.status === "completed") return false;
+    const State = window.CivicationLifestoryState;
+    const pauseFlag = "wa_paused_" + id;
+    let next = null, pausedBefore = false;
+    if (command === "pause" && ["active", "escalated"].includes(current.status)) {
+      next = "dormant"; pausedBefore = current.status;
+    } else if (command === "resume" && current.status === "dormant" &&
+      ["active", "escalated"].includes(state.tidligereValg[pauseFlag])) {
+      next = state.tidligereValg[pauseFlag];
+    } else if (command === "end" && ["active", "escalated", "dormant"].includes(current.status)) {
+      next = "completed";
+    }
+    if (!next) return false;
+    State.applyEffects(state, {
+      threads: { [id]: { status: next } },
+      flagg: {
+        [pauseFlag]: pausedBefore,
+        ["wa_ended_" + id]: command === "end"
+      }
+    });
+    State.save(state);
+    window.dispatchEvent(new Event("civi:lifestoryChanged"));
+    render();
+    return true;
   }
 
   /** Den fulle historien kan åpnes uten å fylle NÅ-flaten med metadata. */
@@ -772,6 +873,12 @@
           choiceBtn.getAttribute("data-lifestory-scene") || "",
           choiceBtn.getAttribute("data-lifestory-choice") || ""
         );
+        return;
+      }
+      const threadBtn = target.closest("[data-wave-a-thread][data-wave-a-command]");
+      if (threadBtn) {
+        changeWaveAThread(threadBtn.getAttribute("data-wave-a-thread") || "",
+          threadBtn.getAttribute("data-wave-a-command") || "");
         return;
       }
       if (target.closest("[data-lifestory-next-action]")) {
