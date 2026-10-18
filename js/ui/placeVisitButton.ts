@@ -14,6 +14,7 @@ export type TranslateUiTemplate = (
 export type PlaceVisitButtonRuntimeWindow = PhysicalVisitRuntimeWindow & {
   showToast?: (message: string) => unknown;
   pulseMarker?: (lat: unknown, lon: unknown) => unknown;
+  HGPos?: { request?: () => Promise<unknown> };
 };
 
 export type PlaceVisitButtonController = {
@@ -29,6 +30,7 @@ export function createPlaceVisitButtonController(options: {
 }): PlaceVisitButtonController {
   const { runtime, document, tUI, tfUI } = options;
   let physicalVisitTimer: ReturnType<typeof setInterval> | null = null;
+  let requestingPosition = false;
 
   const clear = (): void => {
     if (physicalVisitTimer === null) return;
@@ -71,7 +73,8 @@ export function createPlaceVisitButtonController(options: {
       if (!gate.ok) {
         const reason = "reason" in gate ? gate.reason : "too_far";
         if (reason === "no_pos") {
-          setButton(true, tUI("ui.position.loading", "Henter posisjon…"));
+          // A disabled button cannot open the browser's location permission flow.
+          setButton(requestingPosition, requestingPosition ? "Henter posisjon…" : "Hent posisjon");
           return;
         }
         if (gate.d != null) {
@@ -84,7 +87,7 @@ export function createPlaceVisitButtonController(options: {
           );
           return;
         }
-        setButton(true, tUI("ui.unlock.goCloser", "Gå nærmere"));
+        setButton(true, reason === "no_anchor" ? "Stedet mangler koordinater" : tUI("ui.unlock.goCloser", "Gå nærmere"));
         return;
       }
 
@@ -107,7 +110,23 @@ export function createPlaceVisitButtonController(options: {
       if (!gate.ok) {
         const reason = "reason" in gate ? gate.reason : "too_far";
         if (reason === "no_pos") {
-          runtime.showToast?.(tUI("ui.position.loading", "Henter posisjon…"));
+          if (requestingPosition) return;
+          if (typeof runtime.HGPos?.request !== "function") {
+            runtime.showToast?.("Posisjonsfunksjonen er ikke tilgjengelig på denne enheten.");
+            return;
+          }
+          requestingPosition = true;
+          update();
+          // A user click is required to request browser geolocation. The
+          // physical-visit gate will be checked again on a later click.
+          void Promise.resolve(runtime.HGPos.request()).then((position) => {
+            runtime.showToast?.(position
+              ? "Posisjon funnet. Registrer besøket når du er nær stedet."
+              : "Fant ikke posisjonen. Kontroller stedstilgang i nettleseren.");
+          }).catch(() => runtime.showToast?.("Kunne ikke hente posisjonen.")).finally(() => {
+            requestingPosition = false;
+            update();
+          });
           return;
         }
         const left = gate.d != null
