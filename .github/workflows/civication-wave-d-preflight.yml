@@ -1,0 +1,37 @@
+name: Civication Wave D preflight
+on:
+  push:
+    branches:
+      - civication/wave-d-fourth-installment-20261018
+permissions:
+  contents: write
+jobs:
+  preflight-and-sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Targeted Wave D consequence runner
+        run: |
+          node --test tests/civication-source-grounded-wave-d.test.js
+          node tests/civication-lifestory-renholder.test.js
+      - name: Refresh derived career and readiness evidence
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          node scripts/audit-civication-career-gameplay.mjs --check
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --check
+      - name: Publish only generated evidence and remove this preflight
+        run: |
+          rm .github/workflows/civication-wave-d-preflight.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/Civication/careerGameplayMatrix.json reports/civication-career-gameplay-matrix.md data/Civication/roleWorldRolloutReadiness.json reports/civication-role-world-rollout-readiness.md .github/workflows/civication-wave-d-preflight.yml
+          git commit -m 'chore(civication): synchronize generated evidence for Wave D'
+          git push
