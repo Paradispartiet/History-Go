@@ -122,6 +122,7 @@
   function hasPendingPrivateScenes(state, content) {
     return content.scenes.some(scene => Number.isInteger(scene.livsdagFra)
       && !state.spilteScener.includes(scene.id)
+      && (!scene.etterValgDager || Number.isInteger(state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg]))
       && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => state.tidligereValg[key] === value));
   }
 
