@@ -18,6 +18,7 @@
   // bytter til jobbens rolle. Arealplanlegger er pilotrolle, ikke standard.
   const DEFAULT_ROLE_ID = "arbeidsledig";
   const ROLE_STORAGE_KEY = "civication_lifestory_role_v1";
+  const WAVE_A_SCENE_ID = /^wave_[ab]_(c01|c02|c03|c05|c06|c07|c17|c23)_/;
 
   /**
    * DEV-/TESTVERKTØY — ikke produktflate. Roller velges aldri av spilleren;
@@ -316,6 +317,7 @@
    * @param {string} choiceId
    */
   function onChoose(sceneId, choiceId) {
+    let accepted = false;
     const Runner = /** @type {any} */ (window).CivicationLifestoryRunner;
     const State = /** @type {any} */ (window).CivicationLifestoryState;
     try {
@@ -328,6 +330,10 @@
         ? { tekst: result.konsekvensTekst || "Valget er registrert.", valgTekst: valg ? valg.tekst : "", deltas, dramatisert: sceneHasRepresentative(scene, valg) }
         : null;
       State.save(state);
+      accepted = true;
+      if (WAVE_A_SCENE_ID.test(sceneId)) {
+        window.CivicationWaveAInboxBridge?.afterChoice?.(state.rolle, sceneId, choiceId);
+      }
       // Énveis konsekvensbro: faktiske meter-endringer (etter clamping)
       // skrives til skallets psyke, så dashboardet speiler dagens valg.
       // Broen eier mappingen og testmodus-gaten (lifestoryShellBridge).
@@ -353,6 +359,7 @@
       console.error("[CivicationLifestoryUI] valg feilet", error);
     }
     render();
+    return accepted;
   }
 
   async function onNextDay() {
