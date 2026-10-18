@@ -63,8 +63,14 @@ body.hg-app .app-footer{
   overflow: hidden;
   background: transparent;
   border: 0;
+  padding: 0;
+  appearance: none;
+  cursor: pointer;
+  pointer-events: auto; /* footer container intentionally ignores pointer events */
+  touch-action: manipulation;
   flex: 0 0 auto;
 }
+.pc-mini:focus-visible{ outline: 2px solid var(--hg-toolbar-yellow); outline-offset: 2px; }
 .pc-mini img{ width:100%;height:100%;display:block;object-fit:contain; }
 
 .app-actions{
