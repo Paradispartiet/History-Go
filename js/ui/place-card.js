@@ -844,7 +844,10 @@ const PLACE_CARD_QUIZ_CARD_MANIFEST_PATHS = Object.freeze([
   "data/quizcards/historie/manifest.json",
   "data/quizcards/litteratur/manifest.json",
   "data/quizcards/scenekunst/manifest.json",
-  "data/quizcards/media/manifest.json"
+  "data/quizcards/media/manifest.json",
+  "data/quizcards/natur/manifest.json",
+  "data/quizcards/musikk/manifest.json",
+  "data/quizcards/subkultur/manifest.json"
 ]);
 const PLACE_CARD_QUIZ_CARD_FALLBACK_COLLECTIONS = Object.freeze([
   "by/topp10_by_kort_batch1.json",
@@ -888,8 +891,8 @@ function loadPlaceCardQuizCollections() {
 
   const loader = window.DataHub?.loadQuizCardsCollection;
   if (typeof loader !== "function") {
-    placeCardQuizCollectionsPromise = Promise.resolve([]);
-    return placeCardQuizCollectionsPromise;
+    // Do not cache an empty collection forever if PlaceCard opens before DataHub is ready.
+    return Promise.resolve([]);
   }
 
   placeCardQuizCollectionsPromise = loadPlaceCardQuizCollectionPaths()
