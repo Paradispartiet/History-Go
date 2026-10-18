@@ -127,13 +127,20 @@ try{
         const card=document.querySelector("#pcFrontCardFlip");
         const image=document.querySelector("#pcQuizCardImage");
         const content=document.querySelector("#pcQuizCardContent");
+        const heading=content?.querySelector(".pc-rendered-quiz-head h3");
+        const contentBounds=content?.getBoundingClientRect();
+        const headingBounds=heading?.getBoundingClientRect();
         return{flipped:!!card?.classList.contains("is-flipped"),
          image:!!image&&getComputedStyle(image).display!=="none"&&image.naturalWidth>0,
          content:!!content&&!content.hidden&&(content.textContent||"").length>50,
+         headingVisible:!!headingBounds&&!!contentBounds&&headingBounds.width>0&&
+          headingBounds.height>0&&headingBounds.top>=contentBounds.top-2&&
+          headingBounds.bottom<=contentBounds.bottom-8,
          fit:image?getComputedStyle(image).objectFit:null};
        });
        if(!flip.flipped)problems.push("QuizCard flip not activated");
        if(!flip.image&&!flip.content)problems.push("QuizCard reverse empty");
+       if(flip.content&&!flip.headingVisible)problems.push("QuizCard heading clipped in compact view");
        if(flip.image&&flip.fit!=="contain")problems.push("QuizCard image cropped");
        await page.locator("#pcFrontCardFlip").screenshot({path:TMP+"/"+place.id+"-"+width+"-reverse.png",timeout:6000});
        snapshots.push("reverse");
