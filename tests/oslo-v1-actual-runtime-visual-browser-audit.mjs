@@ -7,12 +7,14 @@ import http from "node:http";
 import { chromium } from "playwright";
 
 const ROOT=process.cwd();
-const OUT="reports/oslo-v1-runtime-visual-20261018";
-const TMP=".tmp/oslo-v1-runtime-captures";
-const ids=["groruddammen","svartdalen","alnaparken","alna_bryn",
+const OUT=process.env.HG_VISUAL_OUT || "reports/oslo-v1-runtime-visual-20261018";
+const TMP=process.env.HG_VISUAL_CAPTURES || ".tmp/oslo-v1-runtime-captures";
+const allIds=["groruddammen","svartdalen","alnaparken","alna_bryn",
  "kvaernerbyen_alna","alna_utlop_bjorvika","voienfossen","myralokka",
  "vaterland_historisk_elvelop","vulkan_industriomrade","glads_molle","salt",
  "blaa","rockefeller","john_dee","sentrum_scene"];
+const ids=process.env.HG_VISUAL_PLACES ? process.env.HG_VISUAL_PLACES.split(",") : allIds;
+if (!ids.length || ids.some(id=>!allIds.includes(id))) throw Error("Unknown visual audit Place ID");
 const places=ids.map(id=>{
  const file="data/runtime/place-open/"+id+".json";
  const item=JSON.parse(fs.readFileSync(file,"utf8")).place;
@@ -35,7 +37,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 const port=server.address().port;
 const report={schema:"history_go_oslo_v1_native_browser_visual_audit_v1",
- source:"Unmodified real index.html boot, real app.js and 16 canonical place-open payloads",
+ source:"Unmodified real index.html boot, real app.js and canonical place-open payloads",
  scope:"Two browser viewport sizes; photo geometry, flip and QuizCard rendering",
  date:"2026-10-18",viewports:[390,768],places:[],blockers:[],v1_approved:0};
 let browser;

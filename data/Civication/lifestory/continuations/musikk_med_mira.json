@@ -26,6 +26,13 @@
       "type": "privatliv",
       "konflikt": "Mulig arbeid krever tid før noen har gitt et forpliktende tilbud.",
       "startDag": 10
+    },
+    {
+      "id": "wave_c_c02",
+      "tittel": "Musikk uten uavklart binding",
+      "type": "privatliv",
+      "konflikt": "Relasjonen kan romme både skuffelse og felles arbeid uten at et ubekreftet oppdrag tas for gitt.",
+      "startDag": 10
     }
   ],
   "scenes": [
@@ -870,6 +877,86 @@
           "effekter": {
             "flagg": {
               "wa_b_c02_utfall": "samtale_om_arbeid"
+            }
+          }
+        }
+      ],
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_c_c02_gi_skuffelsen_plass",
+      "threadId": "wave_c_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Skuffelsen uten en avlyst konsert",
+      "tekst": "Du har sagt til Medmusikeren at det er lov å være skuffet over en mulighet som aldri fikk dato. Medmusikeren sender en ny lydmelding: «Jeg tror jeg ventet for mye på den arrangøren. Men jeg vil fortsatt spille, bare ikke love bort hver kveld.» Du har ikke fått et oppdrag gjennom samtalen.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c02_utfall": "skuffelse_delt"
+        }
+      },
+      "valg": [
+        {
+          "id": "del_egen_erfaring",
+          "tekst": "Fortell om en gang du også holdt av tid for lenge",
+          "konsekvensTekst": "Dere snakker om usikkerhet og arbeidstid. Medmusikeren sier det hjelper å dele erfaringen; ingen ny prøve er avtalt.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c02_etterspill": "erfaring_delt"
+            }
+          }
+        },
+        {
+          "id": "behold_grensen",
+          "tekst": "Si at du støtter grensen mot ubekreftede avtaler",
+          "konsekvensTekst": "Medmusikeren svarer at hun vil vente på konkrete vilkår neste gang. Du har støttet en grense, ikke inngått en musikkavtale.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c02_etterspill": "grense_bekreftet"
+            }
+          }
+        }
+      ],
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_c_c02_egen_laat",
+      "threadId": "wave_c_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Musikken etter henvendelsen",
+      "tekst": "Etter at dere snakket om arbeidet videre, sender Medmusikeren åtte takter fra en låt hun har stått fast med. «Det er ikke et bestillingsoppdrag», skriver hun. «Vil du si noe om overgangen?» Du får en konkret forespørsel om tilbakemelding, ikke om gratis produksjon.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c02_utfall": "samtale_om_arbeid"
+        }
+      },
+      "valg": [
+        {
+          "id": "ett_innspill",
+          "tekst": "Gi ett avgrenset forslag til overgang og la henne eie låten",
+          "konsekvensTekst": "Du svarer med ett forslag. Medmusikeren takker og sier hun vil prøve det selv. Det er ikke en felles ferdiginnspilling.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c02_etterspill": "ett_rad"
+            }
+          }
+        },
+        {
+          "id": "be_om_tid",
+          "tekst": "Si at du vil lytte grundigere en annen dag, uten å love tidspunkt",
+          "konsekvensTekst": "Medmusikeren sier hun sender ingen påminnelse før du tar kontakt. Tilbakemeldingen er ikke gitt.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c02_etterspill": "lytting_utsatt"
             }
           }
         }
