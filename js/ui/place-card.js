@@ -2643,7 +2643,7 @@ function getFooterActionPlace() {
   return listed || { id, name: String(document.getElementById("pcTitle")?.textContent || id) };
 }
 function openFooterRoutesDrawer() {
-  const select = document.getElementById("leftPanelMode");
+  const select = /** @type {HTMLSelectElement|null} */ (document.getElementById("leftPanelMode"));
   if (select) {
     select.value = "routes";
     select.dispatchEvent(new Event("change", { bubbles:true }));
