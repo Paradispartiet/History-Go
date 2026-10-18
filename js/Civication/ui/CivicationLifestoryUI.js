@@ -966,6 +966,13 @@
       lunsj: "lunch", ettermiddag: "afternoon",
       middag: "dinner", kveld: "evening", natt: "day_end"
     };
+    // The shell owns its phase clock. Never deliver an afternoon scene as
+    // an actionable morning mail just because Min dag has reached it first.
+    const shellPhase = window.CivicationCalendar?.getPhase?.();
+    const order = ["morning", "forenoon", "workday", "lunch",
+      "afternoon", "dinner", "evening", "day_end"];
+    if (shellPhase && order.includes(shellPhase) &&
+        order.indexOf(shellPhase) < order.indexOf(phases[scene.fase] || "afternoon")) return null;
     const text = State.presentText(state, content, scene.tekst || "");
     return {
       id: "wa_lifestory__" + state.rolle + "__" + scene.id,
