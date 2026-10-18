@@ -1528,6 +1528,86 @@
         }
       ],
       "avsender": "plansjef"
+    },
+    {
+      "id": "wave_c_c06_det_delvise_notatet",
+      "threadId": "wave_c_c06",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "kontor",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Hva tallene faktisk dekker",
+      "tekst": "Du har gjennomført én begrenset observasjon av skoleveien. Plansjefen ber om en formulering til møtet. Hun vil gjerne vise fremdrift, men må ikke få en tekst som fremstiller en kort registrering som heldagsmåling. Notatet har ennå ikke gått til politisk behandling.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c06_utfall": "delobservasjon"
+        }
+      },
+      "valg": [
+        {
+          "id": "merk_utvalget",
+          "tekst": "Foreslå et eget felt for tidspunkt, metode og det dere ikke har målt",
+          "konsekvensTekst": "Du leverer et tydelig forbehold. Plansjefen sier hun vil ta det med til saksframlegget; hun har ennå ikke sendt dokumentet videre.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c06_dokumentasjon": "begrensning_merket"
+            }
+          }
+        },
+        {
+          "id": "be_faglig_kontroll",
+          "tekst": "Be om at en kollega kontrollerer notatet før det brukes",
+          "konsekvensTekst": "Du sender dokumentet til kollegaen for faglig kontroll. Kontrollen er bestilt, ikke utført, og dagens observasjon er fortsatt begrenset.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c06_dokumentasjon": "kontroll_forespurt"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
+    },
+    {
+      "id": "wave_c_c06_hullet_i_saken",
+      "threadId": "wave_c_c06",
+      "dag": 6,
+      "fase": "formiddag",
+      "visningstype": "melding",
+      "stedId": "kontor",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Hullet kan ikke fylles med en antakelse",
+      "tekst": "Du har beholdt mangelen synlig i planmaterialet. Plansjefen spør om hun likevel kan føre saken på møtelista. Den manglende tidsperioden kan påvirke vurderingen av elevenes sikkerhet. Du kan beskrive risikoen faglig, men kan ikke bestemme den politiske behandlingen.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c06_utfall": "hull_synlig"
+        }
+      },
+      "valg": [
+        {
+          "id": "skriv_reservasjon",
+          "tekst": "Skriv konkret hvilket tidsrom som mangler og hvorfor det betyr noe",
+          "konsekvensTekst": "Du legger en faglig reservasjon til saken. Ingen nye tellinger er utført, og beslutning om møtelista ligger fortsatt hos ansvarlig leder.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c06_dokumentasjon": "faglig_reservasjon"
+            }
+          }
+        },
+        {
+          "id": "be_om_tid",
+          "tekst": "Be plansjefen avgjøre om saken kan utsettes til observasjonen er gjort",
+          "konsekvensTekst": "Du ber om en eksplisitt lederavgjørelse og skisserer hvilket datagrunnlag som trengs. Utsettelse er foreslått, ikke vedtatt.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c06_dokumentasjon": "lederavklaring_spurt"
+            }
+          }
+        }
+      ],
+      "avsender": "plansjef"
     }
   ]
 }
