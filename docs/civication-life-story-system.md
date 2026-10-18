@@ -1005,3 +1005,12 @@ states og dag-laget fyller etterpå via `updateProfile`. Min dag (Life Story) er
 egen, uavhengig modul (`CivicationLifestoryUI`) og bootes ikke fra `CivicationBoot`.
 Ansvarsdelingen er dekket av `tests/civication-boot-split.test.js`. `HG_CiviDebug`
 (konsoll-diagnostikk) ligger fortsatt i `CivicationBoot.js`.
+
+
+### Rolleuavhengige private fortsettelser fra livsdag 9 – Wave E
+
+C01/C05 kan fortsette på en senere **livsdag**, også om den aktive jobbrollen ble skiftet fra arbeidsledig til en jobbpakke. `scene.livsdagFra` betyr at en delt privat scene ikke bruker rollens lokale `scene.dag` for tilgjengelighet; `scene.etterValgDager` krever et dokumentert, datert valg før oppfølgingen kan åpnes. Det bruker samme runner, faser, arkiv og innboksadapter som øvrige Life Story-scener. Feltene er bare tillatt for Wave E-privattråder og valideres.
+
+`state.privatHistorie` inneholder kun C01/C05 sine delte valg, tidsankre, spilte scene-ID-er, faktisk arkiv og grunnrelasjonene til venn/familie; øvrige rollelagringer består urørt. Ved rollebytte rehydreres disse uten duplikater. Gamle lagringer gjenbruker kun faktiske Wave D-arkivlinjer som tidsankre, og manglende arkiv gir ikke fiktive senere episoder. Tidsankrene kommer fra `livsdag`, ikke PC-klokke, app-åpning eller et gjettet møtetidspunkt.
+
+Når en dokumentert senere privatscene gjenstår, er kapittelet ikke endelig avsluttet bare fordi den aktive rollen har nådd sin `symposium.sisteDag`. Spilleren kan fortsette til neste livsdag eller velge en separat allerede kvalifisert fortsettelse. Dette er ment som privat kontinuitet, ikke som omlegging av jobbrollen eller garanti for at saksbehandling, avtaler eller penger endrer seg automatisk.
