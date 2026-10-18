@@ -398,20 +398,24 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            setButton(true, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            setButton(false, tUI("ui.visit.enablePosition", "Aktiver posisjon"));
+            return;
+          }
+          if (reason === "no_anchor") {
+            setButton(false, tUI("ui.visit.missingCoordinates", "Mangler kartpunkt"));
             return;
           }
           if (gate.d != null) {
             const left = Math.max(0, Math.ceil(gate.d - gate.r));
             setButton(
-              true,
+              false,
               tfUI("ui.unlock.goCloserMeters", "G\xE5 n\xE6rmere: {meters} m", {
                 meters: left
               })
             );
             return;
           }
-          setButton(true, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
+          setButton(false, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
           return;
         }
         const label = runtime.TEST_MODE ? `${tUI("ui.visit.register", "Registrer bes\xF8k")} (test)` : tUI("ui.visit.register", "Registrer bes\xF8k");
@@ -431,7 +435,11 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.visit.positionRequired", "Aktiver posisjonstjenester for \xE5 registrere bes\xF8k."));
+            return;
+          }
+          if (reason === "no_anchor") {
+            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.visit.locationMissing", "Stedet mangler kartkoordinater. Bes\xF8k kan ikke registreres enn\xE5."));
             return;
           }
           const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
