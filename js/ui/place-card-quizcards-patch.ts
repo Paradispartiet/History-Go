@@ -33,6 +33,8 @@ type HistoryGoQuizVisitRuntime = PhysicalVisitRuntimeWindow &
     HGPlaceProgress?: {
       createSnapshot: (input: PlaceProgressInput) => PlaceProgressSnapshot;
     };
+    HGPlaceOpen?: { getPlace?: (id: string) => PlaceLike | null | undefined };
+    __HG_LAST_FOOTER_PLACE?: PlaceLike | null;
   };
 
 function installPlaceCardQuizVisitRuntime(): void {
@@ -89,12 +91,20 @@ function installPlaceCardQuizVisitRuntime(): void {
     ...args: unknown[]
   ) {
     const result = await originalOpenPlaceCard.call(this, place, ...args);
+    // Guard against rapid place switches and stale indexed records.
+    // Always bind the visit button to the actual selected, hydrated place.
+    const activeId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
+    if (result === false || (activeId && activeId !== String(place?.id || "").trim())) return result;
+    const resolvedId = activeId || String(place?.id || "").trim();
+    const activePlace = runtime.HGPlaceOpen?.getPlace?.(resolvedId)
+      || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null)
+      || place;
 
     quizCards.prewarm();
-    visitButton.patch(place);
+    visitButton.patch(activePlace);
 
     try {
-      await quizCards.applyForPlace(place);
+      await quizCards.applyForPlace(activePlace);
     } catch (error) {
       console.warn(
         "[place-card-quizcards-patch] kunne ikke aktivere quizkort",

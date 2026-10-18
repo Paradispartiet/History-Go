@@ -308,6 +308,8 @@ export function createPlaceQuizCardsController(options: {
 
   const applyForPlace = async (place: PlaceLike): Promise<boolean> => {
     const cardData = await resolveQuizCard(place);
+    const showingId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
+    if (showingId && showingId !== String(place?.id || "").trim()) return false;
     return cardData ? applyQuizCard(cardData) : false;
   };
 

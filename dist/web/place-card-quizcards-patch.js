@@ -353,7 +353,10 @@
       (_b = (_a = runtime.HGQuizLoadAccelerator) == null ? void 0 : _a.prewarm) == null ? void 0 : _b.call(_a);
     };
     const applyForPlace = async (place) => {
+      var _a, _b;
       const cardData = await resolveQuizCard(place);
+      const showingId = String(((_b = (_a = document2.getElementById("placeCard")) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || "").trim();
+      if (showingId && showingId !== String((place == null ? void 0 : place.id) || "").trim()) return false;
       return cardData ? applyQuizCard(cardData) : false;
     };
     return { prewarm, applyForPlace };
@@ -363,6 +366,7 @@
   function createPlaceVisitButtonController(options) {
     const { runtime, document: document2, tUI, tfUI } = options;
     let physicalVisitTimer = null;
+    let requestingPosition = false;
     const clear = () => {
       if (physicalVisitTimer === null) return;
       clearInterval(physicalVisitTimer);
@@ -396,7 +400,7 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            setButton(true, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            setButton(requestingPosition, requestingPosition ? "Henter posisjon\u2026" : "Hent posisjon");
             return;
           }
           if (gate.d != null) {
@@ -409,14 +413,14 @@
             );
             return;
           }
-          setButton(true, tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
+          setButton(true, reason === "no_anchor" ? "Stedet mangler koordinater" : tUI("ui.unlock.goCloser", "G\xE5 n\xE6rmere"));
           return;
         }
         const label = runtime.TEST_MODE ? `${tUI("ui.visit.register", "Registrer bes\xF8k")} (test)` : tUI("ui.visit.register", "Registrer bes\xF8k");
         setButton(false, label);
       };
       button.onclick = () => {
-        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k;
+        var _a2, _b2, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l;
         if ((_a2 = runtime.HGPhysicalVisits) == null ? void 0 : _a2.isVisited(placeId)) {
           (_b2 = runtime.showToast) == null ? void 0 : _b2.call(
             runtime,
@@ -429,11 +433,27 @@
         if (!gate.ok) {
           const reason = "reason" in gate ? gate.reason : "too_far";
           if (reason === "no_pos") {
-            (_c = runtime.showToast) == null ? void 0 : _c.call(runtime, tUI("ui.position.loading", "Henter posisjon\u2026"));
+            if (requestingPosition) return;
+            if (typeof ((_c = runtime.HGPos) == null ? void 0 : _c.request) !== "function") {
+              (_d = runtime.showToast) == null ? void 0 : _d.call(runtime, "Posisjonsfunksjonen er ikke tilgjengelig p\xE5 denne enheten.");
+              return;
+            }
+            requestingPosition = true;
+            update();
+            void Promise.resolve(runtime.HGPos.request()).then((position) => {
+              var _a3;
+              (_a3 = runtime.showToast) == null ? void 0 : _a3.call(runtime, position ? "Posisjon funnet. Registrer bes\xF8ket n\xE5r du er n\xE6r stedet." : "Fant ikke posisjonen. Kontroller stedstilgang i nettleseren.");
+            }).catch(() => {
+              var _a3;
+              return (_a3 = runtime.showToast) == null ? void 0 : _a3.call(runtime, "Kunne ikke hente posisjonen.");
+            }).finally(() => {
+              requestingPosition = false;
+              update();
+            });
             return;
           }
           const left = gate.d != null ? Math.max(0, Math.ceil(gate.d - gate.r)) : null;
-          (_d = runtime.showToast) == null ? void 0 : _d.call(
+          (_e = runtime.showToast) == null ? void 0 : _e.call(
             runtime,
             left != null ? tfUI("ui.unlock.goCloserMeters", "G\xE5 n\xE6rmere: {meters} m", {
               meters: left
@@ -441,22 +461,22 @@
           );
           return;
         }
-        const result = ((_e = runtime.HGPhysicalVisits) == null ? void 0 : _e.record(place)) || {
+        const result = ((_f = runtime.HGPhysicalVisits) == null ? void 0 : _f.record(place)) || {
           ok: false,
           reason: "persistence_unavailable"
         };
         if (!result.ok) {
-          (_f = runtime.showToast) == null ? void 0 : _f.call(
+          (_g = runtime.showToast) == null ? void 0 : _g.call(
             runtime,
             tUI("ui.visit.saveFailed", "Kunne ikke registrere bes\xF8ket")
           );
           return;
         }
-        (_h = runtime.pulseMarker) == null ? void 0 : _h.call(runtime, place.lat, (_g = place.lon) != null ? _g : place.lng);
-        (_k = runtime.showToast) == null ? void 0 : _k.call(
+        (_i = runtime.pulseMarker) == null ? void 0 : _i.call(runtime, place.lat, (_h = place.lon) != null ? _h : place.lng);
+        (_l = runtime.showToast) == null ? void 0 : _l.call(
           runtime,
           `${tUI("ui.visit.registered", "Bes\xF8k registrert")}: ${String(
-            (_j = (_i = place.name) != null ? _i : place.title) != null ? _j : placeId
+            (_k = (_j = place.name) != null ? _j : place.title) != null ? _k : placeId
           )} \u2705`
         );
         update();
@@ -507,11 +527,16 @@
     const originalOpenPlaceCard = runtime.openPlaceCard;
     if (typeof originalOpenPlaceCard !== "function") return;
     runtime.openPlaceCard = async function patchedOpenPlaceCard(place, ...args) {
+      var _a, _b, _c, _d, _e;
       const result = await originalOpenPlaceCard.call(this, place, ...args);
+      const activeId = String(((_b = (_a = document.getElementById("placeCard")) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || "").trim();
+      if (result === false || activeId && activeId !== String((place == null ? void 0 : place.id) || "").trim()) return result;
+      const resolvedId = activeId || String((place == null ? void 0 : place.id) || "").trim();
+      const activePlace = ((_d = (_c = runtime.HGPlaceOpen) == null ? void 0 : _c.getPlace) == null ? void 0 : _d.call(_c, resolvedId)) || (String(((_e = runtime.__HG_LAST_FOOTER_PLACE) == null ? void 0 : _e.id) || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null) || place;
       quizCards.prewarm();
-      visitButton.patch(place);
+      visitButton.patch(activePlace);
       try {
-        await quizCards.applyForPlace(place);
+        await quizCards.applyForPlace(activePlace);
       } catch (error) {
         console.warn(
           "[place-card-quizcards-patch] kunne ikke aktivere quizkort",

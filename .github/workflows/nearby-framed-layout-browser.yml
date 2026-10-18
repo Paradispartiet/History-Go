@@ -10,6 +10,10 @@ on:
       - 'js/app.js'
       - 'js/ui/place-card.js'
       - 'js/ui/interactions.js'
+      - 'js/ui/place-card-quizcards-patch.js'
+      - 'js/ui/placeVisitButton.ts'
+      - 'data/observations/**'
+      - 'tests/footer-action-feature-completion.test.mjs'
       - 'js/observations.js'
       - 'tests/footer-actions-runtime.test.mjs'
       - 'js/core/viewportManager.js'
@@ -45,6 +49,8 @@ jobs:
         run: npm ci
       - name: Verify all footer action runtimes and real save flows
         run: node --test tests/footer-actions-runtime.test.mjs
+      - name: Verify complete footer action flows (notes, lenses and GPS)
+        run: node --test tests/footer-action-feature-completion.test.mjs
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Verify footer geometry contract

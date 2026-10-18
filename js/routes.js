@@ -19,6 +19,7 @@ console.log("routes.js start");
  *   HG_NEARBY_BADGE_FILTER?: string,
  *   HG_getActiveBadgeFilter?: () => string,
  *   getPos?: () => any,
+ *   HGPos?: {request?: () => Promise<unknown>},
  *   userLat?: number,
  *   userLon?: number,
  *   userLng?: number,
@@ -650,23 +651,44 @@ async function fetchORSRouteGeoJSON(from, to) {
 }
 
 async function showWalkingRouteToPlace(place) {
+  const rawLon = place?.lon ?? place?.lng;
+  const lat = Number(place?.lat);
+  const lon = Number(rawLon);
+  if (!place || place.lat == null || rawLon == null ||
+      !Number.isFinite(lat) || !Number.isFinite(lon)) {
+    _toast("Dette stedet mangler kartkoordinater for gangrute.");
+    return;
+  }
   const map = _getMap();
-  if (!map) return;
-  if (!place || !Number.isFinite(place.lat) || !Number.isFinite(place.lon)) return;
-
-  if (typeof map.isStyleLoaded === "function" && !map.isStyleLoaded()) {
-    map.once("load", () => showWalkingRouteToPlace(place));
+  if (!map) {
+    _toast("Kartet er ikke klart ennå. Prøv igjen.");
     return;
   }
 
-  const pos = getUserPos();
+  // Route actions must be usable before GPS permission has been granted.
+  // Ask for location from the user's route click; never guess a start point.
+  let pos = getUserPos();
+  if (!pos && typeof hgWindow.HGPos?.request === "function") {
+    _toast("Henter posisjon til gangruten…");
+    try {
+      await hgWindow.HGPos.request();
+      pos = getUserPos();
+    } catch (error) {
+      console.warn("[routes] location permission failed", error);
+    }
+  }
   if (!pos) {
-    _toast("Fant ikke posisjon ennå.");
+    _toast("Fant ikke posisjonen. Tillat stedstilgang for å vise gangrute.");
+    return;
+  }
+
+  if (typeof map.isStyleLoaded === "function" && !map.isStyleLoaded()) {
+    map.once("load", () => void showWalkingRouteToPlace(place));
     return;
   }
 
   const from = [pos.lon, pos.lat];
-  const to   = [place.lon, place.lat];
+  const to   = [lon, lat];
 
   clearNavRoute();
 
