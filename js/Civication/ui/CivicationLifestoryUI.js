@@ -788,6 +788,10 @@
         ["wa_ended_" + id]: command === "end"
       }
     });
+    // The runner, not this UI, advances past newly unavailable scenes.
+    // Without this, ending the only visible thread strands Min dag on an
+    // unanswerable, unfinished phase and blocks the canonical calendar.
+    window.CivicationLifestoryRunner.advance(state, content);
     State.save(state);
     window.dispatchEvent(new Event("civi:lifestoryChanged"));
     render();
