@@ -43,7 +43,13 @@
   function currentPlace() {
     const id = text(document.getElementById("placeCard")?.dataset?.currentPlaceId);
     if (!id) return null;
-    return list(global.PLACES).find(place => text(place?.id) === id) || null;
+    // Place-open hydration can contain the selected place before the lightweight
+    // PLACES index is populated (or for places outside that index). Keep
+    // Events/Møtes attached to the active PlaceCard ID, not a stale list.
+    const place = global.HGPlaceOpen?.getPlace?.(id)
+      || list(global.PLACES).find(item => text(item?.id) === id)
+      || (text(global.__HG_LAST_FOOTER_PLACE?.id) === id ? global.__HG_LAST_FOOTER_PLACE : null);
+    return place || { id, name: text(document.getElementById("pcTitle")?.textContent) || id };
   }
 
   function categoryId(place) {
