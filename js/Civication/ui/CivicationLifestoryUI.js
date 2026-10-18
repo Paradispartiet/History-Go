@@ -841,6 +841,60 @@
     start();
   }
 
+
+  // One canonical Life Story scene; inbox receives a read/action projection.
+  function getPendingWaveAEvent() {
+    if (!state || !content || state.dagFerdig) return null;
+    const Runner = window.CivicationLifestoryRunner;
+    const State = window.CivicationLifestoryState;
+    const scene = Runner.selectNextScene(state, content);
+    if (!scene || !WAVE_A_SCENE_ID.test(scene.id)) return null;
+    const storyId = scene.id.match(WAVE_A_SCENE_ID)[1];
+    const isJob = storyId === "c06" || storyId === "c17";
+    const phases = {
+      morgen: "morning", formiddag: "forenoon", arbeidsdag: "workday",
+      lunsj: "lunch", ettermiddag: "afternoon",
+      middag: "dinner", kveld: "evening", natt: "day_end"
+    };
+    const text = State.presentText(state, content, scene.tekst || "");
+    return {
+      id: "wa_lifestory__" + state.rolle + "__" + scene.id,
+      source_type: "lifestory_wave_a",
+      lifestory_role: state.rolle,
+      lifestory_scene_id: scene.id,
+      lifestory_thread_id: scene.threadId,
+      story_type_id: storyId.toUpperCase(),
+      thread_key: "lifestory.wave_a." + state.rolle + "." + scene.id,
+      from: State.presentText(state, content, scene.avsender || "Min dag"),
+      source: "Min dag",
+      subject: State.presentText(state, content, scene.tittel),
+      situation: Array.isArray(text) ? text : [String(text)],
+      mail_type: "story",
+      mail_class: isJob ? "daily_workday" : "daily_private",
+      channel: isJob ? "job" : "private",
+      messageChannel: isJob ? "job" : "private",
+      workday_related: isJob,
+      phase_tag: phases[scene.fase] || "afternoon",
+      lifestory_day: state.dag,
+      choices: (scene.valg || []).map(choice => ({
+        id: choice.id,
+        label: State.presentText(state, content, choice.tekst),
+        feedback: State.presentText(state, content, choice.konsekvensTekst || ""),
+        effect: 0
+      }))
+    };
+  }
+
+  function answerWaveAChoice(eventId, choiceId) {
+    const pending = getPendingWaveAEvent();
+    if (!pending || pending.id !== eventId) return { ok: false, reason: "story_scene_not_current" };
+    const choice = pending.choices.find(row => row.id === choiceId);
+    if (!choice) return { ok: false, reason: "bad_choice" };
+    return onChoose(pending.lifestory_scene_id, choiceId)
+      ? { ok: true, feedback: choice.feedback }
+      : { ok: false, reason: "runner_rejected_choice" };
+  }
+
   /** Forslaget er et lagret ønske, ikke en aktivert identitet. */
   function getRoleSuggestion() {
     if (!content?.role?.symposium?.rollevalgFlagg || !state) return null;
@@ -854,5 +908,8 @@
     return state && getPanel() ? { dagFerdig: !!state.dagFerdig, rolle: state.rolle, kalenderDag: state.kalenderDag || null } : null;
   }
 
-  window.CivicationLifestoryUI = { render, refresh: render, getCurrentSceneInfo, getRoleSuggestion, getDaySyncState };
+  window.CivicationLifestoryUI = {
+    render, refresh: render, getCurrentSceneInfo, getRoleSuggestion, getDaySyncState,
+    getPendingWaveAEvent, answerWaveAChoice
+  };
 })();
