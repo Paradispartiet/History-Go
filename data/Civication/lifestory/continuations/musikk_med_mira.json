@@ -33,6 +33,13 @@
       "type": "privatliv",
       "konflikt": "Relasjonen kan romme både skuffelse og felles arbeid uten at et ubekreftet oppdrag tas for gitt.",
       "startDag": 10
+    },
+    {
+      "id": "wave_d_c02",
+      "tittel": "Den åpne kalenderen",
+      "type": "privatliv",
+      "konflikt": "Egne valg får konkrete, dokumenterbare følger uten å skape fiktive avtaler eller vedtak.",
+      "startDag": 10
     }
   ],
   "scenes": [
@@ -961,6 +968,166 @@
           }
         }
       ],
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_d_c02_gi_skuffelsen_plass_del_egen_erfaring",
+      "threadId": "wave_d_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Erfaring uten løfte om jobb",
+      "tekst": "Medmusikeren takker for at du fortalte om å holde av tid forgjeves. Hun sier at det hjelper å høre at hun ikke er alene, men har ingen ny forespørsel fra arrangøren.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Foreslå at dere holder hverandres fridager fri",
+          "konsekvensTekst": "Dere blir enige om å ikke kreve åpne kalenderluker for hypotetiske oppdrag. Det er ingen bestilling eller avtalt prøve.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "fritid_respektert"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Be henne si fra først dersom et reelt tilbud kommer",
+          "konsekvensTekst": "Hun sier hun kan videresende en konkret henvendelse hvis den kommer. Ingen henvendelse er mottatt nå.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "tilbud_avventes"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c02_etterspill": "erfaring_delt"
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_d_c02_gi_skuffelsen_plass_behold_grensen",
+      "threadId": "wave_d_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Et nei til gratis beredskap",
+      "tekst": "Medmusikeren er enig i at dere ikke kan stå til disposisjon uten rammer. Hun spør om dere skal skrive ned hva dere trenger før en eventuell ny booking.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Skriv et kort forslag til honorar- og tidsramme",
+          "konsekvensTekst": "Du noterer vilkårene dere kan diskutere ved en forespørsel. Teksten er ikke en kontrakt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "vilkar_utkast"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "La henne formulere egne grenser først",
+          "konsekvensTekst": "Du ber henne tenke over egne behov. Hverken hun eller du har lovet en opptreden.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "hver_sin_grense"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c02_etterspill": "grense_bekreftet"
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_d_c02_egen_laat_ett_innspill",
+      "threadId": "wave_d_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Ett råd, ikke medforfatterskap",
+      "tekst": "Du har gitt ett avgrenset råd om overgangen. Medmusikeren takker og sier hun skal prøve det når hun øver alene. Du har ikke fått innsyn i noen ferdig låt.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Presiser at rådet er et uforpliktende innspill",
+          "konsekvensTekst": "Du gjør det klart at hun står fritt til å bruke eller forkaste rådet. Ingen oppgave om produksjon blir lagt til deg.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "rad_avgrenset"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Spør om hun vil gi beskjed dersom rådet blir nyttig",
+          "konsekvensTekst": "Hun sier hun kan fortelle senere hvordan det gikk. Du registrerer ikke fremtidig tilbakemelding som mottatt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "tilbakemelding_uavklart"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c02_etterspill": "ett_rad"
+        }
+      },
+      "avsender": "mira"
+    },
+    {
+      "id": "wave_d_c02_egen_laat_be_om_tid",
+      "threadId": "wave_d_c02",
+      "dag": 10,
+      "fase": "kveld",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 4,
+      "tittel": "Tid til å lytte er ikke et oppdrag",
+      "tekst": "Medmusikeren skriver at hun kan la lydfilen ligge til du får tid. Den er fremdeles hennes skisse, og ingen har avtalt frist eller betaling.",
+      "valg": [
+        {
+          "id": "forankre",
+          "tekst": "Legg lydfilen til side uten dato",
+          "konsekvensTekst": "Du beholder filen uten å love gjennomlytting. Hun vet at du ikke er tilgjengelig på bestilling.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "ingen_lyttefrist"
+            }
+          }
+        },
+        {
+          "id": "avgrense",
+          "tekst": "Avklar at hun kan gå videre uten å vente på deg",
+          "konsekvensTekst": "Hun sier at hun gjerne fortsetter på egen hånd. Du har ikke hindret arbeidet eller bestilt en ny økt.",
+          "effekter": {
+            "flagg": {
+              "wa_d_c02_status": "hun_gar_videre"
+            }
+          }
+        }
+      ],
+      "conditions": {
+        "flagg": {
+          "wa_c_c02_etterspill": "lytting_utsatt"
+        }
+      },
       "avsender": "mira"
     }
   ],
