@@ -49,6 +49,9 @@ try{
   try{
    await page.goto("http://127.0.0.1:"+port+"/index.html",{waitUntil:"domcontentloaded",timeout:28000});
    await page.waitForFunction(()=>typeof window.openPlaceCard==="function"&&!!document.getElementById("pcFrontImage"),{timeout:16000});
+   // Wait for the same readiness signal used by normal navigation and onboarding.
+   // Merely defining openPlaceCard does not mean the first app/router boot finished.
+   await page.waitForFunction(()=>window.__HG_APP_READY__===true,{timeout:25000});
    booted=true;
    // Close the actual app onboarding using its public start button before taking screenshots.
    await page.locator("#hgOnboardingModal .hg-onb-primary").click({timeout:1800}).catch(async()=>{
@@ -109,6 +112,15 @@ try{
        }catch(e){problems.push("Screenshot "+label+": "+String(e).slice(0,120));}
       }
       try{
+       // DataHub fetches real QuizCard manifests asynchronously. Never click until
+       // the first rendered reverse face is ready, or the card can be reset mid-flip.
+       await page.waitForFunction(()=>{
+         const card=document.querySelector("#pcFrontCardFlip");
+         const content=document.querySelector("#pcQuizCardContent");
+         return card?.classList.contains("has-quiz-card") && !!content && !content.hidden &&
+           !!content.querySelector(".pc-rendered-quiz-card");
+       },{timeout:10000});
+       await page.waitForTimeout(250);
        await page.locator("#pcFrontCardFlip").click({timeout:5500,force:true});
        await page.waitForTimeout(500);
        flip=await page.evaluate(()=>{
