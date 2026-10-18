@@ -64,7 +64,10 @@
    * @returns {boolean}
    */
   function isFinalDay(state, content) {
-    return !content.scenes.some((s) => s.dag > state.dag);
+    const Runner = /** @type {any} */ (globalScope).CivicationLifestoryRunner
+      || (typeof require === "function" ? require("./lifestoryRunner.js") : null);
+    return !content.scenes.some((s) => !s.livsdagFra && s.dag > state.dag)
+      && !Runner?.hasPendingPrivateScenes?.(state, content);
   }
 
   /**
