@@ -1,0 +1,46 @@
+name: Civication Wave D integrate Wave C
+on:
+  push:
+    branches:
+      - civication/wave-d-fourth-installment-20261018
+permissions:
+  contents: write
+jobs:
+  integrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Merge completed Wave C content without losing Wave D
+        run: |
+          set -eu
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git fetch origin civication/wave-c-story-content-20261018
+          if ! git merge --no-commit --no-ff origin/civication/wave-c-story-content-20261018; then
+            git diff --name-only --diff-filter=U > /tmp/wave-d-conflicts
+            while IFS= read -r conflict; do
+              case "$conflict" in
+                docs/CIVICATION_SOURCE_GROUNDED_WAVE_A_V1.md|data/Civication/careerGameplayMatrix.json|data/Civication/roleWorldRolloutReadiness.json|reports/civication-career-gameplay-matrix.md|reports/civication-role-world-rollout-readiness.md)
+                  git checkout --ours -- "$conflict"
+                  git add "$conflict"
+                  ;;
+                *)
+                  echo "UNEXPECTED MERGE CONFLICT: $conflict"
+                  exit 1
+                  ;;
+              esac
+            done < /tmp/wave-d-conflicts
+          fi
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+          rm .github/workflows/civication-wave-d-integrate.yml
+          git add -A
+          git diff --cached --check
+          git commit -m 'chore(civication): integrate Wave C into fourth content installment'
+          git push
