@@ -508,10 +508,18 @@
     if (typeof originalOpenPlaceCard !== "function") return;
     runtime.openPlaceCard = async function patchedOpenPlaceCard(place, ...args) {
       const result = await originalOpenPlaceCard.call(this, place, ...args);
+      // Two rapid place selections may resolve out of order. Never replace
+      // pcVisit with an onclick handler for a place that is no longer active,
+      // and never bind to an unhydrated index row when the full record exists.
+      const activeId = String(document.getElementById("placeCard")?.dataset?.currentPlaceId || "").trim();
+      if (result !== true || !activeId || activeId !== String(place?.id || "").trim()) return result;
+      const activePlace = runtime.HGPlaceOpen?.getPlace?.(activeId)
+        || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === activeId ? runtime.__HG_LAST_FOOTER_PLACE : null)
+        || place;
       quizCards.prewarm();
-      visitButton.patch(place);
+      visitButton.patch(activePlace);
       try {
-        await quizCards.applyForPlace(place);
+        await quizCards.applyForPlace(activePlace);
       } catch (error) {
         console.warn(
           "[place-card-quizcards-patch] kunne ikke aktivere quizkort",
