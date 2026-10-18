@@ -673,6 +673,86 @@
         }
       ],
       "avsender": "lea"
+    },
+    {
+      "id": "wave_c_c23_malen_etter_feilen",
+      "threadId": "wave_c_c23",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Malen som kom for sent",
+      "tekst": "Lea har nå satt «Utkast – ingen levering avtalt» øverst i den nye prosjektmalen. Den ene mottakeren har tidligere bekreftet at rettelsen er forstått, men forteller at tid likevel ble brukt på den gamle teksten. Lea spør om den nye malen betyr at feilen er ferdig håndtert. En bedre arbeidsrutine kan forebygge nye misforståelser, men ikke fjerne konsekvensen av den gamle.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c23_utfall": "avklart_ny_praksis"
+        }
+      },
+      "valg": [
+        {
+          "id": "skill_ny_praksis",
+          "tekst": "Skill den nye rutinen fra mottakerens allerede brukte tid",
+          "konsekvensTekst": "Lea fører to separate punkter: ny mal tatt i bruk og tidligere feil rettet. Hun hevder ikke at mottakeren har fått tida tilbake eller at tilliten er gjenopprettet.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "ny_praksis_med_forbehold"
+            }
+          }
+        },
+        {
+          "id": "be_om_evaluering",
+          "tekst": "Be Lea evaluere om malen blir brukt neste gang, uten å love utfallet nå",
+          "konsekvensTekst": "Lea noterer at den nye malen skal kontrolleres ved neste utsending. Ingen ny skisse er sendt ennå, og det er ikke dokumentert at rutinen fungerer i praksis.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "evaluering_foreslaatt"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
+    },
+    {
+      "id": "wave_c_c23_venter_pa_status",
+      "threadId": "wave_c_c23",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "hjem",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Et spørsmål uten svar",
+      "tekst": "Du sendte ett avgrenset spørsmål om begge mottakerne har forstått rettelsen. Det står fortsatt som sendt i tråden, uten svar. Du har ikke tilgang til mottakernes egne samtaler, og Lea har ikke gitt deg ny dokumentasjon. Å vente er ubehagelig, men du kan ikke fylle hullet med et antatt ja.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c23_utfall": "status_forespurt"
+        }
+      },
+      "valg": [
+        {
+          "id": "marker_ubekreftet",
+          "tekst": "Marker oppfølgingen som sendt, men ikke bekreftet",
+          "konsekvensTekst": "Du fører en nøktern status: spørsmål sendt, avklaring ikke dokumentert. Du lar mottakernes forståelse stå som ukjent.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "svar_mangler"
+            }
+          }
+        },
+        {
+          "id": "la_ansvaret_ligge",
+          "tekst": "La Lea eie videre oppfølging, uten å purre igjen i dag",
+          "konsekvensTekst": "Du avgrenser din egen rolle. Lea har ansvaret for kommunikasjonen videre, men du påstår ikke at noen ny bekreftelse er kommet.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "ansvar_avgrenset"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
     }
   ],
   "moter": [],
