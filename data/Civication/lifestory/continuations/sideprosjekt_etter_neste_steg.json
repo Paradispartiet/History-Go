@@ -19,6 +19,13 @@
       "type": "privatliv",
       "konflikt": "En rettelse får først sosial virkning når mottakeren har fått og forstått den.",
       "startDag": 14
+    },
+    {
+      "id": "wave_c_c23",
+      "tittel": "Å rette uten å kreve tilgivelse",
+      "type": "privatliv",
+      "konflikt": "En bekreftet rettelse kan fortsatt koste tillit; avsenderen eier ikke andres reaksjon.",
+      "startDag": 15
     }
   ],
   "scenes": [
@@ -626,6 +633,46 @@
           }
         }
       ]
+    },
+    {
+      "id": "wave_c_c23_rettelsen_koster",
+      "threadId": "wave_c_c23",
+      "dag": 15,
+      "fase": "ettermiddag",
+      "visningstype": "melding",
+      "stedId": "prosjektbord",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Rettelsen er forstått, men ikke glemt",
+      "tekst": "Begge mottakerne har nå bekreftet at de forstår rettelsen. Den ene sier likevel at den første feilaktige formuleringen gjorde et viktig møte vanskelig. Lea spør om dere skal skrive at saken er løst. Feilinformasjonen er korrigert; virkningen på tilliten kan dere ikke erklære borte.",
+      "conditions": {
+        "flagg": {
+          "wa_b_c23_utfall": "avklart_med_kostnad"
+        }
+      },
+      "valg": [
+        {
+          "id": "erkjenn_kostnaden",
+          "tekst": "Skriv at rettelsen er mottatt, men at tillitsbruddet ikke kan avskrives",
+          "konsekvensTekst": "Dere dokumenterer hva begge har forstått og hva den ene opplever som tap. Dere lover ikke at relasjonen er reparert.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "kostnad_erkjent"
+            }
+          }
+        },
+        {
+          "id": "behold_ansvaret",
+          "tekst": "Be Lea beholde saken åpen for eventuell videre dialog, uten å kreve svar",
+          "konsekvensTekst": "Lea noterer et mulig nytt kontaktpunkt, men sender ingen ny henvendelse uten grunn. Bekreftet rettelse står fast; tilgivelse er ikke krevd.",
+          "effekter": {
+            "flagg": {
+              "wa_c_c23_etterspill": "dialog_aapen"
+            }
+          }
+        }
+      ],
+      "avsender": "lea"
     }
   ],
   "moter": [],
