@@ -61,6 +61,21 @@ try {
     await page.waitForFunction(() => document.querySelectorAll("#pcOnSiteFooter [data-hg-onsite-action]").length === 2);
     // The collapsed place thumbnail must not create a taller second row.
     await page.locator("#pcMini").evaluate(el => { el.style.display = "block"; });
+    // Exercise a real pointer click and native keyboard activation. An inert
+    // thumbnail under the footer's pointer-events:none rule fails here.
+    await page.locator("#pcMini").evaluate(el => {
+      el.addEventListener("click", () => {
+        window.__miniTapCount = (window.__miniTapCount || 0) + 1;
+      });
+    });
+    await page.locator("#pcMini").click();
+    assert.equal(await page.evaluate(() => window.__miniTapCount), 1,
+      `thumbnail accepts a pointer click at ${width}`);
+    await page.locator("#pcMini").focus();
+    await page.keyboard.press("Enter");
+    assert.equal(await page.evaluate(() => window.__miniTapCount), 2,
+      `thumbnail accepts keyboard activation at ${width}`);
+
     const actual = await page.evaluate(() => {
       const footer = document.querySelector(".app-footer");
       const mini = document.querySelector("#pcMini");
