@@ -7,12 +7,14 @@ import http from "node:http";
 import { chromium } from "playwright";
 
 const ROOT=process.cwd();
-const OUT="reports/oslo-v1-runtime-visual-20261018";
-const TMP=".tmp/oslo-v1-runtime-captures";
-const ids=["groruddammen","svartdalen","alnaparken","alna_bryn",
+const OUT=process.env.HG_VISUAL_OUT || "reports/oslo-v1-runtime-visual-20261018";
+const TMP=process.env.HG_VISUAL_CAPTURES || ".tmp/oslo-v1-runtime-captures";
+const allIds=["groruddammen","svartdalen","alnaparken","alna_bryn",
  "kvaernerbyen_alna","alna_utlop_bjorvika","voienfossen","myralokka",
  "vaterland_historisk_elvelop","vulkan_industriomrade","glads_molle","salt",
  "blaa","rockefeller","john_dee","sentrum_scene"];
+const ids=process.env.HG_VISUAL_PLACES ? process.env.HG_VISUAL_PLACES.split(",") : allIds;
+if (!ids.length || ids.some(id=>!allIds.includes(id))) throw Error("Unknown visual audit Place ID");
 const places=ids.map(id=>{
  const file="data/runtime/place-open/"+id+".json";
  const item=JSON.parse(fs.readFileSync(file,"utf8")).place;
@@ -35,7 +37,7 @@ const server=http.createServer((request,response)=>{
 await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
 const port=server.address().port;
 const report={schema:"history_go_oslo_v1_native_browser_visual_audit_v1",
- source:"Unmodified real index.html boot, real app.js and 16 canonical place-open payloads",
+ source:"Unmodified real index.html boot, real app.js and canonical place-open payloads",
  scope:"Two browser viewport sizes; photo geometry, flip and QuizCard rendering",
  date:"2026-10-18",viewports:[390,768],places:[],blockers:[],v1_approved:0};
 let browser;
@@ -95,10 +97,16 @@ try{
         naturalWidth:x.naturalWidth,naturalHeight:x.naturalHeight,fit:st.objectFit,
         position:st.objectPosition,width:Math.round(rect.width),height:Math.round(rect.height)};
       };
+      const title=document.querySelector("#pcTitle")?.getBoundingClientRect();
+      const hero=document.querySelector("#pcHeaderHero")?.getBoundingClientRect();
       return{visible:document.querySelector("#placeCard")?.classList.contains("is-open"),
+       titleVisible:!!title && !!hero && title.width>0 && title.height>0 &&
+        title.top>=hero.top-1 && title.bottom<=hero.bottom+1 &&
+        title.left>=hero.left-1 && title.right<=hero.right+1,
        hero:get("#pcHeaderImage"),portrait:get("#pcFrontImage"),quiz:get("#pcQuizCardImage")};
      });
      if(!media.visible)problems.push("PlaceCard not visible");
+     if(!media.titleVisible)problems.push("PlaceCard title clipped inside hero after place switch");
      if(!media.hero?.decoded||!media.hero?.source.endsWith(place.image))problems.push("Real hero image did not decode");
      if(!media.portrait?.decoded||!media.portrait?.source.endsWith(place.frontImage))problems.push("Real portrait did not decode");
      if(media.hero?.fit!=="cover")problems.push("Hero CSS does not use cover");
@@ -121,7 +129,12 @@ try{
            !!content.querySelector(".pc-rendered-quiz-card");
        },{timeout:10000});
        await page.waitForTimeout(250);
-       await page.locator("#pcFrontCardFlip").click({timeout:5500,force:true});
+       const flipCard=page.locator("#pcFrontCardFlip");
+       const bounds=await flipCard.boundingBox();
+       if(!bounds)throw Error("QuizCard has no clickable bounds");
+       // The pinned hero may cover the card center after screenshot scrolling.
+       // Click its visible lower-left area with normal pointer-hit checks.
+       await flipCard.click({timeout:5500,position:{x:20,y:Math.max(20,bounds.height-24)}});
        await page.waitForTimeout(500);
        flip=await page.evaluate(()=>{
         const card=document.querySelector("#pcFrontCardFlip");

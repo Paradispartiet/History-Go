@@ -23,6 +23,7 @@
     let minimumHeight = 0;
     let frameScheduled = false;
     let measureScheduled = false;
+    let measuredLayout = "";
 
     // Sample only the pixels underneath the original title. If canvas is
     // blocked by CORS, retain the existing light text/shadow instead.
@@ -101,6 +102,15 @@
         return;
       }
 
+      // Pinned CSS fixes the previous hero height. Release it when the place,
+      // width or wrapped title row changes so the next heading is measured at
+      // its own natural height, rather than clipped inside the previous one.
+      const layout = [card.dataset.currentPlaceId || "", hero.clientWidth,
+        headingRow?.scrollHeight || title.scrollHeight].join("|");
+      if (layout !== measuredLayout) {
+        release();
+        measuredLayout = layout;
+      }
       shellHero = owningHero;
       // The image retains its natural layout height independently of the
       // sticky wrapper, which only reveals less of the image from the bottom.

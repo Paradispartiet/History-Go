@@ -1,0 +1,47 @@
+name: Oslo four photo publication
+
+on:
+  push:
+    branches:
+      - content/oslo-four-photo-candidates-20261018
+    paths:
+      - data/places/**
+      - data/runtime/place-open/**
+      - bilder/places/candidates/oslo-v1-20261018/**
+      - tests/oslo-v1-actual-runtime-visual-browser-audit.mjs
+      - .github/workflows/oslo-v1-four-photo-candidates.yml
+
+permissions:
+  contents: read
+
+jobs:
+  photos:
+    name: Verify four selected photos in real PlaceCards
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Verify media composition contracts
+        run: node --test tests/oslo-v1-image-composition.test.mjs
+      - name: Inspect selected photos in the running app
+        env:
+          HG_VISUAL_PLACES: groruddammen,alna_bryn,blaa,rockefeller
+          HG_VISUAL_OUT: .tmp/four-photo-review
+          HG_VISUAL_CAPTURES: .tmp/four-photo-captures
+        run: node tests/oslo-v1-actual-runtime-visual-browser-audit.mjs
+      - name: Upload actual PlaceCard captures and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: four-selected-photo-placecards
+          include-hidden-files: true
+          path: |
+            .tmp/four-photo-review/
+            .tmp/four-photo-captures/
+          if-no-files-found: error

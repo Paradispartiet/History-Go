@@ -1,0 +1,137 @@
+{
+  "schema": "history_go_oslo_photo_candidate_selection_v1",
+  "date": "2026-10-18",
+  "purpose": "Four selected documentary photo replacements; final v1 status unchanged",
+  "status": "materialized_selected_and_runtime_bound",
+  "outputs": {
+    "hero": [
+      1400,
+      900
+    ],
+    "portrait": [
+      900,
+      1350
+    ],
+    "card": [
+      900,
+      600
+    ]
+  },
+  "rules": [
+    "Verify canonical Commons filename, license and author from imageinfo before downloading",
+    "Do not overwrite existing served assets",
+    "Keep all existing place data and runtime untouched until photographic editorial review",
+    "Preserve CC attribution, license URLs and crop information",
+    "Never mark a place v1 based solely on image production"
+  ],
+  "candidates": [
+    {
+      "place_id": "groruddammen",
+      "source_filename": "Groruddammen seen from above..JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Groruddammen_seen_from_above..JPG",
+      "creator": "Ida Tolgensbakk",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "reason": "Dam and park landscape with less sky than the old portrait",
+      "crop": {
+        "hero": [
+          0.5,
+          0.59,
+          1
+        ],
+        "portrait": [
+          0.5,
+          0.6,
+          1.1
+        ],
+        "card": [
+          0.5,
+          0.59,
+          1
+        ]
+      },
+      "status": "materialized_selected_and_runtime_bound"
+    },
+    {
+      "place_id": "alna_bryn",
+      "source_filename": "Brynfoss.JPG",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Brynfoss.JPG",
+      "creator": "PaulVIF",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "reason": "Actual Alna watercourse at Bryn instead of a wall-building subject",
+      "crop": {
+        "hero": [
+          0.5,
+          0.54,
+          1
+        ],
+        "portrait": [
+          0.5,
+          0.54,
+          1.04
+        ],
+        "card": [
+          0.5,
+          0.54,
+          1
+        ]
+      },
+      "status": "materialized_selected_and_runtime_bound"
+    },
+    {
+      "place_id": "blaa",
+      "source_filename": "Blå 04.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bl%C3%A5_04.jpg",
+      "creator": "Marthe Thu (uploaded by Blaaoslo)",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "reason": "Authentic high-resolution interior of the music venue rather than obstructed facade",
+      "crop": {
+        "hero": [
+          0.5,
+          0.5,
+          1
+        ],
+        "portrait": [
+          0.5,
+          0.49,
+          1
+        ],
+        "card": [
+          0.5,
+          0.5,
+          1
+        ]
+      },
+      "status": "materialized_selected_and_runtime_bound"
+    },
+    {
+      "place_id": "rockefeller",
+      "source_filename": "Soen in Oslo 2026 -02.jpg",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Soen_in_Oslo_2026_-02.jpg",
+      "creator": "Birgit Fostervold",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "reason": "High-resolution documented live performance at Rockefeller, February 2026",
+      "crop": {
+        "hero": [
+          0.5,
+          0.47,
+          1
+        ],
+        "portrait": [
+          0.5,
+          0.47,
+          1.06
+        ],
+        "card": [
+          0.5,
+          0.47,
+          1
+        ]
+      },
+      "status": "materialized_selected_and_runtime_bound"
+    }
+  ]
+}
