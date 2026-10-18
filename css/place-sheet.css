@@ -46,8 +46,16 @@ body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-med
   background:linear-gradient(145deg, #1d2938, #080d14);
 }
 
-body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard img{
+/* Front faces are photographs; the reverse face is a complete QuizCard.
+   Never zoom/crop quiz artwork when the front card uses cover. */
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-front > img{
   object-fit: cover;
+  object-position: center;
+}
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-card-face-back img,
+body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-media .pc-frontcard .pc-quiz-card-image{
+  object-fit: contain;
+  object-position: center;
 }
 
 body.hg-app #placeCard.is-unified-place.is-place-sheet-phase1 .pc-sheet-hero-copy{

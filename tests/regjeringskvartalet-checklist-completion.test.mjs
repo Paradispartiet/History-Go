@@ -60,7 +60,7 @@ test('Observer, Notat og Rute bruker eksisterende eiere og gyldig observasjonsli
   assert.match(card, /categoryId: String\(place\.categoryId \|\| place\.category \|\| "by"\)/);
   assert.match(card, /lensId: "by_byliv"/);
   assert.match(card, /window\.handlePlaceNote\(place\)/);
-  assert.match(card, /window\.showNavRouteToPlace\(place\)/);
+  assert.match(card, /window\.showNavRouteToPlace\(currentPlace \|\| place\)/);
   assert.match(report, /historisk rute N\/A/);
 });
 
