@@ -96,6 +96,25 @@ Bevart i samtlige filer: scene- og valg-ID-er, betingelser, tidskrav, flagg, met
 
 Samlet revidert i disse to siste produksjonsrundene: 36 Wave F-scener samt 16 direkte forgjengerscener i D/E, totalt 52 ytterligere reviderte scener. Hele Wave F har fått et helhetlig språkpass (68/68), men A–E er fortsatt **ikke** fullstendig kvalitetsgodkjent. PR forblir draft. Wave G holdes tilbake.
 
+## Sjuende redaksjonelle pass – karakterer og tidlige konflikter i Wave A/B (19. oktober 2026)
+
+**40 eksisterende tidligscener** er omskrevet og **80 valg og 80 konsekvenstekster** er språklig bearbeidet: fem scener i hver av C01, C02, C03, C05, C06, C07, C17 og C23. Endringene er lagret i sju faktiske historiefiler i PR #6382. Ingen scener er lagt til.
+
+| Historie | Hovedgrep i denne bolken |
+| --- | --- |
+| C01 – Jonas og økonomien | En kaféinvitasjon møter strømregningen på 280 kroner. Det menneskelige valget er hvor mye av egen økonomi spilleren vil dele med Jonas, og hvordan det påvirker vennskapet. |
+| C02 – Mira og musikken | Håpet om en spillejobb må veies mot tid, honorar og eget musikalsk arbeid. Mira bestemmer over sine valg; ingen udokumentert konsertavtale oppstår. |
+| C03 – Lea og prototypen | Pappforsøket har synlige begrensninger; avlysninger og avsluttede bidrag får sosial kostnad. Gjennomført mini-test beholder eksakt den tidligere registrerte forskjellen mellom tynt og tykt kort. |
+| C05 – NAV og dokumentasjon | Fristen, den manglende arbeidstidssiden og ventetiden vises gjennom frokostbord og hverdagsplaner. Å sende, spørre og motta kvittering er forskjellige handlinger. |
+| C06 – Skoleveien | Ragnhilds snarvei, Eiriks tidsfrist og den udekkede kryssingen ved nedkjørselen er den dramatiske konflikten. Observasjon gjennomføres først i senere scene; ingen nye målinger eller beslutninger er oppfunnet. |
+| C07 – Arvid og fellesskapet | Tidligere vakt, gjestebesøk, avlysning, hjemmekveld og avslag gir forskjellige utgangspunkt. Spilleren kan søke fellesskap uten automatisk å bli frivillig. |
+| C17 – Renholdet | 45 minutter igjen av vakta, Karis rapport og Aminas advarsel gjør ansvarsfordelingen konkret. Lageret er fortsatt sperret og ikke rengjort. |
+| C23 – Feilinformasjonen | Rettelsen, hvem som faktisk mottok den, og tapt planleggingstid får menneskelig vekt. Bekreftet forståelse er ikke det samme som tilgivelse. |
+
+**Strukturkontroll:** Før hvert GitHub-lagrepass er den gamle og den nye scenelisten sammenlignet med kun `tittel`, `tekst`, `valg[].tekst` og `valg[].konsekvensTekst` unntatt. Nøyaktig 40 eksisterende scener har endringer; alle tekniske identifikatorer, betingelser, effekter, flagg, relasjoner, tidskrav og øvrige scener er uendret i disse sju filene. Dette er ikke en utført Node-/UI-test eller full litterær godkjenning.
+
+**Neste redaksjonelle port:** Les de resterende Wave A–E-scenene som hele fortellinger, særlig overgangen fra B til C og repetisjoner i NAV-/prosjektløpene. Tydelige karakterer og meningsfulle valg må finnes også utenfor denne utvalgte bolken. Før godkjenning: én relevant teknisk test av siste commit og faktisk norsk gjennomspilling på tvers av de åtte historieløpene. PR #6382 skal forbli draft til dette er gjort. Wave G er ikke startet.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
