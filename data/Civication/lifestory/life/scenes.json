@@ -6569,8 +6569,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Arbeid kan flyttes uten at hindringen forsvinner",
-      "tekst": "Du tilbød å gjøre tilgjengelige rom i stedet for et blokkert lager. Det betyr ikke at hyllen er flyttet eller lageret nå kan rengjøres.",
+      "tittel": "Fem rom og den samme hylla",
+      "tekst": "Du ser tilbake på vakta da lagerdøren var blokkert av den tunge hylla. Kari ville vite hva som var ferdig før rapporten. Du hadde tilbudt å ta de andre rommene, men kjente det stikke da lageret ble stående på lista. Arbeid du faktisk gjør, bør også bli sett.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "andre_rom_tilbudt"
@@ -6579,18 +6579,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold lageret som ikke gjennomført",
-          "konsekvensTekst": "Du lar oppgaven stå åpen med korrekt årsak.",
+          "tekst": "Fortell Kari nøyaktig hvilke rom du prioriterte",
+          "konsekvensTekst": "Du står for prioriteringen din, også om den blir møtt med spørsmål.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "lager_ikke_ferdig"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hvilke rom som faktisk var tilgjengelige",
-          "konsekvensTekst": "Du dokumenterer mulig arbeid uten å signere av lageret.",
+          "tekst": "Be om at noen andre avklarer den tunge hylla før neste vakt",
+          "konsekvensTekst": "Du tar opp hindringen med dem som kan gjøre noe med den.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "tilkomst_adskilt"
@@ -6612,8 +6615,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen plan er registrert ennå",
-      "tekst": "Du ba om en dokumentert plan for å skape tilkomst. Selve forespørselen gjør ikke lageret trygt eller klart.",
+      "tittel": "Ingen skal løfte den alene",
+      "tekst": "Du ba om en plan for lageret. Hver gang du tenker på hylla, kjenner du hvor lett det ville vært å forsøke å skubbe den bare for å bli ferdig. Amina har tidligere minnet deg på at det ikke er din jobb å flytte tunge møbler uten hjelp.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "plan_forespurt"
@@ -6622,8 +6625,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Beskriv hindringen med nøkterne ord",
-          "konsekvensTekst": "Du skriver hva som faktisk sto i veien.",
+          "tekst": "Si tydelig fra at du ikke prøver å flytte hylla alene",
+          "konsekvensTekst": "Du velger å beskytte kroppen selv om arbeidet forsinkes.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "hindring_beskrevet"
@@ -6632,11 +6635,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om at driftsansvarlig avklarer tilkomst før nye forsøk",
-          "konsekvensTekst": "Du legger beslutningen hos rett funksjon uten å love dato.",
+          "tekst": "Spør hvem som faktisk kan skaffe trygg tilkomst",
+          "konsekvensTekst": "Du flytter diskusjonen fra dårlig samvittighet til ansvar.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "drift_skal_avklare"
+            },
+            "meters": {
+              "energi": 2
             }
           }
         }
@@ -6655,8 +6661,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ansvaret kan være tydelig og løsningen uavklart",
-      "tekst": "Du ba Kari synliggjøre driftens rolle. Ingen opplysning her viser at problemet ble løst etterpå.",
+      "tittel": "Det navnet rapporten mangler",
+      "tekst": "Du ville at Kari skulle gjøre det tydelig hvem som har ansvar for den blokkerte tilkomsten. Nå leser du gjennom notatene og ser hvor lett en linje med «ikke ferdig» kan se ut som slurv. Du husker følelsen av å måtte forsvare en jobb du faktisk prøvde å gjøre.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "drift_status_synlig"
@@ -6665,8 +6671,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold status som venter på drift",
-          "konsekvensTekst": "Du skiller ansvar fra gjennomført utbedring.",
+          "tekst": "Skriv hvorfor lageret ikke var tilgjengelig",
+          "konsekvensTekst": "Du gir din forklaring i vanlige ord, ikke bare en kode.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "drift_venter"
@@ -6675,8 +6681,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv hva som må bekreftes før lageret merkes ferdig",
-          "konsekvensTekst": "Du lager et dokumentasjonskrav uten å fullføre oppgaven.",
+          "tekst": "Spør Kari hvordan hindringen skal følges opp",
+          "konsekvensTekst": "Du ber om oppfølging fra noen med myndighet til å bestemme.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "ferdigkrav_notert"
@@ -6698,8 +6704,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Observasjonen er ikke en reparasjon",
-      "tekst": "Du dokumenterte den hindringen du selv så. Det gir et bedre grunnlag for oppfølging, men ingen registrert fysisk utbedring.",
+      "tittel": "Bildet du helst ville vært foruten",
+      "tekst": "Du noterte hylla som sperret deler av lageret. Det føltes smålig å måtte bevise noe så synlig. Nå ser du at ett bilde og noen få ord kan spare deg for en ny diskusjon neste gang noen spør hvorfor alt ikke ble tatt.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "hindring_dokumentert"
@@ -6708,8 +6714,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Bevar notatet uten å legge til en løsningsdato",
-          "konsekvensTekst": "Du hindrer etterpåklok dokumentasjon.",
+          "tekst": "Vis fram notatet dersom arbeidet ditt blir trukket i tvil",
+          "konsekvensTekst": "Du stiller opp med det du faktisk observerte.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "ingen_falsk_dato"
@@ -6718,11 +6724,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skil mellom din observasjon og driftens mulige tiltak",
-          "konsekvensTekst": "Du registrerer ikke et tiltak som ikke er bekreftet.",
+          "tekst": "Bruk kvelden på å hvile i stedet for å gå gjennom saken igjen",
+          "konsekvensTekst": "Du lar en krevende vakt få en slutt når du går hjem.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "observasjon_skilt"
+            },
+            "meters": {
+              "energi": 2
             }
           }
         }
@@ -6741,8 +6750,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En ferdig oppgave og en åpen oppgave",
-      "tekst": "Du beholdt to separate statuslinjer. De gjør det mulig å rapportere ferdig arbeid uten å skjule en tilkomsthindring.",
+      "tittel": "Rødt lager, grønne kontorer",
+      "tekst": "Du fordelte arbeidet mellom rommene og holdt statusen adskilt. På papir ser ett rødt felt voldsomt ut ved siden av alle de grønne. Du tenker på hvor mye tid du brukte på kontorene, og hvor lite det forteller å summere alt til ett tall.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "status_adskilt"
@@ -6751,18 +6760,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold separate statuser i senere oppsummering",
-          "konsekvensTekst": "Du slår ikke sammen rommene til en misvisende grønn status.",
+          "tekst": "Vis både det ferdige arbeidet og hindringen i oppsummeringen",
+          "konsekvensTekst": "Du gjør innsatsen synlig uten å skjule det som gjenstår.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "separate_statuser"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Forklar hvorfor én samlestatus ville villede",
-          "konsekvensTekst": "Du synliggjør mangelen uten å dikte ny framdrift.",
+          "tekst": "Be Kari avgjøre hvordan lageret skal prioriteres neste gang",
+          "konsekvensTekst": "Du ber om en ny prioritering framfor å gjette deg fram.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "forklaring_bevart"
@@ -6784,8 +6796,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En forklaring er ikke en grønn status",
-      "tekst": "Du forklarte forskjellen mellom rommene til kollegaen. Forklaringen kan være viktig selv om lageret står stille.",
+      "tittel": "Amina spør rett ut",
+      "tekst": "Du fortalte en kollega hvorfor lageret ikke ble ferdig. Amina har hørt om lignende vakter før. «Men fikk du gjort resten?» spør hun når dere snakker om det. Det er et enkelt spørsmål som gjør deg mer lettet enn en hel rapport.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "status_forklart"
@@ -6794,8 +6806,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold forklaringen i rapportgrunnlaget",
-          "konsekvensTekst": "Du lar fakta om rommene forbli adskilt.",
+          "tekst": "Fortell henne hva du faktisk rakk",
+          "konsekvensTekst": "Du lar en kollega se innsatsen bak tallene.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "rapportgrunnlag"
@@ -6804,8 +6816,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om separate linjer hvis en ny rapport lages",
-          "konsekvensTekst": "Du etterspør rutine, uten å påstå den er vedtatt.",
+          "tekst": "Si at du vil ta opp bemanningen med Kari",
+          "konsekvensTekst": "Du velger å ta opp et større problem som kan bli en vanskelig samtale.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "to_linjeforslag"
@@ -6827,8 +6839,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Å la være å love en dato",
-      "tekst": "Du viste videre til Karis ansvar uten å love når lageret ville være tilgjengelig. Det er en korrekt grense for din rolle.",
+      "tittel": "«Når blir det ordnet?»",
+      "tekst": "Du ble spurt om når lageret ville være tilgjengelig, men visste ikke svaret. Etterpå irriterte du deg over hvor hjelpeløs det hørtes ut. Du vil gjerne være den som finner løsninger. Det er bare ikke du som bestemmer når drift får flyttet en hylle.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "ingen_dato_lovet"
@@ -6837,8 +6849,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Gjenta at du ikke kan fastsette driftens tid",
-          "konsekvensTekst": "Du tar ikke eierskap til en dato du ikke vet.",
+          "tekst": "Si hvem spørsmålet bør gå til, og hvorfor",
+          "konsekvensTekst": "Du hjelper den som spør uten å love noe på andres vegne.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "dato_ikke_lovet"
@@ -6847,8 +6859,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hvem som må gi bekreftelse",
-          "konsekvensTekst": "Du skiller din informasjon fra driftens myndighet.",
+          "tekst": "Be Kari si fra hvis det kommer en faktisk avklaring",
+          "konsekvensTekst": "Du ber om et konkret svar som kan gjøre neste arbeidsdag enklere.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "ansvarlig_notert"
@@ -6870,8 +6882,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Spørsmålet finnes, svaret mangler",
-      "tekst": "Du loggførte kontorbrukerens spørsmål. Det er nyttig, men ingen ny driftsmelding er registrert.",
+      "tittel": "Spørsmålet fra kontoret",
+      "tekst": "En kontorbruker spurte hvorfor lageret fremdeles sto på listen. Du skrev ned spørsmålet etter vakta, men merket at stemmen hans ble med deg hjem. Det er vanskelig å ikke ta en slik bemerkning personlig når du vet at du hadde dårlig tid og gjorde så godt du kunne.",
       "conditions": {
         "flagg": {
           "wa_d_c17_status": "sporsmal_loggfort"
@@ -6880,18 +6892,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold spørsmålet som ubesvart",
-          "konsekvensTekst": "Du lukker ikke en henvendelse uten grunnlag.",
+          "tekst": "Fortell Kari hvordan kommentaren påvirket vakta",
+          "konsekvensTekst": "Du åpner for en ærlig samtale om presset i arbeidet.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "sporsmal_aapent"
+            },
+            "meters": {
+              "integritet": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Koble spørsmålet til den registrerte hindringen",
-          "konsekvensTekst": "Du gjør saken søkbar uten å fylle inn en løsning.",
+          "tekst": "Legg notatet bort og gjør noe hyggelig etter jobb",
+          "konsekvensTekst": "Du beskytter resten av kvelden mot å bli en ny arbeidsøkt.",
           "effekter": {
             "flagg": {
               "wa_f_c17_status": "sammenheng_lagret"
@@ -6913,8 +6928,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et nei er et fullverdig svar",
-      "tekst": "Du respekterte mottakerens ønske om ikke å bruke mer tid på en ny samtale. Det er ikke grunnlag for å si at relasjonen er reparert.",
+      "tittel": "Når unnskyldningen ikke gir svar",
+      "tekst": "Du og Lea rettet en feil som kunne ha skapt forventninger hos andre. En mottaker ønsket ikke å bruke mer tid på saken. Lea synes det er vanskelig å la det stoppe der. Du ser at hun gjerne vil bli tilgitt, men også at den andre personen har sagt sitt.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "grense_respektert"
@@ -6923,8 +6938,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La saken stå uten ny henvendelse til vedkommende",
-          "konsekvensTekst": "Du purrer ikke på en unnskyldning som allerede er mottatt.",
+          "tekst": "Si til Lea at dere må tåle at noen ikke vil snakke mer",
+          "konsekvensTekst": "Du beskytter mottakerens grense, selv om det føles ubehagelig.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "ingen_ny_kontakt"
@@ -6933,8 +6948,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hva dere lærte uten å sitere mottakeren",
-          "konsekvensTekst": "Du trekker lærdom uten å tillegge andre nye meninger.",
+          "tekst": "Foreslå at dere bruker energien på å hindre samme feil neste gang",
+          "konsekvensTekst": "Du retter blikket mot deres egne handlinger framfor å få en reaksjon.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "intern_laerdom"
@@ -6956,8 +6971,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Rettelsen og det opprinnelige utsagnet",
-      "tekst": "Du ba Lea bevare begge deler for å kunne vise hva som faktisk ble feil. Arkivet beviser ikke at konsekvensene er borte.",
+      "tittel": "Den første versjonen gjør vondt å lese",
+      "tekst": "Lea har tatt vare på både skissen som ble misforstått og rettelsen dere laget. Når du ser den gamle formuleringen igjen, skjønner du bedre hvorfor noen trodde dere lovet mer enn dere kunne levere. Det er fristende å gjemme den bort.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "spor_bevart"
@@ -6966,18 +6981,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold begge versjoner med tydelig dato",
-          "konsekvensTekst": "Du sørger for sporbarhet i egen dokumentasjon.",
+          "tekst": "Les den gamle teksten høyt og pek på det uklare",
+          "konsekvensTekst": "Du møter den ubehagelige delen av feilen ansikt til ansikt.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "versjoner_bevart"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Marker hvilke lesere dere ikke vet om har sett rettelsen",
-          "konsekvensTekst": "Du viser informasjonsgap uten å påstå at de er kontaktet.",
+          "tekst": "Skriv en kort forklaring som følger begge versjoner",
+          "konsekvensTekst": "Du gjør det lettere å forstå hvorfor rettelsen ble nødvendig.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "lesere_ukjente"
@@ -6999,8 +7018,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Stillhet etter en rettelse",
-      "tekst": "Du foreslo å vente uten purring. Mottakerens stillhet gir deg ikke rett til å erklære forsoning eller ignorering.",
+      "tittel": "Stille etter unnskyldningen",
+      "tekst": "Dere bestemte dere for ikke å mase på folk etter rettelsen. Lea legger mobilen på bordet. «Jeg skulle ønske vi visste om de er sinte,» sier hun. Du forstår henne, men vet også at et svar kan være noe man skylder seg selv å la være å kreve.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "purring_utsatt"
@@ -7009,8 +7028,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Respekter at svar kan utebli",
-          "konsekvensTekst": "Du avslutter ikke saken med oppdiktede reaksjoner.",
+          "tekst": "Fortell Lea at stillheten kan få være i fred",
+          "konsekvensTekst": "Du hjelper henne å tåle usikkerhet uten å kontakte mottakeren igjen.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "stillhet_respektert"
@@ -7019,8 +7038,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Oppsummer internt hva dere allerede har rettet",
-          "konsekvensTekst": "Du tar vare på faktagrunnlaget uten ny henvendelse.",
+          "tekst": "Gå gjennom hva dere faktisk har endret i prosjektet",
+          "konsekvensTekst": "Du finner noe konkret å lære av, selv om dere ikke får en reaksjon.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "internt_rettet"
@@ -7042,8 +7061,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Arbeidet bak rettelsen",
-      "tekst": "Du oppsummerte hva som faktisk ble endret. Det er verdifullt, men sier ikke hvor mange som leste den første feilen.",
+      "tittel": "Det som sto, og det dere mente",
+      "tekst": "Du har skrevet en oppsummering av rettelsen. Lea leser setningen om «misforståelsen» og stopper. «Det høres ut som om de leste feil,» sier hun. Du ser at hun har et poeng: Dere skrev faktisk uklart.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "rettelse_oppsummert"
@@ -7052,18 +7071,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skill mellom det rettede innholdet og spredningen",
-          "konsekvensTekst": "Du holder konsekvensene åpne der de ikke er målt.",
+          "tekst": "Skriv at dere selv formulerte løftet for løst",
+          "konsekvensTekst": "Du tar ansvar for ordvalget uten å gjette på hvem som ble berørt.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "spredning_uavklart"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Behold oppsummeringen knyttet til originalen",
-          "konsekvensTekst": "Du gjør etterprøving mulig uten å kreve svar fra andre.",
+          "tekst": "Be Lea lese gjennom forklaringen med friske øyne",
+          "konsekvensTekst": "Du inviterer til en mer rettferdig forklaring før den eventuelt deles.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "lenke_til_original"
@@ -7085,8 +7108,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Den forbedrede malen kan også svikte",
-      "tekst": "Du beskrev den nye malen som et forebyggende forsøk. Den er ikke bevist effektiv bare fordi den er ryddigere.",
+      "tittel": "Det nye skjemaet med de gamle ordene",
+      "tekst": "Lea har laget en mal som skal gjøre det vanskeligere å love for mye. Midt på siden står likevel et felt med overskriften «Vi leverer». Du ler litt oppgitt. Selv et pent skjema kan gjøre folk overmodige.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "forebygging_uten_garanti"
@@ -7095,8 +7118,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold en synlig advarsel om uprøvd virkning",
-          "konsekvensTekst": "Du markedsfører ikke malen som ferdig kontroll.",
+          "tekst": "Endre overskriften til «Dette undersøker vi»",
+          "konsekvensTekst": "Du fjerner et ord som lett kan høres ut som et løfte.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "ikke_verifisert"
@@ -7105,8 +7128,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Beskriv hvilken ny feil malen skal bidra til å hindre",
-          "konsekvensTekst": "Du definerer et spørsmål, ikke et dokumentert resultat.",
+          "tekst": "Be Lea prøve malen på et oppdiktet eksempel sammen med deg",
+          "konsekvensTekst": "Dere gjør en enkel intern gjennomgang uten å kalle det dokumentert effekt.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "forebyggingssporsmal"
@@ -7128,8 +7151,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En mal som kanskje tas i bruk",
-      "tekst": "Du ba Lea registrere når malen faktisk brukes. Uten brukslogg kan dere ikke si at den allerede har forebygget noe.",
+      "tittel": "En mal som samler støv",
+      "tekst": "Dere laget en bedre måte å skrive prosjektmeldinger på, men du vet ikke om noen har brukt den. Lea er utålmodig: Hun vil kunne si at dere har lært noe. Du mener lærdom først blir tydelig når dere faktisk gjør ting annerledes.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "bruk_ikke_dokumentert"
@@ -7138,8 +7161,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La bruksfeltet være tomt inntil en melding finnes",
-          "konsekvensTekst": "Du teller ingen fiktive gjennomføringer.",
+          "tekst": "Skriv ett konkret eksempel på hvordan du selv vil bruke malen",
+          "konsekvensTekst": "Du lager noe du kan ta i bruk uten å påstå at andre har gjort det.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "brukslogg_tom"
@@ -7148,8 +7171,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv hvordan en senere bruk bør noteres",
-          "konsekvensTekst": "Du forbereder en logg for senere dokumentasjon uten å påstå gjennomført bruk.",
+          "tekst": "Be Lea si fra hvis hun prøver den i sitt arbeid",
+          "konsekvensTekst": "Du lar henne beholde ansvar for sine egne valg.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "loggregel"
@@ -7171,8 +7194,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Evalueringens spørsmål er klart",
-      "tekst": "Du formulerte kriterier for å vurdere neste prosjektmelding. Men ingen ny prosjektmelding eller vurdering er registrert.",
+      "tittel": "Spørsmålet ingen vil stille",
+      "tekst": "Du formulerte kriterier for neste prosjektmelding. Når du leser dem for Lea, slår det deg at de fleste handler om hva som skal gå bra. Ingen handler om hva dere vil gjøre hvis noen blir skuffet igjen.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "kriterier_valgt"
@@ -7181,8 +7204,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold kriteriene som en åpen plan",
-          "konsekvensTekst": "Du gjør ikke planlegging til resultat.",
+          "tekst": "Legg inn spørsmålet «Hva kan en leser misforstå?»",
+          "konsekvensTekst": "Du setter leserens forventninger i sentrum.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "kriterier_aapne"
@@ -7191,8 +7214,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Legg til en måte å dokumentere negative funn",
-          "konsekvensTekst": "Du sørger for at evalueringen kan vise svakheter.",
+          "tekst": "Be Lea skrive en mulig innvending før dere fortsetter",
+          "konsekvensTekst": "Du øver på å tåle kritikk før den kommer utenfra.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "negative_funn"
@@ -7214,8 +7237,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Lea eier evalueringen",
-      "tekst": "Du lot Lea gjennomføre en eventuell vurdering. Det betyr ikke at hun faktisk har gjort det eller at du kan rapportere resultatet.",
+      "tittel": "Hvem skal eie feilen neste gang?",
+      "tekst": "Du lot Lea stå for en eventuell evaluering. Hun setter pris på tilliten, men du merker at du også er lettet over å slippe enda en runde med detaljene. Det er verdt å spørre seg selv om du gir fra deg ansvar, eller bare oppgaver.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "evaluering_overlatt"
@@ -7224,8 +7247,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold grensen for egen rolle tydelig",
-          "konsekvensTekst": "Du tillegger ikke deg selv en gjennomført kontroll.",
+          "tekst": "Si tydelig hva du fremdeles tar ansvar for",
+          "konsekvensTekst": "Du eier din del av historien uten å styre Leas arbeid.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "ansvar_hos_lea"
@@ -7234,8 +7257,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Tilby bistand først hvis Lea spør",
-          "konsekvensTekst": "Du gjør hjelp betinget og unngår å ta over.",
+          "tekst": "Tilby å hjelpe dersom Lea ønsker en ekstra leser",
+          "konsekvensTekst": "Du gjør hjelp tilgjengelig uten å ta ledelsen fra henne.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "bistand_betinget"
@@ -7257,8 +7280,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Sendt, men ikke bekreftet",
-      "tekst": "Du valgte den presise statusen for mottakerne. Flere livsdager gjør ikke en sendt melding til en bekreftet lest melding.",
+      "tittel": "Mellom sendt og lest",
+      "tekst": "Lea viser deg den rettede meldingen og spør om dere nå kan legge saken bak dere. Den er sendt, men dere vet ikke hvem som har lest den. Du er lei av å snakke om saken; samtidig vil du ikke bruke stillheten som bevis på at alt gikk bra.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "uten_bekreftelse"
@@ -7267,18 +7290,22 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold begge mottakerne som ubekreftet",
-          "konsekvensTekst": "Du skaper ingen falske kvitteringer.",
+          "tekst": "Si at dere har gjort en rettelse, men ikke kjenner virkningen",
+          "konsekvensTekst": "Du er tydelig uten å svartmale eller pynte på resultatet.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "mottak_ubekreftet"
+            },
+            "meters": {
+              "integritet": 2,
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Noter hva som måtte til for å lukke saken",
-          "konsekvensTekst": "Du angir dokumentasjonskrav uten å erklære saken løst.",
+          "tekst": "Skriv ned ett spørsmål dere bør kunne svare på senere",
+          "konsekvensTekst": "Du skiller det dere kan gjøre nå, fra det ingen av dere kan vite.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "lukking_krever_bevis"
@@ -7300,8 +7327,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En kontroll av sendelogger er bare foreslått",
-      "tekst": "Du foreslo å kontrollere Leas sendelogger. Historikken dokumenterer ikke at denne kontrollen er utført.",
+      "tittel": "Lea stirrer på sendt-mappen",
+      "tekst": "Du foreslo å se gjennom sendeloggen, men dere har ikke satt dere ned med den. «Jeg orker snart ikke flere tabeller,» sier Lea. Du kjenner det samme. Det er likevel viktig å vite hva dere faktisk sa til hvem før dere begynner å forklare oss for andre.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "loggkontroll_foreslaatt"
@@ -7310,8 +7337,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Bevar kontrollen som åpen oppgave",
-          "konsekvensTekst": "Du skriver ikke et kontrollresultat på forhånd.",
+          "tekst": "Tilby å ta en kort felles gjennomgang med henne",
+          "konsekvensTekst": "Du foreslår en avgrenset handling, ikke et ferdig resultat.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "kontroll_ikke_utfort"
@@ -7320,8 +7347,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be Lea skille mellom sendt og mottatt",
-          "konsekvensTekst": "Du etterspør presis rapportering uten å påstå mottak.",
+          "tekst": "Si at Lea må bestemme om hun vil undersøke mer",
+          "konsekvensTekst": "Du respekterer grensene hennes, men kan ikke gi noen sikker oversikt.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "status_skillet"
@@ -7343,8 +7370,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Du kan ikke fortelle det du ikke vet",
-      "tekst": "Du noterte at du ikke lenger har innsyn i Leas oppfølging. Dermed kan du heller ikke si hva mottakerne har fått vite senere.",
+      "tittel": "Når du ikke lenger er den som svarer",
+      "tekst": "Lea følger opp den siste delen av saken, og du har ikke tilgang til alt hun ser. En bekjent spør deg hvordan det gikk med rettelsen. Du kjenner at det ville være lett å fylle stillheten med et beroligende svar.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "innsyn_avgrenset"
@@ -7353,8 +7380,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold den eksplisitte kunnskapsgrensen",
-          "konsekvensTekst": "Du rapporterer bare det du faktisk kjenner.",
+          "tekst": "Fortell bare hva du selv vet",
+          "konsekvensTekst": "Du velger troverdighet framfor en glatt forklaring.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "innsyn_begrenset"
@@ -7363,8 +7390,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Si at senere spørsmål må rettes til Lea",
-          "konsekvensTekst": "Du fordeler ansvar uten å oppfinne nye svar.",
+          "tekst": "Be bekjenten spørre Lea dersom det er viktig",
+          "konsekvensTekst": "Du lar riktig person svare uten å avsløre noe du ikke kjenner.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "spor_til_lea"
@@ -7386,8 +7413,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et tilbud om kontroll er ikke en kontroll",
-      "tekst": "Du tilbød en faktasjekk dersom Lea ønsker det. Ingen ny forespørsel eller gjennomgang er dokumentert.",
+      "tittel": "Tilbudet du la på bordet",
+      "tekst": "Du tilbød Lea hjelp til en ny faktasjekk hvis hun trengte det. Nå ser du det uferdige prosjektet på datamaskinen og lurer på om du skal åpne alt igjen på eget initiativ. Du har annet å gjøre, og hun har ikke bedt deg om mer.",
       "conditions": {
         "flagg": {
           "wa_d_c23_status": "faktasjekk_betinget"
@@ -7396,8 +7423,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La tilbudet være frivillig uten frist",
-          "konsekvensTekst": "Du lover ikke et arbeid som ikke er bestilt.",
+          "tekst": "La tilbudet ligge og bruk tiden på ditt eget arbeid",
+          "konsekvensTekst": "Du respekterer hennes initiativ og dine egne grenser.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "hjelp_uforpliktende"
@@ -7406,8 +7433,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv hva du trenger før en faktisk faktasjekk",
-          "konsekvensTekst": "Du lager krav til kildegrunnlag uten å påstå kontroll.",
+          "tekst": "Skriv ned hvilke kilder du trenger hvis Lea ber om hjelp",
+          "konsekvensTekst": "Du kan være raskere i gang senere uten å utføre en kontroll på forhånd.",
           "effekter": {
             "flagg": {
               "wa_f_c23_status": "kildeforutsetninger"
