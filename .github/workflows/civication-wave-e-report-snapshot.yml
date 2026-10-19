@@ -1,0 +1,38 @@
+name: Wave E generated audit snapshot
+on:
+  push:
+    branches:
+      - civication/wave-e-private-timeline-20261018
+    paths:
+      - .github/workflows/civication-wave-e-report-snapshot.yml
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Regenerate only the two affected audit outputs
+        run: |
+          node scripts/audit-civication-career-gameplay.mjs --write
+          node scripts/audit-civication-life-position-role-world-readiness.mjs --write
+      - name: Print generated artifacts for PR commit
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          for (const path of [
+            'data/Civication/careerGameplayMatrix.json',
+            'reports/civication-career-gameplay-matrix.md',
+            'data/Civication/lifePositionRoleWorldReadiness.json',
+            'reports/civication-life-position-role-world-readiness.md'
+          ]) {
+            const str = fs.readFileSync(path, 'utf8');
+            for (let i=0; i<str.length; i+=2500)
+              console.log('HGOUT '+JSON.stringify({path,index:i,chunk:str.slice(i,i+2500)}));
+            console.log('HGEND '+JSON.stringify({path,chars:str.length}));
+          }
+          NODE
