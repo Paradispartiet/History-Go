@@ -152,7 +152,7 @@ test("test completion repairs previous wrong answers without duplicate right-ans
   assert.equal(event.correctCount, 2);
   assert.equal(event.correctAnswers.length, 2);
   assert.deepEqual(h.unlocks, ["first", "second"]);
-  assert.equal(h.scheduled.size, 1); // Summary handoff only; ordinary advance was canceled.
+  assert.equal(h.scheduled.size, 2); // Modal close and summary handoff; ordinary advance was canceled.
 });
 
 test("test completion refuses an invalid answer key without completing", async () => {
