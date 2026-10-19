@@ -447,7 +447,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Sendt er fortsatt ikke lest",
-      "tekst": "Lea viser samtalen om utkast 0.2. Rettelsen gikk til begge verksteddeltakerne, men bare den ene har bekreftet å ha forstått at «mulig prøve fredag» ikke var en ferdig levering. Den andre har ikke svart. At tiden går, fyller ikke inn det manglende svaret.",
+      "tekst": "Begge verksteddeltakerne fikk rettelsen, men bare én svarte. Lea viser deg telefonen. «Skal jeg mase på den andre?» spør hun. Du ser at hun har skrevet en ny melding, men ikke trykket send. Et vennlig spørsmål kan være rimelig; et krav om å godta unnskyldningen ville være noe annet.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "begge"
@@ -456,8 +456,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Lea åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Be Lea sende en kort oppklaring til den som ennå ikke har svart",
+          "konsekvensTekst": "Lea sender en ny, kort presisering til mottakeren som ikke har svart. Du ser den gå av sted. Personen har fortsatt ikke bekreftet forståelse.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -467,8 +467,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Lea følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Lea har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "Si at du ikke vil presse fram et svar, og la Lea avgjøre videre kontakt",
+          "konsekvensTekst": "Du sier hvorfor du er usikker på enda en melding. Lea beholder ansvaret for sin egen utsending; du vet fremdeles ikke om den siste mottakeren har forstått.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
@@ -488,7 +488,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Den andre har den gamle teksten",
-      "tekst": "Lea åpner meldingshistorikken om utkast 0.2. Bare den første mottakeren fikk presiseringen og svarte. Hos den andre ligger fortsatt skissen med «mulig prøve fredag». Du vet hvem som mangler rettelsen, men ikke hva vedkommende har rukket å planlegge.",
+      "tekst": "Lea åpner den opprinnelige meldingen. Den ene deltakeren har fått vite at det ikke kommer noen modell fredag. Den andre ser fremdeles bare skissen og kan ha satt av tid. «Den andre må jo få vite det», sier Lea, men fingeren blir hengende over tastaturet.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "en"
@@ -497,8 +497,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Lea åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Bli hos Lea mens hun sender rettelsen til den andre mottakeren",
+          "konsekvensTekst": "Du hjelper Lea å finne den riktige samtalen. Hun sender presiseringen til mottakeren som manglet den. Den er sendt, ikke bekreftet lest.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -508,8 +508,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Lea følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Lea har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "Be Lea ta ansvar for den ubesvarte meldingen uten at du overtar",
+          "konsekvensTekst": "Du sier at den andre mottakeren fremdeles mangler rettelsen, men at meldingen må komme fra Lea. Du har ikke sett noen ny utsending.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
@@ -529,7 +529,7 @@
       "tilgjengelighet": "start",
       "prioritet": 6,
       "tittel": "Ingen synlig utsending",
-      "tekst": "Du får en ny melding fra Lea om utkast 0.2: «Jeg finner ikke igjen at jeg sendte presiseringen. Må rydde opp i dette.» Det du vet fra før er fortsatt begrenset: Du har ikke sett en utsending av rettelsen. Den første misforståelsen er ikke dokumentert løst.",
+      "tekst": "«Jeg finner ikke meldingen», sier Lea og snur skjermen mot deg. I mappen for sendte meldinger ligger den gamle skissen, men ingen tydelig rettelse. Det kan være en søkefeil, eller hun kan ha glemt å trykke send. Ingen av dere bør anta at mottakerne vet at fredagens levering aldri var avtalt.",
       "conditions": {
         "flagg": {
           "wa_c23_rettelse": "ikke_bekreftet"
@@ -538,8 +538,8 @@
       "valg": [
         {
           "id": "sjekk_sammen",
-          "tekst": "Be om å se en konkret oppfølging til den eller dem som mangler svar.",
-          "konsekvensTekst": "Lea åpner mottakerlisten og sender nå en tydelig presisering til dem som mangler avklaring: Ingen ferdig levering er avtalt. Du ser utsendingen på skjermen. Dere har ennå ikke fått nye svar.",
+          "tekst": "Gå gjennom mottakerlisten med Lea og se at hun sender en tydelig rettelse",
+          "konsekvensTekst": "Dere kontrollerer begge adressene. Lea sender nå presiseringen om at ingen levering er avtalt. Ingen av mottakerne har svart på den ennå.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "fulgt_opp",
@@ -549,8 +549,8 @@
         },
         {
           "id": "overlat",
-          "tekst": "La Lea følge opp selv uten mer bistand fra deg.",
-          "konsekvensTekst": "Du sier at du ikke kan følge mottakerrunden videre. Lea har ansvaret for egne meldinger. Du får ingen ny bekreftelse og vet ikke om saken blir avklart.",
+          "tekst": "Be Lea undersøke utsendingen selv, uten å kalle saken avklart",
+          "konsekvensTekst": "Du peker på hva som fortsatt er uklart, men lar Lea undersøke sin egen korrespondanse. Du har fortsatt ikke sett noen bekreftelse.",
           "effekter": {
             "flagg": {
               "wa_b_c23_spor": "overlatt"
