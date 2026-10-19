@@ -27,6 +27,8 @@ type HistoryGoQuizVisitRuntime = PhysicalVisitRuntimeWindow &
   PlaceVisitButtonRuntimeWindow & {
     __HG_PLACE_CARD_QUIZCARDS_PATCHED__?: boolean;
     openPlaceCard?: (place: PlaceLike, ...args: unknown[]) => unknown;
+    HGPlaceOpen?: { getPlace?: (placeId: string) => PlaceLike | null | undefined };
+    __HG_LAST_FOOTER_PLACE?: PlaceLike | null;
     HG_I18N?: {
       t?: (key: string, fallback?: string) => string;
     };
@@ -90,11 +92,19 @@ function installPlaceCardQuizVisitRuntime(): void {
   ) {
     const result = await originalOpenPlaceCard.call(this, place, ...args);
 
+    // Preserve the shipping race guard when rebuilding the compatibility bundle.
+    const cardNode = document.getElementById("placeCard");
+    const activeId = String(cardNode?.dataset?.currentPlaceId || "").trim();
+    if (result === false || (activeId && activeId !== String(place?.id || "").trim())) return result;
+    const resolvedId = activeId || String(place?.id || "").trim();
+    const activePlace = runtime.HGPlaceOpen?.getPlace?.(resolvedId)
+      || (String(runtime.__HG_LAST_FOOTER_PLACE?.id || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null)
+      || place;
     quizCards.prewarm();
-    visitButton.patch(place);
+    visitButton.patch(activePlace);
 
     try {
-      await quizCards.applyForPlace(place);
+      await quizCards.applyForPlace(activePlace);
     } catch (error) {
       console.warn(
         "[place-card-quizcards-patch] kunne ikke aktivere quizkort",

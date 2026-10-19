@@ -1,0 +1,38 @@
+name: Oslo twenty QuizCards
+on:
+  pull_request:
+    paths:
+      - data/quizcards/by/topp10_by_kort_batch8.json
+      - data/quizcards/historie/topp10_historie_oslo_minimum_v1_batch4.json
+      - data/quizcards/naeringsliv/topp10_naeringsliv_oslo_v1_batch02.json
+      - tests/oslo-quizcards-batch03*
+      - .github/workflows/oslo-quizcards-batch03.yml
+permissions:
+  contents: read
+concurrency:
+  group: oslo-quizcards-batch03-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  acceptance:
+    name: Verify twenty native PlaceCard QuizCards
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: node --test tests/oslo-quizcards-batch03.test.mjs tests/place-quizcards-category-manifests.test.mjs tests/oslo-v1-quizcard-manifest-binding.test.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/oslo-quizcards-batch03-browser-audit.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-twenty-quizcards-review
+          include-hidden-files: true
+          path: .tmp/oslo-quizcards-batch03/
+          if-no-files-found: error

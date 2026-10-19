@@ -179,7 +179,8 @@
     "historie/manifest.json",
     "litteratur/manifest.json",
     "scenekunst/manifest.json",
-    "media/manifest.json"
+    "media/manifest.json",
+    "naeringsliv/manifest.json"
   ]);
   var FALLBACK_COLLECTIONS = Object.freeze([
     "by/topp10_by_kort_batch1.json",
@@ -353,7 +354,10 @@
       (_b = (_a = runtime.HGQuizLoadAccelerator) == null ? void 0 : _a.prewarm) == null ? void 0 : _b.call(_a);
     };
     const applyForPlace = async (place) => {
+      var _a, _b;
       const cardData = await resolveQuizCard(place);
+      const showingId = String(((_b = (_a = document2.getElementById("placeCard")) == null ? void 0 : _a.dataset) == null ? void 0 : _b.currentPlaceId) || "").trim();
+      if (showingId && showingId !== String((place == null ? void 0 : place.id) || "").trim()) return false;
       return cardData ? applyQuizCard(cardData) : false;
     };
     return { prewarm, applyForPlace };
@@ -515,11 +519,17 @@
     const originalOpenPlaceCard = runtime.openPlaceCard;
     if (typeof originalOpenPlaceCard !== "function") return;
     runtime.openPlaceCard = async function patchedOpenPlaceCard(place, ...args) {
+      var _a, _b, _c, _d;
       const result = await originalOpenPlaceCard.call(this, place, ...args);
+      const cardNode = document.getElementById("placeCard");
+      const activeId = String(((_a = cardNode == null ? void 0 : cardNode.dataset) == null ? void 0 : _a.currentPlaceId) || "").trim();
+      if (result === false || activeId && activeId !== String((place == null ? void 0 : place.id) || "").trim()) return result;
+      const resolvedId = activeId || String((place == null ? void 0 : place.id) || "").trim();
+      const activePlace = ((_c = (_b = runtime.HGPlaceOpen) == null ? void 0 : _b.getPlace) == null ? void 0 : _c.call(_b, resolvedId)) || (String(((_d = runtime.__HG_LAST_FOOTER_PLACE) == null ? void 0 : _d.id) || "").trim() === resolvedId ? runtime.__HG_LAST_FOOTER_PLACE : null) || place;
       quizCards.prewarm();
-      visitButton.patch(place);
+      visitButton.patch(activePlace);
       try {
-        await quizCards.applyForPlace(place);
+        await quizCards.applyForPlace(activePlace);
       } catch (error) {
         console.warn(
           "[place-card-quizcards-patch] kunne ikke aktivere quizkort",
