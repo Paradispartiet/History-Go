@@ -188,7 +188,41 @@ test('The only recorded crossing observation is a single 15-minute interval',()=
   const planning=read(manifest.roles.arealplanlegger.scenes).scenes;
   const observed=planning.find(s=>s.id==='wave_b_c06_observasjonen');
   const continuation=life.find(s=>s.id==='wave_f_c06_tidsrom_synlig');
-  assert.match(observed.tekst,/07\\.45 til 08\\.00/);
-  assert.match(continuation.tekst,/07\\.45 til 08\\.00/);
+  assert.ok(observed.tekst.includes('07.45 til 08.00'));
+  assert.ok(continuation.tekst.includes('07.45 til 08.00'));
   assert.doesNotMatch(continuation.tekst,/tre morgener/i);
+});
+
+test('Predecessor decisions have enduring personal consequences before Wave F begins',()=>{
+  let checked=0;
+  for (const entry of register.stories) {
+    const arc=entry.id,prior=possibleStatuses(arc);
+    const earlier=arc==='c01'||arc==='c05'?12:sourceEntries.get(arc).days[0];
+    const sourceScenes=arc==='c01'||arc==='c05'?life:read(sourceEntries.get(arc).runtime_path).scenes;
+    const sceneById=new Map(sourceScenes.map(s=>[s.id,s]));
+    for (const item of prior) {
+      const scene=sceneById.get(item.sourceId);
+      const choice=scene.valg.find(c=>c.id===item.sourceChoice);
+      assert.ok(choice);
+      const state=State.createInitialState(base);
+      seed(state,arc,item,earlier);
+      const before={...state.meters},rels={...state.relasjoner};
+      State.applyEffects(state,{meters:choice.effekter.meters,relasjoner:choice.effekter.relasjoner});
+      for(const [key,delta] of Object.entries(choice.effekter.meters||{})){
+        const value=before[key]+delta;
+        assert.equal(state.meters[key],key==='penger'?value:Math.max(0,Math.min(100,value)));
+      }
+      for(const [key,delta] of Object.entries(choice.effekter.relasjoner||{})){
+        assert.equal(state.relasjoner[key],Math.max(0,Math.min(100,rels[key]+delta)));
+      }
+      const meters={...state.meters},relations={...state.relasjoner};
+      state.livsdag=Math.max(earlier+4,entry.minimum_livsdag);
+      State.capturePrivateStory(state);
+      assert.deepEqual(state.meters,meters);
+      assert.deepEqual(state.relasjoner,relations);
+      assert.equal(state.tidligereValg[item.flag],item.status);
+      checked++;
+    }
+  }
+  assert.equal(checked,68);
 });
