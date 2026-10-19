@@ -47,7 +47,8 @@ const QUIZ_CARD_MANIFESTS = Object.freeze([
   "historie/manifest.json",
   "litteratur/manifest.json",
   "scenekunst/manifest.json",
-  "media/manifest.json"
+  "media/manifest.json",
+  "naeringsliv/manifest.json"
 ]);
 
 const FALLBACK_COLLECTIONS = Object.freeze([

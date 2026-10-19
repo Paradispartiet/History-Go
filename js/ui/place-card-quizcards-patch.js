@@ -179,7 +179,8 @@
     "historie/manifest.json",
     "litteratur/manifest.json",
     "scenekunst/manifest.json",
-    "media/manifest.json"
+    "media/manifest.json",
+    "naeringsliv/manifest.json"
   ]);
   var FALLBACK_COLLECTIONS = Object.freeze([
     "by/topp10_by_kort_batch1.json",
