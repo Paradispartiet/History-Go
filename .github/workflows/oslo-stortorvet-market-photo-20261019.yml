@@ -1,0 +1,75 @@
+name: Oslo-20 Stortorvet genuine market photo
+on:
+  push:
+    branches: [content/oslo-20-stortorget-market-photo-20261019]
+    paths:
+      - scripts/produce-oslo-stortorvet-market-20261019.py
+      - .github/workflows/oslo-stortorvet-market-photo-20261019.yml
+permissions:
+  contents: write
+jobs:
+  produce-and-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Retrieve only the exact CC BY-SA Stortorvet marketplace photo
+        run: python scripts/produce-oslo-stortorvet-market-20261019.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Rebuild and validate real PlaceCard payloads
+        run: |
+          npm run places:index:build
+          npm run places:index:check
+          npm run place-open:build
+          npm run place-open:check
+      - name: Chromium dependencies for one real place visual check
+        run: npx playwright install --with-deps chromium
+      - name: Verify actual Stortorvet PlaceCard at 390px and 768px
+        env:
+          HG_VISUAL_PLACES: stortorget
+          HG_VISUAL_OUT: .tmp/oslo-stortorvet-native-report
+          HG_VISUAL_CAPTURES: .tmp/oslo-stortorvet-native-captures
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          script=Path('tests/oslo-v1-actual-runtime-visual-browser-audit.mjs').read_text()
+          needle='const allIds=['
+          assert script.count(needle)==1
+          script=script.replace(needle,'const allIds=["stortorget",',1)
+          Path('.tmp/oslo-stortorvet-native-browser.mjs').write_text(script)
+          PY
+          node .tmp/oslo-stortorvet-native-browser.mjs
+      - name: Commit actual crops and synchronized place data
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/oslo-20-stortorvet-market-20261019/
+          git add data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/stortorget.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add data/places/places_index.json
+          git add data/runtime/place-open/stortorget.json
+          git add reports/oslo-20-stortorvet-market-20261019/result.json
+          if git diff --cached --quiet; then echo 'No changes to publish'; exit 1; fi
+          git commit -m 'assets(oslo): Stortorvet market gets real source-backed hero, portrait and card images'
+          git push origin HEAD:content/oslo-20-stortorget-market-photo-20261019
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: oslo-stortorvet-market-visual-review
+          include-hidden-files: true
+          path: |
+            reports/oslo-20-stortorvet-market-20261019/result.json
+            .tmp/oslo-stortorvet-native-report/
+            .tmp/oslo-stortorvet-native-captures/
+          if-no-files-found: warn
