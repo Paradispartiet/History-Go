@@ -366,7 +366,15 @@
   // Skallet booter etter Min dag (shell-loaderen injiserer resolver +
   // CivicationState); jobbaksept dispatcher updateProfile.
   window.addEventListener("civi:booted", () => { ensureCalendarCheckpoint(); syncToShellCalendar(); maybeAdoptShellRole(); refreshPersonTypes(); render(); });
-  window.addEventListener("civi:dayPhaseChanged", () => { syncToShellCalendar(); });
+  window.addEventListener("civi:dayPhaseChanged", () => { syncToShellCalendar(); refreshDayEvent(); });
+  // A role without a Life Story package still lives in the canonical day
+  // program. Its preview follows that program; it never answers or advances it.
+  window.addEventListener("civi:inboxChanged", refreshDayEvent);
+  window.addEventListener("civi:lifePositionChanged", refreshDayEvent);
+
+  function refreshDayEvent() {
+    if (shellStory?.status === "unavailable") render();
+  }
   // updateProfile: jobbtilbud kan ha endret rollen, og HG_Lifestyle kan ha
   // telt nye tags (stamp-chipen) — re-render henter begge. render() er ren
   // lesing, så dette kan aldri starte en event-løkke.
@@ -939,16 +947,49 @@
     }).forEach(function (chip) { header.appendChild(chip); });
   }
 
+  function renderDayEventHtml() {
+    let action = null;
+    let primary = null;
+    try {
+      action = window.CivicationNextActionSelector?.getCurrent?.() || null;
+      const active = window.CivicationState?.getActivePosition?.();
+      const scope = window.CivicationCareerRoleResolver?.resolveCareerRoleScope?.(active);
+      const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+      if (action?.source === "day_phase" && runtime?.role_scope && runtime.role_scope !== scope) return "";
+      const event = window.CivicationMailEngine?.getMail?.(action?.id)?.event;
+      const eventScope = event?.role_scope || event?.role_model_meta?.role_scope;
+      const jobEvent = window.CivicationEventChannels?.getMessageChannel?.(event) === "job"
+        || event?.mail_class === "daily_workday" || event?.workday_related === true;
+      if (jobEvent && eventScope && eventScope !== scope) return "";
+      primary = window.CivicationLifePositions?.getLifeContext?.()?.primary_life_position;
+    } catch { /* the normal recovery button remains available */ return ""; }
+    if (!action || !window.CivicationNextActionUI?.open) return "";
+    const situation = (Array.isArray(action.situation) && action.situation.length
+      ? action.situation : [action.body || action.summary || ""])
+      .map(line => String(line || "").trim()).filter(Boolean).slice(0, 6);
+    const label = action.canStartNewDay ? "Se dagslutt" : action.isQueued ? "Åpne hendelsen"
+      : action.isTaskGate ? "Åpne oppgaven" : action.isAnswerable && action.choices?.length ? "Les og ta valg" : "Les hendelsen";
+    return '<div data-lifestory-day-event="' + escapeLiteral(action.id) + '">'
+      + '<div class="civi-lifestory-kicker"><span>' + escapeLiteral(shellStory.title) + '</span>'
+      + (action.phaseLabel ? '<span>' + escapeLiteral(action.phaseLabel) + '</span>' : "") + '</div>'
+      + (primary?.label ? '<p class="muted">Livsrolle: ' + escapeLiteral(primary.label) + '</p>' : "")
+      + '<h3>' + escapeLiteral(action.subject || "Dagens hendelse") + '</h3>'
+      + situation.map(line => '<p>' + escapeLiteral(line) + '</p>').join("")
+      + '<button class="civi-btn primary" type="button" data-lifestory-next-action>' + label + '</button></div>';
+  }
+
   function renderShellStoryHtml() {
     const status = shellStory.status;
+    const dayEvent = status === "unavailable" ? renderDayEventHtml() : "";
     const message = status === "unavailable"
       ? "Denne jobben har foreløpig ingen egen fortelling i Min dag. Du kan fortsette med dagens jobb, meldinger og hendelser. Tidligere fortellinger og valg er lagret."
       : status === "error"
         ? "Fortellingen kunne ikke lastes. Valgene dine er lagret. Prøv igjen, eller fortsett med dagens andre handlinger."
         : "Finner fortellingen som hører til jobben din …";
     return '<section class="civi-lifestory-scene" data-lifestory-role-status="' + escapeLiteral(status) + '" aria-live="polite">'
-      + '<h3>' + escapeLiteral(shellStory.title) + '</h3><p>' + message + '</p>'
-      + (window.CivicationNextActionUI?.open ? '<button class="civi-btn primary" type="button" data-lifestory-next-action>Gå til dagens handlinger</button>' : "")
+      + (dayEvent ? dayEvent + '<details><summary>Om fortellingen for denne jobben</summary><p>' + message + '</p></details>'
+        : '<h3>' + escapeLiteral(shellStory.title) + '</h3><p>' + message + '</p>'
+          + (window.CivicationNextActionUI?.open ? '<button class="civi-btn primary" type="button" data-lifestory-next-action>Gå til dagens handlinger</button>' : ""))
       + (status === "error" ? '<button class="civi-btn" type="button" data-lifestory-retry>Prøv igjen</button>' : "")
       + '</section>';
   }

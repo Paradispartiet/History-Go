@@ -159,7 +159,17 @@
     const selector = getSelector();
     if (!selector || typeof selector.getCurrent !== "function") return null;
     try {
-      return selector.getCurrent() || null;
+      const action = selector.getCurrent() || null;
+      if (!action) return null;
+      const scope = resolveRoleScope(getActiveRole());
+      const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+      if (String(action.source || "").startsWith("day_phase") && runtime?.role_scope && runtime.role_scope !== scope) return null;
+      const event = window.CivicationMailEngine?.getMail?.(action.id)?.event;
+      const eventScope = event?.role_scope || event?.role_model_meta?.role_scope;
+      const jobEvent = window.CivicationEventChannels?.getMessageChannel?.(event) === "job"
+        || event?.mail_class === "daily_workday" || event?.workday_related === true;
+      if (jobEvent && eventScope && eventScope !== scope) return null;
+      return action;
     } catch (_e) {
       return null;
     }
@@ -603,17 +613,18 @@
       const active = /** @type {{ title?: string, role_key?: string }|null} */ (getActiveRole());
       if (active && lastNoActionDebug) {
         const roleScope = lastNoActionDebug.resolvedRoleScope || resolveRoleScope(active);
-        body.innerHTML = "<div class=\"civi-next-action-empty civi-next-action-debug-error\">"
-          + "<p><strong>Ingen daily mail kunne bygges for active role.</strong></p>"
-          + "<p class=\"muted\">Recovery forsøkte å bygge eller avansere arbeidsdagen, men fant fortsatt ingen reell handling.</p>"
-          + "<dl class=\"civi-debug-list\">"
+        body.innerHTML = "<div class=\"civi-next-action-empty\" role=\"alert\">"
+          + "<p><strong>Dagens hendelser kunne ikke hentes.</strong></p>"
+          + "<p>Prøv igjen for å fortsette dagen. Tidligere valg er bevart.</p>"
+          + (window.DEBUG ? "<details class=\"civi-next-action-debug-error\"><summary>Tekniske detaljer</summary><dl class=\"civi-debug-list\">"
           + "<dt>Rolle</dt><dd>" + escapeHtml(active.title || active.role_key || "Aktiv rolle") + "</dd>"
           + "<dt>role_scope</dt><dd>" + escapeHtml(roleScope) + "</dd>"
           + "<dt>Fase</dt><dd>" + escapeHtml(lastNoActionDebug.currentPhase || "ukjent") + "</dd>"
           + "<dt>Årsak</dt><dd>" + escapeHtml(lastNoActionDebug.reason || "no_current_action") + "</dd>"
-          + "</dl>"
+          + "</dl></details>" : "")
           + "</div>"
-          + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
+          + "<div class=\"civi-next-action-choices\"><button class=\"civi-btn primary\" type=\"button\" data-civi-next-action-retry=\"1\">Hent dagens hendelser</button>"
+          + "<button class=\"civi-btn secondary\" type=\"button\" data-civi-next-action-close=\"1\">Lukk</button></div>";
         return action;
       }
       body.innerHTML = "<p class=\"civi-next-action-empty muted\">Ingen handling krever svar nå. Innboksen er ajour.</p>"
@@ -804,6 +815,10 @@
   function answer(mailId, choiceId) {
     if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
     if (answerInFlight) return Promise.resolve({ ok: false, reason: "answer_in_flight" });
+    if (getCurrentAction()?.id !== mailId) {
+      open();
+      return Promise.resolve({ ok: false, reason: "action_changed" });
+    }
 
     perfMark("civi-answer-click");
     answerInFlight = true;
@@ -916,6 +931,14 @@
         return;
       }
 
+      const retryBtn = target.closest("[data-civi-next-action-retry]");
+      if (retryBtn && modal.contains(retryBtn) && !retryBtn.disabled && !answerInFlight) {
+        event.preventDefault();
+        retryBtn.disabled = true;
+        open();
+        return;
+      }
+
       const personBtn = target.closest("[data-civi-role-person]");
       if (personBtn && modal.contains(personBtn) && !personBtn.disabled) {
         event.preventDefault();
@@ -1000,3 +1023,4 @@
     isAnswerInFlight: function () { return answerInFlight; }
   };
 })();
+

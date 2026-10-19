@@ -194,6 +194,141 @@ async function main() {
   assert.equal(paused.panel.querySelector("[data-lifestory-choice]").getAttribute("data-lifestory-scene"), pausedId,
     "resume restores exactly the paused scene");
   paused.close();
+  await dayEventJourney();
   console.log("civication player journey ok (startup, choices, empty phases, pause/reload, unmapped job, race, retry, job loss)");
+}
+
+// Exercise the real selector, modal and mail writer. The day-program/engine
+// fixtures are explicit boundaries: this verifies UI routing, not the authored
+// coverage or economic balancing of every career package.
+async function dayEventJourney() {
+  const scripts = [
+    "js/Civication/systems/civicationMailEngine.js",
+    "js/Civication/systems/civicationNextActionSelector.js",
+    "js/Civication/ui/CivicationNextActionUI.js"
+  ];
+  let row, runtime, phase = "forenoon", deliveries = 0, answers = 0, advances = 0;
+  let lifeLabel = "Aleneforelder";
+  const app = await boot({ position: warehouse, configure(w) {
+    const scope = w.CivicationCareerRoleResolver.resolveCareerRoleScope(warehouse);
+    row = { id: "journey_delivery", subject: "En skadet pall", situation: ["Du oppdager en skade før varen sendes."],
+      mail_class: "daily_workday", role_scope: scope, status: "queued", phase,
+      choices: [{ id: "report", label: "Meld fra før utsending" }] };
+    runtime = { role_scope: scope, items: [row] };
+    w.CivicationCalendar = { getPhase: () => phase };
+    w.CivicationLifePositions = { getLifeContext: () => ({ primary_life_position: { label: lifeLabel } }) };
+    w.CivicationDayProgression = {
+      inspect: () => ({ phase, phaseLabel: phase === "day_end" ? "Dagslutt" : "Formiddag",
+        reason: phase === "day_end" ? "at_last_phase" : "pending", canAdvance: false,
+        openItemsInPhase: row ? 1 : 0,
+        pendingItem: row?.status === "delivered" ? row : null,
+        nextQueuedItem: row?.status === "queued" ? row : null,
+        phaseBundle: { items: row ? [row] : [] } }),
+      advancePhaseIfReady: () => { advances++; return { advanced: false }; }
+    };
+    w.CivicationDailyMailBuilder = {
+      inspect: () => ({ runtime }),
+      startToday: () => { throw new Error("valid preview must not rebuild the day"); },
+      enqueueNext: () => {
+        deliveries++;
+        row.status = "delivered";
+        w.CivicationMailEngine.sendMail(row);
+        return { enqueued: true };
+      }
+    };
+    w.HG_CiviEngine = { answer: async (id, choice) => {
+      assert.equal(id, "journey_delivery");
+      assert.equal(choice, "report");
+      answers++;
+      row.status = "answered";
+      row = null;
+      w.CivicationMailEngine.sendMail({ id: "journey_followup", subject: "Kollegaen følger opp",
+        situation: ["Skaden er meldt fra om."], mail_class: "daily_workday", role_scope: scope,
+        choices: [{ id: "read", label: "Les tilbakemeldingen" }] });
+      return { ok: true };
+    } };
+    for (const file of scripts) w.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  } });
+  const { w, panel } = app;
+  const savedStory = w.localStorage.getItem(KEY);
+  assert.equal(panel.querySelector("h3").textContent, "En skadet pall");
+  assert.match(panel.textContent, /Lager- og driftsmedarbeider/);
+  assert.match(panel.textContent, /Aleneforelder/);
+  assert.match(panel.textContent, /Du oppdager en skade/);
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Åpne hendelsen");
+  assert.equal(w.CivicationMailEngine.getMail(row.id), null, "preview never delivers queued mail");
+  assert.equal(deliveries + answers + advances, 0, "reading Min dag has no gameplay side effects");
+  assert.equal(panel.querySelectorAll("[data-civi-next-action-answer], [data-lifestory-choice]").length, 0);
+  panel.querySelector("[data-lifestory-next-action]").click();
+  await waitFor(() => w.document.querySelector("[data-civi-next-action-open-queued]"), "canonical queued surface");
+  assert.equal(w.document.querySelectorAll("[data-civi-next-action-answer]").length, 0);
+  w.document.querySelector("[data-civi-next-action-open-queued]").click();
+  await waitFor(() => w.document.querySelector("[data-civi-next-action-answer]"), "delivered choice");
+  assert.equal(deliveries, 1);
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Les og ta valg");
+  const answer = w.document.querySelector("[data-civi-next-action-answer]");
+  answer.click(); answer.click();
+  await waitFor(() => !w.CivicationNextActionUI.isAnswerInFlight() && panel.querySelector("h3")?.textContent === "Kollegaen følger opp", "answer refreshes Min dag");
+  assert.equal(answers, 1, "double click routes one consequence through the real mail writer");
+  assert.equal(w.CivicationMailEngine.getMail("journey_delivery").resolved, true);
+  assert.equal(w.CivicationMailEngine.getMail("journey_followup").resolved, false);
+  assert.equal(w.localStorage.getItem(KEY), savedStory, "daily events do not fabricate Life Story progress");
+
+  lifeLabel = "Student";
+  w.dispatchEvent(new w.Event("civi:lifePositionChanged"));
+  assert.match(panel.textContent, /Livsrolle: Student/);
+  // An inbox event from a former job is hidden even if a legacy selector can
+  // still see it during the handover. The recovery button remains available.
+  const formerChoice = w.document.querySelector("[data-civi-next-action-answer]");
+  let releaseJobDay;
+  w.CivicationDailyMailBuilder.startToday = () => new Promise(resolve => { releaseJobDay = resolve; });
+  app.setJob({ career_id: "naeringsliv", role_key: "sjafor", title: "Sjåfør" });
+  await waitFor(() => panel.textContent.includes("Sjåfør"), "new unsupported job");
+  assert.equal(panel.querySelector("[data-lifestory-day-event]"), null);
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "already open modal removes former job choices");
+  formerChoice.click();
+  panel.querySelector("[data-lifestory-next-action]").click();
+  await waitFor(() => releaseJobDay, "new job day is loading");
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "loading cannot expose stale inbox choices");
+  releaseJobDay({ ok: false });
+  await waitFor(() => w.document.querySelector("[data-civi-next-action-retry]"), "failed new job recovery stays closed to old choices");
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null);
+  assert.equal(answers, 1, "former job cannot receive another consequence during handover");
+  app.setJob(warehouse);
+  await waitFor(() => panel.querySelector("[data-lifestory-day-event]"), "return to daily event");
+  w.CivicationMailEngine.archiveMail("journey_followup");
+  phase = "day_end";
+  w.dispatchEvent(new w.Event("civi:dayPhaseChanged"));
+  assert.equal(panel.querySelector("[data-lifestory-next-action]").textContent, "Se dagslutt");
+  assert.equal(advances, 0, "preview never rolls the calendar");
+  app.close();
+
+  const recovery = await boot({ position: warehouse, configure(w) {
+    for (const file of scripts) w.eval(fs.readFileSync(path.join(ROOT, file), "utf8"));
+  } });
+  recovery.panel.querySelector("[data-lifestory-next-action]").click();
+  const doc = recovery.w.document;
+  await waitFor(() => doc.querySelector("[data-civi-next-action-retry]"), "recoverable missing daily builder");
+  assert.match(doc.getElementById("civiNextActionModalBody").textContent, /Dagens hendelser kunne ikke hentes/);
+  assert.doesNotMatch(doc.getElementById("civiNextActionModalBody").textContent, /role_scope|missing_daily_mail_builder/);
+  recovery.w.DEBUG = true;
+  recovery.w.CivicationNextActionUI.render();
+  assert.match(doc.querySelector(".civi-next-action-debug-error").textContent, /missing_daily_mail_builder/);
+  recovery.w.DEBUG = false;
+  let starts = 0;
+  recovery.w.CivicationDailyMailBuilder = {
+    startToday: () => {
+      starts++;
+      recovery.w.CivicationMailEngine.sendMail({ id: "recovered", subject: "Hendelsen er tilbake", situation: ["Du kan fortsette dagen."],
+        mail_class: "daily_private", choices: [{ id: "continue", label: "Fortsett" }] });
+      return { ok: true };
+    }
+  };
+  doc.querySelector("[data-civi-next-action-retry]").click();
+  await waitFor(() => doc.querySelector("[data-civi-next-action-answer]") && recovery.panel.querySelector("[data-lifestory-day-event]"), "retry recovers real event");
+  assert.equal(starts, 1);
+  assert.equal(doc.querySelector("[data-civi-next-action-retry]"), null);
+  assert.equal(recovery.panel.querySelector("h3").textContent, "Hendelsen er tilbake");
+  recovery.close();
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
