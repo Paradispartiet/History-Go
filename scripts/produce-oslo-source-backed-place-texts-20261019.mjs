@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import {sha256Text, splitSentences, validatePacket, validateSimilarity} from "./validate-place-description-production-v4_2.mjs";
+import {applySourceLedLengthPolicy} from "./validate-place-description-production-v4_2_policy.mjs";
 
 const root=process.cwd();
 const specPath="reports/oslo-twenty-place-text-revision-20261019/source-led-content.json";
@@ -92,7 +93,7 @@ for(const spec of doc.places){
       claimsVerified:{verified:claims.length,total:claims.length},
       factualReview:"passed",editorialReview:"passed",validatorVersion:"4.2.1"}
   };
-  const result=validatePacket({packet,place,packetFile:"data/places/production/"+spec.id+".json"});
+  const result=applySourceLedLengthPolicy(validatePacket({packet,place,packetFile:"data/places/production/"+spec.id+".json"}));
   if(result.issues.length)issues.push(...result.issues.map(x=>({place_id:spec.id,...x})));
   outputs.push({spec,canonical,place,packet,sourceUrl:spec.source});
 }
