@@ -34,6 +34,11 @@ SOURCES = [
      "file":"Bryn teglverk (1933).jpg","author":"Anders Beer Wilse","license":"CC BY-SA 3.0",
      "subject":"Bryn Teglverk i 1933, dokumentarisk industrifoto fra Østensjøveien",
      "hero":(.50,.50),"portrait":(.50,.50),"card":(.50,.50)},
+    {"id":"norges_varemesse","path":"data/places/naeringsliv/oslo/places_naeringsliv/norges_varemesse.json",
+     "file":"Varemessen - no-nb digifoto 20150105 00001 NB MIT FNR 20402.jpg",
+     "author":"Unknown author","license":"Public domain","preferOriginal":True,
+     "subject":"Det historiske utstillingsanlegget til Norges Varemesse ved Sjølyst i 1962, før rivingen",
+     "hero":(.50,.50),"portrait":(.50,.51),"card":(.50,.50)},
     {"id":"gronlikaia","path":"data/places/naeringsliv/oslo/places_naeringsliv/gronlikaia.json",
      "file":"OB.X0999 Grønlikaia (cropped).jpg","author":"Anders Beer Wilse","license":"CC BY-SA 4.0",
      "subject":"Skip fortøyd ved Grønlikaia i 1937, med Grønlia i forgrunnen",
@@ -76,7 +81,7 @@ def commons_info(entry):
         raise ValueError("Unapproved or changed source licence: "+repr(license_name))
     if entry["author"].casefold() not in artist.casefold():
         raise ValueError("Commons creator mismatch: "+repr(artist))
-    return {"download":img.get("thumburl") or img["url"],"author":artist,"license":license_name,
+    return {"download":img["url"] if entry.get("preferOriginal") else img.get("thumburl") or img["url"],"author":artist,"license":license_name,
             "sourcePage":"https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(entry["file"].replace(" ","_"))}
 
 def write_image(im, filename, size, focus):
@@ -210,7 +215,7 @@ def main():
     backlog_path.write_text(json.dumps(backlog,ensure_ascii=False,indent=2)+"\n")
     report={"schema":"historygo_oslo_twenty_photo_batch06_v1","date":"2026-10-19",
             "produced":results,"held":held,"new_v1":0,
-            "held_for_subject_or_rights":["tollbukaia","vippetangen_fisketorg","norges_varemesse"],
+            "held_for_subject_or_rights":["tollbukaia","vippetangen_fisketorg"],
             "note":"No photo substitute for Tollbukaia, the 1933 Fiskehall, or demolished Sjølystsenteret; do not use customs house, 1905 hall or unlicensed performance photograph. Browser and crop review pending."}
     (REPORT/"result.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n")
     print("FINISHED",json.dumps({"produced":len(results),"held":len(held),"assets":len(results)*3}),flush=True)
