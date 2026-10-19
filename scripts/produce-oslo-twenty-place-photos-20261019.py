@@ -31,8 +31,17 @@ SOURCES = [
   {"id":"grensen_kjopesenter","path":"data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json",
    "file":"Grensen, Oslo, 2019 (01).jpg","author":"Bahnfrend","license":"CC BY-SA 4.0",
    "subject":"Grensen som handels- og ferdselsgate","hero":(.50,.54),"portrait":(.46,.51),"card":(.50,.54)}
+  ,{"id":"grunnlovsbygget_bankplassen","path":"data/places/naeringsliv/oslo/places_naeringsliv/grunnlovsbygget_bankplassen.json",
+   "file":"Nasjonalmuseet Akritektur gamle norgesbank IMG 3894 rk 87641.JPG",
+   "author":"Bjoertvedt","license":"CC BY-SA 3.0 no",
+   "subject":"Christian H. Groschs gamle Norges Bank-bygning på Bankplassen 3",
+   "hero":(.50,.50),"portrait":(.50,.50),"card":(.50,.50)}
+  ,{"id":"jernbaneverkstedet_lodalen","path":"data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json",
+   "file":"Vognhall i Lodalen, Oslo.jpg","author":"Vidariv","license":"CC BY-SA 3.0",
+   "subject":"NSBs vognhall i Lodalen som del av jernbanens verkstedsmiljø",
+   "hero":(.50,.49),"portrait":(.49,.53),"card":(.50,.49)}
 ]
-ALLOWED = {"CC0","CC BY-SA 4.0","CC BY-SA 3.0","CC BY 4.0","Public domain"}
+ALLOWED = {"CC0","CC BY-SA 4.0","CC BY-SA 3.0","CC BY-SA 3.0 no","CC BY 4.0","Public domain"}
 
 def get(url, accept, limit=30_000_000):
     last=None

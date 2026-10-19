@@ -40,6 +40,8 @@ jobs:
           git add data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json
           git add data/places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json
           git add data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/grunnlovsbygget_bankplassen.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json
           git add data/places/historie/oslo/places_historie/sagene_skole.json
           git add data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json
           git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
@@ -53,7 +55,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: Verify actual PlaceCard images, crop positions and QuizCard flip
         env:
-          HG_VISUAL_PLACES: havnelageret,sagene_skole,christiania_seildugsfabrik,grensen_kjopesenter
+          HG_VISUAL_PLACES: havnelageret,sagene_skole,christiania_seildugsfabrik,grensen_kjopesenter,grev_wedels_plass,grunnlovsbygget_bankplassen,jernbaneverkstedet_lodalen
           HG_VISUAL_OUT: .tmp/oslo-twenty-native-review
           HG_VISUAL_CAPTURES: .tmp/oslo-twenty-native-captures
         run: |
@@ -62,7 +64,7 @@ jobs:
           from pathlib import Path
           target=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs")
           s=target.read_text()
-          s=s.replace('const allIds=[', 'const allIds=["havnelageret","sagene_skole","christiania_seildugsfabrik","grev_wedels_plass","grensen_kjopesenter",', 1)
+          s=s.replace('const allIds=[', 'const allIds=["havnelageret","sagene_skole","christiania_seildugsfabrik","grev_wedels_plass","grensen_kjopesenter","grunnlovsbygget_bankplassen","jernbaneverkstedet_lodalen",', 1)
           Path(".tmp/oslo-twenty-native-browser-audit.mjs").write_text(s)
           PY
           node .tmp/oslo-twenty-native-browser-audit.mjs
