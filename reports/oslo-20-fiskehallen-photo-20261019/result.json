@@ -2,13 +2,38 @@
   "schema": "historygo_oslo_fiskehallen_photo_v1",
   "place_id": "vippetangen_fisketorg",
   "documented_museum_object": "Oslo Museum OB.Z18506",
-  "sourcePage": "https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen",
-  "license": "CC BY-SA (version unspecified)",
-  "creator": "Wilhelm Råger",
   "photographed": 1950,
-  "status": "held_external_only",
-  "attemptedByRun": "https://github.com/Paradispartiet/History-Go/actions/runs/39254447338",
-  "reason": "Both previously attempted museum-image mirrors were unavailable or too low-resolution in the GitHub runner; original remote reference retained without claiming local assets.",
+  "creator": "Wilhelm Råger",
+  "license": "CC BY-SA (version unspecified in record)",
+  "sourcePage": "https://digitaltmuseum.no/021015456022/fiskehallen-pa-vippetangen",
+  "sourceImageAttempts": [
+    "https://lokalhistoriewiki.no/images/Fiskehallen_Oslo_inne.jpg",
+    "https://lokalhistoriewiki.no/thumb.php?f=Fiskehallen_Oslo_inne.jpg&width=1900"
+  ],
   "localAssetApproval": false,
-  "appVisualReview": "pending"
+  "appVisualReview": "pending",
+  "api": [
+    {
+      "source": "https://api.dimu.org/artifact/uuid/465fb3d6-67e8-4c20-8be4-76ff6dda6cf9",
+      "status": "read",
+      "mediaIds": 0
+    },
+    {
+      "source": "https://store-search.dimu.org/api/artifact?unique_id=465fb3d6-67e8-4c20-8be4-76ff6dda6cf9&mapping=simple_json&api.key=demo",
+      "status": "unavailable",
+      "reason": "HTTP Error 404: NOT FOUND"
+    }
+  ],
+  "attempts": [
+    {
+      "url": "https://lokalhistoriewiki.no/images/Fiskehallen_Oslo_inne.jpg",
+      "reason": "<urlopen error timed out>"
+    },
+    {
+      "url": "https://lokalhistoriewiki.no/thumb.php?f=Fiskehallen_Oslo_inne.jpg&width=1900",
+      "reason": "<urlopen error timed out>"
+    }
+  ],
+  "status": "held_external_only",
+  "reason": "No source image with confirmed adequate bytes and resolution could be retrieved; retain honest remote reference."
 }
