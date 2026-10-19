@@ -99,7 +99,7 @@ function createHarness({ testMode = true, answers = [0, 1] } = {}) {
   window.QuizEngine.init({
     getPlaceById: (id) => ({ id, name: "Teststed" }),
     getPersonById: () => null,
-    getVisited: () => ({}),
+    getVisited: () => ({ place1: true }),
     isTestMode: () => testMode,
     showToast: (message) => notifications.push(message),
     showRewardPlace: (place) => awarded.push(place.id),
@@ -113,14 +113,19 @@ function createHarness({ testMode = true, answers = [0, 1] } = {}) {
   };
 }
 
-test("quiz test button is hidden and inert during ordinary play", async () => {
+test("quiz completion button is visible and works in ordinary play", async () => {
   const h = createHarness({ testMode: false });
   await h.start();
   const button = h.elements.get("quizTestComplete");
-  assert.equal(button.hidden, true);
+  assert.equal(button.hidden, false);
+  assert.equal(typeof button.onclick, "function");
   button.onclick();
-  assert.equal(h.storage.has("hg_quiz_sets_v1"), false);
-  assert.equal(h.unlocks.length, 0);
+  const progress = JSON.parse(h.storage.get("hg_quiz_sets_v1"));
+  assert.equal(progress.set1.score, 2);
+  assert.equal(progress.set1.total, 2);
+  assert.deepEqual(h.unlocks, ["first", "second"]);
+  assert.deepEqual(h.awarded, ["place1"]);
+  assert.equal(button.onclick, null);
 });
 
 test("one click finishes a quiz with correct answers and normal rewards", async () => {

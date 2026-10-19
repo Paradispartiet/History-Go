@@ -447,7 +447,7 @@ dlog("loaded sets:", _byTargetSets.size);
           <button class="ghost" id="quizClose">${esc(tt("ui.attr.close", "Lukk"))}</button>
         </div>
         <div class="quiz-progress"><div class="bar"></div></div>
-        <div class="quiz-test-bar"><button type="button" id="quizTestComplete" hidden>${esc(tt("ui.quiz.testComplete", "Test: fullfør riktig"))}</button></div>
+        <div class="quiz-test-bar"><button type="button" id="quizTestComplete">${esc(tt("ui.quiz.testComplete", "Test: fullfør riktig"))}</button></div>
         <div class="sheet-body">
           <div id="quizQuestion" style="margin:6px 0 10px;font-weight:600"></div>
           <div id="quizChoices" class="quiz-choices"></div>
@@ -596,15 +596,6 @@ dlog("loaded sets:", _byTargetSets.size);
 // onEnd(correct, total, meta)
 // meta = { correctAnswers, conceptsCorrect, emnerTouched }
 // ============================================================
-
-function quizTestModeEnabled() {
-  try {
-    return window.HGTestMode?.isEnabled?.() === true || API.isTestMode?.() === true;
-  } catch (error) {
-    dwarn("test mode unavailable", error);
-    return false;
-  }
-}
 
 function runQuizFlow({ title, targetId, questions, onEnd, titleSuffix = "", progressPrefix = "", autoClose = true }) {
   ensureQuizUI();
@@ -844,10 +835,10 @@ if (canTag) {
     });
   }
 
-  qs.testComplete.hidden = !quizTestModeEnabled();
+  // The user-requested testing shortcut is available in normal play as well.
   qs.testComplete.disabled = false;
   qs.testComplete.onclick = () => {
-    if (finished || !quizTestModeEnabled()) return;
+    if (finished) return;
 
     // Preflight all answers before applying any reward or completion.
     const presentations = questions.map((q) =>
