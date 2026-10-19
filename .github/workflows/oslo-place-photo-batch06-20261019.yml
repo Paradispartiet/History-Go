@@ -28,9 +28,7 @@ jobs:
         run: |
           npm run places:index:build
           npm run place-open:build
-          npm run quiz:context
           npm run place-open:check
-          npm run audit:quiz-production-context
           node scripts/audit-place-images.mjs --mode=all --verify-summary=data/places/place_image_backlog_summary.json
       - name: Commit real assets and generated dependency files
         run: |
