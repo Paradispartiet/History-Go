@@ -83,6 +83,8 @@ def main():
         with Image.open(destination) as test:
             if test.size != dimensions or test.format != "WEBP":
                 raise ValueError("Invalid image dimensions or encoding")
+        if destination.stat().st_size < 8_000:
+            raise ValueError(f"Produced {key} WebP is suspiciously small")
         assets[key] = str(destination.relative_to(ROOT))
     place.update({
         "image": assets["hero"], "frontImage": assets["portrait"],
