@@ -1,0 +1,167 @@
+name: Sofienbergparken one-image source repair
+on:
+  push:
+    branches: [content/oslo20-sofienbergparken-source-20261019]
+    paths: [.github/workflows/oslo20-sofienbergparken-oneoff-20261019.yml]
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Resolve Commons author and license, build three genuine crops
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          import io, json, hashlib, re, html, time, urllib.parse, urllib.request
+          root=Path.cwd()
+          original="Sofienbergparken Oslo 2022-08-17 03.jpg"
+          page="https://commons.wikimedia.org/wiki/File:"+urllib.parse.quote(original.replace(" ","_"))
+          ua="HistoryGoOslo20/1.0 (Wikimedia image re-use; github.com/Paradispartiet/History-Go)"
+          def get(url,accept,limit=31000000):
+              for attempt in range(4):
+                  try:
+                      req=urllib.request.Request(url,headers={"User-Agent":ua,"Accept":accept})
+                      with urllib.request.urlopen(req,timeout=75) as r: raw=r.read(limit+1)
+                      if len(raw)>limit:raise ValueError("download exceeds limit")
+                      return raw
+                  except Exception as e:
+                      if attempt==3 or not any(k in str(e) for k in ("429","502","503","504","timed out")):raise
+                      time.sleep((attempt+1)*4)
+          query=urllib.parse.urlencode({"action":"query","format":"json","formatversion":"2","prop":"imageinfo","titles":"File:"+original,"iiprop":"url|extmetadata","iiurlwidth":2800})
+          record=json.loads(get("https://commons.wikimedia.org/w/api.php?"+query,"application/json"))["query"]["pages"][0]
+          assert "missing" not in record and record.get("imageinfo"),"Commons source missing"
+          info=record["imageinfo"][0]; metadata=info["extmetadata"]
+          plain=lambda x:html.unescape(re.sub("<[^>]+>","",x.get("value",""))).strip()
+          license=plain(metadata.get("LicenseShortName",{})).replace("CC-Zero","CC0").replace("CC Zero","CC0")
+          artist=plain(metadata.get("Artist",{}))
+          assert license=="CC0" and "Leonhard Lenz" in artist,(license,artist)
+          raw=get(info.get("thumburl") or info["url"],"image/*",limit=32000000)
+          with Image.open(io.BytesIO(raw)) as source:
+              img=ImageOps.exif_transpose(source).convert("RGB")
+          assert img.width>=2000 and img.height>=1400,(img.width,img.height)
+          dest=Path("bilder/places/oslo-20-sofienbergparken-20261019");dest.mkdir(parents=True,exist_ok=True)
+          sizes={"hero":(1400,900),"portrait":(900,1350),"card":(900,600)}
+          outputs={}
+          for kind,(w,h) in sizes.items():
+              filename="sofienbergparken_"+kind+".webp"
+              obj=ImageOps.fit(img,(w,h),method=Image.Resampling.LANCZOS,centering=(.5,.5))
+              obj.save(dest/filename,"WEBP",quality=87,method=6)
+              with Image.open(dest/filename) as check:assert check.size==(w,h) and check.format=="WEBP"
+              assert (dest/filename).stat().st_size>8000
+              outputs[kind]=str(dest/filename)
+          file=Path("data/places/by/oslo/sofienbergparken.json")
+          data=json.loads(file.read_text())
+          assert data["id"]=="sofienbergparken"
+          assert data["image"]=="bilder/places/sofienbergparken.JPG"
+          credit="Leonhard Lenz / Wikimedia Commons"
+          data["image"]=outputs["hero"];data["frontImage"]=outputs["portrait"]
+          data["cardImage"]=outputs["card"];data["imageCard"]=outputs["card"]
+          data["imageSourceUrl"]=page;data["imageCredit"]=credit;data["imageLicense"]="CC0 1.0"
+          data["imageCaption"]="Sofienbergparken, dokumentarfotografi fra 17. august 2022."
+          base={"source":"wikimedia_commons","sourcePage":page,"creator":"Leonhard Lenz",
+                "credit":credit,"license":"CC0 1.0","licenseUrl":"https://creativecommons.org/publicdomain/zero/1.0/",
+                "date":"2022-08-17","verifiedAt":"2026-10-19","sourceDimensions":"8384x5612"}
+          data["imageMeta"]={**base,"assetType":"documentary_place_photo",
+             "outputDimensions":"1400x900","transformation":"Center-composed hero crop from licensed source, WebP normalization."}
+          data["frontImageMeta"]={**base,"assetType":"documentary_place_portrait","orientation":"portrait",
+             "aspectRatio":"2:3","outputDimensions":"900x1350","transformation":"Independently cropped 2:3 portrait, WebP normalization."}
+          data["cardImageMeta"]={**base,"assetType":"documentary_place_card","outputDimensions":"900x600",
+             "transformation":"Independent 3:2 thumbnail from same licensed source."}
+          data["imageComposition"]={"portraitPosition":"50% 50%","heroPosition":"50% 50%",
+              "portraitRatio":"2:3","heroBehavior":"cover_with_subject_focal_point",
+              "quizCardBehavior":"contain_never_crop"}
+          file.write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n")
+          tierFile=Path("data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json")
+          tier=json.loads(tierFile.read_text())
+          row=next(x for x in tier["places"] if x["place_id"]=="sofienbergparken")
+          row.update({"image_reference_status":"image_and_portrait_referenced",
+              "photo_production_status":"source_license_verified_three_webps_written",
+              "photo_source":page,"image_rights_and_crop_approved":False,
+              "app_visual_review_status":"pending_new_hero_portrait_card_review",
+              "pending":"manual_photo_composition_and_physical_mobile_review_before_v1"})
+          tier["image_production_sofienbergparken"]={"date":"2026-10-19","place_id":"sofienbergparken",
+              "source":page,"license":"CC0 1.0","photographer":"Leonhard Lenz",
+              "source_sha256":hashlib.sha256(raw).hexdigest(),"webps_produced":3,
+              "old_unverified_jpg_still_present_but_unreferenced":True,
+              "v1_promoted":0,"native_browser_review":"pending"}
+          tierFile.write_text(json.dumps(tier,ensure_ascii=False,indent=2)+"\n")
+          print("SOFIENBERG PHOTO_READY",page,license,img.size,outputs,flush=True)
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rebuild only dependent place index and app payload
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+      - run: npx playwright install --with-deps chromium
+      - name: Prepare single-place real browser audit
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          txt=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs").read_text()
+          txt=txt.replace('const allIds=[','const allIds=["sofienbergparken",',1)
+          Path(".tmp/sofienbergparken-visual.mjs").write_text(txt)
+          PY
+      - name: Check new real PlaceCard and quiz at two widths
+        id: visual
+        continue-on-error: true
+        env:
+          HG_VISUAL_PLACES: sofienbergparken
+          HG_VISUAL_OUT: reports/oslo20-sofienberg-20261019/visual
+          HG_VISUAL_CAPTURES: .tmp/oslo20-sofienberg-20261019/captures
+        run: node .tmp/sofienbergparken-visual.mjs
+      - name: Write evidence and remove one-off workflow
+        if: always()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          tierFile=Path("data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json")
+          if tierFile.exists():
+              tier=json.loads(tierFile.read_text())
+              r=Path("reports/oslo20-sofienberg-20261019/visual/report.json")
+              if r.is_file():
+                  report=json.loads(r.read_text())
+                  result=(report.get("summary",{}).get("passed")==2 and report.get("summary",{}).get("blocked")==0)
+                  tier["image_production_sofienbergparken"]["native_browser_review"]="passed_2_of_2" if result else "failed_pending_fix"
+                  place=next(x for x in tier["places"] if x["place_id"]=="sofienbergparken")
+                  place["app_visual_review_status"]="passed_chromium_390_768_pending_manual_mobile_review" if result else "browser_review_failed_pending_fix"
+                  tierFile.write_text(json.dumps(tier,ensure_ascii=False,indent=2)+"\n")
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/oslo20-sofienbergparken-oneoff-20261019.yml
+          git add -A .github/workflows/oslo20-sofienbergparken-oneoff-20261019.yml
+          git add bilder/places/oslo-20-sofienbergparken-20261019/ data/places/by/oslo/sofienbergparken.json
+          git add data/places/places_index.json data/runtime/place-open/sofienbergparken.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          if test -f reports/oslo20-sofienberg-20261019/visual/report.json; then git add reports/oslo20-sofienberg-20261019/visual/report.json; fi
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets(oslo20): replace Sofienbergparken unverified JPG with CC0 WebP triplet'
+            git push origin HEAD:refs/heads/content/oslo20-sofienbergparken-source-20261019
+          fi
+      - name: Preserve crop screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sofienbergparken-crop-visual
+          path: |
+            reports/oslo20-sofienberg-20261019/
+            .tmp/oslo20-sofienberg-20261019/
+          if-no-files-found: warn
+      - name: Enforce native visual pass
+        if: steps.visual.outcome != 'success'
+        run: exit 1
