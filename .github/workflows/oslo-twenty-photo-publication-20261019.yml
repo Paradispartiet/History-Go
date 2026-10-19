@@ -1,0 +1,81 @@
+name: Oslo twenty — five licensed Place photo sets
+on:
+  push:
+    branches: [content/oslo-twenty-photo-publication-20261019]
+    paths:
+      - scripts/produce-oslo-twenty-place-photos-20261019.py
+      - .github/workflows/oslo-twenty-photo-publication-20261019.yml
+permissions:
+  contents: write
+jobs:
+  produce:
+    name: Materialize Commons images and bind real Place media
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install Pillow==11.3.0
+      - name: Produce licensed WebP triplets and crop contact sheet
+        run: python scripts/produce-oslo-twenty-place-photos-20261019.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Materialize canonical place index and Place-open runtime
+        run: |
+          npm run places:index:build
+          npm run place-open:build
+          npm run place-open:check
+      - name: Commit asset output on the review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add bilder/places/oslo-20-media-20261019 reports/oslo-20-media-20261019
+          git add data/places/naeringsliv/oslo/places_naeringsliv/havnelageret.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/christiania_seildugsfabrik.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/grensen_kjopesenter.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/grunnlovsbygget_bankplassen.json
+          git add data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json
+          git add data/places/historie/oslo/places_historie/sagene_skole.json
+          git add data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json
+          git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
+          git add data/places/places_index.json data/runtime/place-open
+          if git diff --cached --quiet; then
+            echo 'Photo data already synchronized; no duplicate commit'
+          else
+            git commit -m 'assets(oslo): publish reviewed Commons photo triplets to PlaceCards'
+            git push origin HEAD:content/oslo-twenty-photo-publication-20261019
+          fi
+      - run: npx playwright install --with-deps chromium
+      - name: Verify actual PlaceCard images, crop positions and QuizCard flip
+        env:
+          HG_VISUAL_PLACES: havnelageret,sagene_skole,christiania_seildugsfabrik,grensen_kjopesenter,grev_wedels_plass,grunnlovsbygget_bankplassen,jernbaneverkstedet_lodalen
+          HG_VISUAL_OUT: .tmp/oslo-twenty-native-review
+          HG_VISUAL_CAPTURES: .tmp/oslo-twenty-native-captures
+        run: |
+          mkdir -p .tmp
+          python - <<'PY'
+          from pathlib import Path
+          target=Path("tests/oslo-v1-actual-runtime-visual-browser-audit.mjs")
+          s=target.read_text()
+          s=s.replace('const allIds=[', 'const allIds=["havnelageret","sagene_skole","christiania_seildugsfabrik","grev_wedels_plass","grensen_kjopesenter","grunnlovsbygget_bankplassen","jernbaneverkstedet_lodalen",', 1)
+          Path(".tmp/oslo-twenty-native-browser-audit.mjs").write_text(s)
+          PY
+          node .tmp/oslo-twenty-native-browser-audit.mjs
+      - name: Upload contact sheet, licence report and actual Chromium captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: oslo-twenty-five-photo-placecard-review
+          include-hidden-files: true
+          path: |
+            reports/oslo-20-media-20261019/
+            .tmp/oslo-twenty-native-review/
+            .tmp/oslo-twenty-native-captures/
+          if-no-files-found: warn
