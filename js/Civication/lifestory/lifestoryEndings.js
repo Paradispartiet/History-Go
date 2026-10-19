@@ -64,7 +64,9 @@
    * @returns {boolean}
    */
   function isFinalDay(state, content) {
-    return !content.scenes.some((s) => s.dag > state.dag);
+    // Local week/chapter endings stay authored and deterministic. A later
+    // personal episode is an optional continuation after this local ending.
+    return !content.scenes.some((s) => !s.livsdagFra && s.dag > state.dag);
   }
 
   /**

@@ -179,3 +179,14 @@ Den nye målrettede `tests/civication-source-grounded-wave-d.test.js` er ment å
 **Wave D målrettet preflight:** den nye runner-testen og renholder-testen ble kjørt før GitHub Actions publiserte synkroniserte karriere-/readiness-data. Engangs-workflowene er deretter fjernet. Dette er ikke en full gjennomspilling av alle rolle- og livsoverganger, og ordinær PR-CI gjenstår som eget mergevilkår.
 
 **Publiseringsrekkefølge:** Wave C ble merget til `main` gjennom PR #6374 (squash `aad89734e065d2ccd49d65dc00fe47088cf9e3e8`). Wave D er deretter synkronisert mot dette `main`-grunnlaget og PR #6377 er flyttet til `main` som base. De 34 nye scene-ID-ene og 68 valgene er bevart; ordinær Civication-CI på Wave D-sluttgrenen er fortsatt det siste mergevilkåret.
+
+
+## Femte produksjonsbolk – Wave E (18. oktober 2026)
+
+Wave E fortsetter **C01 (Jonas og vennskapets grenser)** og **C05 (dokumentasjonskrav og uavklart status)** *etter* den første uka, på spillerens felles livsdag – ikke på jobbpakkens lokale dag. Det er skrevet **24 egne scener med 48 valg**: 16 konsekvenser tidligst livsdag 9, og 8 videre kapitelscener tidligst livsdag 12. Totalt for Wave A–E: **149 scener og 298 valg**. Dette er alternative forløp, ikke scener alle spillere får i én gjennomspilling.
+
+Inngangene krever det dokumenterte Wave D-valget og minst to forløpte livsdager siden det faktisk ble spilt. Neste kapittel krever et Wave E-valg og ytterligere tre livsdager. Uten arkivert handling med tidsstempel opprettes ingen gammel hendelse eller et tilbakedatert svar. Ikke tolk en kvittering som vedtak, et utkast som sendt brev eller en åpen invitasjon som en møteavtale.
+
+Rolleuavhengig historikk for C01/C05 synkroniseres ved jobbbytter: de aktuelle flaggene, gjennomførte scenene og faktiske arkivlinjene følger spilleren. Jobbspesifikke fortellingsflagg og rollearbeid blir i sine respektive pakker. Den eksisterende Min dag-runneren brukes fortsatt. Når et senere privat kapittel er åpent, kan spilleren gå videre i livsdager selv om den lokale jobbuka er ferdig, uten å måtte fullføre en urelatert Badge-gatet fortsettelse. Dersom en egen valgt fortsettelse også er tilgjengelig, beholdes den som alternativ.
+
+Kontrakt og kilder: `data/Civication/lifestory/editorial/inspiration/waveAFifthInstallmentsV1.json`, `data/Civication/lifestory/life/{threads,scenes}.json`, `tests/civication-source-grounded-wave-e.test.js`. Goodreads/IMDb/Film Producer-ID-ene videreføres fra Wave D uten å utgi verksreferansene for dokumentert nærlesning. Browser/mobilopplevelse er ikke kontrollert i denne innholdsbolken.

@@ -98,11 +98,28 @@
     return true;
   }
 
+  // Fortsettelser i delt privatliv bruker spillerens livsdag, ikke den
+  // aktive jobbrollens lokale kapiteldag.
+  function sceneDue(state, scene) {
+    if (!Number.isInteger(scene.livsdagFra)) return scene.dag === state.dag;
+    if ((state.livsdag || state.dag) < scene.livsdagFra) return false;
+    if (scene.etterValgDager) {
+      const started = state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg];
+      if (!Number.isInteger(started) || (state.livsdag || state.dag) - started < scene.etterValgDager.dager) return false;
+    }
+    return true;
+  }
+  function hasPendingPrivateScenes(state, content) {
+    return content.scenes.some(scene => Number.isInteger(scene.livsdagFra)
+      && !content.fortsettelse
+      && !state.spilteScener.includes(scene.id)
+      && (!scene.etterValgDager || Number.isInteger(state.privatHistorie?.flaggDager?.[scene.etterValgDager.flagg]))
+      && Object.entries(scene.conditions?.flagg || {}).every(([key, value]) => state.tidligereValg[key] === value));
+  }
+
   /**
-   * Scener spilleren kan stå i akkurat nå: riktig dag og fase, tråden er
-   * spillbar (active/escalated), scenen er ikke spilt, conditions er
-   * oppfylt, og den er enten en start-scene eller eksplisitt låst opp av
-   * et tidligere valg.
+   * Scener spilleren kan stå i akkurat nå: riktig dag, fase, aktiv tråd
+   * og eventuelle tidsankre fra faktisk spilte private valg.
    * @param {any} state
    * @param {any} content
    * @returns {any[]}
@@ -110,7 +127,8 @@
   function getCandidateScenes(state, content) {
     if (isContinuationPaused(state, content)) return [];
     return content.scenes.filter((scene) =>
-      scene.dag === state.dag &&
+      (!content.fortsettelse || !Number.isInteger(scene.livsdagFra)) &&
+      sceneDue(state, scene) &&
       scene.fase === state.fase &&
       isThreadPlayable(state, scene.threadId) &&
       state.spilteScener.indexOf(scene.id) === -1 &&
@@ -191,6 +209,7 @@
     if (Object.keys(people).length) entry.personRepresentanter = people;
     if (choice.konsekvensTekst) entry.konsekvensTekst = State.presentText(state, content, choice.konsekvensTekst);
     state.arkiv.push(entry);
+    if (/^wave_[abcde]_c0[15]_/.test(scene.id)) State.capturePrivateStory(state);
 
     const progress = advance(state, content);
     return {
@@ -248,7 +267,7 @@
   function startNextDay(state, content) {
     if (isContinuationPaused(state, content)) throw new Error("[LifestoryRunner] fortsettelsen er satt på pause");
     if (!state.dagFerdig) throw new Error("[LifestoryRunner] dagen er ikke ferdig — kan ikke starte neste dag");
-    if (content.role.symposium && state.dag >= content.role.symposium.sisteDag) throw new Error("[LifestoryRunner] neste kapittel må åpnes før neste dag");
+    if (content.role.symposium && state.dag >= content.role.symposium.sisteDag && !hasPendingPrivateScenes(state, content)) throw new Error("[LifestoryRunner] neste kapittel må åpnes før neste dag");
     // Én sammenhengende fortellingstid for arkivet. Hver rolle beholder
     // dessuten sin lokale kapiteldag, som gjenopptas ved senere jobbbytte.
     state.livsdag = (Number.isInteger(state.livsdag) && state.livsdag > 0 ? state.livsdag : state.dag) + 1;
@@ -322,7 +341,7 @@
 
     const senereFaser = content.faser.slice(faseIndex + 1).map((f) => f.id);
     const senereIDag = content.scenes.filter((s) =>
-      s.dag === state.dag &&
+      sceneDue(state, s) &&
       senereFaser.indexOf(s.fase) !== -1 &&
       s.tilgjengelighet === "start" &&
       isThreadPlayable(state, s.threadId) &&
@@ -433,6 +452,8 @@
   }
 
   const api = {
+    sceneDue,
+    hasPendingPrivateScenes,
     getContinuationIds,
     canStartContinuation,
     startContinuation,

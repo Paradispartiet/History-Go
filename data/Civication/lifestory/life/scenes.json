@@ -3366,6 +3366,1038 @@
           "konsekvensTekst": "Ingen planer, ingen neste steg i kveld. Bare en kveld der du faktisk har et sted å gå i morgen. Det er nok."
         }
       ]
+    },
+    {
+      "id": "wave_e_c01_dag9_hilsen_uten_avtale",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En invitasjon står fortsatt åpen",
+      "tekst": "Noen dager etter meldingen fra Jonas ligger den åpne invitasjonen i samtalen. Det er hyggelig å se, men dere har verken avtalt dag eller lovet å møtes.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "hilsen_uten_avtale"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Spør om han vil foreslå en konkret dag",
+          "konsekvensTekst": "Du sender et spørsmål om når det kan passe. Du setter ikke av en dag før han har svart.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "forespoersel"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Send en hilsen om noe annet enn avtalen",
+          "konsekvensTekst": "Du forteller litt om dagen din. Vennskapet fortsetter uten et krav om besøk.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "behold_kontakt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_tidspunkt_etterspurt",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Når ingen dato kommer",
+      "tekst": "Jonas har ennå ikke svart med et tidspunkt. Du merker at du har sjekket telefonen oftere enn du hadde tenkt. Stillheten er ikke et avslag, men heller ikke en avtale.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "tidspunkt_etterspurt"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Be ham si fra når han faktisk vet",
+          "konsekvensTekst": "Du gir ham rom til å komme med et tidspunkt. Kalenderen din er fortsatt fri.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "forespoersel"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Legg invitasjonen til side for denne uka",
+          "konsekvensTekst": "Du lar være å følge opp igjen nå. Ingen avtale blir avlyst, for ingen var inngått.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "pause"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_telefon_aapen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En samtale som ikke ble bestemt",
+      "tekst": "Det står «vi kan ringes en kveld» i tråden med Jonas. Ingen har ringt og det finnes ikke et klokkeslett. Du kan svare uten å gjøre en mulighet til en forpliktelse.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "telefon_aapen"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Skriv om noe hverdagslig i stedet",
+          "konsekvensTekst": "Jonas får en kort hilsen. Du ber ikke om en samtale som må skje i kveld.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "behold_kontakt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Si at telefoner fungerer best når dere avtaler tid",
+          "konsekvensTekst": "Du forklarer hvordan du helst vil gjøre det. Det er en grense, ikke en anklage.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "tydelig_grense"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_telefon_tid_etterspurt",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Telefonen er fremdeles stille",
+      "tekst": "Et par dager etter at du ba om klokkeslett, ligger det ikke noe konkret forslag fra Jonas. Du er usikker på om du skal spørre igjen eller la det være.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "telefon_tid_etterspurt"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Spør én gang om et tidspunkt neste uke",
+          "konsekvensTekst": "Du etterspør en tydelig avtale, men registrerer ingen samtale før tidspunktet er bekreftet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "forespoersel"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "La telefonforslaget hvile",
+          "konsekvensTekst": "Du gir deg selv en kveld uten å vente på en ubestemt oppringning.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "pause"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_ny_samtale_aapen",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Et spørsmål uten søknadstall",
+      "tekst": "Du tenker på at Jonas lovet å spørre om dagen din fremfor jobbsøknader. Et par dager har gått. Vennskapet skal ikke avgjøres av én hyggelig melding.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "ny_samtale_aapen"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Send ham et lite glimt fra dagen",
+          "konsekvensTekst": "Du tar kontakt om noe du faktisk har opplevd. Du velger selv hvor mye du deler.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "behold_kontakt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Si at det betydde noe å bli lyttet til",
+          "konsekvensTekst": "Du bekrefter grensen du satte. Jonas får ikke dermed innsyn i økonomien din.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "tydelig_grense"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_avstand_en_stund",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Pausen har vart i flere dager",
+      "tekst": "Du ba Jonas om litt tid. Det har vært stille siden, og det er i tråd med det du ønsket. Du må ikke fylle stillheten med en forklaring.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "avstand_en_stund"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "La pausen vare uten dårlig samvittighet",
+          "konsekvensTekst": "Du beholder avstanden noen dager til. Vennskapet er ikke erklært avsluttet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "pause"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Skriv at du setter pris på at han respekterte grensen",
+          "konsekvensTekst": "Du takker uten å åpne for nye spørsmål om jobb eller penger.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "tydelig_grense"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_pause_holdes",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "En fri kveld er også en avtale med deg selv",
+      "tekst": "Du la telefonen bort. Nå har det gått noen dager uten nye krav fra Jonas. Det finnes ikke noen oppmøteplikt å kompensere for.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "pause_holdes"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Fortsett å la tråden ligge",
+          "konsekvensTekst": "Du holder fast ved pausen. Ingen invitasjon eller samtale blir skapt i ettertid.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "pause"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Send en enkel hilsen når du selv ønsker",
+          "konsekvensTekst": "Du tar initiativ uten å love verken besøk eller lang samtale.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "behold_kontakt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag9_takk_uten_krav",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c01_status",
+        "dager": 2
+      },
+      "fase": "kveld",
+      "visningstype": "melding",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Takken var nok",
+      "tekst": "Du takket Jonas for at han lyttet. Siden da har samtalen fått ligge. Det er mulig å bry seg om en venn og likevel ha deler av livet for seg selv.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c01_status": "takk_uten_krav"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Spør hvordan hans egen uke har vært",
+          "konsekvensTekst": "Du åpner en vanlig samtale mellom venner uten å tilby en rapport om deg selv.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "behold_kontakt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Skriv at du fortsatt ikke vil snakke om søknader",
+          "konsekvensTekst": "Du gjentar grensen rolig. Det er et nytt valg, ikke en påstand om at Jonas har brutt den.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_retning": "tydelig_grense"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag12_behold_kontakt",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c01_retning",
+        "dager": 3
+      },
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Å snakke uten å forklare seg",
+      "tekst": "Noen dager etter den forrige hilsenen ser du at kontakten med Jonas kan handle om helt vanlige ting. Jobb, penger og fremtid er fortsatt temaer du selv bestemmer over.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c01_retning": "behold_kontakt"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Fortsett med korte hverdagsmeldinger",
+          "konsekvensTekst": "Du lar vennskapet være uformelt. Ingen dato eller oppmøte blir registrert.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "hverdagskontakt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Si fra at du trenger en ny pause",
+          "konsekvensTekst": "Du avslutter samtalen for nå uten å erklære vennskapet over.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "ny_pause"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag12_tydelig_grense",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c01_retning",
+        "dager": 3
+      },
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Grensen står også når uka skifter",
+      "tekst": "Du satte ord på hva du ønsket at Jonas skulle la være å spørre om. Nye arbeidsdager eller et jobbbytte endrer ikke hvem som får vite hva om privatlivet ditt.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c01_retning": "tydelig_grense"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Behold grensen uten mer forklaring",
+          "konsekvensTekst": "Du lar den siste beskjeden stå. Ingen ekstra samtykke blir utledet av stillhet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "grense_bevart"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Inviter til kontakt om noe annet",
+          "konsekvensTekst": "Du gjør plass til vennskapet, men åpner ikke regnskapet eller jobbhistorikken.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "annen_kontakt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag12_forespoersel",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c01_retning",
+        "dager": 3
+      },
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Det konkrete tidspunktet mangler fortsatt",
+      "tekst": "Du spurte etter en dag eller et klokkeslett. I den lagrede samtalen finnes det fortsatt ikke en bekreftet avtale. Du trenger ikke holde av tid på ubestemt grunnlag.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c01_retning": "forespoersel"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "La Jonas ta neste initiativ",
+          "konsekvensTekst": "Du slutter å passe på en avtale som ikke finnes. En senere invitasjon må bekreftes for seg.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "initiativ_hos_jonas"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Foreslå en mulig dag, tydelig som et spørsmål",
+          "konsekvensTekst": "Du sender et forslag. Det er ennå ikke et bekreftet møte og legges ikke i kalenderen.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "nytt_forslag"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c01_dag12_pause",
+      "threadId": "wave_e_c01",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c01_retning",
+        "dager": 3
+      },
+      "fase": "kveld",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 6,
+      "tittel": "Dager uten forklaringsplikt",
+      "tekst": "Pausen du valgte har gitt deg mer ro. Du kan gjenoppta kontakten når du selv vil, og du kan også la den ligge. Stillheten sier ikke at Jonas har vendt deg ryggen.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c01_retning": "pause"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Fortsett pausen en stund til",
+          "konsekvensTekst": "Du beholder privatrommet ditt uten nye avtaler eller påstått konflikt.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "pause_videre"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Send en kort melding om at du har det greit",
+          "konsekvensTekst": "Du gir et livstegn uten å love videre samtale, besøk eller innsyn.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c01_etterspill": "livstegn"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_under_behandling_presisert",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Den siste sikre opplysningen",
+      "tekst": "Du har forklart forskjellen mellom mottak og vedtak. Flere dager senere er den sist lagrede dokumentasjonen fortsatt en kvittering. Du vet ikke hva som har skjedd i saken etterpå.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "under_behandling_presisert"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Skriv en tidslinje med det du vet",
+          "konsekvensTekst": "Du samler innsending og mottaksdato i egne notater uten å fylle inn ukjente hendelser.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "oversikt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Bestem deg for å avvente før neste kontroll",
+          "konsekvensTekst": "Du lar saken ligge noen dager uten å tolke stillheten som et resultat.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "avvent"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_kvittering_delt",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Et spørsmål uten svar",
+      "tekst": "Du delte en kvitteringsdato med en venn, men ikke en avgjørelse. Nå vil du kunne forklare saken enkelt dersom noen spør igjen.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "kvittering_delt"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Ta vare på kvitteringen sammen med vedlegget",
+          "konsekvensTekst": "Du samler dokumentasjonen. Ingen saksbehandlerhandling eller utbetaling oppstår.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "dokumentasjon"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "La andre slippe å få en løpende statusrapport",
+          "konsekvensTekst": "Du lar spørsmålet ligge. Manglende svar fra etaten betyr fortsatt ikke godkjenning.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "avvent"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_privat_paminnelse",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Notatet kommer fram igjen",
+      "tekst": "Du finner din egen påminnelse om å se på saken senere. Påminnelsen dokumenterer at du ville følge opp, ikke at det har kommet nytt fra etaten.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "privat_paminnelse"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Noter hva du må se etter når du åpner portalen",
+          "konsekvensTekst": "Du skriver at du vil lete etter faktisk status og meldingsdato, uten å oppgi en ny status nå.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "oversikt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Skyv kontrollen noen dager uten å endre saken",
+          "konsekvensTekst": "Du endrer din egen plan, ikke en offentlig frist eller et vedtak.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "avvent"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_kontrollkilde_notert",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Kilden du må tilbake til",
+      "tekst": "Du har skrevet at en eventuell endring må kontrolleres i portalen. Notatet ditt kan hjelpe, men sier ingenting om utfallet.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "kontrollkilde_notert"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Lag en kort sjekkliste for faktisk status",
+          "konsekvensTekst": "Du noterer hva som må dokumenteres neste gang. Listen er privat.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "oversikt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Formuler et spørsmål du kan sende om status",
+          "konsekvensTekst": "Du skriver et utkast til henvendelse. Ingen melding er sendt og ingen svar er mottatt.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "sporring"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_side_presisert",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Spørsmålet om arbeidstidssiden",
+      "tekst": "Du har allerede presisert hvilken side i arbeidsavtalen som må kunne leses. Det finnes ingen lagret bekreftelse på at den er kontrollert.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "side_presisert"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Skriv et kort oppfølgingsspørsmål i utkast",
+          "konsekvensTekst": "Du forbereder en konkret formulering om lesbarhet. Utkastet er ikke et mottatt svar.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "sporring"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Arkiver den opprinnelige presiseringen",
+          "konsekvensTekst": "Du tar vare på ordlyden og datoen for henvendelsen. Kontrollstatusen forblir uavklart.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "dokumentasjon"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_svar_avventes",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Det ubesvarte spørsmålet",
+      "tekst": "Du valgte å vente på faktisk tilbakemelding. Flere dager senere kan du fortsatt ikke vise til en bekreftelse om den aktuelle siden.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "svar_avventes"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Hold spørsmålet åpent",
+          "konsekvensTekst": "Du registrerer at du fortsatt avventer, uten å gjette en behandlingstid.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "avvent"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Lag et notat om hva svaret må avklare",
+          "konsekvensTekst": "Du skiller mottak, lesbarhet og vedtak i tre punkter.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "oversikt"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_melding_vist",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Ordene som faktisk står der",
+      "tekst": "Du viste fram en registreringsmelding. Den dokumenterer at filen ble registrert, ikke at innholdet ble godkjent. Du tar fram meldingen igjen.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "melding_vist"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Arkiver meldingen sammen med dato og saksreferanse",
+          "konsekvensTekst": "Du sikrer det du faktisk kan dokumentere, uten å tillegge etaten en avgjørelse.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "dokumentasjon"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Forbered ett konkret spørsmål om kontroll",
+          "konsekvensTekst": "Du lager et utkast om dokumentets lesbarhet. Ingen ny respons blir funnet på.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "sporring"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag9_mangel_oppsummert",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 9,
+      "etterValgDager": {
+        "flagg": "wa_d_c05_status",
+        "dager": 2
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Oversikten har åpne felt",
+      "tekst": "Du skrev en liste over det du fortsatt ikke vet. Den er nyttig nettopp fordi den ikke later som om et ukjent svar finnes.",
+      "conditions": {
+        "flagg": {
+          "wa_d_c05_status": "mangel_oppsummert"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Oppdater oversikten med bekreftede datoer",
+          "konsekvensTekst": "Du fyller inn bare dokumenterte hendelser, mens statusfeltet står åpent.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "oversikt"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Samle originalfilen og meldingen på ett sted",
+          "konsekvensTekst": "Du gjør underlaget lettere å finne. Arbeidet er internt og endrer ikke saken.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_retning": "dokumentasjon"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag12_oversikt",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c05_retning",
+        "dager": 3
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Et arkiv som tåler nye spørsmål",
+      "tekst": "Du har samlet dokumenterte datoer og skilt dem fra ukjente sakssteg. Oversikten er nyttig også hvis du bytter jobb, for den tilhører ditt liv og din sak.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c05_retning": "oversikt"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Behold oversikten og merk ubekreftede felt",
+          "konsekvensTekst": "Du lagrer notatet. Utfallet i saken og eventuelle ytelser er fortsatt ukjent.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "oversikt_bevart"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Forbered en kort henvendelse med konkrete spørsmål",
+          "konsekvensTekst": "Du skriver et utkast. Utkastet utgjør verken innsending eller svar.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "henvendelse_utkast"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag12_sporring",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c05_retning",
+        "dager": 3
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Et utkast er ikke et svar",
+      "tekst": "Du har formulert et spørsmål du kan stille. Ingen ny melding fra etaten er lagt til historikken, og du vil unngå å krysse av «avklart» før det finnes dokumentasjon.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c05_retning": "sporring"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "La spørsmålet ligge som utkast",
+          "konsekvensTekst": "Du merker det som ikke sendt. Ingen ny myndighetshandling registreres.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "utkast_lagret"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Samle bilag før du eventuelt kontakter dem",
+          "konsekvensTekst": "Du kobler spørsmålet til eksisterende kvittering og vedlegg. Saksstatusen endres ikke.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "bilag_klart"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag12_dokumentasjon",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c05_retning",
+        "dager": 3
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Papirene forteller bare det de viser",
+      "tekst": "Du har tatt vare på kvitteringen, vedlegget og tidligere spørsmål. Selv et ryddig arkiv kan ikke gi deg en avgjørelse som aldri er dokumentert.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c05_retning": "dokumentasjon"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Lag et skille mellom mottatt og kontrollert",
+          "konsekvensTekst": "Du merker dokumentenes bevisverdi presist. Ingen vedtak føres.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "skille_lagret"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Skriv hvilke opplysninger som fremdeles mangler",
+          "konsekvensTekst": "Du oppretter en mangeloversikt. Den er din, ikke saksbehandlerens.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "mangler_listet"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "wave_e_c05_dag12_avvent",
+      "threadId": "wave_e_c05",
+      "dag": 1,
+      "livsdagFra": 12,
+      "etterValgDager": {
+        "flagg": "wa_e_c05_retning",
+        "dager": 3
+      },
+      "fase": "ettermiddag",
+      "visningstype": "intern vurdering",
+      "tilgjengelighet": "start",
+      "prioritet": 5,
+      "tittel": "Å vente uten å dikte et svar",
+      "tekst": "Du valgte å avvente. Nye dager kan inneholde jobb, venner og vanlige gjøremål selv om en søknad ikke er avgjort. Ingen betaling eller avgjørelse oppstår av at tiden går.",
+      "conditions": {
+        "flagg": {
+          "wa_e_c05_retning": "avvent"
+        }
+      },
+      "valg": [
+        {
+          "id": "forste",
+          "tekst": "Behold den uavklarte saken som åpen",
+          "konsekvensTekst": "Du merker saken som uavklart i dine egne notater.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "aapen_sak"
+            }
+          }
+        },
+        {
+          "id": "andre",
+          "tekst": "Skriv en privat påminnelse om senere kontroll",
+          "konsekvensTekst": "Du lager bare en påminnelse. Ingen behandlingstid eller frist blir oppfunnet.",
+          "effekter": {
+            "flagg": {
+              "wa_e_c05_etterspill": "senere_kontroll"
+            }
+          }
+        }
+      ]
     }
   ]
 }

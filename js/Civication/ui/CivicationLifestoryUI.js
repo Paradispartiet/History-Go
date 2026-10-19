@@ -263,7 +263,7 @@
     const Endings = /** @type {any} */ (window).CivicationLifestoryEndings;
     // Ved kapittelslutt åpnes neste kapittel gjennom sin eksisterende port.
     // Å hoppe rett videre her ville omgått merker/livsposisjoner.
-    if (Endings?.isFinalDay?.(state, content)) return false;
+    if (Endings?.isFinalDay?.(state, content) && !Runner.hasPendingPrivateScenes?.(state, content)) return false;
     try {
       Runner.startNextDay(state, content);
       state.kalenderDag += 1;
@@ -638,10 +638,12 @@
     const handlingsHtml = sisteDag
       ? "<div class=\"civi-lifestory-actions\">"
         + continuationHtml
+        + (Runner.hasPendingPrivateScenes?.(state, content) ? '<button class="civi-btn primary" type="button" data-lifestory-next-day>Fortsett privatlivet</button>' : "")
         + pendingDayActionHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-restart>Start et nytt liv</button>"
         + "</div>"
       : "<div class=\"civi-lifestory-actions\">"
+        + continuationHtml
         + "<button class=\"civi-btn primary\" type=\"button\" data-lifestory-next-day>Start neste dag</button>"
         + pendingDayActionHtml
         + "<button class=\"civi-btn\" type=\"button\" data-lifestory-restart>Start livet på nytt</button>"
