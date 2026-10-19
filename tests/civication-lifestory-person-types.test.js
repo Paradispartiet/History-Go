@@ -118,8 +118,9 @@ function play(type, id, b) {
   }
 
   // Actual production Content/State/Runner/Bridge/UI, including async boot.
-  const dom = new JSDOM('<section id="civiLifestoryPanel"></section>', { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
+  const dom = new JSDOM('<section id="civiLifestoryPanel"></section><div class="civi-footer"><button id="civiMoreMenuToggle" aria-expanded="false">Mer</button></div><div id="civiMoreMenu" hidden><button data-lifestory-restart>Start livet på nytt</button></div>', { url: 'https://example.test/Civication.html', runScripts: 'outside-only' });
   const w = dom.window;
+  w.confirm = () => true; // Confirm footer-only destructive action.
   w.localStorage.setItem('people_collected', JSON.stringify({ mari_boine: true, sossen_krohg: true, peter_emil_steen: true }));
   const collected = w.localStorage.getItem('people_collected');
   w.fetch = async url => ({ ok: true, json: async () => read(String(url)) });
@@ -155,7 +156,11 @@ function play(type, id, b) {
   assert.equal(w.localStorage.getItem(S.STORAGE_KEY), before, 'render is read-only');
   assert.equal(w.localStorage.getItem('people_collected'), collected, 'Civication never writes collection');
   while (!w.CivicationLifestoryState.load().dagFerdig) panel.querySelector('[data-lifestory-choice]').click();
-  panel.querySelector('[data-lifestory-restart]').click();
+  assert.equal(panel.querySelector('[data-lifestory-restart]'), null, 'restart must not appear in Min dag');
+  w.document.getElementById('civiMoreMenuToggle').click();
+  const footerRestart = w.document.querySelector('#civiMoreMenu [data-lifestory-restart]');
+  assert.ok(footerRestart, 'restart is available through the footer submenu');
+  footerRestart.click();
   for (let i = 0; i < 100 && !w.CivicationLifestoryState.load()?.personRepresentanter; i++) await tick();
   const fresh = w.CivicationLifestoryState.load();
   assert.equal(fresh.dag, 1);
