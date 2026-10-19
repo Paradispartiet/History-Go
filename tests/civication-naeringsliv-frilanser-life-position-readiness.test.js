@@ -23,7 +23,10 @@ assert.equal(row.role_world_status, 'role_world_complete');
 assert.equal(row.role_world_path, worldPath);
 assert.equal(row.authored_depth.max_narrative_depth, 14);
 assert.deepEqual(row.evidence.exact_source_refs, [streamPath]);
-assert.deepEqual(row.evidence.thematic_source_refs, [
+const sharedLifeScenes = 'data/Civication/lifestory/life/scenes.json';
+assert.ok(row.evidence.thematic_source_refs.includes(sharedLifeScenes));
+assert.equal(row.authored_depth.thematic_source_ref_count, row.evidence.thematic_source_refs.length);
+assert.deepEqual(row.evidence.thematic_source_refs.filter((source)=>source!==sharedLifeScenes), [
   'data/Civication/narratives/leisure/filmklubbmenneske.json',
   'data/Civication/narratives/leisure/historievandrer.json',
   'data/Civication/narratives/leisure/kunst_ateliermenneske.json',
