@@ -1027,13 +1027,13 @@
       "visningstype": "melding",
       "stedId": "renholdssone",
       "prioritet": 6,
-      "tittel": "45 minutter og en hylle i veien",
-      "tekst": "Det er 45 minutter igjen av vakta. Toalettene og inngangspartiet er ferdige, men kontorene, trappa og lageret står igjen på planen. Kari måtte sende en kollega til et annet bygg. Amina peker mot lagerdøra, der en tung hylle står i veien. «Den flytter du ikke alene», sier hun. Kari vil vite hva hun skal skrive i dagens rapport.",
+      "tittel": "45 minutter igjen av vakta",
+      "tekst": "Klokka viser 45 minutter igjen. Toalettene og inngangspartiet er gjort ferdig, men kontorene, trappa og lageret står fortsatt på lista. Kari måtte sende en kollega til et annet bygg. Amina peker mot den tunge hylla som sperrer lagerdøra. «Den flytter du ikke alene», sier hun. Kari holder rapporten åpen og venter på svaret ditt.",
       "valg": [
         {
           "id": "be_prioritering",
-          "tekst": "Fortell Kari hva du rakk, og be henne prioritere resten",
-          "konsekvensTekst": "Du oppgir de to sonene du faktisk har vasket, og nevner både tida og den blokkerte lagerdøra. Kari må bestemme hva som skal prioriteres videre; de tre sonene er fortsatt åpne.",
+          "tekst": "Fortell Kari hva du rakk og be henne prioritere det som gjenstår",
+          "konsekvensTekst": "Du sier hvilke soner som er ferdige, og hvilke som ikke er det. Kari må bestemme neste prioritet. Du har ikke gjort kontorene, trappa eller lageret ferdige ved å si fra.",
           "effekter": {
             "flagg": {
               "wa_c17_valg": "prioritering"
@@ -1042,8 +1042,8 @@
         },
         {
           "id": "melde_avvik",
-          "tekst": "Meld den blokkerte døra som et avvik før du går inn i lageret",
-          "konsekvensTekst": "Du registrerer hindringen og gir Kari samme nøkterne oversikt over det som gjenstår. Hylla står der fremdeles, og lageret er ikke rengjort.",
+          "tekst": "Meld den blokkerte lagerdøra som en egen hindring",
+          "konsekvensTekst": "Du registrerer at hylla står i veien og gir Kari en ærlig oversikt. Lageret er fortsatt urengjort, men hindringen er ikke lenger usynlig i rapporten.",
           "effekter": {
             "flagg": {
               "wa_c17_valg": "avvik"
@@ -1062,13 +1062,13 @@
       "visningstype": "melding",
       "stedId": "renholdssone",
       "prioritet": 6,
-      "tittel": "En trapp som ble stående på lista",
-      "tekst": "Kari hadde bedt deg ta trappa før vaktslutt, men det ble ikke registrert at du rakk den. Nå ligger planen fra i går på bordet: kontorene utsatt, lageret blokkert og trappa uten en grønn hake. «Hva fører vi videre?» spør Kari. Du er sliten av å måtte forklare at gårsdagens minutter ikke kunne strekkes.",
+      "tittel": "Den tomme ruten ved trappa",
+      "tekst": "Kari legger gårsdagens arbeidsliste på bordet. Kontorene er utsatt, lageret er blokkert, og ved trappa mangler det en grønn hake. Du husker at hun ba deg ta trappa før vaktslutt, men det finnes ingen registrering på at den ble gjort. Du kjenner deg anklaget av den tomme ruten, selv om det bare er et skjema.",
       "valg": [
         {
           "id": "behold_status",
-          "tekst": "La de åpne sonene stå, og avklar trappa med Kari",
-          "konsekvensTekst": "Dere finner ingen registrering på at trappa ble tatt. Du lar den og de andre gjenværende sonene stå åpne i stedet for å gjette.",
+          "tekst": "La trappa stå som uavklart, og gå gjennom listen med Kari",
+          "konsekvensTekst": "Dere finner ingen bekreftelse på at trappa ble tatt. Du lar de åpne sonene stå slik de faktisk er registrert, heller enn å fylle inn noe for å bli ferdig med samtalen.",
           "effekter": {
             "flagg": {
               "wa_c17_oppfolging": "aapen_plan"
@@ -1077,8 +1077,8 @@
         },
         {
           "id": "fordel_dag",
-          "tekst": "Be Kari sette dagens arbeidsrekkefølge ut fra det som faktisk gjenstår",
-          "konsekvensTekst": "Kari setter kontorene først på den nye planen, mens lageret må avklares. Planen forandrer prioriteringen, ikke hva som ble vasket i går.",
+          "tekst": "Be Kari lage dagens rekkefølge ut fra det som fortsatt gjenstår",
+          "konsekvensTekst": "Kari setter kontorene først på den nye planen. Lageret krever fortsatt tilkomst, og trappa blir ikke renere av at rekkefølgen endres.",
           "effekter": {
             "flagg": {
               "wa_c17_oppfolging": "ny_rekkefolge"
@@ -1102,13 +1102,13 @@
       "visningstype": "melding",
       "stedId": "renholdssone",
       "prioritet": 6,
-      "tittel": "Hylla står like skjevt i dag",
-      "tekst": "Kari sier at hun har lest avviket du sendte. Da dere kommer til lagerdøra, står den tunge hylla der fortsatt. Du kjenner på lettelsen over at noen andre ser hindringen, men også irritasjonen over at den nå har fulgt deg inn i enda en vakt. «Hva trenger du fra meg?» spør Kari. Ingen fra drift har lovet å flytte noe.",
+      "tittel": "Samme hylle, enda en vakt",
+      "tekst": "Kari bekrefter at hun har lest avviket ditt. Så går dere til lagerdøra, og hylla står der like tung og skjev som sist. Du kjenner både lettelse over at hun endelig ser det, og frustrasjon over at du skal begynne en ny vakt med den samme hindringen. «Hva trenger du fra meg?» spør hun. Ingen fra drift har lovet utbedring.",
       "valg": [
         {
           "id": "vis_stedet",
-          "tekst": "Vis Kari nøyaktig hvor du ikke kommer til med utstyret",
-          "konsekvensTekst": "Du peker ut hindringen. Kari sier hun skal finne ut hvem som kan gjøre området tilgjengelig. Lageret er fortsatt ikke vasket.",
+          "tekst": "Vis Kari nøyaktig hvor du ikke kommer fram med utstyret",
+          "konsekvensTekst": "Du peker på hylla og plassen du trenger for å vaske trygt. Kari sier hun skal finne ut hvem som kan ordne tilkomsten. Lageret er fortsatt sperret.",
           "effekter": {
             "flagg": {
               "wa_c17_oppfolging": "vist_leder"
@@ -1117,8 +1117,8 @@
         },
         {
           "id": "be_tid",
-          "tekst": "Be om et tidspunkt for avklaring før lageret settes opp som ny oppgave",
-          "konsekvensTekst": "Kari lover å undersøke hvem som kan hjelpe, men har ingen dato å gi deg. Du beholder avviket åpent.",
+          "tekst": "Be Kari avklare hvem som kan hjelpe før lageret planlegges på nytt",
+          "konsekvensTekst": "Hun lover å undersøke ansvar og muligheter, men har ingen dato. Du lar avviket stå åpent i stedet for å ta byrden på kroppen.",
           "effekter": {
             "flagg": {
               "wa_c17_oppfolging": "venter_avklaring"
@@ -1143,8 +1143,8 @@
       "stedId": "renholdssone",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ti minutter til planen skal sendes",
-      "tekst": "Kari står med telefonen i hånden. «Jeg må sende vaktskjemaet om ti minutter.» Hun peker på lageret, kontorene og trappa som ennå ikke er ferdige. Du vet at hylla fremdeles sperrer lagerdøra. Kari trenger en plan, men du vil ikke at de samme umulige oppgavene skal flyttes fra dag til dag med ditt navn ved siden av.",
+      "tittel": "Ti minutter til rapporten går",
+      "tekst": "Kari står med mobilen i hånden. «Jeg må sende vaktskjemaet om ti minutter.» På skjermen står lageret, kontorene og trappa fortsatt åpne. Du kjenner igjen presset fra forrige vakt: Hvis oppgavene bare flyttes til i morgen med ditt navn på, vil noen tro at du arbeidet for langsomt. Men en tung hylle blir ikke flyttet av et nytt skjema.",
       "conditions": {
         "flagg": {
           "wa_c17_oppfolging": "aapen_plan"
@@ -1153,8 +1153,8 @@
       "valg": [
         {
           "id": "skill_tid",
-          "tekst": "Be om en egen oppgave for å frigjøre lageret før renholdet",
-          "konsekvensTekst": "Kari skriver at tilkomsten må ordnes separat. Lageret står fremdeles som ikke utført; drift har ikke vært der.",
+          "tekst": "Be om egen oppgave for å frigjøre lageret før det planlegges vasket",
+          "konsekvensTekst": "Kari skiller tilkomst fra renhold i planen. Lageret er ikke rengjort, og drift har ennå ikke vært der.",
           "effekter": {
             "flagg": {
               "wa_b_c17_spor": "egen_tid"
@@ -1163,8 +1163,8 @@
         },
         {
           "id": "behold_avvik",
-          "tekst": "Tilby en ordinær runde i et tilgjengelig område mens lageret venter",
-          "konsekvensTekst": "Kari setter opp en ny runde i inngangspartiet til neste morgen. Den er planlagt, ikke gjennomført, og lageret er fortsatt sperret.",
+          "tekst": "Tilby en ny runde i inngangspartiet mens lageret venter",
+          "konsekvensTekst": "Kari legger inn inngangspartiet til neste morgen. Du har fått en gjennomførbar oppgave, men den er planlagt, ikke gjort.",
           "effekter": {
             "flagg": {
               "wa_b_c17_spor": "annen_oppgave"
@@ -1183,8 +1183,8 @@
       "stedId": "renholdssone",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Kontorene først, men hva med resten?",
-      "tekst": "Kari la kontorene først på planen, og du fikk endelig begynt et sted. Ved kaffemaskinen spør Amina om lageret fortsatt ligger på din liste. Det gjør det. «Hva skal du gjøre hvis drift ikke kommer?» spør hun. Du har ikke lyst til å sitte og vente, men det føles heller ikke riktig å late som lagersonen er tilgjengelig.",
+      "tittel": "Kontorene først. Hva nå?",
+      "tekst": "Du har fått begynt på kontorene slik Kari prioriterte. Ved kaffemaskinen stopper Amina deg: «Ligger lageret fortsatt på lista di?» Du nikker. «Og hvis drift ikke kommer?» spør hun. Du ser ned på tralla. Du vil ikke stå og vente, men heller ikke late som lageret er mulig å vaske når hylla sperrer døra.",
       "conditions": {
         "flagg": {
           "wa_c17_oppfolging": "ny_rekkefolge"
@@ -1193,8 +1193,8 @@
       "valg": [
         {
           "id": "skill_tid",
-          "tekst": "Be Kari lage et eget punkt for å få tilgang til lageret",
-          "konsekvensTekst": "Kari legger inn tilkomst som en egen oppgave. Det skiller ventingen fra renholdet; hylla blir ikke flyttet av at planen endres.",
+          "tekst": "Be Kari skille tilkomst fra selve renholdet av lageret",
+          "konsekvensTekst": "Hun fører opp frigjøring av lageret som egen oppgave. Hylla står likevel der, og ingen har vært inne for å ordne den.",
           "effekter": {
             "flagg": {
               "wa_b_c17_spor": "egen_tid"
@@ -1203,8 +1203,8 @@
         },
         {
           "id": "behold_avvik",
-          "tekst": "Foreslå inngangspartiet som alternativ til å vente på lageret",
-          "konsekvensTekst": "Kari setter deg opp på en ordinær runde i inngangspartiet neste morgen. Du har fått arbeid å gjøre, men ikke gjennomført det ennå.",
+          "tekst": "Foreslå en runde i inngangspartiet som alternativ neste morgen",
+          "konsekvensTekst": "Kari setter opp en vanlig runde på et område du kan komme til. Du vet hva du skal gjøre, men har ikke gjort det ennå.",
           "effekter": {
             "flagg": {
               "wa_b_c17_spor": "annen_oppgave"
