@@ -5151,8 +5151,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen av dere skylder arrangøren fridager",
-      "tekst": "Dere ble enige om å verne fritiden etter et ubekreftet musikktilbud. En senere ledig kveld er ikke dermed en ny jobbmulighet.",
+      "tittel": "Lørdag uten spillejobb",
+      "tekst": "Du og Mira pleide å glede dere til å øve på lørdager. Nå tar du deg i å sjekke kalenderen for et oppdrag som ingen har tilbudt dere. Gitaren står ved sofaen, og du har egentlig lyst til å spille bare fordi det er gøy.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "fritid_respektert"
@@ -5161,18 +5161,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skriv hvilke tider du faktisk ønsker å spille",
-          "konsekvensTekst": "Du lager egne rammer uten å holde av dager gratis.",
+          "tekst": "Sett av tid til å spille for din egen del",
+          "konsekvensTekst": "Du velger musikken framfor å gå og vente på arbeid.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "spilletid_eget_valg"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "La musikken være helt fri for nye avtaler nå",
-          "konsekvensTekst": "Du står ikke i beredskap for en forespørsel som ikke finnes.",
+          "tekst": "Skriv til Mira at du trenger noen uker uten planer",
+          "konsekvensTekst": "Du er tydelig på at fritid også er en del av livet.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "fridager_uten_binding"
@@ -5194,8 +5197,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Tilbudet som ennå ikke finnes",
-      "tekst": "Du valgte å vente på et reelt tilbud før noe avtales. At det har gått flere dager, er ikke dokumentasjon på ny booking.",
+      "tittel": "Lokalet med plakaten",
+      "tekst": "På vei forbi et konsertlokale ser du en plakat for en annen artist. Du kjenner stikket av å bli stående på utsiden når noen har vist interesse for musikken deres, men aldri fulgt opp. Mira og du har fortsatt låter dere kan jobbe med.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "tilbud_avventes"
@@ -5204,8 +5207,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold et tydelig skille mellom interesse og oppdrag",
-          "konsekvensTekst": "Du fører ikke musikkinteresse som bekreftet arbeid.",
+          "tekst": "Bruk kvelden på å øve inn en låt dere liker",
+          "konsekvensTekst": "Du gjør noe med musikken du har kontroll over.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "oppdrag_ikke_bekreftet"
@@ -5214,8 +5217,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv ned hvilke opplysninger et tilbud må inneholde",
-          "konsekvensTekst": "Du forbereder rammer uten å akseptere en oppgave.",
+          "tekst": "Skriv ned hva et faktisk tilbud må inneholde",
+          "konsekvensTekst": "Du forbereder deg på å svare tydelig dersom arrangøren tar kontakt.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "vilkaar_forberedt"
@@ -5237,8 +5240,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et dokument er ikke en kontrakt",
-      "tekst": "Du skisserte honorar og tidsbruk. Utkastet er nyttig dersom en forespørsel kommer, men ingen motpart har godtatt vilkårene.",
+      "tittel": "To kaffekopper og et tall",
+      "tekst": "Du har regnet på reise, øving og honorar for en mulig spillejobb. Summen ser høy ut på skjermen, selv om timene er reelle. Du husker hvordan det føltes å spille gratis sist. Mira skal også leve av tiden sin.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "vilkar_utkast"
@@ -5247,8 +5250,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold utkastet som et personlig minimum",
-          "konsekvensTekst": "Du registrerer kravene som dine, ikke som en signert avtale.",
+          "tekst": "Behold beløpet du mener er rettferdig",
+          "konsekvensTekst": "Du bestemmer hva din egen tid er verdt før presset kommer.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "krav_egne"
@@ -5257,8 +5260,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Be om medmusikerens kommentarer før dere bruker det",
-          "konsekvensTekst": "Du inviterer til samarbeid uten å fastslå felles betingelser.",
+          "tekst": "Spør Mira hvordan hun ser på honoraret",
+          "konsekvensTekst": "Du åpner for en ærlig uenighet om penger uten å ta en beslutning for henne.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "kommentar_etterspurt"
@@ -5280,8 +5283,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "To musikere kan ha ulike grenser",
-      "tekst": "Du lot medmusikeren formulere sine egne vilkår. At dere ønsker å samarbeide, betyr ikke at dere må selge den samme tiden eller ta lik risiko.",
+      "tittel": "To mennesker, samme øvingsrom",
+      "tekst": "Mira vil gjerne bevare spontaniteten i musikken; du har begynt å tenke mer på forutsigbarhet. Dere er fortsatt glade i å spille sammen, men de siste samtalene om jobb har fått forskjellige behov til å synes tydeligere.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "hver_sin_grense"
@@ -5290,8 +5293,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skriv dine egne grenser uavhengig av hennes",
-          "konsekvensTekst": "Du tar ansvar for egne timer uten å svare for henne.",
+          "tekst": "Skriv ned hva du selv trenger for å si ja",
+          "konsekvensTekst": "Du gjør det lettere å kjenne din egen grense.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "egne_vilkar"
@@ -5300,8 +5303,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Spør om dere senere kan sammenligne behovene",
-          "konsekvensTekst": "Du foreslår en samtale; ingen kontrakt blir opprettet.",
+          "tekst": "Foreslå at dere tar en rolig prat om forventningene",
+          "konsekvensTekst": "Du prioriterer samarbeidet selv om praten kan bli vanskelig.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "sammenligning_foreslaatt"
@@ -5323,8 +5326,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et råd blir ikke automatisk en låt",
-      "tekst": "Du avklarte at innspillet om overgangen var uforpliktende. Medmusikerens komposisjon tilhører fortsatt henne.",
+      "tittel": "Den vanskelige overgangen",
+      "tekst": "Du hører fremdeles for deg stedet i Miras låt der melodien stanser litt brått. Du ga et lite innspill, og nå lurer du på om du gjorde henne usikker. Det er hennes sang; samtidig var det godt å bli spurt om hva du hørte.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "rad_avgrenset"
@@ -5333,8 +5336,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold innspillet som en enkelt samtale",
-          "konsekvensTekst": "Du gjør ikke rådet om til medforfatterskap.",
+          "tekst": "La kommentaren bli stående som et enkelt råd",
+          "konsekvensTekst": "Du unngår å gjøre et lite innspill til et krav på innflytelse.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "rad_blir_rad"
@@ -5343,8 +5346,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Tilby en ny lytting bare dersom hun ønsker det",
-          "konsekvensTekst": "Du gjør muligheten frivillig, uten frist eller krav på kreditering.",
+          "tekst": "Fortell Mira hva du faktisk likte ved låten",
+          "konsekvensTekst": "Du gir anerkjennelse uten å overta det hun lager.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "ny_lytting_betinget"
@@ -5366,8 +5369,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Ingen tilbakemelding er også ingen tilbakemelding",
-      "tekst": "Du spurte om rådet kunne være nyttig. I historikken finnes ingen avklart virkning av det.",
+      "tittel": "Vil du egentlig ha et svar?",
+      "tekst": "Du foreslo en endring i Miras skisse, men har ikke hørt hva hun syntes. Du spiller gjennom ditt eget spor mens du tenker på om rådet var nyttig. Kanskje er det viktigere å gi henne arbeidsro enn å få vite om du hadde rett.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "tilbakemelding_uavklart"
@@ -5376,8 +5379,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La henne velge om hun vil svare",
-          "konsekvensTekst": "Du etterspør ikke en bekreftelse bare for å få rett.",
+          "tekst": "La henne arbeide uten å spørre mer",
+          "konsekvensTekst": "Du gir plass til hennes eget arbeid.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "ingen_purring"
@@ -5386,8 +5389,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Si at hun kan si fra hvis hun prøver forslaget",
-          "konsekvensTekst": "Du tilbyr rom for senere kontakt uten å anta resultat.",
+          "tekst": "Send en kort melding om at hun gjerne kan si imot",
+          "konsekvensTekst": "Du gjør uenighet mulig uten å kreve en forklaring.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "aapen_tilbakemelding"
@@ -5409,8 +5412,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Lydfilen har ikke utløpsdato",
-      "tekst": "Du la lydfilen til side uten frist. Det er ikke et løfte om at du har hørt den i dag eller at hun har ventet.",
+      "tittel": "Lydfilen under alle varslene",
+      "tekst": "Lydfilen fra Mira ligger mellom handlelister og gamle talemeldinger. Du sa du ville høre når du fikk overskudd, men hver gang du åpner telefonen, minner den deg om at du ennå ikke har gjort det. Hun skal slippe å være avhengig av din kalender.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "ingen_lyttefrist"
@@ -5419,18 +5422,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "La filen ligge til du har overskudd",
-          "konsekvensTekst": "Du lover ingen lytting som ikke er gjennomført.",
+          "tekst": "Sett av en halvtime til å lytte nå",
+          "konsekvensTekst": "Du bruker faktisk tid på musikken hennes i dag.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "lytting_ikke_gjort"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Skriv at hun gjerne kan arbeide videre",
-          "konsekvensTekst": "Du gir henne frihet uten å påta deg ansvar for skissen.",
+          "tekst": "Skriv at hun kan jobbe videre uten å vente på deg",
+          "konsekvensTekst": "Du frigjør henne fra forventningen om et svar.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "hun_kan_fortsette"
@@ -5452,8 +5458,8 @@
       "visningstype": "melding",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Hun trenger ikke vente på deg",
-      "tekst": "Du avklarte at medmusikeren kan fortsette uten din respons. Hennes neste valg ligger utenfor det du vet.",
+      "tittel": "Et øvingsrom for to",
+      "tekst": "Du har sagt til Mira at hun kan gå videre med låten uten deg. Likevel er det litt vondt å forestille seg at dere ikke lenger følger hver minste endring sammen. Når du tar instrumentet fram, er spørsmålet om du vil være en venn som støtter, eller en samarbeidspartner som trenger mer avstand.",
       "conditions": {
         "flagg": {
           "wa_d_c02_status": "hun_gar_videre"
@@ -5462,18 +5468,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Hold kontakten uten å kreve innsyn i låten",
-          "konsekvensTekst": "Du respekterer hennes arbeid og tempo.",
+          "tekst": "Send en hilsen og ønsk henne god arbeidslyst",
+          "konsekvensTekst": "Du viser støtte uten å kreve innsyn.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "innsyn_ikke_krevd"
+            },
+            "meters": {
+              "psyke": 1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Be om en ny forespørsel dersom hun vil ha råd senere",
-          "konsekvensTekst": "Du tilbyr en fremtidig mulighet, ikke en stående forpliktelse.",
+          "tekst": "Legg samarbeidet på is og jobb med din egen musikk",
+          "konsekvensTekst": "Du bruker energien på ditt eget uttrykk en stund.",
           "effekter": {
             "flagg": {
               "wa_f_c02_status": "ny_forespoersel_mulig"
@@ -5495,8 +5504,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et anonymt eksempel trenger fortsatt grenser",
-      "tekst": "Du foreslo å vise ett anonymt eksempel. At navn er fjernet sier ikke at alle andre kjennetegn er trygge eller at en test er dokumentert.",
+      "tittel": "Bildet på skjermen",
+      "tekst": "Lea har en skjermskisse oppe på bordet. Den ser ryddig ut, men den lille fortellingen dere ville bruke som eksempel, kan kanskje kjennes igjen av folk som vet hvem det gjelder. Du ser at Lea er stolt av arbeidet; du vil ikke knuse motivasjonen hennes.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "anonymt_utkast"
@@ -5505,18 +5514,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Be Lea gjennomgå hva eksemplet faktisk avslører",
-          "konsekvensTekst": "Du foreslår risikovurdering før en eventuell deling.",
+          "tekst": "Pek på detaljene som kan røpe personen",
+          "konsekvensTekst": "Du tar en ubehagelig samtale om risiko før noe deles.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "anonymisering_vurderes"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Behold eksemplet internt til formålet er klart",
-          "konsekvensTekst": "Ingen publisering eller samtykke legges til historikken.",
+          "tekst": "Legg bort eksemplet og vis bare den tomme løsningen",
+          "konsekvensTekst": "Du beholder framdriften, men viser ikke personopplysninger.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "eksempel_internt"
@@ -5538,8 +5550,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Å spørre er ikke å ha fått ja",
-      "tekst": "Du ba om samtykke før fremvisning. Det er fortsatt ingen bekreftet tillatelse fra nye deltakere i den lagrede historien.",
+      "tittel": "Navnet dere ikke kan sette på skjermen",
+      "tekst": "Du foreslo å spørre før dere bruker en virkelig persons historie. Lea venter med presentasjonen, og tiden nærmer seg slutten av arbeidsøkten. Det er fristende å lage en rask snarvei. Men et menneske skal kunne si nei til å bli eksempel.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "samtykke_etterspurt"
@@ -5548,8 +5560,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Be Lea skrive hva hun konkret ønsker å vise",
-          "konsekvensTekst": "Du tydeliggjør forespørselen, uten å notere samtykke.",
+          "tekst": "Skriv et enkelt, forståelig spørsmål om samtykke",
+          "konsekvensTekst": "Du lager et spørsmål personen kan ta stilling til, uten å regne svaret som ja.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "samtykketekst_utkast"
@@ -5558,8 +5570,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Vent med enhver visning",
-          "konsekvensTekst": "Du bevarer grensen inntil et virkelig svar finnes.",
+          "tekst": "Bruk en oppdiktet prøvesituasjon i stedet",
+          "konsekvensTekst": "Du demonstrerer hvordan løsningen virker uten å vise noens historie.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "visning_avventes"
@@ -5581,8 +5593,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "En idé uten lovet nytte",
-      "tekst": "Dere fortalte bare hvilket problem prototypen undersøker. Det er fortsatt en beskrivelse av et formål, ikke en dokumentert effekt.",
+      "tittel": "«Hva skal dette hjelpe med?»",
+      "tekst": "Du øver på å forklare prosjektet høyt. Midt i setningen hører du deg selv bruke ord som «effekt» og «løsning» før dere har fått prøvd noe særlig. Lea setter kaffekoppen ned og venter på en forklaring hun også ville forstått utenfor prosjektrommet.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "formaal_beskrevet"
@@ -5591,8 +5603,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Skriv problemet som et spørsmål dere kan undersøke",
-          "konsekvensTekst": "Du gjør beskrivelsen etterprøvbar uten å love virkning.",
+          "tekst": "Forklar ett konkret problem dere håper å lette",
+          "konsekvensTekst": "Du sier hva dere vil undersøke, ikke hva dere har bevist.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "sporsmaal_formulert"
@@ -5601,8 +5613,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "La være å bruke skjermbildet i omtalen",
-          "konsekvensTekst": "Du hindrer at det uferdige grensesnittet blir markedsført.",
+          "tekst": "Ta bort skjermbildet og fortell om behovet først",
+          "konsekvensTekst": "Du lar menneskene som skal bruke løsningen, være viktigere enn utseendet.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "bilde_holdt_tilbake"
@@ -5624,8 +5636,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Det interne arbeidet er fortsatt et forsøk",
-      "tekst": "Du ville beholde prototypen internt til neste test. Ingen ny test er arkivert, selv om det har gått flere dager.",
+      "tittel": "Kvelden da prototypen frister",
+      "tekst": "Prototypen ligger klar på datamaskinen, men dere har ikke gjennomført en ny test. Lea spør hva dere skal bruke resten av kvelden på. Du er trøtt, og dere har allerede brukt flere fritidskvelder. Det kjennes vanskelig å legge bort noe dere bryr dere om.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "intern_videre"
@@ -5634,8 +5646,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Lag en liten plan for hvem som kan teste frivillig",
-          "konsekvensTekst": "Du skriver en plan, ikke et gjennomført forsøk.",
+          "tekst": "Lag én liten frivillig testinvitasjon til senere",
+          "konsekvensTekst": "Du tar ett avgrenset skritt mot å undersøke idéen.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "testplan_skisse"
@@ -5644,11 +5656,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Velg å stoppe arbeidet foreløpig",
-          "konsekvensTekst": "Du kan legge prototypen til side uten å påstå at den feilet.",
+          "tekst": "Avslutt arbeidsøkten og gå hjem i rimelig tid",
+          "konsekvensTekst": "Du beskytter kreftene dine selv om prosjektet står stille.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "arbeid_satt_paa_pause"
+            },
+            "meters": {
+              "energi": 2
             }
           }
         }
@@ -5667,8 +5682,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Et måleskjema før resultatet",
-      "tekst": "Du skrev kriterier som også gir rom for feil. Det gjør prototypen mer etterprøvbar, men forteller ikke hvordan neste test vil gå.",
+      "tittel": "Det vanskelige ordet «feil»",
+      "tekst": "Lea viser deg en liste over ting dere håper prototypen skal klare. Ingen av punktene beskriver hva som skjer når noen ikke forstår den. Det er ubehagelig å forestille seg et mislykket forsøk, men kanskje er det akkurat det dere trenger å lære av.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "aapne_kriterier"
@@ -5677,18 +5692,21 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Definer hva som teller som mislykket forsøk",
-          "konsekvensTekst": "Du gjør et negativt resultat mulig å registrere ærlig.",
+          "tekst": "Skriv inn hva som vil få dere til å endre kurs",
+          "konsekvensTekst": "Du gjør det lov å konkludere med at idéen trenger arbeid.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "feilkriterium_valgt"
+            },
+            "meters": {
+              "energi": -1
             }
           }
         },
         {
           "id": "avgrens",
-          "tekst": "Be Lea holde data og tolkning adskilt",
-          "konsekvensTekst": "Du vil unngå at ett resultat blir en generell påstand.",
+          "tekst": "Be Lea spille rollen som en skeptisk bruker",
+          "konsekvensTekst": "Dere undersøker svakheter sammen uten å late som en brukertest er gjennomført.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "data_og_tolkning_skilt"
@@ -5710,8 +5728,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Deltakeren er ikke rekruttert",
-      "tekst": "Du foreslo at en uavhengig deltaker skulle beskrive nytte. Forslaget innebærer ikke at noen har deltatt eller samtykket.",
+      "tittel": "Stolen på andre siden av bordet",
+      "tekst": "Dere har snakket om å invitere noen utenfor prosjektet. Den tomme stolen på andre siden av bordet minner deg om at det er lett å planlegge på vegne av folk som ikke er her. Lea vil gjerne videre, og du må velge hva dere egentlig vil spørre et menneske om.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "deltaker_foreslaatt"
@@ -5720,8 +5738,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Lag en frivillig invitasjon med tydelig avslagmulighet",
-          "konsekvensTekst": "Du forbereder invitasjonen uten å hevde at den er sendt.",
+          "tekst": "Skriv en invitasjon der det er helt greit å si nei",
+          "konsekvensTekst": "Du lager en åpen invitasjon, ikke en ferdig avtale.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "frivillig_utkast"
@@ -5730,8 +5748,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "La deltakernes egne mål avgjøre hva dere vil måle",
-          "konsekvensTekst": "Du endrer planen, ikke en påstått testhistorikk.",
+          "tekst": "La den eventuelle deltakeren selv beskrive sitt problem først",
+          "konsekvensTekst": "Du forbereder deg på å høre noe annet enn det du selv håper.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "deltakermaal_planlagt"
@@ -5753,8 +5771,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Merkelappen som må få stå",
-      "tekst": "Du merket idéen som ikke testet. Det er en viktig ærlighet, også om prosjektet får et penere skjermbilde senere.",
+      "tittel": "Det pene skjermbildet",
+      "tekst": "Du har gjort prototypen langt penere siden første skisse. Når du ser den i helskjerm, begynner den nesten å ligne et ferdig produkt. Lea virker spent på å vise den fram. Du kjenner fristelsen til å la utseendet gjøre salgsjobben.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "ikke_testet_merket"
@@ -5763,8 +5781,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Behold merkelappen ved alle utkast",
-          "konsekvensTekst": "Du gir ingen leser inntrykk av dokumentert nytte.",
+          "tekst": "Skriv «tidlig utkast» tydelig på demonstrasjonen",
+          "konsekvensTekst": "Du lar presentasjonen være ærlig om hvor dere står.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "forbehold_synlig"
@@ -5773,8 +5791,8 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Avstå fra nye påstander i presentasjonen",
-          "konsekvensTekst": "Du lar fortsatt effekt være ukjent.",
+          "tekst": "Vis heller frem de tre spørsmålene dere fortsatt strever med",
+          "konsekvensTekst": "Du inviterer til reell diskusjon framfor applaus for designet.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "paastand_utsatt"
@@ -5796,8 +5814,8 @@
       "visningstype": "intern vurdering",
       "tilgjengelighet": "start",
       "prioritet": 6,
-      "tittel": "Stillstand er ikke det samme som nederlag",
-      "tekst": "Du valgte å vente med presentasjonen. Prototypens verdi kan ikke avgjøres av stillheten som fulgte.",
+      "tittel": "Den tomme presentasjonssalen",
+      "tekst": "Dere bestemte dere for å vente med å vise fram prosjektet. På vei hjem passerer du rommet der presentasjonen kunne ha vært. Du er lettet, men også skuffet. Lea hadde gledet seg. Nå handler det om å finne ut om dette fortsatt er noe dere vil bruke livet på.",
       "conditions": {
         "flagg": {
           "wa_d_c03_status": "presentasjon_utsatt"
@@ -5806,8 +5824,8 @@
       "valg": [
         {
           "id": "behold",
-          "tekst": "Definer hva som må dokumenteres før deling",
-          "konsekvensTekst": "Du lager en tydelig kvalitetsgrense uten å hevde framgang.",
+          "tekst": "Avtal med deg selv en tydelig grense for videre arbeid",
+          "konsekvensTekst": "Du setter et tak på hvor mye fritid prosjektet får bruke.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "dokumentasjonskrav"
@@ -5816,11 +5834,14 @@
         },
         {
           "id": "avgrens",
-          "tekst": "Legg prosjektet til side til frivillige kan bidra",
-          "konsekvensTekst": "Du presser ingen til en test bare for å vise aktivitet.",
+          "tekst": "Spør Lea om dere skal ta en lengre pause",
+          "konsekvensTekst": "Du åpner for å stoppe uten å kalle arbeidet mislykket.",
           "effekter": {
             "flagg": {
               "wa_f_c03_status": "frivillighet_forst"
+            },
+            "meters": {
+              "energi": 2
             }
           }
         }
