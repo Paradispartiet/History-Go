@@ -1,6 +1,6 @@
 # Oslo – stedstekst og bildestatus for 20 QuizCard-steder
 
-19. oktober 2026. PR #6380 har allerede publisert 20 QuizCards med 200 spørsmål. Denne bolken forbedrer **10 canonicale stedstekster** uten å endre quiz, QuizCard, bildepeker eller produksjonsstatus. Intern spillprosa og generiske forklaringer er fjernet. Kopierte `quiz_profile.signature_features`-ingresser er oppdatert samtidig.
+19. oktober 2026. PR #6380 har allerede publisert 20 QuizCards med 200 spørsmål. Denne bolken kartlegger bildebehovet for alle 20 steder, og legger frem **10 nye utkast til stedstekster** i `revised-place-texts-draft.json`. Originale canonicale `desc`/`popupDesc` er **ikke** endret, fordi produksjonskontrakten krever separate v4.2-pakker med kontrollert påstandsregister og oppdatert runtime før slik publisering. Quiz/QuizCard, bildepeker og produksjonsstatus er uendret. Intern spill- og produksjonsprosa er identifisert i eksisterende tekster og utbedret i utkastene, men de er ennå ikke publisert.
 
 ## Faktisk bildetilstand
 
@@ -20,7 +20,7 @@
 
 Kildesidene dokumenterer fotograf og lisens, men filene er **ikke** generert i tre WebP-varianter eller godkjent i PlaceCard. For øvrige steder må motiv og rettigheter fremskaffes. Ikke bruk bilder av feil bygning, nabolag eller hendelse som erstatning.
 
-## Kilder for de ti omskrevne stedstekstene
+## Kilder som skal ettergås for ti tekstutkast
 
 - **havnelageret:** [kilde](https://oslobyleksikon.no/side/Oslo_Havnelager), [kilde](https://lokalhistoriewiki.no/wiki/Oslo_havnelager)
 - **frysja_industriomrade:** [kilde](https://oslobyleksikon.no/side/Frysja), [kilde](https://www.oslo.kommune.no/natur-kultur-og-fritid/kunst-og-kultur/kultureiendommer/frysja-kunstnersenter/)
@@ -36,5 +36,7 @@ Kildesidene dokumenterer fotograf og lisens, men filene er **ikke** generert i t
 ## Neste godkjenningsport
 
 For hvert uferdige sted: velg identitetskontrollert motiv, dokumenter opphav/lisens, produser egne WebP-utgaver på 1400×900 (bredt), 900×1350 (stående) og 900×600 (kort); juster fokuspunkter, og kontroller bredt og smalt utsnitt i appen. Historisk tekst må kildevalideres mot riktig bygg eller område. Først etter begge deler kan `v1_candidate` vurderes oppgradert. Fullproduserte eksisterende stedspakker er ikke nedgradert.
+
+Selve tekstutkastene er lagret i `reports/oslo-place-media-text-batch04-20261019/revised-place-texts-draft.json` og krever eget kilde-/v4.2-løp før oppdatering av canonical Place og generert runtime.
 
 Detaljert 20-steds kø: `data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json`.
