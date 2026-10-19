@@ -203,7 +203,12 @@
     if (!item) return false;
     if (item.deleted === true || item.archived === true || item.resolved === true) return false;
     const status = norm(item.status || "pending").toLowerCase();
-    return status === "pending" || status === "open";
+    if (status !== "pending" && status !== "open") return false;
+    // DayProgression already reconciles answered runtime IDs with consumed
+    // life/role-mail state. Use the same answer truth here: a stale inbox copy
+    // must never become "Neste handling" again after the player answered it.
+    if (window.CivicationDayProgression?.isPreviouslyAnsweredInboxItem?.(item)) return false;
+    return true;
   }
 
   // To rytmer: fallback til global innboks scopes etter DayFlow. I en privat fase
