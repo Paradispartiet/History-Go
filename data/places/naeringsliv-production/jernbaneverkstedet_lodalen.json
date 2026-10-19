@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "naeringsliv_place_production_v1",
+  "validatorVersion": "1.0.0",
+  "placeId": "jernbaneverkstedet_lodalen",
+  "placeFile": "data/places/naeringsliv/oslo/places_naeringsliv/jernbaneverkstedet_lodalen.json",
+  "status": "ready",
+  "economicIdentity": {
+    "statement": "Jernbanens operative verksted og serviceområde i Lodalen i Oslo, med historiske vognhaller og dagens Bane NOR-verksted, ikke en passasjerstasjon.",
+    "anchorType": "infrastructure",
+    "placeObjectDistinction": "Denne lokasjonen er avgrenset til historisk anlegg eller bygning, ikke lignende virksomheter andre steder.",
+    "temporalScope": {
+      "start": "1950",
+      "end": "2026",
+      "precision": "period",
+      "rationale": "Historisk driftsfase og dokumentert overgang til dagens stedsbruk innenfor samme sted."
+    },
+    "sourceIds": [
+      "source_jernbaneverkstedet_lodalen_byleksikon",
+      "source_jernbaneverkstedet_lodalen_banenor",
+      "source_jernbaneverkstedet_lodalen_museum"
+    ]
+  },
+  "businessTopics": [
+    {
+      "emneId": "em_naering_industri_og_mekanisering",
+      "siteSpecificRationale": "Lokalt jernbanevedlikehold og mekanisering av togmateriellets serviceanlegg viser fagarbeid og industriell infrastruktur i Lodalen.",
+      "caseIds": [
+        "case_jernbaneverkstedet_lodalen_site_economy"
+      ]
+    },
+    {
+      "emneId": "em_naering_geografi_infrastruktur",
+      "siteSpecificRationale": "Arbeidsdeling, investeringer og infrastruktur har konkret endret dette næringsstedets produksjon og senere anvendelse.",
+      "caseIds": [
+        "case_jernbaneverkstedet_lodalen_site_economy"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "source_jernbaneverkstedet_lodalen_byleksikon",
+      "url": "https://oslobyleksikon.no/side/Lodalen",
+      "sourceLocation": "Verkstedshistorie og 1989-vognhall",
+      "sourceType": "reputable_secondary",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Redigert lokalhistorisk leksikon om Lodalen.",
+      "limitations": "Ingen detaljert fullstendig anleggsøkonomi er oppgitt."
+    },
+    {
+      "id": "source_jernbaneverkstedet_lodalen_banenor",
+      "url": "https://www.banenor.no/for-deg-i-bransjen/togselskap/serviceanlegg/verksteder/lodalen/",
+      "sourceLocation": "Nåværende adresse, verkstedspor og serviceutstyr",
+      "sourceType": "official",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "current",
+      "provenance": "Bane NORs egen oppdaterte informasjon om Lodalen verksted.",
+      "limitations": "Oppgir tekniske fasiliteter, ikke komplette historiske arbeidsregnskap."
+    },
+    {
+      "id": "source_jernbaneverkstedet_lodalen_museum",
+      "url": "https://digitaltmuseum.no/011013111896/ekspresstoghallen-i-lodalen-verksted-og-smie",
+      "sourceLocation": "Fotografi av reparasjon i Lodalen fra mars 1950",
+      "sourceType": "archive",
+      "verifiedAt": "2026-10-19",
+      "temporalCoverage": "historical",
+      "provenance": "Norsk jernbanemuseums registrerte fotografi på DigitaltMuseum.",
+      "limitations": "Dokumenterer ett historisk tidspunkt, ikke årsproduksjon."
+    }
+  ],
+  "economicCases": [
+    {
+      "id": "case_jernbaneverkstedet_lodalen_site_economy",
+      "claim": "Lodalen dokumenterer jernbaneverksted med reparasjon av tog i 1950, senere vognhall fra 1989 og aktive servicefasiliteter.",
+      "unitOfAnalysis": {
+        "unit": "Verkstedsområdet i Lodalen",
+        "boundary": "Jernbanens operative verksted og serviceområde i Lodalen i Oslo, med historiske vognhaller og dagens Bane NOR-verksted, ikke en passasjerstasjon.",
+        "scale": "site",
+        "temporalScope": {
+          "start": "1950",
+          "end": "2026",
+          "precision": "period",
+          "rationale": "Historisk driftsfase og dokumentert overgang til dagens stedsbruk innenfor samme sted."
+        },
+        "sourceIds": [
+          "source_jernbaneverkstedet_lodalen_byleksikon",
+          "source_jernbaneverkstedet_lodalen_banenor",
+          "source_jernbaneverkstedet_lodalen_museum"
+        ]
+      },
+      "actors": [
+        {
+          "name": "Jernbaneadministrasjonen og verkstedsledelsen",
+          "roleOrInterest": "Forvaltet virksomheten, kapitalen, stedets utstyr og de nødvendige driftsbeslutningene.",
+          "economicPosition": "Rådde over anlegg, investeringer og organisering av arbeidet.",
+          "sourceIds": [
+            "source_jernbaneverkstedet_lodalen_byleksikon",
+            "source_jernbaneverkstedet_lodalen_banenor",
+            "source_jernbaneverkstedet_lodalen_museum"
+          ]
+        },
+        {
+          "name": "Togmekanikere og vedlikeholdsarbeidere",
+          "roleOrInterest": "Utførte det praktiske arbeidet som virksomhetens produkter eller tjenester var avhengige av.",
+          "economicPosition": "Var avhengig av arbeidsplassen og hadde ikke alene kontroll over økonomiske investeringer.",
+          "sourceIds": [
+            "source_jernbaneverkstedet_lodalen_byleksikon",
+            "source_jernbaneverkstedet_lodalen_banenor",
+            "source_jernbaneverkstedet_lodalen_museum"
+          ]
+        }
+      ],
+      "valueCreation": {
+        "inputs": [
+          {
+            "statement": "Arbeidskraft, verkstedspor, togmateriell, reservedeler og teknisk utstyr.",
+            "sourceIds": [
+              "source_jernbaneverkstedet_lodalen_byleksikon",
+              "source_jernbaneverkstedet_lodalen_banenor",
+              "source_jernbaneverkstedet_lodalen_museum"
+            ]
+          }
+        ],
+        "activity": {
+          "statement": "Tilsyn, reparasjon og service på tog og vognmateriell mellom trafikkturer.",
+          "sourceIds": [
+            "source_jernbaneverkstedet_lodalen_byleksikon",
+            "source_jernbaneverkstedet_lodalen_banenor",
+            "source_jernbaneverkstedet_lodalen_museum"
+          ]
+        },
+        "outputs": [
+          {
+            "statement": "Vedlikeholdt materiell som kan settes tilbake i trafikk.",
+            "sourceIds": [
+              "source_jernbaneverkstedet_lodalen_byleksikon",
+              "source_jernbaneverkstedet_lodalen_banenor",
+              "source_jernbaneverkstedet_lodalen_museum"
+            ]
+          }
+        ],
+        "valueCreationAssessment": {
+          "statement": "Kildene beskriver konkret virksomhet og stedsbruk, men gir ikke et tilstrekkelig tallgrunnlag for å beregne netto økonomisk verdi.",
+          "sourceIds": [
+            "source_jernbaneverkstedet_lodalen_byleksikon",
+            "source_jernbaneverkstedet_lodalen_banenor",
+            "source_jernbaneverkstedet_lodalen_museum"
+          ]
+        }
+      },
+      "measurement": {
+        "methodId": "met_naering_industrihistorisk_analyse",
+        "evidenceType": "qualitative",
+        "indicatorOrObservation": "Lodalen dokumenterer jernbaneverksted med reparasjon av tog i 1950, senere vognhall fra 1989 og aktive servicefasiliteter.",
+        "unit": "dokumentert produksjons- og bruksendring",
+        "period": "1950–2026",
+        "comparability": "Hendelser og endret funksjon kan sammenholdes historisk, men ikke som direkte sammenlignbare økonomiske årsserier.",
+        "dataLimitations": "Kildene er historiske og institusjonelle oversikter uten fullstendige lønns-, utgifts- og inntektsregnskaper.",
+        "sourceIds": [
+          "source_jernbaneverkstedet_lodalen_byleksikon",
+          "source_jernbaneverkstedet_lodalen_banenor",
+          "source_jernbaneverkstedet_lodalen_museum"
+        ]
+      },
+      "distributionAndPower": {
+        "ownershipOrControl": "Institusjonenes og virksomhetens ledelse avgjorde investering og driftsorganisering.",
+        "laborPosition": "Personell utførte praktiske oppgaver, men individuelle vilkår og fordeling er ikke tallfestet.",
+        "beneficiaries": [
+          "Virksomheten og brukerne av tjenestene eller varene.",
+          "Ansatte og lokalsamfunn knyttet til arbeidsplasser og tjenester."
+        ],
+        "costRiskBearers": [
+          "Eiere og forvaltere med ansvar for anleggsinvesteringer.",
+          "Arbeidskraft og nærmiljø som kunne berøres av omstilling."
+        ],
+        "sourceIds": [
+          "source_jernbaneverkstedet_lodalen_byleksikon",
+          "source_jernbaneverkstedet_lodalen_banenor",
+          "source_jernbaneverkstedet_lodalen_museum"
+        ]
+      },
+      "riskAndExternalities": {
+        "riskAssessment": {
+          "statement": "Markedsforhold, endret teknisk utstyr, investeringer og lokale arealbehov kunne påvirke virksomhetens utvikling over tid.",
+          "sourceIds": [
+            "source_jernbaneverkstedet_lodalen_byleksikon",
+            "source_jernbaneverkstedet_lodalen_banenor",
+            "source_jernbaneverkstedet_lodalen_museum"
+          ]
+        },
+        "externalityAssessment": {
+          "status": "not_applicable",
+          "rationale": "Kildeutvalget gir ikke stedsspesifikke kvantitative data for å beregne miljø- eller arbeidshelseeffekter."
+        }
+      },
+      "comparisonAndCausality": {
+        "comparisonBasis": "Historisk stedsleksikon og institusjonelt kildemateriale om samme navngitte sted er sammenholdt.",
+        "causalStatus": "descriptive_only",
+        "causalAssessment": "Opplysningene dokumenterer kronologi og endret drift, men identifiserer ikke en kausal økonomisk effekt isolert fra andre endringer.",
+        "alternativeExplanations": [
+          "Teknologi, markedsforhold, investeringer, offentlige prioriteringer og endret arealbruk kan ha påvirket utviklingen."
+        ],
+        "uncertainty": "Utviklingen er kildebelagt på stedsnivå, men regnskap, lønnsnivå og nøyaktig økonomisk fordeling er ikke dokumentert.",
+        "sourceIds": [
+          "source_jernbaneverkstedet_lodalen_byleksikon",
+          "source_jernbaneverkstedet_lodalen_banenor",
+          "source_jernbaneverkstedet_lodalen_museum"
+        ]
+      }
+    }
+  ],
+  "presentOperation": {
+    "operationalStatus": "active",
+    "statement": "Bane NOR beskriver Lodalen verksted i Dyvekes vei 2 med verkstedspor, løfteanlegg og utstyr for togvedlikehold.",
+    "originalEconomicRoleRelationship": "Dagens funksjon må skilles fra opprinnelig drift, og gjenbruk eller kontinuitet er begrenset til det dokumenterte stedet.",
+    "checkedAt": "2026-10-19",
+    "sourceIds": [
+      "source_jernbaneverkstedet_lodalen_banenor"
+    ]
+  },
+  "quizOpening": {
+    "status": "N/A",
+    "rationale": "QuizCards finnes allerede, men denne bolken endrer ikke første to sett eller den fagspesifikke quizproduksjonen."
+  },
+  "chronologyStories": {
+    "status": "N/A",
+    "chronologyReviewed": true,
+    "storiesReviewed": true,
+    "rationale": "Historiske steder og stedsbeskrivelser er gjennomgått; separat Story- eller kronologiproduksjon er ikke del av denne teksten."
+  },
+  "gates": {
+    "A": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicIdentity"
+      ]
+    },
+    "B": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "businessTopics"
+      ]
+    },
+    "C": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].valueCreation"
+      ]
+    },
+    "D": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].distributionAndPower"
+      ]
+    },
+    "E": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].measurement"
+      ]
+    },
+    "F": {
+      "status": "PASS",
+      "evidenceRefs": [
+        "economicCases[0].comparisonAndCausality"
+      ]
+    },
+    "G": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    },
+    "H": {
+      "status": "N/A",
+      "rationale": "Eksisterende quiz og eventuelle kronologier videreføres uendret; denne leveransen produserer stedsbeskrivelser."
+    }
+  },
+  "review": {
+    "reviewer": "Oslo-20 stedsspesifikk Næringsliv-redaksjon",
+    "reviewedAt": "2026-10-19",
+    "notes": "Gjennomgått historisk næringsidentitet, arbeidsdeling, innsatsfaktorer, kildenes økonomiske begrensninger og nåværende bruk. Eksisterende quiz forblir uendret."
+  }
+}
