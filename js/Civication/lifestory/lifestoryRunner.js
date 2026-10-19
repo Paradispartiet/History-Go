@@ -171,9 +171,9 @@
     const choice = (scene.valg || []).find((c) => c.id === choiceId);
     if (!choice) throw new Error(`[LifestoryRunner] ukjent valg "${choiceId}" i scenen "${sceneId}"`);
 
-    // Symposium-pakken tillater aldri at en fremtidig eller avvist scene
-    // skriver et møte/valg inn i historien (inkludert gamle DOM-knapper).
-    if (content.role.symposium && (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId))) {
+    // Alle roller krever riktig dag, fase, aktiv tråd og oppfylte vilkår.
+    // Gamle DOM-knapper må aldri registrere en fremtidig scene.
+    if (state.dagFerdig || !getCandidateScenes(state, content).some((s) => s.id === sceneId)) {
       throw new Error(`[LifestoryRunner] scenen "${sceneId}" er ikke tilgjengelig nå`);
     }
 
