@@ -716,6 +716,14 @@
     lastNoActionDebug = null;
 
     const existing = getCurrentAction();
+    // Day end is intentionally a stable stopping point. Do not force-build a
+    // fresh day just because every current mail is answered or the summary
+    // event is missing: only "Start ny dag" may roll the calendar.
+    const phase = norm(window.CivicationDayProgression?.inspect?.()?.phase
+      || window.CivicationCalendar?.getPhase?.()).toLowerCase();
+    if (phase === "day_end") {
+      return { ok: true, action: existing, stage: "day_end_no_rebuild" };
+    }
     const active = getActiveRole();
     if (!active) {
       // No workday exists for an unemployed player. Progress through empty
