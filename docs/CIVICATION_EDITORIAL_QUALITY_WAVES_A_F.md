@@ -49,6 +49,20 @@ Målrettede Node-tester er utvidet for å simulere **136 Wave F-alternativer** o
 
 Fortsatt redaksjonelt arbeid: Sjekk komplette tidlige reiser i faktisk brukergrensesnitt, tonefall og om flere episoder over uker føles troverdige, ikke bare om korrekt gren åpnes. Unngå å skape flere oppfølgingskapitler bare for å dokumentere at noe fortsatt er uavklart.
 
+## Tredje redaksjonelle pass – hele fortellingskjeder og konkrete arbeidssituasjoner (19. oktober 2026)
+
+En samlet tekstbolk på **26 eldre scener** er skrevet om på PR-grenen, 13 i C06 og 13 i C17 (Wave A–D). Formålet er **dramatisk handling, personlige prioriteringer og særpreg**, ikke å øke antallet scener. Tidligere redaksjonelle endringer i C01, C02, C03, C05, C07 og C23 er beholdt.
+
+**C06 – skoleveien:** Ragnhilds telling fra snarveien, Eiriks tidspress, ubemannet registrering ved nedkjørselen, den faktisk utførte observasjonen 07.45–08.00 og senere bruk av tallet sju framstår nå som én fortelling. De fire Wave B-inngangene har ulike utgangssituasjoner og mer personlige replikker. Kun én faktisk observasjon er gjennomført, med sju gående hvorav tre med skolesekk. Den dekker ikke 08.00–08.15, angir ikke alder eller reisemål, og sier ikke hvordan en framtidig nedkjørsel vil fungere. Ingen faglig anbefaling framstilles som en politisk avgjørelse.
+
+**C17 – renholdet:** Scenene viser mer av hvordan arbeidspresset treffer spilleren gjennom Kari og Amina: 45 minutter igjen av vakta, et uavklart lager, kollegaens advarsel, arbeidslista som må sendes og drift som kommer uten å flytte hylla. Ulike Wave B-forløp beholder hvert sitt perspektiv. Bare den faktisk gjennomførte nye runden i inngangspartiet kan beskrives som ferdig; lageret forblir utilgjengelig i alle disse grenene.
+
+I begge historiene er **scene-ID-er, choice-ID-er, inngangsvilkår, tråder, eksisterende flagg og tall-/relasjonseffekter bevart** under omskrivingen ved strukturell sammenligning av original- og sluttobjektene i redigeringsrunden. Dette er en avgrenset datakontroll, **ikke** en dokumentert sluttkjøring av spillmotoren eller en fullstendig lesning av 217 scener.
+
+**Oppdagede redaksjonelle mønstre:** Samme administrative problem kunne gjentas over fire grener med bare én endret setning. Karakterenes reaksjoner, tidspress og konsekvenser var til tider gjemt bak formuleringer som «ikke registrert», «ingen avgjørelse» og «plan må avklares». Disse opplysningene beholdes når de er nødvendige, men selve scenen skal bæres av en handling, et menneske og et valg.
+
+**Neste port:** Les overgangen fra Wave D til E/F i alle åtte historiene, særlig om tidligere ja, nei, avlysning og grenser får gjenkjennelige følger. Kjør én endringsrelevant kontroll på siste commit, og spill alle åtte forløpene i faktisk norsk UI før PR-en godkjennes. Wave G er fortsatt utsatt.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
