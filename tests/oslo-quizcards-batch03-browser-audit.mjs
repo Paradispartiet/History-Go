@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { chromium } from "playwright";
 
 const root = process.cwd();
@@ -22,7 +23,7 @@ const server = http.createServer((request, response) => {
   fs.createReadStream(file).pipe(response);
 });
 await new Promise(resolve => server.listen(0, "127.0.0.1", resolve));
-const report = {date:"2026-10-19", head:process.env.GITHUB_SHA || null,
+const report = {date:"2026-10-19", head:execFileSync("git", ["rev-parse","HEAD"], {encoding:"utf8"}).trim(),
   scope:"20 actual PlaceCards × 390/768 px; ten questions, correct title, pointer flip, expanded content, Escape and keyboard flip",
   photos_approved:0, v1_promoted:0, checks:[], errors:[]};
 let browser;
