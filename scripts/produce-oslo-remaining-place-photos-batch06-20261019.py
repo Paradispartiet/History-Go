@@ -60,10 +60,11 @@ def get(url, accept, limit=30_000_000):
 def strip_tags(x):
     return html.unescape(re.sub("<[^>]+>","",str(x or ""))).strip()
 
+# Commons image service: prefer a standard 1280px thumbnail over generating large 2800px thumbnails, to reduce 429 throttling.
 def commons_info(entry):
     url="https://commons.wikimedia.org/w/api.php?"+urllib.parse.urlencode({
         "action":"query","format":"json","formatversion":"2","prop":"imageinfo",
-        "titles":"File:"+entry["file"],"iiprop":"url|extmetadata","iiurlwidth":"2800"})
+        "titles":"File:"+entry["file"],"iiprop":"url|extmetadata","iiurlwidth":"1280"})
     data=json.loads(get(url,"application/json"))
     page=data["query"]["pages"][0]
     if "missing" in page or not page.get("imageinfo"): raise ValueError("Commons file missing")
