@@ -1,0 +1,132 @@
+'use strict';
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const Content = require('../js/Civication/lifestory/lifestoryContent.js');
+const State = require('../js/Civication/lifestory/lifestoryState.js');
+const Runner = require('../js/Civication/lifestory/lifestoryRunner.js');
+const root = path.join(__dirname, '..');
+const read = p => JSON.parse(fs.readFileSync(path.join(root, p), 'utf8'));
+const manifest = read(Content.MANIFEST_PATH);
+const register = read('data/Civication/lifestory/editorial/inspiration/waveASixthInstallmentsV1.json');
+const fourth = read('data/Civication/lifestory/editorial/inspiration/waveAFourthInstallmentsV1.json');
+const fifth = read('data/Civication/lifestory/editorial/inspiration/waveAFifthInstallmentsV1.json');
+const life = read(manifest.life.scenes).scenes;
+function contentFor(roleId) {
+  const entry=manifest.roles[roleId];
+  return Content.buildContent({
+    role:read(entry.role),
+    roleThreads:read(entry.threads),
+    roleScenes:read(entry.scenes),
+    lifeThreads:read(manifest.life.threads),
+    lifeScenes:read(manifest.life.scenes),
+    phaseDefinitions:read(manifest.shared.phaseDefinitions)
+  });
+}
+const base = contentFor('arbeidsledig');
+const another = contentFor('renholder');
+const planner = contentFor('arealplanlegger');
+const sourceEntries = new Map(fourth.stories.map(s=>[s.story_type_id.toLowerCase(),s]));
+const eEntries = new Map(fifth.stories.map(s=>[s.story_type_id.toLowerCase(),s]));
+function possibleStatuses(arc) {
+  const from = arc==='c01'||arc==='c05' ? eEntries.get(arc) : sourceEntries.get(arc);
+  assert.ok(from);
+  const raw = arc==='c01'||arc==='c05' ? life : read(sourceEntries.get(arc).runtime_path).scenes;
+  const prefix = arc==='c01'||arc==='c05' ? 'wave_e_'+arc+'_dag12_' : 'wave_d_'+arc+'_';
+  const flag = arc==='c01'||arc==='c05' ? 'wa_e_'+arc+'_etterspill' : 'wa_d_'+arc+'_status';
+  return raw.filter(s=>s.id.startsWith(prefix))
+    .flatMap(s=>s.valg.filter(c=>c.effekter?.flagg?.[flag]).map(c=>({
+      status:c.effekter.flagg[flag],sourceId:s.id,sourceChoice:c.id,flag
+    })));
+}
+function seed(source, arc, prev, day) {
+  source.livsdag=day;
+  State.applyEffects(source,{flagg:{[prev.flag]:prev.status}});
+  source.arkiv.push({dag:day,livsdag:day,rolle:source.rolle,sceneId:prev.sourceId,
+    valgId:prev.sourceChoice,threadId:prev.sourceId.startsWith('wave_e_')?'wave_e_'+arc:'wave_d_'+arc});
+  source.spilteScener.push(prev.sourceId);
+  State.capturePrivateStory(source);
+}
+function options(state,content,arc) {
+  return Runner.getCandidateScenes(state,content).filter(s=>s.id.startsWith('wave_f_'+arc+'_'));
+}
+test('All eight source-grounded stories have 68 distinct scenes / 136 choices and preserved references',()=>{
+  const f=life.filter(s=>s.id.startsWith('wave_f_'));
+  assert.equal(f.length,68);
+  assert.equal(f.reduce((n,s)=>n+s.valg.length,0),136);
+  assert.equal(new Set(f.map(s=>s.id)).size,68);
+  assert.equal(register.total_authored_scenes,217);
+  assert.equal(register.total_authored_choices,434);
+  assert.equal(register.stories.length,8);
+  for(const story of register.stories) {
+    const earlier=sourceEntries.get(story.id);
+    assert.deepEqual(story.source_problem_ids,earlier.problem_ids);
+    assert.deepEqual(story.source_work_ids,earlier.work_ids);
+    assert.deepEqual(story.scene_ids,f.filter(s=>s.threadId==='wave_f_'+story.id).map(s=>s.id));
+    assert.ok(story.scene_ids.length>=8);
+    for(const s of f.filter(s=>s.threadId==='wave_f_'+story.id)){
+      assert.equal(Object.keys(s.conditions?.flagg||{}).length,1);
+      assert.ok(s.valg.every(c=>c.tekst&&c.konsekvensTekst&&Object.keys(c.effekter?.flagg||{}).length===1));
+      assert.ok(s.etterValgDager.dager>=4);
+      assert.ok(s.livsdagFra>=12);
+      assert.ok(s.prioritet<=5 || s.fase!=='formiddag'&&s.fase!=='ettermiddag');
+    }
+  }
+});
+test('All 68 recorded outcomes unlock one later scene, never an invented earlier scene',()=>{
+  for(const entry of register.stories){
+    const arc=entry.id;
+    const predecessors=possibleStatuses(arc);
+    assert.equal(predecessors.length,entry.scene_ids.length,'author every actual prior choice for '+arc);
+    assert.equal(new Set(predecessors.map(s=>s.status)).size,predecessors.length);
+    const phases={c01:'kveld',c02:'kveld',c03:'kveld',c05:'ettermiddag',c06:'kveld',c07:'kveld',c17:'kveld',c23:'kveld'};
+    for(const choice of predecessors){
+      const state=State.createInitialState(base);
+      const earlier=arc==='c01'||arc==='c05'?12:sourceEntries.get(arc).days[0];
+      seed(state,arc,choice,earlier);
+      state.fase=phases[arc];
+      state.livsdag=Math.max(earlier+3,entry.minimum_livsdag);
+      if(state.livsdag-earlier===3) assert.equal(options(state,base,arc).length,0);
+      state.livsdag=Math.max(earlier+4,entry.minimum_livsdag);
+      const hits=options(state,base,arc);
+      assert.equal(hits.length,1,arc+':'+choice.status);
+      assert.equal(hits[0].id,'wave_f_'+arc+'_'+choice.status);
+      const wrong=State.createInitialState(base);wrong.fase=phases[arc];wrong.livsdag=99;
+      wrong.tidligereValg[choice.flag]=choice.status;
+      State.reconcileContent(wrong,base);
+      assert.equal(options(wrong,base,arc).length,0,'flag without recorded day is not history');
+    }
+  }
+});
+test('Complete Wave D->F private history follows role changes and never duplicates archive',()=>{
+  const from=State.createInitialState(base);
+  const arc='c23';
+  const prior=possibleStatuses(arc)[0];
+  seed(from,arc,prior,16);
+  const afterJob=State.selectRole(from,another);
+  assert.equal(afterJob.tidligereValg[prior.flag],prior.status);
+  assert.equal(afterJob.privatHistorie.flaggDager[prior.flag],16);
+  afterJob.livsdag=22;afterJob.fase='kveld';
+  const s=options(afterJob,another,arc)[0];
+  assert.equal(s.id,'wave_f_c23_'+prior.status);
+  Runner.applyChoice(afterJob,another,s.id,'behold');
+  const value=afterJob.tidligereValg.wa_f_c23_status;
+  assert.ok(value);
+  const planned=State.selectRole(afterJob,planner);
+  assert.equal(planned.tidligereValg.wa_f_c23_status,value);
+  assert.equal(planned.arkiv.filter(e=>e.sceneId===s.id).length,1);
+  const returned=State.selectRole(planned,base);
+  assert.equal(returned.arkiv.filter(e=>e.sceneId===s.id).length,1);
+  assert.equal(returned.spilteScener.filter(id=>id===s.id).length,1);
+});
+test('Role-specific continuations keep exclusive current chapters without private episodes intruding',()=>{
+  const from=State.createInitialState(base);
+  const prior=possibleStatuses('c01')[0];seed(from,'c01',prior,12);
+  from.livsdag=30;from.fase='kveld';
+  const continuation=read('data/Civication/lifestory/continuations/musikk_med_mira.json');
+  const withContinuation=Content.appendContinuation(base,continuation);
+  assert.equal(options(from,withContinuation,'c01').length,0);
+  assert.equal(Runner.hasPendingPrivateScenes(from,withContinuation),false);
+  assert.ok(options(from,base,'c01').length>0);
+});
