@@ -44,7 +44,7 @@
    * @property {number} dag
    * @property {number} [livsdag] Felles fortellingsdag; eldre v2-saves mangler feltet
    * @property {number} [kalenderDag] Siste Civication-kalenderdag som Life Story har fulgt
-   * @property {any} [privatHistorie] Felles C01/C05-arkiv med flagg, tidsankre og relasjoner\n   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
+   * @property {any} [privatHistorie] Felles kildeforankret spillerhistorikk med flagg, tidsankre og relasjoner\n   * @property {Record<string, any>} [rolleTilstander] Snapshots av inaktive roller
    * @property {Array<{fra: string, til: string, livsdag: number, fraDag: number, tilDag: number}>} [rolleBytter]
    * @property {string} fase
    * @property {Record<string, number>} meters
@@ -69,11 +69,11 @@
    * @returns {LifestoryState}
    */
 
-  // C01 og C05 er privatliv, ikke eiendeler til den siste arbeidsgiveren.
-  // Hele rolletilstanden forblir separat; bare disse to historienes konkrete
+  // Fortellingene C01/C02/C03/C05/C06/C07/C17/C23 er spillhistorikk, ikke eiendeler til arbeidsgiveren.
+  // Hele rolletilstanden forblir separat; bare disse historienes konkrete
   // fakta, scenevalg og arkiv følger spilleren ved jobbbytte.
-  const PRIVATE_FLAG = /^wa_(?:[bcde]_)?c0[15]_/;
-  const PRIVATE_SCENE = /^wave_[abcde]_c0[15]_/;
+  const PRIVATE_FLAG = /^wa_(?:[bcdef]_)?c(?:01|02|03|05|06|07|17|23)_/;
+  const PRIVATE_SCENE = /^wave_[abcdef]_c(?:01|02|03|05|06|07|17|23)_/;
   function emptyPrivateStory() { return { flagg: {}, flaggDager: {}, spilteScener: [], arkiv: [], relasjoner: {} }; }
   function capturePrivateStory(state) {
     const story = emptyPrivateStory();
@@ -92,7 +92,7 @@
         if (!story.arkiv.some(x => x.sceneId === e.sceneId)) story.arkiv.push(e);
         // En lagret, faktisk Wave D-hendelse er et tidsanker. Ikke utled
         // dato fra et flagg uten den tilhørende hendelsen.
-        const match = /^wave_d_(c0[15])_/.exec(e.sceneId);
+        const match = /^wave_d_(c(?:01|02|03|05|06|07|17|23))_/.exec(e.sceneId);
         if (match && Number.isInteger(e.livsdag || e.dag)) story.flaggDager["wa_d_" + match[1] + "_status"] = e.livsdag || e.dag;
       }
       for (const key of ["venn","familie"]) {
