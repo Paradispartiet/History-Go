@@ -374,6 +374,7 @@ async function refreshAhaAuthState() {
   }
 }
 
+/** @type {Promise<unknown>} */
 let hgAhaUploadQueue = Promise.resolve();
 function syncHistoryGoPayloadToAha(payloadInput) {
   const next = () => syncHistoryGoPayloadToAhaInner(payloadInput);
