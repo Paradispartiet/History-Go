@@ -64,7 +64,7 @@ def strip_tags(x):
 def commons_info(entry):
     url="https://commons.wikimedia.org/w/api.php?"+urllib.parse.urlencode({
         "action":"query","format":"json","formatversion":"2","prop":"imageinfo",
-        "titles":"File:"+entry["file"],"iiprop":"url|extmetadata","iiurlwidth":"1280"})
+        "titles":"File:"+entry["file"],"iiprop":"url|extmetadata","iiurlwidth":"960"})
     data=json.loads(get(url,"application/json"))
     page=data["query"]["pages"][0]
     if "missing" in page or not page.get("imageinfo"): raise ValueError("Commons file missing")
@@ -175,6 +175,7 @@ def main():
             for file in files.values(): (OUT/file).unlink(missing_ok=True)
             held.append({"place_id":pid,"reason":str(exc)[:280]})
             print("PHOTO HELD",pid,str(exc)[:180],flush=True)
+        time.sleep(2.5)
     for item in results:
         pid=item["place_id"]
         with Image.open(ROOT/item["frontImage"]) as p, Image.open(ROOT/item["image"]) as h:
