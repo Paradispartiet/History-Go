@@ -89,6 +89,13 @@ async function main() {
   };
   app.setJob(clerk);
   await waitFor(() => resolving, "delayed mapping");
+  app.setJob(cleaner);
+  release();
+  await waitFor(() => app.panel.querySelector("[data-lifestory-choice]"), "cancelled switch returns to the already adopted job");
+  assert.deepEqual(app.current().arkiv, beforeUnsupported.arkiv);
+  resolving = false;
+  app.setJob(clerk);
+  await waitFor(() => resolving, "second delayed mapping");
   app.setJob(warehouse);
   release();
   await waitFor(() => app.panel.querySelector('[data-lifestory-role-status="unavailable"]'), "latest job wins");

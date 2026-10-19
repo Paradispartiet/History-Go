@@ -235,7 +235,7 @@
     // og en tidlig updateProfile skal ikke låse sjekken for godt.
     const active = /** @type {any} */ (window).CivicationState?.getActivePosition?.();
     const adoptKey = activePositionKey();
-    if (adoptKey === lastAdoptKey) return;
+    if (adoptKey === lastAdoptKey && ["ready", "unavailable"].includes(shellStory?.status)) return;
     const title = String(active?.title || "jobben din");
     shellStory = { status: "loading", title };
     render();
