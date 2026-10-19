@@ -119,6 +119,18 @@ async function main() {
   assert.deepEqual(app.current().rolleTilstander.renholder.arkiv, beforeUnsupported.arkiv);
   app.close();
 
+  const missingResolver = await boot({ configure(w) {
+    delete w.CivicationCareerRoleResolver;
+  } });
+  assert.ok(missingResolver.panel.querySelector('[data-lifestory-role-status="error"]'),
+    "missing resolver has a recoverable explanation instead of a permanent spinner");
+  assert.ok(missingResolver.panel.querySelector("[data-lifestory-next-action]"));
+  missingResolver.w.eval(fs.readFileSync(path.join(ROOT, CHAIN[0]), "utf8"));
+  missingResolver.panel.querySelector("[data-lifestory-retry]").click();
+  await waitFor(() => missingResolver.current().rolle === "renholder" &&
+    missingResolver.panel.querySelector("[data-lifestory-choice]"), "retry after resolver arrives");
+  missingResolver.close();
+
   // Real content with an empty opening phase: reach the first authored scene
   // without inventing a choice, an extra story day, or a calendar rollover.
   const opening = await boot({ configure(w) {

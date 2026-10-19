@@ -225,7 +225,10 @@ const testFiles = walk('tests').filter((rel) =>
   // Wave-A narrative integration verifies the shared inbox and historical
   // personal choices. Mentions of a career in its fixture are not evidence
   // that the career's workday or competency gameplay is implemented.
-  !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel)
+  !/^tests\/civication-wave-a-(inbox-integration|transition-safety)\.test\.js$/.test(rel) &&
+  // Life Story UI recovery exercises narrative saves and job selection,
+  // not the role's workday/competency engine. Keep that boundary explicit.
+  rel !== 'tests/civication-lifestory-player-journey.test.js'
 );
 const testTexts = testFiles.map((rel) => ({ rel, text: fs.readFileSync(abs(rel), 'utf8') }));
 const globalRuntimeTests = [
@@ -619,3 +622,4 @@ if (write) {
 } else {
   console.log(JSON.stringify(matrix.summary, null, 2));
 }
+

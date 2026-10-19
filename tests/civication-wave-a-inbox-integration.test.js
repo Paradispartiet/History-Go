@@ -45,6 +45,7 @@ function atWaveScene(role, type) {
 }
 
 const scripts = [
+  'js/Civication/systems/civicationCareerRoleResolver.js',
   'js/Civication/lifestory/lifestoryContent.js',
   'js/Civication/lifestory/lifestoryState.js',
   'js/Civication/lifestory/lifestoryRunner.js',
@@ -75,7 +76,8 @@ async function harness(role, type) {
   const dayIndex = initial.dag;
   window.CivicationCalendar = { getClock: () => ({ dayIndex }) };
   window.CivicationState = {
-    getState: () => ({}), getActivePosition: () => null,
+    getState: () => ({}), getActivePosition: () => role === 'arealplanlegger'
+      ? { career_id: 'by', role_key: 'by_radgiver_plan', title: 'Arealplanlegger' } : null,
     getInbox: () => window.CivicationMailEngine?.getInbox?.() || []
   };
   window.fetch = async resource => {
@@ -219,3 +221,4 @@ test('all eight wave-A stories retain their canonical scene and source bindings'
   assert.equal(scenes, 74);
   assert.equal(choices, 148);
 });
+

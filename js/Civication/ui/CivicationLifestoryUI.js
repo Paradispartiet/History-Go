@@ -239,7 +239,11 @@
     const title = String(active?.title || "jobben din");
     shellStory = { status: "loading", title };
     render();
-    if (active && !window.CivicationCareerRoleResolver?.resolveCareerRoleScope) return;
+    if (active && !window.CivicationCareerRoleResolver?.resolveCareerRoleScope) {
+      shellStory = { status: "error", title };
+      render();
+      return;
+    }
     adopting = true;
     try {
       const Content = /** @type {any} */ (window).CivicationLifestoryContent;
@@ -1006,6 +1010,10 @@
         return;
       }
       if (target.closest("[data-lifestory-retry]")) {
+        if (window.CivicationState?.getActivePosition?.() && !window.CivicationCareerRoleResolver?.resolveCareerRoleScope) {
+          window.location.reload();
+          return;
+        }
         window.CivicationJsonStore?.invalidate?.();
         if (content && state) maybeAdoptShellRole();
         else start();
