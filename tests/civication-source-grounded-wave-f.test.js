@@ -141,3 +141,54 @@ test('Calling NAV never silently sends missing employment documentation',()=>{
   assert.deepEqual(documents.conditions.flagg.ryddet_dokumentasjon,{finnes:false});
   assert.ok(documents.valg.some(v=>v.effekter?.flagg?.ryddet_dokumentasjon===true));
 });
+
+test('Every Wave F alternative produces its recorded effect and survives later life days',()=>{
+  let verified=0;
+  for (const entry of register.stories) {
+    const arc=entry.id;
+    const phases={c01:'kveld',c02:'kveld',c03:'kveld',c05:'ettermiddag',c06:'kveld',c07:'kveld',c17:'kveld',c23:'kveld'};
+    for (const predecessor of possibleStatuses(arc)) {
+      for (const id of ['behold','avgrens']) {
+        const state=State.createInitialState(base);
+        const earlier=arc==='c01'||arc==='c05'?12:sourceEntries.get(arc).days[0];
+        seed(state,arc,predecessor,earlier);
+        state.fase=phases[arc];
+        state.livsdag=Math.max(earlier+4,entry.minimum_livsdag);
+        const [scene]=options(state,base,arc);
+        assert.equal(scene.id,'wave_f_'+arc+'_'+predecessor.status);
+        const choice=scene.valg.find(c=>c.id===id);
+        assert.ok(choice);
+        const oldMeters={...state.meters},oldRelations={...state.relasjoner};
+        Runner.applyChoice(state,base,scene.id,id);
+        for (const [key,delta] of Object.entries(choice.effekter.meters||{})) {
+          const next=oldMeters[key]+delta;
+          assert.equal(state.meters[key],key==='penger'?next:Math.max(0,Math.min(100,next)),scene.id+' / '+id+' / '+key);
+        }
+        for (const [key,delta] of Object.entries(choice.effekter.relasjoner||{})) {
+          assert.equal(state.relasjoner[key],Math.max(0,Math.min(100,oldRelations[key]+delta)),scene.id+' / '+id+' / '+key);
+        }
+        const newMeterValues={...state.meters},newRelations={...state.relasjoner};
+        // The already-recorded choice, its archive entry, and all meters remain
+        // unchanged when life days advance. Only a later authored event may change them.
+        state.livsdag+=3;
+        State.capturePrivateStory(state);
+        assert.deepEqual(state.meters,newMeterValues);
+        assert.deepEqual(state.relasjoner,newRelations);
+        assert.equal(state.tidligereValg['wa_f_'+arc+'_status'],choice.effekter.flagg['wa_f_'+arc+'_status']);
+        assert.equal(state.arkiv.filter(e=>e.sceneId===scene.id).length,1);
+        assert.equal(state.spilteScener.filter(x=>x===scene.id).length,1);
+        verified++;
+      }
+    }
+  }
+  assert.equal(verified,136);
+});
+
+test('The only recorded crossing observation is a single 15-minute interval',()=>{
+  const planning=read(manifest.roles.arealplanlegger.scenes).scenes;
+  const observed=planning.find(s=>s.id==='wave_b_c06_observasjonen');
+  const continuation=life.find(s=>s.id==='wave_f_c06_tidsrom_synlig');
+  assert.match(observed.tekst,/07\\.45 til 08\\.00/);
+  assert.match(continuation.tekst,/07\\.45 til 08\\.00/);
+  assert.doesNotMatch(continuation.tekst,/tre morgener/i);
+});
