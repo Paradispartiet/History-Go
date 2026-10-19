@@ -76,6 +76,18 @@ En samlet bolk på **32 Wave F-scener i alle åtte historieløp** er omskrevet, 
 
 **Fortsatt arbeid:** Wave F alene er nå bedre avsluttet, men hele A–F må leses og spilles i norsk grensesnitt før den samlede litterære kvaliteten kan godkjennes. PR #6382 forblir draft. Wave G startes ikke.
 
+## Femte redaksjonelle pass – resterende Wave F-scener (19. oktober 2026)
+
+Alle de **36 gjenværende Wave F-scenene** er redaksjonelt omskrevet, med **72 valgtekster og 72 konsekvenstekster**, fordelt slik: C01 4, C05 4, C02 4, C03 4, C06 4, C07 4, C17 4, C23 8. Sammen med forrige bolk på 32 scener innebærer dette at **samtlige 68 Wave F-scener** har fått et nytt pass rettet mot personlige erfaringer, naturlig språk og meningsfulle forskjeller mellom valg. Ingen nye scener ble opprettet.
+
+**Grep i denne bolken:** Jonas-grenene handler om grenser, savn og egen kalender; NAV om hverdagsøkonomi, ventetid og dokumenter som ikke får overta hjemmet; Mira om eierskap til musikken, honorar og samarbeid; Lea og prototypen om samtykke og å tåle manglende bevis; skoleveien om én begrenset telling og presset fra Eirik; Arvid om forskjellen på fellesskap og vaktforventninger; renhold om arbeid som faktisk ble gjort og en blokkert lagerdør; prosjektmeldingen om ansvar, stillhet og retten til ikke å svare. Valgene er gjennomgående mer konkrete og legger ikke til usannsynlig bekreftelse fra andre.
+
+**Kontinuitetsvern:** C06 har fremdeles bare én observasjon (07.45–08.00, sju passeringer, tre med skolesekk). C17 har fortsatt en utilgjengelig lagerdør, ikke dokumentert utbedring. Ingen nye NAV-vedtak, spillejobber, brukerforsøk, møtebekreftelser, utbetalinger eller mottakersvar er oppfunnet. Etter-valg-dager, scene-ID-er, choice-ID-er, valgkrav, effekter, relasjoner, flagg, tids- og trådmetadata er uendret.
+
+**Avgrenset intern strukturkontroll:** Originalen og den redigerte scenelisten er sammenlignet objekt for objekt. Eksakt 36 eksisterende sceneobjekter ble endret; når feltene `tittel`, `tekst`, `valg[].tekst` og `valg[].konsekvensTekst` utelates, er alle objekter identiske. Dette erstatter verken Node-test på siste commit eller norsk gjennomspilling av de 217 A–F-scenene.
+
+**Redaksjonelt gjenstående:** Ikke erklær 217 scener godkjent bare fordi Wave F er omskrevet. Les Wave A–E mot inngangene til F, sjekk at valgene føles forskjellige i faktisk UI, og rett resterende sjargong, repetisjon og ulogiske mellomledd. PR #6382 forblir draft; Wave G er fortsatt utsatt.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
