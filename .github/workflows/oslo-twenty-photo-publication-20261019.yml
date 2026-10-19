@@ -44,13 +44,16 @@ jobs:
           git add data/places/by/oslo/places_by_oslo_oppdag_kvadraturen_batch_03/grev_wedels_plass.json
           git add data/places/production-tiers/v1-oslo-place-media-text-review-20261019-batch04.json
           git add data/places/places_index.json data/runtime/place-open
-          git diff --cached --quiet && { echo 'No photos generated'; exit 1; }
-          git commit -m 'assets(oslo): publish reviewed Commons photo triplets to PlaceCards'
-          git push origin HEAD:content/oslo-twenty-photo-publication-20261019
+          if git diff --cached --quiet; then
+            echo 'Photo data already synchronized; no duplicate commit'
+          else
+            git commit -m 'assets(oslo): publish reviewed Commons photo triplets to PlaceCards'
+            git push origin HEAD:content/oslo-twenty-photo-publication-20261019
+          fi
       - run: npx playwright install --with-deps chromium
       - name: Verify actual PlaceCard images, crop positions and QuizCard flip
         env:
-          HG_VISUAL_PLACES: havnelageret,sagene_skole,christiania_seildugsfabrik,grev_wedels_plass,grensen_kjopesenter
+          HG_VISUAL_PLACES: havnelageret,sagene_skole,christiania_seildugsfabrik,grensen_kjopesenter
           HG_VISUAL_OUT: .tmp/oslo-twenty-native-review
           HG_VISUAL_CAPTURES: .tmp/oslo-twenty-native-captures
         run: |

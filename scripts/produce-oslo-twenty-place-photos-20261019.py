@@ -94,8 +94,24 @@ def main():
         if place.get("id")!=pid:raise RuntimeError("canonical ID mismatch: "+pid)
         files={kind:f"{pid}_{kind}.webp" for kind in SIZES}
         try:
+            existing={kind:str((OUT/file).relative_to(ROOT)) for kind,file in files.items()}
+            if all((ROOT/file).is_file() for file in existing.values()) and all([
+                place.get("image")==existing["hero"],
+                place.get("frontImage")==existing["portrait"],
+                place.get("cardImage")==existing["card"],
+                place.get("imageSourceUrl","").startswith("https://commons.wikimedia.org/wiki/File:"),
+                bool(place.get("imageMeta",{}).get("license")),
+                bool(place.get("frontImageMeta",{}).get("license")),
+            ]):
+                results.append({"place_id":pid,"image":existing["hero"],"frontImage":existing["portrait"],
+                        "cardImage":existing["card"],"source":place["imageSourceUrl"],
+                        "author":place["imageMeta"]["creator"],"license":place["imageMeta"]["license"],
+                        "app_verified":False,"v1_promoted":False,
+                        "source_sha256":"previously_verified_original"})
+                print("PHOTO REUSED",pid,flush=True)
+                continue
             if any((OUT/file).exists() for file in files.values()):
-                raise ValueError("Refuse to overwrite existing photo outputs")
+                raise ValueError("Refuse to overwrite incomplete or differently bound photo outputs")
             info=commons_info(entry)
             raw=get(info["download"],"image/*",limit=32_000_000)
             if len(raw)<5000:raise ValueError("Commons image download too small")
