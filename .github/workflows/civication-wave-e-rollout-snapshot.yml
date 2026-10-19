@@ -1,0 +1,32 @@
+name: Wave E rollout audit snapshot
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/civication-wave-e-rollout-snapshot.yml
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate affected role-world readiness outputs
+        run: node scripts/audit-civication-role-world-rollout-readiness.mjs --write
+      - name: Emit exact generated text
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          for(const path of [
+            'data/Civication/roleWorldRolloutReadiness.json',
+            'reports/civication-role-world-rollout-readiness.md'
+          ]) {
+            const str=fs.readFileSync(path,'utf8');
+            for(let index=0;index<str.length;index+=2500)console.log('HGOUT '+JSON.stringify({path,index,chunk:str.slice(index,index+2500)}));
+            console.log('HGEND '+JSON.stringify({path,chars:str.length}));
+          }
+          NODE
