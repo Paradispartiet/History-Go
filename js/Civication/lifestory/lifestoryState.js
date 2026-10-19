@@ -370,14 +370,30 @@
     return state;
   }
 
-  /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
-  function sceneMentionsPerson(scene, person, choice) {
-    return scene.avsender === person.id || JSON.stringify([scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]).toLowerCase().includes(person.navn.toLowerCase());
+  /** Authored characters can be addressed by full label ("Mira, musiker")
+   * or by first name ("Mira"); technical IDs with underscores are excluded.
+   */
+  function nameVariants(person) {
+    const full = String(person?.navn || "").trim();
+    const short = full.includes(",") ? full.split(",")[0].trim() : "";
+    return short && short !== full ? [full, short] : [full];
   }
 
-  /** Snapshot the types actually present in this scene before archiving it.
-   * @param {any} state @param {any} content @param {any} scene @param {any} choice @returns {any}
-   */
+  function nameRegex(name, possessive = false) {
+    const escaped = name.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&");
+    return new RegExp("(^|[^\\p{L}\\p{N}_])" + escaped +
+      (possessive ? "s" : "") + "(?=$|[^\\p{L}\\p{N}_])", "giu");
+  }
+
+  /** @param {any} scene @param {any} person @param {any} [choice] @returns {boolean} */
+  function sceneMentionsPerson(scene, person, choice) {
+    if (scene.avsender === person.id) return true;
+    const prose = [scene.tittel, scene.tekst, choice?.tekst, choice?.konsekvensTekst]
+      .filter(value => typeof value === "string").join(" ");
+    return nameVariants(person).some(name => name && nameRegex(name).test(prose));
+  }
+
+  /** Snapshot actual representatives at the time of the scene, not later. */
   function lockScenePeople(state, content, scene, choice) {
     const cast = {};
     for (const person of content.role.personer || []) {
@@ -390,20 +406,18 @@
     return cast;
   }
 
-  /** Resolve authored type names, never legacy archive names or technical IDs.
-   * @param {any} state @param {any} content @param {any} value @returns {string}
-   */
+  /** Replace only authored prose, not identifiers or old archive entries. */
   function presentText(state, content, value) {
     let text = String(value == null ? "" : value);
     for (const person of content?.role?.personer || []) {
       const cast = state?.personRepresentanter?.[person.id];
       if (!person.persontype || !cast?.personId) continue;
-      const escaped = person.navn.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      // Norwegian type names contain letters outside ASCII \b, so delimit
-      // explicitly. Replace possessives before the plain name.
       const possessive = /[sxz]$/i.test(cast.navn) ? cast.navn + "’" : cast.navn + "s";
-      text = text.replace(new RegExp("(^|[^\\p{L}])" + escaped + "s(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + possessive)
-        .replace(new RegExp("(^|[^\\p{L}])" + escaped + "(?=$|[^\\p{L}])", "giu"), (_, prefix) => prefix + cast.navn);
+      for (const name of nameVariants(person)) {
+        if (!name) continue;
+        text = text.replace(nameRegex(name, true), (_, prefix) => prefix + possessive)
+          .replace(nameRegex(name), (_, prefix) => prefix + cast.navn);
+      }
     }
     return text;
   }
