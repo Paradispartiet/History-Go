@@ -159,7 +159,17 @@
     const selector = getSelector();
     if (!selector || typeof selector.getCurrent !== "function") return null;
     try {
-      return selector.getCurrent() || null;
+      const action = selector.getCurrent() || null;
+      if (!action) return null;
+      const scope = resolveRoleScope(getActiveRole());
+      const runtime = window.CivicationDailyMailBuilder?.inspect?.()?.runtime;
+      if (String(action.source || "").startsWith("day_phase") && runtime?.role_scope && runtime.role_scope !== scope) return null;
+      const event = window.CivicationMailEngine?.getMail?.(action.id)?.event;
+      const eventScope = event?.role_scope || event?.role_model_meta?.role_scope;
+      const jobEvent = window.CivicationEventChannels?.getMessageChannel?.(event) === "job"
+        || event?.mail_class === "daily_workday" || event?.workday_related === true;
+      if (jobEvent && eventScope && eventScope !== scope) return null;
+      return action;
     } catch (_e) {
       return null;
     }
@@ -805,6 +815,10 @@
   function answer(mailId, choiceId) {
     if (!mailId) return Promise.resolve({ ok: false, reason: "missing_mail_id" });
     if (answerInFlight) return Promise.resolve({ ok: false, reason: "answer_in_flight" });
+    if (getCurrentAction()?.id !== mailId) {
+      open();
+      return Promise.resolve({ ok: false, reason: "action_changed" });
+    }
 
     perfMark("civi-answer-click");
     answerInFlight = true;

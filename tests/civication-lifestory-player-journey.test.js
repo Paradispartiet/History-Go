@@ -279,9 +279,21 @@ async function dayEventJourney() {
   assert.match(panel.textContent, /Livsrolle: Student/);
   // An inbox event from a former job is hidden even if a legacy selector can
   // still see it during the handover. The recovery button remains available.
+  const formerChoice = w.document.querySelector("[data-civi-next-action-answer]");
+  let releaseJobDay;
+  w.CivicationDailyMailBuilder.startToday = () => new Promise(resolve => { releaseJobDay = resolve; });
   app.setJob({ career_id: "naeringsliv", role_key: "sjafor", title: "Sjåfør" });
   await waitFor(() => panel.textContent.includes("Sjåfør"), "new unsupported job");
   assert.equal(panel.querySelector("[data-lifestory-day-event]"), null);
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "already open modal removes former job choices");
+  formerChoice.click();
+  panel.querySelector("[data-lifestory-next-action]").click();
+  await waitFor(() => releaseJobDay, "new job day is loading");
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null, "loading cannot expose stale inbox choices");
+  releaseJobDay({ ok: false });
+  await waitFor(() => w.document.querySelector("[data-civi-next-action-retry]"), "failed new job recovery stays closed to old choices");
+  assert.equal(w.document.querySelector("[data-civi-next-action-answer]"), null);
+  assert.equal(answers, 1, "former job cannot receive another consequence during handover");
   app.setJob(warehouse);
   await waitFor(() => panel.querySelector("[data-lifestory-day-event]"), "return to daily event");
   w.CivicationMailEngine.archiveMail("journey_followup");
