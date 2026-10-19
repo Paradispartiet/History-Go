@@ -115,6 +115,25 @@ Samlet revidert i disse to siste produksjonsrundene: 36 Wave F-scener samt 16 di
 
 **Neste redaksjonelle port:** Les de resterende Wave A–E-scenene som hele fortellinger, særlig overgangen fra B til C og repetisjoner i NAV-/prosjektløpene. Tydelige karakterer og meningsfulle valg må finnes også utenfor denne utvalgte bolken. Før godkjenning: én relevant teknisk test av siste commit og faktisk norsk gjennomspilling på tvers av de åtte historieløpene. PR #6382 skal forbli draft til dette er gjort. Wave G er ikke startet.
 
+## Åttende redaksjonelle pass – overgangene mellom Wave B og C (19. oktober 2026)
+
+**33 eksisterende scener omskrevet, med 66 reviderte valg og 66 konsekvenstekster**, fordelt på alle åtte historieløp. Bolken inneholder **16 Wave B-scener og 17 Wave C-scener**. Endringene ligger i sju historiefiler; ingen scener er lagt til.
+
+| Løp | B | C | Konkrete redaksjonelle endringer |
+| --- | ---: | ---: | --- |
+| C01 Jonas og økonomien | 2 | 2 | Sen avlysning får personlig pris for Jonas; det åpne forslaget om te handler om tillit, ikke ny kalenderadministrasjon. |
+| C02 Mira og musikken | 2 | 2 | Manglende tilbud får følelsesmessig konsekvens; Mira setter grenser for arrangørens ubestemte forespørsler og beholder eierskap til låten. |
+| C03 Lea og prototypen | 2 | 2 | Sorg over å stå utenfor samarbeidet, konkret forskjell mellom tynne og tykke kort, og spenning mellom stolthet og korrekt formidling av testbegrensninger. |
+| C05 NAV | 2 | 2 | Registrert dokument, forsinket innsending og etatenes manglende lesbarhetskontroll får faktisk betydning for hverdagen og økonomisk usikkerhet. |
+| C06 Skoleveien | 2 | 2 | Funn fra **én telling 07.45–08.00, sju gående, tre med skolesekk** settes opp mot Eiriks press på å gjøre teksten konkluderende; grener uten observasjon får fortsatt ingen fiktive tall. |
+| C07 Arvid og fellesskapet | 2 | 2 | Sen avlysning, savn etter miljøet og uønskede gruppeinvitasjoner gjør sosial kontakt og frivillig arbeid til to forskjellige ting. |
+| C17 Renholdet | 2 | 2 | Drift undersøker den tunge hylla uten å flytte den; rapporteringspress, Karis rolle og misforståtte arbeidsresultater blir konkret konflikt. |
+| C23 Feilinformasjonen | 2 | 3 | Sendt rettelse er ikke tilgivelse; brukte arbeidstimer kan ikke hentes tilbake; bedre mal er ikke dokumentasjon på gjenopprettet tillit. |
+
+**Kontroll ved redigering:** For hver av de sju JSON-filene ble alle sceneobjekter sammenlignet før lagring etter at kun `tittel`, `tekst`, `valg[].tekst` og `valg[].konsekvensTekst` var utelatt. Antallet endrede scener var eksakt 33; scene-ID-er, valg-ID-er, flagg, forutsetninger, meter- og relasjonseffekter, dager og trådføring er bevart. To språkfeil i bolken ble rettet etter lagring. Ingen Node-/UI-tester eller full litterær godkjenning er påstått.
+
+**Neste steg:** Redaksjonell helhetslesning av alle A–F-overganger, særlig gjentakelser av samme handlingsmønster i C05, C06 og C23 og hvorvidt spillerens valgte retning merkes i den samlede fortellingen. Deretter én målrettet teknisk kontroll og norsk spillgjennomgang før draft-PR vurderes for publisering. Wave G holdes tilbake.
+
 ## Gjenstående før redaksjonell godkjenning
 
 Denne revisjonen er **ikke** en full litterær godkjenning av alle 217 scener i A–F. Flere tidligere scener, spesielt i C01–C07, trenger fortsatt sammenhengende gjennomspilling og selektiv omskriving. Forutgående scenevalg og deres konsekvenstekster må leses samlet mot nye Wave F-scener for å fange overgangsfeil. De faktiske meter-effektene må verifiseres i spillmotoren, og hele løpene bør spilles av mennesker på norsk. Ingen av de automatiske testene kan bevise naturlig dialog eller god dramatikk.
